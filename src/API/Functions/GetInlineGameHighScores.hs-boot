@@ -8,7 +8,5 @@ data GetInlineGameHighScores
 
 instance ToJSON GetInlineGameHighScores
 
-
-
 instance FromJSON GetInlineGameHighScores
 

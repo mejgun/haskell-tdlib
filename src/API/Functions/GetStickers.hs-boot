@@ -8,7 +8,5 @@ data GetStickers
 
 instance ToJSON GetStickers
 
-
-
 instance FromJSON GetStickers
 

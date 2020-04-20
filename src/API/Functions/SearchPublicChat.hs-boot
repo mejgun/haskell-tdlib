@@ -8,7 +8,5 @@ data SearchPublicChat
 
 instance ToJSON SearchPublicChat
 
-
-
 instance FromJSON SearchPublicChat
 

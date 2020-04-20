@@ -8,7 +8,5 @@ data SearchChatsNearby
 
 instance ToJSON SearchChatsNearby
 
-
-
 instance FromJSON SearchChatsNearby
 

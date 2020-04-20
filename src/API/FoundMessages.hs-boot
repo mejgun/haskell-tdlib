@@ -8,7 +8,5 @@ data FoundMessages
 
 instance ToJSON FoundMessages
 
-
-
 instance FromJSON FoundMessages
 

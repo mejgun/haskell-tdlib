@@ -8,7 +8,5 @@ data GetBackgrounds
 
 instance ToJSON GetBackgrounds
 
-
-
 instance FromJSON GetBackgrounds
 

@@ -8,7 +8,5 @@ data StickerSet
 
 instance ToJSON StickerSet
 
-
-
 instance FromJSON StickerSet
 

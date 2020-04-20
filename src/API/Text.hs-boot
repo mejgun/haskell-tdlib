@@ -8,7 +8,5 @@ data Text
 
 instance ToJSON Text
 
-
-
 instance FromJSON Text
 

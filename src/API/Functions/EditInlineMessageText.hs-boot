@@ -8,7 +8,5 @@ data EditInlineMessageText
 
 instance ToJSON EditInlineMessageText
 
-
-
 instance FromJSON EditInlineMessageText
 

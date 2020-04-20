@@ -8,7 +8,5 @@ data GetCountryCode
 
 instance ToJSON GetCountryCode
 
-
-
 instance FromJSON GetCountryCode
 

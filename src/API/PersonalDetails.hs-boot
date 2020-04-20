@@ -8,7 +8,5 @@ data PersonalDetails
 
 instance ToJSON PersonalDetails
 
-
-
 instance FromJSON PersonalDetails
 

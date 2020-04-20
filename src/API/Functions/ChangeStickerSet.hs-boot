@@ -8,7 +8,5 @@ data ChangeStickerSet
 
 instance ToJSON ChangeStickerSet
 
-
-
 instance FromJSON ChangeStickerSet
 

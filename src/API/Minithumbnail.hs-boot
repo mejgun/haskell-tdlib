@@ -8,7 +8,5 @@ data Minithumbnail
 
 instance ToJSON Minithumbnail
 
-
-
 instance FromJSON Minithumbnail
 

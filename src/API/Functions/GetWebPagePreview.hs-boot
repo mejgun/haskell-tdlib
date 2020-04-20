@@ -8,7 +8,5 @@ data GetWebPagePreview
 
 instance ToJSON GetWebPagePreview
 
-
-
 instance FromJSON GetWebPagePreview
 

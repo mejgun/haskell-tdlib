@@ -8,7 +8,5 @@ data GetSupergroupMembers
 
 instance ToJSON GetSupergroupMembers
 
-
-
 instance FromJSON GetSupergroupMembers
 

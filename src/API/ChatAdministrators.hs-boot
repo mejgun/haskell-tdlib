@@ -8,7 +8,5 @@ data ChatAdministrators
 
 instance ToJSON ChatAdministrators
 
-
-
 instance FromJSON ChatAdministrators
 

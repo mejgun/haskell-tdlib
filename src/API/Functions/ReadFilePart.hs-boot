@@ -8,7 +8,5 @@ data ReadFilePart
 
 instance ToJSON ReadFilePart
 
-
-
 instance FromJSON ReadFilePart
 

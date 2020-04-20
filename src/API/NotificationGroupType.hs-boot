@@ -8,7 +8,5 @@ data NotificationGroupType
 
 instance ToJSON NotificationGroupType
 
-
-
 instance FromJSON NotificationGroupType
 

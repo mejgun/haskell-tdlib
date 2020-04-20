@@ -8,7 +8,5 @@ data SetGameScore
 
 instance ToJSON SetGameScore
 
-
-
 instance FromJSON SetGameScore
 

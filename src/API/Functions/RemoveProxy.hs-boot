@@ -8,7 +8,5 @@ data RemoveProxy
 
 instance ToJSON RemoveProxy
 
-
-
 instance FromJSON RemoveProxy
 

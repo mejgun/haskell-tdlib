@@ -8,7 +8,5 @@ data KeyboardButton
 
 instance ToJSON KeyboardButton
 
-
-
 instance FromJSON KeyboardButton
 

@@ -8,7 +8,5 @@ data CheckChatUsername
 
 instance ToJSON CheckChatUsername
 
-
-
 instance FromJSON CheckChatUsername
 

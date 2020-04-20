@@ -8,7 +8,5 @@ data VoiceNote
 
 instance ToJSON VoiceNote
 
-
-
 instance FromJSON VoiceNote
 

@@ -8,7 +8,5 @@ data DisconnectWebsite
 
 instance ToJSON DisconnectWebsite
 
-
-
 instance FromJSON DisconnectWebsite
 

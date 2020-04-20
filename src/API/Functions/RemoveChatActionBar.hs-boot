@@ -8,7 +8,5 @@ data RemoveChatActionBar
 
 instance ToJSON RemoveChatActionBar
 
-
-
 instance FromJSON RemoveChatActionBar
 

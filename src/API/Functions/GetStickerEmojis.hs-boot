@@ -8,7 +8,5 @@ data GetStickerEmojis
 
 instance ToJSON GetStickerEmojis
 
-
-
 instance FromJSON GetStickerEmojis
 

@@ -8,7 +8,5 @@ data GetArchivedStickerSets
 
 instance ToJSON GetArchivedStickerSets
 
-
-
 instance FromJSON GetArchivedStickerSets
 

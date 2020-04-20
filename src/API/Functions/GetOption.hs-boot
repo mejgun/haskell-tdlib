@@ -8,7 +8,5 @@ data GetOption
 
 instance ToJSON GetOption
 
-
-
 instance FromJSON GetOption
 

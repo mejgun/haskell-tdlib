@@ -8,7 +8,5 @@ data GetAccountTtl
 
 instance ToJSON GetAccountTtl
 
-
-
 instance FromJSON GetAccountTtl
 

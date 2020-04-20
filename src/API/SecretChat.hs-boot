@@ -8,7 +8,5 @@ data SecretChat
 
 instance ToJSON SecretChat
 
-
-
 instance FromJSON SecretChat
 

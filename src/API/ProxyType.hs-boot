@@ -8,7 +8,5 @@ data ProxyType
 
 instance ToJSON ProxyType
 
-
-
 instance FromJSON ProxyType
 

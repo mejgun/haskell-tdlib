@@ -8,7 +8,5 @@ data EditMessageMedia
 
 instance ToJSON EditMessageMedia
 
-
-
 instance FromJSON EditMessageMedia
 

@@ -8,7 +8,5 @@ data ChatInviteLinkInfo
 
 instance ToJSON ChatInviteLinkInfo
 
-
-
 instance FromJSON ChatInviteLinkInfo
 

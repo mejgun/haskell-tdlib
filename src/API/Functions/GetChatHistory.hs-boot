@@ -8,7 +8,5 @@ data GetChatHistory
 
 instance ToJSON GetChatHistory
 
-
-
 instance FromJSON GetChatHistory
 

@@ -8,7 +8,5 @@ data RemoteFile
 
 instance ToJSON RemoteFile
 
-
-
 instance FromJSON RemoteFile
 

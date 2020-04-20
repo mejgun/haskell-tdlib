@@ -8,7 +8,5 @@ data TestInt
 
 instance ToJSON TestInt
 
-
-
 instance FromJSON TestInt
 

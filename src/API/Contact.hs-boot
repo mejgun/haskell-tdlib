@@ -8,7 +8,5 @@ data Contact
 
 instance ToJSON Contact
 
-
-
 instance FromJSON Contact
 

@@ -8,7 +8,5 @@ data AddRecentSticker
 
 instance ToJSON AddRecentSticker
 
-
-
 instance FromJSON AddRecentSticker
 

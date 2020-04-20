@@ -8,7 +8,5 @@ data StatisticsGraph
 
 instance ToJSON StatisticsGraph
 
-
-
 instance FromJSON StatisticsGraph
 

@@ -8,7 +8,5 @@ data GetLogStream
 
 instance ToJSON GetLogStream
 
-
-
 instance FromJSON GetLogStream
 

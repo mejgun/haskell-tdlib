@@ -8,7 +8,5 @@ data AddCustomServerLanguagePack
 
 instance ToJSON AddCustomServerLanguagePack
 
-
-
 instance FromJSON AddCustomServerLanguagePack
 

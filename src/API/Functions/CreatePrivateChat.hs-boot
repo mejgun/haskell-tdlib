@@ -8,7 +8,5 @@ data CreatePrivateChat
 
 instance ToJSON CreatePrivateChat
 
-
-
 instance FromJSON CreatePrivateChat
 

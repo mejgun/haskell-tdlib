@@ -8,7 +8,5 @@ data ReadAllChatMentions
 
 instance ToJSON ReadAllChatMentions
 
-
-
 instance FromJSON ReadAllChatMentions
 

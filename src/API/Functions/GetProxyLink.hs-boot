@@ -8,7 +8,5 @@ data GetProxyLink
 
 instance ToJSON GetProxyLink
 
-
-
 instance FromJSON GetProxyLink
 

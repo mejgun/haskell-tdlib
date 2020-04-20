@@ -8,7 +8,5 @@ data FinishFileGeneration
 
 instance ToJSON FinishFileGeneration
 
-
-
 instance FromJSON FinishFileGeneration
 

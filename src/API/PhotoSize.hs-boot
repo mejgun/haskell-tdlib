@@ -8,7 +8,5 @@ data PhotoSize
 
 instance ToJSON PhotoSize
 
-
-
 instance FromJSON PhotoSize
 

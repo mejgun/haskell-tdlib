@@ -8,7 +8,5 @@ data MessageSendingState
 
 instance ToJSON MessageSendingState
 
-
-
 instance FromJSON MessageSendingState
 

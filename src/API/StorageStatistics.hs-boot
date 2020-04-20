@@ -8,7 +8,5 @@ data StorageStatistics
 
 instance ToJSON StorageStatistics
 
-
-
 instance FromJSON StorageStatistics
 

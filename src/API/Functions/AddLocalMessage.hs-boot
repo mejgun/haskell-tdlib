@@ -8,7 +8,5 @@ data AddLocalMessage
 
 instance ToJSON AddLocalMessage
 
-
-
 instance FromJSON AddLocalMessage
 

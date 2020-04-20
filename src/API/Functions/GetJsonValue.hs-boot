@@ -8,7 +8,5 @@ data GetJsonValue
 
 instance ToJSON GetJsonValue
 
-
-
 instance FromJSON GetJsonValue
 

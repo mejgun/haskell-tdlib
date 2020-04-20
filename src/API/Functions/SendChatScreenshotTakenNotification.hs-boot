@@ -8,7 +8,5 @@ data SendChatScreenshotTakenNotification
 
 instance ToJSON SendChatScreenshotTakenNotification
 
-
-
 instance FromJSON SendChatScreenshotTakenNotification
 

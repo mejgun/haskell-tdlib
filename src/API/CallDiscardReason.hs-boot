@@ -8,7 +8,5 @@ data CallDiscardReason
 
 instance ToJSON CallDiscardReason
 
-
-
 instance FromJSON CallDiscardReason
 

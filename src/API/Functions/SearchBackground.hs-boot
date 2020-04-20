@@ -8,7 +8,5 @@ data SearchBackground
 
 instance ToJSON SearchBackground
 
-
-
 instance FromJSON SearchBackground
 

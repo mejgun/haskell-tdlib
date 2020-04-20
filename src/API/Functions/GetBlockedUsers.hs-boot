@@ -8,7 +8,5 @@ data GetBlockedUsers
 
 instance ToJSON GetBlockedUsers
 
-
-
 instance FromJSON GetBlockedUsers
 

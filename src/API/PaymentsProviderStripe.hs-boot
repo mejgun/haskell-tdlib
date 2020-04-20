@@ -8,7 +8,5 @@ data PaymentsProviderStripe
 
 instance ToJSON PaymentsProviderStripe
 
-
-
 instance FromJSON PaymentsProviderStripe
 

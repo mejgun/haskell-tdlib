@@ -8,7 +8,5 @@ data Updates
 
 instance ToJSON Updates
 
-
-
 instance FromJSON Updates
 

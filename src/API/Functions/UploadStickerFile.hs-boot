@@ -8,7 +8,5 @@ data UploadStickerFile
 
 instance ToJSON UploadStickerFile
 
-
-
 instance FromJSON UploadStickerFile
 

@@ -8,7 +8,5 @@ data GetLanguagePackString
 
 instance ToJSON GetLanguagePackString
 
-
-
 instance FromJSON GetLanguagePackString
 

@@ -8,7 +8,5 @@ data SetDatabaseEncryptionKey
 
 instance ToJSON SetDatabaseEncryptionKey
 
-
-
 instance FromJSON SetDatabaseEncryptionKey
 

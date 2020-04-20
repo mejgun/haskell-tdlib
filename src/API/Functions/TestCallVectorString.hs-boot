@@ -8,7 +8,5 @@ data TestCallVectorString
 
 instance ToJSON TestCallVectorString
 
-
-
 instance FromJSON TestCallVectorString
 

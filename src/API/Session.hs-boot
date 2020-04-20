@@ -8,7 +8,5 @@ data Session
 
 instance ToJSON Session
 
-
-
 instance FromJSON Session
 

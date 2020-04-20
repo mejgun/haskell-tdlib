@@ -8,7 +8,5 @@ data TestCallVectorInt
 
 instance ToJSON TestCallVectorInt
 
-
-
 instance FromJSON TestCallVectorInt
 

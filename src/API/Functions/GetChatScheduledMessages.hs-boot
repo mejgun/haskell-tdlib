@@ -8,7 +8,5 @@ data GetChatScheduledMessages
 
 instance ToJSON GetChatScheduledMessages
 
-
-
 instance FromJSON GetChatScheduledMessages
 

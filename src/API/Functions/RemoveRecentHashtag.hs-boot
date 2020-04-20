@@ -8,7 +8,5 @@ data RemoveRecentHashtag
 
 instance ToJSON RemoveRecentHashtag
 
-
-
 instance FromJSON RemoveRecentHashtag
 

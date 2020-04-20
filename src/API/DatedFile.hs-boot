@@ -8,7 +8,5 @@ data DatedFile
 
 instance ToJSON DatedFile
 
-
-
 instance FromJSON DatedFile
 

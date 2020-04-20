@@ -8,7 +8,5 @@ data Message
 
 instance ToJSON Message
 
-
-
 instance FromJSON Message
 

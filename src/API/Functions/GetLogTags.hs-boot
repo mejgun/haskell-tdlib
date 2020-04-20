@@ -8,7 +8,5 @@ data GetLogTags
 
 instance ToJSON GetLogTags
 
-
-
 instance FromJSON GetLogTags
 

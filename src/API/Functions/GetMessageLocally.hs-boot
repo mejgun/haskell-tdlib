@@ -8,7 +8,5 @@ data GetMessageLocally
 
 instance ToJSON GetMessageLocally
 
-
-
 instance FromJSON GetMessageLocally
 

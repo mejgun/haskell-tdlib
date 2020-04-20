@@ -8,7 +8,5 @@ data GetPassportAuthorizationFormAvailableElements
 
 instance ToJSON GetPassportAuthorizationFormAvailableElements
 
-
-
 instance FromJSON GetPassportAuthorizationFormAvailableElements
 

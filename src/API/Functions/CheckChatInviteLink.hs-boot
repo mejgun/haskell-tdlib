@@ -8,7 +8,5 @@ data CheckChatInviteLink
 
 instance ToJSON CheckChatInviteLink
 
-
-
 instance FromJSON CheckChatInviteLink
 

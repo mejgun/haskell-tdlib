@@ -8,7 +8,5 @@ data SetLocation
 
 instance ToJSON SetLocation
 
-
-
 instance FromJSON SetLocation
 

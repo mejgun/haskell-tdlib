@@ -8,7 +8,5 @@ data GetTrendingStickerSets
 
 instance ToJSON GetTrendingStickerSets
 
-
-
 instance FromJSON GetTrendingStickerSets
 

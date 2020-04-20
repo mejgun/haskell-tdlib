@@ -8,7 +8,5 @@ data RegisterUser
 
 instance ToJSON RegisterUser
 
-
-
 instance FromJSON RegisterUser
 

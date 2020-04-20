@@ -8,7 +8,5 @@ data SetUsername
 
 instance ToJSON SetUsername
 
-
-
 instance FromJSON SetUsername
 

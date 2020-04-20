@@ -8,7 +8,5 @@ data GetStickerSet
 
 instance ToJSON GetStickerSet
 
-
-
 instance FromJSON GetStickerSet
 

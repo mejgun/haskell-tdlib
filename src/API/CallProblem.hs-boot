@@ -8,7 +8,5 @@ data CallProblem
 
 instance ToJSON CallProblem
 
-
-
 instance FromJSON CallProblem
 

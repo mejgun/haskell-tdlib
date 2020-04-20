@@ -8,7 +8,5 @@ data SetProfilePhoto
 
 instance ToJSON SetProfilePhoto
 
-
-
 instance FromJSON SetProfilePhoto
 

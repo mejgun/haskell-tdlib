@@ -8,7 +8,5 @@ data ResendRecoveryEmailAddressCode
 
 instance ToJSON ResendRecoveryEmailAddressCode
 
-
-
 instance FromJSON ResendRecoveryEmailAddressCode
 

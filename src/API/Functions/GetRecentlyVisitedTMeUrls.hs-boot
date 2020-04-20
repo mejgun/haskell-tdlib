@@ -8,7 +8,5 @@ data GetRecentlyVisitedTMeUrls
 
 instance ToJSON GetRecentlyVisitedTMeUrls
 
-
-
 instance FromJSON GetRecentlyVisitedTMeUrls
 

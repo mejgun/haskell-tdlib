@@ -8,7 +8,5 @@ data PushReceiverId
 
 instance ToJSON PushReceiverId
 
-
-
 instance FromJSON PushReceiverId
 

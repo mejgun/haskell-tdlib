@@ -8,7 +8,5 @@ data CreateNewStickerSet
 
 instance ToJSON CreateNewStickerSet
 
-
-
 instance FromJSON CreateNewStickerSet
 

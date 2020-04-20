@@ -8,7 +8,5 @@ data SearchChatRecentLocationMessages
 
 instance ToJSON SearchChatRecentLocationMessages
 
-
-
 instance FromJSON SearchChatRecentLocationMessages
 

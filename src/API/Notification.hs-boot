@@ -8,7 +8,5 @@ data Notification
 
 instance ToJSON Notification
 
-
-
 instance FromJSON Notification
 

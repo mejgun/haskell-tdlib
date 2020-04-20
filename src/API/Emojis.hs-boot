@@ -8,7 +8,5 @@ data Emojis
 
 instance ToJSON Emojis
 
-
-
 instance FromJSON Emojis
 

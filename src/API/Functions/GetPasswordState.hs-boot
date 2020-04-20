@@ -8,7 +8,5 @@ data GetPasswordState
 
 instance ToJSON GetPasswordState
 
-
-
 instance FromJSON GetPasswordState
 

@@ -8,7 +8,5 @@ data ChatMembersFilter
 
 instance ToJSON ChatMembersFilter
 
-
-
 instance FromJSON ChatMembersFilter
 

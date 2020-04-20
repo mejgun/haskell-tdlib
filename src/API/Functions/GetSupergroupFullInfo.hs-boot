@@ -8,7 +8,5 @@ data GetSupergroupFullInfo
 
 instance ToJSON GetSupergroupFullInfo
 
-
-
 instance FromJSON GetSupergroupFullInfo
 

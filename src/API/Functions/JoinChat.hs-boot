@@ -8,7 +8,5 @@ data JoinChat
 
 instance ToJSON JoinChat
 
-
-
 instance FromJSON JoinChat
 

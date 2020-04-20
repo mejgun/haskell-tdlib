@@ -8,7 +8,5 @@ data GetMarkdownText
 
 instance ToJSON GetMarkdownText
 
-
-
 instance FromJSON GetMarkdownText
 

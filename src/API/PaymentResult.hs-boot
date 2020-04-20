@@ -8,7 +8,5 @@ data PaymentResult
 
 instance ToJSON PaymentResult
 
-
-
 instance FromJSON PaymentResult
 

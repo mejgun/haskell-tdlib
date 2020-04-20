@@ -8,7 +8,5 @@ data AnswerShippingQuery
 
 instance ToJSON AnswerShippingQuery
 
-
-
 instance FromJSON AnswerShippingQuery
 

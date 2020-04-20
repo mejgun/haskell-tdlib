@@ -8,7 +8,5 @@ data RegisterDevice
 
 instance ToJSON RegisterDevice
 
-
-
 instance FromJSON RegisterDevice
 

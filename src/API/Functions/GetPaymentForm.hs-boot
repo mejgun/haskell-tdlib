@@ -8,7 +8,5 @@ data GetPaymentForm
 
 instance ToJSON GetPaymentForm
 
-
-
 instance FromJSON GetPaymentForm
 

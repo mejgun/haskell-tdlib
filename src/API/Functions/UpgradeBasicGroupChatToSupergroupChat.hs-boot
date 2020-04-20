@@ -8,7 +8,5 @@ data UpgradeBasicGroupChatToSupergroupChat
 
 instance ToJSON UpgradeBasicGroupChatToSupergroupChat
 
-
-
 instance FromJSON UpgradeBasicGroupChatToSupergroupChat
 

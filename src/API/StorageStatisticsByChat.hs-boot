@@ -8,7 +8,5 @@ data StorageStatisticsByChat
 
 instance ToJSON StorageStatisticsByChat
 
-
-
 instance FromJSON StorageStatisticsByChat
 

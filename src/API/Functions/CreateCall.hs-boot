@@ -8,7 +8,5 @@ data CreateCall
 
 instance ToJSON CreateCall
 
-
-
 instance FromJSON CreateCall
 

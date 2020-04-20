@@ -8,7 +8,5 @@ data GetSuitableDiscussionChats
 
 instance ToJSON GetSuitableDiscussionChats
 
-
-
 instance FromJSON GetSuitableDiscussionChats
 

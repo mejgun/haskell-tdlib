@@ -8,7 +8,5 @@ data PollType
 
 instance ToJSON PollType
 
-
-
 instance FromJSON PollType
 

@@ -8,7 +8,5 @@ data SearchInstalledStickerSets
 
 instance ToJSON SearchInstalledStickerSets
 
-
-
 instance FromJSON SearchInstalledStickerSets
 

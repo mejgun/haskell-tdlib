@@ -8,7 +8,5 @@ data TestString
 
 instance ToJSON TestString
 
-
-
 instance FromJSON TestString
 

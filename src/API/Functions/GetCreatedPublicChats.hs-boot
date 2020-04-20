@@ -8,7 +8,5 @@ data GetCreatedPublicChats
 
 instance ToJSON GetCreatedPublicChats
 
-
-
 instance FromJSON GetCreatedPublicChats
 

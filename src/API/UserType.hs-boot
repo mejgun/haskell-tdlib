@@ -8,7 +8,5 @@ data UserType
 
 instance ToJSON UserType
 
-
-
 instance FromJSON UserType
 

@@ -8,7 +8,5 @@ data EditProxy
 
 instance ToJSON EditProxy
 
-
-
 instance FromJSON EditProxy
 

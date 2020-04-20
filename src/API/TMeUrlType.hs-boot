@@ -8,7 +8,5 @@ data TMeUrlType
 
 instance ToJSON TMeUrlType
 
-
-
 instance FromJSON TMeUrlType
 

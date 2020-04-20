@@ -8,7 +8,5 @@ data StatisticsValue
 
 instance ToJSON StatisticsValue
 
-
-
 instance FromJSON StatisticsValue
 

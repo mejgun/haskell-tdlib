@@ -8,7 +8,5 @@ data EditInlineMessageCaption
 
 instance ToJSON EditInlineMessageCaption
 
-
-
 instance FromJSON EditInlineMessageCaption
 

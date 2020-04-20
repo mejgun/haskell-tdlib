@@ -8,7 +8,5 @@ data RemoveSavedAnimation
 
 instance ToJSON RemoveSavedAnimation
 
-
-
 instance FromJSON RemoveSavedAnimation
 

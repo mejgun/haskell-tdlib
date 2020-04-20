@@ -8,7 +8,5 @@ data SetSupergroupStickerSet
 
 instance ToJSON SetSupergroupStickerSet
 
-
-
 instance FromJSON SetSupergroupStickerSet
 

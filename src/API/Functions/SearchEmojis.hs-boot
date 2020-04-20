@@ -8,7 +8,5 @@ data SearchEmojis
 
 instance ToJSON SearchEmojis
 
-
-
 instance FromJSON SearchEmojis
 

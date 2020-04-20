@@ -8,7 +8,5 @@ data TemporaryPasswordState
 
 instance ToJSON TemporaryPasswordState
 
-
-
 instance FromJSON TemporaryPasswordState
 

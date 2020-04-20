@@ -8,7 +8,5 @@ data GetPublicMessageLink
 
 instance ToJSON GetPublicMessageLink
 
-
-
 instance FromJSON GetPublicMessageLink
 

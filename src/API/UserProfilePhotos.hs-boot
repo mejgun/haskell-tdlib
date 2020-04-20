@@ -8,7 +8,5 @@ data UserProfilePhotos
 
 instance ToJSON UserProfilePhotos
 
-
-
 instance FromJSON UserProfilePhotos
 

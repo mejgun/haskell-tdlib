@@ -8,7 +8,5 @@ data TestCallBytes
 
 instance ToJSON TestCallBytes
 
-
-
 instance FromJSON TestCallBytes
 

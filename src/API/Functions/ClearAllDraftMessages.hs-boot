@@ -8,7 +8,5 @@ data ClearAllDraftMessages
 
 instance ToJSON ClearAllDraftMessages
 
-
-
 instance FromJSON ClearAllDraftMessages
 

@@ -8,7 +8,5 @@ data GetPushReceiverId
 
 instance ToJSON GetPushReceiverId
 
-
-
 instance FromJSON GetPushReceiverId
 

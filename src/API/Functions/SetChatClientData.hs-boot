@@ -8,7 +8,5 @@ data SetChatClientData
 
 instance ToJSON SetChatClientData
 
-
-
 instance FromJSON SetChatClientData
 

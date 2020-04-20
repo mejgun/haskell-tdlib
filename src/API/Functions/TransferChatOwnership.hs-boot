@@ -8,7 +8,5 @@ data TransferChatOwnership
 
 instance ToJSON TransferChatOwnership
 
-
-
 instance FromJSON TransferChatOwnership
 

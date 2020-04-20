@@ -8,7 +8,5 @@ data RecoverPassword
 
 instance ToJSON RecoverPassword
 
-
-
 instance FromJSON RecoverPassword
 

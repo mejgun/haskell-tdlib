@@ -8,7 +8,5 @@ data GetBasicGroupFullInfo
 
 instance ToJSON GetBasicGroupFullInfo
 
-
-
 instance FromJSON GetBasicGroupFullInfo
 

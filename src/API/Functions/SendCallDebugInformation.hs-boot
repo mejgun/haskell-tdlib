@@ -8,7 +8,5 @@ data SendCallDebugInformation
 
 instance ToJSON SendCallDebugInformation
 
-
-
 instance FromJSON SendCallDebugInformation
 

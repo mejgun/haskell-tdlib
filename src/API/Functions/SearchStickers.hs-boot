@@ -8,7 +8,5 @@ data SearchStickers
 
 instance ToJSON SearchStickers
 
-
-
 instance FromJSON SearchStickers
 

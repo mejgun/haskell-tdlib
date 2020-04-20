@@ -8,7 +8,5 @@ data InputPassportElementError
 
 instance ToJSON InputPassportElementError
 
-
-
 instance FromJSON InputPassportElementError
 

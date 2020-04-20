@@ -8,7 +8,5 @@ data GetCallbackQueryAnswer
 
 instance ToJSON GetCallbackQueryAnswer
 
-
-
 instance FromJSON GetCallbackQueryAnswer
 

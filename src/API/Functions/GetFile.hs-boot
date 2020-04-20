@@ -8,7 +8,5 @@ data GetFile
 
 instance ToJSON GetFile
 
-
-
 instance FromJSON GetFile
 

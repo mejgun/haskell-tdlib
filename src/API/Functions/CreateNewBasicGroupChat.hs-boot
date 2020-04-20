@@ -8,7 +8,5 @@ data CreateNewBasicGroupChat
 
 instance ToJSON CreateNewBasicGroupChat
 
-
-
 instance FromJSON CreateNewBasicGroupChat
 

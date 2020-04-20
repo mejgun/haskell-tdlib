@@ -8,7 +8,5 @@ data PingProxy
 
 instance ToJSON PingProxy
 
-
-
 instance FromJSON PingProxy
 

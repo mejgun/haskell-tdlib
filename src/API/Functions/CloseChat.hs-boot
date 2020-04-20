@@ -8,7 +8,5 @@ data CloseChat
 
 instance ToJSON CloseChat
 
-
-
 instance FromJSON CloseChat
 

@@ -8,7 +8,5 @@ data GetSavedAnimations
 
 instance ToJSON GetSavedAnimations
 
-
-
 instance FromJSON GetSavedAnimations
 

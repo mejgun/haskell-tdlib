@@ -8,7 +8,5 @@ data GetRecentInlineBots
 
 instance ToJSON GetRecentInlineBots
 
-
-
 instance FromJSON GetRecentInlineBots
 

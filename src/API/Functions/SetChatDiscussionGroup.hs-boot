@@ -8,7 +8,5 @@ data SetChatDiscussionGroup
 
 instance ToJSON SetChatDiscussionGroup
 
-
-
 instance FromJSON SetChatDiscussionGroup
 

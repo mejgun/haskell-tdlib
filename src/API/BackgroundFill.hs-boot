@@ -8,7 +8,5 @@ data BackgroundFill
 
 instance ToJSON BackgroundFill
 
-
-
 instance FromJSON BackgroundFill
 

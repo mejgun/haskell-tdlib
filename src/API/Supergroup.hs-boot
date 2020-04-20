@@ -8,7 +8,5 @@ data Supergroup
 
 instance ToJSON Supergroup
 
-
-
 instance FromJSON Supergroup
 

@@ -8,7 +8,5 @@ data MessageContent
 
 instance ToJSON MessageContent
 
-
-
 instance FromJSON MessageContent
 

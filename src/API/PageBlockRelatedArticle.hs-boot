@@ -8,7 +8,5 @@ data PageBlockRelatedArticle
 
 instance ToJSON PageBlockRelatedArticle
 
-
-
 instance FromJSON PageBlockRelatedArticle
 

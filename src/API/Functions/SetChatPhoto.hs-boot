@@ -8,7 +8,5 @@ data SetChatPhoto
 
 instance ToJSON SetChatPhoto
 
-
-
 instance FromJSON SetChatPhoto
 

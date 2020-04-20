@@ -8,7 +8,5 @@ data SetPollAnswer
 
 instance ToJSON SetPollAnswer
 
-
-
 instance FromJSON SetPollAnswer
 

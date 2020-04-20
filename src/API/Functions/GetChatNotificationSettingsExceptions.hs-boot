@@ -8,7 +8,5 @@ data GetChatNotificationSettingsExceptions
 
 instance ToJSON GetChatNotificationSettingsExceptions
 
-
-
 instance FromJSON GetChatNotificationSettingsExceptions
 

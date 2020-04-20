@@ -8,7 +8,5 @@ data LanguagePackString
 
 instance ToJSON LanguagePackString
 
-
-
 instance FromJSON LanguagePackString
 

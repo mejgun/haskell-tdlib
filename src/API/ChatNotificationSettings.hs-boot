@@ -8,7 +8,5 @@ data ChatNotificationSettings
 
 instance ToJSON ChatNotificationSettings
 
-
-
 instance FromJSON ChatNotificationSettings
 

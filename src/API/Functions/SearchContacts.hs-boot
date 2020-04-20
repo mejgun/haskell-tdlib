@@ -8,7 +8,5 @@ data SearchContacts
 
 instance ToJSON SearchContacts
 
-
-
 instance FromJSON SearchContacts
 

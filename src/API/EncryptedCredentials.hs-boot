@@ -8,7 +8,5 @@ data EncryptedCredentials
 
 instance ToJSON EncryptedCredentials
 
-
-
 instance FromJSON EncryptedCredentials
 

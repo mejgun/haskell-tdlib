@@ -8,7 +8,5 @@ data SendPassportAuthorizationForm
 
 instance ToJSON SendPassportAuthorizationForm
 
-
-
 instance FromJSON SendPassportAuthorizationForm
 

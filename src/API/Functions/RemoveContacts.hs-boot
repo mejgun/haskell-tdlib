@@ -8,7 +8,5 @@ data RemoveContacts
 
 instance ToJSON RemoveContacts
 
-
-
 instance FromJSON RemoveContacts
 

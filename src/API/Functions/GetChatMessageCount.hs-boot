@@ -8,7 +8,5 @@ data GetChatMessageCount
 
 instance ToJSON GetChatMessageCount
 
-
-
 instance FromJSON GetChatMessageCount
 

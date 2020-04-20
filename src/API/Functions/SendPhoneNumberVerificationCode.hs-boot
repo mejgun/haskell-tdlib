@@ -8,7 +8,5 @@ data SendPhoneNumberVerificationCode
 
 instance ToJSON SendPhoneNumberVerificationCode
 
-
-
 instance FromJSON SendPhoneNumberVerificationCode
 

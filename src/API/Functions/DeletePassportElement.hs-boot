@@ -8,7 +8,5 @@ data DeletePassportElement
 
 instance ToJSON DeletePassportElement
 
-
-
 instance FromJSON DeletePassportElement
 

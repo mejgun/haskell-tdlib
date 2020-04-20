@@ -8,7 +8,5 @@ data EditInlineMessageReplyMarkup
 
 instance ToJSON EditInlineMessageReplyMarkup
 
-
-
 instance FromJSON EditInlineMessageReplyMarkup
 

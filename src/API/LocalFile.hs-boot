@@ -8,7 +8,5 @@ data LocalFile
 
 instance ToJSON LocalFile
 
-
-
 instance FromJSON LocalFile
 

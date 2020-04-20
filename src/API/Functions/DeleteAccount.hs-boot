@@ -8,7 +8,5 @@ data DeleteAccount
 
 instance ToJSON DeleteAccount
 
-
-
 instance FromJSON DeleteAccount
 

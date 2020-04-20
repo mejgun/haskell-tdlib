@@ -8,7 +8,5 @@ data DeleteProfilePhoto
 
 instance ToJSON DeleteProfilePhoto
 
-
-
 instance FromJSON DeleteProfilePhoto
 

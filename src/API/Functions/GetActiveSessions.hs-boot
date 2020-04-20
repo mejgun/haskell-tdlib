@@ -8,7 +8,5 @@ data GetActiveSessions
 
 instance ToJSON GetActiveSessions
 
-
-
 instance FromJSON GetActiveSessions
 

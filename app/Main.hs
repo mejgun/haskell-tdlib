@@ -1,6 +1,6 @@
 module Main where
 
-import Lib
+import           API.GeneralResult
 
 main :: IO ()
-main = someFunc
+main = putStrLn "ok"

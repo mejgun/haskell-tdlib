@@ -8,7 +8,5 @@ data GetChats
 
 instance ToJSON GetChats
 
-
-
 instance FromJSON GetChats
 

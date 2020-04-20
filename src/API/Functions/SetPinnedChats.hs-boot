@@ -8,7 +8,5 @@ data SetPinnedChats
 
 instance ToJSON SetPinnedChats
 
-
-
 instance FromJSON SetPinnedChats
 

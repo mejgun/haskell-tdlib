@@ -8,7 +8,5 @@ data GetFileMimeType
 
 instance ToJSON GetFileMimeType
 
-
-
 instance FromJSON GetFileMimeType
 

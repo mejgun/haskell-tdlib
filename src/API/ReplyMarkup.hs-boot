@@ -8,7 +8,5 @@ data ReplyMarkup
 
 instance ToJSON ReplyMarkup
 
-
-
 instance FromJSON ReplyMarkup
 

@@ -8,7 +8,5 @@ data GetRemoteFile
 
 instance ToJSON GetRemoteFile
 
-
-
 instance FromJSON GetRemoteFile
 

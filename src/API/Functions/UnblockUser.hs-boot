@@ -8,7 +8,5 @@ data UnblockUser
 
 instance ToJSON UnblockUser
 
-
-
 instance FromJSON UnblockUser
 

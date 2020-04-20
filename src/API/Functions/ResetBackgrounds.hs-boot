@@ -8,7 +8,5 @@ data ResetBackgrounds
 
 instance ToJSON ResetBackgrounds
 
-
-
 instance FromJSON ResetBackgrounds
 

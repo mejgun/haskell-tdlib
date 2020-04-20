@@ -70,7 +70,7 @@ writeToFiles addr modName m =
     , "\n\ninstance ToJSON "
     , d
     , "\n\n"
-    , "\n\ninstance FromJSON "
+    , "instance FromJSON "
     , d
     , "\n\n"
     ]
@@ -127,22 +127,27 @@ writeToFiles addr modName m =
     , m
     , " where\n"
     , " parseJSON v@(T.Object obj) = do\n"
-    , "  t <- obj A..: \"@type\" :: T.Parser String\n"
-    , "  case t of\n"
-    , T.intercalate "\n" $ map
-      (\(a, b) -> T.concat ["   \"", a, "\" -> parse", toTitle a, " v"])
-      e
-    , "\n  where\n"
-    , T.intercalate "\n\n" $ map
-      (\(a, b) -> T.concat
-        [ "   parse"
-        , toTitle a
-        , " :: A.Value -> T.Parser "
-        , m
-        , "\n"
-        , if m /= "GeneralResult"
-          then T.concat
+    , if m == "GeneralResult"
+      then T.intercalate "\n" $ map
+        (\(a, _) ->
+          T.concat ["  let T.Success a = T.fromJSON v in return $ ", a, " a"]
+        )
+        e
+      else T.concat
+        [ "  t <- obj A..: \"@type\" :: T.Parser String\n"
+        , "  case t of\n"
+        , T.intercalate "\n" $ map
+          (\(a, b) -> T.concat ["   \"", a, "\" -> parse", toTitle a, " v"])
+          e
+        , "\n  where\n"
+        , T.intercalate "\n\n" $ map
+          (\(a, b) -> T.concat
             [ "   parse"
+            , toTitle a
+            , " :: A.Value -> T.Parser "
+            , m
+            , "\n"
+            , "   parse"
             , toTitle a
             , " = A.withObject \""
             , toTitle a
@@ -164,21 +169,9 @@ writeToFiles addr modName m =
                    ]
                ]
             ]
-          else T.concat
-            [ "   parse"
-            , toTitle a
-            , " v = do\n"
-            , "    d <- A.parseJSON v :: T.Parser "
-            , a
-            , "."
-            , a
-            , "\n    return $ "
-            , a
-            , " d"
-            ]
+          )
+          e
         ]
-      )
-      e
     ]
 
 {-

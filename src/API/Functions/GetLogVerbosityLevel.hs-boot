@@ -8,7 +8,5 @@ data GetLogVerbosityLevel
 
 instance ToJSON GetLogVerbosityLevel
 
-
-
 instance FromJSON GetLogVerbosityLevel
 

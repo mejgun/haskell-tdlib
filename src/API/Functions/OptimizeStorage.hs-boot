@@ -8,7 +8,5 @@ data OptimizeStorage
 
 instance ToJSON OptimizeStorage
 
-
-
 instance FromJSON OptimizeStorage
 

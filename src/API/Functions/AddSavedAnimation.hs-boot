@@ -8,7 +8,5 @@ data AddSavedAnimation
 
 instance ToJSON AddSavedAnimation
 
-
-
 instance FromJSON AddSavedAnimation
 

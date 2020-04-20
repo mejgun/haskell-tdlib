@@ -8,7 +8,5 @@ data WriteGeneratedFilePart
 
 instance ToJSON WriteGeneratedFilePart
 
-
-
 instance FromJSON WriteGeneratedFilePart
 

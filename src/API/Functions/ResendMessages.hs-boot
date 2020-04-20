@@ -8,7 +8,5 @@ data ResendMessages
 
 instance ToJSON ResendMessages
 
-
-
 instance FromJSON ResendMessages
 

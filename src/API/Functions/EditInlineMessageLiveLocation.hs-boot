@@ -8,7 +8,5 @@ data EditInlineMessageLiveLocation
 
 instance ToJSON EditInlineMessageLiveLocation
 
-
-
 instance FromJSON EditInlineMessageLiveLocation
 

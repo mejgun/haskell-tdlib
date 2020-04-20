@@ -8,7 +8,5 @@ data StorageStatisticsFast
 
 instance ToJSON StorageStatisticsFast
 
-
-
 instance FromJSON StorageStatisticsFast
 

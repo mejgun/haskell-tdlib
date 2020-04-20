@@ -8,7 +8,5 @@ data ChatEventLogFilters
 
 instance ToJSON ChatEventLogFilters
 
-
-
 instance FromJSON ChatEventLogFilters
 

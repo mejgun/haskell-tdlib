@@ -8,7 +8,5 @@ data MessageForwardOrigin
 
 instance ToJSON MessageForwardOrigin
 
-
-
 instance FromJSON MessageForwardOrigin
 

@@ -8,7 +8,5 @@ data RemoveNotification
 
 instance ToJSON RemoveNotification
 
-
-
 instance FromJSON RemoveNotification
 

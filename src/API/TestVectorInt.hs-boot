@@ -8,7 +8,5 @@ data TestVectorInt
 
 instance ToJSON TestVectorInt
 
-
-
 instance FromJSON TestVectorInt
 

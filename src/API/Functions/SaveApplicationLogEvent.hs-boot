@@ -8,7 +8,5 @@ data SaveApplicationLogEvent
 
 instance ToJSON SaveApplicationLogEvent
 
-
-
 instance FromJSON SaveApplicationLogEvent
 

@@ -8,7 +8,5 @@ data ReportChat
 
 instance ToJSON ReportChat
 
-
-
 instance FromJSON ReportChat
 

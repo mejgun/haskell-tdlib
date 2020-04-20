@@ -8,7 +8,5 @@ data AnswerInlineQuery
 
 instance ToJSON AnswerInlineQuery
 
-
-
 instance FromJSON AnswerInlineQuery
 

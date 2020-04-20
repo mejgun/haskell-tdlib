@@ -8,7 +8,5 @@ data ChatStatisticsMessageInteractionCounters
 
 instance ToJSON ChatStatisticsMessageInteractionCounters
 
-
-
 instance FromJSON ChatStatisticsMessageInteractionCounters
 

@@ -8,7 +8,5 @@ data AnswerCallbackQuery
 
 instance ToJSON AnswerCallbackQuery
 
-
-
 instance FromJSON AnswerCallbackQuery
 

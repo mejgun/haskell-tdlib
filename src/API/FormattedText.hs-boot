@@ -8,7 +8,5 @@ data FormattedText
 
 instance ToJSON FormattedText
 
-
-
 instance FromJSON FormattedText
 

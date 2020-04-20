@@ -8,7 +8,5 @@ data TextParseMode
 
 instance ToJSON TextParseMode
 
-
-
 instance FromJSON TextParseMode
 

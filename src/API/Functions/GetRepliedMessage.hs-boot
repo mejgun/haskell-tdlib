@@ -8,7 +8,5 @@ data GetRepliedMessage
 
 instance ToJSON GetRepliedMessage
 
-
-
 instance FromJSON GetRepliedMessage
 

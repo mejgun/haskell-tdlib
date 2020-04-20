@@ -8,7 +8,5 @@ data DraftMessage
 
 instance ToJSON DraftMessage
 
-
-
 instance FromJSON DraftMessage
 

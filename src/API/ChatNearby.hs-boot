@@ -8,7 +8,5 @@ data ChatNearby
 
 instance ToJSON ChatNearby
 
-
-
 instance FromJSON ChatNearby
 

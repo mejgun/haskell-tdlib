@@ -8,7 +8,5 @@ data UserPrivacySettingRule
 
 instance ToJSON UserPrivacySettingRule
 
-
-
 instance FromJSON UserPrivacySettingRule
 

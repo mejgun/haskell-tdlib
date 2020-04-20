@@ -8,7 +8,5 @@ data GetContacts
 
 instance ToJSON GetContacts
 
-
-
 instance FromJSON GetContacts
 

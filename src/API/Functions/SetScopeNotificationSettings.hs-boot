@@ -8,7 +8,5 @@ data SetScopeNotificationSettings
 
 instance ToJSON SetScopeNotificationSettings
 
-
-
 instance FromJSON SetScopeNotificationSettings
 

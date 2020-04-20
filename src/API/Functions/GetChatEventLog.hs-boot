@@ -8,7 +8,5 @@ data GetChatEventLog
 
 instance ToJSON GetChatEventLog
 
-
-
 instance FromJSON GetChatEventLog
 

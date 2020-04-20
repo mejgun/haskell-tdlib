@@ -8,7 +8,5 @@ data SetAuthenticationPhoneNumber
 
 instance ToJSON SetAuthenticationPhoneNumber
 
-
-
 instance FromJSON SetAuthenticationPhoneNumber
 

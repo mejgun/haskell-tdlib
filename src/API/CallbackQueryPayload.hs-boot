@@ -8,7 +8,5 @@ data CallbackQueryPayload
 
 instance ToJSON CallbackQueryPayload
 
-
-
 instance FromJSON CallbackQueryPayload
 

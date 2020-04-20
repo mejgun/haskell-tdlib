@@ -8,7 +8,5 @@ data Messages
 
 instance ToJSON Messages
 
-
-
 instance FromJSON Messages
 

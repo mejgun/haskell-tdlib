@@ -8,7 +8,5 @@ data TestCallEmpty
 
 instance ToJSON TestCallEmpty
 
-
-
 instance FromJSON TestCallEmpty
 

@@ -8,7 +8,5 @@ data AddFavoriteSticker
 
 instance ToJSON AddFavoriteSticker
 
-
-
 instance FromJSON AddFavoriteSticker
 

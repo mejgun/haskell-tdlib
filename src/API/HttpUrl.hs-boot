@@ -8,7 +8,5 @@ data HttpUrl
 
 instance ToJSON HttpUrl
 
-
-
 instance FromJSON HttpUrl
 

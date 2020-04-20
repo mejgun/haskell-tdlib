@@ -8,7 +8,5 @@ data Address
 
 instance ToJSON Address
 
-
-
 instance FromJSON Address
 

@@ -8,7 +8,5 @@ data AutoDownloadSettings
 
 instance ToJSON AutoDownloadSettings
 
-
-
 instance FromJSON AutoDownloadSettings
 

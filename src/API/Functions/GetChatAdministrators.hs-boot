@@ -8,7 +8,5 @@ data GetChatAdministrators
 
 instance ToJSON GetChatAdministrators
 
-
-
 instance FromJSON GetChatAdministrators
 

@@ -8,7 +8,5 @@ data Photo
 
 instance ToJSON Photo
 
-
-
 instance FromJSON Photo
 

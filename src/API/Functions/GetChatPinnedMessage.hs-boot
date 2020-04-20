@@ -8,7 +8,5 @@ data GetChatPinnedMessage
 
 instance ToJSON GetChatPinnedMessage
 
-
-
 instance FromJSON GetChatPinnedMessage
 

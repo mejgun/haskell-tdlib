@@ -8,7 +8,5 @@ data LocalizationTargetInfo
 
 instance ToJSON LocalizationTargetInfo
 
-
-
 instance FromJSON LocalizationTargetInfo
 

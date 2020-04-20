@@ -8,7 +8,5 @@ data ChatMembers
 
 instance ToJSON ChatMembers
 
-
-
 instance FromJSON ChatMembers
 

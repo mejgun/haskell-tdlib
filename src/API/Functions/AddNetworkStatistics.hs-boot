@@ -8,7 +8,5 @@ data AddNetworkStatistics
 
 instance ToJSON AddNetworkStatistics
 
-
-
 instance FromJSON AddNetworkStatistics
 

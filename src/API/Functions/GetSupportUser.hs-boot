@@ -8,7 +8,5 @@ data GetSupportUser
 
 instance ToJSON GetSupportUser
 
-
-
 instance FromJSON GetSupportUser
 

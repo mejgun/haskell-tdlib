@@ -8,7 +8,5 @@ data LeaveChat
 
 instance ToJSON LeaveChat
 
-
-
 instance FromJSON LeaveChat
 

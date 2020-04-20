@@ -8,7 +8,5 @@ data SetFileGenerationProgress
 
 instance ToJSON SetFileGenerationProgress
 
-
-
 instance FromJSON SetFileGenerationProgress
 

@@ -8,7 +8,5 @@ data InputThumbnail
 
 instance ToJSON InputThumbnail
 
-
-
 instance FromJSON InputThumbnail
 

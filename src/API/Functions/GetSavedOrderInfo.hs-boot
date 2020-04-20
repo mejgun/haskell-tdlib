@@ -8,7 +8,5 @@ data GetSavedOrderInfo
 
 instance ToJSON GetSavedOrderInfo
 
-
-
 instance FromJSON GetSavedOrderInfo
 

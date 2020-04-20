@@ -8,7 +8,5 @@ data CanTransferOwnershipResult
 
 instance ToJSON CanTransferOwnershipResult
 
-
-
 instance FromJSON CanTransferOwnershipResult
 

@@ -8,7 +8,5 @@ data GetStorageStatistics
 
 instance ToJSON GetStorageStatistics
 
-
-
 instance FromJSON GetStorageStatistics
 

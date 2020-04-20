@@ -8,7 +8,5 @@ data AuthenticationCodeInfo
 
 instance ToJSON AuthenticationCodeInfo
 
-
-
 instance FromJSON AuthenticationCodeInfo
 

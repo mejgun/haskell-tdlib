@@ -8,7 +8,5 @@ data PassportElements
 
 instance ToJSON PassportElements
 
-
-
 instance FromJSON PassportElements
 

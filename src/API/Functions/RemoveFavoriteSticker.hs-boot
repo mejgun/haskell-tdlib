@@ -8,7 +8,5 @@ data RemoveFavoriteSticker
 
 instance ToJSON RemoveFavoriteSticker
 
-
-
 instance FromJSON RemoveFavoriteSticker
 

@@ -8,7 +8,5 @@ data GetTextEntities
 
 instance ToJSON GetTextEntities
 
-
-
 instance FromJSON GetTextEntities
 

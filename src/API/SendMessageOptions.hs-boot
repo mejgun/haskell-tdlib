@@ -8,7 +8,5 @@ data SendMessageOptions
 
 instance ToJSON SendMessageOptions
 
-
-
 instance FromJSON SendMessageOptions
 

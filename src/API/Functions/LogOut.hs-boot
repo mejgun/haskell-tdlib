@@ -8,7 +8,5 @@ data LogOut
 
 instance ToJSON LogOut
 
-
-
 instance FromJSON LogOut
 

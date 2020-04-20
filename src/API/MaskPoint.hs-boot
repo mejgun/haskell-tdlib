@@ -8,7 +8,5 @@ data MaskPoint
 
 instance ToJSON MaskPoint
 
-
-
 instance FromJSON MaskPoint
 

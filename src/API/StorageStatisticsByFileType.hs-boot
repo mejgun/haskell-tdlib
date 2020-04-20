@@ -8,7 +8,5 @@ data StorageStatisticsByFileType
 
 instance ToJSON StorageStatisticsByFileType
 
-
-
 instance FromJSON StorageStatisticsByFileType
 

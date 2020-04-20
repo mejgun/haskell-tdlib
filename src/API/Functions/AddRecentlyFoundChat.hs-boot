@@ -8,7 +8,5 @@ data AddRecentlyFoundChat
 
 instance ToJSON AddRecentlyFoundChat
 
-
-
 instance FromJSON AddRecentlyFoundChat
 

@@ -8,7 +8,5 @@ data GetBankCardInfo
 
 instance ToJSON GetBankCardInfo
 
-
-
 instance FromJSON GetBankCardInfo
 

@@ -8,7 +8,5 @@ data EmailAddressAuthenticationCodeInfo
 
 instance ToJSON EmailAddressAuthenticationCodeInfo
 
-
-
 instance FromJSON EmailAddressAuthenticationCodeInfo
 

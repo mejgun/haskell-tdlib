@@ -8,7 +8,5 @@ data DeleteLanguagePack
 
 instance ToJSON DeleteLanguagePack
 
-
-
 instance FromJSON DeleteLanguagePack
 

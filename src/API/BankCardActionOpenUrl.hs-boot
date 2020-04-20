@@ -8,7 +8,5 @@ data BankCardActionOpenUrl
 
 instance ToJSON BankCardActionOpenUrl
 
-
-
 instance FromJSON BankCardActionOpenUrl
 

@@ -8,7 +8,5 @@ data WebPageInstantView
 
 instance ToJSON WebPageInstantView
 
-
-
 instance FromJSON WebPageInstantView
 

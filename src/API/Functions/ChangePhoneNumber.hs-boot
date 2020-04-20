@@ -8,7 +8,5 @@ data ChangePhoneNumber
 
 instance ToJSON ChangePhoneNumber
 
-
-
 instance FromJSON ChangePhoneNumber
 

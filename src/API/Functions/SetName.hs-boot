@@ -8,7 +8,5 @@ data SetName
 
 instance ToJSON SetName
 
-
-
 instance FromJSON SetName
 

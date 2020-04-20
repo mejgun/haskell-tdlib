@@ -8,7 +8,5 @@ data InputMessageContent
 
 instance ToJSON InputMessageContent
 
-
-
 instance FromJSON InputMessageContent
 

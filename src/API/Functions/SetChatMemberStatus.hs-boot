@@ -8,7 +8,5 @@ data SetChatMemberStatus
 
 instance ToJSON SetChatMemberStatus
 
-
-
 instance FromJSON SetChatMemberStatus
 

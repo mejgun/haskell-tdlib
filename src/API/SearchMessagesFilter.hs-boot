@@ -8,7 +8,5 @@ data SearchMessagesFilter
 
 instance ToJSON SearchMessagesFilter
 
-
-
 instance FromJSON SearchMessagesFilter
 

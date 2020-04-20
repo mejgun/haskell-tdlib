@@ -8,7 +8,5 @@ data DeleteSupergroup
 
 instance ToJSON DeleteSupergroup
 
-
-
 instance FromJSON DeleteSupergroup
 

@@ -8,7 +8,5 @@ data TdlibParameters
 
 instance ToJSON TdlibParameters
 
-
-
 instance FromJSON TdlibParameters
 

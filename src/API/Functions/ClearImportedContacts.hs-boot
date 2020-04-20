@@ -8,7 +8,5 @@ data ClearImportedContacts
 
 instance ToJSON ClearImportedContacts
 
-
-
 instance FromJSON ClearImportedContacts
 

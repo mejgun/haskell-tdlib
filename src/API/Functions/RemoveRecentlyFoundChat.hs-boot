@@ -8,7 +8,5 @@ data RemoveRecentlyFoundChat
 
 instance ToJSON RemoveRecentlyFoundChat
 
-
-
 instance FromJSON RemoveRecentlyFoundChat
 

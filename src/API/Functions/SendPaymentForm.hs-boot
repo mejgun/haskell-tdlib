@@ -8,7 +8,5 @@ data SendPaymentForm
 
 instance ToJSON SendPaymentForm
 
-
-
 instance FromJSON SendPaymentForm
 

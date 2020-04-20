@@ -8,7 +8,5 @@ data Location
 
 instance ToJSON Location
 
-
-
 instance FromJSON Location
 

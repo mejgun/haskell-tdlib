@@ -8,7 +8,5 @@ data AuthenticationCodeType
 
 instance ToJSON AuthenticationCodeType
 
-
-
 instance FromJSON AuthenticationCodeType
 

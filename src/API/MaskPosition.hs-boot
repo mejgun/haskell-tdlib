@@ -8,7 +8,5 @@ data MaskPosition
 
 instance ToJSON MaskPosition
 
-
-
 instance FromJSON MaskPosition
 
