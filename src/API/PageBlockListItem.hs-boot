@@ -1,0 +1,10 @@
+-- GENERATED
+
+module API.PageBlockListItem where
+
+import Data.Aeson.Types
+
+data PageBlockListItem
+
+instance ToJSON PageBlockListItem
+

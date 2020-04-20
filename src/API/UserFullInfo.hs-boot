@@ -1,0 +1,10 @@
+-- GENERATED
+
+module API.UserFullInfo where
+
+import Data.Aeson.Types
+
+data UserFullInfo
+
+instance ToJSON UserFullInfo
+

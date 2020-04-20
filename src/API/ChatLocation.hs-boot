@@ -1,0 +1,10 @@
+-- GENERATED
+
+module API.ChatLocation where
+
+import Data.Aeson.Types
+
+data ChatLocation
+
+instance ToJSON ChatLocation
+

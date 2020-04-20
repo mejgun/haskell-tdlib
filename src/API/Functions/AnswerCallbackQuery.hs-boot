@@ -1,0 +1,10 @@
+-- GENERATED
+
+module API.Functions.AnswerCallbackQuery where
+
+import Data.Aeson.Types
+
+data AnswerCallbackQuery
+
+instance ToJSON AnswerCallbackQuery
+

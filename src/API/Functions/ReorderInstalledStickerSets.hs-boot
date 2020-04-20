@@ -1,0 +1,10 @@
+-- GENERATED
+
+module API.Functions.ReorderInstalledStickerSets where
+
+import Data.Aeson.Types
+
+data ReorderInstalledStickerSets
+
+instance ToJSON ReorderInstalledStickerSets
+

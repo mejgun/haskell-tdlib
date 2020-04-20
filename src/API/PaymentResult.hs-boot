@@ -1,0 +1,10 @@
+-- GENERATED
+
+module API.PaymentResult where
+
+import Data.Aeson.Types
+
+data PaymentResult
+
+instance ToJSON PaymentResult
+

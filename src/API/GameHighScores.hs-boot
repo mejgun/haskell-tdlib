@@ -1,0 +1,10 @@
+-- GENERATED
+
+module API.GameHighScores where
+
+import Data.Aeson.Types
+
+data GameHighScores
+
+instance ToJSON GameHighScores
+

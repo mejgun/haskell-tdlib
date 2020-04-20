@@ -1,0 +1,10 @@
+-- GENERATED
+
+module API.AuthenticationCodeType where
+
+import Data.Aeson.Types
+
+data AuthenticationCodeType
+
+instance ToJSON AuthenticationCodeType
+

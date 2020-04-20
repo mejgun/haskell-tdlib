@@ -1,0 +1,10 @@
+-- GENERATED
+
+module API.Animations where
+
+import Data.Aeson.Types
+
+data Animations
+
+instance ToJSON Animations
+

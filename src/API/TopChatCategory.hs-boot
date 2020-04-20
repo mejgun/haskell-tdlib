@@ -1,0 +1,10 @@
+-- GENERATED
+
+module API.TopChatCategory where
+
+import Data.Aeson.Types
+
+data TopChatCategory
+
+instance ToJSON TopChatCategory
+

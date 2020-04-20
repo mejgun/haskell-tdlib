@@ -1,0 +1,10 @@
+-- GENERATED
+
+module API.Functions.GetLoginUrlInfo where
+
+import Data.Aeson.Types
+
+data GetLoginUrlInfo
+
+instance ToJSON GetLoginUrlInfo
+
