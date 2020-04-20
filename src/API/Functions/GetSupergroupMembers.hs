@@ -9,10 +9,10 @@ import {-# SOURCE #-} qualified API.SupergroupMembersFilter as SupergroupMembers
 --main = putStrLn "ok"
 
 data GetSupergroupMembers = 
- GetSupergroupMembers { limit :: Int, offset :: Int, filter :: SupergroupMembersFilter.SupergroupMembersFilter, supergroup_id :: Int }  -- deriving (Show)
+ GetSupergroupMembers { limit :: Int, offset :: Int, _filter :: SupergroupMembersFilter.SupergroupMembersFilter, supergroup_id :: Int }  -- deriving (Show)
 
 instance T.ToJSON GetSupergroupMembers where
- toJSON (GetSupergroupMembers { limit = limit, offset = offset, filter = filter, supergroup_id = supergroup_id }) =
-  A.object [ "@type" A..= T.String "getSupergroupMembers", "limit" A..= limit, "offset" A..= offset, "filter" A..= filter, "supergroup_id" A..= supergroup_id ]
--- getSupergroupMembers GetSupergroupMembers  { limit :: Int, offset :: Int, filter :: SupergroupMembersFilter.SupergroupMembersFilter, supergroup_id :: Int } 
+ toJSON (GetSupergroupMembers { limit = limit, offset = offset, _filter = _filter, supergroup_id = supergroup_id }) =
+  A.object [ "@type" A..= T.String "getSupergroupMembers", "limit" A..= limit, "offset" A..= offset, "filter" A..= _filter, "supergroup_id" A..= supergroup_id ]
+-- getSupergroupMembers GetSupergroupMembers  { limit :: Int, offset :: Int, _filter :: SupergroupMembersFilter.SupergroupMembersFilter, supergroup_id :: Int } 
 

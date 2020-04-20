@@ -179,7 +179,7 @@ renameWrongTypedField = Map.map go
       Just False -> checkKey (addUndrscr k) v mm
       _          -> k
     myInsert mm a b = do
-      let key = if a `elem` ["type", "data", "id", "length", "error"]
+      let key = if a `elem` ["type", "data", "id", "length", "error", "filter"]
             then addUndrscr a
             else a
       let k = checkKey key b mm
