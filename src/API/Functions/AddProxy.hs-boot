@@ -8,3 +8,7 @@ data AddProxy
 
 instance ToJSON AddProxy
 
+
+
+instance FromJSON AddProxy
+

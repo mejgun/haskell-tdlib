@@ -8,3 +8,7 @@ data PageBlockTableCell
 
 instance ToJSON PageBlockTableCell
 
+
+
+instance FromJSON PageBlockTableCell
+

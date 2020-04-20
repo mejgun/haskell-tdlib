@@ -15,3 +15,14 @@ instance T.ToJSON ResetNetworkStatistics where
   A.object [ "@type" A..= T.String "resetNetworkStatistics" ]
 -- resetNetworkStatistics ResetNetworkStatistics 
 
+
+
+instance T.FromJSON ResetNetworkStatistics where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "resetNetworkStatistics" -> parseResetNetworkStatistics v
+  where
+   parseResetNetworkStatistics :: A.Value -> T.Parser ResetNetworkStatistics
+   parseResetNetworkStatistics = A.withObject "ResetNetworkStatistics" $ \o -> do
+    return $ ResetNetworkStatistics {  }

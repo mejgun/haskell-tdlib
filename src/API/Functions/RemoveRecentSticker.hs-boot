@@ -8,3 +8,7 @@ data RemoveRecentSticker
 
 instance ToJSON RemoveRecentSticker
 
+
+
+instance FromJSON RemoveRecentSticker
+

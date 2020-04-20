@@ -8,3 +8,7 @@ data TestCallString
 
 instance ToJSON TestCallString
 
+
+
+instance FromJSON TestCallString
+

@@ -8,3 +8,7 @@ data GameHighScores
 
 instance ToJSON GameHighScores
 
+
+
+instance FromJSON GameHighScores
+

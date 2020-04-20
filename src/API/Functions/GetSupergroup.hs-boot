@@ -8,3 +8,7 @@ data GetSupergroup
 
 instance ToJSON GetSupergroup
 
+
+
+instance FromJSON GetSupergroup
+

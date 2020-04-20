@@ -15,3 +15,17 @@ instance T.ToJSON ViewMessages where
   A.object [ "@type" A..= T.String "viewMessages", "force_read" A..= force_read, "message_ids" A..= message_ids, "chat_id" A..= chat_id ]
 -- viewMessages ViewMessages  { force_read :: Bool, message_ids :: [Int], chat_id :: Int } 
 
+
+
+instance T.FromJSON ViewMessages where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "viewMessages" -> parseViewMessages v
+  where
+   parseViewMessages :: A.Value -> T.Parser ViewMessages
+   parseViewMessages = A.withObject "ViewMessages" $ \o -> do
+    force_read <- o A..: "force_read"
+    message_ids <- o A..: "message_ids"
+    chat_id <- o A..: "chat_id"
+    return $ ViewMessages { force_read = force_read, message_ids = message_ids, chat_id = chat_id }

@@ -16,3 +16,15 @@ instance T.ToJSON LocalizationTargetInfo where
   A.object [ "@type" A..= T.String "localizationTargetInfo", "language_packs" A..= language_packs ]
 -- localizationTargetInfo LocalizationTargetInfo  { language_packs :: [LanguagePackInfo.LanguagePackInfo] } 
 
+
+
+instance T.FromJSON LocalizationTargetInfo where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "localizationTargetInfo" -> parseLocalizationTargetInfo v
+  where
+   parseLocalizationTargetInfo :: A.Value -> T.Parser LocalizationTargetInfo
+   parseLocalizationTargetInfo = A.withObject "LocalizationTargetInfo" $ \o -> do
+    language_packs <- o A..: "language_packs"
+    return $ LocalizationTargetInfo { language_packs = language_packs }

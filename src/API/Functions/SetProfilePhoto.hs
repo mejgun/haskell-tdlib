@@ -16,3 +16,15 @@ instance T.ToJSON SetProfilePhoto where
   A.object [ "@type" A..= T.String "setProfilePhoto", "photo" A..= photo ]
 -- setProfilePhoto SetProfilePhoto  { photo :: InputFile.InputFile } 
 
+
+
+instance T.FromJSON SetProfilePhoto where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setProfilePhoto" -> parseSetProfilePhoto v
+  where
+   parseSetProfilePhoto :: A.Value -> T.Parser SetProfilePhoto
+   parseSetProfilePhoto = A.withObject "SetProfilePhoto" $ \o -> do
+    photo <- o A..: "photo"
+    return $ SetProfilePhoto { photo = photo }

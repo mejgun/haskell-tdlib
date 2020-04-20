@@ -8,3 +8,7 @@ data UnpinChatMessage
 
 instance ToJSON UnpinChatMessage
 
+
+
+instance FromJSON UnpinChatMessage
+

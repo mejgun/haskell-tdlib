@@ -33,3 +33,34 @@ instance T.ToJSON InputCredentials where
 
 -- inputCredentialsApplePay InputCredentials  { _data :: String } 
 
+
+
+instance T.FromJSON InputCredentials where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "inputCredentialsSaved" -> parseInputCredentialsSaved v
+   "inputCredentialsNew" -> parseInputCredentialsNew v
+   "inputCredentialsAndroidPay" -> parseInputCredentialsAndroidPay v
+   "inputCredentialsApplePay" -> parseInputCredentialsApplePay v
+  where
+   parseInputCredentialsSaved :: A.Value -> T.Parser InputCredentials
+   parseInputCredentialsSaved = A.withObject "InputCredentialsSaved" $ \o -> do
+    saved_credentials_id <- o A..: "saved_credentials_id"
+    return $ InputCredentialsSaved { saved_credentials_id = saved_credentials_id }
+
+   parseInputCredentialsNew :: A.Value -> T.Parser InputCredentials
+   parseInputCredentialsNew = A.withObject "InputCredentialsNew" $ \o -> do
+    allow_save <- o A..: "allow_save"
+    _data <- o A..: "data"
+    return $ InputCredentialsNew { allow_save = allow_save, _data = _data }
+
+   parseInputCredentialsAndroidPay :: A.Value -> T.Parser InputCredentials
+   parseInputCredentialsAndroidPay = A.withObject "InputCredentialsAndroidPay" $ \o -> do
+    _data <- o A..: "data"
+    return $ InputCredentialsAndroidPay { _data = _data }
+
+   parseInputCredentialsApplePay :: A.Value -> T.Parser InputCredentials
+   parseInputCredentialsApplePay = A.withObject "InputCredentialsApplePay" $ \o -> do
+    _data <- o A..: "data"
+    return $ InputCredentialsApplePay { _data = _data }

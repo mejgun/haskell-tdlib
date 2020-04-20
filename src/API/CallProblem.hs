@@ -51,3 +51,44 @@ instance T.ToJSON CallProblem where
 
 -- callProblemDropped CallProblem 
 
+
+
+instance T.FromJSON CallProblem where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "callProblemEcho" -> parseCallProblemEcho v
+   "callProblemNoise" -> parseCallProblemNoise v
+   "callProblemInterruptions" -> parseCallProblemInterruptions v
+   "callProblemDistortedSpeech" -> parseCallProblemDistortedSpeech v
+   "callProblemSilentLocal" -> parseCallProblemSilentLocal v
+   "callProblemSilentRemote" -> parseCallProblemSilentRemote v
+   "callProblemDropped" -> parseCallProblemDropped v
+  where
+   parseCallProblemEcho :: A.Value -> T.Parser CallProblem
+   parseCallProblemEcho = A.withObject "CallProblemEcho" $ \o -> do
+    return $ CallProblemEcho {  }
+
+   parseCallProblemNoise :: A.Value -> T.Parser CallProblem
+   parseCallProblemNoise = A.withObject "CallProblemNoise" $ \o -> do
+    return $ CallProblemNoise {  }
+
+   parseCallProblemInterruptions :: A.Value -> T.Parser CallProblem
+   parseCallProblemInterruptions = A.withObject "CallProblemInterruptions" $ \o -> do
+    return $ CallProblemInterruptions {  }
+
+   parseCallProblemDistortedSpeech :: A.Value -> T.Parser CallProblem
+   parseCallProblemDistortedSpeech = A.withObject "CallProblemDistortedSpeech" $ \o -> do
+    return $ CallProblemDistortedSpeech {  }
+
+   parseCallProblemSilentLocal :: A.Value -> T.Parser CallProblem
+   parseCallProblemSilentLocal = A.withObject "CallProblemSilentLocal" $ \o -> do
+    return $ CallProblemSilentLocal {  }
+
+   parseCallProblemSilentRemote :: A.Value -> T.Parser CallProblem
+   parseCallProblemSilentRemote = A.withObject "CallProblemSilentRemote" $ \o -> do
+    return $ CallProblemSilentRemote {  }
+
+   parseCallProblemDropped :: A.Value -> T.Parser CallProblem
+   parseCallProblemDropped = A.withObject "CallProblemDropped" $ \o -> do
+    return $ CallProblemDropped {  }

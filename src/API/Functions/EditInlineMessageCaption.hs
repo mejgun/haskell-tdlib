@@ -17,3 +17,17 @@ instance T.ToJSON EditInlineMessageCaption where
   A.object [ "@type" A..= T.String "editInlineMessageCaption", "caption" A..= caption, "reply_markup" A..= reply_markup, "inline_message_id" A..= inline_message_id ]
 -- editInlineMessageCaption EditInlineMessageCaption  { caption :: FormattedText.FormattedText, reply_markup :: ReplyMarkup.ReplyMarkup, inline_message_id :: String } 
 
+
+
+instance T.FromJSON EditInlineMessageCaption where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "editInlineMessageCaption" -> parseEditInlineMessageCaption v
+  where
+   parseEditInlineMessageCaption :: A.Value -> T.Parser EditInlineMessageCaption
+   parseEditInlineMessageCaption = A.withObject "EditInlineMessageCaption" $ \o -> do
+    caption <- o A..: "caption"
+    reply_markup <- o A..: "reply_markup"
+    inline_message_id <- o A..: "inline_message_id"
+    return $ EditInlineMessageCaption { caption = caption, reply_markup = reply_markup, inline_message_id = inline_message_id }

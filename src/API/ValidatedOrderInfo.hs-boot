@@ -8,3 +8,7 @@ data ValidatedOrderInfo
 
 instance ToJSON ValidatedOrderInfo
 
+
+
+instance FromJSON ValidatedOrderInfo
+

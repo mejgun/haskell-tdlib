@@ -16,3 +16,16 @@ instance T.ToJSON ChangePhoneNumber where
   A.object [ "@type" A..= T.String "changePhoneNumber", "settings" A..= settings, "phone_number" A..= phone_number ]
 -- changePhoneNumber ChangePhoneNumber  { settings :: PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings, phone_number :: String } 
 
+
+
+instance T.FromJSON ChangePhoneNumber where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "changePhoneNumber" -> parseChangePhoneNumber v
+  where
+   parseChangePhoneNumber :: A.Value -> T.Parser ChangePhoneNumber
+   parseChangePhoneNumber = A.withObject "ChangePhoneNumber" $ \o -> do
+    settings <- o A..: "settings"
+    phone_number <- o A..: "phone_number"
+    return $ ChangePhoneNumber { settings = settings, phone_number = phone_number }

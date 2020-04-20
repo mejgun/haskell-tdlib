@@ -15,3 +15,15 @@ instance T.ToJSON SharePhoneNumber where
   A.object [ "@type" A..= T.String "sharePhoneNumber", "user_id" A..= user_id ]
 -- sharePhoneNumber SharePhoneNumber  { user_id :: Int } 
 
+
+
+instance T.FromJSON SharePhoneNumber where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "sharePhoneNumber" -> parseSharePhoneNumber v
+  where
+   parseSharePhoneNumber :: A.Value -> T.Parser SharePhoneNumber
+   parseSharePhoneNumber = A.withObject "SharePhoneNumber" $ \o -> do
+    user_id <- o A..: "user_id"
+    return $ SharePhoneNumber { user_id = user_id }

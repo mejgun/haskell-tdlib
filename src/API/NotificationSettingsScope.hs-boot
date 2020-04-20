@@ -8,3 +8,7 @@ data NotificationSettingsScope
 
 instance ToJSON NotificationSettingsScope
 
+
+
+instance FromJSON NotificationSettingsScope
+

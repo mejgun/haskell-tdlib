@@ -15,3 +15,17 @@ instance T.ToJSON GetChatStatisticsUrl where
   A.object [ "@type" A..= T.String "getChatStatisticsUrl", "is_dark" A..= is_dark, "parameters" A..= parameters, "chat_id" A..= chat_id ]
 -- getChatStatisticsUrl GetChatStatisticsUrl  { is_dark :: Bool, parameters :: String, chat_id :: Int } 
 
+
+
+instance T.FromJSON GetChatStatisticsUrl where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getChatStatisticsUrl" -> parseGetChatStatisticsUrl v
+  where
+   parseGetChatStatisticsUrl :: A.Value -> T.Parser GetChatStatisticsUrl
+   parseGetChatStatisticsUrl = A.withObject "GetChatStatisticsUrl" $ \o -> do
+    is_dark <- o A..: "is_dark"
+    parameters <- o A..: "parameters"
+    chat_id <- o A..: "chat_id"
+    return $ GetChatStatisticsUrl { is_dark = is_dark, parameters = parameters, chat_id = chat_id }

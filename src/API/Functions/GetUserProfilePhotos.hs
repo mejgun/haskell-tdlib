@@ -15,3 +15,17 @@ instance T.ToJSON GetUserProfilePhotos where
   A.object [ "@type" A..= T.String "getUserProfilePhotos", "limit" A..= limit, "offset" A..= offset, "user_id" A..= user_id ]
 -- getUserProfilePhotos GetUserProfilePhotos  { limit :: Int, offset :: Int, user_id :: Int } 
 
+
+
+instance T.FromJSON GetUserProfilePhotos where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getUserProfilePhotos" -> parseGetUserProfilePhotos v
+  where
+   parseGetUserProfilePhotos :: A.Value -> T.Parser GetUserProfilePhotos
+   parseGetUserProfilePhotos = A.withObject "GetUserProfilePhotos" $ \o -> do
+    limit <- o A..: "limit"
+    offset <- o A..: "offset"
+    user_id <- o A..: "user_id"
+    return $ GetUserProfilePhotos { limit = limit, offset = offset, user_id = user_id }

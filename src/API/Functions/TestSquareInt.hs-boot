@@ -8,3 +8,7 @@ data TestSquareInt
 
 instance ToJSON TestSquareInt
 
+
+
+instance FromJSON TestSquareInt
+

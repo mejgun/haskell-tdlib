@@ -15,3 +15,16 @@ instance T.ToJSON ReorderInstalledStickerSets where
   A.object [ "@type" A..= T.String "reorderInstalledStickerSets", "sticker_set_ids" A..= sticker_set_ids, "is_masks" A..= is_masks ]
 -- reorderInstalledStickerSets ReorderInstalledStickerSets  { sticker_set_ids :: [Int], is_masks :: Bool } 
 
+
+
+instance T.FromJSON ReorderInstalledStickerSets where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "reorderInstalledStickerSets" -> parseReorderInstalledStickerSets v
+  where
+   parseReorderInstalledStickerSets :: A.Value -> T.Parser ReorderInstalledStickerSets
+   parseReorderInstalledStickerSets = A.withObject "ReorderInstalledStickerSets" $ \o -> do
+    sticker_set_ids <- o A..: "sticker_set_ids"
+    is_masks <- o A..: "is_masks"
+    return $ ReorderInstalledStickerSets { sticker_set_ids = sticker_set_ids, is_masks = is_masks }

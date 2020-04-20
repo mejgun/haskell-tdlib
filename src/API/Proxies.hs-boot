@@ -8,3 +8,7 @@ data Proxies
 
 instance ToJSON Proxies
 
+
+
+instance FromJSON Proxies
+

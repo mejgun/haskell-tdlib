@@ -15,3 +15,14 @@ instance T.ToJSON GetAutoDownloadSettingsPresets where
   A.object [ "@type" A..= T.String "getAutoDownloadSettingsPresets" ]
 -- getAutoDownloadSettingsPresets GetAutoDownloadSettingsPresets 
 
+
+
+instance T.FromJSON GetAutoDownloadSettingsPresets where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getAutoDownloadSettingsPresets" -> parseGetAutoDownloadSettingsPresets v
+  where
+   parseGetAutoDownloadSettingsPresets :: A.Value -> T.Parser GetAutoDownloadSettingsPresets
+   parseGetAutoDownloadSettingsPresets = A.withObject "GetAutoDownloadSettingsPresets" $ \o -> do
+    return $ GetAutoDownloadSettingsPresets {  }

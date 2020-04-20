@@ -8,3 +8,7 @@ data ChatPermissions
 
 instance ToJSON ChatPermissions
 
+
+
+instance FromJSON ChatPermissions
+

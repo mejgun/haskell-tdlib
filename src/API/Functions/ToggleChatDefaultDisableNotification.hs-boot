@@ -8,3 +8,7 @@ data ToggleChatDefaultDisableNotification
 
 instance ToJSON ToggleChatDefaultDisableNotification
 
+
+
+instance FromJSON ToggleChatDefaultDisableNotification
+

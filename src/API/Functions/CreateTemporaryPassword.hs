@@ -15,3 +15,16 @@ instance T.ToJSON CreateTemporaryPassword where
   A.object [ "@type" A..= T.String "createTemporaryPassword", "valid_for" A..= valid_for, "password" A..= password ]
 -- createTemporaryPassword CreateTemporaryPassword  { valid_for :: Int, password :: String } 
 
+
+
+instance T.FromJSON CreateTemporaryPassword where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "createTemporaryPassword" -> parseCreateTemporaryPassword v
+  where
+   parseCreateTemporaryPassword :: A.Value -> T.Parser CreateTemporaryPassword
+   parseCreateTemporaryPassword = A.withObject "CreateTemporaryPassword" $ \o -> do
+    valid_for <- o A..: "valid_for"
+    password <- o A..: "password"
+    return $ CreateTemporaryPassword { valid_for = valid_for, password = password }

@@ -16,3 +16,20 @@ instance T.ToJSON PageBlockRelatedArticle where
   A.object [ "@type" A..= T.String "pageBlockRelatedArticle", "publish_date" A..= publish_date, "author" A..= author, "photo" A..= photo, "description" A..= description, "title" A..= title, "url" A..= url ]
 -- pageBlockRelatedArticle PageBlockRelatedArticle  { publish_date :: Int, author :: String, photo :: Photo.Photo, description :: String, title :: String, url :: String } 
 
+
+
+instance T.FromJSON PageBlockRelatedArticle where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "pageBlockRelatedArticle" -> parsePageBlockRelatedArticle v
+  where
+   parsePageBlockRelatedArticle :: A.Value -> T.Parser PageBlockRelatedArticle
+   parsePageBlockRelatedArticle = A.withObject "PageBlockRelatedArticle" $ \o -> do
+    publish_date <- o A..: "publish_date"
+    author <- o A..: "author"
+    photo <- o A..: "photo"
+    description <- o A..: "description"
+    title <- o A..: "title"
+    url <- o A..: "url"
+    return $ PageBlockRelatedArticle { publish_date = publish_date, author = author, photo = photo, description = description, title = title, url = url }

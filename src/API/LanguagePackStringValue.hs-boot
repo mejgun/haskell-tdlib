@@ -8,3 +8,7 @@ data LanguagePackStringValue
 
 instance ToJSON LanguagePackStringValue
 
+
+
+instance FromJSON LanguagePackStringValue
+

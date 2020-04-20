@@ -33,3 +33,29 @@ instance T.ToJSON MaskPoint where
 
 -- maskPointChin MaskPoint 
 
+
+
+instance T.FromJSON MaskPoint where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "maskPointForehead" -> parseMaskPointForehead v
+   "maskPointEyes" -> parseMaskPointEyes v
+   "maskPointMouth" -> parseMaskPointMouth v
+   "maskPointChin" -> parseMaskPointChin v
+  where
+   parseMaskPointForehead :: A.Value -> T.Parser MaskPoint
+   parseMaskPointForehead = A.withObject "MaskPointForehead" $ \o -> do
+    return $ MaskPointForehead {  }
+
+   parseMaskPointEyes :: A.Value -> T.Parser MaskPoint
+   parseMaskPointEyes = A.withObject "MaskPointEyes" $ \o -> do
+    return $ MaskPointEyes {  }
+
+   parseMaskPointMouth :: A.Value -> T.Parser MaskPoint
+   parseMaskPointMouth = A.withObject "MaskPointMouth" $ \o -> do
+    return $ MaskPointMouth {  }
+
+   parseMaskPointChin :: A.Value -> T.Parser MaskPoint
+   parseMaskPointChin = A.withObject "MaskPointChin" $ \o -> do
+    return $ MaskPointChin {  }

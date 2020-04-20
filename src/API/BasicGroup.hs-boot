@@ -8,3 +8,7 @@ data BasicGroup
 
 instance ToJSON BasicGroup
 
+
+
+instance FromJSON BasicGroup
+

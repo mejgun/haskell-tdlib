@@ -15,3 +15,17 @@ instance T.ToJSON SearchInstalledStickerSets where
   A.object [ "@type" A..= T.String "searchInstalledStickerSets", "limit" A..= limit, "query" A..= query, "is_masks" A..= is_masks ]
 -- searchInstalledStickerSets SearchInstalledStickerSets  { limit :: Int, query :: String, is_masks :: Bool } 
 
+
+
+instance T.FromJSON SearchInstalledStickerSets where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "searchInstalledStickerSets" -> parseSearchInstalledStickerSets v
+  where
+   parseSearchInstalledStickerSets :: A.Value -> T.Parser SearchInstalledStickerSets
+   parseSearchInstalledStickerSets = A.withObject "SearchInstalledStickerSets" $ \o -> do
+    limit <- o A..: "limit"
+    query <- o A..: "query"
+    is_masks <- o A..: "is_masks"
+    return $ SearchInstalledStickerSets { limit = limit, query = query, is_masks = is_masks }

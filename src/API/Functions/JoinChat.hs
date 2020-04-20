@@ -15,3 +15,15 @@ instance T.ToJSON JoinChat where
   A.object [ "@type" A..= T.String "joinChat", "chat_id" A..= chat_id ]
 -- joinChat JoinChat  { chat_id :: Int } 
 
+
+
+instance T.FromJSON JoinChat where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "joinChat" -> parseJoinChat v
+  where
+   parseJoinChat :: A.Value -> T.Parser JoinChat
+   parseJoinChat = A.withObject "JoinChat" $ \o -> do
+    chat_id <- o A..: "chat_id"
+    return $ JoinChat { chat_id = chat_id }

@@ -8,3 +8,7 @@ data SetSupergroupUsername
 
 instance ToJSON SetSupergroupUsername
 
+
+
+instance FromJSON SetSupergroupUsername
+

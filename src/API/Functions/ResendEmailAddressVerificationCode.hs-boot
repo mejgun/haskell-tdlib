@@ -8,3 +8,7 @@ data ResendEmailAddressVerificationCode
 
 instance ToJSON ResendEmailAddressVerificationCode
 
+
+
+instance FromJSON ResendEmailAddressVerificationCode
+

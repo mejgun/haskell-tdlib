@@ -8,3 +8,7 @@ data GetRecentStickers
 
 instance ToJSON GetRecentStickers
 
+
+
+instance FromJSON GetRecentStickers
+

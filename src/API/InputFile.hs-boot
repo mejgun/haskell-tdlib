@@ -8,3 +8,7 @@ data InputFile
 
 instance ToJSON InputFile
 
+
+
+instance FromJSON InputFile
+

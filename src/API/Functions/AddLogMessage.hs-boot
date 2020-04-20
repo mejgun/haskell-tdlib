@@ -8,3 +8,7 @@ data AddLogMessage
 
 instance ToJSON AddLogMessage
 
+
+
+instance FromJSON AddLogMessage
+

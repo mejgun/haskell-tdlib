@@ -39,3 +39,34 @@ instance T.ToJSON ChatActionBar where
 
 -- chatActionBarSharePhoneNumber ChatActionBar 
 
+
+
+instance T.FromJSON ChatActionBar where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "chatActionBarReportSpam" -> parseChatActionBarReportSpam v
+   "chatActionBarReportUnrelatedLocation" -> parseChatActionBarReportUnrelatedLocation v
+   "chatActionBarReportAddBlock" -> parseChatActionBarReportAddBlock v
+   "chatActionBarAddContact" -> parseChatActionBarAddContact v
+   "chatActionBarSharePhoneNumber" -> parseChatActionBarSharePhoneNumber v
+  where
+   parseChatActionBarReportSpam :: A.Value -> T.Parser ChatActionBar
+   parseChatActionBarReportSpam = A.withObject "ChatActionBarReportSpam" $ \o -> do
+    return $ ChatActionBarReportSpam {  }
+
+   parseChatActionBarReportUnrelatedLocation :: A.Value -> T.Parser ChatActionBar
+   parseChatActionBarReportUnrelatedLocation = A.withObject "ChatActionBarReportUnrelatedLocation" $ \o -> do
+    return $ ChatActionBarReportUnrelatedLocation {  }
+
+   parseChatActionBarReportAddBlock :: A.Value -> T.Parser ChatActionBar
+   parseChatActionBarReportAddBlock = A.withObject "ChatActionBarReportAddBlock" $ \o -> do
+    return $ ChatActionBarReportAddBlock {  }
+
+   parseChatActionBarAddContact :: A.Value -> T.Parser ChatActionBar
+   parseChatActionBarAddContact = A.withObject "ChatActionBarAddContact" $ \o -> do
+    return $ ChatActionBarAddContact {  }
+
+   parseChatActionBarSharePhoneNumber :: A.Value -> T.Parser ChatActionBar
+   parseChatActionBarSharePhoneNumber = A.withObject "ChatActionBarSharePhoneNumber" $ \o -> do
+    return $ ChatActionBarSharePhoneNumber {  }

@@ -8,3 +8,7 @@ data RecoveryEmailAddress
 
 instance ToJSON RecoveryEmailAddress
 
+
+
+instance FromJSON RecoveryEmailAddress
+

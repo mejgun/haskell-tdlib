@@ -16,3 +16,16 @@ instance T.ToJSON RegisterDevice where
   A.object [ "@type" A..= T.String "registerDevice", "other_user_ids" A..= other_user_ids, "device_token" A..= device_token ]
 -- registerDevice RegisterDevice  { other_user_ids :: [Int], device_token :: DeviceToken.DeviceToken } 
 
+
+
+instance T.FromJSON RegisterDevice where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "registerDevice" -> parseRegisterDevice v
+  where
+   parseRegisterDevice :: A.Value -> T.Parser RegisterDevice
+   parseRegisterDevice = A.withObject "RegisterDevice" $ \o -> do
+    other_user_ids <- o A..: "other_user_ids"
+    device_token <- o A..: "device_token"
+    return $ RegisterDevice { other_user_ids = other_user_ids, device_token = device_token }

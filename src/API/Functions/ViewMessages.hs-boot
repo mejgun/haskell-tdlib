@@ -8,3 +8,7 @@ data ViewMessages
 
 instance ToJSON ViewMessages
 
+
+
+instance FromJSON ViewMessages
+

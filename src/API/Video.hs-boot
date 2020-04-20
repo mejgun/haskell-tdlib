@@ -8,3 +8,7 @@ data Video
 
 instance ToJSON Video
 
+
+
+instance FromJSON Video
+

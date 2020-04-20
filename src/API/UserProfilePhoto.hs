@@ -16,3 +16,17 @@ instance T.ToJSON UserProfilePhoto where
   A.object [ "@type" A..= T.String "userProfilePhoto", "sizes" A..= sizes, "added_date" A..= added_date, "id" A..= _id ]
 -- userProfilePhoto UserProfilePhoto  { sizes :: [PhotoSize.PhotoSize], added_date :: Int, _id :: Int } 
 
+
+
+instance T.FromJSON UserProfilePhoto where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "userProfilePhoto" -> parseUserProfilePhoto v
+  where
+   parseUserProfilePhoto :: A.Value -> T.Parser UserProfilePhoto
+   parseUserProfilePhoto = A.withObject "UserProfilePhoto" $ \o -> do
+    sizes <- o A..: "sizes"
+    added_date <- o A..: "added_date"
+    _id <- o A..: "id"
+    return $ UserProfilePhoto { sizes = sizes, added_date = added_date, _id = _id }

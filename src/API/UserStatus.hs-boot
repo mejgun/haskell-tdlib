@@ -8,3 +8,7 @@ data UserStatus
 
 instance ToJSON UserStatus
 
+
+
+instance FromJSON UserStatus
+

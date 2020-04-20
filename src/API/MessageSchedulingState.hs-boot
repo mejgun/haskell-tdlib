@@ -8,3 +8,7 @@ data MessageSchedulingState
 
 instance ToJSON MessageSchedulingState
 
+
+
+instance FromJSON MessageSchedulingState
+

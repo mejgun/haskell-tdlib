@@ -8,3 +8,7 @@ data SharePhoneNumber
 
 instance ToJSON SharePhoneNumber
 
+
+
+instance FromJSON SharePhoneNumber
+

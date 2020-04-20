@@ -15,3 +15,15 @@ instance T.ToJSON DeleteSupergroup where
   A.object [ "@type" A..= T.String "deleteSupergroup", "supergroup_id" A..= supergroup_id ]
 -- deleteSupergroup DeleteSupergroup  { supergroup_id :: Int } 
 
+
+
+instance T.FromJSON DeleteSupergroup where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "deleteSupergroup" -> parseDeleteSupergroup v
+  where
+   parseDeleteSupergroup :: A.Value -> T.Parser DeleteSupergroup
+   parseDeleteSupergroup = A.withObject "DeleteSupergroup" $ \o -> do
+    supergroup_id <- o A..: "supergroup_id"
+    return $ DeleteSupergroup { supergroup_id = supergroup_id }

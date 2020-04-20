@@ -17,3 +17,16 @@ instance T.ToJSON SetCustomLanguagePack where
   A.object [ "@type" A..= T.String "setCustomLanguagePack", "strings" A..= strings, "info" A..= info ]
 -- setCustomLanguagePack SetCustomLanguagePack  { strings :: [LanguagePackString.LanguagePackString], info :: LanguagePackInfo.LanguagePackInfo } 
 
+
+
+instance T.FromJSON SetCustomLanguagePack where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setCustomLanguagePack" -> parseSetCustomLanguagePack v
+  where
+   parseSetCustomLanguagePack :: A.Value -> T.Parser SetCustomLanguagePack
+   parseSetCustomLanguagePack = A.withObject "SetCustomLanguagePack" $ \o -> do
+    strings <- o A..: "strings"
+    info <- o A..: "info"
+    return $ SetCustomLanguagePack { strings = strings, info = info }

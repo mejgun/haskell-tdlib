@@ -8,3 +8,7 @@ data SetStickerSetThumbnail
 
 instance ToJSON SetStickerSetThumbnail
 
+
+
+instance FromJSON SetStickerSetThumbnail
+

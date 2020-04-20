@@ -21,3 +21,20 @@ instance T.ToJSON MessageSchedulingState where
 
 -- messageSchedulingStateSendWhenOnline MessageSchedulingState 
 
+
+
+instance T.FromJSON MessageSchedulingState where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "messageSchedulingStateSendAtDate" -> parseMessageSchedulingStateSendAtDate v
+   "messageSchedulingStateSendWhenOnline" -> parseMessageSchedulingStateSendWhenOnline v
+  where
+   parseMessageSchedulingStateSendAtDate :: A.Value -> T.Parser MessageSchedulingState
+   parseMessageSchedulingStateSendAtDate = A.withObject "MessageSchedulingStateSendAtDate" $ \o -> do
+    send_date <- o A..: "send_date"
+    return $ MessageSchedulingStateSendAtDate { send_date = send_date }
+
+   parseMessageSchedulingStateSendWhenOnline :: A.Value -> T.Parser MessageSchedulingState
+   parseMessageSchedulingStateSendWhenOnline = A.withObject "MessageSchedulingStateSendWhenOnline" $ \o -> do
+    return $ MessageSchedulingStateSendWhenOnline {  }

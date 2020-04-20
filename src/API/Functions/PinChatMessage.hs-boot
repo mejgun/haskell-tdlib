@@ -8,3 +8,7 @@ data PinChatMessage
 
 instance ToJSON PinChatMessage
 
+
+
+instance FromJSON PinChatMessage
+

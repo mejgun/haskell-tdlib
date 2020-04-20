@@ -8,3 +8,7 @@ data UploadFile
 
 instance ToJSON UploadFile
 
+
+
+instance FromJSON UploadFile
+

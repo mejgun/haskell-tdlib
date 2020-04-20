@@ -8,3 +8,7 @@ data Stickers
 
 instance ToJSON Stickers
 
+
+
+instance FromJSON Stickers
+

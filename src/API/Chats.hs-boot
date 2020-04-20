@@ -8,3 +8,7 @@ data Chats
 
 instance ToJSON Chats
 
+
+
+instance FromJSON Chats
+

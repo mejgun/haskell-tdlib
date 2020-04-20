@@ -16,3 +16,15 @@ instance T.ToJSON ParseMarkdown where
   A.object [ "@type" A..= T.String "parseMarkdown", "text" A..= text ]
 -- parseMarkdown ParseMarkdown  { text :: FormattedText.FormattedText } 
 
+
+
+instance T.FromJSON ParseMarkdown where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "parseMarkdown" -> parseParseMarkdown v
+  where
+   parseParseMarkdown :: A.Value -> T.Parser ParseMarkdown
+   parseParseMarkdown = A.withObject "ParseMarkdown" $ \o -> do
+    text <- o A..: "text"
+    return $ ParseMarkdown { text = text }

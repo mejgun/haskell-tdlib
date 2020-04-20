@@ -8,3 +8,7 @@ data CallConnection
 
 instance ToJSON CallConnection
 
+
+
+instance FromJSON CallConnection
+

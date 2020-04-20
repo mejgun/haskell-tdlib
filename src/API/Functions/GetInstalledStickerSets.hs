@@ -15,3 +15,15 @@ instance T.ToJSON GetInstalledStickerSets where
   A.object [ "@type" A..= T.String "getInstalledStickerSets", "is_masks" A..= is_masks ]
 -- getInstalledStickerSets GetInstalledStickerSets  { is_masks :: Bool } 
 
+
+
+instance T.FromJSON GetInstalledStickerSets where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getInstalledStickerSets" -> parseGetInstalledStickerSets v
+  where
+   parseGetInstalledStickerSets :: A.Value -> T.Parser GetInstalledStickerSets
+   parseGetInstalledStickerSets = A.withObject "GetInstalledStickerSets" $ \o -> do
+    is_masks <- o A..: "is_masks"
+    return $ GetInstalledStickerSets { is_masks = is_masks }

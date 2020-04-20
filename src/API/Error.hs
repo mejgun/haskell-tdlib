@@ -15,3 +15,16 @@ instance T.ToJSON Error where
   A.object [ "@type" A..= T.String "error", "message" A..= message, "code" A..= code ]
 -- error Error  { message :: String, code :: Int } 
 
+
+
+instance T.FromJSON Error where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "error" -> parseError v
+  where
+   parseError :: A.Value -> T.Parser Error
+   parseError = A.withObject "Error" $ \o -> do
+    message <- o A..: "message"
+    code <- o A..: "code"
+    return $ Error { message = message, code = code }

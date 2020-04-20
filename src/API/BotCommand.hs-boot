@@ -8,3 +8,7 @@ data BotCommand
 
 instance ToJSON BotCommand
 
+
+
+instance FromJSON BotCommand
+

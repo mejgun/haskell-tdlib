@@ -16,3 +16,16 @@ instance T.ToJSON InputPersonalDocument where
   A.object [ "@type" A..= T.String "inputPersonalDocument", "translation" A..= translation, "files" A..= files ]
 -- inputPersonalDocument InputPersonalDocument  { translation :: [InputFile.InputFile], files :: [InputFile.InputFile] } 
 
+
+
+instance T.FromJSON InputPersonalDocument where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "inputPersonalDocument" -> parseInputPersonalDocument v
+  where
+   parseInputPersonalDocument :: A.Value -> T.Parser InputPersonalDocument
+   parseInputPersonalDocument = A.withObject "InputPersonalDocument" $ \o -> do
+    translation <- o A..: "translation"
+    files <- o A..: "files"
+    return $ InputPersonalDocument { translation = translation, files = files }

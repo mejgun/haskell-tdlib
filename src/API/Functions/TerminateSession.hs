@@ -15,3 +15,15 @@ instance T.ToJSON TerminateSession where
   A.object [ "@type" A..= T.String "terminateSession", "session_id" A..= session_id ]
 -- terminateSession TerminateSession  { session_id :: Int } 
 
+
+
+instance T.FromJSON TerminateSession where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "terminateSession" -> parseTerminateSession v
+  where
+   parseTerminateSession :: A.Value -> T.Parser TerminateSession
+   parseTerminateSession = A.withObject "TerminateSession" $ \o -> do
+    session_id <- o A..: "session_id"
+    return $ TerminateSession { session_id = session_id }

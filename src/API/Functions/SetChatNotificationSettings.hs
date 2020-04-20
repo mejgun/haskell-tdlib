@@ -16,3 +16,16 @@ instance T.ToJSON SetChatNotificationSettings where
   A.object [ "@type" A..= T.String "setChatNotificationSettings", "notification_settings" A..= notification_settings, "chat_id" A..= chat_id ]
 -- setChatNotificationSettings SetChatNotificationSettings  { notification_settings :: ChatNotificationSettings.ChatNotificationSettings, chat_id :: Int } 
 
+
+
+instance T.FromJSON SetChatNotificationSettings where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setChatNotificationSettings" -> parseSetChatNotificationSettings v
+  where
+   parseSetChatNotificationSettings :: A.Value -> T.Parser SetChatNotificationSettings
+   parseSetChatNotificationSettings = A.withObject "SetChatNotificationSettings" $ \o -> do
+    notification_settings <- o A..: "notification_settings"
+    chat_id <- o A..: "chat_id"
+    return $ SetChatNotificationSettings { notification_settings = notification_settings, chat_id = chat_id }

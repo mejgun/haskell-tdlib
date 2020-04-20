@@ -16,3 +16,16 @@ instance T.ToJSON InlineKeyboardButton where
   A.object [ "@type" A..= T.String "inlineKeyboardButton", "type" A..= _type, "text" A..= text ]
 -- inlineKeyboardButton InlineKeyboardButton  { _type :: InlineKeyboardButtonType.InlineKeyboardButtonType, text :: String } 
 
+
+
+instance T.FromJSON InlineKeyboardButton where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "inlineKeyboardButton" -> parseInlineKeyboardButton v
+  where
+   parseInlineKeyboardButton :: A.Value -> T.Parser InlineKeyboardButton
+   parseInlineKeyboardButton = A.withObject "InlineKeyboardButton" $ \o -> do
+    _type <- o A..: "type"
+    text <- o A..: "text"
+    return $ InlineKeyboardButton { _type = _type, text = text }

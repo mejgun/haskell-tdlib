@@ -8,3 +8,7 @@ data SetInlineGameScore
 
 instance ToJSON SetInlineGameScore
 
+
+
+instance FromJSON SetInlineGameScore
+

@@ -8,3 +8,7 @@ data Call
 
 instance ToJSON Call
 
+
+
+instance FromJSON Call
+

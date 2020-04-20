@@ -16,3 +16,15 @@ instance T.ToJSON TMeUrls where
   A.object [ "@type" A..= T.String "tMeUrls", "urls" A..= urls ]
 -- tMeUrls TMeUrls  { urls :: [TMeUrl.TMeUrl] } 
 
+
+
+instance T.FromJSON TMeUrls where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "tMeUrls" -> parseTMeUrls v
+  where
+   parseTMeUrls :: A.Value -> T.Parser TMeUrls
+   parseTMeUrls = A.withObject "TMeUrls" $ \o -> do
+    urls <- o A..: "urls"
+    return $ TMeUrls { urls = urls }

@@ -21,3 +21,21 @@ instance T.ToJSON CallbackQueryPayload where
 
 -- callbackQueryPayloadGame CallbackQueryPayload  { game_short_name :: String } 
 
+
+
+instance T.FromJSON CallbackQueryPayload where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "callbackQueryPayloadData" -> parseCallbackQueryPayloadData v
+   "callbackQueryPayloadGame" -> parseCallbackQueryPayloadGame v
+  where
+   parseCallbackQueryPayloadData :: A.Value -> T.Parser CallbackQueryPayload
+   parseCallbackQueryPayloadData = A.withObject "CallbackQueryPayloadData" $ \o -> do
+    _data <- o A..: "data"
+    return $ CallbackQueryPayloadData { _data = _data }
+
+   parseCallbackQueryPayloadGame :: A.Value -> T.Parser CallbackQueryPayload
+   parseCallbackQueryPayloadGame = A.withObject "CallbackQueryPayloadGame" $ \o -> do
+    game_short_name <- o A..: "game_short_name"
+    return $ CallbackQueryPayloadGame { game_short_name = game_short_name }

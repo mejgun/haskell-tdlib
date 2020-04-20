@@ -15,3 +15,15 @@ instance T.ToJSON CleanFileName where
   A.object [ "@type" A..= T.String "cleanFileName", "file_name" A..= file_name ]
 -- cleanFileName CleanFileName  { file_name :: String } 
 
+
+
+instance T.FromJSON CleanFileName where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "cleanFileName" -> parseCleanFileName v
+  where
+   parseCleanFileName :: A.Value -> T.Parser CleanFileName
+   parseCleanFileName = A.withObject "CleanFileName" $ \o -> do
+    file_name <- o A..: "file_name"
+    return $ CleanFileName { file_name = file_name }

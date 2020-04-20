@@ -16,3 +16,15 @@ instance T.ToJSON TestReturnError where
   A.object [ "@type" A..= T.String "testReturnError", "error" A..= _error ]
 -- testReturnError TestReturnError  { _error :: Error.Error } 
 
+
+
+instance T.FromJSON TestReturnError where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "testReturnError" -> parseTestReturnError v
+  where
+   parseTestReturnError :: A.Value -> T.Parser TestReturnError
+   parseTestReturnError = A.withObject "TestReturnError" $ \o -> do
+    _error <- o A..: "error"
+    return $ TestReturnError { _error = _error }

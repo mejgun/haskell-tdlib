@@ -8,3 +8,7 @@ data AddContact
 
 instance ToJSON AddContact
 
+
+
+instance FromJSON AddContact
+

@@ -8,3 +8,7 @@ data SendCallRating
 
 instance ToJSON SendCallRating
 
+
+
+instance FromJSON SendCallRating
+

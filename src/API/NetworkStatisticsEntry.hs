@@ -23,3 +23,27 @@ instance T.ToJSON NetworkStatisticsEntry where
 
 -- networkStatisticsEntryCall NetworkStatisticsEntry  { duration :: Float, received_bytes :: Int, sent_bytes :: Int, network_type :: NetworkType.NetworkType } 
 
+
+
+instance T.FromJSON NetworkStatisticsEntry where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "networkStatisticsEntryFile" -> parseNetworkStatisticsEntryFile v
+   "networkStatisticsEntryCall" -> parseNetworkStatisticsEntryCall v
+  where
+   parseNetworkStatisticsEntryFile :: A.Value -> T.Parser NetworkStatisticsEntry
+   parseNetworkStatisticsEntryFile = A.withObject "NetworkStatisticsEntryFile" $ \o -> do
+    received_bytes <- o A..: "received_bytes"
+    sent_bytes <- o A..: "sent_bytes"
+    network_type <- o A..: "network_type"
+    file_type <- o A..: "file_type"
+    return $ NetworkStatisticsEntryFile { received_bytes = received_bytes, sent_bytes = sent_bytes, network_type = network_type, file_type = file_type }
+
+   parseNetworkStatisticsEntryCall :: A.Value -> T.Parser NetworkStatisticsEntry
+   parseNetworkStatisticsEntryCall = A.withObject "NetworkStatisticsEntryCall" $ \o -> do
+    duration <- o A..: "duration"
+    received_bytes <- o A..: "received_bytes"
+    sent_bytes <- o A..: "sent_bytes"
+    network_type <- o A..: "network_type"
+    return $ NetworkStatisticsEntryCall { duration = duration, received_bytes = received_bytes, sent_bytes = sent_bytes, network_type = network_type }

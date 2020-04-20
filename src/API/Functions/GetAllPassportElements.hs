@@ -15,3 +15,15 @@ instance T.ToJSON GetAllPassportElements where
   A.object [ "@type" A..= T.String "getAllPassportElements", "password" A..= password ]
 -- getAllPassportElements GetAllPassportElements  { password :: String } 
 
+
+
+instance T.FromJSON GetAllPassportElements where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getAllPassportElements" -> parseGetAllPassportElements v
+  where
+   parseGetAllPassportElements :: A.Value -> T.Parser GetAllPassportElements
+   parseGetAllPassportElements = A.withObject "GetAllPassportElements" $ \o -> do
+    password <- o A..: "password"
+    return $ GetAllPassportElements { password = password }

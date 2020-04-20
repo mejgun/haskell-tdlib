@@ -8,3 +8,7 @@ data AutoDownloadSettingsPresets
 
 instance ToJSON AutoDownloadSettingsPresets
 
+
+
+instance FromJSON AutoDownloadSettingsPresets
+

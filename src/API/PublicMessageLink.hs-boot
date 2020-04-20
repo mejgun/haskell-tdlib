@@ -8,3 +8,7 @@ data PublicMessageLink
 
 instance ToJSON PublicMessageLink
 
+
+
+instance FromJSON PublicMessageLink
+

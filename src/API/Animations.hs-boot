@@ -8,3 +8,7 @@ data Animations
 
 instance ToJSON Animations
 
+
+
+instance FromJSON Animations
+

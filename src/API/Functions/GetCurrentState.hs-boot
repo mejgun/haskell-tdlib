@@ -8,3 +8,7 @@ data GetCurrentState
 
 instance ToJSON GetCurrentState
 
+
+
+instance FromJSON GetCurrentState
+

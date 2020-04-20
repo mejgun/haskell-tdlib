@@ -8,3 +8,7 @@ data GetWebPageInstantView
 
 instance ToJSON GetWebPageInstantView
 
+
+
+instance FromJSON GetWebPageInstantView
+

@@ -16,3 +16,16 @@ instance T.ToJSON DatedFile where
   A.object [ "@type" A..= T.String "datedFile", "date" A..= date, "file" A..= file ]
 -- datedFile DatedFile  { date :: Int, file :: File.File } 
 
+
+
+instance T.FromJSON DatedFile where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "datedFile" -> parseDatedFile v
+  where
+   parseDatedFile :: A.Value -> T.Parser DatedFile
+   parseDatedFile = A.withObject "DatedFile" $ \o -> do
+    date <- o A..: "date"
+    file <- o A..: "file"
+    return $ DatedFile { date = date, file = file }

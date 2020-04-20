@@ -8,3 +8,7 @@ data SetBotUpdatesStatus
 
 instance ToJSON SetBotUpdatesStatus
 
+
+
+instance FromJSON SetBotUpdatesStatus
+

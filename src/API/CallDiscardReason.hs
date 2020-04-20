@@ -39,3 +39,34 @@ instance T.ToJSON CallDiscardReason where
 
 -- callDiscardReasonHungUp CallDiscardReason 
 
+
+
+instance T.FromJSON CallDiscardReason where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "callDiscardReasonEmpty" -> parseCallDiscardReasonEmpty v
+   "callDiscardReasonMissed" -> parseCallDiscardReasonMissed v
+   "callDiscardReasonDeclined" -> parseCallDiscardReasonDeclined v
+   "callDiscardReasonDisconnected" -> parseCallDiscardReasonDisconnected v
+   "callDiscardReasonHungUp" -> parseCallDiscardReasonHungUp v
+  where
+   parseCallDiscardReasonEmpty :: A.Value -> T.Parser CallDiscardReason
+   parseCallDiscardReasonEmpty = A.withObject "CallDiscardReasonEmpty" $ \o -> do
+    return $ CallDiscardReasonEmpty {  }
+
+   parseCallDiscardReasonMissed :: A.Value -> T.Parser CallDiscardReason
+   parseCallDiscardReasonMissed = A.withObject "CallDiscardReasonMissed" $ \o -> do
+    return $ CallDiscardReasonMissed {  }
+
+   parseCallDiscardReasonDeclined :: A.Value -> T.Parser CallDiscardReason
+   parseCallDiscardReasonDeclined = A.withObject "CallDiscardReasonDeclined" $ \o -> do
+    return $ CallDiscardReasonDeclined {  }
+
+   parseCallDiscardReasonDisconnected :: A.Value -> T.Parser CallDiscardReason
+   parseCallDiscardReasonDisconnected = A.withObject "CallDiscardReasonDisconnected" $ \o -> do
+    return $ CallDiscardReasonDisconnected {  }
+
+   parseCallDiscardReasonHungUp :: A.Value -> T.Parser CallDiscardReason
+   parseCallDiscardReasonHungUp = A.withObject "CallDiscardReasonHungUp" $ \o -> do
+    return $ CallDiscardReasonHungUp {  }

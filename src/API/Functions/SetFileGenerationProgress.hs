@@ -15,3 +15,17 @@ instance T.ToJSON SetFileGenerationProgress where
   A.object [ "@type" A..= T.String "setFileGenerationProgress", "local_prefix_size" A..= local_prefix_size, "expected_size" A..= expected_size, "generation_id" A..= generation_id ]
 -- setFileGenerationProgress SetFileGenerationProgress  { local_prefix_size :: Int, expected_size :: Int, generation_id :: Int } 
 
+
+
+instance T.FromJSON SetFileGenerationProgress where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setFileGenerationProgress" -> parseSetFileGenerationProgress v
+  where
+   parseSetFileGenerationProgress :: A.Value -> T.Parser SetFileGenerationProgress
+   parseSetFileGenerationProgress = A.withObject "SetFileGenerationProgress" $ \o -> do
+    local_prefix_size <- o A..: "local_prefix_size"
+    expected_size <- o A..: "expected_size"
+    generation_id <- o A..: "generation_id"
+    return $ SetFileGenerationProgress { local_prefix_size = local_prefix_size, expected_size = expected_size, generation_id = generation_id }

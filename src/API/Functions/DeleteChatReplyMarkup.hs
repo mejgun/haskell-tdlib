@@ -15,3 +15,16 @@ instance T.ToJSON DeleteChatReplyMarkup where
   A.object [ "@type" A..= T.String "deleteChatReplyMarkup", "message_id" A..= message_id, "chat_id" A..= chat_id ]
 -- deleteChatReplyMarkup DeleteChatReplyMarkup  { message_id :: Int, chat_id :: Int } 
 
+
+
+instance T.FromJSON DeleteChatReplyMarkup where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "deleteChatReplyMarkup" -> parseDeleteChatReplyMarkup v
+  where
+   parseDeleteChatReplyMarkup :: A.Value -> T.Parser DeleteChatReplyMarkup
+   parseDeleteChatReplyMarkup = A.withObject "DeleteChatReplyMarkup" $ \o -> do
+    message_id <- o A..: "message_id"
+    chat_id <- o A..: "chat_id"
+    return $ DeleteChatReplyMarkup { message_id = message_id, chat_id = chat_id }

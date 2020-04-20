@@ -21,3 +21,19 @@ instance T.ToJSON ChatList where
 
 -- chatListArchive ChatList 
 
+
+
+instance T.FromJSON ChatList where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "chatListMain" -> parseChatListMain v
+   "chatListArchive" -> parseChatListArchive v
+  where
+   parseChatListMain :: A.Value -> T.Parser ChatList
+   parseChatListMain = A.withObject "ChatListMain" $ \o -> do
+    return $ ChatListMain {  }
+
+   parseChatListArchive :: A.Value -> T.Parser ChatList
+   parseChatListArchive = A.withObject "ChatListArchive" $ \o -> do
+    return $ ChatListArchive {  }

@@ -8,3 +8,7 @@ data Count
 
 instance ToJSON Count
 
+
+
+instance FromJSON Count
+

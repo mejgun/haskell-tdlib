@@ -15,3 +15,14 @@ instance T.ToJSON CanTransferOwnership where
   A.object [ "@type" A..= T.String "canTransferOwnership" ]
 -- canTransferOwnership CanTransferOwnership 
 
+
+
+instance T.FromJSON CanTransferOwnership where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "canTransferOwnership" -> parseCanTransferOwnership v
+  where
+   parseCanTransferOwnership :: A.Value -> T.Parser CanTransferOwnership
+   parseCanTransferOwnership = A.withObject "CanTransferOwnership" $ \o -> do
+    return $ CanTransferOwnership {  }

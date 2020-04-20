@@ -8,3 +8,7 @@ data LogStream
 
 instance ToJSON LogStream
 
+
+
+instance FromJSON LogStream
+

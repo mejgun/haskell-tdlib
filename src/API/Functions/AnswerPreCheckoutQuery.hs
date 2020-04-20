@@ -15,3 +15,16 @@ instance T.ToJSON AnswerPreCheckoutQuery where
   A.object [ "@type" A..= T.String "answerPreCheckoutQuery", "error_message" A..= error_message, "pre_checkout_query_id" A..= pre_checkout_query_id ]
 -- answerPreCheckoutQuery AnswerPreCheckoutQuery  { error_message :: String, pre_checkout_query_id :: Int } 
 
+
+
+instance T.FromJSON AnswerPreCheckoutQuery where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "answerPreCheckoutQuery" -> parseAnswerPreCheckoutQuery v
+  where
+   parseAnswerPreCheckoutQuery :: A.Value -> T.Parser AnswerPreCheckoutQuery
+   parseAnswerPreCheckoutQuery = A.withObject "AnswerPreCheckoutQuery" $ \o -> do
+    error_message <- o A..: "error_message"
+    pre_checkout_query_id <- o A..: "pre_checkout_query_id"
+    return $ AnswerPreCheckoutQuery { error_message = error_message, pre_checkout_query_id = pre_checkout_query_id }

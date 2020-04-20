@@ -8,3 +8,7 @@ data CreateSecretChat
 
 instance ToJSON CreateSecretChat
 
+
+
+instance FromJSON CreateSecretChat
+

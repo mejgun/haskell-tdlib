@@ -49,3 +49,51 @@ instance T.ToJSON CallState where
 
 -- callStateError CallState  { _error :: Error.Error } 
 
+
+
+instance T.FromJSON CallState where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "callStatePending" -> parseCallStatePending v
+   "callStateExchangingKeys" -> parseCallStateExchangingKeys v
+   "callStateReady" -> parseCallStateReady v
+   "callStateHangingUp" -> parseCallStateHangingUp v
+   "callStateDiscarded" -> parseCallStateDiscarded v
+   "callStateError" -> parseCallStateError v
+  where
+   parseCallStatePending :: A.Value -> T.Parser CallState
+   parseCallStatePending = A.withObject "CallStatePending" $ \o -> do
+    is_received <- o A..: "is_received"
+    is_created <- o A..: "is_created"
+    return $ CallStatePending { is_received = is_received, is_created = is_created }
+
+   parseCallStateExchangingKeys :: A.Value -> T.Parser CallState
+   parseCallStateExchangingKeys = A.withObject "CallStateExchangingKeys" $ \o -> do
+    return $ CallStateExchangingKeys {  }
+
+   parseCallStateReady :: A.Value -> T.Parser CallState
+   parseCallStateReady = A.withObject "CallStateReady" $ \o -> do
+    allow_p2p <- o A..: "allow_p2p"
+    emojis <- o A..: "emojis"
+    encryption_key <- o A..: "encryption_key"
+    config <- o A..: "config"
+    connections <- o A..: "connections"
+    protocol <- o A..: "protocol"
+    return $ CallStateReady { allow_p2p = allow_p2p, emojis = emojis, encryption_key = encryption_key, config = config, connections = connections, protocol = protocol }
+
+   parseCallStateHangingUp :: A.Value -> T.Parser CallState
+   parseCallStateHangingUp = A.withObject "CallStateHangingUp" $ \o -> do
+    return $ CallStateHangingUp {  }
+
+   parseCallStateDiscarded :: A.Value -> T.Parser CallState
+   parseCallStateDiscarded = A.withObject "CallStateDiscarded" $ \o -> do
+    need_debug_information <- o A..: "need_debug_information"
+    need_rating <- o A..: "need_rating"
+    reason <- o A..: "reason"
+    return $ CallStateDiscarded { need_debug_information = need_debug_information, need_rating = need_rating, reason = reason }
+
+   parseCallStateError :: A.Value -> T.Parser CallState
+   parseCallStateError = A.withObject "CallStateError" $ \o -> do
+    _error <- o A..: "error"
+    return $ CallStateError { _error = _error }

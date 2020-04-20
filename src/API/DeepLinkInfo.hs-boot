@@ -8,3 +8,7 @@ data DeepLinkInfo
 
 instance ToJSON DeepLinkInfo
 
+
+
+instance FromJSON DeepLinkInfo
+

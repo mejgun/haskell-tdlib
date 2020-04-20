@@ -15,3 +15,15 @@ instance T.ToJSON PingProxy where
   A.object [ "@type" A..= T.String "pingProxy", "proxy_id" A..= proxy_id ]
 -- pingProxy PingProxy  { proxy_id :: Int } 
 
+
+
+instance T.FromJSON PingProxy where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "pingProxy" -> parsePingProxy v
+  where
+   parsePingProxy :: A.Value -> T.Parser PingProxy
+   parsePingProxy = A.withObject "PingProxy" $ \o -> do
+    proxy_id <- o A..: "proxy_id"
+    return $ PingProxy { proxy_id = proxy_id }

@@ -15,3 +15,17 @@ instance T.ToJSON ChatStatisticsMessageInteractionCounters where
   A.object [ "@type" A..= T.String "chatStatisticsMessageInteractionCounters", "forward_count" A..= forward_count, "view_count" A..= view_count, "message_id" A..= message_id ]
 -- chatStatisticsMessageInteractionCounters ChatStatisticsMessageInteractionCounters  { forward_count :: Int, view_count :: Int, message_id :: Int } 
 
+
+
+instance T.FromJSON ChatStatisticsMessageInteractionCounters where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "chatStatisticsMessageInteractionCounters" -> parseChatStatisticsMessageInteractionCounters v
+  where
+   parseChatStatisticsMessageInteractionCounters :: A.Value -> T.Parser ChatStatisticsMessageInteractionCounters
+   parseChatStatisticsMessageInteractionCounters = A.withObject "ChatStatisticsMessageInteractionCounters" $ \o -> do
+    forward_count <- o A..: "forward_count"
+    view_count <- o A..: "view_count"
+    message_id <- o A..: "message_id"
+    return $ ChatStatisticsMessageInteractionCounters { forward_count = forward_count, view_count = view_count, message_id = message_id }

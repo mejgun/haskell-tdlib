@@ -8,3 +8,7 @@ data SupergroupFullInfo
 
 instance ToJSON SupergroupFullInfo
 
+
+
+instance FromJSON SupergroupFullInfo
+

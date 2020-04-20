@@ -8,3 +8,7 @@ data InputCredentials
 
 instance ToJSON InputCredentials
 
+
+
+instance FromJSON InputCredentials
+

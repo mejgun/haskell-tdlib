@@ -51,3 +51,45 @@ instance T.ToJSON ChatReportReason where
 
 -- chatReportReasonCustom ChatReportReason  { text :: String } 
 
+
+
+instance T.FromJSON ChatReportReason where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "chatReportReasonSpam" -> parseChatReportReasonSpam v
+   "chatReportReasonViolence" -> parseChatReportReasonViolence v
+   "chatReportReasonPornography" -> parseChatReportReasonPornography v
+   "chatReportReasonChildAbuse" -> parseChatReportReasonChildAbuse v
+   "chatReportReasonCopyright" -> parseChatReportReasonCopyright v
+   "chatReportReasonUnrelatedLocation" -> parseChatReportReasonUnrelatedLocation v
+   "chatReportReasonCustom" -> parseChatReportReasonCustom v
+  where
+   parseChatReportReasonSpam :: A.Value -> T.Parser ChatReportReason
+   parseChatReportReasonSpam = A.withObject "ChatReportReasonSpam" $ \o -> do
+    return $ ChatReportReasonSpam {  }
+
+   parseChatReportReasonViolence :: A.Value -> T.Parser ChatReportReason
+   parseChatReportReasonViolence = A.withObject "ChatReportReasonViolence" $ \o -> do
+    return $ ChatReportReasonViolence {  }
+
+   parseChatReportReasonPornography :: A.Value -> T.Parser ChatReportReason
+   parseChatReportReasonPornography = A.withObject "ChatReportReasonPornography" $ \o -> do
+    return $ ChatReportReasonPornography {  }
+
+   parseChatReportReasonChildAbuse :: A.Value -> T.Parser ChatReportReason
+   parseChatReportReasonChildAbuse = A.withObject "ChatReportReasonChildAbuse" $ \o -> do
+    return $ ChatReportReasonChildAbuse {  }
+
+   parseChatReportReasonCopyright :: A.Value -> T.Parser ChatReportReason
+   parseChatReportReasonCopyright = A.withObject "ChatReportReasonCopyright" $ \o -> do
+    return $ ChatReportReasonCopyright {  }
+
+   parseChatReportReasonUnrelatedLocation :: A.Value -> T.Parser ChatReportReason
+   parseChatReportReasonUnrelatedLocation = A.withObject "ChatReportReasonUnrelatedLocation" $ \o -> do
+    return $ ChatReportReasonUnrelatedLocation {  }
+
+   parseChatReportReasonCustom :: A.Value -> T.Parser ChatReportReason
+   parseChatReportReasonCustom = A.withObject "ChatReportReasonCustom" $ \o -> do
+    text <- o A..: "text"
+    return $ ChatReportReasonCustom { text = text }

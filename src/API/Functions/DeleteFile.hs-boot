@@ -8,3 +8,7 @@ data DeleteFile
 
 instance ToJSON DeleteFile
 
+
+
+instance FromJSON DeleteFile
+

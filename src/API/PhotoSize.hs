@@ -16,3 +16,18 @@ instance T.ToJSON PhotoSize where
   A.object [ "@type" A..= T.String "photoSize", "height" A..= height, "width" A..= width, "photo" A..= photo, "type" A..= _type ]
 -- photoSize PhotoSize  { height :: Int, width :: Int, photo :: File.File, _type :: String } 
 
+
+
+instance T.FromJSON PhotoSize where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "photoSize" -> parsePhotoSize v
+  where
+   parsePhotoSize :: A.Value -> T.Parser PhotoSize
+   parsePhotoSize = A.withObject "PhotoSize" $ \o -> do
+    height <- o A..: "height"
+    width <- o A..: "width"
+    photo <- o A..: "photo"
+    _type <- o A..: "type"
+    return $ PhotoSize { height = height, width = width, photo = photo, _type = _type }

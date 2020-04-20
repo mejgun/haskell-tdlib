@@ -8,3 +8,7 @@ data RemoveTopChat
 
 instance ToJSON RemoveTopChat
 
+
+
+instance FromJSON RemoveTopChat
+

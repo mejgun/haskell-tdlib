@@ -8,3 +8,7 @@ data SetAlarm
 
 instance ToJSON SetAlarm
 
+
+
+instance FromJSON SetAlarm
+

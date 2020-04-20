@@ -15,3 +15,14 @@ instance T.ToJSON GetInviteText where
   A.object [ "@type" A..= T.String "getInviteText" ]
 -- getInviteText GetInviteText 
 
+
+
+instance T.FromJSON GetInviteText where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getInviteText" -> parseGetInviteText v
+  where
+   parseGetInviteText :: A.Value -> T.Parser GetInviteText
+   parseGetInviteText = A.withObject "GetInviteText" $ \o -> do
+    return $ GetInviteText {  }

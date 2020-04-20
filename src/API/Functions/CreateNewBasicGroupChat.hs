@@ -15,3 +15,16 @@ instance T.ToJSON CreateNewBasicGroupChat where
   A.object [ "@type" A..= T.String "createNewBasicGroupChat", "title" A..= title, "user_ids" A..= user_ids ]
 -- createNewBasicGroupChat CreateNewBasicGroupChat  { title :: String, user_ids :: [Int] } 
 
+
+
+instance T.FromJSON CreateNewBasicGroupChat where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "createNewBasicGroupChat" -> parseCreateNewBasicGroupChat v
+  where
+   parseCreateNewBasicGroupChat :: A.Value -> T.Parser CreateNewBasicGroupChat
+   parseCreateNewBasicGroupChat = A.withObject "CreateNewBasicGroupChat" $ \o -> do
+    title <- o A..: "title"
+    user_ids <- o A..: "user_ids"
+    return $ CreateNewBasicGroupChat { title = title, user_ids = user_ids }

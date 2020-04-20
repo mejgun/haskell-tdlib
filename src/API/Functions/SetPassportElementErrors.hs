@@ -16,3 +16,16 @@ instance T.ToJSON SetPassportElementErrors where
   A.object [ "@type" A..= T.String "setPassportElementErrors", "errors" A..= errors, "user_id" A..= user_id ]
 -- setPassportElementErrors SetPassportElementErrors  { errors :: [InputPassportElementError.InputPassportElementError], user_id :: Int } 
 
+
+
+instance T.FromJSON SetPassportElementErrors where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setPassportElementErrors" -> parseSetPassportElementErrors v
+  where
+   parseSetPassportElementErrors :: A.Value -> T.Parser SetPassportElementErrors
+   parseSetPassportElementErrors = A.withObject "SetPassportElementErrors" $ \o -> do
+    errors <- o A..: "errors"
+    user_id <- o A..: "user_id"
+    return $ SetPassportElementErrors { errors = errors, user_id = user_id }

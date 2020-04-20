@@ -8,3 +8,7 @@ data GetBackgroundUrl
 
 instance ToJSON GetBackgroundUrl
 
+
+
+instance FromJSON GetBackgroundUrl
+

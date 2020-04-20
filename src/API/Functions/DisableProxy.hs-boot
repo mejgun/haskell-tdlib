@@ -8,3 +8,7 @@ data DisableProxy
 
 instance ToJSON DisableProxy
 
+
+
+instance FromJSON DisableProxy
+

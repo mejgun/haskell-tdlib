@@ -8,3 +8,7 @@ data SetLogTagVerbosityLevel
 
 instance ToJSON SetLogTagVerbosityLevel
 
+
+
+instance FromJSON SetLogTagVerbosityLevel
+

@@ -33,3 +33,29 @@ instance T.ToJSON NotificationGroupType where
 
 -- notificationGroupTypeCalls NotificationGroupType 
 
+
+
+instance T.FromJSON NotificationGroupType where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "notificationGroupTypeMessages" -> parseNotificationGroupTypeMessages v
+   "notificationGroupTypeMentions" -> parseNotificationGroupTypeMentions v
+   "notificationGroupTypeSecretChat" -> parseNotificationGroupTypeSecretChat v
+   "notificationGroupTypeCalls" -> parseNotificationGroupTypeCalls v
+  where
+   parseNotificationGroupTypeMessages :: A.Value -> T.Parser NotificationGroupType
+   parseNotificationGroupTypeMessages = A.withObject "NotificationGroupTypeMessages" $ \o -> do
+    return $ NotificationGroupTypeMessages {  }
+
+   parseNotificationGroupTypeMentions :: A.Value -> T.Parser NotificationGroupType
+   parseNotificationGroupTypeMentions = A.withObject "NotificationGroupTypeMentions" $ \o -> do
+    return $ NotificationGroupTypeMentions {  }
+
+   parseNotificationGroupTypeSecretChat :: A.Value -> T.Parser NotificationGroupType
+   parseNotificationGroupTypeSecretChat = A.withObject "NotificationGroupTypeSecretChat" $ \o -> do
+    return $ NotificationGroupTypeSecretChat {  }
+
+   parseNotificationGroupTypeCalls :: A.Value -> T.Parser NotificationGroupType
+   parseNotificationGroupTypeCalls = A.withObject "NotificationGroupTypeCalls" $ \o -> do
+    return $ NotificationGroupTypeCalls {  }

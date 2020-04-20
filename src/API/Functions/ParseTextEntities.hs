@@ -16,3 +16,16 @@ instance T.ToJSON ParseTextEntities where
   A.object [ "@type" A..= T.String "parseTextEntities", "parse_mode" A..= parse_mode, "text" A..= text ]
 -- parseTextEntities ParseTextEntities  { parse_mode :: TextParseMode.TextParseMode, text :: String } 
 
+
+
+instance T.FromJSON ParseTextEntities where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "parseTextEntities" -> parseParseTextEntities v
+  where
+   parseParseTextEntities :: A.Value -> T.Parser ParseTextEntities
+   parseParseTextEntities = A.withObject "ParseTextEntities" $ \o -> do
+    parse_mode <- o A..: "parse_mode"
+    text <- o A..: "text"
+    return $ ParseTextEntities { parse_mode = parse_mode, text = text }

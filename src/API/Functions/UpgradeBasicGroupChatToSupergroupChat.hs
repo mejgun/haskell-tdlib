@@ -15,3 +15,15 @@ instance T.ToJSON UpgradeBasicGroupChatToSupergroupChat where
   A.object [ "@type" A..= T.String "upgradeBasicGroupChatToSupergroupChat", "chat_id" A..= chat_id ]
 -- upgradeBasicGroupChatToSupergroupChat UpgradeBasicGroupChatToSupergroupChat  { chat_id :: Int } 
 
+
+
+instance T.FromJSON UpgradeBasicGroupChatToSupergroupChat where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "upgradeBasicGroupChatToSupergroupChat" -> parseUpgradeBasicGroupChatToSupergroupChat v
+  where
+   parseUpgradeBasicGroupChatToSupergroupChat :: A.Value -> T.Parser UpgradeBasicGroupChatToSupergroupChat
+   parseUpgradeBasicGroupChatToSupergroupChat = A.withObject "UpgradeBasicGroupChatToSupergroupChat" $ \o -> do
+    chat_id <- o A..: "chat_id"
+    return $ UpgradeBasicGroupChatToSupergroupChat { chat_id = chat_id }

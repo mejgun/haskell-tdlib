@@ -8,3 +8,7 @@ data GetActiveLiveLocationMessages
 
 instance ToJSON GetActiveLiveLocationMessages
 
+
+
+instance FromJSON GetActiveLiveLocationMessages
+

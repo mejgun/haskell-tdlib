@@ -15,3 +15,15 @@ instance T.ToJSON GetBasicGroupFullInfo where
   A.object [ "@type" A..= T.String "getBasicGroupFullInfo", "basic_group_id" A..= basic_group_id ]
 -- getBasicGroupFullInfo GetBasicGroupFullInfo  { basic_group_id :: Int } 
 
+
+
+instance T.FromJSON GetBasicGroupFullInfo where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getBasicGroupFullInfo" -> parseGetBasicGroupFullInfo v
+  where
+   parseGetBasicGroupFullInfo :: A.Value -> T.Parser GetBasicGroupFullInfo
+   parseGetBasicGroupFullInfo = A.withObject "GetBasicGroupFullInfo" $ \o -> do
+    basic_group_id <- o A..: "basic_group_id"
+    return $ GetBasicGroupFullInfo { basic_group_id = basic_group_id }

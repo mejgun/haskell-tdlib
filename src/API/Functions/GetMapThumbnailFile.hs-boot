@@ -8,3 +8,7 @@ data GetMapThumbnailFile
 
 instance ToJSON GetMapThumbnailFile
 
+
+
+instance FromJSON GetMapThumbnailFile
+

@@ -8,3 +8,7 @@ data TestCallVectorStringObject
 
 instance ToJSON TestCallVectorStringObject
 
+
+
+instance FromJSON TestCallVectorStringObject
+

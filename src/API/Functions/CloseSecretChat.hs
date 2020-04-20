@@ -15,3 +15,15 @@ instance T.ToJSON CloseSecretChat where
   A.object [ "@type" A..= T.String "closeSecretChat", "secret_chat_id" A..= secret_chat_id ]
 -- closeSecretChat CloseSecretChat  { secret_chat_id :: Int } 
 
+
+
+instance T.FromJSON CloseSecretChat where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "closeSecretChat" -> parseCloseSecretChat v
+  where
+   parseCloseSecretChat :: A.Value -> T.Parser CloseSecretChat
+   parseCloseSecretChat = A.withObject "CloseSecretChat" $ \o -> do
+    secret_chat_id <- o A..: "secret_chat_id"
+    return $ CloseSecretChat { secret_chat_id = secret_chat_id }

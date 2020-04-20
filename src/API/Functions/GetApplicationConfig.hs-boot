@@ -8,3 +8,7 @@ data GetApplicationConfig
 
 instance ToJSON GetApplicationConfig
 
+
+
+instance FromJSON GetApplicationConfig
+

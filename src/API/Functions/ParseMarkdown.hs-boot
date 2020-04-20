@@ -8,3 +8,7 @@ data ParseMarkdown
 
 instance ToJSON ParseMarkdown
 
+
+
+instance FromJSON ParseMarkdown
+

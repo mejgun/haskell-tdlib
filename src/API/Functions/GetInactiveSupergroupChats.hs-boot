@@ -8,3 +8,7 @@ data GetInactiveSupergroupChats
 
 instance ToJSON GetInactiveSupergroupChats
 
+
+
+instance FromJSON GetInactiveSupergroupChats
+

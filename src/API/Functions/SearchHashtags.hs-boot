@@ -8,3 +8,7 @@ data SearchHashtags
 
 instance ToJSON SearchHashtags
 
+
+
+instance FromJSON SearchHashtags
+

@@ -17,3 +17,17 @@ instance T.ToJSON InputPassportElementError where
   A.object [ "@type" A..= T.String "inputPassportElementError", "source" A..= source, "message" A..= message, "type" A..= _type ]
 -- inputPassportElementError InputPassportElementError  { source :: InputPassportElementErrorSource.InputPassportElementErrorSource, message :: String, _type :: PassportElementType.PassportElementType } 
 
+
+
+instance T.FromJSON InputPassportElementError where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "inputPassportElementError" -> parseInputPassportElementError v
+  where
+   parseInputPassportElementError :: A.Value -> T.Parser InputPassportElementError
+   parseInputPassportElementError = A.withObject "InputPassportElementError" $ \o -> do
+    source <- o A..: "source"
+    message <- o A..: "message"
+    _type <- o A..: "type"
+    return $ InputPassportElementError { source = source, message = message, _type = _type }

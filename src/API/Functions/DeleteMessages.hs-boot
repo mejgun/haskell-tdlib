@@ -8,3 +8,7 @@ data DeleteMessages
 
 instance ToJSON DeleteMessages
 
+
+
+instance FromJSON DeleteMessages
+

@@ -8,3 +8,7 @@ data DiscardCall
 
 instance ToJSON DiscardCall
 
+
+
+instance FromJSON DiscardCall
+

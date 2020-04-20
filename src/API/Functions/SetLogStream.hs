@@ -16,3 +16,15 @@ instance T.ToJSON SetLogStream where
   A.object [ "@type" A..= T.String "setLogStream", "log_stream" A..= log_stream ]
 -- setLogStream SetLogStream  { log_stream :: LogStream.LogStream } 
 
+
+
+instance T.FromJSON SetLogStream where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setLogStream" -> parseSetLogStream v
+  where
+   parseSetLogStream :: A.Value -> T.Parser SetLogStream
+   parseSetLogStream = A.withObject "SetLogStream" $ \o -> do
+    log_stream <- o A..: "log_stream"
+    return $ SetLogStream { log_stream = log_stream }

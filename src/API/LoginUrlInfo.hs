@@ -21,3 +21,25 @@ instance T.ToJSON LoginUrlInfo where
 
 -- loginUrlInfoRequestConfirmation LoginUrlInfo  { request_write_access :: Bool, bot_user_id :: Int, domain :: String, url :: String } 
 
+
+
+instance T.FromJSON LoginUrlInfo where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "loginUrlInfoOpen" -> parseLoginUrlInfoOpen v
+   "loginUrlInfoRequestConfirmation" -> parseLoginUrlInfoRequestConfirmation v
+  where
+   parseLoginUrlInfoOpen :: A.Value -> T.Parser LoginUrlInfo
+   parseLoginUrlInfoOpen = A.withObject "LoginUrlInfoOpen" $ \o -> do
+    skip_confirm <- o A..: "skip_confirm"
+    url <- o A..: "url"
+    return $ LoginUrlInfoOpen { skip_confirm = skip_confirm, url = url }
+
+   parseLoginUrlInfoRequestConfirmation :: A.Value -> T.Parser LoginUrlInfo
+   parseLoginUrlInfoRequestConfirmation = A.withObject "LoginUrlInfoRequestConfirmation" $ \o -> do
+    request_write_access <- o A..: "request_write_access"
+    bot_user_id <- o A..: "bot_user_id"
+    domain <- o A..: "domain"
+    url <- o A..: "url"
+    return $ LoginUrlInfoRequestConfirmation { request_write_access = request_write_access, bot_user_id = bot_user_id, domain = domain, url = url }

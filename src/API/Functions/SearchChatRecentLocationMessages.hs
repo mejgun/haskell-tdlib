@@ -15,3 +15,16 @@ instance T.ToJSON SearchChatRecentLocationMessages where
   A.object [ "@type" A..= T.String "searchChatRecentLocationMessages", "limit" A..= limit, "chat_id" A..= chat_id ]
 -- searchChatRecentLocationMessages SearchChatRecentLocationMessages  { limit :: Int, chat_id :: Int } 
 
+
+
+instance T.FromJSON SearchChatRecentLocationMessages where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "searchChatRecentLocationMessages" -> parseSearchChatRecentLocationMessages v
+  where
+   parseSearchChatRecentLocationMessages :: A.Value -> T.Parser SearchChatRecentLocationMessages
+   parseSearchChatRecentLocationMessages = A.withObject "SearchChatRecentLocationMessages" $ \o -> do
+    limit <- o A..: "limit"
+    chat_id <- o A..: "chat_id"
+    return $ SearchChatRecentLocationMessages { limit = limit, chat_id = chat_id }

@@ -8,3 +8,7 @@ data TopChatCategory
 
 instance ToJSON TopChatCategory
 
+
+
+instance FromJSON TopChatCategory
+

@@ -15,3 +15,16 @@ instance T.ToJSON SearchStickers where
   A.object [ "@type" A..= T.String "searchStickers", "limit" A..= limit, "emoji" A..= emoji ]
 -- searchStickers SearchStickers  { limit :: Int, emoji :: String } 
 
+
+
+instance T.FromJSON SearchStickers where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "searchStickers" -> parseSearchStickers v
+  where
+   parseSearchStickers :: A.Value -> T.Parser SearchStickers
+   parseSearchStickers = A.withObject "SearchStickers" $ \o -> do
+    limit <- o A..: "limit"
+    emoji <- o A..: "emoji"
+    return $ SearchStickers { limit = limit, emoji = emoji }

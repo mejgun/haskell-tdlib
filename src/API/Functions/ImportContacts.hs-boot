@@ -8,3 +8,7 @@ data ImportContacts
 
 instance ToJSON ImportContacts
 
+
+
+instance FromJSON ImportContacts
+

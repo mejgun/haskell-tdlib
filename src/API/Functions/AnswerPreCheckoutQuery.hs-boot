@@ -8,3 +8,7 @@ data AnswerPreCheckoutQuery
 
 instance ToJSON AnswerPreCheckoutQuery
 
+
+
+instance FromJSON AnswerPreCheckoutQuery
+

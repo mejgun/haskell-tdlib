@@ -8,3 +8,7 @@ data ResendAuthenticationCode
 
 instance ToJSON ResendAuthenticationCode
 
+
+
+instance FromJSON ResendAuthenticationCode
+

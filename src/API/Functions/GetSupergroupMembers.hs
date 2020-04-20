@@ -16,3 +16,18 @@ instance T.ToJSON GetSupergroupMembers where
   A.object [ "@type" A..= T.String "getSupergroupMembers", "limit" A..= limit, "offset" A..= offset, "filter" A..= _filter, "supergroup_id" A..= supergroup_id ]
 -- getSupergroupMembers GetSupergroupMembers  { limit :: Int, offset :: Int, _filter :: SupergroupMembersFilter.SupergroupMembersFilter, supergroup_id :: Int } 
 
+
+
+instance T.FromJSON GetSupergroupMembers where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getSupergroupMembers" -> parseGetSupergroupMembers v
+  where
+   parseGetSupergroupMembers :: A.Value -> T.Parser GetSupergroupMembers
+   parseGetSupergroupMembers = A.withObject "GetSupergroupMembers" $ \o -> do
+    limit <- o A..: "limit"
+    offset <- o A..: "offset"
+    _filter <- o A..: "filter"
+    supergroup_id <- o A..: "supergroup_id"
+    return $ GetSupergroupMembers { limit = limit, offset = offset, _filter = _filter, supergroup_id = supergroup_id }

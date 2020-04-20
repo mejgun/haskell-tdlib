@@ -16,3 +16,16 @@ instance T.ToJSON SetOption where
   A.object [ "@type" A..= T.String "setOption", "value" A..= value, "name" A..= name ]
 -- setOption SetOption  { value :: OptionValue.OptionValue, name :: String } 
 
+
+
+instance T.FromJSON SetOption where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setOption" -> parseSetOption v
+  where
+   parseSetOption :: A.Value -> T.Parser SetOption
+   parseSetOption = A.withObject "SetOption" $ \o -> do
+    value <- o A..: "value"
+    name <- o A..: "name"
+    return $ SetOption { value = value, name = name }

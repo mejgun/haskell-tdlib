@@ -8,3 +8,7 @@ data SearchSecretMessages
 
 instance ToJSON SearchSecretMessages
 
+
+
+instance FromJSON SearchSecretMessages
+

@@ -15,3 +15,16 @@ instance T.ToJSON AnswerCustomQuery where
   A.object [ "@type" A..= T.String "answerCustomQuery", "data" A..= _data, "custom_query_id" A..= custom_query_id ]
 -- answerCustomQuery AnswerCustomQuery  { _data :: String, custom_query_id :: Int } 
 
+
+
+instance T.FromJSON AnswerCustomQuery where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "answerCustomQuery" -> parseAnswerCustomQuery v
+  where
+   parseAnswerCustomQuery :: A.Value -> T.Parser AnswerCustomQuery
+   parseAnswerCustomQuery = A.withObject "AnswerCustomQuery" $ \o -> do
+    _data <- o A..: "data"
+    custom_query_id <- o A..: "custom_query_id"
+    return $ AnswerCustomQuery { _data = _data, custom_query_id = custom_query_id }

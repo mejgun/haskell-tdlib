@@ -45,3 +45,41 @@ instance T.ToJSON UserStatus where
 
 -- userStatusLastMonth UserStatus 
 
+
+
+instance T.FromJSON UserStatus where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "userStatusEmpty" -> parseUserStatusEmpty v
+   "userStatusOnline" -> parseUserStatusOnline v
+   "userStatusOffline" -> parseUserStatusOffline v
+   "userStatusRecently" -> parseUserStatusRecently v
+   "userStatusLastWeek" -> parseUserStatusLastWeek v
+   "userStatusLastMonth" -> parseUserStatusLastMonth v
+  where
+   parseUserStatusEmpty :: A.Value -> T.Parser UserStatus
+   parseUserStatusEmpty = A.withObject "UserStatusEmpty" $ \o -> do
+    return $ UserStatusEmpty {  }
+
+   parseUserStatusOnline :: A.Value -> T.Parser UserStatus
+   parseUserStatusOnline = A.withObject "UserStatusOnline" $ \o -> do
+    expires <- o A..: "expires"
+    return $ UserStatusOnline { expires = expires }
+
+   parseUserStatusOffline :: A.Value -> T.Parser UserStatus
+   parseUserStatusOffline = A.withObject "UserStatusOffline" $ \o -> do
+    was_online <- o A..: "was_online"
+    return $ UserStatusOffline { was_online = was_online }
+
+   parseUserStatusRecently :: A.Value -> T.Parser UserStatus
+   parseUserStatusRecently = A.withObject "UserStatusRecently" $ \o -> do
+    return $ UserStatusRecently {  }
+
+   parseUserStatusLastWeek :: A.Value -> T.Parser UserStatus
+   parseUserStatusLastWeek = A.withObject "UserStatusLastWeek" $ \o -> do
+    return $ UserStatusLastWeek {  }
+
+   parseUserStatusLastMonth :: A.Value -> T.Parser UserStatus
+   parseUserStatusLastMonth = A.withObject "UserStatusLastMonth" $ \o -> do
+    return $ UserStatusLastMonth {  }

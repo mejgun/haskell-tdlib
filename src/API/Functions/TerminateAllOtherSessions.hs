@@ -15,3 +15,14 @@ instance T.ToJSON TerminateAllOtherSessions where
   A.object [ "@type" A..= T.String "terminateAllOtherSessions" ]
 -- terminateAllOtherSessions TerminateAllOtherSessions 
 
+
+
+instance T.FromJSON TerminateAllOtherSessions where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "terminateAllOtherSessions" -> parseTerminateAllOtherSessions v
+  where
+   parseTerminateAllOtherSessions :: A.Value -> T.Parser TerminateAllOtherSessions
+   parseTerminateAllOtherSessions = A.withObject "TerminateAllOtherSessions" $ \o -> do
+    return $ TerminateAllOtherSessions {  }

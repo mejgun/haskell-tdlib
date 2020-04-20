@@ -18,3 +18,19 @@ instance T.ToJSON Document where
   A.object [ "@type" A..= T.String "document", "document" A..= document, "thumbnail" A..= thumbnail, "minithumbnail" A..= minithumbnail, "mime_type" A..= mime_type, "file_name" A..= file_name ]
 -- document Document  { document :: File.File, thumbnail :: PhotoSize.PhotoSize, minithumbnail :: Minithumbnail.Minithumbnail, mime_type :: String, file_name :: String } 
 
+
+
+instance T.FromJSON Document where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "document" -> parseDocument v
+  where
+   parseDocument :: A.Value -> T.Parser Document
+   parseDocument = A.withObject "Document" $ \o -> do
+    document <- o A..: "document"
+    thumbnail <- o A..: "thumbnail"
+    minithumbnail <- o A..: "minithumbnail"
+    mime_type <- o A..: "mime_type"
+    file_name <- o A..: "file_name"
+    return $ Document { document = document, thumbnail = thumbnail, minithumbnail = minithumbnail, mime_type = mime_type, file_name = file_name }

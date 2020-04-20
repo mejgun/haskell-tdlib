@@ -8,3 +8,7 @@ data JsonObjectMember
 
 instance ToJSON JsonObjectMember
 
+
+
+instance FromJSON JsonObjectMember
+

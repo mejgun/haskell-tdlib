@@ -15,3 +15,14 @@ instance T.ToJSON GetActiveLiveLocationMessages where
   A.object [ "@type" A..= T.String "getActiveLiveLocationMessages" ]
 -- getActiveLiveLocationMessages GetActiveLiveLocationMessages 
 
+
+
+instance T.FromJSON GetActiveLiveLocationMessages where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getActiveLiveLocationMessages" -> parseGetActiveLiveLocationMessages v
+  where
+   parseGetActiveLiveLocationMessages :: A.Value -> T.Parser GetActiveLiveLocationMessages
+   parseGetActiveLiveLocationMessages = A.withObject "GetActiveLiveLocationMessages" $ \o -> do
+    return $ GetActiveLiveLocationMessages {  }

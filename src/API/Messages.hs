@@ -16,3 +16,16 @@ instance T.ToJSON Messages where
   A.object [ "@type" A..= T.String "messages", "messages" A..= messages, "total_count" A..= total_count ]
 -- messages Messages  { messages :: [Message.Message], total_count :: Int } 
 
+
+
+instance T.FromJSON Messages where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "messages" -> parseMessages v
+  where
+   parseMessages :: A.Value -> T.Parser Messages
+   parseMessages = A.withObject "Messages" $ \o -> do
+    messages <- o A..: "messages"
+    total_count <- o A..: "total_count"
+    return $ Messages { messages = messages, total_count = total_count }

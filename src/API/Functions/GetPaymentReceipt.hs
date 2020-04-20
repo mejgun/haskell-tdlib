@@ -15,3 +15,16 @@ instance T.ToJSON GetPaymentReceipt where
   A.object [ "@type" A..= T.String "getPaymentReceipt", "message_id" A..= message_id, "chat_id" A..= chat_id ]
 -- getPaymentReceipt GetPaymentReceipt  { message_id :: Int, chat_id :: Int } 
 
+
+
+instance T.FromJSON GetPaymentReceipt where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getPaymentReceipt" -> parseGetPaymentReceipt v
+  where
+   parseGetPaymentReceipt :: A.Value -> T.Parser GetPaymentReceipt
+   parseGetPaymentReceipt = A.withObject "GetPaymentReceipt" $ \o -> do
+    message_id <- o A..: "message_id"
+    chat_id <- o A..: "chat_id"
+    return $ GetPaymentReceipt { message_id = message_id, chat_id = chat_id }

@@ -8,3 +8,7 @@ data GetPassportAuthorizationForm
 
 instance ToJSON GetPassportAuthorizationForm
 
+
+
+instance FromJSON GetPassportAuthorizationForm
+

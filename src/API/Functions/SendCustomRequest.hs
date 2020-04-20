@@ -15,3 +15,16 @@ instance T.ToJSON SendCustomRequest where
   A.object [ "@type" A..= T.String "sendCustomRequest", "parameters" A..= parameters, "method" A..= method ]
 -- sendCustomRequest SendCustomRequest  { parameters :: String, method :: String } 
 
+
+
+instance T.FromJSON SendCustomRequest where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "sendCustomRequest" -> parseSendCustomRequest v
+  where
+   parseSendCustomRequest :: A.Value -> T.Parser SendCustomRequest
+   parseSendCustomRequest = A.withObject "SendCustomRequest" $ \o -> do
+    parameters <- o A..: "parameters"
+    method <- o A..: "method"
+    return $ SendCustomRequest { parameters = parameters, method = method }

@@ -8,3 +8,7 @@ data ChatsNearby
 
 instance ToJSON ChatsNearby
 
+
+
+instance FromJSON ChatsNearby
+

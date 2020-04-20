@@ -15,3 +15,14 @@ instance T.ToJSON ResetBackgrounds where
   A.object [ "@type" A..= T.String "resetBackgrounds" ]
 -- resetBackgrounds ResetBackgrounds 
 
+
+
+instance T.FromJSON ResetBackgrounds where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "resetBackgrounds" -> parseResetBackgrounds v
+  where
+   parseResetBackgrounds :: A.Value -> T.Parser ResetBackgrounds
+   parseResetBackgrounds = A.withObject "ResetBackgrounds" $ \o -> do
+    return $ ResetBackgrounds {  }

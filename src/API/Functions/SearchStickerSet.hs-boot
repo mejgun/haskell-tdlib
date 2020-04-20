@@ -8,3 +8,7 @@ data SearchStickerSet
 
 instance ToJSON SearchStickerSet
 
+
+
+instance FromJSON SearchStickerSet
+

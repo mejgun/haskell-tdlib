@@ -15,3 +15,17 @@ instance T.ToJSON Minithumbnail where
   A.object [ "@type" A..= T.String "minithumbnail", "data" A..= _data, "height" A..= height, "width" A..= width ]
 -- minithumbnail Minithumbnail  { _data :: String, height :: Int, width :: Int } 
 
+
+
+instance T.FromJSON Minithumbnail where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "minithumbnail" -> parseMinithumbnail v
+  where
+   parseMinithumbnail :: A.Value -> T.Parser Minithumbnail
+   parseMinithumbnail = A.withObject "Minithumbnail" $ \o -> do
+    _data <- o A..: "data"
+    height <- o A..: "height"
+    width <- o A..: "width"
+    return $ Minithumbnail { _data = _data, height = height, width = width }

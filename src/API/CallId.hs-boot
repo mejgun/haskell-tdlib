@@ -8,3 +8,7 @@ data CallId
 
 instance ToJSON CallId
 
+
+
+instance FromJSON CallId
+

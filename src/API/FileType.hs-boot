@@ -8,3 +8,7 @@ data FileType
 
 instance ToJSON FileType
 
+
+
+instance FromJSON FileType
+

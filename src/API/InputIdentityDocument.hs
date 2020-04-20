@@ -17,3 +17,20 @@ instance T.ToJSON InputIdentityDocument where
   A.object [ "@type" A..= T.String "inputIdentityDocument", "translation" A..= translation, "selfie" A..= selfie, "reverse_side" A..= reverse_side, "front_side" A..= front_side, "expiry_date" A..= expiry_date, "number" A..= number ]
 -- inputIdentityDocument InputIdentityDocument  { translation :: [InputFile.InputFile], selfie :: InputFile.InputFile, reverse_side :: InputFile.InputFile, front_side :: InputFile.InputFile, expiry_date :: Date.Date, number :: String } 
 
+
+
+instance T.FromJSON InputIdentityDocument where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "inputIdentityDocument" -> parseInputIdentityDocument v
+  where
+   parseInputIdentityDocument :: A.Value -> T.Parser InputIdentityDocument
+   parseInputIdentityDocument = A.withObject "InputIdentityDocument" $ \o -> do
+    translation <- o A..: "translation"
+    selfie <- o A..: "selfie"
+    reverse_side <- o A..: "reverse_side"
+    front_side <- o A..: "front_side"
+    expiry_date <- o A..: "expiry_date"
+    number <- o A..: "number"
+    return $ InputIdentityDocument { translation = translation, selfie = selfie, reverse_side = reverse_side, front_side = front_side, expiry_date = expiry_date, number = number }

@@ -77,3 +77,71 @@ instance T.ToJSON AuthorizationState where
 
 -- authorizationStateClosed AuthorizationState 
 
+
+
+instance T.FromJSON AuthorizationState where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "authorizationStateWaitTdlibParameters" -> parseAuthorizationStateWaitTdlibParameters v
+   "authorizationStateWaitEncryptionKey" -> parseAuthorizationStateWaitEncryptionKey v
+   "authorizationStateWaitPhoneNumber" -> parseAuthorizationStateWaitPhoneNumber v
+   "authorizationStateWaitCode" -> parseAuthorizationStateWaitCode v
+   "authorizationStateWaitOtherDeviceConfirmation" -> parseAuthorizationStateWaitOtherDeviceConfirmation v
+   "authorizationStateWaitRegistration" -> parseAuthorizationStateWaitRegistration v
+   "authorizationStateWaitPassword" -> parseAuthorizationStateWaitPassword v
+   "authorizationStateReady" -> parseAuthorizationStateReady v
+   "authorizationStateLoggingOut" -> parseAuthorizationStateLoggingOut v
+   "authorizationStateClosing" -> parseAuthorizationStateClosing v
+   "authorizationStateClosed" -> parseAuthorizationStateClosed v
+  where
+   parseAuthorizationStateWaitTdlibParameters :: A.Value -> T.Parser AuthorizationState
+   parseAuthorizationStateWaitTdlibParameters = A.withObject "AuthorizationStateWaitTdlibParameters" $ \o -> do
+    return $ AuthorizationStateWaitTdlibParameters {  }
+
+   parseAuthorizationStateWaitEncryptionKey :: A.Value -> T.Parser AuthorizationState
+   parseAuthorizationStateWaitEncryptionKey = A.withObject "AuthorizationStateWaitEncryptionKey" $ \o -> do
+    is_encrypted <- o A..: "is_encrypted"
+    return $ AuthorizationStateWaitEncryptionKey { is_encrypted = is_encrypted }
+
+   parseAuthorizationStateWaitPhoneNumber :: A.Value -> T.Parser AuthorizationState
+   parseAuthorizationStateWaitPhoneNumber = A.withObject "AuthorizationStateWaitPhoneNumber" $ \o -> do
+    return $ AuthorizationStateWaitPhoneNumber {  }
+
+   parseAuthorizationStateWaitCode :: A.Value -> T.Parser AuthorizationState
+   parseAuthorizationStateWaitCode = A.withObject "AuthorizationStateWaitCode" $ \o -> do
+    code_info <- o A..: "code_info"
+    return $ AuthorizationStateWaitCode { code_info = code_info }
+
+   parseAuthorizationStateWaitOtherDeviceConfirmation :: A.Value -> T.Parser AuthorizationState
+   parseAuthorizationStateWaitOtherDeviceConfirmation = A.withObject "AuthorizationStateWaitOtherDeviceConfirmation" $ \o -> do
+    link <- o A..: "link"
+    return $ AuthorizationStateWaitOtherDeviceConfirmation { link = link }
+
+   parseAuthorizationStateWaitRegistration :: A.Value -> T.Parser AuthorizationState
+   parseAuthorizationStateWaitRegistration = A.withObject "AuthorizationStateWaitRegistration" $ \o -> do
+    terms_of_service <- o A..: "terms_of_service"
+    return $ AuthorizationStateWaitRegistration { terms_of_service = terms_of_service }
+
+   parseAuthorizationStateWaitPassword :: A.Value -> T.Parser AuthorizationState
+   parseAuthorizationStateWaitPassword = A.withObject "AuthorizationStateWaitPassword" $ \o -> do
+    recovery_email_address_pattern <- o A..: "recovery_email_address_pattern"
+    has_recovery_email_address <- o A..: "has_recovery_email_address"
+    password_hint <- o A..: "password_hint"
+    return $ AuthorizationStateWaitPassword { recovery_email_address_pattern = recovery_email_address_pattern, has_recovery_email_address = has_recovery_email_address, password_hint = password_hint }
+
+   parseAuthorizationStateReady :: A.Value -> T.Parser AuthorizationState
+   parseAuthorizationStateReady = A.withObject "AuthorizationStateReady" $ \o -> do
+    return $ AuthorizationStateReady {  }
+
+   parseAuthorizationStateLoggingOut :: A.Value -> T.Parser AuthorizationState
+   parseAuthorizationStateLoggingOut = A.withObject "AuthorizationStateLoggingOut" $ \o -> do
+    return $ AuthorizationStateLoggingOut {  }
+
+   parseAuthorizationStateClosing :: A.Value -> T.Parser AuthorizationState
+   parseAuthorizationStateClosing = A.withObject "AuthorizationStateClosing" $ \o -> do
+    return $ AuthorizationStateClosing {  }
+
+   parseAuthorizationStateClosed :: A.Value -> T.Parser AuthorizationState
+   parseAuthorizationStateClosed = A.withObject "AuthorizationStateClosed" $ \o -> do
+    return $ AuthorizationStateClosed {  }

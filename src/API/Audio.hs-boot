@@ -8,3 +8,7 @@ data Audio
 
 instance ToJSON Audio
 
+
+
+instance FromJSON Audio
+

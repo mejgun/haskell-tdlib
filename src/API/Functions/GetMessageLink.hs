@@ -15,3 +15,16 @@ instance T.ToJSON GetMessageLink where
   A.object [ "@type" A..= T.String "getMessageLink", "message_id" A..= message_id, "chat_id" A..= chat_id ]
 -- getMessageLink GetMessageLink  { message_id :: Int, chat_id :: Int } 
 
+
+
+instance T.FromJSON GetMessageLink where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getMessageLink" -> parseGetMessageLink v
+  where
+   parseGetMessageLink :: A.Value -> T.Parser GetMessageLink
+   parseGetMessageLink = A.withObject "GetMessageLink" $ \o -> do
+    message_id <- o A..: "message_id"
+    chat_id <- o A..: "chat_id"
+    return $ GetMessageLink { message_id = message_id, chat_id = chat_id }

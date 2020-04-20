@@ -15,3 +15,15 @@ instance T.ToJSON RequestQrCodeAuthentication where
   A.object [ "@type" A..= T.String "requestQrCodeAuthentication", "other_user_ids" A..= other_user_ids ]
 -- requestQrCodeAuthentication RequestQrCodeAuthentication  { other_user_ids :: [Int] } 
 
+
+
+instance T.FromJSON RequestQrCodeAuthentication where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "requestQrCodeAuthentication" -> parseRequestQrCodeAuthentication v
+  where
+   parseRequestQrCodeAuthentication :: A.Value -> T.Parser RequestQrCodeAuthentication
+   parseRequestQrCodeAuthentication = A.withObject "RequestQrCodeAuthentication" $ \o -> do
+    other_user_ids <- o A..: "other_user_ids"
+    return $ RequestQrCodeAuthentication { other_user_ids = other_user_ids }

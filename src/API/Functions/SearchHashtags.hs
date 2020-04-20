@@ -15,3 +15,16 @@ instance T.ToJSON SearchHashtags where
   A.object [ "@type" A..= T.String "searchHashtags", "limit" A..= limit, "prefix" A..= prefix ]
 -- searchHashtags SearchHashtags  { limit :: Int, prefix :: String } 
 
+
+
+instance T.FromJSON SearchHashtags where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "searchHashtags" -> parseSearchHashtags v
+  where
+   parseSearchHashtags :: A.Value -> T.Parser SearchHashtags
+   parseSearchHashtags = A.withObject "SearchHashtags" $ \o -> do
+    limit <- o A..: "limit"
+    prefix <- o A..: "prefix"
+    return $ SearchHashtags { limit = limit, prefix = prefix }

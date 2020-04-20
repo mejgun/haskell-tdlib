@@ -8,3 +8,7 @@ data ParseTextEntities
 
 instance ToJSON ParseTextEntities
 
+
+
+instance FromJSON ParseTextEntities
+

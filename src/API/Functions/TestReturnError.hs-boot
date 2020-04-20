@@ -8,3 +8,7 @@ data TestReturnError
 
 instance ToJSON TestReturnError
 
+
+
+instance FromJSON TestReturnError
+

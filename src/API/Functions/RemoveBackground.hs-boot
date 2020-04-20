@@ -8,3 +8,7 @@ data RemoveBackground
 
 instance ToJSON RemoveBackground
 
+
+
+instance FromJSON RemoveBackground
+

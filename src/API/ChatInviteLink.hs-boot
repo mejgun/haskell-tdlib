@@ -8,3 +8,7 @@ data ChatInviteLink
 
 instance ToJSON ChatInviteLink
 
+
+
+instance FromJSON ChatInviteLink
+

@@ -15,3 +15,15 @@ instance T.ToJSON CheckEmailAddressVerificationCode where
   A.object [ "@type" A..= T.String "checkEmailAddressVerificationCode", "code" A..= code ]
 -- checkEmailAddressVerificationCode CheckEmailAddressVerificationCode  { code :: String } 
 
+
+
+instance T.FromJSON CheckEmailAddressVerificationCode where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "checkEmailAddressVerificationCode" -> parseCheckEmailAddressVerificationCode v
+  where
+   parseCheckEmailAddressVerificationCode :: A.Value -> T.Parser CheckEmailAddressVerificationCode
+   parseCheckEmailAddressVerificationCode = A.withObject "CheckEmailAddressVerificationCode" $ \o -> do
+    code <- o A..: "code"
+    return $ CheckEmailAddressVerificationCode { code = code }

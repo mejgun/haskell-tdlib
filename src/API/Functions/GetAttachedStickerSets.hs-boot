@@ -8,3 +8,7 @@ data GetAttachedStickerSets
 
 instance ToJSON GetAttachedStickerSets
 
+
+
+instance FromJSON GetAttachedStickerSets
+

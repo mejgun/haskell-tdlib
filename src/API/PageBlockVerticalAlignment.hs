@@ -27,3 +27,24 @@ instance T.ToJSON PageBlockVerticalAlignment where
 
 -- pageBlockVerticalAlignmentBottom PageBlockVerticalAlignment 
 
+
+
+instance T.FromJSON PageBlockVerticalAlignment where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "pageBlockVerticalAlignmentTop" -> parsePageBlockVerticalAlignmentTop v
+   "pageBlockVerticalAlignmentMiddle" -> parsePageBlockVerticalAlignmentMiddle v
+   "pageBlockVerticalAlignmentBottom" -> parsePageBlockVerticalAlignmentBottom v
+  where
+   parsePageBlockVerticalAlignmentTop :: A.Value -> T.Parser PageBlockVerticalAlignment
+   parsePageBlockVerticalAlignmentTop = A.withObject "PageBlockVerticalAlignmentTop" $ \o -> do
+    return $ PageBlockVerticalAlignmentTop {  }
+
+   parsePageBlockVerticalAlignmentMiddle :: A.Value -> T.Parser PageBlockVerticalAlignment
+   parsePageBlockVerticalAlignmentMiddle = A.withObject "PageBlockVerticalAlignmentMiddle" $ \o -> do
+    return $ PageBlockVerticalAlignmentMiddle {  }
+
+   parsePageBlockVerticalAlignmentBottom :: A.Value -> T.Parser PageBlockVerticalAlignment
+   parsePageBlockVerticalAlignmentBottom = A.withObject "PageBlockVerticalAlignmentBottom" $ \o -> do
+    return $ PageBlockVerticalAlignmentBottom {  }

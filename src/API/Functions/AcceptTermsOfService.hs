@@ -15,3 +15,15 @@ instance T.ToJSON AcceptTermsOfService where
   A.object [ "@type" A..= T.String "acceptTermsOfService", "terms_of_service_id" A..= terms_of_service_id ]
 -- acceptTermsOfService AcceptTermsOfService  { terms_of_service_id :: String } 
 
+
+
+instance T.FromJSON AcceptTermsOfService where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "acceptTermsOfService" -> parseAcceptTermsOfService v
+  where
+   parseAcceptTermsOfService :: A.Value -> T.Parser AcceptTermsOfService
+   parseAcceptTermsOfService = A.withObject "AcceptTermsOfService" $ \o -> do
+    terms_of_service_id <- o A..: "terms_of_service_id"
+    return $ AcceptTermsOfService { terms_of_service_id = terms_of_service_id }

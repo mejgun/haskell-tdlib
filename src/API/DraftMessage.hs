@@ -16,3 +16,17 @@ instance T.ToJSON DraftMessage where
   A.object [ "@type" A..= T.String "draftMessage", "input_message_text" A..= input_message_text, "date" A..= date, "reply_to_message_id" A..= reply_to_message_id ]
 -- draftMessage DraftMessage  { input_message_text :: InputMessageContent.InputMessageContent, date :: Int, reply_to_message_id :: Int } 
 
+
+
+instance T.FromJSON DraftMessage where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "draftMessage" -> parseDraftMessage v
+  where
+   parseDraftMessage :: A.Value -> T.Parser DraftMessage
+   parseDraftMessage = A.withObject "DraftMessage" $ \o -> do
+    input_message_text <- o A..: "input_message_text"
+    date <- o A..: "date"
+    reply_to_message_id <- o A..: "reply_to_message_id"
+    return $ DraftMessage { input_message_text = input_message_text, date = date, reply_to_message_id = reply_to_message_id }

@@ -16,3 +16,17 @@ instance T.ToJSON StorageStatisticsByFileType where
   A.object [ "@type" A..= T.String "storageStatisticsByFileType", "count" A..= count, "size" A..= size, "file_type" A..= file_type ]
 -- storageStatisticsByFileType StorageStatisticsByFileType  { count :: Int, size :: Int, file_type :: FileType.FileType } 
 
+
+
+instance T.FromJSON StorageStatisticsByFileType where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "storageStatisticsByFileType" -> parseStorageStatisticsByFileType v
+  where
+   parseStorageStatisticsByFileType :: A.Value -> T.Parser StorageStatisticsByFileType
+   parseStorageStatisticsByFileType = A.withObject "StorageStatisticsByFileType" $ \o -> do
+    count <- o A..: "count"
+    size <- o A..: "size"
+    file_type <- o A..: "file_type"
+    return $ StorageStatisticsByFileType { count = count, size = size, file_type = file_type }

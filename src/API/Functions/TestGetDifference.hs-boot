@@ -8,3 +8,7 @@ data TestGetDifference
 
 instance ToJSON TestGetDifference
 
+
+
+instance FromJSON TestGetDifference
+

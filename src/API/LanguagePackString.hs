@@ -16,3 +16,16 @@ instance T.ToJSON LanguagePackString where
   A.object [ "@type" A..= T.String "languagePackString", "value" A..= value, "key" A..= key ]
 -- languagePackString LanguagePackString  { value :: LanguagePackStringValue.LanguagePackStringValue, key :: String } 
 
+
+
+instance T.FromJSON LanguagePackString where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "languagePackString" -> parseLanguagePackString v
+  where
+   parseLanguagePackString :: A.Value -> T.Parser LanguagePackString
+   parseLanguagePackString = A.withObject "LanguagePackString" $ \o -> do
+    value <- o A..: "value"
+    key <- o A..: "key"
+    return $ LanguagePackString { value = value, key = key }

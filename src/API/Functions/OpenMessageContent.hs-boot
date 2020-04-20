@@ -8,3 +8,7 @@ data OpenMessageContent
 
 instance ToJSON OpenMessageContent
 
+
+
+instance FromJSON OpenMessageContent
+

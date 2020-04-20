@@ -8,3 +8,7 @@ data GetLocalizationTargetInfo
 
 instance ToJSON GetLocalizationTargetInfo
 
+
+
+instance FromJSON GetLocalizationTargetInfo
+

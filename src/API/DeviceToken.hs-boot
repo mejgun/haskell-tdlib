@@ -8,3 +8,7 @@ data DeviceToken
 
 instance ToJSON DeviceToken
 
+
+
+instance FromJSON DeviceToken
+

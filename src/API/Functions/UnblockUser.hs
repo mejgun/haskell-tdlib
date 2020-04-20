@@ -15,3 +15,15 @@ instance T.ToJSON UnblockUser where
   A.object [ "@type" A..= T.String "unblockUser", "user_id" A..= user_id ]
 -- unblockUser UnblockUser  { user_id :: Int } 
 
+
+
+instance T.FromJSON UnblockUser where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "unblockUser" -> parseUnblockUser v
+  where
+   parseUnblockUser :: A.Value -> T.Parser UnblockUser
+   parseUnblockUser = A.withObject "UnblockUser" $ \o -> do
+    user_id <- o A..: "user_id"
+    return $ UnblockUser { user_id = user_id }

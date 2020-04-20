@@ -15,3 +15,16 @@ instance T.ToJSON AddLogMessage where
   A.object [ "@type" A..= T.String "addLogMessage", "text" A..= text, "verbosity_level" A..= verbosity_level ]
 -- addLogMessage AddLogMessage  { text :: String, verbosity_level :: Int } 
 
+
+
+instance T.FromJSON AddLogMessage where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "addLogMessage" -> parseAddLogMessage v
+  where
+   parseAddLogMessage :: A.Value -> T.Parser AddLogMessage
+   parseAddLogMessage = A.withObject "AddLogMessage" $ \o -> do
+    text <- o A..: "text"
+    verbosity_level <- o A..: "verbosity_level"
+    return $ AddLogMessage { text = text, verbosity_level = verbosity_level }

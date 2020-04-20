@@ -15,3 +15,15 @@ instance T.ToJSON TestBytes where
   A.object [ "@type" A..= T.String "testBytes", "value" A..= value ]
 -- testBytes TestBytes  { value :: String } 
 
+
+
+instance T.FromJSON TestBytes where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "testBytes" -> parseTestBytes v
+  where
+   parseTestBytes :: A.Value -> T.Parser TestBytes
+   parseTestBytes = A.withObject "TestBytes" $ \o -> do
+    value <- o A..: "value"
+    return $ TestBytes { value = value }

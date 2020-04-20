@@ -15,3 +15,16 @@ instance T.ToJSON GetMessageLocally where
   A.object [ "@type" A..= T.String "getMessageLocally", "message_id" A..= message_id, "chat_id" A..= chat_id ]
 -- getMessageLocally GetMessageLocally  { message_id :: Int, chat_id :: Int } 
 
+
+
+instance T.FromJSON GetMessageLocally where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getMessageLocally" -> parseGetMessageLocally v
+  where
+   parseGetMessageLocally :: A.Value -> T.Parser GetMessageLocally
+   parseGetMessageLocally = A.withObject "GetMessageLocally" $ \o -> do
+    message_id <- o A..: "message_id"
+    chat_id <- o A..: "chat_id"
+    return $ GetMessageLocally { message_id = message_id, chat_id = chat_id }

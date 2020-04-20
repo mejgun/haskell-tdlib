@@ -8,3 +8,7 @@ data ResetNetworkStatistics
 
 instance ToJSON ResetNetworkStatistics
 
+
+
+instance FromJSON ResetNetworkStatistics
+

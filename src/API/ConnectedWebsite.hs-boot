@@ -8,3 +8,7 @@ data ConnectedWebsite
 
 instance ToJSON ConnectedWebsite
 
+
+
+instance FromJSON ConnectedWebsite
+

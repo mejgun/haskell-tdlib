@@ -112,3 +112,121 @@ instance T.ToJSON RichText where
 
 -- richTexts RichText  { texts :: [RichText] } 
 
+
+
+instance T.FromJSON RichText where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "richTextPlain" -> parseRichTextPlain v
+   "richTextBold" -> parseRichTextBold v
+   "richTextItalic" -> parseRichTextItalic v
+   "richTextUnderline" -> parseRichTextUnderline v
+   "richTextStrikethrough" -> parseRichTextStrikethrough v
+   "richTextFixed" -> parseRichTextFixed v
+   "richTextUrl" -> parseRichTextUrl v
+   "richTextEmailAddress" -> parseRichTextEmailAddress v
+   "richTextSubscript" -> parseRichTextSubscript v
+   "richTextSuperscript" -> parseRichTextSuperscript v
+   "richTextMarked" -> parseRichTextMarked v
+   "richTextPhoneNumber" -> parseRichTextPhoneNumber v
+   "richTextIcon" -> parseRichTextIcon v
+   "richTextReference" -> parseRichTextReference v
+   "richTextAnchor" -> parseRichTextAnchor v
+   "richTextAnchorLink" -> parseRichTextAnchorLink v
+   "richTexts" -> parseRichTexts v
+  where
+   parseRichTextPlain :: A.Value -> T.Parser RichText
+   parseRichTextPlain = A.withObject "RichTextPlain" $ \o -> do
+    _text <- o A..: "text"
+    return $ RichTextPlain { _text = _text }
+
+   parseRichTextBold :: A.Value -> T.Parser RichText
+   parseRichTextBold = A.withObject "RichTextBold" $ \o -> do
+    text <- o A..: "text"
+    return $ RichTextBold { text = text }
+
+   parseRichTextItalic :: A.Value -> T.Parser RichText
+   parseRichTextItalic = A.withObject "RichTextItalic" $ \o -> do
+    text <- o A..: "text"
+    return $ RichTextItalic { text = text }
+
+   parseRichTextUnderline :: A.Value -> T.Parser RichText
+   parseRichTextUnderline = A.withObject "RichTextUnderline" $ \o -> do
+    text <- o A..: "text"
+    return $ RichTextUnderline { text = text }
+
+   parseRichTextStrikethrough :: A.Value -> T.Parser RichText
+   parseRichTextStrikethrough = A.withObject "RichTextStrikethrough" $ \o -> do
+    text <- o A..: "text"
+    return $ RichTextStrikethrough { text = text }
+
+   parseRichTextFixed :: A.Value -> T.Parser RichText
+   parseRichTextFixed = A.withObject "RichTextFixed" $ \o -> do
+    text <- o A..: "text"
+    return $ RichTextFixed { text = text }
+
+   parseRichTextUrl :: A.Value -> T.Parser RichText
+   parseRichTextUrl = A.withObject "RichTextUrl" $ \o -> do
+    is_cached <- o A..: "is_cached"
+    url <- o A..: "url"
+    text <- o A..: "text"
+    return $ RichTextUrl { is_cached = is_cached, url = url, text = text }
+
+   parseRichTextEmailAddress :: A.Value -> T.Parser RichText
+   parseRichTextEmailAddress = A.withObject "RichTextEmailAddress" $ \o -> do
+    email_address <- o A..: "email_address"
+    text <- o A..: "text"
+    return $ RichTextEmailAddress { email_address = email_address, text = text }
+
+   parseRichTextSubscript :: A.Value -> T.Parser RichText
+   parseRichTextSubscript = A.withObject "RichTextSubscript" $ \o -> do
+    text <- o A..: "text"
+    return $ RichTextSubscript { text = text }
+
+   parseRichTextSuperscript :: A.Value -> T.Parser RichText
+   parseRichTextSuperscript = A.withObject "RichTextSuperscript" $ \o -> do
+    text <- o A..: "text"
+    return $ RichTextSuperscript { text = text }
+
+   parseRichTextMarked :: A.Value -> T.Parser RichText
+   parseRichTextMarked = A.withObject "RichTextMarked" $ \o -> do
+    text <- o A..: "text"
+    return $ RichTextMarked { text = text }
+
+   parseRichTextPhoneNumber :: A.Value -> T.Parser RichText
+   parseRichTextPhoneNumber = A.withObject "RichTextPhoneNumber" $ \o -> do
+    phone_number <- o A..: "phone_number"
+    text <- o A..: "text"
+    return $ RichTextPhoneNumber { phone_number = phone_number, text = text }
+
+   parseRichTextIcon :: A.Value -> T.Parser RichText
+   parseRichTextIcon = A.withObject "RichTextIcon" $ \o -> do
+    height <- o A..: "height"
+    width <- o A..: "width"
+    document <- o A..: "document"
+    return $ RichTextIcon { height = height, width = width, document = document }
+
+   parseRichTextReference :: A.Value -> T.Parser RichText
+   parseRichTextReference = A.withObject "RichTextReference" $ \o -> do
+    url <- o A..: "url"
+    reference_text <- o A..: "reference_text"
+    text <- o A..: "text"
+    return $ RichTextReference { url = url, reference_text = reference_text, text = text }
+
+   parseRichTextAnchor :: A.Value -> T.Parser RichText
+   parseRichTextAnchor = A.withObject "RichTextAnchor" $ \o -> do
+    name <- o A..: "name"
+    return $ RichTextAnchor { name = name }
+
+   parseRichTextAnchorLink :: A.Value -> T.Parser RichText
+   parseRichTextAnchorLink = A.withObject "RichTextAnchorLink" $ \o -> do
+    url <- o A..: "url"
+    name <- o A..: "name"
+    text <- o A..: "text"
+    return $ RichTextAnchorLink { url = url, name = name, text = text }
+
+   parseRichTexts :: A.Value -> T.Parser RichText
+   parseRichTexts = A.withObject "RichTexts" $ \o -> do
+    texts <- o A..: "texts"
+    return $ RichTexts { texts = texts }

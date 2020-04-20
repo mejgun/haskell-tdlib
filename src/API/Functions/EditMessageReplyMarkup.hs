@@ -16,3 +16,17 @@ instance T.ToJSON EditMessageReplyMarkup where
   A.object [ "@type" A..= T.String "editMessageReplyMarkup", "reply_markup" A..= reply_markup, "message_id" A..= message_id, "chat_id" A..= chat_id ]
 -- editMessageReplyMarkup EditMessageReplyMarkup  { reply_markup :: ReplyMarkup.ReplyMarkup, message_id :: Int, chat_id :: Int } 
 
+
+
+instance T.FromJSON EditMessageReplyMarkup where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "editMessageReplyMarkup" -> parseEditMessageReplyMarkup v
+  where
+   parseEditMessageReplyMarkup :: A.Value -> T.Parser EditMessageReplyMarkup
+   parseEditMessageReplyMarkup = A.withObject "EditMessageReplyMarkup" $ \o -> do
+    reply_markup <- o A..: "reply_markup"
+    message_id <- o A..: "message_id"
+    chat_id <- o A..: "chat_id"
+    return $ EditMessageReplyMarkup { reply_markup = reply_markup, message_id = message_id, chat_id = chat_id }

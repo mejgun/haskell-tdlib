@@ -8,3 +8,7 @@ data PageBlockVerticalAlignment
 
 instance ToJSON PageBlockVerticalAlignment
 
+
+
+instance FromJSON PageBlockVerticalAlignment
+

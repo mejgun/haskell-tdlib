@@ -16,3 +16,16 @@ instance T.ToJSON CreateCall where
   A.object [ "@type" A..= T.String "createCall", "protocol" A..= protocol, "user_id" A..= user_id ]
 -- createCall CreateCall  { protocol :: CallProtocol.CallProtocol, user_id :: Int } 
 
+
+
+instance T.FromJSON CreateCall where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "createCall" -> parseCreateCall v
+  where
+   parseCreateCall :: A.Value -> T.Parser CreateCall
+   parseCreateCall = A.withObject "CreateCall" $ \o -> do
+    protocol <- o A..: "protocol"
+    user_id <- o A..: "user_id"
+    return $ CreateCall { protocol = protocol, user_id = user_id }

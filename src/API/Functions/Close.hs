@@ -15,3 +15,14 @@ instance T.ToJSON Close where
   A.object [ "@type" A..= T.String "close" ]
 -- close Close 
 
+
+
+instance T.FromJSON Close where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "close" -> parseClose v
+  where
+   parseClose :: A.Value -> T.Parser Close
+   parseClose = A.withObject "Close" $ \o -> do
+    return $ Close {  }

@@ -16,3 +16,16 @@ instance T.ToJSON StickerSets where
   A.object [ "@type" A..= T.String "stickerSets", "sets" A..= sets, "total_count" A..= total_count ]
 -- stickerSets StickerSets  { sets :: [StickerSetInfo.StickerSetInfo], total_count :: Int } 
 
+
+
+instance T.FromJSON StickerSets where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "stickerSets" -> parseStickerSets v
+  where
+   parseStickerSets :: A.Value -> T.Parser StickerSets
+   parseStickerSets = A.withObject "StickerSets" $ \o -> do
+    sets <- o A..: "sets"
+    total_count <- o A..: "total_count"
+    return $ StickerSets { sets = sets, total_count = total_count }

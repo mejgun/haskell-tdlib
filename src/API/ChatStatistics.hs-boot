@@ -8,3 +8,7 @@ data ChatStatistics
 
 instance ToJSON ChatStatistics
 
+
+
+instance FromJSON ChatStatistics
+

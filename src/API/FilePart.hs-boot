@@ -8,3 +8,7 @@ data FilePart
 
 instance ToJSON FilePart
 
+
+
+instance FromJSON FilePart
+

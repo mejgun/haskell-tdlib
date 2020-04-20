@@ -16,3 +16,16 @@ instance T.ToJSON GetChatNotificationSettingsExceptions where
   A.object [ "@type" A..= T.String "getChatNotificationSettingsExceptions", "compare_sound" A..= compare_sound, "scope" A..= scope ]
 -- getChatNotificationSettingsExceptions GetChatNotificationSettingsExceptions  { compare_sound :: Bool, scope :: NotificationSettingsScope.NotificationSettingsScope } 
 
+
+
+instance T.FromJSON GetChatNotificationSettingsExceptions where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getChatNotificationSettingsExceptions" -> parseGetChatNotificationSettingsExceptions v
+  where
+   parseGetChatNotificationSettingsExceptions :: A.Value -> T.Parser GetChatNotificationSettingsExceptions
+   parseGetChatNotificationSettingsExceptions = A.withObject "GetChatNotificationSettingsExceptions" $ \o -> do
+    compare_sound <- o A..: "compare_sound"
+    scope <- o A..: "scope"
+    return $ GetChatNotificationSettingsExceptions { compare_sound = compare_sound, scope = scope }

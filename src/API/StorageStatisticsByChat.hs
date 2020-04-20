@@ -16,3 +16,18 @@ instance T.ToJSON StorageStatisticsByChat where
   A.object [ "@type" A..= T.String "storageStatisticsByChat", "by_file_type" A..= by_file_type, "count" A..= count, "size" A..= size, "chat_id" A..= chat_id ]
 -- storageStatisticsByChat StorageStatisticsByChat  { by_file_type :: [StorageStatisticsByFileType.StorageStatisticsByFileType], count :: Int, size :: Int, chat_id :: Int } 
 
+
+
+instance T.FromJSON StorageStatisticsByChat where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "storageStatisticsByChat" -> parseStorageStatisticsByChat v
+  where
+   parseStorageStatisticsByChat :: A.Value -> T.Parser StorageStatisticsByChat
+   parseStorageStatisticsByChat = A.withObject "StorageStatisticsByChat" $ \o -> do
+    by_file_type <- o A..: "by_file_type"
+    count <- o A..: "count"
+    size <- o A..: "size"
+    chat_id <- o A..: "chat_id"
+    return $ StorageStatisticsByChat { by_file_type = by_file_type, count = count, size = size, chat_id = chat_id }

@@ -8,3 +8,7 @@ data ShippingOption
 
 instance ToJSON ShippingOption
 
+
+
+instance FromJSON ShippingOption
+

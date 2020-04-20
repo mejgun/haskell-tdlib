@@ -27,3 +27,26 @@ instance T.ToJSON LogStream where
 
 -- logStreamEmpty LogStream 
 
+
+
+instance T.FromJSON LogStream where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "logStreamDefault" -> parseLogStreamDefault v
+   "logStreamFile" -> parseLogStreamFile v
+   "logStreamEmpty" -> parseLogStreamEmpty v
+  where
+   parseLogStreamDefault :: A.Value -> T.Parser LogStream
+   parseLogStreamDefault = A.withObject "LogStreamDefault" $ \o -> do
+    return $ LogStreamDefault {  }
+
+   parseLogStreamFile :: A.Value -> T.Parser LogStream
+   parseLogStreamFile = A.withObject "LogStreamFile" $ \o -> do
+    max_file_size <- o A..: "max_file_size"
+    path <- o A..: "path"
+    return $ LogStreamFile { max_file_size = max_file_size, path = path }
+
+   parseLogStreamEmpty :: A.Value -> T.Parser LogStream
+   parseLogStreamEmpty = A.withObject "LogStreamEmpty" $ \o -> do
+    return $ LogStreamEmpty {  }

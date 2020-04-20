@@ -35,3 +35,36 @@ instance T.ToJSON ReplyMarkup where
 
 -- replyMarkupInlineKeyboard ReplyMarkup  { rows :: [InlineKeyboardButton.InlineKeyboardButton] } 
 
+
+
+instance T.FromJSON ReplyMarkup where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "replyMarkupRemoveKeyboard" -> parseReplyMarkupRemoveKeyboard v
+   "replyMarkupForceReply" -> parseReplyMarkupForceReply v
+   "replyMarkupShowKeyboard" -> parseReplyMarkupShowKeyboard v
+   "replyMarkupInlineKeyboard" -> parseReplyMarkupInlineKeyboard v
+  where
+   parseReplyMarkupRemoveKeyboard :: A.Value -> T.Parser ReplyMarkup
+   parseReplyMarkupRemoveKeyboard = A.withObject "ReplyMarkupRemoveKeyboard" $ \o -> do
+    is_personal <- o A..: "is_personal"
+    return $ ReplyMarkupRemoveKeyboard { is_personal = is_personal }
+
+   parseReplyMarkupForceReply :: A.Value -> T.Parser ReplyMarkup
+   parseReplyMarkupForceReply = A.withObject "ReplyMarkupForceReply" $ \o -> do
+    is_personal <- o A..: "is_personal"
+    return $ ReplyMarkupForceReply { is_personal = is_personal }
+
+   parseReplyMarkupShowKeyboard :: A.Value -> T.Parser ReplyMarkup
+   parseReplyMarkupShowKeyboard = A.withObject "ReplyMarkupShowKeyboard" $ \o -> do
+    is_personal <- o A..: "is_personal"
+    one_time <- o A..: "one_time"
+    resize_keyboard <- o A..: "resize_keyboard"
+    _rows <- o A..: "rows"
+    return $ ReplyMarkupShowKeyboard { is_personal = is_personal, one_time = one_time, resize_keyboard = resize_keyboard, _rows = _rows }
+
+   parseReplyMarkupInlineKeyboard :: A.Value -> T.Parser ReplyMarkup
+   parseReplyMarkupInlineKeyboard = A.withObject "ReplyMarkupInlineKeyboard" $ \o -> do
+    rows <- o A..: "rows"
+    return $ ReplyMarkupInlineKeyboard { rows = rows }

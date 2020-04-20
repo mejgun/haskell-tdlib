@@ -16,3 +16,15 @@ instance T.ToJSON TestCallVectorStringObject where
   A.object [ "@type" A..= T.String "testCallVectorStringObject", "x" A..= x ]
 -- testCallVectorStringObject TestCallVectorStringObject  { x :: [TestString.TestString] } 
 
+
+
+instance T.FromJSON TestCallVectorStringObject where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "testCallVectorStringObject" -> parseTestCallVectorStringObject v
+  where
+   parseTestCallVectorStringObject :: A.Value -> T.Parser TestCallVectorStringObject
+   parseTestCallVectorStringObject = A.withObject "TestCallVectorStringObject" $ \o -> do
+    x <- o A..: "x"
+    return $ TestCallVectorStringObject { x = x }

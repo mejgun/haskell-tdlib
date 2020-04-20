@@ -8,3 +8,7 @@ data NetworkStatisticsEntry
 
 instance ToJSON NetworkStatisticsEntry
 
+
+
+instance FromJSON NetworkStatisticsEntry
+

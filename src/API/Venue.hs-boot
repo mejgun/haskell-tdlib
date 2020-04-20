@@ -8,3 +8,7 @@ data Venue
 
 instance ToJSON Venue
 
+
+
+instance FromJSON Venue
+

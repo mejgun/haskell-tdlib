@@ -15,3 +15,15 @@ instance T.ToJSON SetAlarm where
   A.object [ "@type" A..= T.String "setAlarm", "seconds" A..= seconds ]
 -- setAlarm SetAlarm  { seconds :: Float } 
 
+
+
+instance T.FromJSON SetAlarm where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setAlarm" -> parseSetAlarm v
+  where
+   parseSetAlarm :: A.Value -> T.Parser SetAlarm
+   parseSetAlarm = A.withObject "SetAlarm" $ \o -> do
+    seconds <- o A..: "seconds"
+    return $ SetAlarm { seconds = seconds }

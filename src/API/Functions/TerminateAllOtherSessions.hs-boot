@@ -8,3 +8,7 @@ data TerminateAllOtherSessions
 
 instance ToJSON TerminateAllOtherSessions
 
+
+
+instance FromJSON TerminateAllOtherSessions
+

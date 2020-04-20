@@ -16,3 +16,16 @@ instance T.ToJSON GetRemoteFile where
   A.object [ "@type" A..= T.String "getRemoteFile", "file_type" A..= file_type, "remote_file_id" A..= remote_file_id ]
 -- getRemoteFile GetRemoteFile  { file_type :: FileType.FileType, remote_file_id :: String } 
 
+
+
+instance T.FromJSON GetRemoteFile where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getRemoteFile" -> parseGetRemoteFile v
+  where
+   parseGetRemoteFile :: A.Value -> T.Parser GetRemoteFile
+   parseGetRemoteFile = A.withObject "GetRemoteFile" $ \o -> do
+    file_type <- o A..: "file_type"
+    remote_file_id <- o A..: "remote_file_id"
+    return $ GetRemoteFile { file_type = file_type, remote_file_id = remote_file_id }

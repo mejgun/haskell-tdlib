@@ -8,3 +8,7 @@ data GetLoginUrlInfo
 
 instance ToJSON GetLoginUrlInfo
 
+
+
+instance FromJSON GetLoginUrlInfo
+

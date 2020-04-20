@@ -15,3 +15,14 @@ instance T.ToJSON GetStorageStatisticsFast where
   A.object [ "@type" A..= T.String "getStorageStatisticsFast" ]
 -- getStorageStatisticsFast GetStorageStatisticsFast 
 
+
+
+instance T.FromJSON GetStorageStatisticsFast where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getStorageStatisticsFast" -> parseGetStorageStatisticsFast v
+  where
+   parseGetStorageStatisticsFast :: A.Value -> T.Parser GetStorageStatisticsFast
+   parseGetStorageStatisticsFast = A.withObject "GetStorageStatisticsFast" $ \o -> do
+    return $ GetStorageStatisticsFast {  }

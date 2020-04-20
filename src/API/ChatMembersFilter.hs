@@ -45,3 +45,39 @@ instance T.ToJSON ChatMembersFilter where
 
 -- chatMembersFilterBots ChatMembersFilter 
 
+
+
+instance T.FromJSON ChatMembersFilter where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "chatMembersFilterContacts" -> parseChatMembersFilterContacts v
+   "chatMembersFilterAdministrators" -> parseChatMembersFilterAdministrators v
+   "chatMembersFilterMembers" -> parseChatMembersFilterMembers v
+   "chatMembersFilterRestricted" -> parseChatMembersFilterRestricted v
+   "chatMembersFilterBanned" -> parseChatMembersFilterBanned v
+   "chatMembersFilterBots" -> parseChatMembersFilterBots v
+  where
+   parseChatMembersFilterContacts :: A.Value -> T.Parser ChatMembersFilter
+   parseChatMembersFilterContacts = A.withObject "ChatMembersFilterContacts" $ \o -> do
+    return $ ChatMembersFilterContacts {  }
+
+   parseChatMembersFilterAdministrators :: A.Value -> T.Parser ChatMembersFilter
+   parseChatMembersFilterAdministrators = A.withObject "ChatMembersFilterAdministrators" $ \o -> do
+    return $ ChatMembersFilterAdministrators {  }
+
+   parseChatMembersFilterMembers :: A.Value -> T.Parser ChatMembersFilter
+   parseChatMembersFilterMembers = A.withObject "ChatMembersFilterMembers" $ \o -> do
+    return $ ChatMembersFilterMembers {  }
+
+   parseChatMembersFilterRestricted :: A.Value -> T.Parser ChatMembersFilter
+   parseChatMembersFilterRestricted = A.withObject "ChatMembersFilterRestricted" $ \o -> do
+    return $ ChatMembersFilterRestricted {  }
+
+   parseChatMembersFilterBanned :: A.Value -> T.Parser ChatMembersFilter
+   parseChatMembersFilterBanned = A.withObject "ChatMembersFilterBanned" $ \o -> do
+    return $ ChatMembersFilterBanned {  }
+
+   parseChatMembersFilterBots :: A.Value -> T.Parser ChatMembersFilter
+   parseChatMembersFilterBots = A.withObject "ChatMembersFilterBots" $ \o -> do
+    return $ ChatMembersFilterBots {  }

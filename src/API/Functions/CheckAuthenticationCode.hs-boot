@@ -8,3 +8,7 @@ data CheckAuthenticationCode
 
 instance ToJSON CheckAuthenticationCode
 
+
+
+instance FromJSON CheckAuthenticationCode
+

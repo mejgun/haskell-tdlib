@@ -8,3 +8,7 @@ data CanTransferOwnership
 
 instance ToJSON CanTransferOwnership
 
+
+
+instance FromJSON CanTransferOwnership
+

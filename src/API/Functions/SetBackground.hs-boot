@@ -8,3 +8,7 @@ data SetBackground
 
 instance ToJSON SetBackground
 
+
+
+instance FromJSON SetBackground
+

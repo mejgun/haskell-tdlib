@@ -8,3 +8,7 @@ data Close
 
 instance ToJSON Close
 
+
+
+instance FromJSON Close
+

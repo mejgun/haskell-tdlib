@@ -15,3 +15,16 @@ instance T.ToJSON ToggleSupergroupSignMessages where
   A.object [ "@type" A..= T.String "toggleSupergroupSignMessages", "sign_messages" A..= sign_messages, "supergroup_id" A..= supergroup_id ]
 -- toggleSupergroupSignMessages ToggleSupergroupSignMessages  { sign_messages :: Bool, supergroup_id :: Int } 
 
+
+
+instance T.FromJSON ToggleSupergroupSignMessages where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "toggleSupergroupSignMessages" -> parseToggleSupergroupSignMessages v
+  where
+   parseToggleSupergroupSignMessages :: A.Value -> T.Parser ToggleSupergroupSignMessages
+   parseToggleSupergroupSignMessages = A.withObject "ToggleSupergroupSignMessages" $ \o -> do
+    sign_messages <- o A..: "sign_messages"
+    supergroup_id <- o A..: "supergroup_id"
+    return $ ToggleSupergroupSignMessages { sign_messages = sign_messages, supergroup_id = supergroup_id }

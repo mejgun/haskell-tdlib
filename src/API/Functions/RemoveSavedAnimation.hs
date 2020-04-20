@@ -16,3 +16,15 @@ instance T.ToJSON RemoveSavedAnimation where
   A.object [ "@type" A..= T.String "removeSavedAnimation", "animation" A..= animation ]
 -- removeSavedAnimation RemoveSavedAnimation  { animation :: InputFile.InputFile } 
 
+
+
+instance T.FromJSON RemoveSavedAnimation where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "removeSavedAnimation" -> parseRemoveSavedAnimation v
+  where
+   parseRemoveSavedAnimation :: A.Value -> T.Parser RemoveSavedAnimation
+   parseRemoveSavedAnimation = A.withObject "RemoveSavedAnimation" $ \o -> do
+    animation <- o A..: "animation"
+    return $ RemoveSavedAnimation { animation = animation }

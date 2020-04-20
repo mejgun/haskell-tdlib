@@ -8,3 +8,7 @@ data InlineKeyboardButton
 
 instance ToJSON InlineKeyboardButton
 
+
+
+instance FromJSON InlineKeyboardButton
+

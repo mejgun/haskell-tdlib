@@ -8,3 +8,7 @@ data ToggleChatIsPinned
 
 instance ToJSON ToggleChatIsPinned
 
+
+
+instance FromJSON ToggleChatIsPinned
+

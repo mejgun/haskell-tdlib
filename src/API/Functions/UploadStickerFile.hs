@@ -16,3 +16,16 @@ instance T.ToJSON UploadStickerFile where
   A.object [ "@type" A..= T.String "uploadStickerFile", "png_sticker" A..= png_sticker, "user_id" A..= user_id ]
 -- uploadStickerFile UploadStickerFile  { png_sticker :: InputFile.InputFile, user_id :: Int } 
 
+
+
+instance T.FromJSON UploadStickerFile where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "uploadStickerFile" -> parseUploadStickerFile v
+  where
+   parseUploadStickerFile :: A.Value -> T.Parser UploadStickerFile
+   parseUploadStickerFile = A.withObject "UploadStickerFile" $ \o -> do
+    png_sticker <- o A..: "png_sticker"
+    user_id <- o A..: "user_id"
+    return $ UploadStickerFile { png_sticker = png_sticker, user_id = user_id }

@@ -15,3 +15,19 @@ instance T.ToJSON AnswerCallbackQuery where
   A.object [ "@type" A..= T.String "answerCallbackQuery", "cache_time" A..= cache_time, "url" A..= url, "show_alert" A..= show_alert, "text" A..= text, "callback_query_id" A..= callback_query_id ]
 -- answerCallbackQuery AnswerCallbackQuery  { cache_time :: Int, url :: String, show_alert :: Bool, text :: String, callback_query_id :: Int } 
 
+
+
+instance T.FromJSON AnswerCallbackQuery where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "answerCallbackQuery" -> parseAnswerCallbackQuery v
+  where
+   parseAnswerCallbackQuery :: A.Value -> T.Parser AnswerCallbackQuery
+   parseAnswerCallbackQuery = A.withObject "AnswerCallbackQuery" $ \o -> do
+    cache_time <- o A..: "cache_time"
+    url <- o A..: "url"
+    show_alert <- o A..: "show_alert"
+    text <- o A..: "text"
+    callback_query_id <- o A..: "callback_query_id"
+    return $ AnswerCallbackQuery { cache_time = cache_time, url = url, show_alert = show_alert, text = text, callback_query_id = callback_query_id }

@@ -51,3 +51,48 @@ instance T.ToJSON SupergroupMembersFilter where
 
 -- supergroupMembersFilterBots SupergroupMembersFilter 
 
+
+
+instance T.FromJSON SupergroupMembersFilter where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "supergroupMembersFilterRecent" -> parseSupergroupMembersFilterRecent v
+   "supergroupMembersFilterContacts" -> parseSupergroupMembersFilterContacts v
+   "supergroupMembersFilterAdministrators" -> parseSupergroupMembersFilterAdministrators v
+   "supergroupMembersFilterSearch" -> parseSupergroupMembersFilterSearch v
+   "supergroupMembersFilterRestricted" -> parseSupergroupMembersFilterRestricted v
+   "supergroupMembersFilterBanned" -> parseSupergroupMembersFilterBanned v
+   "supergroupMembersFilterBots" -> parseSupergroupMembersFilterBots v
+  where
+   parseSupergroupMembersFilterRecent :: A.Value -> T.Parser SupergroupMembersFilter
+   parseSupergroupMembersFilterRecent = A.withObject "SupergroupMembersFilterRecent" $ \o -> do
+    return $ SupergroupMembersFilterRecent {  }
+
+   parseSupergroupMembersFilterContacts :: A.Value -> T.Parser SupergroupMembersFilter
+   parseSupergroupMembersFilterContacts = A.withObject "SupergroupMembersFilterContacts" $ \o -> do
+    query <- o A..: "query"
+    return $ SupergroupMembersFilterContacts { query = query }
+
+   parseSupergroupMembersFilterAdministrators :: A.Value -> T.Parser SupergroupMembersFilter
+   parseSupergroupMembersFilterAdministrators = A.withObject "SupergroupMembersFilterAdministrators" $ \o -> do
+    return $ SupergroupMembersFilterAdministrators {  }
+
+   parseSupergroupMembersFilterSearch :: A.Value -> T.Parser SupergroupMembersFilter
+   parseSupergroupMembersFilterSearch = A.withObject "SupergroupMembersFilterSearch" $ \o -> do
+    query <- o A..: "query"
+    return $ SupergroupMembersFilterSearch { query = query }
+
+   parseSupergroupMembersFilterRestricted :: A.Value -> T.Parser SupergroupMembersFilter
+   parseSupergroupMembersFilterRestricted = A.withObject "SupergroupMembersFilterRestricted" $ \o -> do
+    query <- o A..: "query"
+    return $ SupergroupMembersFilterRestricted { query = query }
+
+   parseSupergroupMembersFilterBanned :: A.Value -> T.Parser SupergroupMembersFilter
+   parseSupergroupMembersFilterBanned = A.withObject "SupergroupMembersFilterBanned" $ \o -> do
+    query <- o A..: "query"
+    return $ SupergroupMembersFilterBanned { query = query }
+
+   parseSupergroupMembersFilterBots :: A.Value -> T.Parser SupergroupMembersFilter
+   parseSupergroupMembersFilterBots = A.withObject "SupergroupMembersFilterBots" $ \o -> do
+    return $ SupergroupMembersFilterBots {  }

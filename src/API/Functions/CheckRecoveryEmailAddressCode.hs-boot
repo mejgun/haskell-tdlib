@@ -8,3 +8,7 @@ data CheckRecoveryEmailAddressCode
 
 instance ToJSON CheckRecoveryEmailAddressCode
 
+
+
+instance FromJSON CheckRecoveryEmailAddressCode
+

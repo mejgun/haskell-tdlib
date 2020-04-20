@@ -15,3 +15,16 @@ instance T.ToJSON SetChatClientData where
   A.object [ "@type" A..= T.String "setChatClientData", "client_data" A..= client_data, "chat_id" A..= chat_id ]
 -- setChatClientData SetChatClientData  { client_data :: String, chat_id :: Int } 
 
+
+
+instance T.FromJSON SetChatClientData where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setChatClientData" -> parseSetChatClientData v
+  where
+   parseSetChatClientData :: A.Value -> T.Parser SetChatClientData
+   parseSetChatClientData = A.withObject "SetChatClientData" $ \o -> do
+    client_data <- o A..: "client_data"
+    chat_id <- o A..: "chat_id"
+    return $ SetChatClientData { client_data = client_data, chat_id = chat_id }

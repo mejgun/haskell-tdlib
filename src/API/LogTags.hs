@@ -15,3 +15,15 @@ instance T.ToJSON LogTags where
   A.object [ "@type" A..= T.String "logTags", "tags" A..= tags ]
 -- logTags LogTags  { tags :: [String] } 
 
+
+
+instance T.FromJSON LogTags where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "logTags" -> parseLogTags v
+  where
+   parseLogTags :: A.Value -> T.Parser LogTags
+   parseLogTags = A.withObject "LogTags" $ \o -> do
+    tags <- o A..: "tags"
+    return $ LogTags { tags = tags }

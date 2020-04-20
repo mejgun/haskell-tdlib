@@ -16,3 +16,15 @@ instance T.ToJSON EditCustomLanguagePackInfo where
   A.object [ "@type" A..= T.String "editCustomLanguagePackInfo", "info" A..= info ]
 -- editCustomLanguagePackInfo EditCustomLanguagePackInfo  { info :: LanguagePackInfo.LanguagePackInfo } 
 
+
+
+instance T.FromJSON EditCustomLanguagePackInfo where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "editCustomLanguagePackInfo" -> parseEditCustomLanguagePackInfo v
+  where
+   parseEditCustomLanguagePackInfo :: A.Value -> T.Parser EditCustomLanguagePackInfo
+   parseEditCustomLanguagePackInfo = A.withObject "EditCustomLanguagePackInfo" $ \o -> do
+    info <- o A..: "info"
+    return $ EditCustomLanguagePackInfo { info = info }

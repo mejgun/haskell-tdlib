@@ -45,3 +45,46 @@ instance T.ToJSON InlineKeyboardButtonType where
 
 -- inlineKeyboardButtonTypeBuy InlineKeyboardButtonType 
 
+
+
+instance T.FromJSON InlineKeyboardButtonType where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "inlineKeyboardButtonTypeUrl" -> parseInlineKeyboardButtonTypeUrl v
+   "inlineKeyboardButtonTypeLoginUrl" -> parseInlineKeyboardButtonTypeLoginUrl v
+   "inlineKeyboardButtonTypeCallback" -> parseInlineKeyboardButtonTypeCallback v
+   "inlineKeyboardButtonTypeCallbackGame" -> parseInlineKeyboardButtonTypeCallbackGame v
+   "inlineKeyboardButtonTypeSwitchInline" -> parseInlineKeyboardButtonTypeSwitchInline v
+   "inlineKeyboardButtonTypeBuy" -> parseInlineKeyboardButtonTypeBuy v
+  where
+   parseInlineKeyboardButtonTypeUrl :: A.Value -> T.Parser InlineKeyboardButtonType
+   parseInlineKeyboardButtonTypeUrl = A.withObject "InlineKeyboardButtonTypeUrl" $ \o -> do
+    url <- o A..: "url"
+    return $ InlineKeyboardButtonTypeUrl { url = url }
+
+   parseInlineKeyboardButtonTypeLoginUrl :: A.Value -> T.Parser InlineKeyboardButtonType
+   parseInlineKeyboardButtonTypeLoginUrl = A.withObject "InlineKeyboardButtonTypeLoginUrl" $ \o -> do
+    forward_text <- o A..: "forward_text"
+    _id <- o A..: "id"
+    url <- o A..: "url"
+    return $ InlineKeyboardButtonTypeLoginUrl { forward_text = forward_text, _id = _id, url = url }
+
+   parseInlineKeyboardButtonTypeCallback :: A.Value -> T.Parser InlineKeyboardButtonType
+   parseInlineKeyboardButtonTypeCallback = A.withObject "InlineKeyboardButtonTypeCallback" $ \o -> do
+    _data <- o A..: "data"
+    return $ InlineKeyboardButtonTypeCallback { _data = _data }
+
+   parseInlineKeyboardButtonTypeCallbackGame :: A.Value -> T.Parser InlineKeyboardButtonType
+   parseInlineKeyboardButtonTypeCallbackGame = A.withObject "InlineKeyboardButtonTypeCallbackGame" $ \o -> do
+    return $ InlineKeyboardButtonTypeCallbackGame {  }
+
+   parseInlineKeyboardButtonTypeSwitchInline :: A.Value -> T.Parser InlineKeyboardButtonType
+   parseInlineKeyboardButtonTypeSwitchInline = A.withObject "InlineKeyboardButtonTypeSwitchInline" $ \o -> do
+    in_current_chat <- o A..: "in_current_chat"
+    query <- o A..: "query"
+    return $ InlineKeyboardButtonTypeSwitchInline { in_current_chat = in_current_chat, query = query }
+
+   parseInlineKeyboardButtonTypeBuy :: A.Value -> T.Parser InlineKeyboardButtonType
+   parseInlineKeyboardButtonTypeBuy = A.withObject "InlineKeyboardButtonTypeBuy" $ \o -> do
+    return $ InlineKeyboardButtonTypeBuy {  }

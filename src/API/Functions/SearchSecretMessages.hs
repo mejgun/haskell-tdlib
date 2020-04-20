@@ -16,3 +16,19 @@ instance T.ToJSON SearchSecretMessages where
   A.object [ "@type" A..= T.String "searchSecretMessages", "filter" A..= _filter, "limit" A..= limit, "from_search_id" A..= from_search_id, "query" A..= query, "chat_id" A..= chat_id ]
 -- searchSecretMessages SearchSecretMessages  { _filter :: SearchMessagesFilter.SearchMessagesFilter, limit :: Int, from_search_id :: Int, query :: String, chat_id :: Int } 
 
+
+
+instance T.FromJSON SearchSecretMessages where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "searchSecretMessages" -> parseSearchSecretMessages v
+  where
+   parseSearchSecretMessages :: A.Value -> T.Parser SearchSecretMessages
+   parseSearchSecretMessages = A.withObject "SearchSecretMessages" $ \o -> do
+    _filter <- o A..: "filter"
+    limit <- o A..: "limit"
+    from_search_id <- o A..: "from_search_id"
+    query <- o A..: "query"
+    chat_id <- o A..: "chat_id"
+    return $ SearchSecretMessages { _filter = _filter, limit = limit, from_search_id = from_search_id, query = query, chat_id = chat_id }

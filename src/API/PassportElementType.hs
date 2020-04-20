@@ -87,3 +87,74 @@ instance T.ToJSON PassportElementType where
 
 -- passportElementTypeEmailAddress PassportElementType 
 
+
+
+instance T.FromJSON PassportElementType where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "passportElementTypePersonalDetails" -> parsePassportElementTypePersonalDetails v
+   "passportElementTypePassport" -> parsePassportElementTypePassport v
+   "passportElementTypeDriverLicense" -> parsePassportElementTypeDriverLicense v
+   "passportElementTypeIdentityCard" -> parsePassportElementTypeIdentityCard v
+   "passportElementTypeInternalPassport" -> parsePassportElementTypeInternalPassport v
+   "passportElementTypeAddress" -> parsePassportElementTypeAddress v
+   "passportElementTypeUtilityBill" -> parsePassportElementTypeUtilityBill v
+   "passportElementTypeBankStatement" -> parsePassportElementTypeBankStatement v
+   "passportElementTypeRentalAgreement" -> parsePassportElementTypeRentalAgreement v
+   "passportElementTypePassportRegistration" -> parsePassportElementTypePassportRegistration v
+   "passportElementTypeTemporaryRegistration" -> parsePassportElementTypeTemporaryRegistration v
+   "passportElementTypePhoneNumber" -> parsePassportElementTypePhoneNumber v
+   "passportElementTypeEmailAddress" -> parsePassportElementTypeEmailAddress v
+  where
+   parsePassportElementTypePersonalDetails :: A.Value -> T.Parser PassportElementType
+   parsePassportElementTypePersonalDetails = A.withObject "PassportElementTypePersonalDetails" $ \o -> do
+    return $ PassportElementTypePersonalDetails {  }
+
+   parsePassportElementTypePassport :: A.Value -> T.Parser PassportElementType
+   parsePassportElementTypePassport = A.withObject "PassportElementTypePassport" $ \o -> do
+    return $ PassportElementTypePassport {  }
+
+   parsePassportElementTypeDriverLicense :: A.Value -> T.Parser PassportElementType
+   parsePassportElementTypeDriverLicense = A.withObject "PassportElementTypeDriverLicense" $ \o -> do
+    return $ PassportElementTypeDriverLicense {  }
+
+   parsePassportElementTypeIdentityCard :: A.Value -> T.Parser PassportElementType
+   parsePassportElementTypeIdentityCard = A.withObject "PassportElementTypeIdentityCard" $ \o -> do
+    return $ PassportElementTypeIdentityCard {  }
+
+   parsePassportElementTypeInternalPassport :: A.Value -> T.Parser PassportElementType
+   parsePassportElementTypeInternalPassport = A.withObject "PassportElementTypeInternalPassport" $ \o -> do
+    return $ PassportElementTypeInternalPassport {  }
+
+   parsePassportElementTypeAddress :: A.Value -> T.Parser PassportElementType
+   parsePassportElementTypeAddress = A.withObject "PassportElementTypeAddress" $ \o -> do
+    return $ PassportElementTypeAddress {  }
+
+   parsePassportElementTypeUtilityBill :: A.Value -> T.Parser PassportElementType
+   parsePassportElementTypeUtilityBill = A.withObject "PassportElementTypeUtilityBill" $ \o -> do
+    return $ PassportElementTypeUtilityBill {  }
+
+   parsePassportElementTypeBankStatement :: A.Value -> T.Parser PassportElementType
+   parsePassportElementTypeBankStatement = A.withObject "PassportElementTypeBankStatement" $ \o -> do
+    return $ PassportElementTypeBankStatement {  }
+
+   parsePassportElementTypeRentalAgreement :: A.Value -> T.Parser PassportElementType
+   parsePassportElementTypeRentalAgreement = A.withObject "PassportElementTypeRentalAgreement" $ \o -> do
+    return $ PassportElementTypeRentalAgreement {  }
+
+   parsePassportElementTypePassportRegistration :: A.Value -> T.Parser PassportElementType
+   parsePassportElementTypePassportRegistration = A.withObject "PassportElementTypePassportRegistration" $ \o -> do
+    return $ PassportElementTypePassportRegistration {  }
+
+   parsePassportElementTypeTemporaryRegistration :: A.Value -> T.Parser PassportElementType
+   parsePassportElementTypeTemporaryRegistration = A.withObject "PassportElementTypeTemporaryRegistration" $ \o -> do
+    return $ PassportElementTypeTemporaryRegistration {  }
+
+   parsePassportElementTypePhoneNumber :: A.Value -> T.Parser PassportElementType
+   parsePassportElementTypePhoneNumber = A.withObject "PassportElementTypePhoneNumber" $ \o -> do
+    return $ PassportElementTypePhoneNumber {  }
+
+   parsePassportElementTypeEmailAddress :: A.Value -> T.Parser PassportElementType
+   parsePassportElementTypeEmailAddress = A.withObject "PassportElementTypeEmailAddress" $ \o -> do
+    return $ PassportElementTypeEmailAddress {  }

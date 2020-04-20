@@ -8,3 +8,7 @@ data EditMessageReplyMarkup
 
 instance ToJSON EditMessageReplyMarkup
 
+
+
+instance FromJSON EditMessageReplyMarkup
+

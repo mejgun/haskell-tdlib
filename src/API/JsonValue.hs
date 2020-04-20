@@ -46,3 +46,44 @@ instance T.ToJSON JsonValue where
 
 -- jsonValueObject JsonValue  { members :: [JsonObjectMember.JsonObjectMember] } 
 
+
+
+instance T.FromJSON JsonValue where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "jsonValueNull" -> parseJsonValueNull v
+   "jsonValueBoolean" -> parseJsonValueBoolean v
+   "jsonValueNumber" -> parseJsonValueNumber v
+   "jsonValueString" -> parseJsonValueString v
+   "jsonValueArray" -> parseJsonValueArray v
+   "jsonValueObject" -> parseJsonValueObject v
+  where
+   parseJsonValueNull :: A.Value -> T.Parser JsonValue
+   parseJsonValueNull = A.withObject "JsonValueNull" $ \o -> do
+    return $ JsonValueNull {  }
+
+   parseJsonValueBoolean :: A.Value -> T.Parser JsonValue
+   parseJsonValueBoolean = A.withObject "JsonValueBoolean" $ \o -> do
+    __value <- o A..: "value"
+    return $ JsonValueBoolean { __value = __value }
+
+   parseJsonValueNumber :: A.Value -> T.Parser JsonValue
+   parseJsonValueNumber = A.withObject "JsonValueNumber" $ \o -> do
+    _value <- o A..: "value"
+    return $ JsonValueNumber { _value = _value }
+
+   parseJsonValueString :: A.Value -> T.Parser JsonValue
+   parseJsonValueString = A.withObject "JsonValueString" $ \o -> do
+    value <- o A..: "value"
+    return $ JsonValueString { value = value }
+
+   parseJsonValueArray :: A.Value -> T.Parser JsonValue
+   parseJsonValueArray = A.withObject "JsonValueArray" $ \o -> do
+    values <- o A..: "values"
+    return $ JsonValueArray { values = values }
+
+   parseJsonValueObject :: A.Value -> T.Parser JsonValue
+   parseJsonValueObject = A.withObject "JsonValueObject" $ \o -> do
+    members <- o A..: "members"
+    return $ JsonValueObject { members = members }

@@ -8,3 +8,7 @@ data PasswordState
 
 instance ToJSON PasswordState
 
+
+
+instance FromJSON PasswordState
+

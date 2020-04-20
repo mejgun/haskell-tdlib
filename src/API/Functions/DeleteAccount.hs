@@ -15,3 +15,15 @@ instance T.ToJSON DeleteAccount where
   A.object [ "@type" A..= T.String "deleteAccount", "reason" A..= reason ]
 -- deleteAccount DeleteAccount  { reason :: String } 
 
+
+
+instance T.FromJSON DeleteAccount where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "deleteAccount" -> parseDeleteAccount v
+  where
+   parseDeleteAccount :: A.Value -> T.Parser DeleteAccount
+   parseDeleteAccount = A.withObject "DeleteAccount" $ \o -> do
+    reason <- o A..: "reason"
+    return $ DeleteAccount { reason = reason }

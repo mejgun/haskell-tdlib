@@ -8,3 +8,7 @@ data ReportSupergroupSpam
 
 instance ToJSON ReportSupergroupSpam
 
+
+
+instance FromJSON ReportSupergroupSpam
+

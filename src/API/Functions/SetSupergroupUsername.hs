@@ -15,3 +15,16 @@ instance T.ToJSON SetSupergroupUsername where
   A.object [ "@type" A..= T.String "setSupergroupUsername", "username" A..= username, "supergroup_id" A..= supergroup_id ]
 -- setSupergroupUsername SetSupergroupUsername  { username :: String, supergroup_id :: Int } 
 
+
+
+instance T.FromJSON SetSupergroupUsername where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setSupergroupUsername" -> parseSetSupergroupUsername v
+  where
+   parseSetSupergroupUsername :: A.Value -> T.Parser SetSupergroupUsername
+   parseSetSupergroupUsername = A.withObject "SetSupergroupUsername" $ \o -> do
+    username <- o A..: "username"
+    supergroup_id <- o A..: "supergroup_id"
+    return $ SetSupergroupUsername { username = username, supergroup_id = supergroup_id }

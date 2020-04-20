@@ -8,3 +8,7 @@ data Hashtags
 
 instance ToJSON Hashtags
 
+
+
+instance FromJSON Hashtags
+

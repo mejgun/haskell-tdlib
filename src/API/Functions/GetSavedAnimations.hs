@@ -15,3 +15,14 @@ instance T.ToJSON GetSavedAnimations where
   A.object [ "@type" A..= T.String "getSavedAnimations" ]
 -- getSavedAnimations GetSavedAnimations 
 
+
+
+instance T.FromJSON GetSavedAnimations where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getSavedAnimations" -> parseGetSavedAnimations v
+  where
+   parseGetSavedAnimations :: A.Value -> T.Parser GetSavedAnimations
+   parseGetSavedAnimations = A.withObject "GetSavedAnimations" $ \o -> do
+    return $ GetSavedAnimations {  }

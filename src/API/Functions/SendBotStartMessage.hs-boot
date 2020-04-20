@@ -8,3 +8,7 @@ data SendBotStartMessage
 
 instance ToJSON SendBotStartMessage
 
+
+
+instance FromJSON SendBotStartMessage
+

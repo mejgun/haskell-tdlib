@@ -8,3 +8,7 @@ data PersonalDocument
 
 instance ToJSON PersonalDocument
 
+
+
+instance FromJSON PersonalDocument
+

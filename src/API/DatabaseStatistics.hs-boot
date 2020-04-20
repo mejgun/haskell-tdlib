@@ -8,3 +8,7 @@ data DatabaseStatistics
 
 instance ToJSON DatabaseStatistics
 
+
+
+instance FromJSON DatabaseStatistics
+

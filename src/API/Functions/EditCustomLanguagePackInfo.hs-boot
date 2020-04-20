@@ -8,3 +8,7 @@ data EditCustomLanguagePackInfo
 
 instance ToJSON EditCustomLanguagePackInfo
 
+
+
+instance FromJSON EditCustomLanguagePackInfo
+

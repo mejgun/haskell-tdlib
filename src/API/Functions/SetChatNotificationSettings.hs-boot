@@ -8,3 +8,7 @@ data SetChatNotificationSettings
 
 instance ToJSON SetChatNotificationSettings
 
+
+
+instance FromJSON SetChatNotificationSettings
+

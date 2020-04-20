@@ -15,3 +15,16 @@ instance T.ToJSON GetStickers where
   A.object [ "@type" A..= T.String "getStickers", "limit" A..= limit, "emoji" A..= emoji ]
 -- getStickers GetStickers  { limit :: Int, emoji :: String } 
 
+
+
+instance T.FromJSON GetStickers where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getStickers" -> parseGetStickers v
+  where
+   parseGetStickers :: A.Value -> T.Parser GetStickers
+   parseGetStickers = A.withObject "GetStickers" $ \o -> do
+    limit <- o A..: "limit"
+    emoji <- o A..: "emoji"
+    return $ GetStickers { limit = limit, emoji = emoji }

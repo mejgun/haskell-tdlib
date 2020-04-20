@@ -8,3 +8,7 @@ data Background
 
 instance ToJSON Background
 
+
+
+instance FromJSON Background
+

@@ -16,3 +16,18 @@ instance T.ToJSON ValidateOrderInfo where
   A.object [ "@type" A..= T.String "validateOrderInfo", "allow_save" A..= allow_save, "order_info" A..= order_info, "message_id" A..= message_id, "chat_id" A..= chat_id ]
 -- validateOrderInfo ValidateOrderInfo  { allow_save :: Bool, order_info :: OrderInfo.OrderInfo, message_id :: Int, chat_id :: Int } 
 
+
+
+instance T.FromJSON ValidateOrderInfo where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "validateOrderInfo" -> parseValidateOrderInfo v
+  where
+   parseValidateOrderInfo :: A.Value -> T.Parser ValidateOrderInfo
+   parseValidateOrderInfo = A.withObject "ValidateOrderInfo" $ \o -> do
+    allow_save <- o A..: "allow_save"
+    order_info <- o A..: "order_info"
+    message_id <- o A..: "message_id"
+    chat_id <- o A..: "chat_id"
+    return $ ValidateOrderInfo { allow_save = allow_save, order_info = order_info, message_id = message_id, chat_id = chat_id }

@@ -15,3 +15,15 @@ instance T.ToJSON RemoveRecentHashtag where
   A.object [ "@type" A..= T.String "removeRecentHashtag", "hashtag" A..= hashtag ]
 -- removeRecentHashtag RemoveRecentHashtag  { hashtag :: String } 
 
+
+
+instance T.FromJSON RemoveRecentHashtag where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "removeRecentHashtag" -> parseRemoveRecentHashtag v
+  where
+   parseRemoveRecentHashtag :: A.Value -> T.Parser RemoveRecentHashtag
+   parseRemoveRecentHashtag = A.withObject "RemoveRecentHashtag" $ \o -> do
+    hashtag <- o A..: "hashtag"
+    return $ RemoveRecentHashtag { hashtag = hashtag }

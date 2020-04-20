@@ -34,3 +34,33 @@ instance T.ToJSON TMeUrlType where
 
 -- tMeUrlTypeStickerSet TMeUrlType  { sticker_set_id :: Int } 
 
+
+
+instance T.FromJSON TMeUrlType where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "tMeUrlTypeUser" -> parseTMeUrlTypeUser v
+   "tMeUrlTypeSupergroup" -> parseTMeUrlTypeSupergroup v
+   "tMeUrlTypeChatInvite" -> parseTMeUrlTypeChatInvite v
+   "tMeUrlTypeStickerSet" -> parseTMeUrlTypeStickerSet v
+  where
+   parseTMeUrlTypeUser :: A.Value -> T.Parser TMeUrlType
+   parseTMeUrlTypeUser = A.withObject "TMeUrlTypeUser" $ \o -> do
+    user_id <- o A..: "user_id"
+    return $ TMeUrlTypeUser { user_id = user_id }
+
+   parseTMeUrlTypeSupergroup :: A.Value -> T.Parser TMeUrlType
+   parseTMeUrlTypeSupergroup = A.withObject "TMeUrlTypeSupergroup" $ \o -> do
+    supergroup_id <- o A..: "supergroup_id"
+    return $ TMeUrlTypeSupergroup { supergroup_id = supergroup_id }
+
+   parseTMeUrlTypeChatInvite :: A.Value -> T.Parser TMeUrlType
+   parseTMeUrlTypeChatInvite = A.withObject "TMeUrlTypeChatInvite" $ \o -> do
+    info <- o A..: "info"
+    return $ TMeUrlTypeChatInvite { info = info }
+
+   parseTMeUrlTypeStickerSet :: A.Value -> T.Parser TMeUrlType
+   parseTMeUrlTypeStickerSet = A.withObject "TMeUrlTypeStickerSet" $ \o -> do
+    sticker_set_id <- o A..: "sticker_set_id"
+    return $ TMeUrlTypeStickerSet { sticker_set_id = sticker_set_id }

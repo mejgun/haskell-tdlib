@@ -8,3 +8,7 @@ data PageBlockHorizontalAlignment
 
 instance ToJSON PageBlockHorizontalAlignment
 
+
+
+instance FromJSON PageBlockHorizontalAlignment
+

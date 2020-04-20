@@ -8,3 +8,7 @@ data CancelUploadFile
 
 instance ToJSON CancelUploadFile
 
+
+
+instance FromJSON CancelUploadFile
+

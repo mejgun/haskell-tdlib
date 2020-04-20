@@ -8,3 +8,7 @@ data ResendPhoneNumberVerificationCode
 
 instance ToJSON ResendPhoneNumberVerificationCode
 
+
+
+instance FromJSON ResendPhoneNumberVerificationCode
+

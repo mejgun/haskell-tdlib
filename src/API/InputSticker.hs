@@ -23,3 +23,24 @@ instance T.ToJSON InputSticker where
 
 -- inputStickerAnimated InputSticker  { emojis :: String, sticker :: InputFile.InputFile } 
 
+
+
+instance T.FromJSON InputSticker where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "inputStickerStatic" -> parseInputStickerStatic v
+   "inputStickerAnimated" -> parseInputStickerAnimated v
+  where
+   parseInputStickerStatic :: A.Value -> T.Parser InputSticker
+   parseInputStickerStatic = A.withObject "InputStickerStatic" $ \o -> do
+    mask_position <- o A..: "mask_position"
+    emojis <- o A..: "emojis"
+    sticker <- o A..: "sticker"
+    return $ InputStickerStatic { mask_position = mask_position, emojis = emojis, sticker = sticker }
+
+   parseInputStickerAnimated :: A.Value -> T.Parser InputSticker
+   parseInputStickerAnimated = A.withObject "InputStickerAnimated" $ \o -> do
+    emojis <- o A..: "emojis"
+    sticker <- o A..: "sticker"
+    return $ InputStickerAnimated { emojis = emojis, sticker = sticker }

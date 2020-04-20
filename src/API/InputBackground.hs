@@ -22,3 +22,21 @@ instance T.ToJSON InputBackground where
 
 -- inputBackgroundRemote InputBackground  { background_id :: Int } 
 
+
+
+instance T.FromJSON InputBackground where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "inputBackgroundLocal" -> parseInputBackgroundLocal v
+   "inputBackgroundRemote" -> parseInputBackgroundRemote v
+  where
+   parseInputBackgroundLocal :: A.Value -> T.Parser InputBackground
+   parseInputBackgroundLocal = A.withObject "InputBackgroundLocal" $ \o -> do
+    background <- o A..: "background"
+    return $ InputBackgroundLocal { background = background }
+
+   parseInputBackgroundRemote :: A.Value -> T.Parser InputBackground
+   parseInputBackgroundRemote = A.withObject "InputBackgroundRemote" $ \o -> do
+    background_id <- o A..: "background_id"
+    return $ InputBackgroundRemote { background_id = background_id }

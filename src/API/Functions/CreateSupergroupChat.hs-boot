@@ -8,3 +8,7 @@ data CreateSupergroupChat
 
 instance ToJSON CreateSupergroupChat
 
+
+
+instance FromJSON CreateSupergroupChat
+

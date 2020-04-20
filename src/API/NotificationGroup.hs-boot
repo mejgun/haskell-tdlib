@@ -8,3 +8,7 @@ data NotificationGroup
 
 instance ToJSON NotificationGroup
 
+
+
+instance FromJSON NotificationGroup
+

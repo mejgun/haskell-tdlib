@@ -8,3 +8,7 @@ data OptionValue
 
 instance ToJSON OptionValue
 
+
+
+instance FromJSON OptionValue
+

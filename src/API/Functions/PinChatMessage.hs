@@ -15,3 +15,17 @@ instance T.ToJSON PinChatMessage where
   A.object [ "@type" A..= T.String "pinChatMessage", "disable_notification" A..= disable_notification, "message_id" A..= message_id, "chat_id" A..= chat_id ]
 -- pinChatMessage PinChatMessage  { disable_notification :: Bool, message_id :: Int, chat_id :: Int } 
 
+
+
+instance T.FromJSON PinChatMessage where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "pinChatMessage" -> parsePinChatMessage v
+  where
+   parsePinChatMessage :: A.Value -> T.Parser PinChatMessage
+   parsePinChatMessage = A.withObject "PinChatMessage" $ \o -> do
+    disable_notification <- o A..: "disable_notification"
+    message_id <- o A..: "message_id"
+    chat_id <- o A..: "chat_id"
+    return $ PinChatMessage { disable_notification = disable_notification, message_id = message_id, chat_id = chat_id }

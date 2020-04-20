@@ -15,3 +15,15 @@ instance T.ToJSON CancelUploadFile where
   A.object [ "@type" A..= T.String "cancelUploadFile", "file_id" A..= file_id ]
 -- cancelUploadFile CancelUploadFile  { file_id :: Int } 
 
+
+
+instance T.FromJSON CancelUploadFile where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "cancelUploadFile" -> parseCancelUploadFile v
+  where
+   parseCancelUploadFile :: A.Value -> T.Parser CancelUploadFile
+   parseCancelUploadFile = A.withObject "CancelUploadFile" $ \o -> do
+    file_id <- o A..: "file_id"
+    return $ CancelUploadFile { file_id = file_id }

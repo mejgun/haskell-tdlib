@@ -8,3 +8,7 @@ data DisconnectAllWebsites
 
 instance ToJSON DisconnectAllWebsites
 
+
+
+instance FromJSON DisconnectAllWebsites
+

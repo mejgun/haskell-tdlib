@@ -15,3 +15,14 @@ instance T.ToJSON ClearRecentlyFoundChats where
   A.object [ "@type" A..= T.String "clearRecentlyFoundChats" ]
 -- clearRecentlyFoundChats ClearRecentlyFoundChats 
 
+
+
+instance T.FromJSON ClearRecentlyFoundChats where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "clearRecentlyFoundChats" -> parseClearRecentlyFoundChats v
+  where
+   parseClearRecentlyFoundChats :: A.Value -> T.Parser ClearRecentlyFoundChats
+   parseClearRecentlyFoundChats = A.withObject "ClearRecentlyFoundChats" $ \o -> do
+    return $ ClearRecentlyFoundChats {  }

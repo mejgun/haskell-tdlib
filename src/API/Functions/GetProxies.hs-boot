@@ -8,3 +8,7 @@ data GetProxies
 
 instance ToJSON GetProxies
 
+
+
+instance FromJSON GetProxies
+

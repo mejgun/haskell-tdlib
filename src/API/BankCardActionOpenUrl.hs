@@ -15,3 +15,16 @@ instance T.ToJSON BankCardActionOpenUrl where
   A.object [ "@type" A..= T.String "bankCardActionOpenUrl", "url" A..= url, "text" A..= text ]
 -- bankCardActionOpenUrl BankCardActionOpenUrl  { url :: String, text :: String } 
 
+
+
+instance T.FromJSON BankCardActionOpenUrl where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "bankCardActionOpenUrl" -> parseBankCardActionOpenUrl v
+  where
+   parseBankCardActionOpenUrl :: A.Value -> T.Parser BankCardActionOpenUrl
+   parseBankCardActionOpenUrl = A.withObject "BankCardActionOpenUrl" $ \o -> do
+    url <- o A..: "url"
+    text <- o A..: "text"
+    return $ BankCardActionOpenUrl { url = url, text = text }

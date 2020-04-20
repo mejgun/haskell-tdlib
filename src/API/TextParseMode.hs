@@ -21,3 +21,20 @@ instance T.ToJSON TextParseMode where
 
 -- textParseModeHTML TextParseMode 
 
+
+
+instance T.FromJSON TextParseMode where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "textParseModeMarkdown" -> parseTextParseModeMarkdown v
+   "textParseModeHTML" -> parseTextParseModeHTML v
+  where
+   parseTextParseModeMarkdown :: A.Value -> T.Parser TextParseMode
+   parseTextParseModeMarkdown = A.withObject "TextParseModeMarkdown" $ \o -> do
+    version <- o A..: "version"
+    return $ TextParseModeMarkdown { version = version }
+
+   parseTextParseModeHTML :: A.Value -> T.Parser TextParseMode
+   parseTextParseModeHTML = A.withObject "TextParseModeHTML" $ \o -> do
+    return $ TextParseModeHTML {  }

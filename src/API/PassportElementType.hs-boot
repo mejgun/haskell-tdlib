@@ -8,3 +8,7 @@ data PassportElementType
 
 instance ToJSON PassportElementType
 
+
+
+instance FromJSON PassportElementType
+

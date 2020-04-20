@@ -8,3 +8,7 @@ data ConfirmQrCodeAuthentication
 
 instance ToJSON ConfirmQrCodeAuthentication
 
+
+
+instance FromJSON ConfirmQrCodeAuthentication
+

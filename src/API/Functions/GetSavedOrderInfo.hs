@@ -15,3 +15,14 @@ instance T.ToJSON GetSavedOrderInfo where
   A.object [ "@type" A..= T.String "getSavedOrderInfo" ]
 -- getSavedOrderInfo GetSavedOrderInfo 
 
+
+
+instance T.FromJSON GetSavedOrderInfo where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getSavedOrderInfo" -> parseGetSavedOrderInfo v
+  where
+   parseGetSavedOrderInfo :: A.Value -> T.Parser GetSavedOrderInfo
+   parseGetSavedOrderInfo = A.withObject "GetSavedOrderInfo" $ \o -> do
+    return $ GetSavedOrderInfo {  }

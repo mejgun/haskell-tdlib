@@ -15,3 +15,15 @@ instance T.ToJSON GetEmojiSuggestionsUrl where
   A.object [ "@type" A..= T.String "getEmojiSuggestionsUrl", "language_code" A..= language_code ]
 -- getEmojiSuggestionsUrl GetEmojiSuggestionsUrl  { language_code :: String } 
 
+
+
+instance T.FromJSON GetEmojiSuggestionsUrl where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getEmojiSuggestionsUrl" -> parseGetEmojiSuggestionsUrl v
+  where
+   parseGetEmojiSuggestionsUrl :: A.Value -> T.Parser GetEmojiSuggestionsUrl
+   parseGetEmojiSuggestionsUrl = A.withObject "GetEmojiSuggestionsUrl" $ \o -> do
+    language_code <- o A..: "language_code"
+    return $ GetEmojiSuggestionsUrl { language_code = language_code }

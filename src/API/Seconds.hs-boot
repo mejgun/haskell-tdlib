@@ -8,3 +8,7 @@ data Seconds
 
 instance ToJSON Seconds
 
+
+
+instance FromJSON Seconds
+

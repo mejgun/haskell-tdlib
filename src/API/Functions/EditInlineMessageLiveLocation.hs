@@ -17,3 +17,17 @@ instance T.ToJSON EditInlineMessageLiveLocation where
   A.object [ "@type" A..= T.String "editInlineMessageLiveLocation", "location" A..= location, "reply_markup" A..= reply_markup, "inline_message_id" A..= inline_message_id ]
 -- editInlineMessageLiveLocation EditInlineMessageLiveLocation  { location :: Location.Location, reply_markup :: ReplyMarkup.ReplyMarkup, inline_message_id :: String } 
 
+
+
+instance T.FromJSON EditInlineMessageLiveLocation where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "editInlineMessageLiveLocation" -> parseEditInlineMessageLiveLocation v
+  where
+   parseEditInlineMessageLiveLocation :: A.Value -> T.Parser EditInlineMessageLiveLocation
+   parseEditInlineMessageLiveLocation = A.withObject "EditInlineMessageLiveLocation" $ \o -> do
+    location <- o A..: "location"
+    reply_markup <- o A..: "reply_markup"
+    inline_message_id <- o A..: "inline_message_id"
+    return $ EditInlineMessageLiveLocation { location = location, reply_markup = reply_markup, inline_message_id = inline_message_id }

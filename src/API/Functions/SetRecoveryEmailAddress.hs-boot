@@ -8,3 +8,7 @@ data SetRecoveryEmailAddress
 
 instance ToJSON SetRecoveryEmailAddress
 
+
+
+instance FromJSON SetRecoveryEmailAddress
+

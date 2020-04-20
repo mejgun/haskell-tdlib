@@ -8,3 +8,7 @@ data GetPollVoters
 
 instance ToJSON GetPollVoters
 
+
+
+instance FromJSON GetPollVoters
+

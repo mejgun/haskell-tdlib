@@ -8,3 +8,7 @@ data TestProxy
 
 instance ToJSON TestProxy
 
+
+
+instance FromJSON TestProxy
+

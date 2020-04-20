@@ -15,3 +15,15 @@ instance T.ToJSON SearchBackground where
   A.object [ "@type" A..= T.String "searchBackground", "name" A..= name ]
 -- searchBackground SearchBackground  { name :: String } 
 
+
+
+instance T.FromJSON SearchBackground where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "searchBackground" -> parseSearchBackground v
+  where
+   parseSearchBackground :: A.Value -> T.Parser SearchBackground
+   parseSearchBackground = A.withObject "SearchBackground" $ \o -> do
+    name <- o A..: "name"
+    return $ SearchBackground { name = name }

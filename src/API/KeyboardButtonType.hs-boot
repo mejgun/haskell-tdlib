@@ -8,3 +8,7 @@ data KeyboardButtonType
 
 instance ToJSON KeyboardButtonType
 
+
+
+instance FromJSON KeyboardButtonType
+

@@ -8,3 +8,7 @@ data MessageForwardInfo
 
 instance ToJSON MessageForwardInfo
 
+
+
+instance FromJSON MessageForwardInfo
+

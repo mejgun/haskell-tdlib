@@ -8,3 +8,7 @@ data TermsOfService
 
 instance ToJSON TermsOfService
 
+
+
+instance FromJSON TermsOfService
+

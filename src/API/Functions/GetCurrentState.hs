@@ -15,3 +15,14 @@ instance T.ToJSON GetCurrentState where
   A.object [ "@type" A..= T.String "getCurrentState" ]
 -- getCurrentState GetCurrentState 
 
+
+
+instance T.FromJSON GetCurrentState where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getCurrentState" -> parseGetCurrentState v
+  where
+   parseGetCurrentState :: A.Value -> T.Parser GetCurrentState
+   parseGetCurrentState = A.withObject "GetCurrentState" $ \o -> do
+    return $ GetCurrentState {  }

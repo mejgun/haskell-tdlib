@@ -8,3 +8,7 @@ data ViewTrendingStickerSets
 
 instance ToJSON ViewTrendingStickerSets
 
+
+
+instance FromJSON ViewTrendingStickerSets
+

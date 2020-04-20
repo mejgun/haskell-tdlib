@@ -8,3 +8,7 @@ data SetChatLocation
 
 instance ToJSON SetChatLocation
 
+
+
+instance FromJSON SetChatLocation
+

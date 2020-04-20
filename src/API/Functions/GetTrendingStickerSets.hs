@@ -15,3 +15,14 @@ instance T.ToJSON GetTrendingStickerSets where
   A.object [ "@type" A..= T.String "getTrendingStickerSets" ]
 -- getTrendingStickerSets GetTrendingStickerSets 
 
+
+
+instance T.FromJSON GetTrendingStickerSets where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getTrendingStickerSets" -> parseGetTrendingStickerSets v
+  where
+   parseGetTrendingStickerSets :: A.Value -> T.Parser GetTrendingStickerSets
+   parseGetTrendingStickerSets = A.withObject "GetTrendingStickerSets" $ \o -> do
+    return $ GetTrendingStickerSets {  }

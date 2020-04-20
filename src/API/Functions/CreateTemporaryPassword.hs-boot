@@ -8,3 +8,7 @@ data CreateTemporaryPassword
 
 instance ToJSON CreateTemporaryPassword
 
+
+
+instance FromJSON CreateTemporaryPassword
+

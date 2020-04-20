@@ -8,3 +8,7 @@ data SetNetworkType
 
 instance ToJSON SetNetworkType
 
+
+
+instance FromJSON SetNetworkType
+

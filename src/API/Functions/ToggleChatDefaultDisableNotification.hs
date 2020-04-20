@@ -15,3 +15,16 @@ instance T.ToJSON ToggleChatDefaultDisableNotification where
   A.object [ "@type" A..= T.String "toggleChatDefaultDisableNotification", "default_disable_notification" A..= default_disable_notification, "chat_id" A..= chat_id ]
 -- toggleChatDefaultDisableNotification ToggleChatDefaultDisableNotification  { default_disable_notification :: Bool, chat_id :: Int } 
 
+
+
+instance T.FromJSON ToggleChatDefaultDisableNotification where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "toggleChatDefaultDisableNotification" -> parseToggleChatDefaultDisableNotification v
+  where
+   parseToggleChatDefaultDisableNotification :: A.Value -> T.Parser ToggleChatDefaultDisableNotification
+   parseToggleChatDefaultDisableNotification = A.withObject "ToggleChatDefaultDisableNotification" $ \o -> do
+    default_disable_notification <- o A..: "default_disable_notification"
+    chat_id <- o A..: "chat_id"
+    return $ ToggleChatDefaultDisableNotification { default_disable_notification = default_disable_notification, chat_id = chat_id }

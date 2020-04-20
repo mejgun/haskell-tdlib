@@ -8,3 +8,7 @@ data SetStickerPositionInSet
 
 instance ToJSON SetStickerPositionInSet
 
+
+
+instance FromJSON SetStickerPositionInSet
+

@@ -8,3 +8,7 @@ data RichText
 
 instance ToJSON RichText
 
+
+
+instance FromJSON RichText
+

@@ -8,3 +8,7 @@ data InputPassportElementErrorSource
 
 instance ToJSON InputPassportElementErrorSource
 
+
+
+instance FromJSON InputPassportElementErrorSource
+

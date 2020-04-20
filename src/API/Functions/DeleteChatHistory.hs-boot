@@ -8,3 +8,7 @@ data DeleteChatHistory
 
 instance ToJSON DeleteChatHistory
 
+
+
+instance FromJSON DeleteChatHistory
+

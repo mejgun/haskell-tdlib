@@ -16,3 +16,18 @@ instance T.ToJSON OrderInfo where
   A.object [ "@type" A..= T.String "orderInfo", "shipping_address" A..= shipping_address, "email_address" A..= email_address, "phone_number" A..= phone_number, "name" A..= name ]
 -- orderInfo OrderInfo  { shipping_address :: Address.Address, email_address :: String, phone_number :: String, name :: String } 
 
+
+
+instance T.FromJSON OrderInfo where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "orderInfo" -> parseOrderInfo v
+  where
+   parseOrderInfo :: A.Value -> T.Parser OrderInfo
+   parseOrderInfo = A.withObject "OrderInfo" $ \o -> do
+    shipping_address <- o A..: "shipping_address"
+    email_address <- o A..: "email_address"
+    phone_number <- o A..: "phone_number"
+    name <- o A..: "name"
+    return $ OrderInfo { shipping_address = shipping_address, email_address = email_address, phone_number = phone_number, name = name }

@@ -15,3 +15,16 @@ instance T.ToJSON SearchContacts where
   A.object [ "@type" A..= T.String "searchContacts", "limit" A..= limit, "query" A..= query ]
 -- searchContacts SearchContacts  { limit :: Int, query :: String } 
 
+
+
+instance T.FromJSON SearchContacts where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "searchContacts" -> parseSearchContacts v
+  where
+   parseSearchContacts :: A.Value -> T.Parser SearchContacts
+   parseSearchContacts = A.withObject "SearchContacts" $ \o -> do
+    limit <- o A..: "limit"
+    query <- o A..: "query"
+    return $ SearchContacts { limit = limit, query = query }

@@ -8,3 +8,7 @@ data SetCustomLanguagePackString
 
 instance ToJSON SetCustomLanguagePackString
 
+
+
+instance FromJSON SetCustomLanguagePackString
+

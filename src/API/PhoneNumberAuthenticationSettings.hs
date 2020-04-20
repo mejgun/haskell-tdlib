@@ -15,3 +15,17 @@ instance T.ToJSON PhoneNumberAuthenticationSettings where
   A.object [ "@type" A..= T.String "phoneNumberAuthenticationSettings", "allow_sms_retriever_api" A..= allow_sms_retriever_api, "is_current_phone_number" A..= is_current_phone_number, "allow_flash_call" A..= allow_flash_call ]
 -- phoneNumberAuthenticationSettings PhoneNumberAuthenticationSettings  { allow_sms_retriever_api :: Bool, is_current_phone_number :: Bool, allow_flash_call :: Bool } 
 
+
+
+instance T.FromJSON PhoneNumberAuthenticationSettings where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "phoneNumberAuthenticationSettings" -> parsePhoneNumberAuthenticationSettings v
+  where
+   parsePhoneNumberAuthenticationSettings :: A.Value -> T.Parser PhoneNumberAuthenticationSettings
+   parsePhoneNumberAuthenticationSettings = A.withObject "PhoneNumberAuthenticationSettings" $ \o -> do
+    allow_sms_retriever_api <- o A..: "allow_sms_retriever_api"
+    is_current_phone_number <- o A..: "is_current_phone_number"
+    allow_flash_call <- o A..: "allow_flash_call"
+    return $ PhoneNumberAuthenticationSettings { allow_sms_retriever_api = allow_sms_retriever_api, is_current_phone_number = is_current_phone_number, allow_flash_call = allow_flash_call }

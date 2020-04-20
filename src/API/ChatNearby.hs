@@ -15,3 +15,16 @@ instance T.ToJSON ChatNearby where
   A.object [ "@type" A..= T.String "chatNearby", "distance" A..= distance, "chat_id" A..= chat_id ]
 -- chatNearby ChatNearby  { distance :: Int, chat_id :: Int } 
 
+
+
+instance T.FromJSON ChatNearby where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "chatNearby" -> parseChatNearby v
+  where
+   parseChatNearby :: A.Value -> T.Parser ChatNearby
+   parseChatNearby = A.withObject "ChatNearby" $ \o -> do
+    distance <- o A..: "distance"
+    chat_id <- o A..: "chat_id"
+    return $ ChatNearby { distance = distance, chat_id = chat_id }

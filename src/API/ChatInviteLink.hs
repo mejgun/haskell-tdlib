@@ -15,3 +15,15 @@ instance T.ToJSON ChatInviteLink where
   A.object [ "@type" A..= T.String "chatInviteLink", "invite_link" A..= invite_link ]
 -- chatInviteLink ChatInviteLink  { invite_link :: String } 
 
+
+
+instance T.FromJSON ChatInviteLink where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "chatInviteLink" -> parseChatInviteLink v
+  where
+   parseChatInviteLink :: A.Value -> T.Parser ChatInviteLink
+   parseChatInviteLink = A.withObject "ChatInviteLink" $ \o -> do
+    invite_link <- o A..: "invite_link"
+    return $ ChatInviteLink { invite_link = invite_link }

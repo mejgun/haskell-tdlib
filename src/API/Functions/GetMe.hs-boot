@@ -8,3 +8,7 @@ data GetMe
 
 instance ToJSON GetMe
 
+
+
+instance FromJSON GetMe
+

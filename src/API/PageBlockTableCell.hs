@@ -18,3 +18,20 @@ instance T.ToJSON PageBlockTableCell where
   A.object [ "@type" A..= T.String "pageBlockTableCell", "valign" A..= valign, "align" A..= align, "rowspan" A..= rowspan, "colspan" A..= colspan, "is_header" A..= is_header, "text" A..= text ]
 -- pageBlockTableCell PageBlockTableCell  { valign :: PageBlockVerticalAlignment.PageBlockVerticalAlignment, align :: PageBlockHorizontalAlignment.PageBlockHorizontalAlignment, rowspan :: Int, colspan :: Int, is_header :: Bool, text :: RichText.RichText } 
 
+
+
+instance T.FromJSON PageBlockTableCell where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "pageBlockTableCell" -> parsePageBlockTableCell v
+  where
+   parsePageBlockTableCell :: A.Value -> T.Parser PageBlockTableCell
+   parsePageBlockTableCell = A.withObject "PageBlockTableCell" $ \o -> do
+    valign <- o A..: "valign"
+    align <- o A..: "align"
+    rowspan <- o A..: "rowspan"
+    colspan <- o A..: "colspan"
+    is_header <- o A..: "is_header"
+    text <- o A..: "text"
+    return $ PageBlockTableCell { valign = valign, align = align, rowspan = rowspan, colspan = colspan, is_header = is_header, text = text }

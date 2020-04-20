@@ -8,3 +8,7 @@ data ToggleSupergroupSignMessages
 
 instance ToJSON ToggleSupergroupSignMessages
 
+
+
+instance FromJSON ToggleSupergroupSignMessages
+

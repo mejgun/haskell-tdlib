@@ -8,3 +8,7 @@ data SendChatAction
 
 instance ToJSON SendChatAction
 
+
+
+instance FromJSON SendChatAction
+

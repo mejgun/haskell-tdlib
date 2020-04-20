@@ -16,3 +16,19 @@ instance T.ToJSON TestProxy where
   A.object [ "@type" A..= T.String "testProxy", "timeout" A..= timeout, "dc_id" A..= dc_id, "type" A..= _type, "port" A..= port, "server" A..= server ]
 -- testProxy TestProxy  { timeout :: Float, dc_id :: Int, _type :: ProxyType.ProxyType, port :: Int, server :: String } 
 
+
+
+instance T.FromJSON TestProxy where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "testProxy" -> parseTestProxy v
+  where
+   parseTestProxy :: A.Value -> T.Parser TestProxy
+   parseTestProxy = A.withObject "TestProxy" $ \o -> do
+    timeout <- o A..: "timeout"
+    dc_id <- o A..: "dc_id"
+    _type <- o A..: "type"
+    port <- o A..: "port"
+    server <- o A..: "server"
+    return $ TestProxy { timeout = timeout, dc_id = dc_id, _type = _type, port = port, server = server }

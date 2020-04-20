@@ -8,3 +8,7 @@ data CallState
 
 instance ToJSON CallState
 
+
+
+instance FromJSON CallState
+

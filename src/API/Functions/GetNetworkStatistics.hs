@@ -15,3 +15,15 @@ instance T.ToJSON GetNetworkStatistics where
   A.object [ "@type" A..= T.String "getNetworkStatistics", "only_current" A..= only_current ]
 -- getNetworkStatistics GetNetworkStatistics  { only_current :: Bool } 
 
+
+
+instance T.FromJSON GetNetworkStatistics where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getNetworkStatistics" -> parseGetNetworkStatistics v
+  where
+   parseGetNetworkStatistics :: A.Value -> T.Parser GetNetworkStatistics
+   parseGetNetworkStatistics = A.withObject "GetNetworkStatistics" $ \o -> do
+    only_current <- o A..: "only_current"
+    return $ GetNetworkStatistics { only_current = only_current }

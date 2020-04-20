@@ -27,3 +27,29 @@ instance T.ToJSON MessageForwardOrigin where
 
 -- messageForwardOriginChannel MessageForwardOrigin  { author_signature :: String, message_id :: Int, chat_id :: Int } 
 
+
+
+instance T.FromJSON MessageForwardOrigin where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "messageForwardOriginUser" -> parseMessageForwardOriginUser v
+   "messageForwardOriginHiddenUser" -> parseMessageForwardOriginHiddenUser v
+   "messageForwardOriginChannel" -> parseMessageForwardOriginChannel v
+  where
+   parseMessageForwardOriginUser :: A.Value -> T.Parser MessageForwardOrigin
+   parseMessageForwardOriginUser = A.withObject "MessageForwardOriginUser" $ \o -> do
+    sender_user_id <- o A..: "sender_user_id"
+    return $ MessageForwardOriginUser { sender_user_id = sender_user_id }
+
+   parseMessageForwardOriginHiddenUser :: A.Value -> T.Parser MessageForwardOrigin
+   parseMessageForwardOriginHiddenUser = A.withObject "MessageForwardOriginHiddenUser" $ \o -> do
+    sender_name <- o A..: "sender_name"
+    return $ MessageForwardOriginHiddenUser { sender_name = sender_name }
+
+   parseMessageForwardOriginChannel :: A.Value -> T.Parser MessageForwardOrigin
+   parseMessageForwardOriginChannel = A.withObject "MessageForwardOriginChannel" $ \o -> do
+    author_signature <- o A..: "author_signature"
+    message_id <- o A..: "message_id"
+    chat_id <- o A..: "chat_id"
+    return $ MessageForwardOriginChannel { author_signature = author_signature, message_id = message_id, chat_id = chat_id }

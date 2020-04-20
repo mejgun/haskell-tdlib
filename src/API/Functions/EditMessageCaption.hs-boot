@@ -8,3 +8,7 @@ data EditMessageCaption
 
 instance ToJSON EditMessageCaption
 
+
+
+instance FromJSON EditMessageCaption
+

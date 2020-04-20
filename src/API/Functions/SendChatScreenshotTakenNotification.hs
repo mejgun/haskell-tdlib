@@ -15,3 +15,15 @@ instance T.ToJSON SendChatScreenshotTakenNotification where
   A.object [ "@type" A..= T.String "sendChatScreenshotTakenNotification", "chat_id" A..= chat_id ]
 -- sendChatScreenshotTakenNotification SendChatScreenshotTakenNotification  { chat_id :: Int } 
 
+
+
+instance T.FromJSON SendChatScreenshotTakenNotification where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "sendChatScreenshotTakenNotification" -> parseSendChatScreenshotTakenNotification v
+  where
+   parseSendChatScreenshotTakenNotification :: A.Value -> T.Parser SendChatScreenshotTakenNotification
+   parseSendChatScreenshotTakenNotification = A.withObject "SendChatScreenshotTakenNotification" $ \o -> do
+    chat_id <- o A..: "chat_id"
+    return $ SendChatScreenshotTakenNotification { chat_id = chat_id }

@@ -15,3 +15,16 @@ instance T.ToJSON SetName where
   A.object [ "@type" A..= T.String "setName", "last_name" A..= last_name, "first_name" A..= first_name ]
 -- setName SetName  { last_name :: String, first_name :: String } 
 
+
+
+instance T.FromJSON SetName where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setName" -> parseSetName v
+  where
+   parseSetName :: A.Value -> T.Parser SetName
+   parseSetName = A.withObject "SetName" $ \o -> do
+    last_name <- o A..: "last_name"
+    first_name <- o A..: "first_name"
+    return $ SetName { last_name = last_name, first_name = first_name }

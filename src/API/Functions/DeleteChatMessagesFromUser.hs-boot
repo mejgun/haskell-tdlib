@@ -8,3 +8,7 @@ data DeleteChatMessagesFromUser
 
 instance ToJSON DeleteChatMessagesFromUser
 
+
+
+instance FromJSON DeleteChatMessagesFromUser
+

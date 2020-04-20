@@ -15,3 +15,14 @@ instance T.ToJSON ResetAllNotificationSettings where
   A.object [ "@type" A..= T.String "resetAllNotificationSettings" ]
 -- resetAllNotificationSettings ResetAllNotificationSettings 
 
+
+
+instance T.FromJSON ResetAllNotificationSettings where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "resetAllNotificationSettings" -> parseResetAllNotificationSettings v
+  where
+   parseResetAllNotificationSettings :: A.Value -> T.Parser ResetAllNotificationSettings
+   parseResetAllNotificationSettings = A.withObject "ResetAllNotificationSettings" $ \o -> do
+    return $ ResetAllNotificationSettings {  }

@@ -8,3 +8,7 @@ data SendInlineQueryResultMessage
 
 instance ToJSON SendInlineQueryResultMessage
 
+
+
+instance FromJSON SendInlineQueryResultMessage
+

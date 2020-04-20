@@ -8,3 +8,7 @@ data InputSticker
 
 instance ToJSON InputSticker
 
+
+
+instance FromJSON InputSticker
+

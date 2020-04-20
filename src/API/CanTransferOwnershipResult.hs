@@ -33,3 +33,31 @@ instance T.ToJSON CanTransferOwnershipResult where
 
 -- canTransferOwnershipResultSessionTooFresh CanTransferOwnershipResult  { retry_after :: Int } 
 
+
+
+instance T.FromJSON CanTransferOwnershipResult where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "canTransferOwnershipResultOk" -> parseCanTransferOwnershipResultOk v
+   "canTransferOwnershipResultPasswordNeeded" -> parseCanTransferOwnershipResultPasswordNeeded v
+   "canTransferOwnershipResultPasswordTooFresh" -> parseCanTransferOwnershipResultPasswordTooFresh v
+   "canTransferOwnershipResultSessionTooFresh" -> parseCanTransferOwnershipResultSessionTooFresh v
+  where
+   parseCanTransferOwnershipResultOk :: A.Value -> T.Parser CanTransferOwnershipResult
+   parseCanTransferOwnershipResultOk = A.withObject "CanTransferOwnershipResultOk" $ \o -> do
+    return $ CanTransferOwnershipResultOk {  }
+
+   parseCanTransferOwnershipResultPasswordNeeded :: A.Value -> T.Parser CanTransferOwnershipResult
+   parseCanTransferOwnershipResultPasswordNeeded = A.withObject "CanTransferOwnershipResultPasswordNeeded" $ \o -> do
+    return $ CanTransferOwnershipResultPasswordNeeded {  }
+
+   parseCanTransferOwnershipResultPasswordTooFresh :: A.Value -> T.Parser CanTransferOwnershipResult
+   parseCanTransferOwnershipResultPasswordTooFresh = A.withObject "CanTransferOwnershipResultPasswordTooFresh" $ \o -> do
+    retry_after <- o A..: "retry_after"
+    return $ CanTransferOwnershipResultPasswordTooFresh { retry_after = retry_after }
+
+   parseCanTransferOwnershipResultSessionTooFresh :: A.Value -> T.Parser CanTransferOwnershipResult
+   parseCanTransferOwnershipResultSessionTooFresh = A.withObject "CanTransferOwnershipResultSessionTooFresh" $ \o -> do
+    retry_after <- o A..: "retry_after"
+    return $ CanTransferOwnershipResultSessionTooFresh { retry_after = retry_after }

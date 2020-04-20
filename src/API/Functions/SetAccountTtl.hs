@@ -16,3 +16,15 @@ instance T.ToJSON SetAccountTtl where
   A.object [ "@type" A..= T.String "setAccountTtl", "ttl" A..= ttl ]
 -- setAccountTtl SetAccountTtl  { ttl :: AccountTtl.AccountTtl } 
 
+
+
+instance T.FromJSON SetAccountTtl where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setAccountTtl" -> parseSetAccountTtl v
+  where
+   parseSetAccountTtl :: A.Value -> T.Parser SetAccountTtl
+   parseSetAccountTtl = A.withObject "SetAccountTtl" $ \o -> do
+    ttl <- o A..: "ttl"
+    return $ SetAccountTtl { ttl = ttl }

@@ -16,3 +16,18 @@ instance T.ToJSON CreateNewSupergroupChat where
   A.object [ "@type" A..= T.String "createNewSupergroupChat", "location" A..= location, "description" A..= description, "is_channel" A..= is_channel, "title" A..= title ]
 -- createNewSupergroupChat CreateNewSupergroupChat  { location :: ChatLocation.ChatLocation, description :: String, is_channel :: Bool, title :: String } 
 
+
+
+instance T.FromJSON CreateNewSupergroupChat where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "createNewSupergroupChat" -> parseCreateNewSupergroupChat v
+  where
+   parseCreateNewSupergroupChat :: A.Value -> T.Parser CreateNewSupergroupChat
+   parseCreateNewSupergroupChat = A.withObject "CreateNewSupergroupChat" $ \o -> do
+    location <- o A..: "location"
+    description <- o A..: "description"
+    is_channel <- o A..: "is_channel"
+    title <- o A..: "title"
+    return $ CreateNewSupergroupChat { location = location, description = description, is_channel = is_channel, title = title }

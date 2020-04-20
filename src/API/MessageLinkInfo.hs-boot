@@ -8,3 +8,7 @@ data MessageLinkInfo
 
 instance ToJSON MessageLinkInfo
 
+
+
+instance FromJSON MessageLinkInfo
+

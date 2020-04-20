@@ -8,3 +8,7 @@ data GetGroupsInCommon
 
 instance ToJSON GetGroupsInCommon
 
+
+
+instance FromJSON GetGroupsInCommon
+

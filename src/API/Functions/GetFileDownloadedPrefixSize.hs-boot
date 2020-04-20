@@ -8,3 +8,7 @@ data GetFileDownloadedPrefixSize
 
 instance ToJSON GetFileDownloadedPrefixSize
 
+
+
+instance FromJSON GetFileDownloadedPrefixSize
+

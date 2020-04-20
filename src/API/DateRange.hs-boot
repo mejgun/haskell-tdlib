@@ -8,3 +8,7 @@ data DateRange
 
 instance ToJSON DateRange
 
+
+
+instance FromJSON DateRange
+

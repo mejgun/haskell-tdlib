@@ -16,3 +16,16 @@ instance T.ToJSON RemoveTopChat where
   A.object [ "@type" A..= T.String "removeTopChat", "chat_id" A..= chat_id, "category" A..= category ]
 -- removeTopChat RemoveTopChat  { chat_id :: Int, category :: TopChatCategory.TopChatCategory } 
 
+
+
+instance T.FromJSON RemoveTopChat where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "removeTopChat" -> parseRemoveTopChat v
+  where
+   parseRemoveTopChat :: A.Value -> T.Parser RemoveTopChat
+   parseRemoveTopChat = A.withObject "RemoveTopChat" $ \o -> do
+    chat_id <- o A..: "chat_id"
+    category <- o A..: "category"
+    return $ RemoveTopChat { chat_id = chat_id, category = category }

@@ -8,3 +8,7 @@ data GetChatMessageByDate
 
 instance ToJSON GetChatMessageByDate
 
+
+
+instance FromJSON GetChatMessageByDate
+

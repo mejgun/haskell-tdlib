@@ -15,3 +15,15 @@ instance T.ToJSON GetFileMimeType where
   A.object [ "@type" A..= T.String "getFileMimeType", "file_name" A..= file_name ]
 -- getFileMimeType GetFileMimeType  { file_name :: String } 
 
+
+
+instance T.FromJSON GetFileMimeType where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getFileMimeType" -> parseGetFileMimeType v
+  where
+   parseGetFileMimeType :: A.Value -> T.Parser GetFileMimeType
+   parseGetFileMimeType = A.withObject "GetFileMimeType" $ \o -> do
+    file_name <- o A..: "file_name"
+    return $ GetFileMimeType { file_name = file_name }

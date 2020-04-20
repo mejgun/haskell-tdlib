@@ -16,3 +16,15 @@ instance T.ToJSON AddFavoriteSticker where
   A.object [ "@type" A..= T.String "addFavoriteSticker", "sticker" A..= sticker ]
 -- addFavoriteSticker AddFavoriteSticker  { sticker :: InputFile.InputFile } 
 
+
+
+instance T.FromJSON AddFavoriteSticker where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "addFavoriteSticker" -> parseAddFavoriteSticker v
+  where
+   parseAddFavoriteSticker :: A.Value -> T.Parser AddFavoriteSticker
+   parseAddFavoriteSticker = A.withObject "AddFavoriteSticker" $ \o -> do
+    sticker <- o A..: "sticker"
+    return $ AddFavoriteSticker { sticker = sticker }

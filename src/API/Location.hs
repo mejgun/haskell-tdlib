@@ -15,3 +15,16 @@ instance T.ToJSON Location where
   A.object [ "@type" A..= T.String "location", "longitude" A..= longitude, "latitude" A..= latitude ]
 -- location Location  { longitude :: Float, latitude :: Float } 
 
+
+
+instance T.FromJSON Location where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "location" -> parseLocation v
+  where
+   parseLocation :: A.Value -> T.Parser Location
+   parseLocation = A.withObject "Location" $ \o -> do
+    longitude <- o A..: "longitude"
+    latitude <- o A..: "latitude"
+    return $ Location { longitude = longitude, latitude = latitude }

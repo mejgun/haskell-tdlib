@@ -8,3 +8,7 @@ data Update
 
 instance ToJSON Update
 
+
+
+instance FromJSON Update
+

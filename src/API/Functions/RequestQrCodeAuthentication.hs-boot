@@ -8,3 +8,7 @@ data RequestQrCodeAuthentication
 
 instance ToJSON RequestQrCodeAuthentication
 
+
+
+instance FromJSON RequestQrCodeAuthentication
+

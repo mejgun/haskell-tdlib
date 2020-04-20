@@ -16,3 +16,16 @@ instance T.ToJSON AcceptCall where
   A.object [ "@type" A..= T.String "acceptCall", "protocol" A..= protocol, "call_id" A..= call_id ]
 -- acceptCall AcceptCall  { protocol :: CallProtocol.CallProtocol, call_id :: Int } 
 
+
+
+instance T.FromJSON AcceptCall where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "acceptCall" -> parseAcceptCall v
+  where
+   parseAcceptCall :: A.Value -> T.Parser AcceptCall
+   parseAcceptCall = A.withObject "AcceptCall" $ \o -> do
+    protocol <- o A..: "protocol"
+    call_id <- o A..: "call_id"
+    return $ AcceptCall { protocol = protocol, call_id = call_id }

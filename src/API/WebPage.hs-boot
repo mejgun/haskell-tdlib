@@ -8,3 +8,7 @@ data WebPage
 
 instance ToJSON WebPage
 
+
+
+instance FromJSON WebPage
+

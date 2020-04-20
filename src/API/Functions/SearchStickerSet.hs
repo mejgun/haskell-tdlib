@@ -15,3 +15,15 @@ instance T.ToJSON SearchStickerSet where
   A.object [ "@type" A..= T.String "searchStickerSet", "name" A..= name ]
 -- searchStickerSet SearchStickerSet  { name :: String } 
 
+
+
+instance T.FromJSON SearchStickerSet where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "searchStickerSet" -> parseSearchStickerSet v
+  where
+   parseSearchStickerSet :: A.Value -> T.Parser SearchStickerSet
+   parseSearchStickerSet = A.withObject "SearchStickerSet" $ \o -> do
+    name <- o A..: "name"
+    return $ SearchStickerSet { name = name }

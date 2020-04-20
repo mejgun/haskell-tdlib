@@ -15,3 +15,16 @@ instance T.ToJSON ResendMessages where
   A.object [ "@type" A..= T.String "resendMessages", "message_ids" A..= message_ids, "chat_id" A..= chat_id ]
 -- resendMessages ResendMessages  { message_ids :: [Int], chat_id :: Int } 
 
+
+
+instance T.FromJSON ResendMessages where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "resendMessages" -> parseResendMessages v
+  where
+   parseResendMessages :: A.Value -> T.Parser ResendMessages
+   parseResendMessages = A.withObject "ResendMessages" $ \o -> do
+    message_ids <- o A..: "message_ids"
+    chat_id <- o A..: "chat_id"
+    return $ ResendMessages { message_ids = message_ids, chat_id = chat_id }

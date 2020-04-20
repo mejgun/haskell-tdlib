@@ -39,3 +39,34 @@ instance T.ToJSON NetworkType where
 
 -- networkTypeOther NetworkType 
 
+
+
+instance T.FromJSON NetworkType where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "networkTypeNone" -> parseNetworkTypeNone v
+   "networkTypeMobile" -> parseNetworkTypeMobile v
+   "networkTypeMobileRoaming" -> parseNetworkTypeMobileRoaming v
+   "networkTypeWiFi" -> parseNetworkTypeWiFi v
+   "networkTypeOther" -> parseNetworkTypeOther v
+  where
+   parseNetworkTypeNone :: A.Value -> T.Parser NetworkType
+   parseNetworkTypeNone = A.withObject "NetworkTypeNone" $ \o -> do
+    return $ NetworkTypeNone {  }
+
+   parseNetworkTypeMobile :: A.Value -> T.Parser NetworkType
+   parseNetworkTypeMobile = A.withObject "NetworkTypeMobile" $ \o -> do
+    return $ NetworkTypeMobile {  }
+
+   parseNetworkTypeMobileRoaming :: A.Value -> T.Parser NetworkType
+   parseNetworkTypeMobileRoaming = A.withObject "NetworkTypeMobileRoaming" $ \o -> do
+    return $ NetworkTypeMobileRoaming {  }
+
+   parseNetworkTypeWiFi :: A.Value -> T.Parser NetworkType
+   parseNetworkTypeWiFi = A.withObject "NetworkTypeWiFi" $ \o -> do
+    return $ NetworkTypeWiFi {  }
+
+   parseNetworkTypeOther :: A.Value -> T.Parser NetworkType
+   parseNetworkTypeOther = A.withObject "NetworkTypeOther" $ \o -> do
+    return $ NetworkTypeOther {  }

@@ -70,6 +70,9 @@ writeToFiles addr modName m =
     , "\n\ninstance ToJSON "
     , d
     , "\n\n"
+    , "\n\ninstance FromJSON "
+    , d
+    , "\n\n"
     ]
   w d e a = T.unpack $ T.concat
     [ "-- GENERATED\n"
@@ -117,12 +120,74 @@ writeToFiles addr modName m =
         ]
       )
       e
-    -- { x = x }) =
-    --A.object ["@type" A..= T.String "koort", "x" A..= x]
     , T.intercalate "\n"
       $ map (\(a, b) -> T.concat ["\n-- ", a, " ", m, " ", www b]) e
     , "\n\n"
+    , "\n\ninstance T.FromJSON "
+    , m
+    , " where\n"
+    , " parseJSON v@(T.Object obj) = do\n"
+    , "  t <- obj A..: \"@type\" :: T.Parser String\n"
+    , "  case t of\n"
+    , T.intercalate "\n" $ map
+      (\(a, b) -> T.concat ["   \"", a, "\" -> parse", toTitle a, " v"])
+      e
+    , "\n  where\n"
+    , T.intercalate "\n\n" $ map
+      (\(a, b) -> T.concat
+        [ "   parse"
+        , toTitle a
+        , " :: A.Value -> T.Parser "
+        , m
+        , "\n"
+        , if m /= "GeneralResult"
+          then T.concat
+            [ "   parse"
+            , toTitle a
+            , " = A.withObject \""
+            , toTitle a
+            , "\" $ \\o -> do\n"
+            , T.intercalate "\n"
+            $  map
+                 (\(c, _) ->
+                   T.concat
+                     ["    ", c, " <- o A..: \"", T.dropAround (== '_') c, "\""]
+                 )
+                 b
+            ++ [ T.concat
+                   [ "    return $ "
+                   , toTitle a
+                   , " { "
+                   , T.intercalate ", "
+                     $ map (\(c, _) -> T.concat [c, " = ", c]) b
+                   , " }"
+                   ]
+               ]
+            ]
+          else T.concat
+            [ "   parse"
+            , toTitle a
+            , " v = do\n"
+            , "    d <- A.parseJSON v :: T.Parser "
+            , a
+            , "."
+            , a
+            , "\n    return $ "
+            , a
+            , " d"
+            ]
+        ]
+      )
+      e
     ]
+
+{-
+    parseAuthorizationState v = do
+      d <- A.parseJSON v :: T.Parser AuthorizationState.AuthorizationState
+      return $ AuthorizationState d
+-}
+
+
   ww :: [(T.Text, [(T.Text, T.Text)])] -> T.Text
   ww e =
     T.intercalate " \n | " $ map (\(a, b) -> T.concat [toTitle a, www b]) e

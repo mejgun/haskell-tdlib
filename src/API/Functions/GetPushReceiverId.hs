@@ -15,3 +15,15 @@ instance T.ToJSON GetPushReceiverId where
   A.object [ "@type" A..= T.String "getPushReceiverId", "payload" A..= payload ]
 -- getPushReceiverId GetPushReceiverId  { payload :: String } 
 
+
+
+instance T.FromJSON GetPushReceiverId where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getPushReceiverId" -> parseGetPushReceiverId v
+  where
+   parseGetPushReceiverId :: A.Value -> T.Parser GetPushReceiverId
+   parseGetPushReceiverId = A.withObject "GetPushReceiverId" $ \o -> do
+    payload <- o A..: "payload"
+    return $ GetPushReceiverId { payload = payload }

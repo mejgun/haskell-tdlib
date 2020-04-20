@@ -8,3 +8,7 @@ data CheckEmailAddressVerificationCode
 
 instance ToJSON CheckEmailAddressVerificationCode
 
+
+
+instance FromJSON CheckEmailAddressVerificationCode
+

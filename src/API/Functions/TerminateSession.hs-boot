@@ -8,3 +8,7 @@ data TerminateSession
 
 instance ToJSON TerminateSession
 
+
+
+instance FromJSON TerminateSession
+

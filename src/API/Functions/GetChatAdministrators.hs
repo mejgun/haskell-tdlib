@@ -15,3 +15,15 @@ instance T.ToJSON GetChatAdministrators where
   A.object [ "@type" A..= T.String "getChatAdministrators", "chat_id" A..= chat_id ]
 -- getChatAdministrators GetChatAdministrators  { chat_id :: Int } 
 
+
+
+instance T.FromJSON GetChatAdministrators where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getChatAdministrators" -> parseGetChatAdministrators v
+  where
+   parseGetChatAdministrators :: A.Value -> T.Parser GetChatAdministrators
+   parseGetChatAdministrators = A.withObject "GetChatAdministrators" $ \o -> do
+    chat_id <- o A..: "chat_id"
+    return $ GetChatAdministrators { chat_id = chat_id }

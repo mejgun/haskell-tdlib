@@ -8,3 +8,7 @@ data SetAccountTtl
 
 instance ToJSON SetAccountTtl
 
+
+
+instance FromJSON SetAccountTtl
+

@@ -16,3 +16,19 @@ instance T.ToJSON WebPageInstantView where
   A.object [ "@type" A..= T.String "webPageInstantView", "is_full" A..= is_full, "is_rtl" A..= is_rtl, "version" A..= version, "view_count" A..= view_count, "page_blocks" A..= page_blocks ]
 -- webPageInstantView WebPageInstantView  { is_full :: Bool, is_rtl :: Bool, version :: Int, view_count :: Int, page_blocks :: [PageBlock.PageBlock] } 
 
+
+
+instance T.FromJSON WebPageInstantView where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "webPageInstantView" -> parseWebPageInstantView v
+  where
+   parseWebPageInstantView :: A.Value -> T.Parser WebPageInstantView
+   parseWebPageInstantView = A.withObject "WebPageInstantView" $ \o -> do
+    is_full <- o A..: "is_full"
+    is_rtl <- o A..: "is_rtl"
+    version <- o A..: "version"
+    view_count <- o A..: "view_count"
+    page_blocks <- o A..: "page_blocks"
+    return $ WebPageInstantView { is_full = is_full, is_rtl = is_rtl, version = version, view_count = view_count, page_blocks = page_blocks }

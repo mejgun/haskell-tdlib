@@ -8,3 +8,7 @@ data InputBackground
 
 instance ToJSON InputBackground
 
+
+
+instance FromJSON InputBackground
+

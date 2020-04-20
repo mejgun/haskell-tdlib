@@ -8,3 +8,7 @@ data GetMessages
 
 instance ToJSON GetMessages
 
+
+
+instance FromJSON GetMessages
+

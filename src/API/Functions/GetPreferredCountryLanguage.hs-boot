@@ -8,3 +8,7 @@ data GetPreferredCountryLanguage
 
 instance ToJSON GetPreferredCountryLanguage
 
+
+
+instance FromJSON GetPreferredCountryLanguage
+

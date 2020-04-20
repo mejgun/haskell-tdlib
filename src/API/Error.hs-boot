@@ -8,3 +8,7 @@ data Error
 
 instance ToJSON Error
 
+
+
+instance FromJSON Error
+

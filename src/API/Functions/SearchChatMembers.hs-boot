@@ -8,3 +8,7 @@ data SearchChatMembers
 
 instance ToJSON SearchChatMembers
 
+
+
+instance FromJSON SearchChatMembers
+

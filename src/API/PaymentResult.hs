@@ -15,3 +15,16 @@ instance T.ToJSON PaymentResult where
   A.object [ "@type" A..= T.String "paymentResult", "verification_url" A..= verification_url, "success" A..= success ]
 -- paymentResult PaymentResult  { verification_url :: String, success :: Bool } 
 
+
+
+instance T.FromJSON PaymentResult where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "paymentResult" -> parsePaymentResult v
+  where
+   parsePaymentResult :: A.Value -> T.Parser PaymentResult
+   parsePaymentResult = A.withObject "PaymentResult" $ \o -> do
+    verification_url <- o A..: "verification_url"
+    success <- o A..: "success"
+    return $ PaymentResult { verification_url = verification_url, success = success }

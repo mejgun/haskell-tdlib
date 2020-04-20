@@ -8,3 +8,7 @@ data ChatActionBar
 
 instance ToJSON ChatActionBar
 
+
+
+instance FromJSON ChatActionBar
+

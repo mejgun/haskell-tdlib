@@ -21,3 +21,23 @@ instance T.ToJSON BackgroundFill where
 
 -- backgroundFillGradient BackgroundFill  { rotation_angle :: Int, bottom_color :: Int, top_color :: Int } 
 
+
+
+instance T.FromJSON BackgroundFill where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "backgroundFillSolid" -> parseBackgroundFillSolid v
+   "backgroundFillGradient" -> parseBackgroundFillGradient v
+  where
+   parseBackgroundFillSolid :: A.Value -> T.Parser BackgroundFill
+   parseBackgroundFillSolid = A.withObject "BackgroundFillSolid" $ \o -> do
+    color <- o A..: "color"
+    return $ BackgroundFillSolid { color = color }
+
+   parseBackgroundFillGradient :: A.Value -> T.Parser BackgroundFill
+   parseBackgroundFillGradient = A.withObject "BackgroundFillGradient" $ \o -> do
+    rotation_angle <- o A..: "rotation_angle"
+    bottom_color <- o A..: "bottom_color"
+    top_color <- o A..: "top_color"
+    return $ BackgroundFillGradient { rotation_angle = rotation_angle, bottom_color = bottom_color, top_color = top_color }

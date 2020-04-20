@@ -15,3 +15,16 @@ instance T.ToJSON PublicMessageLink where
   A.object [ "@type" A..= T.String "publicMessageLink", "html" A..= html, "link" A..= link ]
 -- publicMessageLink PublicMessageLink  { html :: String, link :: String } 
 
+
+
+instance T.FromJSON PublicMessageLink where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "publicMessageLink" -> parsePublicMessageLink v
+  where
+   parsePublicMessageLink :: A.Value -> T.Parser PublicMessageLink
+   parsePublicMessageLink = A.withObject "PublicMessageLink" $ \o -> do
+    html <- o A..: "html"
+    link <- o A..: "link"
+    return $ PublicMessageLink { html = html, link = link }

@@ -16,3 +16,16 @@ instance T.ToJSON FoundMessages where
   A.object [ "@type" A..= T.String "foundMessages", "next_from_search_id" A..= next_from_search_id, "messages" A..= messages ]
 -- foundMessages FoundMessages  { next_from_search_id :: Int, messages :: [Message.Message] } 
 
+
+
+instance T.FromJSON FoundMessages where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "foundMessages" -> parseFoundMessages v
+  where
+   parseFoundMessages :: A.Value -> T.Parser FoundMessages
+   parseFoundMessages = A.withObject "FoundMessages" $ \o -> do
+    next_from_search_id <- o A..: "next_from_search_id"
+    messages <- o A..: "messages"
+    return $ FoundMessages { next_from_search_id = next_from_search_id, messages = messages }

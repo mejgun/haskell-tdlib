@@ -8,3 +8,7 @@ data GetStorageStatisticsFast
 
 instance ToJSON GetStorageStatisticsFast
 
+
+
+instance FromJSON GetStorageStatisticsFast
+

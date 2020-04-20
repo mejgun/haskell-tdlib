@@ -8,3 +8,7 @@ data CheckPhoneNumberVerificationCode
 
 instance ToJSON CheckPhoneNumberVerificationCode
 
+
+
+instance FromJSON CheckPhoneNumberVerificationCode
+

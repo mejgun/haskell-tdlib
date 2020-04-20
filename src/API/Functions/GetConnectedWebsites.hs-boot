@@ -8,3 +8,7 @@ data GetConnectedWebsites
 
 instance ToJSON GetConnectedWebsites
 
+
+
+instance FromJSON GetConnectedWebsites
+

@@ -8,3 +8,7 @@ data SendMessageAlbum
 
 instance ToJSON SendMessageAlbum
 
+
+
+instance FromJSON SendMessageAlbum
+

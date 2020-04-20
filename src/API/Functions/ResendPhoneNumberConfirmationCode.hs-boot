@@ -8,3 +8,7 @@ data ResendPhoneNumberConfirmationCode
 
 instance ToJSON ResendPhoneNumberConfirmationCode
 
+
+
+instance FromJSON ResendPhoneNumberConfirmationCode
+

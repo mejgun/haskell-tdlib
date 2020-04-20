@@ -8,3 +8,7 @@ data ForwardMessages
 
 instance ToJSON ForwardMessages
 
+
+
+instance FromJSON ForwardMessages
+

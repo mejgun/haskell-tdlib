@@ -8,3 +8,7 @@ data PassportSuitableElement
 
 instance ToJSON PassportSuitableElement
 
+
+
+instance FromJSON PassportSuitableElement
+

@@ -8,3 +8,7 @@ data PageBlockCaption
 
 instance ToJSON PageBlockCaption
 
+
+
+instance FromJSON PageBlockCaption
+

@@ -8,3 +8,7 @@ data TestUseUpdate
 
 instance ToJSON TestUseUpdate
 
+
+
+instance FromJSON TestUseUpdate
+

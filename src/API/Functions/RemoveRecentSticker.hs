@@ -16,3 +16,16 @@ instance T.ToJSON RemoveRecentSticker where
   A.object [ "@type" A..= T.String "removeRecentSticker", "sticker" A..= sticker, "is_attached" A..= is_attached ]
 -- removeRecentSticker RemoveRecentSticker  { sticker :: InputFile.InputFile, is_attached :: Bool } 
 
+
+
+instance T.FromJSON RemoveRecentSticker where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "removeRecentSticker" -> parseRemoveRecentSticker v
+  where
+   parseRemoveRecentSticker :: A.Value -> T.Parser RemoveRecentSticker
+   parseRemoveRecentSticker = A.withObject "RemoveRecentSticker" $ \o -> do
+    sticker <- o A..: "sticker"
+    is_attached <- o A..: "is_attached"
+    return $ RemoveRecentSticker { sticker = sticker, is_attached = is_attached }

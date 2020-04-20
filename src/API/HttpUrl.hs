@@ -15,3 +15,15 @@ instance T.ToJSON HttpUrl where
   A.object [ "@type" A..= T.String "httpUrl", "url" A..= url ]
 -- httpUrl HttpUrl  { url :: String } 
 
+
+
+instance T.FromJSON HttpUrl where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "httpUrl" -> parseHttpUrl v
+  where
+   parseHttpUrl :: A.Value -> T.Parser HttpUrl
+   parseHttpUrl = A.withObject "HttpUrl" $ \o -> do
+    url <- o A..: "url"
+    return $ HttpUrl { url = url }

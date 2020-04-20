@@ -15,3 +15,15 @@ instance T.ToJSON FilePart where
   A.object [ "@type" A..= T.String "filePart", "data" A..= _data ]
 -- filePart FilePart  { _data :: String } 
 
+
+
+instance T.FromJSON FilePart where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "filePart" -> parseFilePart v
+  where
+   parseFilePart :: A.Value -> T.Parser FilePart
+   parseFilePart = A.withObject "FilePart" $ \o -> do
+    _data <- o A..: "data"
+    return $ FilePart { _data = _data }

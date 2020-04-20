@@ -8,3 +8,7 @@ data SecretChatState
 
 instance ToJSON SecretChatState
 
+
+
+instance FromJSON SecretChatState
+

@@ -15,3 +15,14 @@ instance T.ToJSON TestNetwork where
   A.object [ "@type" A..= T.String "testNetwork" ]
 -- testNetwork TestNetwork 
 
+
+
+instance T.FromJSON TestNetwork where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "testNetwork" -> parseTestNetwork v
+  where
+   parseTestNetwork :: A.Value -> T.Parser TestNetwork
+   parseTestNetwork = A.withObject "TestNetwork" $ \o -> do
+    return $ TestNetwork {  }

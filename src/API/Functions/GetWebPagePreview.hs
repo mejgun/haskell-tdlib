@@ -16,3 +16,15 @@ instance T.ToJSON GetWebPagePreview where
   A.object [ "@type" A..= T.String "getWebPagePreview", "text" A..= text ]
 -- getWebPagePreview GetWebPagePreview  { text :: FormattedText.FormattedText } 
 
+
+
+instance T.FromJSON GetWebPagePreview where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getWebPagePreview" -> parseGetWebPagePreview v
+  where
+   parseGetWebPagePreview :: A.Value -> T.Parser GetWebPagePreview
+   parseGetWebPagePreview = A.withObject "GetWebPagePreview" $ \o -> do
+    text <- o A..: "text"
+    return $ GetWebPagePreview { text = text }

@@ -16,3 +16,16 @@ instance T.ToJSON TMeUrl where
   A.object [ "@type" A..= T.String "tMeUrl", "type" A..= _type, "url" A..= url ]
 -- tMeUrl TMeUrl  { _type :: TMeUrlType.TMeUrlType, url :: String } 
 
+
+
+instance T.FromJSON TMeUrl where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "tMeUrl" -> parseTMeUrl v
+  where
+   parseTMeUrl :: A.Value -> T.Parser TMeUrl
+   parseTMeUrl = A.withObject "TMeUrl" $ \o -> do
+    _type <- o A..: "type"
+    url <- o A..: "url"
+    return $ TMeUrl { _type = _type, url = url }

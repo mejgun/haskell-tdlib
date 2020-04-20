@@ -15,3 +15,16 @@ instance T.ToJSON GetChatMessageByDate where
   A.object [ "@type" A..= T.String "getChatMessageByDate", "date" A..= date, "chat_id" A..= chat_id ]
 -- getChatMessageByDate GetChatMessageByDate  { date :: Int, chat_id :: Int } 
 
+
+
+instance T.FromJSON GetChatMessageByDate where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getChatMessageByDate" -> parseGetChatMessageByDate v
+  where
+   parseGetChatMessageByDate :: A.Value -> T.Parser GetChatMessageByDate
+   parseGetChatMessageByDate = A.withObject "GetChatMessageByDate" $ \o -> do
+    date <- o A..: "date"
+    chat_id <- o A..: "chat_id"
+    return $ GetChatMessageByDate { date = date, chat_id = chat_id }

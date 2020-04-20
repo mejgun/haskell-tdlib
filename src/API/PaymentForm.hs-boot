@@ -8,3 +8,7 @@ data PaymentForm
 
 instance ToJSON PaymentForm
 
+
+
+instance FromJSON PaymentForm
+

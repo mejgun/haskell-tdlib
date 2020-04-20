@@ -16,3 +16,15 @@ instance T.ToJSON Sessions where
   A.object [ "@type" A..= T.String "sessions", "sessions" A..= sessions ]
 -- sessions Sessions  { sessions :: [Session.Session] } 
 
+
+
+instance T.FromJSON Sessions where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "sessions" -> parseSessions v
+  where
+   parseSessions :: A.Value -> T.Parser Sessions
+   parseSessions = A.withObject "Sessions" $ \o -> do
+    sessions <- o A..: "sessions"
+    return $ Sessions { sessions = sessions }

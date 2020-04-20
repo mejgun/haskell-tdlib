@@ -15,3 +15,15 @@ instance T.ToJSON DeleteFile where
   A.object [ "@type" A..= T.String "deleteFile", "file_id" A..= file_id ]
 -- deleteFile DeleteFile  { file_id :: Int } 
 
+
+
+instance T.FromJSON DeleteFile where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "deleteFile" -> parseDeleteFile v
+  where
+   parseDeleteFile :: A.Value -> T.Parser DeleteFile
+   parseDeleteFile = A.withObject "DeleteFile" $ \o -> do
+    file_id <- o A..: "file_id"
+    return $ DeleteFile { file_id = file_id }

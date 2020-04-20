@@ -16,3 +16,15 @@ instance T.ToJSON SetNetworkType where
   A.object [ "@type" A..= T.String "setNetworkType", "type" A..= _type ]
 -- setNetworkType SetNetworkType  { _type :: NetworkType.NetworkType } 
 
+
+
+instance T.FromJSON SetNetworkType where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setNetworkType" -> parseSetNetworkType v
+  where
+   parseSetNetworkType :: A.Value -> T.Parser SetNetworkType
+   parseSetNetworkType = A.withObject "SetNetworkType" $ \o -> do
+    _type <- o A..: "type"
+    return $ SetNetworkType { _type = _type }

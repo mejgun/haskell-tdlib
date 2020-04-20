@@ -8,3 +8,7 @@ data OrderInfo
 
 instance ToJSON OrderInfo
 
+
+
+instance FromJSON OrderInfo
+

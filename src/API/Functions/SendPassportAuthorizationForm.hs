@@ -16,3 +16,16 @@ instance T.ToJSON SendPassportAuthorizationForm where
   A.object [ "@type" A..= T.String "sendPassportAuthorizationForm", "types" A..= types, "autorization_form_id" A..= autorization_form_id ]
 -- sendPassportAuthorizationForm SendPassportAuthorizationForm  { types :: [PassportElementType.PassportElementType], autorization_form_id :: Int } 
 
+
+
+instance T.FromJSON SendPassportAuthorizationForm where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "sendPassportAuthorizationForm" -> parseSendPassportAuthorizationForm v
+  where
+   parseSendPassportAuthorizationForm :: A.Value -> T.Parser SendPassportAuthorizationForm
+   parseSendPassportAuthorizationForm = A.withObject "SendPassportAuthorizationForm" $ \o -> do
+    types <- o A..: "types"
+    autorization_form_id <- o A..: "autorization_form_id"
+    return $ SendPassportAuthorizationForm { types = types, autorization_form_id = autorization_form_id }

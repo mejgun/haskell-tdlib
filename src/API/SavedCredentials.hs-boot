@@ -8,3 +8,7 @@ data SavedCredentials
 
 instance ToJSON SavedCredentials
 
+
+
+instance FromJSON SavedCredentials
+

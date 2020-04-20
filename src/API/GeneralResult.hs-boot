@@ -8,3 +8,7 @@ data GeneralResult
 
 instance ToJSON GeneralResult
 
+
+
+instance FromJSON GeneralResult
+

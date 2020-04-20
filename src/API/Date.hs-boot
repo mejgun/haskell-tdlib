@@ -8,3 +8,7 @@ data Date
 
 instance ToJSON Date
 
+
+
+instance FromJSON Date
+

@@ -16,3 +16,18 @@ instance T.ToJSON SearchChatMembers where
   A.object [ "@type" A..= T.String "searchChatMembers", "filter" A..= _filter, "limit" A..= limit, "query" A..= query, "chat_id" A..= chat_id ]
 -- searchChatMembers SearchChatMembers  { _filter :: ChatMembersFilter.ChatMembersFilter, limit :: Int, query :: String, chat_id :: Int } 
 
+
+
+instance T.FromJSON SearchChatMembers where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "searchChatMembers" -> parseSearchChatMembers v
+  where
+   parseSearchChatMembers :: A.Value -> T.Parser SearchChatMembers
+   parseSearchChatMembers = A.withObject "SearchChatMembers" $ \o -> do
+    _filter <- o A..: "filter"
+    limit <- o A..: "limit"
+    query <- o A..: "query"
+    chat_id <- o A..: "chat_id"
+    return $ SearchChatMembers { _filter = _filter, limit = limit, query = query, chat_id = chat_id }

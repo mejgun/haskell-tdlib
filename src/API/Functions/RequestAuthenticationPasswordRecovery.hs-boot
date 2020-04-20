@@ -8,3 +8,7 @@ data RequestAuthenticationPasswordRecovery
 
 instance ToJSON RequestAuthenticationPasswordRecovery
 
+
+
+instance FromJSON RequestAuthenticationPasswordRecovery
+

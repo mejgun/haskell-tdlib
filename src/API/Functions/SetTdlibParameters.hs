@@ -16,3 +16,15 @@ instance T.ToJSON SetTdlibParameters where
   A.object [ "@type" A..= T.String "setTdlibParameters", "parameters" A..= parameters ]
 -- setTdlibParameters SetTdlibParameters  { parameters :: TdlibParameters.TdlibParameters } 
 
+
+
+instance T.FromJSON SetTdlibParameters where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setTdlibParameters" -> parseSetTdlibParameters v
+  where
+   parseSetTdlibParameters :: A.Value -> T.Parser SetTdlibParameters
+   parseSetTdlibParameters = A.withObject "SetTdlibParameters" $ \o -> do
+    parameters <- o A..: "parameters"
+    return $ SetTdlibParameters { parameters = parameters }

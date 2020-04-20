@@ -8,3 +8,7 @@ data UserFullInfo
 
 instance ToJSON UserFullInfo
 
+
+
+instance FromJSON UserFullInfo
+

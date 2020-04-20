@@ -15,3 +15,15 @@ instance T.ToJSON GetProxyLink where
   A.object [ "@type" A..= T.String "getProxyLink", "proxy_id" A..= proxy_id ]
 -- getProxyLink GetProxyLink  { proxy_id :: Int } 
 
+
+
+instance T.FromJSON GetProxyLink where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getProxyLink" -> parseGetProxyLink v
+  where
+   parseGetProxyLink :: A.Value -> T.Parser GetProxyLink
+   parseGetProxyLink = A.withObject "GetProxyLink" $ \o -> do
+    proxy_id <- o A..: "proxy_id"
+    return $ GetProxyLink { proxy_id = proxy_id }

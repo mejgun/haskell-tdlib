@@ -16,3 +16,15 @@ instance T.ToJSON GetStickerEmojis where
   A.object [ "@type" A..= T.String "getStickerEmojis", "sticker" A..= sticker ]
 -- getStickerEmojis GetStickerEmojis  { sticker :: InputFile.InputFile } 
 
+
+
+instance T.FromJSON GetStickerEmojis where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getStickerEmojis" -> parseGetStickerEmojis v
+  where
+   parseGetStickerEmojis :: A.Value -> T.Parser GetStickerEmojis
+   parseGetStickerEmojis = A.withObject "GetStickerEmojis" $ \o -> do
+    sticker <- o A..: "sticker"
+    return $ GetStickerEmojis { sticker = sticker }

@@ -16,3 +16,15 @@ instance T.ToJSON Proxies where
   A.object [ "@type" A..= T.String "proxies", "proxies" A..= proxies ]
 -- proxies Proxies  { proxies :: [Proxy.Proxy] } 
 
+
+
+instance T.FromJSON Proxies where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "proxies" -> parseProxies v
+  where
+   parseProxies :: A.Value -> T.Parser Proxies
+   parseProxies = A.withObject "Proxies" $ \o -> do
+    proxies <- o A..: "proxies"
+    return $ Proxies { proxies = proxies }

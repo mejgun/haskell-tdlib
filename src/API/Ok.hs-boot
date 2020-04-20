@@ -8,3 +8,7 @@ data Ok
 
 instance ToJSON Ok
 
+
+
+instance FromJSON Ok
+

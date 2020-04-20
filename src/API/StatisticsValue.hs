@@ -15,3 +15,17 @@ instance T.ToJSON StatisticsValue where
   A.object [ "@type" A..= T.String "statisticsValue", "growth_rate_percentage" A..= growth_rate_percentage, "previous_value" A..= previous_value, "value" A..= value ]
 -- statisticsValue StatisticsValue  { growth_rate_percentage :: Float, previous_value :: Float, value :: Float } 
 
+
+
+instance T.FromJSON StatisticsValue where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "statisticsValue" -> parseStatisticsValue v
+  where
+   parseStatisticsValue :: A.Value -> T.Parser StatisticsValue
+   parseStatisticsValue = A.withObject "StatisticsValue" $ \o -> do
+    growth_rate_percentage <- o A..: "growth_rate_percentage"
+    previous_value <- o A..: "previous_value"
+    value <- o A..: "value"
+    return $ StatisticsValue { growth_rate_percentage = growth_rate_percentage, previous_value = previous_value, value = value }

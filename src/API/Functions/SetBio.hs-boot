@@ -8,3 +8,7 @@ data SetBio
 
 instance ToJSON SetBio
 
+
+
+instance FromJSON SetBio
+

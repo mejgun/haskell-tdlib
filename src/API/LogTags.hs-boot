@@ -8,3 +8,7 @@ data LogTags
 
 instance ToJSON LogTags
 
+
+
+instance FromJSON LogTags
+

@@ -16,3 +16,15 @@ instance T.ToJSON SetCommands where
   A.object [ "@type" A..= T.String "setCommands", "commands" A..= commands ]
 -- setCommands SetCommands  { commands :: [BotCommand.BotCommand] } 
 
+
+
+instance T.FromJSON SetCommands where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setCommands" -> parseSetCommands v
+  where
+   parseSetCommands :: A.Value -> T.Parser SetCommands
+   parseSetCommands = A.withObject "SetCommands" $ \o -> do
+    commands <- o A..: "commands"
+    return $ SetCommands { commands = commands }

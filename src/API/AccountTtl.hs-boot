@@ -8,3 +8,7 @@ data AccountTtl
 
 instance ToJSON AccountTtl
 
+
+
+instance FromJSON AccountTtl
+

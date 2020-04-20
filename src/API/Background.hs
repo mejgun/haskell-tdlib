@@ -17,3 +17,20 @@ instance T.ToJSON Background where
   A.object [ "@type" A..= T.String "background", "type" A..= _type, "document" A..= document, "name" A..= name, "is_dark" A..= is_dark, "is_default" A..= is_default, "id" A..= _id ]
 -- background Background  { _type :: BackgroundType.BackgroundType, document :: Document.Document, name :: String, is_dark :: Bool, is_default :: Bool, _id :: Int } 
 
+
+
+instance T.FromJSON Background where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "background" -> parseBackground v
+  where
+   parseBackground :: A.Value -> T.Parser Background
+   parseBackground = A.withObject "Background" $ \o -> do
+    _type <- o A..: "type"
+    document <- o A..: "document"
+    name <- o A..: "name"
+    is_dark <- o A..: "is_dark"
+    is_default <- o A..: "is_default"
+    _id <- o A..: "id"
+    return $ Background { _type = _type, document = document, name = name, is_dark = is_dark, is_default = is_default, _id = _id }

@@ -15,3 +15,14 @@ instance T.ToJSON ResendPhoneNumberConfirmationCode where
   A.object [ "@type" A..= T.String "resendPhoneNumberConfirmationCode" ]
 -- resendPhoneNumberConfirmationCode ResendPhoneNumberConfirmationCode 
 
+
+
+instance T.FromJSON ResendPhoneNumberConfirmationCode where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "resendPhoneNumberConfirmationCode" -> parseResendPhoneNumberConfirmationCode v
+  where
+   parseResendPhoneNumberConfirmationCode :: A.Value -> T.Parser ResendPhoneNumberConfirmationCode
+   parseResendPhoneNumberConfirmationCode = A.withObject "ResendPhoneNumberConfirmationCode" $ \o -> do
+    return $ ResendPhoneNumberConfirmationCode {  }

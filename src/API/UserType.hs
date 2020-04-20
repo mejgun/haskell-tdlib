@@ -33,3 +33,34 @@ instance T.ToJSON UserType where
 
 -- userTypeUnknown UserType 
 
+
+
+instance T.FromJSON UserType where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "userTypeRegular" -> parseUserTypeRegular v
+   "userTypeDeleted" -> parseUserTypeDeleted v
+   "userTypeBot" -> parseUserTypeBot v
+   "userTypeUnknown" -> parseUserTypeUnknown v
+  where
+   parseUserTypeRegular :: A.Value -> T.Parser UserType
+   parseUserTypeRegular = A.withObject "UserTypeRegular" $ \o -> do
+    return $ UserTypeRegular {  }
+
+   parseUserTypeDeleted :: A.Value -> T.Parser UserType
+   parseUserTypeDeleted = A.withObject "UserTypeDeleted" $ \o -> do
+    return $ UserTypeDeleted {  }
+
+   parseUserTypeBot :: A.Value -> T.Parser UserType
+   parseUserTypeBot = A.withObject "UserTypeBot" $ \o -> do
+    need_location <- o A..: "need_location"
+    inline_query_placeholder <- o A..: "inline_query_placeholder"
+    is_inline <- o A..: "is_inline"
+    can_read_all_group_messages <- o A..: "can_read_all_group_messages"
+    can_join_groups <- o A..: "can_join_groups"
+    return $ UserTypeBot { need_location = need_location, inline_query_placeholder = inline_query_placeholder, is_inline = is_inline, can_read_all_group_messages = can_read_all_group_messages, can_join_groups = can_join_groups }
+
+   parseUserTypeUnknown :: A.Value -> T.Parser UserType
+   parseUserTypeUnknown = A.withObject "UserTypeUnknown" $ \o -> do
+    return $ UserTypeUnknown {  }

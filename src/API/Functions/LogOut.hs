@@ -15,3 +15,14 @@ instance T.ToJSON LogOut where
   A.object [ "@type" A..= T.String "logOut" ]
 -- logOut LogOut 
 
+
+
+instance T.FromJSON LogOut where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "logOut" -> parseLogOut v
+  where
+   parseLogOut :: A.Value -> T.Parser LogOut
+   parseLogOut = A.withObject "LogOut" $ \o -> do
+    return $ LogOut {  }

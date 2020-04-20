@@ -105,3 +105,89 @@ instance T.ToJSON FileType where
 
 -- fileTypeWallpaper FileType 
 
+
+
+instance T.FromJSON FileType where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "fileTypeNone" -> parseFileTypeNone v
+   "fileTypeAnimation" -> parseFileTypeAnimation v
+   "fileTypeAudio" -> parseFileTypeAudio v
+   "fileTypeDocument" -> parseFileTypeDocument v
+   "fileTypePhoto" -> parseFileTypePhoto v
+   "fileTypeProfilePhoto" -> parseFileTypeProfilePhoto v
+   "fileTypeSecret" -> parseFileTypeSecret v
+   "fileTypeSecretThumbnail" -> parseFileTypeSecretThumbnail v
+   "fileTypeSecure" -> parseFileTypeSecure v
+   "fileTypeSticker" -> parseFileTypeSticker v
+   "fileTypeThumbnail" -> parseFileTypeThumbnail v
+   "fileTypeUnknown" -> parseFileTypeUnknown v
+   "fileTypeVideo" -> parseFileTypeVideo v
+   "fileTypeVideoNote" -> parseFileTypeVideoNote v
+   "fileTypeVoiceNote" -> parseFileTypeVoiceNote v
+   "fileTypeWallpaper" -> parseFileTypeWallpaper v
+  where
+   parseFileTypeNone :: A.Value -> T.Parser FileType
+   parseFileTypeNone = A.withObject "FileTypeNone" $ \o -> do
+    return $ FileTypeNone {  }
+
+   parseFileTypeAnimation :: A.Value -> T.Parser FileType
+   parseFileTypeAnimation = A.withObject "FileTypeAnimation" $ \o -> do
+    return $ FileTypeAnimation {  }
+
+   parseFileTypeAudio :: A.Value -> T.Parser FileType
+   parseFileTypeAudio = A.withObject "FileTypeAudio" $ \o -> do
+    return $ FileTypeAudio {  }
+
+   parseFileTypeDocument :: A.Value -> T.Parser FileType
+   parseFileTypeDocument = A.withObject "FileTypeDocument" $ \o -> do
+    return $ FileTypeDocument {  }
+
+   parseFileTypePhoto :: A.Value -> T.Parser FileType
+   parseFileTypePhoto = A.withObject "FileTypePhoto" $ \o -> do
+    return $ FileTypePhoto {  }
+
+   parseFileTypeProfilePhoto :: A.Value -> T.Parser FileType
+   parseFileTypeProfilePhoto = A.withObject "FileTypeProfilePhoto" $ \o -> do
+    return $ FileTypeProfilePhoto {  }
+
+   parseFileTypeSecret :: A.Value -> T.Parser FileType
+   parseFileTypeSecret = A.withObject "FileTypeSecret" $ \o -> do
+    return $ FileTypeSecret {  }
+
+   parseFileTypeSecretThumbnail :: A.Value -> T.Parser FileType
+   parseFileTypeSecretThumbnail = A.withObject "FileTypeSecretThumbnail" $ \o -> do
+    return $ FileTypeSecretThumbnail {  }
+
+   parseFileTypeSecure :: A.Value -> T.Parser FileType
+   parseFileTypeSecure = A.withObject "FileTypeSecure" $ \o -> do
+    return $ FileTypeSecure {  }
+
+   parseFileTypeSticker :: A.Value -> T.Parser FileType
+   parseFileTypeSticker = A.withObject "FileTypeSticker" $ \o -> do
+    return $ FileTypeSticker {  }
+
+   parseFileTypeThumbnail :: A.Value -> T.Parser FileType
+   parseFileTypeThumbnail = A.withObject "FileTypeThumbnail" $ \o -> do
+    return $ FileTypeThumbnail {  }
+
+   parseFileTypeUnknown :: A.Value -> T.Parser FileType
+   parseFileTypeUnknown = A.withObject "FileTypeUnknown" $ \o -> do
+    return $ FileTypeUnknown {  }
+
+   parseFileTypeVideo :: A.Value -> T.Parser FileType
+   parseFileTypeVideo = A.withObject "FileTypeVideo" $ \o -> do
+    return $ FileTypeVideo {  }
+
+   parseFileTypeVideoNote :: A.Value -> T.Parser FileType
+   parseFileTypeVideoNote = A.withObject "FileTypeVideoNote" $ \o -> do
+    return $ FileTypeVideoNote {  }
+
+   parseFileTypeVoiceNote :: A.Value -> T.Parser FileType
+   parseFileTypeVoiceNote = A.withObject "FileTypeVoiceNote" $ \o -> do
+    return $ FileTypeVoiceNote {  }
+
+   parseFileTypeWallpaper :: A.Value -> T.Parser FileType
+   parseFileTypeWallpaper = A.withObject "FileTypeWallpaper" $ \o -> do
+    return $ FileTypeWallpaper {  }

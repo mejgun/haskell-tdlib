@@ -18,3 +18,19 @@ instance T.ToJSON VideoNote where
   A.object [ "@type" A..= T.String "videoNote", "video" A..= video, "thumbnail" A..= thumbnail, "minithumbnail" A..= minithumbnail, "length" A..= _length, "duration" A..= duration ]
 -- videoNote VideoNote  { video :: File.File, thumbnail :: PhotoSize.PhotoSize, minithumbnail :: Minithumbnail.Minithumbnail, _length :: Int, duration :: Int } 
 
+
+
+instance T.FromJSON VideoNote where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "videoNote" -> parseVideoNote v
+  where
+   parseVideoNote :: A.Value -> T.Parser VideoNote
+   parseVideoNote = A.withObject "VideoNote" $ \o -> do
+    video <- o A..: "video"
+    thumbnail <- o A..: "thumbnail"
+    minithumbnail <- o A..: "minithumbnail"
+    _length <- o A..: "length"
+    duration <- o A..: "duration"
+    return $ VideoNote { video = video, thumbnail = thumbnail, minithumbnail = minithumbnail, _length = _length, duration = duration }

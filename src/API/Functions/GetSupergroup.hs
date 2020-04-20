@@ -15,3 +15,15 @@ instance T.ToJSON GetSupergroup where
   A.object [ "@type" A..= T.String "getSupergroup", "supergroup_id" A..= supergroup_id ]
 -- getSupergroup GetSupergroup  { supergroup_id :: Int } 
 
+
+
+instance T.FromJSON GetSupergroup where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getSupergroup" -> parseGetSupergroup v
+  where
+   parseGetSupergroup :: A.Value -> T.Parser GetSupergroup
+   parseGetSupergroup = A.withObject "GetSupergroup" $ \o -> do
+    supergroup_id <- o A..: "supergroup_id"
+    return $ GetSupergroup { supergroup_id = supergroup_id }

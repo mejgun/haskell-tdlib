@@ -8,3 +8,7 @@ data NetworkType
 
 instance ToJSON NetworkType
 
+
+
+instance FromJSON NetworkType
+

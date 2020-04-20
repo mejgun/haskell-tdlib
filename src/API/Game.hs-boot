@@ -8,3 +8,7 @@ data Game
 
 instance ToJSON Game
 
+
+
+instance FromJSON Game
+

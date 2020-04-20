@@ -8,3 +8,7 @@ data PollOption
 
 instance ToJSON PollOption
 
+
+
+instance FromJSON PollOption
+

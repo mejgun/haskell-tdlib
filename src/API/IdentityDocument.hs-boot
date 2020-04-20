@@ -8,3 +8,7 @@ data IdentityDocument
 
 instance ToJSON IdentityDocument
 
+
+
+instance FromJSON IdentityDocument
+

@@ -8,3 +8,7 @@ data SetCommands
 
 instance ToJSON SetCommands
 
+
+
+instance FromJSON SetCommands
+

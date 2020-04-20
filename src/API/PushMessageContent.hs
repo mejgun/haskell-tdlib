@@ -173,3 +173,189 @@ instance T.ToJSON PushMessageContent where
 
 -- pushMessageContentMediaAlbum PushMessageContent  { has_videos :: Bool, has_photos :: Bool, total_count :: Int } 
 
+
+
+instance T.FromJSON PushMessageContent where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "pushMessageContentHidden" -> parsePushMessageContentHidden v
+   "pushMessageContentAnimation" -> parsePushMessageContentAnimation v
+   "pushMessageContentAudio" -> parsePushMessageContentAudio v
+   "pushMessageContentContact" -> parsePushMessageContentContact v
+   "pushMessageContentContactRegistered" -> parsePushMessageContentContactRegistered v
+   "pushMessageContentDocument" -> parsePushMessageContentDocument v
+   "pushMessageContentGame" -> parsePushMessageContentGame v
+   "pushMessageContentGameScore" -> parsePushMessageContentGameScore v
+   "pushMessageContentInvoice" -> parsePushMessageContentInvoice v
+   "pushMessageContentLocation" -> parsePushMessageContentLocation v
+   "pushMessageContentPhoto" -> parsePushMessageContentPhoto v
+   "pushMessageContentPoll" -> parsePushMessageContentPoll v
+   "pushMessageContentScreenshotTaken" -> parsePushMessageContentScreenshotTaken v
+   "pushMessageContentSticker" -> parsePushMessageContentSticker v
+   "pushMessageContentText" -> parsePushMessageContentText v
+   "pushMessageContentVideo" -> parsePushMessageContentVideo v
+   "pushMessageContentVideoNote" -> parsePushMessageContentVideoNote v
+   "pushMessageContentVoiceNote" -> parsePushMessageContentVoiceNote v
+   "pushMessageContentBasicGroupChatCreate" -> parsePushMessageContentBasicGroupChatCreate v
+   "pushMessageContentChatAddMembers" -> parsePushMessageContentChatAddMembers v
+   "pushMessageContentChatChangePhoto" -> parsePushMessageContentChatChangePhoto v
+   "pushMessageContentChatChangeTitle" -> parsePushMessageContentChatChangeTitle v
+   "pushMessageContentChatDeleteMember" -> parsePushMessageContentChatDeleteMember v
+   "pushMessageContentChatJoinByLink" -> parsePushMessageContentChatJoinByLink v
+   "pushMessageContentMessageForwards" -> parsePushMessageContentMessageForwards v
+   "pushMessageContentMediaAlbum" -> parsePushMessageContentMediaAlbum v
+  where
+   parsePushMessageContentHidden :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentHidden = A.withObject "PushMessageContentHidden" $ \o -> do
+    is_pinned <- o A..: "is_pinned"
+    return $ PushMessageContentHidden { is_pinned = is_pinned }
+
+   parsePushMessageContentAnimation :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentAnimation = A.withObject "PushMessageContentAnimation" $ \o -> do
+    is_pinned <- o A..: "is_pinned"
+    caption <- o A..: "caption"
+    animation <- o A..: "animation"
+    return $ PushMessageContentAnimation { is_pinned = is_pinned, caption = caption, animation = animation }
+
+   parsePushMessageContentAudio :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentAudio = A.withObject "PushMessageContentAudio" $ \o -> do
+    is_pinned <- o A..: "is_pinned"
+    audio <- o A..: "audio"
+    return $ PushMessageContentAudio { is_pinned = is_pinned, audio = audio }
+
+   parsePushMessageContentContact :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentContact = A.withObject "PushMessageContentContact" $ \o -> do
+    is_pinned <- o A..: "is_pinned"
+    name <- o A..: "name"
+    return $ PushMessageContentContact { is_pinned = is_pinned, name = name }
+
+   parsePushMessageContentContactRegistered :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentContactRegistered = A.withObject "PushMessageContentContactRegistered" $ \o -> do
+    return $ PushMessageContentContactRegistered {  }
+
+   parsePushMessageContentDocument :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentDocument = A.withObject "PushMessageContentDocument" $ \o -> do
+    is_pinned <- o A..: "is_pinned"
+    document <- o A..: "document"
+    return $ PushMessageContentDocument { is_pinned = is_pinned, document = document }
+
+   parsePushMessageContentGame :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentGame = A.withObject "PushMessageContentGame" $ \o -> do
+    is_pinned <- o A..: "is_pinned"
+    title <- o A..: "title"
+    return $ PushMessageContentGame { is_pinned = is_pinned, title = title }
+
+   parsePushMessageContentGameScore :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentGameScore = A.withObject "PushMessageContentGameScore" $ \o -> do
+    is_pinned <- o A..: "is_pinned"
+    score <- o A..: "score"
+    title <- o A..: "title"
+    return $ PushMessageContentGameScore { is_pinned = is_pinned, score = score, title = title }
+
+   parsePushMessageContentInvoice :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentInvoice = A.withObject "PushMessageContentInvoice" $ \o -> do
+    is_pinned <- o A..: "is_pinned"
+    price <- o A..: "price"
+    return $ PushMessageContentInvoice { is_pinned = is_pinned, price = price }
+
+   parsePushMessageContentLocation :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentLocation = A.withObject "PushMessageContentLocation" $ \o -> do
+    is_pinned <- o A..: "is_pinned"
+    is_live <- o A..: "is_live"
+    return $ PushMessageContentLocation { is_pinned = is_pinned, is_live = is_live }
+
+   parsePushMessageContentPhoto :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentPhoto = A.withObject "PushMessageContentPhoto" $ \o -> do
+    is_pinned <- o A..: "is_pinned"
+    is_secret <- o A..: "is_secret"
+    caption <- o A..: "caption"
+    photo <- o A..: "photo"
+    return $ PushMessageContentPhoto { is_pinned = is_pinned, is_secret = is_secret, caption = caption, photo = photo }
+
+   parsePushMessageContentPoll :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentPoll = A.withObject "PushMessageContentPoll" $ \o -> do
+    is_pinned <- o A..: "is_pinned"
+    is_regular <- o A..: "is_regular"
+    question <- o A..: "question"
+    return $ PushMessageContentPoll { is_pinned = is_pinned, is_regular = is_regular, question = question }
+
+   parsePushMessageContentScreenshotTaken :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentScreenshotTaken = A.withObject "PushMessageContentScreenshotTaken" $ \o -> do
+    return $ PushMessageContentScreenshotTaken {  }
+
+   parsePushMessageContentSticker :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentSticker = A.withObject "PushMessageContentSticker" $ \o -> do
+    is_pinned <- o A..: "is_pinned"
+    emoji <- o A..: "emoji"
+    sticker <- o A..: "sticker"
+    return $ PushMessageContentSticker { is_pinned = is_pinned, emoji = emoji, sticker = sticker }
+
+   parsePushMessageContentText :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentText = A.withObject "PushMessageContentText" $ \o -> do
+    is_pinned <- o A..: "is_pinned"
+    text <- o A..: "text"
+    return $ PushMessageContentText { is_pinned = is_pinned, text = text }
+
+   parsePushMessageContentVideo :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentVideo = A.withObject "PushMessageContentVideo" $ \o -> do
+    is_pinned <- o A..: "is_pinned"
+    is_secret <- o A..: "is_secret"
+    caption <- o A..: "caption"
+    video <- o A..: "video"
+    return $ PushMessageContentVideo { is_pinned = is_pinned, is_secret = is_secret, caption = caption, video = video }
+
+   parsePushMessageContentVideoNote :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentVideoNote = A.withObject "PushMessageContentVideoNote" $ \o -> do
+    is_pinned <- o A..: "is_pinned"
+    video_note <- o A..: "video_note"
+    return $ PushMessageContentVideoNote { is_pinned = is_pinned, video_note = video_note }
+
+   parsePushMessageContentVoiceNote :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentVoiceNote = A.withObject "PushMessageContentVoiceNote" $ \o -> do
+    is_pinned <- o A..: "is_pinned"
+    voice_note <- o A..: "voice_note"
+    return $ PushMessageContentVoiceNote { is_pinned = is_pinned, voice_note = voice_note }
+
+   parsePushMessageContentBasicGroupChatCreate :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentBasicGroupChatCreate = A.withObject "PushMessageContentBasicGroupChatCreate" $ \o -> do
+    return $ PushMessageContentBasicGroupChatCreate {  }
+
+   parsePushMessageContentChatAddMembers :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentChatAddMembers = A.withObject "PushMessageContentChatAddMembers" $ \o -> do
+    is_returned <- o A..: "is_returned"
+    is_current_user <- o A..: "is_current_user"
+    member_name <- o A..: "member_name"
+    return $ PushMessageContentChatAddMembers { is_returned = is_returned, is_current_user = is_current_user, member_name = member_name }
+
+   parsePushMessageContentChatChangePhoto :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentChatChangePhoto = A.withObject "PushMessageContentChatChangePhoto" $ \o -> do
+    return $ PushMessageContentChatChangePhoto {  }
+
+   parsePushMessageContentChatChangeTitle :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentChatChangeTitle = A.withObject "PushMessageContentChatChangeTitle" $ \o -> do
+    title <- o A..: "title"
+    return $ PushMessageContentChatChangeTitle { title = title }
+
+   parsePushMessageContentChatDeleteMember :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentChatDeleteMember = A.withObject "PushMessageContentChatDeleteMember" $ \o -> do
+    is_left <- o A..: "is_left"
+    is_current_user <- o A..: "is_current_user"
+    member_name <- o A..: "member_name"
+    return $ PushMessageContentChatDeleteMember { is_left = is_left, is_current_user = is_current_user, member_name = member_name }
+
+   parsePushMessageContentChatJoinByLink :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentChatJoinByLink = A.withObject "PushMessageContentChatJoinByLink" $ \o -> do
+    return $ PushMessageContentChatJoinByLink {  }
+
+   parsePushMessageContentMessageForwards :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentMessageForwards = A.withObject "PushMessageContentMessageForwards" $ \o -> do
+    total_count <- o A..: "total_count"
+    return $ PushMessageContentMessageForwards { total_count = total_count }
+
+   parsePushMessageContentMediaAlbum :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentMediaAlbum = A.withObject "PushMessageContentMediaAlbum" $ \o -> do
+    has_videos <- o A..: "has_videos"
+    has_photos <- o A..: "has_photos"
+    total_count <- o A..: "total_count"
+    return $ PushMessageContentMediaAlbum { has_videos = has_videos, has_photos = has_photos, total_count = total_count }

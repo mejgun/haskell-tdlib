@@ -8,3 +8,7 @@ data ReorderInstalledStickerSets
 
 instance ToJSON ReorderInstalledStickerSets
 
+
+
+instance FromJSON ReorderInstalledStickerSets
+

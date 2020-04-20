@@ -16,3 +16,17 @@ instance T.ToJSON SendPhoneNumberConfirmationCode where
   A.object [ "@type" A..= T.String "sendPhoneNumberConfirmationCode", "settings" A..= settings, "phone_number" A..= phone_number, "hash" A..= hash ]
 -- sendPhoneNumberConfirmationCode SendPhoneNumberConfirmationCode  { settings :: PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings, phone_number :: String, hash :: String } 
 
+
+
+instance T.FromJSON SendPhoneNumberConfirmationCode where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "sendPhoneNumberConfirmationCode" -> parseSendPhoneNumberConfirmationCode v
+  where
+   parseSendPhoneNumberConfirmationCode :: A.Value -> T.Parser SendPhoneNumberConfirmationCode
+   parseSendPhoneNumberConfirmationCode = A.withObject "SendPhoneNumberConfirmationCode" $ \o -> do
+    settings <- o A..: "settings"
+    phone_number <- o A..: "phone_number"
+    hash <- o A..: "hash"
+    return $ SendPhoneNumberConfirmationCode { settings = settings, phone_number = phone_number, hash = hash }

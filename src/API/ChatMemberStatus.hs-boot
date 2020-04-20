@@ -8,3 +8,7 @@ data ChatMemberStatus
 
 instance ToJSON ChatMemberStatus
 
+
+
+instance FromJSON ChatMemberStatus
+

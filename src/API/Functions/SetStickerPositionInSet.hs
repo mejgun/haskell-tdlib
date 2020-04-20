@@ -16,3 +16,16 @@ instance T.ToJSON SetStickerPositionInSet where
   A.object [ "@type" A..= T.String "setStickerPositionInSet", "position" A..= position, "sticker" A..= sticker ]
 -- setStickerPositionInSet SetStickerPositionInSet  { position :: Int, sticker :: InputFile.InputFile } 
 
+
+
+instance T.FromJSON SetStickerPositionInSet where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setStickerPositionInSet" -> parseSetStickerPositionInSet v
+  where
+   parseSetStickerPositionInSet :: A.Value -> T.Parser SetStickerPositionInSet
+   parseSetStickerPositionInSet = A.withObject "SetStickerPositionInSet" $ \o -> do
+    position <- o A..: "position"
+    sticker <- o A..: "sticker"
+    return $ SetStickerPositionInSet { position = position, sticker = sticker }

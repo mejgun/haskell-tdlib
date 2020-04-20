@@ -8,3 +8,7 @@ data InputPersonalDocument
 
 instance ToJSON InputPersonalDocument
 
+
+
+instance FromJSON InputPersonalDocument
+

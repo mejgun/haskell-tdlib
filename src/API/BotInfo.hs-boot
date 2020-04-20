@@ -8,3 +8,7 @@ data BotInfo
 
 instance ToJSON BotInfo
 
+
+
+instance FromJSON BotInfo
+

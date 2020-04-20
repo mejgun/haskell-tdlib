@@ -15,3 +15,16 @@ instance T.ToJSON SetLogTagVerbosityLevel where
   A.object [ "@type" A..= T.String "setLogTagVerbosityLevel", "new_verbosity_level" A..= new_verbosity_level, "tag" A..= tag ]
 -- setLogTagVerbosityLevel SetLogTagVerbosityLevel  { new_verbosity_level :: Int, tag :: String } 
 
+
+
+instance T.FromJSON SetLogTagVerbosityLevel where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setLogTagVerbosityLevel" -> parseSetLogTagVerbosityLevel v
+  where
+   parseSetLogTagVerbosityLevel :: A.Value -> T.Parser SetLogTagVerbosityLevel
+   parseSetLogTagVerbosityLevel = A.withObject "SetLogTagVerbosityLevel" $ \o -> do
+    new_verbosity_level <- o A..: "new_verbosity_level"
+    tag <- o A..: "tag"
+    return $ SetLogTagVerbosityLevel { new_verbosity_level = new_verbosity_level, tag = tag }

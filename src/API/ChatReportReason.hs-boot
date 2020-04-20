@@ -8,3 +8,7 @@ data ChatReportReason
 
 instance ToJSON ChatReportReason
 
+
+
+instance FromJSON ChatReportReason
+

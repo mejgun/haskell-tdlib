@@ -8,3 +8,7 @@ data GetMessageLinkInfo
 
 instance ToJSON GetMessageLinkInfo
 
+
+
+instance FromJSON GetMessageLinkInfo
+

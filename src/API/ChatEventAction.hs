@@ -146,3 +146,153 @@ instance T.ToJSON ChatEventAction where
 
 -- chatEventIsAllHistoryAvailableToggled ChatEventAction  { is_all_history_available :: Bool } 
 
+
+
+instance T.FromJSON ChatEventAction where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "chatEventMessageEdited" -> parseChatEventMessageEdited v
+   "chatEventMessageDeleted" -> parseChatEventMessageDeleted v
+   "chatEventPollStopped" -> parseChatEventPollStopped v
+   "chatEventMessagePinned" -> parseChatEventMessagePinned v
+   "chatEventMessageUnpinned" -> parseChatEventMessageUnpinned v
+   "chatEventMemberJoined" -> parseChatEventMemberJoined v
+   "chatEventMemberLeft" -> parseChatEventMemberLeft v
+   "chatEventMemberInvited" -> parseChatEventMemberInvited v
+   "chatEventMemberPromoted" -> parseChatEventMemberPromoted v
+   "chatEventMemberRestricted" -> parseChatEventMemberRestricted v
+   "chatEventTitleChanged" -> parseChatEventTitleChanged v
+   "chatEventPermissionsChanged" -> parseChatEventPermissionsChanged v
+   "chatEventDescriptionChanged" -> parseChatEventDescriptionChanged v
+   "chatEventUsernameChanged" -> parseChatEventUsernameChanged v
+   "chatEventPhotoChanged" -> parseChatEventPhotoChanged v
+   "chatEventInvitesToggled" -> parseChatEventInvitesToggled v
+   "chatEventLinkedChatChanged" -> parseChatEventLinkedChatChanged v
+   "chatEventSlowModeDelayChanged" -> parseChatEventSlowModeDelayChanged v
+   "chatEventSignMessagesToggled" -> parseChatEventSignMessagesToggled v
+   "chatEventStickerSetChanged" -> parseChatEventStickerSetChanged v
+   "chatEventLocationChanged" -> parseChatEventLocationChanged v
+   "chatEventIsAllHistoryAvailableToggled" -> parseChatEventIsAllHistoryAvailableToggled v
+  where
+   parseChatEventMessageEdited :: A.Value -> T.Parser ChatEventAction
+   parseChatEventMessageEdited = A.withObject "ChatEventMessageEdited" $ \o -> do
+    new_message <- o A..: "new_message"
+    old_message <- o A..: "old_message"
+    return $ ChatEventMessageEdited { new_message = new_message, old_message = old_message }
+
+   parseChatEventMessageDeleted :: A.Value -> T.Parser ChatEventAction
+   parseChatEventMessageDeleted = A.withObject "ChatEventMessageDeleted" $ \o -> do
+    message <- o A..: "message"
+    return $ ChatEventMessageDeleted { message = message }
+
+   parseChatEventPollStopped :: A.Value -> T.Parser ChatEventAction
+   parseChatEventPollStopped = A.withObject "ChatEventPollStopped" $ \o -> do
+    message <- o A..: "message"
+    return $ ChatEventPollStopped { message = message }
+
+   parseChatEventMessagePinned :: A.Value -> T.Parser ChatEventAction
+   parseChatEventMessagePinned = A.withObject "ChatEventMessagePinned" $ \o -> do
+    message <- o A..: "message"
+    return $ ChatEventMessagePinned { message = message }
+
+   parseChatEventMessageUnpinned :: A.Value -> T.Parser ChatEventAction
+   parseChatEventMessageUnpinned = A.withObject "ChatEventMessageUnpinned" $ \o -> do
+    return $ ChatEventMessageUnpinned {  }
+
+   parseChatEventMemberJoined :: A.Value -> T.Parser ChatEventAction
+   parseChatEventMemberJoined = A.withObject "ChatEventMemberJoined" $ \o -> do
+    return $ ChatEventMemberJoined {  }
+
+   parseChatEventMemberLeft :: A.Value -> T.Parser ChatEventAction
+   parseChatEventMemberLeft = A.withObject "ChatEventMemberLeft" $ \o -> do
+    return $ ChatEventMemberLeft {  }
+
+   parseChatEventMemberInvited :: A.Value -> T.Parser ChatEventAction
+   parseChatEventMemberInvited = A.withObject "ChatEventMemberInvited" $ \o -> do
+    status <- o A..: "status"
+    user_id <- o A..: "user_id"
+    return $ ChatEventMemberInvited { status = status, user_id = user_id }
+
+   parseChatEventMemberPromoted :: A.Value -> T.Parser ChatEventAction
+   parseChatEventMemberPromoted = A.withObject "ChatEventMemberPromoted" $ \o -> do
+    new_status <- o A..: "new_status"
+    old_status <- o A..: "old_status"
+    user_id <- o A..: "user_id"
+    return $ ChatEventMemberPromoted { new_status = new_status, old_status = old_status, user_id = user_id }
+
+   parseChatEventMemberRestricted :: A.Value -> T.Parser ChatEventAction
+   parseChatEventMemberRestricted = A.withObject "ChatEventMemberRestricted" $ \o -> do
+    new_status <- o A..: "new_status"
+    old_status <- o A..: "old_status"
+    user_id <- o A..: "user_id"
+    return $ ChatEventMemberRestricted { new_status = new_status, old_status = old_status, user_id = user_id }
+
+   parseChatEventTitleChanged :: A.Value -> T.Parser ChatEventAction
+   parseChatEventTitleChanged = A.withObject "ChatEventTitleChanged" $ \o -> do
+    new_title <- o A..: "new_title"
+    old_title <- o A..: "old_title"
+    return $ ChatEventTitleChanged { new_title = new_title, old_title = old_title }
+
+   parseChatEventPermissionsChanged :: A.Value -> T.Parser ChatEventAction
+   parseChatEventPermissionsChanged = A.withObject "ChatEventPermissionsChanged" $ \o -> do
+    new_permissions <- o A..: "new_permissions"
+    old_permissions <- o A..: "old_permissions"
+    return $ ChatEventPermissionsChanged { new_permissions = new_permissions, old_permissions = old_permissions }
+
+   parseChatEventDescriptionChanged :: A.Value -> T.Parser ChatEventAction
+   parseChatEventDescriptionChanged = A.withObject "ChatEventDescriptionChanged" $ \o -> do
+    new_description <- o A..: "new_description"
+    old_description <- o A..: "old_description"
+    return $ ChatEventDescriptionChanged { new_description = new_description, old_description = old_description }
+
+   parseChatEventUsernameChanged :: A.Value -> T.Parser ChatEventAction
+   parseChatEventUsernameChanged = A.withObject "ChatEventUsernameChanged" $ \o -> do
+    new_username <- o A..: "new_username"
+    old_username <- o A..: "old_username"
+    return $ ChatEventUsernameChanged { new_username = new_username, old_username = old_username }
+
+   parseChatEventPhotoChanged :: A.Value -> T.Parser ChatEventAction
+   parseChatEventPhotoChanged = A.withObject "ChatEventPhotoChanged" $ \o -> do
+    new_photo <- o A..: "new_photo"
+    old_photo <- o A..: "old_photo"
+    return $ ChatEventPhotoChanged { new_photo = new_photo, old_photo = old_photo }
+
+   parseChatEventInvitesToggled :: A.Value -> T.Parser ChatEventAction
+   parseChatEventInvitesToggled = A.withObject "ChatEventInvitesToggled" $ \o -> do
+    can_invite_users <- o A..: "can_invite_users"
+    return $ ChatEventInvitesToggled { can_invite_users = can_invite_users }
+
+   parseChatEventLinkedChatChanged :: A.Value -> T.Parser ChatEventAction
+   parseChatEventLinkedChatChanged = A.withObject "ChatEventLinkedChatChanged" $ \o -> do
+    new_linked_chat_id <- o A..: "new_linked_chat_id"
+    old_linked_chat_id <- o A..: "old_linked_chat_id"
+    return $ ChatEventLinkedChatChanged { new_linked_chat_id = new_linked_chat_id, old_linked_chat_id = old_linked_chat_id }
+
+   parseChatEventSlowModeDelayChanged :: A.Value -> T.Parser ChatEventAction
+   parseChatEventSlowModeDelayChanged = A.withObject "ChatEventSlowModeDelayChanged" $ \o -> do
+    new_slow_mode_delay <- o A..: "new_slow_mode_delay"
+    old_slow_mode_delay <- o A..: "old_slow_mode_delay"
+    return $ ChatEventSlowModeDelayChanged { new_slow_mode_delay = new_slow_mode_delay, old_slow_mode_delay = old_slow_mode_delay }
+
+   parseChatEventSignMessagesToggled :: A.Value -> T.Parser ChatEventAction
+   parseChatEventSignMessagesToggled = A.withObject "ChatEventSignMessagesToggled" $ \o -> do
+    sign_messages <- o A..: "sign_messages"
+    return $ ChatEventSignMessagesToggled { sign_messages = sign_messages }
+
+   parseChatEventStickerSetChanged :: A.Value -> T.Parser ChatEventAction
+   parseChatEventStickerSetChanged = A.withObject "ChatEventStickerSetChanged" $ \o -> do
+    new_sticker_set_id <- o A..: "new_sticker_set_id"
+    old_sticker_set_id <- o A..: "old_sticker_set_id"
+    return $ ChatEventStickerSetChanged { new_sticker_set_id = new_sticker_set_id, old_sticker_set_id = old_sticker_set_id }
+
+   parseChatEventLocationChanged :: A.Value -> T.Parser ChatEventAction
+   parseChatEventLocationChanged = A.withObject "ChatEventLocationChanged" $ \o -> do
+    new_location <- o A..: "new_location"
+    old_location <- o A..: "old_location"
+    return $ ChatEventLocationChanged { new_location = new_location, old_location = old_location }
+
+   parseChatEventIsAllHistoryAvailableToggled :: A.Value -> T.Parser ChatEventAction
+   parseChatEventIsAllHistoryAvailableToggled = A.withObject "ChatEventIsAllHistoryAvailableToggled" $ \o -> do
+    is_all_history_available <- o A..: "is_all_history_available"
+    return $ ChatEventIsAllHistoryAvailableToggled { is_all_history_available = is_all_history_available }

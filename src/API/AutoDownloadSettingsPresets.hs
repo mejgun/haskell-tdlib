@@ -16,3 +16,17 @@ instance T.ToJSON AutoDownloadSettingsPresets where
   A.object [ "@type" A..= T.String "autoDownloadSettingsPresets", "high" A..= high, "medium" A..= medium, "low" A..= low ]
 -- autoDownloadSettingsPresets AutoDownloadSettingsPresets  { high :: AutoDownloadSettings.AutoDownloadSettings, medium :: AutoDownloadSettings.AutoDownloadSettings, low :: AutoDownloadSettings.AutoDownloadSettings } 
 
+
+
+instance T.FromJSON AutoDownloadSettingsPresets where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "autoDownloadSettingsPresets" -> parseAutoDownloadSettingsPresets v
+  where
+   parseAutoDownloadSettingsPresets :: A.Value -> T.Parser AutoDownloadSettingsPresets
+   parseAutoDownloadSettingsPresets = A.withObject "AutoDownloadSettingsPresets" $ \o -> do
+    high <- o A..: "high"
+    medium <- o A..: "medium"
+    low <- o A..: "low"
+    return $ AutoDownloadSettingsPresets { high = high, medium = medium, low = low }

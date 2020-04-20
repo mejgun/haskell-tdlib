@@ -8,3 +8,7 @@ data BlockUser
 
 instance ToJSON BlockUser
 
+
+
+instance FromJSON BlockUser
+

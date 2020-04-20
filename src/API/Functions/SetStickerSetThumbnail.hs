@@ -16,3 +16,17 @@ instance T.ToJSON SetStickerSetThumbnail where
   A.object [ "@type" A..= T.String "setStickerSetThumbnail", "thumbnail" A..= thumbnail, "name" A..= name, "user_id" A..= user_id ]
 -- setStickerSetThumbnail SetStickerSetThumbnail  { thumbnail :: InputFile.InputFile, name :: String, user_id :: Int } 
 
+
+
+instance T.FromJSON SetStickerSetThumbnail where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setStickerSetThumbnail" -> parseSetStickerSetThumbnail v
+  where
+   parseSetStickerSetThumbnail :: A.Value -> T.Parser SetStickerSetThumbnail
+   parseSetStickerSetThumbnail = A.withObject "SetStickerSetThumbnail" $ \o -> do
+    thumbnail <- o A..: "thumbnail"
+    name <- o A..: "name"
+    user_id <- o A..: "user_id"
+    return $ SetStickerSetThumbnail { thumbnail = thumbnail, name = name, user_id = user_id }

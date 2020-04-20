@@ -39,3 +39,34 @@ instance T.ToJSON ConnectionState where
 
 -- connectionStateReady ConnectionState 
 
+
+
+instance T.FromJSON ConnectionState where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "connectionStateWaitingForNetwork" -> parseConnectionStateWaitingForNetwork v
+   "connectionStateConnectingToProxy" -> parseConnectionStateConnectingToProxy v
+   "connectionStateConnecting" -> parseConnectionStateConnecting v
+   "connectionStateUpdating" -> parseConnectionStateUpdating v
+   "connectionStateReady" -> parseConnectionStateReady v
+  where
+   parseConnectionStateWaitingForNetwork :: A.Value -> T.Parser ConnectionState
+   parseConnectionStateWaitingForNetwork = A.withObject "ConnectionStateWaitingForNetwork" $ \o -> do
+    return $ ConnectionStateWaitingForNetwork {  }
+
+   parseConnectionStateConnectingToProxy :: A.Value -> T.Parser ConnectionState
+   parseConnectionStateConnectingToProxy = A.withObject "ConnectionStateConnectingToProxy" $ \o -> do
+    return $ ConnectionStateConnectingToProxy {  }
+
+   parseConnectionStateConnecting :: A.Value -> T.Parser ConnectionState
+   parseConnectionStateConnecting = A.withObject "ConnectionStateConnecting" $ \o -> do
+    return $ ConnectionStateConnecting {  }
+
+   parseConnectionStateUpdating :: A.Value -> T.Parser ConnectionState
+   parseConnectionStateUpdating = A.withObject "ConnectionStateUpdating" $ \o -> do
+    return $ ConnectionStateUpdating {  }
+
+   parseConnectionStateReady :: A.Value -> T.Parser ConnectionState
+   parseConnectionStateReady = A.withObject "ConnectionStateReady" $ \o -> do
+    return $ ConnectionStateReady {  }

@@ -8,3 +8,7 @@ data JsonValue
 
 instance ToJSON JsonValue
 
+
+
+instance FromJSON JsonValue
+

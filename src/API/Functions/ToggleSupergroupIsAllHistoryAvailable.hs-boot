@@ -8,3 +8,7 @@ data ToggleSupergroupIsAllHistoryAvailable
 
 instance ToJSON ToggleSupergroupIsAllHistoryAvailable
 
+
+
+instance FromJSON ToggleSupergroupIsAllHistoryAvailable
+

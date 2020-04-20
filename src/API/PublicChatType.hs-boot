@@ -8,3 +8,7 @@ data PublicChatType
 
 instance ToJSON PublicChatType
 
+
+
+instance FromJSON PublicChatType
+

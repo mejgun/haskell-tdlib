@@ -8,3 +8,7 @@ data SendChatSetTtlMessage
 
 instance ToJSON SendChatSetTtlMessage
 
+
+
+instance FromJSON SendChatSetTtlMessage
+

@@ -8,3 +8,7 @@ data DeleteChatReplyMarkup
 
 instance ToJSON DeleteChatReplyMarkup
 
+
+
+instance FromJSON DeleteChatReplyMarkup
+

@@ -8,3 +8,7 @@ data Document
 
 instance ToJSON Document
 
+
+
+instance FromJSON Document
+

@@ -8,3 +8,7 @@ data VideoNote
 
 instance ToJSON VideoNote
 
+
+
+instance FromJSON VideoNote
+

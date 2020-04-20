@@ -15,3 +15,15 @@ instance T.ToJSON GetChatScheduledMessages where
   A.object [ "@type" A..= T.String "getChatScheduledMessages", "chat_id" A..= chat_id ]
 -- getChatScheduledMessages GetChatScheduledMessages  { chat_id :: Int } 
 
+
+
+instance T.FromJSON GetChatScheduledMessages where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getChatScheduledMessages" -> parseGetChatScheduledMessages v
+  where
+   parseGetChatScheduledMessages :: A.Value -> T.Parser GetChatScheduledMessages
+   parseGetChatScheduledMessages = A.withObject "GetChatScheduledMessages" $ \o -> do
+    chat_id <- o A..: "chat_id"
+    return $ GetChatScheduledMessages { chat_id = chat_id }

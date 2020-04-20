@@ -8,3 +8,7 @@ data TestNetwork
 
 instance ToJSON TestNetwork
 
+
+
+instance FromJSON TestNetwork
+

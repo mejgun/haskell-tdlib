@@ -8,3 +8,7 @@ data ChatEvent
 
 instance ToJSON ChatEvent
 
+
+
+instance FromJSON ChatEvent
+

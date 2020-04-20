@@ -17,3 +17,17 @@ instance T.ToJSON SetBackground where
   A.object [ "@type" A..= T.String "setBackground", "for_dark_theme" A..= for_dark_theme, "type" A..= _type, "background" A..= background ]
 -- setBackground SetBackground  { for_dark_theme :: Bool, _type :: BackgroundType.BackgroundType, background :: InputBackground.InputBackground } 
 
+
+
+instance T.FromJSON SetBackground where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setBackground" -> parseSetBackground v
+  where
+   parseSetBackground :: A.Value -> T.Parser SetBackground
+   parseSetBackground = A.withObject "SetBackground" $ \o -> do
+    for_dark_theme <- o A..: "for_dark_theme"
+    _type <- o A..: "type"
+    background <- o A..: "background"
+    return $ SetBackground { for_dark_theme = for_dark_theme, _type = _type, background = background }

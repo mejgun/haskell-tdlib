@@ -8,3 +8,7 @@ data EditMessageLiveLocation
 
 instance ToJSON EditMessageLiveLocation
 
+
+
+instance FromJSON EditMessageLiveLocation
+

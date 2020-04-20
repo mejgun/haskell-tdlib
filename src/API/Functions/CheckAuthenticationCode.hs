@@ -15,3 +15,15 @@ instance T.ToJSON CheckAuthenticationCode where
   A.object [ "@type" A..= T.String "checkAuthenticationCode", "code" A..= code ]
 -- checkAuthenticationCode CheckAuthenticationCode  { code :: String } 
 
+
+
+instance T.FromJSON CheckAuthenticationCode where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "checkAuthenticationCode" -> parseCheckAuthenticationCode v
+  where
+   parseCheckAuthenticationCode :: A.Value -> T.Parser CheckAuthenticationCode
+   parseCheckAuthenticationCode = A.withObject "CheckAuthenticationCode" $ \o -> do
+    code <- o A..: "code"
+    return $ CheckAuthenticationCode { code = code }

@@ -21,3 +21,19 @@ instance T.ToJSON PublicChatType where
 
 -- publicChatTypeIsLocationBased PublicChatType 
 
+
+
+instance T.FromJSON PublicChatType where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "publicChatTypeHasUsername" -> parsePublicChatTypeHasUsername v
+   "publicChatTypeIsLocationBased" -> parsePublicChatTypeIsLocationBased v
+  where
+   parsePublicChatTypeHasUsername :: A.Value -> T.Parser PublicChatType
+   parsePublicChatTypeHasUsername = A.withObject "PublicChatTypeHasUsername" $ \o -> do
+    return $ PublicChatTypeHasUsername {  }
+
+   parsePublicChatTypeIsLocationBased :: A.Value -> T.Parser PublicChatType
+   parsePublicChatTypeIsLocationBased = A.withObject "PublicChatTypeIsLocationBased" $ \o -> do
+    return $ PublicChatTypeIsLocationBased {  }

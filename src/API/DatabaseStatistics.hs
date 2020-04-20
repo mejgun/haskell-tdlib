@@ -15,3 +15,15 @@ instance T.ToJSON DatabaseStatistics where
   A.object [ "@type" A..= T.String "databaseStatistics", "statistics" A..= statistics ]
 -- databaseStatistics DatabaseStatistics  { statistics :: String } 
 
+
+
+instance T.FromJSON DatabaseStatistics where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "databaseStatistics" -> parseDatabaseStatistics v
+  where
+   parseDatabaseStatistics :: A.Value -> T.Parser DatabaseStatistics
+   parseDatabaseStatistics = A.withObject "DatabaseStatistics" $ \o -> do
+    statistics <- o A..: "statistics"
+    return $ DatabaseStatistics { statistics = statistics }

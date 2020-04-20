@@ -16,3 +16,15 @@ instance T.ToJSON Stickers where
   A.object [ "@type" A..= T.String "stickers", "stickers" A..= stickers ]
 -- stickers Stickers  { stickers :: [Sticker.Sticker] } 
 
+
+
+instance T.FromJSON Stickers where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "stickers" -> parseStickers v
+  where
+   parseStickers :: A.Value -> T.Parser Stickers
+   parseStickers = A.withObject "Stickers" $ \o -> do
+    stickers <- o A..: "stickers"
+    return $ Stickers { stickers = stickers }

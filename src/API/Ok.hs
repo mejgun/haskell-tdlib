@@ -15,3 +15,14 @@ instance T.ToJSON Ok where
   A.object [ "@type" A..= T.String "ok" ]
 -- ok Ok 
 
+
+
+instance T.FromJSON Ok where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "ok" -> parseOk v
+  where
+   parseOk :: A.Value -> T.Parser Ok
+   parseOk = A.withObject "Ok" $ \o -> do
+    return $ Ok {  }

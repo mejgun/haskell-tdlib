@@ -16,3 +16,15 @@ instance T.ToJSON CheckCreatedPublicChatsLimit where
   A.object [ "@type" A..= T.String "checkCreatedPublicChatsLimit", "type" A..= _type ]
 -- checkCreatedPublicChatsLimit CheckCreatedPublicChatsLimit  { _type :: PublicChatType.PublicChatType } 
 
+
+
+instance T.FromJSON CheckCreatedPublicChatsLimit where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "checkCreatedPublicChatsLimit" -> parseCheckCreatedPublicChatsLimit v
+  where
+   parseCheckCreatedPublicChatsLimit :: A.Value -> T.Parser CheckCreatedPublicChatsLimit
+   parseCheckCreatedPublicChatsLimit = A.withObject "CheckCreatedPublicChatsLimit" $ \o -> do
+    _type <- o A..: "type"
+    return $ CheckCreatedPublicChatsLimit { _type = _type }

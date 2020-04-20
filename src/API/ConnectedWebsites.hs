@@ -16,3 +16,15 @@ instance T.ToJSON ConnectedWebsites where
   A.object [ "@type" A..= T.String "connectedWebsites", "websites" A..= websites ]
 -- connectedWebsites ConnectedWebsites  { websites :: [ConnectedWebsite.ConnectedWebsite] } 
 
+
+
+instance T.FromJSON ConnectedWebsites where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "connectedWebsites" -> parseConnectedWebsites v
+  where
+   parseConnectedWebsites :: A.Value -> T.Parser ConnectedWebsites
+   parseConnectedWebsites = A.withObject "ConnectedWebsites" $ \o -> do
+    websites <- o A..: "websites"
+    return $ ConnectedWebsites { websites = websites }

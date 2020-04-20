@@ -16,3 +16,18 @@ instance T.ToJSON Notification where
   A.object [ "@type" A..= T.String "notification", "type" A..= _type, "is_silent" A..= is_silent, "date" A..= date, "id" A..= _id ]
 -- notification Notification  { _type :: NotificationType.NotificationType, is_silent :: Bool, date :: Int, _id :: Int } 
 
+
+
+instance T.FromJSON Notification where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "notification" -> parseNotification v
+  where
+   parseNotification :: A.Value -> T.Parser Notification
+   parseNotification = A.withObject "Notification" $ \o -> do
+    _type <- o A..: "type"
+    is_silent <- o A..: "is_silent"
+    date <- o A..: "date"
+    _id <- o A..: "id"
+    return $ Notification { _type = _type, is_silent = is_silent, date = date, _id = _id }

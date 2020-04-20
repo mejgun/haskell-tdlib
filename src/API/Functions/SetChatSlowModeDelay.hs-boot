@@ -8,3 +8,7 @@ data SetChatSlowModeDelay
 
 instance ToJSON SetChatSlowModeDelay
 
+
+
+instance FromJSON SetChatSlowModeDelay
+

@@ -8,3 +8,7 @@ data CheckAuthenticationBotToken
 
 instance ToJSON CheckAuthenticationBotToken
 
+
+
+instance FromJSON CheckAuthenticationBotToken
+

@@ -16,3 +16,16 @@ instance T.ToJSON PageBlockCaption where
   A.object [ "@type" A..= T.String "pageBlockCaption", "credit" A..= credit, "text" A..= text ]
 -- pageBlockCaption PageBlockCaption  { credit :: RichText.RichText, text :: RichText.RichText } 
 
+
+
+instance T.FromJSON PageBlockCaption where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "pageBlockCaption" -> parsePageBlockCaption v
+  where
+   parsePageBlockCaption :: A.Value -> T.Parser PageBlockCaption
+   parsePageBlockCaption = A.withObject "PageBlockCaption" $ \o -> do
+    credit <- o A..: "credit"
+    text <- o A..: "text"
+    return $ PageBlockCaption { credit = credit, text = text }

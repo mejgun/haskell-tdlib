@@ -15,3 +15,14 @@ instance T.ToJSON TestCallEmpty where
   A.object [ "@type" A..= T.String "testCallEmpty" ]
 -- testCallEmpty TestCallEmpty 
 
+
+
+instance T.FromJSON TestCallEmpty where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "testCallEmpty" -> parseTestCallEmpty v
+  where
+   parseTestCallEmpty :: A.Value -> T.Parser TestCallEmpty
+   parseTestCallEmpty = A.withObject "TestCallEmpty" $ \o -> do
+    return $ TestCallEmpty {  }

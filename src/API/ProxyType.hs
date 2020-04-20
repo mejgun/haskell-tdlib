@@ -27,3 +27,30 @@ instance T.ToJSON ProxyType where
 
 -- proxyTypeMtproto ProxyType  { secret :: String } 
 
+
+
+instance T.FromJSON ProxyType where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "proxyTypeSocks5" -> parseProxyTypeSocks5 v
+   "proxyTypeHttp" -> parseProxyTypeHttp v
+   "proxyTypeMtproto" -> parseProxyTypeMtproto v
+  where
+   parseProxyTypeSocks5 :: A.Value -> T.Parser ProxyType
+   parseProxyTypeSocks5 = A.withObject "ProxyTypeSocks5" $ \o -> do
+    password <- o A..: "password"
+    username <- o A..: "username"
+    return $ ProxyTypeSocks5 { password = password, username = username }
+
+   parseProxyTypeHttp :: A.Value -> T.Parser ProxyType
+   parseProxyTypeHttp = A.withObject "ProxyTypeHttp" $ \o -> do
+    http_only <- o A..: "http_only"
+    password <- o A..: "password"
+    username <- o A..: "username"
+    return $ ProxyTypeHttp { http_only = http_only, password = password, username = username }
+
+   parseProxyTypeMtproto :: A.Value -> T.Parser ProxyType
+   parseProxyTypeMtproto = A.withObject "ProxyTypeMtproto" $ \o -> do
+    secret <- o A..: "secret"
+    return $ ProxyTypeMtproto { secret = secret }

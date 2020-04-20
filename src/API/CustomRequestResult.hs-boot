@@ -8,3 +8,7 @@ data CustomRequestResult
 
 instance ToJSON CustomRequestResult
 
+
+
+instance FromJSON CustomRequestResult
+

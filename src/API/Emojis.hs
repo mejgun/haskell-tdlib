@@ -15,3 +15,15 @@ instance T.ToJSON Emojis where
   A.object [ "@type" A..= T.String "emojis", "emojis" A..= emojis ]
 -- emojis Emojis  { emojis :: [String] } 
 
+
+
+instance T.FromJSON Emojis where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "emojis" -> parseEmojis v
+  where
+   parseEmojis :: A.Value -> T.Parser Emojis
+   parseEmojis = A.withObject "Emojis" $ \o -> do
+    emojis <- o A..: "emojis"
+    return $ Emojis { emojis = emojis }

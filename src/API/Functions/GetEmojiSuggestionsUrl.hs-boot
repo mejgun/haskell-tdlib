@@ -8,3 +8,7 @@ data GetEmojiSuggestionsUrl
 
 instance ToJSON GetEmojiSuggestionsUrl
 
+
+
+instance FromJSON GetEmojiSuggestionsUrl
+

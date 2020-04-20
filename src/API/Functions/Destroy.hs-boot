@@ -8,3 +8,7 @@ data Destroy
 
 instance ToJSON Destroy
 
+
+
+instance FromJSON Destroy
+

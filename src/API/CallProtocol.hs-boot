@@ -8,3 +8,7 @@ data CallProtocol
 
 instance ToJSON CallProtocol
 
+
+
+instance FromJSON CallProtocol
+

@@ -8,3 +8,7 @@ data ChatList
 
 instance ToJSON ChatList
 
+
+
+instance FromJSON ChatList
+

@@ -8,3 +8,7 @@ data TestVectorString
 
 instance ToJSON TestVectorString
 
+
+
+instance FromJSON TestVectorString
+

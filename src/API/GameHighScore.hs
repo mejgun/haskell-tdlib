@@ -15,3 +15,17 @@ instance T.ToJSON GameHighScore where
   A.object [ "@type" A..= T.String "gameHighScore", "score" A..= score, "user_id" A..= user_id, "position" A..= position ]
 -- gameHighScore GameHighScore  { score :: Int, user_id :: Int, position :: Int } 
 
+
+
+instance T.FromJSON GameHighScore where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "gameHighScore" -> parseGameHighScore v
+  where
+   parseGameHighScore :: A.Value -> T.Parser GameHighScore
+   parseGameHighScore = A.withObject "GameHighScore" $ \o -> do
+    score <- o A..: "score"
+    user_id <- o A..: "user_id"
+    position <- o A..: "position"
+    return $ GameHighScore { score = score, user_id = user_id, position = position }

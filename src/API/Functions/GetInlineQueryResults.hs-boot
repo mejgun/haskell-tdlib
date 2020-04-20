@@ -8,3 +8,7 @@ data GetInlineQueryResults
 
 instance ToJSON GetInlineQueryResults
 
+
+
+instance FromJSON GetInlineQueryResults
+

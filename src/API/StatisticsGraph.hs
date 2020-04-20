@@ -27,3 +27,28 @@ instance T.ToJSON StatisticsGraph where
 
 -- statisticsGraphError StatisticsGraph  { error_message :: String } 
 
+
+
+instance T.FromJSON StatisticsGraph where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "statisticsGraphData" -> parseStatisticsGraphData v
+   "statisticsGraphAsync" -> parseStatisticsGraphAsync v
+   "statisticsGraphError" -> parseStatisticsGraphError v
+  where
+   parseStatisticsGraphData :: A.Value -> T.Parser StatisticsGraph
+   parseStatisticsGraphData = A.withObject "StatisticsGraphData" $ \o -> do
+    zoom_token <- o A..: "zoom_token"
+    json_data <- o A..: "json_data"
+    return $ StatisticsGraphData { zoom_token = zoom_token, json_data = json_data }
+
+   parseStatisticsGraphAsync :: A.Value -> T.Parser StatisticsGraph
+   parseStatisticsGraphAsync = A.withObject "StatisticsGraphAsync" $ \o -> do
+    token <- o A..: "token"
+    return $ StatisticsGraphAsync { token = token }
+
+   parseStatisticsGraphError :: A.Value -> T.Parser StatisticsGraph
+   parseStatisticsGraphError = A.withObject "StatisticsGraphError" $ \o -> do
+    error_message <- o A..: "error_message"
+    return $ StatisticsGraphError { error_message = error_message }

@@ -33,3 +33,35 @@ instance T.ToJSON InputFile where
 
 -- inputFileGenerated InputFile  { expected_size :: Int, conversion :: String, original_path :: String } 
 
+
+
+instance T.FromJSON InputFile where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "inputFileId" -> parseInputFileId v
+   "inputFileRemote" -> parseInputFileRemote v
+   "inputFileLocal" -> parseInputFileLocal v
+   "inputFileGenerated" -> parseInputFileGenerated v
+  where
+   parseInputFileId :: A.Value -> T.Parser InputFile
+   parseInputFileId = A.withObject "InputFileId" $ \o -> do
+    __id <- o A..: "id"
+    return $ InputFileId { __id = __id }
+
+   parseInputFileRemote :: A.Value -> T.Parser InputFile
+   parseInputFileRemote = A.withObject "InputFileRemote" $ \o -> do
+    _id <- o A..: "id"
+    return $ InputFileRemote { _id = _id }
+
+   parseInputFileLocal :: A.Value -> T.Parser InputFile
+   parseInputFileLocal = A.withObject "InputFileLocal" $ \o -> do
+    path <- o A..: "path"
+    return $ InputFileLocal { path = path }
+
+   parseInputFileGenerated :: A.Value -> T.Parser InputFile
+   parseInputFileGenerated = A.withObject "InputFileGenerated" $ \o -> do
+    expected_size <- o A..: "expected_size"
+    conversion <- o A..: "conversion"
+    original_path <- o A..: "original_path"
+    return $ InputFileGenerated { expected_size = expected_size, conversion = conversion, original_path = original_path }

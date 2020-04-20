@@ -8,3 +8,7 @@ data GetPaymentReceipt
 
 instance ToJSON GetPaymentReceipt
 
+
+
+instance FromJSON GetPaymentReceipt
+

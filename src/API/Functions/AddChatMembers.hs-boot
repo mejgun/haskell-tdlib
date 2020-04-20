@@ -8,3 +8,7 @@ data AddChatMembers
 
 instance ToJSON AddChatMembers
 
+
+
+instance FromJSON AddChatMembers
+

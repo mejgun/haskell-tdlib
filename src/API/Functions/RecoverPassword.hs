@@ -15,3 +15,15 @@ instance T.ToJSON RecoverPassword where
   A.object [ "@type" A..= T.String "recoverPassword", "recovery_code" A..= recovery_code ]
 -- recoverPassword RecoverPassword  { recovery_code :: String } 
 
+
+
+instance T.FromJSON RecoverPassword where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "recoverPassword" -> parseRecoverPassword v
+  where
+   parseRecoverPassword :: A.Value -> T.Parser RecoverPassword
+   parseRecoverPassword = A.withObject "RecoverPassword" $ \o -> do
+    recovery_code <- o A..: "recovery_code"
+    return $ RecoverPassword { recovery_code = recovery_code }

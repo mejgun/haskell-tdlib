@@ -8,3 +8,7 @@ data SupergroupMembersFilter
 
 instance ToJSON SupergroupMembersFilter
 
+
+
+instance FromJSON SupergroupMembersFilter
+

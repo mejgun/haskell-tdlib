@@ -8,3 +8,7 @@ data SetChatDraftMessage
 
 instance ToJSON SetChatDraftMessage
 
+
+
+instance FromJSON SetChatDraftMessage
+

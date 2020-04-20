@@ -8,3 +8,7 @@ data EncryptedPassportElement
 
 instance ToJSON EncryptedPassportElement
 
+
+
+instance FromJSON EncryptedPassportElement
+

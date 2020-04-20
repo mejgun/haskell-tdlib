@@ -8,3 +8,7 @@ data LabeledPricePart
 
 instance ToJSON LabeledPricePart
 
+
+
+instance FromJSON LabeledPricePart
+

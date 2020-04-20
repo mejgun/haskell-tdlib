@@ -8,3 +8,7 @@ data GetInviteText
 
 instance ToJSON GetInviteText
 
+
+
+instance FromJSON GetInviteText
+

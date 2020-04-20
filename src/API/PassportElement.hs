@@ -91,3 +91,87 @@ instance T.ToJSON PassportElement where
 
 -- passportElementEmailAddress PassportElement  { email_address :: String } 
 
+
+
+instance T.FromJSON PassportElement where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "passportElementPersonalDetails" -> parsePassportElementPersonalDetails v
+   "passportElementPassport" -> parsePassportElementPassport v
+   "passportElementDriverLicense" -> parsePassportElementDriverLicense v
+   "passportElementIdentityCard" -> parsePassportElementIdentityCard v
+   "passportElementInternalPassport" -> parsePassportElementInternalPassport v
+   "passportElementAddress" -> parsePassportElementAddress v
+   "passportElementUtilityBill" -> parsePassportElementUtilityBill v
+   "passportElementBankStatement" -> parsePassportElementBankStatement v
+   "passportElementRentalAgreement" -> parsePassportElementRentalAgreement v
+   "passportElementPassportRegistration" -> parsePassportElementPassportRegistration v
+   "passportElementTemporaryRegistration" -> parsePassportElementTemporaryRegistration v
+   "passportElementPhoneNumber" -> parsePassportElementPhoneNumber v
+   "passportElementEmailAddress" -> parsePassportElementEmailAddress v
+  where
+   parsePassportElementPersonalDetails :: A.Value -> T.Parser PassportElement
+   parsePassportElementPersonalDetails = A.withObject "PassportElementPersonalDetails" $ \o -> do
+    personal_details <- o A..: "personal_details"
+    return $ PassportElementPersonalDetails { personal_details = personal_details }
+
+   parsePassportElementPassport :: A.Value -> T.Parser PassportElement
+   parsePassportElementPassport = A.withObject "PassportElementPassport" $ \o -> do
+    passport <- o A..: "passport"
+    return $ PassportElementPassport { passport = passport }
+
+   parsePassportElementDriverLicense :: A.Value -> T.Parser PassportElement
+   parsePassportElementDriverLicense = A.withObject "PassportElementDriverLicense" $ \o -> do
+    driver_license <- o A..: "driver_license"
+    return $ PassportElementDriverLicense { driver_license = driver_license }
+
+   parsePassportElementIdentityCard :: A.Value -> T.Parser PassportElement
+   parsePassportElementIdentityCard = A.withObject "PassportElementIdentityCard" $ \o -> do
+    identity_card <- o A..: "identity_card"
+    return $ PassportElementIdentityCard { identity_card = identity_card }
+
+   parsePassportElementInternalPassport :: A.Value -> T.Parser PassportElement
+   parsePassportElementInternalPassport = A.withObject "PassportElementInternalPassport" $ \o -> do
+    internal_passport <- o A..: "internal_passport"
+    return $ PassportElementInternalPassport { internal_passport = internal_passport }
+
+   parsePassportElementAddress :: A.Value -> T.Parser PassportElement
+   parsePassportElementAddress = A.withObject "PassportElementAddress" $ \o -> do
+    address <- o A..: "address"
+    return $ PassportElementAddress { address = address }
+
+   parsePassportElementUtilityBill :: A.Value -> T.Parser PassportElement
+   parsePassportElementUtilityBill = A.withObject "PassportElementUtilityBill" $ \o -> do
+    utility_bill <- o A..: "utility_bill"
+    return $ PassportElementUtilityBill { utility_bill = utility_bill }
+
+   parsePassportElementBankStatement :: A.Value -> T.Parser PassportElement
+   parsePassportElementBankStatement = A.withObject "PassportElementBankStatement" $ \o -> do
+    bank_statement <- o A..: "bank_statement"
+    return $ PassportElementBankStatement { bank_statement = bank_statement }
+
+   parsePassportElementRentalAgreement :: A.Value -> T.Parser PassportElement
+   parsePassportElementRentalAgreement = A.withObject "PassportElementRentalAgreement" $ \o -> do
+    rental_agreement <- o A..: "rental_agreement"
+    return $ PassportElementRentalAgreement { rental_agreement = rental_agreement }
+
+   parsePassportElementPassportRegistration :: A.Value -> T.Parser PassportElement
+   parsePassportElementPassportRegistration = A.withObject "PassportElementPassportRegistration" $ \o -> do
+    passport_registration <- o A..: "passport_registration"
+    return $ PassportElementPassportRegistration { passport_registration = passport_registration }
+
+   parsePassportElementTemporaryRegistration :: A.Value -> T.Parser PassportElement
+   parsePassportElementTemporaryRegistration = A.withObject "PassportElementTemporaryRegistration" $ \o -> do
+    temporary_registration <- o A..: "temporary_registration"
+    return $ PassportElementTemporaryRegistration { temporary_registration = temporary_registration }
+
+   parsePassportElementPhoneNumber :: A.Value -> T.Parser PassportElement
+   parsePassportElementPhoneNumber = A.withObject "PassportElementPhoneNumber" $ \o -> do
+    phone_number <- o A..: "phone_number"
+    return $ PassportElementPhoneNumber { phone_number = phone_number }
+
+   parsePassportElementEmailAddress :: A.Value -> T.Parser PassportElement
+   parsePassportElementEmailAddress = A.withObject "PassportElementEmailAddress" $ \o -> do
+    email_address <- o A..: "email_address"
+    return $ PassportElementEmailAddress { email_address = email_address }

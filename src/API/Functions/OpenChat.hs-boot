@@ -8,3 +8,7 @@ data OpenChat
 
 instance ToJSON OpenChat
 
+
+
+instance FromJSON OpenChat
+

@@ -15,3 +15,17 @@ instance T.ToJSON Date where
   A.object [ "@type" A..= T.String "date", "year" A..= year, "month" A..= month, "day" A..= day ]
 -- date Date  { year :: Int, month :: Int, day :: Int } 
 
+
+
+instance T.FromJSON Date where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "date" -> parseDate v
+  where
+   parseDate :: A.Value -> T.Parser Date
+   parseDate = A.withObject "Date" $ \o -> do
+    year <- o A..: "year"
+    month <- o A..: "month"
+    day <- o A..: "day"
+    return $ Date { year = year, month = month, day = day }

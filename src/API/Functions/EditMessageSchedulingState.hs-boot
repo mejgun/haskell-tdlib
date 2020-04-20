@@ -8,3 +8,7 @@ data EditMessageSchedulingState
 
 instance ToJSON EditMessageSchedulingState
 
+
+
+instance FromJSON EditMessageSchedulingState
+

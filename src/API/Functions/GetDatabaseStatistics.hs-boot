@@ -8,3 +8,7 @@ data GetDatabaseStatistics
 
 instance ToJSON GetDatabaseStatistics
 
+
+
+instance FromJSON GetDatabaseStatistics
+

@@ -8,3 +8,7 @@ data AuthorizationState
 
 instance ToJSON AuthorizationState
 
+
+
+instance FromJSON AuthorizationState
+

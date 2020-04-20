@@ -15,3 +15,18 @@ instance T.ToJSON GetLanguagePackString where
   A.object [ "@type" A..= T.String "getLanguagePackString", "key" A..= key, "language_pack_id" A..= language_pack_id, "localization_target" A..= localization_target, "language_pack_database_path" A..= language_pack_database_path ]
 -- getLanguagePackString GetLanguagePackString  { key :: String, language_pack_id :: String, localization_target :: String, language_pack_database_path :: String } 
 
+
+
+instance T.FromJSON GetLanguagePackString where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getLanguagePackString" -> parseGetLanguagePackString v
+  where
+   parseGetLanguagePackString :: A.Value -> T.Parser GetLanguagePackString
+   parseGetLanguagePackString = A.withObject "GetLanguagePackString" $ \o -> do
+    key <- o A..: "key"
+    language_pack_id <- o A..: "language_pack_id"
+    localization_target <- o A..: "localization_target"
+    language_pack_database_path <- o A..: "language_pack_database_path"
+    return $ GetLanguagePackString { key = key, language_pack_id = language_pack_id, localization_target = localization_target, language_pack_database_path = language_pack_database_path }

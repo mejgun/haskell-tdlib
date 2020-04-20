@@ -8,3 +8,7 @@ data SetChatDescription
 
 instance ToJSON SetChatDescription
 
+
+
+instance FromJSON SetChatDescription
+

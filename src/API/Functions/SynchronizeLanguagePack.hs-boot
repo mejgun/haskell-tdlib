@@ -8,3 +8,7 @@ data SynchronizeLanguagePack
 
 instance ToJSON SynchronizeLanguagePack
 
+
+
+instance FromJSON SynchronizeLanguagePack
+

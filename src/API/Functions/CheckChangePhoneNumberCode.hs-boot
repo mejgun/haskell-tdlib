@@ -8,3 +8,7 @@ data CheckChangePhoneNumberCode
 
 instance ToJSON CheckChangePhoneNumberCode
 
+
+
+instance FromJSON CheckChangePhoneNumberCode
+

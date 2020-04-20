@@ -8,3 +8,7 @@ data GetFavoriteStickers
 
 instance ToJSON GetFavoriteStickers
 
+
+
+instance FromJSON GetFavoriteStickers
+

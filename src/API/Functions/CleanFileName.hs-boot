@@ -8,3 +8,7 @@ data CleanFileName
 
 instance ToJSON CleanFileName
 
+
+
+instance FromJSON CleanFileName
+

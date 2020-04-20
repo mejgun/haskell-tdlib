@@ -8,3 +8,7 @@ data SendMessage
 
 instance ToJSON SendMessage
 
+
+
+instance FromJSON SendMessage
+

@@ -8,3 +8,7 @@ data GetAllPassportElements
 
 instance ToJSON GetAllPassportElements
 
+
+
+instance FromJSON GetAllPassportElements
+

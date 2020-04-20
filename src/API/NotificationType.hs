@@ -35,3 +35,36 @@ instance T.ToJSON NotificationType where
 
 -- notificationTypeNewPushMessage NotificationType  { content :: PushMessageContent.PushMessageContent, is_outgoing :: Bool, sender_name :: String, sender_user_id :: Int, message_id :: Int } 
 
+
+
+instance T.FromJSON NotificationType where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "notificationTypeNewMessage" -> parseNotificationTypeNewMessage v
+   "notificationTypeNewSecretChat" -> parseNotificationTypeNewSecretChat v
+   "notificationTypeNewCall" -> parseNotificationTypeNewCall v
+   "notificationTypeNewPushMessage" -> parseNotificationTypeNewPushMessage v
+  where
+   parseNotificationTypeNewMessage :: A.Value -> T.Parser NotificationType
+   parseNotificationTypeNewMessage = A.withObject "NotificationTypeNewMessage" $ \o -> do
+    message <- o A..: "message"
+    return $ NotificationTypeNewMessage { message = message }
+
+   parseNotificationTypeNewSecretChat :: A.Value -> T.Parser NotificationType
+   parseNotificationTypeNewSecretChat = A.withObject "NotificationTypeNewSecretChat" $ \o -> do
+    return $ NotificationTypeNewSecretChat {  }
+
+   parseNotificationTypeNewCall :: A.Value -> T.Parser NotificationType
+   parseNotificationTypeNewCall = A.withObject "NotificationTypeNewCall" $ \o -> do
+    call_id <- o A..: "call_id"
+    return $ NotificationTypeNewCall { call_id = call_id }
+
+   parseNotificationTypeNewPushMessage :: A.Value -> T.Parser NotificationType
+   parseNotificationTypeNewPushMessage = A.withObject "NotificationTypeNewPushMessage" $ \o -> do
+    content <- o A..: "content"
+    is_outgoing <- o A..: "is_outgoing"
+    sender_name <- o A..: "sender_name"
+    sender_user_id <- o A..: "sender_user_id"
+    message_id <- o A..: "message_id"
+    return $ NotificationTypeNewPushMessage { content = content, is_outgoing = is_outgoing, sender_name = sender_name, sender_user_id = sender_user_id, message_id = message_id }

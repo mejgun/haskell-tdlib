@@ -737,3 +737,633 @@ instance T.ToJSON GeneralResult where
 
 -- Error GeneralResult  Error.Error
 
+
+
+instance T.FromJSON GeneralResult where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "AuthorizationState" -> parseAuthorizationState v
+   "Session" -> parseSession v
+   "Updates" -> parseUpdates v
+   "RecoveryEmailAddress" -> parseRecoveryEmailAddress v
+   "PasswordState" -> parsePasswordState v
+   "TemporaryPasswordState" -> parseTemporaryPasswordState v
+   "UserFullInfo" -> parseUserFullInfo v
+   "BasicGroup" -> parseBasicGroup v
+   "BasicGroupFullInfo" -> parseBasicGroupFullInfo v
+   "Supergroup" -> parseSupergroup v
+   "SupergroupFullInfo" -> parseSupergroupFullInfo v
+   "SecretChat" -> parseSecretChat v
+   "ChatsNearby" -> parseChatsNearby v
+   "CheckChatUsernameResult" -> parseCheckChatUsernameResult v
+   "FoundMessages" -> parseFoundMessages v
+   "PublicMessageLink" -> parsePublicMessageLink v
+   "MessageLinkInfo" -> parseMessageLinkInfo v
+   "Messages" -> parseMessages v
+   "TextEntities" -> parseTextEntities v
+   "FormattedText" -> parseFormattedText v
+   "LanguagePackStringValue" -> parseLanguagePackStringValue v
+   "LoginUrlInfo" -> parseLoginUrlInfo v
+   "InlineQueryResults" -> parseInlineQueryResults v
+   "CallbackQueryAnswer" -> parseCallbackQueryAnswer v
+   "Message" -> parseMessage v
+   "GameHighScores" -> parseGameHighScores v
+   "CanTransferOwnershipResult" -> parseCanTransferOwnershipResult v
+   "ChatMember" -> parseChatMember v
+   "ChatAdministrators" -> parseChatAdministrators v
+   "Chats" -> parseChats v
+   "ScopeNotificationSettings" -> parseScopeNotificationSettings v
+   "FilePart" -> parseFilePart v
+   "ChatInviteLink" -> parseChatInviteLink v
+   "ChatInviteLinkInfo" -> parseChatInviteLinkInfo v
+   "Chat" -> parseChat v
+   "CallId" -> parseCallId v
+   "Count" -> parseCount v
+   "ImportedContacts" -> parseImportedContacts v
+   "UserProfilePhotos" -> parseUserProfilePhotos v
+   "StickerSets" -> parseStickerSets v
+   "Stickers" -> parseStickers v
+   "Emojis" -> parseEmojis v
+   "Animations" -> parseAnimations v
+   "Users" -> parseUsers v
+   "Hashtags" -> parseHashtags v
+   "WebPage" -> parseWebPage v
+   "WebPageInstantView" -> parseWebPageInstantView v
+   "Sessions" -> parseSessions v
+   "ConnectedWebsites" -> parseConnectedWebsites v
+   "ChatMembers" -> parseChatMembers v
+   "ChatEvents" -> parseChatEvents v
+   "PaymentForm" -> parsePaymentForm v
+   "ValidatedOrderInfo" -> parseValidatedOrderInfo v
+   "PaymentResult" -> parsePaymentResult v
+   "PaymentReceipt" -> parsePaymentReceipt v
+   "OrderInfo" -> parseOrderInfo v
+   "User" -> parseUser v
+   "Backgrounds" -> parseBackgrounds v
+   "Background" -> parseBackground v
+   "LocalizationTargetInfo" -> parseLocalizationTargetInfo v
+   "LanguagePackInfo" -> parseLanguagePackInfo v
+   "LanguagePackStrings" -> parseLanguagePackStrings v
+   "PushReceiverId" -> parsePushReceiverId v
+   "TMeUrls" -> parseTMeUrls v
+   "UserPrivacySettingRules" -> parseUserPrivacySettingRules v
+   "OptionValue" -> parseOptionValue v
+   "AccountTtl" -> parseAccountTtl v
+   "HttpUrl" -> parseHttpUrl v
+   "ChatStatistics" -> parseChatStatistics v
+   "StatisticsGraph" -> parseStatisticsGraph v
+   "StorageStatisticsFast" -> parseStorageStatisticsFast v
+   "DatabaseStatistics" -> parseDatabaseStatistics v
+   "StorageStatistics" -> parseStorageStatistics v
+   "NetworkStatistics" -> parseNetworkStatistics v
+   "AutoDownloadSettingsPresets" -> parseAutoDownloadSettingsPresets v
+   "BankCardInfo" -> parseBankCardInfo v
+   "PassportElements" -> parsePassportElements v
+   "PassportElement" -> parsePassportElement v
+   "EmailAddressAuthenticationCodeInfo" -> parseEmailAddressAuthenticationCodeInfo v
+   "PassportAuthorizationForm" -> parsePassportAuthorizationForm v
+   "PassportElementsWithErrors" -> parsePassportElementsWithErrors v
+   "AuthenticationCodeInfo" -> parseAuthenticationCodeInfo v
+   "StickerSet" -> parseStickerSet v
+   "File" -> parseFile v
+   "CustomRequestResult" -> parseCustomRequestResult v
+   "DeepLinkInfo" -> parseDeepLinkInfo v
+   "JsonValue" -> parseJsonValue v
+   "Proxy" -> parseProxy v
+   "Proxies" -> parseProxies v
+   "Text" -> parseText v
+   "Seconds" -> parseSeconds v
+   "LogStream" -> parseLogStream v
+   "LogTags" -> parseLogTags v
+   "LogVerbosityLevel" -> parseLogVerbosityLevel v
+   "TestString" -> parseTestString v
+   "TestBytes" -> parseTestBytes v
+   "TestVectorInt" -> parseTestVectorInt v
+   "TestVectorIntObject" -> parseTestVectorIntObject v
+   "TestVectorString" -> parseTestVectorString v
+   "TestVectorStringObject" -> parseTestVectorStringObject v
+   "TestInt" -> parseTestInt v
+   "Ok" -> parseOk v
+   "Update" -> parseUpdate v
+   "Error" -> parseError v
+  where
+   parseAuthorizationState :: A.Value -> T.Parser GeneralResult
+   parseAuthorizationState v = do
+    d <- A.parseJSON v :: T.Parser AuthorizationState.AuthorizationState
+    return $ AuthorizationState d
+
+   parseSession :: A.Value -> T.Parser GeneralResult
+   parseSession v = do
+    d <- A.parseJSON v :: T.Parser Session.Session
+    return $ Session d
+
+   parseUpdates :: A.Value -> T.Parser GeneralResult
+   parseUpdates v = do
+    d <- A.parseJSON v :: T.Parser Updates.Updates
+    return $ Updates d
+
+   parseRecoveryEmailAddress :: A.Value -> T.Parser GeneralResult
+   parseRecoveryEmailAddress v = do
+    d <- A.parseJSON v :: T.Parser RecoveryEmailAddress.RecoveryEmailAddress
+    return $ RecoveryEmailAddress d
+
+   parsePasswordState :: A.Value -> T.Parser GeneralResult
+   parsePasswordState v = do
+    d <- A.parseJSON v :: T.Parser PasswordState.PasswordState
+    return $ PasswordState d
+
+   parseTemporaryPasswordState :: A.Value -> T.Parser GeneralResult
+   parseTemporaryPasswordState v = do
+    d <- A.parseJSON v :: T.Parser TemporaryPasswordState.TemporaryPasswordState
+    return $ TemporaryPasswordState d
+
+   parseUserFullInfo :: A.Value -> T.Parser GeneralResult
+   parseUserFullInfo v = do
+    d <- A.parseJSON v :: T.Parser UserFullInfo.UserFullInfo
+    return $ UserFullInfo d
+
+   parseBasicGroup :: A.Value -> T.Parser GeneralResult
+   parseBasicGroup v = do
+    d <- A.parseJSON v :: T.Parser BasicGroup.BasicGroup
+    return $ BasicGroup d
+
+   parseBasicGroupFullInfo :: A.Value -> T.Parser GeneralResult
+   parseBasicGroupFullInfo v = do
+    d <- A.parseJSON v :: T.Parser BasicGroupFullInfo.BasicGroupFullInfo
+    return $ BasicGroupFullInfo d
+
+   parseSupergroup :: A.Value -> T.Parser GeneralResult
+   parseSupergroup v = do
+    d <- A.parseJSON v :: T.Parser Supergroup.Supergroup
+    return $ Supergroup d
+
+   parseSupergroupFullInfo :: A.Value -> T.Parser GeneralResult
+   parseSupergroupFullInfo v = do
+    d <- A.parseJSON v :: T.Parser SupergroupFullInfo.SupergroupFullInfo
+    return $ SupergroupFullInfo d
+
+   parseSecretChat :: A.Value -> T.Parser GeneralResult
+   parseSecretChat v = do
+    d <- A.parseJSON v :: T.Parser SecretChat.SecretChat
+    return $ SecretChat d
+
+   parseChatsNearby :: A.Value -> T.Parser GeneralResult
+   parseChatsNearby v = do
+    d <- A.parseJSON v :: T.Parser ChatsNearby.ChatsNearby
+    return $ ChatsNearby d
+
+   parseCheckChatUsernameResult :: A.Value -> T.Parser GeneralResult
+   parseCheckChatUsernameResult v = do
+    d <- A.parseJSON v :: T.Parser CheckChatUsernameResult.CheckChatUsernameResult
+    return $ CheckChatUsernameResult d
+
+   parseFoundMessages :: A.Value -> T.Parser GeneralResult
+   parseFoundMessages v = do
+    d <- A.parseJSON v :: T.Parser FoundMessages.FoundMessages
+    return $ FoundMessages d
+
+   parsePublicMessageLink :: A.Value -> T.Parser GeneralResult
+   parsePublicMessageLink v = do
+    d <- A.parseJSON v :: T.Parser PublicMessageLink.PublicMessageLink
+    return $ PublicMessageLink d
+
+   parseMessageLinkInfo :: A.Value -> T.Parser GeneralResult
+   parseMessageLinkInfo v = do
+    d <- A.parseJSON v :: T.Parser MessageLinkInfo.MessageLinkInfo
+    return $ MessageLinkInfo d
+
+   parseMessages :: A.Value -> T.Parser GeneralResult
+   parseMessages v = do
+    d <- A.parseJSON v :: T.Parser Messages.Messages
+    return $ Messages d
+
+   parseTextEntities :: A.Value -> T.Parser GeneralResult
+   parseTextEntities v = do
+    d <- A.parseJSON v :: T.Parser TextEntities.TextEntities
+    return $ TextEntities d
+
+   parseFormattedText :: A.Value -> T.Parser GeneralResult
+   parseFormattedText v = do
+    d <- A.parseJSON v :: T.Parser FormattedText.FormattedText
+    return $ FormattedText d
+
+   parseLanguagePackStringValue :: A.Value -> T.Parser GeneralResult
+   parseLanguagePackStringValue v = do
+    d <- A.parseJSON v :: T.Parser LanguagePackStringValue.LanguagePackStringValue
+    return $ LanguagePackStringValue d
+
+   parseLoginUrlInfo :: A.Value -> T.Parser GeneralResult
+   parseLoginUrlInfo v = do
+    d <- A.parseJSON v :: T.Parser LoginUrlInfo.LoginUrlInfo
+    return $ LoginUrlInfo d
+
+   parseInlineQueryResults :: A.Value -> T.Parser GeneralResult
+   parseInlineQueryResults v = do
+    d <- A.parseJSON v :: T.Parser InlineQueryResults.InlineQueryResults
+    return $ InlineQueryResults d
+
+   parseCallbackQueryAnswer :: A.Value -> T.Parser GeneralResult
+   parseCallbackQueryAnswer v = do
+    d <- A.parseJSON v :: T.Parser CallbackQueryAnswer.CallbackQueryAnswer
+    return $ CallbackQueryAnswer d
+
+   parseMessage :: A.Value -> T.Parser GeneralResult
+   parseMessage v = do
+    d <- A.parseJSON v :: T.Parser Message.Message
+    return $ Message d
+
+   parseGameHighScores :: A.Value -> T.Parser GeneralResult
+   parseGameHighScores v = do
+    d <- A.parseJSON v :: T.Parser GameHighScores.GameHighScores
+    return $ GameHighScores d
+
+   parseCanTransferOwnershipResult :: A.Value -> T.Parser GeneralResult
+   parseCanTransferOwnershipResult v = do
+    d <- A.parseJSON v :: T.Parser CanTransferOwnershipResult.CanTransferOwnershipResult
+    return $ CanTransferOwnershipResult d
+
+   parseChatMember :: A.Value -> T.Parser GeneralResult
+   parseChatMember v = do
+    d <- A.parseJSON v :: T.Parser ChatMember.ChatMember
+    return $ ChatMember d
+
+   parseChatAdministrators :: A.Value -> T.Parser GeneralResult
+   parseChatAdministrators v = do
+    d <- A.parseJSON v :: T.Parser ChatAdministrators.ChatAdministrators
+    return $ ChatAdministrators d
+
+   parseChats :: A.Value -> T.Parser GeneralResult
+   parseChats v = do
+    d <- A.parseJSON v :: T.Parser Chats.Chats
+    return $ Chats d
+
+   parseScopeNotificationSettings :: A.Value -> T.Parser GeneralResult
+   parseScopeNotificationSettings v = do
+    d <- A.parseJSON v :: T.Parser ScopeNotificationSettings.ScopeNotificationSettings
+    return $ ScopeNotificationSettings d
+
+   parseFilePart :: A.Value -> T.Parser GeneralResult
+   parseFilePart v = do
+    d <- A.parseJSON v :: T.Parser FilePart.FilePart
+    return $ FilePart d
+
+   parseChatInviteLink :: A.Value -> T.Parser GeneralResult
+   parseChatInviteLink v = do
+    d <- A.parseJSON v :: T.Parser ChatInviteLink.ChatInviteLink
+    return $ ChatInviteLink d
+
+   parseChatInviteLinkInfo :: A.Value -> T.Parser GeneralResult
+   parseChatInviteLinkInfo v = do
+    d <- A.parseJSON v :: T.Parser ChatInviteLinkInfo.ChatInviteLinkInfo
+    return $ ChatInviteLinkInfo d
+
+   parseChat :: A.Value -> T.Parser GeneralResult
+   parseChat v = do
+    d <- A.parseJSON v :: T.Parser Chat.Chat
+    return $ Chat d
+
+   parseCallId :: A.Value -> T.Parser GeneralResult
+   parseCallId v = do
+    d <- A.parseJSON v :: T.Parser CallId.CallId
+    return $ CallId d
+
+   parseCount :: A.Value -> T.Parser GeneralResult
+   parseCount v = do
+    d <- A.parseJSON v :: T.Parser Count.Count
+    return $ Count d
+
+   parseImportedContacts :: A.Value -> T.Parser GeneralResult
+   parseImportedContacts v = do
+    d <- A.parseJSON v :: T.Parser ImportedContacts.ImportedContacts
+    return $ ImportedContacts d
+
+   parseUserProfilePhotos :: A.Value -> T.Parser GeneralResult
+   parseUserProfilePhotos v = do
+    d <- A.parseJSON v :: T.Parser UserProfilePhotos.UserProfilePhotos
+    return $ UserProfilePhotos d
+
+   parseStickerSets :: A.Value -> T.Parser GeneralResult
+   parseStickerSets v = do
+    d <- A.parseJSON v :: T.Parser StickerSets.StickerSets
+    return $ StickerSets d
+
+   parseStickers :: A.Value -> T.Parser GeneralResult
+   parseStickers v = do
+    d <- A.parseJSON v :: T.Parser Stickers.Stickers
+    return $ Stickers d
+
+   parseEmojis :: A.Value -> T.Parser GeneralResult
+   parseEmojis v = do
+    d <- A.parseJSON v :: T.Parser Emojis.Emojis
+    return $ Emojis d
+
+   parseAnimations :: A.Value -> T.Parser GeneralResult
+   parseAnimations v = do
+    d <- A.parseJSON v :: T.Parser Animations.Animations
+    return $ Animations d
+
+   parseUsers :: A.Value -> T.Parser GeneralResult
+   parseUsers v = do
+    d <- A.parseJSON v :: T.Parser Users.Users
+    return $ Users d
+
+   parseHashtags :: A.Value -> T.Parser GeneralResult
+   parseHashtags v = do
+    d <- A.parseJSON v :: T.Parser Hashtags.Hashtags
+    return $ Hashtags d
+
+   parseWebPage :: A.Value -> T.Parser GeneralResult
+   parseWebPage v = do
+    d <- A.parseJSON v :: T.Parser WebPage.WebPage
+    return $ WebPage d
+
+   parseWebPageInstantView :: A.Value -> T.Parser GeneralResult
+   parseWebPageInstantView v = do
+    d <- A.parseJSON v :: T.Parser WebPageInstantView.WebPageInstantView
+    return $ WebPageInstantView d
+
+   parseSessions :: A.Value -> T.Parser GeneralResult
+   parseSessions v = do
+    d <- A.parseJSON v :: T.Parser Sessions.Sessions
+    return $ Sessions d
+
+   parseConnectedWebsites :: A.Value -> T.Parser GeneralResult
+   parseConnectedWebsites v = do
+    d <- A.parseJSON v :: T.Parser ConnectedWebsites.ConnectedWebsites
+    return $ ConnectedWebsites d
+
+   parseChatMembers :: A.Value -> T.Parser GeneralResult
+   parseChatMembers v = do
+    d <- A.parseJSON v :: T.Parser ChatMembers.ChatMembers
+    return $ ChatMembers d
+
+   parseChatEvents :: A.Value -> T.Parser GeneralResult
+   parseChatEvents v = do
+    d <- A.parseJSON v :: T.Parser ChatEvents.ChatEvents
+    return $ ChatEvents d
+
+   parsePaymentForm :: A.Value -> T.Parser GeneralResult
+   parsePaymentForm v = do
+    d <- A.parseJSON v :: T.Parser PaymentForm.PaymentForm
+    return $ PaymentForm d
+
+   parseValidatedOrderInfo :: A.Value -> T.Parser GeneralResult
+   parseValidatedOrderInfo v = do
+    d <- A.parseJSON v :: T.Parser ValidatedOrderInfo.ValidatedOrderInfo
+    return $ ValidatedOrderInfo d
+
+   parsePaymentResult :: A.Value -> T.Parser GeneralResult
+   parsePaymentResult v = do
+    d <- A.parseJSON v :: T.Parser PaymentResult.PaymentResult
+    return $ PaymentResult d
+
+   parsePaymentReceipt :: A.Value -> T.Parser GeneralResult
+   parsePaymentReceipt v = do
+    d <- A.parseJSON v :: T.Parser PaymentReceipt.PaymentReceipt
+    return $ PaymentReceipt d
+
+   parseOrderInfo :: A.Value -> T.Parser GeneralResult
+   parseOrderInfo v = do
+    d <- A.parseJSON v :: T.Parser OrderInfo.OrderInfo
+    return $ OrderInfo d
+
+   parseUser :: A.Value -> T.Parser GeneralResult
+   parseUser v = do
+    d <- A.parseJSON v :: T.Parser User.User
+    return $ User d
+
+   parseBackgrounds :: A.Value -> T.Parser GeneralResult
+   parseBackgrounds v = do
+    d <- A.parseJSON v :: T.Parser Backgrounds.Backgrounds
+    return $ Backgrounds d
+
+   parseBackground :: A.Value -> T.Parser GeneralResult
+   parseBackground v = do
+    d <- A.parseJSON v :: T.Parser Background.Background
+    return $ Background d
+
+   parseLocalizationTargetInfo :: A.Value -> T.Parser GeneralResult
+   parseLocalizationTargetInfo v = do
+    d <- A.parseJSON v :: T.Parser LocalizationTargetInfo.LocalizationTargetInfo
+    return $ LocalizationTargetInfo d
+
+   parseLanguagePackInfo :: A.Value -> T.Parser GeneralResult
+   parseLanguagePackInfo v = do
+    d <- A.parseJSON v :: T.Parser LanguagePackInfo.LanguagePackInfo
+    return $ LanguagePackInfo d
+
+   parseLanguagePackStrings :: A.Value -> T.Parser GeneralResult
+   parseLanguagePackStrings v = do
+    d <- A.parseJSON v :: T.Parser LanguagePackStrings.LanguagePackStrings
+    return $ LanguagePackStrings d
+
+   parsePushReceiverId :: A.Value -> T.Parser GeneralResult
+   parsePushReceiverId v = do
+    d <- A.parseJSON v :: T.Parser PushReceiverId.PushReceiverId
+    return $ PushReceiverId d
+
+   parseTMeUrls :: A.Value -> T.Parser GeneralResult
+   parseTMeUrls v = do
+    d <- A.parseJSON v :: T.Parser TMeUrls.TMeUrls
+    return $ TMeUrls d
+
+   parseUserPrivacySettingRules :: A.Value -> T.Parser GeneralResult
+   parseUserPrivacySettingRules v = do
+    d <- A.parseJSON v :: T.Parser UserPrivacySettingRules.UserPrivacySettingRules
+    return $ UserPrivacySettingRules d
+
+   parseOptionValue :: A.Value -> T.Parser GeneralResult
+   parseOptionValue v = do
+    d <- A.parseJSON v :: T.Parser OptionValue.OptionValue
+    return $ OptionValue d
+
+   parseAccountTtl :: A.Value -> T.Parser GeneralResult
+   parseAccountTtl v = do
+    d <- A.parseJSON v :: T.Parser AccountTtl.AccountTtl
+    return $ AccountTtl d
+
+   parseHttpUrl :: A.Value -> T.Parser GeneralResult
+   parseHttpUrl v = do
+    d <- A.parseJSON v :: T.Parser HttpUrl.HttpUrl
+    return $ HttpUrl d
+
+   parseChatStatistics :: A.Value -> T.Parser GeneralResult
+   parseChatStatistics v = do
+    d <- A.parseJSON v :: T.Parser ChatStatistics.ChatStatistics
+    return $ ChatStatistics d
+
+   parseStatisticsGraph :: A.Value -> T.Parser GeneralResult
+   parseStatisticsGraph v = do
+    d <- A.parseJSON v :: T.Parser StatisticsGraph.StatisticsGraph
+    return $ StatisticsGraph d
+
+   parseStorageStatisticsFast :: A.Value -> T.Parser GeneralResult
+   parseStorageStatisticsFast v = do
+    d <- A.parseJSON v :: T.Parser StorageStatisticsFast.StorageStatisticsFast
+    return $ StorageStatisticsFast d
+
+   parseDatabaseStatistics :: A.Value -> T.Parser GeneralResult
+   parseDatabaseStatistics v = do
+    d <- A.parseJSON v :: T.Parser DatabaseStatistics.DatabaseStatistics
+    return $ DatabaseStatistics d
+
+   parseStorageStatistics :: A.Value -> T.Parser GeneralResult
+   parseStorageStatistics v = do
+    d <- A.parseJSON v :: T.Parser StorageStatistics.StorageStatistics
+    return $ StorageStatistics d
+
+   parseNetworkStatistics :: A.Value -> T.Parser GeneralResult
+   parseNetworkStatistics v = do
+    d <- A.parseJSON v :: T.Parser NetworkStatistics.NetworkStatistics
+    return $ NetworkStatistics d
+
+   parseAutoDownloadSettingsPresets :: A.Value -> T.Parser GeneralResult
+   parseAutoDownloadSettingsPresets v = do
+    d <- A.parseJSON v :: T.Parser AutoDownloadSettingsPresets.AutoDownloadSettingsPresets
+    return $ AutoDownloadSettingsPresets d
+
+   parseBankCardInfo :: A.Value -> T.Parser GeneralResult
+   parseBankCardInfo v = do
+    d <- A.parseJSON v :: T.Parser BankCardInfo.BankCardInfo
+    return $ BankCardInfo d
+
+   parsePassportElements :: A.Value -> T.Parser GeneralResult
+   parsePassportElements v = do
+    d <- A.parseJSON v :: T.Parser PassportElements.PassportElements
+    return $ PassportElements d
+
+   parsePassportElement :: A.Value -> T.Parser GeneralResult
+   parsePassportElement v = do
+    d <- A.parseJSON v :: T.Parser PassportElement.PassportElement
+    return $ PassportElement d
+
+   parseEmailAddressAuthenticationCodeInfo :: A.Value -> T.Parser GeneralResult
+   parseEmailAddressAuthenticationCodeInfo v = do
+    d <- A.parseJSON v :: T.Parser EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo
+    return $ EmailAddressAuthenticationCodeInfo d
+
+   parsePassportAuthorizationForm :: A.Value -> T.Parser GeneralResult
+   parsePassportAuthorizationForm v = do
+    d <- A.parseJSON v :: T.Parser PassportAuthorizationForm.PassportAuthorizationForm
+    return $ PassportAuthorizationForm d
+
+   parsePassportElementsWithErrors :: A.Value -> T.Parser GeneralResult
+   parsePassportElementsWithErrors v = do
+    d <- A.parseJSON v :: T.Parser PassportElementsWithErrors.PassportElementsWithErrors
+    return $ PassportElementsWithErrors d
+
+   parseAuthenticationCodeInfo :: A.Value -> T.Parser GeneralResult
+   parseAuthenticationCodeInfo v = do
+    d <- A.parseJSON v :: T.Parser AuthenticationCodeInfo.AuthenticationCodeInfo
+    return $ AuthenticationCodeInfo d
+
+   parseStickerSet :: A.Value -> T.Parser GeneralResult
+   parseStickerSet v = do
+    d <- A.parseJSON v :: T.Parser StickerSet.StickerSet
+    return $ StickerSet d
+
+   parseFile :: A.Value -> T.Parser GeneralResult
+   parseFile v = do
+    d <- A.parseJSON v :: T.Parser File.File
+    return $ File d
+
+   parseCustomRequestResult :: A.Value -> T.Parser GeneralResult
+   parseCustomRequestResult v = do
+    d <- A.parseJSON v :: T.Parser CustomRequestResult.CustomRequestResult
+    return $ CustomRequestResult d
+
+   parseDeepLinkInfo :: A.Value -> T.Parser GeneralResult
+   parseDeepLinkInfo v = do
+    d <- A.parseJSON v :: T.Parser DeepLinkInfo.DeepLinkInfo
+    return $ DeepLinkInfo d
+
+   parseJsonValue :: A.Value -> T.Parser GeneralResult
+   parseJsonValue v = do
+    d <- A.parseJSON v :: T.Parser JsonValue.JsonValue
+    return $ JsonValue d
+
+   parseProxy :: A.Value -> T.Parser GeneralResult
+   parseProxy v = do
+    d <- A.parseJSON v :: T.Parser Proxy.Proxy
+    return $ Proxy d
+
+   parseProxies :: A.Value -> T.Parser GeneralResult
+   parseProxies v = do
+    d <- A.parseJSON v :: T.Parser Proxies.Proxies
+    return $ Proxies d
+
+   parseText :: A.Value -> T.Parser GeneralResult
+   parseText v = do
+    d <- A.parseJSON v :: T.Parser Text.Text
+    return $ Text d
+
+   parseSeconds :: A.Value -> T.Parser GeneralResult
+   parseSeconds v = do
+    d <- A.parseJSON v :: T.Parser Seconds.Seconds
+    return $ Seconds d
+
+   parseLogStream :: A.Value -> T.Parser GeneralResult
+   parseLogStream v = do
+    d <- A.parseJSON v :: T.Parser LogStream.LogStream
+    return $ LogStream d
+
+   parseLogTags :: A.Value -> T.Parser GeneralResult
+   parseLogTags v = do
+    d <- A.parseJSON v :: T.Parser LogTags.LogTags
+    return $ LogTags d
+
+   parseLogVerbosityLevel :: A.Value -> T.Parser GeneralResult
+   parseLogVerbosityLevel v = do
+    d <- A.parseJSON v :: T.Parser LogVerbosityLevel.LogVerbosityLevel
+    return $ LogVerbosityLevel d
+
+   parseTestString :: A.Value -> T.Parser GeneralResult
+   parseTestString v = do
+    d <- A.parseJSON v :: T.Parser TestString.TestString
+    return $ TestString d
+
+   parseTestBytes :: A.Value -> T.Parser GeneralResult
+   parseTestBytes v = do
+    d <- A.parseJSON v :: T.Parser TestBytes.TestBytes
+    return $ TestBytes d
+
+   parseTestVectorInt :: A.Value -> T.Parser GeneralResult
+   parseTestVectorInt v = do
+    d <- A.parseJSON v :: T.Parser TestVectorInt.TestVectorInt
+    return $ TestVectorInt d
+
+   parseTestVectorIntObject :: A.Value -> T.Parser GeneralResult
+   parseTestVectorIntObject v = do
+    d <- A.parseJSON v :: T.Parser TestVectorIntObject.TestVectorIntObject
+    return $ TestVectorIntObject d
+
+   parseTestVectorString :: A.Value -> T.Parser GeneralResult
+   parseTestVectorString v = do
+    d <- A.parseJSON v :: T.Parser TestVectorString.TestVectorString
+    return $ TestVectorString d
+
+   parseTestVectorStringObject :: A.Value -> T.Parser GeneralResult
+   parseTestVectorStringObject v = do
+    d <- A.parseJSON v :: T.Parser TestVectorStringObject.TestVectorStringObject
+    return $ TestVectorStringObject d
+
+   parseTestInt :: A.Value -> T.Parser GeneralResult
+   parseTestInt v = do
+    d <- A.parseJSON v :: T.Parser TestInt.TestInt
+    return $ TestInt d
+
+   parseOk :: A.Value -> T.Parser GeneralResult
+   parseOk v = do
+    d <- A.parseJSON v :: T.Parser Ok.Ok
+    return $ Ok d
+
+   parseUpdate :: A.Value -> T.Parser GeneralResult
+   parseUpdate v = do
+    d <- A.parseJSON v :: T.Parser Update.Update
+    return $ Update d
+
+   parseError :: A.Value -> T.Parser GeneralResult
+   parseError v = do
+    d <- A.parseJSON v :: T.Parser Error.Error
+    return $ Error d

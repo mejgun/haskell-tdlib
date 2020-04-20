@@ -8,3 +8,7 @@ data PageBlockListItem
 
 instance ToJSON PageBlockListItem
 
+
+
+instance FromJSON PageBlockListItem
+

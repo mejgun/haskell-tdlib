@@ -8,3 +8,7 @@ data ResendChangePhoneNumberCode
 
 instance ToJSON ResendChangePhoneNumberCode
 
+
+
+instance FromJSON ResendChangePhoneNumberCode
+

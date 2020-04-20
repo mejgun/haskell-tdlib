@@ -15,3 +15,16 @@ instance T.ToJSON RegisterUser where
   A.object [ "@type" A..= T.String "registerUser", "last_name" A..= last_name, "first_name" A..= first_name ]
 -- registerUser RegisterUser  { last_name :: String, first_name :: String } 
 
+
+
+instance T.FromJSON RegisterUser where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "registerUser" -> parseRegisterUser v
+  where
+   parseRegisterUser :: A.Value -> T.Parser RegisterUser
+   parseRegisterUser = A.withObject "RegisterUser" $ \o -> do
+    last_name <- o A..: "last_name"
+    first_name <- o A..: "first_name"
+    return $ RegisterUser { last_name = last_name, first_name = first_name }

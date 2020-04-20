@@ -17,3 +17,16 @@ instance T.ToJSON SetUserPrivacySettingRules where
   A.object [ "@type" A..= T.String "setUserPrivacySettingRules", "rules" A..= rules, "setting" A..= setting ]
 -- setUserPrivacySettingRules SetUserPrivacySettingRules  { rules :: UserPrivacySettingRules.UserPrivacySettingRules, setting :: UserPrivacySetting.UserPrivacySetting } 
 
+
+
+instance T.FromJSON SetUserPrivacySettingRules where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setUserPrivacySettingRules" -> parseSetUserPrivacySettingRules v
+  where
+   parseSetUserPrivacySettingRules :: A.Value -> T.Parser SetUserPrivacySettingRules
+   parseSetUserPrivacySettingRules = A.withObject "SetUserPrivacySettingRules" $ \o -> do
+    rules <- o A..: "rules"
+    setting <- o A..: "setting"
+    return $ SetUserPrivacySettingRules { rules = rules, setting = setting }

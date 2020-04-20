@@ -15,3 +15,15 @@ instance T.ToJSON SynchronizeLanguagePack where
   A.object [ "@type" A..= T.String "synchronizeLanguagePack", "language_pack_id" A..= language_pack_id ]
 -- synchronizeLanguagePack SynchronizeLanguagePack  { language_pack_id :: String } 
 
+
+
+instance T.FromJSON SynchronizeLanguagePack where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "synchronizeLanguagePack" -> parseSynchronizeLanguagePack v
+  where
+   parseSynchronizeLanguagePack :: A.Value -> T.Parser SynchronizeLanguagePack
+   parseSynchronizeLanguagePack = A.withObject "SynchronizeLanguagePack" $ \o -> do
+    language_pack_id <- o A..: "language_pack_id"
+    return $ SynchronizeLanguagePack { language_pack_id = language_pack_id }

@@ -8,3 +8,7 @@ data SetPassword
 
 instance ToJSON SetPassword
 
+
+
+instance FromJSON SetPassword
+

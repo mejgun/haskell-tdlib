@@ -15,3 +15,16 @@ instance T.ToJSON LabeledPricePart where
   A.object [ "@type" A..= T.String "labeledPricePart", "amount" A..= amount, "label" A..= label ]
 -- labeledPricePart LabeledPricePart  { amount :: Int, label :: String } 
 
+
+
+instance T.FromJSON LabeledPricePart where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "labeledPricePart" -> parseLabeledPricePart v
+  where
+   parseLabeledPricePart :: A.Value -> T.Parser LabeledPricePart
+   parseLabeledPricePart = A.withObject "LabeledPricePart" $ \o -> do
+    amount <- o A..: "amount"
+    label <- o A..: "label"
+    return $ LabeledPricePart { amount = amount, label = label }

@@ -8,3 +8,7 @@ data GetTemporaryPasswordState
 
 instance ToJSON GetTemporaryPasswordState
 
+
+
+instance FromJSON GetTemporaryPasswordState
+

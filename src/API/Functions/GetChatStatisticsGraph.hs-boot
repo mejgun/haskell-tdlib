@@ -8,3 +8,7 @@ data GetChatStatisticsGraph
 
 instance ToJSON GetChatStatisticsGraph
 
+
+
+instance FromJSON GetChatStatisticsGraph
+

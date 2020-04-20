@@ -8,3 +8,7 @@ data GetChat
 
 instance ToJSON GetChat
 
+
+
+instance FromJSON GetChat
+

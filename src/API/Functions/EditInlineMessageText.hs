@@ -17,3 +17,17 @@ instance T.ToJSON EditInlineMessageText where
   A.object [ "@type" A..= T.String "editInlineMessageText", "input_message_content" A..= input_message_content, "reply_markup" A..= reply_markup, "inline_message_id" A..= inline_message_id ]
 -- editInlineMessageText EditInlineMessageText  { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, inline_message_id :: String } 
 
+
+
+instance T.FromJSON EditInlineMessageText where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "editInlineMessageText" -> parseEditInlineMessageText v
+  where
+   parseEditInlineMessageText :: A.Value -> T.Parser EditInlineMessageText
+   parseEditInlineMessageText = A.withObject "EditInlineMessageText" $ \o -> do
+    input_message_content <- o A..: "input_message_content"
+    reply_markup <- o A..: "reply_markup"
+    inline_message_id <- o A..: "inline_message_id"
+    return $ EditInlineMessageText { input_message_content = input_message_content, reply_markup = reply_markup, inline_message_id = inline_message_id }

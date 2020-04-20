@@ -111,3 +111,97 @@ instance T.ToJSON TextEntityType where
 
 -- textEntityTypeMentionName TextEntityType  { user_id :: Int } 
 
+
+
+instance T.FromJSON TextEntityType where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "textEntityTypeMention" -> parseTextEntityTypeMention v
+   "textEntityTypeHashtag" -> parseTextEntityTypeHashtag v
+   "textEntityTypeCashtag" -> parseTextEntityTypeCashtag v
+   "textEntityTypeBotCommand" -> parseTextEntityTypeBotCommand v
+   "textEntityTypeUrl" -> parseTextEntityTypeUrl v
+   "textEntityTypeEmailAddress" -> parseTextEntityTypeEmailAddress v
+   "textEntityTypePhoneNumber" -> parseTextEntityTypePhoneNumber v
+   "textEntityTypeBankCardNumber" -> parseTextEntityTypeBankCardNumber v
+   "textEntityTypeBold" -> parseTextEntityTypeBold v
+   "textEntityTypeItalic" -> parseTextEntityTypeItalic v
+   "textEntityTypeUnderline" -> parseTextEntityTypeUnderline v
+   "textEntityTypeStrikethrough" -> parseTextEntityTypeStrikethrough v
+   "textEntityTypeCode" -> parseTextEntityTypeCode v
+   "textEntityTypePre" -> parseTextEntityTypePre v
+   "textEntityTypePreCode" -> parseTextEntityTypePreCode v
+   "textEntityTypeTextUrl" -> parseTextEntityTypeTextUrl v
+   "textEntityTypeMentionName" -> parseTextEntityTypeMentionName v
+  where
+   parseTextEntityTypeMention :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypeMention = A.withObject "TextEntityTypeMention" $ \o -> do
+    return $ TextEntityTypeMention {  }
+
+   parseTextEntityTypeHashtag :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypeHashtag = A.withObject "TextEntityTypeHashtag" $ \o -> do
+    return $ TextEntityTypeHashtag {  }
+
+   parseTextEntityTypeCashtag :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypeCashtag = A.withObject "TextEntityTypeCashtag" $ \o -> do
+    return $ TextEntityTypeCashtag {  }
+
+   parseTextEntityTypeBotCommand :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypeBotCommand = A.withObject "TextEntityTypeBotCommand" $ \o -> do
+    return $ TextEntityTypeBotCommand {  }
+
+   parseTextEntityTypeUrl :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypeUrl = A.withObject "TextEntityTypeUrl" $ \o -> do
+    return $ TextEntityTypeUrl {  }
+
+   parseTextEntityTypeEmailAddress :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypeEmailAddress = A.withObject "TextEntityTypeEmailAddress" $ \o -> do
+    return $ TextEntityTypeEmailAddress {  }
+
+   parseTextEntityTypePhoneNumber :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypePhoneNumber = A.withObject "TextEntityTypePhoneNumber" $ \o -> do
+    return $ TextEntityTypePhoneNumber {  }
+
+   parseTextEntityTypeBankCardNumber :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypeBankCardNumber = A.withObject "TextEntityTypeBankCardNumber" $ \o -> do
+    return $ TextEntityTypeBankCardNumber {  }
+
+   parseTextEntityTypeBold :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypeBold = A.withObject "TextEntityTypeBold" $ \o -> do
+    return $ TextEntityTypeBold {  }
+
+   parseTextEntityTypeItalic :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypeItalic = A.withObject "TextEntityTypeItalic" $ \o -> do
+    return $ TextEntityTypeItalic {  }
+
+   parseTextEntityTypeUnderline :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypeUnderline = A.withObject "TextEntityTypeUnderline" $ \o -> do
+    return $ TextEntityTypeUnderline {  }
+
+   parseTextEntityTypeStrikethrough :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypeStrikethrough = A.withObject "TextEntityTypeStrikethrough" $ \o -> do
+    return $ TextEntityTypeStrikethrough {  }
+
+   parseTextEntityTypeCode :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypeCode = A.withObject "TextEntityTypeCode" $ \o -> do
+    return $ TextEntityTypeCode {  }
+
+   parseTextEntityTypePre :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypePre = A.withObject "TextEntityTypePre" $ \o -> do
+    return $ TextEntityTypePre {  }
+
+   parseTextEntityTypePreCode :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypePreCode = A.withObject "TextEntityTypePreCode" $ \o -> do
+    language <- o A..: "language"
+    return $ TextEntityTypePreCode { language = language }
+
+   parseTextEntityTypeTextUrl :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypeTextUrl = A.withObject "TextEntityTypeTextUrl" $ \o -> do
+    url <- o A..: "url"
+    return $ TextEntityTypeTextUrl { url = url }
+
+   parseTextEntityTypeMentionName :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypeMentionName = A.withObject "TextEntityTypeMentionName" $ \o -> do
+    user_id <- o A..: "user_id"
+    return $ TextEntityTypeMentionName { user_id = user_id }

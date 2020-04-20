@@ -8,3 +8,7 @@ data ProcessPushNotification
 
 instance ToJSON ProcessPushNotification
 
+
+
+instance FromJSON ProcessPushNotification
+

@@ -8,3 +8,7 @@ data SendCustomRequest
 
 instance ToJSON SendCustomRequest
 
+
+
+instance FromJSON SendCustomRequest
+

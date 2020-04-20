@@ -8,3 +8,7 @@ data BankCardInfo
 
 instance ToJSON BankCardInfo
 
+
+
+instance FromJSON BankCardInfo
+

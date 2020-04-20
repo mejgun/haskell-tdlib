@@ -8,3 +8,7 @@ data GetImportedContactCount
 
 instance ToJSON GetImportedContactCount
 
+
+
+instance FromJSON GetImportedContactCount
+

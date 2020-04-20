@@ -21,3 +21,21 @@ instance T.ToJSON PollType where
 
 -- pollTypeQuiz PollType  { correct_option_id :: Int } 
 
+
+
+instance T.FromJSON PollType where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "pollTypeRegular" -> parsePollTypeRegular v
+   "pollTypeQuiz" -> parsePollTypeQuiz v
+  where
+   parsePollTypeRegular :: A.Value -> T.Parser PollType
+   parsePollTypeRegular = A.withObject "PollTypeRegular" $ \o -> do
+    allow_multiple_answers <- o A..: "allow_multiple_answers"
+    return $ PollTypeRegular { allow_multiple_answers = allow_multiple_answers }
+
+   parsePollTypeQuiz :: A.Value -> T.Parser PollType
+   parsePollTypeQuiz = A.withObject "PollTypeQuiz" $ \o -> do
+    correct_option_id <- o A..: "correct_option_id"
+    return $ PollTypeQuiz { correct_option_id = correct_option_id }

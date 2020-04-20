@@ -15,3 +15,15 @@ instance T.ToJSON GetAttachedStickerSets where
   A.object [ "@type" A..= T.String "getAttachedStickerSets", "file_id" A..= file_id ]
 -- getAttachedStickerSets GetAttachedStickerSets  { file_id :: Int } 
 
+
+
+instance T.FromJSON GetAttachedStickerSets where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getAttachedStickerSets" -> parseGetAttachedStickerSets v
+  where
+   parseGetAttachedStickerSets :: A.Value -> T.Parser GetAttachedStickerSets
+   parseGetAttachedStickerSets = A.withObject "GetAttachedStickerSets" $ \o -> do
+    file_id <- o A..: "file_id"
+    return $ GetAttachedStickerSets { file_id = file_id }

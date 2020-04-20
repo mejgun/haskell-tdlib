@@ -8,3 +8,7 @@ data AnswerCustomQuery
 
 instance ToJSON AnswerCustomQuery
 
+
+
+instance FromJSON AnswerCustomQuery
+

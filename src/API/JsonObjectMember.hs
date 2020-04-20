@@ -16,3 +16,16 @@ instance T.ToJSON JsonObjectMember where
   A.object [ "@type" A..= T.String "jsonObjectMember", "value" A..= value, "key" A..= key ]
 -- jsonObjectMember JsonObjectMember  { value :: JsonValue.JsonValue, key :: String } 
 
+
+
+instance T.FromJSON JsonObjectMember where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "jsonObjectMember" -> parseJsonObjectMember v
+  where
+   parseJsonObjectMember :: A.Value -> T.Parser JsonObjectMember
+   parseJsonObjectMember = A.withObject "JsonObjectMember" $ \o -> do
+    value <- o A..: "value"
+    key <- o A..: "key"
+    return $ JsonObjectMember { value = value, key = key }

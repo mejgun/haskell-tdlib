@@ -16,3 +16,18 @@ instance T.ToJSON ChatEvent where
   A.object [ "@type" A..= T.String "chatEvent", "action" A..= action, "user_id" A..= user_id, "date" A..= date, "id" A..= _id ]
 -- chatEvent ChatEvent  { action :: ChatEventAction.ChatEventAction, user_id :: Int, date :: Int, _id :: Int } 
 
+
+
+instance T.FromJSON ChatEvent where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "chatEvent" -> parseChatEvent v
+  where
+   parseChatEvent :: A.Value -> T.Parser ChatEvent
+   parseChatEvent = A.withObject "ChatEvent" $ \o -> do
+    action <- o A..: "action"
+    user_id <- o A..: "user_id"
+    date <- o A..: "date"
+    _id <- o A..: "id"
+    return $ ChatEvent { action = action, user_id = user_id, date = date, _id = _id }

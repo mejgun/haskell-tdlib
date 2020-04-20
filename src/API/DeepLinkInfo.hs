@@ -16,3 +16,16 @@ instance T.ToJSON DeepLinkInfo where
   A.object [ "@type" A..= T.String "deepLinkInfo", "need_update_application" A..= need_update_application, "text" A..= text ]
 -- deepLinkInfo DeepLinkInfo  { need_update_application :: Bool, text :: FormattedText.FormattedText } 
 
+
+
+instance T.FromJSON DeepLinkInfo where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "deepLinkInfo" -> parseDeepLinkInfo v
+  where
+   parseDeepLinkInfo :: A.Value -> T.Parser DeepLinkInfo
+   parseDeepLinkInfo = A.withObject "DeepLinkInfo" $ \o -> do
+    need_update_application <- o A..: "need_update_application"
+    text <- o A..: "text"
+    return $ DeepLinkInfo { need_update_application = need_update_application, text = text }

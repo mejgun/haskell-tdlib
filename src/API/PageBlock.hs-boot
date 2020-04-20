@@ -8,3 +8,7 @@ data PageBlock
 
 instance ToJSON PageBlock
 
+
+
+instance FromJSON PageBlock
+

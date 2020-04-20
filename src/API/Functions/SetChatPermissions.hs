@@ -16,3 +16,16 @@ instance T.ToJSON SetChatPermissions where
   A.object [ "@type" A..= T.String "setChatPermissions", "permissions" A..= permissions, "chat_id" A..= chat_id ]
 -- setChatPermissions SetChatPermissions  { permissions :: ChatPermissions.ChatPermissions, chat_id :: Int } 
 
+
+
+instance T.FromJSON SetChatPermissions where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "setChatPermissions" -> parseSetChatPermissions v
+  where
+   parseSetChatPermissions :: A.Value -> T.Parser SetChatPermissions
+   parseSetChatPermissions = A.withObject "SetChatPermissions" $ \o -> do
+    permissions <- o A..: "permissions"
+    chat_id <- o A..: "chat_id"
+    return $ SetChatPermissions { permissions = permissions, chat_id = chat_id }

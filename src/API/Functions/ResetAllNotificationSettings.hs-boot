@@ -8,3 +8,7 @@ data ResetAllNotificationSettings
 
 instance ToJSON ResetAllNotificationSettings
 
+
+
+instance FromJSON ResetAllNotificationSettings
+

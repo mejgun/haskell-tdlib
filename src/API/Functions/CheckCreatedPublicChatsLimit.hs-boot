@@ -8,3 +8,7 @@ data CheckCreatedPublicChatsLimit
 
 instance ToJSON CheckCreatedPublicChatsLimit
 
+
+
+instance FromJSON CheckCreatedPublicChatsLimit
+

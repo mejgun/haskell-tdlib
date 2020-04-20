@@ -87,3 +87,79 @@ instance T.ToJSON ChatAction where
 
 -- chatActionCancel ChatAction 
 
+
+
+instance T.FromJSON ChatAction where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "chatActionTyping" -> parseChatActionTyping v
+   "chatActionRecordingVideo" -> parseChatActionRecordingVideo v
+   "chatActionUploadingVideo" -> parseChatActionUploadingVideo v
+   "chatActionRecordingVoiceNote" -> parseChatActionRecordingVoiceNote v
+   "chatActionUploadingVoiceNote" -> parseChatActionUploadingVoiceNote v
+   "chatActionUploadingPhoto" -> parseChatActionUploadingPhoto v
+   "chatActionUploadingDocument" -> parseChatActionUploadingDocument v
+   "chatActionChoosingLocation" -> parseChatActionChoosingLocation v
+   "chatActionChoosingContact" -> parseChatActionChoosingContact v
+   "chatActionStartPlayingGame" -> parseChatActionStartPlayingGame v
+   "chatActionRecordingVideoNote" -> parseChatActionRecordingVideoNote v
+   "chatActionUploadingVideoNote" -> parseChatActionUploadingVideoNote v
+   "chatActionCancel" -> parseChatActionCancel v
+  where
+   parseChatActionTyping :: A.Value -> T.Parser ChatAction
+   parseChatActionTyping = A.withObject "ChatActionTyping" $ \o -> do
+    return $ ChatActionTyping {  }
+
+   parseChatActionRecordingVideo :: A.Value -> T.Parser ChatAction
+   parseChatActionRecordingVideo = A.withObject "ChatActionRecordingVideo" $ \o -> do
+    return $ ChatActionRecordingVideo {  }
+
+   parseChatActionUploadingVideo :: A.Value -> T.Parser ChatAction
+   parseChatActionUploadingVideo = A.withObject "ChatActionUploadingVideo" $ \o -> do
+    progress <- o A..: "progress"
+    return $ ChatActionUploadingVideo { progress = progress }
+
+   parseChatActionRecordingVoiceNote :: A.Value -> T.Parser ChatAction
+   parseChatActionRecordingVoiceNote = A.withObject "ChatActionRecordingVoiceNote" $ \o -> do
+    return $ ChatActionRecordingVoiceNote {  }
+
+   parseChatActionUploadingVoiceNote :: A.Value -> T.Parser ChatAction
+   parseChatActionUploadingVoiceNote = A.withObject "ChatActionUploadingVoiceNote" $ \o -> do
+    progress <- o A..: "progress"
+    return $ ChatActionUploadingVoiceNote { progress = progress }
+
+   parseChatActionUploadingPhoto :: A.Value -> T.Parser ChatAction
+   parseChatActionUploadingPhoto = A.withObject "ChatActionUploadingPhoto" $ \o -> do
+    progress <- o A..: "progress"
+    return $ ChatActionUploadingPhoto { progress = progress }
+
+   parseChatActionUploadingDocument :: A.Value -> T.Parser ChatAction
+   parseChatActionUploadingDocument = A.withObject "ChatActionUploadingDocument" $ \o -> do
+    progress <- o A..: "progress"
+    return $ ChatActionUploadingDocument { progress = progress }
+
+   parseChatActionChoosingLocation :: A.Value -> T.Parser ChatAction
+   parseChatActionChoosingLocation = A.withObject "ChatActionChoosingLocation" $ \o -> do
+    return $ ChatActionChoosingLocation {  }
+
+   parseChatActionChoosingContact :: A.Value -> T.Parser ChatAction
+   parseChatActionChoosingContact = A.withObject "ChatActionChoosingContact" $ \o -> do
+    return $ ChatActionChoosingContact {  }
+
+   parseChatActionStartPlayingGame :: A.Value -> T.Parser ChatAction
+   parseChatActionStartPlayingGame = A.withObject "ChatActionStartPlayingGame" $ \o -> do
+    return $ ChatActionStartPlayingGame {  }
+
+   parseChatActionRecordingVideoNote :: A.Value -> T.Parser ChatAction
+   parseChatActionRecordingVideoNote = A.withObject "ChatActionRecordingVideoNote" $ \o -> do
+    return $ ChatActionRecordingVideoNote {  }
+
+   parseChatActionUploadingVideoNote :: A.Value -> T.Parser ChatAction
+   parseChatActionUploadingVideoNote = A.withObject "ChatActionUploadingVideoNote" $ \o -> do
+    progress <- o A..: "progress"
+    return $ ChatActionUploadingVideoNote { progress = progress }
+
+   parseChatActionCancel :: A.Value -> T.Parser ChatAction
+   parseChatActionCancel = A.withObject "ChatActionCancel" $ \o -> do
+    return $ ChatActionCancel {  }

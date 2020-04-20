@@ -8,3 +8,7 @@ data PassportElementsWithErrors
 
 instance ToJSON PassportElementsWithErrors
 
+
+
+instance FromJSON PassportElementsWithErrors
+

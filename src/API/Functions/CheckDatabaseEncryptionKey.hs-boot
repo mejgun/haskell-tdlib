@@ -8,3 +8,7 @@ data CheckDatabaseEncryptionKey
 
 instance ToJSON CheckDatabaseEncryptionKey
 
+
+
+instance FromJSON CheckDatabaseEncryptionKey
+

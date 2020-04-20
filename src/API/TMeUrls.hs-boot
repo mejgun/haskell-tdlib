@@ -8,3 +8,7 @@ data TMeUrls
 
 instance ToJSON TMeUrls
 
+
+
+instance FromJSON TMeUrls
+

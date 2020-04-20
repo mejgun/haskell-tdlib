@@ -15,3 +15,16 @@ instance T.ToJSON BotCommand where
   A.object [ "@type" A..= T.String "botCommand", "description" A..= description, "command" A..= command ]
 -- botCommand BotCommand  { description :: String, command :: String } 
 
+
+
+instance T.FromJSON BotCommand where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "botCommand" -> parseBotCommand v
+  where
+   parseBotCommand :: A.Value -> T.Parser BotCommand
+   parseBotCommand = A.withObject "BotCommand" $ \o -> do
+    description <- o A..: "description"
+    command <- o A..: "command"
+    return $ BotCommand { description = description, command = command }

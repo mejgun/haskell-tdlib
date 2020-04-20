@@ -8,3 +8,7 @@ data RemoveStickerFromSet
 
 instance ToJSON RemoveStickerFromSet
 
+
+
+instance FromJSON RemoveStickerFromSet
+

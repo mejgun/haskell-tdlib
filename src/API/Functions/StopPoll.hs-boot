@@ -8,3 +8,7 @@ data StopPoll
 
 instance ToJSON StopPoll
 
+
+
+instance FromJSON StopPoll
+

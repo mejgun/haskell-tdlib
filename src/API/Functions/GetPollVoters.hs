@@ -15,3 +15,19 @@ instance T.ToJSON GetPollVoters where
   A.object [ "@type" A..= T.String "getPollVoters", "limit" A..= limit, "offset" A..= offset, "option_id" A..= option_id, "message_id" A..= message_id, "chat_id" A..= chat_id ]
 -- getPollVoters GetPollVoters  { limit :: Int, offset :: Int, option_id :: Int, message_id :: Int, chat_id :: Int } 
 
+
+
+instance T.FromJSON GetPollVoters where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "getPollVoters" -> parseGetPollVoters v
+  where
+   parseGetPollVoters :: A.Value -> T.Parser GetPollVoters
+   parseGetPollVoters = A.withObject "GetPollVoters" $ \o -> do
+    limit <- o A..: "limit"
+    offset <- o A..: "offset"
+    option_id <- o A..: "option_id"
+    message_id <- o A..: "message_id"
+    chat_id <- o A..: "chat_id"
+    return $ GetPollVoters { limit = limit, offset = offset, option_id = option_id, message_id = message_id, chat_id = chat_id }
