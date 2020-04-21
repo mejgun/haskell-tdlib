@@ -10,3 +10,5 @@ instance ToJSON CheckEmailAddressVerificationCode
 
 instance FromJSON CheckEmailAddressVerificationCode
 
+instance Show CheckEmailAddressVerificationCode
+

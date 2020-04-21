@@ -10,3 +10,5 @@ instance ToJSON ReorderInstalledStickerSets
 
 instance FromJSON ReorderInstalledStickerSets
 
+instance Show ReorderInstalledStickerSets
+

@@ -10,3 +10,5 @@ instance ToJSON GetChatPinnedMessage
 
 instance FromJSON GetChatPinnedMessage
 
+instance Show GetChatPinnedMessage
+

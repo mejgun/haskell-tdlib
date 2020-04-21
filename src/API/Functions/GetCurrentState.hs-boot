@@ -10,3 +10,5 @@ instance ToJSON GetCurrentState
 
 instance FromJSON GetCurrentState
 
+instance Show GetCurrentState
+

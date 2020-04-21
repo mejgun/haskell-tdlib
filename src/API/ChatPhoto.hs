@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.File as File
 --main = putStrLn "ok"
 
 data ChatPhoto = 
- ChatPhoto { big :: File.File, small :: File.File }  -- deriving (Show)
+ ChatPhoto { big :: File.File, small :: File.File }  deriving (Show)
 
 instance T.ToJSON ChatPhoto where
  toJSON (ChatPhoto { big = big, small = small }) =
   A.object [ "@type" A..= T.String "chatPhoto", "big" A..= big, "small" A..= small ]
--- chatPhoto ChatPhoto  { big :: File.File, small :: File.File } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON ChatPhoto where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "chatPhoto" -> parseChatPhoto v
+
+   _ -> mempty ""
   where
    parseChatPhoto :: A.Value -> T.Parser ChatPhoto
    parseChatPhoto = A.withObject "ChatPhoto" $ \o -> do

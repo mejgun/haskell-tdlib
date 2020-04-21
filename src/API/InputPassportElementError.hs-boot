@@ -10,3 +10,5 @@ instance ToJSON InputPassportElementError
 
 instance FromJSON InputPassportElementError
 
+instance Show InputPassportElementError
+

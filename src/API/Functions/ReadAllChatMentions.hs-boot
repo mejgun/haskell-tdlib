@@ -10,3 +10,5 @@ instance ToJSON ReadAllChatMentions
 
 instance FromJSON ReadAllChatMentions
 
+instance Show ReadAllChatMentions
+

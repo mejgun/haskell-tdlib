@@ -10,3 +10,5 @@ instance ToJSON GetLogTagVerbosityLevel
 
 instance FromJSON GetLogTagVerbosityLevel
 
+instance Show GetLogTagVerbosityLevel
+

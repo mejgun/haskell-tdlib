@@ -10,3 +10,5 @@ instance ToJSON PublicMessageLink
 
 instance FromJSON PublicMessageLink
 
+instance Show PublicMessageLink
+

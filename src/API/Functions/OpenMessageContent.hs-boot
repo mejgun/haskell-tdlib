@@ -10,3 +10,5 @@ instance ToJSON OpenMessageContent
 
 instance FromJSON OpenMessageContent
 
+instance Show OpenMessageContent
+

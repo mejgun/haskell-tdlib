@@ -32,7 +32,7 @@ data InputMessageContent =
  | InputMessageGame { game_short_name :: String, bot_user_id :: Int }  
  | InputMessageInvoice { start_parameter :: String, provider_data :: String, provider_token :: String, payload :: String, photo_height :: Int, photo_width :: Int, photo_size :: Int, photo_url :: String, description :: String, title :: String, invoice :: Invoice.Invoice }  
  | InputMessagePoll { is_closed :: Bool, _type :: PollType.PollType, is_anonymous :: Bool, options :: [String], question :: String }  
- | InputMessageForwarded { remove_caption :: Bool, send_copy :: Bool, in_game_share :: Bool, message_id :: Int, from_chat_id :: Int }  -- deriving (Show)
+ | InputMessageForwarded { remove_caption :: Bool, send_copy :: Bool, in_game_share :: Bool, message_id :: Int, from_chat_id :: Int }  deriving (Show)
 
 instance T.ToJSON InputMessageContent where
  toJSON (InputMessageText { clear_draft = clear_draft, disable_web_page_preview = disable_web_page_preview, text = text }) =
@@ -85,39 +85,6 @@ instance T.ToJSON InputMessageContent where
 
  toJSON (InputMessageForwarded { remove_caption = remove_caption, send_copy = send_copy, in_game_share = in_game_share, message_id = message_id, from_chat_id = from_chat_id }) =
   A.object [ "@type" A..= T.String "inputMessageForwarded", "remove_caption" A..= remove_caption, "send_copy" A..= send_copy, "in_game_share" A..= in_game_share, "message_id" A..= message_id, "from_chat_id" A..= from_chat_id ]
--- inputMessageText InputMessageContent  { clear_draft :: Bool, disable_web_page_preview :: Bool, text :: FormattedText.FormattedText } 
-
--- inputMessageAnimation InputMessageContent  { caption :: FormattedText.FormattedText, height :: Int, width :: Int, duration :: Int, thumbnail :: InputThumbnail.InputThumbnail, animation :: InputFile.InputFile } 
-
--- inputMessageAudio InputMessageContent  { caption :: FormattedText.FormattedText, performer :: String, title :: String, duration :: Int, album_cover_thumbnail :: InputThumbnail.InputThumbnail, audio :: InputFile.InputFile } 
-
--- inputMessageDocument InputMessageContent  { caption :: FormattedText.FormattedText, thumbnail :: InputThumbnail.InputThumbnail, document :: InputFile.InputFile } 
-
--- inputMessagePhoto InputMessageContent  { ttl :: Int, caption :: FormattedText.FormattedText, height :: Int, width :: Int, added_sticker_file_ids :: [Int], thumbnail :: InputThumbnail.InputThumbnail, photo :: InputFile.InputFile } 
-
--- inputMessageSticker InputMessageContent  { height :: Int, width :: Int, thumbnail :: InputThumbnail.InputThumbnail, sticker :: InputFile.InputFile } 
-
--- inputMessageVideo InputMessageContent  { ttl :: Int, caption :: FormattedText.FormattedText, supports_streaming :: Bool, height :: Int, width :: Int, duration :: Int, added_sticker_file_ids :: [Int], thumbnail :: InputThumbnail.InputThumbnail, video :: InputFile.InputFile } 
-
--- inputMessageVideoNote InputMessageContent  { _length :: Int, duration :: Int, thumbnail :: InputThumbnail.InputThumbnail, video_note :: InputFile.InputFile } 
-
--- inputMessageVoiceNote InputMessageContent  { caption :: FormattedText.FormattedText, waveform :: String, duration :: Int, voice_note :: InputFile.InputFile } 
-
--- inputMessageLocation InputMessageContent  { live_period :: Int, location :: Location.Location } 
-
--- inputMessageVenue InputMessageContent  { venue :: Venue.Venue } 
-
--- inputMessageContact InputMessageContent  { contact :: Contact.Contact } 
-
--- inputMessageDice InputMessageContent 
-
--- inputMessageGame InputMessageContent  { game_short_name :: String, bot_user_id :: Int } 
-
--- inputMessageInvoice InputMessageContent  { start_parameter :: String, provider_data :: String, provider_token :: String, payload :: String, photo_height :: Int, photo_width :: Int, photo_size :: Int, photo_url :: String, description :: String, title :: String, invoice :: Invoice.Invoice } 
-
--- inputMessagePoll InputMessageContent  { is_closed :: Bool, _type :: PollType.PollType, is_anonymous :: Bool, options :: [String], question :: String } 
-
--- inputMessageForwarded InputMessageContent  { remove_caption :: Bool, send_copy :: Bool, in_game_share :: Bool, message_id :: Int, from_chat_id :: Int } 
 
 
 
@@ -142,6 +109,8 @@ instance T.FromJSON InputMessageContent where
    "inputMessageInvoice" -> parseInputMessageInvoice v
    "inputMessagePoll" -> parseInputMessagePoll v
    "inputMessageForwarded" -> parseInputMessageForwarded v
+
+   _ -> mempty ""
   where
    parseInputMessageText :: A.Value -> T.Parser InputMessageContent
    parseInputMessageText = A.withObject "InputMessageText" $ \o -> do

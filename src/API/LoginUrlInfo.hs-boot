@@ -10,3 +10,5 @@ instance ToJSON LoginUrlInfo
 
 instance FromJSON LoginUrlInfo
 
+instance Show LoginUrlInfo
+

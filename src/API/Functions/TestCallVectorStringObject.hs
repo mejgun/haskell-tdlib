@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.TestString as TestString
 --main = putStrLn "ok"
 
 data TestCallVectorStringObject = 
- TestCallVectorStringObject { x :: [TestString.TestString] }  -- deriving (Show)
+ TestCallVectorStringObject { x :: [TestString.TestString] }  deriving (Show)
 
 instance T.ToJSON TestCallVectorStringObject where
  toJSON (TestCallVectorStringObject { x = x }) =
   A.object [ "@type" A..= T.String "testCallVectorStringObject", "x" A..= x ]
--- testCallVectorStringObject TestCallVectorStringObject  { x :: [TestString.TestString] } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON TestCallVectorStringObject where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "testCallVectorStringObject" -> parseTestCallVectorStringObject v
+
+   _ -> mempty ""
   where
    parseTestCallVectorStringObject :: A.Value -> T.Parser TestCallVectorStringObject
    parseTestCallVectorStringObject = A.withObject "TestCallVectorStringObject" $ \o -> do

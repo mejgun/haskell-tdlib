@@ -31,7 +31,7 @@ data InlineQueryResult =
  | InlineQueryResultPhoto { description :: String, title :: String, photo :: Photo.Photo, _id :: String }  
  | InlineQueryResultSticker { sticker :: Sticker.Sticker, _id :: String }  
  | InlineQueryResultVideo { description :: String, title :: String, video :: Video.Video, _id :: String }  
- | InlineQueryResultVoiceNote { title :: String, voice_note :: VoiceNote.VoiceNote, _id :: String }  -- deriving (Show)
+ | InlineQueryResultVoiceNote { title :: String, voice_note :: VoiceNote.VoiceNote, _id :: String }  deriving (Show)
 
 instance T.ToJSON InlineQueryResult where
  toJSON (InlineQueryResultArticle { thumbnail = thumbnail, description = description, title = title, hide_url = hide_url, url = url, _id = _id }) =
@@ -69,29 +69,6 @@ instance T.ToJSON InlineQueryResult where
 
  toJSON (InlineQueryResultVoiceNote { title = title, voice_note = voice_note, _id = _id }) =
   A.object [ "@type" A..= T.String "inlineQueryResultVoiceNote", "title" A..= title, "voice_note" A..= voice_note, "id" A..= _id ]
--- inlineQueryResultArticle InlineQueryResult  { thumbnail :: PhotoSize.PhotoSize, description :: String, title :: String, hide_url :: Bool, url :: String, _id :: String } 
-
--- inlineQueryResultContact InlineQueryResult  { thumbnail :: PhotoSize.PhotoSize, contact :: Contact.Contact, _id :: String } 
-
--- inlineQueryResultLocation InlineQueryResult  { thumbnail :: PhotoSize.PhotoSize, title :: String, location :: Location.Location, _id :: String } 
-
--- inlineQueryResultVenue InlineQueryResult  { thumbnail :: PhotoSize.PhotoSize, venue :: Venue.Venue, _id :: String } 
-
--- inlineQueryResultGame InlineQueryResult  { game :: Game.Game, _id :: String } 
-
--- inlineQueryResultAnimation InlineQueryResult  { title :: String, animation :: Animation.Animation, _id :: String } 
-
--- inlineQueryResultAudio InlineQueryResult  { audio :: Audio.Audio, _id :: String } 
-
--- inlineQueryResultDocument InlineQueryResult  { description :: String, title :: String, document :: Document.Document, _id :: String } 
-
--- inlineQueryResultPhoto InlineQueryResult  { description :: String, title :: String, photo :: Photo.Photo, _id :: String } 
-
--- inlineQueryResultSticker InlineQueryResult  { sticker :: Sticker.Sticker, _id :: String } 
-
--- inlineQueryResultVideo InlineQueryResult  { description :: String, title :: String, video :: Video.Video, _id :: String } 
-
--- inlineQueryResultVoiceNote InlineQueryResult  { title :: String, voice_note :: VoiceNote.VoiceNote, _id :: String } 
 
 
 
@@ -111,6 +88,8 @@ instance T.FromJSON InlineQueryResult where
    "inlineQueryResultSticker" -> parseInlineQueryResultSticker v
    "inlineQueryResultVideo" -> parseInlineQueryResultVideo v
    "inlineQueryResultVoiceNote" -> parseInlineQueryResultVoiceNote v
+
+   _ -> mempty ""
   where
    parseInlineQueryResultArticle :: A.Value -> T.Parser InlineQueryResult
    parseInlineQueryResultArticle = A.withObject "InlineQueryResultArticle" $ \o -> do

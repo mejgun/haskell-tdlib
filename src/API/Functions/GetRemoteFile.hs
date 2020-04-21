@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.FileType as FileType
 --main = putStrLn "ok"
 
 data GetRemoteFile = 
- GetRemoteFile { file_type :: FileType.FileType, remote_file_id :: String }  -- deriving (Show)
+ GetRemoteFile { file_type :: FileType.FileType, remote_file_id :: String }  deriving (Show)
 
 instance T.ToJSON GetRemoteFile where
  toJSON (GetRemoteFile { file_type = file_type, remote_file_id = remote_file_id }) =
   A.object [ "@type" A..= T.String "getRemoteFile", "file_type" A..= file_type, "remote_file_id" A..= remote_file_id ]
--- getRemoteFile GetRemoteFile  { file_type :: FileType.FileType, remote_file_id :: String } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON GetRemoteFile where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getRemoteFile" -> parseGetRemoteFile v
+
+   _ -> mempty ""
   where
    parseGetRemoteFile :: A.Value -> T.Parser GetRemoteFile
    parseGetRemoteFile = A.withObject "GetRemoteFile" $ \o -> do

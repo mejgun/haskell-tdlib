@@ -10,3 +10,5 @@ instance ToJSON TopChatCategory
 
 instance FromJSON TopChatCategory
 
+instance Show TopChatCategory
+

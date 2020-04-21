@@ -10,3 +10,5 @@ instance ToJSON GetProxies
 
 instance FromJSON GetProxies
 
+instance Show GetProxies
+

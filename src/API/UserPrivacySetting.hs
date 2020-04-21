@@ -15,7 +15,7 @@ data UserPrivacySetting =
  | UserPrivacySettingAllowChatInvites 
  | UserPrivacySettingAllowCalls 
  | UserPrivacySettingAllowPeerToPeerCalls 
- | UserPrivacySettingAllowFindingByPhoneNumber -- deriving (Show)
+ | UserPrivacySettingAllowFindingByPhoneNumber deriving (Show)
 
 instance T.ToJSON UserPrivacySetting where
  toJSON (UserPrivacySettingShowStatus {  }) =
@@ -41,21 +41,6 @@ instance T.ToJSON UserPrivacySetting where
 
  toJSON (UserPrivacySettingAllowFindingByPhoneNumber {  }) =
   A.object [ "@type" A..= T.String "userPrivacySettingAllowFindingByPhoneNumber" ]
--- userPrivacySettingShowStatus UserPrivacySetting 
-
--- userPrivacySettingShowProfilePhoto UserPrivacySetting 
-
--- userPrivacySettingShowLinkInForwardedMessages UserPrivacySetting 
-
--- userPrivacySettingShowPhoneNumber UserPrivacySetting 
-
--- userPrivacySettingAllowChatInvites UserPrivacySetting 
-
--- userPrivacySettingAllowCalls UserPrivacySetting 
-
--- userPrivacySettingAllowPeerToPeerCalls UserPrivacySetting 
-
--- userPrivacySettingAllowFindingByPhoneNumber UserPrivacySetting 
 
 
 
@@ -71,6 +56,8 @@ instance T.FromJSON UserPrivacySetting where
    "userPrivacySettingAllowCalls" -> parseUserPrivacySettingAllowCalls v
    "userPrivacySettingAllowPeerToPeerCalls" -> parseUserPrivacySettingAllowPeerToPeerCalls v
    "userPrivacySettingAllowFindingByPhoneNumber" -> parseUserPrivacySettingAllowFindingByPhoneNumber v
+
+   _ -> mempty ""
   where
    parseUserPrivacySettingShowStatus :: A.Value -> T.Parser UserPrivacySetting
    parseUserPrivacySettingShowStatus = A.withObject "UserPrivacySettingShowStatus" $ \o -> do

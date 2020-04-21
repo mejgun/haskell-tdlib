@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 --main = putStrLn "ok"
 
 data RemoveRecentSticker = 
- RemoveRecentSticker { sticker :: InputFile.InputFile, is_attached :: Bool }  -- deriving (Show)
+ RemoveRecentSticker { sticker :: InputFile.InputFile, is_attached :: Bool }  deriving (Show)
 
 instance T.ToJSON RemoveRecentSticker where
  toJSON (RemoveRecentSticker { sticker = sticker, is_attached = is_attached }) =
   A.object [ "@type" A..= T.String "removeRecentSticker", "sticker" A..= sticker, "is_attached" A..= is_attached ]
--- removeRecentSticker RemoveRecentSticker  { sticker :: InputFile.InputFile, is_attached :: Bool } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON RemoveRecentSticker where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "removeRecentSticker" -> parseRemoveRecentSticker v
+
+   _ -> mempty ""
   where
    parseRemoveRecentSticker :: A.Value -> T.Parser RemoveRecentSticker
    parseRemoveRecentSticker = A.withObject "RemoveRecentSticker" $ \o -> do

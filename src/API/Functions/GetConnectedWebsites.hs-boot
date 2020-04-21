@@ -10,3 +10,5 @@ instance ToJSON GetConnectedWebsites
 
 instance FromJSON GetConnectedWebsites
 
+instance Show GetConnectedWebsites
+

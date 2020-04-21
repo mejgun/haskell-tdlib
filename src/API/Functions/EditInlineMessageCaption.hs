@@ -10,12 +10,11 @@ import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 --main = putStrLn "ok"
 
 data EditInlineMessageCaption = 
- EditInlineMessageCaption { caption :: FormattedText.FormattedText, reply_markup :: ReplyMarkup.ReplyMarkup, inline_message_id :: String }  -- deriving (Show)
+ EditInlineMessageCaption { caption :: FormattedText.FormattedText, reply_markup :: ReplyMarkup.ReplyMarkup, inline_message_id :: String }  deriving (Show)
 
 instance T.ToJSON EditInlineMessageCaption where
  toJSON (EditInlineMessageCaption { caption = caption, reply_markup = reply_markup, inline_message_id = inline_message_id }) =
   A.object [ "@type" A..= T.String "editInlineMessageCaption", "caption" A..= caption, "reply_markup" A..= reply_markup, "inline_message_id" A..= inline_message_id ]
--- editInlineMessageCaption EditInlineMessageCaption  { caption :: FormattedText.FormattedText, reply_markup :: ReplyMarkup.ReplyMarkup, inline_message_id :: String } 
 
 
 
@@ -24,6 +23,8 @@ instance T.FromJSON EditInlineMessageCaption where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "editInlineMessageCaption" -> parseEditInlineMessageCaption v
+
+   _ -> mempty ""
   where
    parseEditInlineMessageCaption :: A.Value -> T.Parser EditInlineMessageCaption
    parseEditInlineMessageCaption = A.withObject "EditInlineMessageCaption" $ \o -> do

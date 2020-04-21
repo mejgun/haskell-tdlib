@@ -10,3 +10,5 @@ instance ToJSON GetChatEventLog
 
 instance FromJSON GetChatEventLog
 
+instance Show GetChatEventLog
+

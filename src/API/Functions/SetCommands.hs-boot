@@ -10,3 +10,5 @@ instance ToJSON SetCommands
 
 instance FromJSON SetCommands
 
+instance Show SetCommands
+

@@ -10,3 +10,5 @@ instance ToJSON Date
 
 instance FromJSON Date
 
+instance Show Date
+

@@ -10,3 +10,5 @@ instance ToJSON CheckDatabaseEncryptionKey
 
 instance FromJSON CheckDatabaseEncryptionKey
 
+instance Show CheckDatabaseEncryptionKey
+

@@ -13,7 +13,7 @@ data InlineKeyboardButtonType =
  | InlineKeyboardButtonTypeCallback { _data :: String }  
  | InlineKeyboardButtonTypeCallbackGame 
  | InlineKeyboardButtonTypeSwitchInline { in_current_chat :: Bool, query :: String }  
- | InlineKeyboardButtonTypeBuy -- deriving (Show)
+ | InlineKeyboardButtonTypeBuy deriving (Show)
 
 instance T.ToJSON InlineKeyboardButtonType where
  toJSON (InlineKeyboardButtonTypeUrl { url = url }) =
@@ -33,17 +33,6 @@ instance T.ToJSON InlineKeyboardButtonType where
 
  toJSON (InlineKeyboardButtonTypeBuy {  }) =
   A.object [ "@type" A..= T.String "inlineKeyboardButtonTypeBuy" ]
--- inlineKeyboardButtonTypeUrl InlineKeyboardButtonType  { url :: String } 
-
--- inlineKeyboardButtonTypeLoginUrl InlineKeyboardButtonType  { forward_text :: String, _id :: Int, url :: String } 
-
--- inlineKeyboardButtonTypeCallback InlineKeyboardButtonType  { _data :: String } 
-
--- inlineKeyboardButtonTypeCallbackGame InlineKeyboardButtonType 
-
--- inlineKeyboardButtonTypeSwitchInline InlineKeyboardButtonType  { in_current_chat :: Bool, query :: String } 
-
--- inlineKeyboardButtonTypeBuy InlineKeyboardButtonType 
 
 
 
@@ -57,6 +46,8 @@ instance T.FromJSON InlineKeyboardButtonType where
    "inlineKeyboardButtonTypeCallbackGame" -> parseInlineKeyboardButtonTypeCallbackGame v
    "inlineKeyboardButtonTypeSwitchInline" -> parseInlineKeyboardButtonTypeSwitchInline v
    "inlineKeyboardButtonTypeBuy" -> parseInlineKeyboardButtonTypeBuy v
+
+   _ -> mempty ""
   where
    parseInlineKeyboardButtonTypeUrl :: A.Value -> T.Parser InlineKeyboardButtonType
    parseInlineKeyboardButtonTypeUrl = A.withObject "InlineKeyboardButtonTypeUrl" $ \o -> do

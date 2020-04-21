@@ -10,3 +10,5 @@ instance ToJSON MessageSendingState
 
 instance FromJSON MessageSendingState
 
+instance Show MessageSendingState
+

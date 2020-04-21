@@ -10,3 +10,5 @@ instance ToJSON TestReturnError
 
 instance FromJSON TestReturnError
 
+instance Show TestReturnError
+

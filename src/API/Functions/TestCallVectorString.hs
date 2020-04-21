@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data TestCallVectorString = 
- TestCallVectorString { x :: [String] }  -- deriving (Show)
+ TestCallVectorString { x :: [String] }  deriving (Show)
 
 instance T.ToJSON TestCallVectorString where
  toJSON (TestCallVectorString { x = x }) =
   A.object [ "@type" A..= T.String "testCallVectorString", "x" A..= x ]
--- testCallVectorString TestCallVectorString  { x :: [String] } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON TestCallVectorString where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "testCallVectorString" -> parseTestCallVectorString v
+
+   _ -> mempty ""
   where
    parseTestCallVectorString :: A.Value -> T.Parser TestCallVectorString
    parseTestCallVectorString = A.withObject "TestCallVectorString" $ \o -> do

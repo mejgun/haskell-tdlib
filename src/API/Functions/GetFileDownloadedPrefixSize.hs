@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetFileDownloadedPrefixSize = 
- GetFileDownloadedPrefixSize { offset :: Int, file_id :: Int }  -- deriving (Show)
+ GetFileDownloadedPrefixSize { offset :: Int, file_id :: Int }  deriving (Show)
 
 instance T.ToJSON GetFileDownloadedPrefixSize where
  toJSON (GetFileDownloadedPrefixSize { offset = offset, file_id = file_id }) =
   A.object [ "@type" A..= T.String "getFileDownloadedPrefixSize", "offset" A..= offset, "file_id" A..= file_id ]
--- getFileDownloadedPrefixSize GetFileDownloadedPrefixSize  { offset :: Int, file_id :: Int } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetFileDownloadedPrefixSize where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getFileDownloadedPrefixSize" -> parseGetFileDownloadedPrefixSize v
+
+   _ -> mempty ""
   where
    parseGetFileDownloadedPrefixSize :: A.Value -> T.Parser GetFileDownloadedPrefixSize
    parseGetFileDownloadedPrefixSize = A.withObject "GetFileDownloadedPrefixSize" $ \o -> do

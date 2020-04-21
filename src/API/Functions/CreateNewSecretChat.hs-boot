@@ -10,3 +10,5 @@ instance ToJSON CreateNewSecretChat
 
 instance FromJSON CreateNewSecretChat
 
+instance Show CreateNewSecretChat
+

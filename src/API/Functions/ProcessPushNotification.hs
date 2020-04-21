@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data ProcessPushNotification = 
- ProcessPushNotification { payload :: String }  -- deriving (Show)
+ ProcessPushNotification { payload :: String }  deriving (Show)
 
 instance T.ToJSON ProcessPushNotification where
  toJSON (ProcessPushNotification { payload = payload }) =
   A.object [ "@type" A..= T.String "processPushNotification", "payload" A..= payload ]
--- processPushNotification ProcessPushNotification  { payload :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON ProcessPushNotification where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "processPushNotification" -> parseProcessPushNotification v
+
+   _ -> mempty ""
   where
    parseProcessPushNotification :: A.Value -> T.Parser ProcessPushNotification
    parseProcessPushNotification = A.withObject "ProcessPushNotification" $ \o -> do

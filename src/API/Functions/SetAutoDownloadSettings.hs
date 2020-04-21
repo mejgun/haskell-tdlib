@@ -10,12 +10,11 @@ import {-# SOURCE #-} qualified API.AutoDownloadSettings as AutoDownloadSettings
 --main = putStrLn "ok"
 
 data SetAutoDownloadSettings = 
- SetAutoDownloadSettings { _type :: NetworkType.NetworkType, settings :: AutoDownloadSettings.AutoDownloadSettings }  -- deriving (Show)
+ SetAutoDownloadSettings { _type :: NetworkType.NetworkType, settings :: AutoDownloadSettings.AutoDownloadSettings }  deriving (Show)
 
 instance T.ToJSON SetAutoDownloadSettings where
  toJSON (SetAutoDownloadSettings { _type = _type, settings = settings }) =
   A.object [ "@type" A..= T.String "setAutoDownloadSettings", "type" A..= _type, "settings" A..= settings ]
--- setAutoDownloadSettings SetAutoDownloadSettings  { _type :: NetworkType.NetworkType, settings :: AutoDownloadSettings.AutoDownloadSettings } 
 
 
 
@@ -24,6 +23,8 @@ instance T.FromJSON SetAutoDownloadSettings where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "setAutoDownloadSettings" -> parseSetAutoDownloadSettings v
+
+   _ -> mempty ""
   where
    parseSetAutoDownloadSettings :: A.Value -> T.Parser SetAutoDownloadSettings
    parseSetAutoDownloadSettings = A.withObject "SetAutoDownloadSettings" $ \o -> do

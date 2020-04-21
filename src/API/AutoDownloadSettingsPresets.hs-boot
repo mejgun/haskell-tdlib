@@ -10,3 +10,5 @@ instance ToJSON AutoDownloadSettingsPresets
 
 instance FromJSON AutoDownloadSettingsPresets
 
+instance Show AutoDownloadSettingsPresets
+

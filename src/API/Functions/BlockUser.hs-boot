@@ -10,3 +10,5 @@ instance ToJSON BlockUser
 
 instance FromJSON BlockUser
 
+instance Show BlockUser
+

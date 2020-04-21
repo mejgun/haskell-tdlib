@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetBlockedUsers = 
- GetBlockedUsers { limit :: Int, offset :: Int }  -- deriving (Show)
+ GetBlockedUsers { limit :: Int, offset :: Int }  deriving (Show)
 
 instance T.ToJSON GetBlockedUsers where
  toJSON (GetBlockedUsers { limit = limit, offset = offset }) =
   A.object [ "@type" A..= T.String "getBlockedUsers", "limit" A..= limit, "offset" A..= offset ]
--- getBlockedUsers GetBlockedUsers  { limit :: Int, offset :: Int } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetBlockedUsers where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getBlockedUsers" -> parseGetBlockedUsers v
+
+   _ -> mempty ""
   where
    parseGetBlockedUsers :: A.Value -> T.Parser GetBlockedUsers
    parseGetBlockedUsers = A.withObject "GetBlockedUsers" $ \o -> do

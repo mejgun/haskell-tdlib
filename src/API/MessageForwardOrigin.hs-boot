@@ -10,3 +10,5 @@ instance ToJSON MessageForwardOrigin
 
 instance FromJSON MessageForwardOrigin
 
+instance Show MessageForwardOrigin
+

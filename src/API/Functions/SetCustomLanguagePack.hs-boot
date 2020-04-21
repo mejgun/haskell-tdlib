@@ -10,3 +10,5 @@ instance ToJSON SetCustomLanguagePack
 
 instance FromJSON SetCustomLanguagePack
 
+instance Show SetCustomLanguagePack
+

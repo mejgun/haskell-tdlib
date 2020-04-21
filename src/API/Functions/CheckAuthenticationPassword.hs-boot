@@ -10,3 +10,5 @@ instance ToJSON CheckAuthenticationPassword
 
 instance FromJSON CheckAuthenticationPassword
 
+instance Show CheckAuthenticationPassword
+

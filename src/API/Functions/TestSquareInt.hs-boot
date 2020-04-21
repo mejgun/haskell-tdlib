@@ -10,3 +10,5 @@ instance ToJSON TestSquareInt
 
 instance FromJSON TestSquareInt
 
+instance Show TestSquareInt
+

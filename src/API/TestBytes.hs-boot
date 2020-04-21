@@ -10,3 +10,5 @@ instance ToJSON TestBytes
 
 instance FromJSON TestBytes
 
+instance Show TestBytes
+

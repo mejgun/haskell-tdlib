@@ -10,3 +10,5 @@ instance ToJSON GetDeepLinkInfo
 
 instance FromJSON GetDeepLinkInfo
 
+instance Show GetDeepLinkInfo
+

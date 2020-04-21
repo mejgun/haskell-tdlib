@@ -124,7 +124,7 @@ data Update =
  | UpdateNewCustomEvent { event :: String }  
  | UpdateNewCustomQuery { timeout :: Int, _data :: String, _id :: Int }  
  | UpdatePoll { poll :: Poll.Poll }  
- | UpdatePollAnswer { option_ids :: [Int], user_id :: Int, poll_id :: Int }  -- deriving (Show)
+ | UpdatePollAnswer { option_ids :: [Int], user_id :: Int, poll_id :: Int }  deriving (Show)
 
 instance T.ToJSON Update where
  toJSON (UpdateAuthorizationState { authorization_state = authorization_state }) =
@@ -354,157 +354,6 @@ instance T.ToJSON Update where
 
  toJSON (UpdatePollAnswer { option_ids = option_ids, user_id = user_id, poll_id = poll_id }) =
   A.object [ "@type" A..= T.String "updatePollAnswer", "option_ids" A..= option_ids, "user_id" A..= user_id, "poll_id" A..= poll_id ]
--- updateAuthorizationState Update  { authorization_state :: AuthorizationState.AuthorizationState } 
-
--- updateNewMessage Update  { message :: Message.Message } 
-
--- updateMessageSendAcknowledged Update  { message_id :: Int, chat_id :: Int } 
-
--- updateMessageSendSucceeded Update  { old_message_id :: Int, message :: Message.Message } 
-
--- updateMessageSendFailed Update  { error_message :: String, error_code :: Int, old_message_id :: Int, message :: Message.Message } 
-
--- updateMessageContent Update  { new_content :: MessageContent.MessageContent, message_id :: Int, chat_id :: Int } 
-
--- updateMessageEdited Update  { reply_markup :: ReplyMarkup.ReplyMarkup, edit_date :: Int, message_id :: Int, chat_id :: Int } 
-
--- updateMessageViews Update  { views :: Int, message_id :: Int, chat_id :: Int } 
-
--- updateMessageContentOpened Update  { message_id :: Int, chat_id :: Int } 
-
--- updateMessageMentionRead Update  { unread_mention_count :: Int, message_id :: Int, chat_id :: Int } 
-
--- updateMessageLiveLocationViewed Update  { message_id :: Int, chat_id :: Int } 
-
--- updateNewChat Update  { chat :: Chat.Chat } 
-
--- updateChatChatList Update  { chat_list :: ChatList.ChatList, chat_id :: Int } 
-
--- updateChatTitle Update  { title :: String, chat_id :: Int } 
-
--- updateChatPhoto Update  { photo :: ChatPhoto.ChatPhoto, chat_id :: Int } 
-
--- updateChatPermissions Update  { permissions :: ChatPermissions.ChatPermissions, chat_id :: Int } 
-
--- updateChatLastMessage Update  { order :: Int, last_message :: Message.Message, chat_id :: Int } 
-
--- updateChatOrder Update  { order :: Int, chat_id :: Int } 
-
--- updateChatIsPinned Update  { order :: Int, is_pinned :: Bool, chat_id :: Int } 
-
--- updateChatIsMarkedAsUnread Update  { is_marked_as_unread :: Bool, chat_id :: Int } 
-
--- updateChatIsSponsored Update  { order :: Int, is_sponsored :: Bool, chat_id :: Int } 
-
--- updateChatHasScheduledMessages Update  { has_scheduled_messages :: Bool, chat_id :: Int } 
-
--- updateChatDefaultDisableNotification Update  { default_disable_notification :: Bool, chat_id :: Int } 
-
--- updateChatReadInbox Update  { unread_count :: Int, last_read_inbox_message_id :: Int, chat_id :: Int } 
-
--- updateChatReadOutbox Update  { last_read_outbox_message_id :: Int, chat_id :: Int } 
-
--- updateChatUnreadMentionCount Update  { unread_mention_count :: Int, chat_id :: Int } 
-
--- updateChatNotificationSettings Update  { _notification_settings :: ChatNotificationSettings.ChatNotificationSettings, chat_id :: Int } 
-
--- updateScopeNotificationSettings Update  { notification_settings :: ScopeNotificationSettings.ScopeNotificationSettings, scope :: NotificationSettingsScope.NotificationSettingsScope } 
-
--- updateChatActionBar Update  { action_bar :: ChatActionBar.ChatActionBar, chat_id :: Int } 
-
--- updateChatPinnedMessage Update  { pinned_message_id :: Int, chat_id :: Int } 
-
--- updateChatReplyMarkup Update  { reply_markup_message_id :: Int, chat_id :: Int } 
-
--- updateChatDraftMessage Update  { order :: Int, draft_message :: DraftMessage.DraftMessage, chat_id :: Int } 
-
--- updateChatOnlineMemberCount Update  { online_member_count :: Int, chat_id :: Int } 
-
--- updateNotification Update  { notification :: Notification.Notification, notification_group_id :: Int } 
-
--- updateNotificationGroup Update  { removed_notification_ids :: [Int], added_notifications :: [Notification.Notification], total_count :: Int, is_silent :: Bool, notification_settings_chat_id :: Int, chat_id :: Int, __type :: NotificationGroupType.NotificationGroupType, notification_group_id :: Int } 
-
--- updateActiveNotifications Update  { groups :: [NotificationGroup.NotificationGroup] } 
-
--- updateHavePendingNotifications Update  { have_unreceived_notifications :: Bool, have_delayed_notifications :: Bool } 
-
--- updateDeleteMessages Update  { from_cache :: Bool, is_permanent :: Bool, message_ids :: [Int], chat_id :: Int } 
-
--- updateUserChatAction Update  { action :: ChatAction.ChatAction, user_id :: Int, chat_id :: Int } 
-
--- updateUserStatus Update  { status :: UserStatus.UserStatus, user_id :: Int } 
-
--- updateUser Update  { user :: User.User } 
-
--- updateBasicGroup Update  { basic_group :: BasicGroup.BasicGroup } 
-
--- updateSupergroup Update  { supergroup :: Supergroup.Supergroup } 
-
--- updateSecretChat Update  { secret_chat :: SecretChat.SecretChat } 
-
--- updateUserFullInfo Update  { user_full_info :: UserFullInfo.UserFullInfo, user_id :: Int } 
-
--- updateBasicGroupFullInfo Update  { basic_group_full_info :: BasicGroupFullInfo.BasicGroupFullInfo, basic_group_id :: Int } 
-
--- updateSupergroupFullInfo Update  { supergroup_full_info :: SupergroupFullInfo.SupergroupFullInfo, supergroup_id :: Int } 
-
--- updateServiceNotification Update  { content :: MessageContent.MessageContent, _type :: String } 
-
--- updateFile Update  { file :: File.File } 
-
--- updateFileGenerationStart Update  { conversion :: String, destination_path :: String, original_path :: String, generation_id :: Int } 
-
--- updateFileGenerationStop Update  { generation_id :: Int } 
-
--- updateCall Update  { call :: Call.Call } 
-
--- updateUserPrivacySettingRules Update  { rules :: UserPrivacySettingRules.UserPrivacySettingRules, setting :: UserPrivacySetting.UserPrivacySetting } 
-
--- updateUnreadMessageCount Update  { unread_unmuted_count :: Int, unread_count :: Int, chat_list :: ChatList.ChatList } 
-
--- updateUnreadChatCount Update  { marked_as_unread_unmuted_count :: Int, marked_as_unread_count :: Int, unread_unmuted_count :: Int, unread_count :: Int, total_count :: Int, chat_list :: ChatList.ChatList } 
-
--- updateOption Update  { value :: OptionValue.OptionValue, name :: String } 
-
--- updateInstalledStickerSets Update  { sticker_set_ids :: [Int], is_masks :: Bool } 
-
--- updateTrendingStickerSets Update  { sticker_sets :: StickerSets.StickerSets } 
-
--- updateRecentStickers Update  { sticker_ids :: [Int], is_attached :: Bool } 
-
--- updateFavoriteStickers Update  { sticker_ids :: [Int] } 
-
--- updateSavedAnimations Update  { animation_ids :: [Int] } 
-
--- updateSelectedBackground Update  { background :: Background.Background, for_dark_theme :: Bool } 
-
--- updateLanguagePackStrings Update  { strings :: [LanguagePackString.LanguagePackString], language_pack_id :: String, localization_target :: String } 
-
--- updateConnectionState Update  { state :: ConnectionState.ConnectionState } 
-
--- updateTermsOfService Update  { terms_of_service :: TermsOfService.TermsOfService, terms_of_service_id :: String } 
-
--- updateUsersNearby Update  { users_nearby :: [ChatNearby.ChatNearby] } 
-
--- updateNewInlineQuery Update  { offset :: String, query :: String, user_location :: Location.Location, sender_user_id :: Int, _id :: Int } 
-
--- updateNewChosenInlineResult Update  { inline_message_id :: String, result_id :: String, query :: String, user_location :: Location.Location, sender_user_id :: Int } 
-
--- updateNewCallbackQuery Update  { payload :: CallbackQueryPayload.CallbackQueryPayload, chat_instance :: Int, message_id :: Int, chat_id :: Int, sender_user_id :: Int, _id :: Int } 
-
--- updateNewInlineCallbackQuery Update  { payload :: CallbackQueryPayload.CallbackQueryPayload, chat_instance :: Int, inline_message_id :: String, sender_user_id :: Int, _id :: Int } 
-
--- updateNewShippingQuery Update  { shipping_address :: Address.Address, invoice_payload :: String, sender_user_id :: Int, _id :: Int } 
-
--- updateNewPreCheckoutQuery Update  { order_info :: OrderInfo.OrderInfo, shipping_option_id :: String, invoice_payload :: String, total_amount :: Int, currency :: String, sender_user_id :: Int, _id :: Int } 
-
--- updateNewCustomEvent Update  { event :: String } 
-
--- updateNewCustomQuery Update  { timeout :: Int, _data :: String, _id :: Int } 
-
--- updatePoll Update  { poll :: Poll.Poll } 
-
--- updatePollAnswer Update  { option_ids :: [Int], user_id :: Int, poll_id :: Int } 
 
 
 
@@ -588,6 +437,8 @@ instance T.FromJSON Update where
    "updateNewCustomQuery" -> parseUpdateNewCustomQuery v
    "updatePoll" -> parseUpdatePoll v
    "updatePollAnswer" -> parseUpdatePollAnswer v
+
+   _ -> mempty ""
   where
    parseUpdateAuthorizationState :: A.Value -> T.Parser Update
    parseUpdateAuthorizationState = A.withObject "UpdateAuthorizationState" $ \o -> do

@@ -10,3 +10,5 @@ instance ToJSON GetFileMimeType
 
 instance FromJSON GetFileMimeType
 
+instance Show GetFileMimeType
+

@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data ChatInviteLink = 
- ChatInviteLink { invite_link :: String }  -- deriving (Show)
+ ChatInviteLink { invite_link :: String }  deriving (Show)
 
 instance T.ToJSON ChatInviteLink where
  toJSON (ChatInviteLink { invite_link = invite_link }) =
   A.object [ "@type" A..= T.String "chatInviteLink", "invite_link" A..= invite_link ]
--- chatInviteLink ChatInviteLink  { invite_link :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON ChatInviteLink where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "chatInviteLink" -> parseChatInviteLink v
+
+   _ -> mempty ""
   where
    parseChatInviteLink :: A.Value -> T.Parser ChatInviteLink
    parseChatInviteLink = A.withObject "ChatInviteLink" $ \o -> do

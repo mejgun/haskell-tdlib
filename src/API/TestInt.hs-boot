@@ -10,3 +10,5 @@ instance ToJSON TestInt
 
 instance FromJSON TestInt
 
+instance Show TestInt
+

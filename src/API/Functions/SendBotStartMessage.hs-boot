@@ -10,3 +10,5 @@ instance ToJSON SendBotStartMessage
 
 instance FromJSON SendBotStartMessage
 
+instance Show SendBotStartMessage
+

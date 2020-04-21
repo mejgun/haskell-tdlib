@@ -10,3 +10,5 @@ instance ToJSON ChatMembers
 
 instance FromJSON ChatMembers
 
+instance Show ChatMembers
+

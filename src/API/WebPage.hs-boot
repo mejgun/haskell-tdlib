@@ -10,3 +10,5 @@ instance ToJSON WebPage
 
 instance FromJSON WebPage
 
+instance Show WebPage
+

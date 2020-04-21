@@ -10,3 +10,5 @@ instance ToJSON GetInlineQueryResults
 
 instance FromJSON GetInlineQueryResults
 
+instance Show GetInlineQueryResults
+

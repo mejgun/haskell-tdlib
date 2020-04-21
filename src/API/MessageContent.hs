@@ -68,7 +68,7 @@ data MessageContent =
  | MessageWebsiteConnected { domain_name :: String }  
  | MessagePassportDataSent { types :: [PassportElementType.PassportElementType] }  
  | MessagePassportDataReceived { credentials :: EncryptedCredentials.EncryptedCredentials, elements :: [EncryptedPassportElement.EncryptedPassportElement] }  
- | MessageUnsupported -- deriving (Show)
+ | MessageUnsupported deriving (Show)
 
 instance T.ToJSON MessageContent where
  toJSON (MessageText { web_page = web_page, _text = _text }) =
@@ -193,87 +193,6 @@ instance T.ToJSON MessageContent where
 
  toJSON (MessageUnsupported {  }) =
   A.object [ "@type" A..= T.String "messageUnsupported" ]
--- messageText MessageContent  { web_page :: WebPage.WebPage, _text :: FormattedText.FormattedText } 
-
--- messageAnimation MessageContent  { is_secret :: Bool, caption :: FormattedText.FormattedText, animation :: Animation.Animation } 
-
--- messageAudio MessageContent  { caption :: FormattedText.FormattedText, audio :: Audio.Audio } 
-
--- messageDocument MessageContent  { caption :: FormattedText.FormattedText, document :: Document.Document } 
-
--- messagePhoto MessageContent  { is_secret :: Bool, caption :: FormattedText.FormattedText, photo :: Photo.Photo } 
-
--- messageExpiredPhoto MessageContent 
-
--- messageSticker MessageContent  { sticker :: Sticker.Sticker } 
-
--- messageVideo MessageContent  { is_secret :: Bool, caption :: FormattedText.FormattedText, video :: Video.Video } 
-
--- messageExpiredVideo MessageContent 
-
--- messageVideoNote MessageContent  { is_secret :: Bool, is_viewed :: Bool, video_note :: VideoNote.VideoNote } 
-
--- messageVoiceNote MessageContent  { is_listened :: Bool, caption :: FormattedText.FormattedText, voice_note :: VoiceNote.VoiceNote } 
-
--- messageLocation MessageContent  { expires_in :: Int, live_period :: Int, location :: Location.Location } 
-
--- messageVenue MessageContent  { venue :: Venue.Venue } 
-
--- messageContact MessageContent  { contact :: Contact.Contact } 
-
--- messageDice MessageContent  { value :: Int } 
-
--- messageGame MessageContent  { game :: Game.Game } 
-
--- messagePoll MessageContent  { poll :: Poll.Poll } 
-
--- messageInvoice MessageContent  { receipt_message_id :: Int, need_shipping_address :: Bool, is_test :: Bool, start_parameter :: String, total_amount :: Int, currency :: String, photo :: Photo.Photo, description :: String, title :: String } 
-
--- messageCall MessageContent  { duration :: Int, discard_reason :: CallDiscardReason.CallDiscardReason } 
-
--- messageBasicGroupChatCreate MessageContent  { member_user_ids :: [Int], title :: String } 
-
--- messageSupergroupChatCreate MessageContent  { title :: String } 
-
--- messageChatChangeTitle MessageContent  { title :: String } 
-
--- messageChatChangePhoto MessageContent  { photo :: Photo.Photo } 
-
--- messageChatDeletePhoto MessageContent 
-
--- messageChatAddMembers MessageContent  { member_user_ids :: [Int] } 
-
--- messageChatJoinByLink MessageContent 
-
--- messageChatDeleteMember MessageContent  { user_id :: Int } 
-
--- messageChatUpgradeTo MessageContent  { supergroup_id :: Int } 
-
--- messageChatUpgradeFrom MessageContent  { basic_group_id :: Int, title :: String } 
-
--- messagePinMessage MessageContent  { message_id :: Int } 
-
--- messageScreenshotTaken MessageContent 
-
--- messageChatSetTtl MessageContent  { ttl :: Int } 
-
--- messageCustomServiceAction MessageContent  { text :: String } 
-
--- messageGameScore MessageContent  { score :: Int, game_id :: Int, game_message_id :: Int } 
-
--- messagePaymentSuccessful MessageContent  { total_amount :: Int, currency :: String, invoice_message_id :: Int } 
-
--- messagePaymentSuccessfulBot MessageContent  { provider_payment_charge_id :: String, telegram_payment_charge_id :: String, order_info :: OrderInfo.OrderInfo, shipping_option_id :: String, invoice_payload :: String, total_amount :: Int, currency :: String, invoice_message_id :: Int } 
-
--- messageContactRegistered MessageContent 
-
--- messageWebsiteConnected MessageContent  { domain_name :: String } 
-
--- messagePassportDataSent MessageContent  { types :: [PassportElementType.PassportElementType] } 
-
--- messagePassportDataReceived MessageContent  { credentials :: EncryptedCredentials.EncryptedCredentials, elements :: [EncryptedPassportElement.EncryptedPassportElement] } 
-
--- messageUnsupported MessageContent 
 
 
 
@@ -322,6 +241,8 @@ instance T.FromJSON MessageContent where
    "messagePassportDataSent" -> parseMessagePassportDataSent v
    "messagePassportDataReceived" -> parseMessagePassportDataReceived v
    "messageUnsupported" -> parseMessageUnsupported v
+
+   _ -> mempty ""
   where
    parseMessageText :: A.Value -> T.Parser MessageContent
    parseMessageText = A.withObject "MessageText" $ \o -> do

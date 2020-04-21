@@ -10,3 +10,5 @@ instance ToJSON GeneralResult
 
 instance FromJSON GeneralResult
 
+instance Show GeneralResult
+

@@ -10,3 +10,5 @@ instance ToJSON UserStatus
 
 instance FromJSON UserStatus
 
+instance Show UserStatus
+

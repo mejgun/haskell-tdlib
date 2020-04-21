@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data SearchHashtags = 
- SearchHashtags { limit :: Int, prefix :: String }  -- deriving (Show)
+ SearchHashtags { limit :: Int, prefix :: String }  deriving (Show)
 
 instance T.ToJSON SearchHashtags where
  toJSON (SearchHashtags { limit = limit, prefix = prefix }) =
   A.object [ "@type" A..= T.String "searchHashtags", "limit" A..= limit, "prefix" A..= prefix ]
--- searchHashtags SearchHashtags  { limit :: Int, prefix :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON SearchHashtags where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "searchHashtags" -> parseSearchHashtags v
+
+   _ -> mempty ""
   where
    parseSearchHashtags :: A.Value -> T.Parser SearchHashtags
    parseSearchHashtags = A.withObject "SearchHashtags" $ \o -> do

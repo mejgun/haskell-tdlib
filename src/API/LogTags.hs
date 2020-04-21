@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data LogTags = 
- LogTags { tags :: [String] }  -- deriving (Show)
+ LogTags { tags :: [String] }  deriving (Show)
 
 instance T.ToJSON LogTags where
  toJSON (LogTags { tags = tags }) =
   A.object [ "@type" A..= T.String "logTags", "tags" A..= tags ]
--- logTags LogTags  { tags :: [String] } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON LogTags where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "logTags" -> parseLogTags v
+
+   _ -> mempty ""
   where
    parseLogTags :: A.Value -> T.Parser LogTags
    parseLogTags = A.withObject "LogTags" $ \o -> do

@@ -10,3 +10,5 @@ instance ToJSON Venue
 
 instance FromJSON Venue
 
+instance Show Venue
+

@@ -10,3 +10,5 @@ instance ToJSON PassportElementErrorSource
 
 instance FromJSON PassportElementErrorSource
 
+instance Show PassportElementErrorSource
+

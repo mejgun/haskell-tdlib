@@ -10,3 +10,5 @@ instance ToJSON DeleteAccount
 
 instance FromJSON DeleteAccount
 
+instance Show DeleteAccount
+

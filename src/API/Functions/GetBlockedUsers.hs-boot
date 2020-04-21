@@ -10,3 +10,5 @@ instance ToJSON GetBlockedUsers
 
 instance FromJSON GetBlockedUsers
 
+instance Show GetBlockedUsers
+

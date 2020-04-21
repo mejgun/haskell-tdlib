@@ -10,3 +10,5 @@ instance ToJSON InputInlineQueryResult
 
 instance FromJSON InputInlineQueryResult
 
+instance Show InputInlineQueryResult
+

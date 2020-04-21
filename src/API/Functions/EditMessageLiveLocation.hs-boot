@@ -10,3 +10,5 @@ instance ToJSON EditMessageLiveLocation
 
 instance FromJSON EditMessageLiveLocation
 
+instance Show EditMessageLiveLocation
+

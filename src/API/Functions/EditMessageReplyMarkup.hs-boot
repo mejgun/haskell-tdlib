@@ -10,3 +10,5 @@ instance ToJSON EditMessageReplyMarkup
 
 instance FromJSON EditMessageReplyMarkup
 
+instance Show EditMessageReplyMarkup
+

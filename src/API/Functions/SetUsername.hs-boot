@@ -10,3 +10,5 @@ instance ToJSON SetUsername
 
 instance FromJSON SetUsername
 
+instance Show SetUsername
+

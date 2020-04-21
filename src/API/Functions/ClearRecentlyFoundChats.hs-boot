@@ -10,3 +10,5 @@ instance ToJSON ClearRecentlyFoundChats
 
 instance FromJSON ClearRecentlyFoundChats
 
+instance Show ClearRecentlyFoundChats
+

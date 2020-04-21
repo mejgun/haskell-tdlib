@@ -10,3 +10,5 @@ instance ToJSON InputMessageContent
 
 instance FromJSON InputMessageContent
 
+instance Show InputMessageContent
+

@@ -10,3 +10,5 @@ instance ToJSON EditProxy
 
 instance FromJSON EditProxy
 
+instance Show EditProxy
+

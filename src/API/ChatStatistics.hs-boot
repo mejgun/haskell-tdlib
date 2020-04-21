@@ -10,3 +10,5 @@ instance ToJSON ChatStatistics
 
 instance FromJSON ChatStatistics
 
+instance Show ChatStatistics
+

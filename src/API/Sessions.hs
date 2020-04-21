@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.Session as Session
 --main = putStrLn "ok"
 
 data Sessions = 
- Sessions { sessions :: [Session.Session] }  -- deriving (Show)
+ Sessions { sessions :: [Session.Session] }  deriving (Show)
 
 instance T.ToJSON Sessions where
  toJSON (Sessions { sessions = sessions }) =
   A.object [ "@type" A..= T.String "sessions", "sessions" A..= sessions ]
--- sessions Sessions  { sessions :: [Session.Session] } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON Sessions where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "sessions" -> parseSessions v
+
+   _ -> mempty ""
   where
    parseSessions :: A.Value -> T.Parser Sessions
    parseSessions = A.withObject "Sessions" $ \o -> do

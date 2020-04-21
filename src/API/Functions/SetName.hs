@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data SetName = 
- SetName { last_name :: String, first_name :: String }  -- deriving (Show)
+ SetName { last_name :: String, first_name :: String }  deriving (Show)
 
 instance T.ToJSON SetName where
  toJSON (SetName { last_name = last_name, first_name = first_name }) =
   A.object [ "@type" A..= T.String "setName", "last_name" A..= last_name, "first_name" A..= first_name ]
--- setName SetName  { last_name :: String, first_name :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON SetName where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "setName" -> parseSetName v
+
+   _ -> mempty ""
   where
    parseSetName :: A.Value -> T.Parser SetName
    parseSetName = A.withObject "SetName" $ \o -> do

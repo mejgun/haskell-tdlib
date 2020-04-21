@@ -10,3 +10,5 @@ instance ToJSON AnswerInlineQuery
 
 instance FromJSON AnswerInlineQuery
 
+instance Show AnswerInlineQuery
+

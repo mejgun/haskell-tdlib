@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.NetworkType as NetworkType
 --main = putStrLn "ok"
 
 data SetNetworkType = 
- SetNetworkType { _type :: NetworkType.NetworkType }  -- deriving (Show)
+ SetNetworkType { _type :: NetworkType.NetworkType }  deriving (Show)
 
 instance T.ToJSON SetNetworkType where
  toJSON (SetNetworkType { _type = _type }) =
   A.object [ "@type" A..= T.String "setNetworkType", "type" A..= _type ]
--- setNetworkType SetNetworkType  { _type :: NetworkType.NetworkType } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON SetNetworkType where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "setNetworkType" -> parseSetNetworkType v
+
+   _ -> mempty ""
   where
    parseSetNetworkType :: A.Value -> T.Parser SetNetworkType
    parseSetNetworkType = A.withObject "SetNetworkType" $ \o -> do

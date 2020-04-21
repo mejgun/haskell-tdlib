@@ -10,3 +10,5 @@ instance ToJSON GetChatHistory
 
 instance FromJSON GetChatHistory
 
+instance Show GetChatHistory
+

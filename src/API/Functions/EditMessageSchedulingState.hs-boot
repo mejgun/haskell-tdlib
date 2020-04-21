@@ -10,3 +10,5 @@ instance ToJSON EditMessageSchedulingState
 
 instance FromJSON EditMessageSchedulingState
 
+instance Show EditMessageSchedulingState
+

@@ -10,3 +10,5 @@ instance ToJSON AuthenticationCodeInfo
 
 instance FromJSON AuthenticationCodeInfo
 
+instance Show AuthenticationCodeInfo
+

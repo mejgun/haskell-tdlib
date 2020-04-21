@@ -10,3 +10,5 @@ instance ToJSON Count
 
 instance FromJSON Count
 
+instance Show Count
+

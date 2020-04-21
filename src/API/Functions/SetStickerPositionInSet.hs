@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 --main = putStrLn "ok"
 
 data SetStickerPositionInSet = 
- SetStickerPositionInSet { position :: Int, sticker :: InputFile.InputFile }  -- deriving (Show)
+ SetStickerPositionInSet { position :: Int, sticker :: InputFile.InputFile }  deriving (Show)
 
 instance T.ToJSON SetStickerPositionInSet where
  toJSON (SetStickerPositionInSet { position = position, sticker = sticker }) =
   A.object [ "@type" A..= T.String "setStickerPositionInSet", "position" A..= position, "sticker" A..= sticker ]
--- setStickerPositionInSet SetStickerPositionInSet  { position :: Int, sticker :: InputFile.InputFile } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON SetStickerPositionInSet where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "setStickerPositionInSet" -> parseSetStickerPositionInSet v
+
+   _ -> mempty ""
   where
    parseSetStickerPositionInSet :: A.Value -> T.Parser SetStickerPositionInSet
    parseSetStickerPositionInSet = A.withObject "SetStickerPositionInSet" $ \o -> do

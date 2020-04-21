@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetPushReceiverId = 
- GetPushReceiverId { payload :: String }  -- deriving (Show)
+ GetPushReceiverId { payload :: String }  deriving (Show)
 
 instance T.ToJSON GetPushReceiverId where
  toJSON (GetPushReceiverId { payload = payload }) =
   A.object [ "@type" A..= T.String "getPushReceiverId", "payload" A..= payload ]
--- getPushReceiverId GetPushReceiverId  { payload :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetPushReceiverId where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getPushReceiverId" -> parseGetPushReceiverId v
+
+   _ -> mempty ""
   where
    parseGetPushReceiverId :: A.Value -> T.Parser GetPushReceiverId
    parseGetPushReceiverId = A.withObject "GetPushReceiverId" $ \o -> do

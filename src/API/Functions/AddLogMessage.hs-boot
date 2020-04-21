@@ -10,3 +10,5 @@ instance ToJSON AddLogMessage
 
 instance FromJSON AddLogMessage
 
+instance Show AddLogMessage
+

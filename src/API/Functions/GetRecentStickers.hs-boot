@@ -10,3 +10,5 @@ instance ToJSON GetRecentStickers
 
 instance FromJSON GetRecentStickers
 
+instance Show GetRecentStickers
+

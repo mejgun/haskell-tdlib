@@ -10,3 +10,5 @@ instance ToJSON ViewTrendingStickerSets
 
 instance FromJSON ViewTrendingStickerSets
 
+instance Show ViewTrendingStickerSets
+

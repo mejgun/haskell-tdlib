@@ -10,3 +10,5 @@ instance ToJSON RemoveSavedAnimation
 
 instance FromJSON RemoveSavedAnimation
 
+instance Show RemoveSavedAnimation
+

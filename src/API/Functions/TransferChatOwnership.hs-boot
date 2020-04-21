@@ -10,3 +10,5 @@ instance ToJSON TransferChatOwnership
 
 instance FromJSON TransferChatOwnership
 
+instance Show TransferChatOwnership
+

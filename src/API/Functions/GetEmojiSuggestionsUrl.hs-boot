@@ -10,3 +10,5 @@ instance ToJSON GetEmojiSuggestionsUrl
 
 instance FromJSON GetEmojiSuggestionsUrl
 
+instance Show GetEmojiSuggestionsUrl
+

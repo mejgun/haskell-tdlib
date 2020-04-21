@@ -10,3 +10,5 @@ instance ToJSON GetChat
 
 instance FromJSON GetChat
 
+instance Show GetChat
+

@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data SavedCredentials = 
- SavedCredentials { title :: String, _id :: String }  -- deriving (Show)
+ SavedCredentials { title :: String, _id :: String }  deriving (Show)
 
 instance T.ToJSON SavedCredentials where
  toJSON (SavedCredentials { title = title, _id = _id }) =
   A.object [ "@type" A..= T.String "savedCredentials", "title" A..= title, "id" A..= _id ]
--- savedCredentials SavedCredentials  { title :: String, _id :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON SavedCredentials where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "savedCredentials" -> parseSavedCredentials v
+
+   _ -> mempty ""
   where
    parseSavedCredentials :: A.Value -> T.Parser SavedCredentials
    parseSavedCredentials = A.withObject "SavedCredentials" $ \o -> do

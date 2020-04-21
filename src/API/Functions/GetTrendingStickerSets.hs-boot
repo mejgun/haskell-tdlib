@@ -10,3 +10,5 @@ instance ToJSON GetTrendingStickerSets
 
 instance FromJSON GetTrendingStickerSets
 
+instance Show GetTrendingStickerSets
+

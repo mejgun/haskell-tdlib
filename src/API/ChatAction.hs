@@ -20,7 +20,7 @@ data ChatAction =
  | ChatActionStartPlayingGame 
  | ChatActionRecordingVideoNote 
  | ChatActionUploadingVideoNote { progress :: Int }  
- | ChatActionCancel -- deriving (Show)
+ | ChatActionCancel deriving (Show)
 
 instance T.ToJSON ChatAction where
  toJSON (ChatActionTyping {  }) =
@@ -61,31 +61,6 @@ instance T.ToJSON ChatAction where
 
  toJSON (ChatActionCancel {  }) =
   A.object [ "@type" A..= T.String "chatActionCancel" ]
--- chatActionTyping ChatAction 
-
--- chatActionRecordingVideo ChatAction 
-
--- chatActionUploadingVideo ChatAction  { progress :: Int } 
-
--- chatActionRecordingVoiceNote ChatAction 
-
--- chatActionUploadingVoiceNote ChatAction  { progress :: Int } 
-
--- chatActionUploadingPhoto ChatAction  { progress :: Int } 
-
--- chatActionUploadingDocument ChatAction  { progress :: Int } 
-
--- chatActionChoosingLocation ChatAction 
-
--- chatActionChoosingContact ChatAction 
-
--- chatActionStartPlayingGame ChatAction 
-
--- chatActionRecordingVideoNote ChatAction 
-
--- chatActionUploadingVideoNote ChatAction  { progress :: Int } 
-
--- chatActionCancel ChatAction 
 
 
 
@@ -106,6 +81,8 @@ instance T.FromJSON ChatAction where
    "chatActionRecordingVideoNote" -> parseChatActionRecordingVideoNote v
    "chatActionUploadingVideoNote" -> parseChatActionUploadingVideoNote v
    "chatActionCancel" -> parseChatActionCancel v
+
+   _ -> mempty ""
   where
    parseChatActionTyping :: A.Value -> T.Parser ChatAction
    parseChatActionTyping = A.withObject "ChatActionTyping" $ \o -> do

@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 data BackgroundFill = 
  BackgroundFillSolid { color :: Int }  
- | BackgroundFillGradient { rotation_angle :: Int, bottom_color :: Int, top_color :: Int }  -- deriving (Show)
+ | BackgroundFillGradient { rotation_angle :: Int, bottom_color :: Int, top_color :: Int }  deriving (Show)
 
 instance T.ToJSON BackgroundFill where
  toJSON (BackgroundFillSolid { color = color }) =
@@ -17,9 +17,6 @@ instance T.ToJSON BackgroundFill where
 
  toJSON (BackgroundFillGradient { rotation_angle = rotation_angle, bottom_color = bottom_color, top_color = top_color }) =
   A.object [ "@type" A..= T.String "backgroundFillGradient", "rotation_angle" A..= rotation_angle, "bottom_color" A..= bottom_color, "top_color" A..= top_color ]
--- backgroundFillSolid BackgroundFill  { color :: Int } 
-
--- backgroundFillGradient BackgroundFill  { rotation_angle :: Int, bottom_color :: Int, top_color :: Int } 
 
 
 
@@ -29,6 +26,8 @@ instance T.FromJSON BackgroundFill where
   case t of
    "backgroundFillSolid" -> parseBackgroundFillSolid v
    "backgroundFillGradient" -> parseBackgroundFillGradient v
+
+   _ -> mempty ""
   where
    parseBackgroundFillSolid :: A.Value -> T.Parser BackgroundFill
    parseBackgroundFillSolid = A.withObject "BackgroundFillSolid" $ \o -> do

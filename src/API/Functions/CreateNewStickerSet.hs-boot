@@ -10,3 +10,5 @@ instance ToJSON CreateNewStickerSet
 
 instance FromJSON CreateNewStickerSet
 
+instance Show CreateNewStickerSet
+

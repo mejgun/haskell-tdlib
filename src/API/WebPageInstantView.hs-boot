@@ -10,3 +10,5 @@ instance ToJSON WebPageInstantView
 
 instance FromJSON WebPageInstantView
 
+instance Show WebPageInstantView
+

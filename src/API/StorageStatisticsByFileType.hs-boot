@@ -10,3 +10,5 @@ instance ToJSON StorageStatisticsByFileType
 
 instance FromJSON StorageStatisticsByFileType
 
+instance Show StorageStatisticsByFileType
+

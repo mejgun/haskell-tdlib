@@ -10,3 +10,5 @@ instance ToJSON SupergroupFullInfo
 
 instance FromJSON SupergroupFullInfo
 
+instance Show SupergroupFullInfo
+

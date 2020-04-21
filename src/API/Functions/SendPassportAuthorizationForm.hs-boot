@@ -10,3 +10,5 @@ instance ToJSON SendPassportAuthorizationForm
 
 instance FromJSON SendPassportAuthorizationForm
 
+instance Show SendPassportAuthorizationForm
+

@@ -10,7 +10,7 @@ import qualified Data.Aeson.Types as T
 data MessageForwardOrigin = 
  MessageForwardOriginUser { sender_user_id :: Int }  
  | MessageForwardOriginHiddenUser { sender_name :: String }  
- | MessageForwardOriginChannel { author_signature :: String, message_id :: Int, chat_id :: Int }  -- deriving (Show)
+ | MessageForwardOriginChannel { author_signature :: String, message_id :: Int, chat_id :: Int }  deriving (Show)
 
 instance T.ToJSON MessageForwardOrigin where
  toJSON (MessageForwardOriginUser { sender_user_id = sender_user_id }) =
@@ -21,11 +21,6 @@ instance T.ToJSON MessageForwardOrigin where
 
  toJSON (MessageForwardOriginChannel { author_signature = author_signature, message_id = message_id, chat_id = chat_id }) =
   A.object [ "@type" A..= T.String "messageForwardOriginChannel", "author_signature" A..= author_signature, "message_id" A..= message_id, "chat_id" A..= chat_id ]
--- messageForwardOriginUser MessageForwardOrigin  { sender_user_id :: Int } 
-
--- messageForwardOriginHiddenUser MessageForwardOrigin  { sender_name :: String } 
-
--- messageForwardOriginChannel MessageForwardOrigin  { author_signature :: String, message_id :: Int, chat_id :: Int } 
 
 
 
@@ -36,6 +31,8 @@ instance T.FromJSON MessageForwardOrigin where
    "messageForwardOriginUser" -> parseMessageForwardOriginUser v
    "messageForwardOriginHiddenUser" -> parseMessageForwardOriginHiddenUser v
    "messageForwardOriginChannel" -> parseMessageForwardOriginChannel v
+
+   _ -> mempty ""
   where
    parseMessageForwardOriginUser :: A.Value -> T.Parser MessageForwardOrigin
    parseMessageForwardOriginUser = A.withObject "MessageForwardOriginUser" $ \o -> do

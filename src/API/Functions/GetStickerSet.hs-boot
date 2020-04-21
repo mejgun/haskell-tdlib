@@ -10,3 +10,5 @@ instance ToJSON GetStickerSet
 
 instance FromJSON GetStickerSet
 
+instance Show GetStickerSet
+

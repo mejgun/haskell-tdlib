@@ -10,3 +10,5 @@ instance ToJSON CustomRequestResult
 
 instance FromJSON CustomRequestResult
 
+instance Show CustomRequestResult
+

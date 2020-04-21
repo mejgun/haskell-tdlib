@@ -10,3 +10,5 @@ instance ToJSON ChatReportReason
 
 instance FromJSON ChatReportReason
 
+instance Show ChatReportReason
+

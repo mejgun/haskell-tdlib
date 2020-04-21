@@ -10,3 +10,5 @@ instance ToJSON GetSavedAnimations
 
 instance FromJSON GetSavedAnimations
 
+instance Show GetSavedAnimations
+

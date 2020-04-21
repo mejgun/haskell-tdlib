@@ -41,7 +41,7 @@ data PushMessageContent =
  | PushMessageContentChatDeleteMember { is_left :: Bool, is_current_user :: Bool, member_name :: String }  
  | PushMessageContentChatJoinByLink 
  | PushMessageContentMessageForwards { total_count :: Int }  
- | PushMessageContentMediaAlbum { has_videos :: Bool, has_photos :: Bool, total_count :: Int }  -- deriving (Show)
+ | PushMessageContentMediaAlbum { has_videos :: Bool, has_photos :: Bool, total_count :: Int }  deriving (Show)
 
 instance T.ToJSON PushMessageContent where
  toJSON (PushMessageContentHidden { is_pinned = is_pinned }) =
@@ -121,57 +121,6 @@ instance T.ToJSON PushMessageContent where
 
  toJSON (PushMessageContentMediaAlbum { has_videos = has_videos, has_photos = has_photos, total_count = total_count }) =
   A.object [ "@type" A..= T.String "pushMessageContentMediaAlbum", "has_videos" A..= has_videos, "has_photos" A..= has_photos, "total_count" A..= total_count ]
--- pushMessageContentHidden PushMessageContent  { is_pinned :: Bool } 
-
--- pushMessageContentAnimation PushMessageContent  { is_pinned :: Bool, caption :: String, animation :: Animation.Animation } 
-
--- pushMessageContentAudio PushMessageContent  { is_pinned :: Bool, audio :: Audio.Audio } 
-
--- pushMessageContentContact PushMessageContent  { is_pinned :: Bool, name :: String } 
-
--- pushMessageContentContactRegistered PushMessageContent 
-
--- pushMessageContentDocument PushMessageContent  { is_pinned :: Bool, document :: Document.Document } 
-
--- pushMessageContentGame PushMessageContent  { is_pinned :: Bool, title :: String } 
-
--- pushMessageContentGameScore PushMessageContent  { is_pinned :: Bool, score :: Int, title :: String } 
-
--- pushMessageContentInvoice PushMessageContent  { is_pinned :: Bool, price :: String } 
-
--- pushMessageContentLocation PushMessageContent  { is_pinned :: Bool, is_live :: Bool } 
-
--- pushMessageContentPhoto PushMessageContent  { is_pinned :: Bool, is_secret :: Bool, caption :: String, photo :: Photo.Photo } 
-
--- pushMessageContentPoll PushMessageContent  { is_pinned :: Bool, is_regular :: Bool, question :: String } 
-
--- pushMessageContentScreenshotTaken PushMessageContent 
-
--- pushMessageContentSticker PushMessageContent  { is_pinned :: Bool, emoji :: String, sticker :: Sticker.Sticker } 
-
--- pushMessageContentText PushMessageContent  { is_pinned :: Bool, text :: String } 
-
--- pushMessageContentVideo PushMessageContent  { is_pinned :: Bool, is_secret :: Bool, caption :: String, video :: Video.Video } 
-
--- pushMessageContentVideoNote PushMessageContent  { is_pinned :: Bool, video_note :: VideoNote.VideoNote } 
-
--- pushMessageContentVoiceNote PushMessageContent  { is_pinned :: Bool, voice_note :: VoiceNote.VoiceNote } 
-
--- pushMessageContentBasicGroupChatCreate PushMessageContent 
-
--- pushMessageContentChatAddMembers PushMessageContent  { is_returned :: Bool, is_current_user :: Bool, member_name :: String } 
-
--- pushMessageContentChatChangePhoto PushMessageContent 
-
--- pushMessageContentChatChangeTitle PushMessageContent  { title :: String } 
-
--- pushMessageContentChatDeleteMember PushMessageContent  { is_left :: Bool, is_current_user :: Bool, member_name :: String } 
-
--- pushMessageContentChatJoinByLink PushMessageContent 
-
--- pushMessageContentMessageForwards PushMessageContent  { total_count :: Int } 
-
--- pushMessageContentMediaAlbum PushMessageContent  { has_videos :: Bool, has_photos :: Bool, total_count :: Int } 
 
 
 
@@ -205,6 +154,8 @@ instance T.FromJSON PushMessageContent where
    "pushMessageContentChatJoinByLink" -> parsePushMessageContentChatJoinByLink v
    "pushMessageContentMessageForwards" -> parsePushMessageContentMessageForwards v
    "pushMessageContentMediaAlbum" -> parsePushMessageContentMediaAlbum v
+
+   _ -> mempty ""
   where
    parsePushMessageContentHidden :: A.Value -> T.Parser PushMessageContent
    parsePushMessageContentHidden = A.withObject "PushMessageContentHidden" $ \o -> do

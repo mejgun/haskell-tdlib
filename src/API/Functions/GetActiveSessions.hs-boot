@@ -10,3 +10,5 @@ instance ToJSON GetActiveSessions
 
 instance FromJSON GetActiveSessions
 
+instance Show GetActiveSessions
+

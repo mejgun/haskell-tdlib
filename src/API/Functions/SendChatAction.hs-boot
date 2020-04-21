@@ -10,3 +10,5 @@ instance ToJSON SendChatAction
 
 instance FromJSON SendChatAction
 
+instance Show SendChatAction
+

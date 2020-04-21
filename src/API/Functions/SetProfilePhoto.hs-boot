@@ -10,3 +10,5 @@ instance ToJSON SetProfilePhoto
 
 instance FromJSON SetProfilePhoto
 
+instance Show SetProfilePhoto
+

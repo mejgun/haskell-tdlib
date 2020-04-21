@@ -10,3 +10,5 @@ instance ToJSON Stickers
 
 instance FromJSON Stickers
 
+instance Show Stickers
+

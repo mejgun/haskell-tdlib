@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data AddLogMessage = 
- AddLogMessage { text :: String, verbosity_level :: Int }  -- deriving (Show)
+ AddLogMessage { text :: String, verbosity_level :: Int }  deriving (Show)
 
 instance T.ToJSON AddLogMessage where
  toJSON (AddLogMessage { text = text, verbosity_level = verbosity_level }) =
   A.object [ "@type" A..= T.String "addLogMessage", "text" A..= text, "verbosity_level" A..= verbosity_level ]
--- addLogMessage AddLogMessage  { text :: String, verbosity_level :: Int } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON AddLogMessage where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "addLogMessage" -> parseAddLogMessage v
+
+   _ -> mempty ""
   where
    parseAddLogMessage :: A.Value -> T.Parser AddLogMessage
    parseAddLogMessage = A.withObject "AddLogMessage" $ \o -> do

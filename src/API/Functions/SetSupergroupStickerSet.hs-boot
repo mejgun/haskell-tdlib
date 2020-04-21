@@ -10,3 +10,5 @@ instance ToJSON SetSupergroupStickerSet
 
 instance FromJSON SetSupergroupStickerSet
 
+instance Show SetSupergroupStickerSet
+

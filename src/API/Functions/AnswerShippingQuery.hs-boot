@@ -10,3 +10,5 @@ instance ToJSON AnswerShippingQuery
 
 instance FromJSON AnswerShippingQuery
 
+instance Show AnswerShippingQuery
+

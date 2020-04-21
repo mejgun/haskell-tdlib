@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data ToggleChatIsPinned = 
- ToggleChatIsPinned { is_pinned :: Bool, chat_id :: Int }  -- deriving (Show)
+ ToggleChatIsPinned { is_pinned :: Bool, chat_id :: Int }  deriving (Show)
 
 instance T.ToJSON ToggleChatIsPinned where
  toJSON (ToggleChatIsPinned { is_pinned = is_pinned, chat_id = chat_id }) =
   A.object [ "@type" A..= T.String "toggleChatIsPinned", "is_pinned" A..= is_pinned, "chat_id" A..= chat_id ]
--- toggleChatIsPinned ToggleChatIsPinned  { is_pinned :: Bool, chat_id :: Int } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON ToggleChatIsPinned where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "toggleChatIsPinned" -> parseToggleChatIsPinned v
+
+   _ -> mempty ""
   where
    parseToggleChatIsPinned :: A.Value -> T.Parser ToggleChatIsPinned
    parseToggleChatIsPinned = A.withObject "ToggleChatIsPinned" $ \o -> do

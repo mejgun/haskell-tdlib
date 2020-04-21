@@ -10,3 +10,5 @@ instance ToJSON ForwardMessages
 
 instance FromJSON ForwardMessages
 
+instance Show ForwardMessages
+

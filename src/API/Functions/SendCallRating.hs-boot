@@ -10,3 +10,5 @@ instance ToJSON SendCallRating
 
 instance FromJSON SendCallRating
 
+instance Show SendCallRating
+

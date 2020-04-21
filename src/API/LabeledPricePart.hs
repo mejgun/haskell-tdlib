@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data LabeledPricePart = 
- LabeledPricePart { amount :: Int, label :: String }  -- deriving (Show)
+ LabeledPricePart { amount :: Int, label :: String }  deriving (Show)
 
 instance T.ToJSON LabeledPricePart where
  toJSON (LabeledPricePart { amount = amount, label = label }) =
   A.object [ "@type" A..= T.String "labeledPricePart", "amount" A..= amount, "label" A..= label ]
--- labeledPricePart LabeledPricePart  { amount :: Int, label :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON LabeledPricePart where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "labeledPricePart" -> parseLabeledPricePart v
+
+   _ -> mempty ""
   where
    parseLabeledPricePart :: A.Value -> T.Parser LabeledPricePart
    parseLabeledPricePart = A.withObject "LabeledPricePart" $ \o -> do

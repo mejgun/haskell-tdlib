@@ -10,3 +10,5 @@ instance ToJSON JoinChat
 
 instance FromJSON JoinChat
 
+instance Show JoinChat
+

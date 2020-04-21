@@ -10,3 +10,5 @@ instance ToJSON GetPreferredCountryLanguage
 
 instance FromJSON GetPreferredCountryLanguage
 
+instance Show GetPreferredCountryLanguage
+

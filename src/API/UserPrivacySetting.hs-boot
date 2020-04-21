@@ -10,3 +10,5 @@ instance ToJSON UserPrivacySetting
 
 instance FromJSON UserPrivacySetting
 
+instance Show UserPrivacySetting
+

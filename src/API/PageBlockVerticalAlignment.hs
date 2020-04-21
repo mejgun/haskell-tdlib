@@ -10,7 +10,7 @@ import qualified Data.Aeson.Types as T
 data PageBlockVerticalAlignment = 
  PageBlockVerticalAlignmentTop 
  | PageBlockVerticalAlignmentMiddle 
- | PageBlockVerticalAlignmentBottom -- deriving (Show)
+ | PageBlockVerticalAlignmentBottom deriving (Show)
 
 instance T.ToJSON PageBlockVerticalAlignment where
  toJSON (PageBlockVerticalAlignmentTop {  }) =
@@ -21,11 +21,6 @@ instance T.ToJSON PageBlockVerticalAlignment where
 
  toJSON (PageBlockVerticalAlignmentBottom {  }) =
   A.object [ "@type" A..= T.String "pageBlockVerticalAlignmentBottom" ]
--- pageBlockVerticalAlignmentTop PageBlockVerticalAlignment 
-
--- pageBlockVerticalAlignmentMiddle PageBlockVerticalAlignment 
-
--- pageBlockVerticalAlignmentBottom PageBlockVerticalAlignment 
 
 
 
@@ -36,6 +31,8 @@ instance T.FromJSON PageBlockVerticalAlignment where
    "pageBlockVerticalAlignmentTop" -> parsePageBlockVerticalAlignmentTop v
    "pageBlockVerticalAlignmentMiddle" -> parsePageBlockVerticalAlignmentMiddle v
    "pageBlockVerticalAlignmentBottom" -> parsePageBlockVerticalAlignmentBottom v
+
+   _ -> mempty ""
   where
    parsePageBlockVerticalAlignmentTop :: A.Value -> T.Parser PageBlockVerticalAlignment
    parsePageBlockVerticalAlignmentTop = A.withObject "PageBlockVerticalAlignmentTop" $ \o -> do

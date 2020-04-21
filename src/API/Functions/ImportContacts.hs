@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.Contact as Contact
 --main = putStrLn "ok"
 
 data ImportContacts = 
- ImportContacts { contacts :: [Contact.Contact] }  -- deriving (Show)
+ ImportContacts { contacts :: [Contact.Contact] }  deriving (Show)
 
 instance T.ToJSON ImportContacts where
  toJSON (ImportContacts { contacts = contacts }) =
   A.object [ "@type" A..= T.String "importContacts", "contacts" A..= contacts ]
--- importContacts ImportContacts  { contacts :: [Contact.Contact] } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON ImportContacts where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "importContacts" -> parseImportContacts v
+
+   _ -> mempty ""
   where
    parseImportContacts :: A.Value -> T.Parser ImportContacts
    parseImportContacts = A.withObject "ImportContacts" $ \o -> do

@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.DraftMessage as DraftMessage
 --main = putStrLn "ok"
 
 data SetChatDraftMessage = 
- SetChatDraftMessage { draft_message :: DraftMessage.DraftMessage, chat_id :: Int }  -- deriving (Show)
+ SetChatDraftMessage { draft_message :: DraftMessage.DraftMessage, chat_id :: Int }  deriving (Show)
 
 instance T.ToJSON SetChatDraftMessage where
  toJSON (SetChatDraftMessage { draft_message = draft_message, chat_id = chat_id }) =
   A.object [ "@type" A..= T.String "setChatDraftMessage", "draft_message" A..= draft_message, "chat_id" A..= chat_id ]
--- setChatDraftMessage SetChatDraftMessage  { draft_message :: DraftMessage.DraftMessage, chat_id :: Int } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON SetChatDraftMessage where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "setChatDraftMessage" -> parseSetChatDraftMessage v
+
+   _ -> mempty ""
   where
    parseSetChatDraftMessage :: A.Value -> T.Parser SetChatDraftMessage
    parseSetChatDraftMessage = A.withObject "SetChatDraftMessage" $ \o -> do

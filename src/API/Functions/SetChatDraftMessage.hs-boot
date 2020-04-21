@@ -10,3 +10,5 @@ instance ToJSON SetChatDraftMessage
 
 instance FromJSON SetChatDraftMessage
 
+instance Show SetChatDraftMessage
+

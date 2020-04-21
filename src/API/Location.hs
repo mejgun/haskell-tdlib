@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data Location = 
- Location { longitude :: Float, latitude :: Float }  -- deriving (Show)
+ Location { longitude :: Float, latitude :: Float }  deriving (Show)
 
 instance T.ToJSON Location where
  toJSON (Location { longitude = longitude, latitude = latitude }) =
   A.object [ "@type" A..= T.String "location", "longitude" A..= longitude, "latitude" A..= latitude ]
--- location Location  { longitude :: Float, latitude :: Float } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON Location where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "location" -> parseLocation v
+
+   _ -> mempty ""
   where
    parseLocation :: A.Value -> T.Parser Location
    parseLocation = A.withObject "Location" $ \o -> do

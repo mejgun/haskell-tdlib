@@ -10,3 +10,5 @@ instance ToJSON Proxies
 
 instance FromJSON Proxies
 
+instance Show Proxies
+

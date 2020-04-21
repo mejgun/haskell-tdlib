@@ -11,7 +11,7 @@ data OptionValue =
  OptionValueBoolean { __value :: Bool }  
  | OptionValueEmpty 
  | OptionValueInteger { _value :: Int }  
- | OptionValueString { value :: String }  -- deriving (Show)
+ | OptionValueString { value :: String }  deriving (Show)
 
 instance T.ToJSON OptionValue where
  toJSON (OptionValueBoolean { __value = __value }) =
@@ -25,13 +25,6 @@ instance T.ToJSON OptionValue where
 
  toJSON (OptionValueString { value = value }) =
   A.object [ "@type" A..= T.String "optionValueString", "value" A..= value ]
--- optionValueBoolean OptionValue  { __value :: Bool } 
-
--- optionValueEmpty OptionValue 
-
--- optionValueInteger OptionValue  { _value :: Int } 
-
--- optionValueString OptionValue  { value :: String } 
 
 
 
@@ -43,6 +36,8 @@ instance T.FromJSON OptionValue where
    "optionValueEmpty" -> parseOptionValueEmpty v
    "optionValueInteger" -> parseOptionValueInteger v
    "optionValueString" -> parseOptionValueString v
+
+   _ -> mempty ""
   where
    parseOptionValueBoolean :: A.Value -> T.Parser OptionValue
    parseOptionValueBoolean = A.withObject "OptionValueBoolean" $ \o -> do

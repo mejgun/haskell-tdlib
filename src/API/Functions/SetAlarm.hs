@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data SetAlarm = 
- SetAlarm { seconds :: Float }  -- deriving (Show)
+ SetAlarm { seconds :: Float }  deriving (Show)
 
 instance T.ToJSON SetAlarm where
  toJSON (SetAlarm { seconds = seconds }) =
   A.object [ "@type" A..= T.String "setAlarm", "seconds" A..= seconds ]
--- setAlarm SetAlarm  { seconds :: Float } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON SetAlarm where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "setAlarm" -> parseSetAlarm v
+
+   _ -> mempty ""
   where
    parseSetAlarm :: A.Value -> T.Parser SetAlarm
    parseSetAlarm = A.withObject "SetAlarm" $ \o -> do

@@ -10,3 +10,5 @@ instance ToJSON GetRemoteFile
 
 instance FromJSON GetRemoteFile
 
+instance Show GetRemoteFile
+

@@ -10,3 +10,5 @@ instance ToJSON ConnectionState
 
 instance FromJSON ConnectionState
 
+instance Show ConnectionState
+

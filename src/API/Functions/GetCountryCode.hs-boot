@@ -10,3 +10,5 @@ instance ToJSON GetCountryCode
 
 instance FromJSON GetCountryCode
 
+instance Show GetCountryCode
+

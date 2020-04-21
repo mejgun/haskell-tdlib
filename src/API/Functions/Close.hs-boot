@@ -10,3 +10,5 @@ instance ToJSON Close
 
 instance FromJSON Close
 
+instance Show Close
+

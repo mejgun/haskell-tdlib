@@ -10,3 +10,5 @@ instance ToJSON GetWebPagePreview
 
 instance FromJSON GetWebPagePreview
 
+instance Show GetWebPagePreview
+

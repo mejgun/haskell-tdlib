@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetConnectedWebsites = 
- GetConnectedWebsites -- deriving (Show)
+ GetConnectedWebsites deriving (Show)
 
 instance T.ToJSON GetConnectedWebsites where
  toJSON (GetConnectedWebsites {  }) =
   A.object [ "@type" A..= T.String "getConnectedWebsites" ]
--- getConnectedWebsites GetConnectedWebsites 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetConnectedWebsites where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getConnectedWebsites" -> parseGetConnectedWebsites v
+
+   _ -> mempty ""
   where
    parseGetConnectedWebsites :: A.Value -> T.Parser GetConnectedWebsites
    parseGetConnectedWebsites = A.withObject "GetConnectedWebsites" $ \o -> do

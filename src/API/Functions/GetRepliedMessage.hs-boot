@@ -10,3 +10,5 @@ instance ToJSON GetRepliedMessage
 
 instance FromJSON GetRepliedMessage
 
+instance Show GetRepliedMessage
+

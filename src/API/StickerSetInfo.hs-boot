@@ -10,3 +10,5 @@ instance ToJSON StickerSetInfo
 
 instance FromJSON StickerSetInfo
 
+instance Show StickerSetInfo
+

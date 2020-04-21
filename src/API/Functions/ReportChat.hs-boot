@@ -10,3 +10,5 @@ instance ToJSON ReportChat
 
 instance FromJSON ReportChat
 
+instance Show ReportChat
+

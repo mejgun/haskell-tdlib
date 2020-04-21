@@ -10,3 +10,5 @@ instance ToJSON DisconnectWebsite
 
 instance FromJSON DisconnectWebsite
 
+instance Show DisconnectWebsite
+

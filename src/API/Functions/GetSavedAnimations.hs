@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetSavedAnimations = 
- GetSavedAnimations -- deriving (Show)
+ GetSavedAnimations deriving (Show)
 
 instance T.ToJSON GetSavedAnimations where
  toJSON (GetSavedAnimations {  }) =
   A.object [ "@type" A..= T.String "getSavedAnimations" ]
--- getSavedAnimations GetSavedAnimations 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetSavedAnimations where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getSavedAnimations" -> parseGetSavedAnimations v
+
+   _ -> mempty ""
   where
    parseGetSavedAnimations :: A.Value -> T.Parser GetSavedAnimations
    parseGetSavedAnimations = A.withObject "GetSavedAnimations" $ \o -> do

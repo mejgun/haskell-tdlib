@@ -23,7 +23,7 @@ data FileType =
  | FileTypeVideo 
  | FileTypeVideoNote 
  | FileTypeVoiceNote 
- | FileTypeWallpaper -- deriving (Show)
+ | FileTypeWallpaper deriving (Show)
 
 instance T.ToJSON FileType where
  toJSON (FileTypeNone {  }) =
@@ -73,37 +73,6 @@ instance T.ToJSON FileType where
 
  toJSON (FileTypeWallpaper {  }) =
   A.object [ "@type" A..= T.String "fileTypeWallpaper" ]
--- fileTypeNone FileType 
-
--- fileTypeAnimation FileType 
-
--- fileTypeAudio FileType 
-
--- fileTypeDocument FileType 
-
--- fileTypePhoto FileType 
-
--- fileTypeProfilePhoto FileType 
-
--- fileTypeSecret FileType 
-
--- fileTypeSecretThumbnail FileType 
-
--- fileTypeSecure FileType 
-
--- fileTypeSticker FileType 
-
--- fileTypeThumbnail FileType 
-
--- fileTypeUnknown FileType 
-
--- fileTypeVideo FileType 
-
--- fileTypeVideoNote FileType 
-
--- fileTypeVoiceNote FileType 
-
--- fileTypeWallpaper FileType 
 
 
 
@@ -127,6 +96,8 @@ instance T.FromJSON FileType where
    "fileTypeVideoNote" -> parseFileTypeVideoNote v
    "fileTypeVoiceNote" -> parseFileTypeVoiceNote v
    "fileTypeWallpaper" -> parseFileTypeWallpaper v
+
+   _ -> mempty ""
   where
    parseFileTypeNone :: A.Value -> T.Parser FileType
    parseFileTypeNone = A.withObject "FileTypeNone" $ \o -> do

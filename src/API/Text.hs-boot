@@ -10,3 +10,5 @@ instance ToJSON Text
 
 instance FromJSON Text
 
+instance Show Text
+

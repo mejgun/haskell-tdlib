@@ -10,3 +10,5 @@ instance ToJSON SearchStickers
 
 instance FromJSON SearchStickers
 
+instance Show SearchStickers
+

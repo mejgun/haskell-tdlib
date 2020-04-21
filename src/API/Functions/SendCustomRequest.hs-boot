@@ -10,3 +10,5 @@ instance ToJSON SendCustomRequest
 
 instance FromJSON SendCustomRequest
 
+instance Show SendCustomRequest
+

@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.FileType as FileType
 --main = putStrLn "ok"
 
 data StorageStatisticsByFileType = 
- StorageStatisticsByFileType { count :: Int, size :: Int, file_type :: FileType.FileType }  -- deriving (Show)
+ StorageStatisticsByFileType { count :: Int, size :: Int, file_type :: FileType.FileType }  deriving (Show)
 
 instance T.ToJSON StorageStatisticsByFileType where
  toJSON (StorageStatisticsByFileType { count = count, size = size, file_type = file_type }) =
   A.object [ "@type" A..= T.String "storageStatisticsByFileType", "count" A..= count, "size" A..= size, "file_type" A..= file_type ]
--- storageStatisticsByFileType StorageStatisticsByFileType  { count :: Int, size :: Int, file_type :: FileType.FileType } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON StorageStatisticsByFileType where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "storageStatisticsByFileType" -> parseStorageStatisticsByFileType v
+
+   _ -> mempty ""
   where
    parseStorageStatisticsByFileType :: A.Value -> T.Parser StorageStatisticsByFileType
    parseStorageStatisticsByFileType = A.withObject "StorageStatisticsByFileType" $ \o -> do

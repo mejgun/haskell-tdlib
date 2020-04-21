@@ -10,3 +10,5 @@ instance ToJSON TextParseMode
 
 instance FromJSON TextParseMode
 
+instance Show TextParseMode
+

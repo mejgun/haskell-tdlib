@@ -10,3 +10,5 @@ instance ToJSON GetMessages
 
 instance FromJSON GetMessages
 
+instance Show GetMessages
+

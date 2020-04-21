@@ -10,3 +10,5 @@ instance ToJSON ParseMarkdown
 
 instance FromJSON ParseMarkdown
 
+instance Show ParseMarkdown
+

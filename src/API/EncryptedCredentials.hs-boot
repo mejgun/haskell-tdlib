@@ -10,3 +10,5 @@ instance ToJSON EncryptedCredentials
 
 instance FromJSON EncryptedCredentials
 
+instance Show EncryptedCredentials
+

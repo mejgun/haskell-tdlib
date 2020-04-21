@@ -10,3 +10,5 @@ instance ToJSON TestProxy
 
 instance FromJSON TestProxy
 
+instance Show TestProxy
+

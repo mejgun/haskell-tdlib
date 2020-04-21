@@ -10,3 +10,5 @@ instance ToJSON DiscardCall
 
 instance FromJSON DiscardCall
 
+instance Show DiscardCall
+

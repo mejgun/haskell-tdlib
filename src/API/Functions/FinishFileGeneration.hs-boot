@@ -10,3 +10,5 @@ instance ToJSON FinishFileGeneration
 
 instance FromJSON FinishFileGeneration
 
+instance Show FinishFileGeneration
+

@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.TextEntityType as TextEntityType
 --main = putStrLn "ok"
 
 data TextEntity = 
- TextEntity { _type :: TextEntityType.TextEntityType, _length :: Int, offset :: Int }  -- deriving (Show)
+ TextEntity { _type :: TextEntityType.TextEntityType, _length :: Int, offset :: Int }  deriving (Show)
 
 instance T.ToJSON TextEntity where
  toJSON (TextEntity { _type = _type, _length = _length, offset = offset }) =
   A.object [ "@type" A..= T.String "textEntity", "type" A..= _type, "length" A..= _length, "offset" A..= offset ]
--- textEntity TextEntity  { _type :: TextEntityType.TextEntityType, _length :: Int, offset :: Int } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON TextEntity where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "textEntity" -> parseTextEntity v
+
+   _ -> mempty ""
   where
    parseTextEntity :: A.Value -> T.Parser TextEntity
    parseTextEntity = A.withObject "TextEntity" $ \o -> do

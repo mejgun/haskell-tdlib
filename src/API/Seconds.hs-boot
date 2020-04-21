@@ -10,3 +10,5 @@ instance ToJSON Seconds
 
 instance FromJSON Seconds
 
+instance Show Seconds
+

@@ -10,3 +10,5 @@ instance ToJSON GetPaymentForm
 
 instance FromJSON GetPaymentForm
 
+instance Show GetPaymentForm
+

@@ -24,7 +24,7 @@ data InputPassportElement =
  | InputPassportElementPassportRegistration { passport_registration :: InputPersonalDocument.InputPersonalDocument }  
  | InputPassportElementTemporaryRegistration { temporary_registration :: InputPersonalDocument.InputPersonalDocument }  
  | InputPassportElementPhoneNumber { phone_number :: String }  
- | InputPassportElementEmailAddress { email_address :: String }  -- deriving (Show)
+ | InputPassportElementEmailAddress { email_address :: String }  deriving (Show)
 
 instance T.ToJSON InputPassportElement where
  toJSON (InputPassportElementPersonalDetails { personal_details = personal_details }) =
@@ -65,31 +65,6 @@ instance T.ToJSON InputPassportElement where
 
  toJSON (InputPassportElementEmailAddress { email_address = email_address }) =
   A.object [ "@type" A..= T.String "inputPassportElementEmailAddress", "email_address" A..= email_address ]
--- inputPassportElementPersonalDetails InputPassportElement  { personal_details :: PersonalDetails.PersonalDetails } 
-
--- inputPassportElementPassport InputPassportElement  { passport :: InputIdentityDocument.InputIdentityDocument } 
-
--- inputPassportElementDriverLicense InputPassportElement  { driver_license :: InputIdentityDocument.InputIdentityDocument } 
-
--- inputPassportElementIdentityCard InputPassportElement  { identity_card :: InputIdentityDocument.InputIdentityDocument } 
-
--- inputPassportElementInternalPassport InputPassportElement  { internal_passport :: InputIdentityDocument.InputIdentityDocument } 
-
--- inputPassportElementAddress InputPassportElement  { address :: Address.Address } 
-
--- inputPassportElementUtilityBill InputPassportElement  { utility_bill :: InputPersonalDocument.InputPersonalDocument } 
-
--- inputPassportElementBankStatement InputPassportElement  { bank_statement :: InputPersonalDocument.InputPersonalDocument } 
-
--- inputPassportElementRentalAgreement InputPassportElement  { rental_agreement :: InputPersonalDocument.InputPersonalDocument } 
-
--- inputPassportElementPassportRegistration InputPassportElement  { passport_registration :: InputPersonalDocument.InputPersonalDocument } 
-
--- inputPassportElementTemporaryRegistration InputPassportElement  { temporary_registration :: InputPersonalDocument.InputPersonalDocument } 
-
--- inputPassportElementPhoneNumber InputPassportElement  { phone_number :: String } 
-
--- inputPassportElementEmailAddress InputPassportElement  { email_address :: String } 
 
 
 
@@ -110,6 +85,8 @@ instance T.FromJSON InputPassportElement where
    "inputPassportElementTemporaryRegistration" -> parseInputPassportElementTemporaryRegistration v
    "inputPassportElementPhoneNumber" -> parseInputPassportElementPhoneNumber v
    "inputPassportElementEmailAddress" -> parseInputPassportElementEmailAddress v
+
+   _ -> mempty ""
   where
    parseInputPassportElementPersonalDetails :: A.Value -> T.Parser InputPassportElement
    parseInputPassportElementPersonalDetails = A.withObject "InputPassportElementPersonalDetails" $ \o -> do

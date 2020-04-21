@@ -10,3 +10,5 @@ instance ToJSON KeyboardButton
 
 instance FromJSON KeyboardButton
 
+instance Show KeyboardButton
+

@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 --main = putStrLn "ok"
 
 data SetProfilePhoto = 
- SetProfilePhoto { photo :: InputFile.InputFile }  -- deriving (Show)
+ SetProfilePhoto { photo :: InputFile.InputFile }  deriving (Show)
 
 instance T.ToJSON SetProfilePhoto where
  toJSON (SetProfilePhoto { photo = photo }) =
   A.object [ "@type" A..= T.String "setProfilePhoto", "photo" A..= photo ]
--- setProfilePhoto SetProfilePhoto  { photo :: InputFile.InputFile } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON SetProfilePhoto where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "setProfilePhoto" -> parseSetProfilePhoto v
+
+   _ -> mempty ""
   where
    parseSetProfilePhoto :: A.Value -> T.Parser SetProfilePhoto
    parseSetProfilePhoto = A.withObject "SetProfilePhoto" $ \o -> do

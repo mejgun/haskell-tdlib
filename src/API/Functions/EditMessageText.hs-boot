@@ -10,3 +10,5 @@ instance ToJSON EditMessageText
 
 instance FromJSON EditMessageText
 
+instance Show EditMessageText
+

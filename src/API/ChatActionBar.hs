@@ -12,7 +12,7 @@ data ChatActionBar =
  | ChatActionBarReportUnrelatedLocation 
  | ChatActionBarReportAddBlock 
  | ChatActionBarAddContact 
- | ChatActionBarSharePhoneNumber -- deriving (Show)
+ | ChatActionBarSharePhoneNumber deriving (Show)
 
 instance T.ToJSON ChatActionBar where
  toJSON (ChatActionBarReportSpam {  }) =
@@ -29,15 +29,6 @@ instance T.ToJSON ChatActionBar where
 
  toJSON (ChatActionBarSharePhoneNumber {  }) =
   A.object [ "@type" A..= T.String "chatActionBarSharePhoneNumber" ]
--- chatActionBarReportSpam ChatActionBar 
-
--- chatActionBarReportUnrelatedLocation ChatActionBar 
-
--- chatActionBarReportAddBlock ChatActionBar 
-
--- chatActionBarAddContact ChatActionBar 
-
--- chatActionBarSharePhoneNumber ChatActionBar 
 
 
 
@@ -50,6 +41,8 @@ instance T.FromJSON ChatActionBar where
    "chatActionBarReportAddBlock" -> parseChatActionBarReportAddBlock v
    "chatActionBarAddContact" -> parseChatActionBarAddContact v
    "chatActionBarSharePhoneNumber" -> parseChatActionBarSharePhoneNumber v
+
+   _ -> mempty ""
   where
    parseChatActionBarReportSpam :: A.Value -> T.Parser ChatActionBar
    parseChatActionBarReportSpam = A.withObject "ChatActionBarReportSpam" $ \o -> do

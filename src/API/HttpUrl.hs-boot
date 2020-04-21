@@ -10,3 +10,5 @@ instance ToJSON HttpUrl
 
 instance FromJSON HttpUrl
 
+instance Show HttpUrl
+

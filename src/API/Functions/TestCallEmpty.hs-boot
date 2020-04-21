@@ -10,3 +10,5 @@ instance ToJSON TestCallEmpty
 
 instance FromJSON TestCallEmpty
 
+instance Show TestCallEmpty
+

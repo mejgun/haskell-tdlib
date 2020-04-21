@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetProxyLink = 
- GetProxyLink { proxy_id :: Int }  -- deriving (Show)
+ GetProxyLink { proxy_id :: Int }  deriving (Show)
 
 instance T.ToJSON GetProxyLink where
  toJSON (GetProxyLink { proxy_id = proxy_id }) =
   A.object [ "@type" A..= T.String "getProxyLink", "proxy_id" A..= proxy_id ]
--- getProxyLink GetProxyLink  { proxy_id :: Int } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetProxyLink where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getProxyLink" -> parseGetProxyLink v
+
+   _ -> mempty ""
   where
    parseGetProxyLink :: A.Value -> T.Parser GetProxyLink
    parseGetProxyLink = A.withObject "GetProxyLink" $ \o -> do

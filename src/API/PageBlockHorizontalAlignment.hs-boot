@@ -10,3 +10,5 @@ instance ToJSON PageBlockHorizontalAlignment
 
 instance FromJSON PageBlockHorizontalAlignment
 
+instance Show PageBlockHorizontalAlignment
+

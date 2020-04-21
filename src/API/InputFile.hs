@@ -11,7 +11,7 @@ data InputFile =
  InputFileId { __id :: Int }  
  | InputFileRemote { _id :: String }  
  | InputFileLocal { path :: String }  
- | InputFileGenerated { expected_size :: Int, conversion :: String, original_path :: String }  -- deriving (Show)
+ | InputFileGenerated { expected_size :: Int, conversion :: String, original_path :: String }  deriving (Show)
 
 instance T.ToJSON InputFile where
  toJSON (InputFileId { __id = __id }) =
@@ -25,13 +25,6 @@ instance T.ToJSON InputFile where
 
  toJSON (InputFileGenerated { expected_size = expected_size, conversion = conversion, original_path = original_path }) =
   A.object [ "@type" A..= T.String "inputFileGenerated", "expected_size" A..= expected_size, "conversion" A..= conversion, "original_path" A..= original_path ]
--- inputFileId InputFile  { __id :: Int } 
-
--- inputFileRemote InputFile  { _id :: String } 
-
--- inputFileLocal InputFile  { path :: String } 
-
--- inputFileGenerated InputFile  { expected_size :: Int, conversion :: String, original_path :: String } 
 
 
 
@@ -43,6 +36,8 @@ instance T.FromJSON InputFile where
    "inputFileRemote" -> parseInputFileRemote v
    "inputFileLocal" -> parseInputFileLocal v
    "inputFileGenerated" -> parseInputFileGenerated v
+
+   _ -> mempty ""
   where
    parseInputFileId :: A.Value -> T.Parser InputFile
    parseInputFileId = A.withObject "InputFileId" $ \o -> do

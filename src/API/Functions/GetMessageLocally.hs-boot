@@ -10,3 +10,5 @@ instance ToJSON GetMessageLocally
 
 instance FromJSON GetMessageLocally
 
+instance Show GetMessageLocally
+

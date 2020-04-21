@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 data PublicChatType = 
  PublicChatTypeHasUsername 
- | PublicChatTypeIsLocationBased -- deriving (Show)
+ | PublicChatTypeIsLocationBased deriving (Show)
 
 instance T.ToJSON PublicChatType where
  toJSON (PublicChatTypeHasUsername {  }) =
@@ -17,9 +17,6 @@ instance T.ToJSON PublicChatType where
 
  toJSON (PublicChatTypeIsLocationBased {  }) =
   A.object [ "@type" A..= T.String "publicChatTypeIsLocationBased" ]
--- publicChatTypeHasUsername PublicChatType 
-
--- publicChatTypeIsLocationBased PublicChatType 
 
 
 
@@ -29,6 +26,8 @@ instance T.FromJSON PublicChatType where
   case t of
    "publicChatTypeHasUsername" -> parsePublicChatTypeHasUsername v
    "publicChatTypeIsLocationBased" -> parsePublicChatTypeIsLocationBased v
+
+   _ -> mempty ""
   where
    parsePublicChatTypeHasUsername :: A.Value -> T.Parser PublicChatType
    parsePublicChatTypeHasUsername = A.withObject "PublicChatTypeHasUsername" $ \o -> do

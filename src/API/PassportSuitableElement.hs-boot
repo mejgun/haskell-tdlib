@@ -10,3 +10,5 @@ instance ToJSON PassportSuitableElement
 
 instance FromJSON PassportSuitableElement
 
+instance Show PassportSuitableElement
+

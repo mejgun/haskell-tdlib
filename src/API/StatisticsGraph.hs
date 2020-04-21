@@ -10,7 +10,7 @@ import qualified Data.Aeson.Types as T
 data StatisticsGraph = 
  StatisticsGraphData { zoom_token :: String, json_data :: String }  
  | StatisticsGraphAsync { token :: String }  
- | StatisticsGraphError { error_message :: String }  -- deriving (Show)
+ | StatisticsGraphError { error_message :: String }  deriving (Show)
 
 instance T.ToJSON StatisticsGraph where
  toJSON (StatisticsGraphData { zoom_token = zoom_token, json_data = json_data }) =
@@ -21,11 +21,6 @@ instance T.ToJSON StatisticsGraph where
 
  toJSON (StatisticsGraphError { error_message = error_message }) =
   A.object [ "@type" A..= T.String "statisticsGraphError", "error_message" A..= error_message ]
--- statisticsGraphData StatisticsGraph  { zoom_token :: String, json_data :: String } 
-
--- statisticsGraphAsync StatisticsGraph  { token :: String } 
-
--- statisticsGraphError StatisticsGraph  { error_message :: String } 
 
 
 
@@ -36,6 +31,8 @@ instance T.FromJSON StatisticsGraph where
    "statisticsGraphData" -> parseStatisticsGraphData v
    "statisticsGraphAsync" -> parseStatisticsGraphAsync v
    "statisticsGraphError" -> parseStatisticsGraphError v
+
+   _ -> mempty ""
   where
    parseStatisticsGraphData :: A.Value -> T.Parser StatisticsGraph
    parseStatisticsGraphData = A.withObject "StatisticsGraphData" $ \o -> do

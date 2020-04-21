@@ -11,7 +11,7 @@ data ChatType =
  ChatTypePrivate { user_id :: Int }  
  | ChatTypeBasicGroup { basic_group_id :: Int }  
  | ChatTypeSupergroup { is_channel :: Bool, supergroup_id :: Int }  
- | ChatTypeSecret { user_id :: Int, secret_chat_id :: Int }  -- deriving (Show)
+ | ChatTypeSecret { user_id :: Int, secret_chat_id :: Int }  deriving (Show)
 
 instance T.ToJSON ChatType where
  toJSON (ChatTypePrivate { user_id = user_id }) =
@@ -25,13 +25,6 @@ instance T.ToJSON ChatType where
 
  toJSON (ChatTypeSecret { user_id = user_id, secret_chat_id = secret_chat_id }) =
   A.object [ "@type" A..= T.String "chatTypeSecret", "user_id" A..= user_id, "secret_chat_id" A..= secret_chat_id ]
--- chatTypePrivate ChatType  { user_id :: Int } 
-
--- chatTypeBasicGroup ChatType  { basic_group_id :: Int } 
-
--- chatTypeSupergroup ChatType  { is_channel :: Bool, supergroup_id :: Int } 
-
--- chatTypeSecret ChatType  { user_id :: Int, secret_chat_id :: Int } 
 
 
 
@@ -43,6 +36,8 @@ instance T.FromJSON ChatType where
    "chatTypeBasicGroup" -> parseChatTypeBasicGroup v
    "chatTypeSupergroup" -> parseChatTypeSupergroup v
    "chatTypeSecret" -> parseChatTypeSecret v
+
+   _ -> mempty ""
   where
    parseChatTypePrivate :: A.Value -> T.Parser ChatType
    parseChatTypePrivate = A.withObject "ChatTypePrivate" $ \o -> do

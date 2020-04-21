@@ -10,3 +10,5 @@ instance ToJSON DeleteChatHistory
 
 instance FromJSON DeleteChatHistory
 
+instance Show DeleteChatHistory
+

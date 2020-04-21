@@ -20,7 +20,7 @@ data AuthorizationState =
  | AuthorizationStateReady 
  | AuthorizationStateLoggingOut 
  | AuthorizationStateClosing 
- | AuthorizationStateClosed -- deriving (Show)
+ | AuthorizationStateClosed deriving (Show)
 
 instance T.ToJSON AuthorizationState where
  toJSON (AuthorizationStateWaitTdlibParameters {  }) =
@@ -55,27 +55,6 @@ instance T.ToJSON AuthorizationState where
 
  toJSON (AuthorizationStateClosed {  }) =
   A.object [ "@type" A..= T.String "authorizationStateClosed" ]
--- authorizationStateWaitTdlibParameters AuthorizationState 
-
--- authorizationStateWaitEncryptionKey AuthorizationState  { is_encrypted :: Bool } 
-
--- authorizationStateWaitPhoneNumber AuthorizationState 
-
--- authorizationStateWaitCode AuthorizationState  { code_info :: AuthenticationCodeInfo.AuthenticationCodeInfo } 
-
--- authorizationStateWaitOtherDeviceConfirmation AuthorizationState  { link :: String } 
-
--- authorizationStateWaitRegistration AuthorizationState  { terms_of_service :: TermsOfService.TermsOfService } 
-
--- authorizationStateWaitPassword AuthorizationState  { recovery_email_address_pattern :: String, has_recovery_email_address :: Bool, password_hint :: String } 
-
--- authorizationStateReady AuthorizationState 
-
--- authorizationStateLoggingOut AuthorizationState 
-
--- authorizationStateClosing AuthorizationState 
-
--- authorizationStateClosed AuthorizationState 
 
 
 
@@ -94,6 +73,8 @@ instance T.FromJSON AuthorizationState where
    "authorizationStateLoggingOut" -> parseAuthorizationStateLoggingOut v
    "authorizationStateClosing" -> parseAuthorizationStateClosing v
    "authorizationStateClosed" -> parseAuthorizationStateClosed v
+
+   _ -> mempty ""
   where
    parseAuthorizationStateWaitTdlibParameters :: A.Value -> T.Parser AuthorizationState
    parseAuthorizationStateWaitTdlibParameters = A.withObject "AuthorizationStateWaitTdlibParameters" $ \o -> do

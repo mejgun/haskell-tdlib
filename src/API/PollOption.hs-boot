@@ -10,3 +10,5 @@ instance ToJSON PollOption
 
 instance FromJSON PollOption
 
+instance Show PollOption
+

@@ -23,7 +23,7 @@ data SearchMessagesFilter =
  | SearchMessagesFilterVideoNote 
  | SearchMessagesFilterVoiceAndVideoNote 
  | SearchMessagesFilterMention 
- | SearchMessagesFilterUnreadMention -- deriving (Show)
+ | SearchMessagesFilterUnreadMention deriving (Show)
 
 instance T.ToJSON SearchMessagesFilter where
  toJSON (SearchMessagesFilterEmpty {  }) =
@@ -73,37 +73,6 @@ instance T.ToJSON SearchMessagesFilter where
 
  toJSON (SearchMessagesFilterUnreadMention {  }) =
   A.object [ "@type" A..= T.String "searchMessagesFilterUnreadMention" ]
--- searchMessagesFilterEmpty SearchMessagesFilter 
-
--- searchMessagesFilterAnimation SearchMessagesFilter 
-
--- searchMessagesFilterAudio SearchMessagesFilter 
-
--- searchMessagesFilterDocument SearchMessagesFilter 
-
--- searchMessagesFilterPhoto SearchMessagesFilter 
-
--- searchMessagesFilterVideo SearchMessagesFilter 
-
--- searchMessagesFilterVoiceNote SearchMessagesFilter 
-
--- searchMessagesFilterPhotoAndVideo SearchMessagesFilter 
-
--- searchMessagesFilterUrl SearchMessagesFilter 
-
--- searchMessagesFilterChatPhoto SearchMessagesFilter 
-
--- searchMessagesFilterCall SearchMessagesFilter 
-
--- searchMessagesFilterMissedCall SearchMessagesFilter 
-
--- searchMessagesFilterVideoNote SearchMessagesFilter 
-
--- searchMessagesFilterVoiceAndVideoNote SearchMessagesFilter 
-
--- searchMessagesFilterMention SearchMessagesFilter 
-
--- searchMessagesFilterUnreadMention SearchMessagesFilter 
 
 
 
@@ -127,6 +96,8 @@ instance T.FromJSON SearchMessagesFilter where
    "searchMessagesFilterVoiceAndVideoNote" -> parseSearchMessagesFilterVoiceAndVideoNote v
    "searchMessagesFilterMention" -> parseSearchMessagesFilterMention v
    "searchMessagesFilterUnreadMention" -> parseSearchMessagesFilterUnreadMention v
+
+   _ -> mempty ""
   where
    parseSearchMessagesFilterEmpty :: A.Value -> T.Parser SearchMessagesFilter
    parseSearchMessagesFilterEmpty = A.withObject "SearchMessagesFilterEmpty" $ \o -> do

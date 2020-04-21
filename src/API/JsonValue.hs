@@ -14,7 +14,7 @@ data JsonValue =
  | JsonValueNumber { _value :: Float }  
  | JsonValueString { value :: String }  
  | JsonValueArray { values :: [JsonValue] }  
- | JsonValueObject { members :: [JsonObjectMember.JsonObjectMember] }  -- deriving (Show)
+ | JsonValueObject { members :: [JsonObjectMember.JsonObjectMember] }  deriving (Show)
 
 instance T.ToJSON JsonValue where
  toJSON (JsonValueNull {  }) =
@@ -34,17 +34,6 @@ instance T.ToJSON JsonValue where
 
  toJSON (JsonValueObject { members = members }) =
   A.object [ "@type" A..= T.String "jsonValueObject", "members" A..= members ]
--- jsonValueNull JsonValue 
-
--- jsonValueBoolean JsonValue  { __value :: Bool } 
-
--- jsonValueNumber JsonValue  { _value :: Float } 
-
--- jsonValueString JsonValue  { value :: String } 
-
--- jsonValueArray JsonValue  { values :: [JsonValue] } 
-
--- jsonValueObject JsonValue  { members :: [JsonObjectMember.JsonObjectMember] } 
 
 
 
@@ -58,6 +47,8 @@ instance T.FromJSON JsonValue where
    "jsonValueString" -> parseJsonValueString v
    "jsonValueArray" -> parseJsonValueArray v
    "jsonValueObject" -> parseJsonValueObject v
+
+   _ -> mempty ""
   where
    parseJsonValueNull :: A.Value -> T.Parser JsonValue
    parseJsonValueNull = A.withObject "JsonValueNull" $ \o -> do

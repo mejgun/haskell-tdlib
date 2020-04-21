@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.BotCommand as BotCommand
 --main = putStrLn "ok"
 
 data SetCommands = 
- SetCommands { commands :: [BotCommand.BotCommand] }  -- deriving (Show)
+ SetCommands { commands :: [BotCommand.BotCommand] }  deriving (Show)
 
 instance T.ToJSON SetCommands where
  toJSON (SetCommands { commands = commands }) =
   A.object [ "@type" A..= T.String "setCommands", "commands" A..= commands ]
--- setCommands SetCommands  { commands :: [BotCommand.BotCommand] } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON SetCommands where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "setCommands" -> parseSetCommands v
+
+   _ -> mempty ""
   where
    parseSetCommands :: A.Value -> T.Parser SetCommands
    parseSetCommands = A.withObject "SetCommands" $ \o -> do

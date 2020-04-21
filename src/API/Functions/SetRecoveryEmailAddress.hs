@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data SetRecoveryEmailAddress = 
- SetRecoveryEmailAddress { new_recovery_email_address :: String, password :: String }  -- deriving (Show)
+ SetRecoveryEmailAddress { new_recovery_email_address :: String, password :: String }  deriving (Show)
 
 instance T.ToJSON SetRecoveryEmailAddress where
  toJSON (SetRecoveryEmailAddress { new_recovery_email_address = new_recovery_email_address, password = password }) =
   A.object [ "@type" A..= T.String "setRecoveryEmailAddress", "new_recovery_email_address" A..= new_recovery_email_address, "password" A..= password ]
--- setRecoveryEmailAddress SetRecoveryEmailAddress  { new_recovery_email_address :: String, password :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON SetRecoveryEmailAddress where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "setRecoveryEmailAddress" -> parseSetRecoveryEmailAddress v
+
+   _ -> mempty ""
   where
    parseSetRecoveryEmailAddress :: A.Value -> T.Parser SetRecoveryEmailAddress
    parseSetRecoveryEmailAddress = A.withObject "SetRecoveryEmailAddress" $ \o -> do

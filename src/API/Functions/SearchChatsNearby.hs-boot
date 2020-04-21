@@ -10,3 +10,5 @@ instance ToJSON SearchChatsNearby
 
 instance FromJSON SearchChatsNearby
 
+instance Show SearchChatsNearby
+

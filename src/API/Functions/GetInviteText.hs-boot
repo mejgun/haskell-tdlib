@@ -10,3 +10,5 @@ instance ToJSON GetInviteText
 
 instance FromJSON GetInviteText
 
+instance Show GetInviteText
+

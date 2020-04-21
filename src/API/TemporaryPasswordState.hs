@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data TemporaryPasswordState = 
- TemporaryPasswordState { valid_for :: Int, has_password :: Bool }  -- deriving (Show)
+ TemporaryPasswordState { valid_for :: Int, has_password :: Bool }  deriving (Show)
 
 instance T.ToJSON TemporaryPasswordState where
  toJSON (TemporaryPasswordState { valid_for = valid_for, has_password = has_password }) =
   A.object [ "@type" A..= T.String "temporaryPasswordState", "valid_for" A..= valid_for, "has_password" A..= has_password ]
--- temporaryPasswordState TemporaryPasswordState  { valid_for :: Int, has_password :: Bool } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON TemporaryPasswordState where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "temporaryPasswordState" -> parseTemporaryPasswordState v
+
+   _ -> mempty ""
   where
    parseTemporaryPasswordState :: A.Value -> T.Parser TemporaryPasswordState
    parseTemporaryPasswordState = A.withObject "TemporaryPasswordState" $ \o -> do

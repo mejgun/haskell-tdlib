@@ -10,3 +10,5 @@ instance ToJSON VoiceNote
 
 instance FromJSON VoiceNote
 
+instance Show VoiceNote
+

@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data CreateNewBasicGroupChat = 
- CreateNewBasicGroupChat { title :: String, user_ids :: [Int] }  -- deriving (Show)
+ CreateNewBasicGroupChat { title :: String, user_ids :: [Int] }  deriving (Show)
 
 instance T.ToJSON CreateNewBasicGroupChat where
  toJSON (CreateNewBasicGroupChat { title = title, user_ids = user_ids }) =
   A.object [ "@type" A..= T.String "createNewBasicGroupChat", "title" A..= title, "user_ids" A..= user_ids ]
--- createNewBasicGroupChat CreateNewBasicGroupChat  { title :: String, user_ids :: [Int] } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON CreateNewBasicGroupChat where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "createNewBasicGroupChat" -> parseCreateNewBasicGroupChat v
+
+   _ -> mempty ""
   where
    parseCreateNewBasicGroupChat :: A.Value -> T.Parser CreateNewBasicGroupChat
    parseCreateNewBasicGroupChat = A.withObject "CreateNewBasicGroupChat" $ \o -> do

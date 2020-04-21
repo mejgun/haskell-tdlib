@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetChatPinnedMessage = 
- GetChatPinnedMessage { chat_id :: Int }  -- deriving (Show)
+ GetChatPinnedMessage { chat_id :: Int }  deriving (Show)
 
 instance T.ToJSON GetChatPinnedMessage where
  toJSON (GetChatPinnedMessage { chat_id = chat_id }) =
   A.object [ "@type" A..= T.String "getChatPinnedMessage", "chat_id" A..= chat_id ]
--- getChatPinnedMessage GetChatPinnedMessage  { chat_id :: Int } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetChatPinnedMessage where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getChatPinnedMessage" -> parseGetChatPinnedMessage v
+
+   _ -> mempty ""
   where
    parseGetChatPinnedMessage :: A.Value -> T.Parser GetChatPinnedMessage
    parseGetChatPinnedMessage = A.withObject "GetChatPinnedMessage" $ \o -> do

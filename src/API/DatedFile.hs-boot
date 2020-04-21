@@ -10,3 +10,5 @@ instance ToJSON DatedFile
 
 instance FromJSON DatedFile
 
+instance Show DatedFile
+

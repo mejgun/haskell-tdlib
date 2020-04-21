@@ -10,3 +10,5 @@ instance ToJSON ToggleChatIsPinned
 
 instance FromJSON ToggleChatIsPinned
 
+instance Show ToggleChatIsPinned
+

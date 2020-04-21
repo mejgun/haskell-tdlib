@@ -10,3 +10,5 @@ instance ToJSON GetRecentInlineBots
 
 instance FromJSON GetRecentInlineBots
 
+instance Show GetRecentInlineBots
+

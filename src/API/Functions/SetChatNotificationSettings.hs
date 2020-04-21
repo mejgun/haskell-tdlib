@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.ChatNotificationSettings as ChatNotification
 --main = putStrLn "ok"
 
 data SetChatNotificationSettings = 
- SetChatNotificationSettings { notification_settings :: ChatNotificationSettings.ChatNotificationSettings, chat_id :: Int }  -- deriving (Show)
+ SetChatNotificationSettings { notification_settings :: ChatNotificationSettings.ChatNotificationSettings, chat_id :: Int }  deriving (Show)
 
 instance T.ToJSON SetChatNotificationSettings where
  toJSON (SetChatNotificationSettings { notification_settings = notification_settings, chat_id = chat_id }) =
   A.object [ "@type" A..= T.String "setChatNotificationSettings", "notification_settings" A..= notification_settings, "chat_id" A..= chat_id ]
--- setChatNotificationSettings SetChatNotificationSettings  { notification_settings :: ChatNotificationSettings.ChatNotificationSettings, chat_id :: Int } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON SetChatNotificationSettings where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "setChatNotificationSettings" -> parseSetChatNotificationSettings v
+
+   _ -> mempty ""
   where
    parseSetChatNotificationSettings :: A.Value -> T.Parser SetChatNotificationSettings
    parseSetChatNotificationSettings = A.withObject "SetChatNotificationSettings" $ \o -> do

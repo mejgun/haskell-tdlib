@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetTrendingStickerSets = 
- GetTrendingStickerSets -- deriving (Show)
+ GetTrendingStickerSets deriving (Show)
 
 instance T.ToJSON GetTrendingStickerSets where
  toJSON (GetTrendingStickerSets {  }) =
   A.object [ "@type" A..= T.String "getTrendingStickerSets" ]
--- getTrendingStickerSets GetTrendingStickerSets 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetTrendingStickerSets where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getTrendingStickerSets" -> parseGetTrendingStickerSets v
+
+   _ -> mempty ""
   where
    parseGetTrendingStickerSets :: A.Value -> T.Parser GetTrendingStickerSets
    parseGetTrendingStickerSets = A.withObject "GetTrendingStickerSets" $ \o -> do

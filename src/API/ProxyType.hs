@@ -10,7 +10,7 @@ import qualified Data.Aeson.Types as T
 data ProxyType = 
  ProxyTypeSocks5 { password :: String, username :: String }  
  | ProxyTypeHttp { http_only :: Bool, password :: String, username :: String }  
- | ProxyTypeMtproto { secret :: String }  -- deriving (Show)
+ | ProxyTypeMtproto { secret :: String }  deriving (Show)
 
 instance T.ToJSON ProxyType where
  toJSON (ProxyTypeSocks5 { password = password, username = username }) =
@@ -21,11 +21,6 @@ instance T.ToJSON ProxyType where
 
  toJSON (ProxyTypeMtproto { secret = secret }) =
   A.object [ "@type" A..= T.String "proxyTypeMtproto", "secret" A..= secret ]
--- proxyTypeSocks5 ProxyType  { password :: String, username :: String } 
-
--- proxyTypeHttp ProxyType  { http_only :: Bool, password :: String, username :: String } 
-
--- proxyTypeMtproto ProxyType  { secret :: String } 
 
 
 
@@ -36,6 +31,8 @@ instance T.FromJSON ProxyType where
    "proxyTypeSocks5" -> parseProxyTypeSocks5 v
    "proxyTypeHttp" -> parseProxyTypeHttp v
    "proxyTypeMtproto" -> parseProxyTypeMtproto v
+
+   _ -> mempty ""
   where
    parseProxyTypeSocks5 :: A.Value -> T.Parser ProxyType
    parseProxyTypeSocks5 = A.withObject "ProxyTypeSocks5" $ \o -> do

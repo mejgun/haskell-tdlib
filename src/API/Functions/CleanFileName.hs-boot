@@ -10,3 +10,5 @@ instance ToJSON CleanFileName
 
 instance FromJSON CleanFileName
 
+instance Show CleanFileName
+

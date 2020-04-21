@@ -73,6 +73,9 @@ writeToFiles addr modName m =
     , "instance FromJSON "
     , d
     , "\n\n"
+    , "instance Show "
+    , d
+    , "\n\n"
     ]
   w d e a = T.unpack $ T.concat
     [ "-- GENERATED\n"
@@ -89,7 +92,7 @@ writeToFiles addr modName m =
     , d
     , " = \n "
     , ww e
-    , " -- deriving (Show)"
+    , " deriving (Show)"
     , toJsonString d e
     ]
   toJsonString :: T.Text -> [(T.Text, [(T.Text, T.Text)])] -> T.Text
@@ -120,25 +123,44 @@ writeToFiles addr modName m =
         ]
       )
       e
-    , T.intercalate "\n"
-      $ map (\(a, b) -> T.concat ["\n-- ", a, " ", m, " ", www b]) e
+    --, T.intercalate "\n"
+    --  $ map (\(a, b) -> T.concat ["\n-- ", a, " ", m, " ", www b]) e
     , "\n\n"
     , "\n\ninstance T.FromJSON "
     , m
     , " where\n"
     , " parseJSON v@(T.Object obj) = do\n"
     , if m == "GeneralResult"
-      then T.intercalate "\n" $ map
-        (\(a, _) ->
-          T.concat ["  let T.Success a = T.fromJSON v in return $ ", a, " a"]
-        )
-        e
+      then T.concat
+        [ "   mconcat t\n"
+        , "  where\n"
+        , "   t =\n"
+        , "     [\n"
+        , T.intercalate ",\n" $ map
+          (\(a, _) -> T.concat
+            [ "      case (T.fromJSON v :: T.Result "
+            , a
+            , "."
+            , a
+            , ") of\n"
+            , "       T.Success a -> return $ "
+            , a
+            , " a\n"
+            , "       _ -> mempty"
+            ]
+          )
+          e
+        , "\n    ]\n"
+        ]
       else T.concat
         [ "  t <- obj A..: \"@type\" :: T.Parser String\n"
         , "  case t of\n"
-        , T.intercalate "\n" $ map
-          (\(a, b) -> T.concat ["   \"", a, "\" -> parse", toTitle a, " v"])
-          e
+        , T.intercalate "\n"
+        $  (map
+             (\(a, b) -> T.concat ["   \"", a, "\" -> parse", toTitle a, " v"])
+             e
+           )
+        ++ ["\n   _ -> mempty \"\""]
         , "\n  where\n"
         , T.intercalate "\n\n" $ map
           (\(a, b) -> T.concat

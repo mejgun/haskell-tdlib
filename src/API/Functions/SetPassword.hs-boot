@@ -10,3 +10,5 @@ instance ToJSON SetPassword
 
 instance FromJSON SetPassword
 
+instance Show SetPassword
+

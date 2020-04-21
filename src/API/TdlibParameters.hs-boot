@@ -10,3 +10,5 @@ instance ToJSON TdlibParameters
 
 instance FromJSON TdlibParameters
 
+instance Show TdlibParameters
+

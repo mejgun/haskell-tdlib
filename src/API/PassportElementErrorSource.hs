@@ -16,7 +16,7 @@ data PassportElementErrorSource =
  | PassportElementErrorSourceTranslationFile { file_index :: Int }  
  | PassportElementErrorSourceTranslationFiles 
  | PassportElementErrorSourceFile { file_index :: Int }  
- | PassportElementErrorSourceFiles -- deriving (Show)
+ | PassportElementErrorSourceFiles deriving (Show)
 
 instance T.ToJSON PassportElementErrorSource where
  toJSON (PassportElementErrorSourceUnspecified {  }) =
@@ -45,23 +45,6 @@ instance T.ToJSON PassportElementErrorSource where
 
  toJSON (PassportElementErrorSourceFiles {  }) =
   A.object [ "@type" A..= T.String "passportElementErrorSourceFiles" ]
--- passportElementErrorSourceUnspecified PassportElementErrorSource 
-
--- passportElementErrorSourceDataField PassportElementErrorSource  { field_name :: String } 
-
--- passportElementErrorSourceFrontSide PassportElementErrorSource 
-
--- passportElementErrorSourceReverseSide PassportElementErrorSource 
-
--- passportElementErrorSourceSelfie PassportElementErrorSource 
-
--- passportElementErrorSourceTranslationFile PassportElementErrorSource  { file_index :: Int } 
-
--- passportElementErrorSourceTranslationFiles PassportElementErrorSource 
-
--- passportElementErrorSourceFile PassportElementErrorSource  { file_index :: Int } 
-
--- passportElementErrorSourceFiles PassportElementErrorSource 
 
 
 
@@ -78,6 +61,8 @@ instance T.FromJSON PassportElementErrorSource where
    "passportElementErrorSourceTranslationFiles" -> parsePassportElementErrorSourceTranslationFiles v
    "passportElementErrorSourceFile" -> parsePassportElementErrorSourceFile v
    "passportElementErrorSourceFiles" -> parsePassportElementErrorSourceFiles v
+
+   _ -> mempty ""
   where
    parsePassportElementErrorSourceUnspecified :: A.Value -> T.Parser PassportElementErrorSource
    parsePassportElementErrorSourceUnspecified = A.withObject "PassportElementErrorSourceUnspecified" $ \o -> do

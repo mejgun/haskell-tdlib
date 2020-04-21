@@ -10,3 +10,5 @@ instance ToJSON NetworkType
 
 instance FromJSON NetworkType
 
+instance Show NetworkType
+

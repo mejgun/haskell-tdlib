@@ -10,3 +10,5 @@ instance ToJSON GetApplicationConfig
 
 instance FromJSON GetApplicationConfig
 
+instance Show GetApplicationConfig
+

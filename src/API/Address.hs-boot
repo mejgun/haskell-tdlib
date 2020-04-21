@@ -10,3 +10,5 @@ instance ToJSON Address
 
 instance FromJSON Address
 
+instance Show Address
+

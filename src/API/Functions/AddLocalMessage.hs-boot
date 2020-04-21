@@ -10,3 +10,5 @@ instance ToJSON AddLocalMessage
 
 instance FromJSON AddLocalMessage
 
+instance Show AddLocalMessage
+

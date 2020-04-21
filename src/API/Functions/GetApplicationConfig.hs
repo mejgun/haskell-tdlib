@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetApplicationConfig = 
- GetApplicationConfig -- deriving (Show)
+ GetApplicationConfig deriving (Show)
 
 instance T.ToJSON GetApplicationConfig where
  toJSON (GetApplicationConfig {  }) =
   A.object [ "@type" A..= T.String "getApplicationConfig" ]
--- getApplicationConfig GetApplicationConfig 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetApplicationConfig where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getApplicationConfig" -> parseGetApplicationConfig v
+
+   _ -> mempty ""
   where
    parseGetApplicationConfig :: A.Value -> T.Parser GetApplicationConfig
    parseGetApplicationConfig = A.withObject "GetApplicationConfig" $ \o -> do

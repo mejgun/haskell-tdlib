@@ -10,3 +10,5 @@ instance ToJSON SetPollAnswer
 
 instance FromJSON SetPollAnswer
 
+instance Show SetPollAnswer
+

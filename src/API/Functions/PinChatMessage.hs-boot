@@ -10,3 +10,5 @@ instance ToJSON PinChatMessage
 
 instance FromJSON PinChatMessage
 
+instance Show PinChatMessage
+

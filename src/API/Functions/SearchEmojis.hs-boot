@@ -10,3 +10,5 @@ instance ToJSON SearchEmojis
 
 instance FromJSON SearchEmojis
 
+instance Show SearchEmojis
+

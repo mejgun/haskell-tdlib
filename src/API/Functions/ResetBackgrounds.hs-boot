@@ -10,3 +10,5 @@ instance ToJSON ResetBackgrounds
 
 instance FromJSON ResetBackgrounds
 
+instance Show ResetBackgrounds
+

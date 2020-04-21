@@ -10,3 +10,5 @@ instance ToJSON SendChatSetTtlMessage
 
 instance FromJSON SendChatSetTtlMessage
 
+instance Show SendChatSetTtlMessage
+

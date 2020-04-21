@@ -10,3 +10,5 @@ instance ToJSON GetBasicGroupFullInfo
 
 instance FromJSON GetBasicGroupFullInfo
 
+instance Show GetBasicGroupFullInfo
+

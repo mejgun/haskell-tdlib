@@ -10,3 +10,5 @@ instance ToJSON SavedCredentials
 
 instance FromJSON SavedCredentials
 
+instance Show SavedCredentials
+

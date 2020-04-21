@@ -10,3 +10,5 @@ instance ToJSON CreateSupergroupChat
 
 instance FromJSON CreateSupergroupChat
 
+instance Show CreateSupergroupChat
+

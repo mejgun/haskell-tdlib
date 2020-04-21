@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetWebPageInstantView = 
- GetWebPageInstantView { force_full :: Bool, url :: String }  -- deriving (Show)
+ GetWebPageInstantView { force_full :: Bool, url :: String }  deriving (Show)
 
 instance T.ToJSON GetWebPageInstantView where
  toJSON (GetWebPageInstantView { force_full = force_full, url = url }) =
   A.object [ "@type" A..= T.String "getWebPageInstantView", "force_full" A..= force_full, "url" A..= url ]
--- getWebPageInstantView GetWebPageInstantView  { force_full :: Bool, url :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetWebPageInstantView where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getWebPageInstantView" -> parseGetWebPageInstantView v
+
+   _ -> mempty ""
   where
    parseGetWebPageInstantView :: A.Value -> T.Parser GetWebPageInstantView
    parseGetWebPageInstantView = A.withObject "GetWebPageInstantView" $ \o -> do

@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 data LoginUrlInfo = 
  LoginUrlInfoOpen { skip_confirm :: Bool, url :: String }  
- | LoginUrlInfoRequestConfirmation { request_write_access :: Bool, bot_user_id :: Int, domain :: String, url :: String }  -- deriving (Show)
+ | LoginUrlInfoRequestConfirmation { request_write_access :: Bool, bot_user_id :: Int, domain :: String, url :: String }  deriving (Show)
 
 instance T.ToJSON LoginUrlInfo where
  toJSON (LoginUrlInfoOpen { skip_confirm = skip_confirm, url = url }) =
@@ -17,9 +17,6 @@ instance T.ToJSON LoginUrlInfo where
 
  toJSON (LoginUrlInfoRequestConfirmation { request_write_access = request_write_access, bot_user_id = bot_user_id, domain = domain, url = url }) =
   A.object [ "@type" A..= T.String "loginUrlInfoRequestConfirmation", "request_write_access" A..= request_write_access, "bot_user_id" A..= bot_user_id, "domain" A..= domain, "url" A..= url ]
--- loginUrlInfoOpen LoginUrlInfo  { skip_confirm :: Bool, url :: String } 
-
--- loginUrlInfoRequestConfirmation LoginUrlInfo  { request_write_access :: Bool, bot_user_id :: Int, domain :: String, url :: String } 
 
 
 
@@ -29,6 +26,8 @@ instance T.FromJSON LoginUrlInfo where
   case t of
    "loginUrlInfoOpen" -> parseLoginUrlInfoOpen v
    "loginUrlInfoRequestConfirmation" -> parseLoginUrlInfoRequestConfirmation v
+
+   _ -> mempty ""
   where
    parseLoginUrlInfoOpen :: A.Value -> T.Parser LoginUrlInfo
    parseLoginUrlInfoOpen = A.withObject "LoginUrlInfoOpen" $ \o -> do

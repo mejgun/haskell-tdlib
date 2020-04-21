@@ -10,3 +10,5 @@ instance ToJSON Video
 
 instance FromJSON Video
 
+instance Show Video
+

@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.LanguagePackInfo as LanguagePackInfo
 --main = putStrLn "ok"
 
 data LocalizationTargetInfo = 
- LocalizationTargetInfo { language_packs :: [LanguagePackInfo.LanguagePackInfo] }  -- deriving (Show)
+ LocalizationTargetInfo { language_packs :: [LanguagePackInfo.LanguagePackInfo] }  deriving (Show)
 
 instance T.ToJSON LocalizationTargetInfo where
  toJSON (LocalizationTargetInfo { language_packs = language_packs }) =
   A.object [ "@type" A..= T.String "localizationTargetInfo", "language_packs" A..= language_packs ]
--- localizationTargetInfo LocalizationTargetInfo  { language_packs :: [LanguagePackInfo.LanguagePackInfo] } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON LocalizationTargetInfo where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "localizationTargetInfo" -> parseLocalizationTargetInfo v
+
+   _ -> mempty ""
   where
    parseLocalizationTargetInfo :: A.Value -> T.Parser LocalizationTargetInfo
    parseLocalizationTargetInfo = A.withObject "LocalizationTargetInfo" $ \o -> do

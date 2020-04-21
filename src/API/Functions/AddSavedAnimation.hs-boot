@@ -10,3 +10,5 @@ instance ToJSON AddSavedAnimation
 
 instance FromJSON AddSavedAnimation
 
+instance Show AddSavedAnimation
+

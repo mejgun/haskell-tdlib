@@ -10,3 +10,5 @@ instance ToJSON RegisterUser
 
 instance FromJSON RegisterUser
 
+instance Show RegisterUser
+

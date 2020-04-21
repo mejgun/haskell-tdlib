@@ -10,3 +10,5 @@ instance ToJSON AccountTtl
 
 instance FromJSON AccountTtl
 
+instance Show AccountTtl
+

@@ -10,3 +10,5 @@ instance ToJSON LogOut
 
 instance FromJSON LogOut
 
+instance Show LogOut
+

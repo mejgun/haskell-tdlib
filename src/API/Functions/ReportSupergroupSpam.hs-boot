@@ -10,3 +10,5 @@ instance ToJSON ReportSupergroupSpam
 
 instance FromJSON ReportSupergroupSpam
 
+instance Show ReportSupergroupSpam
+

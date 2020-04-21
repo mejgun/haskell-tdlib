@@ -10,3 +10,5 @@ instance ToJSON GenerateChatInviteLink
 
 instance FromJSON GenerateChatInviteLink
 
+instance Show GenerateChatInviteLink
+

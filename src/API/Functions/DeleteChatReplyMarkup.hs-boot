@@ -10,3 +10,5 @@ instance ToJSON DeleteChatReplyMarkup
 
 instance FromJSON DeleteChatReplyMarkup
 
+instance Show DeleteChatReplyMarkup
+

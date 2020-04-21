@@ -10,3 +10,5 @@ instance ToJSON SetBio
 
 instance FromJSON SetBio
 
+instance Show SetBio
+

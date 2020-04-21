@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetStorageStatisticsFast = 
- GetStorageStatisticsFast -- deriving (Show)
+ GetStorageStatisticsFast deriving (Show)
 
 instance T.ToJSON GetStorageStatisticsFast where
  toJSON (GetStorageStatisticsFast {  }) =
   A.object [ "@type" A..= T.String "getStorageStatisticsFast" ]
--- getStorageStatisticsFast GetStorageStatisticsFast 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetStorageStatisticsFast where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getStorageStatisticsFast" -> parseGetStorageStatisticsFast v
+
+   _ -> mempty ""
   where
    parseGetStorageStatisticsFast :: A.Value -> T.Parser GetStorageStatisticsFast
    parseGetStorageStatisticsFast = A.withObject "GetStorageStatisticsFast" $ \o -> do

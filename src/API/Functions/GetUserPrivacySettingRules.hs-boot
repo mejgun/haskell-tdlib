@@ -10,3 +10,5 @@ instance ToJSON GetUserPrivacySettingRules
 
 instance FromJSON GetUserPrivacySettingRules
 
+instance Show GetUserPrivacySettingRules
+

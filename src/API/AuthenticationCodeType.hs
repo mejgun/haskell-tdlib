@@ -11,7 +11,7 @@ data AuthenticationCodeType =
  AuthenticationCodeTypeTelegramMessage { _length :: Int }  
  | AuthenticationCodeTypeSms { _length :: Int }  
  | AuthenticationCodeTypeCall { _length :: Int }  
- | AuthenticationCodeTypeFlashCall { pattern :: String }  -- deriving (Show)
+ | AuthenticationCodeTypeFlashCall { pattern :: String }  deriving (Show)
 
 instance T.ToJSON AuthenticationCodeType where
  toJSON (AuthenticationCodeTypeTelegramMessage { _length = _length }) =
@@ -25,13 +25,6 @@ instance T.ToJSON AuthenticationCodeType where
 
  toJSON (AuthenticationCodeTypeFlashCall { pattern = pattern }) =
   A.object [ "@type" A..= T.String "authenticationCodeTypeFlashCall", "pattern" A..= pattern ]
--- authenticationCodeTypeTelegramMessage AuthenticationCodeType  { _length :: Int } 
-
--- authenticationCodeTypeSms AuthenticationCodeType  { _length :: Int } 
-
--- authenticationCodeTypeCall AuthenticationCodeType  { _length :: Int } 
-
--- authenticationCodeTypeFlashCall AuthenticationCodeType  { pattern :: String } 
 
 
 
@@ -43,6 +36,8 @@ instance T.FromJSON AuthenticationCodeType where
    "authenticationCodeTypeSms" -> parseAuthenticationCodeTypeSms v
    "authenticationCodeTypeCall" -> parseAuthenticationCodeTypeCall v
    "authenticationCodeTypeFlashCall" -> parseAuthenticationCodeTypeFlashCall v
+
+   _ -> mempty ""
   where
    parseAuthenticationCodeTypeTelegramMessage :: A.Value -> T.Parser AuthenticationCodeType
    parseAuthenticationCodeTypeTelegramMessage = A.withObject "AuthenticationCodeTypeTelegramMessage" $ \o -> do

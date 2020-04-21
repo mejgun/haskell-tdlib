@@ -10,3 +10,5 @@ instance ToJSON DeleteChatMessagesFromUser
 
 instance FromJSON DeleteChatMessagesFromUser
 
+instance Show DeleteChatMessagesFromUser
+

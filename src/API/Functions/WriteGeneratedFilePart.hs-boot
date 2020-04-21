@@ -10,3 +10,5 @@ instance ToJSON WriteGeneratedFilePart
 
 instance FromJSON WriteGeneratedFilePart
 
+instance Show WriteGeneratedFilePart
+

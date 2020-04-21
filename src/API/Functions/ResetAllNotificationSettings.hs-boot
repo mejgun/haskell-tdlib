@@ -10,3 +10,5 @@ instance ToJSON ResetAllNotificationSettings
 
 instance FromJSON ResetAllNotificationSettings
 
+instance Show ResetAllNotificationSettings
+

@@ -10,3 +10,5 @@ instance ToJSON UploadStickerFile
 
 instance FromJSON UploadStickerFile
 
+instance Show UploadStickerFile
+

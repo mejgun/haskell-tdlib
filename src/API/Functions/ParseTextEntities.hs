@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.TextParseMode as TextParseMode
 --main = putStrLn "ok"
 
 data ParseTextEntities = 
- ParseTextEntities { parse_mode :: TextParseMode.TextParseMode, text :: String }  -- deriving (Show)
+ ParseTextEntities { parse_mode :: TextParseMode.TextParseMode, text :: String }  deriving (Show)
 
 instance T.ToJSON ParseTextEntities where
  toJSON (ParseTextEntities { parse_mode = parse_mode, text = text }) =
   A.object [ "@type" A..= T.String "parseTextEntities", "parse_mode" A..= parse_mode, "text" A..= text ]
--- parseTextEntities ParseTextEntities  { parse_mode :: TextParseMode.TextParseMode, text :: String } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON ParseTextEntities where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "parseTextEntities" -> parseParseTextEntities v
+
+   _ -> mempty ""
   where
    parseParseTextEntities :: A.Value -> T.Parser ParseTextEntities
    parseParseTextEntities = A.withObject "ParseTextEntities" $ \o -> do

@@ -10,3 +10,5 @@ instance ToJSON SetChatClientData
 
 instance FromJSON SetChatClientData
 
+instance Show SetChatClientData
+

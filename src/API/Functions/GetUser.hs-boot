@@ -10,3 +10,5 @@ instance ToJSON GetUser
 
 instance FromJSON GetUser
 
+instance Show GetUser
+

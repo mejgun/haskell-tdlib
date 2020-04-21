@@ -10,3 +10,5 @@ instance ToJSON PersonalDocument
 
 instance FromJSON PersonalDocument
 
+instance Show PersonalDocument
+

@@ -10,3 +10,5 @@ instance ToJSON PageBlockRelatedArticle
 
 instance FromJSON PageBlockRelatedArticle
 
+instance Show PageBlockRelatedArticle
+

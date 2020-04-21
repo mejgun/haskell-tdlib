@@ -10,3 +10,5 @@ instance ToJSON AddContact
 
 instance FromJSON AddContact
 
+instance Show AddContact
+

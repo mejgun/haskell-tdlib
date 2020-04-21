@@ -10,3 +10,5 @@ instance ToJSON DownloadFile
 
 instance FromJSON DownloadFile
 
+instance Show DownloadFile
+

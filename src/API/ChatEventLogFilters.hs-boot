@@ -10,3 +10,5 @@ instance ToJSON ChatEventLogFilters
 
 instance FromJSON ChatEventLogFilters
 
+instance Show ChatEventLogFilters
+

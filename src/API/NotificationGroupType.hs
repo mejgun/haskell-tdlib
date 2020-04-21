@@ -11,7 +11,7 @@ data NotificationGroupType =
  NotificationGroupTypeMessages 
  | NotificationGroupTypeMentions 
  | NotificationGroupTypeSecretChat 
- | NotificationGroupTypeCalls -- deriving (Show)
+ | NotificationGroupTypeCalls deriving (Show)
 
 instance T.ToJSON NotificationGroupType where
  toJSON (NotificationGroupTypeMessages {  }) =
@@ -25,13 +25,6 @@ instance T.ToJSON NotificationGroupType where
 
  toJSON (NotificationGroupTypeCalls {  }) =
   A.object [ "@type" A..= T.String "notificationGroupTypeCalls" ]
--- notificationGroupTypeMessages NotificationGroupType 
-
--- notificationGroupTypeMentions NotificationGroupType 
-
--- notificationGroupTypeSecretChat NotificationGroupType 
-
--- notificationGroupTypeCalls NotificationGroupType 
 
 
 
@@ -43,6 +36,8 @@ instance T.FromJSON NotificationGroupType where
    "notificationGroupTypeMentions" -> parseNotificationGroupTypeMentions v
    "notificationGroupTypeSecretChat" -> parseNotificationGroupTypeSecretChat v
    "notificationGroupTypeCalls" -> parseNotificationGroupTypeCalls v
+
+   _ -> mempty ""
   where
    parseNotificationGroupTypeMessages :: A.Value -> T.Parser NotificationGroupType
    parseNotificationGroupTypeMessages = A.withObject "NotificationGroupTypeMessages" $ \o -> do

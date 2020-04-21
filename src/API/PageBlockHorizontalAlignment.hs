@@ -10,7 +10,7 @@ import qualified Data.Aeson.Types as T
 data PageBlockHorizontalAlignment = 
  PageBlockHorizontalAlignmentLeft 
  | PageBlockHorizontalAlignmentCenter 
- | PageBlockHorizontalAlignmentRight -- deriving (Show)
+ | PageBlockHorizontalAlignmentRight deriving (Show)
 
 instance T.ToJSON PageBlockHorizontalAlignment where
  toJSON (PageBlockHorizontalAlignmentLeft {  }) =
@@ -21,11 +21,6 @@ instance T.ToJSON PageBlockHorizontalAlignment where
 
  toJSON (PageBlockHorizontalAlignmentRight {  }) =
   A.object [ "@type" A..= T.String "pageBlockHorizontalAlignmentRight" ]
--- pageBlockHorizontalAlignmentLeft PageBlockHorizontalAlignment 
-
--- pageBlockHorizontalAlignmentCenter PageBlockHorizontalAlignment 
-
--- pageBlockHorizontalAlignmentRight PageBlockHorizontalAlignment 
 
 
 
@@ -36,6 +31,8 @@ instance T.FromJSON PageBlockHorizontalAlignment where
    "pageBlockHorizontalAlignmentLeft" -> parsePageBlockHorizontalAlignmentLeft v
    "pageBlockHorizontalAlignmentCenter" -> parsePageBlockHorizontalAlignmentCenter v
    "pageBlockHorizontalAlignmentRight" -> parsePageBlockHorizontalAlignmentRight v
+
+   _ -> mempty ""
   where
    parsePageBlockHorizontalAlignmentLeft :: A.Value -> T.Parser PageBlockHorizontalAlignment
    parsePageBlockHorizontalAlignmentLeft = A.withObject "PageBlockHorizontalAlignmentLeft" $ \o -> do

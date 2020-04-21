@@ -14,7 +14,7 @@ data TopChatCategory =
  | TopChatCategoryChannels 
  | TopChatCategoryInlineBots 
  | TopChatCategoryCalls 
- | TopChatCategoryForwardChats -- deriving (Show)
+ | TopChatCategoryForwardChats deriving (Show)
 
 instance T.ToJSON TopChatCategory where
  toJSON (TopChatCategoryUsers {  }) =
@@ -37,19 +37,6 @@ instance T.ToJSON TopChatCategory where
 
  toJSON (TopChatCategoryForwardChats {  }) =
   A.object [ "@type" A..= T.String "topChatCategoryForwardChats" ]
--- topChatCategoryUsers TopChatCategory 
-
--- topChatCategoryBots TopChatCategory 
-
--- topChatCategoryGroups TopChatCategory 
-
--- topChatCategoryChannels TopChatCategory 
-
--- topChatCategoryInlineBots TopChatCategory 
-
--- topChatCategoryCalls TopChatCategory 
-
--- topChatCategoryForwardChats TopChatCategory 
 
 
 
@@ -64,6 +51,8 @@ instance T.FromJSON TopChatCategory where
    "topChatCategoryInlineBots" -> parseTopChatCategoryInlineBots v
    "topChatCategoryCalls" -> parseTopChatCategoryCalls v
    "topChatCategoryForwardChats" -> parseTopChatCategoryForwardChats v
+
+   _ -> mempty ""
   where
    parseTopChatCategoryUsers :: A.Value -> T.Parser TopChatCategory
    parseTopChatCategoryUsers = A.withObject "TopChatCategoryUsers" $ \o -> do

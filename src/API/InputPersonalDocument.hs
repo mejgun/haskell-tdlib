@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 --main = putStrLn "ok"
 
 data InputPersonalDocument = 
- InputPersonalDocument { translation :: [InputFile.InputFile], files :: [InputFile.InputFile] }  -- deriving (Show)
+ InputPersonalDocument { translation :: [InputFile.InputFile], files :: [InputFile.InputFile] }  deriving (Show)
 
 instance T.ToJSON InputPersonalDocument where
  toJSON (InputPersonalDocument { translation = translation, files = files }) =
   A.object [ "@type" A..= T.String "inputPersonalDocument", "translation" A..= translation, "files" A..= files ]
--- inputPersonalDocument InputPersonalDocument  { translation :: [InputFile.InputFile], files :: [InputFile.InputFile] } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON InputPersonalDocument where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "inputPersonalDocument" -> parseInputPersonalDocument v
+
+   _ -> mempty ""
   where
    parseInputPersonalDocument :: A.Value -> T.Parser InputPersonalDocument
    parseInputPersonalDocument = A.withObject "InputPersonalDocument" $ \o -> do

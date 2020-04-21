@@ -10,3 +10,5 @@ instance ToJSON LocalizationTargetInfo
 
 instance FromJSON LocalizationTargetInfo
 
+instance Show LocalizationTargetInfo
+

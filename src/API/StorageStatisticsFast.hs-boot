@@ -10,3 +10,5 @@ instance ToJSON StorageStatisticsFast
 
 instance FromJSON StorageStatisticsFast
 
+instance Show StorageStatisticsFast
+

@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.MessageSchedulingState as MessageSchedulingS
 --main = putStrLn "ok"
 
 data SendMessageOptions = 
- SendMessageOptions { scheduling_state :: MessageSchedulingState.MessageSchedulingState, from_background :: Bool, disable_notification :: Bool }  -- deriving (Show)
+ SendMessageOptions { scheduling_state :: MessageSchedulingState.MessageSchedulingState, from_background :: Bool, disable_notification :: Bool }  deriving (Show)
 
 instance T.ToJSON SendMessageOptions where
  toJSON (SendMessageOptions { scheduling_state = scheduling_state, from_background = from_background, disable_notification = disable_notification }) =
   A.object [ "@type" A..= T.String "sendMessageOptions", "scheduling_state" A..= scheduling_state, "from_background" A..= from_background, "disable_notification" A..= disable_notification ]
--- sendMessageOptions SendMessageOptions  { scheduling_state :: MessageSchedulingState.MessageSchedulingState, from_background :: Bool, disable_notification :: Bool } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON SendMessageOptions where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "sendMessageOptions" -> parseSendMessageOptions v
+
+   _ -> mempty ""
   where
    parseSendMessageOptions :: A.Value -> T.Parser SendMessageOptions
    parseSendMessageOptions = A.withObject "SendMessageOptions" $ \o -> do

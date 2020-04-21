@@ -10,12 +10,11 @@ import {-# SOURCE #-} qualified API.NotificationGroupType as NotificationGroupTy
 --main = putStrLn "ok"
 
 data NotificationGroup = 
- NotificationGroup { notifications :: [Notification.Notification], total_count :: Int, chat_id :: Int, _type :: NotificationGroupType.NotificationGroupType, _id :: Int }  -- deriving (Show)
+ NotificationGroup { notifications :: [Notification.Notification], total_count :: Int, chat_id :: Int, _type :: NotificationGroupType.NotificationGroupType, _id :: Int }  deriving (Show)
 
 instance T.ToJSON NotificationGroup where
  toJSON (NotificationGroup { notifications = notifications, total_count = total_count, chat_id = chat_id, _type = _type, _id = _id }) =
   A.object [ "@type" A..= T.String "notificationGroup", "notifications" A..= notifications, "total_count" A..= total_count, "chat_id" A..= chat_id, "type" A..= _type, "id" A..= _id ]
--- notificationGroup NotificationGroup  { notifications :: [Notification.Notification], total_count :: Int, chat_id :: Int, _type :: NotificationGroupType.NotificationGroupType, _id :: Int } 
 
 
 
@@ -24,6 +23,8 @@ instance T.FromJSON NotificationGroup where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "notificationGroup" -> parseNotificationGroup v
+
+   _ -> mempty ""
   where
    parseNotificationGroup :: A.Value -> T.Parser NotificationGroup
    parseNotificationGroup = A.withObject "NotificationGroup" $ \o -> do

@@ -10,3 +10,5 @@ instance ToJSON GetChatStatisticsGraph
 
 instance FromJSON GetChatStatisticsGraph
 
+instance Show GetChatStatisticsGraph
+

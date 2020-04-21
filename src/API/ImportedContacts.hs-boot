@@ -10,3 +10,5 @@ instance ToJSON ImportedContacts
 
 instance FromJSON ImportedContacts
 
+instance Show ImportedContacts
+

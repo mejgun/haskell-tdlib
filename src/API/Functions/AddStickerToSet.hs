@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.InputSticker as InputSticker
 --main = putStrLn "ok"
 
 data AddStickerToSet = 
- AddStickerToSet { sticker :: InputSticker.InputSticker, name :: String, user_id :: Int }  -- deriving (Show)
+ AddStickerToSet { sticker :: InputSticker.InputSticker, name :: String, user_id :: Int }  deriving (Show)
 
 instance T.ToJSON AddStickerToSet where
  toJSON (AddStickerToSet { sticker = sticker, name = name, user_id = user_id }) =
   A.object [ "@type" A..= T.String "addStickerToSet", "sticker" A..= sticker, "name" A..= name, "user_id" A..= user_id ]
--- addStickerToSet AddStickerToSet  { sticker :: InputSticker.InputSticker, name :: String, user_id :: Int } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON AddStickerToSet where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "addStickerToSet" -> parseAddStickerToSet v
+
+   _ -> mempty ""
   where
    parseAddStickerToSet :: A.Value -> T.Parser AddStickerToSet
    parseAddStickerToSet = A.withObject "AddStickerToSet" $ \o -> do

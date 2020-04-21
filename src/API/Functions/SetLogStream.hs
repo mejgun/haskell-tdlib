@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.LogStream as LogStream
 --main = putStrLn "ok"
 
 data SetLogStream = 
- SetLogStream { log_stream :: LogStream.LogStream }  -- deriving (Show)
+ SetLogStream { log_stream :: LogStream.LogStream }  deriving (Show)
 
 instance T.ToJSON SetLogStream where
  toJSON (SetLogStream { log_stream = log_stream }) =
   A.object [ "@type" A..= T.String "setLogStream", "log_stream" A..= log_stream ]
--- setLogStream SetLogStream  { log_stream :: LogStream.LogStream } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON SetLogStream where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "setLogStream" -> parseSetLogStream v
+
+   _ -> mempty ""
   where
    parseSetLogStream :: A.Value -> T.Parser SetLogStream
    parseSetLogStream = A.withObject "SetLogStream" $ \o -> do

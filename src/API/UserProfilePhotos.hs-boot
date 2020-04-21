@@ -10,3 +10,5 @@ instance ToJSON UserProfilePhotos
 
 instance FromJSON UserProfilePhotos
 
+instance Show UserProfilePhotos
+

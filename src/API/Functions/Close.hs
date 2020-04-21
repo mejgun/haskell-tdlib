@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data Close = 
- Close -- deriving (Show)
+ Close deriving (Show)
 
 instance T.ToJSON Close where
  toJSON (Close {  }) =
   A.object [ "@type" A..= T.String "close" ]
--- close Close 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON Close where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "close" -> parseClose v
+
+   _ -> mempty ""
   where
    parseClose :: A.Value -> T.Parser Close
    parseClose = A.withObject "Close" $ \o -> do

@@ -10,3 +10,5 @@ instance ToJSON Photo
 
 instance FromJSON Photo
 
+instance Show Photo
+

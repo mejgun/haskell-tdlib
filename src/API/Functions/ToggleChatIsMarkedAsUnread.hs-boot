@@ -10,3 +10,5 @@ instance ToJSON ToggleChatIsMarkedAsUnread
 
 instance FromJSON ToggleChatIsMarkedAsUnread
 
+instance Show ToggleChatIsMarkedAsUnread
+

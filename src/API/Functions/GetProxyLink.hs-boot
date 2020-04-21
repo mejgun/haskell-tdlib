@@ -10,3 +10,5 @@ instance ToJSON GetProxyLink
 
 instance FromJSON GetProxyLink
 
+instance Show GetProxyLink
+

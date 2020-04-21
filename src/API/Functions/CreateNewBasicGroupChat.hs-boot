@@ -10,3 +10,5 @@ instance ToJSON CreateNewBasicGroupChat
 
 instance FromJSON CreateNewBasicGroupChat
 
+instance Show CreateNewBasicGroupChat
+

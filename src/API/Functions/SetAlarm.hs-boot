@@ -10,3 +10,5 @@ instance ToJSON SetAlarm
 
 instance FromJSON SetAlarm
 
+instance Show SetAlarm
+

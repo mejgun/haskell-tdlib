@@ -12,7 +12,7 @@ data TMeUrlType =
  TMeUrlTypeUser { user_id :: Int }  
  | TMeUrlTypeSupergroup { supergroup_id :: Int }  
  | TMeUrlTypeChatInvite { info :: ChatInviteLinkInfo.ChatInviteLinkInfo }  
- | TMeUrlTypeStickerSet { sticker_set_id :: Int }  -- deriving (Show)
+ | TMeUrlTypeStickerSet { sticker_set_id :: Int }  deriving (Show)
 
 instance T.ToJSON TMeUrlType where
  toJSON (TMeUrlTypeUser { user_id = user_id }) =
@@ -26,13 +26,6 @@ instance T.ToJSON TMeUrlType where
 
  toJSON (TMeUrlTypeStickerSet { sticker_set_id = sticker_set_id }) =
   A.object [ "@type" A..= T.String "tMeUrlTypeStickerSet", "sticker_set_id" A..= sticker_set_id ]
--- tMeUrlTypeUser TMeUrlType  { user_id :: Int } 
-
--- tMeUrlTypeSupergroup TMeUrlType  { supergroup_id :: Int } 
-
--- tMeUrlTypeChatInvite TMeUrlType  { info :: ChatInviteLinkInfo.ChatInviteLinkInfo } 
-
--- tMeUrlTypeStickerSet TMeUrlType  { sticker_set_id :: Int } 
 
 
 
@@ -44,6 +37,8 @@ instance T.FromJSON TMeUrlType where
    "tMeUrlTypeSupergroup" -> parseTMeUrlTypeSupergroup v
    "tMeUrlTypeChatInvite" -> parseTMeUrlTypeChatInvite v
    "tMeUrlTypeStickerSet" -> parseTMeUrlTypeStickerSet v
+
+   _ -> mempty ""
   where
    parseTMeUrlTypeUser :: A.Value -> T.Parser TMeUrlType
    parseTMeUrlTypeUser = A.withObject "TMeUrlTypeUser" $ \o -> do

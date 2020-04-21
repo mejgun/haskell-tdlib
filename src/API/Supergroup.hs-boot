@@ -10,3 +10,5 @@ instance ToJSON Supergroup
 
 instance FromJSON Supergroup
 
+instance Show Supergroup
+

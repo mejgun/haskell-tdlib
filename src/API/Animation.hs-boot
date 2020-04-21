@@ -10,3 +10,5 @@ instance ToJSON Animation
 
 instance FromJSON Animation
 
+instance Show Animation
+

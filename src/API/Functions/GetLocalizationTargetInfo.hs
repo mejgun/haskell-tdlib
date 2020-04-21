@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetLocalizationTargetInfo = 
- GetLocalizationTargetInfo { only_local :: Bool }  -- deriving (Show)
+ GetLocalizationTargetInfo { only_local :: Bool }  deriving (Show)
 
 instance T.ToJSON GetLocalizationTargetInfo where
  toJSON (GetLocalizationTargetInfo { only_local = only_local }) =
   A.object [ "@type" A..= T.String "getLocalizationTargetInfo", "only_local" A..= only_local ]
--- getLocalizationTargetInfo GetLocalizationTargetInfo  { only_local :: Bool } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetLocalizationTargetInfo where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getLocalizationTargetInfo" -> parseGetLocalizationTargetInfo v
+
+   _ -> mempty ""
   where
    parseGetLocalizationTargetInfo :: A.Value -> T.Parser GetLocalizationTargetInfo
    parseGetLocalizationTargetInfo = A.withObject "GetLocalizationTargetInfo" $ \o -> do

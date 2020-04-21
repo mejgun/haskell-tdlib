@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.LanguagePackStringValue as LanguagePackStrin
 --main = putStrLn "ok"
 
 data LanguagePackString = 
- LanguagePackString { value :: LanguagePackStringValue.LanguagePackStringValue, key :: String }  -- deriving (Show)
+ LanguagePackString { value :: LanguagePackStringValue.LanguagePackStringValue, key :: String }  deriving (Show)
 
 instance T.ToJSON LanguagePackString where
  toJSON (LanguagePackString { value = value, key = key }) =
   A.object [ "@type" A..= T.String "languagePackString", "value" A..= value, "key" A..= key ]
--- languagePackString LanguagePackString  { value :: LanguagePackStringValue.LanguagePackStringValue, key :: String } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON LanguagePackString where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "languagePackString" -> parseLanguagePackString v
+
+   _ -> mempty ""
   where
    parseLanguagePackString :: A.Value -> T.Parser LanguagePackString
    parseLanguagePackString = A.withObject "LanguagePackString" $ \o -> do

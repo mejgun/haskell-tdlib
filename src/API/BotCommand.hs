@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data BotCommand = 
- BotCommand { description :: String, command :: String }  -- deriving (Show)
+ BotCommand { description :: String, command :: String }  deriving (Show)
 
 instance T.ToJSON BotCommand where
  toJSON (BotCommand { description = description, command = command }) =
   A.object [ "@type" A..= T.String "botCommand", "description" A..= description, "command" A..= command ]
--- botCommand BotCommand  { description :: String, command :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON BotCommand where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "botCommand" -> parseBotCommand v
+
+   _ -> mempty ""
   where
    parseBotCommand :: A.Value -> T.Parser BotCommand
    parseBotCommand = A.withObject "BotCommand" $ \o -> do

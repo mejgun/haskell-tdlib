@@ -10,3 +10,5 @@ instance ToJSON RemoveBackground
 
 instance FromJSON RemoveBackground
 
+instance Show RemoveBackground
+

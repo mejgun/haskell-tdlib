@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.Proxy as Proxy
 --main = putStrLn "ok"
 
 data Proxies = 
- Proxies { proxies :: [Proxy.Proxy] }  -- deriving (Show)
+ Proxies { proxies :: [Proxy.Proxy] }  deriving (Show)
 
 instance T.ToJSON Proxies where
  toJSON (Proxies { proxies = proxies }) =
   A.object [ "@type" A..= T.String "proxies", "proxies" A..= proxies ]
--- proxies Proxies  { proxies :: [Proxy.Proxy] } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON Proxies where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "proxies" -> parseProxies v
+
+   _ -> mempty ""
   where
    parseProxies :: A.Value -> T.Parser Proxies
    parseProxies = A.withObject "Proxies" $ \o -> do

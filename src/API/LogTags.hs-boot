@@ -10,3 +10,5 @@ instance ToJSON LogTags
 
 instance FromJSON LogTags
 
+instance Show LogTags
+

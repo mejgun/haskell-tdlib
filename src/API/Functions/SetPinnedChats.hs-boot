@@ -10,3 +10,5 @@ instance ToJSON SetPinnedChats
 
 instance FromJSON SetPinnedChats
 
+instance Show SetPinnedChats
+

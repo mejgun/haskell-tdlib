@@ -10,3 +10,5 @@ instance ToJSON CanTransferOwnership
 
 instance FromJSON CanTransferOwnership
 
+instance Show CanTransferOwnership
+

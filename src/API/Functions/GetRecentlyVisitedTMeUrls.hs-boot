@@ -10,3 +10,5 @@ instance ToJSON GetRecentlyVisitedTMeUrls
 
 instance FromJSON GetRecentlyVisitedTMeUrls
 
+instance Show GetRecentlyVisitedTMeUrls
+

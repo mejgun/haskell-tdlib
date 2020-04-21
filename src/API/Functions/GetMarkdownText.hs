@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 --main = putStrLn "ok"
 
 data GetMarkdownText = 
- GetMarkdownText { text :: FormattedText.FormattedText }  -- deriving (Show)
+ GetMarkdownText { text :: FormattedText.FormattedText }  deriving (Show)
 
 instance T.ToJSON GetMarkdownText where
  toJSON (GetMarkdownText { text = text }) =
   A.object [ "@type" A..= T.String "getMarkdownText", "text" A..= text ]
--- getMarkdownText GetMarkdownText  { text :: FormattedText.FormattedText } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON GetMarkdownText where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getMarkdownText" -> parseGetMarkdownText v
+
+   _ -> mempty ""
   where
    parseGetMarkdownText :: A.Value -> T.Parser GetMarkdownText
    parseGetMarkdownText = A.withObject "GetMarkdownText" $ \o -> do

@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data AnswerPreCheckoutQuery = 
- AnswerPreCheckoutQuery { error_message :: String, pre_checkout_query_id :: Int }  -- deriving (Show)
+ AnswerPreCheckoutQuery { error_message :: String, pre_checkout_query_id :: Int }  deriving (Show)
 
 instance T.ToJSON AnswerPreCheckoutQuery where
  toJSON (AnswerPreCheckoutQuery { error_message = error_message, pre_checkout_query_id = pre_checkout_query_id }) =
   A.object [ "@type" A..= T.String "answerPreCheckoutQuery", "error_message" A..= error_message, "pre_checkout_query_id" A..= pre_checkout_query_id ]
--- answerPreCheckoutQuery AnswerPreCheckoutQuery  { error_message :: String, pre_checkout_query_id :: Int } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON AnswerPreCheckoutQuery where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "answerPreCheckoutQuery" -> parseAnswerPreCheckoutQuery v
+
+   _ -> mempty ""
   where
    parseAnswerPreCheckoutQuery :: A.Value -> T.Parser AnswerPreCheckoutQuery
    parseAnswerPreCheckoutQuery = A.withObject "AnswerPreCheckoutQuery" $ \o -> do

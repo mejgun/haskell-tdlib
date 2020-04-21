@@ -10,3 +10,5 @@ instance ToJSON ChatsNearby
 
 instance FromJSON ChatsNearby
 
+instance Show ChatsNearby
+

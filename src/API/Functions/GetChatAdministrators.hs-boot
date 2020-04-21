@@ -10,3 +10,5 @@ instance ToJSON GetChatAdministrators
 
 instance FromJSON GetChatAdministrators
 
+instance Show GetChatAdministrators
+

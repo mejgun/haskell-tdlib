@@ -10,3 +10,5 @@ instance ToJSON DisableProxy
 
 instance FromJSON DisableProxy
 
+instance Show DisableProxy
+

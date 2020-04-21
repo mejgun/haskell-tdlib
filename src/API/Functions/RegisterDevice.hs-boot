@@ -10,3 +10,5 @@ instance ToJSON RegisterDevice
 
 instance FromJSON RegisterDevice
 
+instance Show RegisterDevice
+

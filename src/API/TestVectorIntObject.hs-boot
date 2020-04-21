@@ -10,3 +10,5 @@ instance ToJSON TestVectorIntObject
 
 instance FromJSON TestVectorIntObject
 
+instance Show TestVectorIntObject
+

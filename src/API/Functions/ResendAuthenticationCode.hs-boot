@@ -10,3 +10,5 @@ instance ToJSON ResendAuthenticationCode
 
 instance FromJSON ResendAuthenticationCode
 
+instance Show ResendAuthenticationCode
+

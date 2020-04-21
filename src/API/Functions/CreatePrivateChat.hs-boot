@@ -10,3 +10,5 @@ instance ToJSON CreatePrivateChat
 
 instance FromJSON CreatePrivateChat
 
+instance Show CreatePrivateChat
+

@@ -10,3 +10,5 @@ instance ToJSON GetMapThumbnailFile
 
 instance FromJSON GetMapThumbnailFile
 
+instance Show GetMapThumbnailFile
+

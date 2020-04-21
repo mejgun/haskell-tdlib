@@ -10,3 +10,5 @@ instance ToJSON BackgroundType
 
 instance FromJSON BackgroundType
 
+instance Show BackgroundType
+

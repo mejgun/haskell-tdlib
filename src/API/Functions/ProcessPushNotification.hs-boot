@@ -10,3 +10,5 @@ instance ToJSON ProcessPushNotification
 
 instance FromJSON ProcessPushNotification
 
+instance Show ProcessPushNotification
+

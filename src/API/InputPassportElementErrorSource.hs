@@ -16,7 +16,7 @@ data InputPassportElementErrorSource =
  | InputPassportElementErrorSourceTranslationFile { file_hash :: String }  
  | InputPassportElementErrorSourceTranslationFiles { file_hashes :: [String] }  
  | InputPassportElementErrorSourceFile { file_hash :: String }  
- | InputPassportElementErrorSourceFiles { file_hashes :: [String] }  -- deriving (Show)
+ | InputPassportElementErrorSourceFiles { file_hashes :: [String] }  deriving (Show)
 
 instance T.ToJSON InputPassportElementErrorSource where
  toJSON (InputPassportElementErrorSourceUnspecified { element_hash = element_hash }) =
@@ -45,23 +45,6 @@ instance T.ToJSON InputPassportElementErrorSource where
 
  toJSON (InputPassportElementErrorSourceFiles { file_hashes = file_hashes }) =
   A.object [ "@type" A..= T.String "inputPassportElementErrorSourceFiles", "file_hashes" A..= file_hashes ]
--- inputPassportElementErrorSourceUnspecified InputPassportElementErrorSource  { element_hash :: String } 
-
--- inputPassportElementErrorSourceDataField InputPassportElementErrorSource  { data_hash :: String, field_name :: String } 
-
--- inputPassportElementErrorSourceFrontSide InputPassportElementErrorSource  { file_hash :: String } 
-
--- inputPassportElementErrorSourceReverseSide InputPassportElementErrorSource  { file_hash :: String } 
-
--- inputPassportElementErrorSourceSelfie InputPassportElementErrorSource  { file_hash :: String } 
-
--- inputPassportElementErrorSourceTranslationFile InputPassportElementErrorSource  { file_hash :: String } 
-
--- inputPassportElementErrorSourceTranslationFiles InputPassportElementErrorSource  { file_hashes :: [String] } 
-
--- inputPassportElementErrorSourceFile InputPassportElementErrorSource  { file_hash :: String } 
-
--- inputPassportElementErrorSourceFiles InputPassportElementErrorSource  { file_hashes :: [String] } 
 
 
 
@@ -78,6 +61,8 @@ instance T.FromJSON InputPassportElementErrorSource where
    "inputPassportElementErrorSourceTranslationFiles" -> parseInputPassportElementErrorSourceTranslationFiles v
    "inputPassportElementErrorSourceFile" -> parseInputPassportElementErrorSourceFile v
    "inputPassportElementErrorSourceFiles" -> parseInputPassportElementErrorSourceFiles v
+
+   _ -> mempty ""
   where
    parseInputPassportElementErrorSourceUnspecified :: A.Value -> T.Parser InputPassportElementErrorSource
    parseInputPassportElementErrorSourceUnspecified = A.withObject "InputPassportElementErrorSourceUnspecified" $ \o -> do

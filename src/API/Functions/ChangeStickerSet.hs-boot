@@ -10,3 +10,5 @@ instance ToJSON ChangeStickerSet
 
 instance FromJSON ChangeStickerSet
 
+instance Show ChangeStickerSet
+

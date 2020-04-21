@@ -10,3 +10,5 @@ instance ToJSON DeviceToken
 
 instance FromJSON DeviceToken
 
+instance Show DeviceToken
+

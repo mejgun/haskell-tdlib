@@ -14,7 +14,7 @@ data ChatReportReason =
  | ChatReportReasonChildAbuse 
  | ChatReportReasonCopyright 
  | ChatReportReasonUnrelatedLocation 
- | ChatReportReasonCustom { text :: String }  -- deriving (Show)
+ | ChatReportReasonCustom { text :: String }  deriving (Show)
 
 instance T.ToJSON ChatReportReason where
  toJSON (ChatReportReasonSpam {  }) =
@@ -37,19 +37,6 @@ instance T.ToJSON ChatReportReason where
 
  toJSON (ChatReportReasonCustom { text = text }) =
   A.object [ "@type" A..= T.String "chatReportReasonCustom", "text" A..= text ]
--- chatReportReasonSpam ChatReportReason 
-
--- chatReportReasonViolence ChatReportReason 
-
--- chatReportReasonPornography ChatReportReason 
-
--- chatReportReasonChildAbuse ChatReportReason 
-
--- chatReportReasonCopyright ChatReportReason 
-
--- chatReportReasonUnrelatedLocation ChatReportReason 
-
--- chatReportReasonCustom ChatReportReason  { text :: String } 
 
 
 
@@ -64,6 +51,8 @@ instance T.FromJSON ChatReportReason where
    "chatReportReasonCopyright" -> parseChatReportReasonCopyright v
    "chatReportReasonUnrelatedLocation" -> parseChatReportReasonUnrelatedLocation v
    "chatReportReasonCustom" -> parseChatReportReasonCustom v
+
+   _ -> mempty ""
   where
    parseChatReportReasonSpam :: A.Value -> T.Parser ChatReportReason
    parseChatReportReasonSpam = A.withObject "ChatReportReasonSpam" $ \o -> do

@@ -10,3 +10,5 @@ instance ToJSON BasicGroup
 
 instance FromJSON BasicGroup
 
+instance Show BasicGroup
+

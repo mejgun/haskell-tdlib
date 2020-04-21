@@ -10,3 +10,5 @@ instance ToJSON ShippingOption
 
 instance FromJSON ShippingOption
 
+instance Show ShippingOption
+

@@ -10,3 +10,5 @@ instance ToJSON SetStickerPositionInSet
 
 instance FromJSON SetStickerPositionInSet
 
+instance Show SetStickerPositionInSet
+

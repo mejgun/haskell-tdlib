@@ -10,3 +10,5 @@ instance ToJSON GetChatMessageCount
 
 instance FromJSON GetChatMessageCount
 
+instance Show GetChatMessageCount
+

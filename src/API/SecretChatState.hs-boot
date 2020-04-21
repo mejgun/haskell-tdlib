@@ -10,3 +10,5 @@ instance ToJSON SecretChatState
 
 instance FromJSON SecretChatState
 
+instance Show SecretChatState
+

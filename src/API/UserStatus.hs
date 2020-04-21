@@ -13,7 +13,7 @@ data UserStatus =
  | UserStatusOffline { was_online :: Int }  
  | UserStatusRecently 
  | UserStatusLastWeek 
- | UserStatusLastMonth -- deriving (Show)
+ | UserStatusLastMonth deriving (Show)
 
 instance T.ToJSON UserStatus where
  toJSON (UserStatusEmpty {  }) =
@@ -33,17 +33,6 @@ instance T.ToJSON UserStatus where
 
  toJSON (UserStatusLastMonth {  }) =
   A.object [ "@type" A..= T.String "userStatusLastMonth" ]
--- userStatusEmpty UserStatus 
-
--- userStatusOnline UserStatus  { expires :: Int } 
-
--- userStatusOffline UserStatus  { was_online :: Int } 
-
--- userStatusRecently UserStatus 
-
--- userStatusLastWeek UserStatus 
-
--- userStatusLastMonth UserStatus 
 
 
 
@@ -57,6 +46,8 @@ instance T.FromJSON UserStatus where
    "userStatusRecently" -> parseUserStatusRecently v
    "userStatusLastWeek" -> parseUserStatusLastWeek v
    "userStatusLastMonth" -> parseUserStatusLastMonth v
+
+   _ -> mempty ""
   where
    parseUserStatusEmpty :: A.Value -> T.Parser UserStatus
    parseUserStatusEmpty = A.withObject "UserStatusEmpty" $ \o -> do

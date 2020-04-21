@@ -15,7 +15,7 @@ data UserPrivacySettingRule =
  | UserPrivacySettingRuleRestrictAll 
  | UserPrivacySettingRuleRestrictContacts 
  | UserPrivacySettingRuleRestrictUsers { user_ids :: [Int] }  
- | UserPrivacySettingRuleRestrictChatMembers { chat_ids :: [Int] }  -- deriving (Show)
+ | UserPrivacySettingRuleRestrictChatMembers { chat_ids :: [Int] }  deriving (Show)
 
 instance T.ToJSON UserPrivacySettingRule where
  toJSON (UserPrivacySettingRuleAllowAll {  }) =
@@ -41,21 +41,6 @@ instance T.ToJSON UserPrivacySettingRule where
 
  toJSON (UserPrivacySettingRuleRestrictChatMembers { chat_ids = chat_ids }) =
   A.object [ "@type" A..= T.String "userPrivacySettingRuleRestrictChatMembers", "chat_ids" A..= chat_ids ]
--- userPrivacySettingRuleAllowAll UserPrivacySettingRule 
-
--- userPrivacySettingRuleAllowContacts UserPrivacySettingRule 
-
--- userPrivacySettingRuleAllowUsers UserPrivacySettingRule  { user_ids :: [Int] } 
-
--- userPrivacySettingRuleAllowChatMembers UserPrivacySettingRule  { chat_ids :: [Int] } 
-
--- userPrivacySettingRuleRestrictAll UserPrivacySettingRule 
-
--- userPrivacySettingRuleRestrictContacts UserPrivacySettingRule 
-
--- userPrivacySettingRuleRestrictUsers UserPrivacySettingRule  { user_ids :: [Int] } 
-
--- userPrivacySettingRuleRestrictChatMembers UserPrivacySettingRule  { chat_ids :: [Int] } 
 
 
 
@@ -71,6 +56,8 @@ instance T.FromJSON UserPrivacySettingRule where
    "userPrivacySettingRuleRestrictContacts" -> parseUserPrivacySettingRuleRestrictContacts v
    "userPrivacySettingRuleRestrictUsers" -> parseUserPrivacySettingRuleRestrictUsers v
    "userPrivacySettingRuleRestrictChatMembers" -> parseUserPrivacySettingRuleRestrictChatMembers v
+
+   _ -> mempty ""
   where
    parseUserPrivacySettingRuleAllowAll :: A.Value -> T.Parser UserPrivacySettingRule
    parseUserPrivacySettingRuleAllowAll = A.withObject "UserPrivacySettingRuleAllowAll" $ \o -> do

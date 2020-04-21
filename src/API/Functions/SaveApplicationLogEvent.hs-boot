@@ -10,3 +10,5 @@ instance ToJSON SaveApplicationLogEvent
 
 instance FromJSON SaveApplicationLogEvent
 
+instance Show SaveApplicationLogEvent
+

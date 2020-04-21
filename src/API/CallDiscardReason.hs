@@ -12,7 +12,7 @@ data CallDiscardReason =
  | CallDiscardReasonMissed 
  | CallDiscardReasonDeclined 
  | CallDiscardReasonDisconnected 
- | CallDiscardReasonHungUp -- deriving (Show)
+ | CallDiscardReasonHungUp deriving (Show)
 
 instance T.ToJSON CallDiscardReason where
  toJSON (CallDiscardReasonEmpty {  }) =
@@ -29,15 +29,6 @@ instance T.ToJSON CallDiscardReason where
 
  toJSON (CallDiscardReasonHungUp {  }) =
   A.object [ "@type" A..= T.String "callDiscardReasonHungUp" ]
--- callDiscardReasonEmpty CallDiscardReason 
-
--- callDiscardReasonMissed CallDiscardReason 
-
--- callDiscardReasonDeclined CallDiscardReason 
-
--- callDiscardReasonDisconnected CallDiscardReason 
-
--- callDiscardReasonHungUp CallDiscardReason 
 
 
 
@@ -50,6 +41,8 @@ instance T.FromJSON CallDiscardReason where
    "callDiscardReasonDeclined" -> parseCallDiscardReasonDeclined v
    "callDiscardReasonDisconnected" -> parseCallDiscardReasonDisconnected v
    "callDiscardReasonHungUp" -> parseCallDiscardReasonHungUp v
+
+   _ -> mempty ""
   where
    parseCallDiscardReasonEmpty :: A.Value -> T.Parser CallDiscardReason
    parseCallDiscardReasonEmpty = A.withObject "CallDiscardReasonEmpty" $ \o -> do

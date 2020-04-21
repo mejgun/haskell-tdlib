@@ -10,3 +10,5 @@ instance ToJSON DatabaseStatistics
 
 instance FromJSON DatabaseStatistics
 
+instance Show DatabaseStatistics
+

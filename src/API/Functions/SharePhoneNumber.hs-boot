@@ -10,3 +10,5 @@ instance ToJSON SharePhoneNumber
 
 instance FromJSON SharePhoneNumber
 
+instance Show SharePhoneNumber
+

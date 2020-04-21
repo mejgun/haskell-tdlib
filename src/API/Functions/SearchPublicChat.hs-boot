@@ -10,3 +10,5 @@ instance ToJSON SearchPublicChat
 
 instance FromJSON SearchPublicChat
 
+instance Show SearchPublicChat
+

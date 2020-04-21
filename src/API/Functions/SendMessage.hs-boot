@@ -10,3 +10,5 @@ instance ToJSON SendMessage
 
 instance FromJSON SendMessage
 
+instance Show SendMessage
+

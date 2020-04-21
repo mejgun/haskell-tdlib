@@ -10,3 +10,5 @@ instance ToJSON NetworkStatisticsEntry
 
 instance FromJSON NetworkStatisticsEntry
 
+instance Show NetworkStatisticsEntry
+

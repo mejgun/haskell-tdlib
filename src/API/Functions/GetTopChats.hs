@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.TopChatCategory as TopChatCategory
 --main = putStrLn "ok"
 
 data GetTopChats = 
- GetTopChats { limit :: Int, category :: TopChatCategory.TopChatCategory }  -- deriving (Show)
+ GetTopChats { limit :: Int, category :: TopChatCategory.TopChatCategory }  deriving (Show)
 
 instance T.ToJSON GetTopChats where
  toJSON (GetTopChats { limit = limit, category = category }) =
   A.object [ "@type" A..= T.String "getTopChats", "limit" A..= limit, "category" A..= category ]
--- getTopChats GetTopChats  { limit :: Int, category :: TopChatCategory.TopChatCategory } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON GetTopChats where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getTopChats" -> parseGetTopChats v
+
+   _ -> mempty ""
   where
    parseGetTopChats :: A.Value -> T.Parser GetTopChats
    parseGetTopChats = A.withObject "GetTopChats" $ \o -> do

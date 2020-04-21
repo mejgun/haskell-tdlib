@@ -10,3 +10,5 @@ instance ToJSON CheckAuthenticationBotToken
 
 instance FromJSON CheckAuthenticationBotToken
 
+instance Show CheckAuthenticationBotToken
+

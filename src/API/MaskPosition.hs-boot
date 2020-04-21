@@ -10,3 +10,5 @@ instance ToJSON MaskPosition
 
 instance FromJSON MaskPosition
 
+instance Show MaskPosition
+

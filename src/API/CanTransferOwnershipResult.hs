@@ -11,7 +11,7 @@ data CanTransferOwnershipResult =
  CanTransferOwnershipResultOk 
  | CanTransferOwnershipResultPasswordNeeded 
  | CanTransferOwnershipResultPasswordTooFresh { retry_after :: Int }  
- | CanTransferOwnershipResultSessionTooFresh { retry_after :: Int }  -- deriving (Show)
+ | CanTransferOwnershipResultSessionTooFresh { retry_after :: Int }  deriving (Show)
 
 instance T.ToJSON CanTransferOwnershipResult where
  toJSON (CanTransferOwnershipResultOk {  }) =
@@ -25,13 +25,6 @@ instance T.ToJSON CanTransferOwnershipResult where
 
  toJSON (CanTransferOwnershipResultSessionTooFresh { retry_after = retry_after }) =
   A.object [ "@type" A..= T.String "canTransferOwnershipResultSessionTooFresh", "retry_after" A..= retry_after ]
--- canTransferOwnershipResultOk CanTransferOwnershipResult 
-
--- canTransferOwnershipResultPasswordNeeded CanTransferOwnershipResult 
-
--- canTransferOwnershipResultPasswordTooFresh CanTransferOwnershipResult  { retry_after :: Int } 
-
--- canTransferOwnershipResultSessionTooFresh CanTransferOwnershipResult  { retry_after :: Int } 
 
 
 
@@ -43,6 +36,8 @@ instance T.FromJSON CanTransferOwnershipResult where
    "canTransferOwnershipResultPasswordNeeded" -> parseCanTransferOwnershipResultPasswordNeeded v
    "canTransferOwnershipResultPasswordTooFresh" -> parseCanTransferOwnershipResultPasswordTooFresh v
    "canTransferOwnershipResultSessionTooFresh" -> parseCanTransferOwnershipResultSessionTooFresh v
+
+   _ -> mempty ""
   where
    parseCanTransferOwnershipResultOk :: A.Value -> T.Parser CanTransferOwnershipResult
    parseCanTransferOwnershipResultOk = A.withObject "CanTransferOwnershipResultOk" $ \o -> do

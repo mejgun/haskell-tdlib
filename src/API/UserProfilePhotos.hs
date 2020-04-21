@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.UserProfilePhoto as UserProfilePhoto
 --main = putStrLn "ok"
 
 data UserProfilePhotos = 
- UserProfilePhotos { photos :: [UserProfilePhoto.UserProfilePhoto], total_count :: Int }  -- deriving (Show)
+ UserProfilePhotos { photos :: [UserProfilePhoto.UserProfilePhoto], total_count :: Int }  deriving (Show)
 
 instance T.ToJSON UserProfilePhotos where
  toJSON (UserProfilePhotos { photos = photos, total_count = total_count }) =
   A.object [ "@type" A..= T.String "userProfilePhotos", "photos" A..= photos, "total_count" A..= total_count ]
--- userProfilePhotos UserProfilePhotos  { photos :: [UserProfilePhoto.UserProfilePhoto], total_count :: Int } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON UserProfilePhotos where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "userProfilePhotos" -> parseUserProfilePhotos v
+
+   _ -> mempty ""
   where
    parseUserProfilePhotos :: A.Value -> T.Parser UserProfilePhotos
    parseUserProfilePhotos = A.withObject "UserProfilePhotos" $ \o -> do

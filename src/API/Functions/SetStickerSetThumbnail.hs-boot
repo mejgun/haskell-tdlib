@@ -10,3 +10,5 @@ instance ToJSON SetStickerSetThumbnail
 
 instance FromJSON SetStickerSetThumbnail
 
+instance Show SetStickerSetThumbnail
+

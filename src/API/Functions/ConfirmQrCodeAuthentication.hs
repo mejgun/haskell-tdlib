@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data ConfirmQrCodeAuthentication = 
- ConfirmQrCodeAuthentication { link :: String }  -- deriving (Show)
+ ConfirmQrCodeAuthentication { link :: String }  deriving (Show)
 
 instance T.ToJSON ConfirmQrCodeAuthentication where
  toJSON (ConfirmQrCodeAuthentication { link = link }) =
   A.object [ "@type" A..= T.String "confirmQrCodeAuthentication", "link" A..= link ]
--- confirmQrCodeAuthentication ConfirmQrCodeAuthentication  { link :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON ConfirmQrCodeAuthentication where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "confirmQrCodeAuthentication" -> parseConfirmQrCodeAuthentication v
+
+   _ -> mempty ""
   where
    parseConfirmQrCodeAuthentication :: A.Value -> T.Parser ConfirmQrCodeAuthentication
    parseConfirmQrCodeAuthentication = A.withObject "ConfirmQrCodeAuthentication" $ \o -> do

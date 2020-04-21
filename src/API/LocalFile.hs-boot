@@ -10,3 +10,5 @@ instance ToJSON LocalFile
 
 instance FromJSON LocalFile
 
+instance Show LocalFile
+

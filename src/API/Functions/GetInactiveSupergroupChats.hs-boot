@@ -10,3 +10,5 @@ instance ToJSON GetInactiveSupergroupChats
 
 instance FromJSON GetInactiveSupergroupChats
 
+instance Show GetInactiveSupergroupChats
+

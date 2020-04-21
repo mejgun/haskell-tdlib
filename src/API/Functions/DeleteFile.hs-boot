@@ -10,3 +10,5 @@ instance ToJSON DeleteFile
 
 instance FromJSON DeleteFile
 
+instance Show DeleteFile
+

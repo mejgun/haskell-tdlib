@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.Background as Background
 --main = putStrLn "ok"
 
 data Backgrounds = 
- Backgrounds { backgrounds :: [Background.Background] }  -- deriving (Show)
+ Backgrounds { backgrounds :: [Background.Background] }  deriving (Show)
 
 instance T.ToJSON Backgrounds where
  toJSON (Backgrounds { backgrounds = backgrounds }) =
   A.object [ "@type" A..= T.String "backgrounds", "backgrounds" A..= backgrounds ]
--- backgrounds Backgrounds  { backgrounds :: [Background.Background] } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON Backgrounds where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "backgrounds" -> parseBackgrounds v
+
+   _ -> mempty ""
   where
    parseBackgrounds :: A.Value -> T.Parser Backgrounds
    parseBackgrounds = A.withObject "Backgrounds" $ \o -> do

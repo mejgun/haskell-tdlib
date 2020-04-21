@@ -11,7 +11,7 @@ data KeyboardButtonType =
  KeyboardButtonTypeText 
  | KeyboardButtonTypeRequestPhoneNumber 
  | KeyboardButtonTypeRequestLocation 
- | KeyboardButtonTypeRequestPoll { force_quiz :: Bool, force_regular :: Bool }  -- deriving (Show)
+ | KeyboardButtonTypeRequestPoll { force_quiz :: Bool, force_regular :: Bool }  deriving (Show)
 
 instance T.ToJSON KeyboardButtonType where
  toJSON (KeyboardButtonTypeText {  }) =
@@ -25,13 +25,6 @@ instance T.ToJSON KeyboardButtonType where
 
  toJSON (KeyboardButtonTypeRequestPoll { force_quiz = force_quiz, force_regular = force_regular }) =
   A.object [ "@type" A..= T.String "keyboardButtonTypeRequestPoll", "force_quiz" A..= force_quiz, "force_regular" A..= force_regular ]
--- keyboardButtonTypeText KeyboardButtonType 
-
--- keyboardButtonTypeRequestPhoneNumber KeyboardButtonType 
-
--- keyboardButtonTypeRequestLocation KeyboardButtonType 
-
--- keyboardButtonTypeRequestPoll KeyboardButtonType  { force_quiz :: Bool, force_regular :: Bool } 
 
 
 
@@ -43,6 +36,8 @@ instance T.FromJSON KeyboardButtonType where
    "keyboardButtonTypeRequestPhoneNumber" -> parseKeyboardButtonTypeRequestPhoneNumber v
    "keyboardButtonTypeRequestLocation" -> parseKeyboardButtonTypeRequestLocation v
    "keyboardButtonTypeRequestPoll" -> parseKeyboardButtonTypeRequestPoll v
+
+   _ -> mempty ""
   where
    parseKeyboardButtonTypeText :: A.Value -> T.Parser KeyboardButtonType
    parseKeyboardButtonTypeText = A.withObject "KeyboardButtonTypeText" $ \o -> do

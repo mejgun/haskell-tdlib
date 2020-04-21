@@ -10,3 +10,5 @@ instance ToJSON StatisticsGraph
 
 instance FromJSON StatisticsGraph
 
+instance Show StatisticsGraph
+

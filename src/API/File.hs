@@ -10,12 +10,11 @@ import {-# SOURCE #-} qualified API.LocalFile as LocalFile
 --main = putStrLn "ok"
 
 data File = 
- File { remote :: RemoteFile.RemoteFile, local :: LocalFile.LocalFile, expected_size :: Int, size :: Int, _id :: Int }  -- deriving (Show)
+ File { remote :: RemoteFile.RemoteFile, local :: LocalFile.LocalFile, expected_size :: Int, size :: Int, _id :: Int }  deriving (Show)
 
 instance T.ToJSON File where
  toJSON (File { remote = remote, local = local, expected_size = expected_size, size = size, _id = _id }) =
   A.object [ "@type" A..= T.String "file", "remote" A..= remote, "local" A..= local, "expected_size" A..= expected_size, "size" A..= size, "id" A..= _id ]
--- file File  { remote :: RemoteFile.RemoteFile, local :: LocalFile.LocalFile, expected_size :: Int, size :: Int, _id :: Int } 
 
 
 
@@ -24,6 +23,8 @@ instance T.FromJSON File where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "file" -> parseFile v
+
+   _ -> mempty ""
   where
    parseFile :: A.Value -> T.Parser File
    parseFile = A.withObject "File" $ \o -> do

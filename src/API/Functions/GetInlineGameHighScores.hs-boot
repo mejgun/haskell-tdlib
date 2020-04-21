@@ -10,3 +10,5 @@ instance ToJSON GetInlineGameHighScores
 
 instance FromJSON GetInlineGameHighScores
 
+instance Show GetInlineGameHighScores
+

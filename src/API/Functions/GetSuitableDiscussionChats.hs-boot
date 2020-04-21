@@ -10,3 +10,5 @@ instance ToJSON GetSuitableDiscussionChats
 
 instance FromJSON GetSuitableDiscussionChats
 
+instance Show GetSuitableDiscussionChats
+

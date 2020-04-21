@@ -10,3 +10,5 @@ instance ToJSON CheckChatUsernameResult
 
 instance FromJSON CheckChatUsernameResult
 
+instance Show CheckChatUsernameResult
+

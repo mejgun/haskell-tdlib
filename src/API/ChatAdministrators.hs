@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.ChatAdministrator as ChatAdministrator
 --main = putStrLn "ok"
 
 data ChatAdministrators = 
- ChatAdministrators { administrators :: [ChatAdministrator.ChatAdministrator] }  -- deriving (Show)
+ ChatAdministrators { administrators :: [ChatAdministrator.ChatAdministrator] }  deriving (Show)
 
 instance T.ToJSON ChatAdministrators where
  toJSON (ChatAdministrators { administrators = administrators }) =
   A.object [ "@type" A..= T.String "chatAdministrators", "administrators" A..= administrators ]
--- chatAdministrators ChatAdministrators  { administrators :: [ChatAdministrator.ChatAdministrator] } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON ChatAdministrators where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "chatAdministrators" -> parseChatAdministrators v
+
+   _ -> mempty ""
   where
    parseChatAdministrators :: A.Value -> T.Parser ChatAdministrators
    parseChatAdministrators = A.withObject "ChatAdministrators" $ \o -> do

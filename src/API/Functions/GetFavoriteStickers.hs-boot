@@ -10,3 +10,5 @@ instance ToJSON GetFavoriteStickers
 
 instance FromJSON GetFavoriteStickers
 
+instance Show GetFavoriteStickers
+

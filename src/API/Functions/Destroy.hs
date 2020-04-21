@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data Destroy = 
- Destroy -- deriving (Show)
+ Destroy deriving (Show)
 
 instance T.ToJSON Destroy where
  toJSON (Destroy {  }) =
   A.object [ "@type" A..= T.String "destroy" ]
--- destroy Destroy 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON Destroy where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "destroy" -> parseDestroy v
+
+   _ -> mempty ""
   where
    parseDestroy :: A.Value -> T.Parser Destroy
    parseDestroy = A.withObject "Destroy" $ \o -> do

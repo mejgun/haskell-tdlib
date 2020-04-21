@@ -10,3 +10,5 @@ instance ToJSON PushReceiverId
 
 instance FromJSON PushReceiverId
 
+instance Show PushReceiverId
+

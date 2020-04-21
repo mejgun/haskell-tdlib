@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.BankCardActionOpenUrl as BankCardActionOpenU
 --main = putStrLn "ok"
 
 data BankCardInfo = 
- BankCardInfo { actions :: [BankCardActionOpenUrl.BankCardActionOpenUrl], title :: String }  -- deriving (Show)
+ BankCardInfo { actions :: [BankCardActionOpenUrl.BankCardActionOpenUrl], title :: String }  deriving (Show)
 
 instance T.ToJSON BankCardInfo where
  toJSON (BankCardInfo { actions = actions, title = title }) =
   A.object [ "@type" A..= T.String "bankCardInfo", "actions" A..= actions, "title" A..= title ]
--- bankCardInfo BankCardInfo  { actions :: [BankCardActionOpenUrl.BankCardActionOpenUrl], title :: String } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON BankCardInfo where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "bankCardInfo" -> parseBankCardInfo v
+
+   _ -> mempty ""
   where
    parseBankCardInfo :: A.Value -> T.Parser BankCardInfo
    parseBankCardInfo = A.withObject "BankCardInfo" $ \o -> do

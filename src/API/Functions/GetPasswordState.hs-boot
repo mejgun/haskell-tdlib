@@ -10,3 +10,5 @@ instance ToJSON GetPasswordState
 
 instance FromJSON GetPasswordState
 
+instance Show GetPasswordState
+

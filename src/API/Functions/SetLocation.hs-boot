@@ -10,3 +10,5 @@ instance ToJSON SetLocation
 
 instance FromJSON SetLocation
 
+instance Show SetLocation
+

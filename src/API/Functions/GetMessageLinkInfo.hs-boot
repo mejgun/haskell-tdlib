@@ -10,3 +10,5 @@ instance ToJSON GetMessageLinkInfo
 
 instance FromJSON GetMessageLinkInfo
 
+instance Show GetMessageLinkInfo
+

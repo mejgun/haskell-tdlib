@@ -25,7 +25,7 @@ data RichText =
  | RichTextReference { url :: String, reference_text :: RichText, text :: RichText }  
  | RichTextAnchor { name :: String }  
  | RichTextAnchorLink { url :: String, name :: String, text :: RichText }  
- | RichTexts { texts :: [RichText] }  -- deriving (Show)
+ | RichTexts { texts :: [RichText] }  deriving (Show)
 
 instance T.ToJSON RichText where
  toJSON (RichTextPlain { _text = _text }) =
@@ -78,39 +78,6 @@ instance T.ToJSON RichText where
 
  toJSON (RichTexts { texts = texts }) =
   A.object [ "@type" A..= T.String "richTexts", "texts" A..= texts ]
--- richTextPlain RichText  { _text :: String } 
-
--- richTextBold RichText  { text :: RichText } 
-
--- richTextItalic RichText  { text :: RichText } 
-
--- richTextUnderline RichText  { text :: RichText } 
-
--- richTextStrikethrough RichText  { text :: RichText } 
-
--- richTextFixed RichText  { text :: RichText } 
-
--- richTextUrl RichText  { is_cached :: Bool, url :: String, text :: RichText } 
-
--- richTextEmailAddress RichText  { email_address :: String, text :: RichText } 
-
--- richTextSubscript RichText  { text :: RichText } 
-
--- richTextSuperscript RichText  { text :: RichText } 
-
--- richTextMarked RichText  { text :: RichText } 
-
--- richTextPhoneNumber RichText  { phone_number :: String, text :: RichText } 
-
--- richTextIcon RichText  { height :: Int, width :: Int, document :: Document.Document } 
-
--- richTextReference RichText  { url :: String, reference_text :: RichText, text :: RichText } 
-
--- richTextAnchor RichText  { name :: String } 
-
--- richTextAnchorLink RichText  { url :: String, name :: String, text :: RichText } 
-
--- richTexts RichText  { texts :: [RichText] } 
 
 
 
@@ -135,6 +102,8 @@ instance T.FromJSON RichText where
    "richTextAnchor" -> parseRichTextAnchor v
    "richTextAnchorLink" -> parseRichTextAnchorLink v
    "richTexts" -> parseRichTexts v
+
+   _ -> mempty ""
   where
    parseRichTextPlain :: A.Value -> T.Parser RichText
    parseRichTextPlain = A.withObject "RichTextPlain" $ \o -> do

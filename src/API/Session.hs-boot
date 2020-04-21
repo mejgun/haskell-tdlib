@@ -10,3 +10,5 @@ instance ToJSON Session
 
 instance FromJSON Session
 
+instance Show Session
+

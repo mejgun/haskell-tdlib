@@ -10,3 +10,5 @@ instance ToJSON ChatActionBar
 
 instance FromJSON ChatActionBar
 
+instance Show ChatActionBar
+

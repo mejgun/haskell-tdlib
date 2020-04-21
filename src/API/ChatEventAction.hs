@@ -34,7 +34,7 @@ data ChatEventAction =
  | ChatEventSignMessagesToggled { sign_messages :: Bool }  
  | ChatEventStickerSetChanged { new_sticker_set_id :: Int, old_sticker_set_id :: Int }  
  | ChatEventLocationChanged { new_location :: ChatLocation.ChatLocation, old_location :: ChatLocation.ChatLocation }  
- | ChatEventIsAllHistoryAvailableToggled { is_all_history_available :: Bool }  -- deriving (Show)
+ | ChatEventIsAllHistoryAvailableToggled { is_all_history_available :: Bool }  deriving (Show)
 
 instance T.ToJSON ChatEventAction where
  toJSON (ChatEventMessageEdited { new_message = new_message, old_message = old_message }) =
@@ -102,49 +102,6 @@ instance T.ToJSON ChatEventAction where
 
  toJSON (ChatEventIsAllHistoryAvailableToggled { is_all_history_available = is_all_history_available }) =
   A.object [ "@type" A..= T.String "chatEventIsAllHistoryAvailableToggled", "is_all_history_available" A..= is_all_history_available ]
--- chatEventMessageEdited ChatEventAction  { new_message :: Message.Message, old_message :: Message.Message } 
-
--- chatEventMessageDeleted ChatEventAction  { message :: Message.Message } 
-
--- chatEventPollStopped ChatEventAction  { message :: Message.Message } 
-
--- chatEventMessagePinned ChatEventAction  { message :: Message.Message } 
-
--- chatEventMessageUnpinned ChatEventAction 
-
--- chatEventMemberJoined ChatEventAction 
-
--- chatEventMemberLeft ChatEventAction 
-
--- chatEventMemberInvited ChatEventAction  { status :: ChatMemberStatus.ChatMemberStatus, user_id :: Int } 
-
--- chatEventMemberPromoted ChatEventAction  { new_status :: ChatMemberStatus.ChatMemberStatus, old_status :: ChatMemberStatus.ChatMemberStatus, user_id :: Int } 
-
--- chatEventMemberRestricted ChatEventAction  { new_status :: ChatMemberStatus.ChatMemberStatus, old_status :: ChatMemberStatus.ChatMemberStatus, user_id :: Int } 
-
--- chatEventTitleChanged ChatEventAction  { new_title :: String, old_title :: String } 
-
--- chatEventPermissionsChanged ChatEventAction  { new_permissions :: ChatPermissions.ChatPermissions, old_permissions :: ChatPermissions.ChatPermissions } 
-
--- chatEventDescriptionChanged ChatEventAction  { new_description :: String, old_description :: String } 
-
--- chatEventUsernameChanged ChatEventAction  { new_username :: String, old_username :: String } 
-
--- chatEventPhotoChanged ChatEventAction  { new_photo :: Photo.Photo, old_photo :: Photo.Photo } 
-
--- chatEventInvitesToggled ChatEventAction  { can_invite_users :: Bool } 
-
--- chatEventLinkedChatChanged ChatEventAction  { new_linked_chat_id :: Int, old_linked_chat_id :: Int } 
-
--- chatEventSlowModeDelayChanged ChatEventAction  { new_slow_mode_delay :: Int, old_slow_mode_delay :: Int } 
-
--- chatEventSignMessagesToggled ChatEventAction  { sign_messages :: Bool } 
-
--- chatEventStickerSetChanged ChatEventAction  { new_sticker_set_id :: Int, old_sticker_set_id :: Int } 
-
--- chatEventLocationChanged ChatEventAction  { new_location :: ChatLocation.ChatLocation, old_location :: ChatLocation.ChatLocation } 
-
--- chatEventIsAllHistoryAvailableToggled ChatEventAction  { is_all_history_available :: Bool } 
 
 
 
@@ -174,6 +131,8 @@ instance T.FromJSON ChatEventAction where
    "chatEventStickerSetChanged" -> parseChatEventStickerSetChanged v
    "chatEventLocationChanged" -> parseChatEventLocationChanged v
    "chatEventIsAllHistoryAvailableToggled" -> parseChatEventIsAllHistoryAvailableToggled v
+
+   _ -> mempty ""
   where
    parseChatEventMessageEdited :: A.Value -> T.Parser ChatEventAction
    parseChatEventMessageEdited = A.withObject "ChatEventMessageEdited" $ \o -> do

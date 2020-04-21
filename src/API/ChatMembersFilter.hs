@@ -13,7 +13,7 @@ data ChatMembersFilter =
  | ChatMembersFilterMembers 
  | ChatMembersFilterRestricted 
  | ChatMembersFilterBanned 
- | ChatMembersFilterBots -- deriving (Show)
+ | ChatMembersFilterBots deriving (Show)
 
 instance T.ToJSON ChatMembersFilter where
  toJSON (ChatMembersFilterContacts {  }) =
@@ -33,17 +33,6 @@ instance T.ToJSON ChatMembersFilter where
 
  toJSON (ChatMembersFilterBots {  }) =
   A.object [ "@type" A..= T.String "chatMembersFilterBots" ]
--- chatMembersFilterContacts ChatMembersFilter 
-
--- chatMembersFilterAdministrators ChatMembersFilter 
-
--- chatMembersFilterMembers ChatMembersFilter 
-
--- chatMembersFilterRestricted ChatMembersFilter 
-
--- chatMembersFilterBanned ChatMembersFilter 
-
--- chatMembersFilterBots ChatMembersFilter 
 
 
 
@@ -57,6 +46,8 @@ instance T.FromJSON ChatMembersFilter where
    "chatMembersFilterRestricted" -> parseChatMembersFilterRestricted v
    "chatMembersFilterBanned" -> parseChatMembersFilterBanned v
    "chatMembersFilterBots" -> parseChatMembersFilterBots v
+
+   _ -> mempty ""
   where
    parseChatMembersFilterContacts :: A.Value -> T.Parser ChatMembersFilter
    parseChatMembersFilterContacts = A.withObject "ChatMembersFilterContacts" $ \o -> do

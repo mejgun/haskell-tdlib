@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.NotificationSettingsScope as NotificationSet
 --main = putStrLn "ok"
 
 data GetChatNotificationSettingsExceptions = 
- GetChatNotificationSettingsExceptions { compare_sound :: Bool, scope :: NotificationSettingsScope.NotificationSettingsScope }  -- deriving (Show)
+ GetChatNotificationSettingsExceptions { compare_sound :: Bool, scope :: NotificationSettingsScope.NotificationSettingsScope }  deriving (Show)
 
 instance T.ToJSON GetChatNotificationSettingsExceptions where
  toJSON (GetChatNotificationSettingsExceptions { compare_sound = compare_sound, scope = scope }) =
   A.object [ "@type" A..= T.String "getChatNotificationSettingsExceptions", "compare_sound" A..= compare_sound, "scope" A..= scope ]
--- getChatNotificationSettingsExceptions GetChatNotificationSettingsExceptions  { compare_sound :: Bool, scope :: NotificationSettingsScope.NotificationSettingsScope } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON GetChatNotificationSettingsExceptions where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getChatNotificationSettingsExceptions" -> parseGetChatNotificationSettingsExceptions v
+
+   _ -> mempty ""
   where
    parseGetChatNotificationSettingsExceptions :: A.Value -> T.Parser GetChatNotificationSettingsExceptions
    parseGetChatNotificationSettingsExceptions = A.withObject "GetChatNotificationSettingsExceptions" $ \o -> do

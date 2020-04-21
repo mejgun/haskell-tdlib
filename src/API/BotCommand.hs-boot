@@ -10,3 +10,5 @@ instance ToJSON BotCommand
 
 instance FromJSON BotCommand
 
+instance Show BotCommand
+

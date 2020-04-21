@@ -10,3 +10,5 @@ instance ToJSON GetContacts
 
 instance FromJSON GetContacts
 
+instance Show GetContacts
+

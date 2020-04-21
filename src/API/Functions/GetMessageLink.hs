@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetMessageLink = 
- GetMessageLink { message_id :: Int, chat_id :: Int }  -- deriving (Show)
+ GetMessageLink { message_id :: Int, chat_id :: Int }  deriving (Show)
 
 instance T.ToJSON GetMessageLink where
  toJSON (GetMessageLink { message_id = message_id, chat_id = chat_id }) =
   A.object [ "@type" A..= T.String "getMessageLink", "message_id" A..= message_id, "chat_id" A..= chat_id ]
--- getMessageLink GetMessageLink  { message_id :: Int, chat_id :: Int } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetMessageLink where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getMessageLink" -> parseGetMessageLink v
+
+   _ -> mempty ""
   where
    parseGetMessageLink :: A.Value -> T.Parser GetMessageLink
    parseGetMessageLink = A.withObject "GetMessageLink" $ \o -> do

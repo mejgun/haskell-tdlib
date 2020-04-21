@@ -11,7 +11,7 @@ data MaskPoint =
  MaskPointForehead 
  | MaskPointEyes 
  | MaskPointMouth 
- | MaskPointChin -- deriving (Show)
+ | MaskPointChin deriving (Show)
 
 instance T.ToJSON MaskPoint where
  toJSON (MaskPointForehead {  }) =
@@ -25,13 +25,6 @@ instance T.ToJSON MaskPoint where
 
  toJSON (MaskPointChin {  }) =
   A.object [ "@type" A..= T.String "maskPointChin" ]
--- maskPointForehead MaskPoint 
-
--- maskPointEyes MaskPoint 
-
--- maskPointMouth MaskPoint 
-
--- maskPointChin MaskPoint 
 
 
 
@@ -43,6 +36,8 @@ instance T.FromJSON MaskPoint where
    "maskPointEyes" -> parseMaskPointEyes v
    "maskPointMouth" -> parseMaskPointMouth v
    "maskPointChin" -> parseMaskPointChin v
+
+   _ -> mempty ""
   where
    parseMaskPointForehead :: A.Value -> T.Parser MaskPoint
    parseMaskPointForehead = A.withObject "MaskPointForehead" $ \o -> do

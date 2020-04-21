@@ -10,3 +10,5 @@ instance ToJSON GetFile
 
 instance FromJSON GetFile
 
+instance Show GetFile
+

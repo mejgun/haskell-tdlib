@@ -10,3 +10,5 @@ instance ToJSON ChatPhoto
 
 instance FromJSON ChatPhoto
 
+instance Show ChatPhoto
+

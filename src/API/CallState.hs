@@ -17,7 +17,7 @@ data CallState =
  | CallStateReady { allow_p2p :: Bool, emojis :: [String], encryption_key :: String, config :: String, connections :: [CallConnection.CallConnection], protocol :: CallProtocol.CallProtocol }  
  | CallStateHangingUp 
  | CallStateDiscarded { need_debug_information :: Bool, need_rating :: Bool, reason :: CallDiscardReason.CallDiscardReason }  
- | CallStateError { _error :: Error.Error }  -- deriving (Show)
+ | CallStateError { _error :: Error.Error }  deriving (Show)
 
 instance T.ToJSON CallState where
  toJSON (CallStatePending { is_received = is_received, is_created = is_created }) =
@@ -37,17 +37,6 @@ instance T.ToJSON CallState where
 
  toJSON (CallStateError { _error = _error }) =
   A.object [ "@type" A..= T.String "callStateError", "error" A..= _error ]
--- callStatePending CallState  { is_received :: Bool, is_created :: Bool } 
-
--- callStateExchangingKeys CallState 
-
--- callStateReady CallState  { allow_p2p :: Bool, emojis :: [String], encryption_key :: String, config :: String, connections :: [CallConnection.CallConnection], protocol :: CallProtocol.CallProtocol } 
-
--- callStateHangingUp CallState 
-
--- callStateDiscarded CallState  { need_debug_information :: Bool, need_rating :: Bool, reason :: CallDiscardReason.CallDiscardReason } 
-
--- callStateError CallState  { _error :: Error.Error } 
 
 
 
@@ -61,6 +50,8 @@ instance T.FromJSON CallState where
    "callStateHangingUp" -> parseCallStateHangingUp v
    "callStateDiscarded" -> parseCallStateDiscarded v
    "callStateError" -> parseCallStateError v
+
+   _ -> mempty ""
   where
    parseCallStatePending :: A.Value -> T.Parser CallState
    parseCallStatePending = A.withObject "CallStatePending" $ \o -> do

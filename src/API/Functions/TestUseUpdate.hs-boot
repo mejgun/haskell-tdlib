@@ -10,3 +10,5 @@ instance ToJSON TestUseUpdate
 
 instance FromJSON TestUseUpdate
 
+instance Show TestUseUpdate
+

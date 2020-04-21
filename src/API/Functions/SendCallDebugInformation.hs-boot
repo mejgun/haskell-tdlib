@@ -10,3 +10,5 @@ instance ToJSON SendCallDebugInformation
 
 instance FromJSON SendCallDebugInformation
 
+instance Show SendCallDebugInformation
+

@@ -10,3 +10,5 @@ instance ToJSON CallProblem
 
 instance FromJSON CallProblem
 
+instance Show CallProblem
+

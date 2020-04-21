@@ -10,3 +10,5 @@ instance ToJSON Emojis
 
 instance FromJSON Emojis
 
+instance Show Emojis
+

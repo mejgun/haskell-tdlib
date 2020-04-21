@@ -10,3 +10,5 @@ instance ToJSON IdentityDocument
 
 instance FromJSON IdentityDocument
 
+instance Show IdentityDocument
+

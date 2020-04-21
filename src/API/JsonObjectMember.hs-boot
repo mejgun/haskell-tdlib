@@ -10,3 +10,5 @@ instance ToJSON JsonObjectMember
 
 instance FromJSON JsonObjectMember
 
+instance Show JsonObjectMember
+

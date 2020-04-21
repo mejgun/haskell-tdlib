@@ -10,3 +10,5 @@ instance ToJSON MaskPoint
 
 instance FromJSON MaskPoint
 
+instance Show MaskPoint
+

@@ -12,7 +12,7 @@ data CheckChatUsernameResult =
  | CheckChatUsernameResultUsernameInvalid 
  | CheckChatUsernameResultUsernameOccupied 
  | CheckChatUsernameResultPublicChatsTooMuch 
- | CheckChatUsernameResultPublicGroupsUnavailable -- deriving (Show)
+ | CheckChatUsernameResultPublicGroupsUnavailable deriving (Show)
 
 instance T.ToJSON CheckChatUsernameResult where
  toJSON (CheckChatUsernameResultOk {  }) =
@@ -29,15 +29,6 @@ instance T.ToJSON CheckChatUsernameResult where
 
  toJSON (CheckChatUsernameResultPublicGroupsUnavailable {  }) =
   A.object [ "@type" A..= T.String "checkChatUsernameResultPublicGroupsUnavailable" ]
--- checkChatUsernameResultOk CheckChatUsernameResult 
-
--- checkChatUsernameResultUsernameInvalid CheckChatUsernameResult 
-
--- checkChatUsernameResultUsernameOccupied CheckChatUsernameResult 
-
--- checkChatUsernameResultPublicChatsTooMuch CheckChatUsernameResult 
-
--- checkChatUsernameResultPublicGroupsUnavailable CheckChatUsernameResult 
 
 
 
@@ -50,6 +41,8 @@ instance T.FromJSON CheckChatUsernameResult where
    "checkChatUsernameResultUsernameOccupied" -> parseCheckChatUsernameResultUsernameOccupied v
    "checkChatUsernameResultPublicChatsTooMuch" -> parseCheckChatUsernameResultPublicChatsTooMuch v
    "checkChatUsernameResultPublicGroupsUnavailable" -> parseCheckChatUsernameResultPublicGroupsUnavailable v
+
+   _ -> mempty ""
   where
    parseCheckChatUsernameResultOk :: A.Value -> T.Parser CheckChatUsernameResult
    parseCheckChatUsernameResultOk = A.withObject "CheckChatUsernameResultOk" $ \o -> do

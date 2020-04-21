@@ -10,3 +10,5 @@ instance ToJSON Audio
 
 instance FromJSON Audio
 
+instance Show Audio
+

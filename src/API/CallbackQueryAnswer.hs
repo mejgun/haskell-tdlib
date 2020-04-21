@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data CallbackQueryAnswer = 
- CallbackQueryAnswer { url :: String, show_alert :: Bool, text :: String }  -- deriving (Show)
+ CallbackQueryAnswer { url :: String, show_alert :: Bool, text :: String }  deriving (Show)
 
 instance T.ToJSON CallbackQueryAnswer where
  toJSON (CallbackQueryAnswer { url = url, show_alert = show_alert, text = text }) =
   A.object [ "@type" A..= T.String "callbackQueryAnswer", "url" A..= url, "show_alert" A..= show_alert, "text" A..= text ]
--- callbackQueryAnswer CallbackQueryAnswer  { url :: String, show_alert :: Bool, text :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON CallbackQueryAnswer where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "callbackQueryAnswer" -> parseCallbackQueryAnswer v
+
+   _ -> mempty ""
   where
    parseCallbackQueryAnswer :: A.Value -> T.Parser CallbackQueryAnswer
    parseCallbackQueryAnswer = A.withObject "CallbackQueryAnswer" $ \o -> do

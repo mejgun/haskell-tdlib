@@ -10,3 +10,5 @@ instance ToJSON CallConnection
 
 instance FromJSON CallConnection
 
+instance Show CallConnection
+

@@ -10,3 +10,5 @@ instance ToJSON GetMe
 
 instance FromJSON GetMe
 
+instance Show GetMe
+

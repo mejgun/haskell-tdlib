@@ -10,3 +10,5 @@ instance ToJSON RichText
 
 instance FromJSON RichText
 
+instance Show RichText
+

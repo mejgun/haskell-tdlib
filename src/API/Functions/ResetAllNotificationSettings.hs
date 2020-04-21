@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data ResetAllNotificationSettings = 
- ResetAllNotificationSettings -- deriving (Show)
+ ResetAllNotificationSettings deriving (Show)
 
 instance T.ToJSON ResetAllNotificationSettings where
  toJSON (ResetAllNotificationSettings {  }) =
   A.object [ "@type" A..= T.String "resetAllNotificationSettings" ]
--- resetAllNotificationSettings ResetAllNotificationSettings 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON ResetAllNotificationSettings where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "resetAllNotificationSettings" -> parseResetAllNotificationSettings v
+
+   _ -> mempty ""
   where
    parseResetAllNotificationSettings :: A.Value -> T.Parser ResetAllNotificationSettings
    parseResetAllNotificationSettings = A.withObject "ResetAllNotificationSettings" $ \o -> do

@@ -10,3 +10,5 @@ instance ToJSON GetImportedContactCount
 
 instance FromJSON GetImportedContactCount
 
+instance Show GetImportedContactCount
+

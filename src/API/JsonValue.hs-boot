@@ -10,3 +10,5 @@ instance ToJSON JsonValue
 
 instance FromJSON JsonValue
 
+instance Show JsonValue
+

@@ -10,3 +10,5 @@ instance ToJSON GetTextEntities
 
 instance FromJSON GetTextEntities
 
+instance Show GetTextEntities
+

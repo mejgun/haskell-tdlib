@@ -10,3 +10,5 @@ instance ToJSON ResendMessages
 
 instance FromJSON ResendMessages
 
+instance Show ResendMessages
+

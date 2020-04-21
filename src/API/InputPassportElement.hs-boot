@@ -10,3 +10,5 @@ instance ToJSON InputPassportElement
 
 instance FromJSON InputPassportElement
 
+instance Show InputPassportElement
+

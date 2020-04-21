@@ -10,3 +10,5 @@ instance ToJSON DeletePassportElement
 
 instance FromJSON DeletePassportElement
 
+instance Show DeletePassportElement
+

@@ -10,3 +10,5 @@ instance ToJSON RequestAuthenticationPasswordRecovery
 
 instance FromJSON RequestAuthenticationPasswordRecovery
 
+instance Show RequestAuthenticationPasswordRecovery
+

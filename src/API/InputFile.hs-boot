@@ -10,3 +10,5 @@ instance ToJSON InputFile
 
 instance FromJSON InputFile
 
+instance Show InputFile
+

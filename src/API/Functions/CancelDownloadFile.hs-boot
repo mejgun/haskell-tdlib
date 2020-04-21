@@ -10,3 +10,5 @@ instance ToJSON CancelDownloadFile
 
 instance FromJSON CancelDownloadFile
 
+instance Show CancelDownloadFile
+

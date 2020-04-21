@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data BankCardActionOpenUrl = 
- BankCardActionOpenUrl { url :: String, text :: String }  -- deriving (Show)
+ BankCardActionOpenUrl { url :: String, text :: String }  deriving (Show)
 
 instance T.ToJSON BankCardActionOpenUrl where
  toJSON (BankCardActionOpenUrl { url = url, text = text }) =
   A.object [ "@type" A..= T.String "bankCardActionOpenUrl", "url" A..= url, "text" A..= text ]
--- bankCardActionOpenUrl BankCardActionOpenUrl  { url :: String, text :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON BankCardActionOpenUrl where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "bankCardActionOpenUrl" -> parseBankCardActionOpenUrl v
+
+   _ -> mempty ""
   where
    parseBankCardActionOpenUrl :: A.Value -> T.Parser BankCardActionOpenUrl
    parseBankCardActionOpenUrl = A.withObject "BankCardActionOpenUrl" $ \o -> do

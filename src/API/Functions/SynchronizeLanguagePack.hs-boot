@@ -10,3 +10,5 @@ instance ToJSON SynchronizeLanguagePack
 
 instance FromJSON SynchronizeLanguagePack
 
+instance Show SynchronizeLanguagePack
+

@@ -10,3 +10,5 @@ instance ToJSON SetChatSlowModeDelay
 
 instance FromJSON SetChatSlowModeDelay
 
+instance Show SetChatSlowModeDelay
+

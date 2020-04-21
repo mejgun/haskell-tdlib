@@ -10,3 +10,5 @@ instance ToJSON PassportElementsWithErrors
 
 instance FromJSON PassportElementsWithErrors
 
+instance Show PassportElementsWithErrors
+

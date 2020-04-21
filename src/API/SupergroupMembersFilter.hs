@@ -14,7 +14,7 @@ data SupergroupMembersFilter =
  | SupergroupMembersFilterSearch { query :: String }  
  | SupergroupMembersFilterRestricted { query :: String }  
  | SupergroupMembersFilterBanned { query :: String }  
- | SupergroupMembersFilterBots -- deriving (Show)
+ | SupergroupMembersFilterBots deriving (Show)
 
 instance T.ToJSON SupergroupMembersFilter where
  toJSON (SupergroupMembersFilterRecent {  }) =
@@ -37,19 +37,6 @@ instance T.ToJSON SupergroupMembersFilter where
 
  toJSON (SupergroupMembersFilterBots {  }) =
   A.object [ "@type" A..= T.String "supergroupMembersFilterBots" ]
--- supergroupMembersFilterRecent SupergroupMembersFilter 
-
--- supergroupMembersFilterContacts SupergroupMembersFilter  { query :: String } 
-
--- supergroupMembersFilterAdministrators SupergroupMembersFilter 
-
--- supergroupMembersFilterSearch SupergroupMembersFilter  { query :: String } 
-
--- supergroupMembersFilterRestricted SupergroupMembersFilter  { query :: String } 
-
--- supergroupMembersFilterBanned SupergroupMembersFilter  { query :: String } 
-
--- supergroupMembersFilterBots SupergroupMembersFilter 
 
 
 
@@ -64,6 +51,8 @@ instance T.FromJSON SupergroupMembersFilter where
    "supergroupMembersFilterRestricted" -> parseSupergroupMembersFilterRestricted v
    "supergroupMembersFilterBanned" -> parseSupergroupMembersFilterBanned v
    "supergroupMembersFilterBots" -> parseSupergroupMembersFilterBots v
+
+   _ -> mempty ""
   where
    parseSupergroupMembersFilterRecent :: A.Value -> T.Parser SupergroupMembersFilter
    parseSupergroupMembersFilterRecent = A.withObject "SupergroupMembersFilterRecent" $ \o -> do

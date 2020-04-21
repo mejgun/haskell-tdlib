@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data LogOut = 
- LogOut -- deriving (Show)
+ LogOut deriving (Show)
 
 instance T.ToJSON LogOut where
  toJSON (LogOut {  }) =
   A.object [ "@type" A..= T.String "logOut" ]
--- logOut LogOut 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON LogOut where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "logOut" -> parseLogOut v
+
+   _ -> mempty ""
   where
    parseLogOut :: A.Value -> T.Parser LogOut
    parseLogOut = A.withObject "LogOut" $ \o -> do

@@ -10,3 +10,5 @@ instance ToJSON GetLoginUrl
 
 instance FromJSON GetLoginUrl
 
+instance Show GetLoginUrl
+

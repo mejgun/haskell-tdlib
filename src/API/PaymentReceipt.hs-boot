@@ -10,3 +10,5 @@ instance ToJSON PaymentReceipt
 
 instance FromJSON PaymentReceipt
 
+instance Show PaymentReceipt
+

@@ -10,3 +10,5 @@ instance ToJSON EncryptedPassportElement
 
 instance FromJSON EncryptedPassportElement
 
+instance Show EncryptedPassportElement
+

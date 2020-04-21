@@ -48,7 +48,7 @@ data PageBlock =
  | PageBlockTable { is_striped :: Bool, is_bordered :: Bool, cells :: [PageBlockTableCell.PageBlockTableCell], _caption :: RichText.RichText }  
  | PageBlockDetails { is_open :: Bool, page_blocks :: [PageBlock], header :: RichText.RichText }  
  | PageBlockRelatedArticles { articles :: [PageBlockRelatedArticle.PageBlockRelatedArticle], header :: RichText.RichText }  
- | PageBlockMap { caption :: PageBlockCaption.PageBlockCaption, height :: Int, width :: Int, zoom :: Int, location :: Location.Location }  -- deriving (Show)
+ | PageBlockMap { caption :: PageBlockCaption.PageBlockCaption, height :: Int, width :: Int, zoom :: Int, location :: Location.Location }  deriving (Show)
 
 instance T.ToJSON PageBlock where
  toJSON (PageBlockTitle { _title = _title }) =
@@ -137,63 +137,6 @@ instance T.ToJSON PageBlock where
 
  toJSON (PageBlockMap { caption = caption, height = height, width = width, zoom = zoom, location = location }) =
   A.object [ "@type" A..= T.String "pageBlockMap", "caption" A..= caption, "height" A..= height, "width" A..= width, "zoom" A..= zoom, "location" A..= location ]
--- pageBlockTitle PageBlock  { _title :: RichText.RichText } 
-
--- pageBlockSubtitle PageBlock  { subtitle :: RichText.RichText } 
-
--- pageBlockAuthorDate PageBlock  { publish_date :: Int, _author :: RichText.RichText } 
-
--- pageBlockHeader PageBlock  { header :: RichText.RichText } 
-
--- pageBlockSubheader PageBlock  { subheader :: RichText.RichText } 
-
--- pageBlockKicker PageBlock  { kicker :: RichText.RichText } 
-
--- pageBlockParagraph PageBlock  { text :: RichText.RichText } 
-
--- pageBlockPreformatted PageBlock  { language :: String, text :: RichText.RichText } 
-
--- pageBlockFooter PageBlock  { footer :: RichText.RichText } 
-
--- pageBlockDivider PageBlock 
-
--- pageBlockAnchor PageBlock  { name :: String } 
-
--- pageBlockList PageBlock  { items :: [PageBlockListItem.PageBlockListItem] } 
-
--- pageBlockBlockQuote PageBlock  { credit :: RichText.RichText, text :: RichText.RichText } 
-
--- pageBlockPullQuote PageBlock  { credit :: RichText.RichText, text :: RichText.RichText } 
-
--- pageBlockAnimation PageBlock  { need_autoplay :: Bool, caption :: PageBlockCaption.PageBlockCaption, animation :: Animation.Animation } 
-
--- pageBlockAudio PageBlock  { caption :: PageBlockCaption.PageBlockCaption, audio :: Audio.Audio } 
-
--- pageBlockPhoto PageBlock  { url :: String, caption :: PageBlockCaption.PageBlockCaption, _photo :: Photo.Photo } 
-
--- pageBlockVideo PageBlock  { is_looped :: Bool, need_autoplay :: Bool, caption :: PageBlockCaption.PageBlockCaption, video :: Video.Video } 
-
--- pageBlockVoiceNote PageBlock  { caption :: PageBlockCaption.PageBlockCaption, voice_note :: VoiceNote.VoiceNote } 
-
--- pageBlockCover PageBlock  { cover :: PageBlock } 
-
--- pageBlockEmbedded PageBlock  { allow_scrolling :: Bool, is_full_width :: Bool, caption :: PageBlockCaption.PageBlockCaption, height :: Int, width :: Int, poster_photo :: Photo.Photo, html :: String, url :: String } 
-
--- pageBlockEmbeddedPost PageBlock  { caption :: PageBlockCaption.PageBlockCaption, page_blocks :: [PageBlock], date :: Int, author_photo :: Photo.Photo, author :: String, url :: String } 
-
--- pageBlockCollage PageBlock  { caption :: PageBlockCaption.PageBlockCaption, page_blocks :: [PageBlock] } 
-
--- pageBlockSlideshow PageBlock  { caption :: PageBlockCaption.PageBlockCaption, page_blocks :: [PageBlock] } 
-
--- pageBlockChatLink PageBlock  { username :: String, photo :: ChatPhoto.ChatPhoto, title :: String } 
-
--- pageBlockTable PageBlock  { is_striped :: Bool, is_bordered :: Bool, cells :: [PageBlockTableCell.PageBlockTableCell], _caption :: RichText.RichText } 
-
--- pageBlockDetails PageBlock  { is_open :: Bool, page_blocks :: [PageBlock], header :: RichText.RichText } 
-
--- pageBlockRelatedArticles PageBlock  { articles :: [PageBlockRelatedArticle.PageBlockRelatedArticle], header :: RichText.RichText } 
-
--- pageBlockMap PageBlock  { caption :: PageBlockCaption.PageBlockCaption, height :: Int, width :: Int, zoom :: Int, location :: Location.Location } 
 
 
 
@@ -230,6 +173,8 @@ instance T.FromJSON PageBlock where
    "pageBlockDetails" -> parsePageBlockDetails v
    "pageBlockRelatedArticles" -> parsePageBlockRelatedArticles v
    "pageBlockMap" -> parsePageBlockMap v
+
+   _ -> mempty ""
   where
    parsePageBlockTitle :: A.Value -> T.Parser PageBlock
    parsePageBlockTitle = A.withObject "PageBlockTitle" $ \o -> do

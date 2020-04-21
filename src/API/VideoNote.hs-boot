@@ -10,3 +10,5 @@ instance ToJSON VideoNote
 
 instance FromJSON VideoNote
 
+instance Show VideoNote
+

@@ -10,7 +10,7 @@ import qualified Data.Aeson.Types as T
 data SecretChatState = 
  SecretChatStatePending 
  | SecretChatStateReady 
- | SecretChatStateClosed -- deriving (Show)
+ | SecretChatStateClosed deriving (Show)
 
 instance T.ToJSON SecretChatState where
  toJSON (SecretChatStatePending {  }) =
@@ -21,11 +21,6 @@ instance T.ToJSON SecretChatState where
 
  toJSON (SecretChatStateClosed {  }) =
   A.object [ "@type" A..= T.String "secretChatStateClosed" ]
--- secretChatStatePending SecretChatState 
-
--- secretChatStateReady SecretChatState 
-
--- secretChatStateClosed SecretChatState 
 
 
 
@@ -36,6 +31,8 @@ instance T.FromJSON SecretChatState where
    "secretChatStatePending" -> parseSecretChatStatePending v
    "secretChatStateReady" -> parseSecretChatStateReady v
    "secretChatStateClosed" -> parseSecretChatStateClosed v
+
+   _ -> mempty ""
   where
    parseSecretChatStatePending :: A.Value -> T.Parser SecretChatState
    parseSecretChatStatePending = A.withObject "SecretChatStatePending" $ \o -> do

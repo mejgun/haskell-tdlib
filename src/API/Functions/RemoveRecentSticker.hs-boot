@@ -10,3 +10,5 @@ instance ToJSON RemoveRecentSticker
 
 instance FromJSON RemoveRecentSticker
 
+instance Show RemoveRecentSticker
+

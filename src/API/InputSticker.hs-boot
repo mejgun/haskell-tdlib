@@ -10,3 +10,5 @@ instance ToJSON InputSticker
 
 instance FromJSON InputSticker
 
+instance Show InputSticker
+

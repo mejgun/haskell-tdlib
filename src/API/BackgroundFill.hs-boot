@@ -10,3 +10,5 @@ instance ToJSON BackgroundFill
 
 instance FromJSON BackgroundFill
 
+instance Show BackgroundFill
+

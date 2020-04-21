@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data CanTransferOwnership = 
- CanTransferOwnership -- deriving (Show)
+ CanTransferOwnership deriving (Show)
 
 instance T.ToJSON CanTransferOwnership where
  toJSON (CanTransferOwnership {  }) =
   A.object [ "@type" A..= T.String "canTransferOwnership" ]
--- canTransferOwnership CanTransferOwnership 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON CanTransferOwnership where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "canTransferOwnership" -> parseCanTransferOwnership v
+
+   _ -> mempty ""
   where
    parseCanTransferOwnership :: A.Value -> T.Parser CanTransferOwnership
    parseCanTransferOwnership = A.withObject "CanTransferOwnership" $ \o -> do

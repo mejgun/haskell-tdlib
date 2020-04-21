@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.TMeUrl as TMeUrl
 --main = putStrLn "ok"
 
 data TMeUrls = 
- TMeUrls { urls :: [TMeUrl.TMeUrl] }  -- deriving (Show)
+ TMeUrls { urls :: [TMeUrl.TMeUrl] }  deriving (Show)
 
 instance T.ToJSON TMeUrls where
  toJSON (TMeUrls { urls = urls }) =
   A.object [ "@type" A..= T.String "tMeUrls", "urls" A..= urls ]
--- tMeUrls TMeUrls  { urls :: [TMeUrl.TMeUrl] } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON TMeUrls where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "tMeUrls" -> parseTMeUrls v
+
+   _ -> mempty ""
   where
    parseTMeUrls :: A.Value -> T.Parser TMeUrls
    parseTMeUrls = A.withObject "TMeUrls" $ \o -> do

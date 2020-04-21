@@ -10,3 +10,5 @@ instance ToJSON ChatInviteLink
 
 instance FromJSON ChatInviteLink
 
+instance Show ChatInviteLink
+

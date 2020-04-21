@@ -10,3 +10,5 @@ instance ToJSON Call
 
 instance FromJSON Call
 
+instance Show Call
+

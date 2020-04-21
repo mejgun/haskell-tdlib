@@ -10,3 +10,5 @@ instance ToJSON SetChatDiscussionGroup
 
 instance FromJSON SetChatDiscussionGroup
 
+instance Show SetChatDiscussionGroup
+

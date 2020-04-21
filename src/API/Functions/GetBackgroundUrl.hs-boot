@@ -10,3 +10,5 @@ instance ToJSON GetBackgroundUrl
 
 instance FromJSON GetBackgroundUrl
 
+instance Show GetBackgroundUrl
+

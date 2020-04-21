@@ -10,3 +10,5 @@ instance ToJSON GetAttachedStickerSets
 
 instance FromJSON GetAttachedStickerSets
 
+instance Show GetAttachedStickerSets
+

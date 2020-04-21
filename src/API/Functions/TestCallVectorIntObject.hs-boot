@@ -10,3 +10,5 @@ instance ToJSON TestCallVectorIntObject
 
 instance FromJSON TestCallVectorIntObject
 
+instance Show TestCallVectorIntObject
+

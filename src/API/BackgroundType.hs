@@ -11,7 +11,7 @@ import {-# SOURCE #-} qualified API.BackgroundFill as BackgroundFill
 data BackgroundType = 
  BackgroundTypeWallpaper { is_moving :: Bool, is_blurred :: Bool }  
  | BackgroundTypePattern { is_moving :: Bool, intensity :: Int, fill :: BackgroundFill.BackgroundFill }  
- | BackgroundTypeFill { fill :: BackgroundFill.BackgroundFill }  -- deriving (Show)
+ | BackgroundTypeFill { fill :: BackgroundFill.BackgroundFill }  deriving (Show)
 
 instance T.ToJSON BackgroundType where
  toJSON (BackgroundTypeWallpaper { is_moving = is_moving, is_blurred = is_blurred }) =
@@ -22,11 +22,6 @@ instance T.ToJSON BackgroundType where
 
  toJSON (BackgroundTypeFill { fill = fill }) =
   A.object [ "@type" A..= T.String "backgroundTypeFill", "fill" A..= fill ]
--- backgroundTypeWallpaper BackgroundType  { is_moving :: Bool, is_blurred :: Bool } 
-
--- backgroundTypePattern BackgroundType  { is_moving :: Bool, intensity :: Int, fill :: BackgroundFill.BackgroundFill } 
-
--- backgroundTypeFill BackgroundType  { fill :: BackgroundFill.BackgroundFill } 
 
 
 
@@ -37,6 +32,8 @@ instance T.FromJSON BackgroundType where
    "backgroundTypeWallpaper" -> parseBackgroundTypeWallpaper v
    "backgroundTypePattern" -> parseBackgroundTypePattern v
    "backgroundTypeFill" -> parseBackgroundTypeFill v
+
+   _ -> mempty ""
   where
    parseBackgroundTypeWallpaper :: A.Value -> T.Parser BackgroundType
    parseBackgroundTypeWallpaper = A.withObject "BackgroundTypeWallpaper" $ \o -> do

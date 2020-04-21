@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetLogStream = 
- GetLogStream -- deriving (Show)
+ GetLogStream deriving (Show)
 
 instance T.ToJSON GetLogStream where
  toJSON (GetLogStream {  }) =
   A.object [ "@type" A..= T.String "getLogStream" ]
--- getLogStream GetLogStream 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetLogStream where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getLogStream" -> parseGetLogStream v
+
+   _ -> mempty ""
   where
    parseGetLogStream :: A.Value -> T.Parser GetLogStream
    parseGetLogStream = A.withObject "GetLogStream" $ \o -> do

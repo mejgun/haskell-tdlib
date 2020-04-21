@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.PublicChatType as PublicChatType
 --main = putStrLn "ok"
 
 data CheckCreatedPublicChatsLimit = 
- CheckCreatedPublicChatsLimit { _type :: PublicChatType.PublicChatType }  -- deriving (Show)
+ CheckCreatedPublicChatsLimit { _type :: PublicChatType.PublicChatType }  deriving (Show)
 
 instance T.ToJSON CheckCreatedPublicChatsLimit where
  toJSON (CheckCreatedPublicChatsLimit { _type = _type }) =
   A.object [ "@type" A..= T.String "checkCreatedPublicChatsLimit", "type" A..= _type ]
--- checkCreatedPublicChatsLimit CheckCreatedPublicChatsLimit  { _type :: PublicChatType.PublicChatType } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON CheckCreatedPublicChatsLimit where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "checkCreatedPublicChatsLimit" -> parseCheckCreatedPublicChatsLimit v
+
+   _ -> mempty ""
   where
    parseCheckCreatedPublicChatsLimit :: A.Value -> T.Parser CheckCreatedPublicChatsLimit
    parseCheckCreatedPublicChatsLimit = A.withObject "CheckCreatedPublicChatsLimit" $ \o -> do

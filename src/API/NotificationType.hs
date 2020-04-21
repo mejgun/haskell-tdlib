@@ -13,7 +13,7 @@ data NotificationType =
  NotificationTypeNewMessage { message :: Message.Message }  
  | NotificationTypeNewSecretChat 
  | NotificationTypeNewCall { call_id :: Int }  
- | NotificationTypeNewPushMessage { content :: PushMessageContent.PushMessageContent, is_outgoing :: Bool, sender_name :: String, sender_user_id :: Int, message_id :: Int }  -- deriving (Show)
+ | NotificationTypeNewPushMessage { content :: PushMessageContent.PushMessageContent, is_outgoing :: Bool, sender_name :: String, sender_user_id :: Int, message_id :: Int }  deriving (Show)
 
 instance T.ToJSON NotificationType where
  toJSON (NotificationTypeNewMessage { message = message }) =
@@ -27,13 +27,6 @@ instance T.ToJSON NotificationType where
 
  toJSON (NotificationTypeNewPushMessage { content = content, is_outgoing = is_outgoing, sender_name = sender_name, sender_user_id = sender_user_id, message_id = message_id }) =
   A.object [ "@type" A..= T.String "notificationTypeNewPushMessage", "content" A..= content, "is_outgoing" A..= is_outgoing, "sender_name" A..= sender_name, "sender_user_id" A..= sender_user_id, "message_id" A..= message_id ]
--- notificationTypeNewMessage NotificationType  { message :: Message.Message } 
-
--- notificationTypeNewSecretChat NotificationType 
-
--- notificationTypeNewCall NotificationType  { call_id :: Int } 
-
--- notificationTypeNewPushMessage NotificationType  { content :: PushMessageContent.PushMessageContent, is_outgoing :: Bool, sender_name :: String, sender_user_id :: Int, message_id :: Int } 
 
 
 
@@ -45,6 +38,8 @@ instance T.FromJSON NotificationType where
    "notificationTypeNewSecretChat" -> parseNotificationTypeNewSecretChat v
    "notificationTypeNewCall" -> parseNotificationTypeNewCall v
    "notificationTypeNewPushMessage" -> parseNotificationTypeNewPushMessage v
+
+   _ -> mempty ""
   where
    parseNotificationTypeNewMessage :: A.Value -> T.Parser NotificationType
    parseNotificationTypeNewMessage = A.withObject "NotificationTypeNewMessage" $ \o -> do

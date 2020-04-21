@@ -10,3 +10,5 @@ instance ToJSON PageBlockListItem
 
 instance FromJSON PageBlockListItem
 
+instance Show PageBlockListItem
+

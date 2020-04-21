@@ -10,3 +10,5 @@ instance ToJSON BankCardInfo
 
 instance FromJSON BankCardInfo
 
+instance Show BankCardInfo
+

@@ -10,3 +10,5 @@ instance ToJSON SetNetworkType
 
 instance FromJSON SetNetworkType
 
+instance Show SetNetworkType
+

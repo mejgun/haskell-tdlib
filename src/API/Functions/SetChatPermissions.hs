@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.ChatPermissions as ChatPermissions
 --main = putStrLn "ok"
 
 data SetChatPermissions = 
- SetChatPermissions { permissions :: ChatPermissions.ChatPermissions, chat_id :: Int }  -- deriving (Show)
+ SetChatPermissions { permissions :: ChatPermissions.ChatPermissions, chat_id :: Int }  deriving (Show)
 
 instance T.ToJSON SetChatPermissions where
  toJSON (SetChatPermissions { permissions = permissions, chat_id = chat_id }) =
   A.object [ "@type" A..= T.String "setChatPermissions", "permissions" A..= permissions, "chat_id" A..= chat_id ]
--- setChatPermissions SetChatPermissions  { permissions :: ChatPermissions.ChatPermissions, chat_id :: Int } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON SetChatPermissions where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "setChatPermissions" -> parseSetChatPermissions v
+
+   _ -> mempty ""
   where
    parseSetChatPermissions :: A.Value -> T.Parser SetChatPermissions
    parseSetChatPermissions = A.withObject "SetChatPermissions" $ \o -> do

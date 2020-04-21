@@ -10,3 +10,5 @@ instance ToJSON AddCustomServerLanguagePack
 
 instance FromJSON AddCustomServerLanguagePack
 
+instance Show AddCustomServerLanguagePack
+

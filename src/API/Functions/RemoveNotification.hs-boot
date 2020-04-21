@@ -10,3 +10,5 @@ instance ToJSON RemoveNotification
 
 instance FromJSON RemoveNotification
 
+instance Show RemoveNotification
+

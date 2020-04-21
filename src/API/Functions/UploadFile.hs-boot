@@ -10,3 +10,5 @@ instance ToJSON UploadFile
 
 instance FromJSON UploadFile
 
+instance Show UploadFile
+

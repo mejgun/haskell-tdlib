@@ -10,3 +10,5 @@ instance ToJSON SetBotUpdatesStatus
 
 instance FromJSON SetBotUpdatesStatus
 
+instance Show SetBotUpdatesStatus
+

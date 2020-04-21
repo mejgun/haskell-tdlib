@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 data ChatList = 
  ChatListMain 
- | ChatListArchive -- deriving (Show)
+ | ChatListArchive deriving (Show)
 
 instance T.ToJSON ChatList where
  toJSON (ChatListMain {  }) =
@@ -17,9 +17,6 @@ instance T.ToJSON ChatList where
 
  toJSON (ChatListArchive {  }) =
   A.object [ "@type" A..= T.String "chatListArchive" ]
--- chatListMain ChatList 
-
--- chatListArchive ChatList 
 
 
 
@@ -29,6 +26,8 @@ instance T.FromJSON ChatList where
   case t of
    "chatListMain" -> parseChatListMain v
    "chatListArchive" -> parseChatListArchive v
+
+   _ -> mempty ""
   where
    parseChatListMain :: A.Value -> T.Parser ChatList
    parseChatListMain = A.withObject "ChatListMain" $ \o -> do

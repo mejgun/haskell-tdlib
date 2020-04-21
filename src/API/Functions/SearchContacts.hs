@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data SearchContacts = 
- SearchContacts { limit :: Int, query :: String }  -- deriving (Show)
+ SearchContacts { limit :: Int, query :: String }  deriving (Show)
 
 instance T.ToJSON SearchContacts where
  toJSON (SearchContacts { limit = limit, query = query }) =
   A.object [ "@type" A..= T.String "searchContacts", "limit" A..= limit, "query" A..= query ]
--- searchContacts SearchContacts  { limit :: Int, query :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON SearchContacts where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "searchContacts" -> parseSearchContacts v
+
+   _ -> mempty ""
   where
    parseSearchContacts :: A.Value -> T.Parser SearchContacts
    parseSearchContacts = A.withObject "SearchContacts" $ \o -> do

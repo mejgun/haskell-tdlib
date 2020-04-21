@@ -12,7 +12,7 @@ data ConnectionState =
  | ConnectionStateConnectingToProxy 
  | ConnectionStateConnecting 
  | ConnectionStateUpdating 
- | ConnectionStateReady -- deriving (Show)
+ | ConnectionStateReady deriving (Show)
 
 instance T.ToJSON ConnectionState where
  toJSON (ConnectionStateWaitingForNetwork {  }) =
@@ -29,15 +29,6 @@ instance T.ToJSON ConnectionState where
 
  toJSON (ConnectionStateReady {  }) =
   A.object [ "@type" A..= T.String "connectionStateReady" ]
--- connectionStateWaitingForNetwork ConnectionState 
-
--- connectionStateConnectingToProxy ConnectionState 
-
--- connectionStateConnecting ConnectionState 
-
--- connectionStateUpdating ConnectionState 
-
--- connectionStateReady ConnectionState 
 
 
 
@@ -50,6 +41,8 @@ instance T.FromJSON ConnectionState where
    "connectionStateConnecting" -> parseConnectionStateConnecting v
    "connectionStateUpdating" -> parseConnectionStateUpdating v
    "connectionStateReady" -> parseConnectionStateReady v
+
+   _ -> mempty ""
   where
    parseConnectionStateWaitingForNetwork :: A.Value -> T.Parser ConnectionState
    parseConnectionStateWaitingForNetwork = A.withObject "ConnectionStateWaitingForNetwork" $ \o -> do

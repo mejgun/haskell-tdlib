@@ -10,3 +10,5 @@ instance ToJSON GetChatScheduledMessages
 
 instance FromJSON GetChatScheduledMessages
 
+instance Show GetChatScheduledMessages
+

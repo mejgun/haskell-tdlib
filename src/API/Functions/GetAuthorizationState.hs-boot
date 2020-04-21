@@ -10,3 +10,5 @@ instance ToJSON GetAuthorizationState
 
 instance FromJSON GetAuthorizationState
 
+instance Show GetAuthorizationState
+

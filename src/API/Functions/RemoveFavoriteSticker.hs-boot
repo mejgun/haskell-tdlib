@@ -10,3 +10,5 @@ instance ToJSON RemoveFavoriteSticker
 
 instance FromJSON RemoveFavoriteSticker
 
+instance Show RemoveFavoriteSticker
+

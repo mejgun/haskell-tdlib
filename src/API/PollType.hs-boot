@@ -10,3 +10,5 @@ instance ToJSON PollType
 
 instance FromJSON PollType
 
+instance Show PollType
+

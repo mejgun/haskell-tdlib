@@ -10,3 +10,5 @@ instance ToJSON PageBlockTableCell
 
 instance FromJSON PageBlockTableCell
 
+instance Show PageBlockTableCell
+

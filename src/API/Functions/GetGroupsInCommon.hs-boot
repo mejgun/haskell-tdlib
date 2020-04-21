@@ -10,3 +10,5 @@ instance ToJSON GetGroupsInCommon
 
 instance FromJSON GetGroupsInCommon
 
+instance Show GetGroupsInCommon
+

@@ -10,3 +10,5 @@ instance ToJSON TerminateAllOtherSessions
 
 instance FromJSON TerminateAllOtherSessions
 
+instance Show TerminateAllOtherSessions
+

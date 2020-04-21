@@ -10,3 +10,5 @@ instance ToJSON RemoveProxy
 
 instance FromJSON RemoveProxy
 
+instance Show RemoveProxy
+

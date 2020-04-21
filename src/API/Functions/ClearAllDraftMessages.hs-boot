@@ -10,3 +10,5 @@ instance ToJSON ClearAllDraftMessages
 
 instance FromJSON ClearAllDraftMessages
 
+instance Show ClearAllDraftMessages
+

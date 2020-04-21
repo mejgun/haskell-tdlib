@@ -10,3 +10,5 @@ instance ToJSON CloseSecretChat
 
 instance FromJSON CloseSecretChat
 
+instance Show CloseSecretChat
+

@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data SetLogVerbosityLevel = 
- SetLogVerbosityLevel { new_verbosity_level :: Int }  -- deriving (Show)
+ SetLogVerbosityLevel { new_verbosity_level :: Int }  deriving (Show)
 
 instance T.ToJSON SetLogVerbosityLevel where
  toJSON (SetLogVerbosityLevel { new_verbosity_level = new_verbosity_level }) =
   A.object [ "@type" A..= T.String "setLogVerbosityLevel", "new_verbosity_level" A..= new_verbosity_level ]
--- setLogVerbosityLevel SetLogVerbosityLevel  { new_verbosity_level :: Int } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON SetLogVerbosityLevel where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "setLogVerbosityLevel" -> parseSetLogVerbosityLevel v
+
+   _ -> mempty ""
   where
    parseSetLogVerbosityLevel :: A.Value -> T.Parser SetLogVerbosityLevel
    parseSetLogVerbosityLevel = A.withObject "SetLogVerbosityLevel" $ \o -> do

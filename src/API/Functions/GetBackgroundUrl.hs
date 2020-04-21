@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.BackgroundType as BackgroundType
 --main = putStrLn "ok"
 
 data GetBackgroundUrl = 
- GetBackgroundUrl { _type :: BackgroundType.BackgroundType, name :: String }  -- deriving (Show)
+ GetBackgroundUrl { _type :: BackgroundType.BackgroundType, name :: String }  deriving (Show)
 
 instance T.ToJSON GetBackgroundUrl where
  toJSON (GetBackgroundUrl { _type = _type, name = name }) =
   A.object [ "@type" A..= T.String "getBackgroundUrl", "type" A..= _type, "name" A..= name ]
--- getBackgroundUrl GetBackgroundUrl  { _type :: BackgroundType.BackgroundType, name :: String } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON GetBackgroundUrl where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getBackgroundUrl" -> parseGetBackgroundUrl v
+
+   _ -> mempty ""
   where
    parseGetBackgroundUrl :: A.Value -> T.Parser GetBackgroundUrl
    parseGetBackgroundUrl = A.withObject "GetBackgroundUrl" $ \o -> do

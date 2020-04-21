@@ -10,3 +10,5 @@ instance ToJSON ChatMembersFilter
 
 instance FromJSON ChatMembersFilter
 
+instance Show ChatMembersFilter
+

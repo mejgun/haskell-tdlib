@@ -10,3 +10,5 @@ instance ToJSON AddRecentSticker
 
 instance FromJSON AddRecentSticker
 
+instance Show AddRecentSticker
+

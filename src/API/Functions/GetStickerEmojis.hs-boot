@@ -10,3 +10,5 @@ instance ToJSON GetStickerEmojis
 
 instance FromJSON GetStickerEmojis
 
+instance Show GetStickerEmojis
+

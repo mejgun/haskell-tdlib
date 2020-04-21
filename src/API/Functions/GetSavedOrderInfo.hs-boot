@@ -10,3 +10,5 @@ instance ToJSON GetSavedOrderInfo
 
 instance FromJSON GetSavedOrderInfo
 
+instance Show GetSavedOrderInfo
+

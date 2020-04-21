@@ -10,3 +10,5 @@ instance ToJSON SearchContacts
 
 instance FromJSON SearchContacts
 
+instance Show SearchContacts
+

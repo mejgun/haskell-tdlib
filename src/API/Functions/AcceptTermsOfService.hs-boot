@@ -10,3 +10,5 @@ instance ToJSON AcceptTermsOfService
 
 instance FromJSON AcceptTermsOfService
 
+instance Show AcceptTermsOfService
+

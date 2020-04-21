@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetAutoDownloadSettingsPresets = 
- GetAutoDownloadSettingsPresets -- deriving (Show)
+ GetAutoDownloadSettingsPresets deriving (Show)
 
 instance T.ToJSON GetAutoDownloadSettingsPresets where
  toJSON (GetAutoDownloadSettingsPresets {  }) =
   A.object [ "@type" A..= T.String "getAutoDownloadSettingsPresets" ]
--- getAutoDownloadSettingsPresets GetAutoDownloadSettingsPresets 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetAutoDownloadSettingsPresets where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getAutoDownloadSettingsPresets" -> parseGetAutoDownloadSettingsPresets v
+
+   _ -> mempty ""
   where
    parseGetAutoDownloadSettingsPresets :: A.Value -> T.Parser GetAutoDownloadSettingsPresets
    parseGetAutoDownloadSettingsPresets = A.withObject "GetAutoDownloadSettingsPresets" $ \o -> do

@@ -10,3 +10,5 @@ instance ToJSON ToggleSupergroupIsAllHistoryAvailable
 
 instance FromJSON ToggleSupergroupIsAllHistoryAvailable
 
+instance Show ToggleSupergroupIsAllHistoryAvailable
+

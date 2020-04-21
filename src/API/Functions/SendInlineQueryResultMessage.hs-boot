@@ -10,3 +10,5 @@ instance ToJSON SendInlineQueryResultMessage
 
 instance FromJSON SendInlineQueryResultMessage
 
+instance Show SendInlineQueryResultMessage
+

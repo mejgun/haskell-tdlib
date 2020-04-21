@@ -10,12 +10,11 @@ import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 --main = putStrLn "ok"
 
 data InputPassportElementError = 
- InputPassportElementError { source :: InputPassportElementErrorSource.InputPassportElementErrorSource, message :: String, _type :: PassportElementType.PassportElementType }  -- deriving (Show)
+ InputPassportElementError { source :: InputPassportElementErrorSource.InputPassportElementErrorSource, message :: String, _type :: PassportElementType.PassportElementType }  deriving (Show)
 
 instance T.ToJSON InputPassportElementError where
  toJSON (InputPassportElementError { source = source, message = message, _type = _type }) =
   A.object [ "@type" A..= T.String "inputPassportElementError", "source" A..= source, "message" A..= message, "type" A..= _type ]
--- inputPassportElementError InputPassportElementError  { source :: InputPassportElementErrorSource.InputPassportElementErrorSource, message :: String, _type :: PassportElementType.PassportElementType } 
 
 
 
@@ -24,6 +23,8 @@ instance T.FromJSON InputPassportElementError where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "inputPassportElementError" -> parseInputPassportElementError v
+
+   _ -> mempty ""
   where
    parseInputPassportElementError :: A.Value -> T.Parser InputPassportElementError
    parseInputPassportElementError = A.withObject "InputPassportElementError" $ \o -> do

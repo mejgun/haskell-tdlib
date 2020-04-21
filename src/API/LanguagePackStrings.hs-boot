@@ -10,3 +10,5 @@ instance ToJSON LanguagePackStrings
 
 instance FromJSON LanguagePackStrings
 
+instance Show LanguagePackStrings
+

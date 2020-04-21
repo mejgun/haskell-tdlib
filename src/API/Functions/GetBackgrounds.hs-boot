@@ -10,3 +10,5 @@ instance ToJSON GetBackgrounds
 
 instance FromJSON GetBackgrounds
 
+instance Show GetBackgrounds
+

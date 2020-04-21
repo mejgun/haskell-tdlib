@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 data TextParseMode = 
  TextParseModeMarkdown { version :: Int }  
- | TextParseModeHTML -- deriving (Show)
+ | TextParseModeHTML deriving (Show)
 
 instance T.ToJSON TextParseMode where
  toJSON (TextParseModeMarkdown { version = version }) =
@@ -17,9 +17,6 @@ instance T.ToJSON TextParseMode where
 
  toJSON (TextParseModeHTML {  }) =
   A.object [ "@type" A..= T.String "textParseModeHTML" ]
--- textParseModeMarkdown TextParseMode  { version :: Int } 
-
--- textParseModeHTML TextParseMode 
 
 
 
@@ -29,6 +26,8 @@ instance T.FromJSON TextParseMode where
   case t of
    "textParseModeMarkdown" -> parseTextParseModeMarkdown v
    "textParseModeHTML" -> parseTextParseModeHTML v
+
+   _ -> mempty ""
   where
    parseTextParseModeMarkdown :: A.Value -> T.Parser TextParseMode
    parseTextParseModeMarkdown = A.withObject "TextParseModeMarkdown" $ \o -> do

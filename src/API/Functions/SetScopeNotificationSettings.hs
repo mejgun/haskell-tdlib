@@ -10,12 +10,11 @@ import {-# SOURCE #-} qualified API.NotificationSettingsScope as NotificationSet
 --main = putStrLn "ok"
 
 data SetScopeNotificationSettings = 
- SetScopeNotificationSettings { notification_settings :: ScopeNotificationSettings.ScopeNotificationSettings, scope :: NotificationSettingsScope.NotificationSettingsScope }  -- deriving (Show)
+ SetScopeNotificationSettings { notification_settings :: ScopeNotificationSettings.ScopeNotificationSettings, scope :: NotificationSettingsScope.NotificationSettingsScope }  deriving (Show)
 
 instance T.ToJSON SetScopeNotificationSettings where
  toJSON (SetScopeNotificationSettings { notification_settings = notification_settings, scope = scope }) =
   A.object [ "@type" A..= T.String "setScopeNotificationSettings", "notification_settings" A..= notification_settings, "scope" A..= scope ]
--- setScopeNotificationSettings SetScopeNotificationSettings  { notification_settings :: ScopeNotificationSettings.ScopeNotificationSettings, scope :: NotificationSettingsScope.NotificationSettingsScope } 
 
 
 
@@ -24,6 +23,8 @@ instance T.FromJSON SetScopeNotificationSettings where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "setScopeNotificationSettings" -> parseSetScopeNotificationSettings v
+
+   _ -> mempty ""
   where
    parseSetScopeNotificationSettings :: A.Value -> T.Parser SetScopeNotificationSettings
    parseSetScopeNotificationSettings = A.withObject "SetScopeNotificationSettings" $ \o -> do

@@ -10,3 +10,5 @@ instance ToJSON EditMessageCaption
 
 instance FromJSON EditMessageCaption
 
+instance Show EditMessageCaption
+

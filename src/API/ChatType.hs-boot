@@ -10,3 +10,5 @@ instance ToJSON ChatType
 
 instance FromJSON ChatType
 
+instance Show ChatType
+

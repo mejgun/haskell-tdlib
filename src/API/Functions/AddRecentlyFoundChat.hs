@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data AddRecentlyFoundChat = 
- AddRecentlyFoundChat { chat_id :: Int }  -- deriving (Show)
+ AddRecentlyFoundChat { chat_id :: Int }  deriving (Show)
 
 instance T.ToJSON AddRecentlyFoundChat where
  toJSON (AddRecentlyFoundChat { chat_id = chat_id }) =
   A.object [ "@type" A..= T.String "addRecentlyFoundChat", "chat_id" A..= chat_id ]
--- addRecentlyFoundChat AddRecentlyFoundChat  { chat_id :: Int } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON AddRecentlyFoundChat where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "addRecentlyFoundChat" -> parseAddRecentlyFoundChat v
+
+   _ -> mempty ""
   where
    parseAddRecentlyFoundChat :: A.Value -> T.Parser AddRecentlyFoundChat
    parseAddRecentlyFoundChat = A.withObject "AddRecentlyFoundChat" $ \o -> do

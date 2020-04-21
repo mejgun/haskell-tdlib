@@ -10,3 +10,5 @@ instance ToJSON RequestQrCodeAuthentication
 
 instance FromJSON RequestQrCodeAuthentication
 
+instance Show RequestQrCodeAuthentication
+

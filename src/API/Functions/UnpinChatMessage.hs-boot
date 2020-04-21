@@ -10,3 +10,5 @@ instance ToJSON UnpinChatMessage
 
 instance FromJSON UnpinChatMessage
 
+instance Show UnpinChatMessage
+

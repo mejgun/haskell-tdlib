@@ -10,3 +10,5 @@ instance ToJSON Hashtags
 
 instance FromJSON Hashtags
 
+instance Show Hashtags
+

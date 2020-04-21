@@ -10,3 +10,5 @@ instance ToJSON SearchBackground
 
 instance FromJSON SearchBackground
 
+instance Show SearchBackground
+

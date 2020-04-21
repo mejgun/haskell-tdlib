@@ -10,3 +10,5 @@ instance ToJSON InlineKeyboardButtonType
 
 instance FromJSON InlineKeyboardButtonType
 
+instance Show InlineKeyboardButtonType
+

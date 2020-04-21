@@ -10,3 +10,5 @@ instance ToJSON SetFileGenerationProgress
 
 instance FromJSON SetFileGenerationProgress
 
+instance Show SetFileGenerationProgress
+

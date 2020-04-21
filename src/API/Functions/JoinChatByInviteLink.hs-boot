@@ -10,3 +10,5 @@ instance ToJSON JoinChatByInviteLink
 
 instance FromJSON JoinChatByInviteLink
 
+instance Show JoinChatByInviteLink
+

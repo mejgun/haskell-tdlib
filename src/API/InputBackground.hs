@@ -10,7 +10,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data InputBackground = 
  InputBackgroundLocal { background :: InputFile.InputFile }  
- | InputBackgroundRemote { background_id :: Int }  -- deriving (Show)
+ | InputBackgroundRemote { background_id :: Int }  deriving (Show)
 
 instance T.ToJSON InputBackground where
  toJSON (InputBackgroundLocal { background = background }) =
@@ -18,9 +18,6 @@ instance T.ToJSON InputBackground where
 
  toJSON (InputBackgroundRemote { background_id = background_id }) =
   A.object [ "@type" A..= T.String "inputBackgroundRemote", "background_id" A..= background_id ]
--- inputBackgroundLocal InputBackground  { background :: InputFile.InputFile } 
-
--- inputBackgroundRemote InputBackground  { background_id :: Int } 
 
 
 
@@ -30,6 +27,8 @@ instance T.FromJSON InputBackground where
   case t of
    "inputBackgroundLocal" -> parseInputBackgroundLocal v
    "inputBackgroundRemote" -> parseInputBackgroundRemote v
+
+   _ -> mempty ""
   where
    parseInputBackgroundLocal :: A.Value -> T.Parser InputBackground
    parseInputBackgroundLocal = A.withObject "InputBackgroundLocal" $ \o -> do

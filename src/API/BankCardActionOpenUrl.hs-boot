@@ -10,3 +10,5 @@ instance ToJSON BankCardActionOpenUrl
 
 instance FromJSON BankCardActionOpenUrl
 
+instance Show BankCardActionOpenUrl
+

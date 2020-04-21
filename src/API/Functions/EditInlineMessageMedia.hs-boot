@@ -10,3 +10,5 @@ instance ToJSON EditInlineMessageMedia
 
 instance FromJSON EditInlineMessageMedia
 
+instance Show EditInlineMessageMedia
+

@@ -10,3 +10,5 @@ instance ToJSON ValidateOrderInfo
 
 instance FromJSON ValidateOrderInfo
 
+instance Show ValidateOrderInfo
+

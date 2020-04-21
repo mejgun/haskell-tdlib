@@ -10,3 +10,5 @@ instance ToJSON TextEntityType
 
 instance FromJSON TextEntityType
 
+instance Show TextEntityType
+

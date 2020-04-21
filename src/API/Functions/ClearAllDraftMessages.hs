@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data ClearAllDraftMessages = 
- ClearAllDraftMessages { exclude_secret_chats :: Bool }  -- deriving (Show)
+ ClearAllDraftMessages { exclude_secret_chats :: Bool }  deriving (Show)
 
 instance T.ToJSON ClearAllDraftMessages where
  toJSON (ClearAllDraftMessages { exclude_secret_chats = exclude_secret_chats }) =
   A.object [ "@type" A..= T.String "clearAllDraftMessages", "exclude_secret_chats" A..= exclude_secret_chats ]
--- clearAllDraftMessages ClearAllDraftMessages  { exclude_secret_chats :: Bool } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON ClearAllDraftMessages where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "clearAllDraftMessages" -> parseClearAllDraftMessages v
+
+   _ -> mempty ""
   where
    parseClearAllDraftMessages :: A.Value -> T.Parser ClearAllDraftMessages
    parseClearAllDraftMessages = A.withObject "ClearAllDraftMessages" $ \o -> do

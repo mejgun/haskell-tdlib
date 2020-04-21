@@ -10,3 +10,5 @@ instance ToJSON SetSupergroupUsername
 
 instance FromJSON SetSupergroupUsername
 
+instance Show SetSupergroupUsername
+

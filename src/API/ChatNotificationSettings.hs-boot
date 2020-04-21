@@ -10,3 +10,5 @@ instance ToJSON ChatNotificationSettings
 
 instance FromJSON ChatNotificationSettings
 
+instance Show ChatNotificationSettings
+

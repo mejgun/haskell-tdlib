@@ -10,3 +10,5 @@ instance ToJSON SearchChatRecentLocationMessages
 
 instance FromJSON SearchChatRecentLocationMessages
 
+instance Show SearchChatRecentLocationMessages
+

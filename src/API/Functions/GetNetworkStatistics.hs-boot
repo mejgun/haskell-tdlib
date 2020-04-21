@@ -10,3 +10,5 @@ instance ToJSON GetNetworkStatistics
 
 instance FromJSON GetNetworkStatistics
 
+instance Show GetNetworkStatistics
+

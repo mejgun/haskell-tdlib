@@ -10,3 +10,5 @@ instance ToJSON RemoveContacts
 
 instance FromJSON RemoveContacts
 
+instance Show RemoveContacts
+

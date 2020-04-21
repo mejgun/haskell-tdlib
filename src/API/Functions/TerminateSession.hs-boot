@@ -10,3 +10,5 @@ instance ToJSON TerminateSession
 
 instance FromJSON TerminateSession
 
+instance Show TerminateSession
+

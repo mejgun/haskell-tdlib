@@ -10,3 +10,5 @@ instance ToJSON SetChatTitle
 
 instance FromJSON SetChatTitle
 
+instance Show SetChatTitle
+

@@ -10,3 +10,5 @@ instance ToJSON Document
 
 instance FromJSON Document
 
+instance Show Document
+

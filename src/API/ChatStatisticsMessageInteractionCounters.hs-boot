@@ -10,3 +10,5 @@ instance ToJSON ChatStatisticsMessageInteractionCounters
 
 instance FromJSON ChatStatisticsMessageInteractionCounters
 
+instance Show ChatStatisticsMessageInteractionCounters
+

@@ -10,3 +10,5 @@ instance ToJSON ClearRecentStickers
 
 instance FromJSON ClearRecentStickers
 
+instance Show ClearRecentStickers
+

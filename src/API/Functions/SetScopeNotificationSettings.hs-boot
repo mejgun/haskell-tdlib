@@ -10,3 +10,5 @@ instance ToJSON SetScopeNotificationSettings
 
 instance FromJSON SetScopeNotificationSettings
 
+instance Show SetScopeNotificationSettings
+

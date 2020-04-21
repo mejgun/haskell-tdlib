@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data ResetNetworkStatistics = 
- ResetNetworkStatistics -- deriving (Show)
+ ResetNetworkStatistics deriving (Show)
 
 instance T.ToJSON ResetNetworkStatistics where
  toJSON (ResetNetworkStatistics {  }) =
   A.object [ "@type" A..= T.String "resetNetworkStatistics" ]
--- resetNetworkStatistics ResetNetworkStatistics 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON ResetNetworkStatistics where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "resetNetworkStatistics" -> parseResetNetworkStatistics v
+
+   _ -> mempty ""
   where
    parseResetNetworkStatistics :: A.Value -> T.Parser ResetNetworkStatistics
    parseResetNetworkStatistics = A.withObject "ResetNetworkStatistics" $ \o -> do

@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data ResetBackgrounds = 
- ResetBackgrounds -- deriving (Show)
+ ResetBackgrounds deriving (Show)
 
 instance T.ToJSON ResetBackgrounds where
  toJSON (ResetBackgrounds {  }) =
   A.object [ "@type" A..= T.String "resetBackgrounds" ]
--- resetBackgrounds ResetBackgrounds 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON ResetBackgrounds where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "resetBackgrounds" -> parseResetBackgrounds v
+
+   _ -> mempty ""
   where
    parseResetBackgrounds :: A.Value -> T.Parser ResetBackgrounds
    parseResetBackgrounds = A.withObject "ResetBackgrounds" $ \o -> do

@@ -10,3 +10,5 @@ instance ToJSON RemoveRecentlyFoundChat
 
 instance FromJSON RemoveRecentlyFoundChat
 
+instance Show RemoveRecentlyFoundChat
+

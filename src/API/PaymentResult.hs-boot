@@ -10,3 +10,5 @@ instance ToJSON PaymentResult
 
 instance FromJSON PaymentResult
 
+instance Show PaymentResult
+

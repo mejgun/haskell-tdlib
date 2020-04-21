@@ -10,3 +10,5 @@ instance ToJSON AnswerPreCheckoutQuery
 
 instance FromJSON AnswerPreCheckoutQuery
 
+instance Show AnswerPreCheckoutQuery
+

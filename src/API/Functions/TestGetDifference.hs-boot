@@ -10,3 +10,5 @@ instance ToJSON TestGetDifference
 
 instance FromJSON TestGetDifference
 
+instance Show TestGetDifference
+

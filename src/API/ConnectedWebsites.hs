@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.ConnectedWebsite as ConnectedWebsite
 --main = putStrLn "ok"
 
 data ConnectedWebsites = 
- ConnectedWebsites { websites :: [ConnectedWebsite.ConnectedWebsite] }  -- deriving (Show)
+ ConnectedWebsites { websites :: [ConnectedWebsite.ConnectedWebsite] }  deriving (Show)
 
 instance T.ToJSON ConnectedWebsites where
  toJSON (ConnectedWebsites { websites = websites }) =
   A.object [ "@type" A..= T.String "connectedWebsites", "websites" A..= websites ]
--- connectedWebsites ConnectedWebsites  { websites :: [ConnectedWebsite.ConnectedWebsite] } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON ConnectedWebsites where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "connectedWebsites" -> parseConnectedWebsites v
+
+   _ -> mempty ""
   where
    parseConnectedWebsites :: A.Value -> T.Parser ConnectedWebsites
    parseConnectedWebsites = A.withObject "ConnectedWebsites" $ \o -> do

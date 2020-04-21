@@ -10,3 +10,5 @@ instance ToJSON ParseTextEntities
 
 instance FromJSON ParseTextEntities
 
+instance Show ParseTextEntities
+

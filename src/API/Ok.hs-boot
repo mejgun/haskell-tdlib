@@ -10,3 +10,5 @@ instance ToJSON Ok
 
 instance FromJSON Ok
 
+instance Show Ok
+

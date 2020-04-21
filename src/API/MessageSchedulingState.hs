@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 data MessageSchedulingState = 
  MessageSchedulingStateSendAtDate { send_date :: Int }  
- | MessageSchedulingStateSendWhenOnline -- deriving (Show)
+ | MessageSchedulingStateSendWhenOnline deriving (Show)
 
 instance T.ToJSON MessageSchedulingState where
  toJSON (MessageSchedulingStateSendAtDate { send_date = send_date }) =
@@ -17,9 +17,6 @@ instance T.ToJSON MessageSchedulingState where
 
  toJSON (MessageSchedulingStateSendWhenOnline {  }) =
   A.object [ "@type" A..= T.String "messageSchedulingStateSendWhenOnline" ]
--- messageSchedulingStateSendAtDate MessageSchedulingState  { send_date :: Int } 
-
--- messageSchedulingStateSendWhenOnline MessageSchedulingState 
 
 
 
@@ -29,6 +26,8 @@ instance T.FromJSON MessageSchedulingState where
   case t of
    "messageSchedulingStateSendAtDate" -> parseMessageSchedulingStateSendAtDate v
    "messageSchedulingStateSendWhenOnline" -> parseMessageSchedulingStateSendWhenOnline v
+
+   _ -> mempty ""
   where
    parseMessageSchedulingStateSendAtDate :: A.Value -> T.Parser MessageSchedulingState
    parseMessageSchedulingStateSendAtDate = A.withObject "MessageSchedulingStateSendAtDate" $ \o -> do

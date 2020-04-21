@@ -10,3 +10,5 @@ instance ToJSON LabeledPricePart
 
 instance FromJSON LabeledPricePart
 
+instance Show LabeledPricePart
+

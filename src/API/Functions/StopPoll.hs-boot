@@ -10,3 +10,5 @@ instance ToJSON StopPoll
 
 instance FromJSON StopPoll
 
+instance Show StopPoll
+

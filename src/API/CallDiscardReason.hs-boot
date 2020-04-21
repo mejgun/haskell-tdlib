@@ -10,3 +10,5 @@ instance ToJSON CallDiscardReason
 
 instance FromJSON CallDiscardReason
 
+instance Show CallDiscardReason
+

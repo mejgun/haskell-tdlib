@@ -10,3 +10,5 @@ instance ToJSON SetLogStream
 
 instance FromJSON SetLogStream
 
+instance Show SetLogStream
+

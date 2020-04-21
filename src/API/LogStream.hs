@@ -10,7 +10,7 @@ import qualified Data.Aeson.Types as T
 data LogStream = 
  LogStreamDefault 
  | LogStreamFile { max_file_size :: Int, path :: String }  
- | LogStreamEmpty -- deriving (Show)
+ | LogStreamEmpty deriving (Show)
 
 instance T.ToJSON LogStream where
  toJSON (LogStreamDefault {  }) =
@@ -21,11 +21,6 @@ instance T.ToJSON LogStream where
 
  toJSON (LogStreamEmpty {  }) =
   A.object [ "@type" A..= T.String "logStreamEmpty" ]
--- logStreamDefault LogStream 
-
--- logStreamFile LogStream  { max_file_size :: Int, path :: String } 
-
--- logStreamEmpty LogStream 
 
 
 
@@ -36,6 +31,8 @@ instance T.FromJSON LogStream where
    "logStreamDefault" -> parseLogStreamDefault v
    "logStreamFile" -> parseLogStreamFile v
    "logStreamEmpty" -> parseLogStreamEmpty v
+
+   _ -> mempty ""
   where
    parseLogStreamDefault :: A.Value -> T.Parser LogStream
    parseLogStreamDefault = A.withObject "LogStreamDefault" $ \o -> do

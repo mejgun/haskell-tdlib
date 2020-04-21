@@ -10,3 +10,5 @@ instance ToJSON ConnectedWebsites
 
 instance FromJSON ConnectedWebsites
 
+instance Show ConnectedWebsites
+

@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.NetworkStatisticsEntry as NetworkStatisticsE
 --main = putStrLn "ok"
 
 data NetworkStatistics = 
- NetworkStatistics { entries :: [NetworkStatisticsEntry.NetworkStatisticsEntry], since_date :: Int }  -- deriving (Show)
+ NetworkStatistics { entries :: [NetworkStatisticsEntry.NetworkStatisticsEntry], since_date :: Int }  deriving (Show)
 
 instance T.ToJSON NetworkStatistics where
  toJSON (NetworkStatistics { entries = entries, since_date = since_date }) =
   A.object [ "@type" A..= T.String "networkStatistics", "entries" A..= entries, "since_date" A..= since_date ]
--- networkStatistics NetworkStatistics  { entries :: [NetworkStatisticsEntry.NetworkStatisticsEntry], since_date :: Int } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON NetworkStatistics where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "networkStatistics" -> parseNetworkStatistics v
+
+   _ -> mempty ""
   where
    parseNetworkStatistics :: A.Value -> T.Parser NetworkStatistics
    parseNetworkStatistics = A.withObject "NetworkStatistics" $ \o -> do

@@ -10,3 +10,5 @@ instance ToJSON SetAccountTtl
 
 instance FromJSON SetAccountTtl
 
+instance Show SetAccountTtl
+

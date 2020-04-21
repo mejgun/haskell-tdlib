@@ -10,3 +10,5 @@ instance ToJSON CheckAuthenticationCode
 
 instance FromJSON CheckAuthenticationCode
 
+instance Show CheckAuthenticationCode
+

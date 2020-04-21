@@ -10,3 +10,5 @@ instance ToJSON FoundMessages
 
 instance FromJSON FoundMessages
 
+instance Show FoundMessages
+

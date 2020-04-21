@@ -10,3 +10,5 @@ instance ToJSON ReadFilePart
 
 instance FromJSON ReadFilePart
 
+instance Show ReadFilePart
+

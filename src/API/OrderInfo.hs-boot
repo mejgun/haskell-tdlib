@@ -10,3 +10,5 @@ instance ToJSON OrderInfo
 
 instance FromJSON OrderInfo
 
+instance Show OrderInfo
+

@@ -10,3 +10,5 @@ instance ToJSON PingProxy
 
 instance FromJSON PingProxy
 
+instance Show PingProxy
+

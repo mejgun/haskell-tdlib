@@ -10,3 +10,5 @@ instance ToJSON CallState
 
 instance FromJSON CallState
 
+instance Show CallState
+

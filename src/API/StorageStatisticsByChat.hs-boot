@@ -10,3 +10,5 @@ instance ToJSON StorageStatisticsByChat
 
 instance FromJSON StorageStatisticsByChat
 
+instance Show StorageStatisticsByChat
+

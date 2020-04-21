@@ -10,3 +10,5 @@ instance ToJSON GetSupergroupMembers
 
 instance FromJSON GetSupergroupMembers
 
+instance Show GetSupergroupMembers
+

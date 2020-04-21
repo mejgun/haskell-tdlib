@@ -10,3 +10,5 @@ instance ToJSON SetBackground
 
 instance FromJSON SetBackground
 
+instance Show SetBackground
+

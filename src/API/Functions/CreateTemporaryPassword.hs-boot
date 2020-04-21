@@ -10,3 +10,5 @@ instance ToJSON CreateTemporaryPassword
 
 instance FromJSON CreateTemporaryPassword
 
+instance Show CreateTemporaryPassword
+

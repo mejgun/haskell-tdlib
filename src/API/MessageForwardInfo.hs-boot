@@ -10,3 +10,5 @@ instance ToJSON MessageForwardInfo
 
 instance FromJSON MessageForwardInfo
 
+instance Show MessageForwardInfo
+

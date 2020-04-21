@@ -10,3 +10,5 @@ instance ToJSON SetInlineGameScore
 
 instance FromJSON SetInlineGameScore
 
+instance Show SetInlineGameScore
+

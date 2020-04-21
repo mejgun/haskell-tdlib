@@ -10,3 +10,5 @@ instance ToJSON UserType
 
 instance FromJSON UserType
 
+instance Show UserType
+

@@ -10,3 +10,5 @@ instance ToJSON RemoveRecentHashtag
 
 instance FromJSON RemoveRecentHashtag
 
+instance Show RemoveRecentHashtag
+

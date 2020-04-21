@@ -10,3 +10,5 @@ instance ToJSON SetLogVerbosityLevel
 
 instance FromJSON SetLogVerbosityLevel
 
+instance Show SetLogVerbosityLevel
+

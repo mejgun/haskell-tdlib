@@ -10,3 +10,5 @@ instance ToJSON GetCallbackQueryAnswer
 
 instance FromJSON GetCallbackQueryAnswer
 
+instance Show GetCallbackQueryAnswer
+

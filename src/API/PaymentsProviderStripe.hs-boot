@@ -10,3 +10,5 @@ instance ToJSON PaymentsProviderStripe
 
 instance FromJSON PaymentsProviderStripe
 
+instance Show PaymentsProviderStripe
+

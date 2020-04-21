@@ -10,3 +10,5 @@ instance ToJSON SearchMessagesFilter
 
 instance FromJSON SearchMessagesFilter
 
+instance Show SearchMessagesFilter
+

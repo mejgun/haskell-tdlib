@@ -10,3 +10,5 @@ instance ToJSON TestNetwork
 
 instance FromJSON TestNetwork
 
+instance Show TestNetwork
+

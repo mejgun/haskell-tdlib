@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 --main = putStrLn "ok"
 
 data GetStickerEmojis = 
- GetStickerEmojis { sticker :: InputFile.InputFile }  -- deriving (Show)
+ GetStickerEmojis { sticker :: InputFile.InputFile }  deriving (Show)
 
 instance T.ToJSON GetStickerEmojis where
  toJSON (GetStickerEmojis { sticker = sticker }) =
   A.object [ "@type" A..= T.String "getStickerEmojis", "sticker" A..= sticker ]
--- getStickerEmojis GetStickerEmojis  { sticker :: InputFile.InputFile } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON GetStickerEmojis where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getStickerEmojis" -> parseGetStickerEmojis v
+
+   _ -> mempty ""
   where
    parseGetStickerEmojis :: A.Value -> T.Parser GetStickerEmojis
    parseGetStickerEmojis = A.withObject "GetStickerEmojis" $ \o -> do

@@ -24,7 +24,7 @@ data PassportElement =
  | PassportElementPassportRegistration { passport_registration :: PersonalDocument.PersonalDocument }  
  | PassportElementTemporaryRegistration { temporary_registration :: PersonalDocument.PersonalDocument }  
  | PassportElementPhoneNumber { phone_number :: String }  
- | PassportElementEmailAddress { email_address :: String }  -- deriving (Show)
+ | PassportElementEmailAddress { email_address :: String }  deriving (Show)
 
 instance T.ToJSON PassportElement where
  toJSON (PassportElementPersonalDetails { personal_details = personal_details }) =
@@ -65,31 +65,6 @@ instance T.ToJSON PassportElement where
 
  toJSON (PassportElementEmailAddress { email_address = email_address }) =
   A.object [ "@type" A..= T.String "passportElementEmailAddress", "email_address" A..= email_address ]
--- passportElementPersonalDetails PassportElement  { personal_details :: PersonalDetails.PersonalDetails } 
-
--- passportElementPassport PassportElement  { passport :: IdentityDocument.IdentityDocument } 
-
--- passportElementDriverLicense PassportElement  { driver_license :: IdentityDocument.IdentityDocument } 
-
--- passportElementIdentityCard PassportElement  { identity_card :: IdentityDocument.IdentityDocument } 
-
--- passportElementInternalPassport PassportElement  { internal_passport :: IdentityDocument.IdentityDocument } 
-
--- passportElementAddress PassportElement  { address :: Address.Address } 
-
--- passportElementUtilityBill PassportElement  { utility_bill :: PersonalDocument.PersonalDocument } 
-
--- passportElementBankStatement PassportElement  { bank_statement :: PersonalDocument.PersonalDocument } 
-
--- passportElementRentalAgreement PassportElement  { rental_agreement :: PersonalDocument.PersonalDocument } 
-
--- passportElementPassportRegistration PassportElement  { passport_registration :: PersonalDocument.PersonalDocument } 
-
--- passportElementTemporaryRegistration PassportElement  { temporary_registration :: PersonalDocument.PersonalDocument } 
-
--- passportElementPhoneNumber PassportElement  { phone_number :: String } 
-
--- passportElementEmailAddress PassportElement  { email_address :: String } 
 
 
 
@@ -110,6 +85,8 @@ instance T.FromJSON PassportElement where
    "passportElementTemporaryRegistration" -> parsePassportElementTemporaryRegistration v
    "passportElementPhoneNumber" -> parsePassportElementPhoneNumber v
    "passportElementEmailAddress" -> parsePassportElementEmailAddress v
+
+   _ -> mempty ""
   where
    parsePassportElementPersonalDetails :: A.Value -> T.Parser PassportElement
    parsePassportElementPersonalDetails = A.withObject "PassportElementPersonalDetails" $ \o -> do

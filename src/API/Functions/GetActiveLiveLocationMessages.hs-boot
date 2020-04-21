@@ -10,3 +10,5 @@ instance ToJSON GetActiveLiveLocationMessages
 
 instance FromJSON GetActiveLiveLocationMessages
 
+instance Show GetActiveLiveLocationMessages
+

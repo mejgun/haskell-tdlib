@@ -10,3 +10,5 @@ instance ToJSON UpgradeBasicGroupChatToSupergroupChat
 
 instance FromJSON UpgradeBasicGroupChatToSupergroupChat
 
+instance Show UpgradeBasicGroupChatToSupergroupChat
+

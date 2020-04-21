@@ -10,3 +10,5 @@ instance ToJSON DeleteSavedCredentials
 
 instance FromJSON DeleteSavedCredentials
 
+instance Show DeleteSavedCredentials
+

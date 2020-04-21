@@ -10,3 +10,5 @@ instance ToJSON InputThumbnail
 
 instance FromJSON InputThumbnail
 
+instance Show InputThumbnail
+

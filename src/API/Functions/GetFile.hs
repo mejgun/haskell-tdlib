@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetFile = 
- GetFile { file_id :: Int }  -- deriving (Show)
+ GetFile { file_id :: Int }  deriving (Show)
 
 instance T.ToJSON GetFile where
  toJSON (GetFile { file_id = file_id }) =
   A.object [ "@type" A..= T.String "getFile", "file_id" A..= file_id ]
--- getFile GetFile  { file_id :: Int } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetFile where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getFile" -> parseGetFile v
+
+   _ -> mempty ""
   where
    parseGetFile :: A.Value -> T.Parser GetFile
    parseGetFile = A.withObject "GetFile" $ \o -> do

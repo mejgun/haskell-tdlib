@@ -10,3 +10,5 @@ instance ToJSON StorageStatistics
 
 instance FromJSON StorageStatistics
 
+instance Show StorageStatistics
+

@@ -10,3 +10,5 @@ instance ToJSON EditCustomLanguagePackInfo
 
 instance FromJSON EditCustomLanguagePackInfo
 
+instance Show EditCustomLanguagePackInfo
+

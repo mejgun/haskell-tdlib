@@ -10,3 +10,5 @@ instance ToJSON InputBackground
 
 instance FromJSON InputBackground
 
+instance Show InputBackground
+

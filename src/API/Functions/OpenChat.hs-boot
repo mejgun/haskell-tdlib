@@ -10,3 +10,5 @@ instance ToJSON OpenChat
 
 instance FromJSON OpenChat
 
+instance Show OpenChat
+

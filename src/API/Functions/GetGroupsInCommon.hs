@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetGroupsInCommon = 
- GetGroupsInCommon { limit :: Int, offset_chat_id :: Int, user_id :: Int }  -- deriving (Show)
+ GetGroupsInCommon { limit :: Int, offset_chat_id :: Int, user_id :: Int }  deriving (Show)
 
 instance T.ToJSON GetGroupsInCommon where
  toJSON (GetGroupsInCommon { limit = limit, offset_chat_id = offset_chat_id, user_id = user_id }) =
   A.object [ "@type" A..= T.String "getGroupsInCommon", "limit" A..= limit, "offset_chat_id" A..= offset_chat_id, "user_id" A..= user_id ]
--- getGroupsInCommon GetGroupsInCommon  { limit :: Int, offset_chat_id :: Int, user_id :: Int } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetGroupsInCommon where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getGroupsInCommon" -> parseGetGroupsInCommon v
+
+   _ -> mempty ""
   where
    parseGetGroupsInCommon :: A.Value -> T.Parser GetGroupsInCommon
    parseGetGroupsInCommon = A.withObject "GetGroupsInCommon" $ \o -> do

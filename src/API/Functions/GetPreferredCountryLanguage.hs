@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetPreferredCountryLanguage = 
- GetPreferredCountryLanguage { country_code :: String }  -- deriving (Show)
+ GetPreferredCountryLanguage { country_code :: String }  deriving (Show)
 
 instance T.ToJSON GetPreferredCountryLanguage where
  toJSON (GetPreferredCountryLanguage { country_code = country_code }) =
   A.object [ "@type" A..= T.String "getPreferredCountryLanguage", "country_code" A..= country_code ]
--- getPreferredCountryLanguage GetPreferredCountryLanguage  { country_code :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetPreferredCountryLanguage where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getPreferredCountryLanguage" -> parseGetPreferredCountryLanguage v
+
+   _ -> mempty ""
   where
    parseGetPreferredCountryLanguage :: A.Value -> T.Parser GetPreferredCountryLanguage
    parseGetPreferredCountryLanguage = A.withObject "GetPreferredCountryLanguage" $ \o -> do

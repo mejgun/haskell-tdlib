@@ -10,3 +10,5 @@ instance ToJSON DeleteLanguagePack
 
 instance FromJSON DeleteLanguagePack
 
+instance Show DeleteLanguagePack
+

@@ -10,3 +10,5 @@ instance ToJSON TMeUrl
 
 instance FromJSON TMeUrl
 
+instance Show TMeUrl
+

@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 --main = putStrLn "ok"
 
 data GetWebPagePreview = 
- GetWebPagePreview { text :: FormattedText.FormattedText }  -- deriving (Show)
+ GetWebPagePreview { text :: FormattedText.FormattedText }  deriving (Show)
 
 instance T.ToJSON GetWebPagePreview where
  toJSON (GetWebPagePreview { text = text }) =
   A.object [ "@type" A..= T.String "getWebPagePreview", "text" A..= text ]
--- getWebPagePreview GetWebPagePreview  { text :: FormattedText.FormattedText } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON GetWebPagePreview where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getWebPagePreview" -> parseGetWebPagePreview v
+
+   _ -> mempty ""
   where
    parseGetWebPagePreview :: A.Value -> T.Parser GetWebPagePreview
    parseGetWebPagePreview = A.withObject "GetWebPagePreview" $ \o -> do

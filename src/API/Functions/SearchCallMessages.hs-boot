@@ -10,3 +10,5 @@ instance ToJSON SearchCallMessages
 
 instance FromJSON SearchCallMessages
 
+instance Show SearchCallMessages
+

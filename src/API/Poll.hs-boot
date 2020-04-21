@@ -10,3 +10,5 @@ instance ToJSON Poll
 
 instance FromJSON Poll
 
+instance Show Poll
+

@@ -10,3 +10,5 @@ instance ToJSON SetChatMemberStatus
 
 instance FromJSON SetChatMemberStatus
 
+instance Show SetChatMemberStatus
+

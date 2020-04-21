@@ -10,3 +10,5 @@ instance ToJSON Invoice
 
 instance FromJSON Invoice
 
+instance Show Invoice
+

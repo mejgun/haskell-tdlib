@@ -10,3 +10,5 @@ instance ToJSON NotificationGroup
 
 instance FromJSON NotificationGroup
 
+instance Show NotificationGroup
+

@@ -10,3 +10,5 @@ instance ToJSON GetSupportUser
 
 instance FromJSON GetSupportUser
 
+instance Show GetSupportUser
+

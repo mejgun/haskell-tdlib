@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetMessageLinkInfo = 
- GetMessageLinkInfo { url :: String }  -- deriving (Show)
+ GetMessageLinkInfo { url :: String }  deriving (Show)
 
 instance T.ToJSON GetMessageLinkInfo where
  toJSON (GetMessageLinkInfo { url = url }) =
   A.object [ "@type" A..= T.String "getMessageLinkInfo", "url" A..= url ]
--- getMessageLinkInfo GetMessageLinkInfo  { url :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetMessageLinkInfo where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getMessageLinkInfo" -> parseGetMessageLinkInfo v
+
+   _ -> mempty ""
   where
    parseGetMessageLinkInfo :: A.Value -> T.Parser GetMessageLinkInfo
    parseGetMessageLinkInfo = A.withObject "GetMessageLinkInfo" $ \o -> do

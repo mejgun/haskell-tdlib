@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetAttachedStickerSets = 
- GetAttachedStickerSets { file_id :: Int }  -- deriving (Show)
+ GetAttachedStickerSets { file_id :: Int }  deriving (Show)
 
 instance T.ToJSON GetAttachedStickerSets where
  toJSON (GetAttachedStickerSets { file_id = file_id }) =
   A.object [ "@type" A..= T.String "getAttachedStickerSets", "file_id" A..= file_id ]
--- getAttachedStickerSets GetAttachedStickerSets  { file_id :: Int } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetAttachedStickerSets where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getAttachedStickerSets" -> parseGetAttachedStickerSets v
+
+   _ -> mempty ""
   where
    parseGetAttachedStickerSets :: A.Value -> T.Parser GetAttachedStickerSets
    parseGetAttachedStickerSets = A.withObject "GetAttachedStickerSets" $ \o -> do

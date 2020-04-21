@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetBackgrounds = 
- GetBackgrounds { for_dark_theme :: Bool }  -- deriving (Show)
+ GetBackgrounds { for_dark_theme :: Bool }  deriving (Show)
 
 instance T.ToJSON GetBackgrounds where
  toJSON (GetBackgrounds { for_dark_theme = for_dark_theme }) =
   A.object [ "@type" A..= T.String "getBackgrounds", "for_dark_theme" A..= for_dark_theme ]
--- getBackgrounds GetBackgrounds  { for_dark_theme :: Bool } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetBackgrounds where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getBackgrounds" -> parseGetBackgrounds v
+
+   _ -> mempty ""
   where
    parseGetBackgrounds :: A.Value -> T.Parser GetBackgrounds
    parseGetBackgrounds = A.withObject "GetBackgrounds" $ \o -> do

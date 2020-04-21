@@ -10,3 +10,5 @@ instance ToJSON BotInfo
 
 instance FromJSON BotInfo
 
+instance Show BotInfo
+

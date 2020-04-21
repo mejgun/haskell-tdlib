@@ -14,7 +14,7 @@ data CallProblem =
  | CallProblemDistortedSpeech 
  | CallProblemSilentLocal 
  | CallProblemSilentRemote 
- | CallProblemDropped -- deriving (Show)
+ | CallProblemDropped deriving (Show)
 
 instance T.ToJSON CallProblem where
  toJSON (CallProblemEcho {  }) =
@@ -37,19 +37,6 @@ instance T.ToJSON CallProblem where
 
  toJSON (CallProblemDropped {  }) =
   A.object [ "@type" A..= T.String "callProblemDropped" ]
--- callProblemEcho CallProblem 
-
--- callProblemNoise CallProblem 
-
--- callProblemInterruptions CallProblem 
-
--- callProblemDistortedSpeech CallProblem 
-
--- callProblemSilentLocal CallProblem 
-
--- callProblemSilentRemote CallProblem 
-
--- callProblemDropped CallProblem 
 
 
 
@@ -64,6 +51,8 @@ instance T.FromJSON CallProblem where
    "callProblemSilentLocal" -> parseCallProblemSilentLocal v
    "callProblemSilentRemote" -> parseCallProblemSilentRemote v
    "callProblemDropped" -> parseCallProblemDropped v
+
+   _ -> mempty ""
   where
    parseCallProblemEcho :: A.Value -> T.Parser CallProblem
    parseCallProblemEcho = A.withObject "CallProblemEcho" $ \o -> do

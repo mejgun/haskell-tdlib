@@ -10,3 +10,5 @@ instance ToJSON OptimizeStorage
 
 instance FromJSON OptimizeStorage
 
+instance Show OptimizeStorage
+

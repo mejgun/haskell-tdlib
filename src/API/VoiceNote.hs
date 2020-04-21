@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.File as File
 --main = putStrLn "ok"
 
 data VoiceNote = 
- VoiceNote { voice :: File.File, mime_type :: String, waveform :: String, duration :: Int }  -- deriving (Show)
+ VoiceNote { voice :: File.File, mime_type :: String, waveform :: String, duration :: Int }  deriving (Show)
 
 instance T.ToJSON VoiceNote where
  toJSON (VoiceNote { voice = voice, mime_type = mime_type, waveform = waveform, duration = duration }) =
   A.object [ "@type" A..= T.String "voiceNote", "voice" A..= voice, "mime_type" A..= mime_type, "waveform" A..= waveform, "duration" A..= duration ]
--- voiceNote VoiceNote  { voice :: File.File, mime_type :: String, waveform :: String, duration :: Int } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON VoiceNote where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "voiceNote" -> parseVoiceNote v
+
+   _ -> mempty ""
   where
    parseVoiceNote :: A.Value -> T.Parser VoiceNote
    parseVoiceNote = A.withObject "VoiceNote" $ \o -> do

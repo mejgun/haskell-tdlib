@@ -10,3 +10,5 @@ instance ToJSON StatisticsValue
 
 instance FromJSON StatisticsValue
 
+instance Show StatisticsValue
+

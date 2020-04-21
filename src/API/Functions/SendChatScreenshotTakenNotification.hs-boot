@@ -10,3 +10,5 @@ instance ToJSON SendChatScreenshotTakenNotification
 
 instance FromJSON SendChatScreenshotTakenNotification
 
+instance Show SendChatScreenshotTakenNotification
+

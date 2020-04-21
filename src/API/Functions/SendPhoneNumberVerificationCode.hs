@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.PhoneNumberAuthenticationSettings as PhoneNu
 --main = putStrLn "ok"
 
 data SendPhoneNumberVerificationCode = 
- SendPhoneNumberVerificationCode { settings :: PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings, phone_number :: String }  -- deriving (Show)
+ SendPhoneNumberVerificationCode { settings :: PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings, phone_number :: String }  deriving (Show)
 
 instance T.ToJSON SendPhoneNumberVerificationCode where
  toJSON (SendPhoneNumberVerificationCode { settings = settings, phone_number = phone_number }) =
   A.object [ "@type" A..= T.String "sendPhoneNumberVerificationCode", "settings" A..= settings, "phone_number" A..= phone_number ]
--- sendPhoneNumberVerificationCode SendPhoneNumberVerificationCode  { settings :: PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings, phone_number :: String } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON SendPhoneNumberVerificationCode where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "sendPhoneNumberVerificationCode" -> parseSendPhoneNumberVerificationCode v
+
+   _ -> mempty ""
   where
    parseSendPhoneNumberVerificationCode :: A.Value -> T.Parser SendPhoneNumberVerificationCode
    parseSendPhoneNumberVerificationCode = A.withObject "SendPhoneNumberVerificationCode" $ \o -> do

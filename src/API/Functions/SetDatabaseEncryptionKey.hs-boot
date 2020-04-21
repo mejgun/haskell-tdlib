@@ -10,3 +10,5 @@ instance ToJSON SetDatabaseEncryptionKey
 
 instance FromJSON SetDatabaseEncryptionKey
 
+instance Show SetDatabaseEncryptionKey
+

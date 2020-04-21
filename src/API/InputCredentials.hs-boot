@@ -10,3 +10,5 @@ instance ToJSON InputCredentials
 
 instance FromJSON InputCredentials
 
+instance Show InputCredentials
+

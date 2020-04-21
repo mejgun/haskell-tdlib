@@ -10,3 +10,5 @@ instance ToJSON GetPushReceiverId
 
 instance FromJSON GetPushReceiverId
 
+instance Show GetPushReceiverId
+

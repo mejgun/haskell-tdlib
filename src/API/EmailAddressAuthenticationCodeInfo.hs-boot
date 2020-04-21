@@ -10,3 +10,5 @@ instance ToJSON EmailAddressAuthenticationCodeInfo
 
 instance FromJSON EmailAddressAuthenticationCodeInfo
 
+instance Show EmailAddressAuthenticationCodeInfo
+

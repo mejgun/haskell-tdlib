@@ -10,3 +10,5 @@ instance ToJSON AddRecentlyFoundChat
 
 instance FromJSON AddRecentlyFoundChat
 
+instance Show AddRecentlyFoundChat
+

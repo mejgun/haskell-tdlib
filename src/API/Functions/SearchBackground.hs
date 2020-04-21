@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data SearchBackground = 
- SearchBackground { name :: String }  -- deriving (Show)
+ SearchBackground { name :: String }  deriving (Show)
 
 instance T.ToJSON SearchBackground where
  toJSON (SearchBackground { name = name }) =
   A.object [ "@type" A..= T.String "searchBackground", "name" A..= name ]
--- searchBackground SearchBackground  { name :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON SearchBackground where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "searchBackground" -> parseSearchBackground v
+
+   _ -> mempty ""
   where
    parseSearchBackground :: A.Value -> T.Parser SearchBackground
    parseSearchBackground = A.withObject "SearchBackground" $ \o -> do

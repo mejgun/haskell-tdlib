@@ -13,7 +13,7 @@ data ReplyMarkup =
  ReplyMarkupRemoveKeyboard { is_personal :: Bool }  
  | ReplyMarkupForceReply { is_personal :: Bool }  
  | ReplyMarkupShowKeyboard { is_personal :: Bool, one_time :: Bool, resize_keyboard :: Bool, _rows :: [KeyboardButton.KeyboardButton] }  
- | ReplyMarkupInlineKeyboard { rows :: [InlineKeyboardButton.InlineKeyboardButton] }  -- deriving (Show)
+ | ReplyMarkupInlineKeyboard { rows :: [InlineKeyboardButton.InlineKeyboardButton] }  deriving (Show)
 
 instance T.ToJSON ReplyMarkup where
  toJSON (ReplyMarkupRemoveKeyboard { is_personal = is_personal }) =
@@ -27,13 +27,6 @@ instance T.ToJSON ReplyMarkup where
 
  toJSON (ReplyMarkupInlineKeyboard { rows = rows }) =
   A.object [ "@type" A..= T.String "replyMarkupInlineKeyboard", "rows" A..= rows ]
--- replyMarkupRemoveKeyboard ReplyMarkup  { is_personal :: Bool } 
-
--- replyMarkupForceReply ReplyMarkup  { is_personal :: Bool } 
-
--- replyMarkupShowKeyboard ReplyMarkup  { is_personal :: Bool, one_time :: Bool, resize_keyboard :: Bool, _rows :: [KeyboardButton.KeyboardButton] } 
-
--- replyMarkupInlineKeyboard ReplyMarkup  { rows :: [InlineKeyboardButton.InlineKeyboardButton] } 
 
 
 
@@ -45,6 +38,8 @@ instance T.FromJSON ReplyMarkup where
    "replyMarkupForceReply" -> parseReplyMarkupForceReply v
    "replyMarkupShowKeyboard" -> parseReplyMarkupShowKeyboard v
    "replyMarkupInlineKeyboard" -> parseReplyMarkupInlineKeyboard v
+
+   _ -> mempty ""
   where
    parseReplyMarkupRemoveKeyboard :: A.Value -> T.Parser ReplyMarkup
    parseReplyMarkupRemoveKeyboard = A.withObject "ReplyMarkupRemoveKeyboard" $ \o -> do

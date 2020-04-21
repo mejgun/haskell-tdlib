@@ -10,3 +10,5 @@ instance ToJSON LogStream
 
 instance FromJSON LogStream
 
+instance Show LogStream
+

@@ -10,3 +10,5 @@ instance ToJSON SupergroupMembersFilter
 
 instance FromJSON SupergroupMembersFilter
 
+instance Show SupergroupMembersFilter
+

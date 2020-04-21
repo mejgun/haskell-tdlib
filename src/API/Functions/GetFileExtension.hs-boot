@@ -10,3 +10,5 @@ instance ToJSON GetFileExtension
 
 instance FromJSON GetFileExtension
 
+instance Show GetFileExtension
+

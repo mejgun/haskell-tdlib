@@ -10,3 +10,5 @@ instance ToJSON Updates
 
 instance FromJSON Updates
 
+instance Show Updates
+

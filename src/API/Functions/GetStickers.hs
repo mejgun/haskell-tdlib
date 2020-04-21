@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetStickers = 
- GetStickers { limit :: Int, emoji :: String }  -- deriving (Show)
+ GetStickers { limit :: Int, emoji :: String }  deriving (Show)
 
 instance T.ToJSON GetStickers where
  toJSON (GetStickers { limit = limit, emoji = emoji }) =
   A.object [ "@type" A..= T.String "getStickers", "limit" A..= limit, "emoji" A..= emoji ]
--- getStickers GetStickers  { limit :: Int, emoji :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetStickers where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getStickers" -> parseGetStickers v
+
+   _ -> mempty ""
   where
    parseGetStickers :: A.Value -> T.Parser GetStickers
    parseGetStickers = A.withObject "GetStickers" $ \o -> do

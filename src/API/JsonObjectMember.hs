@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.JsonValue as JsonValue
 --main = putStrLn "ok"
 
 data JsonObjectMember = 
- JsonObjectMember { value :: JsonValue.JsonValue, key :: String }  -- deriving (Show)
+ JsonObjectMember { value :: JsonValue.JsonValue, key :: String }  deriving (Show)
 
 instance T.ToJSON JsonObjectMember where
  toJSON (JsonObjectMember { value = value, key = key }) =
   A.object [ "@type" A..= T.String "jsonObjectMember", "value" A..= value, "key" A..= key ]
--- jsonObjectMember JsonObjectMember  { value :: JsonValue.JsonValue, key :: String } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON JsonObjectMember where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "jsonObjectMember" -> parseJsonObjectMember v
+
+   _ -> mempty ""
   where
    parseJsonObjectMember :: A.Value -> T.Parser JsonObjectMember
    parseJsonObjectMember = A.withObject "JsonObjectMember" $ \o -> do

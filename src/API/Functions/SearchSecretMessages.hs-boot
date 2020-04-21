@@ -10,3 +10,5 @@ instance ToJSON SearchSecretMessages
 
 instance FromJSON SearchSecretMessages
 
+instance Show SearchSecretMessages
+

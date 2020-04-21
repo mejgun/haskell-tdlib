@@ -10,3 +10,5 @@ instance ToJSON PageBlockCaption
 
 instance FromJSON PageBlockCaption
 
+instance Show PageBlockCaption
+

@@ -10,3 +10,5 @@ instance ToJSON SearchHashtags
 
 instance FromJSON SearchHashtags
 
+instance Show SearchHashtags
+

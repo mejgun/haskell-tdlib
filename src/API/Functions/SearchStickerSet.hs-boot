@@ -10,3 +10,5 @@ instance ToJSON SearchStickerSet
 
 instance FromJSON SearchStickerSet
 
+instance Show SearchStickerSet
+

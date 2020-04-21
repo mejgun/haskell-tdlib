@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data Error = 
- Error { message :: String, code :: Int }  -- deriving (Show)
+ Error { message :: String, code :: Int }  deriving (Show)
 
 instance T.ToJSON Error where
  toJSON (Error { message = message, code = code }) =
   A.object [ "@type" A..= T.String "error", "message" A..= message, "code" A..= code ]
--- error Error  { message :: String, code :: Int } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON Error where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "error" -> parseError v
+
+   _ -> mempty ""
   where
    parseError :: A.Value -> T.Parser Error
    parseError = A.withObject "Error" $ \o -> do

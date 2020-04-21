@@ -10,3 +10,5 @@ instance ToJSON ChangePhoneNumber
 
 instance FromJSON ChangePhoneNumber
 
+instance Show ChangePhoneNumber
+

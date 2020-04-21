@@ -10,3 +10,5 @@ instance ToJSON AddFavoriteSticker
 
 instance FromJSON AddFavoriteSticker
 
+instance Show AddFavoriteSticker
+

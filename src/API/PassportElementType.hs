@@ -20,7 +20,7 @@ data PassportElementType =
  | PassportElementTypePassportRegistration 
  | PassportElementTypeTemporaryRegistration 
  | PassportElementTypePhoneNumber 
- | PassportElementTypeEmailAddress -- deriving (Show)
+ | PassportElementTypeEmailAddress deriving (Show)
 
 instance T.ToJSON PassportElementType where
  toJSON (PassportElementTypePersonalDetails {  }) =
@@ -61,31 +61,6 @@ instance T.ToJSON PassportElementType where
 
  toJSON (PassportElementTypeEmailAddress {  }) =
   A.object [ "@type" A..= T.String "passportElementTypeEmailAddress" ]
--- passportElementTypePersonalDetails PassportElementType 
-
--- passportElementTypePassport PassportElementType 
-
--- passportElementTypeDriverLicense PassportElementType 
-
--- passportElementTypeIdentityCard PassportElementType 
-
--- passportElementTypeInternalPassport PassportElementType 
-
--- passportElementTypeAddress PassportElementType 
-
--- passportElementTypeUtilityBill PassportElementType 
-
--- passportElementTypeBankStatement PassportElementType 
-
--- passportElementTypeRentalAgreement PassportElementType 
-
--- passportElementTypePassportRegistration PassportElementType 
-
--- passportElementTypeTemporaryRegistration PassportElementType 
-
--- passportElementTypePhoneNumber PassportElementType 
-
--- passportElementTypeEmailAddress PassportElementType 
 
 
 
@@ -106,6 +81,8 @@ instance T.FromJSON PassportElementType where
    "passportElementTypeTemporaryRegistration" -> parsePassportElementTypeTemporaryRegistration v
    "passportElementTypePhoneNumber" -> parsePassportElementTypePhoneNumber v
    "passportElementTypeEmailAddress" -> parsePassportElementTypeEmailAddress v
+
+   _ -> mempty ""
   where
    parsePassportElementTypePersonalDetails :: A.Value -> T.Parser PassportElementType
    parsePassportElementTypePersonalDetails = A.withObject "PassportElementTypePersonalDetails" $ \o -> do

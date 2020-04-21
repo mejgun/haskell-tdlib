@@ -10,3 +10,5 @@ instance ToJSON GetMarkdownText
 
 instance FromJSON GetMarkdownText
 
+instance Show GetMarkdownText
+

@@ -10,3 +10,5 @@ instance ToJSON UnblockUser
 
 instance FromJSON UnblockUser
 
+instance Show UnblockUser
+

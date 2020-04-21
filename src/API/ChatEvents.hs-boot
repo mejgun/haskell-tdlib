@@ -10,3 +10,5 @@ instance ToJSON ChatEvents
 
 instance FromJSON ChatEvents
 
+instance Show ChatEvents
+

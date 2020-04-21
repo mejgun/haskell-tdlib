@@ -10,12 +10,11 @@ import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 --main = putStrLn "ok"
 
 data EditInlineMessageLiveLocation = 
- EditInlineMessageLiveLocation { location :: Location.Location, reply_markup :: ReplyMarkup.ReplyMarkup, inline_message_id :: String }  -- deriving (Show)
+ EditInlineMessageLiveLocation { location :: Location.Location, reply_markup :: ReplyMarkup.ReplyMarkup, inline_message_id :: String }  deriving (Show)
 
 instance T.ToJSON EditInlineMessageLiveLocation where
  toJSON (EditInlineMessageLiveLocation { location = location, reply_markup = reply_markup, inline_message_id = inline_message_id }) =
   A.object [ "@type" A..= T.String "editInlineMessageLiveLocation", "location" A..= location, "reply_markup" A..= reply_markup, "inline_message_id" A..= inline_message_id ]
--- editInlineMessageLiveLocation EditInlineMessageLiveLocation  { location :: Location.Location, reply_markup :: ReplyMarkup.ReplyMarkup, inline_message_id :: String } 
 
 
 
@@ -24,6 +23,8 @@ instance T.FromJSON EditInlineMessageLiveLocation where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "editInlineMessageLiveLocation" -> parseEditInlineMessageLiveLocation v
+
+   _ -> mempty ""
   where
    parseEditInlineMessageLiveLocation :: A.Value -> T.Parser EditInlineMessageLiveLocation
    parseEditInlineMessageLiveLocation = A.withObject "EditInlineMessageLiveLocation" $ \o -> do

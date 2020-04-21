@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data RemoveRecentHashtag = 
- RemoveRecentHashtag { hashtag :: String }  -- deriving (Show)
+ RemoveRecentHashtag { hashtag :: String }  deriving (Show)
 
 instance T.ToJSON RemoveRecentHashtag where
  toJSON (RemoveRecentHashtag { hashtag = hashtag }) =
   A.object [ "@type" A..= T.String "removeRecentHashtag", "hashtag" A..= hashtag ]
--- removeRecentHashtag RemoveRecentHashtag  { hashtag :: String } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON RemoveRecentHashtag where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "removeRecentHashtag" -> parseRemoveRecentHashtag v
+
+   _ -> mempty ""
   where
    parseRemoveRecentHashtag :: A.Value -> T.Parser RemoveRecentHashtag
    parseRemoveRecentHashtag = A.withObject "RemoveRecentHashtag" $ \o -> do

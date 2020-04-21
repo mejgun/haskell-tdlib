@@ -10,3 +10,5 @@ instance ToJSON RemoveStickerFromSet
 
 instance FromJSON RemoveStickerFromSet
 
+instance Show RemoveStickerFromSet
+

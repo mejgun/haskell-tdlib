@@ -10,3 +10,5 @@ instance ToJSON SetAuthenticationPhoneNumber
 
 instance FromJSON SetAuthenticationPhoneNumber
 
+instance Show SetAuthenticationPhoneNumber
+

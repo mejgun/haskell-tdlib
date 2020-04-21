@@ -10,3 +10,5 @@ instance ToJSON Messages
 
 instance FromJSON Messages
 
+instance Show Messages
+

@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data GetFavoriteStickers = 
- GetFavoriteStickers -- deriving (Show)
+ GetFavoriteStickers deriving (Show)
 
 instance T.ToJSON GetFavoriteStickers where
  toJSON (GetFavoriteStickers {  }) =
   A.object [ "@type" A..= T.String "getFavoriteStickers" ]
--- getFavoriteStickers GetFavoriteStickers 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON GetFavoriteStickers where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getFavoriteStickers" -> parseGetFavoriteStickers v
+
+   _ -> mempty ""
   where
    parseGetFavoriteStickers :: A.Value -> T.Parser GetFavoriteStickers
    parseGetFavoriteStickers = A.withObject "GetFavoriteStickers" $ \o -> do

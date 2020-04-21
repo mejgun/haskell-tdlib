@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.CallProtocol as CallProtocol
 --main = putStrLn "ok"
 
 data CreateCall = 
- CreateCall { protocol :: CallProtocol.CallProtocol, user_id :: Int }  -- deriving (Show)
+ CreateCall { protocol :: CallProtocol.CallProtocol, user_id :: Int }  deriving (Show)
 
 instance T.ToJSON CreateCall where
  toJSON (CreateCall { protocol = protocol, user_id = user_id }) =
   A.object [ "@type" A..= T.String "createCall", "protocol" A..= protocol, "user_id" A..= user_id ]
--- createCall CreateCall  { protocol :: CallProtocol.CallProtocol, user_id :: Int } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON CreateCall where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "createCall" -> parseCreateCall v
+
+   _ -> mempty ""
   where
    parseCreateCall :: A.Value -> T.Parser CreateCall
    parseCreateCall = A.withObject "CreateCall" $ \o -> do

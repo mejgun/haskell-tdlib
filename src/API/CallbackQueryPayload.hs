@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 data CallbackQueryPayload = 
  CallbackQueryPayloadData { _data :: String }  
- | CallbackQueryPayloadGame { game_short_name :: String }  -- deriving (Show)
+ | CallbackQueryPayloadGame { game_short_name :: String }  deriving (Show)
 
 instance T.ToJSON CallbackQueryPayload where
  toJSON (CallbackQueryPayloadData { _data = _data }) =
@@ -17,9 +17,6 @@ instance T.ToJSON CallbackQueryPayload where
 
  toJSON (CallbackQueryPayloadGame { game_short_name = game_short_name }) =
   A.object [ "@type" A..= T.String "callbackQueryPayloadGame", "game_short_name" A..= game_short_name ]
--- callbackQueryPayloadData CallbackQueryPayload  { _data :: String } 
-
--- callbackQueryPayloadGame CallbackQueryPayload  { game_short_name :: String } 
 
 
 
@@ -29,6 +26,8 @@ instance T.FromJSON CallbackQueryPayload where
   case t of
    "callbackQueryPayloadData" -> parseCallbackQueryPayloadData v
    "callbackQueryPayloadGame" -> parseCallbackQueryPayloadGame v
+
+   _ -> mempty ""
   where
    parseCallbackQueryPayloadData :: A.Value -> T.Parser CallbackQueryPayload
    parseCallbackQueryPayloadData = A.withObject "CallbackQueryPayloadData" $ \o -> do

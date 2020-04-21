@@ -10,3 +10,5 @@ instance ToJSON GetSecretChat
 
 instance FromJSON GetSecretChat
 
+instance Show GetSecretChat
+

@@ -10,3 +10,5 @@ instance ToJSON GetInstalledStickerSets
 
 instance FromJSON GetInstalledStickerSets
 
+instance Show GetInstalledStickerSets
+

@@ -10,3 +10,5 @@ instance ToJSON DeleteMessages
 
 instance FromJSON DeleteMessages
 
+instance Show DeleteMessages
+

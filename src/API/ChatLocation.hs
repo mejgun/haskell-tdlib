@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.Location as Location
 --main = putStrLn "ok"
 
 data ChatLocation = 
- ChatLocation { address :: String, location :: Location.Location }  -- deriving (Show)
+ ChatLocation { address :: String, location :: Location.Location }  deriving (Show)
 
 instance T.ToJSON ChatLocation where
  toJSON (ChatLocation { address = address, location = location }) =
   A.object [ "@type" A..= T.String "chatLocation", "address" A..= address, "location" A..= location ]
--- chatLocation ChatLocation  { address :: String, location :: Location.Location } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON ChatLocation where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "chatLocation" -> parseChatLocation v
+
+   _ -> mempty ""
   where
    parseChatLocation :: A.Value -> T.Parser ChatLocation
    parseChatLocation = A.withObject "ChatLocation" $ \o -> do

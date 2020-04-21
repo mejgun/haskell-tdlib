@@ -10,3 +10,5 @@ instance ToJSON OptionValue
 
 instance FromJSON OptionValue
 
+instance Show OptionValue
+

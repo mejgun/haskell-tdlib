@@ -10,7 +10,7 @@ import qualified Data.Aeson.Types as T
 data NotificationSettingsScope = 
  NotificationSettingsScopePrivateChats 
  | NotificationSettingsScopeGroupChats 
- | NotificationSettingsScopeChannelChats -- deriving (Show)
+ | NotificationSettingsScopeChannelChats deriving (Show)
 
 instance T.ToJSON NotificationSettingsScope where
  toJSON (NotificationSettingsScopePrivateChats {  }) =
@@ -21,11 +21,6 @@ instance T.ToJSON NotificationSettingsScope where
 
  toJSON (NotificationSettingsScopeChannelChats {  }) =
   A.object [ "@type" A..= T.String "notificationSettingsScopeChannelChats" ]
--- notificationSettingsScopePrivateChats NotificationSettingsScope 
-
--- notificationSettingsScopeGroupChats NotificationSettingsScope 
-
--- notificationSettingsScopeChannelChats NotificationSettingsScope 
 
 
 
@@ -36,6 +31,8 @@ instance T.FromJSON NotificationSettingsScope where
    "notificationSettingsScopePrivateChats" -> parseNotificationSettingsScopePrivateChats v
    "notificationSettingsScopeGroupChats" -> parseNotificationSettingsScopeGroupChats v
    "notificationSettingsScopeChannelChats" -> parseNotificationSettingsScopeChannelChats v
+
+   _ -> mempty ""
   where
    parseNotificationSettingsScopePrivateChats :: A.Value -> T.Parser NotificationSettingsScope
    parseNotificationSettingsScopePrivateChats = A.withObject "NotificationSettingsScopePrivateChats" $ \o -> do

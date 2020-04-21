@@ -10,3 +10,5 @@ instance ToJSON ResendRecoveryEmailAddressCode
 
 instance FromJSON ResendRecoveryEmailAddressCode
 
+instance Show ResendRecoveryEmailAddressCode
+

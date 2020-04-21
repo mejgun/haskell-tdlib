@@ -10,3 +10,5 @@ instance ToJSON DeleteSupergroup
 
 instance FromJSON DeleteSupergroup
 
+instance Show DeleteSupergroup
+

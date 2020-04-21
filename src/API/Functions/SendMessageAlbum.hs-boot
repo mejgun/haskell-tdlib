@@ -10,3 +10,5 @@ instance ToJSON SendMessageAlbum
 
 instance FromJSON SendMessageAlbum
 
+instance Show SendMessageAlbum
+

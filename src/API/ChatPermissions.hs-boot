@@ -10,3 +10,5 @@ instance ToJSON ChatPermissions
 
 instance FromJSON ChatPermissions
 
+instance Show ChatPermissions
+

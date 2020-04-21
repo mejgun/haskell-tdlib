@@ -10,3 +10,5 @@ instance ToJSON GetFileDownloadedPrefixSize
 
 instance FromJSON GetFileDownloadedPrefixSize
 
+instance Show GetFileDownloadedPrefixSize
+

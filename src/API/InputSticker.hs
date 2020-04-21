@@ -11,7 +11,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data InputSticker = 
  InputStickerStatic { mask_position :: MaskPosition.MaskPosition, emojis :: String, sticker :: InputFile.InputFile }  
- | InputStickerAnimated { emojis :: String, sticker :: InputFile.InputFile }  -- deriving (Show)
+ | InputStickerAnimated { emojis :: String, sticker :: InputFile.InputFile }  deriving (Show)
 
 instance T.ToJSON InputSticker where
  toJSON (InputStickerStatic { mask_position = mask_position, emojis = emojis, sticker = sticker }) =
@@ -19,9 +19,6 @@ instance T.ToJSON InputSticker where
 
  toJSON (InputStickerAnimated { emojis = emojis, sticker = sticker }) =
   A.object [ "@type" A..= T.String "inputStickerAnimated", "emojis" A..= emojis, "sticker" A..= sticker ]
--- inputStickerStatic InputSticker  { mask_position :: MaskPosition.MaskPosition, emojis :: String, sticker :: InputFile.InputFile } 
-
--- inputStickerAnimated InputSticker  { emojis :: String, sticker :: InputFile.InputFile } 
 
 
 
@@ -31,6 +28,8 @@ instance T.FromJSON InputSticker where
   case t of
    "inputStickerStatic" -> parseInputStickerStatic v
    "inputStickerAnimated" -> parseInputStickerAnimated v
+
+   _ -> mempty ""
   where
    parseInputStickerStatic :: A.Value -> T.Parser InputSticker
    parseInputStickerStatic = A.withObject "InputStickerStatic" $ \o -> do

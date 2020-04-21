@@ -10,3 +10,5 @@ instance ToJSON CallProtocol
 
 instance FromJSON CallProtocol
 
+instance Show CallProtocol
+

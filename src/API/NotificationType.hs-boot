@@ -10,3 +10,5 @@ instance ToJSON NotificationType
 
 instance FromJSON NotificationType
 
+instance Show NotificationType
+

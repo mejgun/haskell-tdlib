@@ -12,7 +12,7 @@ data NetworkType =
  | NetworkTypeMobile 
  | NetworkTypeMobileRoaming 
  | NetworkTypeWiFi 
- | NetworkTypeOther -- deriving (Show)
+ | NetworkTypeOther deriving (Show)
 
 instance T.ToJSON NetworkType where
  toJSON (NetworkTypeNone {  }) =
@@ -29,15 +29,6 @@ instance T.ToJSON NetworkType where
 
  toJSON (NetworkTypeOther {  }) =
   A.object [ "@type" A..= T.String "networkTypeOther" ]
--- networkTypeNone NetworkType 
-
--- networkTypeMobile NetworkType 
-
--- networkTypeMobileRoaming NetworkType 
-
--- networkTypeWiFi NetworkType 
-
--- networkTypeOther NetworkType 
 
 
 
@@ -50,6 +41,8 @@ instance T.FromJSON NetworkType where
    "networkTypeMobileRoaming" -> parseNetworkTypeMobileRoaming v
    "networkTypeWiFi" -> parseNetworkTypeWiFi v
    "networkTypeOther" -> parseNetworkTypeOther v
+
+   _ -> mempty ""
   where
    parseNetworkTypeNone :: A.Value -> T.Parser NetworkType
    parseNetworkTypeNone = A.withObject "NetworkTypeNone" $ \o -> do

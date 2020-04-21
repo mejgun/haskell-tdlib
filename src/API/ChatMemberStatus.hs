@@ -14,7 +14,7 @@ data ChatMemberStatus =
  | ChatMemberStatusMember 
  | ChatMemberStatusRestricted { permissions :: ChatPermissions.ChatPermissions, restricted_until_date :: Int, is_member :: Bool }  
  | ChatMemberStatusLeft 
- | ChatMemberStatusBanned { banned_until_date :: Int }  -- deriving (Show)
+ | ChatMemberStatusBanned { banned_until_date :: Int }  deriving (Show)
 
 instance T.ToJSON ChatMemberStatus where
  toJSON (ChatMemberStatusCreator { is_member = is_member, custom_title = custom_title }) =
@@ -34,17 +34,6 @@ instance T.ToJSON ChatMemberStatus where
 
  toJSON (ChatMemberStatusBanned { banned_until_date = banned_until_date }) =
   A.object [ "@type" A..= T.String "chatMemberStatusBanned", "banned_until_date" A..= banned_until_date ]
--- chatMemberStatusCreator ChatMemberStatus  { is_member :: Bool, custom_title :: String } 
-
--- chatMemberStatusAdministrator ChatMemberStatus  { can_promote_members :: Bool, can_pin_messages :: Bool, can_restrict_members :: Bool, can_invite_users :: Bool, can_delete_messages :: Bool, can_edit_messages :: Bool, can_post_messages :: Bool, can_change_info :: Bool, can_be_edited :: Bool, custom_title :: String } 
-
--- chatMemberStatusMember ChatMemberStatus 
-
--- chatMemberStatusRestricted ChatMemberStatus  { permissions :: ChatPermissions.ChatPermissions, restricted_until_date :: Int, is_member :: Bool } 
-
--- chatMemberStatusLeft ChatMemberStatus 
-
--- chatMemberStatusBanned ChatMemberStatus  { banned_until_date :: Int } 
 
 
 
@@ -58,6 +47,8 @@ instance T.FromJSON ChatMemberStatus where
    "chatMemberStatusRestricted" -> parseChatMemberStatusRestricted v
    "chatMemberStatusLeft" -> parseChatMemberStatusLeft v
    "chatMemberStatusBanned" -> parseChatMemberStatusBanned v
+
+   _ -> mempty ""
   where
    parseChatMemberStatusCreator :: A.Value -> T.Parser ChatMemberStatus
    parseChatMemberStatusCreator = A.withObject "ChatMemberStatusCreator" $ \o -> do

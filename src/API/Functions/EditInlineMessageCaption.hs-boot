@@ -10,3 +10,5 @@ instance ToJSON EditInlineMessageCaption
 
 instance FromJSON EditInlineMessageCaption
 
+instance Show EditInlineMessageCaption
+

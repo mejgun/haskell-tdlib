@@ -24,7 +24,7 @@ data TextEntityType =
  | TextEntityTypePre 
  | TextEntityTypePreCode { language :: String }  
  | TextEntityTypeTextUrl { url :: String }  
- | TextEntityTypeMentionName { user_id :: Int }  -- deriving (Show)
+ | TextEntityTypeMentionName { user_id :: Int }  deriving (Show)
 
 instance T.ToJSON TextEntityType where
  toJSON (TextEntityTypeMention {  }) =
@@ -77,39 +77,6 @@ instance T.ToJSON TextEntityType where
 
  toJSON (TextEntityTypeMentionName { user_id = user_id }) =
   A.object [ "@type" A..= T.String "textEntityTypeMentionName", "user_id" A..= user_id ]
--- textEntityTypeMention TextEntityType 
-
--- textEntityTypeHashtag TextEntityType 
-
--- textEntityTypeCashtag TextEntityType 
-
--- textEntityTypeBotCommand TextEntityType 
-
--- textEntityTypeUrl TextEntityType 
-
--- textEntityTypeEmailAddress TextEntityType 
-
--- textEntityTypePhoneNumber TextEntityType 
-
--- textEntityTypeBankCardNumber TextEntityType 
-
--- textEntityTypeBold TextEntityType 
-
--- textEntityTypeItalic TextEntityType 
-
--- textEntityTypeUnderline TextEntityType 
-
--- textEntityTypeStrikethrough TextEntityType 
-
--- textEntityTypeCode TextEntityType 
-
--- textEntityTypePre TextEntityType 
-
--- textEntityTypePreCode TextEntityType  { language :: String } 
-
--- textEntityTypeTextUrl TextEntityType  { url :: String } 
-
--- textEntityTypeMentionName TextEntityType  { user_id :: Int } 
 
 
 
@@ -134,6 +101,8 @@ instance T.FromJSON TextEntityType where
    "textEntityTypePreCode" -> parseTextEntityTypePreCode v
    "textEntityTypeTextUrl" -> parseTextEntityTypeTextUrl v
    "textEntityTypeMentionName" -> parseTextEntityTypeMentionName v
+
+   _ -> mempty ""
   where
    parseTextEntityTypeMention :: A.Value -> T.Parser TextEntityType
    parseTextEntityTypeMention = A.withObject "TextEntityTypeMention" $ \o -> do

@@ -10,3 +10,5 @@ instance ToJSON DateRange
 
 instance FromJSON DateRange
 
+instance Show DateRange
+

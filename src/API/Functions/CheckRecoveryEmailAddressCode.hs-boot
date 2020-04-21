@@ -10,3 +10,5 @@ instance ToJSON CheckRecoveryEmailAddressCode
 
 instance FromJSON CheckRecoveryEmailAddressCode
 
+instance Show CheckRecoveryEmailAddressCode
+

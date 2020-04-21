@@ -10,3 +10,5 @@ instance ToJSON AddStickerToSet
 
 instance FromJSON AddStickerToSet
 
+instance Show AddStickerToSet
+

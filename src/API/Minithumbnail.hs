@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data Minithumbnail = 
- Minithumbnail { _data :: String, height :: Int, width :: Int }  -- deriving (Show)
+ Minithumbnail { _data :: String, height :: Int, width :: Int }  deriving (Show)
 
 instance T.ToJSON Minithumbnail where
  toJSON (Minithumbnail { _data = _data, height = height, width = width }) =
   A.object [ "@type" A..= T.String "minithumbnail", "data" A..= _data, "height" A..= height, "width" A..= width ]
--- minithumbnail Minithumbnail  { _data :: String, height :: Int, width :: Int } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON Minithumbnail where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "minithumbnail" -> parseMinithumbnail v
+
+   _ -> mempty ""
   where
    parseMinithumbnail :: A.Value -> T.Parser Minithumbnail
    parseMinithumbnail = A.withObject "Minithumbnail" $ \o -> do

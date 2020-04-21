@@ -10,3 +10,5 @@ instance ToJSON PhotoSize
 
 instance FromJSON PhotoSize
 
+instance Show PhotoSize
+

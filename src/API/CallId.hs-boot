@@ -10,3 +10,5 @@ instance ToJSON CallId
 
 instance FromJSON CallId
 
+instance Show CallId
+

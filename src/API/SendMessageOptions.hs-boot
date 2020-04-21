@@ -10,3 +10,5 @@ instance ToJSON SendMessageOptions
 
 instance FromJSON SendMessageOptions
 
+instance Show SendMessageOptions
+

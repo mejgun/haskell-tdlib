@@ -10,3 +10,5 @@ instance ToJSON ToggleSupergroupSignMessages
 
 instance FromJSON ToggleSupergroupSignMessages
 
+instance Show ToggleSupergroupSignMessages
+

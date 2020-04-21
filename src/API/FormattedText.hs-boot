@@ -10,3 +10,5 @@ instance ToJSON FormattedText
 
 instance FromJSON FormattedText
 
+instance Show FormattedText
+

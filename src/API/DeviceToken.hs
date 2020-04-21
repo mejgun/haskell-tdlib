@@ -18,7 +18,7 @@ data DeviceToken =
  | DeviceTokenSimplePush { endpoint :: String }  
  | DeviceTokenUbuntuPush { token :: String }  
  | DeviceTokenBlackBerryPush { token :: String }  
- | DeviceTokenTizenPush { reg_id :: String }  -- deriving (Show)
+ | DeviceTokenTizenPush { reg_id :: String }  deriving (Show)
 
 instance T.ToJSON DeviceToken where
  toJSON (DeviceTokenFirebaseCloudMessaging { encrypt = encrypt, token = token }) =
@@ -53,27 +53,6 @@ instance T.ToJSON DeviceToken where
 
  toJSON (DeviceTokenTizenPush { reg_id = reg_id }) =
   A.object [ "@type" A..= T.String "deviceTokenTizenPush", "reg_id" A..= reg_id ]
--- deviceTokenFirebaseCloudMessaging DeviceToken  { encrypt :: Bool, token :: String } 
-
--- deviceTokenApplePush DeviceToken  { is_app_sandbox :: Bool, device_token :: String } 
-
--- deviceTokenApplePushVoIP DeviceToken  { encrypt :: Bool, is_app_sandbox :: Bool, device_token :: String } 
-
--- deviceTokenWindowsPush DeviceToken  { access_token :: String } 
-
--- deviceTokenMicrosoftPush DeviceToken  { channel_uri :: String } 
-
--- deviceTokenMicrosoftPushVoIP DeviceToken  { channel_uri :: String } 
-
--- deviceTokenWebPush DeviceToken  { auth_base64url :: String, p256dh_base64url :: String, endpoint :: String } 
-
--- deviceTokenSimplePush DeviceToken  { endpoint :: String } 
-
--- deviceTokenUbuntuPush DeviceToken  { token :: String } 
-
--- deviceTokenBlackBerryPush DeviceToken  { token :: String } 
-
--- deviceTokenTizenPush DeviceToken  { reg_id :: String } 
 
 
 
@@ -92,6 +71,8 @@ instance T.FromJSON DeviceToken where
    "deviceTokenUbuntuPush" -> parseDeviceTokenUbuntuPush v
    "deviceTokenBlackBerryPush" -> parseDeviceTokenBlackBerryPush v
    "deviceTokenTizenPush" -> parseDeviceTokenTizenPush v
+
+   _ -> mempty ""
   where
    parseDeviceTokenFirebaseCloudMessaging :: A.Value -> T.Parser DeviceToken
    parseDeviceTokenFirebaseCloudMessaging = A.withObject "DeviceTokenFirebaseCloudMessaging" $ \o -> do

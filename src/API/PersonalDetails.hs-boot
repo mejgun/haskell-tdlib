@@ -10,3 +10,5 @@ instance ToJSON PersonalDetails
 
 instance FromJSON PersonalDetails
 
+instance Show PersonalDetails
+

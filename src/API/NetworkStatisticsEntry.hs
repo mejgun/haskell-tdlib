@@ -11,7 +11,7 @@ import {-# SOURCE #-} qualified API.NetworkType as NetworkType
 
 data NetworkStatisticsEntry = 
  NetworkStatisticsEntryFile { received_bytes :: Int, sent_bytes :: Int, network_type :: NetworkType.NetworkType, file_type :: FileType.FileType }  
- | NetworkStatisticsEntryCall { duration :: Float, received_bytes :: Int, sent_bytes :: Int, network_type :: NetworkType.NetworkType }  -- deriving (Show)
+ | NetworkStatisticsEntryCall { duration :: Float, received_bytes :: Int, sent_bytes :: Int, network_type :: NetworkType.NetworkType }  deriving (Show)
 
 instance T.ToJSON NetworkStatisticsEntry where
  toJSON (NetworkStatisticsEntryFile { received_bytes = received_bytes, sent_bytes = sent_bytes, network_type = network_type, file_type = file_type }) =
@@ -19,9 +19,6 @@ instance T.ToJSON NetworkStatisticsEntry where
 
  toJSON (NetworkStatisticsEntryCall { duration = duration, received_bytes = received_bytes, sent_bytes = sent_bytes, network_type = network_type }) =
   A.object [ "@type" A..= T.String "networkStatisticsEntryCall", "duration" A..= duration, "received_bytes" A..= received_bytes, "sent_bytes" A..= sent_bytes, "network_type" A..= network_type ]
--- networkStatisticsEntryFile NetworkStatisticsEntry  { received_bytes :: Int, sent_bytes :: Int, network_type :: NetworkType.NetworkType, file_type :: FileType.FileType } 
-
--- networkStatisticsEntryCall NetworkStatisticsEntry  { duration :: Float, received_bytes :: Int, sent_bytes :: Int, network_type :: NetworkType.NetworkType } 
 
 
 
@@ -31,6 +28,8 @@ instance T.FromJSON NetworkStatisticsEntry where
   case t of
    "networkStatisticsEntryFile" -> parseNetworkStatisticsEntryFile v
    "networkStatisticsEntryCall" -> parseNetworkStatisticsEntryCall v
+
+   _ -> mempty ""
   where
    parseNetworkStatisticsEntryFile :: A.Value -> T.Parser NetworkStatisticsEntry
    parseNetworkStatisticsEntryFile = A.withObject "NetworkStatisticsEntryFile" $ \o -> do

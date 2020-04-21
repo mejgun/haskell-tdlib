@@ -8,12 +8,11 @@ import qualified Data.Aeson.Types as T
 --main = putStrLn "ok"
 
 data Count = 
- Count { count :: Int }  -- deriving (Show)
+ Count { count :: Int }  deriving (Show)
 
 instance T.ToJSON Count where
  toJSON (Count { count = count }) =
   A.object [ "@type" A..= T.String "count", "count" A..= count ]
--- count Count  { count :: Int } 
 
 
 
@@ -22,6 +21,8 @@ instance T.FromJSON Count where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "count" -> parseCount v
+
+   _ -> mempty ""
   where
    parseCount :: A.Value -> T.Parser Count
    parseCount = A.withObject "Count" $ \o -> do

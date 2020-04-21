@@ -10,3 +10,5 @@ instance ToJSON GetCreatedPublicChats
 
 instance FromJSON GetCreatedPublicChats
 
+instance Show GetCreatedPublicChats
+

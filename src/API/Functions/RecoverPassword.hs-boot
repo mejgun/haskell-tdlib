@@ -10,3 +10,5 @@ instance ToJSON RecoverPassword
 
 instance FromJSON RecoverPassword
 
+instance Show RecoverPassword
+

@@ -10,3 +10,5 @@ instance ToJSON SetOption
 
 instance FromJSON SetOption
 
+instance Show SetOption
+

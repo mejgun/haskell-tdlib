@@ -10,3 +10,5 @@ instance ToJSON AnswerCustomQuery
 
 instance FromJSON AnswerCustomQuery
 
+instance Show AnswerCustomQuery
+

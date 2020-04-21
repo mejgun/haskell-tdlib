@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.PassportElement as PassportElement
 --main = putStrLn "ok"
 
 data PassportElements = 
- PassportElements { elements :: [PassportElement.PassportElement] }  -- deriving (Show)
+ PassportElements { elements :: [PassportElement.PassportElement] }  deriving (Show)
 
 instance T.ToJSON PassportElements where
  toJSON (PassportElements { elements = elements }) =
   A.object [ "@type" A..= T.String "passportElements", "elements" A..= elements ]
--- passportElements PassportElements  { elements :: [PassportElement.PassportElement] } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON PassportElements where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "passportElements" -> parsePassportElements v
+
+   _ -> mempty ""
   where
    parsePassportElements :: A.Value -> T.Parser PassportElements
    parsePassportElements = A.withObject "PassportElements" $ \o -> do

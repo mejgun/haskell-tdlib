@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.TdlibParameters as TdlibParameters
 --main = putStrLn "ok"
 
 data SetTdlibParameters = 
- SetTdlibParameters { parameters :: TdlibParameters.TdlibParameters }  -- deriving (Show)
+ SetTdlibParameters { parameters :: TdlibParameters.TdlibParameters }  deriving (Show)
 
 instance T.ToJSON SetTdlibParameters where
  toJSON (SetTdlibParameters { parameters = parameters }) =
   A.object [ "@type" A..= T.String "setTdlibParameters", "parameters" A..= parameters ]
--- setTdlibParameters SetTdlibParameters  { parameters :: TdlibParameters.TdlibParameters } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON SetTdlibParameters where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "setTdlibParameters" -> parseSetTdlibParameters v
+
+   _ -> mempty ""
   where
    parseSetTdlibParameters :: A.Value -> T.Parser SetTdlibParameters
    parseSetTdlibParameters = A.withObject "SetTdlibParameters" $ \o -> do

@@ -10,3 +10,5 @@ instance ToJSON Location
 
 instance FromJSON Location
 
+instance Show Location
+

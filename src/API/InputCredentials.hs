@@ -11,7 +11,7 @@ data InputCredentials =
  InputCredentialsSaved { saved_credentials_id :: String }  
  | InputCredentialsNew { allow_save :: Bool, _data :: String }  
  | InputCredentialsAndroidPay { _data :: String }  
- | InputCredentialsApplePay { _data :: String }  -- deriving (Show)
+ | InputCredentialsApplePay { _data :: String }  deriving (Show)
 
 instance T.ToJSON InputCredentials where
  toJSON (InputCredentialsSaved { saved_credentials_id = saved_credentials_id }) =
@@ -25,13 +25,6 @@ instance T.ToJSON InputCredentials where
 
  toJSON (InputCredentialsApplePay { _data = _data }) =
   A.object [ "@type" A..= T.String "inputCredentialsApplePay", "data" A..= _data ]
--- inputCredentialsSaved InputCredentials  { saved_credentials_id :: String } 
-
--- inputCredentialsNew InputCredentials  { allow_save :: Bool, _data :: String } 
-
--- inputCredentialsAndroidPay InputCredentials  { _data :: String } 
-
--- inputCredentialsApplePay InputCredentials  { _data :: String } 
 
 
 
@@ -43,6 +36,8 @@ instance T.FromJSON InputCredentials where
    "inputCredentialsNew" -> parseInputCredentialsNew v
    "inputCredentialsAndroidPay" -> parseInputCredentialsAndroidPay v
    "inputCredentialsApplePay" -> parseInputCredentialsApplePay v
+
+   _ -> mempty ""
   where
    parseInputCredentialsSaved :: A.Value -> T.Parser InputCredentials
    parseInputCredentialsSaved = A.withObject "InputCredentialsSaved" $ \o -> do

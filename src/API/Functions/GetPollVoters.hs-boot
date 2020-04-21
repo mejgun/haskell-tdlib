@@ -10,3 +10,5 @@ instance ToJSON GetPollVoters
 
 instance FromJSON GetPollVoters
 
+instance Show GetPollVoters
+

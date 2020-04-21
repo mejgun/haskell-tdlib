@@ -10,3 +10,5 @@ instance ToJSON DeleteProfilePhoto
 
 instance FromJSON DeleteProfilePhoto
 
+instance Show DeleteProfilePhoto
+

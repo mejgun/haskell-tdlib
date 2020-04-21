@@ -10,3 +10,5 @@ instance ToJSON GameHighScores
 
 instance FromJSON GameHighScores
 
+instance Show GameHighScores
+

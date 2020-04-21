@@ -10,3 +10,5 @@ instance ToJSON SetChatLocation
 
 instance FromJSON SetChatLocation
 
+instance Show SetChatLocation
+

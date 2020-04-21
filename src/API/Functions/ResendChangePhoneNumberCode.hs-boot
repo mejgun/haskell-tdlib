@@ -10,3 +10,5 @@ instance ToJSON ResendChangePhoneNumberCode
 
 instance FromJSON ResendChangePhoneNumberCode
 
+instance Show ResendChangePhoneNumberCode
+

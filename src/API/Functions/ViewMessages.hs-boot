@@ -10,3 +10,5 @@ instance ToJSON ViewMessages
 
 instance FromJSON ViewMessages
 
+instance Show ViewMessages
+

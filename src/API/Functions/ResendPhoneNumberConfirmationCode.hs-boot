@@ -10,3 +10,5 @@ instance ToJSON ResendPhoneNumberConfirmationCode
 
 instance FromJSON ResendPhoneNumberConfirmationCode
 
+instance Show ResendPhoneNumberConfirmationCode
+

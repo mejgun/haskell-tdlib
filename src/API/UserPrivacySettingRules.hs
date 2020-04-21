@@ -9,12 +9,11 @@ import {-# SOURCE #-} qualified API.UserPrivacySettingRule as UserPrivacySetting
 --main = putStrLn "ok"
 
 data UserPrivacySettingRules = 
- UserPrivacySettingRules { rules :: [UserPrivacySettingRule.UserPrivacySettingRule] }  -- deriving (Show)
+ UserPrivacySettingRules { rules :: [UserPrivacySettingRule.UserPrivacySettingRule] }  deriving (Show)
 
 instance T.ToJSON UserPrivacySettingRules where
  toJSON (UserPrivacySettingRules { rules = rules }) =
   A.object [ "@type" A..= T.String "userPrivacySettingRules", "rules" A..= rules ]
--- userPrivacySettingRules UserPrivacySettingRules  { rules :: [UserPrivacySettingRule.UserPrivacySettingRule] } 
 
 
 
@@ -23,6 +22,8 @@ instance T.FromJSON UserPrivacySettingRules where
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "userPrivacySettingRules" -> parseUserPrivacySettingRules v
+
+   _ -> mempty ""
   where
    parseUserPrivacySettingRules :: A.Value -> T.Parser UserPrivacySettingRules
    parseUserPrivacySettingRules = A.withObject "UserPrivacySettingRules" $ \o -> do

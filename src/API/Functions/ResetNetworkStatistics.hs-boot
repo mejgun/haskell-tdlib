@@ -10,3 +10,5 @@ instance ToJSON ResetNetworkStatistics
 
 instance FromJSON ResetNetworkStatistics
 
+instance Show ResetNetworkStatistics
+

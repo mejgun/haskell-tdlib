@@ -10,3 +10,5 @@ instance ToJSON UserFullInfo
 
 instance FromJSON UserFullInfo
 
+instance Show UserFullInfo
+

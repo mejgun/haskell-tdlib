@@ -10,3 +10,5 @@ instance ToJSON PushMessageContent
 
 instance FromJSON PushMessageContent
 
+instance Show PushMessageContent
+

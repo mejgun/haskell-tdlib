@@ -10,3 +10,5 @@ instance ToJSON GetRecoveryEmailAddress
 
 instance FromJSON GetRecoveryEmailAddress
 
+instance Show GetRecoveryEmailAddress
+

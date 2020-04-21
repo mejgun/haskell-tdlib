@@ -10,3 +10,5 @@ instance ToJSON FileType
 
 instance FromJSON FileType
 
+instance Show FileType
+

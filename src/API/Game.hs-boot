@@ -10,3 +10,5 @@ instance ToJSON Game
 
 instance FromJSON Game
 
+instance Show Game
+

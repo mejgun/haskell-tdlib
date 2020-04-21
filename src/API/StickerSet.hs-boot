@@ -10,3 +10,5 @@ instance ToJSON StickerSet
 
 instance FromJSON StickerSet
 
+instance Show StickerSet
+

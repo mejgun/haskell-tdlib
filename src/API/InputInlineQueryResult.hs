@@ -25,7 +25,7 @@ data InputInlineQueryResult =
  | InputInlineQueryResultSticker { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, sticker_height :: Int, sticker_width :: Int, sticker_url :: String, thumbnail_url :: String, _id :: String }  
  | InputInlineQueryResultVenue { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, thumbnail_height :: Int, thumbnail_width :: Int, thumbnail_url :: String, venue :: Venue.Venue, _id :: String }  
  | InputInlineQueryResultVideo { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, video_duration :: Int, video_height :: Int, video_width :: Int, mime_type :: String, video_url :: String, thumbnail_url :: String, description :: String, title :: String, _id :: String }  
- | InputInlineQueryResultVoiceNote { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, voice_note_duration :: Int, voice_note_url :: String, title :: String, _id :: String }  -- deriving (Show)
+ | InputInlineQueryResultVoiceNote { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, voice_note_duration :: Int, voice_note_url :: String, title :: String, _id :: String }  deriving (Show)
 
 instance T.ToJSON InputInlineQueryResult where
  toJSON (InputInlineQueryResultAnimatedGif { input_message_content = input_message_content, reply_markup = reply_markup, gif_height = gif_height, gif_width = gif_width, gif_duration = gif_duration, gif_url = gif_url, thumbnail_url = thumbnail_url, title = title, _id = _id }) =
@@ -66,31 +66,6 @@ instance T.ToJSON InputInlineQueryResult where
 
  toJSON (InputInlineQueryResultVoiceNote { input_message_content = input_message_content, reply_markup = reply_markup, voice_note_duration = voice_note_duration, voice_note_url = voice_note_url, title = title, _id = _id }) =
   A.object [ "@type" A..= T.String "inputInlineQueryResultVoiceNote", "input_message_content" A..= input_message_content, "reply_markup" A..= reply_markup, "voice_note_duration" A..= voice_note_duration, "voice_note_url" A..= voice_note_url, "title" A..= title, "id" A..= _id ]
--- inputInlineQueryResultAnimatedGif InputInlineQueryResult  { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, gif_height :: Int, gif_width :: Int, gif_duration :: Int, gif_url :: String, thumbnail_url :: String, title :: String, _id :: String } 
-
--- inputInlineQueryResultAnimatedMpeg4 InputInlineQueryResult  { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, mpeg4_height :: Int, mpeg4_width :: Int, mpeg4_duration :: Int, mpeg4_url :: String, thumbnail_url :: String, title :: String, _id :: String } 
-
--- inputInlineQueryResultArticle InputInlineQueryResult  { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, thumbnail_height :: Int, thumbnail_width :: Int, thumbnail_url :: String, description :: String, title :: String, hide_url :: Bool, url :: String, _id :: String } 
-
--- inputInlineQueryResultAudio InputInlineQueryResult  { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, audio_duration :: Int, audio_url :: String, performer :: String, title :: String, _id :: String } 
-
--- inputInlineQueryResultContact InputInlineQueryResult  { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, thumbnail_height :: Int, thumbnail_width :: Int, thumbnail_url :: String, contact :: Contact.Contact, _id :: String } 
-
--- inputInlineQueryResultDocument InputInlineQueryResult  { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, thumbnail_height :: Int, thumbnail_width :: Int, thumbnail_url :: String, mime_type :: String, document_url :: String, description :: String, title :: String, _id :: String } 
-
--- inputInlineQueryResultGame InputInlineQueryResult  { reply_markup :: ReplyMarkup.ReplyMarkup, game_short_name :: String, _id :: String } 
-
--- inputInlineQueryResultLocation InputInlineQueryResult  { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, thumbnail_height :: Int, thumbnail_width :: Int, thumbnail_url :: String, title :: String, live_period :: Int, location :: Location.Location, _id :: String } 
-
--- inputInlineQueryResultPhoto InputInlineQueryResult  { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, photo_height :: Int, photo_width :: Int, photo_url :: String, thumbnail_url :: String, description :: String, title :: String, _id :: String } 
-
--- inputInlineQueryResultSticker InputInlineQueryResult  { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, sticker_height :: Int, sticker_width :: Int, sticker_url :: String, thumbnail_url :: String, _id :: String } 
-
--- inputInlineQueryResultVenue InputInlineQueryResult  { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, thumbnail_height :: Int, thumbnail_width :: Int, thumbnail_url :: String, venue :: Venue.Venue, _id :: String } 
-
--- inputInlineQueryResultVideo InputInlineQueryResult  { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, video_duration :: Int, video_height :: Int, video_width :: Int, mime_type :: String, video_url :: String, thumbnail_url :: String, description :: String, title :: String, _id :: String } 
-
--- inputInlineQueryResultVoiceNote InputInlineQueryResult  { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, voice_note_duration :: Int, voice_note_url :: String, title :: String, _id :: String } 
 
 
 
@@ -111,6 +86,8 @@ instance T.FromJSON InputInlineQueryResult where
    "inputInlineQueryResultVenue" -> parseInputInlineQueryResultVenue v
    "inputInlineQueryResultVideo" -> parseInputInlineQueryResultVideo v
    "inputInlineQueryResultVoiceNote" -> parseInputInlineQueryResultVoiceNote v
+
+   _ -> mempty ""
   where
    parseInputInlineQueryResultAnimatedGif :: A.Value -> T.Parser InputInlineQueryResult
    parseInputInlineQueryResultAnimatedGif = A.withObject "InputInlineQueryResultAnimatedGif" $ \o -> do

@@ -10,3 +10,5 @@ instance ToJSON CallbackQueryPayload
 
 instance FromJSON CallbackQueryPayload
 
+instance Show CallbackQueryPayload
+

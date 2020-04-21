@@ -11,7 +11,7 @@ data UserType =
  UserTypeRegular 
  | UserTypeDeleted 
  | UserTypeBot { need_location :: Bool, inline_query_placeholder :: String, is_inline :: Bool, can_read_all_group_messages :: Bool, can_join_groups :: Bool }  
- | UserTypeUnknown -- deriving (Show)
+ | UserTypeUnknown deriving (Show)
 
 instance T.ToJSON UserType where
  toJSON (UserTypeRegular {  }) =
@@ -25,13 +25,6 @@ instance T.ToJSON UserType where
 
  toJSON (UserTypeUnknown {  }) =
   A.object [ "@type" A..= T.String "userTypeUnknown" ]
--- userTypeRegular UserType 
-
--- userTypeDeleted UserType 
-
--- userTypeBot UserType  { need_location :: Bool, inline_query_placeholder :: String, is_inline :: Bool, can_read_all_group_messages :: Bool, can_join_groups :: Bool } 
-
--- userTypeUnknown UserType 
 
 
 
@@ -43,6 +36,8 @@ instance T.FromJSON UserType where
    "userTypeDeleted" -> parseUserTypeDeleted v
    "userTypeBot" -> parseUserTypeBot v
    "userTypeUnknown" -> parseUserTypeUnknown v
+
+   _ -> mempty ""
   where
    parseUserTypeRegular :: A.Value -> T.Parser UserType
    parseUserTypeRegular = A.withObject "UserTypeRegular" $ \o -> do

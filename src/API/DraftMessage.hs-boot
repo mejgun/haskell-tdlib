@@ -10,3 +10,5 @@ instance ToJSON DraftMessage
 
 instance FromJSON DraftMessage
 
+instance Show DraftMessage
+

@@ -10,3 +10,5 @@ instance ToJSON GetChatStatisticsUrl
 
 instance FromJSON GetChatStatisticsUrl
 
+instance Show GetChatStatisticsUrl
+

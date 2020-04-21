@@ -10,3 +10,5 @@ instance ToJSON ConfirmQrCodeAuthentication
 
 instance FromJSON ConfirmQrCodeAuthentication
 
+instance Show ConfirmQrCodeAuthentication
+
