@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 124e2253b62d2f93af42e18c2a6bbae8ca176a40bc19310aed25e10b7d4db594
+-- hash: 0e52c457e9091c23028566187d48272cf4f413dd189d3f5fbdbf90e436125a03
 
 name:           haskell-tdlib
 version:        0.1.0.0
@@ -655,6 +655,7 @@ library
   build-depends:
       aeson
     , base >=4.7 && <5
+    , bytestring
   default-language: Haskell2010
 
 executable haskell-tdlib-exe
@@ -667,6 +668,7 @@ executable haskell-tdlib-exe
   build-depends:
       aeson
     , base >=4.7 && <5
+    , bytestring
     , haskell-tdlib
   default-language: Haskell2010
 
@@ -681,5 +683,6 @@ test-suite haskell-tdlib-test
   build-depends:
       aeson
     , base >=4.7 && <5
+    , bytestring
     , haskell-tdlib
   default-language: Haskell2010

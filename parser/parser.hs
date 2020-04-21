@@ -196,13 +196,6 @@ writeToFiles addr modName m =
         ]
     ]
 
-{-
-    parseAuthorizationState v = do
-      d <- A.parseJSON v :: T.Parser AuthorizationState.AuthorizationState
-      return $ AuthorizationState d
--}
-
-
   ww :: [(T.Text, [(T.Text, T.Text)])] -> T.Text
   ww e =
     T.intercalate " \n | " $ map (\(a, b) -> T.concat [toTitle a, www b]) e
