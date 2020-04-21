@@ -2,6 +2,8 @@
 
 module TDLib where
 
+import           API.GeneralResult
+
 import           Foreign
 import           Foreign.C.String
 import           Foreign.C.Types
@@ -28,8 +30,19 @@ send c d = B.useAsCString enc (c_send c) where enc = BL.toStrict (A.encode d)
 -- execute :: Client -> String -> IO ()
 -- execute c s = (newCString s) >>= c_execute c
 
-receive :: Client -> IO CString
-receive c = c_receive c 1.0
+receive :: Client -> IO (Maybe API.GeneralResult.GeneralResult)
+receive c = dec $ c_receive c 1.0
+ where
+  dec :: IO CString -> IO (Maybe API.GeneralResult.GeneralResult)
+  dec ics = do
+    cs <- ics
+    if cs == nullPtr
+      then return Nothing
+      else do
+        A.decode <$> conv cs
+  conv :: CString -> IO BL.ByteString
+  conv cs = do
+    BL.fromStrict <$> B.packCString cs
 
 destroy :: Client -> IO ()
 destroy c = c_destroy c

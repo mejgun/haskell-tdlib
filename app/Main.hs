@@ -50,14 +50,8 @@ main = do
   destroy client
  where
   live c = do
-    cs <- receive c
-    if cs /= nullPtr
-      then do
-        bs <- B.packCString cs
-        let s = BL.fromStrict bs
-        let z = decode s :: Maybe API.GeneralResult.GeneralResult
-        print z
-      else return ()
+    r <- receive c
+    print r
     live c
 
 
