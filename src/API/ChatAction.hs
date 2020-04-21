@@ -5,8 +5,6 @@ module API.ChatAction where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data ChatAction = 
  ChatActionTyping 
  | ChatActionRecordingVideo 
@@ -62,8 +60,6 @@ instance T.ToJSON ChatAction where
  toJSON (ChatActionCancel {  }) =
   A.object [ "@type" A..= T.String "chatActionCancel" ]
 
-
-
 instance T.FromJSON ChatAction where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -81,8 +77,7 @@ instance T.FromJSON ChatAction where
    "chatActionRecordingVideoNote" -> parseChatActionRecordingVideoNote v
    "chatActionUploadingVideoNote" -> parseChatActionUploadingVideoNote v
    "chatActionCancel" -> parseChatActionCancel v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseChatActionTyping :: A.Value -> T.Parser ChatAction
    parseChatActionTyping = A.withObject "ChatActionTyping" $ \o -> do

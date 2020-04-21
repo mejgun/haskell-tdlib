@@ -5,8 +5,6 @@ module API.SupergroupMembersFilter where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data SupergroupMembersFilter = 
  SupergroupMembersFilterRecent 
  | SupergroupMembersFilterContacts { query :: String }  
@@ -38,8 +36,6 @@ instance T.ToJSON SupergroupMembersFilter where
  toJSON (SupergroupMembersFilterBots {  }) =
   A.object [ "@type" A..= T.String "supergroupMembersFilterBots" ]
 
-
-
 instance T.FromJSON SupergroupMembersFilter where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -51,8 +47,7 @@ instance T.FromJSON SupergroupMembersFilter where
    "supergroupMembersFilterRestricted" -> parseSupergroupMembersFilterRestricted v
    "supergroupMembersFilterBanned" -> parseSupergroupMembersFilterBanned v
    "supergroupMembersFilterBots" -> parseSupergroupMembersFilterBots v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseSupergroupMembersFilterRecent :: A.Value -> T.Parser SupergroupMembersFilter
    parseSupergroupMembersFilterRecent = A.withObject "SupergroupMembersFilterRecent" $ \o -> do

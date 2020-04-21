@@ -5,8 +5,6 @@ module API.ChatActionBar where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data ChatActionBar = 
  ChatActionBarReportSpam 
  | ChatActionBarReportUnrelatedLocation 
@@ -30,8 +28,6 @@ instance T.ToJSON ChatActionBar where
  toJSON (ChatActionBarSharePhoneNumber {  }) =
   A.object [ "@type" A..= T.String "chatActionBarSharePhoneNumber" ]
 
-
-
 instance T.FromJSON ChatActionBar where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -41,8 +37,7 @@ instance T.FromJSON ChatActionBar where
    "chatActionBarReportAddBlock" -> parseChatActionBarReportAddBlock v
    "chatActionBarAddContact" -> parseChatActionBarAddContact v
    "chatActionBarSharePhoneNumber" -> parseChatActionBarSharePhoneNumber v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseChatActionBarReportSpam :: A.Value -> T.Parser ChatActionBar
    parseChatActionBarReportSpam = A.withObject "ChatActionBarReportSpam" $ \o -> do

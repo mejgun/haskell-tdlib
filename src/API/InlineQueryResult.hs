@@ -17,8 +17,6 @@ import {-# SOURCE #-} qualified API.Sticker as Sticker
 import {-# SOURCE #-} qualified API.Video as Video
 import {-# SOURCE #-} qualified API.VoiceNote as VoiceNote
 
---main = putStrLn "ok"
-
 data InlineQueryResult = 
  InlineQueryResultArticle { thumbnail :: PhotoSize.PhotoSize, description :: String, title :: String, hide_url :: Bool, url :: String, _id :: String }  
  | InlineQueryResultContact { thumbnail :: PhotoSize.PhotoSize, contact :: Contact.Contact, _id :: String }  
@@ -70,8 +68,6 @@ instance T.ToJSON InlineQueryResult where
  toJSON (InlineQueryResultVoiceNote { title = title, voice_note = voice_note, _id = _id }) =
   A.object [ "@type" A..= T.String "inlineQueryResultVoiceNote", "title" A..= title, "voice_note" A..= voice_note, "id" A..= _id ]
 
-
-
 instance T.FromJSON InlineQueryResult where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -88,8 +84,7 @@ instance T.FromJSON InlineQueryResult where
    "inlineQueryResultSticker" -> parseInlineQueryResultSticker v
    "inlineQueryResultVideo" -> parseInlineQueryResultVideo v
    "inlineQueryResultVoiceNote" -> parseInlineQueryResultVoiceNote v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseInlineQueryResultArticle :: A.Value -> T.Parser InlineQueryResult
    parseInlineQueryResultArticle = A.withObject "InlineQueryResultArticle" $ \o -> do

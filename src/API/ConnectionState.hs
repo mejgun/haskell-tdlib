@@ -5,8 +5,6 @@ module API.ConnectionState where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data ConnectionState = 
  ConnectionStateWaitingForNetwork 
  | ConnectionStateConnectingToProxy 
@@ -30,8 +28,6 @@ instance T.ToJSON ConnectionState where
  toJSON (ConnectionStateReady {  }) =
   A.object [ "@type" A..= T.String "connectionStateReady" ]
 
-
-
 instance T.FromJSON ConnectionState where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -41,8 +37,7 @@ instance T.FromJSON ConnectionState where
    "connectionStateConnecting" -> parseConnectionStateConnecting v
    "connectionStateUpdating" -> parseConnectionStateUpdating v
    "connectionStateReady" -> parseConnectionStateReady v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseConnectionStateWaitingForNetwork :: A.Value -> T.Parser ConnectionState
    parseConnectionStateWaitingForNetwork = A.withObject "ConnectionStateWaitingForNetwork" $ \o -> do

@@ -5,8 +5,6 @@ module API.ChatList where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data ChatList = 
  ChatListMain 
  | ChatListArchive deriving (Show)
@@ -18,16 +16,13 @@ instance T.ToJSON ChatList where
  toJSON (ChatListArchive {  }) =
   A.object [ "@type" A..= T.String "chatListArchive" ]
 
-
-
 instance T.FromJSON ChatList where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "chatListMain" -> parseChatListMain v
    "chatListArchive" -> parseChatListArchive v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseChatListMain :: A.Value -> T.Parser ChatList
    parseChatListMain = A.withObject "ChatListMain" $ \o -> do

@@ -13,8 +13,6 @@ import {-# SOURCE #-} qualified API.Contact as Contact
 import {-# SOURCE #-} qualified API.Invoice as Invoice
 import {-# SOURCE #-} qualified API.PollType as PollType
 
---main = putStrLn "ok"
-
 data InputMessageContent = 
  InputMessageText { clear_draft :: Bool, disable_web_page_preview :: Bool, text :: FormattedText.FormattedText }  
  | InputMessageAnimation { caption :: FormattedText.FormattedText, height :: Int, width :: Int, duration :: Int, thumbnail :: InputThumbnail.InputThumbnail, animation :: InputFile.InputFile }  
@@ -86,8 +84,6 @@ instance T.ToJSON InputMessageContent where
  toJSON (InputMessageForwarded { remove_caption = remove_caption, send_copy = send_copy, in_game_share = in_game_share, message_id = message_id, from_chat_id = from_chat_id }) =
   A.object [ "@type" A..= T.String "inputMessageForwarded", "remove_caption" A..= remove_caption, "send_copy" A..= send_copy, "in_game_share" A..= in_game_share, "message_id" A..= message_id, "from_chat_id" A..= from_chat_id ]
 
-
-
 instance T.FromJSON InputMessageContent where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -109,8 +105,7 @@ instance T.FromJSON InputMessageContent where
    "inputMessageInvoice" -> parseInputMessageInvoice v
    "inputMessagePoll" -> parseInputMessagePoll v
    "inputMessageForwarded" -> parseInputMessageForwarded v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseInputMessageText :: A.Value -> T.Parser InputMessageContent
    parseInputMessageText = A.withObject "InputMessageText" $ \o -> do

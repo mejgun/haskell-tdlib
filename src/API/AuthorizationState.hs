@@ -7,8 +7,6 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.AuthenticationCodeInfo as AuthenticationCodeInfo
 import {-# SOURCE #-} qualified API.TermsOfService as TermsOfService
 
---main = putStrLn "ok"
-
 data AuthorizationState = 
  AuthorizationStateWaitTdlibParameters 
  | AuthorizationStateWaitEncryptionKey { is_encrypted :: Bool }  
@@ -56,8 +54,6 @@ instance T.ToJSON AuthorizationState where
  toJSON (AuthorizationStateClosed {  }) =
   A.object [ "@type" A..= T.String "authorizationStateClosed" ]
 
-
-
 instance T.FromJSON AuthorizationState where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -73,8 +69,7 @@ instance T.FromJSON AuthorizationState where
    "authorizationStateLoggingOut" -> parseAuthorizationStateLoggingOut v
    "authorizationStateClosing" -> parseAuthorizationStateClosing v
    "authorizationStateClosed" -> parseAuthorizationStateClosed v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseAuthorizationStateWaitTdlibParameters :: A.Value -> T.Parser AuthorizationState
    parseAuthorizationStateWaitTdlibParameters = A.withObject "AuthorizationStateWaitTdlibParameters" $ \o -> do

@@ -5,8 +5,6 @@ module API.InputCredentials where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data InputCredentials = 
  InputCredentialsSaved { saved_credentials_id :: String }  
  | InputCredentialsNew { allow_save :: Bool, _data :: String }  
@@ -26,8 +24,6 @@ instance T.ToJSON InputCredentials where
  toJSON (InputCredentialsApplePay { _data = _data }) =
   A.object [ "@type" A..= T.String "inputCredentialsApplePay", "data" A..= _data ]
 
-
-
 instance T.FromJSON InputCredentials where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -36,8 +32,7 @@ instance T.FromJSON InputCredentials where
    "inputCredentialsNew" -> parseInputCredentialsNew v
    "inputCredentialsAndroidPay" -> parseInputCredentialsAndroidPay v
    "inputCredentialsApplePay" -> parseInputCredentialsApplePay v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseInputCredentialsSaved :: A.Value -> T.Parser InputCredentials
    parseInputCredentialsSaved = A.withObject "InputCredentialsSaved" $ \o -> do

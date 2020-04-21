@@ -5,8 +5,6 @@ module API.NetworkType where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data NetworkType = 
  NetworkTypeNone 
  | NetworkTypeMobile 
@@ -30,8 +28,6 @@ instance T.ToJSON NetworkType where
  toJSON (NetworkTypeOther {  }) =
   A.object [ "@type" A..= T.String "networkTypeOther" ]
 
-
-
 instance T.FromJSON NetworkType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -41,8 +37,7 @@ instance T.FromJSON NetworkType where
    "networkTypeMobileRoaming" -> parseNetworkTypeMobileRoaming v
    "networkTypeWiFi" -> parseNetworkTypeWiFi v
    "networkTypeOther" -> parseNetworkTypeOther v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseNetworkTypeNone :: A.Value -> T.Parser NetworkType
    parseNetworkTypeNone = A.withObject "NetworkTypeNone" $ \o -> do

@@ -6,8 +6,6 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.JsonObjectMember as JsonObjectMember
 
---main = putStrLn "ok"
-
 data JsonValue = 
  JsonValueNull 
  | JsonValueBoolean { __value :: Bool }  
@@ -35,8 +33,6 @@ instance T.ToJSON JsonValue where
  toJSON (JsonValueObject { members = members }) =
   A.object [ "@type" A..= T.String "jsonValueObject", "members" A..= members ]
 
-
-
 instance T.FromJSON JsonValue where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -47,8 +43,7 @@ instance T.FromJSON JsonValue where
    "jsonValueString" -> parseJsonValueString v
    "jsonValueArray" -> parseJsonValueArray v
    "jsonValueObject" -> parseJsonValueObject v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseJsonValueNull :: A.Value -> T.Parser JsonValue
    parseJsonValueNull = A.withObject "JsonValueNull" $ \o -> do

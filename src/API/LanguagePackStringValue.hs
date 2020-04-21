@@ -5,8 +5,6 @@ module API.LanguagePackStringValue where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data LanguagePackStringValue = 
  LanguagePackStringValueOrdinary { value :: String }  
  | LanguagePackStringValuePluralized { other_value :: String, many_value :: String, few_value :: String, two_value :: String, one_value :: String, zero_value :: String }  
@@ -22,8 +20,6 @@ instance T.ToJSON LanguagePackStringValue where
  toJSON (LanguagePackStringValueDeleted {  }) =
   A.object [ "@type" A..= T.String "languagePackStringValueDeleted" ]
 
-
-
 instance T.FromJSON LanguagePackStringValue where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -31,8 +27,7 @@ instance T.FromJSON LanguagePackStringValue where
    "languagePackStringValueOrdinary" -> parseLanguagePackStringValueOrdinary v
    "languagePackStringValuePluralized" -> parseLanguagePackStringValuePluralized v
    "languagePackStringValueDeleted" -> parseLanguagePackStringValueDeleted v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseLanguagePackStringValueOrdinary :: A.Value -> T.Parser LanguagePackStringValue
    parseLanguagePackStringValueOrdinary = A.withObject "LanguagePackStringValueOrdinary" $ \o -> do

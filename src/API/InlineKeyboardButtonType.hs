@@ -5,8 +5,6 @@ module API.InlineKeyboardButtonType where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data InlineKeyboardButtonType = 
  InlineKeyboardButtonTypeUrl { url :: String }  
  | InlineKeyboardButtonTypeLoginUrl { forward_text :: String, _id :: Int, url :: String }  
@@ -34,8 +32,6 @@ instance T.ToJSON InlineKeyboardButtonType where
  toJSON (InlineKeyboardButtonTypeBuy {  }) =
   A.object [ "@type" A..= T.String "inlineKeyboardButtonTypeBuy" ]
 
-
-
 instance T.FromJSON InlineKeyboardButtonType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -46,8 +42,7 @@ instance T.FromJSON InlineKeyboardButtonType where
    "inlineKeyboardButtonTypeCallbackGame" -> parseInlineKeyboardButtonTypeCallbackGame v
    "inlineKeyboardButtonTypeSwitchInline" -> parseInlineKeyboardButtonTypeSwitchInline v
    "inlineKeyboardButtonTypeBuy" -> parseInlineKeyboardButtonTypeBuy v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseInlineKeyboardButtonTypeUrl :: A.Value -> T.Parser InlineKeyboardButtonType
    parseInlineKeyboardButtonTypeUrl = A.withObject "InlineKeyboardButtonTypeUrl" $ \o -> do

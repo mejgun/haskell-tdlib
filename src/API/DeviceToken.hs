@@ -5,8 +5,6 @@ module API.DeviceToken where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data DeviceToken = 
  DeviceTokenFirebaseCloudMessaging { encrypt :: Bool, token :: String }  
  | DeviceTokenApplePush { is_app_sandbox :: Bool, device_token :: String }  
@@ -54,8 +52,6 @@ instance T.ToJSON DeviceToken where
  toJSON (DeviceTokenTizenPush { reg_id = reg_id }) =
   A.object [ "@type" A..= T.String "deviceTokenTizenPush", "reg_id" A..= reg_id ]
 
-
-
 instance T.FromJSON DeviceToken where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -71,8 +67,7 @@ instance T.FromJSON DeviceToken where
    "deviceTokenUbuntuPush" -> parseDeviceTokenUbuntuPush v
    "deviceTokenBlackBerryPush" -> parseDeviceTokenBlackBerryPush v
    "deviceTokenTizenPush" -> parseDeviceTokenTizenPush v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseDeviceTokenFirebaseCloudMessaging :: A.Value -> T.Parser DeviceToken
    parseDeviceTokenFirebaseCloudMessaging = A.withObject "DeviceTokenFirebaseCloudMessaging" $ \o -> do

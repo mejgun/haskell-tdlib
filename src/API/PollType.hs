@@ -5,8 +5,6 @@ module API.PollType where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data PollType = 
  PollTypeRegular { allow_multiple_answers :: Bool }  
  | PollTypeQuiz { correct_option_id :: Int }  deriving (Show)
@@ -18,16 +16,13 @@ instance T.ToJSON PollType where
  toJSON (PollTypeQuiz { correct_option_id = correct_option_id }) =
   A.object [ "@type" A..= T.String "pollTypeQuiz", "correct_option_id" A..= correct_option_id ]
 
-
-
 instance T.FromJSON PollType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "pollTypeRegular" -> parsePollTypeRegular v
    "pollTypeQuiz" -> parsePollTypeQuiz v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parsePollTypeRegular :: A.Value -> T.Parser PollType
    parsePollTypeRegular = A.withObject "PollTypeRegular" $ \o -> do

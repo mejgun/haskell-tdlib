@@ -5,8 +5,6 @@ module API.Functions.SearchStickerSet where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data SearchStickerSet = 
  SearchStickerSet { name :: String }  deriving (Show)
 
@@ -14,15 +12,12 @@ instance T.ToJSON SearchStickerSet where
  toJSON (SearchStickerSet { name = name }) =
   A.object [ "@type" A..= T.String "searchStickerSet", "name" A..= name ]
 
-
-
 instance T.FromJSON SearchStickerSet where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "searchStickerSet" -> parseSearchStickerSet v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseSearchStickerSet :: A.Value -> T.Parser SearchStickerSet
    parseSearchStickerSet = A.withObject "SearchStickerSet" $ \o -> do

@@ -5,8 +5,6 @@ module API.SearchMessagesFilter where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data SearchMessagesFilter = 
  SearchMessagesFilterEmpty 
  | SearchMessagesFilterAnimation 
@@ -74,8 +72,6 @@ instance T.ToJSON SearchMessagesFilter where
  toJSON (SearchMessagesFilterUnreadMention {  }) =
   A.object [ "@type" A..= T.String "searchMessagesFilterUnreadMention" ]
 
-
-
 instance T.FromJSON SearchMessagesFilter where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -96,8 +92,7 @@ instance T.FromJSON SearchMessagesFilter where
    "searchMessagesFilterVoiceAndVideoNote" -> parseSearchMessagesFilterVoiceAndVideoNote v
    "searchMessagesFilterMention" -> parseSearchMessagesFilterMention v
    "searchMessagesFilterUnreadMention" -> parseSearchMessagesFilterUnreadMention v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseSearchMessagesFilterEmpty :: A.Value -> T.Parser SearchMessagesFilter
    parseSearchMessagesFilterEmpty = A.withObject "SearchMessagesFilterEmpty" $ \o -> do

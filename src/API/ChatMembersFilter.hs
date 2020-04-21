@@ -5,8 +5,6 @@ module API.ChatMembersFilter where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data ChatMembersFilter = 
  ChatMembersFilterContacts 
  | ChatMembersFilterAdministrators 
@@ -34,8 +32,6 @@ instance T.ToJSON ChatMembersFilter where
  toJSON (ChatMembersFilterBots {  }) =
   A.object [ "@type" A..= T.String "chatMembersFilterBots" ]
 
-
-
 instance T.FromJSON ChatMembersFilter where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -46,8 +42,7 @@ instance T.FromJSON ChatMembersFilter where
    "chatMembersFilterRestricted" -> parseChatMembersFilterRestricted v
    "chatMembersFilterBanned" -> parseChatMembersFilterBanned v
    "chatMembersFilterBots" -> parseChatMembersFilterBots v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseChatMembersFilterContacts :: A.Value -> T.Parser ChatMembersFilter
    parseChatMembersFilterContacts = A.withObject "ChatMembersFilterContacts" $ \o -> do

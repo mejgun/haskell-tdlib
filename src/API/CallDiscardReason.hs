@@ -5,8 +5,6 @@ module API.CallDiscardReason where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data CallDiscardReason = 
  CallDiscardReasonEmpty 
  | CallDiscardReasonMissed 
@@ -30,8 +28,6 @@ instance T.ToJSON CallDiscardReason where
  toJSON (CallDiscardReasonHungUp {  }) =
   A.object [ "@type" A..= T.String "callDiscardReasonHungUp" ]
 
-
-
 instance T.FromJSON CallDiscardReason where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -41,8 +37,7 @@ instance T.FromJSON CallDiscardReason where
    "callDiscardReasonDeclined" -> parseCallDiscardReasonDeclined v
    "callDiscardReasonDisconnected" -> parseCallDiscardReasonDisconnected v
    "callDiscardReasonHungUp" -> parseCallDiscardReasonHungUp v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseCallDiscardReasonEmpty :: A.Value -> T.Parser CallDiscardReason
    parseCallDiscardReasonEmpty = A.withObject "CallDiscardReasonEmpty" $ \o -> do

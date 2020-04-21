@@ -5,8 +5,6 @@ module API.ProxyType where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data ProxyType = 
  ProxyTypeSocks5 { password :: String, username :: String }  
  | ProxyTypeHttp { http_only :: Bool, password :: String, username :: String }  
@@ -22,8 +20,6 @@ instance T.ToJSON ProxyType where
  toJSON (ProxyTypeMtproto { secret = secret }) =
   A.object [ "@type" A..= T.String "proxyTypeMtproto", "secret" A..= secret ]
 
-
-
 instance T.FromJSON ProxyType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -31,8 +27,7 @@ instance T.FromJSON ProxyType where
    "proxyTypeSocks5" -> parseProxyTypeSocks5 v
    "proxyTypeHttp" -> parseProxyTypeHttp v
    "proxyTypeMtproto" -> parseProxyTypeMtproto v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseProxyTypeSocks5 :: A.Value -> T.Parser ProxyType
    parseProxyTypeSocks5 = A.withObject "ProxyTypeSocks5" $ \o -> do

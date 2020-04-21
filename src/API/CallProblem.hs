@@ -5,8 +5,6 @@ module API.CallProblem where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data CallProblem = 
  CallProblemEcho 
  | CallProblemNoise 
@@ -38,8 +36,6 @@ instance T.ToJSON CallProblem where
  toJSON (CallProblemDropped {  }) =
   A.object [ "@type" A..= T.String "callProblemDropped" ]
 
-
-
 instance T.FromJSON CallProblem where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -51,8 +47,7 @@ instance T.FromJSON CallProblem where
    "callProblemSilentLocal" -> parseCallProblemSilentLocal v
    "callProblemSilentRemote" -> parseCallProblemSilentRemote v
    "callProblemDropped" -> parseCallProblemDropped v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseCallProblemEcho :: A.Value -> T.Parser CallProblem
    parseCallProblemEcho = A.withObject "CallProblemEcho" $ \o -> do

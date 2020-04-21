@@ -5,8 +5,6 @@ module API.TextParseMode where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data TextParseMode = 
  TextParseModeMarkdown { version :: Int }  
  | TextParseModeHTML deriving (Show)
@@ -18,16 +16,13 @@ instance T.ToJSON TextParseMode where
  toJSON (TextParseModeHTML {  }) =
   A.object [ "@type" A..= T.String "textParseModeHTML" ]
 
-
-
 instance T.FromJSON TextParseMode where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "textParseModeMarkdown" -> parseTextParseModeMarkdown v
    "textParseModeHTML" -> parseTextParseModeHTML v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseTextParseModeMarkdown :: A.Value -> T.Parser TextParseMode
    parseTextParseModeMarkdown = A.withObject "TextParseModeMarkdown" $ \o -> do

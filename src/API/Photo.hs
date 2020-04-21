@@ -7,8 +7,6 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 
---main = putStrLn "ok"
-
 data Photo = 
  Photo { sizes :: [PhotoSize.PhotoSize], minithumbnail :: Minithumbnail.Minithumbnail, has_stickers :: Bool }  deriving (Show)
 
@@ -16,15 +14,12 @@ instance T.ToJSON Photo where
  toJSON (Photo { sizes = sizes, minithumbnail = minithumbnail, has_stickers = has_stickers }) =
   A.object [ "@type" A..= T.String "photo", "sizes" A..= sizes, "minithumbnail" A..= minithumbnail, "has_stickers" A..= has_stickers ]
 
-
-
 instance T.FromJSON Photo where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "photo" -> parsePhoto v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parsePhoto :: A.Value -> T.Parser Photo
    parsePhoto = A.withObject "Photo" $ \o -> do

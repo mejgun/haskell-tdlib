@@ -5,8 +5,6 @@ module API.PageBlockHorizontalAlignment where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data PageBlockHorizontalAlignment = 
  PageBlockHorizontalAlignmentLeft 
  | PageBlockHorizontalAlignmentCenter 
@@ -22,8 +20,6 @@ instance T.ToJSON PageBlockHorizontalAlignment where
  toJSON (PageBlockHorizontalAlignmentRight {  }) =
   A.object [ "@type" A..= T.String "pageBlockHorizontalAlignmentRight" ]
 
-
-
 instance T.FromJSON PageBlockHorizontalAlignment where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -31,8 +27,7 @@ instance T.FromJSON PageBlockHorizontalAlignment where
    "pageBlockHorizontalAlignmentLeft" -> parsePageBlockHorizontalAlignmentLeft v
    "pageBlockHorizontalAlignmentCenter" -> parsePageBlockHorizontalAlignmentCenter v
    "pageBlockHorizontalAlignmentRight" -> parsePageBlockHorizontalAlignmentRight v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parsePageBlockHorizontalAlignmentLeft :: A.Value -> T.Parser PageBlockHorizontalAlignment
    parsePageBlockHorizontalAlignmentLeft = A.withObject "PageBlockHorizontalAlignmentLeft" $ \o -> do

@@ -5,8 +5,6 @@ module API.CanTransferOwnershipResult where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data CanTransferOwnershipResult = 
  CanTransferOwnershipResultOk 
  | CanTransferOwnershipResultPasswordNeeded 
@@ -26,8 +24,6 @@ instance T.ToJSON CanTransferOwnershipResult where
  toJSON (CanTransferOwnershipResultSessionTooFresh { retry_after = retry_after }) =
   A.object [ "@type" A..= T.String "canTransferOwnershipResultSessionTooFresh", "retry_after" A..= retry_after ]
 
-
-
 instance T.FromJSON CanTransferOwnershipResult where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -36,8 +32,7 @@ instance T.FromJSON CanTransferOwnershipResult where
    "canTransferOwnershipResultPasswordNeeded" -> parseCanTransferOwnershipResultPasswordNeeded v
    "canTransferOwnershipResultPasswordTooFresh" -> parseCanTransferOwnershipResultPasswordTooFresh v
    "canTransferOwnershipResultSessionTooFresh" -> parseCanTransferOwnershipResultSessionTooFresh v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseCanTransferOwnershipResultOk :: A.Value -> T.Parser CanTransferOwnershipResult
    parseCanTransferOwnershipResultOk = A.withObject "CanTransferOwnershipResultOk" $ \o -> do

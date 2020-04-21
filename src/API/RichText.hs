@@ -6,8 +6,6 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Document as Document
 
---main = putStrLn "ok"
-
 data RichText = 
  RichTextPlain { _text :: String }  
  | RichTextBold { text :: RichText }  
@@ -79,8 +77,6 @@ instance T.ToJSON RichText where
  toJSON (RichTexts { texts = texts }) =
   A.object [ "@type" A..= T.String "richTexts", "texts" A..= texts ]
 
-
-
 instance T.FromJSON RichText where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -102,8 +98,7 @@ instance T.FromJSON RichText where
    "richTextAnchor" -> parseRichTextAnchor v
    "richTextAnchorLink" -> parseRichTextAnchorLink v
    "richTexts" -> parseRichTexts v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseRichTextPlain :: A.Value -> T.Parser RichText
    parseRichTextPlain = A.withObject "RichTextPlain" $ \o -> do

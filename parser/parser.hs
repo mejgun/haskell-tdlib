@@ -88,7 +88,7 @@ writeToFiles addr modName m =
     , "import qualified Data.Aeson as A\n"
     , "import qualified Data.Aeson.Types as T\n"
     , (imports $ keys e)
-    , "\n--main = putStrLn \"ok\"\n\ndata "
+    , "\ndata "
     , d
     , " = \n "
     , ww e
@@ -124,8 +124,7 @@ writeToFiles addr modName m =
       )
       e
     --, T.intercalate "\n"
-    --  $ map (\(a, b) -> T.concat ["\n-- ", a, " ", m, " ", www b]) e
-    , "\n\n"
+    --  $ map (\(a, b) -> T.concat ["\n-- ", a, " ", m, " ", www b]) e    
     , "\n\ninstance T.FromJSON "
     , m
     , " where\n"
@@ -160,7 +159,7 @@ writeToFiles addr modName m =
              (\(a, b) -> T.concat ["   \"", a, "\" -> parse", toTitle a, " v"])
              e
            )
-        ++ ["\n   _ -> mempty \"\""]
+        ++ ["   _ -> mempty"]
         , "\n  where\n"
         , T.intercalate "\n\n" $ map
           (\(a, b) -> T.concat

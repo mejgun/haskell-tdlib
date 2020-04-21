@@ -10,8 +10,6 @@ import {-# SOURCE #-} qualified API.Venue as Venue
 import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 
---main = putStrLn "ok"
-
 data InputInlineQueryResult = 
  InputInlineQueryResultAnimatedGif { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, gif_height :: Int, gif_width :: Int, gif_duration :: Int, gif_url :: String, thumbnail_url :: String, title :: String, _id :: String }  
  | InputInlineQueryResultAnimatedMpeg4 { input_message_content :: InputMessageContent.InputMessageContent, reply_markup :: ReplyMarkup.ReplyMarkup, mpeg4_height :: Int, mpeg4_width :: Int, mpeg4_duration :: Int, mpeg4_url :: String, thumbnail_url :: String, title :: String, _id :: String }  
@@ -67,8 +65,6 @@ instance T.ToJSON InputInlineQueryResult where
  toJSON (InputInlineQueryResultVoiceNote { input_message_content = input_message_content, reply_markup = reply_markup, voice_note_duration = voice_note_duration, voice_note_url = voice_note_url, title = title, _id = _id }) =
   A.object [ "@type" A..= T.String "inputInlineQueryResultVoiceNote", "input_message_content" A..= input_message_content, "reply_markup" A..= reply_markup, "voice_note_duration" A..= voice_note_duration, "voice_note_url" A..= voice_note_url, "title" A..= title, "id" A..= _id ]
 
-
-
 instance T.FromJSON InputInlineQueryResult where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -86,8 +82,7 @@ instance T.FromJSON InputInlineQueryResult where
    "inputInlineQueryResultVenue" -> parseInputInlineQueryResultVenue v
    "inputInlineQueryResultVideo" -> parseInputInlineQueryResultVideo v
    "inputInlineQueryResultVoiceNote" -> parseInputInlineQueryResultVoiceNote v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseInputInlineQueryResultAnimatedGif :: A.Value -> T.Parser InputInlineQueryResult
    parseInputInlineQueryResultAnimatedGif = A.withObject "InputInlineQueryResultAnimatedGif" $ \o -> do

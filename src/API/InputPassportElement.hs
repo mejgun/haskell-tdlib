@@ -9,8 +9,6 @@ import {-# SOURCE #-} qualified API.InputIdentityDocument as InputIdentityDocume
 import {-# SOURCE #-} qualified API.Address as Address
 import {-# SOURCE #-} qualified API.InputPersonalDocument as InputPersonalDocument
 
---main = putStrLn "ok"
-
 data InputPassportElement = 
  InputPassportElementPersonalDetails { personal_details :: PersonalDetails.PersonalDetails }  
  | InputPassportElementPassport { passport :: InputIdentityDocument.InputIdentityDocument }  
@@ -66,8 +64,6 @@ instance T.ToJSON InputPassportElement where
  toJSON (InputPassportElementEmailAddress { email_address = email_address }) =
   A.object [ "@type" A..= T.String "inputPassportElementEmailAddress", "email_address" A..= email_address ]
 
-
-
 instance T.FromJSON InputPassportElement where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -85,8 +81,7 @@ instance T.FromJSON InputPassportElement where
    "inputPassportElementTemporaryRegistration" -> parseInputPassportElementTemporaryRegistration v
    "inputPassportElementPhoneNumber" -> parseInputPassportElementPhoneNumber v
    "inputPassportElementEmailAddress" -> parseInputPassportElementEmailAddress v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseInputPassportElementPersonalDetails :: A.Value -> T.Parser InputPassportElement
    parseInputPassportElementPersonalDetails = A.withObject "InputPassportElementPersonalDetails" $ \o -> do

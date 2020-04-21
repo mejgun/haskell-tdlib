@@ -5,8 +5,6 @@ module API.PassportElementType where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data PassportElementType = 
  PassportElementTypePersonalDetails 
  | PassportElementTypePassport 
@@ -62,8 +60,6 @@ instance T.ToJSON PassportElementType where
  toJSON (PassportElementTypeEmailAddress {  }) =
   A.object [ "@type" A..= T.String "passportElementTypeEmailAddress" ]
 
-
-
 instance T.FromJSON PassportElementType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -81,8 +77,7 @@ instance T.FromJSON PassportElementType where
    "passportElementTypeTemporaryRegistration" -> parsePassportElementTypeTemporaryRegistration v
    "passportElementTypePhoneNumber" -> parsePassportElementTypePhoneNumber v
    "passportElementTypeEmailAddress" -> parsePassportElementTypeEmailAddress v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parsePassportElementTypePersonalDetails :: A.Value -> T.Parser PassportElementType
    parsePassportElementTypePersonalDetails = A.withObject "PassportElementTypePersonalDetails" $ \o -> do

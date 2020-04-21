@@ -5,8 +5,6 @@ module API.NotificationSettingsScope where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data NotificationSettingsScope = 
  NotificationSettingsScopePrivateChats 
  | NotificationSettingsScopeGroupChats 
@@ -22,8 +20,6 @@ instance T.ToJSON NotificationSettingsScope where
  toJSON (NotificationSettingsScopeChannelChats {  }) =
   A.object [ "@type" A..= T.String "notificationSettingsScopeChannelChats" ]
 
-
-
 instance T.FromJSON NotificationSettingsScope where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -31,8 +27,7 @@ instance T.FromJSON NotificationSettingsScope where
    "notificationSettingsScopePrivateChats" -> parseNotificationSettingsScopePrivateChats v
    "notificationSettingsScopeGroupChats" -> parseNotificationSettingsScopeGroupChats v
    "notificationSettingsScopeChannelChats" -> parseNotificationSettingsScopeChannelChats v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseNotificationSettingsScopePrivateChats :: A.Value -> T.Parser NotificationSettingsScope
    parseNotificationSettingsScopePrivateChats = A.withObject "NotificationSettingsScopePrivateChats" $ \o -> do

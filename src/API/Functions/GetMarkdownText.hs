@@ -6,8 +6,6 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
---main = putStrLn "ok"
-
 data GetMarkdownText = 
  GetMarkdownText { text :: FormattedText.FormattedText }  deriving (Show)
 
@@ -15,15 +13,12 @@ instance T.ToJSON GetMarkdownText where
  toJSON (GetMarkdownText { text = text }) =
   A.object [ "@type" A..= T.String "getMarkdownText", "text" A..= text ]
 
-
-
 instance T.FromJSON GetMarkdownText where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getMarkdownText" -> parseGetMarkdownText v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseGetMarkdownText :: A.Value -> T.Parser GetMarkdownText
    parseGetMarkdownText = A.withObject "GetMarkdownText" $ \o -> do

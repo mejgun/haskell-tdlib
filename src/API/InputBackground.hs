@@ -6,8 +6,6 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
---main = putStrLn "ok"
-
 data InputBackground = 
  InputBackgroundLocal { background :: InputFile.InputFile }  
  | InputBackgroundRemote { background_id :: Int }  deriving (Show)
@@ -19,16 +17,13 @@ instance T.ToJSON InputBackground where
  toJSON (InputBackgroundRemote { background_id = background_id }) =
   A.object [ "@type" A..= T.String "inputBackgroundRemote", "background_id" A..= background_id ]
 
-
-
 instance T.FromJSON InputBackground where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "inputBackgroundLocal" -> parseInputBackgroundLocal v
    "inputBackgroundRemote" -> parseInputBackgroundRemote v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseInputBackgroundLocal :: A.Value -> T.Parser InputBackground
    parseInputBackgroundLocal = A.withObject "InputBackgroundLocal" $ \o -> do

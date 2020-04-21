@@ -5,8 +5,6 @@ module API.CheckChatUsernameResult where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data CheckChatUsernameResult = 
  CheckChatUsernameResultOk 
  | CheckChatUsernameResultUsernameInvalid 
@@ -30,8 +28,6 @@ instance T.ToJSON CheckChatUsernameResult where
  toJSON (CheckChatUsernameResultPublicGroupsUnavailable {  }) =
   A.object [ "@type" A..= T.String "checkChatUsernameResultPublicGroupsUnavailable" ]
 
-
-
 instance T.FromJSON CheckChatUsernameResult where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -41,8 +37,7 @@ instance T.FromJSON CheckChatUsernameResult where
    "checkChatUsernameResultUsernameOccupied" -> parseCheckChatUsernameResultUsernameOccupied v
    "checkChatUsernameResultPublicChatsTooMuch" -> parseCheckChatUsernameResultPublicChatsTooMuch v
    "checkChatUsernameResultPublicGroupsUnavailable" -> parseCheckChatUsernameResultPublicGroupsUnavailable v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseCheckChatUsernameResultOk :: A.Value -> T.Parser CheckChatUsernameResult
    parseCheckChatUsernameResultOk = A.withObject "CheckChatUsernameResultOk" $ \o -> do

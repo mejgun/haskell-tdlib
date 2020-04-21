@@ -109,8 +109,6 @@ import {-# SOURCE #-} qualified API.Ok as Ok
 import {-# SOURCE #-} qualified API.Update as Update
 import {-# SOURCE #-} qualified API.Error as Error
 
---main = putStrLn "ok"
-
 data GeneralResult = 
  AuthorizationState AuthorizationState.AuthorizationState 
  | Session Session.Session 
@@ -529,8 +527,6 @@ instance T.ToJSON GeneralResult where
 
  toJSON (Error {  }) =
   A.object [ "@type" A..= T.String "Error" ]
-
-
 
 instance T.FromJSON GeneralResult where
  parseJSON v@(T.Object obj) = do

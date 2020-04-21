@@ -5,8 +5,6 @@ module API.OptionValue where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data OptionValue = 
  OptionValueBoolean { __value :: Bool }  
  | OptionValueEmpty 
@@ -26,8 +24,6 @@ instance T.ToJSON OptionValue where
  toJSON (OptionValueString { value = value }) =
   A.object [ "@type" A..= T.String "optionValueString", "value" A..= value ]
 
-
-
 instance T.FromJSON OptionValue where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -36,8 +32,7 @@ instance T.FromJSON OptionValue where
    "optionValueEmpty" -> parseOptionValueEmpty v
    "optionValueInteger" -> parseOptionValueInteger v
    "optionValueString" -> parseOptionValueString v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseOptionValueBoolean :: A.Value -> T.Parser OptionValue
    parseOptionValueBoolean = A.withObject "OptionValueBoolean" $ \o -> do

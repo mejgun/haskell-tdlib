@@ -5,8 +5,6 @@ module API.MessageForwardOrigin where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data MessageForwardOrigin = 
  MessageForwardOriginUser { sender_user_id :: Int }  
  | MessageForwardOriginHiddenUser { sender_name :: String }  
@@ -22,8 +20,6 @@ instance T.ToJSON MessageForwardOrigin where
  toJSON (MessageForwardOriginChannel { author_signature = author_signature, message_id = message_id, chat_id = chat_id }) =
   A.object [ "@type" A..= T.String "messageForwardOriginChannel", "author_signature" A..= author_signature, "message_id" A..= message_id, "chat_id" A..= chat_id ]
 
-
-
 instance T.FromJSON MessageForwardOrigin where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -31,8 +27,7 @@ instance T.FromJSON MessageForwardOrigin where
    "messageForwardOriginUser" -> parseMessageForwardOriginUser v
    "messageForwardOriginHiddenUser" -> parseMessageForwardOriginHiddenUser v
    "messageForwardOriginChannel" -> parseMessageForwardOriginChannel v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseMessageForwardOriginUser :: A.Value -> T.Parser MessageForwardOrigin
    parseMessageForwardOriginUser = A.withObject "MessageForwardOriginUser" $ \o -> do

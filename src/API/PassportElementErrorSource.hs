@@ -5,8 +5,6 @@ module API.PassportElementErrorSource where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data PassportElementErrorSource = 
  PassportElementErrorSourceUnspecified 
  | PassportElementErrorSourceDataField { field_name :: String }  
@@ -46,8 +44,6 @@ instance T.ToJSON PassportElementErrorSource where
  toJSON (PassportElementErrorSourceFiles {  }) =
   A.object [ "@type" A..= T.String "passportElementErrorSourceFiles" ]
 
-
-
 instance T.FromJSON PassportElementErrorSource where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -61,8 +57,7 @@ instance T.FromJSON PassportElementErrorSource where
    "passportElementErrorSourceTranslationFiles" -> parsePassportElementErrorSourceTranslationFiles v
    "passportElementErrorSourceFile" -> parsePassportElementErrorSourceFile v
    "passportElementErrorSourceFiles" -> parsePassportElementErrorSourceFiles v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parsePassportElementErrorSourceUnspecified :: A.Value -> T.Parser PassportElementErrorSource
    parsePassportElementErrorSourceUnspecified = A.withObject "PassportElementErrorSourceUnspecified" $ \o -> do

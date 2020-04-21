@@ -5,8 +5,6 @@ module API.UserPrivacySettingRule where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data UserPrivacySettingRule = 
  UserPrivacySettingRuleAllowAll 
  | UserPrivacySettingRuleAllowContacts 
@@ -42,8 +40,6 @@ instance T.ToJSON UserPrivacySettingRule where
  toJSON (UserPrivacySettingRuleRestrictChatMembers { chat_ids = chat_ids }) =
   A.object [ "@type" A..= T.String "userPrivacySettingRuleRestrictChatMembers", "chat_ids" A..= chat_ids ]
 
-
-
 instance T.FromJSON UserPrivacySettingRule where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -56,8 +52,7 @@ instance T.FromJSON UserPrivacySettingRule where
    "userPrivacySettingRuleRestrictContacts" -> parseUserPrivacySettingRuleRestrictContacts v
    "userPrivacySettingRuleRestrictUsers" -> parseUserPrivacySettingRuleRestrictUsers v
    "userPrivacySettingRuleRestrictChatMembers" -> parseUserPrivacySettingRuleRestrictChatMembers v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseUserPrivacySettingRuleAllowAll :: A.Value -> T.Parser UserPrivacySettingRule
    parseUserPrivacySettingRuleAllowAll = A.withObject "UserPrivacySettingRuleAllowAll" $ \o -> do

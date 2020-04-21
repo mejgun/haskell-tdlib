@@ -5,8 +5,6 @@ module API.Functions.SendCustomRequest where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data SendCustomRequest = 
  SendCustomRequest { parameters :: String, method :: String }  deriving (Show)
 
@@ -14,15 +12,12 @@ instance T.ToJSON SendCustomRequest where
  toJSON (SendCustomRequest { parameters = parameters, method = method }) =
   A.object [ "@type" A..= T.String "sendCustomRequest", "parameters" A..= parameters, "method" A..= method ]
 
-
-
 instance T.FromJSON SendCustomRequest where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "sendCustomRequest" -> parseSendCustomRequest v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseSendCustomRequest :: A.Value -> T.Parser SendCustomRequest
    parseSendCustomRequest = A.withObject "SendCustomRequest" $ \o -> do

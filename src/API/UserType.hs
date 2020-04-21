@@ -5,8 +5,6 @@ module API.UserType where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data UserType = 
  UserTypeRegular 
  | UserTypeDeleted 
@@ -26,8 +24,6 @@ instance T.ToJSON UserType where
  toJSON (UserTypeUnknown {  }) =
   A.object [ "@type" A..= T.String "userTypeUnknown" ]
 
-
-
 instance T.FromJSON UserType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -36,8 +32,7 @@ instance T.FromJSON UserType where
    "userTypeDeleted" -> parseUserTypeDeleted v
    "userTypeBot" -> parseUserTypeBot v
    "userTypeUnknown" -> parseUserTypeUnknown v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseUserTypeRegular :: A.Value -> T.Parser UserType
    parseUserTypeRegular = A.withObject "UserTypeRegular" $ \o -> do

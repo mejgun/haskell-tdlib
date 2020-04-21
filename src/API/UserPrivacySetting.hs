@@ -5,8 +5,6 @@ module API.UserPrivacySetting where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data UserPrivacySetting = 
  UserPrivacySettingShowStatus 
  | UserPrivacySettingShowProfilePhoto 
@@ -42,8 +40,6 @@ instance T.ToJSON UserPrivacySetting where
  toJSON (UserPrivacySettingAllowFindingByPhoneNumber {  }) =
   A.object [ "@type" A..= T.String "userPrivacySettingAllowFindingByPhoneNumber" ]
 
-
-
 instance T.FromJSON UserPrivacySetting where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -56,8 +52,7 @@ instance T.FromJSON UserPrivacySetting where
    "userPrivacySettingAllowCalls" -> parseUserPrivacySettingAllowCalls v
    "userPrivacySettingAllowPeerToPeerCalls" -> parseUserPrivacySettingAllowPeerToPeerCalls v
    "userPrivacySettingAllowFindingByPhoneNumber" -> parseUserPrivacySettingAllowFindingByPhoneNumber v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseUserPrivacySettingShowStatus :: A.Value -> T.Parser UserPrivacySetting
    parseUserPrivacySettingShowStatus = A.withObject "UserPrivacySettingShowStatus" $ \o -> do

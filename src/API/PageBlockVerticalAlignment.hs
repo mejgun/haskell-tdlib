@@ -5,8 +5,6 @@ module API.PageBlockVerticalAlignment where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data PageBlockVerticalAlignment = 
  PageBlockVerticalAlignmentTop 
  | PageBlockVerticalAlignmentMiddle 
@@ -22,8 +20,6 @@ instance T.ToJSON PageBlockVerticalAlignment where
  toJSON (PageBlockVerticalAlignmentBottom {  }) =
   A.object [ "@type" A..= T.String "pageBlockVerticalAlignmentBottom" ]
 
-
-
 instance T.FromJSON PageBlockVerticalAlignment where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -31,8 +27,7 @@ instance T.FromJSON PageBlockVerticalAlignment where
    "pageBlockVerticalAlignmentTop" -> parsePageBlockVerticalAlignmentTop v
    "pageBlockVerticalAlignmentMiddle" -> parsePageBlockVerticalAlignmentMiddle v
    "pageBlockVerticalAlignmentBottom" -> parsePageBlockVerticalAlignmentBottom v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parsePageBlockVerticalAlignmentTop :: A.Value -> T.Parser PageBlockVerticalAlignment
    parsePageBlockVerticalAlignmentTop = A.withObject "PageBlockVerticalAlignmentTop" $ \o -> do

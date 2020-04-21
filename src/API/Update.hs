@@ -46,8 +46,6 @@ import {-# SOURCE #-} qualified API.Address as Address
 import {-# SOURCE #-} qualified API.OrderInfo as OrderInfo
 import {-# SOURCE #-} qualified API.Poll as Poll
 
---main = putStrLn "ok"
-
 data Update = 
  UpdateAuthorizationState { authorization_state :: AuthorizationState.AuthorizationState }  
  | UpdateNewMessage { message :: Message.Message }  
@@ -355,8 +353,6 @@ instance T.ToJSON Update where
  toJSON (UpdatePollAnswer { option_ids = option_ids, user_id = user_id, poll_id = poll_id }) =
   A.object [ "@type" A..= T.String "updatePollAnswer", "option_ids" A..= option_ids, "user_id" A..= user_id, "poll_id" A..= poll_id ]
 
-
-
 instance T.FromJSON Update where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -437,8 +433,7 @@ instance T.FromJSON Update where
    "updateNewCustomQuery" -> parseUpdateNewCustomQuery v
    "updatePoll" -> parseUpdatePoll v
    "updatePollAnswer" -> parseUpdatePollAnswer v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseUpdateAuthorizationState :: A.Value -> T.Parser Update
    parseUpdateAuthorizationState = A.withObject "UpdateAuthorizationState" $ \o -> do

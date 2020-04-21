@@ -5,8 +5,6 @@ module API.StatisticsGraph where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data StatisticsGraph = 
  StatisticsGraphData { zoom_token :: String, json_data :: String }  
  | StatisticsGraphAsync { token :: String }  
@@ -22,8 +20,6 @@ instance T.ToJSON StatisticsGraph where
  toJSON (StatisticsGraphError { error_message = error_message }) =
   A.object [ "@type" A..= T.String "statisticsGraphError", "error_message" A..= error_message ]
 
-
-
 instance T.FromJSON StatisticsGraph where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -31,8 +27,7 @@ instance T.FromJSON StatisticsGraph where
    "statisticsGraphData" -> parseStatisticsGraphData v
    "statisticsGraphAsync" -> parseStatisticsGraphAsync v
    "statisticsGraphError" -> parseStatisticsGraphError v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseStatisticsGraphData :: A.Value -> T.Parser StatisticsGraph
    parseStatisticsGraphData = A.withObject "StatisticsGraphData" $ \o -> do

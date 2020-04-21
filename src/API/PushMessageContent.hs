@@ -13,8 +13,6 @@ import {-# SOURCE #-} qualified API.Video as Video
 import {-# SOURCE #-} qualified API.VideoNote as VideoNote
 import {-# SOURCE #-} qualified API.VoiceNote as VoiceNote
 
---main = putStrLn "ok"
-
 data PushMessageContent = 
  PushMessageContentHidden { is_pinned :: Bool }  
  | PushMessageContentAnimation { is_pinned :: Bool, caption :: String, animation :: Animation.Animation }  
@@ -122,8 +120,6 @@ instance T.ToJSON PushMessageContent where
  toJSON (PushMessageContentMediaAlbum { has_videos = has_videos, has_photos = has_photos, total_count = total_count }) =
   A.object [ "@type" A..= T.String "pushMessageContentMediaAlbum", "has_videos" A..= has_videos, "has_photos" A..= has_photos, "total_count" A..= total_count ]
 
-
-
 instance T.FromJSON PushMessageContent where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -154,8 +150,7 @@ instance T.FromJSON PushMessageContent where
    "pushMessageContentChatJoinByLink" -> parsePushMessageContentChatJoinByLink v
    "pushMessageContentMessageForwards" -> parsePushMessageContentMessageForwards v
    "pushMessageContentMediaAlbum" -> parsePushMessageContentMediaAlbum v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parsePushMessageContentHidden :: A.Value -> T.Parser PushMessageContent
    parsePushMessageContentHidden = A.withObject "PushMessageContentHidden" $ \o -> do

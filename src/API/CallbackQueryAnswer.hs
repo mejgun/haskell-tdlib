@@ -5,8 +5,6 @@ module API.CallbackQueryAnswer where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data CallbackQueryAnswer = 
  CallbackQueryAnswer { url :: String, show_alert :: Bool, text :: String }  deriving (Show)
 
@@ -14,15 +12,12 @@ instance T.ToJSON CallbackQueryAnswer where
  toJSON (CallbackQueryAnswer { url = url, show_alert = show_alert, text = text }) =
   A.object [ "@type" A..= T.String "callbackQueryAnswer", "url" A..= url, "show_alert" A..= show_alert, "text" A..= text ]
 
-
-
 instance T.FromJSON CallbackQueryAnswer where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "callbackQueryAnswer" -> parseCallbackQueryAnswer v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseCallbackQueryAnswer :: A.Value -> T.Parser CallbackQueryAnswer
    parseCallbackQueryAnswer = A.withObject "CallbackQueryAnswer" $ \o -> do

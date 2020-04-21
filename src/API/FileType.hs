@@ -5,8 +5,6 @@ module API.FileType where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data FileType = 
  FileTypeNone 
  | FileTypeAnimation 
@@ -74,8 +72,6 @@ instance T.ToJSON FileType where
  toJSON (FileTypeWallpaper {  }) =
   A.object [ "@type" A..= T.String "fileTypeWallpaper" ]
 
-
-
 instance T.FromJSON FileType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -96,8 +92,7 @@ instance T.FromJSON FileType where
    "fileTypeVideoNote" -> parseFileTypeVideoNote v
    "fileTypeVoiceNote" -> parseFileTypeVoiceNote v
    "fileTypeWallpaper" -> parseFileTypeWallpaper v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseFileTypeNone :: A.Value -> T.Parser FileType
    parseFileTypeNone = A.withObject "FileTypeNone" $ \o -> do

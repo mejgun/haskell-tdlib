@@ -7,8 +7,6 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Message as Message
 import {-# SOURCE #-} qualified API.PushMessageContent as PushMessageContent
 
---main = putStrLn "ok"
-
 data NotificationType = 
  NotificationTypeNewMessage { message :: Message.Message }  
  | NotificationTypeNewSecretChat 
@@ -28,8 +26,6 @@ instance T.ToJSON NotificationType where
  toJSON (NotificationTypeNewPushMessage { content = content, is_outgoing = is_outgoing, sender_name = sender_name, sender_user_id = sender_user_id, message_id = message_id }) =
   A.object [ "@type" A..= T.String "notificationTypeNewPushMessage", "content" A..= content, "is_outgoing" A..= is_outgoing, "sender_name" A..= sender_name, "sender_user_id" A..= sender_user_id, "message_id" A..= message_id ]
 
-
-
 instance T.FromJSON NotificationType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -38,8 +34,7 @@ instance T.FromJSON NotificationType where
    "notificationTypeNewSecretChat" -> parseNotificationTypeNewSecretChat v
    "notificationTypeNewCall" -> parseNotificationTypeNewCall v
    "notificationTypeNewPushMessage" -> parseNotificationTypeNewPushMessage v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseNotificationTypeNewMessage :: A.Value -> T.Parser NotificationType
    parseNotificationTypeNewMessage = A.withObject "NotificationTypeNewMessage" $ \o -> do

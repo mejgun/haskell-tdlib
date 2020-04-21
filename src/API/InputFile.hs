@@ -5,8 +5,6 @@ module API.InputFile where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data InputFile = 
  InputFileId { __id :: Int }  
  | InputFileRemote { _id :: String }  
@@ -26,8 +24,6 @@ instance T.ToJSON InputFile where
  toJSON (InputFileGenerated { expected_size = expected_size, conversion = conversion, original_path = original_path }) =
   A.object [ "@type" A..= T.String "inputFileGenerated", "expected_size" A..= expected_size, "conversion" A..= conversion, "original_path" A..= original_path ]
 
-
-
 instance T.FromJSON InputFile where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -36,8 +32,7 @@ instance T.FromJSON InputFile where
    "inputFileRemote" -> parseInputFileRemote v
    "inputFileLocal" -> parseInputFileLocal v
    "inputFileGenerated" -> parseInputFileGenerated v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseInputFileId :: A.Value -> T.Parser InputFile
    parseInputFileId = A.withObject "InputFileId" $ \o -> do

@@ -5,8 +5,6 @@ module API.AuthenticationCodeType where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data AuthenticationCodeType = 
  AuthenticationCodeTypeTelegramMessage { _length :: Int }  
  | AuthenticationCodeTypeSms { _length :: Int }  
@@ -26,8 +24,6 @@ instance T.ToJSON AuthenticationCodeType where
  toJSON (AuthenticationCodeTypeFlashCall { pattern = pattern }) =
   A.object [ "@type" A..= T.String "authenticationCodeTypeFlashCall", "pattern" A..= pattern ]
 
-
-
 instance T.FromJSON AuthenticationCodeType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -36,8 +32,7 @@ instance T.FromJSON AuthenticationCodeType where
    "authenticationCodeTypeSms" -> parseAuthenticationCodeTypeSms v
    "authenticationCodeTypeCall" -> parseAuthenticationCodeTypeCall v
    "authenticationCodeTypeFlashCall" -> parseAuthenticationCodeTypeFlashCall v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseAuthenticationCodeTypeTelegramMessage :: A.Value -> T.Parser AuthenticationCodeType
    parseAuthenticationCodeTypeTelegramMessage = A.withObject "AuthenticationCodeTypeTelegramMessage" $ \o -> do

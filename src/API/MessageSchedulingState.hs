@@ -5,8 +5,6 @@ module API.MessageSchedulingState where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data MessageSchedulingState = 
  MessageSchedulingStateSendAtDate { send_date :: Int }  
  | MessageSchedulingStateSendWhenOnline deriving (Show)
@@ -18,16 +16,13 @@ instance T.ToJSON MessageSchedulingState where
  toJSON (MessageSchedulingStateSendWhenOnline {  }) =
   A.object [ "@type" A..= T.String "messageSchedulingStateSendWhenOnline" ]
 
-
-
 instance T.FromJSON MessageSchedulingState where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "messageSchedulingStateSendAtDate" -> parseMessageSchedulingStateSendAtDate v
    "messageSchedulingStateSendWhenOnline" -> parseMessageSchedulingStateSendWhenOnline v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseMessageSchedulingStateSendAtDate :: A.Value -> T.Parser MessageSchedulingState
    parseMessageSchedulingStateSendAtDate = A.withObject "MessageSchedulingStateSendAtDate" $ \o -> do

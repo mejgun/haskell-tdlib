@@ -10,8 +10,6 @@ import {-# SOURCE #-} qualified API.ChatPermissions as ChatPermissions
 import {-# SOURCE #-} qualified API.Photo as Photo
 import {-# SOURCE #-} qualified API.ChatLocation as ChatLocation
 
---main = putStrLn "ok"
-
 data ChatEventAction = 
  ChatEventMessageEdited { new_message :: Message.Message, old_message :: Message.Message }  
  | ChatEventMessageDeleted { message :: Message.Message }  
@@ -103,8 +101,6 @@ instance T.ToJSON ChatEventAction where
  toJSON (ChatEventIsAllHistoryAvailableToggled { is_all_history_available = is_all_history_available }) =
   A.object [ "@type" A..= T.String "chatEventIsAllHistoryAvailableToggled", "is_all_history_available" A..= is_all_history_available ]
 
-
-
 instance T.FromJSON ChatEventAction where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -131,8 +127,7 @@ instance T.FromJSON ChatEventAction where
    "chatEventStickerSetChanged" -> parseChatEventStickerSetChanged v
    "chatEventLocationChanged" -> parseChatEventLocationChanged v
    "chatEventIsAllHistoryAvailableToggled" -> parseChatEventIsAllHistoryAvailableToggled v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseChatEventMessageEdited :: A.Value -> T.Parser ChatEventAction
    parseChatEventMessageEdited = A.withObject "ChatEventMessageEdited" $ \o -> do

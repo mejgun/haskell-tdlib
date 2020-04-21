@@ -7,8 +7,6 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.MaskPosition as MaskPosition
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
---main = putStrLn "ok"
-
 data InputSticker = 
  InputStickerStatic { mask_position :: MaskPosition.MaskPosition, emojis :: String, sticker :: InputFile.InputFile }  
  | InputStickerAnimated { emojis :: String, sticker :: InputFile.InputFile }  deriving (Show)
@@ -20,16 +18,13 @@ instance T.ToJSON InputSticker where
  toJSON (InputStickerAnimated { emojis = emojis, sticker = sticker }) =
   A.object [ "@type" A..= T.String "inputStickerAnimated", "emojis" A..= emojis, "sticker" A..= sticker ]
 
-
-
 instance T.FromJSON InputSticker where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "inputStickerStatic" -> parseInputStickerStatic v
    "inputStickerAnimated" -> parseInputStickerAnimated v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseInputStickerStatic :: A.Value -> T.Parser InputSticker
    parseInputStickerStatic = A.withObject "InputStickerStatic" $ \o -> do

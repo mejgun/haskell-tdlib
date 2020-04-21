@@ -5,8 +5,6 @@ module API.ChatReportReason where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data ChatReportReason = 
  ChatReportReasonSpam 
  | ChatReportReasonViolence 
@@ -38,8 +36,6 @@ instance T.ToJSON ChatReportReason where
  toJSON (ChatReportReasonCustom { text = text }) =
   A.object [ "@type" A..= T.String "chatReportReasonCustom", "text" A..= text ]
 
-
-
 instance T.FromJSON ChatReportReason where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -51,8 +47,7 @@ instance T.FromJSON ChatReportReason where
    "chatReportReasonCopyright" -> parseChatReportReasonCopyright v
    "chatReportReasonUnrelatedLocation" -> parseChatReportReasonUnrelatedLocation v
    "chatReportReasonCustom" -> parseChatReportReasonCustom v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseChatReportReasonSpam :: A.Value -> T.Parser ChatReportReason
    parseChatReportReasonSpam = A.withObject "ChatReportReasonSpam" $ \o -> do

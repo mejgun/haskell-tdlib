@@ -6,8 +6,6 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.UserPrivacySettingRule as UserPrivacySettingRule
 
---main = putStrLn "ok"
-
 data UserPrivacySettingRules = 
  UserPrivacySettingRules { rules :: [UserPrivacySettingRule.UserPrivacySettingRule] }  deriving (Show)
 
@@ -15,15 +13,12 @@ instance T.ToJSON UserPrivacySettingRules where
  toJSON (UserPrivacySettingRules { rules = rules }) =
   A.object [ "@type" A..= T.String "userPrivacySettingRules", "rules" A..= rules ]
 
-
-
 instance T.FromJSON UserPrivacySettingRules where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "userPrivacySettingRules" -> parseUserPrivacySettingRules v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseUserPrivacySettingRules :: A.Value -> T.Parser UserPrivacySettingRules
    parseUserPrivacySettingRules = A.withObject "UserPrivacySettingRules" $ \o -> do

@@ -8,8 +8,6 @@ import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 
---main = putStrLn "ok"
-
 data Document = 
  Document { document :: File.File, thumbnail :: PhotoSize.PhotoSize, minithumbnail :: Minithumbnail.Minithumbnail, mime_type :: String, file_name :: String }  deriving (Show)
 
@@ -17,15 +15,12 @@ instance T.ToJSON Document where
  toJSON (Document { document = document, thumbnail = thumbnail, minithumbnail = minithumbnail, mime_type = mime_type, file_name = file_name }) =
   A.object [ "@type" A..= T.String "document", "document" A..= document, "thumbnail" A..= thumbnail, "minithumbnail" A..= minithumbnail, "mime_type" A..= mime_type, "file_name" A..= file_name ]
 
-
-
 instance T.FromJSON Document where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "document" -> parseDocument v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseDocument :: A.Value -> T.Parser Document
    parseDocument = A.withObject "Document" $ \o -> do

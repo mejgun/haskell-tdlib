@@ -5,8 +5,6 @@ module API.TopChatCategory where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data TopChatCategory = 
  TopChatCategoryUsers 
  | TopChatCategoryBots 
@@ -38,8 +36,6 @@ instance T.ToJSON TopChatCategory where
  toJSON (TopChatCategoryForwardChats {  }) =
   A.object [ "@type" A..= T.String "topChatCategoryForwardChats" ]
 
-
-
 instance T.FromJSON TopChatCategory where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -51,8 +47,7 @@ instance T.FromJSON TopChatCategory where
    "topChatCategoryInlineBots" -> parseTopChatCategoryInlineBots v
    "topChatCategoryCalls" -> parseTopChatCategoryCalls v
    "topChatCategoryForwardChats" -> parseTopChatCategoryForwardChats v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseTopChatCategoryUsers :: A.Value -> T.Parser TopChatCategory
    parseTopChatCategoryUsers = A.withObject "TopChatCategoryUsers" $ \o -> do

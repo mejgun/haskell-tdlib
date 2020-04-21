@@ -5,8 +5,6 @@ module API.LogStream where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data LogStream = 
  LogStreamDefault 
  | LogStreamFile { max_file_size :: Int, path :: String }  
@@ -22,8 +20,6 @@ instance T.ToJSON LogStream where
  toJSON (LogStreamEmpty {  }) =
   A.object [ "@type" A..= T.String "logStreamEmpty" ]
 
-
-
 instance T.FromJSON LogStream where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -31,8 +27,7 @@ instance T.FromJSON LogStream where
    "logStreamDefault" -> parseLogStreamDefault v
    "logStreamFile" -> parseLogStreamFile v
    "logStreamEmpty" -> parseLogStreamEmpty v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseLogStreamDefault :: A.Value -> T.Parser LogStream
    parseLogStreamDefault = A.withObject "LogStreamDefault" $ \o -> do

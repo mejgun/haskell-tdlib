@@ -5,8 +5,6 @@ module API.SecretChatState where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data SecretChatState = 
  SecretChatStatePending 
  | SecretChatStateReady 
@@ -22,8 +20,6 @@ instance T.ToJSON SecretChatState where
  toJSON (SecretChatStateClosed {  }) =
   A.object [ "@type" A..= T.String "secretChatStateClosed" ]
 
-
-
 instance T.FromJSON SecretChatState where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -31,8 +27,7 @@ instance T.FromJSON SecretChatState where
    "secretChatStatePending" -> parseSecretChatStatePending v
    "secretChatStateReady" -> parseSecretChatStateReady v
    "secretChatStateClosed" -> parseSecretChatStateClosed v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseSecretChatStatePending :: A.Value -> T.Parser SecretChatState
    parseSecretChatStatePending = A.withObject "SecretChatStatePending" $ \o -> do

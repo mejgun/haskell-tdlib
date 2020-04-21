@@ -5,8 +5,6 @@ module API.KeyboardButtonType where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data KeyboardButtonType = 
  KeyboardButtonTypeText 
  | KeyboardButtonTypeRequestPhoneNumber 
@@ -26,8 +24,6 @@ instance T.ToJSON KeyboardButtonType where
  toJSON (KeyboardButtonTypeRequestPoll { force_quiz = force_quiz, force_regular = force_regular }) =
   A.object [ "@type" A..= T.String "keyboardButtonTypeRequestPoll", "force_quiz" A..= force_quiz, "force_regular" A..= force_regular ]
 
-
-
 instance T.FromJSON KeyboardButtonType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -36,8 +32,7 @@ instance T.FromJSON KeyboardButtonType where
    "keyboardButtonTypeRequestPhoneNumber" -> parseKeyboardButtonTypeRequestPhoneNumber v
    "keyboardButtonTypeRequestLocation" -> parseKeyboardButtonTypeRequestLocation v
    "keyboardButtonTypeRequestPoll" -> parseKeyboardButtonTypeRequestPoll v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseKeyboardButtonTypeText :: A.Value -> T.Parser KeyboardButtonType
    parseKeyboardButtonTypeText = A.withObject "KeyboardButtonTypeText" $ \o -> do

@@ -7,8 +7,6 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.KeyboardButton as KeyboardButton
 import {-# SOURCE #-} qualified API.InlineKeyboardButton as InlineKeyboardButton
 
---main = putStrLn "ok"
-
 data ReplyMarkup = 
  ReplyMarkupRemoveKeyboard { is_personal :: Bool }  
  | ReplyMarkupForceReply { is_personal :: Bool }  
@@ -28,8 +26,6 @@ instance T.ToJSON ReplyMarkup where
  toJSON (ReplyMarkupInlineKeyboard { rows = rows }) =
   A.object [ "@type" A..= T.String "replyMarkupInlineKeyboard", "rows" A..= rows ]
 
-
-
 instance T.FromJSON ReplyMarkup where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -38,8 +34,7 @@ instance T.FromJSON ReplyMarkup where
    "replyMarkupForceReply" -> parseReplyMarkupForceReply v
    "replyMarkupShowKeyboard" -> parseReplyMarkupShowKeyboard v
    "replyMarkupInlineKeyboard" -> parseReplyMarkupInlineKeyboard v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseReplyMarkupRemoveKeyboard :: A.Value -> T.Parser ReplyMarkup
    parseReplyMarkupRemoveKeyboard = A.withObject "ReplyMarkupRemoveKeyboard" $ \o -> do

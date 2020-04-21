@@ -5,8 +5,6 @@ module API.BankCardActionOpenUrl where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data BankCardActionOpenUrl = 
  BankCardActionOpenUrl { url :: String, text :: String }  deriving (Show)
 
@@ -14,15 +12,12 @@ instance T.ToJSON BankCardActionOpenUrl where
  toJSON (BankCardActionOpenUrl { url = url, text = text }) =
   A.object [ "@type" A..= T.String "bankCardActionOpenUrl", "url" A..= url, "text" A..= text ]
 
-
-
 instance T.FromJSON BankCardActionOpenUrl where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "bankCardActionOpenUrl" -> parseBankCardActionOpenUrl v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseBankCardActionOpenUrl :: A.Value -> T.Parser BankCardActionOpenUrl
    parseBankCardActionOpenUrl = A.withObject "BankCardActionOpenUrl" $ \o -> do

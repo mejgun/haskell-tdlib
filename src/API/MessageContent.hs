@@ -25,8 +25,6 @@ import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 import {-# SOURCE #-} qualified API.EncryptedCredentials as EncryptedCredentials
 import {-# SOURCE #-} qualified API.EncryptedPassportElement as EncryptedPassportElement
 
---main = putStrLn "ok"
-
 data MessageContent = 
  MessageText { web_page :: WebPage.WebPage, _text :: FormattedText.FormattedText }  
  | MessageAnimation { is_secret :: Bool, caption :: FormattedText.FormattedText, animation :: Animation.Animation }  
@@ -194,8 +192,6 @@ instance T.ToJSON MessageContent where
  toJSON (MessageUnsupported {  }) =
   A.object [ "@type" A..= T.String "messageUnsupported" ]
 
-
-
 instance T.FromJSON MessageContent where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -241,8 +237,7 @@ instance T.FromJSON MessageContent where
    "messagePassportDataSent" -> parseMessagePassportDataSent v
    "messagePassportDataReceived" -> parseMessagePassportDataReceived v
    "messageUnsupported" -> parseMessageUnsupported v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseMessageText :: A.Value -> T.Parser MessageContent
    parseMessageText = A.withObject "MessageText" $ \o -> do

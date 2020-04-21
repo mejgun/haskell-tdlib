@@ -5,8 +5,6 @@ module API.NotificationGroupType where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data NotificationGroupType = 
  NotificationGroupTypeMessages 
  | NotificationGroupTypeMentions 
@@ -26,8 +24,6 @@ instance T.ToJSON NotificationGroupType where
  toJSON (NotificationGroupTypeCalls {  }) =
   A.object [ "@type" A..= T.String "notificationGroupTypeCalls" ]
 
-
-
 instance T.FromJSON NotificationGroupType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -36,8 +32,7 @@ instance T.FromJSON NotificationGroupType where
    "notificationGroupTypeMentions" -> parseNotificationGroupTypeMentions v
    "notificationGroupTypeSecretChat" -> parseNotificationGroupTypeSecretChat v
    "notificationGroupTypeCalls" -> parseNotificationGroupTypeCalls v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseNotificationGroupTypeMessages :: A.Value -> T.Parser NotificationGroupType
    parseNotificationGroupTypeMessages = A.withObject "NotificationGroupTypeMessages" $ \o -> do

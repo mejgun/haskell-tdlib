@@ -6,8 +6,6 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BackgroundFill as BackgroundFill
 
---main = putStrLn "ok"
-
 data BackgroundType = 
  BackgroundTypeWallpaper { is_moving :: Bool, is_blurred :: Bool }  
  | BackgroundTypePattern { is_moving :: Bool, intensity :: Int, fill :: BackgroundFill.BackgroundFill }  
@@ -23,8 +21,6 @@ instance T.ToJSON BackgroundType where
  toJSON (BackgroundTypeFill { fill = fill }) =
   A.object [ "@type" A..= T.String "backgroundTypeFill", "fill" A..= fill ]
 
-
-
 instance T.FromJSON BackgroundType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -32,8 +28,7 @@ instance T.FromJSON BackgroundType where
    "backgroundTypeWallpaper" -> parseBackgroundTypeWallpaper v
    "backgroundTypePattern" -> parseBackgroundTypePattern v
    "backgroundTypeFill" -> parseBackgroundTypeFill v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseBackgroundTypeWallpaper :: A.Value -> T.Parser BackgroundType
    parseBackgroundTypeWallpaper = A.withObject "BackgroundTypeWallpaper" $ \o -> do

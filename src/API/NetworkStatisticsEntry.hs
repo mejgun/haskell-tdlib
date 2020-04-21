@@ -7,8 +7,6 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FileType as FileType
 import {-# SOURCE #-} qualified API.NetworkType as NetworkType
 
---main = putStrLn "ok"
-
 data NetworkStatisticsEntry = 
  NetworkStatisticsEntryFile { received_bytes :: Int, sent_bytes :: Int, network_type :: NetworkType.NetworkType, file_type :: FileType.FileType }  
  | NetworkStatisticsEntryCall { duration :: Float, received_bytes :: Int, sent_bytes :: Int, network_type :: NetworkType.NetworkType }  deriving (Show)
@@ -20,16 +18,13 @@ instance T.ToJSON NetworkStatisticsEntry where
  toJSON (NetworkStatisticsEntryCall { duration = duration, received_bytes = received_bytes, sent_bytes = sent_bytes, network_type = network_type }) =
   A.object [ "@type" A..= T.String "networkStatisticsEntryCall", "duration" A..= duration, "received_bytes" A..= received_bytes, "sent_bytes" A..= sent_bytes, "network_type" A..= network_type ]
 
-
-
 instance T.FromJSON NetworkStatisticsEntry where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "networkStatisticsEntryFile" -> parseNetworkStatisticsEntryFile v
    "networkStatisticsEntryCall" -> parseNetworkStatisticsEntryCall v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseNetworkStatisticsEntryFile :: A.Value -> T.Parser NetworkStatisticsEntry
    parseNetworkStatisticsEntryFile = A.withObject "NetworkStatisticsEntryFile" $ \o -> do

@@ -9,8 +9,6 @@ import {-# SOURCE #-} qualified API.CallProtocol as CallProtocol
 import {-# SOURCE #-} qualified API.CallDiscardReason as CallDiscardReason
 import {-# SOURCE #-} qualified API.Error as Error
 
---main = putStrLn "ok"
-
 data CallState = 
  CallStatePending { is_received :: Bool, is_created :: Bool }  
  | CallStateExchangingKeys 
@@ -38,8 +36,6 @@ instance T.ToJSON CallState where
  toJSON (CallStateError { _error = _error }) =
   A.object [ "@type" A..= T.String "callStateError", "error" A..= _error ]
 
-
-
 instance T.FromJSON CallState where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -50,8 +46,7 @@ instance T.FromJSON CallState where
    "callStateHangingUp" -> parseCallStateHangingUp v
    "callStateDiscarded" -> parseCallStateDiscarded v
    "callStateError" -> parseCallStateError v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseCallStatePending :: A.Value -> T.Parser CallState
    parseCallStatePending = A.withObject "CallStatePending" $ \o -> do

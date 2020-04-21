@@ -17,8 +17,6 @@ import {-# SOURCE #-} qualified API.RichText as RichText
 import {-# SOURCE #-} qualified API.PageBlockCaption as PageBlockCaption
 import {-# SOURCE #-} qualified API.Location as Location
 
---main = putStrLn "ok"
-
 data PageBlock = 
  PageBlockTitle { _title :: RichText.RichText }  
  | PageBlockSubtitle { subtitle :: RichText.RichText }  
@@ -138,8 +136,6 @@ instance T.ToJSON PageBlock where
  toJSON (PageBlockMap { caption = caption, height = height, width = width, zoom = zoom, location = location }) =
   A.object [ "@type" A..= T.String "pageBlockMap", "caption" A..= caption, "height" A..= height, "width" A..= width, "zoom" A..= zoom, "location" A..= location ]
 
-
-
 instance T.FromJSON PageBlock where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -173,8 +169,7 @@ instance T.FromJSON PageBlock where
    "pageBlockDetails" -> parsePageBlockDetails v
    "pageBlockRelatedArticles" -> parsePageBlockRelatedArticles v
    "pageBlockMap" -> parsePageBlockMap v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parsePageBlockTitle :: A.Value -> T.Parser PageBlock
    parsePageBlockTitle = A.withObject "PageBlockTitle" $ \o -> do

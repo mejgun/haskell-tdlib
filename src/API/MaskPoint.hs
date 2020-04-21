@@ -5,8 +5,6 @@ module API.MaskPoint where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data MaskPoint = 
  MaskPointForehead 
  | MaskPointEyes 
@@ -26,8 +24,6 @@ instance T.ToJSON MaskPoint where
  toJSON (MaskPointChin {  }) =
   A.object [ "@type" A..= T.String "maskPointChin" ]
 
-
-
 instance T.FromJSON MaskPoint where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -36,8 +32,7 @@ instance T.FromJSON MaskPoint where
    "maskPointEyes" -> parseMaskPointEyes v
    "maskPointMouth" -> parseMaskPointMouth v
    "maskPointChin" -> parseMaskPointChin v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseMaskPointForehead :: A.Value -> T.Parser MaskPoint
    parseMaskPointForehead = A.withObject "MaskPointForehead" $ \o -> do

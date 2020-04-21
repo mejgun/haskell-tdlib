@@ -6,8 +6,6 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.OptionValue as OptionValue
 
---main = putStrLn "ok"
-
 data SetOption = 
  SetOption { value :: OptionValue.OptionValue, name :: String }  deriving (Show)
 
@@ -15,15 +13,12 @@ instance T.ToJSON SetOption where
  toJSON (SetOption { value = value, name = name }) =
   A.object [ "@type" A..= T.String "setOption", "value" A..= value, "name" A..= name ]
 
-
-
 instance T.FromJSON SetOption where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "setOption" -> parseSetOption v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseSetOption :: A.Value -> T.Parser SetOption
    parseSetOption = A.withObject "SetOption" $ \o -> do

@@ -6,8 +6,6 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatInviteLinkInfo as ChatInviteLinkInfo
 
---main = putStrLn "ok"
-
 data TMeUrlType = 
  TMeUrlTypeUser { user_id :: Int }  
  | TMeUrlTypeSupergroup { supergroup_id :: Int }  
@@ -27,8 +25,6 @@ instance T.ToJSON TMeUrlType where
  toJSON (TMeUrlTypeStickerSet { sticker_set_id = sticker_set_id }) =
   A.object [ "@type" A..= T.String "tMeUrlTypeStickerSet", "sticker_set_id" A..= sticker_set_id ]
 
-
-
 instance T.FromJSON TMeUrlType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -37,8 +33,7 @@ instance T.FromJSON TMeUrlType where
    "tMeUrlTypeSupergroup" -> parseTMeUrlTypeSupergroup v
    "tMeUrlTypeChatInvite" -> parseTMeUrlTypeChatInvite v
    "tMeUrlTypeStickerSet" -> parseTMeUrlTypeStickerSet v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseTMeUrlTypeUser :: A.Value -> T.Parser TMeUrlType
    parseTMeUrlTypeUser = A.withObject "TMeUrlTypeUser" $ \o -> do

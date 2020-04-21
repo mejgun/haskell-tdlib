@@ -5,8 +5,6 @@ module API.UserStatus where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data UserStatus = 
  UserStatusEmpty 
  | UserStatusOnline { expires :: Int }  
@@ -34,8 +32,6 @@ instance T.ToJSON UserStatus where
  toJSON (UserStatusLastMonth {  }) =
   A.object [ "@type" A..= T.String "userStatusLastMonth" ]
 
-
-
 instance T.FromJSON UserStatus where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -46,8 +42,7 @@ instance T.FromJSON UserStatus where
    "userStatusRecently" -> parseUserStatusRecently v
    "userStatusLastWeek" -> parseUserStatusLastWeek v
    "userStatusLastMonth" -> parseUserStatusLastMonth v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseUserStatusEmpty :: A.Value -> T.Parser UserStatus
    parseUserStatusEmpty = A.withObject "UserStatusEmpty" $ \o -> do

@@ -5,8 +5,6 @@ module API.Functions.GetRecentlyVisitedTMeUrls where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data GetRecentlyVisitedTMeUrls = 
  GetRecentlyVisitedTMeUrls { referrer :: String }  deriving (Show)
 
@@ -14,15 +12,12 @@ instance T.ToJSON GetRecentlyVisitedTMeUrls where
  toJSON (GetRecentlyVisitedTMeUrls { referrer = referrer }) =
   A.object [ "@type" A..= T.String "getRecentlyVisitedTMeUrls", "referrer" A..= referrer ]
 
-
-
 instance T.FromJSON GetRecentlyVisitedTMeUrls where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "getRecentlyVisitedTMeUrls" -> parseGetRecentlyVisitedTMeUrls v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseGetRecentlyVisitedTMeUrls :: A.Value -> T.Parser GetRecentlyVisitedTMeUrls
    parseGetRecentlyVisitedTMeUrls = A.withObject "GetRecentlyVisitedTMeUrls" $ \o -> do

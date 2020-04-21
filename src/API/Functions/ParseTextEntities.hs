@@ -6,8 +6,6 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TextParseMode as TextParseMode
 
---main = putStrLn "ok"
-
 data ParseTextEntities = 
  ParseTextEntities { parse_mode :: TextParseMode.TextParseMode, text :: String }  deriving (Show)
 
@@ -15,15 +13,12 @@ instance T.ToJSON ParseTextEntities where
  toJSON (ParseTextEntities { parse_mode = parse_mode, text = text }) =
   A.object [ "@type" A..= T.String "parseTextEntities", "parse_mode" A..= parse_mode, "text" A..= text ]
 
-
-
 instance T.FromJSON ParseTextEntities where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "parseTextEntities" -> parseParseTextEntities v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseParseTextEntities :: A.Value -> T.Parser ParseTextEntities
    parseParseTextEntities = A.withObject "ParseTextEntities" $ \o -> do

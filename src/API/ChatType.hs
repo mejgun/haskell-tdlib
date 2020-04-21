@@ -5,8 +5,6 @@ module API.ChatType where
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
---main = putStrLn "ok"
-
 data ChatType = 
  ChatTypePrivate { user_id :: Int }  
  | ChatTypeBasicGroup { basic_group_id :: Int }  
@@ -26,8 +24,6 @@ instance T.ToJSON ChatType where
  toJSON (ChatTypeSecret { user_id = user_id, secret_chat_id = secret_chat_id }) =
   A.object [ "@type" A..= T.String "chatTypeSecret", "user_id" A..= user_id, "secret_chat_id" A..= secret_chat_id ]
 
-
-
 instance T.FromJSON ChatType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -36,8 +32,7 @@ instance T.FromJSON ChatType where
    "chatTypeBasicGroup" -> parseChatTypeBasicGroup v
    "chatTypeSupergroup" -> parseChatTypeSupergroup v
    "chatTypeSecret" -> parseChatTypeSecret v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseChatTypePrivate :: A.Value -> T.Parser ChatType
    parseChatTypePrivate = A.withObject "ChatTypePrivate" $ \o -> do

@@ -6,8 +6,6 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatPermissions as ChatPermissions
 
---main = putStrLn "ok"
-
 data ChatMemberStatus = 
  ChatMemberStatusCreator { is_member :: Bool, custom_title :: String }  
  | ChatMemberStatusAdministrator { can_promote_members :: Bool, can_pin_messages :: Bool, can_restrict_members :: Bool, can_invite_users :: Bool, can_delete_messages :: Bool, can_edit_messages :: Bool, can_post_messages :: Bool, can_change_info :: Bool, can_be_edited :: Bool, custom_title :: String }  
@@ -35,8 +33,6 @@ instance T.ToJSON ChatMemberStatus where
  toJSON (ChatMemberStatusBanned { banned_until_date = banned_until_date }) =
   A.object [ "@type" A..= T.String "chatMemberStatusBanned", "banned_until_date" A..= banned_until_date ]
 
-
-
 instance T.FromJSON ChatMemberStatus where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -47,8 +43,7 @@ instance T.FromJSON ChatMemberStatus where
    "chatMemberStatusRestricted" -> parseChatMemberStatusRestricted v
    "chatMemberStatusLeft" -> parseChatMemberStatusLeft v
    "chatMemberStatusBanned" -> parseChatMemberStatusBanned v
-
-   _ -> mempty ""
+   _ -> mempty
   where
    parseChatMemberStatusCreator :: A.Value -> T.Parser ChatMemberStatus
    parseChatMemberStatusCreator = A.withObject "ChatMemberStatusCreator" $ \o -> do
