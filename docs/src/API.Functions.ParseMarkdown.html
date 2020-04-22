@@ -8,7 +8,7 @@
 </span><span id="line-8"></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="ParseMarkdown"><span class="annot"><a href="API.Functions.ParseMarkdown.html#ParseMarkdown"><span class="hs-identifier hs-var">ParseMarkdown</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-10"></span><span> </span><span id="ParseMarkdown"><span class="annot"><a href="API.Functions.ParseMarkdown.html#ParseMarkdown"><span class="hs-identifier hs-var">ParseMarkdown</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="text"><span class="annot"><span class="annottext">ParseMarkdown -&gt; FormattedText
-</span><a href="API.Functions.ParseMarkdown.html#text"><span class="hs-identifier hs-var hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.FormattedText.html#FormattedText"><span class="hs-identifier hs-type">FormattedText.FormattedText</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679375368"><span id="local-6989586621679375370"><span id="local-6989586621679375372"><span class="annot"><span class="annottext">Int -&gt; ParseMarkdown -&gt; ShowS
+</span><a href="API.Functions.ParseMarkdown.html#text"><span class="hs-identifier hs-var hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.FormattedText.html#FormattedText"><span class="hs-identifier hs-type">FormattedText.FormattedText</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679376655"><span id="local-6989586621679376657"><span id="local-6989586621679376659"><span class="annot"><span class="annottext">Int -&gt; ParseMarkdown -&gt; ShowS
 [ParseMarkdown] -&gt; ShowS
 ParseMarkdown -&gt; String
 (Int -&gt; ParseMarkdown -&gt; ShowS)
@@ -25,11 +25,11 @@ showsPrec :: Int -&gt; ParseMarkdown -&gt; ShowS
 $cshowsPrec :: Int -&gt; ParseMarkdown -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679375360"><span id="local-6989586621679375362"><span id="local-6989586621679375364"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ParseMarkdown.html#ParseMarkdown"><span class="hs-identifier hs-type">ParseMarkdown</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679375358"><span class="annot"><span class="annottext">toJSON :: ParseMarkdown -&gt; Value
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679376647"><span id="local-6989586621679376649"><span id="local-6989586621679376651"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ParseMarkdown.html#ParseMarkdown"><span class="hs-identifier hs-type">ParseMarkdown</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679376645"><span class="annot"><span class="annottext">toJSON :: ParseMarkdown -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.ParseMarkdown.html#ParseMarkdown"><span class="hs-identifier hs-type">ParseMarkdown</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">text :: ParseMarkdown -&gt; FormattedText
-</span><a href="API.Functions.ParseMarkdown.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679375356"><span class="annot"><span class="annottext">FormattedText
-</span><a href="#local-6989586621679375356"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.ParseMarkdown.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679376643"><span class="annot"><span class="annottext">FormattedText
+</span><a href="#local-6989586621679376643"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -37,30 +37,30 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;parseMarkdown&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; FormattedText -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">FormattedText
-</span><a href="#local-6989586621679375356"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679376643"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679375350"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ParseMarkdown.html#ParseMarkdown"><span class="hs-identifier hs-type">ParseMarkdown</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679375348"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ParseMarkdown
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679375346"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679375346"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679375344"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679375344"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679375343"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679375343"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679375344"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679376637"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ParseMarkdown.html#ParseMarkdown"><span class="hs-identifier hs-type">ParseMarkdown</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679376635"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ParseMarkdown
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679376633"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679376633"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679376631"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679376631"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679376630"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679376630"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679376631"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679375343"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679376630"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;parseMarkdown&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ParseMarkdown
-</span><a href="#local-6989586621679375341"><span class="hs-identifier hs-var">parseParseMarkdown</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679375346"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679376628"><span class="hs-identifier hs-var">parseParseMarkdown</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679376633"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ParseMarkdown
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679375341"><span class="hs-identifier hs-type">parseParseMarkdown</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ParseMarkdown.html#ParseMarkdown"><span class="hs-identifier hs-type">ParseMarkdown</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679375341"><span class="annot"><span class="annottext">parseParseMarkdown :: Value -&gt; Parser ParseMarkdown
-</span><a href="#local-6989586621679375341"><span class="hs-identifier hs-var hs-var">parseParseMarkdown</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679376628"><span class="hs-identifier hs-type">parseParseMarkdown</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ParseMarkdown.html#ParseMarkdown"><span class="hs-identifier hs-type">ParseMarkdown</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679376628"><span class="annot"><span class="annottext">parseParseMarkdown :: Value -&gt; Parser ParseMarkdown
+</span><a href="#local-6989586621679376628"><span class="hs-identifier hs-var hs-var">parseParseMarkdown</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ParseMarkdown)
 -&gt; Value
 -&gt; Parser ParseMarkdown
@@ -70,11 +70,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ParseMarkdown
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679375339"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679375339"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679375338"><span class="annot"><span class="annottext">FormattedText
-</span><a href="#local-6989586621679375338"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679375339"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser FormattedText
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679376626"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679376626"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679376625"><span class="annot"><span class="annottext">FormattedText
+</span><a href="#local-6989586621679376625"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679376626"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser FormattedText
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;text&quot;</span></span><span>
 </span><span id="line-26"></span><span>    </span><span class="annot"><span class="annottext">ParseMarkdown -&gt; Parser ParseMarkdown
@@ -85,4 +85,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ParseMarkdown :: FormattedText -&gt; ParseMarkdown
 </span><a href="API.Functions.ParseMarkdown.html#ParseMarkdown"><span class="hs-identifier hs-type hs-type">ParseMarkdown</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">text :: FormattedText
 </span><a href="API.Functions.ParseMarkdown.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FormattedText
-</span><a href="#local-6989586621679375338"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679376625"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

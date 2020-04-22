@@ -11,7 +11,7 @@
 </span><span id="line-10"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="AuthenticationCodeTypeSms"><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeTypeSms"><span class="hs-identifier hs-var">AuthenticationCodeTypeSms</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="_length"><span class="annot"><a href="API.AuthenticationCodeType.html#_length"><span class="hs-identifier hs-var">_length</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
 </span><span id="line-11"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="AuthenticationCodeTypeCall"><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeTypeCall"><span class="hs-identifier hs-var">AuthenticationCodeTypeCall</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="_length"><span class="annot"><a href="API.AuthenticationCodeType.html#_length"><span class="hs-identifier hs-var">_length</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
 </span><span id="line-12"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="AuthenticationCodeTypeFlashCall"><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeTypeFlashCall"><span class="hs-identifier hs-var">AuthenticationCodeTypeFlashCall</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="pattern"><span class="annot"><span class="annottext">AuthenticationCodeType -&gt; String
-</span><a href="API.AuthenticationCodeType.html#pattern"><span class="hs-identifier hs-var hs-var">pattern</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679358799"><span id="local-6989586621679358801"><span id="local-6989586621679358803"><span class="annot"><span class="annottext">Int -&gt; AuthenticationCodeType -&gt; ShowS
+</span><a href="API.AuthenticationCodeType.html#pattern"><span class="hs-identifier hs-var hs-var">pattern</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679360086"><span id="local-6989586621679360088"><span id="local-6989586621679360090"><span class="annot"><span class="annottext">Int -&gt; AuthenticationCodeType -&gt; ShowS
 [AuthenticationCodeType] -&gt; ShowS
 AuthenticationCodeType -&gt; String
 (Int -&gt; AuthenticationCodeType -&gt; ShowS)
@@ -28,11 +28,11 @@ showsPrec :: Int -&gt; AuthenticationCodeType -&gt; ShowS
 $cshowsPrec :: Int -&gt; AuthenticationCodeType -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-13"></span><span>
-</span><span id="line-14"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679358791"><span id="local-6989586621679358793"><span id="local-6989586621679358795"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeType"><span class="hs-identifier hs-type">AuthenticationCodeType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-15"></span><span> </span><span id="local-6989586621679358789"><span class="annot"><span class="annottext">toJSON :: AuthenticationCodeType -&gt; Value
+</span><span id="line-14"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679360078"><span id="local-6989586621679360080"><span id="local-6989586621679360082"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeType"><span class="hs-identifier hs-type">AuthenticationCodeType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-15"></span><span> </span><span id="local-6989586621679360076"><span class="annot"><span class="annottext">toJSON :: AuthenticationCodeType -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeTypeTelegramMessage"><span class="hs-identifier hs-type">AuthenticationCodeTypeTelegramMessage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_length :: AuthenticationCodeType -&gt; Int
-</span><a href="API.AuthenticationCodeType.html#_length"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679358787"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679358787"><span class="hs-identifier hs-var">_length</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.AuthenticationCodeType.html#_length"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360074"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679360074"><span class="hs-identifier hs-var">_length</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-16"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -40,11 +40,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;authenticationCodeTypeTelegramMessage&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;length&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679358787"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679360074"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-17"></span><span>
 </span><span id="line-18"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeTypeSms"><span class="hs-identifier hs-type">AuthenticationCodeTypeSms</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_length :: AuthenticationCodeType -&gt; Int
-</span><a href="API.AuthenticationCodeType.html#_length"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679358783"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679358783"><span class="hs-identifier hs-var">_length</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.AuthenticationCodeType.html#_length"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360070"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679360070"><span class="hs-identifier hs-var">_length</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-19"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -52,11 +52,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;authenticationCodeTypeSms&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;length&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679358783"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679360070"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-20"></span><span>
 </span><span id="line-21"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeTypeCall"><span class="hs-identifier hs-type">AuthenticationCodeTypeCall</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_length :: AuthenticationCodeType -&gt; Int
-</span><a href="API.AuthenticationCodeType.html#_length"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679358782"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679358782"><span class="hs-identifier hs-var">_length</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.AuthenticationCodeType.html#_length"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360069"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679360069"><span class="hs-identifier hs-var">_length</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-22"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -64,11 +64,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;authenticationCodeTypeCall&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;length&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679358782"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679360069"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-23"></span><span>
 </span><span id="line-24"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeTypeFlashCall"><span class="hs-identifier hs-type">AuthenticationCodeTypeFlashCall</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">pattern :: AuthenticationCodeType -&gt; String
-</span><a href="API.AuthenticationCodeType.html#pattern"><span class="hs-identifier hs-var">pattern</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679358781"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679358781"><span class="hs-identifier hs-var">pattern</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.AuthenticationCodeType.html#pattern"><span class="hs-identifier hs-var">pattern</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360068"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679360068"><span class="hs-identifier hs-var">pattern</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-25"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -76,39 +76,39 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;authenticationCodeTypeFlashCall&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;pattern&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679358781"><span class="hs-identifier hs-var">pattern</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679360068"><span class="hs-identifier hs-var">pattern</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-26"></span><span>
-</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679358778"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeType"><span class="hs-identifier hs-type">AuthenticationCodeType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-28"></span><span> </span><span id="local-6989586621679358776"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AuthenticationCodeType
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679358774"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679358774"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679358772"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679358772"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-29"></span><span>  </span><span id="local-6989586621679358771"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679358771"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679358772"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679360065"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeType"><span class="hs-identifier hs-type">AuthenticationCodeType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-28"></span><span> </span><span id="local-6989586621679360063"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AuthenticationCodeType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679360061"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679360061"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679360059"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679360059"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-29"></span><span>  </span><span id="local-6989586621679360058"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679360058"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360059"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-30"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679358771"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679360058"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-31"></span><span>   </span><span class="hs-string">&quot;authenticationCodeTypeTelegramMessage&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AuthenticationCodeType
-</span><a href="#local-6989586621679358769"><span class="hs-identifier hs-var">parseAuthenticationCodeTypeTelegramMessage</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679358774"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679360056"><span class="hs-identifier hs-var">parseAuthenticationCodeTypeTelegramMessage</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679360061"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-32"></span><span>   </span><span class="hs-string">&quot;authenticationCodeTypeSms&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AuthenticationCodeType
-</span><a href="#local-6989586621679358768"><span class="hs-identifier hs-var">parseAuthenticationCodeTypeSms</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679358774"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679360055"><span class="hs-identifier hs-var">parseAuthenticationCodeTypeSms</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679360061"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-33"></span><span>   </span><span class="hs-string">&quot;authenticationCodeTypeCall&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AuthenticationCodeType
-</span><a href="#local-6989586621679358767"><span class="hs-identifier hs-var">parseAuthenticationCodeTypeCall</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679358774"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679360054"><span class="hs-identifier hs-var">parseAuthenticationCodeTypeCall</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679360061"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-34"></span><span>   </span><span class="hs-string">&quot;authenticationCodeTypeFlashCall&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AuthenticationCodeType
-</span><a href="#local-6989586621679358766"><span class="hs-identifier hs-var">parseAuthenticationCodeTypeFlashCall</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679358774"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679360053"><span class="hs-identifier hs-var">parseAuthenticationCodeTypeFlashCall</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679360061"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-35"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser AuthenticationCodeType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-36"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-37"></span><span>   </span><span class="annot"><a href="#local-6989586621679358769"><span class="hs-identifier hs-type">parseAuthenticationCodeTypeTelegramMessage</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeType"><span class="hs-identifier hs-type">AuthenticationCodeType</span></a></span><span>
-</span><span id="line-38"></span><span>   </span><span id="local-6989586621679358769"><span class="annot"><span class="annottext">parseAuthenticationCodeTypeTelegramMessage :: Value -&gt; Parser AuthenticationCodeType
-</span><a href="#local-6989586621679358769"><span class="hs-identifier hs-var hs-var">parseAuthenticationCodeTypeTelegramMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-37"></span><span>   </span><span class="annot"><a href="#local-6989586621679360056"><span class="hs-identifier hs-type">parseAuthenticationCodeTypeTelegramMessage</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeType"><span class="hs-identifier hs-type">AuthenticationCodeType</span></a></span><span>
+</span><span id="line-38"></span><span>   </span><span id="local-6989586621679360056"><span class="annot"><span class="annottext">parseAuthenticationCodeTypeTelegramMessage :: Value -&gt; Parser AuthenticationCodeType
+</span><a href="#local-6989586621679360056"><span class="hs-identifier hs-var hs-var">parseAuthenticationCodeTypeTelegramMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AuthenticationCodeType)
 -&gt; Value
 -&gt; Parser AuthenticationCodeType
@@ -119,11 +119,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AuthenticationCodeType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679358764"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679358764"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-39"></span><span>    </span><span id="local-6989586621679358763"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679358763"><span class="hs-identifier hs-var">_length</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679358764"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360051"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679360051"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-39"></span><span>    </span><span id="local-6989586621679360050"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679360050"><span class="hs-identifier hs-var">_length</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360051"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;length&quot;</span></span><span>
 </span><span id="line-40"></span><span>    </span><span class="annot"><span class="annottext">AuthenticationCodeType -&gt; Parser AuthenticationCodeType
@@ -134,11 +134,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AuthenticationCodeTypeTelegramMessage :: Int -&gt; AuthenticationCodeType
 </span><a href="API.AuthenticationCodeType.html#AuthenticationCodeTypeTelegramMessage"><span class="hs-identifier hs-type hs-type">AuthenticationCodeTypeTelegramMessage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_length :: Int
 </span><a href="API.AuthenticationCodeType.html#_length"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679358763"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679360050"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-41"></span><span>
-</span><span id="line-42"></span><span>   </span><span class="annot"><a href="#local-6989586621679358768"><span class="hs-identifier hs-type">parseAuthenticationCodeTypeSms</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeType"><span class="hs-identifier hs-type">AuthenticationCodeType</span></a></span><span>
-</span><span id="line-43"></span><span>   </span><span id="local-6989586621679358768"><span class="annot"><span class="annottext">parseAuthenticationCodeTypeSms :: Value -&gt; Parser AuthenticationCodeType
-</span><a href="#local-6989586621679358768"><span class="hs-identifier hs-var hs-var">parseAuthenticationCodeTypeSms</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-42"></span><span>   </span><span class="annot"><a href="#local-6989586621679360055"><span class="hs-identifier hs-type">parseAuthenticationCodeTypeSms</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeType"><span class="hs-identifier hs-type">AuthenticationCodeType</span></a></span><span>
+</span><span id="line-43"></span><span>   </span><span id="local-6989586621679360055"><span class="annot"><span class="annottext">parseAuthenticationCodeTypeSms :: Value -&gt; Parser AuthenticationCodeType
+</span><a href="#local-6989586621679360055"><span class="hs-identifier hs-var hs-var">parseAuthenticationCodeTypeSms</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AuthenticationCodeType)
 -&gt; Value
 -&gt; Parser AuthenticationCodeType
@@ -149,11 +149,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AuthenticationCodeType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679358761"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679358761"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-44"></span><span>    </span><span id="local-6989586621679358760"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679358760"><span class="hs-identifier hs-var">_length</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679358761"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360048"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679360048"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-44"></span><span>    </span><span id="local-6989586621679360047"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679360047"><span class="hs-identifier hs-var">_length</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360048"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;length&quot;</span></span><span>
 </span><span id="line-45"></span><span>    </span><span class="annot"><span class="annottext">AuthenticationCodeType -&gt; Parser AuthenticationCodeType
@@ -164,11 +164,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AuthenticationCodeTypeSms :: Int -&gt; AuthenticationCodeType
 </span><a href="API.AuthenticationCodeType.html#AuthenticationCodeTypeSms"><span class="hs-identifier hs-type hs-type">AuthenticationCodeTypeSms</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_length :: Int
 </span><a href="API.AuthenticationCodeType.html#_length"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679358760"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679360047"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-46"></span><span>
-</span><span id="line-47"></span><span>   </span><span class="annot"><a href="#local-6989586621679358767"><span class="hs-identifier hs-type">parseAuthenticationCodeTypeCall</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeType"><span class="hs-identifier hs-type">AuthenticationCodeType</span></a></span><span>
-</span><span id="line-48"></span><span>   </span><span id="local-6989586621679358767"><span class="annot"><span class="annottext">parseAuthenticationCodeTypeCall :: Value -&gt; Parser AuthenticationCodeType
-</span><a href="#local-6989586621679358767"><span class="hs-identifier hs-var hs-var">parseAuthenticationCodeTypeCall</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-47"></span><span>   </span><span class="annot"><a href="#local-6989586621679360054"><span class="hs-identifier hs-type">parseAuthenticationCodeTypeCall</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeType"><span class="hs-identifier hs-type">AuthenticationCodeType</span></a></span><span>
+</span><span id="line-48"></span><span>   </span><span id="local-6989586621679360054"><span class="annot"><span class="annottext">parseAuthenticationCodeTypeCall :: Value -&gt; Parser AuthenticationCodeType
+</span><a href="#local-6989586621679360054"><span class="hs-identifier hs-var hs-var">parseAuthenticationCodeTypeCall</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AuthenticationCodeType)
 -&gt; Value
 -&gt; Parser AuthenticationCodeType
@@ -179,11 +179,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AuthenticationCodeType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679358758"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679358758"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-49"></span><span>    </span><span id="local-6989586621679358757"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679358757"><span class="hs-identifier hs-var">_length</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679358758"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360045"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679360045"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-49"></span><span>    </span><span id="local-6989586621679360044"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679360044"><span class="hs-identifier hs-var">_length</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360045"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;length&quot;</span></span><span>
 </span><span id="line-50"></span><span>    </span><span class="annot"><span class="annottext">AuthenticationCodeType -&gt; Parser AuthenticationCodeType
@@ -194,11 +194,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AuthenticationCodeTypeCall :: Int -&gt; AuthenticationCodeType
 </span><a href="API.AuthenticationCodeType.html#AuthenticationCodeTypeCall"><span class="hs-identifier hs-type hs-type">AuthenticationCodeTypeCall</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_length :: Int
 </span><a href="API.AuthenticationCodeType.html#_length"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679358757"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679360044"><span class="hs-identifier hs-var">_length</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-51"></span><span>
-</span><span id="line-52"></span><span>   </span><span class="annot"><a href="#local-6989586621679358766"><span class="hs-identifier hs-type">parseAuthenticationCodeTypeFlashCall</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeType"><span class="hs-identifier hs-type">AuthenticationCodeType</span></a></span><span>
-</span><span id="line-53"></span><span>   </span><span id="local-6989586621679358766"><span class="annot"><span class="annottext">parseAuthenticationCodeTypeFlashCall :: Value -&gt; Parser AuthenticationCodeType
-</span><a href="#local-6989586621679358766"><span class="hs-identifier hs-var hs-var">parseAuthenticationCodeTypeFlashCall</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-52"></span><span>   </span><span class="annot"><a href="#local-6989586621679360053"><span class="hs-identifier hs-type">parseAuthenticationCodeTypeFlashCall</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthenticationCodeType.html#AuthenticationCodeType"><span class="hs-identifier hs-type">AuthenticationCodeType</span></a></span><span>
+</span><span id="line-53"></span><span>   </span><span id="local-6989586621679360053"><span class="annot"><span class="annottext">parseAuthenticationCodeTypeFlashCall :: Value -&gt; Parser AuthenticationCodeType
+</span><a href="#local-6989586621679360053"><span class="hs-identifier hs-var hs-var">parseAuthenticationCodeTypeFlashCall</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AuthenticationCodeType)
 -&gt; Value
 -&gt; Parser AuthenticationCodeType
@@ -209,11 +209,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AuthenticationCodeType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679358755"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679358755"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-54"></span><span>    </span><span id="local-6989586621679358754"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679358754"><span class="hs-identifier hs-var">pattern</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679358755"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360042"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679360042"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-54"></span><span>    </span><span id="local-6989586621679360041"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679360041"><span class="hs-identifier hs-var">pattern</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360042"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;pattern&quot;</span></span><span>
 </span><span id="line-55"></span><span>    </span><span class="annot"><span class="annottext">AuthenticationCodeType -&gt; Parser AuthenticationCodeType
@@ -224,4 +224,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AuthenticationCodeTypeFlashCall :: String -&gt; AuthenticationCodeType
 </span><a href="API.AuthenticationCodeType.html#AuthenticationCodeTypeFlashCall"><span class="hs-identifier hs-type hs-type">AuthenticationCodeTypeFlashCall</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">pattern :: String
 </span><a href="API.AuthenticationCodeType.html#pattern"><span class="hs-identifier hs-var">pattern</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679358754"><span class="hs-identifier hs-var">pattern</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679360041"><span class="hs-identifier hs-var">pattern</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

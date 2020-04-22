@@ -7,7 +7,7 @@
 </span><span id="line-7"></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">data</span><span> </span><span id="DeleteAccount"><span class="annot"><a href="API.Functions.DeleteAccount.html#DeleteAccount"><span class="hs-identifier hs-var">DeleteAccount</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-9"></span><span> </span><span id="DeleteAccount"><span class="annot"><a href="API.Functions.DeleteAccount.html#DeleteAccount"><span class="hs-identifier hs-var">DeleteAccount</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="reason"><span class="annot"><span class="annottext">DeleteAccount -&gt; String
-</span><a href="API.Functions.DeleteAccount.html#reason"><span class="hs-identifier hs-var hs-var">reason</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679366824"><span id="local-6989586621679366826"><span id="local-6989586621679366828"><span class="annot"><span class="annottext">Int -&gt; DeleteAccount -&gt; ShowS
+</span><a href="API.Functions.DeleteAccount.html#reason"><span class="hs-identifier hs-var hs-var">reason</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679368111"><span id="local-6989586621679368113"><span id="local-6989586621679368115"><span class="annot"><span class="annottext">Int -&gt; DeleteAccount -&gt; ShowS
 [DeleteAccount] -&gt; ShowS
 DeleteAccount -&gt; String
 (Int -&gt; DeleteAccount -&gt; ShowS)
@@ -24,11 +24,11 @@ showsPrec :: Int -&gt; DeleteAccount -&gt; ShowS
 $cshowsPrec :: Int -&gt; DeleteAccount -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679366816"><span id="local-6989586621679366818"><span id="local-6989586621679366820"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteAccount.html#DeleteAccount"><span class="hs-identifier hs-type">DeleteAccount</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-12"></span><span> </span><span id="local-6989586621679366814"><span class="annot"><span class="annottext">toJSON :: DeleteAccount -&gt; Value
+</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679368103"><span id="local-6989586621679368105"><span id="local-6989586621679368107"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteAccount.html#DeleteAccount"><span class="hs-identifier hs-type">DeleteAccount</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-12"></span><span> </span><span id="local-6989586621679368101"><span class="annot"><span class="annottext">toJSON :: DeleteAccount -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.DeleteAccount.html#DeleteAccount"><span class="hs-identifier hs-type">DeleteAccount</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">reason :: DeleteAccount -&gt; String
-</span><a href="API.Functions.DeleteAccount.html#reason"><span class="hs-identifier hs-var">reason</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679366812"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679366812"><span class="hs-identifier hs-var">reason</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.DeleteAccount.html#reason"><span class="hs-identifier hs-var">reason</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679368099"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679368099"><span class="hs-identifier hs-var">reason</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-13"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -36,30 +36,30 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;deleteAccount&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;reason&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679366812"><span class="hs-identifier hs-var">reason</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679368099"><span class="hs-identifier hs-var">reason</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679366806"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteAccount.html#DeleteAccount"><span class="hs-identifier hs-type">DeleteAccount</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-16"></span><span> </span><span id="local-6989586621679366804"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser DeleteAccount
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679366802"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679366802"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679366800"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679366800"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-17"></span><span>  </span><span id="local-6989586621679366799"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679366799"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679366800"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679368093"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteAccount.html#DeleteAccount"><span class="hs-identifier hs-type">DeleteAccount</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-16"></span><span> </span><span id="local-6989586621679368091"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser DeleteAccount
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679368089"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679368089"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679368087"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679368087"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-17"></span><span>  </span><span id="local-6989586621679368086"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679368086"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679368087"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-18"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679366799"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679368086"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-19"></span><span>   </span><span class="hs-string">&quot;deleteAccount&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DeleteAccount
-</span><a href="#local-6989586621679366797"><span class="hs-identifier hs-var">parseDeleteAccount</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679366802"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679368084"><span class="hs-identifier hs-var">parseDeleteAccount</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679368089"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser DeleteAccount
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-21"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679366797"><span class="hs-identifier hs-type">parseDeleteAccount</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteAccount.html#DeleteAccount"><span class="hs-identifier hs-type">DeleteAccount</span></a></span><span>
-</span><span id="line-23"></span><span>   </span><span id="local-6989586621679366797"><span class="annot"><span class="annottext">parseDeleteAccount :: Value -&gt; Parser DeleteAccount
-</span><a href="#local-6989586621679366797"><span class="hs-identifier hs-var hs-var">parseDeleteAccount</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679368084"><span class="hs-identifier hs-type">parseDeleteAccount</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteAccount.html#DeleteAccount"><span class="hs-identifier hs-type">DeleteAccount</span></a></span><span>
+</span><span id="line-23"></span><span>   </span><span id="local-6989586621679368084"><span class="annot"><span class="annottext">parseDeleteAccount :: Value -&gt; Parser DeleteAccount
+</span><a href="#local-6989586621679368084"><span class="hs-identifier hs-var hs-var">parseDeleteAccount</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DeleteAccount)
 -&gt; Value
 -&gt; Parser DeleteAccount
@@ -69,11 +69,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser DeleteAccount
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679366795"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679366795"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-24"></span><span>    </span><span id="local-6989586621679366794"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679366794"><span class="hs-identifier hs-var">reason</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679366795"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679368082"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679368082"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-24"></span><span>    </span><span id="local-6989586621679368081"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679368081"><span class="hs-identifier hs-var">reason</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679368082"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;reason&quot;</span></span><span>
 </span><span id="line-25"></span><span>    </span><span class="annot"><span class="annottext">DeleteAccount -&gt; Parser DeleteAccount
@@ -84,4 +84,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">DeleteAccount :: String -&gt; DeleteAccount
 </span><a href="API.Functions.DeleteAccount.html#DeleteAccount"><span class="hs-identifier hs-type hs-type">DeleteAccount</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">reason :: String
 </span><a href="API.Functions.DeleteAccount.html#reason"><span class="hs-identifier hs-var">reason</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679366794"><span class="hs-identifier hs-var">reason</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679368081"><span class="hs-identifier hs-var">reason</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

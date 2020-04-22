@@ -9,7 +9,7 @@ module Main where
 import           API.GeneralResult
 -- import           API.Ok
 import           API.Functions.SetLogVerbosityLevel
-import           API.Functions.PingProxy
+import           API.Functions.GetCurrentState
 import           Data.Aeson                     ( decode
                                                 , encode
                                                 , ToJSON
@@ -48,7 +48,7 @@ main = do
       { new_verbosity_level = 2
       }
   print extra
-  extra2 <- sendWExtra client API.Functions.PingProxy.PingProxy { proxy_id = 0 }
+  extra2 <- sendWExtra client API.Functions.GetCurrentState.GetCurrentState
   print extra2
   live client
   destroy client
@@ -56,6 +56,12 @@ main = do
   live c = do
     r <- receive c
     case r of
+      Just (Ok v extra) -> do
+        putStr "answer to SetVerbosityLevel: "
+        print v
+      Just (Updates v extra2) -> do
+        putStr "answer to GetCurrentState: "
+        print v
       Nothing -> return ()
       _       -> print r
     live c

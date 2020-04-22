@@ -7,7 +7,7 @@
 </span><span id="line-7"></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">data</span><span> </span><span id="TerminateSession"><span class="annot"><a href="API.Functions.TerminateSession.html#TerminateSession"><span class="hs-identifier hs-var">TerminateSession</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-9"></span><span> </span><span id="TerminateSession"><span class="annot"><a href="API.Functions.TerminateSession.html#TerminateSession"><span class="hs-identifier hs-var">TerminateSession</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="session_id"><span class="annot"><span class="annottext">TerminateSession -&gt; Int
-</span><a href="API.Functions.TerminateSession.html#session_id"><span class="hs-identifier hs-var hs-var">session_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679381409"><span id="local-6989586621679381411"><span id="local-6989586621679381413"><span class="annot"><span class="annottext">Int -&gt; TerminateSession -&gt; ShowS
+</span><a href="API.Functions.TerminateSession.html#session_id"><span class="hs-identifier hs-var hs-var">session_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679382696"><span id="local-6989586621679382698"><span id="local-6989586621679382700"><span class="annot"><span class="annottext">Int -&gt; TerminateSession -&gt; ShowS
 [TerminateSession] -&gt; ShowS
 TerminateSession -&gt; String
 (Int -&gt; TerminateSession -&gt; ShowS)
@@ -24,11 +24,11 @@ showsPrec :: Int -&gt; TerminateSession -&gt; ShowS
 $cshowsPrec :: Int -&gt; TerminateSession -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679381401"><span id="local-6989586621679381403"><span id="local-6989586621679381405"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TerminateSession.html#TerminateSession"><span class="hs-identifier hs-type">TerminateSession</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-12"></span><span> </span><span id="local-6989586621679381399"><span class="annot"><span class="annottext">toJSON :: TerminateSession -&gt; Value
+</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679382688"><span id="local-6989586621679382690"><span id="local-6989586621679382692"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TerminateSession.html#TerminateSession"><span class="hs-identifier hs-type">TerminateSession</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-12"></span><span> </span><span id="local-6989586621679382686"><span class="annot"><span class="annottext">toJSON :: TerminateSession -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.TerminateSession.html#TerminateSession"><span class="hs-identifier hs-type">TerminateSession</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">session_id :: TerminateSession -&gt; Int
-</span><a href="API.Functions.TerminateSession.html#session_id"><span class="hs-identifier hs-var">session_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679381397"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679381397"><span class="hs-identifier hs-var">session_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.TerminateSession.html#session_id"><span class="hs-identifier hs-var">session_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679382684"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679382684"><span class="hs-identifier hs-var">session_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-13"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -36,30 +36,30 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;terminateSession&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;session_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679381397"><span class="hs-identifier hs-var">session_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679382684"><span class="hs-identifier hs-var">session_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679381391"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TerminateSession.html#TerminateSession"><span class="hs-identifier hs-type">TerminateSession</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-16"></span><span> </span><span id="local-6989586621679381389"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TerminateSession
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679381387"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679381387"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679381385"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679381385"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-17"></span><span>  </span><span id="local-6989586621679381384"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679381384"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679381385"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679382678"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TerminateSession.html#TerminateSession"><span class="hs-identifier hs-type">TerminateSession</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-16"></span><span> </span><span id="local-6989586621679382676"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TerminateSession
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679382674"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679382674"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679382672"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679382672"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-17"></span><span>  </span><span id="local-6989586621679382671"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679382671"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679382672"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-18"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679381384"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679382671"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-19"></span><span>   </span><span class="hs-string">&quot;terminateSession&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TerminateSession
-</span><a href="#local-6989586621679381382"><span class="hs-identifier hs-var">parseTerminateSession</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679381387"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679382669"><span class="hs-identifier hs-var">parseTerminateSession</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679382674"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TerminateSession
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-21"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679381382"><span class="hs-identifier hs-type">parseTerminateSession</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.TerminateSession.html#TerminateSession"><span class="hs-identifier hs-type">TerminateSession</span></a></span><span>
-</span><span id="line-23"></span><span>   </span><span id="local-6989586621679381382"><span class="annot"><span class="annottext">parseTerminateSession :: Value -&gt; Parser TerminateSession
-</span><a href="#local-6989586621679381382"><span class="hs-identifier hs-var hs-var">parseTerminateSession</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679382669"><span class="hs-identifier hs-type">parseTerminateSession</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.TerminateSession.html#TerminateSession"><span class="hs-identifier hs-type">TerminateSession</span></a></span><span>
+</span><span id="line-23"></span><span>   </span><span id="local-6989586621679382669"><span class="annot"><span class="annottext">parseTerminateSession :: Value -&gt; Parser TerminateSession
+</span><a href="#local-6989586621679382669"><span class="hs-identifier hs-var hs-var">parseTerminateSession</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TerminateSession)
 -&gt; Value
 -&gt; Parser TerminateSession
@@ -70,11 +70,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TerminateSession
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679381380"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679381380"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-24"></span><span>    </span><span id="local-6989586621679381379"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679381379"><span class="hs-identifier hs-var">session_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679381380"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679382667"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679382667"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-24"></span><span>    </span><span id="local-6989586621679382666"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679382666"><span class="hs-identifier hs-var">session_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679382667"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;session_id&quot;</span></span><span>
 </span><span id="line-25"></span><span>    </span><span class="annot"><span class="annottext">TerminateSession -&gt; Parser TerminateSession
@@ -85,4 +85,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TerminateSession :: Int -&gt; TerminateSession
 </span><a href="API.Functions.TerminateSession.html#TerminateSession"><span class="hs-identifier hs-type hs-type">TerminateSession</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">session_id :: Int
 </span><a href="API.Functions.TerminateSession.html#session_id"><span class="hs-identifier hs-var">session_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679381379"><span class="hs-identifier hs-var">session_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679382666"><span class="hs-identifier hs-var">session_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

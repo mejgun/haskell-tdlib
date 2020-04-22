@@ -25,7 +25,7 @@
 </span><span id="line-18"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="AuthorizationStateReady"><span class="annot"><a href="API.AuthorizationState.html#AuthorizationStateReady"><span class="hs-identifier hs-var">AuthorizationStateReady</span></a></span></span><span> </span><span>
 </span><span id="line-19"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="AuthorizationStateLoggingOut"><span class="annot"><a href="API.AuthorizationState.html#AuthorizationStateLoggingOut"><span class="hs-identifier hs-var">AuthorizationStateLoggingOut</span></a></span></span><span> </span><span>
 </span><span id="line-20"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="AuthorizationStateClosing"><span class="annot"><a href="API.AuthorizationState.html#AuthorizationStateClosing"><span class="hs-identifier hs-var">AuthorizationStateClosing</span></a></span></span><span> </span><span>
-</span><span id="line-21"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="AuthorizationStateClosed"><span class="annot"><a href="API.AuthorizationState.html#AuthorizationStateClosed"><span class="hs-identifier hs-var">AuthorizationStateClosed</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679399372"><span id="local-6989586621679399374"><span id="local-6989586621679399376"><span class="annot"><span class="annottext">Int -&gt; AuthorizationState -&gt; ShowS
+</span><span id="line-21"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="AuthorizationStateClosed"><span class="annot"><a href="API.AuthorizationState.html#AuthorizationStateClosed"><span class="hs-identifier hs-var">AuthorizationStateClosed</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679400659"><span id="local-6989586621679400661"><span id="local-6989586621679400663"><span class="annot"><span class="annottext">Int -&gt; AuthorizationState -&gt; ShowS
 [AuthorizationState] -&gt; ShowS
 AuthorizationState -&gt; String
 (Int -&gt; AuthorizationState -&gt; ShowS)
@@ -42,8 +42,8 @@ showsPrec :: Int -&gt; AuthorizationState -&gt; ShowS
 $cshowsPrec :: Int -&gt; AuthorizationState -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679399364"><span id="local-6989586621679399366"><span id="local-6989586621679399368"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span> </span><span id="local-6989586621679399362"><span class="annot"><span class="annottext">toJSON :: AuthorizationState -&gt; Value
+</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679400651"><span id="local-6989586621679400653"><span id="local-6989586621679400655"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span> </span><span id="local-6989586621679400649"><span class="annot"><span class="annottext">toJSON :: AuthorizationState -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationStateWaitTdlibParameters"><span class="hs-identifier hs-type">AuthorizationStateWaitTdlibParameters</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-25"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -52,8 +52,8 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;authorizationStateWaitTdlibParameters&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-26"></span><span>
 </span><span id="line-27"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationStateWaitEncryptionKey"><span class="hs-identifier hs-type">AuthorizationStateWaitEncryptionKey</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_encrypted :: AuthorizationState -&gt; Bool
-</span><a href="API.AuthorizationState.html#is_encrypted"><span class="hs-identifier hs-var">is_encrypted</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399357"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679399357"><span class="hs-identifier hs-var">is_encrypted</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.AuthorizationState.html#is_encrypted"><span class="hs-identifier hs-var">is_encrypted</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679400644"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679400644"><span class="hs-identifier hs-var">is_encrypted</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-28"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -61,7 +61,7 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;authorizationStateWaitEncryptionKey&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_encrypted&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679399357"><span class="hs-identifier hs-var">is_encrypted</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679400644"><span class="hs-identifier hs-var">is_encrypted</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-29"></span><span>
 </span><span id="line-30"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationStateWaitPhoneNumber"><span class="hs-identifier hs-type">AuthorizationStateWaitPhoneNumber</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-31"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
@@ -71,8 +71,8 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;authorizationStateWaitPhoneNumber&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-32"></span><span>
 </span><span id="line-33"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationStateWaitCode"><span class="hs-identifier hs-type">AuthorizationStateWaitCode</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">code_info :: AuthorizationState -&gt; AuthenticationCodeInfo
-</span><a href="API.AuthorizationState.html#code_info"><span class="hs-identifier hs-var">code_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399356"><span class="annot"><span class="annottext">AuthenticationCodeInfo
-</span><a href="#local-6989586621679399356"><span class="hs-identifier hs-var">code_info</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.AuthorizationState.html#code_info"><span class="hs-identifier hs-var">code_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679400643"><span class="annot"><span class="annottext">AuthenticationCodeInfo
+</span><a href="#local-6989586621679400643"><span class="hs-identifier hs-var">code_info</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-34"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -80,11 +80,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;authorizationStateWaitCode&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;code_info&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; AuthenticationCodeInfo -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">AuthenticationCodeInfo
-</span><a href="#local-6989586621679399356"><span class="hs-identifier hs-var">code_info</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679400643"><span class="hs-identifier hs-var">code_info</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-35"></span><span>
 </span><span id="line-36"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationStateWaitOtherDeviceConfirmation"><span class="hs-identifier hs-type">AuthorizationStateWaitOtherDeviceConfirmation</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">link :: AuthorizationState -&gt; String
-</span><a href="API.AuthorizationState.html#link"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399355"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679399355"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.AuthorizationState.html#link"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679400642"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679400642"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-37"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -92,11 +92,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;authorizationStateWaitOtherDeviceConfirmation&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;link&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679399355"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679400642"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-38"></span><span>
 </span><span id="line-39"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationStateWaitRegistration"><span class="hs-identifier hs-type">AuthorizationStateWaitRegistration</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">terms_of_service :: AuthorizationState -&gt; TermsOfService
-</span><a href="API.AuthorizationState.html#terms_of_service"><span class="hs-identifier hs-var">terms_of_service</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399354"><span class="annot"><span class="annottext">TermsOfService
-</span><a href="#local-6989586621679399354"><span class="hs-identifier hs-var">terms_of_service</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.AuthorizationState.html#terms_of_service"><span class="hs-identifier hs-var">terms_of_service</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679400641"><span class="annot"><span class="annottext">TermsOfService
+</span><a href="#local-6989586621679400641"><span class="hs-identifier hs-var">terms_of_service</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-40"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -104,15 +104,15 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;authorizationStateWaitRegistration&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;terms_of_service&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; TermsOfService -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">TermsOfService
-</span><a href="#local-6989586621679399354"><span class="hs-identifier hs-var">terms_of_service</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679400641"><span class="hs-identifier hs-var">terms_of_service</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-41"></span><span>
 </span><span id="line-42"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationStateWaitPassword"><span class="hs-identifier hs-type">AuthorizationStateWaitPassword</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">recovery_email_address_pattern :: AuthorizationState -&gt; String
-</span><a href="API.AuthorizationState.html#recovery_email_address_pattern"><span class="hs-identifier hs-var">recovery_email_address_pattern</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399353"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679399353"><span class="hs-identifier hs-var">recovery_email_address_pattern</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">has_recovery_email_address :: AuthorizationState -&gt; Bool
-</span><a href="API.AuthorizationState.html#has_recovery_email_address"><span class="hs-identifier hs-var">has_recovery_email_address</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399352"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679399352"><span class="hs-identifier hs-var">has_recovery_email_address</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">password_hint :: AuthorizationState -&gt; String
-</span><a href="API.AuthorizationState.html#password_hint"><span class="hs-identifier hs-var">password_hint</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399351"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679399351"><span class="hs-identifier hs-var">password_hint</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.AuthorizationState.html#recovery_email_address_pattern"><span class="hs-identifier hs-var">recovery_email_address_pattern</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679400640"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679400640"><span class="hs-identifier hs-var">recovery_email_address_pattern</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">has_recovery_email_address :: AuthorizationState -&gt; Bool
+</span><a href="API.AuthorizationState.html#has_recovery_email_address"><span class="hs-identifier hs-var">has_recovery_email_address</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679400639"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679400639"><span class="hs-identifier hs-var">has_recovery_email_address</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">password_hint :: AuthorizationState -&gt; String
+</span><a href="API.AuthorizationState.html#password_hint"><span class="hs-identifier hs-var">password_hint</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679400638"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679400638"><span class="hs-identifier hs-var">password_hint</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-43"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -120,13 +120,13 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;authorizationStateWaitPassword&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;recovery_email_address_pattern&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679399353"><span class="hs-identifier hs-var">recovery_email_address_pattern</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;has_recovery_email_address&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+</span><a href="#local-6989586621679400640"><span class="hs-identifier hs-var">recovery_email_address_pattern</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;has_recovery_email_address&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679399352"><span class="hs-identifier hs-var">has_recovery_email_address</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;password_hint&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+</span><a href="#local-6989586621679400639"><span class="hs-identifier hs-var">has_recovery_email_address</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;password_hint&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679399351"><span class="hs-identifier hs-var">password_hint</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679400638"><span class="hs-identifier hs-var">password_hint</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-44"></span><span>
 </span><span id="line-45"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationStateReady"><span class="hs-identifier hs-type">AuthorizationStateReady</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-46"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
@@ -156,58 +156,58 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;authorizationStateClosed&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-56"></span><span>
-</span><span id="line-57"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679399348"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-58"></span><span> </span><span id="local-6989586621679399346"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AuthorizationState
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679399344"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679399344"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679399342"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679399342"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-59"></span><span>  </span><span id="local-6989586621679399341"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679399341"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679399342"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-57"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679400635"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-58"></span><span> </span><span id="local-6989586621679400633"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AuthorizationState
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679400631"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679400631"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679400629"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679400629"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-59"></span><span>  </span><span id="local-6989586621679400628"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679400628"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679400629"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-60"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679399341"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679400628"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-61"></span><span>   </span><span class="hs-string">&quot;authorizationStateWaitTdlibParameters&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399339"><span class="hs-identifier hs-var">parseAuthorizationStateWaitTdlibParameters</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679399344"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679400626"><span class="hs-identifier hs-var">parseAuthorizationStateWaitTdlibParameters</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679400631"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-62"></span><span>   </span><span class="hs-string">&quot;authorizationStateWaitEncryptionKey&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399338"><span class="hs-identifier hs-var">parseAuthorizationStateWaitEncryptionKey</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679399344"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679400625"><span class="hs-identifier hs-var">parseAuthorizationStateWaitEncryptionKey</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679400631"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-63"></span><span>   </span><span class="hs-string">&quot;authorizationStateWaitPhoneNumber&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399337"><span class="hs-identifier hs-var">parseAuthorizationStateWaitPhoneNumber</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679399344"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679400624"><span class="hs-identifier hs-var">parseAuthorizationStateWaitPhoneNumber</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679400631"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-64"></span><span>   </span><span class="hs-string">&quot;authorizationStateWaitCode&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399336"><span class="hs-identifier hs-var">parseAuthorizationStateWaitCode</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679399344"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679400623"><span class="hs-identifier hs-var">parseAuthorizationStateWaitCode</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679400631"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-65"></span><span>   </span><span class="hs-string">&quot;authorizationStateWaitOtherDeviceConfirmation&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399335"><span class="hs-identifier hs-var">parseAuthorizationStateWaitOtherDeviceConfirmation</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679399344"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679400622"><span class="hs-identifier hs-var">parseAuthorizationStateWaitOtherDeviceConfirmation</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679400631"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-66"></span><span>   </span><span class="hs-string">&quot;authorizationStateWaitRegistration&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399334"><span class="hs-identifier hs-var">parseAuthorizationStateWaitRegistration</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679399344"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679400621"><span class="hs-identifier hs-var">parseAuthorizationStateWaitRegistration</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679400631"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-67"></span><span>   </span><span class="hs-string">&quot;authorizationStateWaitPassword&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399333"><span class="hs-identifier hs-var">parseAuthorizationStateWaitPassword</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679399344"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679400620"><span class="hs-identifier hs-var">parseAuthorizationStateWaitPassword</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679400631"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-68"></span><span>   </span><span class="hs-string">&quot;authorizationStateReady&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399332"><span class="hs-identifier hs-var">parseAuthorizationStateReady</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679399344"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679400619"><span class="hs-identifier hs-var">parseAuthorizationStateReady</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679400631"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-69"></span><span>   </span><span class="hs-string">&quot;authorizationStateLoggingOut&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399331"><span class="hs-identifier hs-var">parseAuthorizationStateLoggingOut</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679399344"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679400618"><span class="hs-identifier hs-var">parseAuthorizationStateLoggingOut</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679400631"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-70"></span><span>   </span><span class="hs-string">&quot;authorizationStateClosing&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399330"><span class="hs-identifier hs-var">parseAuthorizationStateClosing</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679399344"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679400617"><span class="hs-identifier hs-var">parseAuthorizationStateClosing</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679400631"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-71"></span><span>   </span><span class="hs-string">&quot;authorizationStateClosed&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399329"><span class="hs-identifier hs-var">parseAuthorizationStateClosed</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679399344"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679400616"><span class="hs-identifier hs-var">parseAuthorizationStateClosed</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679400631"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-72"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser AuthorizationState
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-73"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-74"></span><span>   </span><span class="annot"><a href="#local-6989586621679399339"><span class="hs-identifier hs-type">parseAuthorizationStateWaitTdlibParameters</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
-</span><span id="line-75"></span><span>   </span><span id="local-6989586621679399339"><span class="annot"><span class="annottext">parseAuthorizationStateWaitTdlibParameters :: Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399339"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateWaitTdlibParameters</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-74"></span><span>   </span><span class="annot"><a href="#local-6989586621679400626"><span class="hs-identifier hs-type">parseAuthorizationStateWaitTdlibParameters</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
+</span><span id="line-75"></span><span>   </span><span id="local-6989586621679400626"><span class="annot"><span class="annottext">parseAuthorizationStateWaitTdlibParameters :: Value -&gt; Parser AuthorizationState
+</span><a href="#local-6989586621679400626"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateWaitTdlibParameters</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AuthorizationState)
 -&gt; Value
 -&gt; Parser AuthorizationState
@@ -218,8 +218,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AuthorizationState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399327"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679399327"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679400614"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679400614"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-76"></span><span>    </span><span class="annot"><span class="annottext">AuthorizationState -&gt; Parser AuthorizationState
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(AuthorizationState -&gt; Parser AuthorizationState)
@@ -228,9 +228,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AuthorizationStateWaitTdlibParameters :: AuthorizationState
 </span><a href="API.AuthorizationState.html#AuthorizationStateWaitTdlibParameters"><span class="hs-identifier hs-type hs-type">AuthorizationStateWaitTdlibParameters</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-77"></span><span>
-</span><span id="line-78"></span><span>   </span><span class="annot"><a href="#local-6989586621679399338"><span class="hs-identifier hs-type">parseAuthorizationStateWaitEncryptionKey</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
-</span><span id="line-79"></span><span>   </span><span id="local-6989586621679399338"><span class="annot"><span class="annottext">parseAuthorizationStateWaitEncryptionKey :: Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399338"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateWaitEncryptionKey</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-78"></span><span>   </span><span class="annot"><a href="#local-6989586621679400625"><span class="hs-identifier hs-type">parseAuthorizationStateWaitEncryptionKey</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
+</span><span id="line-79"></span><span>   </span><span id="local-6989586621679400625"><span class="annot"><span class="annottext">parseAuthorizationStateWaitEncryptionKey :: Value -&gt; Parser AuthorizationState
+</span><a href="#local-6989586621679400625"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateWaitEncryptionKey</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AuthorizationState)
 -&gt; Value
 -&gt; Parser AuthorizationState
@@ -241,11 +241,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AuthorizationState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399325"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679399325"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-80"></span><span>    </span><span id="local-6989586621679399324"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679399324"><span class="hs-identifier hs-var">is_encrypted</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679399325"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679400612"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679400612"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-80"></span><span>    </span><span id="local-6989586621679400611"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679400611"><span class="hs-identifier hs-var">is_encrypted</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679400612"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_encrypted&quot;</span></span><span>
 </span><span id="line-81"></span><span>    </span><span class="annot"><span class="annottext">AuthorizationState -&gt; Parser AuthorizationState
@@ -256,11 +256,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AuthorizationStateWaitEncryptionKey :: Bool -&gt; AuthorizationState
 </span><a href="API.AuthorizationState.html#AuthorizationStateWaitEncryptionKey"><span class="hs-identifier hs-type hs-type">AuthorizationStateWaitEncryptionKey</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_encrypted :: Bool
 </span><a href="API.AuthorizationState.html#is_encrypted"><span class="hs-identifier hs-var">is_encrypted</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679399324"><span class="hs-identifier hs-var">is_encrypted</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679400611"><span class="hs-identifier hs-var">is_encrypted</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-82"></span><span>
-</span><span id="line-83"></span><span>   </span><span class="annot"><a href="#local-6989586621679399337"><span class="hs-identifier hs-type">parseAuthorizationStateWaitPhoneNumber</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
-</span><span id="line-84"></span><span>   </span><span id="local-6989586621679399337"><span class="annot"><span class="annottext">parseAuthorizationStateWaitPhoneNumber :: Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399337"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateWaitPhoneNumber</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-83"></span><span>   </span><span class="annot"><a href="#local-6989586621679400624"><span class="hs-identifier hs-type">parseAuthorizationStateWaitPhoneNumber</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
+</span><span id="line-84"></span><span>   </span><span id="local-6989586621679400624"><span class="annot"><span class="annottext">parseAuthorizationStateWaitPhoneNumber :: Value -&gt; Parser AuthorizationState
+</span><a href="#local-6989586621679400624"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateWaitPhoneNumber</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AuthorizationState)
 -&gt; Value
 -&gt; Parser AuthorizationState
@@ -271,8 +271,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AuthorizationState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399322"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679399322"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679400609"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679400609"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-85"></span><span>    </span><span class="annot"><span class="annottext">AuthorizationState -&gt; Parser AuthorizationState
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(AuthorizationState -&gt; Parser AuthorizationState)
@@ -281,9 +281,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AuthorizationStateWaitPhoneNumber :: AuthorizationState
 </span><a href="API.AuthorizationState.html#AuthorizationStateWaitPhoneNumber"><span class="hs-identifier hs-type hs-type">AuthorizationStateWaitPhoneNumber</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-86"></span><span>
-</span><span id="line-87"></span><span>   </span><span class="annot"><a href="#local-6989586621679399336"><span class="hs-identifier hs-type">parseAuthorizationStateWaitCode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
-</span><span id="line-88"></span><span>   </span><span id="local-6989586621679399336"><span class="annot"><span class="annottext">parseAuthorizationStateWaitCode :: Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399336"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateWaitCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-87"></span><span>   </span><span class="annot"><a href="#local-6989586621679400623"><span class="hs-identifier hs-type">parseAuthorizationStateWaitCode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
+</span><span id="line-88"></span><span>   </span><span id="local-6989586621679400623"><span class="annot"><span class="annottext">parseAuthorizationStateWaitCode :: Value -&gt; Parser AuthorizationState
+</span><a href="#local-6989586621679400623"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateWaitCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AuthorizationState)
 -&gt; Value
 -&gt; Parser AuthorizationState
@@ -294,11 +294,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AuthorizationState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399320"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679399320"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-89"></span><span>    </span><span id="local-6989586621679399319"><span class="annot"><span class="annottext">AuthenticationCodeInfo
-</span><a href="#local-6989586621679399319"><span class="hs-identifier hs-var">code_info</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679399320"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser AuthenticationCodeInfo
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679400607"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679400607"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-89"></span><span>    </span><span id="local-6989586621679400606"><span class="annot"><span class="annottext">AuthenticationCodeInfo
+</span><a href="#local-6989586621679400606"><span class="hs-identifier hs-var">code_info</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679400607"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser AuthenticationCodeInfo
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;code_info&quot;</span></span><span>
 </span><span id="line-90"></span><span>    </span><span class="annot"><span class="annottext">AuthorizationState -&gt; Parser AuthorizationState
@@ -309,11 +309,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AuthorizationStateWaitCode :: AuthenticationCodeInfo -&gt; AuthorizationState
 </span><a href="API.AuthorizationState.html#AuthorizationStateWaitCode"><span class="hs-identifier hs-type hs-type">AuthorizationStateWaitCode</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">code_info :: AuthenticationCodeInfo
 </span><a href="API.AuthorizationState.html#code_info"><span class="hs-identifier hs-var">code_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">AuthenticationCodeInfo
-</span><a href="#local-6989586621679399319"><span class="hs-identifier hs-var">code_info</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679400606"><span class="hs-identifier hs-var">code_info</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-91"></span><span>
-</span><span id="line-92"></span><span>   </span><span class="annot"><a href="#local-6989586621679399335"><span class="hs-identifier hs-type">parseAuthorizationStateWaitOtherDeviceConfirmation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
-</span><span id="line-93"></span><span>   </span><span id="local-6989586621679399335"><span class="annot"><span class="annottext">parseAuthorizationStateWaitOtherDeviceConfirmation :: Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399335"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateWaitOtherDeviceConfirmation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-92"></span><span>   </span><span class="annot"><a href="#local-6989586621679400622"><span class="hs-identifier hs-type">parseAuthorizationStateWaitOtherDeviceConfirmation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
+</span><span id="line-93"></span><span>   </span><span id="local-6989586621679400622"><span class="annot"><span class="annottext">parseAuthorizationStateWaitOtherDeviceConfirmation :: Value -&gt; Parser AuthorizationState
+</span><a href="#local-6989586621679400622"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateWaitOtherDeviceConfirmation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AuthorizationState)
 -&gt; Value
 -&gt; Parser AuthorizationState
@@ -324,11 +324,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AuthorizationState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399317"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679399317"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-94"></span><span>    </span><span id="local-6989586621679399316"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679399316"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679399317"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679400604"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679400604"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-94"></span><span>    </span><span id="local-6989586621679400603"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679400603"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679400604"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;link&quot;</span></span><span>
 </span><span id="line-95"></span><span>    </span><span class="annot"><span class="annottext">AuthorizationState -&gt; Parser AuthorizationState
@@ -339,11 +339,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AuthorizationStateWaitOtherDeviceConfirmation :: String -&gt; AuthorizationState
 </span><a href="API.AuthorizationState.html#AuthorizationStateWaitOtherDeviceConfirmation"><span class="hs-identifier hs-type hs-type">AuthorizationStateWaitOtherDeviceConfirmation</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">link :: String
 </span><a href="API.AuthorizationState.html#link"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679399316"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679400603"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-96"></span><span>
-</span><span id="line-97"></span><span>   </span><span class="annot"><a href="#local-6989586621679399334"><span class="hs-identifier hs-type">parseAuthorizationStateWaitRegistration</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
-</span><span id="line-98"></span><span>   </span><span id="local-6989586621679399334"><span class="annot"><span class="annottext">parseAuthorizationStateWaitRegistration :: Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399334"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateWaitRegistration</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-97"></span><span>   </span><span class="annot"><a href="#local-6989586621679400621"><span class="hs-identifier hs-type">parseAuthorizationStateWaitRegistration</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
+</span><span id="line-98"></span><span>   </span><span id="local-6989586621679400621"><span class="annot"><span class="annottext">parseAuthorizationStateWaitRegistration :: Value -&gt; Parser AuthorizationState
+</span><a href="#local-6989586621679400621"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateWaitRegistration</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AuthorizationState)
 -&gt; Value
 -&gt; Parser AuthorizationState
@@ -354,11 +354,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AuthorizationState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399314"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679399314"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-99"></span><span>    </span><span id="local-6989586621679399313"><span class="annot"><span class="annottext">TermsOfService
-</span><a href="#local-6989586621679399313"><span class="hs-identifier hs-var">terms_of_service</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679399314"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser TermsOfService
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679400601"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679400601"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-99"></span><span>    </span><span id="local-6989586621679400600"><span class="annot"><span class="annottext">TermsOfService
+</span><a href="#local-6989586621679400600"><span class="hs-identifier hs-var">terms_of_service</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679400601"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser TermsOfService
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;terms_of_service&quot;</span></span><span>
 </span><span id="line-100"></span><span>    </span><span class="annot"><span class="annottext">AuthorizationState -&gt; Parser AuthorizationState
@@ -369,11 +369,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AuthorizationStateWaitRegistration :: TermsOfService -&gt; AuthorizationState
 </span><a href="API.AuthorizationState.html#AuthorizationStateWaitRegistration"><span class="hs-identifier hs-type hs-type">AuthorizationStateWaitRegistration</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">terms_of_service :: TermsOfService
 </span><a href="API.AuthorizationState.html#terms_of_service"><span class="hs-identifier hs-var">terms_of_service</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">TermsOfService
-</span><a href="#local-6989586621679399313"><span class="hs-identifier hs-var">terms_of_service</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679400600"><span class="hs-identifier hs-var">terms_of_service</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-101"></span><span>
-</span><span id="line-102"></span><span>   </span><span class="annot"><a href="#local-6989586621679399333"><span class="hs-identifier hs-type">parseAuthorizationStateWaitPassword</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
-</span><span id="line-103"></span><span>   </span><span id="local-6989586621679399333"><span class="annot"><span class="annottext">parseAuthorizationStateWaitPassword :: Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399333"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateWaitPassword</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-102"></span><span>   </span><span class="annot"><a href="#local-6989586621679400620"><span class="hs-identifier hs-type">parseAuthorizationStateWaitPassword</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
+</span><span id="line-103"></span><span>   </span><span id="local-6989586621679400620"><span class="annot"><span class="annottext">parseAuthorizationStateWaitPassword :: Value -&gt; Parser AuthorizationState
+</span><a href="#local-6989586621679400620"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateWaitPassword</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AuthorizationState)
 -&gt; Value
 -&gt; Parser AuthorizationState
@@ -384,21 +384,21 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AuthorizationState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399311"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679399311"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-104"></span><span>    </span><span id="local-6989586621679399310"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679399310"><span class="hs-identifier hs-var">recovery_email_address_pattern</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679399311"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679400598"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679400598"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-104"></span><span>    </span><span id="local-6989586621679400597"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679400597"><span class="hs-identifier hs-var">recovery_email_address_pattern</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679400598"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;recovery_email_address_pattern&quot;</span></span><span>
-</span><span id="line-105"></span><span>    </span><span id="local-6989586621679399309"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679399309"><span class="hs-identifier hs-var">has_recovery_email_address</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679399311"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><span id="line-105"></span><span>    </span><span id="local-6989586621679400596"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679400596"><span class="hs-identifier hs-var">has_recovery_email_address</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679400598"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;has_recovery_email_address&quot;</span></span><span>
-</span><span id="line-106"></span><span>    </span><span id="local-6989586621679399308"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679399308"><span class="hs-identifier hs-var">password_hint</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679399311"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-106"></span><span>    </span><span id="local-6989586621679400595"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679400595"><span class="hs-identifier hs-var">password_hint</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679400598"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;password_hint&quot;</span></span><span>
 </span><span id="line-107"></span><span>    </span><span class="annot"><span class="annottext">AuthorizationState -&gt; Parser AuthorizationState
@@ -409,15 +409,15 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AuthorizationStateWaitPassword :: String -&gt; Bool -&gt; String -&gt; AuthorizationState
 </span><a href="API.AuthorizationState.html#AuthorizationStateWaitPassword"><span class="hs-identifier hs-type hs-type">AuthorizationStateWaitPassword</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">recovery_email_address_pattern :: String
 </span><a href="API.AuthorizationState.html#recovery_email_address_pattern"><span class="hs-identifier hs-var">recovery_email_address_pattern</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679399310"><span class="hs-identifier hs-var">recovery_email_address_pattern</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">has_recovery_email_address :: Bool
+</span><a href="#local-6989586621679400597"><span class="hs-identifier hs-var">recovery_email_address_pattern</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">has_recovery_email_address :: Bool
 </span><a href="API.AuthorizationState.html#has_recovery_email_address"><span class="hs-identifier hs-var">has_recovery_email_address</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679399309"><span class="hs-identifier hs-var">has_recovery_email_address</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">password_hint :: String
+</span><a href="#local-6989586621679400596"><span class="hs-identifier hs-var">has_recovery_email_address</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">password_hint :: String
 </span><a href="API.AuthorizationState.html#password_hint"><span class="hs-identifier hs-var">password_hint</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679399308"><span class="hs-identifier hs-var">password_hint</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679400595"><span class="hs-identifier hs-var">password_hint</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-108"></span><span>
-</span><span id="line-109"></span><span>   </span><span class="annot"><a href="#local-6989586621679399332"><span class="hs-identifier hs-type">parseAuthorizationStateReady</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
-</span><span id="line-110"></span><span>   </span><span id="local-6989586621679399332"><span class="annot"><span class="annottext">parseAuthorizationStateReady :: Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399332"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateReady</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-109"></span><span>   </span><span class="annot"><a href="#local-6989586621679400619"><span class="hs-identifier hs-type">parseAuthorizationStateReady</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
+</span><span id="line-110"></span><span>   </span><span id="local-6989586621679400619"><span class="annot"><span class="annottext">parseAuthorizationStateReady :: Value -&gt; Parser AuthorizationState
+</span><a href="#local-6989586621679400619"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateReady</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AuthorizationState)
 -&gt; Value
 -&gt; Parser AuthorizationState
@@ -428,8 +428,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AuthorizationState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399306"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679399306"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679400593"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679400593"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-111"></span><span>    </span><span class="annot"><span class="annottext">AuthorizationState -&gt; Parser AuthorizationState
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(AuthorizationState -&gt; Parser AuthorizationState)
@@ -438,9 +438,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AuthorizationStateReady :: AuthorizationState
 </span><a href="API.AuthorizationState.html#AuthorizationStateReady"><span class="hs-identifier hs-type hs-type">AuthorizationStateReady</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-112"></span><span>
-</span><span id="line-113"></span><span>   </span><span class="annot"><a href="#local-6989586621679399331"><span class="hs-identifier hs-type">parseAuthorizationStateLoggingOut</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
-</span><span id="line-114"></span><span>   </span><span id="local-6989586621679399331"><span class="annot"><span class="annottext">parseAuthorizationStateLoggingOut :: Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399331"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateLoggingOut</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-113"></span><span>   </span><span class="annot"><a href="#local-6989586621679400618"><span class="hs-identifier hs-type">parseAuthorizationStateLoggingOut</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
+</span><span id="line-114"></span><span>   </span><span id="local-6989586621679400618"><span class="annot"><span class="annottext">parseAuthorizationStateLoggingOut :: Value -&gt; Parser AuthorizationState
+</span><a href="#local-6989586621679400618"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateLoggingOut</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AuthorizationState)
 -&gt; Value
 -&gt; Parser AuthorizationState
@@ -451,8 +451,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AuthorizationState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399304"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679399304"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679400591"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679400591"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-115"></span><span>    </span><span class="annot"><span class="annottext">AuthorizationState -&gt; Parser AuthorizationState
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(AuthorizationState -&gt; Parser AuthorizationState)
@@ -461,9 +461,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AuthorizationStateLoggingOut :: AuthorizationState
 </span><a href="API.AuthorizationState.html#AuthorizationStateLoggingOut"><span class="hs-identifier hs-type hs-type">AuthorizationStateLoggingOut</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-116"></span><span>
-</span><span id="line-117"></span><span>   </span><span class="annot"><a href="#local-6989586621679399330"><span class="hs-identifier hs-type">parseAuthorizationStateClosing</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
-</span><span id="line-118"></span><span>   </span><span id="local-6989586621679399330"><span class="annot"><span class="annottext">parseAuthorizationStateClosing :: Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399330"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateClosing</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-117"></span><span>   </span><span class="annot"><a href="#local-6989586621679400617"><span class="hs-identifier hs-type">parseAuthorizationStateClosing</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
+</span><span id="line-118"></span><span>   </span><span id="local-6989586621679400617"><span class="annot"><span class="annottext">parseAuthorizationStateClosing :: Value -&gt; Parser AuthorizationState
+</span><a href="#local-6989586621679400617"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateClosing</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AuthorizationState)
 -&gt; Value
 -&gt; Parser AuthorizationState
@@ -474,8 +474,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AuthorizationState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399302"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679399302"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679400589"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679400589"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-119"></span><span>    </span><span class="annot"><span class="annottext">AuthorizationState -&gt; Parser AuthorizationState
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(AuthorizationState -&gt; Parser AuthorizationState)
@@ -484,9 +484,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AuthorizationStateClosing :: AuthorizationState
 </span><a href="API.AuthorizationState.html#AuthorizationStateClosing"><span class="hs-identifier hs-type hs-type">AuthorizationStateClosing</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-120"></span><span>
-</span><span id="line-121"></span><span>   </span><span class="annot"><a href="#local-6989586621679399329"><span class="hs-identifier hs-type">parseAuthorizationStateClosed</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
-</span><span id="line-122"></span><span>   </span><span id="local-6989586621679399329"><span class="annot"><span class="annottext">parseAuthorizationStateClosed :: Value -&gt; Parser AuthorizationState
-</span><a href="#local-6989586621679399329"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateClosed</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-121"></span><span>   </span><span class="annot"><a href="#local-6989586621679400616"><span class="hs-identifier hs-type">parseAuthorizationStateClosed</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AuthorizationState.html#AuthorizationState"><span class="hs-identifier hs-type">AuthorizationState</span></a></span><span>
+</span><span id="line-122"></span><span>   </span><span id="local-6989586621679400616"><span class="annot"><span class="annottext">parseAuthorizationStateClosed :: Value -&gt; Parser AuthorizationState
+</span><a href="#local-6989586621679400616"><span class="hs-identifier hs-var hs-var">parseAuthorizationStateClosed</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AuthorizationState)
 -&gt; Value
 -&gt; Parser AuthorizationState
@@ -497,8 +497,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AuthorizationState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399300"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679399300"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679400587"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679400587"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-123"></span><span>    </span><span class="annot"><span class="annottext">AuthorizationState -&gt; Parser AuthorizationState
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(AuthorizationState -&gt; Parser AuthorizationState)

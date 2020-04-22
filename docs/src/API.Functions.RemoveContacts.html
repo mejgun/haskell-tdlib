@@ -7,7 +7,7 @@
 </span><span id="line-7"></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">data</span><span> </span><span id="RemoveContacts"><span class="annot"><a href="API.Functions.RemoveContacts.html#RemoveContacts"><span class="hs-identifier hs-var">RemoveContacts</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-9"></span><span> </span><span id="RemoveContacts"><span class="annot"><a href="API.Functions.RemoveContacts.html#RemoveContacts"><span class="hs-identifier hs-var">RemoveContacts</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="user_ids"><span class="annot"><span class="annottext">RemoveContacts -&gt; [Int]
-</span><a href="API.Functions.RemoveContacts.html#user_ids"><span class="hs-identifier hs-var hs-var">user_ids</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679376156"><span id="local-6989586621679376158"><span id="local-6989586621679376160"><span class="annot"><span class="annottext">Int -&gt; RemoveContacts -&gt; ShowS
+</span><a href="API.Functions.RemoveContacts.html#user_ids"><span class="hs-identifier hs-var hs-var">user_ids</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679377443"><span id="local-6989586621679377445"><span id="local-6989586621679377447"><span class="annot"><span class="annottext">Int -&gt; RemoveContacts -&gt; ShowS
 [RemoveContacts] -&gt; ShowS
 RemoveContacts -&gt; String
 (Int -&gt; RemoveContacts -&gt; ShowS)
@@ -24,11 +24,11 @@ showsPrec :: Int -&gt; RemoveContacts -&gt; ShowS
 $cshowsPrec :: Int -&gt; RemoveContacts -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679376148"><span id="local-6989586621679376150"><span id="local-6989586621679376152"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.RemoveContacts.html#RemoveContacts"><span class="hs-identifier hs-type">RemoveContacts</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-12"></span><span> </span><span id="local-6989586621679376146"><span class="annot"><span class="annottext">toJSON :: RemoveContacts -&gt; Value
+</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679377435"><span id="local-6989586621679377437"><span id="local-6989586621679377439"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.RemoveContacts.html#RemoveContacts"><span class="hs-identifier hs-type">RemoveContacts</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-12"></span><span> </span><span id="local-6989586621679377433"><span class="annot"><span class="annottext">toJSON :: RemoveContacts -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.RemoveContacts.html#RemoveContacts"><span class="hs-identifier hs-type">RemoveContacts</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">user_ids :: RemoveContacts -&gt; [Int]
-</span><a href="API.Functions.RemoveContacts.html#user_ids"><span class="hs-identifier hs-var">user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679376144"><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679376144"><span class="hs-identifier hs-var">user_ids</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.RemoveContacts.html#user_ids"><span class="hs-identifier hs-var">user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679377431"><span class="annot"><span class="annottext">[Int]
+</span><a href="#local-6989586621679377431"><span class="hs-identifier hs-var">user_ids</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-13"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -36,30 +36,30 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;removeContacts&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;user_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; [Int] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679376144"><span class="hs-identifier hs-var">user_ids</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679377431"><span class="hs-identifier hs-var">user_ids</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679376138"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.RemoveContacts.html#RemoveContacts"><span class="hs-identifier hs-type">RemoveContacts</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-16"></span><span> </span><span id="local-6989586621679376136"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser RemoveContacts
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679376134"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679376134"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679376132"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679376132"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-17"></span><span>  </span><span id="local-6989586621679376131"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679376131"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679376132"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679377425"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.RemoveContacts.html#RemoveContacts"><span class="hs-identifier hs-type">RemoveContacts</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-16"></span><span> </span><span id="local-6989586621679377423"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser RemoveContacts
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679377421"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679377421"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679377419"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679377419"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-17"></span><span>  </span><span id="local-6989586621679377418"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679377418"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679377419"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-18"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679376131"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679377418"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-19"></span><span>   </span><span class="hs-string">&quot;removeContacts&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser RemoveContacts
-</span><a href="#local-6989586621679376129"><span class="hs-identifier hs-var">parseRemoveContacts</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679376134"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679377416"><span class="hs-identifier hs-var">parseRemoveContacts</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679377421"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser RemoveContacts
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-21"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679376129"><span class="hs-identifier hs-type">parseRemoveContacts</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.RemoveContacts.html#RemoveContacts"><span class="hs-identifier hs-type">RemoveContacts</span></a></span><span>
-</span><span id="line-23"></span><span>   </span><span id="local-6989586621679376129"><span class="annot"><span class="annottext">parseRemoveContacts :: Value -&gt; Parser RemoveContacts
-</span><a href="#local-6989586621679376129"><span class="hs-identifier hs-var hs-var">parseRemoveContacts</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679377416"><span class="hs-identifier hs-type">parseRemoveContacts</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.RemoveContacts.html#RemoveContacts"><span class="hs-identifier hs-type">RemoveContacts</span></a></span><span>
+</span><span id="line-23"></span><span>   </span><span id="local-6989586621679377416"><span class="annot"><span class="annottext">parseRemoveContacts :: Value -&gt; Parser RemoveContacts
+</span><a href="#local-6989586621679377416"><span class="hs-identifier hs-var hs-var">parseRemoveContacts</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser RemoveContacts)
 -&gt; Value
 -&gt; Parser RemoveContacts
@@ -70,11 +70,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser RemoveContacts
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679376127"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679376127"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-24"></span><span>    </span><span id="local-6989586621679376126"><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679376126"><span class="hs-identifier hs-var">user_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679376127"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [Int]
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679377414"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679377414"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-24"></span><span>    </span><span id="local-6989586621679377413"><span class="annot"><span class="annottext">[Int]
+</span><a href="#local-6989586621679377413"><span class="hs-identifier hs-var">user_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679377414"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [Int]
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;user_ids&quot;</span></span><span>
 </span><span id="line-25"></span><span>    </span><span class="annot"><span class="annottext">RemoveContacts -&gt; Parser RemoveContacts
@@ -85,4 +85,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">RemoveContacts :: [Int] -&gt; RemoveContacts
 </span><a href="API.Functions.RemoveContacts.html#RemoveContacts"><span class="hs-identifier hs-type hs-type">RemoveContacts</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">user_ids :: [Int]
 </span><a href="API.Functions.RemoveContacts.html#user_ids"><span class="hs-identifier hs-var">user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Int]
-</span><a href="#local-6989586621679376126"><span class="hs-identifier hs-var">user_ids</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679377413"><span class="hs-identifier hs-var">user_ids</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

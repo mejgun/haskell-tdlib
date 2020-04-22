@@ -133,6 +133,10 @@ writeToFiles addr modName m =
       then T.concat
         [ "   mconcat t\n"
         , "  where\n"
+        , "   e :: Maybe String\n"
+        , "   e = case T.parse (\\o -> o A..:? \"@extra\" :: T.Parser (Maybe String)) obj of\n"
+        , "     T.Success r -> r\n"
+        , "     _           -> Nothing\n"
         , "   t =\n"
         , "     [\n"
         , T.intercalate ",\n" $ map
@@ -144,7 +148,7 @@ writeToFiles addr modName m =
             , ") of\n"
             , "       T.Success a -> return $ "
             , a
-            , " a\n"
+            , " a e\n"
             , "       _ -> mempty"
             ]
           )
@@ -196,8 +200,9 @@ writeToFiles addr modName m =
     ]
 
   ww :: [(T.Text, [(T.Text, T.Text)])] -> T.Text
-  ww e =
-    T.intercalate " \n | " $ map (\(a, b) -> T.concat [toTitle a, www b]) e
+  ww e = T.intercalate " \n | " $ map
+    (\(a, b) -> T.concat [toTitle a, (T.replace ",  :: " " " (www b))])
+    e
   www e =
     case T.intercalate ", " (map (\(a, b) -> T.concat [a, " :: ", b]) e) of
       "" -> ""
@@ -360,7 +365,9 @@ uniq l = foldl (\acc x -> if (x `elem` acc) then acc else x : acc) [] l
 makeGeneralResult :: [T.Text] -> [(T.Text, [(T.Text, T.Text)])]
 makeGeneralResult l = foldl
   (\acc x -> if length (x) > 1
-    then let n = myStrip (last x) in (n, [("", T.concat [n, ".", n])]) : acc
+    then
+      let n = myStrip (last x)
+      in  (n, [("", T.concat [n, ".", n]), ("", "(Maybe String)")]) : acc
     else acc
   )
   []

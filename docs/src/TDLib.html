@@ -37,46 +37,46 @@
 </span><a href="TDLib.html#create"><span class="hs-identifier hs-var hs-var">create</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">IO Client
 </span><a href="TDLib.html#c_create"><span class="hs-identifier hs-var">c_create</span></a></span><span>
 </span><span id="line-37"></span><span>
-</span><span id="line-38"></span><span id="local-6989586621679405793"><span class="annot"><a href="TDLib.html#send"><span class="hs-identifier hs-type">send</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">A.ToJSON</span></span><span> </span><span class="annot"><a href="#local-6989586621679405793"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="TDLib.html#Client"><span class="hs-identifier hs-type">Client</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679405793"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
+</span><span id="line-38"></span><span id="local-6989586621679407089"><span class="annot"><a href="TDLib.html#send"><span class="hs-identifier hs-type">send</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">A.ToJSON</span></span><span> </span><span class="annot"><a href="#local-6989586621679407089"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="TDLib.html#Client"><span class="hs-identifier hs-type">Client</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679407089"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
 </span><span id="line-39"></span><span id="send"><span class="annot"><span class="annottext">send :: Client -&gt; a -&gt; IO ()
-</span><a href="TDLib.html#send"><span class="hs-identifier hs-var hs-var">send</span></a></span></span><span> </span><span id="local-6989586621679405792"><span class="annot"><span class="annottext">c :: Client
-</span><a href="#local-6989586621679405792"><span class="hs-identifier hs-var">c</span></a></span></span><span> </span><span id="local-6989586621679405791"><span class="annot"><span class="annottext">d :: a
-</span><a href="#local-6989586621679405791"><span class="hs-identifier hs-var">d</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; (CString -&gt; IO ()) -&gt; IO ()
+</span><a href="TDLib.html#send"><span class="hs-identifier hs-var hs-var">send</span></a></span></span><span> </span><span id="local-6989586621679407088"><span class="annot"><span class="annottext">c :: Client
+</span><a href="#local-6989586621679407088"><span class="hs-identifier hs-var">c</span></a></span></span><span> </span><span id="local-6989586621679407087"><span class="annot"><span class="annottext">d :: a
+</span><a href="#local-6989586621679407087"><span class="hs-identifier hs-var">d</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; (CString -&gt; IO ()) -&gt; IO ()
 forall a. ByteString -&gt; (CString -&gt; IO a) -&gt; IO a
 </span><span class="hs-identifier hs-var">B.useAsCString</span></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679405789"><span class="hs-identifier hs-var">enc</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Client -&gt; CString -&gt; IO ()
+</span><a href="#local-6989586621679407085"><span class="hs-identifier hs-var">enc</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Client -&gt; CString -&gt; IO ()
 </span><a href="TDLib.html#c_send"><span class="hs-identifier hs-var">c_send</span></a></span><span> </span><span class="annot"><span class="annottext">Client
-</span><a href="#local-6989586621679405792"><span class="hs-identifier hs-var">c</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679405789"><span class="annot"><span class="annottext">enc :: ByteString
-</span><a href="#local-6989586621679405789"><span class="hs-identifier hs-var hs-var">enc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; ByteString
+</span><a href="#local-6989586621679407088"><span class="hs-identifier hs-var">c</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679407085"><span class="annot"><span class="annottext">enc :: ByteString
+</span><a href="#local-6989586621679407085"><span class="hs-identifier hs-var hs-var">enc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; ByteString
 </span><span class="hs-identifier hs-var">BL.toStrict</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">a -&gt; ByteString
 forall a. ToJSON a =&gt; a -&gt; ByteString
 </span><span class="hs-identifier hs-var">A.encode</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679405791"><span class="hs-identifier hs-var">d</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679407087"><span class="hs-identifier hs-var">d</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-40"></span><span>
-</span><span id="line-41"></span><span id="local-6989586621679405786"><span class="annot"><a href="TDLib.html#sendWExtra"><span class="hs-identifier hs-type">sendWExtra</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">A.ToJSON</span></span><span> </span><span class="annot"><a href="#local-6989586621679405786"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="TDLib.html#Client"><span class="hs-identifier hs-type">Client</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679405786"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-41"></span><span id="local-6989586621679407082"><span class="annot"><a href="TDLib.html#sendWExtra"><span class="hs-identifier hs-type">sendWExtra</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">A.ToJSON</span></span><span> </span><span class="annot"><a href="#local-6989586621679407082"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="TDLib.html#Client"><span class="hs-identifier hs-type">Client</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679407082"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-42"></span><span id="sendWExtra"><span class="annot"><span class="annottext">sendWExtra :: Client -&gt; a -&gt; IO String
-</span><a href="TDLib.html#sendWExtra"><span class="hs-identifier hs-var hs-var">sendWExtra</span></a></span></span><span> </span><span id="local-6989586621679405785"><span class="annot"><span class="annottext">c :: Client
-</span><a href="#local-6989586621679405785"><span class="hs-identifier hs-var">c</span></a></span></span><span> </span><span id="local-6989586621679405784"><span class="annot"><span class="annottext">d :: a
-</span><a href="#local-6989586621679405784"><span class="hs-identifier hs-var">d</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-43"></span><span>  </span><span id="local-6989586621679405783"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679405783"><span class="hs-identifier hs-var">extra</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO String
-</span><a href="#local-6989586621679405782"><span class="hs-identifier hs-var">getUnixTime</span></a></span><span>
+</span><a href="TDLib.html#sendWExtra"><span class="hs-identifier hs-var hs-var">sendWExtra</span></a></span></span><span> </span><span id="local-6989586621679407081"><span class="annot"><span class="annottext">c :: Client
+</span><a href="#local-6989586621679407081"><span class="hs-identifier hs-var">c</span></a></span></span><span> </span><span id="local-6989586621679407080"><span class="annot"><span class="annottext">d :: a
+</span><a href="#local-6989586621679407080"><span class="hs-identifier hs-var">d</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-43"></span><span>  </span><span id="local-6989586621679407079"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679407079"><span class="hs-identifier hs-var">extra</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO String
+</span><a href="#local-6989586621679407078"><span class="hs-identifier hs-var">getUnixTime</span></a></span><span>
 </span><span id="line-44"></span><span>  </span><span class="annot"><span class="annottext">ByteString -&gt; (CString -&gt; IO ()) -&gt; IO ()
 forall a. ByteString -&gt; (CString -&gt; IO a) -&gt; IO a
 </span><span class="hs-identifier hs-var">B.useAsCString</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; ByteString
-</span><a href="#local-6989586621679405781"><span class="hs-identifier hs-var">enc</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679405783"><span class="hs-identifier hs-var">extra</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Client -&gt; CString -&gt; IO ()
+</span><a href="#local-6989586621679407077"><span class="hs-identifier hs-var">enc</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679407079"><span class="hs-identifier hs-var">extra</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Client -&gt; CString -&gt; IO ()
 </span><a href="TDLib.html#c_send"><span class="hs-identifier hs-var">c_send</span></a></span><span> </span><span class="annot"><span class="annottext">Client
-</span><a href="#local-6989586621679405785"><span class="hs-identifier hs-var">c</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679407081"><span class="hs-identifier hs-var">c</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-45"></span><span>  </span><span class="annot"><span class="annottext">String -&gt; IO String
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679405783"><span class="hs-identifier hs-var">extra</span></a></span><span>
+</span><a href="#local-6989586621679407079"><span class="hs-identifier hs-var">extra</span></a></span><span>
 </span><span id="line-46"></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-47"></span><span>  </span><span class="annot"><a href="#local-6989586621679405781"><span class="hs-identifier hs-type">enc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">B.ByteString</span></span><span>
-</span><span id="line-48"></span><span>  </span><span id="local-6989586621679405781"><span class="annot"><span class="annottext">enc :: String -&gt; ByteString
-</span><a href="#local-6989586621679405781"><span class="hs-identifier hs-var hs-var">enc</span></a></span></span><span> </span><span id="local-6989586621679405780"><span class="annot"><span class="annottext">xtr :: String
-</span><a href="#local-6989586621679405780"><span class="hs-identifier hs-var">xtr</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-47"></span><span>  </span><span class="annot"><a href="#local-6989586621679407077"><span class="hs-identifier hs-type">enc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">B.ByteString</span></span><span>
+</span><span id="line-48"></span><span>  </span><span id="local-6989586621679407077"><span class="annot"><span class="annottext">enc :: String -&gt; ByteString
+</span><a href="#local-6989586621679407077"><span class="hs-identifier hs-var hs-var">enc</span></a></span></span><span> </span><span id="local-6989586621679407076"><span class="annot"><span class="annottext">xtr :: String
+</span><a href="#local-6989586621679407076"><span class="hs-identifier hs-var">xtr</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-49"></span><span>    </span><span class="annot"><span class="annottext">ByteString -&gt; ByteString
 </span><span class="hs-identifier hs-var">BL.toStrict</span></span><span> </span><span class="annot"><span class="annottext">(ByteString -&gt; ByteString) -&gt; ByteString -&gt; ByteString
 forall a b. (a -&gt; b) -&gt; a -&gt; b
@@ -84,19 +84,19 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 forall a. ToJSON a =&gt; a -&gt; ByteString
 </span><span class="hs-identifier hs-var">A.encode</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">a -&gt; String -&gt; HashMap Text Value
 forall a. ToJSON a =&gt; a -&gt; String -&gt; HashMap Text Value
-</span><a href="#local-6989586621679405779"><span class="hs-identifier hs-var">addExtra</span></a></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679405784"><span class="hs-identifier hs-var">d</span></a></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679405780"><span class="hs-identifier hs-var">xtr</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-50"></span><span>  </span><span id="local-6989586621679405824"><span class="annot"><a href="#local-6989586621679405779"><span class="hs-identifier hs-type">addExtra</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">A.ToJSON</span></span><span> </span><span class="annot"><a href="#local-6989586621679405824"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679405824"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">H.HashMap</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Text</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span></span><span>
-</span><span id="line-51"></span><span>  </span><span id="local-6989586621679405779"><span class="annot"><span class="annottext">addExtra :: a -&gt; String -&gt; HashMap Text Value
-</span><a href="#local-6989586621679405779"><span class="hs-identifier hs-var hs-var">addExtra</span></a></span></span><span> </span><span id="local-6989586621679405778"><span class="annot"><span class="annottext">d :: a
-</span><a href="#local-6989586621679405778"><span class="hs-identifier hs-var">d</span></a></span></span><span> </span><span id="local-6989586621679405777"><span class="annot"><span class="annottext">s :: String
-</span><a href="#local-6989586621679405777"><span class="hs-identifier hs-var">s</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-52"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Object</span></span><span> </span><span id="local-6989586621679405775"><span class="annot"><span class="annottext">t :: HashMap Text Value
-</span><a href="#local-6989586621679405775"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">a -&gt; Value
+</span><a href="#local-6989586621679407075"><span class="hs-identifier hs-var">addExtra</span></a></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679407080"><span class="hs-identifier hs-var">d</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679407076"><span class="hs-identifier hs-var">xtr</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-50"></span><span>  </span><span id="local-6989586621679407120"><span class="annot"><a href="#local-6989586621679407075"><span class="hs-identifier hs-type">addExtra</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">A.ToJSON</span></span><span> </span><span class="annot"><a href="#local-6989586621679407120"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679407120"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">H.HashMap</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Text</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span></span><span>
+</span><span id="line-51"></span><span>  </span><span id="local-6989586621679407075"><span class="annot"><span class="annottext">addExtra :: a -&gt; String -&gt; HashMap Text Value
+</span><a href="#local-6989586621679407075"><span class="hs-identifier hs-var hs-var">addExtra</span></a></span></span><span> </span><span id="local-6989586621679407074"><span class="annot"><span class="annottext">d :: a
+</span><a href="#local-6989586621679407074"><span class="hs-identifier hs-var">d</span></a></span></span><span> </span><span id="local-6989586621679407073"><span class="annot"><span class="annottext">s :: String
+</span><a href="#local-6989586621679407073"><span class="hs-identifier hs-var">s</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-52"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Object</span></span><span> </span><span id="local-6989586621679407071"><span class="annot"><span class="annottext">t :: HashMap Text Value
+</span><a href="#local-6989586621679407071"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">a -&gt; Value
 forall a. ToJSON a =&gt; a -&gt; Value
 </span><span class="hs-identifier hs-var">A.toJSON</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679405778"><span class="hs-identifier hs-var">d</span></a></span><span>
+</span><a href="#local-6989586621679407074"><span class="hs-identifier hs-var">d</span></a></span><span>
 </span><span id="line-53"></span><span>    </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; HashMap Text Value -&gt; HashMap Text Value
 forall k v.
 (Eq k, Hashable k) =&gt;
@@ -105,13 +105,13 @@ k -&gt; v -&gt; HashMap k v -&gt; HashMap k v
 </span><span class="hs-identifier hs-var">T.pack</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@extra&quot;</span></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">A.String</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; Text
 </span><span class="hs-identifier hs-var">T.pack</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679405777"><span class="hs-identifier hs-var">s</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">HashMap Text Value
-</span><a href="#local-6989586621679405775"><span class="hs-identifier hs-var">t</span></a></span><span>
-</span><span id="line-54"></span><span>  </span><span class="annot"><a href="#local-6989586621679405782"><span class="hs-identifier hs-type">getUnixTime</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-55"></span><span>  </span><span id="local-6989586621679405782"><span class="annot"><span class="annottext">getUnixTime :: IO String
-</span><a href="#local-6989586621679405782"><span class="hs-identifier hs-var hs-var">getUnixTime</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-56"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679405770"><span class="annot"><span class="annottext">s :: IO String
-</span><a href="#local-6989586621679405770"><span class="hs-identifier hs-var hs-var">s</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int64 -&gt; String
+</span><a href="#local-6989586621679407073"><span class="hs-identifier hs-var">s</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">HashMap Text Value
+</span><a href="#local-6989586621679407071"><span class="hs-identifier hs-var">t</span></a></span><span>
+</span><span id="line-54"></span><span>  </span><span class="annot"><a href="#local-6989586621679407078"><span class="hs-identifier hs-type">getUnixTime</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-55"></span><span>  </span><span id="local-6989586621679407078"><span class="annot"><span class="annottext">getUnixTime :: IO String
+</span><a href="#local-6989586621679407078"><span class="hs-identifier hs-var hs-var">getUnixTime</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-56"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679407066"><span class="annot"><span class="annottext">s :: IO String
+</span><a href="#local-6989586621679407066"><span class="hs-identifier hs-var hs-var">s</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int64 -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">(Int64 -&gt; String) -&gt; (SystemTime -&gt; Int64) -&gt; SystemTime -&gt; String
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
@@ -120,8 +120,8 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="annot"><span class="annottext">IO SystemTime
 </span><span class="hs-identifier hs-var">Time.getSystemTime</span></span><span>
-</span><span id="line-57"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679405765"><span class="annot"><span class="annottext">ns :: IO String
-</span><a href="#local-6989586621679405765"><span class="hs-identifier hs-var hs-var">ns</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Word32 -&gt; String
+</span><span id="line-57"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679407061"><span class="annot"><span class="annottext">ns :: IO String
+</span><a href="#local-6989586621679407061"><span class="hs-identifier hs-var hs-var">ns</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Word32 -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">(Word32 -&gt; String)
 -&gt; (SystemTime -&gt; Word32) -&gt; SystemTime -&gt; String
@@ -131,18 +131,18 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="annot"><span class="annottext">IO SystemTime
 </span><span class="hs-identifier hs-var">Time.getSystemTime</span></span><span>
-</span><span id="line-58"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679405763"><span class="annot"><span class="annottext">str :: IO String
-</span><a href="#local-6989586621679405763"><span class="hs-identifier hs-var hs-var">str</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; String -&gt; String
+</span><span id="line-58"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679407059"><span class="annot"><span class="annottext">str :: IO String
+</span><a href="#local-6989586621679407059"><span class="hs-identifier hs-var hs-var">str</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; String -&gt; String
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">(++)</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; String -&gt; String) -&gt; IO String -&gt; IO (String -&gt; String)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="annot"><span class="annottext">IO String
-</span><a href="#local-6989586621679405770"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="annot"><span class="annottext">IO (String -&gt; String) -&gt; IO String -&gt; IO String
+</span><a href="#local-6989586621679407066"><span class="hs-identifier hs-var">s</span></a></span><span> </span><span class="annot"><span class="annottext">IO (String -&gt; String) -&gt; IO String -&gt; IO String
 forall (f :: * -&gt; *) a b. Applicative f =&gt; f (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;*&gt;</span></span><span> </span><span class="annot"><span class="annottext">IO String
-</span><a href="#local-6989586621679405765"><span class="hs-identifier hs-var">ns</span></a></span><span>
+</span><a href="#local-6989586621679407061"><span class="hs-identifier hs-var">ns</span></a></span><span>
 </span><span id="line-59"></span><span>    </span><span class="annot"><span class="annottext">IO String
-</span><a href="#local-6989586621679405763"><span class="hs-identifier hs-var">str</span></a></span><span>
+</span><a href="#local-6989586621679407059"><span class="hs-identifier hs-var">str</span></a></span><span>
 </span><span id="line-60"></span><span>
 </span><span id="line-61"></span><span>
 </span><span id="line-62"></span><span>
@@ -151,24 +151,24 @@ forall (f :: * -&gt; *) a b. Applicative f =&gt; f (a -&gt; b) -&gt; f a -&gt; f
 </span><span id="line-65"></span><span>
 </span><span id="line-66"></span><span class="annot"><a href="TDLib.html#receive"><span class="hs-identifier hs-type">receive</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="TDLib.html#Client"><span class="hs-identifier hs-type">Client</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.GeneralResult.html#GeneralResult"><span class="hs-identifier hs-type">API.GeneralResult.GeneralResult</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-67"></span><span id="receive"><span class="annot"><span class="annottext">receive :: Client -&gt; IO (Maybe GeneralResult)
-</span><a href="TDLib.html#receive"><span class="hs-identifier hs-var hs-var">receive</span></a></span></span><span> </span><span id="local-6989586621679405762"><span class="annot"><span class="annottext">c :: Client
-</span><a href="#local-6989586621679405762"><span class="hs-identifier hs-var">c</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">IO CString -&gt; IO (Maybe GeneralResult)
-</span><a href="#local-6989586621679405761"><span class="hs-identifier hs-var">dec</span></a></span><span> </span><span class="annot"><span class="annottext">(IO CString -&gt; IO (Maybe GeneralResult))
+</span><a href="TDLib.html#receive"><span class="hs-identifier hs-var hs-var">receive</span></a></span></span><span> </span><span id="local-6989586621679407058"><span class="annot"><span class="annottext">c :: Client
+</span><a href="#local-6989586621679407058"><span class="hs-identifier hs-var">c</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">IO CString -&gt; IO (Maybe GeneralResult)
+</span><a href="#local-6989586621679407057"><span class="hs-identifier hs-var">dec</span></a></span><span> </span><span class="annot"><span class="annottext">(IO CString -&gt; IO (Maybe GeneralResult))
 -&gt; IO CString -&gt; IO (Maybe GeneralResult)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Client -&gt; Timeout -&gt; IO CString
 </span><a href="TDLib.html#c_receive"><span class="hs-identifier hs-var">c_receive</span></a></span><span> </span><span class="annot"><span class="annottext">Client
-</span><a href="#local-6989586621679405762"><span class="hs-identifier hs-var">c</span></a></span><span> </span><span class="annot"><span class="hs-number">1.0</span></span><span>
+</span><a href="#local-6989586621679407058"><span class="hs-identifier hs-var">c</span></a></span><span> </span><span class="annot"><span class="hs-number">1.0</span></span><span>
 </span><span id="line-68"></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-69"></span><span>  </span><span class="annot"><a href="#local-6989586621679405761"><span class="hs-identifier hs-type">dec</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">CString</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.GeneralResult.html#GeneralResult"><span class="hs-identifier hs-type">API.GeneralResult.GeneralResult</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-70"></span><span>  </span><span id="local-6989586621679405761"><span class="annot"><span class="annottext">dec :: IO CString -&gt; IO (Maybe GeneralResult)
-</span><a href="#local-6989586621679405761"><span class="hs-identifier hs-var hs-var">dec</span></a></span></span><span> </span><span id="local-6989586621679405760"><span class="annot"><span class="annottext">ics :: IO CString
-</span><a href="#local-6989586621679405760"><span class="hs-identifier hs-var">ics</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-71"></span><span>    </span><span id="local-6989586621679405759"><span class="annot"><span class="annottext">CString
-</span><a href="#local-6989586621679405759"><span class="hs-identifier hs-var">cs</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO CString
-</span><a href="#local-6989586621679405760"><span class="hs-identifier hs-var">ics</span></a></span><span>
+</span><span id="line-69"></span><span>  </span><span class="annot"><a href="#local-6989586621679407057"><span class="hs-identifier hs-type">dec</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">CString</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.GeneralResult.html#GeneralResult"><span class="hs-identifier hs-type">API.GeneralResult.GeneralResult</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-70"></span><span>  </span><span id="local-6989586621679407057"><span class="annot"><span class="annottext">dec :: IO CString -&gt; IO (Maybe GeneralResult)
+</span><a href="#local-6989586621679407057"><span class="hs-identifier hs-var hs-var">dec</span></a></span></span><span> </span><span id="local-6989586621679407056"><span class="annot"><span class="annottext">ics :: IO CString
+</span><a href="#local-6989586621679407056"><span class="hs-identifier hs-var">ics</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-71"></span><span>    </span><span id="local-6989586621679407055"><span class="annot"><span class="annottext">CString
+</span><a href="#local-6989586621679407055"><span class="hs-identifier hs-var">cs</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO CString
+</span><a href="#local-6989586621679407056"><span class="hs-identifier hs-var">ics</span></a></span><span>
 </span><span id="line-72"></span><span>    </span><span class="hs-keyword">if</span><span> </span><span class="annot"><span class="annottext">CString
-</span><a href="#local-6989586621679405759"><span class="hs-identifier hs-var">cs</span></a></span><span> </span><span class="annot"><span class="annottext">CString -&gt; CString -&gt; Bool
+</span><a href="#local-6989586621679407055"><span class="hs-identifier hs-var">cs</span></a></span><span> </span><span class="annot"><span class="annottext">CString -&gt; CString -&gt; Bool
 forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">==</span></span><span> </span><span class="annot"><span class="annottext">CString
 forall a. Ptr a
@@ -185,13 +185,13 @@ forall a. FromJSON a =&gt; ByteString -&gt; Maybe a
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="annot"><span class="annottext">CString -&gt; IO ByteString
 </span><span class="hs-identifier hs-var">B.packCString</span></span><span> </span><span class="annot"><span class="annottext">CString
-</span><a href="#local-6989586621679405759"><span class="hs-identifier hs-var">cs</span></a></span><span>
+</span><a href="#local-6989586621679407055"><span class="hs-identifier hs-var">cs</span></a></span><span>
 </span><span id="line-75"></span><span>
 </span><span id="line-76"></span><span class="annot"><a href="TDLib.html#destroy"><span class="hs-identifier hs-type">destroy</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="TDLib.html#Client"><span class="hs-identifier hs-type">Client</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">IO</span></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span>
 </span><span id="line-77"></span><span id="destroy"><span class="annot"><span class="annottext">destroy :: Client -&gt; IO ()
-</span><a href="TDLib.html#destroy"><span class="hs-identifier hs-var hs-var">destroy</span></a></span></span><span> </span><span id="local-6989586621679405755"><span class="annot"><span class="annottext">c :: Client
-</span><a href="#local-6989586621679405755"><span class="hs-identifier hs-var">c</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Client -&gt; IO ()
+</span><a href="TDLib.html#destroy"><span class="hs-identifier hs-var hs-var">destroy</span></a></span></span><span> </span><span id="local-6989586621679407051"><span class="annot"><span class="annottext">c :: Client
+</span><a href="#local-6989586621679407051"><span class="hs-identifier hs-var">c</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Client -&gt; IO ()
 </span><a href="TDLib.html#c_destroy"><span class="hs-identifier hs-var">c_destroy</span></a></span><span> </span><span class="annot"><span class="annottext">Client
-</span><a href="#local-6989586621679405755"><span class="hs-identifier hs-var">c</span></a></span><span>
+</span><a href="#local-6989586621679407051"><span class="hs-identifier hs-var">c</span></a></span><span>
 </span><span id="line-78"></span><span>
 </span><span id="line-79"></span></pre></body></html>

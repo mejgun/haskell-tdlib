@@ -8,7 +8,7 @@
 </span><span id="line-8"></span><span class="hs-keyword">data</span><span> </span><span id="NotificationSettingsScope"><span class="annot"><a href="API.NotificationSettingsScope.html#NotificationSettingsScope"><span class="hs-identifier hs-var">NotificationSettingsScope</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-9"></span><span> </span><span id="NotificationSettingsScopePrivateChats"><span class="annot"><a href="API.NotificationSettingsScope.html#NotificationSettingsScopePrivateChats"><span class="hs-identifier hs-var">NotificationSettingsScopePrivateChats</span></a></span></span><span> </span><span>
 </span><span id="line-10"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="NotificationSettingsScopeGroupChats"><span class="annot"><a href="API.NotificationSettingsScope.html#NotificationSettingsScopeGroupChats"><span class="hs-identifier hs-var">NotificationSettingsScopeGroupChats</span></a></span></span><span> </span><span>
-</span><span id="line-11"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="NotificationSettingsScopeChannelChats"><span class="annot"><a href="API.NotificationSettingsScope.html#NotificationSettingsScopeChannelChats"><span class="hs-identifier hs-var">NotificationSettingsScopeChannelChats</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679389551"><span id="local-6989586621679389553"><span id="local-6989586621679389555"><span class="annot"><span class="annottext">Int -&gt; NotificationSettingsScope -&gt; ShowS
+</span><span id="line-11"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="NotificationSettingsScopeChannelChats"><span class="annot"><a href="API.NotificationSettingsScope.html#NotificationSettingsScopeChannelChats"><span class="hs-identifier hs-var">NotificationSettingsScopeChannelChats</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679390838"><span id="local-6989586621679390840"><span id="local-6989586621679390842"><span class="annot"><span class="annottext">Int -&gt; NotificationSettingsScope -&gt; ShowS
 [NotificationSettingsScope] -&gt; ShowS
 NotificationSettingsScope -&gt; String
 (Int -&gt; NotificationSettingsScope -&gt; ShowS)
@@ -25,8 +25,8 @@ showsPrec :: Int -&gt; NotificationSettingsScope -&gt; ShowS
 $cshowsPrec :: Int -&gt; NotificationSettingsScope -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679389543"><span id="local-6989586621679389545"><span id="local-6989586621679389547"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.NotificationSettingsScope.html#NotificationSettingsScope"><span class="hs-identifier hs-type">NotificationSettingsScope</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679389541"><span class="annot"><span class="annottext">toJSON :: NotificationSettingsScope -&gt; Value
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679390830"><span id="local-6989586621679390832"><span id="local-6989586621679390834"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.NotificationSettingsScope.html#NotificationSettingsScope"><span class="hs-identifier hs-type">NotificationSettingsScope</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679390828"><span class="annot"><span class="annottext">toJSON :: NotificationSettingsScope -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.NotificationSettingsScope.html#NotificationSettingsScopePrivateChats"><span class="hs-identifier hs-type">NotificationSettingsScopePrivateChats</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -48,34 +48,34 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;notificationSettingsScopeChannelChats&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679389534"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.NotificationSettingsScope.html#NotificationSettingsScope"><span class="hs-identifier hs-type">NotificationSettingsScope</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span> </span><span id="local-6989586621679389532"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser NotificationSettingsScope
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679389530"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679389530"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679389528"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679389528"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>  </span><span id="local-6989586621679389527"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679389527"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679389528"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679390821"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.NotificationSettingsScope.html#NotificationSettingsScope"><span class="hs-identifier hs-type">NotificationSettingsScope</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span> </span><span id="local-6989586621679390819"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser NotificationSettingsScope
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679390817"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679390817"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679390815"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679390815"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>  </span><span id="local-6989586621679390814"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679390814"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679390815"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-26"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679389527"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679390814"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-27"></span><span>   </span><span class="hs-string">&quot;notificationSettingsScopePrivateChats&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NotificationSettingsScope
-</span><a href="#local-6989586621679389525"><span class="hs-identifier hs-var">parseNotificationSettingsScopePrivateChats</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679389530"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679390812"><span class="hs-identifier hs-var">parseNotificationSettingsScopePrivateChats</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679390817"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-28"></span><span>   </span><span class="hs-string">&quot;notificationSettingsScopeGroupChats&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NotificationSettingsScope
-</span><a href="#local-6989586621679389524"><span class="hs-identifier hs-var">parseNotificationSettingsScopeGroupChats</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679389530"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679390811"><span class="hs-identifier hs-var">parseNotificationSettingsScopeGroupChats</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679390817"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-29"></span><span>   </span><span class="hs-string">&quot;notificationSettingsScopeChannelChats&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NotificationSettingsScope
-</span><a href="#local-6989586621679389523"><span class="hs-identifier hs-var">parseNotificationSettingsScopeChannelChats</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679389530"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679390810"><span class="hs-identifier hs-var">parseNotificationSettingsScopeChannelChats</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679390817"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-30"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser NotificationSettingsScope
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-31"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-32"></span><span>   </span><span class="annot"><a href="#local-6989586621679389525"><span class="hs-identifier hs-type">parseNotificationSettingsScopePrivateChats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NotificationSettingsScope.html#NotificationSettingsScope"><span class="hs-identifier hs-type">NotificationSettingsScope</span></a></span><span>
-</span><span id="line-33"></span><span>   </span><span id="local-6989586621679389525"><span class="annot"><span class="annottext">parseNotificationSettingsScopePrivateChats :: Value -&gt; Parser NotificationSettingsScope
-</span><a href="#local-6989586621679389525"><span class="hs-identifier hs-var hs-var">parseNotificationSettingsScopePrivateChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-32"></span><span>   </span><span class="annot"><a href="#local-6989586621679390812"><span class="hs-identifier hs-type">parseNotificationSettingsScopePrivateChats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NotificationSettingsScope.html#NotificationSettingsScope"><span class="hs-identifier hs-type">NotificationSettingsScope</span></a></span><span>
+</span><span id="line-33"></span><span>   </span><span id="local-6989586621679390812"><span class="annot"><span class="annottext">parseNotificationSettingsScopePrivateChats :: Value -&gt; Parser NotificationSettingsScope
+</span><a href="#local-6989586621679390812"><span class="hs-identifier hs-var hs-var">parseNotificationSettingsScopePrivateChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser NotificationSettingsScope)
 -&gt; Value
 -&gt; Parser NotificationSettingsScope
@@ -86,8 +86,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser NotificationSettingsScope
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679389521"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679389521"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679390808"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679390808"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-34"></span><span>    </span><span class="annot"><span class="annottext">NotificationSettingsScope -&gt; Parser NotificationSettingsScope
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(NotificationSettingsScope -&gt; Parser NotificationSettingsScope)
@@ -96,9 +96,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">NotificationSettingsScopePrivateChats :: NotificationSettingsScope
 </span><a href="API.NotificationSettingsScope.html#NotificationSettingsScopePrivateChats"><span class="hs-identifier hs-type hs-type">NotificationSettingsScopePrivateChats</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-35"></span><span>
-</span><span id="line-36"></span><span>   </span><span class="annot"><a href="#local-6989586621679389524"><span class="hs-identifier hs-type">parseNotificationSettingsScopeGroupChats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NotificationSettingsScope.html#NotificationSettingsScope"><span class="hs-identifier hs-type">NotificationSettingsScope</span></a></span><span>
-</span><span id="line-37"></span><span>   </span><span id="local-6989586621679389524"><span class="annot"><span class="annottext">parseNotificationSettingsScopeGroupChats :: Value -&gt; Parser NotificationSettingsScope
-</span><a href="#local-6989586621679389524"><span class="hs-identifier hs-var hs-var">parseNotificationSettingsScopeGroupChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-36"></span><span>   </span><span class="annot"><a href="#local-6989586621679390811"><span class="hs-identifier hs-type">parseNotificationSettingsScopeGroupChats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NotificationSettingsScope.html#NotificationSettingsScope"><span class="hs-identifier hs-type">NotificationSettingsScope</span></a></span><span>
+</span><span id="line-37"></span><span>   </span><span id="local-6989586621679390811"><span class="annot"><span class="annottext">parseNotificationSettingsScopeGroupChats :: Value -&gt; Parser NotificationSettingsScope
+</span><a href="#local-6989586621679390811"><span class="hs-identifier hs-var hs-var">parseNotificationSettingsScopeGroupChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser NotificationSettingsScope)
 -&gt; Value
 -&gt; Parser NotificationSettingsScope
@@ -109,8 +109,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser NotificationSettingsScope
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679389519"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679389519"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679390806"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679390806"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-38"></span><span>    </span><span class="annot"><span class="annottext">NotificationSettingsScope -&gt; Parser NotificationSettingsScope
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(NotificationSettingsScope -&gt; Parser NotificationSettingsScope)
@@ -119,9 +119,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">NotificationSettingsScopeGroupChats :: NotificationSettingsScope
 </span><a href="API.NotificationSettingsScope.html#NotificationSettingsScopeGroupChats"><span class="hs-identifier hs-type hs-type">NotificationSettingsScopeGroupChats</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-39"></span><span>
-</span><span id="line-40"></span><span>   </span><span class="annot"><a href="#local-6989586621679389523"><span class="hs-identifier hs-type">parseNotificationSettingsScopeChannelChats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NotificationSettingsScope.html#NotificationSettingsScope"><span class="hs-identifier hs-type">NotificationSettingsScope</span></a></span><span>
-</span><span id="line-41"></span><span>   </span><span id="local-6989586621679389523"><span class="annot"><span class="annottext">parseNotificationSettingsScopeChannelChats :: Value -&gt; Parser NotificationSettingsScope
-</span><a href="#local-6989586621679389523"><span class="hs-identifier hs-var hs-var">parseNotificationSettingsScopeChannelChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-40"></span><span>   </span><span class="annot"><a href="#local-6989586621679390810"><span class="hs-identifier hs-type">parseNotificationSettingsScopeChannelChats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NotificationSettingsScope.html#NotificationSettingsScope"><span class="hs-identifier hs-type">NotificationSettingsScope</span></a></span><span>
+</span><span id="line-41"></span><span>   </span><span id="local-6989586621679390810"><span class="annot"><span class="annottext">parseNotificationSettingsScopeChannelChats :: Value -&gt; Parser NotificationSettingsScope
+</span><a href="#local-6989586621679390810"><span class="hs-identifier hs-var hs-var">parseNotificationSettingsScopeChannelChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser NotificationSettingsScope)
 -&gt; Value
 -&gt; Parser NotificationSettingsScope
@@ -132,8 +132,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser NotificationSettingsScope
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679389517"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679389517"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679390804"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679390804"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-42"></span><span>    </span><span class="annot"><span class="annottext">NotificationSettingsScope -&gt; Parser NotificationSettingsScope
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(NotificationSettingsScope -&gt; Parser NotificationSettingsScope)

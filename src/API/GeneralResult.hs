@@ -110,110 +110,110 @@ import {-# SOURCE #-} qualified API.Update as Update
 import {-# SOURCE #-} qualified API.Error as Error
 
 data GeneralResult = 
- AuthorizationState AuthorizationState.AuthorizationState 
- | Session Session.Session 
- | Updates Updates.Updates 
- | RecoveryEmailAddress RecoveryEmailAddress.RecoveryEmailAddress 
- | PasswordState PasswordState.PasswordState 
- | TemporaryPasswordState TemporaryPasswordState.TemporaryPasswordState 
- | UserFullInfo UserFullInfo.UserFullInfo 
- | BasicGroup BasicGroup.BasicGroup 
- | BasicGroupFullInfo BasicGroupFullInfo.BasicGroupFullInfo 
- | Supergroup Supergroup.Supergroup 
- | SupergroupFullInfo SupergroupFullInfo.SupergroupFullInfo 
- | SecretChat SecretChat.SecretChat 
- | ChatsNearby ChatsNearby.ChatsNearby 
- | CheckChatUsernameResult CheckChatUsernameResult.CheckChatUsernameResult 
- | FoundMessages FoundMessages.FoundMessages 
- | PublicMessageLink PublicMessageLink.PublicMessageLink 
- | MessageLinkInfo MessageLinkInfo.MessageLinkInfo 
- | Messages Messages.Messages 
- | TextEntities TextEntities.TextEntities 
- | FormattedText FormattedText.FormattedText 
- | LanguagePackStringValue LanguagePackStringValue.LanguagePackStringValue 
- | LoginUrlInfo LoginUrlInfo.LoginUrlInfo 
- | InlineQueryResults InlineQueryResults.InlineQueryResults 
- | CallbackQueryAnswer CallbackQueryAnswer.CallbackQueryAnswer 
- | Message Message.Message 
- | GameHighScores GameHighScores.GameHighScores 
- | CanTransferOwnershipResult CanTransferOwnershipResult.CanTransferOwnershipResult 
- | ChatMember ChatMember.ChatMember 
- | ChatAdministrators ChatAdministrators.ChatAdministrators 
- | Chats Chats.Chats 
- | ScopeNotificationSettings ScopeNotificationSettings.ScopeNotificationSettings 
- | FilePart FilePart.FilePart 
- | ChatInviteLink ChatInviteLink.ChatInviteLink 
- | ChatInviteLinkInfo ChatInviteLinkInfo.ChatInviteLinkInfo 
- | Chat Chat.Chat 
- | CallId CallId.CallId 
- | Count Count.Count 
- | ImportedContacts ImportedContacts.ImportedContacts 
- | UserProfilePhotos UserProfilePhotos.UserProfilePhotos 
- | StickerSets StickerSets.StickerSets 
- | Stickers Stickers.Stickers 
- | Emojis Emojis.Emojis 
- | Animations Animations.Animations 
- | Users Users.Users 
- | Hashtags Hashtags.Hashtags 
- | WebPage WebPage.WebPage 
- | WebPageInstantView WebPageInstantView.WebPageInstantView 
- | Sessions Sessions.Sessions 
- | ConnectedWebsites ConnectedWebsites.ConnectedWebsites 
- | ChatMembers ChatMembers.ChatMembers 
- | ChatEvents ChatEvents.ChatEvents 
- | PaymentForm PaymentForm.PaymentForm 
- | ValidatedOrderInfo ValidatedOrderInfo.ValidatedOrderInfo 
- | PaymentResult PaymentResult.PaymentResult 
- | PaymentReceipt PaymentReceipt.PaymentReceipt 
- | OrderInfo OrderInfo.OrderInfo 
- | User User.User 
- | Backgrounds Backgrounds.Backgrounds 
- | Background Background.Background 
- | LocalizationTargetInfo LocalizationTargetInfo.LocalizationTargetInfo 
- | LanguagePackInfo LanguagePackInfo.LanguagePackInfo 
- | LanguagePackStrings LanguagePackStrings.LanguagePackStrings 
- | PushReceiverId PushReceiverId.PushReceiverId 
- | TMeUrls TMeUrls.TMeUrls 
- | UserPrivacySettingRules UserPrivacySettingRules.UserPrivacySettingRules 
- | OptionValue OptionValue.OptionValue 
- | AccountTtl AccountTtl.AccountTtl 
- | HttpUrl HttpUrl.HttpUrl 
- | ChatStatistics ChatStatistics.ChatStatistics 
- | StatisticsGraph StatisticsGraph.StatisticsGraph 
- | StorageStatisticsFast StorageStatisticsFast.StorageStatisticsFast 
- | DatabaseStatistics DatabaseStatistics.DatabaseStatistics 
- | StorageStatistics StorageStatistics.StorageStatistics 
- | NetworkStatistics NetworkStatistics.NetworkStatistics 
- | AutoDownloadSettingsPresets AutoDownloadSettingsPresets.AutoDownloadSettingsPresets 
- | BankCardInfo BankCardInfo.BankCardInfo 
- | PassportElements PassportElements.PassportElements 
- | PassportElement PassportElement.PassportElement 
- | EmailAddressAuthenticationCodeInfo EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo 
- | PassportAuthorizationForm PassportAuthorizationForm.PassportAuthorizationForm 
- | PassportElementsWithErrors PassportElementsWithErrors.PassportElementsWithErrors 
- | AuthenticationCodeInfo AuthenticationCodeInfo.AuthenticationCodeInfo 
- | StickerSet StickerSet.StickerSet 
- | File File.File 
- | CustomRequestResult CustomRequestResult.CustomRequestResult 
- | DeepLinkInfo DeepLinkInfo.DeepLinkInfo 
- | JsonValue JsonValue.JsonValue 
- | Proxy Proxy.Proxy 
- | Proxies Proxies.Proxies 
- | Text Text.Text 
- | Seconds Seconds.Seconds 
- | LogStream LogStream.LogStream 
- | LogTags LogTags.LogTags 
- | LogVerbosityLevel LogVerbosityLevel.LogVerbosityLevel 
- | TestString TestString.TestString 
- | TestBytes TestBytes.TestBytes 
- | TestVectorInt TestVectorInt.TestVectorInt 
- | TestVectorIntObject TestVectorIntObject.TestVectorIntObject 
- | TestVectorString TestVectorString.TestVectorString 
- | TestVectorStringObject TestVectorStringObject.TestVectorStringObject 
- | TestInt TestInt.TestInt 
- | Ok Ok.Ok 
- | Update Update.Update 
- | Error Error.Error deriving (Show)
+ AuthorizationState AuthorizationState.AuthorizationState (Maybe String) 
+ | Session Session.Session (Maybe String) 
+ | Updates Updates.Updates (Maybe String) 
+ | RecoveryEmailAddress RecoveryEmailAddress.RecoveryEmailAddress (Maybe String) 
+ | PasswordState PasswordState.PasswordState (Maybe String) 
+ | TemporaryPasswordState TemporaryPasswordState.TemporaryPasswordState (Maybe String) 
+ | UserFullInfo UserFullInfo.UserFullInfo (Maybe String) 
+ | BasicGroup BasicGroup.BasicGroup (Maybe String) 
+ | BasicGroupFullInfo BasicGroupFullInfo.BasicGroupFullInfo (Maybe String) 
+ | Supergroup Supergroup.Supergroup (Maybe String) 
+ | SupergroupFullInfo SupergroupFullInfo.SupergroupFullInfo (Maybe String) 
+ | SecretChat SecretChat.SecretChat (Maybe String) 
+ | ChatsNearby ChatsNearby.ChatsNearby (Maybe String) 
+ | CheckChatUsernameResult CheckChatUsernameResult.CheckChatUsernameResult (Maybe String) 
+ | FoundMessages FoundMessages.FoundMessages (Maybe String) 
+ | PublicMessageLink PublicMessageLink.PublicMessageLink (Maybe String) 
+ | MessageLinkInfo MessageLinkInfo.MessageLinkInfo (Maybe String) 
+ | Messages Messages.Messages (Maybe String) 
+ | TextEntities TextEntities.TextEntities (Maybe String) 
+ | FormattedText FormattedText.FormattedText (Maybe String) 
+ | LanguagePackStringValue LanguagePackStringValue.LanguagePackStringValue (Maybe String) 
+ | LoginUrlInfo LoginUrlInfo.LoginUrlInfo (Maybe String) 
+ | InlineQueryResults InlineQueryResults.InlineQueryResults (Maybe String) 
+ | CallbackQueryAnswer CallbackQueryAnswer.CallbackQueryAnswer (Maybe String) 
+ | Message Message.Message (Maybe String) 
+ | GameHighScores GameHighScores.GameHighScores (Maybe String) 
+ | CanTransferOwnershipResult CanTransferOwnershipResult.CanTransferOwnershipResult (Maybe String) 
+ | ChatMember ChatMember.ChatMember (Maybe String) 
+ | ChatAdministrators ChatAdministrators.ChatAdministrators (Maybe String) 
+ | Chats Chats.Chats (Maybe String) 
+ | ScopeNotificationSettings ScopeNotificationSettings.ScopeNotificationSettings (Maybe String) 
+ | FilePart FilePart.FilePart (Maybe String) 
+ | ChatInviteLink ChatInviteLink.ChatInviteLink (Maybe String) 
+ | ChatInviteLinkInfo ChatInviteLinkInfo.ChatInviteLinkInfo (Maybe String) 
+ | Chat Chat.Chat (Maybe String) 
+ | CallId CallId.CallId (Maybe String) 
+ | Count Count.Count (Maybe String) 
+ | ImportedContacts ImportedContacts.ImportedContacts (Maybe String) 
+ | UserProfilePhotos UserProfilePhotos.UserProfilePhotos (Maybe String) 
+ | StickerSets StickerSets.StickerSets (Maybe String) 
+ | Stickers Stickers.Stickers (Maybe String) 
+ | Emojis Emojis.Emojis (Maybe String) 
+ | Animations Animations.Animations (Maybe String) 
+ | Users Users.Users (Maybe String) 
+ | Hashtags Hashtags.Hashtags (Maybe String) 
+ | WebPage WebPage.WebPage (Maybe String) 
+ | WebPageInstantView WebPageInstantView.WebPageInstantView (Maybe String) 
+ | Sessions Sessions.Sessions (Maybe String) 
+ | ConnectedWebsites ConnectedWebsites.ConnectedWebsites (Maybe String) 
+ | ChatMembers ChatMembers.ChatMembers (Maybe String) 
+ | ChatEvents ChatEvents.ChatEvents (Maybe String) 
+ | PaymentForm PaymentForm.PaymentForm (Maybe String) 
+ | ValidatedOrderInfo ValidatedOrderInfo.ValidatedOrderInfo (Maybe String) 
+ | PaymentResult PaymentResult.PaymentResult (Maybe String) 
+ | PaymentReceipt PaymentReceipt.PaymentReceipt (Maybe String) 
+ | OrderInfo OrderInfo.OrderInfo (Maybe String) 
+ | User User.User (Maybe String) 
+ | Backgrounds Backgrounds.Backgrounds (Maybe String) 
+ | Background Background.Background (Maybe String) 
+ | LocalizationTargetInfo LocalizationTargetInfo.LocalizationTargetInfo (Maybe String) 
+ | LanguagePackInfo LanguagePackInfo.LanguagePackInfo (Maybe String) 
+ | LanguagePackStrings LanguagePackStrings.LanguagePackStrings (Maybe String) 
+ | PushReceiverId PushReceiverId.PushReceiverId (Maybe String) 
+ | TMeUrls TMeUrls.TMeUrls (Maybe String) 
+ | UserPrivacySettingRules UserPrivacySettingRules.UserPrivacySettingRules (Maybe String) 
+ | OptionValue OptionValue.OptionValue (Maybe String) 
+ | AccountTtl AccountTtl.AccountTtl (Maybe String) 
+ | HttpUrl HttpUrl.HttpUrl (Maybe String) 
+ | ChatStatistics ChatStatistics.ChatStatistics (Maybe String) 
+ | StatisticsGraph StatisticsGraph.StatisticsGraph (Maybe String) 
+ | StorageStatisticsFast StorageStatisticsFast.StorageStatisticsFast (Maybe String) 
+ | DatabaseStatistics DatabaseStatistics.DatabaseStatistics (Maybe String) 
+ | StorageStatistics StorageStatistics.StorageStatistics (Maybe String) 
+ | NetworkStatistics NetworkStatistics.NetworkStatistics (Maybe String) 
+ | AutoDownloadSettingsPresets AutoDownloadSettingsPresets.AutoDownloadSettingsPresets (Maybe String) 
+ | BankCardInfo BankCardInfo.BankCardInfo (Maybe String) 
+ | PassportElements PassportElements.PassportElements (Maybe String) 
+ | PassportElement PassportElement.PassportElement (Maybe String) 
+ | EmailAddressAuthenticationCodeInfo EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo (Maybe String) 
+ | PassportAuthorizationForm PassportAuthorizationForm.PassportAuthorizationForm (Maybe String) 
+ | PassportElementsWithErrors PassportElementsWithErrors.PassportElementsWithErrors (Maybe String) 
+ | AuthenticationCodeInfo AuthenticationCodeInfo.AuthenticationCodeInfo (Maybe String) 
+ | StickerSet StickerSet.StickerSet (Maybe String) 
+ | File File.File (Maybe String) 
+ | CustomRequestResult CustomRequestResult.CustomRequestResult (Maybe String) 
+ | DeepLinkInfo DeepLinkInfo.DeepLinkInfo (Maybe String) 
+ | JsonValue JsonValue.JsonValue (Maybe String) 
+ | Proxy Proxy.Proxy (Maybe String) 
+ | Proxies Proxies.Proxies (Maybe String) 
+ | Text Text.Text (Maybe String) 
+ | Seconds Seconds.Seconds (Maybe String) 
+ | LogStream LogStream.LogStream (Maybe String) 
+ | LogTags LogTags.LogTags (Maybe String) 
+ | LogVerbosityLevel LogVerbosityLevel.LogVerbosityLevel (Maybe String) 
+ | TestString TestString.TestString (Maybe String) 
+ | TestBytes TestBytes.TestBytes (Maybe String) 
+ | TestVectorInt TestVectorInt.TestVectorInt (Maybe String) 
+ | TestVectorIntObject TestVectorIntObject.TestVectorIntObject (Maybe String) 
+ | TestVectorString TestVectorString.TestVectorString (Maybe String) 
+ | TestVectorStringObject TestVectorStringObject.TestVectorStringObject (Maybe String) 
+ | TestInt TestInt.TestInt (Maybe String) 
+ | Ok Ok.Ok (Maybe String) 
+ | Update Update.Update (Maybe String) 
+ | Error Error.Error (Maybe String) deriving (Show)
 
 instance T.ToJSON GeneralResult where
  toJSON (AuthorizationState {  }) =
@@ -532,318 +532,322 @@ instance T.FromJSON GeneralResult where
  parseJSON v@(T.Object obj) = do
    mconcat t
   where
+   e :: Maybe String
+   e = case T.parse (\o -> o A..:? "@extra" :: T.Parser (Maybe String)) obj of
+     T.Success r -> r
+     _           -> Nothing
    t =
      [
       case (T.fromJSON v :: T.Result AuthorizationState.AuthorizationState) of
-       T.Success a -> return $ AuthorizationState a
+       T.Success a -> return $ AuthorizationState a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Session.Session) of
-       T.Success a -> return $ Session a
+       T.Success a -> return $ Session a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Updates.Updates) of
-       T.Success a -> return $ Updates a
+       T.Success a -> return $ Updates a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result RecoveryEmailAddress.RecoveryEmailAddress) of
-       T.Success a -> return $ RecoveryEmailAddress a
+       T.Success a -> return $ RecoveryEmailAddress a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result PasswordState.PasswordState) of
-       T.Success a -> return $ PasswordState a
+       T.Success a -> return $ PasswordState a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result TemporaryPasswordState.TemporaryPasswordState) of
-       T.Success a -> return $ TemporaryPasswordState a
+       T.Success a -> return $ TemporaryPasswordState a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result UserFullInfo.UserFullInfo) of
-       T.Success a -> return $ UserFullInfo a
+       T.Success a -> return $ UserFullInfo a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result BasicGroup.BasicGroup) of
-       T.Success a -> return $ BasicGroup a
+       T.Success a -> return $ BasicGroup a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result BasicGroupFullInfo.BasicGroupFullInfo) of
-       T.Success a -> return $ BasicGroupFullInfo a
+       T.Success a -> return $ BasicGroupFullInfo a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Supergroup.Supergroup) of
-       T.Success a -> return $ Supergroup a
+       T.Success a -> return $ Supergroup a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result SupergroupFullInfo.SupergroupFullInfo) of
-       T.Success a -> return $ SupergroupFullInfo a
+       T.Success a -> return $ SupergroupFullInfo a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result SecretChat.SecretChat) of
-       T.Success a -> return $ SecretChat a
+       T.Success a -> return $ SecretChat a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result ChatsNearby.ChatsNearby) of
-       T.Success a -> return $ ChatsNearby a
+       T.Success a -> return $ ChatsNearby a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result CheckChatUsernameResult.CheckChatUsernameResult) of
-       T.Success a -> return $ CheckChatUsernameResult a
+       T.Success a -> return $ CheckChatUsernameResult a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result FoundMessages.FoundMessages) of
-       T.Success a -> return $ FoundMessages a
+       T.Success a -> return $ FoundMessages a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result PublicMessageLink.PublicMessageLink) of
-       T.Success a -> return $ PublicMessageLink a
+       T.Success a -> return $ PublicMessageLink a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result MessageLinkInfo.MessageLinkInfo) of
-       T.Success a -> return $ MessageLinkInfo a
+       T.Success a -> return $ MessageLinkInfo a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Messages.Messages) of
-       T.Success a -> return $ Messages a
+       T.Success a -> return $ Messages a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result TextEntities.TextEntities) of
-       T.Success a -> return $ TextEntities a
+       T.Success a -> return $ TextEntities a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result FormattedText.FormattedText) of
-       T.Success a -> return $ FormattedText a
+       T.Success a -> return $ FormattedText a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result LanguagePackStringValue.LanguagePackStringValue) of
-       T.Success a -> return $ LanguagePackStringValue a
+       T.Success a -> return $ LanguagePackStringValue a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result LoginUrlInfo.LoginUrlInfo) of
-       T.Success a -> return $ LoginUrlInfo a
+       T.Success a -> return $ LoginUrlInfo a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result InlineQueryResults.InlineQueryResults) of
-       T.Success a -> return $ InlineQueryResults a
+       T.Success a -> return $ InlineQueryResults a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result CallbackQueryAnswer.CallbackQueryAnswer) of
-       T.Success a -> return $ CallbackQueryAnswer a
+       T.Success a -> return $ CallbackQueryAnswer a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Message.Message) of
-       T.Success a -> return $ Message a
+       T.Success a -> return $ Message a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result GameHighScores.GameHighScores) of
-       T.Success a -> return $ GameHighScores a
+       T.Success a -> return $ GameHighScores a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result CanTransferOwnershipResult.CanTransferOwnershipResult) of
-       T.Success a -> return $ CanTransferOwnershipResult a
+       T.Success a -> return $ CanTransferOwnershipResult a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result ChatMember.ChatMember) of
-       T.Success a -> return $ ChatMember a
+       T.Success a -> return $ ChatMember a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result ChatAdministrators.ChatAdministrators) of
-       T.Success a -> return $ ChatAdministrators a
+       T.Success a -> return $ ChatAdministrators a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Chats.Chats) of
-       T.Success a -> return $ Chats a
+       T.Success a -> return $ Chats a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result ScopeNotificationSettings.ScopeNotificationSettings) of
-       T.Success a -> return $ ScopeNotificationSettings a
+       T.Success a -> return $ ScopeNotificationSettings a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result FilePart.FilePart) of
-       T.Success a -> return $ FilePart a
+       T.Success a -> return $ FilePart a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result ChatInviteLink.ChatInviteLink) of
-       T.Success a -> return $ ChatInviteLink a
+       T.Success a -> return $ ChatInviteLink a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result ChatInviteLinkInfo.ChatInviteLinkInfo) of
-       T.Success a -> return $ ChatInviteLinkInfo a
+       T.Success a -> return $ ChatInviteLinkInfo a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Chat.Chat) of
-       T.Success a -> return $ Chat a
+       T.Success a -> return $ Chat a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result CallId.CallId) of
-       T.Success a -> return $ CallId a
+       T.Success a -> return $ CallId a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Count.Count) of
-       T.Success a -> return $ Count a
+       T.Success a -> return $ Count a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result ImportedContacts.ImportedContacts) of
-       T.Success a -> return $ ImportedContacts a
+       T.Success a -> return $ ImportedContacts a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result UserProfilePhotos.UserProfilePhotos) of
-       T.Success a -> return $ UserProfilePhotos a
+       T.Success a -> return $ UserProfilePhotos a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result StickerSets.StickerSets) of
-       T.Success a -> return $ StickerSets a
+       T.Success a -> return $ StickerSets a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Stickers.Stickers) of
-       T.Success a -> return $ Stickers a
+       T.Success a -> return $ Stickers a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Emojis.Emojis) of
-       T.Success a -> return $ Emojis a
+       T.Success a -> return $ Emojis a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Animations.Animations) of
-       T.Success a -> return $ Animations a
+       T.Success a -> return $ Animations a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Users.Users) of
-       T.Success a -> return $ Users a
+       T.Success a -> return $ Users a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Hashtags.Hashtags) of
-       T.Success a -> return $ Hashtags a
+       T.Success a -> return $ Hashtags a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result WebPage.WebPage) of
-       T.Success a -> return $ WebPage a
+       T.Success a -> return $ WebPage a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result WebPageInstantView.WebPageInstantView) of
-       T.Success a -> return $ WebPageInstantView a
+       T.Success a -> return $ WebPageInstantView a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Sessions.Sessions) of
-       T.Success a -> return $ Sessions a
+       T.Success a -> return $ Sessions a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result ConnectedWebsites.ConnectedWebsites) of
-       T.Success a -> return $ ConnectedWebsites a
+       T.Success a -> return $ ConnectedWebsites a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result ChatMembers.ChatMembers) of
-       T.Success a -> return $ ChatMembers a
+       T.Success a -> return $ ChatMembers a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result ChatEvents.ChatEvents) of
-       T.Success a -> return $ ChatEvents a
+       T.Success a -> return $ ChatEvents a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result PaymentForm.PaymentForm) of
-       T.Success a -> return $ PaymentForm a
+       T.Success a -> return $ PaymentForm a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result ValidatedOrderInfo.ValidatedOrderInfo) of
-       T.Success a -> return $ ValidatedOrderInfo a
+       T.Success a -> return $ ValidatedOrderInfo a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result PaymentResult.PaymentResult) of
-       T.Success a -> return $ PaymentResult a
+       T.Success a -> return $ PaymentResult a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result PaymentReceipt.PaymentReceipt) of
-       T.Success a -> return $ PaymentReceipt a
+       T.Success a -> return $ PaymentReceipt a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result OrderInfo.OrderInfo) of
-       T.Success a -> return $ OrderInfo a
+       T.Success a -> return $ OrderInfo a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result User.User) of
-       T.Success a -> return $ User a
+       T.Success a -> return $ User a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Backgrounds.Backgrounds) of
-       T.Success a -> return $ Backgrounds a
+       T.Success a -> return $ Backgrounds a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Background.Background) of
-       T.Success a -> return $ Background a
+       T.Success a -> return $ Background a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result LocalizationTargetInfo.LocalizationTargetInfo) of
-       T.Success a -> return $ LocalizationTargetInfo a
+       T.Success a -> return $ LocalizationTargetInfo a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result LanguagePackInfo.LanguagePackInfo) of
-       T.Success a -> return $ LanguagePackInfo a
+       T.Success a -> return $ LanguagePackInfo a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result LanguagePackStrings.LanguagePackStrings) of
-       T.Success a -> return $ LanguagePackStrings a
+       T.Success a -> return $ LanguagePackStrings a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result PushReceiverId.PushReceiverId) of
-       T.Success a -> return $ PushReceiverId a
+       T.Success a -> return $ PushReceiverId a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result TMeUrls.TMeUrls) of
-       T.Success a -> return $ TMeUrls a
+       T.Success a -> return $ TMeUrls a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result UserPrivacySettingRules.UserPrivacySettingRules) of
-       T.Success a -> return $ UserPrivacySettingRules a
+       T.Success a -> return $ UserPrivacySettingRules a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result OptionValue.OptionValue) of
-       T.Success a -> return $ OptionValue a
+       T.Success a -> return $ OptionValue a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result AccountTtl.AccountTtl) of
-       T.Success a -> return $ AccountTtl a
+       T.Success a -> return $ AccountTtl a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result HttpUrl.HttpUrl) of
-       T.Success a -> return $ HttpUrl a
+       T.Success a -> return $ HttpUrl a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result ChatStatistics.ChatStatistics) of
-       T.Success a -> return $ ChatStatistics a
+       T.Success a -> return $ ChatStatistics a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result StatisticsGraph.StatisticsGraph) of
-       T.Success a -> return $ StatisticsGraph a
+       T.Success a -> return $ StatisticsGraph a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result StorageStatisticsFast.StorageStatisticsFast) of
-       T.Success a -> return $ StorageStatisticsFast a
+       T.Success a -> return $ StorageStatisticsFast a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result DatabaseStatistics.DatabaseStatistics) of
-       T.Success a -> return $ DatabaseStatistics a
+       T.Success a -> return $ DatabaseStatistics a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result StorageStatistics.StorageStatistics) of
-       T.Success a -> return $ StorageStatistics a
+       T.Success a -> return $ StorageStatistics a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result NetworkStatistics.NetworkStatistics) of
-       T.Success a -> return $ NetworkStatistics a
+       T.Success a -> return $ NetworkStatistics a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result AutoDownloadSettingsPresets.AutoDownloadSettingsPresets) of
-       T.Success a -> return $ AutoDownloadSettingsPresets a
+       T.Success a -> return $ AutoDownloadSettingsPresets a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result BankCardInfo.BankCardInfo) of
-       T.Success a -> return $ BankCardInfo a
+       T.Success a -> return $ BankCardInfo a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result PassportElements.PassportElements) of
-       T.Success a -> return $ PassportElements a
+       T.Success a -> return $ PassportElements a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result PassportElement.PassportElement) of
-       T.Success a -> return $ PassportElement a
+       T.Success a -> return $ PassportElement a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo) of
-       T.Success a -> return $ EmailAddressAuthenticationCodeInfo a
+       T.Success a -> return $ EmailAddressAuthenticationCodeInfo a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result PassportAuthorizationForm.PassportAuthorizationForm) of
-       T.Success a -> return $ PassportAuthorizationForm a
+       T.Success a -> return $ PassportAuthorizationForm a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result PassportElementsWithErrors.PassportElementsWithErrors) of
-       T.Success a -> return $ PassportElementsWithErrors a
+       T.Success a -> return $ PassportElementsWithErrors a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result AuthenticationCodeInfo.AuthenticationCodeInfo) of
-       T.Success a -> return $ AuthenticationCodeInfo a
+       T.Success a -> return $ AuthenticationCodeInfo a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result StickerSet.StickerSet) of
-       T.Success a -> return $ StickerSet a
+       T.Success a -> return $ StickerSet a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result File.File) of
-       T.Success a -> return $ File a
+       T.Success a -> return $ File a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result CustomRequestResult.CustomRequestResult) of
-       T.Success a -> return $ CustomRequestResult a
+       T.Success a -> return $ CustomRequestResult a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result DeepLinkInfo.DeepLinkInfo) of
-       T.Success a -> return $ DeepLinkInfo a
+       T.Success a -> return $ DeepLinkInfo a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result JsonValue.JsonValue) of
-       T.Success a -> return $ JsonValue a
+       T.Success a -> return $ JsonValue a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Proxy.Proxy) of
-       T.Success a -> return $ Proxy a
+       T.Success a -> return $ Proxy a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Proxies.Proxies) of
-       T.Success a -> return $ Proxies a
+       T.Success a -> return $ Proxies a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Text.Text) of
-       T.Success a -> return $ Text a
+       T.Success a -> return $ Text a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Seconds.Seconds) of
-       T.Success a -> return $ Seconds a
+       T.Success a -> return $ Seconds a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result LogStream.LogStream) of
-       T.Success a -> return $ LogStream a
+       T.Success a -> return $ LogStream a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result LogTags.LogTags) of
-       T.Success a -> return $ LogTags a
+       T.Success a -> return $ LogTags a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result LogVerbosityLevel.LogVerbosityLevel) of
-       T.Success a -> return $ LogVerbosityLevel a
+       T.Success a -> return $ LogVerbosityLevel a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result TestString.TestString) of
-       T.Success a -> return $ TestString a
+       T.Success a -> return $ TestString a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result TestBytes.TestBytes) of
-       T.Success a -> return $ TestBytes a
+       T.Success a -> return $ TestBytes a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result TestVectorInt.TestVectorInt) of
-       T.Success a -> return $ TestVectorInt a
+       T.Success a -> return $ TestVectorInt a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result TestVectorIntObject.TestVectorIntObject) of
-       T.Success a -> return $ TestVectorIntObject a
+       T.Success a -> return $ TestVectorIntObject a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result TestVectorString.TestVectorString) of
-       T.Success a -> return $ TestVectorString a
+       T.Success a -> return $ TestVectorString a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result TestVectorStringObject.TestVectorStringObject) of
-       T.Success a -> return $ TestVectorStringObject a
+       T.Success a -> return $ TestVectorStringObject a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result TestInt.TestInt) of
-       T.Success a -> return $ TestInt a
+       T.Success a -> return $ TestInt a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Ok.Ok) of
-       T.Success a -> return $ Ok a
+       T.Success a -> return $ Ok a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Update.Update) of
-       T.Success a -> return $ Update a
+       T.Success a -> return $ Update a e
        _ -> mempty,
       case (T.fromJSON v :: T.Result Error.Error) of
-       T.Success a -> return $ Error a
+       T.Success a -> return $ Error a e
        _ -> mempty
     ]
