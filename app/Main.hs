@@ -41,7 +41,7 @@ main = do
   client <- create
   --send client testQuery1
   --execute client testQuery2
-  extra  <- sendExtra
+  extra  <- sendWExtra
     client
     API.Functions.SetLogVerbosityLevel.SetLogVerbosityLevel
       { new_verbosity_level = 2

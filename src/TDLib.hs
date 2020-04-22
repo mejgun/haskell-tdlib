@@ -31,17 +31,15 @@ create = c_create
 send :: (A.ToJSON a) => Client -> a -> IO ()
 send c d = B.useAsCString enc (c_send c) where enc = BL.toStrict (A.encode d)
 
-sendExtra :: (A.ToJSON a) => Client -> a -> IO String
-sendExtra c d = do
+sendWExtra :: (A.ToJSON a) => Client -> a -> IO String
+sendWExtra c d = do
   extra <- getUnixTime
-  B.useAsCString (enc extra) (send c extra)
+  B.useAsCString (enc extra) (c_send c)
   return extra
  where
+  enc :: String -> B.ByteString
   enc xtr = do
     BL.toStrict $ A.encode (addExtra d xtr)
-  send c xtr s = do
-    c_send c s
-    return xtr
   addExtra :: (A.ToJSON a) => a -> String -> H.HashMap T.Text A.Value
   addExtra d s = do
     let A.Object t = A.toJSON d
