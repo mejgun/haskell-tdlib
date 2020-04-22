@@ -38,11 +38,7 @@ receive c = dec $ c_receive c 1.0
     cs <- ics
     if cs == nullPtr
       then return Nothing
-      else do
-        A.decode <$> conv cs
-  conv :: CString -> IO BL.ByteString
-  conv cs = do
-    BL.fromStrict <$> B.packCString cs
+      else A.decodeStrict <$> B.packCString cs
 
 destroy :: Client -> IO ()
 destroy c = c_destroy c
