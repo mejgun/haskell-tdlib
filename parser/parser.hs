@@ -1,8 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import qualified Data.Text                     as T
---import           Data.ByteString               as B
-import qualified Data.List                     as L
 import qualified Data.Map.Strict               as Map
 import qualified Data.Set                      as Set
 
@@ -31,39 +29,22 @@ main = do
   --print f
   writeToFiles apifuncs "API.Functions" f
 
-  -- let a            = map T.words $ T.lines dat
-  -- mapM_ (\x -> print (formatString x)) a
-  --let m1 = foldl (\acc (x, y) -> Map.insertWith (++) x [y] acc) Map.empty
-    --    $ map formatString a
-  -- print m1
-  -- let z = Map.foldlWithKey
-  --       (\acc k x -> T.concat
-  --         ("data " : k : " = " : (T.intercalate " | " x) : "\n" : acc : [])
-  --       )
-  --       ""
-  --       m1
-  -- putStrLn $ T.unpack z
-  --print m
-
 writeToFiles
   :: T.Text -> T.Text -> Map.Map T.Text [(T.Text, [(T.Text, T.Text)])] -> IO ()
 writeToFiles addr modName m =
   mapM_
       (\(a, b) -> do
-        writeFile (T.unpack (T.concat ["../src/", addr, "/", a, ".hs"]))
-                  (w a b (Map.keys m))
+        writeFile (T.unpack (T.concat ["../src/", addr, "/", a, ".hs"])) (w a b)
         writeFile (T.unpack (T.concat ["../src/", addr, "/", a, ".hs-boot"]))
-                  (whb a b (Map.keys m))
+                  (whb a)
       )
     $ Map.toList m
  where
-  whb d e a = T.unpack $ T.concat
-    [ "-- GENERATED\n\n"
-    , "module "
-    , modName
-    , "."
-    , d
-    , " where\n\n"
+  generated = "-- GENERATED\n\n"
+  moduleName d = T.concat ["module ", modName, ".", d, " where\n\n"]
+  whb d = T.unpack $ T.concat
+    [ generated
+    , moduleName d
     , "import Data.Aeson.Types\n\n"
     , "data "
     , d
@@ -77,14 +58,10 @@ writeToFiles addr modName m =
     , d
     , "\n\n"
     ]
-  w d e a = T.unpack $ T.concat
-    [ "-- GENERATED\n"
+  w d e = T.unpack $ T.concat
+    [ generated
     , "{-# LANGUAGE OverloadedStrings #-}\n"
-    , "module "
-    , modName
-    , "."
-    , d
-    , " where\n\n"
+    , moduleName d
     , "import qualified Data.Aeson as A\n"
     , "import qualified Data.Aeson.Types as T\n"
     , (imports $ keys e)
@@ -95,6 +72,12 @@ writeToFiles addr modName m =
     , " deriving (Show)"
     , toJsonString d e
     ]
+  imports :: [T.Text] -> T.Text
+  imports ks = T.concat $ map
+    (\k -> T.concat
+      ["import {-# SOURCE #-} qualified ", api, ".", k, " as ", k, "\n"]
+    )
+    ks
   toJsonString :: T.Text -> [(T.Text, [(T.Text, T.Text)])] -> T.Text
   toJsonString m e = T.concat
     [ "\n\ninstance T.ToJSON "
@@ -123,8 +106,6 @@ writeToFiles addr modName m =
         ]
       )
       e
-    --, T.intercalate "\n"
-    --  $ map (\(a, b) -> T.concat ["\n-- ", a, " ", m, " ", www b]) e    
     , "\n\ninstance T.FromJSON "
     , m
     , " where\n"
@@ -214,12 +195,7 @@ writeToFiles addr modName m =
     (\acc (_, b) -> (foldl (\acc2 (_, d) -> (myAdd d acc2)) acc b))
     []
     e
-  imports :: [T.Text] -> T.Text
-  imports ks = T.concat $ map
-    (\k -> T.concat
-      ["import {-# SOURCE #-} qualified ", api, ".", k, " as ", k, "\n"]
-    )
-    ks
+
   myAdd :: T.Text -> [T.Text] -> [T.Text]
   myAdd x xs = do
     let n@(n1 : n2) = T.split (== '.') x
@@ -230,13 +206,14 @@ writeToFiles addr modName m =
     else
       xs
 
+-- | recursively rename (add _) record field name if there is same field with
+--   different type or if it is eq to haskell reserved word
 renameWrongTypedField
   :: Map.Map T.Text [(T.Text, [(T.Text, T.Text)])]
   -> Map.Map T.Text [(T.Text, [(T.Text, T.Text)])]
 renameWrongTypedField = Map.map go
  where
   go :: [(T.Text, [(T.Text, T.Text)])] -> [(T.Text, [(T.Text, T.Text)])]
-  --go e = map (\(x, y) -> (x, (gogo y))) e
   go e =
     let (_, l) = foldl
           (\(acc, ll) (x, y) -> let (m, tl) = gogo acc y in (m, (x, tl) : ll))
@@ -248,7 +225,7 @@ renameWrongTypedField = Map.map go
     -> [(T.Text, T.Text)]
     -> (Map.Map T.Text T.Text, [(T.Text, T.Text)])
   gogo m e = foldl
-    (\(acc, l) (a, b) -> let (m, tl) = myInsert acc a b in (m, tl : l))
+    (\(acc, l) (a, b) -> let (mm, tl) = myInsert acc a b in (mm, tl : l))
     (m, [])
     e
    where
@@ -264,34 +241,22 @@ renameWrongTypedField = Map.map go
 
 addUndrscr :: T.Text -> T.Text
 addUndrscr a = T.concat ["_", a]
-  --   where mm = Map.fromList $ foldl (\acc (_, k) -> k ++ acc) [] e
-  -- gogo :: Map.Map T.Text T.Text -> [(T.Text, T.Text)] -> [(T.Text, T.Text)]
-  -- gogo mm yy = map
-  --   (\(j, k) ->
-  --     case
-  --         (and
-  --           (   and
-  --           <$> [ pure (j /= "type")
-  --               , pure (j /= "data")
-  --               , ((== k) <$> (Map.lookup j mm))
-  --               ]
-  --           )
-  --         )
-  --       of
-  --         True -> (j, k)
-  --         _    -> (T.concat ["_", j], k)
-  --   )
-  --   yy
 
---let m = foldl (\acc (j,k) -> Map.insert acc j k) Map.empty y
 
--- convert map["ChatPhoto"]=[("chatPhoto", "small:file big:file")]
--- to map["ChatPhoto"]=[("chatPhoto", [("small","file"), ("big","file")])]
+-- | break strings to data:type tuples.
+--   convert map["ChatPhoto"]=[("chatPhoto", "small:file big:file")]
+--   to map["ChatPhoto"]=[("chatPhoto", [("small","file"), ("big","file")])]
+--
+--   map[(data type name)]=[(data type contructor), [((record field name),(record field type))]
 parseParams
   :: Map.Map T.Text [(T.Text, T.Text)]
   -> Map.Map T.Text [(T.Text, [(T.Text, T.Text)])]
 parseParams = Map.mapWithKey (\k v -> map (\(a, b) -> (a, go k b)) v)
  where
+  -- go: first argument - current module name.
+  -- need for double data type name for correct import.
+  -- e.g. TextMessage.TextMessage
+  go :: T.Text -> T.Text -> [(T.Text, T.Text)]
   go _    "" = []
   go aMod s  = do
     let w = T.words s
@@ -315,6 +280,7 @@ parseParams = Map.mapWithKey (\k v -> map (\(a, b) -> (a, go k b)) v)
     if s1 == s then s1 else T.concat ["[", conv aMod s1, "]"]
 
 
+-- | remove default data types from top level
 filterKeys
   :: Map.Map T.Text [(T.Text, T.Text)] -> Map.Map T.Text [(T.Text, T.Text)]
 filterKeys m = Map.withoutKeys m $ Set.fromList
@@ -330,8 +296,10 @@ filterKeys m = Map.withoutKeys m $ Set.fromList
   , ""
   ]
 
--- convert "chatPhoto small:file big:file = ChatPhoto;" to
+-- | convert "chatPhoto small:file big:file = ChatPhoto;" to
 -- map["ChatPhoto"]=[("chatPhoto", "small:file big:file")]
+--
+-- map(data type name)=[(data type contructor), (string)]
 toMap :: [T.Text] -> Map.Map T.Text [(T.Text, T.Text)]
 toMap t = foldl (\acc (k, v) -> Map.insertWith (++) k [v] acc) Map.empty
   $ map format t
