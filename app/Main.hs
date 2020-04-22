@@ -41,11 +41,12 @@ main = do
   client <- create
   --send client testQuery1
   --execute client testQuery2
-  send
+  extra  <- sendExtra
     client
     API.Functions.SetLogVerbosityLevel.SetLogVerbosityLevel
       { new_verbosity_level = 2
       }
+  print extra
   live client
   destroy client
  where
