@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SetStickerSetThumbnail where
 
 import Data.Aeson.Types

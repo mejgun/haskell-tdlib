@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.ChatNotificationSettings where
 
 import Data.Aeson.Types

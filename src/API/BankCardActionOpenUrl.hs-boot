@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.BankCardActionOpenUrl where
 
 import Data.Aeson.Types

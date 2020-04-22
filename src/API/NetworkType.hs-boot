@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.NetworkType where
 
 import Data.Aeson.Types

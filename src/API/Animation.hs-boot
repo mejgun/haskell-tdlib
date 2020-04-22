@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Animation where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.PersonalDetails where
 
 import Data.Aeson.Types

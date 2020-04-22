@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.FoundMessages where
 
 import Data.Aeson.Types

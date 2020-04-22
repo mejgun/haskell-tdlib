@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.DeleteProfilePhoto where
 
 import Data.Aeson.Types

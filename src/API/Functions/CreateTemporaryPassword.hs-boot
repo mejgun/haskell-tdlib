@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.CreateTemporaryPassword where
 
 import Data.Aeson.Types

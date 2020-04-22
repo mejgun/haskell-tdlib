@@ -63,10 +63,10 @@ sendWExtra c d = do
 -- execute :: Client -> String -> IO ()
 -- execute c s = (newCString s) >>= c_execute c
 
-receive :: Client -> IO (Maybe API.GeneralResult.GeneralResult)
+receive :: Client -> IO (Maybe API.GeneralResult.ResultWithExtra)
 receive c = dec $ c_receive c 1.0
  where
-  dec :: IO CString -> IO (Maybe API.GeneralResult.GeneralResult)
+  dec :: IO CString -> IO (Maybe API.GeneralResult.ResultWithExtra)
   dec ics = do
     cs <- ics
     if cs == nullPtr

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetCurrentState where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.BankCardInfo where
 
 import Data.Aeson.Types

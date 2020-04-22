@@ -42,28 +42,29 @@ main = do
   client <- create
   --send client testQuery1
   --execute client testQuery2
-  extra  <- sendWExtra
+  extra1 <- sendWExtra
     client
     API.Functions.SetLogVerbosityLevel.SetLogVerbosityLevel
       { new_verbosity_level = 2
       }
-  print extra
   extra2 <- sendWExtra client API.Functions.GetCurrentState.GetCurrentState
-  print extra2
-  live client
+  live client extra1 extra2
   destroy client
  where
-  live c = do
+  live c x1 x2 = do
     r <- receive c
     case r of
-      Just (Ok v extra) -> do
-        putStr "answer to SetVerbosityLevel: "
-        print v
-      Just (Updates v extra2) -> do
-        putStr "answer to GetCurrentState: "
-        print v
-      Nothing -> return ()
-      _       -> print r
-    live c
-
+      Nothing     -> return ()
+      Just result -> do
+        let ResultWithExtra res extra = result
+        if extra == Just x1
+          then do
+            putStr "answer to SetVerbosityLevel: "
+          else return ()
+        if extra == Just x2
+          then do
+            putStr "answer to GetCurrentState: "
+          else return ()
+        print res
+    live c x1 x2
 

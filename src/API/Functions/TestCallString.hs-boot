@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.TestCallString where
 
 import Data.Aeson.Types

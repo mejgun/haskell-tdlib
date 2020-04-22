@@ -26,7 +26,7 @@
 </span><a href="API.ChatMemberStatus.html#restricted_until_date"><span class="hs-identifier hs-var hs-var">restricted_until_date</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="is_member"><span class="annot"><a href="API.ChatMemberStatus.html#is_member"><span class="hs-identifier hs-var">is_member</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
 </span><span id="line-14"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="ChatMemberStatusLeft"><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatusLeft"><span class="hs-identifier hs-var">ChatMemberStatusLeft</span></a></span></span><span> </span><span>
 </span><span id="line-15"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="ChatMemberStatusBanned"><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatusBanned"><span class="hs-identifier hs-var">ChatMemberStatusBanned</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="banned_until_date"><span class="annot"><span class="annottext">ChatMemberStatus -&gt; Int
-</span><a href="API.ChatMemberStatus.html#banned_until_date"><span class="hs-identifier hs-var hs-var">banned_until_date</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679362751"><span id="local-6989586621679362753"><span id="local-6989586621679362755"><span class="annot"><span class="annottext">Int -&gt; ChatMemberStatus -&gt; ShowS
+</span><a href="API.ChatMemberStatus.html#banned_until_date"><span class="hs-identifier hs-var hs-var">banned_until_date</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679360231"><span id="local-6989586621679360233"><span id="local-6989586621679360235"><span class="annot"><span class="annottext">Int -&gt; ChatMemberStatus -&gt; ShowS
 [ChatMemberStatus] -&gt; ShowS
 ChatMemberStatus -&gt; String
 (Int -&gt; ChatMemberStatus -&gt; ShowS)
@@ -43,13 +43,13 @@ showsPrec :: Int -&gt; ChatMemberStatus -&gt; ShowS
 $cshowsPrec :: Int -&gt; ChatMemberStatus -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679362743"><span id="local-6989586621679362745"><span id="local-6989586621679362747"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatus"><span class="hs-identifier hs-type">ChatMemberStatus</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679362741"><span class="annot"><span class="annottext">toJSON :: ChatMemberStatus -&gt; Value
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679360223"><span id="local-6989586621679360225"><span id="local-6989586621679360227"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatus"><span class="hs-identifier hs-type">ChatMemberStatus</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679360221"><span class="annot"><span class="annottext">toJSON :: ChatMemberStatus -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatusCreator"><span class="hs-identifier hs-type">ChatMemberStatusCreator</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_member :: ChatMemberStatus -&gt; Bool
-</span><a href="API.ChatMemberStatus.html#is_member"><span class="hs-identifier hs-var">is_member</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679362739"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362739"><span class="hs-identifier hs-var">is_member</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">custom_title :: ChatMemberStatus -&gt; String
-</span><a href="API.ChatMemberStatus.html#custom_title"><span class="hs-identifier hs-var">custom_title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679362738"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679362738"><span class="hs-identifier hs-var">custom_title</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.ChatMemberStatus.html#is_member"><span class="hs-identifier hs-var">is_member</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360219"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360219"><span class="hs-identifier hs-var">is_member</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">custom_title :: ChatMemberStatus -&gt; String
+</span><a href="API.ChatMemberStatus.html#custom_title"><span class="hs-identifier hs-var">custom_title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360218"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679360218"><span class="hs-identifier hs-var">custom_title</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-19"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -57,32 +57,32 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chatMemberStatusCreator&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_member&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362739"><span class="hs-identifier hs-var">is_member</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;custom_title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+</span><a href="#local-6989586621679360219"><span class="hs-identifier hs-var">is_member</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;custom_title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679362738"><span class="hs-identifier hs-var">custom_title</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679360218"><span class="hs-identifier hs-var">custom_title</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-20"></span><span>
 </span><span id="line-21"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatusAdministrator"><span class="hs-identifier hs-type">ChatMemberStatusAdministrator</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">can_promote_members :: ChatMemberStatus -&gt; Bool
-</span><a href="API.ChatMemberStatus.html#can_promote_members"><span class="hs-identifier hs-var">can_promote_members</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679362734"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362734"><span class="hs-identifier hs-var">can_promote_members</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_pin_messages :: ChatMemberStatus -&gt; Bool
-</span><a href="API.ChatMemberStatus.html#can_pin_messages"><span class="hs-identifier hs-var">can_pin_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679362733"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362733"><span class="hs-identifier hs-var">can_pin_messages</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_restrict_members :: ChatMemberStatus -&gt; Bool
-</span><a href="API.ChatMemberStatus.html#can_restrict_members"><span class="hs-identifier hs-var">can_restrict_members</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679362732"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362732"><span class="hs-identifier hs-var">can_restrict_members</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_invite_users :: ChatMemberStatus -&gt; Bool
-</span><a href="API.ChatMemberStatus.html#can_invite_users"><span class="hs-identifier hs-var">can_invite_users</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679362731"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362731"><span class="hs-identifier hs-var">can_invite_users</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_delete_messages :: ChatMemberStatus -&gt; Bool
-</span><a href="API.ChatMemberStatus.html#can_delete_messages"><span class="hs-identifier hs-var">can_delete_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679362730"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362730"><span class="hs-identifier hs-var">can_delete_messages</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_edit_messages :: ChatMemberStatus -&gt; Bool
-</span><a href="API.ChatMemberStatus.html#can_edit_messages"><span class="hs-identifier hs-var">can_edit_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679362729"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362729"><span class="hs-identifier hs-var">can_edit_messages</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_post_messages :: ChatMemberStatus -&gt; Bool
-</span><a href="API.ChatMemberStatus.html#can_post_messages"><span class="hs-identifier hs-var">can_post_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679362728"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362728"><span class="hs-identifier hs-var">can_post_messages</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_change_info :: ChatMemberStatus -&gt; Bool
-</span><a href="API.ChatMemberStatus.html#can_change_info"><span class="hs-identifier hs-var">can_change_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679362727"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362727"><span class="hs-identifier hs-var">can_change_info</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_edited :: ChatMemberStatus -&gt; Bool
-</span><a href="API.ChatMemberStatus.html#can_be_edited"><span class="hs-identifier hs-var">can_be_edited</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679362726"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362726"><span class="hs-identifier hs-var">can_be_edited</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">custom_title :: ChatMemberStatus -&gt; String
-</span><a href="API.ChatMemberStatus.html#custom_title"><span class="hs-identifier hs-var">custom_title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679362725"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679362725"><span class="hs-identifier hs-var">custom_title</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.ChatMemberStatus.html#can_promote_members"><span class="hs-identifier hs-var">can_promote_members</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360214"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360214"><span class="hs-identifier hs-var">can_promote_members</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_pin_messages :: ChatMemberStatus -&gt; Bool
+</span><a href="API.ChatMemberStatus.html#can_pin_messages"><span class="hs-identifier hs-var">can_pin_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360213"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360213"><span class="hs-identifier hs-var">can_pin_messages</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_restrict_members :: ChatMemberStatus -&gt; Bool
+</span><a href="API.ChatMemberStatus.html#can_restrict_members"><span class="hs-identifier hs-var">can_restrict_members</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360212"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360212"><span class="hs-identifier hs-var">can_restrict_members</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_invite_users :: ChatMemberStatus -&gt; Bool
+</span><a href="API.ChatMemberStatus.html#can_invite_users"><span class="hs-identifier hs-var">can_invite_users</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360211"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360211"><span class="hs-identifier hs-var">can_invite_users</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_delete_messages :: ChatMemberStatus -&gt; Bool
+</span><a href="API.ChatMemberStatus.html#can_delete_messages"><span class="hs-identifier hs-var">can_delete_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360210"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360210"><span class="hs-identifier hs-var">can_delete_messages</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_edit_messages :: ChatMemberStatus -&gt; Bool
+</span><a href="API.ChatMemberStatus.html#can_edit_messages"><span class="hs-identifier hs-var">can_edit_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360209"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360209"><span class="hs-identifier hs-var">can_edit_messages</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_post_messages :: ChatMemberStatus -&gt; Bool
+</span><a href="API.ChatMemberStatus.html#can_post_messages"><span class="hs-identifier hs-var">can_post_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360208"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360208"><span class="hs-identifier hs-var">can_post_messages</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_change_info :: ChatMemberStatus -&gt; Bool
+</span><a href="API.ChatMemberStatus.html#can_change_info"><span class="hs-identifier hs-var">can_change_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360207"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360207"><span class="hs-identifier hs-var">can_change_info</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_edited :: ChatMemberStatus -&gt; Bool
+</span><a href="API.ChatMemberStatus.html#can_be_edited"><span class="hs-identifier hs-var">can_be_edited</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360206"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360206"><span class="hs-identifier hs-var">can_be_edited</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">custom_title :: ChatMemberStatus -&gt; String
+</span><a href="API.ChatMemberStatus.html#custom_title"><span class="hs-identifier hs-var">custom_title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360205"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679360205"><span class="hs-identifier hs-var">custom_title</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-22"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -90,34 +90,34 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chatMemberStatusAdministrator&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_promote_members&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362734"><span class="hs-identifier hs-var">can_promote_members</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_pin_messages&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+</span><a href="#local-6989586621679360214"><span class="hs-identifier hs-var">can_promote_members</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_pin_messages&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362733"><span class="hs-identifier hs-var">can_pin_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_restrict_members&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+</span><a href="#local-6989586621679360213"><span class="hs-identifier hs-var">can_pin_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_restrict_members&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362732"><span class="hs-identifier hs-var">can_restrict_members</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_invite_users&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+</span><a href="#local-6989586621679360212"><span class="hs-identifier hs-var">can_restrict_members</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_invite_users&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362731"><span class="hs-identifier hs-var">can_invite_users</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_delete_messages&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+</span><a href="#local-6989586621679360211"><span class="hs-identifier hs-var">can_invite_users</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_delete_messages&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362730"><span class="hs-identifier hs-var">can_delete_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_edit_messages&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+</span><a href="#local-6989586621679360210"><span class="hs-identifier hs-var">can_delete_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_edit_messages&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362729"><span class="hs-identifier hs-var">can_edit_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_post_messages&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+</span><a href="#local-6989586621679360209"><span class="hs-identifier hs-var">can_edit_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_post_messages&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362728"><span class="hs-identifier hs-var">can_post_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_change_info&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+</span><a href="#local-6989586621679360208"><span class="hs-identifier hs-var">can_post_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_change_info&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362727"><span class="hs-identifier hs-var">can_change_info</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_be_edited&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+</span><a href="#local-6989586621679360207"><span class="hs-identifier hs-var">can_change_info</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_be_edited&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362726"><span class="hs-identifier hs-var">can_be_edited</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;custom_title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+</span><a href="#local-6989586621679360206"><span class="hs-identifier hs-var">can_be_edited</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;custom_title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679362725"><span class="hs-identifier hs-var">custom_title</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679360205"><span class="hs-identifier hs-var">custom_title</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-23"></span><span>
 </span><span id="line-24"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatusMember"><span class="hs-identifier hs-type">ChatMemberStatusMember</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-25"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
@@ -127,12 +127,12 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chatMemberStatusMember&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-26"></span><span>
 </span><span id="line-27"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatusRestricted"><span class="hs-identifier hs-type">ChatMemberStatusRestricted</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">permissions :: ChatMemberStatus -&gt; ChatPermissions
-</span><a href="API.ChatMemberStatus.html#permissions"><span class="hs-identifier hs-var">permissions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679362724"><span class="annot"><span class="annottext">ChatPermissions
-</span><a href="#local-6989586621679362724"><span class="hs-identifier hs-var">permissions</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">restricted_until_date :: ChatMemberStatus -&gt; Int
-</span><a href="API.ChatMemberStatus.html#restricted_until_date"><span class="hs-identifier hs-var">restricted_until_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679362723"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679362723"><span class="hs-identifier hs-var">restricted_until_date</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_member :: ChatMemberStatus -&gt; Bool
-</span><a href="API.ChatMemberStatus.html#is_member"><span class="hs-identifier hs-var">is_member</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679362722"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362722"><span class="hs-identifier hs-var">is_member</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.ChatMemberStatus.html#permissions"><span class="hs-identifier hs-var">permissions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360204"><span class="annot"><span class="annottext">ChatPermissions
+</span><a href="#local-6989586621679360204"><span class="hs-identifier hs-var">permissions</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">restricted_until_date :: ChatMemberStatus -&gt; Int
+</span><a href="API.ChatMemberStatus.html#restricted_until_date"><span class="hs-identifier hs-var">restricted_until_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360203"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679360203"><span class="hs-identifier hs-var">restricted_until_date</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_member :: ChatMemberStatus -&gt; Bool
+</span><a href="API.ChatMemberStatus.html#is_member"><span class="hs-identifier hs-var">is_member</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360202"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360202"><span class="hs-identifier hs-var">is_member</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-28"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -140,13 +140,13 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chatMemberStatusRestricted&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;permissions&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; ChatPermissions -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">ChatPermissions
-</span><a href="#local-6989586621679362724"><span class="hs-identifier hs-var">permissions</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;restricted_until_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+</span><a href="#local-6989586621679360204"><span class="hs-identifier hs-var">permissions</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;restricted_until_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679362723"><span class="hs-identifier hs-var">restricted_until_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_member&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+</span><a href="#local-6989586621679360203"><span class="hs-identifier hs-var">restricted_until_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_member&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362722"><span class="hs-identifier hs-var">is_member</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679360202"><span class="hs-identifier hs-var">is_member</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-29"></span><span>
 </span><span id="line-30"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatusLeft"><span class="hs-identifier hs-type">ChatMemberStatusLeft</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-31"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
@@ -156,8 +156,8 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chatMemberStatusLeft&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-32"></span><span>
 </span><span id="line-33"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatusBanned"><span class="hs-identifier hs-type">ChatMemberStatusBanned</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">banned_until_date :: ChatMemberStatus -&gt; Int
-</span><a href="API.ChatMemberStatus.html#banned_until_date"><span class="hs-identifier hs-var">banned_until_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679362721"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679362721"><span class="hs-identifier hs-var">banned_until_date</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.ChatMemberStatus.html#banned_until_date"><span class="hs-identifier hs-var">banned_until_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360201"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679360201"><span class="hs-identifier hs-var">banned_until_date</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-34"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -165,45 +165,45 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chatMemberStatusBanned&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;banned_until_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679362721"><span class="hs-identifier hs-var">banned_until_date</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679360201"><span class="hs-identifier hs-var">banned_until_date</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-35"></span><span>
-</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679362718"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatus"><span class="hs-identifier hs-type">ChatMemberStatus</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-37"></span><span> </span><span id="local-6989586621679362716"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatMemberStatus
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679362714"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679362714"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679362712"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679362712"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-38"></span><span>  </span><span id="local-6989586621679362711"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679362711"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679362712"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679360198"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatus"><span class="hs-identifier hs-type">ChatMemberStatus</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-37"></span><span> </span><span id="local-6989586621679360196"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatMemberStatus
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679360194"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679360194"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679360192"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679360192"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-38"></span><span>  </span><span id="local-6989586621679360191"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679360191"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360192"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-39"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679362711"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679360191"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-40"></span><span>   </span><span class="hs-string">&quot;chatMemberStatusCreator&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatMemberStatus
-</span><a href="#local-6989586621679362709"><span class="hs-identifier hs-var">parseChatMemberStatusCreator</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679362714"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679360189"><span class="hs-identifier hs-var">parseChatMemberStatusCreator</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679360194"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-41"></span><span>   </span><span class="hs-string">&quot;chatMemberStatusAdministrator&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatMemberStatus
-</span><a href="#local-6989586621679362708"><span class="hs-identifier hs-var">parseChatMemberStatusAdministrator</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679362714"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679360188"><span class="hs-identifier hs-var">parseChatMemberStatusAdministrator</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679360194"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-42"></span><span>   </span><span class="hs-string">&quot;chatMemberStatusMember&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatMemberStatus
-</span><a href="#local-6989586621679362707"><span class="hs-identifier hs-var">parseChatMemberStatusMember</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679362714"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679360187"><span class="hs-identifier hs-var">parseChatMemberStatusMember</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679360194"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-43"></span><span>   </span><span class="hs-string">&quot;chatMemberStatusRestricted&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatMemberStatus
-</span><a href="#local-6989586621679362706"><span class="hs-identifier hs-var">parseChatMemberStatusRestricted</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679362714"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679360186"><span class="hs-identifier hs-var">parseChatMemberStatusRestricted</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679360194"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-44"></span><span>   </span><span class="hs-string">&quot;chatMemberStatusLeft&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatMemberStatus
-</span><a href="#local-6989586621679362705"><span class="hs-identifier hs-var">parseChatMemberStatusLeft</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679362714"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679360185"><span class="hs-identifier hs-var">parseChatMemberStatusLeft</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679360194"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-45"></span><span>   </span><span class="hs-string">&quot;chatMemberStatusBanned&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatMemberStatus
-</span><a href="#local-6989586621679362704"><span class="hs-identifier hs-var">parseChatMemberStatusBanned</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679362714"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679360184"><span class="hs-identifier hs-var">parseChatMemberStatusBanned</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679360194"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-46"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ChatMemberStatus
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-47"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-48"></span><span>   </span><span class="annot"><a href="#local-6989586621679362709"><span class="hs-identifier hs-type">parseChatMemberStatusCreator</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatus"><span class="hs-identifier hs-type">ChatMemberStatus</span></a></span><span>
-</span><span id="line-49"></span><span>   </span><span id="local-6989586621679362709"><span class="annot"><span class="annottext">parseChatMemberStatusCreator :: Value -&gt; Parser ChatMemberStatus
-</span><a href="#local-6989586621679362709"><span class="hs-identifier hs-var hs-var">parseChatMemberStatusCreator</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-48"></span><span>   </span><span class="annot"><a href="#local-6989586621679360189"><span class="hs-identifier hs-type">parseChatMemberStatusCreator</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatus"><span class="hs-identifier hs-type">ChatMemberStatus</span></a></span><span>
+</span><span id="line-49"></span><span>   </span><span id="local-6989586621679360189"><span class="annot"><span class="annottext">parseChatMemberStatusCreator :: Value -&gt; Parser ChatMemberStatus
+</span><a href="#local-6989586621679360189"><span class="hs-identifier hs-var hs-var">parseChatMemberStatusCreator</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatMemberStatus)
 -&gt; Value
 -&gt; Parser ChatMemberStatus
@@ -214,16 +214,16 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ChatMemberStatus
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679362702"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679362702"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-50"></span><span>    </span><span id="local-6989586621679362701"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362701"><span class="hs-identifier hs-var">is_member</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679362702"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360182"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679360182"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-50"></span><span>    </span><span id="local-6989586621679360181"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360181"><span class="hs-identifier hs-var">is_member</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360182"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_member&quot;</span></span><span>
-</span><span id="line-51"></span><span>    </span><span id="local-6989586621679362700"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679362700"><span class="hs-identifier hs-var">custom_title</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679362702"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-51"></span><span>    </span><span id="local-6989586621679360180"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679360180"><span class="hs-identifier hs-var">custom_title</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360182"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;custom_title&quot;</span></span><span>
 </span><span id="line-52"></span><span>    </span><span class="annot"><span class="annottext">ChatMemberStatus -&gt; Parser ChatMemberStatus
@@ -234,13 +234,13 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ChatMemberStatusCreator :: Bool -&gt; String -&gt; ChatMemberStatus
 </span><a href="API.ChatMemberStatus.html#ChatMemberStatusCreator"><span class="hs-identifier hs-type hs-type">ChatMemberStatusCreator</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_member :: Bool
 </span><a href="API.ChatMemberStatus.html#is_member"><span class="hs-identifier hs-var">is_member</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362701"><span class="hs-identifier hs-var">is_member</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">custom_title :: String
+</span><a href="#local-6989586621679360181"><span class="hs-identifier hs-var">is_member</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">custom_title :: String
 </span><a href="API.ChatMemberStatus.html#custom_title"><span class="hs-identifier hs-var">custom_title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679362700"><span class="hs-identifier hs-var">custom_title</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679360180"><span class="hs-identifier hs-var">custom_title</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-53"></span><span>
-</span><span id="line-54"></span><span>   </span><span class="annot"><a href="#local-6989586621679362708"><span class="hs-identifier hs-type">parseChatMemberStatusAdministrator</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatus"><span class="hs-identifier hs-type">ChatMemberStatus</span></a></span><span>
-</span><span id="line-55"></span><span>   </span><span id="local-6989586621679362708"><span class="annot"><span class="annottext">parseChatMemberStatusAdministrator :: Value -&gt; Parser ChatMemberStatus
-</span><a href="#local-6989586621679362708"><span class="hs-identifier hs-var hs-var">parseChatMemberStatusAdministrator</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-54"></span><span>   </span><span class="annot"><a href="#local-6989586621679360188"><span class="hs-identifier hs-type">parseChatMemberStatusAdministrator</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatus"><span class="hs-identifier hs-type">ChatMemberStatus</span></a></span><span>
+</span><span id="line-55"></span><span>   </span><span id="local-6989586621679360188"><span class="annot"><span class="annottext">parseChatMemberStatusAdministrator :: Value -&gt; Parser ChatMemberStatus
+</span><a href="#local-6989586621679360188"><span class="hs-identifier hs-var hs-var">parseChatMemberStatusAdministrator</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatMemberStatus)
 -&gt; Value
 -&gt; Parser ChatMemberStatus
@@ -251,56 +251,56 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ChatMemberStatus
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679362698"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679362698"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-56"></span><span>    </span><span id="local-6989586621679362697"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362697"><span class="hs-identifier hs-var">can_promote_members</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679362698"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360178"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679360178"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-56"></span><span>    </span><span id="local-6989586621679360177"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360177"><span class="hs-identifier hs-var">can_promote_members</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360178"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_promote_members&quot;</span></span><span>
-</span><span id="line-57"></span><span>    </span><span id="local-6989586621679362696"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362696"><span class="hs-identifier hs-var">can_pin_messages</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679362698"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><span id="line-57"></span><span>    </span><span id="local-6989586621679360176"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360176"><span class="hs-identifier hs-var">can_pin_messages</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360178"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_pin_messages&quot;</span></span><span>
-</span><span id="line-58"></span><span>    </span><span id="local-6989586621679362695"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362695"><span class="hs-identifier hs-var">can_restrict_members</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679362698"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><span id="line-58"></span><span>    </span><span id="local-6989586621679360175"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360175"><span class="hs-identifier hs-var">can_restrict_members</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360178"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_restrict_members&quot;</span></span><span>
-</span><span id="line-59"></span><span>    </span><span id="local-6989586621679362694"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362694"><span class="hs-identifier hs-var">can_invite_users</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679362698"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><span id="line-59"></span><span>    </span><span id="local-6989586621679360174"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360174"><span class="hs-identifier hs-var">can_invite_users</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360178"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_invite_users&quot;</span></span><span>
-</span><span id="line-60"></span><span>    </span><span id="local-6989586621679362693"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362693"><span class="hs-identifier hs-var">can_delete_messages</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679362698"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><span id="line-60"></span><span>    </span><span id="local-6989586621679360173"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360173"><span class="hs-identifier hs-var">can_delete_messages</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360178"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_delete_messages&quot;</span></span><span>
-</span><span id="line-61"></span><span>    </span><span id="local-6989586621679362692"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362692"><span class="hs-identifier hs-var">can_edit_messages</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679362698"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><span id="line-61"></span><span>    </span><span id="local-6989586621679360172"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360172"><span class="hs-identifier hs-var">can_edit_messages</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360178"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_edit_messages&quot;</span></span><span>
-</span><span id="line-62"></span><span>    </span><span id="local-6989586621679362691"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362691"><span class="hs-identifier hs-var">can_post_messages</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679362698"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><span id="line-62"></span><span>    </span><span id="local-6989586621679360171"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360171"><span class="hs-identifier hs-var">can_post_messages</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360178"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_post_messages&quot;</span></span><span>
-</span><span id="line-63"></span><span>    </span><span id="local-6989586621679362690"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362690"><span class="hs-identifier hs-var">can_change_info</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679362698"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><span id="line-63"></span><span>    </span><span id="local-6989586621679360170"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360170"><span class="hs-identifier hs-var">can_change_info</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360178"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_change_info&quot;</span></span><span>
-</span><span id="line-64"></span><span>    </span><span id="local-6989586621679362689"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362689"><span class="hs-identifier hs-var">can_be_edited</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679362698"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><span id="line-64"></span><span>    </span><span id="local-6989586621679360169"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360169"><span class="hs-identifier hs-var">can_be_edited</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360178"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_be_edited&quot;</span></span><span>
-</span><span id="line-65"></span><span>    </span><span id="local-6989586621679362688"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679362688"><span class="hs-identifier hs-var">custom_title</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679362698"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-65"></span><span>    </span><span id="local-6989586621679360168"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679360168"><span class="hs-identifier hs-var">custom_title</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360178"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;custom_title&quot;</span></span><span>
 </span><span id="line-66"></span><span>    </span><span class="annot"><span class="annottext">ChatMemberStatus -&gt; Parser ChatMemberStatus
@@ -321,29 +321,29 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; ChatMemberStatus
 </span><a href="API.ChatMemberStatus.html#ChatMemberStatusAdministrator"><span class="hs-identifier hs-type hs-type">ChatMemberStatusAdministrator</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">can_promote_members :: Bool
 </span><a href="API.ChatMemberStatus.html#can_promote_members"><span class="hs-identifier hs-var">can_promote_members</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362697"><span class="hs-identifier hs-var">can_promote_members</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_pin_messages :: Bool
+</span><a href="#local-6989586621679360177"><span class="hs-identifier hs-var">can_promote_members</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_pin_messages :: Bool
 </span><a href="API.ChatMemberStatus.html#can_pin_messages"><span class="hs-identifier hs-var">can_pin_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362696"><span class="hs-identifier hs-var">can_pin_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_restrict_members :: Bool
+</span><a href="#local-6989586621679360176"><span class="hs-identifier hs-var">can_pin_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_restrict_members :: Bool
 </span><a href="API.ChatMemberStatus.html#can_restrict_members"><span class="hs-identifier hs-var">can_restrict_members</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362695"><span class="hs-identifier hs-var">can_restrict_members</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_invite_users :: Bool
+</span><a href="#local-6989586621679360175"><span class="hs-identifier hs-var">can_restrict_members</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_invite_users :: Bool
 </span><a href="API.ChatMemberStatus.html#can_invite_users"><span class="hs-identifier hs-var">can_invite_users</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362694"><span class="hs-identifier hs-var">can_invite_users</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_delete_messages :: Bool
+</span><a href="#local-6989586621679360174"><span class="hs-identifier hs-var">can_invite_users</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_delete_messages :: Bool
 </span><a href="API.ChatMemberStatus.html#can_delete_messages"><span class="hs-identifier hs-var">can_delete_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362693"><span class="hs-identifier hs-var">can_delete_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_edit_messages :: Bool
+</span><a href="#local-6989586621679360173"><span class="hs-identifier hs-var">can_delete_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_edit_messages :: Bool
 </span><a href="API.ChatMemberStatus.html#can_edit_messages"><span class="hs-identifier hs-var">can_edit_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362692"><span class="hs-identifier hs-var">can_edit_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_post_messages :: Bool
+</span><a href="#local-6989586621679360172"><span class="hs-identifier hs-var">can_edit_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_post_messages :: Bool
 </span><a href="API.ChatMemberStatus.html#can_post_messages"><span class="hs-identifier hs-var">can_post_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362691"><span class="hs-identifier hs-var">can_post_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_change_info :: Bool
+</span><a href="#local-6989586621679360171"><span class="hs-identifier hs-var">can_post_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_change_info :: Bool
 </span><a href="API.ChatMemberStatus.html#can_change_info"><span class="hs-identifier hs-var">can_change_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362690"><span class="hs-identifier hs-var">can_change_info</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_edited :: Bool
+</span><a href="#local-6989586621679360170"><span class="hs-identifier hs-var">can_change_info</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_edited :: Bool
 </span><a href="API.ChatMemberStatus.html#can_be_edited"><span class="hs-identifier hs-var">can_be_edited</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362689"><span class="hs-identifier hs-var">can_be_edited</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">custom_title :: String
+</span><a href="#local-6989586621679360169"><span class="hs-identifier hs-var">can_be_edited</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">custom_title :: String
 </span><a href="API.ChatMemberStatus.html#custom_title"><span class="hs-identifier hs-var">custom_title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679362688"><span class="hs-identifier hs-var">custom_title</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679360168"><span class="hs-identifier hs-var">custom_title</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-67"></span><span>
-</span><span id="line-68"></span><span>   </span><span class="annot"><a href="#local-6989586621679362707"><span class="hs-identifier hs-type">parseChatMemberStatusMember</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatus"><span class="hs-identifier hs-type">ChatMemberStatus</span></a></span><span>
-</span><span id="line-69"></span><span>   </span><span id="local-6989586621679362707"><span class="annot"><span class="annottext">parseChatMemberStatusMember :: Value -&gt; Parser ChatMemberStatus
-</span><a href="#local-6989586621679362707"><span class="hs-identifier hs-var hs-var">parseChatMemberStatusMember</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-68"></span><span>   </span><span class="annot"><a href="#local-6989586621679360187"><span class="hs-identifier hs-type">parseChatMemberStatusMember</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatus"><span class="hs-identifier hs-type">ChatMemberStatus</span></a></span><span>
+</span><span id="line-69"></span><span>   </span><span id="local-6989586621679360187"><span class="annot"><span class="annottext">parseChatMemberStatusMember :: Value -&gt; Parser ChatMemberStatus
+</span><a href="#local-6989586621679360187"><span class="hs-identifier hs-var hs-var">parseChatMemberStatusMember</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatMemberStatus)
 -&gt; Value
 -&gt; Parser ChatMemberStatus
@@ -354,8 +354,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ChatMemberStatus
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679362686"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679362686"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360166"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679360166"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-70"></span><span>    </span><span class="annot"><span class="annottext">ChatMemberStatus -&gt; Parser ChatMemberStatus
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ChatMemberStatus -&gt; Parser ChatMemberStatus)
@@ -364,9 +364,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ChatMemberStatusMember :: ChatMemberStatus
 </span><a href="API.ChatMemberStatus.html#ChatMemberStatusMember"><span class="hs-identifier hs-type hs-type">ChatMemberStatusMember</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-71"></span><span>
-</span><span id="line-72"></span><span>   </span><span class="annot"><a href="#local-6989586621679362706"><span class="hs-identifier hs-type">parseChatMemberStatusRestricted</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatus"><span class="hs-identifier hs-type">ChatMemberStatus</span></a></span><span>
-</span><span id="line-73"></span><span>   </span><span id="local-6989586621679362706"><span class="annot"><span class="annottext">parseChatMemberStatusRestricted :: Value -&gt; Parser ChatMemberStatus
-</span><a href="#local-6989586621679362706"><span class="hs-identifier hs-var hs-var">parseChatMemberStatusRestricted</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-72"></span><span>   </span><span class="annot"><a href="#local-6989586621679360186"><span class="hs-identifier hs-type">parseChatMemberStatusRestricted</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatus"><span class="hs-identifier hs-type">ChatMemberStatus</span></a></span><span>
+</span><span id="line-73"></span><span>   </span><span id="local-6989586621679360186"><span class="annot"><span class="annottext">parseChatMemberStatusRestricted :: Value -&gt; Parser ChatMemberStatus
+</span><a href="#local-6989586621679360186"><span class="hs-identifier hs-var hs-var">parseChatMemberStatusRestricted</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatMemberStatus)
 -&gt; Value
 -&gt; Parser ChatMemberStatus
@@ -377,21 +377,21 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ChatMemberStatus
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679362684"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679362684"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-74"></span><span>    </span><span id="local-6989586621679362683"><span class="annot"><span class="annottext">ChatPermissions
-</span><a href="#local-6989586621679362683"><span class="hs-identifier hs-var">permissions</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679362684"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser ChatPermissions
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360164"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679360164"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-74"></span><span>    </span><span id="local-6989586621679360163"><span class="annot"><span class="annottext">ChatPermissions
+</span><a href="#local-6989586621679360163"><span class="hs-identifier hs-var">permissions</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360164"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser ChatPermissions
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;permissions&quot;</span></span><span>
-</span><span id="line-75"></span><span>    </span><span id="local-6989586621679362682"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679362682"><span class="hs-identifier hs-var">restricted_until_date</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679362684"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><span id="line-75"></span><span>    </span><span id="local-6989586621679360162"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679360162"><span class="hs-identifier hs-var">restricted_until_date</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360164"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;restricted_until_date&quot;</span></span><span>
-</span><span id="line-76"></span><span>    </span><span id="local-6989586621679362681"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362681"><span class="hs-identifier hs-var">is_member</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679362684"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><span id="line-76"></span><span>    </span><span id="local-6989586621679360161"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679360161"><span class="hs-identifier hs-var">is_member</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360164"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_member&quot;</span></span><span>
 </span><span id="line-77"></span><span>    </span><span class="annot"><span class="annottext">ChatMemberStatus -&gt; Parser ChatMemberStatus
@@ -402,15 +402,15 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ChatMemberStatusRestricted :: ChatPermissions -&gt; Int -&gt; Bool -&gt; ChatMemberStatus
 </span><a href="API.ChatMemberStatus.html#ChatMemberStatusRestricted"><span class="hs-identifier hs-type hs-type">ChatMemberStatusRestricted</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">permissions :: ChatPermissions
 </span><a href="API.ChatMemberStatus.html#permissions"><span class="hs-identifier hs-var">permissions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ChatPermissions
-</span><a href="#local-6989586621679362683"><span class="hs-identifier hs-var">permissions</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">restricted_until_date :: Int
+</span><a href="#local-6989586621679360163"><span class="hs-identifier hs-var">permissions</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">restricted_until_date :: Int
 </span><a href="API.ChatMemberStatus.html#restricted_until_date"><span class="hs-identifier hs-var">restricted_until_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679362682"><span class="hs-identifier hs-var">restricted_until_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_member :: Bool
+</span><a href="#local-6989586621679360162"><span class="hs-identifier hs-var">restricted_until_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_member :: Bool
 </span><a href="API.ChatMemberStatus.html#is_member"><span class="hs-identifier hs-var">is_member</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679362681"><span class="hs-identifier hs-var">is_member</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679360161"><span class="hs-identifier hs-var">is_member</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-78"></span><span>
-</span><span id="line-79"></span><span>   </span><span class="annot"><a href="#local-6989586621679362705"><span class="hs-identifier hs-type">parseChatMemberStatusLeft</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatus"><span class="hs-identifier hs-type">ChatMemberStatus</span></a></span><span>
-</span><span id="line-80"></span><span>   </span><span id="local-6989586621679362705"><span class="annot"><span class="annottext">parseChatMemberStatusLeft :: Value -&gt; Parser ChatMemberStatus
-</span><a href="#local-6989586621679362705"><span class="hs-identifier hs-var hs-var">parseChatMemberStatusLeft</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-79"></span><span>   </span><span class="annot"><a href="#local-6989586621679360185"><span class="hs-identifier hs-type">parseChatMemberStatusLeft</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatus"><span class="hs-identifier hs-type">ChatMemberStatus</span></a></span><span>
+</span><span id="line-80"></span><span>   </span><span id="local-6989586621679360185"><span class="annot"><span class="annottext">parseChatMemberStatusLeft :: Value -&gt; Parser ChatMemberStatus
+</span><a href="#local-6989586621679360185"><span class="hs-identifier hs-var hs-var">parseChatMemberStatusLeft</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatMemberStatus)
 -&gt; Value
 -&gt; Parser ChatMemberStatus
@@ -421,8 +421,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ChatMemberStatus
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679362679"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679362679"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360159"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679360159"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-81"></span><span>    </span><span class="annot"><span class="annottext">ChatMemberStatus -&gt; Parser ChatMemberStatus
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ChatMemberStatus -&gt; Parser ChatMemberStatus)
@@ -431,9 +431,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ChatMemberStatusLeft :: ChatMemberStatus
 </span><a href="API.ChatMemberStatus.html#ChatMemberStatusLeft"><span class="hs-identifier hs-type hs-type">ChatMemberStatusLeft</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-82"></span><span>
-</span><span id="line-83"></span><span>   </span><span class="annot"><a href="#local-6989586621679362704"><span class="hs-identifier hs-type">parseChatMemberStatusBanned</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatus"><span class="hs-identifier hs-type">ChatMemberStatus</span></a></span><span>
-</span><span id="line-84"></span><span>   </span><span id="local-6989586621679362704"><span class="annot"><span class="annottext">parseChatMemberStatusBanned :: Value -&gt; Parser ChatMemberStatus
-</span><a href="#local-6989586621679362704"><span class="hs-identifier hs-var hs-var">parseChatMemberStatusBanned</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-83"></span><span>   </span><span class="annot"><a href="#local-6989586621679360184"><span class="hs-identifier hs-type">parseChatMemberStatusBanned</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatMemberStatus.html#ChatMemberStatus"><span class="hs-identifier hs-type">ChatMemberStatus</span></a></span><span>
+</span><span id="line-84"></span><span>   </span><span id="local-6989586621679360184"><span class="annot"><span class="annottext">parseChatMemberStatusBanned :: Value -&gt; Parser ChatMemberStatus
+</span><a href="#local-6989586621679360184"><span class="hs-identifier hs-var hs-var">parseChatMemberStatusBanned</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatMemberStatus)
 -&gt; Value
 -&gt; Parser ChatMemberStatus
@@ -444,11 +444,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ChatMemberStatus
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679362677"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679362677"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-85"></span><span>    </span><span id="local-6989586621679362676"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679362676"><span class="hs-identifier hs-var">banned_until_date</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679362677"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360157"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679360157"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-85"></span><span>    </span><span id="local-6989586621679360156"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679360156"><span class="hs-identifier hs-var">banned_until_date</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679360157"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;banned_until_date&quot;</span></span><span>
 </span><span id="line-86"></span><span>    </span><span class="annot"><span class="annottext">ChatMemberStatus -&gt; Parser ChatMemberStatus
@@ -459,4 +459,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ChatMemberStatusBanned :: Int -&gt; ChatMemberStatus
 </span><a href="API.ChatMemberStatus.html#ChatMemberStatusBanned"><span class="hs-identifier hs-type hs-type">ChatMemberStatusBanned</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">banned_until_date :: Int
 </span><a href="API.ChatMemberStatus.html#banned_until_date"><span class="hs-identifier hs-var">banned_until_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679362676"><span class="hs-identifier hs-var">banned_until_date</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679360156"><span class="hs-identifier hs-var">banned_until_date</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

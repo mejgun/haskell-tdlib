@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetUserFullInfo where
 
 import Data.Aeson.Types

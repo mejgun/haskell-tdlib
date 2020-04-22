@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SendMessageAlbum where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SearchBackground where
 
 import Data.Aeson.Types

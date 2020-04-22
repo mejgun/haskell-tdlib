@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.CallDiscardReason where
 
 import Data.Aeson.Types

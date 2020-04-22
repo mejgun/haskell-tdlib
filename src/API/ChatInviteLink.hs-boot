@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.ChatInviteLink where
 
 import Data.Aeson.Types

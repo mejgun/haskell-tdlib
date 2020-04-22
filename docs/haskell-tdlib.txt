@@ -7151,112 +7151,115 @@ instance Data.Aeson.Types.FromJSON.FromJSON API.WebPage.WebPage
 
 module API.GeneralResult
 data GeneralResult
-AuthorizationState :: AuthorizationState -> Maybe String -> GeneralResult
-Session :: Session -> Maybe String -> GeneralResult
-Updates :: Updates -> Maybe String -> GeneralResult
-RecoveryEmailAddress :: RecoveryEmailAddress -> Maybe String -> GeneralResult
-PasswordState :: PasswordState -> Maybe String -> GeneralResult
-TemporaryPasswordState :: TemporaryPasswordState -> Maybe String -> GeneralResult
-UserFullInfo :: UserFullInfo -> Maybe String -> GeneralResult
-BasicGroup :: BasicGroup -> Maybe String -> GeneralResult
-BasicGroupFullInfo :: BasicGroupFullInfo -> Maybe String -> GeneralResult
-Supergroup :: Supergroup -> Maybe String -> GeneralResult
-SupergroupFullInfo :: SupergroupFullInfo -> Maybe String -> GeneralResult
-SecretChat :: SecretChat -> Maybe String -> GeneralResult
-ChatsNearby :: ChatsNearby -> Maybe String -> GeneralResult
-CheckChatUsernameResult :: CheckChatUsernameResult -> Maybe String -> GeneralResult
-FoundMessages :: FoundMessages -> Maybe String -> GeneralResult
-PublicMessageLink :: PublicMessageLink -> Maybe String -> GeneralResult
-MessageLinkInfo :: MessageLinkInfo -> Maybe String -> GeneralResult
-Messages :: Messages -> Maybe String -> GeneralResult
-TextEntities :: TextEntities -> Maybe String -> GeneralResult
-FormattedText :: FormattedText -> Maybe String -> GeneralResult
-LanguagePackStringValue :: LanguagePackStringValue -> Maybe String -> GeneralResult
-LoginUrlInfo :: LoginUrlInfo -> Maybe String -> GeneralResult
-InlineQueryResults :: InlineQueryResults -> Maybe String -> GeneralResult
-CallbackQueryAnswer :: CallbackQueryAnswer -> Maybe String -> GeneralResult
-Message :: Message -> Maybe String -> GeneralResult
-GameHighScores :: GameHighScores -> Maybe String -> GeneralResult
-CanTransferOwnershipResult :: CanTransferOwnershipResult -> Maybe String -> GeneralResult
-ChatMember :: ChatMember -> Maybe String -> GeneralResult
-ChatAdministrators :: ChatAdministrators -> Maybe String -> GeneralResult
-Chats :: Chats -> Maybe String -> GeneralResult
-ScopeNotificationSettings :: ScopeNotificationSettings -> Maybe String -> GeneralResult
-FilePart :: FilePart -> Maybe String -> GeneralResult
-ChatInviteLink :: ChatInviteLink -> Maybe String -> GeneralResult
-ChatInviteLinkInfo :: ChatInviteLinkInfo -> Maybe String -> GeneralResult
-Chat :: Chat -> Maybe String -> GeneralResult
-CallId :: CallId -> Maybe String -> GeneralResult
-Count :: Count -> Maybe String -> GeneralResult
-ImportedContacts :: ImportedContacts -> Maybe String -> GeneralResult
-UserProfilePhotos :: UserProfilePhotos -> Maybe String -> GeneralResult
-StickerSets :: StickerSets -> Maybe String -> GeneralResult
-Stickers :: Stickers -> Maybe String -> GeneralResult
-Emojis :: Emojis -> Maybe String -> GeneralResult
-Animations :: Animations -> Maybe String -> GeneralResult
-Users :: Users -> Maybe String -> GeneralResult
-Hashtags :: Hashtags -> Maybe String -> GeneralResult
-WebPage :: WebPage -> Maybe String -> GeneralResult
-WebPageInstantView :: WebPageInstantView -> Maybe String -> GeneralResult
-Sessions :: Sessions -> Maybe String -> GeneralResult
-ConnectedWebsites :: ConnectedWebsites -> Maybe String -> GeneralResult
-ChatMembers :: ChatMembers -> Maybe String -> GeneralResult
-ChatEvents :: ChatEvents -> Maybe String -> GeneralResult
-PaymentForm :: PaymentForm -> Maybe String -> GeneralResult
-ValidatedOrderInfo :: ValidatedOrderInfo -> Maybe String -> GeneralResult
-PaymentResult :: PaymentResult -> Maybe String -> GeneralResult
-PaymentReceipt :: PaymentReceipt -> Maybe String -> GeneralResult
-OrderInfo :: OrderInfo -> Maybe String -> GeneralResult
-User :: User -> Maybe String -> GeneralResult
-Backgrounds :: Backgrounds -> Maybe String -> GeneralResult
-Background :: Background -> Maybe String -> GeneralResult
-LocalizationTargetInfo :: LocalizationTargetInfo -> Maybe String -> GeneralResult
-LanguagePackInfo :: LanguagePackInfo -> Maybe String -> GeneralResult
-LanguagePackStrings :: LanguagePackStrings -> Maybe String -> GeneralResult
-PushReceiverId :: PushReceiverId -> Maybe String -> GeneralResult
-TMeUrls :: TMeUrls -> Maybe String -> GeneralResult
-UserPrivacySettingRules :: UserPrivacySettingRules -> Maybe String -> GeneralResult
-OptionValue :: OptionValue -> Maybe String -> GeneralResult
-AccountTtl :: AccountTtl -> Maybe String -> GeneralResult
-HttpUrl :: HttpUrl -> Maybe String -> GeneralResult
-ChatStatistics :: ChatStatistics -> Maybe String -> GeneralResult
-StatisticsGraph :: StatisticsGraph -> Maybe String -> GeneralResult
-StorageStatisticsFast :: StorageStatisticsFast -> Maybe String -> GeneralResult
-DatabaseStatistics :: DatabaseStatistics -> Maybe String -> GeneralResult
-StorageStatistics :: StorageStatistics -> Maybe String -> GeneralResult
-NetworkStatistics :: NetworkStatistics -> Maybe String -> GeneralResult
-AutoDownloadSettingsPresets :: AutoDownloadSettingsPresets -> Maybe String -> GeneralResult
-BankCardInfo :: BankCardInfo -> Maybe String -> GeneralResult
-PassportElements :: PassportElements -> Maybe String -> GeneralResult
-PassportElement :: PassportElement -> Maybe String -> GeneralResult
-EmailAddressAuthenticationCodeInfo :: EmailAddressAuthenticationCodeInfo -> Maybe String -> GeneralResult
-PassportAuthorizationForm :: PassportAuthorizationForm -> Maybe String -> GeneralResult
-PassportElementsWithErrors :: PassportElementsWithErrors -> Maybe String -> GeneralResult
-AuthenticationCodeInfo :: AuthenticationCodeInfo -> Maybe String -> GeneralResult
-StickerSet :: StickerSet -> Maybe String -> GeneralResult
-File :: File -> Maybe String -> GeneralResult
-CustomRequestResult :: CustomRequestResult -> Maybe String -> GeneralResult
-DeepLinkInfo :: DeepLinkInfo -> Maybe String -> GeneralResult
-JsonValue :: JsonValue -> Maybe String -> GeneralResult
-Proxy :: Proxy -> Maybe String -> GeneralResult
-Proxies :: Proxies -> Maybe String -> GeneralResult
-Text :: Text -> Maybe String -> GeneralResult
-Seconds :: Seconds -> Maybe String -> GeneralResult
-LogStream :: LogStream -> Maybe String -> GeneralResult
-LogTags :: LogTags -> Maybe String -> GeneralResult
-LogVerbosityLevel :: LogVerbosityLevel -> Maybe String -> GeneralResult
-TestString :: TestString -> Maybe String -> GeneralResult
-TestBytes :: TestBytes -> Maybe String -> GeneralResult
-TestVectorInt :: TestVectorInt -> Maybe String -> GeneralResult
-TestVectorIntObject :: TestVectorIntObject -> Maybe String -> GeneralResult
-TestVectorString :: TestVectorString -> Maybe String -> GeneralResult
-TestVectorStringObject :: TestVectorStringObject -> Maybe String -> GeneralResult
-TestInt :: TestInt -> Maybe String -> GeneralResult
-Ok :: Ok -> Maybe String -> GeneralResult
-Update :: Update -> Maybe String -> GeneralResult
-Error :: Error -> Maybe String -> GeneralResult
+AuthorizationState :: AuthorizationState -> GeneralResult
+Session :: Session -> GeneralResult
+Updates :: Updates -> GeneralResult
+RecoveryEmailAddress :: RecoveryEmailAddress -> GeneralResult
+PasswordState :: PasswordState -> GeneralResult
+TemporaryPasswordState :: TemporaryPasswordState -> GeneralResult
+UserFullInfo :: UserFullInfo -> GeneralResult
+BasicGroup :: BasicGroup -> GeneralResult
+BasicGroupFullInfo :: BasicGroupFullInfo -> GeneralResult
+Supergroup :: Supergroup -> GeneralResult
+SupergroupFullInfo :: SupergroupFullInfo -> GeneralResult
+SecretChat :: SecretChat -> GeneralResult
+ChatsNearby :: ChatsNearby -> GeneralResult
+CheckChatUsernameResult :: CheckChatUsernameResult -> GeneralResult
+FoundMessages :: FoundMessages -> GeneralResult
+PublicMessageLink :: PublicMessageLink -> GeneralResult
+MessageLinkInfo :: MessageLinkInfo -> GeneralResult
+Messages :: Messages -> GeneralResult
+TextEntities :: TextEntities -> GeneralResult
+FormattedText :: FormattedText -> GeneralResult
+LanguagePackStringValue :: LanguagePackStringValue -> GeneralResult
+LoginUrlInfo :: LoginUrlInfo -> GeneralResult
+InlineQueryResults :: InlineQueryResults -> GeneralResult
+CallbackQueryAnswer :: CallbackQueryAnswer -> GeneralResult
+Message :: Message -> GeneralResult
+GameHighScores :: GameHighScores -> GeneralResult
+CanTransferOwnershipResult :: CanTransferOwnershipResult -> GeneralResult
+ChatMember :: ChatMember -> GeneralResult
+ChatAdministrators :: ChatAdministrators -> GeneralResult
+Chats :: Chats -> GeneralResult
+ScopeNotificationSettings :: ScopeNotificationSettings -> GeneralResult
+FilePart :: FilePart -> GeneralResult
+ChatInviteLink :: ChatInviteLink -> GeneralResult
+ChatInviteLinkInfo :: ChatInviteLinkInfo -> GeneralResult
+Chat :: Chat -> GeneralResult
+CallId :: CallId -> GeneralResult
+Count :: Count -> GeneralResult
+ImportedContacts :: ImportedContacts -> GeneralResult
+UserProfilePhotos :: UserProfilePhotos -> GeneralResult
+StickerSets :: StickerSets -> GeneralResult
+Stickers :: Stickers -> GeneralResult
+Emojis :: Emojis -> GeneralResult
+Animations :: Animations -> GeneralResult
+Users :: Users -> GeneralResult
+Hashtags :: Hashtags -> GeneralResult
+WebPage :: WebPage -> GeneralResult
+WebPageInstantView :: WebPageInstantView -> GeneralResult
+Sessions :: Sessions -> GeneralResult
+ConnectedWebsites :: ConnectedWebsites -> GeneralResult
+ChatMembers :: ChatMembers -> GeneralResult
+ChatEvents :: ChatEvents -> GeneralResult
+PaymentForm :: PaymentForm -> GeneralResult
+ValidatedOrderInfo :: ValidatedOrderInfo -> GeneralResult
+PaymentResult :: PaymentResult -> GeneralResult
+PaymentReceipt :: PaymentReceipt -> GeneralResult
+OrderInfo :: OrderInfo -> GeneralResult
+User :: User -> GeneralResult
+Backgrounds :: Backgrounds -> GeneralResult
+Background :: Background -> GeneralResult
+LocalizationTargetInfo :: LocalizationTargetInfo -> GeneralResult
+LanguagePackInfo :: LanguagePackInfo -> GeneralResult
+LanguagePackStrings :: LanguagePackStrings -> GeneralResult
+PushReceiverId :: PushReceiverId -> GeneralResult
+TMeUrls :: TMeUrls -> GeneralResult
+UserPrivacySettingRules :: UserPrivacySettingRules -> GeneralResult
+OptionValue :: OptionValue -> GeneralResult
+AccountTtl :: AccountTtl -> GeneralResult
+HttpUrl :: HttpUrl -> GeneralResult
+ChatStatistics :: ChatStatistics -> GeneralResult
+StatisticsGraph :: StatisticsGraph -> GeneralResult
+StorageStatisticsFast :: StorageStatisticsFast -> GeneralResult
+DatabaseStatistics :: DatabaseStatistics -> GeneralResult
+StorageStatistics :: StorageStatistics -> GeneralResult
+NetworkStatistics :: NetworkStatistics -> GeneralResult
+AutoDownloadSettingsPresets :: AutoDownloadSettingsPresets -> GeneralResult
+BankCardInfo :: BankCardInfo -> GeneralResult
+PassportElements :: PassportElements -> GeneralResult
+PassportElement :: PassportElement -> GeneralResult
+EmailAddressAuthenticationCodeInfo :: EmailAddressAuthenticationCodeInfo -> GeneralResult
+PassportAuthorizationForm :: PassportAuthorizationForm -> GeneralResult
+PassportElementsWithErrors :: PassportElementsWithErrors -> GeneralResult
+AuthenticationCodeInfo :: AuthenticationCodeInfo -> GeneralResult
+StickerSet :: StickerSet -> GeneralResult
+File :: File -> GeneralResult
+CustomRequestResult :: CustomRequestResult -> GeneralResult
+DeepLinkInfo :: DeepLinkInfo -> GeneralResult
+JsonValue :: JsonValue -> GeneralResult
+Proxy :: Proxy -> GeneralResult
+Proxies :: Proxies -> GeneralResult
+Text :: Text -> GeneralResult
+Seconds :: Seconds -> GeneralResult
+LogStream :: LogStream -> GeneralResult
+LogTags :: LogTags -> GeneralResult
+LogVerbosityLevel :: LogVerbosityLevel -> GeneralResult
+TestString :: TestString -> GeneralResult
+TestBytes :: TestBytes -> GeneralResult
+TestVectorInt :: TestVectorInt -> GeneralResult
+TestVectorIntObject :: TestVectorIntObject -> GeneralResult
+TestVectorString :: TestVectorString -> GeneralResult
+TestVectorStringObject :: TestVectorStringObject -> GeneralResult
+TestInt :: TestInt -> GeneralResult
+Ok :: Ok -> GeneralResult
+Update :: Update -> GeneralResult
+Error :: Error -> GeneralResult
+data ResultWithExtra
+ResultWithExtra :: GeneralResult -> Maybe String -> ResultWithExtra
+instance GHC.Show.Show API.GeneralResult.ResultWithExtra
 instance GHC.Show.Show API.GeneralResult.GeneralResult
-instance Data.Aeson.Types.ToJSON.ToJSON API.GeneralResult.GeneralResult
+instance Data.Aeson.Types.FromJSON.FromJSON API.GeneralResult.ResultWithExtra
 instance Data.Aeson.Types.FromJSON.FromJSON API.GeneralResult.GeneralResult
 
 module API.WebPageInstantView
@@ -7275,5 +7278,5 @@ module TDLib
 create :: IO Client
 send :: ToJSON a => Client -> a -> IO ()
 sendWExtra :: ToJSON a => Client -> a -> IO String
-receive :: Client -> IO (Maybe GeneralResult)
+receive :: Client -> IO (Maybe ResultWithExtra)
 destroy :: Client -> IO ()

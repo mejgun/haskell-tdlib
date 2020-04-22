@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.ReportSupergroupSpam where
 
 import Data.Aeson.Types

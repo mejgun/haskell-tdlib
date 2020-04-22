@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Video where
 
 import Data.Aeson.Types

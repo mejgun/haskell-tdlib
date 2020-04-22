@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetSavedAnimations where
 
 import Data.Aeson.Types

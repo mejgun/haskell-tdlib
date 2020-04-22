@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.VideoNote where
 
 import Data.Aeson.Types

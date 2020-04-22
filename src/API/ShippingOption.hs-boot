@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.ShippingOption where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.PageBlockTableCell where
 
 import Data.Aeson.Types

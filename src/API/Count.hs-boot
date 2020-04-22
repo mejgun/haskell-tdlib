@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Count where
 
 import Data.Aeson.Types

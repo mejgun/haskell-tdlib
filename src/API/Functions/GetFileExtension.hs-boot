@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetFileExtension where
 
 import Data.Aeson.Types

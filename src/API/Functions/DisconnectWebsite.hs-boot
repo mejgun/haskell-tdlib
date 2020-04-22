@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.DisconnectWebsite where
 
 import Data.Aeson.Types

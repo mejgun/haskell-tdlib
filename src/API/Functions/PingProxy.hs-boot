@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.PingProxy where
 
 import Data.Aeson.Types

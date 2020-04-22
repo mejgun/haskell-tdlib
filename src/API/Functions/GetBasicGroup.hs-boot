@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetBasicGroup where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SearchSecretMessages where
 
 import Data.Aeson.Types

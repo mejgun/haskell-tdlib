@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.AddChatMember where
 
 import Data.Aeson.Types

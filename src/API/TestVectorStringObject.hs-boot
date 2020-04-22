@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.TestVectorStringObject where
 
 import Data.Aeson.Types

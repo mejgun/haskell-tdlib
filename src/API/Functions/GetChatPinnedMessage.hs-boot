@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetChatPinnedMessage where
 
 import Data.Aeson.Types

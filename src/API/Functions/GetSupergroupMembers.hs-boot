@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetSupergroupMembers where
 
 import Data.Aeson.Types

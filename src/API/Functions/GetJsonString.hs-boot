@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetJsonString where
 
 import Data.Aeson.Types

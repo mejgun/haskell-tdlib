@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Game where
 
 import Data.Aeson.Types

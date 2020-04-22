@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.LogVerbosityLevel where
 
 import Data.Aeson.Types

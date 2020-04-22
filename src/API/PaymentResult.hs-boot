@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.PaymentResult where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.BlockUser where
 
 import Data.Aeson.Types

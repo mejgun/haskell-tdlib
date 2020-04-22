@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Invoice where
 
 import Data.Aeson.Types

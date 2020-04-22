@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SetUserPrivacySettingRules where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetBackgroundUrl where
 
 import Data.Aeson.Types

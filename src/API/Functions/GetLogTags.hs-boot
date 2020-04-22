@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetLogTags where
 
 import Data.Aeson.Types

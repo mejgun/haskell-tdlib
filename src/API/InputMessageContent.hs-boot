@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.InputMessageContent where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.SearchMessagesFilter where
 
 import Data.Aeson.Types

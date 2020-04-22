@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetInstalledStickerSets where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.EncryptedCredentials where
 
 import Data.Aeson.Types

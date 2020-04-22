@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.RecoveryEmailAddress where
 
 import Data.Aeson.Types

@@ -34,14 +34,85 @@ writeToFiles
 writeToFiles addr modName m =
   mapM_
       (\(a, b) -> do
-        writeFile (T.unpack (T.concat ["../src/", addr, "/", a, ".hs"])) (w a b)
+        writeFile (T.unpack (T.concat ["../src/", addr, "/", a, ".hs"]))
+                  (wr a b)
         writeFile (T.unpack (T.concat ["../src/", addr, "/", a, ".hs-boot"]))
-                  (whb a)
+                  (whr a)
       )
     $ Map.toList m
  where
-  generated = "-- GENERATED\n\n"
+  generated = "-- GENERATED\n"
   moduleName d = T.concat ["module ", modName, ".", d, " where\n\n"]
+  wr a b = if a == "GeneralResult" then wgr a b else w a b
+  whr a = if a == "GeneralResult" then wgrhb a else whb a
+  wgrhb d = T.unpack $ T.concat
+    [ generated
+    , moduleName d
+    , "import Data.Aeson.Types\n\n"
+    , "data "
+    , d
+    , "\n\ndata ResultWithExtra"
+    , "\n\ninstance FromJSON "
+    , d
+    , "\n\ninstance Show "
+    , d
+    , "\n\ninstance FromJSON ResultWithExtra"
+    , "\n\ninstance Show ResultWithExtra"
+    ]
+  wgr d e = T.unpack $ T.concat
+    [ generated
+    , "{-# LANGUAGE OverloadedStrings #-}\n"
+    , moduleName d
+    , "import qualified Data.Aeson as A\n"
+    , "import qualified Data.Aeson.Types as T\n"
+    , (imports $ keys e)
+    , "\ndata "
+    , d
+    , " = \n "
+    , T.intercalate " \n | " ww
+    , " deriving (Show)"
+    , "\n\ndata ResultWithExtra = ResultWithExtra GeneralResult (Maybe String) deriving (Show)"
+    , "\n\ninstance T.FromJSON ResultWithExtra where\n"
+    , " parseJSON v@(T.Object obj) = do\n"
+    , "   case (T.fromJSON v :: T.Result GeneralResult) of\n"
+    , "    T.Success a -> return $ ResultWithExtra a e\n"
+    , "    _           -> mempty\n"
+    , "  where\n"
+    , "   e :: Maybe String\n"
+    , "   e = case T.parse (\\o -> o A..:? \"@extra\" :: T.Parser (Maybe String)) obj of\n"
+    , "     T.Success r -> r\n"
+    , "     _           -> Nothing\n"
+    , T.concat
+      [ "\n\ninstance T.FromJSON "
+      , d
+      , " where\n"
+      , " parseJSON v@(T.Object obj) = do\n"
+      , T.concat
+        [ "   mconcat t\n"
+        , "  where\n"
+        , "   t =\n"
+        , "     [\n"
+        , T.intercalate ",\n" $ map
+          (\(a, _) -> T.concat
+            [ "      case (T.fromJSON v :: T.Result "
+            , a
+            , "."
+            , a
+            , ") of\n"
+            , "       T.Success a -> return $ "
+            , a
+            , " a\n"
+            , "       _ -> mempty"
+            ]
+          )
+          e
+        , "\n    ]\n"
+        ]
+      ]
+    ]
+   where
+    ww = map (\(a, b) -> T.concat [toTitle a, " ", (www b)]) e
+    www l = T.intercalate " " (map (\(_, b) -> b) l)
   whb d = T.unpack $ T.concat
     [ generated
     , moduleName d
@@ -78,6 +149,18 @@ writeToFiles addr modName m =
       ["import {-# SOURCE #-} qualified ", api, ".", k, " as ", k, "\n"]
     )
     ks
+  ww :: [(T.Text, [(T.Text, T.Text)])] -> T.Text
+  ww e =
+    T.intercalate " \n | " $ map (\(a, b) -> T.concat [toTitle a, www b]) e
+  www e =
+    case T.intercalate ", " (map (\(a, b) -> T.concat [a, " :: ", b]) e) of
+      "" -> ""
+      p  -> T.concat [" { ", p, " } "]
+  keys :: [(T.Text, [(T.Text, T.Text)])] -> [T.Text]
+  keys e = uniq $ foldl
+    (\acc (_, b) -> (foldl (\acc2 (_, d) -> (myAdd d acc2)) acc b))
+    []
+    e
   toJsonString :: T.Text -> [(T.Text, [(T.Text, T.Text)])] -> T.Text
   toJsonString m e = T.concat
     [ "\n\ninstance T.ToJSON "
@@ -110,91 +193,50 @@ writeToFiles addr modName m =
     , m
     , " where\n"
     , " parseJSON v@(T.Object obj) = do\n"
-    , if m == "GeneralResult"
-      then T.concat
-        [ "   mconcat t\n"
-        , "  where\n"
-        , "   e :: Maybe String\n"
-        , "   e = case T.parse (\\o -> o A..:? \"@extra\" :: T.Parser (Maybe String)) obj of\n"
-        , "     T.Success r -> r\n"
-        , "     _           -> Nothing\n"
-        , "   t =\n"
-        , "     [\n"
-        , T.intercalate ",\n" $ map
-          (\(a, _) -> T.concat
-            [ "      case (T.fromJSON v :: T.Result "
-            , a
-            , "."
-            , a
-            , ") of\n"
-            , "       T.Success a -> return $ "
-            , a
-            , " a e\n"
-            , "       _ -> mempty"
-            ]
-          )
-          e
-        , "\n    ]\n"
-        ]
-      else T.concat
-        [ "  t <- obj A..: \"@type\" :: T.Parser String\n"
-        , "  case t of\n"
-        , T.intercalate "\n"
-        $  (map
-             (\(a, b) -> T.concat ["   \"", a, "\" -> parse", toTitle a, " v"])
-             e
-           )
-        ++ ["   _ -> mempty"]
-        , "\n  where\n"
-        , T.intercalate "\n\n" $ map
-          (\(a, b) -> T.concat
-            [ "   parse"
-            , toTitle a
-            , " :: A.Value -> T.Parser "
-            , m
-            , "\n"
-            , "   parse"
-            , toTitle a
-            , " = A.withObject \""
-            , toTitle a
-            , "\" $ \\o -> do\n"
-            , T.intercalate "\n"
-            $  map
-                 (\(c, _) ->
-                   T.concat
-                     ["    ", c, " <- o A..: \"", T.dropAround (== '_') c, "\""]
-                 )
-                 b
-            ++ [ T.concat
-                   [ "    return $ "
-                   , toTitle a
-                   , " { "
-                   , T.intercalate ", "
-                     $ map (\(c, _) -> T.concat [c, " = ", c]) b
-                   , " }"
-                   ]
-               ]
-            ]
-          )
-          e
-        ]
+    , T.concat
+      [ "  t <- obj A..: \"@type\" :: T.Parser String\n"
+      , "  case t of\n"
+      , T.intercalate "\n"
+      $  (map
+           (\(a, b) -> T.concat ["   \"", a, "\" -> parse", toTitle a, " v"])
+           e
+         )
+      ++ ["   _ -> mempty"]
+      , "\n  where\n"
+      , T.intercalate "\n\n" $ map
+        (\(a, b) -> T.concat
+          [ "   parse"
+          , toTitle a
+          , " :: A.Value -> T.Parser "
+          , m
+          , "\n"
+          , "   parse"
+          , toTitle a
+          , " = A.withObject \""
+          , toTitle a
+          , "\" $ \\o -> do\n"
+          , T.intercalate "\n"
+          $  map
+               (\(c, _) -> T.concat
+                 ["    ", c, " <- o A..: \"", T.dropAround (== '_') c, "\""]
+               )
+               b
+          ++ [ T.concat
+                 [ "    return $ "
+                 , toTitle a
+                 , " { "
+                 , T.intercalate ", "
+                   $ map (\(c, _) -> T.concat [c, " = ", c]) b
+                 , " }"
+                 ]
+             ]
+          ]
+        )
+        e
+      ]
     ]
 
-  ww :: [(T.Text, [(T.Text, T.Text)])] -> T.Text
-  ww e = T.intercalate " \n | " $ map
-    (\(a, b) -> T.concat [toTitle a, (T.replace ",  :: " " " (www b))])
-    e
-  www e =
-    case T.intercalate ", " (map (\(a, b) -> T.concat [a, " :: ", b]) e) of
-      "" -> ""
-      p  -> case T.stripPrefix " ::" p of
-        Just x -> x
-        _      -> T.concat [" { ", p, " } "]
-  keys :: [(T.Text, [(T.Text, T.Text)])] -> [T.Text]
-  keys e = uniq $ foldl
-    (\acc (_, b) -> (foldl (\acc2 (_, d) -> (myAdd d acc2)) acc b))
-    []
-    e
+
 
   myAdd :: T.Text -> [T.Text] -> [T.Text]
   myAdd x xs = do
@@ -333,9 +375,7 @@ uniq l = foldl (\acc x -> if (x `elem` acc) then acc else x : acc) [] l
 makeGeneralResult :: [T.Text] -> [(T.Text, [(T.Text, T.Text)])]
 makeGeneralResult l = foldl
   (\acc x -> if length (x) > 1
-    then
-      let n = myStrip (last x)
-      in  (n, [("", T.concat [n, ".", n]), ("", "(Maybe String)")]) : acc
+    then let n = myStrip (last x) in (n, [("", T.concat [n, ".", n])]) : acc
     else acc
   )
   []

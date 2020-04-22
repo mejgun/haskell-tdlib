@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Minithumbnail where
 
 import Data.Aeson.Types

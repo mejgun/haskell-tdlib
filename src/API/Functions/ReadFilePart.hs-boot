@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.ReadFilePart where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.LabeledPricePart where
 
 import Data.Aeson.Types

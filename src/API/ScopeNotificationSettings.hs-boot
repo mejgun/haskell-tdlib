@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.ScopeNotificationSettings where
 
 import Data.Aeson.Types

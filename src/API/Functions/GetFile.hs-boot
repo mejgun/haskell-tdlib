@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetFile where
 
 import Data.Aeson.Types

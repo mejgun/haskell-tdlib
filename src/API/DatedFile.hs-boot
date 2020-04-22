@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.DatedFile where
 
 import Data.Aeson.Types

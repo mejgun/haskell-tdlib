@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetLanguagePackStrings where
 
 import Data.Aeson.Types

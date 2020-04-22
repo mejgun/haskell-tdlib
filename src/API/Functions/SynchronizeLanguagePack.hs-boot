@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SynchronizeLanguagePack where
 
 import Data.Aeson.Types

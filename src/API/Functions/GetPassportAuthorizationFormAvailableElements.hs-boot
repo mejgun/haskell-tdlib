@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetPassportAuthorizationFormAvailableElements where
 
 import Data.Aeson.Types

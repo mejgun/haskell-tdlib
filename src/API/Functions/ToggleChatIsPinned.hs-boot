@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.ToggleChatIsPinned where
 
 import Data.Aeson.Types

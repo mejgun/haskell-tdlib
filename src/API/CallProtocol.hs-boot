@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.CallProtocol where
 
 import Data.Aeson.Types

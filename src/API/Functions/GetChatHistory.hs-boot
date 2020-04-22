@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetChatHistory where
 
 import Data.Aeson.Types

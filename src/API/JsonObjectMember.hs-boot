@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.JsonObjectMember where
 
 import Data.Aeson.Types

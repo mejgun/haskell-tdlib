@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.ChatsNearby where
 
 import Data.Aeson.Types

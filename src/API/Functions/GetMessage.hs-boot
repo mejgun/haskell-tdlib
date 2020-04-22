@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetMessage where
 
 import Data.Aeson.Types

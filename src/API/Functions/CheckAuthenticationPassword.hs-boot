@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.CheckAuthenticationPassword where
 
 import Data.Aeson.Types

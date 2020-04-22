@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.CancelDownloadFile where
 
 import Data.Aeson.Types

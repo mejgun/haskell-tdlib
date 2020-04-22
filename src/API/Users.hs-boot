@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Users where
 
 import Data.Aeson.Types

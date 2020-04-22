@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetMarkdownText where
 
 import Data.Aeson.Types

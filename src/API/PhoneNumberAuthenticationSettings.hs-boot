@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.PhoneNumberAuthenticationSettings where
 
 import Data.Aeson.Types

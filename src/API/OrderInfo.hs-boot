@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.OrderInfo where
 
 import Data.Aeson.Types

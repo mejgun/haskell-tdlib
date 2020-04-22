@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.OptionValue where
 
 import Data.Aeson.Types

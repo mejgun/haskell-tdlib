@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.PersonalDocument where
 
 import Data.Aeson.Types

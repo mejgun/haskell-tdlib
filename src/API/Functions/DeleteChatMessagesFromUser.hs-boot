@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.DeleteChatMessagesFromUser where
 
 import Data.Aeson.Types

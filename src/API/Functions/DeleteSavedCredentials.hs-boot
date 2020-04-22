@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.DeleteSavedCredentials where
 
 import Data.Aeson.Types

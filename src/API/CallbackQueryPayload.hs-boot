@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.CallbackQueryPayload where
 
 import Data.Aeson.Types

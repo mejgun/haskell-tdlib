@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SearchPublicChats where
 
 import Data.Aeson.Types

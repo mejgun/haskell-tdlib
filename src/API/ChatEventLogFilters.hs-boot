@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.ChatEventLogFilters where
 
 import Data.Aeson.Types

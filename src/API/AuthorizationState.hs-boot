@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.AuthorizationState where
 
 import Data.Aeson.Types

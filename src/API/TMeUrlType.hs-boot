@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.TMeUrlType where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.DeleteFile where
 
 import Data.Aeson.Types

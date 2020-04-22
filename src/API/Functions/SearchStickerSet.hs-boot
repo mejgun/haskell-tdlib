@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SearchStickerSet where
 
 import Data.Aeson.Types

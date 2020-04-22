@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.InlineKeyboardButtonType where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SetChatLocation where
 
 import Data.Aeson.Types

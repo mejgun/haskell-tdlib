@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.RemoveNotification where
 
 import Data.Aeson.Types

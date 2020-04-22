@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.TestUseUpdate where
 
 import Data.Aeson.Types

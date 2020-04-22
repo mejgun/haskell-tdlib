@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetWebPagePreview where
 
 import Data.Aeson.Types

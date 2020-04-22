@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.TestVectorInt where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.PublicMessageLink where
 
 import Data.Aeson.Types

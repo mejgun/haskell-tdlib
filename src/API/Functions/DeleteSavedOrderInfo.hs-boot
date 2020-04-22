@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.DeleteSavedOrderInfo where
 
 import Data.Aeson.Types

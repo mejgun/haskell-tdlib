@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.PageBlockHorizontalAlignment where
 
 import Data.Aeson.Types

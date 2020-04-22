@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.ToggleChatIsMarkedAsUnread where
 
 import Data.Aeson.Types

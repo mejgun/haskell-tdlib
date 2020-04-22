@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.DisableProxy where
 
 import Data.Aeson.Types

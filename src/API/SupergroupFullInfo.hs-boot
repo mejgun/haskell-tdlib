@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.SupergroupFullInfo where
 
 import Data.Aeson.Types

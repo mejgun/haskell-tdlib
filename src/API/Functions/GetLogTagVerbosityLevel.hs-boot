@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetLogTagVerbosityLevel where
 
 import Data.Aeson.Types

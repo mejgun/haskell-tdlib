@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.ConfirmQrCodeAuthentication where
 
 import Data.Aeson.Types

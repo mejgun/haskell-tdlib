@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SetUsername where
 
 import Data.Aeson.Types

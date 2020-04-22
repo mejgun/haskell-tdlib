@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SetDatabaseEncryptionKey where
 
 import Data.Aeson.Types

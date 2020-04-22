@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SetSupergroupUsername where
 
 import Data.Aeson.Types

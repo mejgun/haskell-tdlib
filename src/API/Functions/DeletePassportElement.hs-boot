@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.DeletePassportElement where
 
 import Data.Aeson.Types

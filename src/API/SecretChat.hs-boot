@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.SecretChat where
 
 import Data.Aeson.Types

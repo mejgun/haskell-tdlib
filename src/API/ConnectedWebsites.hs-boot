@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.ConnectedWebsites where
 
 import Data.Aeson.Types

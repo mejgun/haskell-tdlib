@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.RecoverPassword where
 
 import Data.Aeson.Types

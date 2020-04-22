@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.AddContact where
 
 import Data.Aeson.Types

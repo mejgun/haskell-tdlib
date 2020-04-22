@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.PhotoSize where
 
 import Data.Aeson.Types

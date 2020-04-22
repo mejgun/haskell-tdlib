@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.TestGetDifference where
 
 import Data.Aeson.Types

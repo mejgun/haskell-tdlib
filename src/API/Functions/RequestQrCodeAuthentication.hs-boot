@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.RequestQrCodeAuthentication where
 
 import Data.Aeson.Types

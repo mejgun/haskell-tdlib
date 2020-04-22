@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.GameHighScore where
 
 import Data.Aeson.Types

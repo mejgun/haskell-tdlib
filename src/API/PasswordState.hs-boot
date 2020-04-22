@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.PasswordState where
 
 import Data.Aeson.Types

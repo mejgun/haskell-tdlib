@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.CheckChangePhoneNumberCode where
 
 import Data.Aeson.Types

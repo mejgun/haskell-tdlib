@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.RemoteFile where
 
 import Data.Aeson.Types

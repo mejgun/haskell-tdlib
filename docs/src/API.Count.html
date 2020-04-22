@@ -7,7 +7,7 @@
 </span><span id="line-7"></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">data</span><span> </span><span id="Count"><span class="annot"><a href="API.Count.html#Count"><span class="hs-identifier hs-var">Count</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-9"></span><span> </span><span id="Count"><span class="annot"><a href="API.Count.html#Count"><span class="hs-identifier hs-var">Count</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="count"><span class="annot"><span class="annottext">Count -&gt; Int
-</span><a href="API.Count.html#count"><span class="hs-identifier hs-var hs-var">count</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679363766"><span id="local-6989586621679363768"><span id="local-6989586621679363770"><span class="annot"><span class="annottext">Int -&gt; Count -&gt; ShowS
+</span><a href="API.Count.html#count"><span class="hs-identifier hs-var hs-var">count</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679361246"><span id="local-6989586621679361248"><span id="local-6989586621679361250"><span class="annot"><span class="annottext">Int -&gt; Count -&gt; ShowS
 [Count] -&gt; ShowS
 Count -&gt; String
 (Int -&gt; Count -&gt; ShowS)
@@ -22,11 +22,11 @@ showsPrec :: Int -&gt; Count -&gt; ShowS
 $cshowsPrec :: Int -&gt; Count -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679363758"><span id="local-6989586621679363760"><span id="local-6989586621679363762"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Count.html#Count"><span class="hs-identifier hs-type">Count</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-12"></span><span> </span><span id="local-6989586621679363756"><span class="annot"><span class="annottext">toJSON :: Count -&gt; Value
+</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679361238"><span id="local-6989586621679361240"><span id="local-6989586621679361242"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Count.html#Count"><span class="hs-identifier hs-type">Count</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-12"></span><span> </span><span id="local-6989586621679361236"><span class="annot"><span class="annottext">toJSON :: Count -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Count.html#Count"><span class="hs-identifier hs-type">Count</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">count :: Count -&gt; Int
-</span><a href="API.Count.html#count"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679363754"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679363754"><span class="hs-identifier hs-var">count</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Count.html#count"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679361234"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679361234"><span class="hs-identifier hs-var">count</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-13"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -34,39 +34,39 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;count&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679363754"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679361234"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679363748"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Count.html#Count"><span class="hs-identifier hs-type">Count</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-16"></span><span> </span><span id="local-6989586621679363746"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Count
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679363744"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679363744"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679363742"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679363742"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-17"></span><span>  </span><span id="local-6989586621679363741"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679363741"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679363742"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679361228"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Count.html#Count"><span class="hs-identifier hs-type">Count</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-16"></span><span> </span><span id="local-6989586621679361226"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Count
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679361224"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679361224"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679361222"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679361222"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-17"></span><span>  </span><span id="local-6989586621679361221"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679361221"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679361222"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-18"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679363741"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679361221"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-19"></span><span>   </span><span class="hs-string">&quot;count&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser Count
-</span><a href="#local-6989586621679363739"><span class="hs-identifier hs-var">parseCount</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679363744"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679361219"><span class="hs-identifier hs-var">parseCount</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679361224"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser Count
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-21"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679363739"><span class="hs-identifier hs-type">parseCount</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Count.html#Count"><span class="hs-identifier hs-type">Count</span></a></span><span>
-</span><span id="line-23"></span><span>   </span><span id="local-6989586621679363739"><span class="annot"><span class="annottext">parseCount :: Value -&gt; Parser Count
-</span><a href="#local-6989586621679363739"><span class="hs-identifier hs-var hs-var">parseCount</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Count) -&gt; Value -&gt; Parser Count
+</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679361219"><span class="hs-identifier hs-type">parseCount</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Count.html#Count"><span class="hs-identifier hs-type">Count</span></a></span><span>
+</span><span id="line-23"></span><span>   </span><span id="local-6989586621679361219"><span class="annot"><span class="annottext">parseCount :: Value -&gt; Parser Count
+</span><a href="#local-6989586621679361219"><span class="hs-identifier hs-var hs-var">parseCount</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Count) -&gt; Value -&gt; Parser Count
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;Count&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser Count) -&gt; Value -&gt; Parser Count)
 -&gt; (Object -&gt; Parser Count) -&gt; Value -&gt; Parser Count
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679363737"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679363737"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-24"></span><span>    </span><span id="local-6989586621679363736"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679363736"><span class="hs-identifier hs-var">count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679363737"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679361217"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679361217"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-24"></span><span>    </span><span id="local-6989586621679361216"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679361216"><span class="hs-identifier hs-var">count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679361217"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;count&quot;</span></span><span>
 </span><span id="line-25"></span><span>    </span><span class="annot"><span class="annottext">Count -&gt; Parser Count
@@ -76,4 +76,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Count :: Int -&gt; Count
 </span><a href="API.Count.html#Count"><span class="hs-identifier hs-type hs-type">Count</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">count :: Int
 </span><a href="API.Count.html#count"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679363736"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679361216"><span class="hs-identifier hs-var">count</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

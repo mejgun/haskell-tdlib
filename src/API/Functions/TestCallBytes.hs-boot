@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.TestCallBytes where
 
 import Data.Aeson.Types

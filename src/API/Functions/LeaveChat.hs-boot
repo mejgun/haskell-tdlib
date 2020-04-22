@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.LeaveChat where
 
 import Data.Aeson.Types

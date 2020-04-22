@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.ClearRecentStickers where
 
 import Data.Aeson.Types

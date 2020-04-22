@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.IdentityDocument where
 
 import Data.Aeson.Types

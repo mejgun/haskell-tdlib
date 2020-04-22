@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SearchHashtags where
 
 import Data.Aeson.Types

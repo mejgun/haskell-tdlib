@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.ChatEvents where
 
 import Data.Aeson.Types

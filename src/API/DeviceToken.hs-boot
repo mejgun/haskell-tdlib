@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.DeviceToken where
 
 import Data.Aeson.Types

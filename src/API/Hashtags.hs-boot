@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Hashtags where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Emojis where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetChatStatisticsGraph where
 
 import Data.Aeson.Types

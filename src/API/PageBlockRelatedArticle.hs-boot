@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.PageBlockRelatedArticle where
 
 import Data.Aeson.Types

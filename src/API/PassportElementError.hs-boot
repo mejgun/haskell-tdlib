@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.PassportElementError where
 
 import Data.Aeson.Types

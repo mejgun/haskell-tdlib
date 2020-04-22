@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.LocalizationTargetInfo where
 
 import Data.Aeson.Types

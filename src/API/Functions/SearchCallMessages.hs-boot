@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SearchCallMessages where
 
 import Data.Aeson.Types

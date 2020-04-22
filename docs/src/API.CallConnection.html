@@ -11,7 +11,7 @@
 </span><a href="API.CallConnection.html#port"><span class="hs-identifier hs-var hs-var">port</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="ipv6"><span class="annot"><span class="annottext">CallConnection -&gt; String
 </span><a href="API.CallConnection.html#ipv6"><span class="hs-identifier hs-var hs-var">ipv6</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="ip"><span class="annot"><span class="annottext">CallConnection -&gt; String
 </span><a href="API.CallConnection.html#ip"><span class="hs-identifier hs-var hs-var">ip</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="_id"><span class="annot"><span class="annottext">CallConnection -&gt; Int
-</span><a href="API.CallConnection.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679360816"><span id="local-6989586621679360818"><span id="local-6989586621679360820"><span class="annot"><span class="annottext">Int -&gt; CallConnection -&gt; ShowS
+</span><a href="API.CallConnection.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679358296"><span id="local-6989586621679358298"><span id="local-6989586621679358300"><span class="annot"><span class="annottext">Int -&gt; CallConnection -&gt; ShowS
 [CallConnection] -&gt; ShowS
 CallConnection -&gt; String
 (Int -&gt; CallConnection -&gt; ShowS)
@@ -28,19 +28,19 @@ showsPrec :: Int -&gt; CallConnection -&gt; ShowS
 $cshowsPrec :: Int -&gt; CallConnection -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679360808"><span id="local-6989586621679360810"><span id="local-6989586621679360812"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.CallConnection.html#CallConnection"><span class="hs-identifier hs-type">CallConnection</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-12"></span><span> </span><span id="local-6989586621679360806"><span class="annot"><span class="annottext">toJSON :: CallConnection -&gt; Value
+</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679358288"><span id="local-6989586621679358290"><span id="local-6989586621679358292"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.CallConnection.html#CallConnection"><span class="hs-identifier hs-type">CallConnection</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-12"></span><span> </span><span id="local-6989586621679358286"><span class="annot"><span class="annottext">toJSON :: CallConnection -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.CallConnection.html#CallConnection"><span class="hs-identifier hs-type">CallConnection</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">peer_tag :: CallConnection -&gt; String
-</span><a href="API.CallConnection.html#peer_tag"><span class="hs-identifier hs-var">peer_tag</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360804"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360804"><span class="hs-identifier hs-var">peer_tag</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">port :: CallConnection -&gt; Int
-</span><a href="API.CallConnection.html#port"><span class="hs-identifier hs-var">port</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360803"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679360803"><span class="hs-identifier hs-var">port</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ipv6 :: CallConnection -&gt; String
-</span><a href="API.CallConnection.html#ipv6"><span class="hs-identifier hs-var">ipv6</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360802"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360802"><span class="hs-identifier hs-var">ipv6</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ip :: CallConnection -&gt; String
-</span><a href="API.CallConnection.html#ip"><span class="hs-identifier hs-var">ip</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360801"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360801"><span class="hs-identifier hs-var">ip</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: CallConnection -&gt; Int
-</span><a href="API.CallConnection.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360800"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679360800"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.CallConnection.html#peer_tag"><span class="hs-identifier hs-var">peer_tag</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679358284"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679358284"><span class="hs-identifier hs-var">peer_tag</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">port :: CallConnection -&gt; Int
+</span><a href="API.CallConnection.html#port"><span class="hs-identifier hs-var">port</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679358283"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679358283"><span class="hs-identifier hs-var">port</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ipv6 :: CallConnection -&gt; String
+</span><a href="API.CallConnection.html#ipv6"><span class="hs-identifier hs-var">ipv6</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679358282"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679358282"><span class="hs-identifier hs-var">ipv6</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ip :: CallConnection -&gt; String
+</span><a href="API.CallConnection.html#ip"><span class="hs-identifier hs-var">ip</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679358281"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679358281"><span class="hs-identifier hs-var">ip</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: CallConnection -&gt; Int
+</span><a href="API.CallConnection.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679358280"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679358280"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-13"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -48,42 +48,42 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;callConnection&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;peer_tag&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360804"><span class="hs-identifier hs-var">peer_tag</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;port&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+</span><a href="#local-6989586621679358284"><span class="hs-identifier hs-var">peer_tag</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;port&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679360803"><span class="hs-identifier hs-var">port</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;ipv6&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+</span><a href="#local-6989586621679358283"><span class="hs-identifier hs-var">port</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;ipv6&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360802"><span class="hs-identifier hs-var">ipv6</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;ip&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+</span><a href="#local-6989586621679358282"><span class="hs-identifier hs-var">ipv6</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;ip&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360801"><span class="hs-identifier hs-var">ip</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+</span><a href="#local-6989586621679358281"><span class="hs-identifier hs-var">ip</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679360800"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679358280"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679360794"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.CallConnection.html#CallConnection"><span class="hs-identifier hs-type">CallConnection</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-16"></span><span> </span><span id="local-6989586621679360792"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CallConnection
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679360790"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679360790"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679360788"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679360788"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-17"></span><span>  </span><span id="local-6989586621679360787"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360787"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679360788"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679358274"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.CallConnection.html#CallConnection"><span class="hs-identifier hs-type">CallConnection</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-16"></span><span> </span><span id="local-6989586621679358272"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CallConnection
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679358270"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679358270"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679358268"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679358268"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-17"></span><span>  </span><span id="local-6989586621679358267"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679358267"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679358268"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-18"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360787"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679358267"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-19"></span><span>   </span><span class="hs-string">&quot;callConnection&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallConnection
-</span><a href="#local-6989586621679360785"><span class="hs-identifier hs-var">parseCallConnection</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679360790"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679358265"><span class="hs-identifier hs-var">parseCallConnection</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679358270"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CallConnection
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-21"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679360785"><span class="hs-identifier hs-type">parseCallConnection</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallConnection.html#CallConnection"><span class="hs-identifier hs-type">CallConnection</span></a></span><span>
-</span><span id="line-23"></span><span>   </span><span id="local-6989586621679360785"><span class="annot"><span class="annottext">parseCallConnection :: Value -&gt; Parser CallConnection
-</span><a href="#local-6989586621679360785"><span class="hs-identifier hs-var hs-var">parseCallConnection</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679358265"><span class="hs-identifier hs-type">parseCallConnection</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallConnection.html#CallConnection"><span class="hs-identifier hs-type">CallConnection</span></a></span><span>
+</span><span id="line-23"></span><span>   </span><span id="local-6989586621679358265"><span class="annot"><span class="annottext">parseCallConnection :: Value -&gt; Parser CallConnection
+</span><a href="#local-6989586621679358265"><span class="hs-identifier hs-var hs-var">parseCallConnection</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CallConnection)
 -&gt; Value
 -&gt; Parser CallConnection
@@ -94,31 +94,31 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CallConnection
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360783"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679360783"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-24"></span><span>    </span><span id="local-6989586621679360782"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360782"><span class="hs-identifier hs-var">peer_tag</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679360783"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679358263"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679358263"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-24"></span><span>    </span><span id="local-6989586621679358262"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679358262"><span class="hs-identifier hs-var">peer_tag</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679358263"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;peer_tag&quot;</span></span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679360781"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679360781"><span class="hs-identifier hs-var">port</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679360783"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679358261"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679358261"><span class="hs-identifier hs-var">port</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679358263"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;port&quot;</span></span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679360780"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360780"><span class="hs-identifier hs-var">ipv6</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679360783"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679358260"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679358260"><span class="hs-identifier hs-var">ipv6</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679358263"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;ipv6&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679360779"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360779"><span class="hs-identifier hs-var">ip</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679360783"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679358259"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679358259"><span class="hs-identifier hs-var">ip</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679358263"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;ip&quot;</span></span><span>
-</span><span id="line-28"></span><span>    </span><span id="local-6989586621679360778"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679360778"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679360783"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><span id="line-28"></span><span>    </span><span id="local-6989586621679358258"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679358258"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679358263"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span>
 </span><span id="line-29"></span><span>    </span><span class="annot"><span class="annottext">CallConnection -&gt; Parser CallConnection
@@ -129,12 +129,12 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallConnection :: String -&gt; Int -&gt; String -&gt; String -&gt; Int -&gt; CallConnection
 </span><a href="API.CallConnection.html#CallConnection"><span class="hs-identifier hs-type hs-type">CallConnection</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">peer_tag :: String
 </span><a href="API.CallConnection.html#peer_tag"><span class="hs-identifier hs-var">peer_tag</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360782"><span class="hs-identifier hs-var">peer_tag</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">port :: Int
+</span><a href="#local-6989586621679358262"><span class="hs-identifier hs-var">peer_tag</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">port :: Int
 </span><a href="API.CallConnection.html#port"><span class="hs-identifier hs-var">port</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679360781"><span class="hs-identifier hs-var">port</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ipv6 :: String
+</span><a href="#local-6989586621679358261"><span class="hs-identifier hs-var">port</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ipv6 :: String
 </span><a href="API.CallConnection.html#ipv6"><span class="hs-identifier hs-var">ipv6</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360780"><span class="hs-identifier hs-var">ipv6</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ip :: String
+</span><a href="#local-6989586621679358260"><span class="hs-identifier hs-var">ipv6</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ip :: String
 </span><a href="API.CallConnection.html#ip"><span class="hs-identifier hs-var">ip</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360779"><span class="hs-identifier hs-var">ip</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Int
+</span><a href="#local-6989586621679358259"><span class="hs-identifier hs-var">ip</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Int
 </span><a href="API.CallConnection.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679360778"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679358258"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

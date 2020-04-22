@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetMe where
 
 import Data.Aeson.Types

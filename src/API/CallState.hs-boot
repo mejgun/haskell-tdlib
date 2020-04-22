@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.CallState where
 
 import Data.Aeson.Types

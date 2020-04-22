@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetActiveLiveLocationMessages where
 
 import Data.Aeson.Types

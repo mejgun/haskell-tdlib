@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.EditMessageText where
 
 import Data.Aeson.Types

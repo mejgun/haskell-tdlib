@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.MaskPosition where
 
 import Data.Aeson.Types

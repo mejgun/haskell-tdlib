@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.TestNetwork where
 
 import Data.Aeson.Types

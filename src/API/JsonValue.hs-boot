@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.JsonValue where
 
 import Data.Aeson.Types

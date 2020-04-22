@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Session where
 
 import Data.Aeson.Types

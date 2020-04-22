@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.BotInfo where
 
 import Data.Aeson.Types

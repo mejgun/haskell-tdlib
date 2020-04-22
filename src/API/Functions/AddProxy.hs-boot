@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.AddProxy where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.CloseChat where
 
 import Data.Aeson.Types

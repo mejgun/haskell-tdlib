@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.ViewTrendingStickerSets where
 
 import Data.Aeson.Types

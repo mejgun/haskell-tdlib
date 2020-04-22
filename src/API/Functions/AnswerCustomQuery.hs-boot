@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.AnswerCustomQuery where
 
 import Data.Aeson.Types

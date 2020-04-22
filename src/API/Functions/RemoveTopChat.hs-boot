@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.RemoveTopChat where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Location where
 
 import Data.Aeson.Types

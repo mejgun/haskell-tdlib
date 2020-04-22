@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.OptimizeStorage where
 
 import Data.Aeson.Types

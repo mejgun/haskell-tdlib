@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SetAlarm where
 
 import Data.Aeson.Types

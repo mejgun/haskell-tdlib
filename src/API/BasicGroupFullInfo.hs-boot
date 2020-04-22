@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.BasicGroupFullInfo where
 
 import Data.Aeson.Types

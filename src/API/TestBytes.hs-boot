@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.TestBytes where
 
 import Data.Aeson.Types

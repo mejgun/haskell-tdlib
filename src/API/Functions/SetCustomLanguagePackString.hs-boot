@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SetCustomLanguagePackString where
 
 import Data.Aeson.Types

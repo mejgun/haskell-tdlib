@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.MaskPoint where
 
 import Data.Aeson.Types

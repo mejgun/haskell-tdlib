@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SaveApplicationLogEvent where
 
 import Data.Aeson.Types

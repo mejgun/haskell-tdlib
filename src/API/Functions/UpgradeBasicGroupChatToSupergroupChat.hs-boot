@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.UpgradeBasicGroupChatToSupergroupChat where
 
 import Data.Aeson.Types

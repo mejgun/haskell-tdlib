@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetDeepLinkInfo where
 
 import Data.Aeson.Types

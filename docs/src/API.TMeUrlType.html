@@ -14,7 +14,7 @@
 </span><span id="line-12"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="TMeUrlTypeChatInvite"><span class="annot"><a href="API.TMeUrlType.html#TMeUrlTypeChatInvite"><span class="hs-identifier hs-var">TMeUrlTypeChatInvite</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="info"><span class="annot"><span class="annottext">TMeUrlType -&gt; ChatInviteLinkInfo
 </span><a href="API.TMeUrlType.html#info"><span class="hs-identifier hs-var hs-var">info</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.ChatInviteLinkInfo.html#ChatInviteLinkInfo"><span class="hs-identifier hs-type">ChatInviteLinkInfo.ChatInviteLinkInfo</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span>
 </span><span id="line-13"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="TMeUrlTypeStickerSet"><span class="annot"><a href="API.TMeUrlType.html#TMeUrlTypeStickerSet"><span class="hs-identifier hs-var">TMeUrlTypeStickerSet</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="sticker_set_id"><span class="annot"><span class="annottext">TMeUrlType -&gt; Int
-</span><a href="API.TMeUrlType.html#sticker_set_id"><span class="hs-identifier hs-var hs-var">sticker_set_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679400243"><span id="local-6989586621679400245"><span id="local-6989586621679400247"><span class="annot"><span class="annottext">Int -&gt; TMeUrlType -&gt; ShowS
+</span><a href="API.TMeUrlType.html#sticker_set_id"><span class="hs-identifier hs-var hs-var">sticker_set_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679397723"><span id="local-6989586621679397725"><span id="local-6989586621679397727"><span class="annot"><span class="annottext">Int -&gt; TMeUrlType -&gt; ShowS
 [TMeUrlType] -&gt; ShowS
 TMeUrlType -&gt; String
 (Int -&gt; TMeUrlType -&gt; ShowS)
@@ -31,11 +31,11 @@ showsPrec :: Int -&gt; TMeUrlType -&gt; ShowS
 $cshowsPrec :: Int -&gt; TMeUrlType -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679400235"><span id="local-6989586621679400237"><span id="local-6989586621679400239"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.TMeUrlType.html#TMeUrlType"><span class="hs-identifier hs-type">TMeUrlType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-16"></span><span> </span><span id="local-6989586621679400233"><span class="annot"><span class="annottext">toJSON :: TMeUrlType -&gt; Value
+</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679397715"><span id="local-6989586621679397717"><span id="local-6989586621679397719"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.TMeUrlType.html#TMeUrlType"><span class="hs-identifier hs-type">TMeUrlType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-16"></span><span> </span><span id="local-6989586621679397713"><span class="annot"><span class="annottext">toJSON :: TMeUrlType -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.TMeUrlType.html#TMeUrlTypeUser"><span class="hs-identifier hs-type">TMeUrlTypeUser</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">user_id :: TMeUrlType -&gt; Int
-</span><a href="API.TMeUrlType.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679400231"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679400231"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.TMeUrlType.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397711"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397711"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-17"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -43,11 +43,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;tMeUrlTypeUser&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679400231"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679397711"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-18"></span><span>
 </span><span id="line-19"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.TMeUrlType.html#TMeUrlTypeSupergroup"><span class="hs-identifier hs-type">TMeUrlTypeSupergroup</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">supergroup_id :: TMeUrlType -&gt; Int
-</span><a href="API.TMeUrlType.html#supergroup_id"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679400227"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679400227"><span class="hs-identifier hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.TMeUrlType.html#supergroup_id"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397707"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397707"><span class="hs-identifier hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-20"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -55,11 +55,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;tMeUrlTypeSupergroup&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;supergroup_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679400227"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679397707"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-21"></span><span>
 </span><span id="line-22"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.TMeUrlType.html#TMeUrlTypeChatInvite"><span class="hs-identifier hs-type">TMeUrlTypeChatInvite</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">info :: TMeUrlType -&gt; ChatInviteLinkInfo
-</span><a href="API.TMeUrlType.html#info"><span class="hs-identifier hs-var">info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679400226"><span class="annot"><span class="annottext">ChatInviteLinkInfo
-</span><a href="#local-6989586621679400226"><span class="hs-identifier hs-var">info</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.TMeUrlType.html#info"><span class="hs-identifier hs-var">info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397706"><span class="annot"><span class="annottext">ChatInviteLinkInfo
+</span><a href="#local-6989586621679397706"><span class="hs-identifier hs-var">info</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-23"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -67,11 +67,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;tMeUrlTypeChatInvite&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;info&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; ChatInviteLinkInfo -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">ChatInviteLinkInfo
-</span><a href="#local-6989586621679400226"><span class="hs-identifier hs-var">info</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679397706"><span class="hs-identifier hs-var">info</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-24"></span><span>
 </span><span id="line-25"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.TMeUrlType.html#TMeUrlTypeStickerSet"><span class="hs-identifier hs-type">TMeUrlTypeStickerSet</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sticker_set_id :: TMeUrlType -&gt; Int
-</span><a href="API.TMeUrlType.html#sticker_set_id"><span class="hs-identifier hs-var">sticker_set_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679400225"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679400225"><span class="hs-identifier hs-var">sticker_set_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.TMeUrlType.html#sticker_set_id"><span class="hs-identifier hs-var">sticker_set_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397705"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397705"><span class="hs-identifier hs-var">sticker_set_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -79,49 +79,49 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;tMeUrlTypeStickerSet&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;sticker_set_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679400225"><span class="hs-identifier hs-var">sticker_set_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679397705"><span class="hs-identifier hs-var">sticker_set_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679400222"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.TMeUrlType.html#TMeUrlType"><span class="hs-identifier hs-type">TMeUrlType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span> </span><span id="local-6989586621679400220"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TMeUrlType
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679400218"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679400218"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679400216"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679400216"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-30"></span><span>  </span><span id="local-6989586621679400215"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679400215"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679400216"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679397702"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.TMeUrlType.html#TMeUrlType"><span class="hs-identifier hs-type">TMeUrlType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span> </span><span id="local-6989586621679397700"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TMeUrlType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679397698"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679397698"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679397696"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679397696"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-30"></span><span>  </span><span id="local-6989586621679397695"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397695"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397696"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-31"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679400215"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679397695"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-32"></span><span>   </span><span class="hs-string">&quot;tMeUrlTypeUser&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TMeUrlType
-</span><a href="#local-6989586621679400213"><span class="hs-identifier hs-var">parseTMeUrlTypeUser</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679400218"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679397693"><span class="hs-identifier hs-var">parseTMeUrlTypeUser</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679397698"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-33"></span><span>   </span><span class="hs-string">&quot;tMeUrlTypeSupergroup&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TMeUrlType
-</span><a href="#local-6989586621679400212"><span class="hs-identifier hs-var">parseTMeUrlTypeSupergroup</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679400218"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679397692"><span class="hs-identifier hs-var">parseTMeUrlTypeSupergroup</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679397698"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-34"></span><span>   </span><span class="hs-string">&quot;tMeUrlTypeChatInvite&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TMeUrlType
-</span><a href="#local-6989586621679400211"><span class="hs-identifier hs-var">parseTMeUrlTypeChatInvite</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679400218"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679397691"><span class="hs-identifier hs-var">parseTMeUrlTypeChatInvite</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679397698"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-35"></span><span>   </span><span class="hs-string">&quot;tMeUrlTypeStickerSet&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TMeUrlType
-</span><a href="#local-6989586621679400210"><span class="hs-identifier hs-var">parseTMeUrlTypeStickerSet</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679400218"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679397690"><span class="hs-identifier hs-var">parseTMeUrlTypeStickerSet</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679397698"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-36"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TMeUrlType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-37"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-38"></span><span>   </span><span class="annot"><a href="#local-6989586621679400213"><span class="hs-identifier hs-type">parseTMeUrlTypeUser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TMeUrlType.html#TMeUrlType"><span class="hs-identifier hs-type">TMeUrlType</span></a></span><span>
-</span><span id="line-39"></span><span>   </span><span id="local-6989586621679400213"><span class="annot"><span class="annottext">parseTMeUrlTypeUser :: Value -&gt; Parser TMeUrlType
-</span><a href="#local-6989586621679400213"><span class="hs-identifier hs-var hs-var">parseTMeUrlTypeUser</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-38"></span><span>   </span><span class="annot"><a href="#local-6989586621679397693"><span class="hs-identifier hs-type">parseTMeUrlTypeUser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TMeUrlType.html#TMeUrlType"><span class="hs-identifier hs-type">TMeUrlType</span></a></span><span>
+</span><span id="line-39"></span><span>   </span><span id="local-6989586621679397693"><span class="annot"><span class="annottext">parseTMeUrlTypeUser :: Value -&gt; Parser TMeUrlType
+</span><a href="#local-6989586621679397693"><span class="hs-identifier hs-var hs-var">parseTMeUrlTypeUser</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TMeUrlType) -&gt; Value -&gt; Parser TMeUrlType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;TMeUrlTypeUser&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser TMeUrlType) -&gt; Value -&gt; Parser TMeUrlType)
 -&gt; (Object -&gt; Parser TMeUrlType) -&gt; Value -&gt; Parser TMeUrlType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679400208"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679400208"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-40"></span><span>    </span><span id="local-6989586621679400207"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679400207"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679400208"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679397688"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679397688"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-40"></span><span>    </span><span id="local-6989586621679397687"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397687"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397688"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;user_id&quot;</span></span><span>
 </span><span id="line-41"></span><span>    </span><span class="annot"><span class="annottext">TMeUrlType -&gt; Parser TMeUrlType
@@ -132,21 +132,21 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TMeUrlTypeUser :: Int -&gt; TMeUrlType
 </span><a href="API.TMeUrlType.html#TMeUrlTypeUser"><span class="hs-identifier hs-type hs-type">TMeUrlTypeUser</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">user_id :: Int
 </span><a href="API.TMeUrlType.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679400207"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679397687"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-42"></span><span>
-</span><span id="line-43"></span><span>   </span><span class="annot"><a href="#local-6989586621679400212"><span class="hs-identifier hs-type">parseTMeUrlTypeSupergroup</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TMeUrlType.html#TMeUrlType"><span class="hs-identifier hs-type">TMeUrlType</span></a></span><span>
-</span><span id="line-44"></span><span>   </span><span id="local-6989586621679400212"><span class="annot"><span class="annottext">parseTMeUrlTypeSupergroup :: Value -&gt; Parser TMeUrlType
-</span><a href="#local-6989586621679400212"><span class="hs-identifier hs-var hs-var">parseTMeUrlTypeSupergroup</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-43"></span><span>   </span><span class="annot"><a href="#local-6989586621679397692"><span class="hs-identifier hs-type">parseTMeUrlTypeSupergroup</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TMeUrlType.html#TMeUrlType"><span class="hs-identifier hs-type">TMeUrlType</span></a></span><span>
+</span><span id="line-44"></span><span>   </span><span id="local-6989586621679397692"><span class="annot"><span class="annottext">parseTMeUrlTypeSupergroup :: Value -&gt; Parser TMeUrlType
+</span><a href="#local-6989586621679397692"><span class="hs-identifier hs-var hs-var">parseTMeUrlTypeSupergroup</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TMeUrlType) -&gt; Value -&gt; Parser TMeUrlType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;TMeUrlTypeSupergroup&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser TMeUrlType) -&gt; Value -&gt; Parser TMeUrlType)
 -&gt; (Object -&gt; Parser TMeUrlType) -&gt; Value -&gt; Parser TMeUrlType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679400205"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679400205"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-45"></span><span>    </span><span id="local-6989586621679400204"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679400204"><span class="hs-identifier hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679400205"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679397685"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679397685"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-45"></span><span>    </span><span id="local-6989586621679397684"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397684"><span class="hs-identifier hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397685"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;supergroup_id&quot;</span></span><span>
 </span><span id="line-46"></span><span>    </span><span class="annot"><span class="annottext">TMeUrlType -&gt; Parser TMeUrlType
@@ -157,21 +157,21 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TMeUrlTypeSupergroup :: Int -&gt; TMeUrlType
 </span><a href="API.TMeUrlType.html#TMeUrlTypeSupergroup"><span class="hs-identifier hs-type hs-type">TMeUrlTypeSupergroup</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">supergroup_id :: Int
 </span><a href="API.TMeUrlType.html#supergroup_id"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679400204"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679397684"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-47"></span><span>
-</span><span id="line-48"></span><span>   </span><span class="annot"><a href="#local-6989586621679400211"><span class="hs-identifier hs-type">parseTMeUrlTypeChatInvite</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TMeUrlType.html#TMeUrlType"><span class="hs-identifier hs-type">TMeUrlType</span></a></span><span>
-</span><span id="line-49"></span><span>   </span><span id="local-6989586621679400211"><span class="annot"><span class="annottext">parseTMeUrlTypeChatInvite :: Value -&gt; Parser TMeUrlType
-</span><a href="#local-6989586621679400211"><span class="hs-identifier hs-var hs-var">parseTMeUrlTypeChatInvite</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-48"></span><span>   </span><span class="annot"><a href="#local-6989586621679397691"><span class="hs-identifier hs-type">parseTMeUrlTypeChatInvite</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TMeUrlType.html#TMeUrlType"><span class="hs-identifier hs-type">TMeUrlType</span></a></span><span>
+</span><span id="line-49"></span><span>   </span><span id="local-6989586621679397691"><span class="annot"><span class="annottext">parseTMeUrlTypeChatInvite :: Value -&gt; Parser TMeUrlType
+</span><a href="#local-6989586621679397691"><span class="hs-identifier hs-var hs-var">parseTMeUrlTypeChatInvite</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TMeUrlType) -&gt; Value -&gt; Parser TMeUrlType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;TMeUrlTypeChatInvite&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser TMeUrlType) -&gt; Value -&gt; Parser TMeUrlType)
 -&gt; (Object -&gt; Parser TMeUrlType) -&gt; Value -&gt; Parser TMeUrlType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679400202"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679400202"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-50"></span><span>    </span><span id="local-6989586621679400201"><span class="annot"><span class="annottext">ChatInviteLinkInfo
-</span><a href="#local-6989586621679400201"><span class="hs-identifier hs-var">info</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679400202"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser ChatInviteLinkInfo
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679397682"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679397682"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-50"></span><span>    </span><span id="local-6989586621679397681"><span class="annot"><span class="annottext">ChatInviteLinkInfo
+</span><a href="#local-6989586621679397681"><span class="hs-identifier hs-var">info</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397682"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser ChatInviteLinkInfo
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;info&quot;</span></span><span>
 </span><span id="line-51"></span><span>    </span><span class="annot"><span class="annottext">TMeUrlType -&gt; Parser TMeUrlType
@@ -182,21 +182,21 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TMeUrlTypeChatInvite :: ChatInviteLinkInfo -&gt; TMeUrlType
 </span><a href="API.TMeUrlType.html#TMeUrlTypeChatInvite"><span class="hs-identifier hs-type hs-type">TMeUrlTypeChatInvite</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">info :: ChatInviteLinkInfo
 </span><a href="API.TMeUrlType.html#info"><span class="hs-identifier hs-var">info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ChatInviteLinkInfo
-</span><a href="#local-6989586621679400201"><span class="hs-identifier hs-var">info</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679397681"><span class="hs-identifier hs-var">info</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-52"></span><span>
-</span><span id="line-53"></span><span>   </span><span class="annot"><a href="#local-6989586621679400210"><span class="hs-identifier hs-type">parseTMeUrlTypeStickerSet</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TMeUrlType.html#TMeUrlType"><span class="hs-identifier hs-type">TMeUrlType</span></a></span><span>
-</span><span id="line-54"></span><span>   </span><span id="local-6989586621679400210"><span class="annot"><span class="annottext">parseTMeUrlTypeStickerSet :: Value -&gt; Parser TMeUrlType
-</span><a href="#local-6989586621679400210"><span class="hs-identifier hs-var hs-var">parseTMeUrlTypeStickerSet</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-53"></span><span>   </span><span class="annot"><a href="#local-6989586621679397690"><span class="hs-identifier hs-type">parseTMeUrlTypeStickerSet</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TMeUrlType.html#TMeUrlType"><span class="hs-identifier hs-type">TMeUrlType</span></a></span><span>
+</span><span id="line-54"></span><span>   </span><span id="local-6989586621679397690"><span class="annot"><span class="annottext">parseTMeUrlTypeStickerSet :: Value -&gt; Parser TMeUrlType
+</span><a href="#local-6989586621679397690"><span class="hs-identifier hs-var hs-var">parseTMeUrlTypeStickerSet</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TMeUrlType) -&gt; Value -&gt; Parser TMeUrlType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;TMeUrlTypeStickerSet&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser TMeUrlType) -&gt; Value -&gt; Parser TMeUrlType)
 -&gt; (Object -&gt; Parser TMeUrlType) -&gt; Value -&gt; Parser TMeUrlType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679400199"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679400199"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-55"></span><span>    </span><span id="local-6989586621679400198"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679400198"><span class="hs-identifier hs-var">sticker_set_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679400199"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679397679"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679397679"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-55"></span><span>    </span><span id="local-6989586621679397678"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397678"><span class="hs-identifier hs-var">sticker_set_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397679"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;sticker_set_id&quot;</span></span><span>
 </span><span id="line-56"></span><span>    </span><span class="annot"><span class="annottext">TMeUrlType -&gt; Parser TMeUrlType
@@ -207,4 +207,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TMeUrlTypeStickerSet :: Int -&gt; TMeUrlType
 </span><a href="API.TMeUrlType.html#TMeUrlTypeStickerSet"><span class="hs-identifier hs-type hs-type">TMeUrlTypeStickerSet</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sticker_set_id :: Int
 </span><a href="API.TMeUrlType.html#sticker_set_id"><span class="hs-identifier hs-var">sticker_set_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679400198"><span class="hs-identifier hs-var">sticker_set_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679397678"><span class="hs-identifier hs-var">sticker_set_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

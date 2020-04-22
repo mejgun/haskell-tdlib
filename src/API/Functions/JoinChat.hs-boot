@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.JoinChat where
 
 import Data.Aeson.Types

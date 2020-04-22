@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetSavedOrderInfo where
 
 import Data.Aeson.Types

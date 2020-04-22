@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.PaymentReceipt where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.StorageStatisticsByChat where
 
 import Data.Aeson.Types

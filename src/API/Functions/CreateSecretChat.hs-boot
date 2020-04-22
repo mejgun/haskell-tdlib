@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.CreateSecretChat where
 
 import Data.Aeson.Types

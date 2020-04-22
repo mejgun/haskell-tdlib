@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.ChatStatistics where
 
 import Data.Aeson.Types

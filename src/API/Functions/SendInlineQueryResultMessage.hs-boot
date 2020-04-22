@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SendInlineQueryResultMessage where
 
 import Data.Aeson.Types

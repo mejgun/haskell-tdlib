@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetInviteText where
 
 import Data.Aeson.Types

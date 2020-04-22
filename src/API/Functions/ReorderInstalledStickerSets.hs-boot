@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.ReorderInstalledStickerSets where
 
 import Data.Aeson.Types

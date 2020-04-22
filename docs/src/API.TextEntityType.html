@@ -25,7 +25,7 @@
 </span><span id="line-24"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="TextEntityTypeTextUrl"><span class="annot"><a href="API.TextEntityType.html#TextEntityTypeTextUrl"><span class="hs-identifier hs-var">TextEntityTypeTextUrl</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="url"><span class="annot"><span class="annottext">TextEntityType -&gt; String
 </span><a href="API.TextEntityType.html#url"><span class="hs-identifier hs-var hs-var">url</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
 </span><span id="line-25"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="TextEntityTypeMentionName"><span class="annot"><a href="API.TextEntityType.html#TextEntityTypeMentionName"><span class="hs-identifier hs-var">TextEntityTypeMentionName</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="user_id"><span class="annot"><span class="annottext">TextEntityType -&gt; Int
-</span><a href="API.TextEntityType.html#user_id"><span class="hs-identifier hs-var hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679401712"><span id="local-6989586621679401714"><span id="local-6989586621679401716"><span class="annot"><span class="annottext">Int -&gt; TextEntityType -&gt; ShowS
+</span><a href="API.TextEntityType.html#user_id"><span class="hs-identifier hs-var hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679399192"><span id="local-6989586621679399194"><span id="local-6989586621679399196"><span class="annot"><span class="annottext">Int -&gt; TextEntityType -&gt; ShowS
 [TextEntityType] -&gt; ShowS
 TextEntityType -&gt; String
 (Int -&gt; TextEntityType -&gt; ShowS)
@@ -42,8 +42,8 @@ showsPrec :: Int -&gt; TextEntityType -&gt; ShowS
 $cshowsPrec :: Int -&gt; TextEntityType -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-26"></span><span>
-</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679401704"><span id="local-6989586621679401706"><span id="local-6989586621679401708"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-28"></span><span> </span><span id="local-6989586621679401702"><span class="annot"><span class="annottext">toJSON :: TextEntityType -&gt; Value
+</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679399184"><span id="local-6989586621679399186"><span id="local-6989586621679399188"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-28"></span><span> </span><span id="local-6989586621679399182"><span class="annot"><span class="annottext">toJSON :: TextEntityType -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.TextEntityType.html#TextEntityTypeMention"><span class="hs-identifier hs-type">TextEntityTypeMention</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-29"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -143,8 +143,8 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;textEntityTypePre&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-69"></span><span>
 </span><span id="line-70"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.TextEntityType.html#TextEntityTypePreCode"><span class="hs-identifier hs-type">TextEntityTypePreCode</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">language :: TextEntityType -&gt; String
-</span><a href="API.TextEntityType.html#language"><span class="hs-identifier hs-var">language</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679401697"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679401697"><span class="hs-identifier hs-var">language</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.TextEntityType.html#language"><span class="hs-identifier hs-var">language</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399177"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679399177"><span class="hs-identifier hs-var">language</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-71"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -152,11 +152,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;textEntityTypePreCode&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;language&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679401697"><span class="hs-identifier hs-var">language</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679399177"><span class="hs-identifier hs-var">language</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-72"></span><span>
 </span><span id="line-73"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.TextEntityType.html#TextEntityTypeTextUrl"><span class="hs-identifier hs-type">TextEntityTypeTextUrl</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">url :: TextEntityType -&gt; String
-</span><a href="API.TextEntityType.html#url"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679401696"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679401696"><span class="hs-identifier hs-var">url</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.TextEntityType.html#url"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399176"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679399176"><span class="hs-identifier hs-var">url</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-74"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -164,11 +164,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;textEntityTypeTextUrl&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;url&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679401696"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679399176"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-75"></span><span>
 </span><span id="line-76"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.TextEntityType.html#TextEntityTypeMentionName"><span class="hs-identifier hs-type">TextEntityTypeMentionName</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">user_id :: TextEntityType -&gt; Int
-</span><a href="API.TextEntityType.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679401695"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679401695"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.TextEntityType.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399175"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679399175"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-77"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -176,78 +176,78 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;textEntityTypeMentionName&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679401695"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679399175"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-78"></span><span>
-</span><span id="line-79"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679401692"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-80"></span><span> </span><span id="local-6989586621679401690"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TextEntityType
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679401688"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679401688"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679401686"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679401686"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-81"></span><span>  </span><span id="local-6989586621679401685"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679401685"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679401686"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-79"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679399172"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-80"></span><span> </span><span id="local-6989586621679399170"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TextEntityType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679399168"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679399168"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679399166"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679399166"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-81"></span><span>  </span><span id="local-6989586621679399165"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679399165"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399166"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-82"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679401685"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679399165"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-83"></span><span>   </span><span class="hs-string">&quot;textEntityTypeMention&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401683"><span class="hs-identifier hs-var">parseTextEntityTypeMention</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679401688"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679399163"><span class="hs-identifier hs-var">parseTextEntityTypeMention</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399168"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-84"></span><span>   </span><span class="hs-string">&quot;textEntityTypeHashtag&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401682"><span class="hs-identifier hs-var">parseTextEntityTypeHashtag</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679401688"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679399162"><span class="hs-identifier hs-var">parseTextEntityTypeHashtag</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399168"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-85"></span><span>   </span><span class="hs-string">&quot;textEntityTypeCashtag&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401681"><span class="hs-identifier hs-var">parseTextEntityTypeCashtag</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679401688"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679399161"><span class="hs-identifier hs-var">parseTextEntityTypeCashtag</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399168"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-86"></span><span>   </span><span class="hs-string">&quot;textEntityTypeBotCommand&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401680"><span class="hs-identifier hs-var">parseTextEntityTypeBotCommand</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679401688"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679399160"><span class="hs-identifier hs-var">parseTextEntityTypeBotCommand</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399168"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-87"></span><span>   </span><span class="hs-string">&quot;textEntityTypeUrl&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401679"><span class="hs-identifier hs-var">parseTextEntityTypeUrl</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679401688"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679399159"><span class="hs-identifier hs-var">parseTextEntityTypeUrl</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399168"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-88"></span><span>   </span><span class="hs-string">&quot;textEntityTypeEmailAddress&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401678"><span class="hs-identifier hs-var">parseTextEntityTypeEmailAddress</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679401688"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679399158"><span class="hs-identifier hs-var">parseTextEntityTypeEmailAddress</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399168"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-89"></span><span>   </span><span class="hs-string">&quot;textEntityTypePhoneNumber&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401677"><span class="hs-identifier hs-var">parseTextEntityTypePhoneNumber</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679401688"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679399157"><span class="hs-identifier hs-var">parseTextEntityTypePhoneNumber</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399168"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-90"></span><span>   </span><span class="hs-string">&quot;textEntityTypeBankCardNumber&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401676"><span class="hs-identifier hs-var">parseTextEntityTypeBankCardNumber</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679401688"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679399156"><span class="hs-identifier hs-var">parseTextEntityTypeBankCardNumber</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399168"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-91"></span><span>   </span><span class="hs-string">&quot;textEntityTypeBold&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401675"><span class="hs-identifier hs-var">parseTextEntityTypeBold</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679401688"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679399155"><span class="hs-identifier hs-var">parseTextEntityTypeBold</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399168"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-92"></span><span>   </span><span class="hs-string">&quot;textEntityTypeItalic&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401674"><span class="hs-identifier hs-var">parseTextEntityTypeItalic</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679401688"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679399154"><span class="hs-identifier hs-var">parseTextEntityTypeItalic</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399168"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-93"></span><span>   </span><span class="hs-string">&quot;textEntityTypeUnderline&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401673"><span class="hs-identifier hs-var">parseTextEntityTypeUnderline</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679401688"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679399153"><span class="hs-identifier hs-var">parseTextEntityTypeUnderline</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399168"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-94"></span><span>   </span><span class="hs-string">&quot;textEntityTypeStrikethrough&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401672"><span class="hs-identifier hs-var">parseTextEntityTypeStrikethrough</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679401688"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679399152"><span class="hs-identifier hs-var">parseTextEntityTypeStrikethrough</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399168"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-95"></span><span>   </span><span class="hs-string">&quot;textEntityTypeCode&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401671"><span class="hs-identifier hs-var">parseTextEntityTypeCode</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679401688"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679399151"><span class="hs-identifier hs-var">parseTextEntityTypeCode</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399168"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-96"></span><span>   </span><span class="hs-string">&quot;textEntityTypePre&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401670"><span class="hs-identifier hs-var">parseTextEntityTypePre</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679401688"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679399150"><span class="hs-identifier hs-var">parseTextEntityTypePre</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399168"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-97"></span><span>   </span><span class="hs-string">&quot;textEntityTypePreCode&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401669"><span class="hs-identifier hs-var">parseTextEntityTypePreCode</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679401688"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679399149"><span class="hs-identifier hs-var">parseTextEntityTypePreCode</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399168"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-98"></span><span>   </span><span class="hs-string">&quot;textEntityTypeTextUrl&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401668"><span class="hs-identifier hs-var">parseTextEntityTypeTextUrl</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679401688"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679399148"><span class="hs-identifier hs-var">parseTextEntityTypeTextUrl</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399168"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-99"></span><span>   </span><span class="hs-string">&quot;textEntityTypeMentionName&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401667"><span class="hs-identifier hs-var">parseTextEntityTypeMentionName</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679401688"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679399147"><span class="hs-identifier hs-var">parseTextEntityTypeMentionName</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679399168"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-100"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TextEntityType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-101"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-102"></span><span>   </span><span class="annot"><a href="#local-6989586621679401683"><span class="hs-identifier hs-type">parseTextEntityTypeMention</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
-</span><span id="line-103"></span><span>   </span><span id="local-6989586621679401683"><span class="annot"><span class="annottext">parseTextEntityTypeMention :: Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401683"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeMention</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-102"></span><span>   </span><span class="annot"><a href="#local-6989586621679399163"><span class="hs-identifier hs-type">parseTextEntityTypeMention</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
+</span><span id="line-103"></span><span>   </span><span id="local-6989586621679399163"><span class="annot"><span class="annottext">parseTextEntityTypeMention :: Value -&gt; Parser TextEntityType
+</span><a href="#local-6989586621679399163"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeMention</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextEntityType)
 -&gt; Value
 -&gt; Parser TextEntityType
@@ -258,8 +258,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextEntityType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679401665"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679401665"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399145"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679399145"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-104"></span><span>    </span><span class="annot"><span class="annottext">TextEntityType -&gt; Parser TextEntityType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TextEntityType -&gt; Parser TextEntityType)
@@ -268,9 +268,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TextEntityTypeMention :: TextEntityType
 </span><a href="API.TextEntityType.html#TextEntityTypeMention"><span class="hs-identifier hs-type hs-type">TextEntityTypeMention</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-105"></span><span>
-</span><span id="line-106"></span><span>   </span><span class="annot"><a href="#local-6989586621679401682"><span class="hs-identifier hs-type">parseTextEntityTypeHashtag</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
-</span><span id="line-107"></span><span>   </span><span id="local-6989586621679401682"><span class="annot"><span class="annottext">parseTextEntityTypeHashtag :: Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401682"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeHashtag</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-106"></span><span>   </span><span class="annot"><a href="#local-6989586621679399162"><span class="hs-identifier hs-type">parseTextEntityTypeHashtag</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
+</span><span id="line-107"></span><span>   </span><span id="local-6989586621679399162"><span class="annot"><span class="annottext">parseTextEntityTypeHashtag :: Value -&gt; Parser TextEntityType
+</span><a href="#local-6989586621679399162"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeHashtag</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextEntityType)
 -&gt; Value
 -&gt; Parser TextEntityType
@@ -281,8 +281,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextEntityType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679401663"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679401663"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399143"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679399143"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-108"></span><span>    </span><span class="annot"><span class="annottext">TextEntityType -&gt; Parser TextEntityType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TextEntityType -&gt; Parser TextEntityType)
@@ -291,9 +291,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TextEntityTypeHashtag :: TextEntityType
 </span><a href="API.TextEntityType.html#TextEntityTypeHashtag"><span class="hs-identifier hs-type hs-type">TextEntityTypeHashtag</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-109"></span><span>
-</span><span id="line-110"></span><span>   </span><span class="annot"><a href="#local-6989586621679401681"><span class="hs-identifier hs-type">parseTextEntityTypeCashtag</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
-</span><span id="line-111"></span><span>   </span><span id="local-6989586621679401681"><span class="annot"><span class="annottext">parseTextEntityTypeCashtag :: Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401681"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeCashtag</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-110"></span><span>   </span><span class="annot"><a href="#local-6989586621679399161"><span class="hs-identifier hs-type">parseTextEntityTypeCashtag</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
+</span><span id="line-111"></span><span>   </span><span id="local-6989586621679399161"><span class="annot"><span class="annottext">parseTextEntityTypeCashtag :: Value -&gt; Parser TextEntityType
+</span><a href="#local-6989586621679399161"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeCashtag</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextEntityType)
 -&gt; Value
 -&gt; Parser TextEntityType
@@ -304,8 +304,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextEntityType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679401661"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679401661"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399141"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679399141"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-112"></span><span>    </span><span class="annot"><span class="annottext">TextEntityType -&gt; Parser TextEntityType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TextEntityType -&gt; Parser TextEntityType)
@@ -314,9 +314,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TextEntityTypeCashtag :: TextEntityType
 </span><a href="API.TextEntityType.html#TextEntityTypeCashtag"><span class="hs-identifier hs-type hs-type">TextEntityTypeCashtag</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-113"></span><span>
-</span><span id="line-114"></span><span>   </span><span class="annot"><a href="#local-6989586621679401680"><span class="hs-identifier hs-type">parseTextEntityTypeBotCommand</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
-</span><span id="line-115"></span><span>   </span><span id="local-6989586621679401680"><span class="annot"><span class="annottext">parseTextEntityTypeBotCommand :: Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401680"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeBotCommand</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-114"></span><span>   </span><span class="annot"><a href="#local-6989586621679399160"><span class="hs-identifier hs-type">parseTextEntityTypeBotCommand</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
+</span><span id="line-115"></span><span>   </span><span id="local-6989586621679399160"><span class="annot"><span class="annottext">parseTextEntityTypeBotCommand :: Value -&gt; Parser TextEntityType
+</span><a href="#local-6989586621679399160"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeBotCommand</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextEntityType)
 -&gt; Value
 -&gt; Parser TextEntityType
@@ -327,8 +327,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextEntityType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679401659"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679401659"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399139"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679399139"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-116"></span><span>    </span><span class="annot"><span class="annottext">TextEntityType -&gt; Parser TextEntityType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TextEntityType -&gt; Parser TextEntityType)
@@ -337,9 +337,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TextEntityTypeBotCommand :: TextEntityType
 </span><a href="API.TextEntityType.html#TextEntityTypeBotCommand"><span class="hs-identifier hs-type hs-type">TextEntityTypeBotCommand</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-117"></span><span>
-</span><span id="line-118"></span><span>   </span><span class="annot"><a href="#local-6989586621679401679"><span class="hs-identifier hs-type">parseTextEntityTypeUrl</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
-</span><span id="line-119"></span><span>   </span><span id="local-6989586621679401679"><span class="annot"><span class="annottext">parseTextEntityTypeUrl :: Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401679"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeUrl</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-118"></span><span>   </span><span class="annot"><a href="#local-6989586621679399159"><span class="hs-identifier hs-type">parseTextEntityTypeUrl</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
+</span><span id="line-119"></span><span>   </span><span id="local-6989586621679399159"><span class="annot"><span class="annottext">parseTextEntityTypeUrl :: Value -&gt; Parser TextEntityType
+</span><a href="#local-6989586621679399159"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeUrl</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextEntityType)
 -&gt; Value
 -&gt; Parser TextEntityType
@@ -350,8 +350,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextEntityType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679401657"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679401657"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399137"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679399137"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-120"></span><span>    </span><span class="annot"><span class="annottext">TextEntityType -&gt; Parser TextEntityType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TextEntityType -&gt; Parser TextEntityType)
@@ -360,9 +360,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TextEntityTypeUrl :: TextEntityType
 </span><a href="API.TextEntityType.html#TextEntityTypeUrl"><span class="hs-identifier hs-type hs-type">TextEntityTypeUrl</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-121"></span><span>
-</span><span id="line-122"></span><span>   </span><span class="annot"><a href="#local-6989586621679401678"><span class="hs-identifier hs-type">parseTextEntityTypeEmailAddress</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
-</span><span id="line-123"></span><span>   </span><span id="local-6989586621679401678"><span class="annot"><span class="annottext">parseTextEntityTypeEmailAddress :: Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401678"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeEmailAddress</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-122"></span><span>   </span><span class="annot"><a href="#local-6989586621679399158"><span class="hs-identifier hs-type">parseTextEntityTypeEmailAddress</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
+</span><span id="line-123"></span><span>   </span><span id="local-6989586621679399158"><span class="annot"><span class="annottext">parseTextEntityTypeEmailAddress :: Value -&gt; Parser TextEntityType
+</span><a href="#local-6989586621679399158"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeEmailAddress</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextEntityType)
 -&gt; Value
 -&gt; Parser TextEntityType
@@ -373,8 +373,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextEntityType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679401655"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679401655"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399135"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679399135"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-124"></span><span>    </span><span class="annot"><span class="annottext">TextEntityType -&gt; Parser TextEntityType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TextEntityType -&gt; Parser TextEntityType)
@@ -383,9 +383,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TextEntityTypeEmailAddress :: TextEntityType
 </span><a href="API.TextEntityType.html#TextEntityTypeEmailAddress"><span class="hs-identifier hs-type hs-type">TextEntityTypeEmailAddress</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-125"></span><span>
-</span><span id="line-126"></span><span>   </span><span class="annot"><a href="#local-6989586621679401677"><span class="hs-identifier hs-type">parseTextEntityTypePhoneNumber</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
-</span><span id="line-127"></span><span>   </span><span id="local-6989586621679401677"><span class="annot"><span class="annottext">parseTextEntityTypePhoneNumber :: Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401677"><span class="hs-identifier hs-var hs-var">parseTextEntityTypePhoneNumber</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-126"></span><span>   </span><span class="annot"><a href="#local-6989586621679399157"><span class="hs-identifier hs-type">parseTextEntityTypePhoneNumber</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
+</span><span id="line-127"></span><span>   </span><span id="local-6989586621679399157"><span class="annot"><span class="annottext">parseTextEntityTypePhoneNumber :: Value -&gt; Parser TextEntityType
+</span><a href="#local-6989586621679399157"><span class="hs-identifier hs-var hs-var">parseTextEntityTypePhoneNumber</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextEntityType)
 -&gt; Value
 -&gt; Parser TextEntityType
@@ -396,8 +396,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextEntityType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679401653"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679401653"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399133"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679399133"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-128"></span><span>    </span><span class="annot"><span class="annottext">TextEntityType -&gt; Parser TextEntityType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TextEntityType -&gt; Parser TextEntityType)
@@ -406,9 +406,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TextEntityTypePhoneNumber :: TextEntityType
 </span><a href="API.TextEntityType.html#TextEntityTypePhoneNumber"><span class="hs-identifier hs-type hs-type">TextEntityTypePhoneNumber</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-129"></span><span>
-</span><span id="line-130"></span><span>   </span><span class="annot"><a href="#local-6989586621679401676"><span class="hs-identifier hs-type">parseTextEntityTypeBankCardNumber</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
-</span><span id="line-131"></span><span>   </span><span id="local-6989586621679401676"><span class="annot"><span class="annottext">parseTextEntityTypeBankCardNumber :: Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401676"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeBankCardNumber</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-130"></span><span>   </span><span class="annot"><a href="#local-6989586621679399156"><span class="hs-identifier hs-type">parseTextEntityTypeBankCardNumber</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
+</span><span id="line-131"></span><span>   </span><span id="local-6989586621679399156"><span class="annot"><span class="annottext">parseTextEntityTypeBankCardNumber :: Value -&gt; Parser TextEntityType
+</span><a href="#local-6989586621679399156"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeBankCardNumber</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextEntityType)
 -&gt; Value
 -&gt; Parser TextEntityType
@@ -419,8 +419,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextEntityType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679401651"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679401651"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399131"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679399131"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-132"></span><span>    </span><span class="annot"><span class="annottext">TextEntityType -&gt; Parser TextEntityType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TextEntityType -&gt; Parser TextEntityType)
@@ -429,9 +429,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TextEntityTypeBankCardNumber :: TextEntityType
 </span><a href="API.TextEntityType.html#TextEntityTypeBankCardNumber"><span class="hs-identifier hs-type hs-type">TextEntityTypeBankCardNumber</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-133"></span><span>
-</span><span id="line-134"></span><span>   </span><span class="annot"><a href="#local-6989586621679401675"><span class="hs-identifier hs-type">parseTextEntityTypeBold</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
-</span><span id="line-135"></span><span>   </span><span id="local-6989586621679401675"><span class="annot"><span class="annottext">parseTextEntityTypeBold :: Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401675"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeBold</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-134"></span><span>   </span><span class="annot"><a href="#local-6989586621679399155"><span class="hs-identifier hs-type">parseTextEntityTypeBold</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
+</span><span id="line-135"></span><span>   </span><span id="local-6989586621679399155"><span class="annot"><span class="annottext">parseTextEntityTypeBold :: Value -&gt; Parser TextEntityType
+</span><a href="#local-6989586621679399155"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeBold</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextEntityType)
 -&gt; Value
 -&gt; Parser TextEntityType
@@ -442,8 +442,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextEntityType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679401649"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679401649"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399129"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679399129"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-136"></span><span>    </span><span class="annot"><span class="annottext">TextEntityType -&gt; Parser TextEntityType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TextEntityType -&gt; Parser TextEntityType)
@@ -452,9 +452,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TextEntityTypeBold :: TextEntityType
 </span><a href="API.TextEntityType.html#TextEntityTypeBold"><span class="hs-identifier hs-type hs-type">TextEntityTypeBold</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-137"></span><span>
-</span><span id="line-138"></span><span>   </span><span class="annot"><a href="#local-6989586621679401674"><span class="hs-identifier hs-type">parseTextEntityTypeItalic</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
-</span><span id="line-139"></span><span>   </span><span id="local-6989586621679401674"><span class="annot"><span class="annottext">parseTextEntityTypeItalic :: Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401674"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeItalic</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-138"></span><span>   </span><span class="annot"><a href="#local-6989586621679399154"><span class="hs-identifier hs-type">parseTextEntityTypeItalic</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
+</span><span id="line-139"></span><span>   </span><span id="local-6989586621679399154"><span class="annot"><span class="annottext">parseTextEntityTypeItalic :: Value -&gt; Parser TextEntityType
+</span><a href="#local-6989586621679399154"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeItalic</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextEntityType)
 -&gt; Value
 -&gt; Parser TextEntityType
@@ -465,8 +465,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextEntityType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679401647"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679401647"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399127"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679399127"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-140"></span><span>    </span><span class="annot"><span class="annottext">TextEntityType -&gt; Parser TextEntityType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TextEntityType -&gt; Parser TextEntityType)
@@ -475,9 +475,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TextEntityTypeItalic :: TextEntityType
 </span><a href="API.TextEntityType.html#TextEntityTypeItalic"><span class="hs-identifier hs-type hs-type">TextEntityTypeItalic</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-141"></span><span>
-</span><span id="line-142"></span><span>   </span><span class="annot"><a href="#local-6989586621679401673"><span class="hs-identifier hs-type">parseTextEntityTypeUnderline</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
-</span><span id="line-143"></span><span>   </span><span id="local-6989586621679401673"><span class="annot"><span class="annottext">parseTextEntityTypeUnderline :: Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401673"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeUnderline</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-142"></span><span>   </span><span class="annot"><a href="#local-6989586621679399153"><span class="hs-identifier hs-type">parseTextEntityTypeUnderline</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
+</span><span id="line-143"></span><span>   </span><span id="local-6989586621679399153"><span class="annot"><span class="annottext">parseTextEntityTypeUnderline :: Value -&gt; Parser TextEntityType
+</span><a href="#local-6989586621679399153"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeUnderline</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextEntityType)
 -&gt; Value
 -&gt; Parser TextEntityType
@@ -488,8 +488,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextEntityType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679401645"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679401645"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399125"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679399125"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-144"></span><span>    </span><span class="annot"><span class="annottext">TextEntityType -&gt; Parser TextEntityType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TextEntityType -&gt; Parser TextEntityType)
@@ -498,9 +498,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TextEntityTypeUnderline :: TextEntityType
 </span><a href="API.TextEntityType.html#TextEntityTypeUnderline"><span class="hs-identifier hs-type hs-type">TextEntityTypeUnderline</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-145"></span><span>
-</span><span id="line-146"></span><span>   </span><span class="annot"><a href="#local-6989586621679401672"><span class="hs-identifier hs-type">parseTextEntityTypeStrikethrough</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
-</span><span id="line-147"></span><span>   </span><span id="local-6989586621679401672"><span class="annot"><span class="annottext">parseTextEntityTypeStrikethrough :: Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401672"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeStrikethrough</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-146"></span><span>   </span><span class="annot"><a href="#local-6989586621679399152"><span class="hs-identifier hs-type">parseTextEntityTypeStrikethrough</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
+</span><span id="line-147"></span><span>   </span><span id="local-6989586621679399152"><span class="annot"><span class="annottext">parseTextEntityTypeStrikethrough :: Value -&gt; Parser TextEntityType
+</span><a href="#local-6989586621679399152"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeStrikethrough</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextEntityType)
 -&gt; Value
 -&gt; Parser TextEntityType
@@ -511,8 +511,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextEntityType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679401643"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679401643"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399123"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679399123"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-148"></span><span>    </span><span class="annot"><span class="annottext">TextEntityType -&gt; Parser TextEntityType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TextEntityType -&gt; Parser TextEntityType)
@@ -521,9 +521,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TextEntityTypeStrikethrough :: TextEntityType
 </span><a href="API.TextEntityType.html#TextEntityTypeStrikethrough"><span class="hs-identifier hs-type hs-type">TextEntityTypeStrikethrough</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-149"></span><span>
-</span><span id="line-150"></span><span>   </span><span class="annot"><a href="#local-6989586621679401671"><span class="hs-identifier hs-type">parseTextEntityTypeCode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
-</span><span id="line-151"></span><span>   </span><span id="local-6989586621679401671"><span class="annot"><span class="annottext">parseTextEntityTypeCode :: Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401671"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-150"></span><span>   </span><span class="annot"><a href="#local-6989586621679399151"><span class="hs-identifier hs-type">parseTextEntityTypeCode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
+</span><span id="line-151"></span><span>   </span><span id="local-6989586621679399151"><span class="annot"><span class="annottext">parseTextEntityTypeCode :: Value -&gt; Parser TextEntityType
+</span><a href="#local-6989586621679399151"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextEntityType)
 -&gt; Value
 -&gt; Parser TextEntityType
@@ -534,8 +534,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextEntityType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679401641"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679401641"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399121"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679399121"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-152"></span><span>    </span><span class="annot"><span class="annottext">TextEntityType -&gt; Parser TextEntityType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TextEntityType -&gt; Parser TextEntityType)
@@ -544,9 +544,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TextEntityTypeCode :: TextEntityType
 </span><a href="API.TextEntityType.html#TextEntityTypeCode"><span class="hs-identifier hs-type hs-type">TextEntityTypeCode</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-153"></span><span>
-</span><span id="line-154"></span><span>   </span><span class="annot"><a href="#local-6989586621679401670"><span class="hs-identifier hs-type">parseTextEntityTypePre</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
-</span><span id="line-155"></span><span>   </span><span id="local-6989586621679401670"><span class="annot"><span class="annottext">parseTextEntityTypePre :: Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401670"><span class="hs-identifier hs-var hs-var">parseTextEntityTypePre</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-154"></span><span>   </span><span class="annot"><a href="#local-6989586621679399150"><span class="hs-identifier hs-type">parseTextEntityTypePre</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
+</span><span id="line-155"></span><span>   </span><span id="local-6989586621679399150"><span class="annot"><span class="annottext">parseTextEntityTypePre :: Value -&gt; Parser TextEntityType
+</span><a href="#local-6989586621679399150"><span class="hs-identifier hs-var hs-var">parseTextEntityTypePre</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextEntityType)
 -&gt; Value
 -&gt; Parser TextEntityType
@@ -557,8 +557,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextEntityType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679401639"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679401639"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399119"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679399119"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-156"></span><span>    </span><span class="annot"><span class="annottext">TextEntityType -&gt; Parser TextEntityType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TextEntityType -&gt; Parser TextEntityType)
@@ -567,9 +567,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TextEntityTypePre :: TextEntityType
 </span><a href="API.TextEntityType.html#TextEntityTypePre"><span class="hs-identifier hs-type hs-type">TextEntityTypePre</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-157"></span><span>
-</span><span id="line-158"></span><span>   </span><span class="annot"><a href="#local-6989586621679401669"><span class="hs-identifier hs-type">parseTextEntityTypePreCode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
-</span><span id="line-159"></span><span>   </span><span id="local-6989586621679401669"><span class="annot"><span class="annottext">parseTextEntityTypePreCode :: Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401669"><span class="hs-identifier hs-var hs-var">parseTextEntityTypePreCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-158"></span><span>   </span><span class="annot"><a href="#local-6989586621679399149"><span class="hs-identifier hs-type">parseTextEntityTypePreCode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
+</span><span id="line-159"></span><span>   </span><span id="local-6989586621679399149"><span class="annot"><span class="annottext">parseTextEntityTypePreCode :: Value -&gt; Parser TextEntityType
+</span><a href="#local-6989586621679399149"><span class="hs-identifier hs-var hs-var">parseTextEntityTypePreCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextEntityType)
 -&gt; Value
 -&gt; Parser TextEntityType
@@ -580,11 +580,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextEntityType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679401637"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679401637"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-160"></span><span>    </span><span id="local-6989586621679401636"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679401636"><span class="hs-identifier hs-var">language</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679401637"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399117"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679399117"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-160"></span><span>    </span><span id="local-6989586621679399116"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679399116"><span class="hs-identifier hs-var">language</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399117"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;language&quot;</span></span><span>
 </span><span id="line-161"></span><span>    </span><span class="annot"><span class="annottext">TextEntityType -&gt; Parser TextEntityType
@@ -595,11 +595,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TextEntityTypePreCode :: String -&gt; TextEntityType
 </span><a href="API.TextEntityType.html#TextEntityTypePreCode"><span class="hs-identifier hs-type hs-type">TextEntityTypePreCode</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">language :: String
 </span><a href="API.TextEntityType.html#language"><span class="hs-identifier hs-var">language</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679401636"><span class="hs-identifier hs-var">language</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679399116"><span class="hs-identifier hs-var">language</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-162"></span><span>
-</span><span id="line-163"></span><span>   </span><span class="annot"><a href="#local-6989586621679401668"><span class="hs-identifier hs-type">parseTextEntityTypeTextUrl</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
-</span><span id="line-164"></span><span>   </span><span id="local-6989586621679401668"><span class="annot"><span class="annottext">parseTextEntityTypeTextUrl :: Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401668"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeTextUrl</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-163"></span><span>   </span><span class="annot"><a href="#local-6989586621679399148"><span class="hs-identifier hs-type">parseTextEntityTypeTextUrl</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
+</span><span id="line-164"></span><span>   </span><span id="local-6989586621679399148"><span class="annot"><span class="annottext">parseTextEntityTypeTextUrl :: Value -&gt; Parser TextEntityType
+</span><a href="#local-6989586621679399148"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeTextUrl</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextEntityType)
 -&gt; Value
 -&gt; Parser TextEntityType
@@ -610,11 +610,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextEntityType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679401634"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679401634"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-165"></span><span>    </span><span id="local-6989586621679401633"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679401633"><span class="hs-identifier hs-var">url</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679401634"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399114"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679399114"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-165"></span><span>    </span><span id="local-6989586621679399113"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679399113"><span class="hs-identifier hs-var">url</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399114"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;url&quot;</span></span><span>
 </span><span id="line-166"></span><span>    </span><span class="annot"><span class="annottext">TextEntityType -&gt; Parser TextEntityType
@@ -625,11 +625,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TextEntityTypeTextUrl :: String -&gt; TextEntityType
 </span><a href="API.TextEntityType.html#TextEntityTypeTextUrl"><span class="hs-identifier hs-type hs-type">TextEntityTypeTextUrl</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">url :: String
 </span><a href="API.TextEntityType.html#url"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679401633"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679399113"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-167"></span><span>
-</span><span id="line-168"></span><span>   </span><span class="annot"><a href="#local-6989586621679401667"><span class="hs-identifier hs-type">parseTextEntityTypeMentionName</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
-</span><span id="line-169"></span><span>   </span><span id="local-6989586621679401667"><span class="annot"><span class="annottext">parseTextEntityTypeMentionName :: Value -&gt; Parser TextEntityType
-</span><a href="#local-6989586621679401667"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeMentionName</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-168"></span><span>   </span><span class="annot"><a href="#local-6989586621679399147"><span class="hs-identifier hs-type">parseTextEntityTypeMentionName</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextEntityType.html#TextEntityType"><span class="hs-identifier hs-type">TextEntityType</span></a></span><span>
+</span><span id="line-169"></span><span>   </span><span id="local-6989586621679399147"><span class="annot"><span class="annottext">parseTextEntityTypeMentionName :: Value -&gt; Parser TextEntityType
+</span><a href="#local-6989586621679399147"><span class="hs-identifier hs-var hs-var">parseTextEntityTypeMentionName</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextEntityType)
 -&gt; Value
 -&gt; Parser TextEntityType
@@ -640,11 +640,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextEntityType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679401631"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679401631"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-170"></span><span>    </span><span id="local-6989586621679401630"><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679401630"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679401631"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399111"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679399111"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-170"></span><span>    </span><span id="local-6989586621679399110"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679399110"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679399111"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;user_id&quot;</span></span><span>
 </span><span id="line-171"></span><span>    </span><span class="annot"><span class="annottext">TextEntityType -&gt; Parser TextEntityType
@@ -655,4 +655,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TextEntityTypeMentionName :: Int -&gt; TextEntityType
 </span><a href="API.TextEntityType.html#TextEntityTypeMentionName"><span class="hs-identifier hs-type hs-type">TextEntityTypeMentionName</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">user_id :: Int
 </span><a href="API.TextEntityType.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
-</span><a href="#local-6989586621679401630"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679399110"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

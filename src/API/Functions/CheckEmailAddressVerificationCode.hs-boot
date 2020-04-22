@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.CheckEmailAddressVerificationCode where
 
 import Data.Aeson.Types

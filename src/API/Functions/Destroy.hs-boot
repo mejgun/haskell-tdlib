@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.Destroy where
 
 import Data.Aeson.Types

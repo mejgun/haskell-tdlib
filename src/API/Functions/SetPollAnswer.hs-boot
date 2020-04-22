@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SetPollAnswer where
 
 import Data.Aeson.Types

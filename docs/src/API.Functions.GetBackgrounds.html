@@ -7,7 +7,7 @@
 </span><span id="line-7"></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">data</span><span> </span><span id="GetBackgrounds"><span class="annot"><a href="API.Functions.GetBackgrounds.html#GetBackgrounds"><span class="hs-identifier hs-var">GetBackgrounds</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-9"></span><span> </span><span id="GetBackgrounds"><span class="annot"><a href="API.Functions.GetBackgrounds.html#GetBackgrounds"><span class="hs-identifier hs-var">GetBackgrounds</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="for_dark_theme"><span class="annot"><span class="annottext">GetBackgrounds -&gt; Bool
-</span><a href="API.Functions.GetBackgrounds.html#for_dark_theme"><span class="hs-identifier hs-var hs-var">for_dark_theme</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679370051"><span id="local-6989586621679370053"><span id="local-6989586621679370055"><span class="annot"><span class="annottext">Int -&gt; GetBackgrounds -&gt; ShowS
+</span><a href="API.Functions.GetBackgrounds.html#for_dark_theme"><span class="hs-identifier hs-var hs-var">for_dark_theme</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679367531"><span id="local-6989586621679367533"><span id="local-6989586621679367535"><span class="annot"><span class="annottext">Int -&gt; GetBackgrounds -&gt; ShowS
 [GetBackgrounds] -&gt; ShowS
 GetBackgrounds -&gt; String
 (Int -&gt; GetBackgrounds -&gt; ShowS)
@@ -24,11 +24,11 @@ showsPrec :: Int -&gt; GetBackgrounds -&gt; ShowS
 $cshowsPrec :: Int -&gt; GetBackgrounds -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679370043"><span id="local-6989586621679370045"><span id="local-6989586621679370047"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetBackgrounds.html#GetBackgrounds"><span class="hs-identifier hs-type">GetBackgrounds</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-12"></span><span> </span><span id="local-6989586621679370041"><span class="annot"><span class="annottext">toJSON :: GetBackgrounds -&gt; Value
+</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679367523"><span id="local-6989586621679367525"><span id="local-6989586621679367527"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetBackgrounds.html#GetBackgrounds"><span class="hs-identifier hs-type">GetBackgrounds</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-12"></span><span> </span><span id="local-6989586621679367521"><span class="annot"><span class="annottext">toJSON :: GetBackgrounds -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.GetBackgrounds.html#GetBackgrounds"><span class="hs-identifier hs-type">GetBackgrounds</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">for_dark_theme :: GetBackgrounds -&gt; Bool
-</span><a href="API.Functions.GetBackgrounds.html#for_dark_theme"><span class="hs-identifier hs-var">for_dark_theme</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679370039"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679370039"><span class="hs-identifier hs-var">for_dark_theme</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.GetBackgrounds.html#for_dark_theme"><span class="hs-identifier hs-var">for_dark_theme</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679367519"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679367519"><span class="hs-identifier hs-var">for_dark_theme</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-13"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -36,30 +36,30 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;getBackgrounds&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;for_dark_theme&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679370039"><span class="hs-identifier hs-var">for_dark_theme</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679367519"><span class="hs-identifier hs-var">for_dark_theme</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679370033"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetBackgrounds.html#GetBackgrounds"><span class="hs-identifier hs-type">GetBackgrounds</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-16"></span><span> </span><span id="local-6989586621679370031"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetBackgrounds
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679370029"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679370029"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679370027"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679370027"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-17"></span><span>  </span><span id="local-6989586621679370026"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679370026"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679370027"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679367513"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetBackgrounds.html#GetBackgrounds"><span class="hs-identifier hs-type">GetBackgrounds</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-16"></span><span> </span><span id="local-6989586621679367511"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetBackgrounds
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679367509"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679367509"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679367507"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679367507"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-17"></span><span>  </span><span id="local-6989586621679367506"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679367506"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679367507"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-18"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679370026"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679367506"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-19"></span><span>   </span><span class="hs-string">&quot;getBackgrounds&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetBackgrounds
-</span><a href="#local-6989586621679370024"><span class="hs-identifier hs-var">parseGetBackgrounds</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679370029"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679367504"><span class="hs-identifier hs-var">parseGetBackgrounds</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679367509"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetBackgrounds
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-21"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679370024"><span class="hs-identifier hs-type">parseGetBackgrounds</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetBackgrounds.html#GetBackgrounds"><span class="hs-identifier hs-type">GetBackgrounds</span></a></span><span>
-</span><span id="line-23"></span><span>   </span><span id="local-6989586621679370024"><span class="annot"><span class="annottext">parseGetBackgrounds :: Value -&gt; Parser GetBackgrounds
-</span><a href="#local-6989586621679370024"><span class="hs-identifier hs-var hs-var">parseGetBackgrounds</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679367504"><span class="hs-identifier hs-type">parseGetBackgrounds</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetBackgrounds.html#GetBackgrounds"><span class="hs-identifier hs-type">GetBackgrounds</span></a></span><span>
+</span><span id="line-23"></span><span>   </span><span id="local-6989586621679367504"><span class="annot"><span class="annottext">parseGetBackgrounds :: Value -&gt; Parser GetBackgrounds
+</span><a href="#local-6989586621679367504"><span class="hs-identifier hs-var hs-var">parseGetBackgrounds</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GetBackgrounds)
 -&gt; Value
 -&gt; Parser GetBackgrounds
@@ -70,11 +70,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser GetBackgrounds
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679370022"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679370022"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-24"></span><span>    </span><span id="local-6989586621679370021"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679370021"><span class="hs-identifier hs-var">for_dark_theme</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679370022"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679367502"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679367502"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-24"></span><span>    </span><span id="local-6989586621679367501"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679367501"><span class="hs-identifier hs-var">for_dark_theme</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679367502"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;for_dark_theme&quot;</span></span><span>
 </span><span id="line-25"></span><span>    </span><span class="annot"><span class="annottext">GetBackgrounds -&gt; Parser GetBackgrounds
@@ -85,4 +85,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">GetBackgrounds :: Bool -&gt; GetBackgrounds
 </span><a href="API.Functions.GetBackgrounds.html#GetBackgrounds"><span class="hs-identifier hs-type hs-type">GetBackgrounds</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">for_dark_theme :: Bool
 </span><a href="API.Functions.GetBackgrounds.html#for_dark_theme"><span class="hs-identifier hs-var">for_dark_theme</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679370021"><span class="hs-identifier hs-var">for_dark_theme</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679367501"><span class="hs-identifier hs-var">for_dark_theme</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

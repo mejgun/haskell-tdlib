@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.ToggleSupergroupSignMessages where
 
 import Data.Aeson.Types

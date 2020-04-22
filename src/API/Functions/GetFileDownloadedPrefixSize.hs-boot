@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetFileDownloadedPrefixSize where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.PaymentsProviderStripe where
 
 import Data.Aeson.Types

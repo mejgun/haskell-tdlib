@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Photo where
 
 import Data.Aeson.Types

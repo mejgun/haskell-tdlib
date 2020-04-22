@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SetSupergroupStickerSet where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.NotificationGroupType where
 
 import Data.Aeson.Types

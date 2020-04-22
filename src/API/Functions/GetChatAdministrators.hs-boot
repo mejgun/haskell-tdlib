@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetChatAdministrators where
 
 import Data.Aeson.Types

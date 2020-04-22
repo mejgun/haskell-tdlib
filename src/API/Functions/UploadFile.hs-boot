@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.UploadFile where
 
 import Data.Aeson.Types

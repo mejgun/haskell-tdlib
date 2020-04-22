@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.ToggleSupergroupIsAllHistoryAvailable where
 
 import Data.Aeson.Types

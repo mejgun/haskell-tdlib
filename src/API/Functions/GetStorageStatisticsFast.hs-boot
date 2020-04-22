@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetStorageStatisticsFast where
 
 import Data.Aeson.Types

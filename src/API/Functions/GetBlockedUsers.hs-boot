@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetBlockedUsers where
 
 import Data.Aeson.Types

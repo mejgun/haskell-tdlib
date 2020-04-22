@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetCountryCode where
 
 import Data.Aeson.Types

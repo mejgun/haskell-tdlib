@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.SavedCredentials where
 
 import Data.Aeson.Types

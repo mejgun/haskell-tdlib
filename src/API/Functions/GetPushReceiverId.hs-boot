@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetPushReceiverId where
 
 import Data.Aeson.Types

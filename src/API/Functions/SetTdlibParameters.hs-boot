@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SetTdlibParameters where
 
 import Data.Aeson.Types

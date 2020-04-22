@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.MessageForwardOrigin where
 
 import Data.Aeson.Types

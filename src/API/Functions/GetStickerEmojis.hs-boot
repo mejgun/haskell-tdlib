@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetStickerEmojis where
 
 import Data.Aeson.Types

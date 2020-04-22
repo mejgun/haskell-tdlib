@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Audio where
 
 import Data.Aeson.Types

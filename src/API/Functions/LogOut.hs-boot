@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.LogOut where
 
 import Data.Aeson.Types

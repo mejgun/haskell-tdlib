@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SetLogStream where
 
 import Data.Aeson.Types

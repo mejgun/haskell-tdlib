@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.MessageSchedulingState where
 
 import Data.Aeson.Types

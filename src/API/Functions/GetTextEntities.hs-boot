@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetTextEntities where
 
 import Data.Aeson.Types

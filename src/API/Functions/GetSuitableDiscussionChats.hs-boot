@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetSuitableDiscussionChats where
 
 import Data.Aeson.Types

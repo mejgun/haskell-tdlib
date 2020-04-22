@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SendBotStartMessage where
 
 import Data.Aeson.Types

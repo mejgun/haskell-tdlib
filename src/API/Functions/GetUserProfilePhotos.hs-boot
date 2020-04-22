@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetUserProfilePhotos where
 
 import Data.Aeson.Types

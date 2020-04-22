@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.ProxyType where
 
 import Data.Aeson.Types

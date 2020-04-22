@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.ChatReportReason where
 
 import Data.Aeson.Types

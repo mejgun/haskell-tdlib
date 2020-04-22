@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.TestProxy where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.TestString where
 
 import Data.Aeson.Types

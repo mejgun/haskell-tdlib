@@ -6,7 +6,7 @@
 </span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
 </span><span id="line-7"></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">data</span><span> </span><span id="GetActiveSessions"><span class="annot"><a href="API.Functions.GetActiveSessions.html#GetActiveSessions"><span class="hs-identifier hs-var">GetActiveSessions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-9"></span><span> </span><span id="GetActiveSessions"><span class="annot"><a href="API.Functions.GetActiveSessions.html#GetActiveSessions"><span class="hs-identifier hs-var">GetActiveSessions</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679369539"><span id="local-6989586621679369541"><span id="local-6989586621679369543"><span class="annot"><span class="annottext">Int -&gt; GetActiveSessions -&gt; ShowS
+</span><span id="line-9"></span><span> </span><span id="GetActiveSessions"><span class="annot"><a href="API.Functions.GetActiveSessions.html#GetActiveSessions"><span class="hs-identifier hs-var">GetActiveSessions</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679367019"><span id="local-6989586621679367021"><span id="local-6989586621679367023"><span class="annot"><span class="annottext">Int -&gt; GetActiveSessions -&gt; ShowS
 [GetActiveSessions] -&gt; ShowS
 GetActiveSessions -&gt; String
 (Int -&gt; GetActiveSessions -&gt; ShowS)
@@ -23,8 +23,8 @@ showsPrec :: Int -&gt; GetActiveSessions -&gt; ShowS
 $cshowsPrec :: Int -&gt; GetActiveSessions -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679369531"><span id="local-6989586621679369533"><span id="local-6989586621679369535"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetActiveSessions.html#GetActiveSessions"><span class="hs-identifier hs-type">GetActiveSessions</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-12"></span><span> </span><span id="local-6989586621679369529"><span class="annot"><span class="annottext">toJSON :: GetActiveSessions -&gt; Value
+</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679367011"><span id="local-6989586621679367013"><span id="local-6989586621679367015"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetActiveSessions.html#GetActiveSessions"><span class="hs-identifier hs-type">GetActiveSessions</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-12"></span><span> </span><span id="local-6989586621679367009"><span class="annot"><span class="annottext">toJSON :: GetActiveSessions -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.GetActiveSessions.html#GetActiveSessions"><span class="hs-identifier hs-type">GetActiveSessions</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-13"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -32,28 +32,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;getActiveSessions&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679369522"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetActiveSessions.html#GetActiveSessions"><span class="hs-identifier hs-type">GetActiveSessions</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-16"></span><span> </span><span id="local-6989586621679369520"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetActiveSessions
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679369518"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679369518"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679369516"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679369516"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-17"></span><span>  </span><span id="local-6989586621679369515"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679369515"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679369516"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679367002"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetActiveSessions.html#GetActiveSessions"><span class="hs-identifier hs-type">GetActiveSessions</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-16"></span><span> </span><span id="local-6989586621679367000"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetActiveSessions
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679366998"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679366998"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679366996"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679366996"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-17"></span><span>  </span><span id="local-6989586621679366995"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679366995"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679366996"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-18"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679369515"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679366995"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-19"></span><span>   </span><span class="hs-string">&quot;getActiveSessions&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetActiveSessions
-</span><a href="#local-6989586621679369513"><span class="hs-identifier hs-var">parseGetActiveSessions</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679369518"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679366993"><span class="hs-identifier hs-var">parseGetActiveSessions</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679366998"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetActiveSessions
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-21"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679369513"><span class="hs-identifier hs-type">parseGetActiveSessions</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetActiveSessions.html#GetActiveSessions"><span class="hs-identifier hs-type">GetActiveSessions</span></a></span><span>
-</span><span id="line-23"></span><span>   </span><span id="local-6989586621679369513"><span class="annot"><span class="annottext">parseGetActiveSessions :: Value -&gt; Parser GetActiveSessions
-</span><a href="#local-6989586621679369513"><span class="hs-identifier hs-var hs-var">parseGetActiveSessions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679366993"><span class="hs-identifier hs-type">parseGetActiveSessions</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetActiveSessions.html#GetActiveSessions"><span class="hs-identifier hs-type">GetActiveSessions</span></a></span><span>
+</span><span id="line-23"></span><span>   </span><span id="local-6989586621679366993"><span class="annot"><span class="annottext">parseGetActiveSessions :: Value -&gt; Parser GetActiveSessions
+</span><a href="#local-6989586621679366993"><span class="hs-identifier hs-var hs-var">parseGetActiveSessions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GetActiveSessions)
 -&gt; Value
 -&gt; Parser GetActiveSessions
@@ -64,8 +64,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser GetActiveSessions
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679369511"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679369511"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679366991"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679366991"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-24"></span><span>    </span><span class="annot"><span class="annottext">GetActiveSessions -&gt; Parser GetActiveSessions
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(GetActiveSessions -&gt; Parser GetActiveSessions)

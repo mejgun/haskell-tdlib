@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.SupergroupMembersFilter where
 
 import Data.Aeson.Types

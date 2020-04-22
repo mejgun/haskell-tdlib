@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.CheckChatUsernameResult where
 
 import Data.Aeson.Types

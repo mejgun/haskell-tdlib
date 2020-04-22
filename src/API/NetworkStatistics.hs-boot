@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.NetworkStatistics where
 
 import Data.Aeson.Types

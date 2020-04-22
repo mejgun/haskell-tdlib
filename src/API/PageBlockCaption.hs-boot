@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.PageBlockCaption where
 
 import Data.Aeson.Types

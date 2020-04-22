@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.ChatPermissions where
 
 import Data.Aeson.Types

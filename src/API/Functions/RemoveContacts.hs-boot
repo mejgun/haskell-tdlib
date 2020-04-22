@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.RemoveContacts where
 
 import Data.Aeson.Types

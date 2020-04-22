@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SendChatAction where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.EditInlineMessageMedia where
 
 import Data.Aeson.Types

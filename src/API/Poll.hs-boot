@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Poll where
 
 import Data.Aeson.Types

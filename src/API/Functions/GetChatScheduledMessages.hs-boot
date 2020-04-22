@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetChatScheduledMessages where
 
 import Data.Aeson.Types

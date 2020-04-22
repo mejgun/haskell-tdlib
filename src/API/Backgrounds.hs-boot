@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Backgrounds where
 
 import Data.Aeson.Types

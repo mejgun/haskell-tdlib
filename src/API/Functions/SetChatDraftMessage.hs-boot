@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SetChatDraftMessage where
 
 import Data.Aeson.Types

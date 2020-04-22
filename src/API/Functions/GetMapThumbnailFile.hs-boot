@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetMapThumbnailFile where
 
 import Data.Aeson.Types

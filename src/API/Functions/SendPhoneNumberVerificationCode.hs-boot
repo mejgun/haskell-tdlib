@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SendPhoneNumberVerificationCode where
 
 import Data.Aeson.Types

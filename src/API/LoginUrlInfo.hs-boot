@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.LoginUrlInfo where
 
 import Data.Aeson.Types

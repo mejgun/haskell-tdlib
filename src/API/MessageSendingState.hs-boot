@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.MessageSendingState where
 
 import Data.Aeson.Types

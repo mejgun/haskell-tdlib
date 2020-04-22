@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.ClearAllDraftMessages where
 
 import Data.Aeson.Types

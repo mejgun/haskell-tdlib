@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.EditInlineMessageReplyMarkup where
 
 import Data.Aeson.Types

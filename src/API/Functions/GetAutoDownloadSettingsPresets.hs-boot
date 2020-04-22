@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetAutoDownloadSettingsPresets where
 
 import Data.Aeson.Types

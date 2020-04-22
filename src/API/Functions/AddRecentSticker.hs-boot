@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.AddRecentSticker where
 
 import Data.Aeson.Types

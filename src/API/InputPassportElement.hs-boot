@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.InputPassportElement where
 
 import Data.Aeson.Types

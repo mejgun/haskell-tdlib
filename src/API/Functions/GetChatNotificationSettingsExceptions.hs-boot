@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetChatNotificationSettingsExceptions where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.DatabaseStatistics where
 
 import Data.Aeson.Types

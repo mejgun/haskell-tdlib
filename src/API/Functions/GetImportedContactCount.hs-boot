@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.GetImportedContactCount where
 
 import Data.Aeson.Types

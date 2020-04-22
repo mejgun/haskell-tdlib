@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.TermsOfService where
 
 import Data.Aeson.Types

@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.ChatMemberStatus where
 
 import Data.Aeson.Types

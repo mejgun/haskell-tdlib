@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.ResetBackgrounds where
 
 import Data.Aeson.Types

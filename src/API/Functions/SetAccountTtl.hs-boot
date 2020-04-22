@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Functions.SetAccountTtl where
 
 import Data.Aeson.Types

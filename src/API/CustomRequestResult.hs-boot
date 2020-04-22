@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.CustomRequestResult where
 
 import Data.Aeson.Types

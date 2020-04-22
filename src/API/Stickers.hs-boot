@@ -1,5 +1,4 @@
 -- GENERATED
-
 module API.Stickers where
 
 import Data.Aeson.Types
