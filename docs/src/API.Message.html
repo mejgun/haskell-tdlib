@@ -1,0 +1,421 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Message</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.ReplyMarkup.html"><span class="hs-identifier">API.ReplyMarkup</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ReplyMarkup</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.MessageContent.html"><span class="hs-identifier">API.MessageContent</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">MessageContent</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.MessageForwardInfo.html"><span class="hs-identifier">API.MessageForwardInfo</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">MessageForwardInfo</span></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.MessageSchedulingState.html"><span class="hs-identifier">API.MessageSchedulingState</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">MessageSchedulingState</span></span><span>
+</span><span id="line-11"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.MessageSendingState.html"><span class="hs-identifier">API.MessageSendingState</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">MessageSendingState</span></span><span>
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="Message"><span class="annot"><a href="API.Message.html#Message"><span class="hs-identifier hs-var">Message</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-14"></span><span> </span><span id="Message"><span class="annot"><a href="API.Message.html#Message"><span class="hs-identifier hs-var">Message</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="reply_markup"><span class="annot"><span class="annottext">Message -&gt; ReplyMarkup
+</span><a href="API.Message.html#reply_markup"><span class="hs-identifier hs-var hs-var">reply_markup</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.ReplyMarkup.html#ReplyMarkup"><span class="hs-identifier hs-type">ReplyMarkup.ReplyMarkup</span></a></span><span class="hs-special">,</span><span> </span><span id="content"><span class="annot"><span class="annottext">Message -&gt; MessageContent
+</span><a href="API.Message.html#content"><span class="hs-identifier hs-var hs-var">content</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.MessageContent.html#MessageContent"><span class="hs-identifier hs-type">MessageContent.MessageContent</span></a></span><span class="hs-special">,</span><span> </span><span id="restriction_reason"><span class="annot"><span class="annottext">Message -&gt; String
+</span><a href="API.Message.html#restriction_reason"><span class="hs-identifier hs-var hs-var">restriction_reason</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="media_album_id"><span class="annot"><span class="annottext">Message -&gt; Int
+</span><a href="API.Message.html#media_album_id"><span class="hs-identifier hs-var hs-var">media_album_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="views"><span class="annot"><span class="annottext">Message -&gt; Int
+</span><a href="API.Message.html#views"><span class="hs-identifier hs-var hs-var">views</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="author_signature"><span class="annot"><span class="annottext">Message -&gt; String
+</span><a href="API.Message.html#author_signature"><span class="hs-identifier hs-var hs-var">author_signature</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="via_bot_user_id"><span class="annot"><span class="annottext">Message -&gt; Int
+</span><a href="API.Message.html#via_bot_user_id"><span class="hs-identifier hs-var hs-var">via_bot_user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="ttl_expires_in"><span class="annot"><span class="annottext">Message -&gt; Float
+</span><a href="API.Message.html#ttl_expires_in"><span class="hs-identifier hs-var hs-var">ttl_expires_in</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span class="hs-special">,</span><span> </span><span id="ttl"><span class="annot"><span class="annottext">Message -&gt; Int
+</span><a href="API.Message.html#ttl"><span class="hs-identifier hs-var hs-var">ttl</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="reply_to_message_id"><span class="annot"><span class="annottext">Message -&gt; Int
+</span><a href="API.Message.html#reply_to_message_id"><span class="hs-identifier hs-var hs-var">reply_to_message_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="forward_info"><span class="annot"><span class="annottext">Message -&gt; MessageForwardInfo
+</span><a href="API.Message.html#forward_info"><span class="hs-identifier hs-var hs-var">forward_info</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.MessageForwardInfo.html#MessageForwardInfo"><span class="hs-identifier hs-type">MessageForwardInfo.MessageForwardInfo</span></a></span><span class="hs-special">,</span><span> </span><span id="edit_date"><span class="annot"><span class="annottext">Message -&gt; Int
+</span><a href="API.Message.html#edit_date"><span class="hs-identifier hs-var hs-var">edit_date</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="date"><span class="annot"><span class="annottext">Message -&gt; Int
+</span><a href="API.Message.html#date"><span class="hs-identifier hs-var hs-var">date</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="contains_unread_mention"><span class="annot"><span class="annottext">Message -&gt; Bool
+</span><a href="API.Message.html#contains_unread_mention"><span class="hs-identifier hs-var hs-var">contains_unread_mention</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="is_channel_post"><span class="annot"><span class="annottext">Message -&gt; Bool
+</span><a href="API.Message.html#is_channel_post"><span class="hs-identifier hs-var hs-var">is_channel_post</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="can_be_deleted_for_all_users"><span class="annot"><span class="annottext">Message -&gt; Bool
+</span><a href="API.Message.html#can_be_deleted_for_all_users"><span class="hs-identifier hs-var hs-var">can_be_deleted_for_all_users</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="can_be_deleted_only_for_self"><span class="annot"><span class="annottext">Message -&gt; Bool
+</span><a href="API.Message.html#can_be_deleted_only_for_self"><span class="hs-identifier hs-var hs-var">can_be_deleted_only_for_self</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="can_be_forwarded"><span class="annot"><span class="annottext">Message -&gt; Bool
+</span><a href="API.Message.html#can_be_forwarded"><span class="hs-identifier hs-var hs-var">can_be_forwarded</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="can_be_edited"><span class="annot"><span class="annottext">Message -&gt; Bool
+</span><a href="API.Message.html#can_be_edited"><span class="hs-identifier hs-var hs-var">can_be_edited</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="is_outgoing"><span class="annot"><span class="annottext">Message -&gt; Bool
+</span><a href="API.Message.html#is_outgoing"><span class="hs-identifier hs-var hs-var">is_outgoing</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="scheduling_state"><span class="annot"><span class="annottext">Message -&gt; MessageSchedulingState
+</span><a href="API.Message.html#scheduling_state"><span class="hs-identifier hs-var hs-var">scheduling_state</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.MessageSchedulingState.html#MessageSchedulingState"><span class="hs-identifier hs-type">MessageSchedulingState.MessageSchedulingState</span></a></span><span class="hs-special">,</span><span> </span><span id="sending_state"><span class="annot"><span class="annottext">Message -&gt; MessageSendingState
+</span><a href="API.Message.html#sending_state"><span class="hs-identifier hs-var hs-var">sending_state</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.MessageSendingState.html#MessageSendingState"><span class="hs-identifier hs-type">MessageSendingState.MessageSendingState</span></a></span><span class="hs-special">,</span><span> </span><span id="chat_id"><span class="annot"><span class="annottext">Message -&gt; Int
+</span><a href="API.Message.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="sender_user_id"><span class="annot"><span class="annottext">Message -&gt; Int
+</span><a href="API.Message.html#sender_user_id"><span class="hs-identifier hs-var hs-var">sender_user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="_id"><span class="annot"><span class="annottext">Message -&gt; Int
+</span><a href="API.Message.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679394533"><span id="local-6989586621679394535"><span id="local-6989586621679394537"><span class="annot"><span class="annottext">Int -&gt; Message -&gt; ShowS
+[Message] -&gt; ShowS
+Message -&gt; String
+(Int -&gt; Message -&gt; ShowS)
+-&gt; (Message -&gt; String) -&gt; ([Message] -&gt; ShowS) -&gt; Show Message
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [Message] -&gt; ShowS
+$cshowList :: [Message] -&gt; ShowS
+show :: Message -&gt; String
+$cshow :: Message -&gt; String
+showsPrec :: Int -&gt; Message -&gt; ShowS
+$cshowsPrec :: Int -&gt; Message -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-15"></span><span>
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679394525"><span id="local-6989586621679394527"><span id="local-6989586621679394529"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Message.html#Message"><span class="hs-identifier hs-type">Message</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679394523"><span class="annot"><span class="annottext">toJSON :: Message -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Message.html#Message"><span class="hs-identifier hs-type">Message</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">reply_markup :: Message -&gt; ReplyMarkup
+</span><a href="API.Message.html#reply_markup"><span class="hs-identifier hs-var">reply_markup</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394521"><span class="annot"><span class="annottext">ReplyMarkup
+</span><a href="#local-6989586621679394521"><span class="hs-identifier hs-var">reply_markup</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">content :: Message -&gt; MessageContent
+</span><a href="API.Message.html#content"><span class="hs-identifier hs-var">content</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394520"><span class="annot"><span class="annottext">MessageContent
+</span><a href="#local-6989586621679394520"><span class="hs-identifier hs-var">content</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">restriction_reason :: Message -&gt; String
+</span><a href="API.Message.html#restriction_reason"><span class="hs-identifier hs-var">restriction_reason</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394519"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679394519"><span class="hs-identifier hs-var">restriction_reason</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">media_album_id :: Message -&gt; Int
+</span><a href="API.Message.html#media_album_id"><span class="hs-identifier hs-var">media_album_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394518"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394518"><span class="hs-identifier hs-var">media_album_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">views :: Message -&gt; Int
+</span><a href="API.Message.html#views"><span class="hs-identifier hs-var">views</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394517"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394517"><span class="hs-identifier hs-var">views</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">author_signature :: Message -&gt; String
+</span><a href="API.Message.html#author_signature"><span class="hs-identifier hs-var">author_signature</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394516"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679394516"><span class="hs-identifier hs-var">author_signature</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">via_bot_user_id :: Message -&gt; Int
+</span><a href="API.Message.html#via_bot_user_id"><span class="hs-identifier hs-var">via_bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394515"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394515"><span class="hs-identifier hs-var">via_bot_user_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ttl_expires_in :: Message -&gt; Float
+</span><a href="API.Message.html#ttl_expires_in"><span class="hs-identifier hs-var">ttl_expires_in</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394514"><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679394514"><span class="hs-identifier hs-var">ttl_expires_in</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ttl :: Message -&gt; Int
+</span><a href="API.Message.html#ttl"><span class="hs-identifier hs-var">ttl</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394513"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394513"><span class="hs-identifier hs-var">ttl</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reply_to_message_id :: Message -&gt; Int
+</span><a href="API.Message.html#reply_to_message_id"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394512"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394512"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">forward_info :: Message -&gt; MessageForwardInfo
+</span><a href="API.Message.html#forward_info"><span class="hs-identifier hs-var">forward_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394511"><span class="annot"><span class="annottext">MessageForwardInfo
+</span><a href="#local-6989586621679394511"><span class="hs-identifier hs-var">forward_info</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">edit_date :: Message -&gt; Int
+</span><a href="API.Message.html#edit_date"><span class="hs-identifier hs-var">edit_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394510"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394510"><span class="hs-identifier hs-var">edit_date</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">date :: Message -&gt; Int
+</span><a href="API.Message.html#date"><span class="hs-identifier hs-var">date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394509"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394509"><span class="hs-identifier hs-var">date</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">contains_unread_mention :: Message -&gt; Bool
+</span><a href="API.Message.html#contains_unread_mention"><span class="hs-identifier hs-var">contains_unread_mention</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394508"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394508"><span class="hs-identifier hs-var">contains_unread_mention</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_channel_post :: Message -&gt; Bool
+</span><a href="API.Message.html#is_channel_post"><span class="hs-identifier hs-var">is_channel_post</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394507"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394507"><span class="hs-identifier hs-var">is_channel_post</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_deleted_for_all_users :: Message -&gt; Bool
+</span><a href="API.Message.html#can_be_deleted_for_all_users"><span class="hs-identifier hs-var">can_be_deleted_for_all_users</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394506"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394506"><span class="hs-identifier hs-var">can_be_deleted_for_all_users</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_deleted_only_for_self :: Message -&gt; Bool
+</span><a href="API.Message.html#can_be_deleted_only_for_self"><span class="hs-identifier hs-var">can_be_deleted_only_for_self</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394505"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394505"><span class="hs-identifier hs-var">can_be_deleted_only_for_self</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_forwarded :: Message -&gt; Bool
+</span><a href="API.Message.html#can_be_forwarded"><span class="hs-identifier hs-var">can_be_forwarded</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394504"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394504"><span class="hs-identifier hs-var">can_be_forwarded</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_edited :: Message -&gt; Bool
+</span><a href="API.Message.html#can_be_edited"><span class="hs-identifier hs-var">can_be_edited</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394503"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394503"><span class="hs-identifier hs-var">can_be_edited</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_outgoing :: Message -&gt; Bool
+</span><a href="API.Message.html#is_outgoing"><span class="hs-identifier hs-var">is_outgoing</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394502"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394502"><span class="hs-identifier hs-var">is_outgoing</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">scheduling_state :: Message -&gt; MessageSchedulingState
+</span><a href="API.Message.html#scheduling_state"><span class="hs-identifier hs-var">scheduling_state</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394501"><span class="annot"><span class="annottext">MessageSchedulingState
+</span><a href="#local-6989586621679394501"><span class="hs-identifier hs-var">scheduling_state</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sending_state :: Message -&gt; MessageSendingState
+</span><a href="API.Message.html#sending_state"><span class="hs-identifier hs-var">sending_state</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394500"><span class="annot"><span class="annottext">MessageSendingState
+</span><a href="#local-6989586621679394500"><span class="hs-identifier hs-var">sending_state</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Message -&gt; Int
+</span><a href="API.Message.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394499"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394499"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sender_user_id :: Message -&gt; Int
+</span><a href="API.Message.html#sender_user_id"><span class="hs-identifier hs-var">sender_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394498"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394498"><span class="hs-identifier hs-var">sender_user_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Message -&gt; Int
+</span><a href="API.Message.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394497"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394497"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-18"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;message&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;reply_markup&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; ReplyMarkup -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">ReplyMarkup
+</span><a href="#local-6989586621679394521"><span class="hs-identifier hs-var">reply_markup</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;content&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; MessageContent -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">MessageContent
+</span><a href="#local-6989586621679394520"><span class="hs-identifier hs-var">content</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;restriction_reason&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679394519"><span class="hs-identifier hs-var">restriction_reason</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;media_album_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394518"><span class="hs-identifier hs-var">media_album_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;views&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394517"><span class="hs-identifier hs-var">views</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;author_signature&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679394516"><span class="hs-identifier hs-var">author_signature</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;via_bot_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394515"><span class="hs-identifier hs-var">via_bot_user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;ttl_expires_in&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Float -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679394514"><span class="hs-identifier hs-var">ttl_expires_in</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;ttl&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394513"><span class="hs-identifier hs-var">ttl</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;reply_to_message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394512"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;forward_info&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; MessageForwardInfo -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">MessageForwardInfo
+</span><a href="#local-6989586621679394511"><span class="hs-identifier hs-var">forward_info</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;edit_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394510"><span class="hs-identifier hs-var">edit_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394509"><span class="hs-identifier hs-var">date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;contains_unread_mention&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394508"><span class="hs-identifier hs-var">contains_unread_mention</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_channel_post&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394507"><span class="hs-identifier hs-var">is_channel_post</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_be_deleted_for_all_users&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394506"><span class="hs-identifier hs-var">can_be_deleted_for_all_users</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_be_deleted_only_for_self&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394505"><span class="hs-identifier hs-var">can_be_deleted_only_for_self</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_be_forwarded&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394504"><span class="hs-identifier hs-var">can_be_forwarded</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_be_edited&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394503"><span class="hs-identifier hs-var">can_be_edited</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_outgoing&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394502"><span class="hs-identifier hs-var">is_outgoing</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;scheduling_state&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; MessageSchedulingState -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">MessageSchedulingState
+</span><a href="#local-6989586621679394501"><span class="hs-identifier hs-var">scheduling_state</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;sending_state&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; MessageSendingState -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">MessageSendingState
+</span><a href="#local-6989586621679394500"><span class="hs-identifier hs-var">sending_state</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394499"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;sender_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394498"><span class="hs-identifier hs-var">sender_user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394497"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679394491"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Message.html#Message"><span class="hs-identifier hs-type">Message</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span> </span><span id="local-6989586621679394489"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Message
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679394487"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679394487"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679394485"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679394485"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679394484"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679394484"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394485"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679394484"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-24"></span><span>   </span><span class="hs-string">&quot;message&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser Message
+</span><a href="#local-6989586621679394482"><span class="hs-identifier hs-var">parseMessage</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679394487"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser Message
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-26"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-27"></span><span>   </span><span class="annot"><a href="#local-6989586621679394482"><span class="hs-identifier hs-type">parseMessage</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Message.html#Message"><span class="hs-identifier hs-type">Message</span></a></span><span>
+</span><span id="line-28"></span><span>   </span><span id="local-6989586621679394482"><span class="annot"><span class="annottext">parseMessage :: Value -&gt; Parser Message
+</span><a href="#local-6989586621679394482"><span class="hs-identifier hs-var hs-var">parseMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Message) -&gt; Value -&gt; Parser Message
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;Message&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser Message) -&gt; Value -&gt; Parser Message)
+-&gt; (Object -&gt; Parser Message) -&gt; Value -&gt; Parser Message
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679394480"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-29"></span><span>    </span><span id="local-6989586621679394479"><span class="annot"><span class="annottext">ReplyMarkup
+</span><a href="#local-6989586621679394479"><span class="hs-identifier hs-var">reply_markup</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser ReplyMarkup
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;reply_markup&quot;</span></span><span>
+</span><span id="line-30"></span><span>    </span><span id="local-6989586621679394478"><span class="annot"><span class="annottext">MessageContent
+</span><a href="#local-6989586621679394478"><span class="hs-identifier hs-var">content</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser MessageContent
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;content&quot;</span></span><span>
+</span><span id="line-31"></span><span>    </span><span id="local-6989586621679394477"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679394477"><span class="hs-identifier hs-var">restriction_reason</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;restriction_reason&quot;</span></span><span>
+</span><span id="line-32"></span><span>    </span><span id="local-6989586621679394476"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394476"><span class="hs-identifier hs-var">media_album_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;media_album_id&quot;</span></span><span>
+</span><span id="line-33"></span><span>    </span><span id="local-6989586621679394475"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394475"><span class="hs-identifier hs-var">views</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;views&quot;</span></span><span>
+</span><span id="line-34"></span><span>    </span><span id="local-6989586621679394474"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679394474"><span class="hs-identifier hs-var">author_signature</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;author_signature&quot;</span></span><span>
+</span><span id="line-35"></span><span>    </span><span id="local-6989586621679394473"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394473"><span class="hs-identifier hs-var">via_bot_user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;via_bot_user_id&quot;</span></span><span>
+</span><span id="line-36"></span><span>    </span><span id="local-6989586621679394472"><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679394472"><span class="hs-identifier hs-var">ttl_expires_in</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Float
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;ttl_expires_in&quot;</span></span><span>
+</span><span id="line-37"></span><span>    </span><span id="local-6989586621679394471"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394471"><span class="hs-identifier hs-var">ttl</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;ttl&quot;</span></span><span>
+</span><span id="line-38"></span><span>    </span><span id="local-6989586621679394470"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394470"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;reply_to_message_id&quot;</span></span><span>
+</span><span id="line-39"></span><span>    </span><span id="local-6989586621679394469"><span class="annot"><span class="annottext">MessageForwardInfo
+</span><a href="#local-6989586621679394469"><span class="hs-identifier hs-var">forward_info</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser MessageForwardInfo
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;forward_info&quot;</span></span><span>
+</span><span id="line-40"></span><span>    </span><span id="local-6989586621679394468"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394468"><span class="hs-identifier hs-var">edit_date</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;edit_date&quot;</span></span><span>
+</span><span id="line-41"></span><span>    </span><span id="local-6989586621679394467"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394467"><span class="hs-identifier hs-var">date</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;date&quot;</span></span><span>
+</span><span id="line-42"></span><span>    </span><span id="local-6989586621679394466"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394466"><span class="hs-identifier hs-var">contains_unread_mention</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;contains_unread_mention&quot;</span></span><span>
+</span><span id="line-43"></span><span>    </span><span id="local-6989586621679394465"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394465"><span class="hs-identifier hs-var">is_channel_post</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_channel_post&quot;</span></span><span>
+</span><span id="line-44"></span><span>    </span><span id="local-6989586621679394464"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394464"><span class="hs-identifier hs-var">can_be_deleted_for_all_users</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_be_deleted_for_all_users&quot;</span></span><span>
+</span><span id="line-45"></span><span>    </span><span id="local-6989586621679394463"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394463"><span class="hs-identifier hs-var">can_be_deleted_only_for_self</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_be_deleted_only_for_self&quot;</span></span><span>
+</span><span id="line-46"></span><span>    </span><span id="local-6989586621679394462"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394462"><span class="hs-identifier hs-var">can_be_forwarded</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_be_forwarded&quot;</span></span><span>
+</span><span id="line-47"></span><span>    </span><span id="local-6989586621679394461"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394461"><span class="hs-identifier hs-var">can_be_edited</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_be_edited&quot;</span></span><span>
+</span><span id="line-48"></span><span>    </span><span id="local-6989586621679394460"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394460"><span class="hs-identifier hs-var">is_outgoing</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_outgoing&quot;</span></span><span>
+</span><span id="line-49"></span><span>    </span><span id="local-6989586621679394459"><span class="annot"><span class="annottext">MessageSchedulingState
+</span><a href="#local-6989586621679394459"><span class="hs-identifier hs-var">scheduling_state</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser MessageSchedulingState
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;scheduling_state&quot;</span></span><span>
+</span><span id="line-50"></span><span>    </span><span id="local-6989586621679394458"><span class="annot"><span class="annottext">MessageSendingState
+</span><a href="#local-6989586621679394458"><span class="hs-identifier hs-var">sending_state</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser MessageSendingState
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;sending_state&quot;</span></span><span>
+</span><span id="line-51"></span><span>    </span><span id="local-6989586621679394457"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394457"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span>
+</span><span id="line-52"></span><span>    </span><span id="local-6989586621679394456"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394456"><span class="hs-identifier hs-var">sender_user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;sender_user_id&quot;</span></span><span>
+</span><span id="line-53"></span><span>    </span><span id="local-6989586621679394455"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394455"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679394480"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span>
+</span><span id="line-54"></span><span>    </span><span class="annot"><span class="annottext">Message -&gt; Parser Message
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(Message -&gt; Parser Message) -&gt; Message -&gt; Parser Message
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Message :: ReplyMarkup
+-&gt; MessageContent
+-&gt; String
+-&gt; Int
+-&gt; Int
+-&gt; String
+-&gt; Int
+-&gt; Float
+-&gt; Int
+-&gt; Int
+-&gt; MessageForwardInfo
+-&gt; Int
+-&gt; Int
+-&gt; Bool
+-&gt; Bool
+-&gt; Bool
+-&gt; Bool
+-&gt; Bool
+-&gt; Bool
+-&gt; Bool
+-&gt; MessageSchedulingState
+-&gt; MessageSendingState
+-&gt; Int
+-&gt; Int
+-&gt; Int
+-&gt; Message
+</span><a href="API.Message.html#Message"><span class="hs-identifier hs-type hs-type">Message</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">reply_markup :: ReplyMarkup
+</span><a href="API.Message.html#reply_markup"><span class="hs-identifier hs-var">reply_markup</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ReplyMarkup
+</span><a href="#local-6989586621679394479"><span class="hs-identifier hs-var">reply_markup</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">content :: MessageContent
+</span><a href="API.Message.html#content"><span class="hs-identifier hs-var">content</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">MessageContent
+</span><a href="#local-6989586621679394478"><span class="hs-identifier hs-var">content</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">restriction_reason :: String
+</span><a href="API.Message.html#restriction_reason"><span class="hs-identifier hs-var">restriction_reason</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679394477"><span class="hs-identifier hs-var">restriction_reason</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">media_album_id :: Int
+</span><a href="API.Message.html#media_album_id"><span class="hs-identifier hs-var">media_album_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394476"><span class="hs-identifier hs-var">media_album_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">views :: Int
+</span><a href="API.Message.html#views"><span class="hs-identifier hs-var">views</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394475"><span class="hs-identifier hs-var">views</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">author_signature :: String
+</span><a href="API.Message.html#author_signature"><span class="hs-identifier hs-var">author_signature</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679394474"><span class="hs-identifier hs-var">author_signature</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">via_bot_user_id :: Int
+</span><a href="API.Message.html#via_bot_user_id"><span class="hs-identifier hs-var">via_bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394473"><span class="hs-identifier hs-var">via_bot_user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ttl_expires_in :: Float
+</span><a href="API.Message.html#ttl_expires_in"><span class="hs-identifier hs-var">ttl_expires_in</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679394472"><span class="hs-identifier hs-var">ttl_expires_in</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ttl :: Int
+</span><a href="API.Message.html#ttl"><span class="hs-identifier hs-var">ttl</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394471"><span class="hs-identifier hs-var">ttl</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reply_to_message_id :: Int
+</span><a href="API.Message.html#reply_to_message_id"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394470"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">forward_info :: MessageForwardInfo
+</span><a href="API.Message.html#forward_info"><span class="hs-identifier hs-var">forward_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">MessageForwardInfo
+</span><a href="#local-6989586621679394469"><span class="hs-identifier hs-var">forward_info</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">edit_date :: Int
+</span><a href="API.Message.html#edit_date"><span class="hs-identifier hs-var">edit_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394468"><span class="hs-identifier hs-var">edit_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">date :: Int
+</span><a href="API.Message.html#date"><span class="hs-identifier hs-var">date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394467"><span class="hs-identifier hs-var">date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">contains_unread_mention :: Bool
+</span><a href="API.Message.html#contains_unread_mention"><span class="hs-identifier hs-var">contains_unread_mention</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394466"><span class="hs-identifier hs-var">contains_unread_mention</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_channel_post :: Bool
+</span><a href="API.Message.html#is_channel_post"><span class="hs-identifier hs-var">is_channel_post</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394465"><span class="hs-identifier hs-var">is_channel_post</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_deleted_for_all_users :: Bool
+</span><a href="API.Message.html#can_be_deleted_for_all_users"><span class="hs-identifier hs-var">can_be_deleted_for_all_users</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394464"><span class="hs-identifier hs-var">can_be_deleted_for_all_users</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_deleted_only_for_self :: Bool
+</span><a href="API.Message.html#can_be_deleted_only_for_self"><span class="hs-identifier hs-var">can_be_deleted_only_for_self</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394463"><span class="hs-identifier hs-var">can_be_deleted_only_for_self</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_forwarded :: Bool
+</span><a href="API.Message.html#can_be_forwarded"><span class="hs-identifier hs-var">can_be_forwarded</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394462"><span class="hs-identifier hs-var">can_be_forwarded</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_be_edited :: Bool
+</span><a href="API.Message.html#can_be_edited"><span class="hs-identifier hs-var">can_be_edited</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394461"><span class="hs-identifier hs-var">can_be_edited</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_outgoing :: Bool
+</span><a href="API.Message.html#is_outgoing"><span class="hs-identifier hs-var">is_outgoing</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679394460"><span class="hs-identifier hs-var">is_outgoing</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">scheduling_state :: MessageSchedulingState
+</span><a href="API.Message.html#scheduling_state"><span class="hs-identifier hs-var">scheduling_state</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">MessageSchedulingState
+</span><a href="#local-6989586621679394459"><span class="hs-identifier hs-var">scheduling_state</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sending_state :: MessageSendingState
+</span><a href="API.Message.html#sending_state"><span class="hs-identifier hs-var">sending_state</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">MessageSendingState
+</span><a href="#local-6989586621679394458"><span class="hs-identifier hs-var">sending_state</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Int
+</span><a href="API.Message.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394457"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sender_user_id :: Int
+</span><a href="API.Message.html#sender_user_id"><span class="hs-identifier hs-var">sender_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394456"><span class="hs-identifier hs-var">sender_user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Int
+</span><a href="API.Message.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679394455"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

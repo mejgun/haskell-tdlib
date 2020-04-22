@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Functions.SetUserPrivacySettingRules</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.UserPrivacySettingRules.html"><span class="hs-identifier">API.UserPrivacySettingRules</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">UserPrivacySettingRules</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.UserPrivacySetting.html"><span class="hs-identifier">API.UserPrivacySetting</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">UserPrivacySetting</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="SetUserPrivacySettingRules"><span class="annot"><a href="API.Functions.SetUserPrivacySettingRules.html#SetUserPrivacySettingRules"><span class="hs-identifier hs-var">SetUserPrivacySettingRules</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-11"></span><span> </span><span id="SetUserPrivacySettingRules"><span class="annot"><a href="API.Functions.SetUserPrivacySettingRules.html#SetUserPrivacySettingRules"><span class="hs-identifier hs-var">SetUserPrivacySettingRules</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="rules"><span class="annot"><span class="annottext">SetUserPrivacySettingRules -&gt; UserPrivacySettingRules
+</span><a href="API.Functions.SetUserPrivacySettingRules.html#rules"><span class="hs-identifier hs-var hs-var">rules</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.UserPrivacySettingRules.html#UserPrivacySettingRules"><span class="hs-identifier hs-type">UserPrivacySettingRules.UserPrivacySettingRules</span></a></span><span class="hs-special">,</span><span> </span><span id="setting"><span class="annot"><span class="annottext">SetUserPrivacySettingRules -&gt; UserPrivacySetting
+</span><a href="API.Functions.SetUserPrivacySettingRules.html#setting"><span class="hs-identifier hs-var hs-var">setting</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.UserPrivacySetting.html#UserPrivacySetting"><span class="hs-identifier hs-type">UserPrivacySetting.UserPrivacySetting</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679401270"><span id="local-6989586621679401272"><span id="local-6989586621679401274"><span class="annot"><span class="annottext">Int -&gt; SetUserPrivacySettingRules -&gt; ShowS
+[SetUserPrivacySettingRules] -&gt; ShowS
+SetUserPrivacySettingRules -&gt; String
+(Int -&gt; SetUserPrivacySettingRules -&gt; ShowS)
+-&gt; (SetUserPrivacySettingRules -&gt; String)
+-&gt; ([SetUserPrivacySettingRules] -&gt; ShowS)
+-&gt; Show SetUserPrivacySettingRules
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [SetUserPrivacySettingRules] -&gt; ShowS
+$cshowList :: [SetUserPrivacySettingRules] -&gt; ShowS
+show :: SetUserPrivacySettingRules -&gt; String
+$cshow :: SetUserPrivacySettingRules -&gt; String
+showsPrec :: Int -&gt; SetUserPrivacySettingRules -&gt; ShowS
+$cshowsPrec :: Int -&gt; SetUserPrivacySettingRules -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679401262"><span id="local-6989586621679401264"><span id="local-6989586621679401266"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetUserPrivacySettingRules.html#SetUserPrivacySettingRules"><span class="hs-identifier hs-type">SetUserPrivacySettingRules</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679401260"><span class="annot"><span class="annottext">toJSON :: SetUserPrivacySettingRules -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.SetUserPrivacySettingRules.html#SetUserPrivacySettingRules"><span class="hs-identifier hs-type">SetUserPrivacySettingRules</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">rules :: SetUserPrivacySettingRules -&gt; UserPrivacySettingRules
+</span><a href="API.Functions.SetUserPrivacySettingRules.html#rules"><span class="hs-identifier hs-var">rules</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679401258"><span class="annot"><span class="annottext">UserPrivacySettingRules
+</span><a href="#local-6989586621679401258"><span class="hs-identifier hs-var">rules</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">setting :: SetUserPrivacySettingRules -&gt; UserPrivacySetting
+</span><a href="API.Functions.SetUserPrivacySettingRules.html#setting"><span class="hs-identifier hs-var">setting</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679401257"><span class="annot"><span class="annottext">UserPrivacySetting
+</span><a href="#local-6989586621679401257"><span class="hs-identifier hs-var">setting</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;setUserPrivacySettingRules&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;rules&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; UserPrivacySettingRules -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">UserPrivacySettingRules
+</span><a href="#local-6989586621679401258"><span class="hs-identifier hs-var">rules</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;setting&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; UserPrivacySetting -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">UserPrivacySetting
+</span><a href="#local-6989586621679401257"><span class="hs-identifier hs-var">setting</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-16"></span><span>
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679401251"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetUserPrivacySettingRules.html#SetUserPrivacySettingRules"><span class="hs-identifier hs-type">SetUserPrivacySettingRules</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679401249"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetUserPrivacySettingRules
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679401247"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679401247"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679401245"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679401245"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679401244"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679401244"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679401245"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679401244"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;setUserPrivacySettingRules&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SetUserPrivacySettingRules
+</span><a href="#local-6989586621679401242"><span class="hs-identifier hs-var">parseSetUserPrivacySettingRules</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679401247"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SetUserPrivacySettingRules
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679401242"><span class="hs-identifier hs-type">parseSetUserPrivacySettingRules</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetUserPrivacySettingRules.html#SetUserPrivacySettingRules"><span class="hs-identifier hs-type">SetUserPrivacySettingRules</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679401242"><span class="annot"><span class="annottext">parseSetUserPrivacySettingRules :: Value -&gt; Parser SetUserPrivacySettingRules
+</span><a href="#local-6989586621679401242"><span class="hs-identifier hs-var hs-var">parseSetUserPrivacySettingRules</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser SetUserPrivacySettingRules)
+-&gt; Value
+-&gt; Parser SetUserPrivacySettingRules
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;SetUserPrivacySettingRules&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser SetUserPrivacySettingRules)
+ -&gt; Value -&gt; Parser SetUserPrivacySettingRules)
+-&gt; (Object -&gt; Parser SetUserPrivacySettingRules)
+-&gt; Value
+-&gt; Parser SetUserPrivacySettingRules
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679401240"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679401240"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679401239"><span class="annot"><span class="annottext">UserPrivacySettingRules
+</span><a href="#local-6989586621679401239"><span class="hs-identifier hs-var">rules</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679401240"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser UserPrivacySettingRules
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;rules&quot;</span></span><span>
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679401238"><span class="annot"><span class="annottext">UserPrivacySetting
+</span><a href="#local-6989586621679401238"><span class="hs-identifier hs-var">setting</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679401240"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser UserPrivacySetting
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;setting&quot;</span></span><span>
+</span><span id="line-28"></span><span>    </span><span class="annot"><span class="annottext">SetUserPrivacySettingRules -&gt; Parser SetUserPrivacySettingRules
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SetUserPrivacySettingRules -&gt; Parser SetUserPrivacySettingRules)
+-&gt; SetUserPrivacySettingRules -&gt; Parser SetUserPrivacySettingRules
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SetUserPrivacySettingRules :: UserPrivacySettingRules
+-&gt; UserPrivacySetting -&gt; SetUserPrivacySettingRules
+</span><a href="API.Functions.SetUserPrivacySettingRules.html#SetUserPrivacySettingRules"><span class="hs-identifier hs-type hs-type">SetUserPrivacySettingRules</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">rules :: UserPrivacySettingRules
+</span><a href="API.Functions.SetUserPrivacySettingRules.html#rules"><span class="hs-identifier hs-var">rules</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">UserPrivacySettingRules
+</span><a href="#local-6989586621679401239"><span class="hs-identifier hs-var">rules</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">setting :: UserPrivacySetting
+</span><a href="API.Functions.SetUserPrivacySettingRules.html#setting"><span class="hs-identifier hs-var">setting</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">UserPrivacySetting
+</span><a href="#local-6989586621679401238"><span class="hs-identifier hs-var">setting</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

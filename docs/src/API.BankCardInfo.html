@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.BankCardInfo</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.BankCardActionOpenUrl.html"><span class="hs-identifier">API.BankCardActionOpenUrl</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">BankCardActionOpenUrl</span></span><span>
+</span><span id="line-8"></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="BankCardInfo"><span class="annot"><a href="API.BankCardInfo.html#BankCardInfo"><span class="hs-identifier hs-var">BankCardInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-10"></span><span> </span><span id="BankCardInfo"><span class="annot"><a href="API.BankCardInfo.html#BankCardInfo"><span class="hs-identifier hs-var">BankCardInfo</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="actions"><span class="annot"><span class="annottext">BankCardInfo -&gt; [BankCardActionOpenUrl]
+</span><a href="API.BankCardInfo.html#actions"><span class="hs-identifier hs-var hs-var">actions</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.BankCardActionOpenUrl.html#BankCardActionOpenUrl"><span class="hs-identifier hs-type">BankCardActionOpenUrl.BankCardActionOpenUrl</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="title"><span class="annot"><span class="annottext">BankCardInfo -&gt; String
+</span><a href="API.BankCardInfo.html#title"><span class="hs-identifier hs-var hs-var">title</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679359320"><span id="local-6989586621679359322"><span id="local-6989586621679359324"><span class="annot"><span class="annottext">Int -&gt; BankCardInfo -&gt; ShowS
+[BankCardInfo] -&gt; ShowS
+BankCardInfo -&gt; String
+(Int -&gt; BankCardInfo -&gt; ShowS)
+-&gt; (BankCardInfo -&gt; String)
+-&gt; ([BankCardInfo] -&gt; ShowS)
+-&gt; Show BankCardInfo
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [BankCardInfo] -&gt; ShowS
+$cshowList :: [BankCardInfo] -&gt; ShowS
+show :: BankCardInfo -&gt; String
+$cshow :: BankCardInfo -&gt; String
+showsPrec :: Int -&gt; BankCardInfo -&gt; ShowS
+$cshowsPrec :: Int -&gt; BankCardInfo -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-11"></span><span>
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679359312"><span id="local-6989586621679359314"><span id="local-6989586621679359316"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.BankCardInfo.html#BankCardInfo"><span class="hs-identifier hs-type">BankCardInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679359310"><span class="annot"><span class="annottext">toJSON :: BankCardInfo -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.BankCardInfo.html#BankCardInfo"><span class="hs-identifier hs-type">BankCardInfo</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">actions :: BankCardInfo -&gt; [BankCardActionOpenUrl]
+</span><a href="API.BankCardInfo.html#actions"><span class="hs-identifier hs-var">actions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679359308"><span class="annot"><span class="annottext">[BankCardActionOpenUrl]
+</span><a href="#local-6989586621679359308"><span class="hs-identifier hs-var">actions</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: BankCardInfo -&gt; String
+</span><a href="API.BankCardInfo.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679359307"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679359307"><span class="hs-identifier hs-var">title</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;bankCardInfo&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;actions&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; [BankCardActionOpenUrl] -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">[BankCardActionOpenUrl]
+</span><a href="#local-6989586621679359308"><span class="hs-identifier hs-var">actions</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679359307"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-15"></span><span>
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679359301"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.BankCardInfo.html#BankCardInfo"><span class="hs-identifier hs-type">BankCardInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679359299"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser BankCardInfo
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679359297"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679359297"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679359295"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679359295"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679359294"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679359294"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679359295"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679359294"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;bankCardInfo&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BankCardInfo
+</span><a href="#local-6989586621679359292"><span class="hs-identifier hs-var">parseBankCardInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679359297"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser BankCardInfo
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679359292"><span class="hs-identifier hs-type">parseBankCardInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BankCardInfo.html#BankCardInfo"><span class="hs-identifier hs-type">BankCardInfo</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679359292"><span class="annot"><span class="annottext">parseBankCardInfo :: Value -&gt; Parser BankCardInfo
+</span><a href="#local-6989586621679359292"><span class="hs-identifier hs-var hs-var">parseBankCardInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser BankCardInfo) -&gt; Value -&gt; Parser BankCardInfo
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;BankCardInfo&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser BankCardInfo) -&gt; Value -&gt; Parser BankCardInfo)
+-&gt; (Object -&gt; Parser BankCardInfo) -&gt; Value -&gt; Parser BankCardInfo
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679359290"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679359290"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679359289"><span class="annot"><span class="annottext">[BankCardActionOpenUrl]
+</span><a href="#local-6989586621679359289"><span class="hs-identifier hs-var">actions</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679359290"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [BankCardActionOpenUrl]
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;actions&quot;</span></span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679359288"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679359288"><span class="hs-identifier hs-var">title</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679359290"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;title&quot;</span></span><span>
+</span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">BankCardInfo -&gt; Parser BankCardInfo
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(BankCardInfo -&gt; Parser BankCardInfo)
+-&gt; BankCardInfo -&gt; Parser BankCardInfo
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">BankCardInfo :: [BankCardActionOpenUrl] -&gt; String -&gt; BankCardInfo
+</span><a href="API.BankCardInfo.html#BankCardInfo"><span class="hs-identifier hs-type hs-type">BankCardInfo</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">actions :: [BankCardActionOpenUrl]
+</span><a href="API.BankCardInfo.html#actions"><span class="hs-identifier hs-var">actions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[BankCardActionOpenUrl]
+</span><a href="#local-6989586621679359289"><span class="hs-identifier hs-var">actions</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: String
+</span><a href="API.BankCardInfo.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679359288"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

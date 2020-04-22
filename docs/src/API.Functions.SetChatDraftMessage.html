@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Functions.SetChatDraftMessage</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.DraftMessage.html"><span class="hs-identifier">API.DraftMessage</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">DraftMessage</span></span><span>
+</span><span id="line-8"></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="SetChatDraftMessage"><span class="annot"><a href="API.Functions.SetChatDraftMessage.html#SetChatDraftMessage"><span class="hs-identifier hs-var">SetChatDraftMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-10"></span><span> </span><span id="SetChatDraftMessage"><span class="annot"><a href="API.Functions.SetChatDraftMessage.html#SetChatDraftMessage"><span class="hs-identifier hs-var">SetChatDraftMessage</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="draft_message"><span class="annot"><span class="annottext">SetChatDraftMessage -&gt; DraftMessage
+</span><a href="API.Functions.SetChatDraftMessage.html#draft_message"><span class="hs-identifier hs-var hs-var">draft_message</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.DraftMessage.html#DraftMessage"><span class="hs-identifier hs-type">DraftMessage.DraftMessage</span></a></span><span class="hs-special">,</span><span> </span><span id="chat_id"><span class="annot"><span class="annottext">SetChatDraftMessage -&gt; Int
+</span><a href="API.Functions.SetChatDraftMessage.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679379714"><span id="local-6989586621679379716"><span id="local-6989586621679379718"><span class="annot"><span class="annottext">Int -&gt; SetChatDraftMessage -&gt; ShowS
+[SetChatDraftMessage] -&gt; ShowS
+SetChatDraftMessage -&gt; String
+(Int -&gt; SetChatDraftMessage -&gt; ShowS)
+-&gt; (SetChatDraftMessage -&gt; String)
+-&gt; ([SetChatDraftMessage] -&gt; ShowS)
+-&gt; Show SetChatDraftMessage
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [SetChatDraftMessage] -&gt; ShowS
+$cshowList :: [SetChatDraftMessage] -&gt; ShowS
+show :: SetChatDraftMessage -&gt; String
+$cshow :: SetChatDraftMessage -&gt; String
+showsPrec :: Int -&gt; SetChatDraftMessage -&gt; ShowS
+$cshowsPrec :: Int -&gt; SetChatDraftMessage -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-11"></span><span>
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679379706"><span id="local-6989586621679379708"><span id="local-6989586621679379710"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetChatDraftMessage.html#SetChatDraftMessage"><span class="hs-identifier hs-type">SetChatDraftMessage</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679379704"><span class="annot"><span class="annottext">toJSON :: SetChatDraftMessage -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.SetChatDraftMessage.html#SetChatDraftMessage"><span class="hs-identifier hs-type">SetChatDraftMessage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">draft_message :: SetChatDraftMessage -&gt; DraftMessage
+</span><a href="API.Functions.SetChatDraftMessage.html#draft_message"><span class="hs-identifier hs-var">draft_message</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679379702"><span class="annot"><span class="annottext">DraftMessage
+</span><a href="#local-6989586621679379702"><span class="hs-identifier hs-var">draft_message</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: SetChatDraftMessage -&gt; Int
+</span><a href="API.Functions.SetChatDraftMessage.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679379701"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679379701"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;setChatDraftMessage&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;draft_message&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; DraftMessage -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">DraftMessage
+</span><a href="#local-6989586621679379702"><span class="hs-identifier hs-var">draft_message</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679379701"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-15"></span><span>
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679379695"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetChatDraftMessage.html#SetChatDraftMessage"><span class="hs-identifier hs-type">SetChatDraftMessage</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679379693"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetChatDraftMessage
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679379691"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679379691"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679379689"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679379689"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679379688"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679379688"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679379689"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679379688"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;setChatDraftMessage&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SetChatDraftMessage
+</span><a href="#local-6989586621679379686"><span class="hs-identifier hs-var">parseSetChatDraftMessage</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679379691"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SetChatDraftMessage
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679379686"><span class="hs-identifier hs-type">parseSetChatDraftMessage</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetChatDraftMessage.html#SetChatDraftMessage"><span class="hs-identifier hs-type">SetChatDraftMessage</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679379686"><span class="annot"><span class="annottext">parseSetChatDraftMessage :: Value -&gt; Parser SetChatDraftMessage
+</span><a href="#local-6989586621679379686"><span class="hs-identifier hs-var hs-var">parseSetChatDraftMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser SetChatDraftMessage)
+-&gt; Value
+-&gt; Parser SetChatDraftMessage
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;SetChatDraftMessage&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser SetChatDraftMessage)
+ -&gt; Value -&gt; Parser SetChatDraftMessage)
+-&gt; (Object -&gt; Parser SetChatDraftMessage)
+-&gt; Value
+-&gt; Parser SetChatDraftMessage
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679379684"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679379684"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679379683"><span class="annot"><span class="annottext">DraftMessage
+</span><a href="#local-6989586621679379683"><span class="hs-identifier hs-var">draft_message</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679379684"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser DraftMessage
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;draft_message&quot;</span></span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679379682"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679379682"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679379684"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span>
+</span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">SetChatDraftMessage -&gt; Parser SetChatDraftMessage
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SetChatDraftMessage -&gt; Parser SetChatDraftMessage)
+-&gt; SetChatDraftMessage -&gt; Parser SetChatDraftMessage
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SetChatDraftMessage :: DraftMessage -&gt; Int -&gt; SetChatDraftMessage
+</span><a href="API.Functions.SetChatDraftMessage.html#SetChatDraftMessage"><span class="hs-identifier hs-type hs-type">SetChatDraftMessage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">draft_message :: DraftMessage
+</span><a href="API.Functions.SetChatDraftMessage.html#draft_message"><span class="hs-identifier hs-var">draft_message</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">DraftMessage
+</span><a href="#local-6989586621679379683"><span class="hs-identifier hs-var">draft_message</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Int
+</span><a href="API.Functions.SetChatDraftMessage.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679379682"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

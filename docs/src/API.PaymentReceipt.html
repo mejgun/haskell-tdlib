@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.PaymentReceipt</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.ShippingOption.html"><span class="hs-identifier">API.ShippingOption</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ShippingOption</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.OrderInfo.html"><span class="hs-identifier">API.OrderInfo</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">OrderInfo</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.Invoice.html"><span class="hs-identifier">API.Invoice</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">Invoice</span></span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-keyword">data</span><span> </span><span id="PaymentReceipt"><span class="annot"><a href="API.PaymentReceipt.html#PaymentReceipt"><span class="hs-identifier hs-var">PaymentReceipt</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-12"></span><span> </span><span id="PaymentReceipt"><span class="annot"><a href="API.PaymentReceipt.html#PaymentReceipt"><span class="hs-identifier hs-var">PaymentReceipt</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="credentials_title"><span class="annot"><span class="annottext">PaymentReceipt -&gt; String
+</span><a href="API.PaymentReceipt.html#credentials_title"><span class="hs-identifier hs-var hs-var">credentials_title</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="shipping_option"><span class="annot"><span class="annottext">PaymentReceipt -&gt; ShippingOption
+</span><a href="API.PaymentReceipt.html#shipping_option"><span class="hs-identifier hs-var hs-var">shipping_option</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.ShippingOption.html#ShippingOption"><span class="hs-identifier hs-type">ShippingOption.ShippingOption</span></a></span><span class="hs-special">,</span><span> </span><span id="order_info"><span class="annot"><span class="annottext">PaymentReceipt -&gt; OrderInfo
+</span><a href="API.PaymentReceipt.html#order_info"><span class="hs-identifier hs-var hs-var">order_info</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.OrderInfo.html#OrderInfo"><span class="hs-identifier hs-type">OrderInfo.OrderInfo</span></a></span><span class="hs-special">,</span><span> </span><span id="invoice"><span class="annot"><span class="annottext">PaymentReceipt -&gt; Invoice
+</span><a href="API.PaymentReceipt.html#invoice"><span class="hs-identifier hs-var hs-var">invoice</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.Invoice.html#Invoice"><span class="hs-identifier hs-type">Invoice.Invoice</span></a></span><span class="hs-special">,</span><span> </span><span id="payments_provider_user_id"><span class="annot"><span class="annottext">PaymentReceipt -&gt; Int
+</span><a href="API.PaymentReceipt.html#payments_provider_user_id"><span class="hs-identifier hs-var hs-var">payments_provider_user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="date"><span class="annot"><span class="annottext">PaymentReceipt -&gt; Int
+</span><a href="API.PaymentReceipt.html#date"><span class="hs-identifier hs-var hs-var">date</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679397295"><span id="local-6989586621679397297"><span id="local-6989586621679397299"><span class="annot"><span class="annottext">Int -&gt; PaymentReceipt -&gt; ShowS
+[PaymentReceipt] -&gt; ShowS
+PaymentReceipt -&gt; String
+(Int -&gt; PaymentReceipt -&gt; ShowS)
+-&gt; (PaymentReceipt -&gt; String)
+-&gt; ([PaymentReceipt] -&gt; ShowS)
+-&gt; Show PaymentReceipt
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [PaymentReceipt] -&gt; ShowS
+$cshowList :: [PaymentReceipt] -&gt; ShowS
+show :: PaymentReceipt -&gt; String
+$cshow :: PaymentReceipt -&gt; String
+showsPrec :: Int -&gt; PaymentReceipt -&gt; ShowS
+$cshowsPrec :: Int -&gt; PaymentReceipt -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-13"></span><span>
+</span><span id="line-14"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679397287"><span id="local-6989586621679397289"><span id="local-6989586621679397291"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.PaymentReceipt.html#PaymentReceipt"><span class="hs-identifier hs-type">PaymentReceipt</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-15"></span><span> </span><span id="local-6989586621679397285"><span class="annot"><span class="annottext">toJSON :: PaymentReceipt -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.PaymentReceipt.html#PaymentReceipt"><span class="hs-identifier hs-type">PaymentReceipt</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">credentials_title :: PaymentReceipt -&gt; String
+</span><a href="API.PaymentReceipt.html#credentials_title"><span class="hs-identifier hs-var">credentials_title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397283"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397283"><span class="hs-identifier hs-var">credentials_title</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">shipping_option :: PaymentReceipt -&gt; ShippingOption
+</span><a href="API.PaymentReceipt.html#shipping_option"><span class="hs-identifier hs-var">shipping_option</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397282"><span class="annot"><span class="annottext">ShippingOption
+</span><a href="#local-6989586621679397282"><span class="hs-identifier hs-var">shipping_option</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">order_info :: PaymentReceipt -&gt; OrderInfo
+</span><a href="API.PaymentReceipt.html#order_info"><span class="hs-identifier hs-var">order_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397281"><span class="annot"><span class="annottext">OrderInfo
+</span><a href="#local-6989586621679397281"><span class="hs-identifier hs-var">order_info</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">invoice :: PaymentReceipt -&gt; Invoice
+</span><a href="API.PaymentReceipt.html#invoice"><span class="hs-identifier hs-var">invoice</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397280"><span class="annot"><span class="annottext">Invoice
+</span><a href="#local-6989586621679397280"><span class="hs-identifier hs-var">invoice</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">payments_provider_user_id :: PaymentReceipt -&gt; Int
+</span><a href="API.PaymentReceipt.html#payments_provider_user_id"><span class="hs-identifier hs-var">payments_provider_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397279"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397279"><span class="hs-identifier hs-var">payments_provider_user_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">date :: PaymentReceipt -&gt; Int
+</span><a href="API.PaymentReceipt.html#date"><span class="hs-identifier hs-var">date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397278"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397278"><span class="hs-identifier hs-var">date</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-16"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;paymentReceipt&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;credentials_title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397283"><span class="hs-identifier hs-var">credentials_title</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;shipping_option&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; ShippingOption -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">ShippingOption
+</span><a href="#local-6989586621679397282"><span class="hs-identifier hs-var">shipping_option</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;order_info&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; OrderInfo -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">OrderInfo
+</span><a href="#local-6989586621679397281"><span class="hs-identifier hs-var">order_info</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;invoice&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Invoice -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Invoice
+</span><a href="#local-6989586621679397280"><span class="hs-identifier hs-var">invoice</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;payments_provider_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397279"><span class="hs-identifier hs-var">payments_provider_user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397278"><span class="hs-identifier hs-var">date</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-17"></span><span>
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679397272"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.PaymentReceipt.html#PaymentReceipt"><span class="hs-identifier hs-type">PaymentReceipt</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span> </span><span id="local-6989586621679397270"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PaymentReceipt
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679397268"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679397268"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679397266"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679397266"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-20"></span><span>  </span><span id="local-6989586621679397265"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397265"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397266"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-21"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397265"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-22"></span><span>   </span><span class="hs-string">&quot;paymentReceipt&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PaymentReceipt
+</span><a href="#local-6989586621679397263"><span class="hs-identifier hs-var">parsePaymentReceipt</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679397268"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-23"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PaymentReceipt
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-24"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span>   </span><span class="annot"><a href="#local-6989586621679397263"><span class="hs-identifier hs-type">parsePaymentReceipt</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PaymentReceipt.html#PaymentReceipt"><span class="hs-identifier hs-type">PaymentReceipt</span></a></span><span>
+</span><span id="line-26"></span><span>   </span><span id="local-6989586621679397263"><span class="annot"><span class="annottext">parsePaymentReceipt :: Value -&gt; Parser PaymentReceipt
+</span><a href="#local-6989586621679397263"><span class="hs-identifier hs-var hs-var">parsePaymentReceipt</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser PaymentReceipt)
+-&gt; Value
+-&gt; Parser PaymentReceipt
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;PaymentReceipt&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser PaymentReceipt)
+ -&gt; Value -&gt; Parser PaymentReceipt)
+-&gt; (Object -&gt; Parser PaymentReceipt)
+-&gt; Value
+-&gt; Parser PaymentReceipt
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679397261"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679397261"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679397260"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397260"><span class="hs-identifier hs-var">credentials_title</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397261"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;credentials_title&quot;</span></span><span>
+</span><span id="line-28"></span><span>    </span><span id="local-6989586621679397259"><span class="annot"><span class="annottext">ShippingOption
+</span><a href="#local-6989586621679397259"><span class="hs-identifier hs-var">shipping_option</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397261"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser ShippingOption
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;shipping_option&quot;</span></span><span>
+</span><span id="line-29"></span><span>    </span><span id="local-6989586621679397258"><span class="annot"><span class="annottext">OrderInfo
+</span><a href="#local-6989586621679397258"><span class="hs-identifier hs-var">order_info</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397261"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser OrderInfo
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;order_info&quot;</span></span><span>
+</span><span id="line-30"></span><span>    </span><span id="local-6989586621679397257"><span class="annot"><span class="annottext">Invoice
+</span><a href="#local-6989586621679397257"><span class="hs-identifier hs-var">invoice</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397261"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Invoice
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;invoice&quot;</span></span><span>
+</span><span id="line-31"></span><span>    </span><span id="local-6989586621679397256"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397256"><span class="hs-identifier hs-var">payments_provider_user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397261"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;payments_provider_user_id&quot;</span></span><span>
+</span><span id="line-32"></span><span>    </span><span id="local-6989586621679397255"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397255"><span class="hs-identifier hs-var">date</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397261"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;date&quot;</span></span><span>
+</span><span id="line-33"></span><span>    </span><span class="annot"><span class="annottext">PaymentReceipt -&gt; Parser PaymentReceipt
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(PaymentReceipt -&gt; Parser PaymentReceipt)
+-&gt; PaymentReceipt -&gt; Parser PaymentReceipt
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">PaymentReceipt :: String
+-&gt; ShippingOption
+-&gt; OrderInfo
+-&gt; Invoice
+-&gt; Int
+-&gt; Int
+-&gt; PaymentReceipt
+</span><a href="API.PaymentReceipt.html#PaymentReceipt"><span class="hs-identifier hs-type hs-type">PaymentReceipt</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">credentials_title :: String
+</span><a href="API.PaymentReceipt.html#credentials_title"><span class="hs-identifier hs-var">credentials_title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397260"><span class="hs-identifier hs-var">credentials_title</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">shipping_option :: ShippingOption
+</span><a href="API.PaymentReceipt.html#shipping_option"><span class="hs-identifier hs-var">shipping_option</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">ShippingOption
+</span><a href="#local-6989586621679397259"><span class="hs-identifier hs-var">shipping_option</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">order_info :: OrderInfo
+</span><a href="API.PaymentReceipt.html#order_info"><span class="hs-identifier hs-var">order_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">OrderInfo
+</span><a href="#local-6989586621679397258"><span class="hs-identifier hs-var">order_info</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">invoice :: Invoice
+</span><a href="API.PaymentReceipt.html#invoice"><span class="hs-identifier hs-var">invoice</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Invoice
+</span><a href="#local-6989586621679397257"><span class="hs-identifier hs-var">invoice</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">payments_provider_user_id :: Int
+</span><a href="API.PaymentReceipt.html#payments_provider_user_id"><span class="hs-identifier hs-var">payments_provider_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397256"><span class="hs-identifier hs-var">payments_provider_user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">date :: Int
+</span><a href="API.PaymentReceipt.html#date"><span class="hs-identifier hs-var">date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397255"><span class="hs-identifier hs-var">date</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

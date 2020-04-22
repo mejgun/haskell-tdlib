@@ -1,0 +1,369 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.WebPage</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.VoiceNote.html"><span class="hs-identifier">API.VoiceNote</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">VoiceNote</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.VideoNote.html"><span class="hs-identifier">API.VideoNote</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">VideoNote</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.Video.html"><span class="hs-identifier">API.Video</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">Video</span></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.Sticker.html"><span class="hs-identifier">API.Sticker</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">Sticker</span></span><span>
+</span><span id="line-11"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.Document.html"><span class="hs-identifier">API.Document</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">Document</span></span><span>
+</span><span id="line-12"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.Audio.html"><span class="hs-identifier">API.Audio</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">Audio</span></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.Animation.html"><span class="hs-identifier">API.Animation</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">Animation</span></span><span>
+</span><span id="line-14"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.Photo.html"><span class="hs-identifier">API.Photo</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">Photo</span></span><span>
+</span><span id="line-15"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.FormattedText.html"><span class="hs-identifier">API.FormattedText</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">FormattedText</span></span><span>
+</span><span id="line-16"></span><span>
+</span><span id="line-17"></span><span class="hs-keyword">data</span><span> </span><span id="WebPage"><span class="annot"><a href="API.WebPage.html#WebPage"><span class="hs-identifier hs-var">WebPage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-18"></span><span> </span><span id="WebPage"><span class="annot"><a href="API.WebPage.html#WebPage"><span class="hs-identifier hs-var">WebPage</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="instant_view_version"><span class="annot"><span class="annottext">WebPage -&gt; Int
+</span><a href="API.WebPage.html#instant_view_version"><span class="hs-identifier hs-var hs-var">instant_view_version</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="voice_note"><span class="annot"><span class="annottext">WebPage -&gt; VoiceNote
+</span><a href="API.WebPage.html#voice_note"><span class="hs-identifier hs-var hs-var">voice_note</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.VoiceNote.html#VoiceNote"><span class="hs-identifier hs-type">VoiceNote.VoiceNote</span></a></span><span class="hs-special">,</span><span> </span><span id="video_note"><span class="annot"><span class="annottext">WebPage -&gt; VideoNote
+</span><a href="API.WebPage.html#video_note"><span class="hs-identifier hs-var hs-var">video_note</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote.VideoNote</span></a></span><span class="hs-special">,</span><span> </span><span id="video"><span class="annot"><span class="annottext">WebPage -&gt; Video
+</span><a href="API.WebPage.html#video"><span class="hs-identifier hs-var hs-var">video</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.Video.html#Video"><span class="hs-identifier hs-type">Video.Video</span></a></span><span class="hs-special">,</span><span> </span><span id="sticker"><span class="annot"><span class="annottext">WebPage -&gt; Sticker
+</span><a href="API.WebPage.html#sticker"><span class="hs-identifier hs-var hs-var">sticker</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.Sticker.html#Sticker"><span class="hs-identifier hs-type">Sticker.Sticker</span></a></span><span class="hs-special">,</span><span> </span><span id="document"><span class="annot"><span class="annottext">WebPage -&gt; Document
+</span><a href="API.WebPage.html#document"><span class="hs-identifier hs-var hs-var">document</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.Document.html#Document"><span class="hs-identifier hs-type">Document.Document</span></a></span><span class="hs-special">,</span><span> </span><span id="audio"><span class="annot"><span class="annottext">WebPage -&gt; Audio
+</span><a href="API.WebPage.html#audio"><span class="hs-identifier hs-var hs-var">audio</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.Audio.html#Audio"><span class="hs-identifier hs-type">Audio.Audio</span></a></span><span class="hs-special">,</span><span> </span><span id="animation"><span class="annot"><span class="annottext">WebPage -&gt; Animation
+</span><a href="API.WebPage.html#animation"><span class="hs-identifier hs-var hs-var">animation</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.Animation.html#Animation"><span class="hs-identifier hs-type">Animation.Animation</span></a></span><span class="hs-special">,</span><span> </span><span id="author"><span class="annot"><span class="annottext">WebPage -&gt; String
+</span><a href="API.WebPage.html#author"><span class="hs-identifier hs-var hs-var">author</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="duration"><span class="annot"><span class="annottext">WebPage -&gt; Int
+</span><a href="API.WebPage.html#duration"><span class="hs-identifier hs-var hs-var">duration</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="embed_height"><span class="annot"><span class="annottext">WebPage -&gt; Int
+</span><a href="API.WebPage.html#embed_height"><span class="hs-identifier hs-var hs-var">embed_height</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="embed_width"><span class="annot"><span class="annottext">WebPage -&gt; Int
+</span><a href="API.WebPage.html#embed_width"><span class="hs-identifier hs-var hs-var">embed_width</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="embed_type"><span class="annot"><span class="annottext">WebPage -&gt; String
+</span><a href="API.WebPage.html#embed_type"><span class="hs-identifier hs-var hs-var">embed_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="embed_url"><span class="annot"><span class="annottext">WebPage -&gt; String
+</span><a href="API.WebPage.html#embed_url"><span class="hs-identifier hs-var hs-var">embed_url</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="photo"><span class="annot"><span class="annottext">WebPage -&gt; Photo
+</span><a href="API.WebPage.html#photo"><span class="hs-identifier hs-var hs-var">photo</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.Photo.html#Photo"><span class="hs-identifier hs-type">Photo.Photo</span></a></span><span class="hs-special">,</span><span> </span><span id="description"><span class="annot"><span class="annottext">WebPage -&gt; FormattedText
+</span><a href="API.WebPage.html#description"><span class="hs-identifier hs-var hs-var">description</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.FormattedText.html#FormattedText"><span class="hs-identifier hs-type">FormattedText.FormattedText</span></a></span><span class="hs-special">,</span><span> </span><span id="title"><span class="annot"><span class="annottext">WebPage -&gt; String
+</span><a href="API.WebPage.html#title"><span class="hs-identifier hs-var hs-var">title</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="site_name"><span class="annot"><span class="annottext">WebPage -&gt; String
+</span><a href="API.WebPage.html#site_name"><span class="hs-identifier hs-var hs-var">site_name</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="_type"><span class="annot"><span class="annottext">WebPage -&gt; String
+</span><a href="API.WebPage.html#_type"><span class="hs-identifier hs-var hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="display_url"><span class="annot"><span class="annottext">WebPage -&gt; String
+</span><a href="API.WebPage.html#display_url"><span class="hs-identifier hs-var hs-var">display_url</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="url"><span class="annot"><span class="annottext">WebPage -&gt; String
+</span><a href="API.WebPage.html#url"><span class="hs-identifier hs-var hs-var">url</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679405215"><span id="local-6989586621679405217"><span id="local-6989586621679405219"><span class="annot"><span class="annottext">Int -&gt; WebPage -&gt; ShowS
+[WebPage] -&gt; ShowS
+WebPage -&gt; String
+(Int -&gt; WebPage -&gt; ShowS)
+-&gt; (WebPage -&gt; String) -&gt; ([WebPage] -&gt; ShowS) -&gt; Show WebPage
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [WebPage] -&gt; ShowS
+$cshowList :: [WebPage] -&gt; ShowS
+show :: WebPage -&gt; String
+$cshow :: WebPage -&gt; String
+showsPrec :: Int -&gt; WebPage -&gt; ShowS
+$cshowsPrec :: Int -&gt; WebPage -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405207"><span id="local-6989586621679405209"><span id="local-6989586621679405211"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.WebPage.html#WebPage"><span class="hs-identifier hs-type">WebPage</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span> </span><span id="local-6989586621679405205"><span class="annot"><span class="annottext">toJSON :: WebPage -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.WebPage.html#WebPage"><span class="hs-identifier hs-type">WebPage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">instant_view_version :: WebPage -&gt; Int
+</span><a href="API.WebPage.html#instant_view_version"><span class="hs-identifier hs-var">instant_view_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405203"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679405203"><span class="hs-identifier hs-var">instant_view_version</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">voice_note :: WebPage -&gt; VoiceNote
+</span><a href="API.WebPage.html#voice_note"><span class="hs-identifier hs-var">voice_note</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405202"><span class="annot"><span class="annottext">VoiceNote
+</span><a href="#local-6989586621679405202"><span class="hs-identifier hs-var">voice_note</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">video_note :: WebPage -&gt; VideoNote
+</span><a href="API.WebPage.html#video_note"><span class="hs-identifier hs-var">video_note</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405201"><span class="annot"><span class="annottext">VideoNote
+</span><a href="#local-6989586621679405201"><span class="hs-identifier hs-var">video_note</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">video :: WebPage -&gt; Video
+</span><a href="API.WebPage.html#video"><span class="hs-identifier hs-var">video</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405200"><span class="annot"><span class="annottext">Video
+</span><a href="#local-6989586621679405200"><span class="hs-identifier hs-var">video</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sticker :: WebPage -&gt; Sticker
+</span><a href="API.WebPage.html#sticker"><span class="hs-identifier hs-var">sticker</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405199"><span class="annot"><span class="annottext">Sticker
+</span><a href="#local-6989586621679405199"><span class="hs-identifier hs-var">sticker</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">document :: WebPage -&gt; Document
+</span><a href="API.WebPage.html#document"><span class="hs-identifier hs-var">document</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405198"><span class="annot"><span class="annottext">Document
+</span><a href="#local-6989586621679405198"><span class="hs-identifier hs-var">document</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">audio :: WebPage -&gt; Audio
+</span><a href="API.WebPage.html#audio"><span class="hs-identifier hs-var">audio</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405197"><span class="annot"><span class="annottext">Audio
+</span><a href="#local-6989586621679405197"><span class="hs-identifier hs-var">audio</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">animation :: WebPage -&gt; Animation
+</span><a href="API.WebPage.html#animation"><span class="hs-identifier hs-var">animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405196"><span class="annot"><span class="annottext">Animation
+</span><a href="#local-6989586621679405196"><span class="hs-identifier hs-var">animation</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">author :: WebPage -&gt; String
+</span><a href="API.WebPage.html#author"><span class="hs-identifier hs-var">author</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405195"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405195"><span class="hs-identifier hs-var">author</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">duration :: WebPage -&gt; Int
+</span><a href="API.WebPage.html#duration"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405194"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679405194"><span class="hs-identifier hs-var">duration</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">embed_height :: WebPage -&gt; Int
+</span><a href="API.WebPage.html#embed_height"><span class="hs-identifier hs-var">embed_height</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405193"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679405193"><span class="hs-identifier hs-var">embed_height</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">embed_width :: WebPage -&gt; Int
+</span><a href="API.WebPage.html#embed_width"><span class="hs-identifier hs-var">embed_width</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405192"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679405192"><span class="hs-identifier hs-var">embed_width</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">embed_type :: WebPage -&gt; String
+</span><a href="API.WebPage.html#embed_type"><span class="hs-identifier hs-var">embed_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405191"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405191"><span class="hs-identifier hs-var">embed_type</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">embed_url :: WebPage -&gt; String
+</span><a href="API.WebPage.html#embed_url"><span class="hs-identifier hs-var">embed_url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405190"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405190"><span class="hs-identifier hs-var">embed_url</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: WebPage -&gt; Photo
+</span><a href="API.WebPage.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405189"><span class="annot"><span class="annottext">Photo
+</span><a href="#local-6989586621679405189"><span class="hs-identifier hs-var">photo</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">description :: WebPage -&gt; FormattedText
+</span><a href="API.WebPage.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405188"><span class="annot"><span class="annottext">FormattedText
+</span><a href="#local-6989586621679405188"><span class="hs-identifier hs-var">description</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: WebPage -&gt; String
+</span><a href="API.WebPage.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405187"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405187"><span class="hs-identifier hs-var">title</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">site_name :: WebPage -&gt; String
+</span><a href="API.WebPage.html#site_name"><span class="hs-identifier hs-var">site_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405186"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405186"><span class="hs-identifier hs-var">site_name</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: WebPage -&gt; String
+</span><a href="API.WebPage.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405185"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405185"><span class="hs-identifier hs-var">_type</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">display_url :: WebPage -&gt; String
+</span><a href="API.WebPage.html#display_url"><span class="hs-identifier hs-var">display_url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405184"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405184"><span class="hs-identifier hs-var">display_url</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">url :: WebPage -&gt; String
+</span><a href="API.WebPage.html#url"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405183"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405183"><span class="hs-identifier hs-var">url</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-22"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;webPage&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;instant_view_version&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679405203"><span class="hs-identifier hs-var">instant_view_version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;voice_note&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; VoiceNote -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">VoiceNote
+</span><a href="#local-6989586621679405202"><span class="hs-identifier hs-var">voice_note</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;video_note&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; VideoNote -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">VideoNote
+</span><a href="#local-6989586621679405201"><span class="hs-identifier hs-var">video_note</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;video&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Video -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Video
+</span><a href="#local-6989586621679405200"><span class="hs-identifier hs-var">video</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;sticker&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Sticker -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Sticker
+</span><a href="#local-6989586621679405199"><span class="hs-identifier hs-var">sticker</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;document&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Document -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Document
+</span><a href="#local-6989586621679405198"><span class="hs-identifier hs-var">document</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;audio&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Audio -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Audio
+</span><a href="#local-6989586621679405197"><span class="hs-identifier hs-var">audio</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;animation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Animation -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Animation
+</span><a href="#local-6989586621679405196"><span class="hs-identifier hs-var">animation</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;author&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405195"><span class="hs-identifier hs-var">author</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;duration&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679405194"><span class="hs-identifier hs-var">duration</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;embed_height&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679405193"><span class="hs-identifier hs-var">embed_height</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;embed_width&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679405192"><span class="hs-identifier hs-var">embed_width</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;embed_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405191"><span class="hs-identifier hs-var">embed_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;embed_url&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405190"><span class="hs-identifier hs-var">embed_url</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;photo&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Photo -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Photo
+</span><a href="#local-6989586621679405189"><span class="hs-identifier hs-var">photo</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;description&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; FormattedText -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">FormattedText
+</span><a href="#local-6989586621679405188"><span class="hs-identifier hs-var">description</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405187"><span class="hs-identifier hs-var">title</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;site_name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405186"><span class="hs-identifier hs-var">site_name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405185"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;display_url&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405184"><span class="hs-identifier hs-var">display_url</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;url&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405183"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-23"></span><span>
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405177"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.WebPage.html#WebPage"><span class="hs-identifier hs-type">WebPage</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span> </span><span id="local-6989586621679405175"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser WebPage
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679405173"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679405173"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679405171"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679405171"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679405170"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405170"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405171"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-27"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405170"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-28"></span><span>   </span><span class="hs-string">&quot;webPage&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser WebPage
+</span><a href="#local-6989586621679405168"><span class="hs-identifier hs-var">parseWebPage</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679405173"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-29"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser WebPage
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-30"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-31"></span><span>   </span><span class="annot"><a href="#local-6989586621679405168"><span class="hs-identifier hs-type">parseWebPage</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.WebPage.html#WebPage"><span class="hs-identifier hs-type">WebPage</span></a></span><span>
+</span><span id="line-32"></span><span>   </span><span id="local-6989586621679405168"><span class="annot"><span class="annottext">parseWebPage :: Value -&gt; Parser WebPage
+</span><a href="#local-6989586621679405168"><span class="hs-identifier hs-var hs-var">parseWebPage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser WebPage) -&gt; Value -&gt; Parser WebPage
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;WebPage&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser WebPage) -&gt; Value -&gt; Parser WebPage)
+-&gt; (Object -&gt; Parser WebPage) -&gt; Value -&gt; Parser WebPage
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679405166"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-33"></span><span>    </span><span id="local-6989586621679405165"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679405165"><span class="hs-identifier hs-var">instant_view_version</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;instant_view_version&quot;</span></span><span>
+</span><span id="line-34"></span><span>    </span><span id="local-6989586621679405164"><span class="annot"><span class="annottext">VoiceNote
+</span><a href="#local-6989586621679405164"><span class="hs-identifier hs-var">voice_note</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser VoiceNote
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;voice_note&quot;</span></span><span>
+</span><span id="line-35"></span><span>    </span><span id="local-6989586621679405163"><span class="annot"><span class="annottext">VideoNote
+</span><a href="#local-6989586621679405163"><span class="hs-identifier hs-var">video_note</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser VideoNote
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;video_note&quot;</span></span><span>
+</span><span id="line-36"></span><span>    </span><span id="local-6989586621679405162"><span class="annot"><span class="annottext">Video
+</span><a href="#local-6989586621679405162"><span class="hs-identifier hs-var">video</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Video
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;video&quot;</span></span><span>
+</span><span id="line-37"></span><span>    </span><span id="local-6989586621679405161"><span class="annot"><span class="annottext">Sticker
+</span><a href="#local-6989586621679405161"><span class="hs-identifier hs-var">sticker</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Sticker
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;sticker&quot;</span></span><span>
+</span><span id="line-38"></span><span>    </span><span id="local-6989586621679405160"><span class="annot"><span class="annottext">Document
+</span><a href="#local-6989586621679405160"><span class="hs-identifier hs-var">document</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Document
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;document&quot;</span></span><span>
+</span><span id="line-39"></span><span>    </span><span id="local-6989586621679405159"><span class="annot"><span class="annottext">Audio
+</span><a href="#local-6989586621679405159"><span class="hs-identifier hs-var">audio</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Audio
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;audio&quot;</span></span><span>
+</span><span id="line-40"></span><span>    </span><span id="local-6989586621679405158"><span class="annot"><span class="annottext">Animation
+</span><a href="#local-6989586621679405158"><span class="hs-identifier hs-var">animation</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Animation
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;animation&quot;</span></span><span>
+</span><span id="line-41"></span><span>    </span><span id="local-6989586621679405157"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405157"><span class="hs-identifier hs-var">author</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;author&quot;</span></span><span>
+</span><span id="line-42"></span><span>    </span><span id="local-6989586621679405156"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679405156"><span class="hs-identifier hs-var">duration</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;duration&quot;</span></span><span>
+</span><span id="line-43"></span><span>    </span><span id="local-6989586621679405155"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679405155"><span class="hs-identifier hs-var">embed_height</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;embed_height&quot;</span></span><span>
+</span><span id="line-44"></span><span>    </span><span id="local-6989586621679405154"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679405154"><span class="hs-identifier hs-var">embed_width</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;embed_width&quot;</span></span><span>
+</span><span id="line-45"></span><span>    </span><span id="local-6989586621679405153"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405153"><span class="hs-identifier hs-var">embed_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;embed_type&quot;</span></span><span>
+</span><span id="line-46"></span><span>    </span><span id="local-6989586621679405152"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405152"><span class="hs-identifier hs-var">embed_url</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;embed_url&quot;</span></span><span>
+</span><span id="line-47"></span><span>    </span><span id="local-6989586621679405151"><span class="annot"><span class="annottext">Photo
+</span><a href="#local-6989586621679405151"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Photo
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;photo&quot;</span></span><span>
+</span><span id="line-48"></span><span>    </span><span id="local-6989586621679405150"><span class="annot"><span class="annottext">FormattedText
+</span><a href="#local-6989586621679405150"><span class="hs-identifier hs-var">description</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser FormattedText
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;description&quot;</span></span><span>
+</span><span id="line-49"></span><span>    </span><span id="local-6989586621679405149"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405149"><span class="hs-identifier hs-var">title</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;title&quot;</span></span><span>
+</span><span id="line-50"></span><span>    </span><span id="local-6989586621679405148"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405148"><span class="hs-identifier hs-var">site_name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;site_name&quot;</span></span><span>
+</span><span id="line-51"></span><span>    </span><span id="local-6989586621679405147"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405147"><span class="hs-identifier hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;type&quot;</span></span><span>
+</span><span id="line-52"></span><span>    </span><span id="local-6989586621679405146"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405146"><span class="hs-identifier hs-var">display_url</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;display_url&quot;</span></span><span>
+</span><span id="line-53"></span><span>    </span><span id="local-6989586621679405145"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405145"><span class="hs-identifier hs-var">url</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405166"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;url&quot;</span></span><span>
+</span><span id="line-54"></span><span>    </span><span class="annot"><span class="annottext">WebPage -&gt; Parser WebPage
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(WebPage -&gt; Parser WebPage) -&gt; WebPage -&gt; Parser WebPage
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">WebPage :: Int
+-&gt; VoiceNote
+-&gt; VideoNote
+-&gt; Video
+-&gt; Sticker
+-&gt; Document
+-&gt; Audio
+-&gt; Animation
+-&gt; String
+-&gt; Int
+-&gt; Int
+-&gt; Int
+-&gt; String
+-&gt; String
+-&gt; Photo
+-&gt; FormattedText
+-&gt; String
+-&gt; String
+-&gt; String
+-&gt; String
+-&gt; String
+-&gt; WebPage
+</span><a href="API.WebPage.html#WebPage"><span class="hs-identifier hs-type hs-type">WebPage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">instant_view_version :: Int
+</span><a href="API.WebPage.html#instant_view_version"><span class="hs-identifier hs-var">instant_view_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679405165"><span class="hs-identifier hs-var">instant_view_version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">voice_note :: VoiceNote
+</span><a href="API.WebPage.html#voice_note"><span class="hs-identifier hs-var">voice_note</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">VoiceNote
+</span><a href="#local-6989586621679405164"><span class="hs-identifier hs-var">voice_note</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">video_note :: VideoNote
+</span><a href="API.WebPage.html#video_note"><span class="hs-identifier hs-var">video_note</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">VideoNote
+</span><a href="#local-6989586621679405163"><span class="hs-identifier hs-var">video_note</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">video :: Video
+</span><a href="API.WebPage.html#video"><span class="hs-identifier hs-var">video</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Video
+</span><a href="#local-6989586621679405162"><span class="hs-identifier hs-var">video</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sticker :: Sticker
+</span><a href="API.WebPage.html#sticker"><span class="hs-identifier hs-var">sticker</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Sticker
+</span><a href="#local-6989586621679405161"><span class="hs-identifier hs-var">sticker</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">document :: Document
+</span><a href="API.WebPage.html#document"><span class="hs-identifier hs-var">document</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Document
+</span><a href="#local-6989586621679405160"><span class="hs-identifier hs-var">document</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">audio :: Audio
+</span><a href="API.WebPage.html#audio"><span class="hs-identifier hs-var">audio</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Audio
+</span><a href="#local-6989586621679405159"><span class="hs-identifier hs-var">audio</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">animation :: Animation
+</span><a href="API.WebPage.html#animation"><span class="hs-identifier hs-var">animation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Animation
+</span><a href="#local-6989586621679405158"><span class="hs-identifier hs-var">animation</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">author :: String
+</span><a href="API.WebPage.html#author"><span class="hs-identifier hs-var">author</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405157"><span class="hs-identifier hs-var">author</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">duration :: Int
+</span><a href="API.WebPage.html#duration"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679405156"><span class="hs-identifier hs-var">duration</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">embed_height :: Int
+</span><a href="API.WebPage.html#embed_height"><span class="hs-identifier hs-var">embed_height</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679405155"><span class="hs-identifier hs-var">embed_height</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">embed_width :: Int
+</span><a href="API.WebPage.html#embed_width"><span class="hs-identifier hs-var">embed_width</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679405154"><span class="hs-identifier hs-var">embed_width</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">embed_type :: String
+</span><a href="API.WebPage.html#embed_type"><span class="hs-identifier hs-var">embed_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405153"><span class="hs-identifier hs-var">embed_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">embed_url :: String
+</span><a href="API.WebPage.html#embed_url"><span class="hs-identifier hs-var">embed_url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405152"><span class="hs-identifier hs-var">embed_url</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">photo :: Photo
+</span><a href="API.WebPage.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Photo
+</span><a href="#local-6989586621679405151"><span class="hs-identifier hs-var">photo</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">description :: FormattedText
+</span><a href="API.WebPage.html#description"><span class="hs-identifier hs-var">description</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">FormattedText
+</span><a href="#local-6989586621679405150"><span class="hs-identifier hs-var">description</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: String
+</span><a href="API.WebPage.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405149"><span class="hs-identifier hs-var">title</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">site_name :: String
+</span><a href="API.WebPage.html#site_name"><span class="hs-identifier hs-var">site_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405148"><span class="hs-identifier hs-var">site_name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: String
+</span><a href="API.WebPage.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405147"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">display_url :: String
+</span><a href="API.WebPage.html#display_url"><span class="hs-identifier hs-var">display_url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405146"><span class="hs-identifier hs-var">display_url</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">url :: String
+</span><a href="API.WebPage.html#url"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405145"><span class="hs-identifier hs-var">url</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

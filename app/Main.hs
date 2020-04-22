@@ -9,6 +9,7 @@ module Main where
 import           API.GeneralResult
 -- import           API.Ok
 import           API.Functions.SetLogVerbosityLevel
+import           API.Functions.PingProxy
 import           Data.Aeson                     ( decode
                                                 , encode
                                                 , ToJSON
@@ -47,12 +48,16 @@ main = do
       { new_verbosity_level = 2
       }
   print extra
+  extra2 <- sendWExtra client API.Functions.PingProxy.PingProxy { proxy_id = 0 }
+  print extra2
   live client
   destroy client
  where
   live c = do
     r <- receive c
-    print r
+    case r of
+      Nothing -> return ()
+      _       -> print r
     live c
 
 

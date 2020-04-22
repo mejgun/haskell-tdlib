@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.LanguagePackStringValue</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">data</span><span> </span><span id="LanguagePackStringValue"><span class="annot"><a href="API.LanguagePackStringValue.html#LanguagePackStringValue"><span class="hs-identifier hs-var">LanguagePackStringValue</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-9"></span><span> </span><span id="LanguagePackStringValueOrdinary"><span class="annot"><a href="API.LanguagePackStringValue.html#LanguagePackStringValueOrdinary"><span class="hs-identifier hs-var">LanguagePackStringValueOrdinary</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="value"><span class="annot"><span class="annottext">LanguagePackStringValue -&gt; String
+</span><a href="API.LanguagePackStringValue.html#value"><span class="hs-identifier hs-var hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
+</span><span id="line-10"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="LanguagePackStringValuePluralized"><span class="annot"><a href="API.LanguagePackStringValue.html#LanguagePackStringValuePluralized"><span class="hs-identifier hs-var">LanguagePackStringValuePluralized</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="other_value"><span class="annot"><span class="annottext">LanguagePackStringValue -&gt; String
+</span><a href="API.LanguagePackStringValue.html#other_value"><span class="hs-identifier hs-var hs-var">other_value</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="many_value"><span class="annot"><span class="annottext">LanguagePackStringValue -&gt; String
+</span><a href="API.LanguagePackStringValue.html#many_value"><span class="hs-identifier hs-var hs-var">many_value</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="few_value"><span class="annot"><span class="annottext">LanguagePackStringValue -&gt; String
+</span><a href="API.LanguagePackStringValue.html#few_value"><span class="hs-identifier hs-var hs-var">few_value</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="two_value"><span class="annot"><span class="annottext">LanguagePackStringValue -&gt; String
+</span><a href="API.LanguagePackStringValue.html#two_value"><span class="hs-identifier hs-var hs-var">two_value</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="one_value"><span class="annot"><span class="annottext">LanguagePackStringValue -&gt; String
+</span><a href="API.LanguagePackStringValue.html#one_value"><span class="hs-identifier hs-var hs-var">one_value</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="zero_value"><span class="annot"><span class="annottext">LanguagePackStringValue -&gt; String
+</span><a href="API.LanguagePackStringValue.html#zero_value"><span class="hs-identifier hs-var hs-var">zero_value</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
+</span><span id="line-11"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="LanguagePackStringValueDeleted"><span class="annot"><a href="API.LanguagePackStringValue.html#LanguagePackStringValueDeleted"><span class="hs-identifier hs-var">LanguagePackStringValueDeleted</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679386744"><span id="local-6989586621679386746"><span id="local-6989586621679386748"><span class="annot"><span class="annottext">Int -&gt; LanguagePackStringValue -&gt; ShowS
+[LanguagePackStringValue] -&gt; ShowS
+LanguagePackStringValue -&gt; String
+(Int -&gt; LanguagePackStringValue -&gt; ShowS)
+-&gt; (LanguagePackStringValue -&gt; String)
+-&gt; ([LanguagePackStringValue] -&gt; ShowS)
+-&gt; Show LanguagePackStringValue
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [LanguagePackStringValue] -&gt; ShowS
+$cshowList :: [LanguagePackStringValue] -&gt; ShowS
+show :: LanguagePackStringValue -&gt; String
+$cshow :: LanguagePackStringValue -&gt; String
+showsPrec :: Int -&gt; LanguagePackStringValue -&gt; ShowS
+$cshowsPrec :: Int -&gt; LanguagePackStringValue -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679386736"><span id="local-6989586621679386738"><span id="local-6989586621679386740"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.LanguagePackStringValue.html#LanguagePackStringValue"><span class="hs-identifier hs-type">LanguagePackStringValue</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679386734"><span class="annot"><span class="annottext">toJSON :: LanguagePackStringValue -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.LanguagePackStringValue.html#LanguagePackStringValueOrdinary"><span class="hs-identifier hs-type">LanguagePackStringValueOrdinary</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">value :: LanguagePackStringValue -&gt; String
+</span><a href="API.LanguagePackStringValue.html#value"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679386732"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386732"><span class="hs-identifier hs-var">value</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;languagePackStringValueOrdinary&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;value&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386732"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-16"></span><span>
+</span><span id="line-17"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.LanguagePackStringValue.html#LanguagePackStringValuePluralized"><span class="hs-identifier hs-type">LanguagePackStringValuePluralized</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">other_value :: LanguagePackStringValue -&gt; String
+</span><a href="API.LanguagePackStringValue.html#other_value"><span class="hs-identifier hs-var">other_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679386728"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386728"><span class="hs-identifier hs-var">other_value</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">many_value :: LanguagePackStringValue -&gt; String
+</span><a href="API.LanguagePackStringValue.html#many_value"><span class="hs-identifier hs-var">many_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679386727"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386727"><span class="hs-identifier hs-var">many_value</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">few_value :: LanguagePackStringValue -&gt; String
+</span><a href="API.LanguagePackStringValue.html#few_value"><span class="hs-identifier hs-var">few_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679386726"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386726"><span class="hs-identifier hs-var">few_value</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">two_value :: LanguagePackStringValue -&gt; String
+</span><a href="API.LanguagePackStringValue.html#two_value"><span class="hs-identifier hs-var">two_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679386725"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386725"><span class="hs-identifier hs-var">two_value</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">one_value :: LanguagePackStringValue -&gt; String
+</span><a href="API.LanguagePackStringValue.html#one_value"><span class="hs-identifier hs-var">one_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679386724"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386724"><span class="hs-identifier hs-var">one_value</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">zero_value :: LanguagePackStringValue -&gt; String
+</span><a href="API.LanguagePackStringValue.html#zero_value"><span class="hs-identifier hs-var">zero_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679386723"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386723"><span class="hs-identifier hs-var">zero_value</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-18"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;languagePackStringValuePluralized&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;other_value&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386728"><span class="hs-identifier hs-var">other_value</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;many_value&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386727"><span class="hs-identifier hs-var">many_value</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;few_value&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386726"><span class="hs-identifier hs-var">few_value</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;two_value&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386725"><span class="hs-identifier hs-var">two_value</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;one_value&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386724"><span class="hs-identifier hs-var">one_value</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;zero_value&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386723"><span class="hs-identifier hs-var">zero_value</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.LanguagePackStringValue.html#LanguagePackStringValueDeleted"><span class="hs-identifier hs-type">LanguagePackStringValueDeleted</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-21"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;languagePackStringValueDeleted&quot;</span></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-22"></span><span>
+</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679386720"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.LanguagePackStringValue.html#LanguagePackStringValue"><span class="hs-identifier hs-type">LanguagePackStringValue</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span> </span><span id="local-6989586621679386718"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser LanguagePackStringValue
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679386716"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679386716"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679386714"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679386714"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>  </span><span id="local-6989586621679386713"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386713"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679386714"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-26"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386713"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-27"></span><span>   </span><span class="hs-string">&quot;languagePackStringValueOrdinary&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser LanguagePackStringValue
+</span><a href="#local-6989586621679386711"><span class="hs-identifier hs-var">parseLanguagePackStringValueOrdinary</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679386716"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-28"></span><span>   </span><span class="hs-string">&quot;languagePackStringValuePluralized&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser LanguagePackStringValue
+</span><a href="#local-6989586621679386710"><span class="hs-identifier hs-var">parseLanguagePackStringValuePluralized</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679386716"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-29"></span><span>   </span><span class="hs-string">&quot;languagePackStringValueDeleted&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser LanguagePackStringValue
+</span><a href="#local-6989586621679386709"><span class="hs-identifier hs-var">parseLanguagePackStringValueDeleted</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679386716"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-30"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser LanguagePackStringValue
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-31"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-32"></span><span>   </span><span class="annot"><a href="#local-6989586621679386711"><span class="hs-identifier hs-type">parseLanguagePackStringValueOrdinary</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.LanguagePackStringValue.html#LanguagePackStringValue"><span class="hs-identifier hs-type">LanguagePackStringValue</span></a></span><span>
+</span><span id="line-33"></span><span>   </span><span id="local-6989586621679386711"><span class="annot"><span class="annottext">parseLanguagePackStringValueOrdinary :: Value -&gt; Parser LanguagePackStringValue
+</span><a href="#local-6989586621679386711"><span class="hs-identifier hs-var hs-var">parseLanguagePackStringValueOrdinary</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser LanguagePackStringValue)
+-&gt; Value
+-&gt; Parser LanguagePackStringValue
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;LanguagePackStringValueOrdinary&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser LanguagePackStringValue)
+ -&gt; Value -&gt; Parser LanguagePackStringValue)
+-&gt; (Object -&gt; Parser LanguagePackStringValue)
+-&gt; Value
+-&gt; Parser LanguagePackStringValue
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679386707"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679386707"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-34"></span><span>    </span><span id="local-6989586621679386706"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386706"><span class="hs-identifier hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679386707"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;value&quot;</span></span><span>
+</span><span id="line-35"></span><span>    </span><span class="annot"><span class="annottext">LanguagePackStringValue -&gt; Parser LanguagePackStringValue
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(LanguagePackStringValue -&gt; Parser LanguagePackStringValue)
+-&gt; LanguagePackStringValue -&gt; Parser LanguagePackStringValue
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">LanguagePackStringValueOrdinary :: String -&gt; LanguagePackStringValue
+</span><a href="API.LanguagePackStringValue.html#LanguagePackStringValueOrdinary"><span class="hs-identifier hs-type hs-type">LanguagePackStringValueOrdinary</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">value :: String
+</span><a href="API.LanguagePackStringValue.html#value"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386706"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-36"></span><span>
+</span><span id="line-37"></span><span>   </span><span class="annot"><a href="#local-6989586621679386710"><span class="hs-identifier hs-type">parseLanguagePackStringValuePluralized</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.LanguagePackStringValue.html#LanguagePackStringValue"><span class="hs-identifier hs-type">LanguagePackStringValue</span></a></span><span>
+</span><span id="line-38"></span><span>   </span><span id="local-6989586621679386710"><span class="annot"><span class="annottext">parseLanguagePackStringValuePluralized :: Value -&gt; Parser LanguagePackStringValue
+</span><a href="#local-6989586621679386710"><span class="hs-identifier hs-var hs-var">parseLanguagePackStringValuePluralized</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser LanguagePackStringValue)
+-&gt; Value
+-&gt; Parser LanguagePackStringValue
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;LanguagePackStringValuePluralized&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser LanguagePackStringValue)
+ -&gt; Value -&gt; Parser LanguagePackStringValue)
+-&gt; (Object -&gt; Parser LanguagePackStringValue)
+-&gt; Value
+-&gt; Parser LanguagePackStringValue
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679386704"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679386704"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-39"></span><span>    </span><span id="local-6989586621679386703"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386703"><span class="hs-identifier hs-var">other_value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679386704"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;other_value&quot;</span></span><span>
+</span><span id="line-40"></span><span>    </span><span id="local-6989586621679386702"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386702"><span class="hs-identifier hs-var">many_value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679386704"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;many_value&quot;</span></span><span>
+</span><span id="line-41"></span><span>    </span><span id="local-6989586621679386701"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386701"><span class="hs-identifier hs-var">few_value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679386704"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;few_value&quot;</span></span><span>
+</span><span id="line-42"></span><span>    </span><span id="local-6989586621679386700"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386700"><span class="hs-identifier hs-var">two_value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679386704"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;two_value&quot;</span></span><span>
+</span><span id="line-43"></span><span>    </span><span id="local-6989586621679386699"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386699"><span class="hs-identifier hs-var">one_value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679386704"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;one_value&quot;</span></span><span>
+</span><span id="line-44"></span><span>    </span><span id="local-6989586621679386698"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386698"><span class="hs-identifier hs-var">zero_value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679386704"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;zero_value&quot;</span></span><span>
+</span><span id="line-45"></span><span>    </span><span class="annot"><span class="annottext">LanguagePackStringValue -&gt; Parser LanguagePackStringValue
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(LanguagePackStringValue -&gt; Parser LanguagePackStringValue)
+-&gt; LanguagePackStringValue -&gt; Parser LanguagePackStringValue
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">LanguagePackStringValuePluralized :: String
+-&gt; String
+-&gt; String
+-&gt; String
+-&gt; String
+-&gt; String
+-&gt; LanguagePackStringValue
+</span><a href="API.LanguagePackStringValue.html#LanguagePackStringValuePluralized"><span class="hs-identifier hs-type hs-type">LanguagePackStringValuePluralized</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">other_value :: String
+</span><a href="API.LanguagePackStringValue.html#other_value"><span class="hs-identifier hs-var">other_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386703"><span class="hs-identifier hs-var">other_value</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">many_value :: String
+</span><a href="API.LanguagePackStringValue.html#many_value"><span class="hs-identifier hs-var">many_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386702"><span class="hs-identifier hs-var">many_value</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">few_value :: String
+</span><a href="API.LanguagePackStringValue.html#few_value"><span class="hs-identifier hs-var">few_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386701"><span class="hs-identifier hs-var">few_value</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">two_value :: String
+</span><a href="API.LanguagePackStringValue.html#two_value"><span class="hs-identifier hs-var">two_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386700"><span class="hs-identifier hs-var">two_value</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">one_value :: String
+</span><a href="API.LanguagePackStringValue.html#one_value"><span class="hs-identifier hs-var">one_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386699"><span class="hs-identifier hs-var">one_value</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">zero_value :: String
+</span><a href="API.LanguagePackStringValue.html#zero_value"><span class="hs-identifier hs-var">zero_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679386698"><span class="hs-identifier hs-var">zero_value</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-46"></span><span>
+</span><span id="line-47"></span><span>   </span><span class="annot"><a href="#local-6989586621679386709"><span class="hs-identifier hs-type">parseLanguagePackStringValueDeleted</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.LanguagePackStringValue.html#LanguagePackStringValue"><span class="hs-identifier hs-type">LanguagePackStringValue</span></a></span><span>
+</span><span id="line-48"></span><span>   </span><span id="local-6989586621679386709"><span class="annot"><span class="annottext">parseLanguagePackStringValueDeleted :: Value -&gt; Parser LanguagePackStringValue
+</span><a href="#local-6989586621679386709"><span class="hs-identifier hs-var hs-var">parseLanguagePackStringValueDeleted</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser LanguagePackStringValue)
+-&gt; Value
+-&gt; Parser LanguagePackStringValue
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;LanguagePackStringValueDeleted&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser LanguagePackStringValue)
+ -&gt; Value -&gt; Parser LanguagePackStringValue)
+-&gt; (Object -&gt; Parser LanguagePackStringValue)
+-&gt; Value
+-&gt; Parser LanguagePackStringValue
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679386696"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679386696"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-49"></span><span>    </span><span class="annot"><span class="annottext">LanguagePackStringValue -&gt; Parser LanguagePackStringValue
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(LanguagePackStringValue -&gt; Parser LanguagePackStringValue)
+-&gt; LanguagePackStringValue -&gt; Parser LanguagePackStringValue
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">LanguagePackStringValueDeleted :: LanguagePackStringValue
+</span><a href="API.LanguagePackStringValue.html#LanguagePackStringValueDeleted"><span class="hs-identifier hs-type hs-type">LanguagePackStringValueDeleted</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span></pre></body></html>

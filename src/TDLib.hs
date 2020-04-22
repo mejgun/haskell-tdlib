@@ -1,7 +1,14 @@
 -- {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ForeignFunctionInterface #-}
 
-module TDLib where
+module TDLib
+  ( create
+  , send
+  , sendWExtra
+  , receive
+  , destroy
+  )
+where
 
 import           API.GeneralResult
 

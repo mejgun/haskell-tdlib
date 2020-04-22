@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.MaskPosition</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.MaskPoint.html"><span class="hs-identifier">API.MaskPoint</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">MaskPoint</span></span><span>
+</span><span id="line-8"></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="MaskPosition"><span class="annot"><a href="API.MaskPosition.html#MaskPosition"><span class="hs-identifier hs-var">MaskPosition</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-10"></span><span> </span><span id="MaskPosition"><span class="annot"><a href="API.MaskPosition.html#MaskPosition"><span class="hs-identifier hs-var">MaskPosition</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="scale"><span class="annot"><span class="annottext">MaskPosition -&gt; Float
+</span><a href="API.MaskPosition.html#scale"><span class="hs-identifier hs-var hs-var">scale</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span class="hs-special">,</span><span> </span><span id="y_shift"><span class="annot"><span class="annottext">MaskPosition -&gt; Float
+</span><a href="API.MaskPosition.html#y_shift"><span class="hs-identifier hs-var hs-var">y_shift</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span class="hs-special">,</span><span> </span><span id="x_shift"><span class="annot"><span class="annottext">MaskPosition -&gt; Float
+</span><a href="API.MaskPosition.html#x_shift"><span class="hs-identifier hs-var hs-var">x_shift</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span class="hs-special">,</span><span> </span><span id="point"><span class="annot"><span class="annottext">MaskPosition -&gt; MaskPoint
+</span><a href="API.MaskPosition.html#point"><span class="hs-identifier hs-var hs-var">point</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.MaskPoint.html#MaskPoint"><span class="hs-identifier hs-type">MaskPoint.MaskPoint</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679387962"><span id="local-6989586621679387964"><span id="local-6989586621679387966"><span class="annot"><span class="annottext">Int -&gt; MaskPosition -&gt; ShowS
+[MaskPosition] -&gt; ShowS
+MaskPosition -&gt; String
+(Int -&gt; MaskPosition -&gt; ShowS)
+-&gt; (MaskPosition -&gt; String)
+-&gt; ([MaskPosition] -&gt; ShowS)
+-&gt; Show MaskPosition
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [MaskPosition] -&gt; ShowS
+$cshowList :: [MaskPosition] -&gt; ShowS
+show :: MaskPosition -&gt; String
+$cshow :: MaskPosition -&gt; String
+showsPrec :: Int -&gt; MaskPosition -&gt; ShowS
+$cshowsPrec :: Int -&gt; MaskPosition -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-11"></span><span>
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679387954"><span id="local-6989586621679387956"><span id="local-6989586621679387958"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.MaskPosition.html#MaskPosition"><span class="hs-identifier hs-type">MaskPosition</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679387952"><span class="annot"><span class="annottext">toJSON :: MaskPosition -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.MaskPosition.html#MaskPosition"><span class="hs-identifier hs-type">MaskPosition</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">scale :: MaskPosition -&gt; Float
+</span><a href="API.MaskPosition.html#scale"><span class="hs-identifier hs-var">scale</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387950"><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679387950"><span class="hs-identifier hs-var">scale</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">y_shift :: MaskPosition -&gt; Float
+</span><a href="API.MaskPosition.html#y_shift"><span class="hs-identifier hs-var">y_shift</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387949"><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679387949"><span class="hs-identifier hs-var">y_shift</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">x_shift :: MaskPosition -&gt; Float
+</span><a href="API.MaskPosition.html#x_shift"><span class="hs-identifier hs-var">x_shift</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387948"><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679387948"><span class="hs-identifier hs-var">x_shift</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">point :: MaskPosition -&gt; MaskPoint
+</span><a href="API.MaskPosition.html#point"><span class="hs-identifier hs-var">point</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387947"><span class="annot"><span class="annottext">MaskPoint
+</span><a href="#local-6989586621679387947"><span class="hs-identifier hs-var">point</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;maskPosition&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;scale&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Float -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679387950"><span class="hs-identifier hs-var">scale</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;y_shift&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Float -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679387949"><span class="hs-identifier hs-var">y_shift</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;x_shift&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Float -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679387948"><span class="hs-identifier hs-var">x_shift</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;point&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; MaskPoint -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">MaskPoint
+</span><a href="#local-6989586621679387947"><span class="hs-identifier hs-var">point</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-15"></span><span>
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679387941"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.MaskPosition.html#MaskPosition"><span class="hs-identifier hs-type">MaskPosition</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679387939"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser MaskPosition
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679387937"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679387937"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679387935"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679387935"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679387934"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679387934"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679387935"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679387934"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;maskPosition&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MaskPosition
+</span><a href="#local-6989586621679387932"><span class="hs-identifier hs-var">parseMaskPosition</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679387937"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser MaskPosition
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679387932"><span class="hs-identifier hs-type">parseMaskPosition</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.MaskPosition.html#MaskPosition"><span class="hs-identifier hs-type">MaskPosition</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679387932"><span class="annot"><span class="annottext">parseMaskPosition :: Value -&gt; Parser MaskPosition
+</span><a href="#local-6989586621679387932"><span class="hs-identifier hs-var hs-var">parseMaskPosition</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser MaskPosition) -&gt; Value -&gt; Parser MaskPosition
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;MaskPosition&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser MaskPosition) -&gt; Value -&gt; Parser MaskPosition)
+-&gt; (Object -&gt; Parser MaskPosition) -&gt; Value -&gt; Parser MaskPosition
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679387930"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679387930"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679387929"><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679387929"><span class="hs-identifier hs-var">scale</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679387930"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Float
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;scale&quot;</span></span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679387928"><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679387928"><span class="hs-identifier hs-var">y_shift</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679387930"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Float
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;y_shift&quot;</span></span><span>
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679387927"><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679387927"><span class="hs-identifier hs-var">x_shift</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679387930"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Float
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;x_shift&quot;</span></span><span>
+</span><span id="line-28"></span><span>    </span><span id="local-6989586621679387926"><span class="annot"><span class="annottext">MaskPoint
+</span><a href="#local-6989586621679387926"><span class="hs-identifier hs-var">point</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679387930"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser MaskPoint
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;point&quot;</span></span><span>
+</span><span id="line-29"></span><span>    </span><span class="annot"><span class="annottext">MaskPosition -&gt; Parser MaskPosition
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(MaskPosition -&gt; Parser MaskPosition)
+-&gt; MaskPosition -&gt; Parser MaskPosition
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">MaskPosition :: Float -&gt; Float -&gt; Float -&gt; MaskPoint -&gt; MaskPosition
+</span><a href="API.MaskPosition.html#MaskPosition"><span class="hs-identifier hs-type hs-type">MaskPosition</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">scale :: Float
+</span><a href="API.MaskPosition.html#scale"><span class="hs-identifier hs-var">scale</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679387929"><span class="hs-identifier hs-var">scale</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">y_shift :: Float
+</span><a href="API.MaskPosition.html#y_shift"><span class="hs-identifier hs-var">y_shift</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679387928"><span class="hs-identifier hs-var">y_shift</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">x_shift :: Float
+</span><a href="API.MaskPosition.html#x_shift"><span class="hs-identifier hs-var">x_shift</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Float
+</span><a href="#local-6989586621679387927"><span class="hs-identifier hs-var">x_shift</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">point :: MaskPoint
+</span><a href="API.MaskPosition.html#point"><span class="hs-identifier hs-var">point</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">MaskPoint
+</span><a href="#local-6989586621679387926"><span class="hs-identifier hs-var">point</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

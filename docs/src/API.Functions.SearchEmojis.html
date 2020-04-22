@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Functions.SearchEmojis</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">data</span><span> </span><span id="SearchEmojis"><span class="annot"><a href="API.Functions.SearchEmojis.html#SearchEmojis"><span class="hs-identifier hs-var">SearchEmojis</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-9"></span><span> </span><span id="SearchEmojis"><span class="annot"><a href="API.Functions.SearchEmojis.html#SearchEmojis"><span class="hs-identifier hs-var">SearchEmojis</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="input_language_code"><span class="annot"><span class="annottext">SearchEmojis -&gt; String
+</span><a href="API.Functions.SearchEmojis.html#input_language_code"><span class="hs-identifier hs-var hs-var">input_language_code</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="exact_match"><span class="annot"><span class="annottext">SearchEmojis -&gt; Bool
+</span><a href="API.Functions.SearchEmojis.html#exact_match"><span class="hs-identifier hs-var hs-var">exact_match</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="text"><span class="annot"><span class="annottext">SearchEmojis -&gt; String
+</span><a href="API.Functions.SearchEmojis.html#text"><span class="hs-identifier hs-var hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679378036"><span id="local-6989586621679378038"><span id="local-6989586621679378040"><span class="annot"><span class="annottext">Int -&gt; SearchEmojis -&gt; ShowS
+[SearchEmojis] -&gt; ShowS
+SearchEmojis -&gt; String
+(Int -&gt; SearchEmojis -&gt; ShowS)
+-&gt; (SearchEmojis -&gt; String)
+-&gt; ([SearchEmojis] -&gt; ShowS)
+-&gt; Show SearchEmojis
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [SearchEmojis] -&gt; ShowS
+$cshowList :: [SearchEmojis] -&gt; ShowS
+show :: SearchEmojis -&gt; String
+$cshow :: SearchEmojis -&gt; String
+showsPrec :: Int -&gt; SearchEmojis -&gt; ShowS
+$cshowsPrec :: Int -&gt; SearchEmojis -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679378028"><span id="local-6989586621679378030"><span id="local-6989586621679378032"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SearchEmojis.html#SearchEmojis"><span class="hs-identifier hs-type">SearchEmojis</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-12"></span><span> </span><span id="local-6989586621679378026"><span class="annot"><span class="annottext">toJSON :: SearchEmojis -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.SearchEmojis.html#SearchEmojis"><span class="hs-identifier hs-type">SearchEmojis</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">input_language_code :: SearchEmojis -&gt; String
+</span><a href="API.Functions.SearchEmojis.html#input_language_code"><span class="hs-identifier hs-var">input_language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378024"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679378024"><span class="hs-identifier hs-var">input_language_code</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exact_match :: SearchEmojis -&gt; Bool
+</span><a href="API.Functions.SearchEmojis.html#exact_match"><span class="hs-identifier hs-var">exact_match</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378023"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679378023"><span class="hs-identifier hs-var">exact_match</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">text :: SearchEmojis -&gt; String
+</span><a href="API.Functions.SearchEmojis.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378022"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679378022"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-13"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;searchEmojis&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;input_language_code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679378024"><span class="hs-identifier hs-var">input_language_code</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;exact_match&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679378023"><span class="hs-identifier hs-var">exact_match</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679378022"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-14"></span><span>
+</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679378016"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SearchEmojis.html#SearchEmojis"><span class="hs-identifier hs-type">SearchEmojis</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-16"></span><span> </span><span id="local-6989586621679378014"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SearchEmojis
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679378012"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679378012"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679378010"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679378010"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-17"></span><span>  </span><span id="local-6989586621679378009"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679378009"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679378010"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679378009"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-19"></span><span>   </span><span class="hs-string">&quot;searchEmojis&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchEmojis
+</span><a href="#local-6989586621679378007"><span class="hs-identifier hs-var">parseSearchEmojis</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679378012"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-20"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SearchEmojis
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-21"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679378007"><span class="hs-identifier hs-type">parseSearchEmojis</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SearchEmojis.html#SearchEmojis"><span class="hs-identifier hs-type">SearchEmojis</span></a></span><span>
+</span><span id="line-23"></span><span>   </span><span id="local-6989586621679378007"><span class="annot"><span class="annottext">parseSearchEmojis :: Value -&gt; Parser SearchEmojis
+</span><a href="#local-6989586621679378007"><span class="hs-identifier hs-var hs-var">parseSearchEmojis</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser SearchEmojis) -&gt; Value -&gt; Parser SearchEmojis
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;SearchEmojis&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser SearchEmojis) -&gt; Value -&gt; Parser SearchEmojis)
+-&gt; (Object -&gt; Parser SearchEmojis) -&gt; Value -&gt; Parser SearchEmojis
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679378005"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679378005"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-24"></span><span>    </span><span id="local-6989586621679378004"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679378004"><span class="hs-identifier hs-var">input_language_code</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679378005"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;input_language_code&quot;</span></span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679378003"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679378003"><span class="hs-identifier hs-var">exact_match</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679378005"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;exact_match&quot;</span></span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679378002"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679378002"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679378005"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;text&quot;</span></span><span>
+</span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">SearchEmojis -&gt; Parser SearchEmojis
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchEmojis -&gt; Parser SearchEmojis)
+-&gt; SearchEmojis -&gt; Parser SearchEmojis
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchEmojis :: String -&gt; Bool -&gt; String -&gt; SearchEmojis
+</span><a href="API.Functions.SearchEmojis.html#SearchEmojis"><span class="hs-identifier hs-type hs-type">SearchEmojis</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">input_language_code :: String
+</span><a href="API.Functions.SearchEmojis.html#input_language_code"><span class="hs-identifier hs-var">input_language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679378004"><span class="hs-identifier hs-var">input_language_code</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">exact_match :: Bool
+</span><a href="API.Functions.SearchEmojis.html#exact_match"><span class="hs-identifier hs-var">exact_match</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679378003"><span class="hs-identifier hs-var">exact_match</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">text :: String
+</span><a href="API.Functions.SearchEmojis.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679378002"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

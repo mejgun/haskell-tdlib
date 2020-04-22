@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Functions.CheckEmailAddressVerificationCode</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">data</span><span> </span><span id="CheckEmailAddressVerificationCode"><span class="annot"><a href="API.Functions.CheckEmailAddressVerificationCode.html#CheckEmailAddressVerificationCode"><span class="hs-identifier hs-var">CheckEmailAddressVerificationCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-9"></span><span> </span><span id="CheckEmailAddressVerificationCode"><span class="annot"><a href="API.Functions.CheckEmailAddressVerificationCode.html#CheckEmailAddressVerificationCode"><span class="hs-identifier hs-var">CheckEmailAddressVerificationCode</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="code"><span class="annot"><span class="annottext">CheckEmailAddressVerificationCode -&gt; String
+</span><a href="API.Functions.CheckEmailAddressVerificationCode.html#code"><span class="hs-identifier hs-var hs-var">code</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679365396"><span id="local-6989586621679365398"><span id="local-6989586621679365400"><span class="annot"><span class="annottext">Int -&gt; CheckEmailAddressVerificationCode -&gt; ShowS
+[CheckEmailAddressVerificationCode] -&gt; ShowS
+CheckEmailAddressVerificationCode -&gt; String
+(Int -&gt; CheckEmailAddressVerificationCode -&gt; ShowS)
+-&gt; (CheckEmailAddressVerificationCode -&gt; String)
+-&gt; ([CheckEmailAddressVerificationCode] -&gt; ShowS)
+-&gt; Show CheckEmailAddressVerificationCode
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [CheckEmailAddressVerificationCode] -&gt; ShowS
+$cshowList :: [CheckEmailAddressVerificationCode] -&gt; ShowS
+show :: CheckEmailAddressVerificationCode -&gt; String
+$cshow :: CheckEmailAddressVerificationCode -&gt; String
+showsPrec :: Int -&gt; CheckEmailAddressVerificationCode -&gt; ShowS
+$cshowsPrec :: Int -&gt; CheckEmailAddressVerificationCode -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679365388"><span id="local-6989586621679365390"><span id="local-6989586621679365392"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CheckEmailAddressVerificationCode.html#CheckEmailAddressVerificationCode"><span class="hs-identifier hs-type">CheckEmailAddressVerificationCode</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-12"></span><span> </span><span id="local-6989586621679365386"><span class="annot"><span class="annottext">toJSON :: CheckEmailAddressVerificationCode -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.CheckEmailAddressVerificationCode.html#CheckEmailAddressVerificationCode"><span class="hs-identifier hs-type">CheckEmailAddressVerificationCode</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">code :: CheckEmailAddressVerificationCode -&gt; String
+</span><a href="API.Functions.CheckEmailAddressVerificationCode.html#code"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679365384"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679365384"><span class="hs-identifier hs-var">code</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-13"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;checkEmailAddressVerificationCode&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679365384"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-14"></span><span>
+</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679365378"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CheckEmailAddressVerificationCode.html#CheckEmailAddressVerificationCode"><span class="hs-identifier hs-type">CheckEmailAddressVerificationCode</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-16"></span><span> </span><span id="local-6989586621679365376"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CheckEmailAddressVerificationCode
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679365374"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679365374"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679365372"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679365372"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-17"></span><span>  </span><span id="local-6989586621679365371"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679365371"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679365372"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679365371"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-19"></span><span>   </span><span class="hs-string">&quot;checkEmailAddressVerificationCode&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CheckEmailAddressVerificationCode
+</span><a href="#local-6989586621679365369"><span class="hs-identifier hs-var">parseCheckEmailAddressVerificationCode</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679365374"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-20"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CheckEmailAddressVerificationCode
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-21"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679365369"><span class="hs-identifier hs-type">parseCheckEmailAddressVerificationCode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.CheckEmailAddressVerificationCode.html#CheckEmailAddressVerificationCode"><span class="hs-identifier hs-type">CheckEmailAddressVerificationCode</span></a></span><span>
+</span><span id="line-23"></span><span>   </span><span id="local-6989586621679365369"><span class="annot"><span class="annottext">parseCheckEmailAddressVerificationCode :: Value -&gt; Parser CheckEmailAddressVerificationCode
+</span><a href="#local-6989586621679365369"><span class="hs-identifier hs-var hs-var">parseCheckEmailAddressVerificationCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser CheckEmailAddressVerificationCode)
+-&gt; Value
+-&gt; Parser CheckEmailAddressVerificationCode
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;CheckEmailAddressVerificationCode&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser CheckEmailAddressVerificationCode)
+ -&gt; Value -&gt; Parser CheckEmailAddressVerificationCode)
+-&gt; (Object -&gt; Parser CheckEmailAddressVerificationCode)
+-&gt; Value
+-&gt; Parser CheckEmailAddressVerificationCode
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679365367"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679365367"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-24"></span><span>    </span><span id="local-6989586621679365366"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679365366"><span class="hs-identifier hs-var">code</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679365367"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;code&quot;</span></span><span>
+</span><span id="line-25"></span><span>    </span><span class="annot"><span class="annottext">CheckEmailAddressVerificationCode
+-&gt; Parser CheckEmailAddressVerificationCode
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CheckEmailAddressVerificationCode
+ -&gt; Parser CheckEmailAddressVerificationCode)
+-&gt; CheckEmailAddressVerificationCode
+-&gt; Parser CheckEmailAddressVerificationCode
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CheckEmailAddressVerificationCode :: String -&gt; CheckEmailAddressVerificationCode
+</span><a href="API.Functions.CheckEmailAddressVerificationCode.html#CheckEmailAddressVerificationCode"><span class="hs-identifier hs-type hs-type">CheckEmailAddressVerificationCode</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">code :: String
+</span><a href="API.Functions.CheckEmailAddressVerificationCode.html#code"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679365366"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

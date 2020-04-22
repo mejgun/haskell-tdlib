@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Functions.SendBotStartMessage</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">data</span><span> </span><span id="SendBotStartMessage"><span class="annot"><a href="API.Functions.SendBotStartMessage.html#SendBotStartMessage"><span class="hs-identifier hs-var">SendBotStartMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-9"></span><span> </span><span id="SendBotStartMessage"><span class="annot"><a href="API.Functions.SendBotStartMessage.html#SendBotStartMessage"><span class="hs-identifier hs-var">SendBotStartMessage</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="parameter"><span class="annot"><span class="annottext">SendBotStartMessage -&gt; String
+</span><a href="API.Functions.SendBotStartMessage.html#parameter"><span class="hs-identifier hs-var hs-var">parameter</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="chat_id"><span class="annot"><span class="annottext">SendBotStartMessage -&gt; Int
+</span><a href="API.Functions.SendBotStartMessage.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="bot_user_id"><span class="annot"><span class="annottext">SendBotStartMessage -&gt; Int
+</span><a href="API.Functions.SendBotStartMessage.html#bot_user_id"><span class="hs-identifier hs-var hs-var">bot_user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679378646"><span id="local-6989586621679378648"><span id="local-6989586621679378650"><span class="annot"><span class="annottext">Int -&gt; SendBotStartMessage -&gt; ShowS
+[SendBotStartMessage] -&gt; ShowS
+SendBotStartMessage -&gt; String
+(Int -&gt; SendBotStartMessage -&gt; ShowS)
+-&gt; (SendBotStartMessage -&gt; String)
+-&gt; ([SendBotStartMessage] -&gt; ShowS)
+-&gt; Show SendBotStartMessage
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [SendBotStartMessage] -&gt; ShowS
+$cshowList :: [SendBotStartMessage] -&gt; ShowS
+show :: SendBotStartMessage -&gt; String
+$cshow :: SendBotStartMessage -&gt; String
+showsPrec :: Int -&gt; SendBotStartMessage -&gt; ShowS
+$cshowsPrec :: Int -&gt; SendBotStartMessage -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679378638"><span id="local-6989586621679378640"><span id="local-6989586621679378642"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SendBotStartMessage.html#SendBotStartMessage"><span class="hs-identifier hs-type">SendBotStartMessage</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-12"></span><span> </span><span id="local-6989586621679378636"><span class="annot"><span class="annottext">toJSON :: SendBotStartMessage -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.SendBotStartMessage.html#SendBotStartMessage"><span class="hs-identifier hs-type">SendBotStartMessage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">parameter :: SendBotStartMessage -&gt; String
+</span><a href="API.Functions.SendBotStartMessage.html#parameter"><span class="hs-identifier hs-var">parameter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378634"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679378634"><span class="hs-identifier hs-var">parameter</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: SendBotStartMessage -&gt; Int
+</span><a href="API.Functions.SendBotStartMessage.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378633"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679378633"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">bot_user_id :: SendBotStartMessage -&gt; Int
+</span><a href="API.Functions.SendBotStartMessage.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378632"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679378632"><span class="hs-identifier hs-var">bot_user_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-13"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;sendBotStartMessage&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;parameter&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679378634"><span class="hs-identifier hs-var">parameter</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679378633"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;bot_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679378632"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-14"></span><span>
+</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679378626"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SendBotStartMessage.html#SendBotStartMessage"><span class="hs-identifier hs-type">SendBotStartMessage</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-16"></span><span> </span><span id="local-6989586621679378624"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SendBotStartMessage
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679378622"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679378622"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679378620"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679378620"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-17"></span><span>  </span><span id="local-6989586621679378619"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679378619"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679378620"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679378619"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-19"></span><span>   </span><span class="hs-string">&quot;sendBotStartMessage&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SendBotStartMessage
+</span><a href="#local-6989586621679378617"><span class="hs-identifier hs-var">parseSendBotStartMessage</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679378622"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-20"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SendBotStartMessage
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-21"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679378617"><span class="hs-identifier hs-type">parseSendBotStartMessage</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SendBotStartMessage.html#SendBotStartMessage"><span class="hs-identifier hs-type">SendBotStartMessage</span></a></span><span>
+</span><span id="line-23"></span><span>   </span><span id="local-6989586621679378617"><span class="annot"><span class="annottext">parseSendBotStartMessage :: Value -&gt; Parser SendBotStartMessage
+</span><a href="#local-6989586621679378617"><span class="hs-identifier hs-var hs-var">parseSendBotStartMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser SendBotStartMessage)
+-&gt; Value
+-&gt; Parser SendBotStartMessage
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;SendBotStartMessage&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser SendBotStartMessage)
+ -&gt; Value -&gt; Parser SendBotStartMessage)
+-&gt; (Object -&gt; Parser SendBotStartMessage)
+-&gt; Value
+-&gt; Parser SendBotStartMessage
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679378615"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679378615"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-24"></span><span>    </span><span id="local-6989586621679378614"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679378614"><span class="hs-identifier hs-var">parameter</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679378615"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;parameter&quot;</span></span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679378613"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679378613"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679378615"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679378612"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679378612"><span class="hs-identifier hs-var">bot_user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679378615"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;bot_user_id&quot;</span></span><span>
+</span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">SendBotStartMessage -&gt; Parser SendBotStartMessage
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SendBotStartMessage -&gt; Parser SendBotStartMessage)
+-&gt; SendBotStartMessage -&gt; Parser SendBotStartMessage
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SendBotStartMessage :: String -&gt; Int -&gt; Int -&gt; SendBotStartMessage
+</span><a href="API.Functions.SendBotStartMessage.html#SendBotStartMessage"><span class="hs-identifier hs-type hs-type">SendBotStartMessage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">parameter :: String
+</span><a href="API.Functions.SendBotStartMessage.html#parameter"><span class="hs-identifier hs-var">parameter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679378614"><span class="hs-identifier hs-var">parameter</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Int
+</span><a href="API.Functions.SendBotStartMessage.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679378613"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">bot_user_id :: Int
+</span><a href="API.Functions.SendBotStartMessage.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679378612"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

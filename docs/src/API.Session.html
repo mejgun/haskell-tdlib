@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Session</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">data</span><span> </span><span id="Session"><span class="annot"><a href="API.Session.html#Session"><span class="hs-identifier hs-var">Session</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-9"></span><span> </span><span id="Session"><span class="annot"><a href="API.Session.html#Session"><span class="hs-identifier hs-var">Session</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="region"><span class="annot"><span class="annottext">Session -&gt; String
+</span><a href="API.Session.html#region"><span class="hs-identifier hs-var hs-var">region</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="country"><span class="annot"><span class="annottext">Session -&gt; String
+</span><a href="API.Session.html#country"><span class="hs-identifier hs-var hs-var">country</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="ip"><span class="annot"><span class="annottext">Session -&gt; String
+</span><a href="API.Session.html#ip"><span class="hs-identifier hs-var hs-var">ip</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="last_active_date"><span class="annot"><span class="annottext">Session -&gt; Int
+</span><a href="API.Session.html#last_active_date"><span class="hs-identifier hs-var hs-var">last_active_date</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="log_in_date"><span class="annot"><span class="annottext">Session -&gt; Int
+</span><a href="API.Session.html#log_in_date"><span class="hs-identifier hs-var hs-var">log_in_date</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="system_version"><span class="annot"><span class="annottext">Session -&gt; String
+</span><a href="API.Session.html#system_version"><span class="hs-identifier hs-var hs-var">system_version</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="platform"><span class="annot"><span class="annottext">Session -&gt; String
+</span><a href="API.Session.html#platform"><span class="hs-identifier hs-var hs-var">platform</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="device_model"><span class="annot"><span class="annottext">Session -&gt; String
+</span><a href="API.Session.html#device_model"><span class="hs-identifier hs-var hs-var">device_model</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="is_official_application"><span class="annot"><span class="annottext">Session -&gt; Bool
+</span><a href="API.Session.html#is_official_application"><span class="hs-identifier hs-var hs-var">is_official_application</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="application_version"><span class="annot"><span class="annottext">Session -&gt; String
+</span><a href="API.Session.html#application_version"><span class="hs-identifier hs-var hs-var">application_version</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="application_name"><span class="annot"><span class="annottext">Session -&gt; String
+</span><a href="API.Session.html#application_name"><span class="hs-identifier hs-var hs-var">application_name</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="api_id"><span class="annot"><span class="annottext">Session -&gt; Int
+</span><a href="API.Session.html#api_id"><span class="hs-identifier hs-var hs-var">api_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="is_password_pending"><span class="annot"><span class="annottext">Session -&gt; Bool
+</span><a href="API.Session.html#is_password_pending"><span class="hs-identifier hs-var hs-var">is_password_pending</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="is_current"><span class="annot"><span class="annottext">Session -&gt; Bool
+</span><a href="API.Session.html#is_current"><span class="hs-identifier hs-var hs-var">is_current</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="_id"><span class="annot"><span class="annottext">Session -&gt; Int
+</span><a href="API.Session.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679397142"><span id="local-6989586621679397144"><span id="local-6989586621679397146"><span class="annot"><span class="annottext">Int -&gt; Session -&gt; ShowS
+[Session] -&gt; ShowS
+Session -&gt; String
+(Int -&gt; Session -&gt; ShowS)
+-&gt; (Session -&gt; String) -&gt; ([Session] -&gt; ShowS) -&gt; Show Session
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [Session] -&gt; ShowS
+$cshowList :: [Session] -&gt; ShowS
+show :: Session -&gt; String
+$cshow :: Session -&gt; String
+showsPrec :: Int -&gt; Session -&gt; ShowS
+$cshowsPrec :: Int -&gt; Session -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679397134"><span id="local-6989586621679397136"><span id="local-6989586621679397138"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Session.html#Session"><span class="hs-identifier hs-type">Session</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-12"></span><span> </span><span id="local-6989586621679397132"><span class="annot"><span class="annottext">toJSON :: Session -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Session.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">region :: Session -&gt; String
+</span><a href="API.Session.html#region"><span class="hs-identifier hs-var">region</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397130"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397130"><span class="hs-identifier hs-var">region</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">country :: Session -&gt; String
+</span><a href="API.Session.html#country"><span class="hs-identifier hs-var">country</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397129"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397129"><span class="hs-identifier hs-var">country</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ip :: Session -&gt; String
+</span><a href="API.Session.html#ip"><span class="hs-identifier hs-var">ip</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397128"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397128"><span class="hs-identifier hs-var">ip</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">last_active_date :: Session -&gt; Int
+</span><a href="API.Session.html#last_active_date"><span class="hs-identifier hs-var">last_active_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397127"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397127"><span class="hs-identifier hs-var">last_active_date</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">log_in_date :: Session -&gt; Int
+</span><a href="API.Session.html#log_in_date"><span class="hs-identifier hs-var">log_in_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397126"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397126"><span class="hs-identifier hs-var">log_in_date</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">system_version :: Session -&gt; String
+</span><a href="API.Session.html#system_version"><span class="hs-identifier hs-var">system_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397125"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397125"><span class="hs-identifier hs-var">system_version</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">platform :: Session -&gt; String
+</span><a href="API.Session.html#platform"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397124"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397124"><span class="hs-identifier hs-var">platform</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_model :: Session -&gt; String
+</span><a href="API.Session.html#device_model"><span class="hs-identifier hs-var">device_model</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397123"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397123"><span class="hs-identifier hs-var">device_model</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_official_application :: Session -&gt; Bool
+</span><a href="API.Session.html#is_official_application"><span class="hs-identifier hs-var">is_official_application</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397122"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679397122"><span class="hs-identifier hs-var">is_official_application</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">application_version :: Session -&gt; String
+</span><a href="API.Session.html#application_version"><span class="hs-identifier hs-var">application_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397121"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397121"><span class="hs-identifier hs-var">application_version</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">application_name :: Session -&gt; String
+</span><a href="API.Session.html#application_name"><span class="hs-identifier hs-var">application_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397120"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397120"><span class="hs-identifier hs-var">application_name</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">api_id :: Session -&gt; Int
+</span><a href="API.Session.html#api_id"><span class="hs-identifier hs-var">api_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397119"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397119"><span class="hs-identifier hs-var">api_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_password_pending :: Session -&gt; Bool
+</span><a href="API.Session.html#is_password_pending"><span class="hs-identifier hs-var">is_password_pending</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397118"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679397118"><span class="hs-identifier hs-var">is_password_pending</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_current :: Session -&gt; Bool
+</span><a href="API.Session.html#is_current"><span class="hs-identifier hs-var">is_current</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397117"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679397117"><span class="hs-identifier hs-var">is_current</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Session -&gt; Int
+</span><a href="API.Session.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397116"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397116"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-13"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;session&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;region&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397130"><span class="hs-identifier hs-var">region</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;country&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397129"><span class="hs-identifier hs-var">country</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;ip&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397128"><span class="hs-identifier hs-var">ip</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;last_active_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397127"><span class="hs-identifier hs-var">last_active_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;log_in_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397126"><span class="hs-identifier hs-var">log_in_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;system_version&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397125"><span class="hs-identifier hs-var">system_version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;platform&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397124"><span class="hs-identifier hs-var">platform</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;device_model&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397123"><span class="hs-identifier hs-var">device_model</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_official_application&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679397122"><span class="hs-identifier hs-var">is_official_application</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;application_version&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397121"><span class="hs-identifier hs-var">application_version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;application_name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397120"><span class="hs-identifier hs-var">application_name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;api_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397119"><span class="hs-identifier hs-var">api_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_password_pending&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679397118"><span class="hs-identifier hs-var">is_password_pending</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_current&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679397117"><span class="hs-identifier hs-var">is_current</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397116"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-14"></span><span>
+</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679397110"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Session.html#Session"><span class="hs-identifier hs-type">Session</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-16"></span><span> </span><span id="local-6989586621679397108"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Session
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679397106"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679397106"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679397104"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679397104"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-17"></span><span>  </span><span id="local-6989586621679397103"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397103"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397104"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397103"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-19"></span><span>   </span><span class="hs-string">&quot;session&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser Session
+</span><a href="#local-6989586621679397101"><span class="hs-identifier hs-var">parseSession</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679397106"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-20"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser Session
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-21"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679397101"><span class="hs-identifier hs-type">parseSession</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Session.html#Session"><span class="hs-identifier hs-type">Session</span></a></span><span>
+</span><span id="line-23"></span><span>   </span><span id="local-6989586621679397101"><span class="annot"><span class="annottext">parseSession :: Value -&gt; Parser Session
+</span><a href="#local-6989586621679397101"><span class="hs-identifier hs-var hs-var">parseSession</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Session) -&gt; Value -&gt; Parser Session
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;Session&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser Session) -&gt; Value -&gt; Parser Session)
+-&gt; (Object -&gt; Parser Session) -&gt; Value -&gt; Parser Session
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679397099"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679397099"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-24"></span><span>    </span><span id="local-6989586621679397098"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397098"><span class="hs-identifier hs-var">region</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397099"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;region&quot;</span></span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679397097"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397097"><span class="hs-identifier hs-var">country</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397099"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;country&quot;</span></span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679397096"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397096"><span class="hs-identifier hs-var">ip</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397099"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;ip&quot;</span></span><span>
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679397095"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397095"><span class="hs-identifier hs-var">last_active_date</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397099"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;last_active_date&quot;</span></span><span>
+</span><span id="line-28"></span><span>    </span><span id="local-6989586621679397094"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397094"><span class="hs-identifier hs-var">log_in_date</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397099"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;log_in_date&quot;</span></span><span>
+</span><span id="line-29"></span><span>    </span><span id="local-6989586621679397093"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397093"><span class="hs-identifier hs-var">system_version</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397099"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;system_version&quot;</span></span><span>
+</span><span id="line-30"></span><span>    </span><span id="local-6989586621679397092"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397092"><span class="hs-identifier hs-var">platform</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397099"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;platform&quot;</span></span><span>
+</span><span id="line-31"></span><span>    </span><span id="local-6989586621679397091"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397091"><span class="hs-identifier hs-var">device_model</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397099"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;device_model&quot;</span></span><span>
+</span><span id="line-32"></span><span>    </span><span id="local-6989586621679397090"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679397090"><span class="hs-identifier hs-var">is_official_application</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397099"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_official_application&quot;</span></span><span>
+</span><span id="line-33"></span><span>    </span><span id="local-6989586621679397089"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397089"><span class="hs-identifier hs-var">application_version</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397099"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;application_version&quot;</span></span><span>
+</span><span id="line-34"></span><span>    </span><span id="local-6989586621679397088"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397088"><span class="hs-identifier hs-var">application_name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397099"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;application_name&quot;</span></span><span>
+</span><span id="line-35"></span><span>    </span><span id="local-6989586621679397087"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397087"><span class="hs-identifier hs-var">api_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397099"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;api_id&quot;</span></span><span>
+</span><span id="line-36"></span><span>    </span><span id="local-6989586621679397086"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679397086"><span class="hs-identifier hs-var">is_password_pending</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397099"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_password_pending&quot;</span></span><span>
+</span><span id="line-37"></span><span>    </span><span id="local-6989586621679397085"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679397085"><span class="hs-identifier hs-var">is_current</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397099"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_current&quot;</span></span><span>
+</span><span id="line-38"></span><span>    </span><span id="local-6989586621679397084"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397084"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679397099"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span>
+</span><span id="line-39"></span><span>    </span><span class="annot"><span class="annottext">Session -&gt; Parser Session
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(Session -&gt; Parser Session) -&gt; Session -&gt; Parser Session
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Session :: String
+-&gt; String
+-&gt; String
+-&gt; Int
+-&gt; Int
+-&gt; String
+-&gt; String
+-&gt; String
+-&gt; Bool
+-&gt; String
+-&gt; String
+-&gt; Int
+-&gt; Bool
+-&gt; Bool
+-&gt; Int
+-&gt; Session
+</span><a href="API.Session.html#Session"><span class="hs-identifier hs-type hs-type">Session</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">region :: String
+</span><a href="API.Session.html#region"><span class="hs-identifier hs-var">region</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397098"><span class="hs-identifier hs-var">region</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">country :: String
+</span><a href="API.Session.html#country"><span class="hs-identifier hs-var">country</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397097"><span class="hs-identifier hs-var">country</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ip :: String
+</span><a href="API.Session.html#ip"><span class="hs-identifier hs-var">ip</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397096"><span class="hs-identifier hs-var">ip</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">last_active_date :: Int
+</span><a href="API.Session.html#last_active_date"><span class="hs-identifier hs-var">last_active_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397095"><span class="hs-identifier hs-var">last_active_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">log_in_date :: Int
+</span><a href="API.Session.html#log_in_date"><span class="hs-identifier hs-var">log_in_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397094"><span class="hs-identifier hs-var">log_in_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">system_version :: String
+</span><a href="API.Session.html#system_version"><span class="hs-identifier hs-var">system_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397093"><span class="hs-identifier hs-var">system_version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">platform :: String
+</span><a href="API.Session.html#platform"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397092"><span class="hs-identifier hs-var">platform</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_model :: String
+</span><a href="API.Session.html#device_model"><span class="hs-identifier hs-var">device_model</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397091"><span class="hs-identifier hs-var">device_model</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_official_application :: Bool
+</span><a href="API.Session.html#is_official_application"><span class="hs-identifier hs-var">is_official_application</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679397090"><span class="hs-identifier hs-var">is_official_application</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">application_version :: String
+</span><a href="API.Session.html#application_version"><span class="hs-identifier hs-var">application_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397089"><span class="hs-identifier hs-var">application_version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">application_name :: String
+</span><a href="API.Session.html#application_name"><span class="hs-identifier hs-var">application_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679397088"><span class="hs-identifier hs-var">application_name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">api_id :: Int
+</span><a href="API.Session.html#api_id"><span class="hs-identifier hs-var">api_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397087"><span class="hs-identifier hs-var">api_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_password_pending :: Bool
+</span><a href="API.Session.html#is_password_pending"><span class="hs-identifier hs-var">is_password_pending</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679397086"><span class="hs-identifier hs-var">is_password_pending</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_current :: Bool
+</span><a href="API.Session.html#is_current"><span class="hs-identifier hs-var">is_current</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679397085"><span class="hs-identifier hs-var">is_current</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Int
+</span><a href="API.Session.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679397084"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

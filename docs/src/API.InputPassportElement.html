@@ -1,0 +1,656 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.InputPassportElement</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.PersonalDetails.html"><span class="hs-identifier">API.PersonalDetails</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">PersonalDetails</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.InputIdentityDocument.html"><span class="hs-identifier">API.InputIdentityDocument</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputIdentityDocument</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.Address.html"><span class="hs-identifier">API.Address</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">Address</span></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.InputPersonalDocument.html"><span class="hs-identifier">API.InputPersonalDocument</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputPersonalDocument</span></span><span>
+</span><span id="line-11"></span><span>
+</span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="InputPassportElement"><span class="annot"><a href="API.InputPassportElement.html#InputPassportElement"><span class="hs-identifier hs-var">InputPassportElement</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-13"></span><span> </span><span id="InputPassportElementPersonalDetails"><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementPersonalDetails"><span class="hs-identifier hs-var">InputPassportElementPersonalDetails</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="personal_details"><span class="annot"><span class="annottext">InputPassportElement -&gt; PersonalDetails
+</span><a href="API.InputPassportElement.html#personal_details"><span class="hs-identifier hs-var hs-var">personal_details</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.PersonalDetails.html#PersonalDetails"><span class="hs-identifier hs-type">PersonalDetails.PersonalDetails</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span>
+</span><span id="line-14"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="InputPassportElementPassport"><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementPassport"><span class="hs-identifier hs-var">InputPassportElementPassport</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="passport"><span class="annot"><span class="annottext">InputPassportElement -&gt; InputIdentityDocument
+</span><a href="API.InputPassportElement.html#passport"><span class="hs-identifier hs-var hs-var">passport</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.InputIdentityDocument.html#InputIdentityDocument"><span class="hs-identifier hs-type">InputIdentityDocument.InputIdentityDocument</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span>
+</span><span id="line-15"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="InputPassportElementDriverLicense"><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementDriverLicense"><span class="hs-identifier hs-var">InputPassportElementDriverLicense</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="driver_license"><span class="annot"><span class="annottext">InputPassportElement -&gt; InputIdentityDocument
+</span><a href="API.InputPassportElement.html#driver_license"><span class="hs-identifier hs-var hs-var">driver_license</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.InputIdentityDocument.html#InputIdentityDocument"><span class="hs-identifier hs-type">InputIdentityDocument.InputIdentityDocument</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span>
+</span><span id="line-16"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="InputPassportElementIdentityCard"><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementIdentityCard"><span class="hs-identifier hs-var">InputPassportElementIdentityCard</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="identity_card"><span class="annot"><span class="annottext">InputPassportElement -&gt; InputIdentityDocument
+</span><a href="API.InputPassportElement.html#identity_card"><span class="hs-identifier hs-var hs-var">identity_card</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.InputIdentityDocument.html#InputIdentityDocument"><span class="hs-identifier hs-type">InputIdentityDocument.InputIdentityDocument</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span>
+</span><span id="line-17"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="InputPassportElementInternalPassport"><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementInternalPassport"><span class="hs-identifier hs-var">InputPassportElementInternalPassport</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="internal_passport"><span class="annot"><span class="annottext">InputPassportElement -&gt; InputIdentityDocument
+</span><a href="API.InputPassportElement.html#internal_passport"><span class="hs-identifier hs-var hs-var">internal_passport</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.InputIdentityDocument.html#InputIdentityDocument"><span class="hs-identifier hs-type">InputIdentityDocument.InputIdentityDocument</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span>
+</span><span id="line-18"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="InputPassportElementAddress"><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementAddress"><span class="hs-identifier hs-var">InputPassportElementAddress</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="address"><span class="annot"><span class="annottext">InputPassportElement -&gt; Address
+</span><a href="API.InputPassportElement.html#address"><span class="hs-identifier hs-var hs-var">address</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.Address.html#Address"><span class="hs-identifier hs-type">Address.Address</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span>
+</span><span id="line-19"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="InputPassportElementUtilityBill"><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementUtilityBill"><span class="hs-identifier hs-var">InputPassportElementUtilityBill</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="utility_bill"><span class="annot"><span class="annottext">InputPassportElement -&gt; InputPersonalDocument
+</span><a href="API.InputPassportElement.html#utility_bill"><span class="hs-identifier hs-var hs-var">utility_bill</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.InputPersonalDocument.html#InputPersonalDocument"><span class="hs-identifier hs-type">InputPersonalDocument.InputPersonalDocument</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span>
+</span><span id="line-20"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="InputPassportElementBankStatement"><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementBankStatement"><span class="hs-identifier hs-var">InputPassportElementBankStatement</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="bank_statement"><span class="annot"><span class="annottext">InputPassportElement -&gt; InputPersonalDocument
+</span><a href="API.InputPassportElement.html#bank_statement"><span class="hs-identifier hs-var hs-var">bank_statement</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.InputPersonalDocument.html#InputPersonalDocument"><span class="hs-identifier hs-type">InputPersonalDocument.InputPersonalDocument</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span>
+</span><span id="line-21"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="InputPassportElementRentalAgreement"><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementRentalAgreement"><span class="hs-identifier hs-var">InputPassportElementRentalAgreement</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="rental_agreement"><span class="annot"><span class="annottext">InputPassportElement -&gt; InputPersonalDocument
+</span><a href="API.InputPassportElement.html#rental_agreement"><span class="hs-identifier hs-var hs-var">rental_agreement</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.InputPersonalDocument.html#InputPersonalDocument"><span class="hs-identifier hs-type">InputPersonalDocument.InputPersonalDocument</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span>
+</span><span id="line-22"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="InputPassportElementPassportRegistration"><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementPassportRegistration"><span class="hs-identifier hs-var">InputPassportElementPassportRegistration</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="passport_registration"><span class="annot"><span class="annottext">InputPassportElement -&gt; InputPersonalDocument
+</span><a href="API.InputPassportElement.html#passport_registration"><span class="hs-identifier hs-var hs-var">passport_registration</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.InputPersonalDocument.html#InputPersonalDocument"><span class="hs-identifier hs-type">InputPersonalDocument.InputPersonalDocument</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span>
+</span><span id="line-23"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="InputPassportElementTemporaryRegistration"><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementTemporaryRegistration"><span class="hs-identifier hs-var">InputPassportElementTemporaryRegistration</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="temporary_registration"><span class="annot"><span class="annottext">InputPassportElement -&gt; InputPersonalDocument
+</span><a href="API.InputPassportElement.html#temporary_registration"><span class="hs-identifier hs-var hs-var">temporary_registration</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.InputPersonalDocument.html#InputPersonalDocument"><span class="hs-identifier hs-type">InputPersonalDocument.InputPersonalDocument</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span>
+</span><span id="line-24"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="InputPassportElementPhoneNumber"><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementPhoneNumber"><span class="hs-identifier hs-var">InputPassportElementPhoneNumber</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="phone_number"><span class="annot"><span class="annottext">InputPassportElement -&gt; String
+</span><a href="API.InputPassportElement.html#phone_number"><span class="hs-identifier hs-var hs-var">phone_number</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
+</span><span id="line-25"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="InputPassportElementEmailAddress"><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementEmailAddress"><span class="hs-identifier hs-var">InputPassportElementEmailAddress</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="email_address"><span class="annot"><span class="annottext">InputPassportElement -&gt; String
+</span><a href="API.InputPassportElement.html#email_address"><span class="hs-identifier hs-var hs-var">email_address</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679391521"><span id="local-6989586621679391523"><span id="local-6989586621679391525"><span class="annot"><span class="annottext">Int -&gt; InputPassportElement -&gt; ShowS
+[InputPassportElement] -&gt; ShowS
+InputPassportElement -&gt; String
+(Int -&gt; InputPassportElement -&gt; ShowS)
+-&gt; (InputPassportElement -&gt; String)
+-&gt; ([InputPassportElement] -&gt; ShowS)
+-&gt; Show InputPassportElement
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [InputPassportElement] -&gt; ShowS
+$cshowList :: [InputPassportElement] -&gt; ShowS
+show :: InputPassportElement -&gt; String
+$cshow :: InputPassportElement -&gt; String
+showsPrec :: Int -&gt; InputPassportElement -&gt; ShowS
+$cshowsPrec :: Int -&gt; InputPassportElement -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-26"></span><span>
+</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679391513"><span id="local-6989586621679391515"><span id="local-6989586621679391517"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElement"><span class="hs-identifier hs-type">InputPassportElement</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-28"></span><span> </span><span id="local-6989586621679391511"><span class="annot"><span class="annottext">toJSON :: InputPassportElement -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementPersonalDetails"><span class="hs-identifier hs-type">InputPassportElementPersonalDetails</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">personal_details :: InputPassportElement -&gt; PersonalDetails
+</span><a href="API.InputPassportElement.html#personal_details"><span class="hs-identifier hs-var">personal_details</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679391509"><span class="annot"><span class="annottext">PersonalDetails
+</span><a href="#local-6989586621679391509"><span class="hs-identifier hs-var">personal_details</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-29"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;inputPassportElementPersonalDetails&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;personal_details&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; PersonalDetails -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">PersonalDetails
+</span><a href="#local-6989586621679391509"><span class="hs-identifier hs-var">personal_details</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-30"></span><span>
+</span><span id="line-31"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementPassport"><span class="hs-identifier hs-type">InputPassportElementPassport</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">passport :: InputPassportElement -&gt; InputIdentityDocument
+</span><a href="API.InputPassportElement.html#passport"><span class="hs-identifier hs-var">passport</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679391505"><span class="annot"><span class="annottext">InputIdentityDocument
+</span><a href="#local-6989586621679391505"><span class="hs-identifier hs-var">passport</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-32"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;inputPassportElementPassport&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;passport&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; InputIdentityDocument -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">InputIdentityDocument
+</span><a href="#local-6989586621679391505"><span class="hs-identifier hs-var">passport</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-33"></span><span>
+</span><span id="line-34"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementDriverLicense"><span class="hs-identifier hs-type">InputPassportElementDriverLicense</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">driver_license :: InputPassportElement -&gt; InputIdentityDocument
+</span><a href="API.InputPassportElement.html#driver_license"><span class="hs-identifier hs-var">driver_license</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679391504"><span class="annot"><span class="annottext">InputIdentityDocument
+</span><a href="#local-6989586621679391504"><span class="hs-identifier hs-var">driver_license</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-35"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;inputPassportElementDriverLicense&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;driver_license&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; InputIdentityDocument -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">InputIdentityDocument
+</span><a href="#local-6989586621679391504"><span class="hs-identifier hs-var">driver_license</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-36"></span><span>
+</span><span id="line-37"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementIdentityCard"><span class="hs-identifier hs-type">InputPassportElementIdentityCard</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">identity_card :: InputPassportElement -&gt; InputIdentityDocument
+</span><a href="API.InputPassportElement.html#identity_card"><span class="hs-identifier hs-var">identity_card</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679391503"><span class="annot"><span class="annottext">InputIdentityDocument
+</span><a href="#local-6989586621679391503"><span class="hs-identifier hs-var">identity_card</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-38"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;inputPassportElementIdentityCard&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;identity_card&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; InputIdentityDocument -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">InputIdentityDocument
+</span><a href="#local-6989586621679391503"><span class="hs-identifier hs-var">identity_card</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-39"></span><span>
+</span><span id="line-40"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementInternalPassport"><span class="hs-identifier hs-type">InputPassportElementInternalPassport</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">internal_passport :: InputPassportElement -&gt; InputIdentityDocument
+</span><a href="API.InputPassportElement.html#internal_passport"><span class="hs-identifier hs-var">internal_passport</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679391502"><span class="annot"><span class="annottext">InputIdentityDocument
+</span><a href="#local-6989586621679391502"><span class="hs-identifier hs-var">internal_passport</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-41"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;inputPassportElementInternalPassport&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;internal_passport&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; InputIdentityDocument -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">InputIdentityDocument
+</span><a href="#local-6989586621679391502"><span class="hs-identifier hs-var">internal_passport</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-42"></span><span>
+</span><span id="line-43"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementAddress"><span class="hs-identifier hs-type">InputPassportElementAddress</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">address :: InputPassportElement -&gt; Address
+</span><a href="API.InputPassportElement.html#address"><span class="hs-identifier hs-var">address</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679391501"><span class="annot"><span class="annottext">Address
+</span><a href="#local-6989586621679391501"><span class="hs-identifier hs-var">address</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-44"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;inputPassportElementAddress&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;address&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Address -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Address
+</span><a href="#local-6989586621679391501"><span class="hs-identifier hs-var">address</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-45"></span><span>
+</span><span id="line-46"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementUtilityBill"><span class="hs-identifier hs-type">InputPassportElementUtilityBill</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">utility_bill :: InputPassportElement -&gt; InputPersonalDocument
+</span><a href="API.InputPassportElement.html#utility_bill"><span class="hs-identifier hs-var">utility_bill</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679391500"><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391500"><span class="hs-identifier hs-var">utility_bill</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-47"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;inputPassportElementUtilityBill&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;utility_bill&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; InputPersonalDocument -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391500"><span class="hs-identifier hs-var">utility_bill</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-48"></span><span>
+</span><span id="line-49"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementBankStatement"><span class="hs-identifier hs-type">InputPassportElementBankStatement</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">bank_statement :: InputPassportElement -&gt; InputPersonalDocument
+</span><a href="API.InputPassportElement.html#bank_statement"><span class="hs-identifier hs-var">bank_statement</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679391499"><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391499"><span class="hs-identifier hs-var">bank_statement</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-50"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;inputPassportElementBankStatement&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;bank_statement&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; InputPersonalDocument -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391499"><span class="hs-identifier hs-var">bank_statement</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-51"></span><span>
+</span><span id="line-52"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementRentalAgreement"><span class="hs-identifier hs-type">InputPassportElementRentalAgreement</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">rental_agreement :: InputPassportElement -&gt; InputPersonalDocument
+</span><a href="API.InputPassportElement.html#rental_agreement"><span class="hs-identifier hs-var">rental_agreement</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679391498"><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391498"><span class="hs-identifier hs-var">rental_agreement</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-53"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;inputPassportElementRentalAgreement&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;rental_agreement&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; InputPersonalDocument -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391498"><span class="hs-identifier hs-var">rental_agreement</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-54"></span><span>
+</span><span id="line-55"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementPassportRegistration"><span class="hs-identifier hs-type">InputPassportElementPassportRegistration</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">passport_registration :: InputPassportElement -&gt; InputPersonalDocument
+</span><a href="API.InputPassportElement.html#passport_registration"><span class="hs-identifier hs-var">passport_registration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679391497"><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391497"><span class="hs-identifier hs-var">passport_registration</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-56"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;inputPassportElementPassportRegistration&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;passport_registration&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; InputPersonalDocument -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391497"><span class="hs-identifier hs-var">passport_registration</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-57"></span><span>
+</span><span id="line-58"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementTemporaryRegistration"><span class="hs-identifier hs-type">InputPassportElementTemporaryRegistration</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">temporary_registration :: InputPassportElement -&gt; InputPersonalDocument
+</span><a href="API.InputPassportElement.html#temporary_registration"><span class="hs-identifier hs-var">temporary_registration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679391496"><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391496"><span class="hs-identifier hs-var">temporary_registration</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-59"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;inputPassportElementTemporaryRegistration&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;temporary_registration&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; InputPersonalDocument -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391496"><span class="hs-identifier hs-var">temporary_registration</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-60"></span><span>
+</span><span id="line-61"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementPhoneNumber"><span class="hs-identifier hs-type">InputPassportElementPhoneNumber</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">phone_number :: InputPassportElement -&gt; String
+</span><a href="API.InputPassportElement.html#phone_number"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679391495"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679391495"><span class="hs-identifier hs-var">phone_number</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-62"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;inputPassportElementPhoneNumber&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;phone_number&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679391495"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-63"></span><span>
+</span><span id="line-64"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElementEmailAddress"><span class="hs-identifier hs-type">InputPassportElementEmailAddress</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">email_address :: InputPassportElement -&gt; String
+</span><a href="API.InputPassportElement.html#email_address"><span class="hs-identifier hs-var">email_address</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679391494"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679391494"><span class="hs-identifier hs-var">email_address</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-65"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;inputPassportElementEmailAddress&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;email_address&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679391494"><span class="hs-identifier hs-var">email_address</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-66"></span><span>
+</span><span id="line-67"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679391491"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElement"><span class="hs-identifier hs-type">InputPassportElement</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-68"></span><span> </span><span id="local-6989586621679391489"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser InputPassportElement
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679391487"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679391487"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679391485"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679391485"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-69"></span><span>  </span><span id="local-6989586621679391484"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679391484"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679391485"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-70"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679391484"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-71"></span><span>   </span><span class="hs-string">&quot;inputPassportElementPersonalDetails&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391482"><span class="hs-identifier hs-var">parseInputPassportElementPersonalDetails</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679391487"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-72"></span><span>   </span><span class="hs-string">&quot;inputPassportElementPassport&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391481"><span class="hs-identifier hs-var">parseInputPassportElementPassport</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679391487"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-73"></span><span>   </span><span class="hs-string">&quot;inputPassportElementDriverLicense&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391480"><span class="hs-identifier hs-var">parseInputPassportElementDriverLicense</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679391487"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-74"></span><span>   </span><span class="hs-string">&quot;inputPassportElementIdentityCard&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391479"><span class="hs-identifier hs-var">parseInputPassportElementIdentityCard</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679391487"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-75"></span><span>   </span><span class="hs-string">&quot;inputPassportElementInternalPassport&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391478"><span class="hs-identifier hs-var">parseInputPassportElementInternalPassport</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679391487"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-76"></span><span>   </span><span class="hs-string">&quot;inputPassportElementAddress&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391477"><span class="hs-identifier hs-var">parseInputPassportElementAddress</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679391487"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-77"></span><span>   </span><span class="hs-string">&quot;inputPassportElementUtilityBill&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391476"><span class="hs-identifier hs-var">parseInputPassportElementUtilityBill</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679391487"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-78"></span><span>   </span><span class="hs-string">&quot;inputPassportElementBankStatement&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391475"><span class="hs-identifier hs-var">parseInputPassportElementBankStatement</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679391487"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-79"></span><span>   </span><span class="hs-string">&quot;inputPassportElementRentalAgreement&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391474"><span class="hs-identifier hs-var">parseInputPassportElementRentalAgreement</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679391487"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-80"></span><span>   </span><span class="hs-string">&quot;inputPassportElementPassportRegistration&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391473"><span class="hs-identifier hs-var">parseInputPassportElementPassportRegistration</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679391487"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-81"></span><span>   </span><span class="hs-string">&quot;inputPassportElementTemporaryRegistration&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391472"><span class="hs-identifier hs-var">parseInputPassportElementTemporaryRegistration</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679391487"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-82"></span><span>   </span><span class="hs-string">&quot;inputPassportElementPhoneNumber&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391471"><span class="hs-identifier hs-var">parseInputPassportElementPhoneNumber</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679391487"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-83"></span><span>   </span><span class="hs-string">&quot;inputPassportElementEmailAddress&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391470"><span class="hs-identifier hs-var">parseInputPassportElementEmailAddress</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679391487"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-84"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser InputPassportElement
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-85"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-86"></span><span>   </span><span class="annot"><a href="#local-6989586621679391482"><span class="hs-identifier hs-type">parseInputPassportElementPersonalDetails</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElement"><span class="hs-identifier hs-type">InputPassportElement</span></a></span><span>
+</span><span id="line-87"></span><span>   </span><span id="local-6989586621679391482"><span class="annot"><span class="annottext">parseInputPassportElementPersonalDetails :: Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391482"><span class="hs-identifier hs-var hs-var">parseInputPassportElementPersonalDetails</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;InputPassportElementPersonalDetails&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser InputPassportElement)
+ -&gt; Value -&gt; Parser InputPassportElement)
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679391468"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679391468"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-88"></span><span>    </span><span id="local-6989586621679391467"><span class="annot"><span class="annottext">PersonalDetails
+</span><a href="#local-6989586621679391467"><span class="hs-identifier hs-var">personal_details</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679391468"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser PersonalDetails
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;personal_details&quot;</span></span><span>
+</span><span id="line-89"></span><span>    </span><span class="annot"><span class="annottext">InputPassportElement -&gt; Parser InputPassportElement
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(InputPassportElement -&gt; Parser InputPassportElement)
+-&gt; InputPassportElement -&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">InputPassportElementPersonalDetails :: PersonalDetails -&gt; InputPassportElement
+</span><a href="API.InputPassportElement.html#InputPassportElementPersonalDetails"><span class="hs-identifier hs-type hs-type">InputPassportElementPersonalDetails</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">personal_details :: PersonalDetails
+</span><a href="API.InputPassportElement.html#personal_details"><span class="hs-identifier hs-var">personal_details</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">PersonalDetails
+</span><a href="#local-6989586621679391467"><span class="hs-identifier hs-var">personal_details</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-90"></span><span>
+</span><span id="line-91"></span><span>   </span><span class="annot"><a href="#local-6989586621679391481"><span class="hs-identifier hs-type">parseInputPassportElementPassport</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElement"><span class="hs-identifier hs-type">InputPassportElement</span></a></span><span>
+</span><span id="line-92"></span><span>   </span><span id="local-6989586621679391481"><span class="annot"><span class="annottext">parseInputPassportElementPassport :: Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391481"><span class="hs-identifier hs-var hs-var">parseInputPassportElementPassport</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;InputPassportElementPassport&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser InputPassportElement)
+ -&gt; Value -&gt; Parser InputPassportElement)
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679391465"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679391465"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-93"></span><span>    </span><span id="local-6989586621679391464"><span class="annot"><span class="annottext">InputIdentityDocument
+</span><a href="#local-6989586621679391464"><span class="hs-identifier hs-var">passport</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679391465"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser InputIdentityDocument
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;passport&quot;</span></span><span>
+</span><span id="line-94"></span><span>    </span><span class="annot"><span class="annottext">InputPassportElement -&gt; Parser InputPassportElement
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(InputPassportElement -&gt; Parser InputPassportElement)
+-&gt; InputPassportElement -&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">InputPassportElementPassport :: InputIdentityDocument -&gt; InputPassportElement
+</span><a href="API.InputPassportElement.html#InputPassportElementPassport"><span class="hs-identifier hs-type hs-type">InputPassportElementPassport</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">passport :: InputIdentityDocument
+</span><a href="API.InputPassportElement.html#passport"><span class="hs-identifier hs-var">passport</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InputIdentityDocument
+</span><a href="#local-6989586621679391464"><span class="hs-identifier hs-var">passport</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-95"></span><span>
+</span><span id="line-96"></span><span>   </span><span class="annot"><a href="#local-6989586621679391480"><span class="hs-identifier hs-type">parseInputPassportElementDriverLicense</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElement"><span class="hs-identifier hs-type">InputPassportElement</span></a></span><span>
+</span><span id="line-97"></span><span>   </span><span id="local-6989586621679391480"><span class="annot"><span class="annottext">parseInputPassportElementDriverLicense :: Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391480"><span class="hs-identifier hs-var hs-var">parseInputPassportElementDriverLicense</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;InputPassportElementDriverLicense&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser InputPassportElement)
+ -&gt; Value -&gt; Parser InputPassportElement)
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679391462"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679391462"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-98"></span><span>    </span><span id="local-6989586621679391461"><span class="annot"><span class="annottext">InputIdentityDocument
+</span><a href="#local-6989586621679391461"><span class="hs-identifier hs-var">driver_license</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679391462"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser InputIdentityDocument
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;driver_license&quot;</span></span><span>
+</span><span id="line-99"></span><span>    </span><span class="annot"><span class="annottext">InputPassportElement -&gt; Parser InputPassportElement
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(InputPassportElement -&gt; Parser InputPassportElement)
+-&gt; InputPassportElement -&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">InputPassportElementDriverLicense :: InputIdentityDocument -&gt; InputPassportElement
+</span><a href="API.InputPassportElement.html#InputPassportElementDriverLicense"><span class="hs-identifier hs-type hs-type">InputPassportElementDriverLicense</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">driver_license :: InputIdentityDocument
+</span><a href="API.InputPassportElement.html#driver_license"><span class="hs-identifier hs-var">driver_license</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InputIdentityDocument
+</span><a href="#local-6989586621679391461"><span class="hs-identifier hs-var">driver_license</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-100"></span><span>
+</span><span id="line-101"></span><span>   </span><span class="annot"><a href="#local-6989586621679391479"><span class="hs-identifier hs-type">parseInputPassportElementIdentityCard</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElement"><span class="hs-identifier hs-type">InputPassportElement</span></a></span><span>
+</span><span id="line-102"></span><span>   </span><span id="local-6989586621679391479"><span class="annot"><span class="annottext">parseInputPassportElementIdentityCard :: Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391479"><span class="hs-identifier hs-var hs-var">parseInputPassportElementIdentityCard</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;InputPassportElementIdentityCard&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser InputPassportElement)
+ -&gt; Value -&gt; Parser InputPassportElement)
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679391459"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679391459"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-103"></span><span>    </span><span id="local-6989586621679391458"><span class="annot"><span class="annottext">InputIdentityDocument
+</span><a href="#local-6989586621679391458"><span class="hs-identifier hs-var">identity_card</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679391459"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser InputIdentityDocument
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;identity_card&quot;</span></span><span>
+</span><span id="line-104"></span><span>    </span><span class="annot"><span class="annottext">InputPassportElement -&gt; Parser InputPassportElement
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(InputPassportElement -&gt; Parser InputPassportElement)
+-&gt; InputPassportElement -&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">InputPassportElementIdentityCard :: InputIdentityDocument -&gt; InputPassportElement
+</span><a href="API.InputPassportElement.html#InputPassportElementIdentityCard"><span class="hs-identifier hs-type hs-type">InputPassportElementIdentityCard</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">identity_card :: InputIdentityDocument
+</span><a href="API.InputPassportElement.html#identity_card"><span class="hs-identifier hs-var">identity_card</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InputIdentityDocument
+</span><a href="#local-6989586621679391458"><span class="hs-identifier hs-var">identity_card</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-105"></span><span>
+</span><span id="line-106"></span><span>   </span><span class="annot"><a href="#local-6989586621679391478"><span class="hs-identifier hs-type">parseInputPassportElementInternalPassport</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElement"><span class="hs-identifier hs-type">InputPassportElement</span></a></span><span>
+</span><span id="line-107"></span><span>   </span><span id="local-6989586621679391478"><span class="annot"><span class="annottext">parseInputPassportElementInternalPassport :: Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391478"><span class="hs-identifier hs-var hs-var">parseInputPassportElementInternalPassport</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;InputPassportElementInternalPassport&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser InputPassportElement)
+ -&gt; Value -&gt; Parser InputPassportElement)
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679391456"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679391456"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-108"></span><span>    </span><span id="local-6989586621679391455"><span class="annot"><span class="annottext">InputIdentityDocument
+</span><a href="#local-6989586621679391455"><span class="hs-identifier hs-var">internal_passport</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679391456"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser InputIdentityDocument
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;internal_passport&quot;</span></span><span>
+</span><span id="line-109"></span><span>    </span><span class="annot"><span class="annottext">InputPassportElement -&gt; Parser InputPassportElement
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(InputPassportElement -&gt; Parser InputPassportElement)
+-&gt; InputPassportElement -&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">InputPassportElementInternalPassport :: InputIdentityDocument -&gt; InputPassportElement
+</span><a href="API.InputPassportElement.html#InputPassportElementInternalPassport"><span class="hs-identifier hs-type hs-type">InputPassportElementInternalPassport</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">internal_passport :: InputIdentityDocument
+</span><a href="API.InputPassportElement.html#internal_passport"><span class="hs-identifier hs-var">internal_passport</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InputIdentityDocument
+</span><a href="#local-6989586621679391455"><span class="hs-identifier hs-var">internal_passport</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-110"></span><span>
+</span><span id="line-111"></span><span>   </span><span class="annot"><a href="#local-6989586621679391477"><span class="hs-identifier hs-type">parseInputPassportElementAddress</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElement"><span class="hs-identifier hs-type">InputPassportElement</span></a></span><span>
+</span><span id="line-112"></span><span>   </span><span id="local-6989586621679391477"><span class="annot"><span class="annottext">parseInputPassportElementAddress :: Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391477"><span class="hs-identifier hs-var hs-var">parseInputPassportElementAddress</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;InputPassportElementAddress&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser InputPassportElement)
+ -&gt; Value -&gt; Parser InputPassportElement)
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679391453"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679391453"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-113"></span><span>    </span><span id="local-6989586621679391452"><span class="annot"><span class="annottext">Address
+</span><a href="#local-6989586621679391452"><span class="hs-identifier hs-var">address</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679391453"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Address
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;address&quot;</span></span><span>
+</span><span id="line-114"></span><span>    </span><span class="annot"><span class="annottext">InputPassportElement -&gt; Parser InputPassportElement
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(InputPassportElement -&gt; Parser InputPassportElement)
+-&gt; InputPassportElement -&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">InputPassportElementAddress :: Address -&gt; InputPassportElement
+</span><a href="API.InputPassportElement.html#InputPassportElementAddress"><span class="hs-identifier hs-type hs-type">InputPassportElementAddress</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">address :: Address
+</span><a href="API.InputPassportElement.html#address"><span class="hs-identifier hs-var">address</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Address
+</span><a href="#local-6989586621679391452"><span class="hs-identifier hs-var">address</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-115"></span><span>
+</span><span id="line-116"></span><span>   </span><span class="annot"><a href="#local-6989586621679391476"><span class="hs-identifier hs-type">parseInputPassportElementUtilityBill</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElement"><span class="hs-identifier hs-type">InputPassportElement</span></a></span><span>
+</span><span id="line-117"></span><span>   </span><span id="local-6989586621679391476"><span class="annot"><span class="annottext">parseInputPassportElementUtilityBill :: Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391476"><span class="hs-identifier hs-var hs-var">parseInputPassportElementUtilityBill</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;InputPassportElementUtilityBill&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser InputPassportElement)
+ -&gt; Value -&gt; Parser InputPassportElement)
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679391450"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679391450"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-118"></span><span>    </span><span id="local-6989586621679391449"><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391449"><span class="hs-identifier hs-var">utility_bill</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679391450"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser InputPersonalDocument
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;utility_bill&quot;</span></span><span>
+</span><span id="line-119"></span><span>    </span><span class="annot"><span class="annottext">InputPassportElement -&gt; Parser InputPassportElement
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(InputPassportElement -&gt; Parser InputPassportElement)
+-&gt; InputPassportElement -&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">InputPassportElementUtilityBill :: InputPersonalDocument -&gt; InputPassportElement
+</span><a href="API.InputPassportElement.html#InputPassportElementUtilityBill"><span class="hs-identifier hs-type hs-type">InputPassportElementUtilityBill</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">utility_bill :: InputPersonalDocument
+</span><a href="API.InputPassportElement.html#utility_bill"><span class="hs-identifier hs-var">utility_bill</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391449"><span class="hs-identifier hs-var">utility_bill</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-120"></span><span>
+</span><span id="line-121"></span><span>   </span><span class="annot"><a href="#local-6989586621679391475"><span class="hs-identifier hs-type">parseInputPassportElementBankStatement</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElement"><span class="hs-identifier hs-type">InputPassportElement</span></a></span><span>
+</span><span id="line-122"></span><span>   </span><span id="local-6989586621679391475"><span class="annot"><span class="annottext">parseInputPassportElementBankStatement :: Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391475"><span class="hs-identifier hs-var hs-var">parseInputPassportElementBankStatement</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;InputPassportElementBankStatement&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser InputPassportElement)
+ -&gt; Value -&gt; Parser InputPassportElement)
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679391447"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679391447"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-123"></span><span>    </span><span id="local-6989586621679391446"><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391446"><span class="hs-identifier hs-var">bank_statement</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679391447"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser InputPersonalDocument
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;bank_statement&quot;</span></span><span>
+</span><span id="line-124"></span><span>    </span><span class="annot"><span class="annottext">InputPassportElement -&gt; Parser InputPassportElement
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(InputPassportElement -&gt; Parser InputPassportElement)
+-&gt; InputPassportElement -&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">InputPassportElementBankStatement :: InputPersonalDocument -&gt; InputPassportElement
+</span><a href="API.InputPassportElement.html#InputPassportElementBankStatement"><span class="hs-identifier hs-type hs-type">InputPassportElementBankStatement</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">bank_statement :: InputPersonalDocument
+</span><a href="API.InputPassportElement.html#bank_statement"><span class="hs-identifier hs-var">bank_statement</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391446"><span class="hs-identifier hs-var">bank_statement</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-125"></span><span>
+</span><span id="line-126"></span><span>   </span><span class="annot"><a href="#local-6989586621679391474"><span class="hs-identifier hs-type">parseInputPassportElementRentalAgreement</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElement"><span class="hs-identifier hs-type">InputPassportElement</span></a></span><span>
+</span><span id="line-127"></span><span>   </span><span id="local-6989586621679391474"><span class="annot"><span class="annottext">parseInputPassportElementRentalAgreement :: Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391474"><span class="hs-identifier hs-var hs-var">parseInputPassportElementRentalAgreement</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;InputPassportElementRentalAgreement&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser InputPassportElement)
+ -&gt; Value -&gt; Parser InputPassportElement)
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679391444"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679391444"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-128"></span><span>    </span><span id="local-6989586621679391443"><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391443"><span class="hs-identifier hs-var">rental_agreement</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679391444"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser InputPersonalDocument
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;rental_agreement&quot;</span></span><span>
+</span><span id="line-129"></span><span>    </span><span class="annot"><span class="annottext">InputPassportElement -&gt; Parser InputPassportElement
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(InputPassportElement -&gt; Parser InputPassportElement)
+-&gt; InputPassportElement -&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">InputPassportElementRentalAgreement :: InputPersonalDocument -&gt; InputPassportElement
+</span><a href="API.InputPassportElement.html#InputPassportElementRentalAgreement"><span class="hs-identifier hs-type hs-type">InputPassportElementRentalAgreement</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">rental_agreement :: InputPersonalDocument
+</span><a href="API.InputPassportElement.html#rental_agreement"><span class="hs-identifier hs-var">rental_agreement</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391443"><span class="hs-identifier hs-var">rental_agreement</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-130"></span><span>
+</span><span id="line-131"></span><span>   </span><span class="annot"><a href="#local-6989586621679391473"><span class="hs-identifier hs-type">parseInputPassportElementPassportRegistration</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElement"><span class="hs-identifier hs-type">InputPassportElement</span></a></span><span>
+</span><span id="line-132"></span><span>   </span><span id="local-6989586621679391473"><span class="annot"><span class="annottext">parseInputPassportElementPassportRegistration :: Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391473"><span class="hs-identifier hs-var hs-var">parseInputPassportElementPassportRegistration</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;InputPassportElementPassportRegistration&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser InputPassportElement)
+ -&gt; Value -&gt; Parser InputPassportElement)
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679391441"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679391441"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-133"></span><span>    </span><span id="local-6989586621679391440"><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391440"><span class="hs-identifier hs-var">passport_registration</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679391441"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser InputPersonalDocument
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;passport_registration&quot;</span></span><span>
+</span><span id="line-134"></span><span>    </span><span class="annot"><span class="annottext">InputPassportElement -&gt; Parser InputPassportElement
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(InputPassportElement -&gt; Parser InputPassportElement)
+-&gt; InputPassportElement -&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">InputPassportElementPassportRegistration :: InputPersonalDocument -&gt; InputPassportElement
+</span><a href="API.InputPassportElement.html#InputPassportElementPassportRegistration"><span class="hs-identifier hs-type hs-type">InputPassportElementPassportRegistration</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">passport_registration :: InputPersonalDocument
+</span><a href="API.InputPassportElement.html#passport_registration"><span class="hs-identifier hs-var">passport_registration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391440"><span class="hs-identifier hs-var">passport_registration</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-135"></span><span>
+</span><span id="line-136"></span><span>   </span><span class="annot"><a href="#local-6989586621679391472"><span class="hs-identifier hs-type">parseInputPassportElementTemporaryRegistration</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElement"><span class="hs-identifier hs-type">InputPassportElement</span></a></span><span>
+</span><span id="line-137"></span><span>   </span><span id="local-6989586621679391472"><span class="annot"><span class="annottext">parseInputPassportElementTemporaryRegistration :: Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391472"><span class="hs-identifier hs-var hs-var">parseInputPassportElementTemporaryRegistration</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;InputPassportElementTemporaryRegistration&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser InputPassportElement)
+ -&gt; Value -&gt; Parser InputPassportElement)
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679391438"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679391438"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-138"></span><span>    </span><span id="local-6989586621679391437"><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391437"><span class="hs-identifier hs-var">temporary_registration</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679391438"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser InputPersonalDocument
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;temporary_registration&quot;</span></span><span>
+</span><span id="line-139"></span><span>    </span><span class="annot"><span class="annottext">InputPassportElement -&gt; Parser InputPassportElement
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(InputPassportElement -&gt; Parser InputPassportElement)
+-&gt; InputPassportElement -&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">InputPassportElementTemporaryRegistration :: InputPersonalDocument -&gt; InputPassportElement
+</span><a href="API.InputPassportElement.html#InputPassportElementTemporaryRegistration"><span class="hs-identifier hs-type hs-type">InputPassportElementTemporaryRegistration</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">temporary_registration :: InputPersonalDocument
+</span><a href="API.InputPassportElement.html#temporary_registration"><span class="hs-identifier hs-var">temporary_registration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InputPersonalDocument
+</span><a href="#local-6989586621679391437"><span class="hs-identifier hs-var">temporary_registration</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-140"></span><span>
+</span><span id="line-141"></span><span>   </span><span class="annot"><a href="#local-6989586621679391471"><span class="hs-identifier hs-type">parseInputPassportElementPhoneNumber</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElement"><span class="hs-identifier hs-type">InputPassportElement</span></a></span><span>
+</span><span id="line-142"></span><span>   </span><span id="local-6989586621679391471"><span class="annot"><span class="annottext">parseInputPassportElementPhoneNumber :: Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391471"><span class="hs-identifier hs-var hs-var">parseInputPassportElementPhoneNumber</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;InputPassportElementPhoneNumber&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser InputPassportElement)
+ -&gt; Value -&gt; Parser InputPassportElement)
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679391435"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679391435"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-143"></span><span>    </span><span id="local-6989586621679391434"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679391434"><span class="hs-identifier hs-var">phone_number</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679391435"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;phone_number&quot;</span></span><span>
+</span><span id="line-144"></span><span>    </span><span class="annot"><span class="annottext">InputPassportElement -&gt; Parser InputPassportElement
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(InputPassportElement -&gt; Parser InputPassportElement)
+-&gt; InputPassportElement -&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">InputPassportElementPhoneNumber :: String -&gt; InputPassportElement
+</span><a href="API.InputPassportElement.html#InputPassportElementPhoneNumber"><span class="hs-identifier hs-type hs-type">InputPassportElementPhoneNumber</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">phone_number :: String
+</span><a href="API.InputPassportElement.html#phone_number"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679391434"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-145"></span><span>
+</span><span id="line-146"></span><span>   </span><span class="annot"><a href="#local-6989586621679391470"><span class="hs-identifier hs-type">parseInputPassportElementEmailAddress</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.InputPassportElement.html#InputPassportElement"><span class="hs-identifier hs-type">InputPassportElement</span></a></span><span>
+</span><span id="line-147"></span><span>   </span><span id="local-6989586621679391470"><span class="annot"><span class="annottext">parseInputPassportElementEmailAddress :: Value -&gt; Parser InputPassportElement
+</span><a href="#local-6989586621679391470"><span class="hs-identifier hs-var hs-var">parseInputPassportElementEmailAddress</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;InputPassportElementEmailAddress&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser InputPassportElement)
+ -&gt; Value -&gt; Parser InputPassportElement)
+-&gt; (Object -&gt; Parser InputPassportElement)
+-&gt; Value
+-&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679391432"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679391432"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-148"></span><span>    </span><span id="local-6989586621679391431"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679391431"><span class="hs-identifier hs-var">email_address</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679391432"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;email_address&quot;</span></span><span>
+</span><span id="line-149"></span><span>    </span><span class="annot"><span class="annottext">InputPassportElement -&gt; Parser InputPassportElement
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(InputPassportElement -&gt; Parser InputPassportElement)
+-&gt; InputPassportElement -&gt; Parser InputPassportElement
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">InputPassportElementEmailAddress :: String -&gt; InputPassportElement
+</span><a href="API.InputPassportElement.html#InputPassportElementEmailAddress"><span class="hs-identifier hs-type hs-type">InputPassportElementEmailAddress</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">email_address :: String
+</span><a href="API.InputPassportElement.html#email_address"><span class="hs-identifier hs-var">email_address</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679391431"><span class="hs-identifier hs-var">email_address</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

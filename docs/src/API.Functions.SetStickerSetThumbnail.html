@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Functions.SetStickerSetThumbnail</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.InputFile.html"><span class="hs-identifier">API.InputFile</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputFile</span></span><span>
+</span><span id="line-8"></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="SetStickerSetThumbnail"><span class="annot"><a href="API.Functions.SetStickerSetThumbnail.html#SetStickerSetThumbnail"><span class="hs-identifier hs-var">SetStickerSetThumbnail</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-10"></span><span> </span><span id="SetStickerSetThumbnail"><span class="annot"><a href="API.Functions.SetStickerSetThumbnail.html#SetStickerSetThumbnail"><span class="hs-identifier hs-var">SetStickerSetThumbnail</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="thumbnail"><span class="annot"><span class="annottext">SetStickerSetThumbnail -&gt; InputFile
+</span><a href="API.Functions.SetStickerSetThumbnail.html#thumbnail"><span class="hs-identifier hs-var hs-var">thumbnail</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.InputFile.html#InputFile"><span class="hs-identifier hs-type">InputFile.InputFile</span></a></span><span class="hs-special">,</span><span> </span><span id="name"><span class="annot"><span class="annottext">SetStickerSetThumbnail -&gt; String
+</span><a href="API.Functions.SetStickerSetThumbnail.html#name"><span class="hs-identifier hs-var hs-var">name</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="user_id"><span class="annot"><span class="annottext">SetStickerSetThumbnail -&gt; Int
+</span><a href="API.Functions.SetStickerSetThumbnail.html#user_id"><span class="hs-identifier hs-var hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679384011"><span id="local-6989586621679384013"><span id="local-6989586621679384015"><span class="annot"><span class="annottext">Int -&gt; SetStickerSetThumbnail -&gt; ShowS
+[SetStickerSetThumbnail] -&gt; ShowS
+SetStickerSetThumbnail -&gt; String
+(Int -&gt; SetStickerSetThumbnail -&gt; ShowS)
+-&gt; (SetStickerSetThumbnail -&gt; String)
+-&gt; ([SetStickerSetThumbnail] -&gt; ShowS)
+-&gt; Show SetStickerSetThumbnail
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [SetStickerSetThumbnail] -&gt; ShowS
+$cshowList :: [SetStickerSetThumbnail] -&gt; ShowS
+show :: SetStickerSetThumbnail -&gt; String
+$cshow :: SetStickerSetThumbnail -&gt; String
+showsPrec :: Int -&gt; SetStickerSetThumbnail -&gt; ShowS
+$cshowsPrec :: Int -&gt; SetStickerSetThumbnail -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-11"></span><span>
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679384003"><span id="local-6989586621679384005"><span id="local-6989586621679384007"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetStickerSetThumbnail.html#SetStickerSetThumbnail"><span class="hs-identifier hs-type">SetStickerSetThumbnail</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679384001"><span class="annot"><span class="annottext">toJSON :: SetStickerSetThumbnail -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.SetStickerSetThumbnail.html#SetStickerSetThumbnail"><span class="hs-identifier hs-type">SetStickerSetThumbnail</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">thumbnail :: SetStickerSetThumbnail -&gt; InputFile
+</span><a href="API.Functions.SetStickerSetThumbnail.html#thumbnail"><span class="hs-identifier hs-var">thumbnail</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679383999"><span class="annot"><span class="annottext">InputFile
+</span><a href="#local-6989586621679383999"><span class="hs-identifier hs-var">thumbnail</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">name :: SetStickerSetThumbnail -&gt; String
+</span><a href="API.Functions.SetStickerSetThumbnail.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679383998"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679383998"><span class="hs-identifier hs-var">name</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">user_id :: SetStickerSetThumbnail -&gt; Int
+</span><a href="API.Functions.SetStickerSetThumbnail.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679383997"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679383997"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;setStickerSetThumbnail&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;thumbnail&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; InputFile -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">InputFile
+</span><a href="#local-6989586621679383999"><span class="hs-identifier hs-var">thumbnail</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679383998"><span class="hs-identifier hs-var">name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679383997"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-15"></span><span>
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679383991"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetStickerSetThumbnail.html#SetStickerSetThumbnail"><span class="hs-identifier hs-type">SetStickerSetThumbnail</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679383989"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetStickerSetThumbnail
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679383987"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679383987"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679383985"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679383985"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679383984"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679383984"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679383985"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679383984"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;setStickerSetThumbnail&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SetStickerSetThumbnail
+</span><a href="#local-6989586621679383982"><span class="hs-identifier hs-var">parseSetStickerSetThumbnail</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679383987"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SetStickerSetThumbnail
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679383982"><span class="hs-identifier hs-type">parseSetStickerSetThumbnail</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetStickerSetThumbnail.html#SetStickerSetThumbnail"><span class="hs-identifier hs-type">SetStickerSetThumbnail</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679383982"><span class="annot"><span class="annottext">parseSetStickerSetThumbnail :: Value -&gt; Parser SetStickerSetThumbnail
+</span><a href="#local-6989586621679383982"><span class="hs-identifier hs-var hs-var">parseSetStickerSetThumbnail</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser SetStickerSetThumbnail)
+-&gt; Value
+-&gt; Parser SetStickerSetThumbnail
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;SetStickerSetThumbnail&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser SetStickerSetThumbnail)
+ -&gt; Value -&gt; Parser SetStickerSetThumbnail)
+-&gt; (Object -&gt; Parser SetStickerSetThumbnail)
+-&gt; Value
+-&gt; Parser SetStickerSetThumbnail
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679383980"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679383980"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679383979"><span class="annot"><span class="annottext">InputFile
+</span><a href="#local-6989586621679383979"><span class="hs-identifier hs-var">thumbnail</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679383980"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser InputFile
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;thumbnail&quot;</span></span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679383978"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679383978"><span class="hs-identifier hs-var">name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679383980"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;name&quot;</span></span><span>
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679383977"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679383977"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679383980"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;user_id&quot;</span></span><span>
+</span><span id="line-28"></span><span>    </span><span class="annot"><span class="annottext">SetStickerSetThumbnail -&gt; Parser SetStickerSetThumbnail
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SetStickerSetThumbnail -&gt; Parser SetStickerSetThumbnail)
+-&gt; SetStickerSetThumbnail -&gt; Parser SetStickerSetThumbnail
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SetStickerSetThumbnail :: InputFile -&gt; String -&gt; Int -&gt; SetStickerSetThumbnail
+</span><a href="API.Functions.SetStickerSetThumbnail.html#SetStickerSetThumbnail"><span class="hs-identifier hs-type hs-type">SetStickerSetThumbnail</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">thumbnail :: InputFile
+</span><a href="API.Functions.SetStickerSetThumbnail.html#thumbnail"><span class="hs-identifier hs-var">thumbnail</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">InputFile
+</span><a href="#local-6989586621679383979"><span class="hs-identifier hs-var">thumbnail</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">name :: String
+</span><a href="API.Functions.SetStickerSetThumbnail.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679383978"><span class="hs-identifier hs-var">name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">user_id :: Int
+</span><a href="API.Functions.SetStickerSetThumbnail.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679383977"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

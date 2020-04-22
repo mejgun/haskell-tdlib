@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.VoiceNote</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.File.html"><span class="hs-identifier">API.File</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">File</span></span><span>
+</span><span id="line-8"></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="VoiceNote"><span class="annot"><a href="API.VoiceNote.html#VoiceNote"><span class="hs-identifier hs-var">VoiceNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-10"></span><span> </span><span id="VoiceNote"><span class="annot"><a href="API.VoiceNote.html#VoiceNote"><span class="hs-identifier hs-var">VoiceNote</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="voice"><span class="annot"><span class="annottext">VoiceNote -&gt; File
+</span><a href="API.VoiceNote.html#voice"><span class="hs-identifier hs-var hs-var">voice</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="API.File.html#File"><span class="hs-identifier hs-type">File.File</span></a></span><span class="hs-special">,</span><span> </span><span id="mime_type"><span class="annot"><span class="annottext">VoiceNote -&gt; String
+</span><a href="API.VoiceNote.html#mime_type"><span class="hs-identifier hs-var hs-var">mime_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="waveform"><span class="annot"><span class="annottext">VoiceNote -&gt; String
+</span><a href="API.VoiceNote.html#waveform"><span class="hs-identifier hs-var hs-var">waveform</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="duration"><span class="annot"><span class="annottext">VoiceNote -&gt; Int
+</span><a href="API.VoiceNote.html#duration"><span class="hs-identifier hs-var hs-var">duration</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679404670"><span id="local-6989586621679404672"><span id="local-6989586621679404674"><span class="annot"><span class="annottext">Int -&gt; VoiceNote -&gt; ShowS
+[VoiceNote] -&gt; ShowS
+VoiceNote -&gt; String
+(Int -&gt; VoiceNote -&gt; ShowS)
+-&gt; (VoiceNote -&gt; String)
+-&gt; ([VoiceNote] -&gt; ShowS)
+-&gt; Show VoiceNote
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [VoiceNote] -&gt; ShowS
+$cshowList :: [VoiceNote] -&gt; ShowS
+show :: VoiceNote -&gt; String
+$cshow :: VoiceNote -&gt; String
+showsPrec :: Int -&gt; VoiceNote -&gt; ShowS
+$cshowsPrec :: Int -&gt; VoiceNote -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-11"></span><span>
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679404662"><span id="local-6989586621679404664"><span id="local-6989586621679404666"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.VoiceNote.html#VoiceNote"><span class="hs-identifier hs-type">VoiceNote</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679404660"><span class="annot"><span class="annottext">toJSON :: VoiceNote -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.VoiceNote.html#VoiceNote"><span class="hs-identifier hs-type">VoiceNote</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">voice :: VoiceNote -&gt; File
+</span><a href="API.VoiceNote.html#voice"><span class="hs-identifier hs-var">voice</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404658"><span class="annot"><span class="annottext">File
+</span><a href="#local-6989586621679404658"><span class="hs-identifier hs-var">voice</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">mime_type :: VoiceNote -&gt; String
+</span><a href="API.VoiceNote.html#mime_type"><span class="hs-identifier hs-var">mime_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404657"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679404657"><span class="hs-identifier hs-var">mime_type</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">waveform :: VoiceNote -&gt; String
+</span><a href="API.VoiceNote.html#waveform"><span class="hs-identifier hs-var">waveform</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404656"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679404656"><span class="hs-identifier hs-var">waveform</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">duration :: VoiceNote -&gt; Int
+</span><a href="API.VoiceNote.html#duration"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404655"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679404655"><span class="hs-identifier hs-var">duration</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;voiceNote&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;voice&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; File -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">File
+</span><a href="#local-6989586621679404658"><span class="hs-identifier hs-var">voice</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;mime_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679404657"><span class="hs-identifier hs-var">mime_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;waveform&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679404656"><span class="hs-identifier hs-var">waveform</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;duration&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679404655"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-15"></span><span>
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679404649"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.VoiceNote.html#VoiceNote"><span class="hs-identifier hs-type">VoiceNote</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679404647"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser VoiceNote
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679404645"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679404645"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679404643"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679404643"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679404642"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679404642"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679404643"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679404642"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;voiceNote&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser VoiceNote
+</span><a href="#local-6989586621679404640"><span class="hs-identifier hs-var">parseVoiceNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679404645"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser VoiceNote
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679404640"><span class="hs-identifier hs-type">parseVoiceNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.VoiceNote.html#VoiceNote"><span class="hs-identifier hs-type">VoiceNote</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679404640"><span class="annot"><span class="annottext">parseVoiceNote :: Value -&gt; Parser VoiceNote
+</span><a href="#local-6989586621679404640"><span class="hs-identifier hs-var hs-var">parseVoiceNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser VoiceNote) -&gt; Value -&gt; Parser VoiceNote
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;VoiceNote&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser VoiceNote) -&gt; Value -&gt; Parser VoiceNote)
+-&gt; (Object -&gt; Parser VoiceNote) -&gt; Value -&gt; Parser VoiceNote
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679404638"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679404638"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679404637"><span class="annot"><span class="annottext">File
+</span><a href="#local-6989586621679404637"><span class="hs-identifier hs-var">voice</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679404638"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser File
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;voice&quot;</span></span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679404636"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679404636"><span class="hs-identifier hs-var">mime_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679404638"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;mime_type&quot;</span></span><span>
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679404635"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679404635"><span class="hs-identifier hs-var">waveform</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679404638"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;waveform&quot;</span></span><span>
+</span><span id="line-28"></span><span>    </span><span id="local-6989586621679404634"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679404634"><span class="hs-identifier hs-var">duration</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679404638"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;duration&quot;</span></span><span>
+</span><span id="line-29"></span><span>    </span><span class="annot"><span class="annottext">VoiceNote -&gt; Parser VoiceNote
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(VoiceNote -&gt; Parser VoiceNote) -&gt; VoiceNote -&gt; Parser VoiceNote
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">VoiceNote :: File -&gt; String -&gt; String -&gt; Int -&gt; VoiceNote
+</span><a href="API.VoiceNote.html#VoiceNote"><span class="hs-identifier hs-type hs-type">VoiceNote</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">voice :: File
+</span><a href="API.VoiceNote.html#voice"><span class="hs-identifier hs-var">voice</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">File
+</span><a href="#local-6989586621679404637"><span class="hs-identifier hs-var">voice</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">mime_type :: String
+</span><a href="API.VoiceNote.html#mime_type"><span class="hs-identifier hs-var">mime_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679404636"><span class="hs-identifier hs-var">mime_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">waveform :: String
+</span><a href="API.VoiceNote.html#waveform"><span class="hs-identifier hs-var">waveform</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679404635"><span class="hs-identifier hs-var">waveform</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">duration :: Int
+</span><a href="API.VoiceNote.html#duration"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679404634"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

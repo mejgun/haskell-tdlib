@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.CallProtocol</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-7"></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">data</span><span> </span><span id="CallProtocol"><span class="annot"><a href="API.CallProtocol.html#CallProtocol"><span class="hs-identifier hs-var">CallProtocol</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-9"></span><span> </span><span id="CallProtocol"><span class="annot"><a href="API.CallProtocol.html#CallProtocol"><span class="hs-identifier hs-var">CallProtocol</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="library_versions"><span class="annot"><span class="annottext">CallProtocol -&gt; [String]
+</span><a href="API.CallProtocol.html#library_versions"><span class="hs-identifier hs-var hs-var">library_versions</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="max_layer"><span class="annot"><span class="annottext">CallProtocol -&gt; Int
+</span><a href="API.CallProtocol.html#max_layer"><span class="hs-identifier hs-var hs-var">max_layer</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="min_layer"><span class="annot"><span class="annottext">CallProtocol -&gt; Int
+</span><a href="API.CallProtocol.html#min_layer"><span class="hs-identifier hs-var hs-var">min_layer</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="udp_reflector"><span class="annot"><span class="annottext">CallProtocol -&gt; Bool
+</span><a href="API.CallProtocol.html#udp_reflector"><span class="hs-identifier hs-var hs-var">udp_reflector</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="udp_p2p"><span class="annot"><span class="annottext">CallProtocol -&gt; Bool
+</span><a href="API.CallProtocol.html#udp_p2p"><span class="hs-identifier hs-var hs-var">udp_p2p</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679359831"><span id="local-6989586621679359833"><span id="local-6989586621679359835"><span class="annot"><span class="annottext">Int -&gt; CallProtocol -&gt; ShowS
+[CallProtocol] -&gt; ShowS
+CallProtocol -&gt; String
+(Int -&gt; CallProtocol -&gt; ShowS)
+-&gt; (CallProtocol -&gt; String)
+-&gt; ([CallProtocol] -&gt; ShowS)
+-&gt; Show CallProtocol
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [CallProtocol] -&gt; ShowS
+$cshowList :: [CallProtocol] -&gt; ShowS
+show :: CallProtocol -&gt; String
+$cshow :: CallProtocol -&gt; String
+showsPrec :: Int -&gt; CallProtocol -&gt; ShowS
+$cshowsPrec :: Int -&gt; CallProtocol -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679359823"><span id="local-6989586621679359825"><span id="local-6989586621679359827"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.CallProtocol.html#CallProtocol"><span class="hs-identifier hs-type">CallProtocol</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-12"></span><span> </span><span id="local-6989586621679359821"><span class="annot"><span class="annottext">toJSON :: CallProtocol -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.CallProtocol.html#CallProtocol"><span class="hs-identifier hs-type">CallProtocol</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">library_versions :: CallProtocol -&gt; [String]
+</span><a href="API.CallProtocol.html#library_versions"><span class="hs-identifier hs-var">library_versions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679359819"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679359819"><span class="hs-identifier hs-var">library_versions</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">max_layer :: CallProtocol -&gt; Int
+</span><a href="API.CallProtocol.html#max_layer"><span class="hs-identifier hs-var">max_layer</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679359818"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679359818"><span class="hs-identifier hs-var">max_layer</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">min_layer :: CallProtocol -&gt; Int
+</span><a href="API.CallProtocol.html#min_layer"><span class="hs-identifier hs-var">min_layer</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679359817"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679359817"><span class="hs-identifier hs-var">min_layer</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">udp_reflector :: CallProtocol -&gt; Bool
+</span><a href="API.CallProtocol.html#udp_reflector"><span class="hs-identifier hs-var">udp_reflector</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679359816"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679359816"><span class="hs-identifier hs-var">udp_reflector</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">udp_p2p :: CallProtocol -&gt; Bool
+</span><a href="API.CallProtocol.html#udp_p2p"><span class="hs-identifier hs-var">udp_p2p</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679359815"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679359815"><span class="hs-identifier hs-var">udp_p2p</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-13"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;callProtocol&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;library_versions&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; [String] -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679359819"><span class="hs-identifier hs-var">library_versions</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;max_layer&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679359818"><span class="hs-identifier hs-var">max_layer</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;min_layer&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679359817"><span class="hs-identifier hs-var">min_layer</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;udp_reflector&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679359816"><span class="hs-identifier hs-var">udp_reflector</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;udp_p2p&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679359815"><span class="hs-identifier hs-var">udp_p2p</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-14"></span><span>
+</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679359809"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.CallProtocol.html#CallProtocol"><span class="hs-identifier hs-type">CallProtocol</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-16"></span><span> </span><span id="local-6989586621679359807"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CallProtocol
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679359805"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679359805"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679359803"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679359803"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-17"></span><span>  </span><span id="local-6989586621679359802"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679359802"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679359803"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-18"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679359802"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-19"></span><span>   </span><span class="hs-string">&quot;callProtocol&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallProtocol
+</span><a href="#local-6989586621679359800"><span class="hs-identifier hs-var">parseCallProtocol</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679359805"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-20"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CallProtocol
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-21"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679359800"><span class="hs-identifier hs-type">parseCallProtocol</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallProtocol.html#CallProtocol"><span class="hs-identifier hs-type">CallProtocol</span></a></span><span>
+</span><span id="line-23"></span><span>   </span><span id="local-6989586621679359800"><span class="annot"><span class="annottext">parseCallProtocol :: Value -&gt; Parser CallProtocol
+</span><a href="#local-6989586621679359800"><span class="hs-identifier hs-var hs-var">parseCallProtocol</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser CallProtocol) -&gt; Value -&gt; Parser CallProtocol
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;CallProtocol&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser CallProtocol) -&gt; Value -&gt; Parser CallProtocol)
+-&gt; (Object -&gt; Parser CallProtocol) -&gt; Value -&gt; Parser CallProtocol
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679359798"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679359798"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-24"></span><span>    </span><span id="local-6989586621679359797"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679359797"><span class="hs-identifier hs-var">library_versions</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679359798"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [String]
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;library_versions&quot;</span></span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679359796"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679359796"><span class="hs-identifier hs-var">max_layer</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679359798"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;max_layer&quot;</span></span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679359795"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679359795"><span class="hs-identifier hs-var">min_layer</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679359798"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;min_layer&quot;</span></span><span>
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679359794"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679359794"><span class="hs-identifier hs-var">udp_reflector</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679359798"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;udp_reflector&quot;</span></span><span>
+</span><span id="line-28"></span><span>    </span><span id="local-6989586621679359793"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679359793"><span class="hs-identifier hs-var">udp_p2p</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679359798"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;udp_p2p&quot;</span></span><span>
+</span><span id="line-29"></span><span>    </span><span class="annot"><span class="annottext">CallProtocol -&gt; Parser CallProtocol
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CallProtocol -&gt; Parser CallProtocol)
+-&gt; CallProtocol -&gt; Parser CallProtocol
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallProtocol :: [String] -&gt; Int -&gt; Int -&gt; Bool -&gt; Bool -&gt; CallProtocol
+</span><a href="API.CallProtocol.html#CallProtocol"><span class="hs-identifier hs-type hs-type">CallProtocol</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">library_versions :: [String]
+</span><a href="API.CallProtocol.html#library_versions"><span class="hs-identifier hs-var">library_versions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679359797"><span class="hs-identifier hs-var">library_versions</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">max_layer :: Int
+</span><a href="API.CallProtocol.html#max_layer"><span class="hs-identifier hs-var">max_layer</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679359796"><span class="hs-identifier hs-var">max_layer</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">min_layer :: Int
+</span><a href="API.CallProtocol.html#min_layer"><span class="hs-identifier hs-var">min_layer</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679359795"><span class="hs-identifier hs-var">min_layer</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">udp_reflector :: Bool
+</span><a href="API.CallProtocol.html#udp_reflector"><span class="hs-identifier hs-var">udp_reflector</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679359794"><span class="hs-identifier hs-var">udp_reflector</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">udp_p2p :: Bool
+</span><a href="API.CallProtocol.html#udp_p2p"><span class="hs-identifier hs-var">udp_p2p</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679359793"><span class="hs-identifier hs-var">udp_p2p</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
