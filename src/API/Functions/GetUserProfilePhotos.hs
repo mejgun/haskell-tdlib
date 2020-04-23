@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetUserProfilePhotos where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetUserProfilePhotos = 
- GetUserProfilePhotos { limit :: Int, offset :: Int, user_id :: Int }  deriving (Show)
+ GetUserProfilePhotos { limit :: Maybe Int, offset :: Maybe Int, user_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON GetUserProfilePhotos where
  toJSON (GetUserProfilePhotos { limit = limit, offset = offset, user_id = user_id }) =
@@ -21,7 +22,7 @@ instance T.FromJSON GetUserProfilePhotos where
   where
    parseGetUserProfilePhotos :: A.Value -> T.Parser GetUserProfilePhotos
    parseGetUserProfilePhotos = A.withObject "GetUserProfilePhotos" $ \o -> do
-    limit <- o A..: "limit"
-    offset <- o A..: "offset"
-    user_id <- o A..: "user_id"
+    limit <- optional $ o A..: "limit"
+    offset <- optional $ o A..: "offset"
+    user_id <- optional $ o A..: "user_id"
     return $ GetUserProfilePhotos { limit = limit, offset = offset, user_id = user_id }

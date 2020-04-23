@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SearchEmojis where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SearchEmojis = 
- SearchEmojis { input_language_code :: String, exact_match :: Bool, text :: String }  deriving (Show)
+ SearchEmojis { input_language_code :: Maybe String, exact_match :: Maybe Bool, text :: Maybe String }  deriving (Show)
 
 instance T.ToJSON SearchEmojis where
  toJSON (SearchEmojis { input_language_code = input_language_code, exact_match = exact_match, text = text }) =
@@ -21,7 +22,7 @@ instance T.FromJSON SearchEmojis where
   where
    parseSearchEmojis :: A.Value -> T.Parser SearchEmojis
    parseSearchEmojis = A.withObject "SearchEmojis" $ \o -> do
-    input_language_code <- o A..: "input_language_code"
-    exact_match <- o A..: "exact_match"
-    text <- o A..: "text"
+    input_language_code <- optional $ o A..: "input_language_code"
+    exact_match <- optional $ o A..: "exact_match"
+    text <- optional $ o A..: "text"
     return $ SearchEmojis { input_language_code = input_language_code, exact_match = exact_match, text = text }

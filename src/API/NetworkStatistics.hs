@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.NetworkStatistics where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.NetworkStatisticsEntry as NetworkStatisticsEntry
 
 data NetworkStatistics = 
- NetworkStatistics { entries :: [NetworkStatisticsEntry.NetworkStatisticsEntry], since_date :: Int }  deriving (Show)
+ NetworkStatistics { entries :: Maybe [NetworkStatisticsEntry.NetworkStatisticsEntry], since_date :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON NetworkStatistics where
  toJSON (NetworkStatistics { entries = entries, since_date = since_date }) =
@@ -22,6 +23,6 @@ instance T.FromJSON NetworkStatistics where
   where
    parseNetworkStatistics :: A.Value -> T.Parser NetworkStatistics
    parseNetworkStatistics = A.withObject "NetworkStatistics" $ \o -> do
-    entries <- o A..: "entries"
-    since_date <- o A..: "since_date"
+    entries <- optional $ o A..: "entries"
+    since_date <- optional $ o A..: "since_date"
     return $ NetworkStatistics { entries = entries, since_date = since_date }

@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatNearby where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ChatNearby = 
- ChatNearby { distance :: Int, chat_id :: Int }  deriving (Show)
+ ChatNearby { distance :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON ChatNearby where
  toJSON (ChatNearby { distance = distance, chat_id = chat_id }) =
@@ -21,6 +22,6 @@ instance T.FromJSON ChatNearby where
   where
    parseChatNearby :: A.Value -> T.Parser ChatNearby
    parseChatNearby = A.withObject "ChatNearby" $ \o -> do
-    distance <- o A..: "distance"
-    chat_id <- o A..: "chat_id"
+    distance <- optional $ o A..: "distance"
+    chat_id <- optional $ o A..: "chat_id"
     return $ ChatNearby { distance = distance, chat_id = chat_id }

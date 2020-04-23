@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetMessages where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetMessages = 
- GetMessages { message_ids :: [Int], chat_id :: Int }  deriving (Show)
+ GetMessages { message_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON GetMessages where
  toJSON (GetMessages { message_ids = message_ids, chat_id = chat_id }) =
@@ -21,6 +22,6 @@ instance T.FromJSON GetMessages where
   where
    parseGetMessages :: A.Value -> T.Parser GetMessages
    parseGetMessages = A.withObject "GetMessages" $ \o -> do
-    message_ids <- o A..: "message_ids"
-    chat_id <- o A..: "chat_id"
+    message_ids <- optional $ o A..: "message_ids"
+    chat_id <- optional $ o A..: "chat_id"
     return $ GetMessages { message_ids = message_ids, chat_id = chat_id }

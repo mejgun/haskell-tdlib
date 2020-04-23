@@ -12,8 +12,8 @@
 </span><span id="line-12"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="ChatReportReasonChildAbuse"><span class="annot"><a href="API.ChatReportReason.html#ChatReportReasonChildAbuse"><span class="hs-identifier hs-var">ChatReportReasonChildAbuse</span></a></span></span><span> </span><span>
 </span><span id="line-13"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="ChatReportReasonCopyright"><span class="annot"><a href="API.ChatReportReason.html#ChatReportReasonCopyright"><span class="hs-identifier hs-var">ChatReportReasonCopyright</span></a></span></span><span> </span><span>
 </span><span id="line-14"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="ChatReportReasonUnrelatedLocation"><span class="annot"><a href="API.ChatReportReason.html#ChatReportReasonUnrelatedLocation"><span class="hs-identifier hs-var">ChatReportReasonUnrelatedLocation</span></a></span></span><span> </span><span>
-</span><span id="line-15"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="ChatReportReasonCustom"><span class="annot"><a href="API.ChatReportReason.html#ChatReportReasonCustom"><span class="hs-identifier hs-var">ChatReportReasonCustom</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="text"><span class="annot"><span class="annottext">ChatReportReason -&gt; String
-</span><a href="API.ChatReportReason.html#text"><span class="hs-identifier hs-var hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679360417"><span id="local-6989586621679360419"><span id="local-6989586621679360421"><span class="annot"><span class="annottext">Int -&gt; ChatReportReason -&gt; ShowS
+</span><span id="line-15"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="ChatReportReasonCustom"><span class="annot"><a href="API.ChatReportReason.html#ChatReportReasonCustom"><span class="hs-identifier hs-var">ChatReportReasonCustom</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="text"><span class="annot"><span class="annottext">ChatReportReason -&gt; Maybe String
+</span><a href="API.ChatReportReason.html#text"><span class="hs-identifier hs-var hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679366459"><span id="local-6989586621679366461"><span id="local-6989586621679366463"><span class="annot"><span class="annottext">Int -&gt; ChatReportReason -&gt; ShowS
 [ChatReportReason] -&gt; ShowS
 ChatReportReason -&gt; String
 (Int -&gt; ChatReportReason -&gt; ShowS)
@@ -30,8 +30,8 @@ showsPrec :: Int -&gt; ChatReportReason -&gt; ShowS
 $cshowsPrec :: Int -&gt; ChatReportReason -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679360409"><span id="local-6989586621679360411"><span id="local-6989586621679360413"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReason"><span class="hs-identifier hs-type">ChatReportReason</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679360407"><span class="annot"><span class="annottext">toJSON :: ChatReportReason -&gt; Value
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679366451"><span id="local-6989586621679366453"><span id="local-6989586621679366455"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReason"><span class="hs-identifier hs-type">ChatReportReason</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679366449"><span class="annot"><span class="annottext">toJSON :: ChatReportReason -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReasonSpam"><span class="hs-identifier hs-type">ChatReportReasonSpam</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-19"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -74,58 +74,58 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chatReportReasonUnrelatedLocation&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-35"></span><span>
-</span><span id="line-36"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReasonCustom"><span class="hs-identifier hs-type">ChatReportReasonCustom</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">text :: ChatReportReason -&gt; String
-</span><a href="API.ChatReportReason.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679360402"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360402"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-36"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReasonCustom"><span class="hs-identifier hs-type">ChatReportReasonCustom</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">text :: ChatReportReason -&gt; Maybe String
+</span><a href="API.ChatReportReason.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679366444"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679366444"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-37"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chatReportReasonCustom&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; String -&gt; Pair
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chatReportReasonCustom&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
-</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360402"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679366444"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-38"></span><span>
-</span><span id="line-39"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679360399"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReason"><span class="hs-identifier hs-type">ChatReportReason</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-40"></span><span> </span><span id="local-6989586621679360397"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatReportReason
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679360395"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679360395"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679360393"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679360393"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-41"></span><span>  </span><span id="local-6989586621679360392"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360392"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679360393"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-39"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679366441"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReason"><span class="hs-identifier hs-type">ChatReportReason</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-40"></span><span> </span><span id="local-6989586621679366439"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatReportReason
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679366437"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679366437"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679366435"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679366435"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-41"></span><span>  </span><span id="local-6989586621679366434"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679366434"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679366435"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-42"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360392"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679366434"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-43"></span><span>   </span><span class="hs-string">&quot;chatReportReasonSpam&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatReportReason
-</span><a href="#local-6989586621679360390"><span class="hs-identifier hs-var">parseChatReportReasonSpam</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679360395"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679366432"><span class="hs-identifier hs-var">parseChatReportReasonSpam</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679366437"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-44"></span><span>   </span><span class="hs-string">&quot;chatReportReasonViolence&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatReportReason
-</span><a href="#local-6989586621679360389"><span class="hs-identifier hs-var">parseChatReportReasonViolence</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679360395"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679366431"><span class="hs-identifier hs-var">parseChatReportReasonViolence</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679366437"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-45"></span><span>   </span><span class="hs-string">&quot;chatReportReasonPornography&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatReportReason
-</span><a href="#local-6989586621679360388"><span class="hs-identifier hs-var">parseChatReportReasonPornography</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679360395"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679366430"><span class="hs-identifier hs-var">parseChatReportReasonPornography</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679366437"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-46"></span><span>   </span><span class="hs-string">&quot;chatReportReasonChildAbuse&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatReportReason
-</span><a href="#local-6989586621679360387"><span class="hs-identifier hs-var">parseChatReportReasonChildAbuse</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679360395"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679366429"><span class="hs-identifier hs-var">parseChatReportReasonChildAbuse</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679366437"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-47"></span><span>   </span><span class="hs-string">&quot;chatReportReasonCopyright&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatReportReason
-</span><a href="#local-6989586621679360386"><span class="hs-identifier hs-var">parseChatReportReasonCopyright</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679360395"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679366428"><span class="hs-identifier hs-var">parseChatReportReasonCopyright</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679366437"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-48"></span><span>   </span><span class="hs-string">&quot;chatReportReasonUnrelatedLocation&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatReportReason
-</span><a href="#local-6989586621679360385"><span class="hs-identifier hs-var">parseChatReportReasonUnrelatedLocation</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679360395"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679366427"><span class="hs-identifier hs-var">parseChatReportReasonUnrelatedLocation</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679366437"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-49"></span><span>   </span><span class="hs-string">&quot;chatReportReasonCustom&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatReportReason
-</span><a href="#local-6989586621679360384"><span class="hs-identifier hs-var">parseChatReportReasonCustom</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679360395"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679366426"><span class="hs-identifier hs-var">parseChatReportReasonCustom</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679366437"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-50"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ChatReportReason
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-51"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-52"></span><span>   </span><span class="annot"><a href="#local-6989586621679360390"><span class="hs-identifier hs-type">parseChatReportReasonSpam</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReason"><span class="hs-identifier hs-type">ChatReportReason</span></a></span><span>
-</span><span id="line-53"></span><span>   </span><span id="local-6989586621679360390"><span class="annot"><span class="annottext">parseChatReportReasonSpam :: Value -&gt; Parser ChatReportReason
-</span><a href="#local-6989586621679360390"><span class="hs-identifier hs-var hs-var">parseChatReportReasonSpam</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-52"></span><span>   </span><span class="annot"><a href="#local-6989586621679366432"><span class="hs-identifier hs-type">parseChatReportReasonSpam</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReason"><span class="hs-identifier hs-type">ChatReportReason</span></a></span><span>
+</span><span id="line-53"></span><span>   </span><span id="local-6989586621679366432"><span class="annot"><span class="annottext">parseChatReportReasonSpam :: Value -&gt; Parser ChatReportReason
+</span><a href="#local-6989586621679366432"><span class="hs-identifier hs-var hs-var">parseChatReportReasonSpam</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatReportReason)
 -&gt; Value
 -&gt; Parser ChatReportReason
@@ -136,8 +136,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ChatReportReason
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360382"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679360382"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679366424"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679366424"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-54"></span><span>    </span><span class="annot"><span class="annottext">ChatReportReason -&gt; Parser ChatReportReason
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ChatReportReason -&gt; Parser ChatReportReason)
@@ -146,9 +146,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ChatReportReasonSpam :: ChatReportReason
 </span><a href="API.ChatReportReason.html#ChatReportReasonSpam"><span class="hs-identifier hs-type hs-type">ChatReportReasonSpam</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-55"></span><span>
-</span><span id="line-56"></span><span>   </span><span class="annot"><a href="#local-6989586621679360389"><span class="hs-identifier hs-type">parseChatReportReasonViolence</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReason"><span class="hs-identifier hs-type">ChatReportReason</span></a></span><span>
-</span><span id="line-57"></span><span>   </span><span id="local-6989586621679360389"><span class="annot"><span class="annottext">parseChatReportReasonViolence :: Value -&gt; Parser ChatReportReason
-</span><a href="#local-6989586621679360389"><span class="hs-identifier hs-var hs-var">parseChatReportReasonViolence</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-56"></span><span>   </span><span class="annot"><a href="#local-6989586621679366431"><span class="hs-identifier hs-type">parseChatReportReasonViolence</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReason"><span class="hs-identifier hs-type">ChatReportReason</span></a></span><span>
+</span><span id="line-57"></span><span>   </span><span id="local-6989586621679366431"><span class="annot"><span class="annottext">parseChatReportReasonViolence :: Value -&gt; Parser ChatReportReason
+</span><a href="#local-6989586621679366431"><span class="hs-identifier hs-var hs-var">parseChatReportReasonViolence</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatReportReason)
 -&gt; Value
 -&gt; Parser ChatReportReason
@@ -159,8 +159,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ChatReportReason
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360380"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679360380"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679366422"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679366422"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-58"></span><span>    </span><span class="annot"><span class="annottext">ChatReportReason -&gt; Parser ChatReportReason
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ChatReportReason -&gt; Parser ChatReportReason)
@@ -169,9 +169,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ChatReportReasonViolence :: ChatReportReason
 </span><a href="API.ChatReportReason.html#ChatReportReasonViolence"><span class="hs-identifier hs-type hs-type">ChatReportReasonViolence</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-59"></span><span>
-</span><span id="line-60"></span><span>   </span><span class="annot"><a href="#local-6989586621679360388"><span class="hs-identifier hs-type">parseChatReportReasonPornography</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReason"><span class="hs-identifier hs-type">ChatReportReason</span></a></span><span>
-</span><span id="line-61"></span><span>   </span><span id="local-6989586621679360388"><span class="annot"><span class="annottext">parseChatReportReasonPornography :: Value -&gt; Parser ChatReportReason
-</span><a href="#local-6989586621679360388"><span class="hs-identifier hs-var hs-var">parseChatReportReasonPornography</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-60"></span><span>   </span><span class="annot"><a href="#local-6989586621679366430"><span class="hs-identifier hs-type">parseChatReportReasonPornography</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReason"><span class="hs-identifier hs-type">ChatReportReason</span></a></span><span>
+</span><span id="line-61"></span><span>   </span><span id="local-6989586621679366430"><span class="annot"><span class="annottext">parseChatReportReasonPornography :: Value -&gt; Parser ChatReportReason
+</span><a href="#local-6989586621679366430"><span class="hs-identifier hs-var hs-var">parseChatReportReasonPornography</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatReportReason)
 -&gt; Value
 -&gt; Parser ChatReportReason
@@ -182,8 +182,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ChatReportReason
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360378"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679360378"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679366420"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679366420"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-62"></span><span>    </span><span class="annot"><span class="annottext">ChatReportReason -&gt; Parser ChatReportReason
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ChatReportReason -&gt; Parser ChatReportReason)
@@ -192,9 +192,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ChatReportReasonPornography :: ChatReportReason
 </span><a href="API.ChatReportReason.html#ChatReportReasonPornography"><span class="hs-identifier hs-type hs-type">ChatReportReasonPornography</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-63"></span><span>
-</span><span id="line-64"></span><span>   </span><span class="annot"><a href="#local-6989586621679360387"><span class="hs-identifier hs-type">parseChatReportReasonChildAbuse</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReason"><span class="hs-identifier hs-type">ChatReportReason</span></a></span><span>
-</span><span id="line-65"></span><span>   </span><span id="local-6989586621679360387"><span class="annot"><span class="annottext">parseChatReportReasonChildAbuse :: Value -&gt; Parser ChatReportReason
-</span><a href="#local-6989586621679360387"><span class="hs-identifier hs-var hs-var">parseChatReportReasonChildAbuse</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-64"></span><span>   </span><span class="annot"><a href="#local-6989586621679366429"><span class="hs-identifier hs-type">parseChatReportReasonChildAbuse</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReason"><span class="hs-identifier hs-type">ChatReportReason</span></a></span><span>
+</span><span id="line-65"></span><span>   </span><span id="local-6989586621679366429"><span class="annot"><span class="annottext">parseChatReportReasonChildAbuse :: Value -&gt; Parser ChatReportReason
+</span><a href="#local-6989586621679366429"><span class="hs-identifier hs-var hs-var">parseChatReportReasonChildAbuse</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatReportReason)
 -&gt; Value
 -&gt; Parser ChatReportReason
@@ -205,8 +205,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ChatReportReason
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360376"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679360376"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679366418"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679366418"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-66"></span><span>    </span><span class="annot"><span class="annottext">ChatReportReason -&gt; Parser ChatReportReason
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ChatReportReason -&gt; Parser ChatReportReason)
@@ -215,9 +215,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ChatReportReasonChildAbuse :: ChatReportReason
 </span><a href="API.ChatReportReason.html#ChatReportReasonChildAbuse"><span class="hs-identifier hs-type hs-type">ChatReportReasonChildAbuse</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-67"></span><span>
-</span><span id="line-68"></span><span>   </span><span class="annot"><a href="#local-6989586621679360386"><span class="hs-identifier hs-type">parseChatReportReasonCopyright</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReason"><span class="hs-identifier hs-type">ChatReportReason</span></a></span><span>
-</span><span id="line-69"></span><span>   </span><span id="local-6989586621679360386"><span class="annot"><span class="annottext">parseChatReportReasonCopyright :: Value -&gt; Parser ChatReportReason
-</span><a href="#local-6989586621679360386"><span class="hs-identifier hs-var hs-var">parseChatReportReasonCopyright</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-68"></span><span>   </span><span class="annot"><a href="#local-6989586621679366428"><span class="hs-identifier hs-type">parseChatReportReasonCopyright</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReason"><span class="hs-identifier hs-type">ChatReportReason</span></a></span><span>
+</span><span id="line-69"></span><span>   </span><span id="local-6989586621679366428"><span class="annot"><span class="annottext">parseChatReportReasonCopyright :: Value -&gt; Parser ChatReportReason
+</span><a href="#local-6989586621679366428"><span class="hs-identifier hs-var hs-var">parseChatReportReasonCopyright</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatReportReason)
 -&gt; Value
 -&gt; Parser ChatReportReason
@@ -228,8 +228,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ChatReportReason
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360374"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679360374"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679366416"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679366416"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-70"></span><span>    </span><span class="annot"><span class="annottext">ChatReportReason -&gt; Parser ChatReportReason
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ChatReportReason -&gt; Parser ChatReportReason)
@@ -238,9 +238,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ChatReportReasonCopyright :: ChatReportReason
 </span><a href="API.ChatReportReason.html#ChatReportReasonCopyright"><span class="hs-identifier hs-type hs-type">ChatReportReasonCopyright</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-71"></span><span>
-</span><span id="line-72"></span><span>   </span><span class="annot"><a href="#local-6989586621679360385"><span class="hs-identifier hs-type">parseChatReportReasonUnrelatedLocation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReason"><span class="hs-identifier hs-type">ChatReportReason</span></a></span><span>
-</span><span id="line-73"></span><span>   </span><span id="local-6989586621679360385"><span class="annot"><span class="annottext">parseChatReportReasonUnrelatedLocation :: Value -&gt; Parser ChatReportReason
-</span><a href="#local-6989586621679360385"><span class="hs-identifier hs-var hs-var">parseChatReportReasonUnrelatedLocation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-72"></span><span>   </span><span class="annot"><a href="#local-6989586621679366427"><span class="hs-identifier hs-type">parseChatReportReasonUnrelatedLocation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReason"><span class="hs-identifier hs-type">ChatReportReason</span></a></span><span>
+</span><span id="line-73"></span><span>   </span><span id="local-6989586621679366427"><span class="annot"><span class="annottext">parseChatReportReasonUnrelatedLocation :: Value -&gt; Parser ChatReportReason
+</span><a href="#local-6989586621679366427"><span class="hs-identifier hs-var hs-var">parseChatReportReasonUnrelatedLocation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatReportReason)
 -&gt; Value
 -&gt; Parser ChatReportReason
@@ -251,8 +251,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ChatReportReason
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360372"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679360372"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679366414"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679366414"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-74"></span><span>    </span><span class="annot"><span class="annottext">ChatReportReason -&gt; Parser ChatReportReason
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ChatReportReason -&gt; Parser ChatReportReason)
@@ -261,9 +261,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ChatReportReasonUnrelatedLocation :: ChatReportReason
 </span><a href="API.ChatReportReason.html#ChatReportReasonUnrelatedLocation"><span class="hs-identifier hs-type hs-type">ChatReportReasonUnrelatedLocation</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-75"></span><span>
-</span><span id="line-76"></span><span>   </span><span class="annot"><a href="#local-6989586621679360384"><span class="hs-identifier hs-type">parseChatReportReasonCustom</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReason"><span class="hs-identifier hs-type">ChatReportReason</span></a></span><span>
-</span><span id="line-77"></span><span>   </span><span id="local-6989586621679360384"><span class="annot"><span class="annottext">parseChatReportReasonCustom :: Value -&gt; Parser ChatReportReason
-</span><a href="#local-6989586621679360384"><span class="hs-identifier hs-var hs-var">parseChatReportReasonCustom</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-76"></span><span>   </span><span class="annot"><a href="#local-6989586621679366426"><span class="hs-identifier hs-type">parseChatReportReasonCustom</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatReportReason.html#ChatReportReason"><span class="hs-identifier hs-type">ChatReportReason</span></a></span><span>
+</span><span id="line-77"></span><span>   </span><span id="local-6989586621679366426"><span class="annot"><span class="annottext">parseChatReportReasonCustom :: Value -&gt; Parser ChatReportReason
+</span><a href="#local-6989586621679366426"><span class="hs-identifier hs-var hs-var">parseChatReportReasonCustom</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatReportReason)
 -&gt; Value
 -&gt; Parser ChatReportReason
@@ -274,11 +274,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ChatReportReason
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360370"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679360370"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-78"></span><span>    </span><span id="local-6989586621679360369"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360369"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679360370"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679366412"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679366412"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-78"></span><span>    </span><span id="local-6989586621679366411"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679366411"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679366412"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;text&quot;</span></span><span>
 </span><span id="line-79"></span><span>    </span><span class="annot"><span class="annottext">ChatReportReason -&gt; Parser ChatReportReason
@@ -286,7 +286,7 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ChatReportReason -&gt; Parser ChatReportReason)
 -&gt; ChatReportReason -&gt; Parser ChatReportReason
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ChatReportReasonCustom :: String -&gt; ChatReportReason
-</span><a href="API.ChatReportReason.html#ChatReportReasonCustom"><span class="hs-identifier hs-type hs-type">ChatReportReasonCustom</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">text :: String
-</span><a href="API.ChatReportReason.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360369"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ChatReportReasonCustom :: Maybe String -&gt; ChatReportReason
+</span><a href="API.ChatReportReason.html#ChatReportReasonCustom"><span class="hs-identifier hs-type hs-type">ChatReportReasonCustom</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">text :: Maybe String
+</span><a href="API.ChatReportReason.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679366411"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

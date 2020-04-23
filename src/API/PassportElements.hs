@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PassportElements where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PassportElement as PassportElement
 
 data PassportElements = 
- PassportElements { elements :: [PassportElement.PassportElement] }  deriving (Show)
+ PassportElements { elements :: Maybe [PassportElement.PassportElement] }  deriving (Show)
 
 instance T.ToJSON PassportElements where
  toJSON (PassportElements { elements = elements }) =
@@ -22,5 +23,5 @@ instance T.FromJSON PassportElements where
   where
    parsePassportElements :: A.Value -> T.Parser PassportElements
    parsePassportElements = A.withObject "PassportElements" $ \o -> do
-    elements <- o A..: "elements"
+    elements <- optional $ o A..: "elements"
     return $ PassportElements { elements = elements }

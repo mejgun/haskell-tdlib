@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.KeyboardButtonType where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -9,7 +10,7 @@ data KeyboardButtonType =
  KeyboardButtonTypeText 
  | KeyboardButtonTypeRequestPhoneNumber 
  | KeyboardButtonTypeRequestLocation 
- | KeyboardButtonTypeRequestPoll { force_quiz :: Bool, force_regular :: Bool }  deriving (Show)
+ | KeyboardButtonTypeRequestPoll { force_quiz :: Maybe Bool, force_regular :: Maybe Bool }  deriving (Show)
 
 instance T.ToJSON KeyboardButtonType where
  toJSON (KeyboardButtonTypeText {  }) =
@@ -48,6 +49,6 @@ instance T.FromJSON KeyboardButtonType where
 
    parseKeyboardButtonTypeRequestPoll :: A.Value -> T.Parser KeyboardButtonType
    parseKeyboardButtonTypeRequestPoll = A.withObject "KeyboardButtonTypeRequestPoll" $ \o -> do
-    force_quiz <- o A..: "force_quiz"
-    force_regular <- o A..: "force_regular"
+    force_quiz <- optional $ o A..: "force_quiz"
+    force_regular <- optional $ o A..: "force_regular"
     return $ KeyboardButtonTypeRequestPoll { force_quiz = force_quiz, force_regular = force_regular }

@@ -2,14 +2,15 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.InputCredentials where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data InputCredentials = 
- InputCredentialsSaved { saved_credentials_id :: String }  
- | InputCredentialsNew { allow_save :: Bool, _data :: String }  
- | InputCredentialsAndroidPay { _data :: String }  
- | InputCredentialsApplePay { _data :: String }  deriving (Show)
+ InputCredentialsSaved { saved_credentials_id :: Maybe String }  
+ | InputCredentialsNew { allow_save :: Maybe Bool, _data :: Maybe String }  
+ | InputCredentialsAndroidPay { _data :: Maybe String }  
+ | InputCredentialsApplePay { _data :: Maybe String }  deriving (Show)
 
 instance T.ToJSON InputCredentials where
  toJSON (InputCredentialsSaved { saved_credentials_id = saved_credentials_id }) =
@@ -36,21 +37,21 @@ instance T.FromJSON InputCredentials where
   where
    parseInputCredentialsSaved :: A.Value -> T.Parser InputCredentials
    parseInputCredentialsSaved = A.withObject "InputCredentialsSaved" $ \o -> do
-    saved_credentials_id <- o A..: "saved_credentials_id"
+    saved_credentials_id <- optional $ o A..: "saved_credentials_id"
     return $ InputCredentialsSaved { saved_credentials_id = saved_credentials_id }
 
    parseInputCredentialsNew :: A.Value -> T.Parser InputCredentials
    parseInputCredentialsNew = A.withObject "InputCredentialsNew" $ \o -> do
-    allow_save <- o A..: "allow_save"
-    _data <- o A..: "data"
+    allow_save <- optional $ o A..: "allow_save"
+    _data <- optional $ o A..: "data"
     return $ InputCredentialsNew { allow_save = allow_save, _data = _data }
 
    parseInputCredentialsAndroidPay :: A.Value -> T.Parser InputCredentials
    parseInputCredentialsAndroidPay = A.withObject "InputCredentialsAndroidPay" $ \o -> do
-    _data <- o A..: "data"
+    _data <- optional $ o A..: "data"
     return $ InputCredentialsAndroidPay { _data = _data }
 
    parseInputCredentialsApplePay :: A.Value -> T.Parser InputCredentials
    parseInputCredentialsApplePay = A.withObject "InputCredentialsApplePay" $ \o -> do
-    _data <- o A..: "data"
+    _data <- optional $ o A..: "data"
     return $ InputCredentialsApplePay { _data = _data }

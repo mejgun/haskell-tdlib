@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetWebPagePreview where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
 data GetWebPagePreview = 
- GetWebPagePreview { text :: FormattedText.FormattedText }  deriving (Show)
+ GetWebPagePreview { text :: Maybe FormattedText.FormattedText }  deriving (Show)
 
 instance T.ToJSON GetWebPagePreview where
  toJSON (GetWebPagePreview { text = text }) =
@@ -22,5 +23,5 @@ instance T.FromJSON GetWebPagePreview where
   where
    parseGetWebPagePreview :: A.Value -> T.Parser GetWebPagePreview
    parseGetWebPagePreview = A.withObject "GetWebPagePreview" $ \o -> do
-    text <- o A..: "text"
+    text <- optional $ o A..: "text"
     return $ GetWebPagePreview { text = text }

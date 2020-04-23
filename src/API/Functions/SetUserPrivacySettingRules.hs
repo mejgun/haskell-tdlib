@@ -2,13 +2,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetUserPrivacySettingRules where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.UserPrivacySettingRules as UserPrivacySettingRules
 import {-# SOURCE #-} qualified API.UserPrivacySetting as UserPrivacySetting
 
 data SetUserPrivacySettingRules = 
- SetUserPrivacySettingRules { rules :: UserPrivacySettingRules.UserPrivacySettingRules, setting :: UserPrivacySetting.UserPrivacySetting }  deriving (Show)
+ SetUserPrivacySettingRules { rules :: Maybe UserPrivacySettingRules.UserPrivacySettingRules, setting :: Maybe UserPrivacySetting.UserPrivacySetting }  deriving (Show)
 
 instance T.ToJSON SetUserPrivacySettingRules where
  toJSON (SetUserPrivacySettingRules { rules = rules, setting = setting }) =
@@ -23,6 +24,6 @@ instance T.FromJSON SetUserPrivacySettingRules where
   where
    parseSetUserPrivacySettingRules :: A.Value -> T.Parser SetUserPrivacySettingRules
    parseSetUserPrivacySettingRules = A.withObject "SetUserPrivacySettingRules" $ \o -> do
-    rules <- o A..: "rules"
-    setting <- o A..: "setting"
+    rules <- optional $ o A..: "rules"
+    setting <- optional $ o A..: "setting"
     return $ SetUserPrivacySettingRules { rules = rules, setting = setting }

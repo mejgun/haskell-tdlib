@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.SavedCredentials where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SavedCredentials = 
- SavedCredentials { title :: String, _id :: String }  deriving (Show)
+ SavedCredentials { title :: Maybe String, _id :: Maybe String }  deriving (Show)
 
 instance T.ToJSON SavedCredentials where
  toJSON (SavedCredentials { title = title, _id = _id }) =
@@ -21,6 +22,6 @@ instance T.FromJSON SavedCredentials where
   where
    parseSavedCredentials :: A.Value -> T.Parser SavedCredentials
    parseSavedCredentials = A.withObject "SavedCredentials" $ \o -> do
-    title <- o A..: "title"
-    _id <- o A..: "id"
+    title <- optional $ o A..: "title"
+    _id <- optional $ o A..: "id"
     return $ SavedCredentials { title = title, _id = _id }

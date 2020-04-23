@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetTextEntities where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetTextEntities = 
- GetTextEntities { text :: String }  deriving (Show)
+ GetTextEntities { text :: Maybe String }  deriving (Show)
 
 instance T.ToJSON GetTextEntities where
  toJSON (GetTextEntities { text = text }) =
@@ -21,5 +22,5 @@ instance T.FromJSON GetTextEntities where
   where
    parseGetTextEntities :: A.Value -> T.Parser GetTextEntities
    parseGetTextEntities = A.withObject "GetTextEntities" $ \o -> do
-    text <- o A..: "text"
+    text <- optional $ o A..: "text"
     return $ GetTextEntities { text = text }

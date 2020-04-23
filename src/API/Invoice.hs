@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Invoice where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LabeledPricePart as LabeledPricePart
 
 data Invoice = 
- Invoice { is_flexible :: Bool, send_email_address_to_provider :: Bool, send_phone_number_to_provider :: Bool, need_shipping_address :: Bool, need_email_address :: Bool, need_phone_number :: Bool, need_name :: Bool, is_test :: Bool, price_parts :: [LabeledPricePart.LabeledPricePart], currency :: String }  deriving (Show)
+ Invoice { is_flexible :: Maybe Bool, send_email_address_to_provider :: Maybe Bool, send_phone_number_to_provider :: Maybe Bool, need_shipping_address :: Maybe Bool, need_email_address :: Maybe Bool, need_phone_number :: Maybe Bool, need_name :: Maybe Bool, is_test :: Maybe Bool, price_parts :: Maybe [LabeledPricePart.LabeledPricePart], currency :: Maybe String }  deriving (Show)
 
 instance T.ToJSON Invoice where
  toJSON (Invoice { is_flexible = is_flexible, send_email_address_to_provider = send_email_address_to_provider, send_phone_number_to_provider = send_phone_number_to_provider, need_shipping_address = need_shipping_address, need_email_address = need_email_address, need_phone_number = need_phone_number, need_name = need_name, is_test = is_test, price_parts = price_parts, currency = currency }) =
@@ -22,14 +23,14 @@ instance T.FromJSON Invoice where
   where
    parseInvoice :: A.Value -> T.Parser Invoice
    parseInvoice = A.withObject "Invoice" $ \o -> do
-    is_flexible <- o A..: "is_flexible"
-    send_email_address_to_provider <- o A..: "send_email_address_to_provider"
-    send_phone_number_to_provider <- o A..: "send_phone_number_to_provider"
-    need_shipping_address <- o A..: "need_shipping_address"
-    need_email_address <- o A..: "need_email_address"
-    need_phone_number <- o A..: "need_phone_number"
-    need_name <- o A..: "need_name"
-    is_test <- o A..: "is_test"
-    price_parts <- o A..: "price_parts"
-    currency <- o A..: "currency"
+    is_flexible <- optional $ o A..: "is_flexible"
+    send_email_address_to_provider <- optional $ o A..: "send_email_address_to_provider"
+    send_phone_number_to_provider <- optional $ o A..: "send_phone_number_to_provider"
+    need_shipping_address <- optional $ o A..: "need_shipping_address"
+    need_email_address <- optional $ o A..: "need_email_address"
+    need_phone_number <- optional $ o A..: "need_phone_number"
+    need_name <- optional $ o A..: "need_name"
+    is_test <- optional $ o A..: "is_test"
+    price_parts <- optional $ o A..: "price_parts"
+    currency <- optional $ o A..: "currency"
     return $ Invoice { is_flexible = is_flexible, send_email_address_to_provider = send_email_address_to_provider, send_phone_number_to_provider = send_phone_number_to_provider, need_shipping_address = need_shipping_address, need_email_address = need_email_address, need_phone_number = need_phone_number, need_name = need_name, is_test = is_test, price_parts = price_parts, currency = currency }

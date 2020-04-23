@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Users where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Users = 
- Users { user_ids :: [Int], total_count :: Int }  deriving (Show)
+ Users { user_ids :: Maybe [Int], total_count :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON Users where
  toJSON (Users { user_ids = user_ids, total_count = total_count }) =
@@ -21,6 +22,6 @@ instance T.FromJSON Users where
   where
    parseUsers :: A.Value -> T.Parser Users
    parseUsers = A.withObject "Users" $ \o -> do
-    user_ids <- o A..: "user_ids"
-    total_count <- o A..: "total_count"
+    user_ids <- optional $ o A..: "user_ids"
+    total_count <- optional $ o A..: "total_count"
     return $ Users { user_ids = user_ids, total_count = total_count }

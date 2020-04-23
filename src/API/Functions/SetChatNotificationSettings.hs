@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetChatNotificationSettings where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatNotificationSettings as ChatNotificationSettings
 
 data SetChatNotificationSettings = 
- SetChatNotificationSettings { notification_settings :: ChatNotificationSettings.ChatNotificationSettings, chat_id :: Int }  deriving (Show)
+ SetChatNotificationSettings { notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON SetChatNotificationSettings where
  toJSON (SetChatNotificationSettings { notification_settings = notification_settings, chat_id = chat_id }) =
@@ -22,6 +23,6 @@ instance T.FromJSON SetChatNotificationSettings where
   where
    parseSetChatNotificationSettings :: A.Value -> T.Parser SetChatNotificationSettings
    parseSetChatNotificationSettings = A.withObject "SetChatNotificationSettings" $ \o -> do
-    notification_settings <- o A..: "notification_settings"
-    chat_id <- o A..: "chat_id"
+    notification_settings <- optional $ o A..: "notification_settings"
+    chat_id <- optional $ o A..: "chat_id"
     return $ SetChatNotificationSettings { notification_settings = notification_settings, chat_id = chat_id }

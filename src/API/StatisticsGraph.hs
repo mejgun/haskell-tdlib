@@ -2,13 +2,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.StatisticsGraph where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data StatisticsGraph = 
- StatisticsGraphData { zoom_token :: String, json_data :: String }  
- | StatisticsGraphAsync { token :: String }  
- | StatisticsGraphError { error_message :: String }  deriving (Show)
+ StatisticsGraphData { zoom_token :: Maybe String, json_data :: Maybe String }  
+ | StatisticsGraphAsync { token :: Maybe String }  
+ | StatisticsGraphError { error_message :: Maybe String }  deriving (Show)
 
 instance T.ToJSON StatisticsGraph where
  toJSON (StatisticsGraphData { zoom_token = zoom_token, json_data = json_data }) =
@@ -31,16 +32,16 @@ instance T.FromJSON StatisticsGraph where
   where
    parseStatisticsGraphData :: A.Value -> T.Parser StatisticsGraph
    parseStatisticsGraphData = A.withObject "StatisticsGraphData" $ \o -> do
-    zoom_token <- o A..: "zoom_token"
-    json_data <- o A..: "json_data"
+    zoom_token <- optional $ o A..: "zoom_token"
+    json_data <- optional $ o A..: "json_data"
     return $ StatisticsGraphData { zoom_token = zoom_token, json_data = json_data }
 
    parseStatisticsGraphAsync :: A.Value -> T.Parser StatisticsGraph
    parseStatisticsGraphAsync = A.withObject "StatisticsGraphAsync" $ \o -> do
-    token <- o A..: "token"
+    token <- optional $ o A..: "token"
     return $ StatisticsGraphAsync { token = token }
 
    parseStatisticsGraphError :: A.Value -> T.Parser StatisticsGraph
    parseStatisticsGraphError = A.withObject "StatisticsGraphError" $ \o -> do
-    error_message <- o A..: "error_message"
+    error_message <- optional $ o A..: "error_message"
     return $ StatisticsGraphError { error_message = error_message }

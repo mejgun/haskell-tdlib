@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ValidateOrderInfo where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.OrderInfo as OrderInfo
 
 data ValidateOrderInfo = 
- ValidateOrderInfo { allow_save :: Bool, order_info :: OrderInfo.OrderInfo, message_id :: Int, chat_id :: Int }  deriving (Show)
+ ValidateOrderInfo { allow_save :: Maybe Bool, order_info :: Maybe OrderInfo.OrderInfo, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON ValidateOrderInfo where
  toJSON (ValidateOrderInfo { allow_save = allow_save, order_info = order_info, message_id = message_id, chat_id = chat_id }) =
@@ -22,8 +23,8 @@ instance T.FromJSON ValidateOrderInfo where
   where
    parseValidateOrderInfo :: A.Value -> T.Parser ValidateOrderInfo
    parseValidateOrderInfo = A.withObject "ValidateOrderInfo" $ \o -> do
-    allow_save <- o A..: "allow_save"
-    order_info <- o A..: "order_info"
-    message_id <- o A..: "message_id"
-    chat_id <- o A..: "chat_id"
+    allow_save <- optional $ o A..: "allow_save"
+    order_info <- optional $ o A..: "order_info"
+    message_id <- optional $ o A..: "message_id"
+    chat_id <- optional $ o A..: "chat_id"
     return $ ValidateOrderInfo { allow_save = allow_save, order_info = order_info, message_id = message_id, chat_id = chat_id }

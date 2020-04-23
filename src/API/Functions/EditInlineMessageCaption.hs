@@ -2,13 +2,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.EditInlineMessageCaption where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 
 data EditInlineMessageCaption = 
- EditInlineMessageCaption { caption :: FormattedText.FormattedText, reply_markup :: ReplyMarkup.ReplyMarkup, inline_message_id :: String }  deriving (Show)
+ EditInlineMessageCaption { caption :: Maybe FormattedText.FormattedText, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, inline_message_id :: Maybe String }  deriving (Show)
 
 instance T.ToJSON EditInlineMessageCaption where
  toJSON (EditInlineMessageCaption { caption = caption, reply_markup = reply_markup, inline_message_id = inline_message_id }) =
@@ -23,7 +24,7 @@ instance T.FromJSON EditInlineMessageCaption where
   where
    parseEditInlineMessageCaption :: A.Value -> T.Parser EditInlineMessageCaption
    parseEditInlineMessageCaption = A.withObject "EditInlineMessageCaption" $ \o -> do
-    caption <- o A..: "caption"
-    reply_markup <- o A..: "reply_markup"
-    inline_message_id <- o A..: "inline_message_id"
+    caption <- optional $ o A..: "caption"
+    reply_markup <- optional $ o A..: "reply_markup"
+    inline_message_id <- optional $ o A..: "inline_message_id"
     return $ EditInlineMessageCaption { caption = caption, reply_markup = reply_markup, inline_message_id = inline_message_id }

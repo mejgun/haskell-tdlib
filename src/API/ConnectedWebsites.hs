@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ConnectedWebsites where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ConnectedWebsite as ConnectedWebsite
 
 data ConnectedWebsites = 
- ConnectedWebsites { websites :: [ConnectedWebsite.ConnectedWebsite] }  deriving (Show)
+ ConnectedWebsites { websites :: Maybe [ConnectedWebsite.ConnectedWebsite] }  deriving (Show)
 
 instance T.ToJSON ConnectedWebsites where
  toJSON (ConnectedWebsites { websites = websites }) =
@@ -22,5 +23,5 @@ instance T.FromJSON ConnectedWebsites where
   where
    parseConnectedWebsites :: A.Value -> T.Parser ConnectedWebsites
    parseConnectedWebsites = A.withObject "ConnectedWebsites" $ \o -> do
-    websites <- o A..: "websites"
+    websites <- optional $ o A..: "websites"
     return $ ConnectedWebsites { websites = websites }

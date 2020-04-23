@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.TestProxy where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ProxyType as ProxyType
 
 data TestProxy = 
- TestProxy { timeout :: Float, dc_id :: Int, _type :: ProxyType.ProxyType, port :: Int, server :: String }  deriving (Show)
+ TestProxy { timeout :: Maybe Float, dc_id :: Maybe Int, _type :: Maybe ProxyType.ProxyType, port :: Maybe Int, server :: Maybe String }  deriving (Show)
 
 instance T.ToJSON TestProxy where
  toJSON (TestProxy { timeout = timeout, dc_id = dc_id, _type = _type, port = port, server = server }) =
@@ -22,9 +23,9 @@ instance T.FromJSON TestProxy where
   where
    parseTestProxy :: A.Value -> T.Parser TestProxy
    parseTestProxy = A.withObject "TestProxy" $ \o -> do
-    timeout <- o A..: "timeout"
-    dc_id <- o A..: "dc_id"
-    _type <- o A..: "type"
-    port <- o A..: "port"
-    server <- o A..: "server"
+    timeout <- optional $ o A..: "timeout"
+    dc_id <- optional $ o A..: "dc_id"
+    _type <- optional $ o A..: "type"
+    port <- optional $ o A..: "port"
+    server <- optional $ o A..: "server"
     return $ TestProxy { timeout = timeout, dc_id = dc_id, _type = _type, port = port, server = server }

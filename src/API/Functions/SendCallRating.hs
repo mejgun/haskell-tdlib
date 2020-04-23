@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SendCallRating where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.CallProblem as CallProblem
 
 data SendCallRating = 
- SendCallRating { problems :: [CallProblem.CallProblem], comment :: String, rating :: Int, call_id :: Int }  deriving (Show)
+ SendCallRating { problems :: Maybe [CallProblem.CallProblem], comment :: Maybe String, rating :: Maybe Int, call_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON SendCallRating where
  toJSON (SendCallRating { problems = problems, comment = comment, rating = rating, call_id = call_id }) =
@@ -22,8 +23,8 @@ instance T.FromJSON SendCallRating where
   where
    parseSendCallRating :: A.Value -> T.Parser SendCallRating
    parseSendCallRating = A.withObject "SendCallRating" $ \o -> do
-    problems <- o A..: "problems"
-    comment <- o A..: "comment"
-    rating <- o A..: "rating"
-    call_id <- o A..: "call_id"
+    problems <- optional $ o A..: "problems"
+    comment <- optional $ o A..: "comment"
+    rating <- optional $ o A..: "rating"
+    call_id <- optional $ o A..: "call_id"
     return $ SendCallRating { problems = problems, comment = comment, rating = rating, call_id = call_id }

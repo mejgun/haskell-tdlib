@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Count where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Count = 
- Count { count :: Int }  deriving (Show)
+ Count { count :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON Count where
  toJSON (Count { count = count }) =
@@ -21,5 +22,5 @@ instance T.FromJSON Count where
   where
    parseCount :: A.Value -> T.Parser Count
    parseCount = A.withObject "Count" $ \o -> do
-    count <- o A..: "count"
+    count <- optional $ o A..: "count"
     return $ Count { count = count }

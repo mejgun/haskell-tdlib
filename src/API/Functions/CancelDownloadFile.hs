@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.CancelDownloadFile where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CancelDownloadFile = 
- CancelDownloadFile { only_if_pending :: Bool, file_id :: Int }  deriving (Show)
+ CancelDownloadFile { only_if_pending :: Maybe Bool, file_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON CancelDownloadFile where
  toJSON (CancelDownloadFile { only_if_pending = only_if_pending, file_id = file_id }) =
@@ -21,6 +22,6 @@ instance T.FromJSON CancelDownloadFile where
   where
    parseCancelDownloadFile :: A.Value -> T.Parser CancelDownloadFile
    parseCancelDownloadFile = A.withObject "CancelDownloadFile" $ \o -> do
-    only_if_pending <- o A..: "only_if_pending"
-    file_id <- o A..: "file_id"
+    only_if_pending <- optional $ o A..: "only_if_pending"
+    file_id <- optional $ o A..: "file_id"
     return $ CancelDownloadFile { only_if_pending = only_if_pending, file_id = file_id }

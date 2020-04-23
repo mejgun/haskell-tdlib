@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.WebPage where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.VoiceNote as VoiceNote
@@ -15,7 +16,7 @@ import {-# SOURCE #-} qualified API.Photo as Photo
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
 data WebPage = 
- WebPage { instant_view_version :: Int, voice_note :: VoiceNote.VoiceNote, video_note :: VideoNote.VideoNote, video :: Video.Video, sticker :: Sticker.Sticker, document :: Document.Document, audio :: Audio.Audio, animation :: Animation.Animation, author :: String, duration :: Int, embed_height :: Int, embed_width :: Int, embed_type :: String, embed_url :: String, photo :: Photo.Photo, description :: FormattedText.FormattedText, title :: String, site_name :: String, _type :: String, display_url :: String, url :: String }  deriving (Show)
+ WebPage { instant_view_version :: Maybe Int, voice_note :: Maybe VoiceNote.VoiceNote, video_note :: Maybe VideoNote.VideoNote, video :: Maybe Video.Video, sticker :: Maybe Sticker.Sticker, document :: Maybe Document.Document, audio :: Maybe Audio.Audio, animation :: Maybe Animation.Animation, author :: Maybe String, duration :: Maybe Int, embed_height :: Maybe Int, embed_width :: Maybe Int, embed_type :: Maybe String, embed_url :: Maybe String, photo :: Maybe Photo.Photo, description :: Maybe FormattedText.FormattedText, title :: Maybe String, site_name :: Maybe String, _type :: Maybe String, display_url :: Maybe String, url :: Maybe String }  deriving (Show)
 
 instance T.ToJSON WebPage where
  toJSON (WebPage { instant_view_version = instant_view_version, voice_note = voice_note, video_note = video_note, video = video, sticker = sticker, document = document, audio = audio, animation = animation, author = author, duration = duration, embed_height = embed_height, embed_width = embed_width, embed_type = embed_type, embed_url = embed_url, photo = photo, description = description, title = title, site_name = site_name, _type = _type, display_url = display_url, url = url }) =
@@ -30,25 +31,25 @@ instance T.FromJSON WebPage where
   where
    parseWebPage :: A.Value -> T.Parser WebPage
    parseWebPage = A.withObject "WebPage" $ \o -> do
-    instant_view_version <- o A..: "instant_view_version"
-    voice_note <- o A..: "voice_note"
-    video_note <- o A..: "video_note"
-    video <- o A..: "video"
-    sticker <- o A..: "sticker"
-    document <- o A..: "document"
-    audio <- o A..: "audio"
-    animation <- o A..: "animation"
-    author <- o A..: "author"
-    duration <- o A..: "duration"
-    embed_height <- o A..: "embed_height"
-    embed_width <- o A..: "embed_width"
-    embed_type <- o A..: "embed_type"
-    embed_url <- o A..: "embed_url"
-    photo <- o A..: "photo"
-    description <- o A..: "description"
-    title <- o A..: "title"
-    site_name <- o A..: "site_name"
-    _type <- o A..: "type"
-    display_url <- o A..: "display_url"
-    url <- o A..: "url"
+    instant_view_version <- optional $ o A..: "instant_view_version"
+    voice_note <- optional $ o A..: "voice_note"
+    video_note <- optional $ o A..: "video_note"
+    video <- optional $ o A..: "video"
+    sticker <- optional $ o A..: "sticker"
+    document <- optional $ o A..: "document"
+    audio <- optional $ o A..: "audio"
+    animation <- optional $ o A..: "animation"
+    author <- optional $ o A..: "author"
+    duration <- optional $ o A..: "duration"
+    embed_height <- optional $ o A..: "embed_height"
+    embed_width <- optional $ o A..: "embed_width"
+    embed_type <- optional $ o A..: "embed_type"
+    embed_url <- optional $ o A..: "embed_url"
+    photo <- optional $ o A..: "photo"
+    description <- optional $ o A..: "description"
+    title <- optional $ o A..: "title"
+    site_name <- optional $ o A..: "site_name"
+    _type <- optional $ o A..: "type"
+    display_url <- optional $ o A..: "display_url"
+    url <- optional $ o A..: "url"
     return $ WebPage { instant_view_version = instant_view_version, voice_note = voice_note, video_note = video_note, video = video, sticker = sticker, document = document, audio = audio, animation = animation, author = author, duration = duration, embed_height = embed_height, embed_width = embed_width, embed_type = embed_type, embed_url = embed_url, photo = photo, description = description, title = title, site_name = site_name, _type = _type, display_url = display_url, url = url }

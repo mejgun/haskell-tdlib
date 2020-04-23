@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Game where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Animation as Animation
@@ -9,7 +10,7 @@ import {-# SOURCE #-} qualified API.Photo as Photo
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
 data Game = 
- Game { animation :: Animation.Animation, photo :: Photo.Photo, description :: String, text :: FormattedText.FormattedText, title :: String, short_name :: String, _id :: Int }  deriving (Show)
+ Game { animation :: Maybe Animation.Animation, photo :: Maybe Photo.Photo, description :: Maybe String, text :: Maybe FormattedText.FormattedText, title :: Maybe String, short_name :: Maybe String, _id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON Game where
  toJSON (Game { animation = animation, photo = photo, description = description, text = text, title = title, short_name = short_name, _id = _id }) =
@@ -24,11 +25,11 @@ instance T.FromJSON Game where
   where
    parseGame :: A.Value -> T.Parser Game
    parseGame = A.withObject "Game" $ \o -> do
-    animation <- o A..: "animation"
-    photo <- o A..: "photo"
-    description <- o A..: "description"
-    text <- o A..: "text"
-    title <- o A..: "title"
-    short_name <- o A..: "short_name"
-    _id <- o A..: "id"
+    animation <- optional $ o A..: "animation"
+    photo <- optional $ o A..: "photo"
+    description <- optional $ o A..: "description"
+    text <- optional $ o A..: "text"
+    title <- optional $ o A..: "title"
+    short_name <- optional $ o A..: "short_name"
+    _id <- optional $ o A..: "id"
     return $ Game { animation = animation, photo = photo, description = description, text = text, title = title, short_name = short_name, _id = _id }

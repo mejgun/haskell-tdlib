@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetChatDiscussionGroup where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetChatDiscussionGroup = 
- SetChatDiscussionGroup { discussion_chat_id :: Int, chat_id :: Int }  deriving (Show)
+ SetChatDiscussionGroup { discussion_chat_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON SetChatDiscussionGroup where
  toJSON (SetChatDiscussionGroup { discussion_chat_id = discussion_chat_id, chat_id = chat_id }) =
@@ -21,6 +22,6 @@ instance T.FromJSON SetChatDiscussionGroup where
   where
    parseSetChatDiscussionGroup :: A.Value -> T.Parser SetChatDiscussionGroup
    parseSetChatDiscussionGroup = A.withObject "SetChatDiscussionGroup" $ \o -> do
-    discussion_chat_id <- o A..: "discussion_chat_id"
-    chat_id <- o A..: "chat_id"
+    discussion_chat_id <- optional $ o A..: "discussion_chat_id"
+    chat_id <- optional $ o A..: "chat_id"
     return $ SetChatDiscussionGroup { discussion_chat_id = discussion_chat_id, chat_id = chat_id }

@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetLocation where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Location as Location
 
 data SetLocation = 
- SetLocation { location :: Location.Location }  deriving (Show)
+ SetLocation { location :: Maybe Location.Location }  deriving (Show)
 
 instance T.ToJSON SetLocation where
  toJSON (SetLocation { location = location }) =
@@ -22,5 +23,5 @@ instance T.FromJSON SetLocation where
   where
    parseSetLocation :: A.Value -> T.Parser SetLocation
    parseSetLocation = A.withObject "SetLocation" $ \o -> do
-    location <- o A..: "location"
+    location <- optional $ o A..: "location"
     return $ SetLocation { location = location }

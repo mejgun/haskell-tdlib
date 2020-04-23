@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SearchMessages where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatList as ChatList
 
 data SearchMessages = 
- SearchMessages { limit :: Int, offset_message_id :: Int, offset_chat_id :: Int, offset_date :: Int, query :: String, chat_list :: ChatList.ChatList }  deriving (Show)
+ SearchMessages { limit :: Maybe Int, offset_message_id :: Maybe Int, offset_chat_id :: Maybe Int, offset_date :: Maybe Int, query :: Maybe String, chat_list :: Maybe ChatList.ChatList }  deriving (Show)
 
 instance T.ToJSON SearchMessages where
  toJSON (SearchMessages { limit = limit, offset_message_id = offset_message_id, offset_chat_id = offset_chat_id, offset_date = offset_date, query = query, chat_list = chat_list }) =
@@ -22,10 +23,10 @@ instance T.FromJSON SearchMessages where
   where
    parseSearchMessages :: A.Value -> T.Parser SearchMessages
    parseSearchMessages = A.withObject "SearchMessages" $ \o -> do
-    limit <- o A..: "limit"
-    offset_message_id <- o A..: "offset_message_id"
-    offset_chat_id <- o A..: "offset_chat_id"
-    offset_date <- o A..: "offset_date"
-    query <- o A..: "query"
-    chat_list <- o A..: "chat_list"
+    limit <- optional $ o A..: "limit"
+    offset_message_id <- optional $ o A..: "offset_message_id"
+    offset_chat_id <- optional $ o A..: "offset_chat_id"
+    offset_date <- optional $ o A..: "offset_date"
+    query <- optional $ o A..: "query"
+    chat_list <- optional $ o A..: "chat_list"
     return $ SearchMessages { limit = limit, offset_message_id = offset_message_id, offset_chat_id = offset_chat_id, offset_date = offset_date, query = query, chat_list = chat_list }

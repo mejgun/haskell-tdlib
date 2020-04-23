@@ -7,6 +7,7 @@ module TDLib
   , sendWExtra
   , receive
   , destroy
+  , Client
   )
 where
 
@@ -58,8 +59,6 @@ sendWExtra c d = do
     let str = (++) <$> s <*> ns
     str
 
-
-
 -- execute :: Client -> String -> IO ()
 -- execute c s = (newCString s) >>= c_execute c
 
@@ -71,7 +70,9 @@ receive c = dec $ c_receive c 1.0
     cs <- ics
     if cs == nullPtr
       then return Nothing
-      else A.decodeStrict <$> B.packCString cs
+      else do
+        --B.packCString cs >>= print --DEBUG
+        A.decodeStrict <$> B.packCString cs
 
 destroy :: Client -> IO ()
 destroy c = c_destroy c

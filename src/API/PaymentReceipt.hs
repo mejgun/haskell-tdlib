@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PaymentReceipt where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ShippingOption as ShippingOption
@@ -9,7 +10,7 @@ import {-# SOURCE #-} qualified API.OrderInfo as OrderInfo
 import {-# SOURCE #-} qualified API.Invoice as Invoice
 
 data PaymentReceipt = 
- PaymentReceipt { credentials_title :: String, shipping_option :: ShippingOption.ShippingOption, order_info :: OrderInfo.OrderInfo, invoice :: Invoice.Invoice, payments_provider_user_id :: Int, date :: Int }  deriving (Show)
+ PaymentReceipt { credentials_title :: Maybe String, shipping_option :: Maybe ShippingOption.ShippingOption, order_info :: Maybe OrderInfo.OrderInfo, invoice :: Maybe Invoice.Invoice, payments_provider_user_id :: Maybe Int, date :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON PaymentReceipt where
  toJSON (PaymentReceipt { credentials_title = credentials_title, shipping_option = shipping_option, order_info = order_info, invoice = invoice, payments_provider_user_id = payments_provider_user_id, date = date }) =
@@ -24,10 +25,10 @@ instance T.FromJSON PaymentReceipt where
   where
    parsePaymentReceipt :: A.Value -> T.Parser PaymentReceipt
    parsePaymentReceipt = A.withObject "PaymentReceipt" $ \o -> do
-    credentials_title <- o A..: "credentials_title"
-    shipping_option <- o A..: "shipping_option"
-    order_info <- o A..: "order_info"
-    invoice <- o A..: "invoice"
-    payments_provider_user_id <- o A..: "payments_provider_user_id"
-    date <- o A..: "date"
+    credentials_title <- optional $ o A..: "credentials_title"
+    shipping_option <- optional $ o A..: "shipping_option"
+    order_info <- optional $ o A..: "order_info"
+    invoice <- optional $ o A..: "invoice"
+    payments_provider_user_id <- optional $ o A..: "payments_provider_user_id"
+    date <- optional $ o A..: "date"
     return $ PaymentReceipt { credentials_title = credentials_title, shipping_option = shipping_option, order_info = order_info, invoice = invoice, payments_provider_user_id = payments_provider_user_id, date = date }

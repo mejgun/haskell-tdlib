@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.EditMessageSchedulingState where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.MessageSchedulingState as MessageSchedulingState
 
 data EditMessageSchedulingState = 
- EditMessageSchedulingState { scheduling_state :: MessageSchedulingState.MessageSchedulingState, message_id :: Int, chat_id :: Int }  deriving (Show)
+ EditMessageSchedulingState { scheduling_state :: Maybe MessageSchedulingState.MessageSchedulingState, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON EditMessageSchedulingState where
  toJSON (EditMessageSchedulingState { scheduling_state = scheduling_state, message_id = message_id, chat_id = chat_id }) =
@@ -22,7 +23,7 @@ instance T.FromJSON EditMessageSchedulingState where
   where
    parseEditMessageSchedulingState :: A.Value -> T.Parser EditMessageSchedulingState
    parseEditMessageSchedulingState = A.withObject "EditMessageSchedulingState" $ \o -> do
-    scheduling_state <- o A..: "scheduling_state"
-    message_id <- o A..: "message_id"
-    chat_id <- o A..: "chat_id"
+    scheduling_state <- optional $ o A..: "scheduling_state"
+    message_id <- optional $ o A..: "message_id"
+    chat_id <- optional $ o A..: "chat_id"
     return $ EditMessageSchedulingState { scheduling_state = scheduling_state, message_id = message_id, chat_id = chat_id }

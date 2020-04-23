@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.TestSquareInt where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data TestSquareInt = 
- TestSquareInt { x :: Int }  deriving (Show)
+ TestSquareInt { x :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON TestSquareInt where
  toJSON (TestSquareInt { x = x }) =
@@ -21,5 +22,5 @@ instance T.FromJSON TestSquareInt where
   where
    parseTestSquareInt :: A.Value -> T.Parser TestSquareInt
    parseTestSquareInt = A.withObject "TestSquareInt" $ \o -> do
-    x <- o A..: "x"
+    x <- optional $ o A..: "x"
     return $ TestSquareInt { x = x }

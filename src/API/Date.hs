@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Date where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Date = 
- Date { year :: Int, month :: Int, day :: Int }  deriving (Show)
+ Date { year :: Maybe Int, month :: Maybe Int, day :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON Date where
  toJSON (Date { year = year, month = month, day = day }) =
@@ -21,7 +22,7 @@ instance T.FromJSON Date where
   where
    parseDate :: A.Value -> T.Parser Date
    parseDate = A.withObject "Date" $ \o -> do
-    year <- o A..: "year"
-    month <- o A..: "month"
-    day <- o A..: "day"
+    year <- optional $ o A..: "year"
+    month <- optional $ o A..: "month"
+    day <- optional $ o A..: "day"
     return $ Date { year = year, month = month, day = day }

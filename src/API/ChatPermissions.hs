@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatPermissions where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ChatPermissions = 
- ChatPermissions { can_pin_messages :: Bool, can_invite_users :: Bool, can_change_info :: Bool, can_add_web_page_previews :: Bool, can_send_other_messages :: Bool, can_send_polls :: Bool, can_send_media_messages :: Bool, can_send_messages :: Bool }  deriving (Show)
+ ChatPermissions { can_pin_messages :: Maybe Bool, can_invite_users :: Maybe Bool, can_change_info :: Maybe Bool, can_add_web_page_previews :: Maybe Bool, can_send_other_messages :: Maybe Bool, can_send_polls :: Maybe Bool, can_send_media_messages :: Maybe Bool, can_send_messages :: Maybe Bool }  deriving (Show)
 
 instance T.ToJSON ChatPermissions where
  toJSON (ChatPermissions { can_pin_messages = can_pin_messages, can_invite_users = can_invite_users, can_change_info = can_change_info, can_add_web_page_previews = can_add_web_page_previews, can_send_other_messages = can_send_other_messages, can_send_polls = can_send_polls, can_send_media_messages = can_send_media_messages, can_send_messages = can_send_messages }) =
@@ -21,12 +22,12 @@ instance T.FromJSON ChatPermissions where
   where
    parseChatPermissions :: A.Value -> T.Parser ChatPermissions
    parseChatPermissions = A.withObject "ChatPermissions" $ \o -> do
-    can_pin_messages <- o A..: "can_pin_messages"
-    can_invite_users <- o A..: "can_invite_users"
-    can_change_info <- o A..: "can_change_info"
-    can_add_web_page_previews <- o A..: "can_add_web_page_previews"
-    can_send_other_messages <- o A..: "can_send_other_messages"
-    can_send_polls <- o A..: "can_send_polls"
-    can_send_media_messages <- o A..: "can_send_media_messages"
-    can_send_messages <- o A..: "can_send_messages"
+    can_pin_messages <- optional $ o A..: "can_pin_messages"
+    can_invite_users <- optional $ o A..: "can_invite_users"
+    can_change_info <- optional $ o A..: "can_change_info"
+    can_add_web_page_previews <- optional $ o A..: "can_add_web_page_previews"
+    can_send_other_messages <- optional $ o A..: "can_send_other_messages"
+    can_send_polls <- optional $ o A..: "can_send_polls"
+    can_send_media_messages <- optional $ o A..: "can_send_media_messages"
+    can_send_messages <- optional $ o A..: "can_send_messages"
     return $ ChatPermissions { can_pin_messages = can_pin_messages, can_invite_users = can_invite_users, can_change_info = can_change_info, can_add_web_page_previews = can_add_web_page_previews, can_send_other_messages = can_send_other_messages, can_send_polls = can_send_polls, can_send_media_messages = can_send_media_messages, can_send_messages = can_send_messages }

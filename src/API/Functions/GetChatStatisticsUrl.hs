@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetChatStatisticsUrl where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetChatStatisticsUrl = 
- GetChatStatisticsUrl { is_dark :: Bool, parameters :: String, chat_id :: Int }  deriving (Show)
+ GetChatStatisticsUrl { is_dark :: Maybe Bool, parameters :: Maybe String, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON GetChatStatisticsUrl where
  toJSON (GetChatStatisticsUrl { is_dark = is_dark, parameters = parameters, chat_id = chat_id }) =
@@ -21,7 +22,7 @@ instance T.FromJSON GetChatStatisticsUrl where
   where
    parseGetChatStatisticsUrl :: A.Value -> T.Parser GetChatStatisticsUrl
    parseGetChatStatisticsUrl = A.withObject "GetChatStatisticsUrl" $ \o -> do
-    is_dark <- o A..: "is_dark"
-    parameters <- o A..: "parameters"
-    chat_id <- o A..: "chat_id"
+    is_dark <- optional $ o A..: "is_dark"
+    parameters <- optional $ o A..: "parameters"
+    chat_id <- optional $ o A..: "chat_id"
     return $ GetChatStatisticsUrl { is_dark = is_dark, parameters = parameters, chat_id = chat_id }

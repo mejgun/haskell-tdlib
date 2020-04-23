@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PageBlockListItem where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PageBlock as PageBlock
 
 data PageBlockListItem = 
- PageBlockListItem { page_blocks :: [PageBlock.PageBlock], label :: String }  deriving (Show)
+ PageBlockListItem { page_blocks :: Maybe [PageBlock.PageBlock], label :: Maybe String }  deriving (Show)
 
 instance T.ToJSON PageBlockListItem where
  toJSON (PageBlockListItem { page_blocks = page_blocks, label = label }) =
@@ -22,6 +23,6 @@ instance T.FromJSON PageBlockListItem where
   where
    parsePageBlockListItem :: A.Value -> T.Parser PageBlockListItem
    parsePageBlockListItem = A.withObject "PageBlockListItem" $ \o -> do
-    page_blocks <- o A..: "page_blocks"
-    label <- o A..: "label"
+    page_blocks <- optional $ o A..: "page_blocks"
+    label <- optional $ o A..: "label"
     return $ PageBlockListItem { page_blocks = page_blocks, label = label }

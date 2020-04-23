@@ -2,13 +2,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.InputBackground where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data InputBackground = 
- InputBackgroundLocal { background :: InputFile.InputFile }  
- | InputBackgroundRemote { background_id :: Int }  deriving (Show)
+ InputBackgroundLocal { background :: Maybe InputFile.InputFile }  
+ | InputBackgroundRemote { background_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON InputBackground where
  toJSON (InputBackgroundLocal { background = background }) =
@@ -27,10 +28,10 @@ instance T.FromJSON InputBackground where
   where
    parseInputBackgroundLocal :: A.Value -> T.Parser InputBackground
    parseInputBackgroundLocal = A.withObject "InputBackgroundLocal" $ \o -> do
-    background <- o A..: "background"
+    background <- optional $ o A..: "background"
     return $ InputBackgroundLocal { background = background }
 
    parseInputBackgroundRemote :: A.Value -> T.Parser InputBackground
    parseInputBackgroundRemote = A.withObject "InputBackgroundRemote" $ \o -> do
-    background_id <- o A..: "background_id"
+    background_id <- optional $ o A..: "background_id"
     return $ InputBackgroundRemote { background_id = background_id }

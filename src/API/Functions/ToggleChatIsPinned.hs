@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ToggleChatIsPinned where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ToggleChatIsPinned = 
- ToggleChatIsPinned { is_pinned :: Bool, chat_id :: Int }  deriving (Show)
+ ToggleChatIsPinned { is_pinned :: Maybe Bool, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON ToggleChatIsPinned where
  toJSON (ToggleChatIsPinned { is_pinned = is_pinned, chat_id = chat_id }) =
@@ -21,6 +22,6 @@ instance T.FromJSON ToggleChatIsPinned where
   where
    parseToggleChatIsPinned :: A.Value -> T.Parser ToggleChatIsPinned
    parseToggleChatIsPinned = A.withObject "ToggleChatIsPinned" $ \o -> do
-    is_pinned <- o A..: "is_pinned"
-    chat_id <- o A..: "chat_id"
+    is_pinned <- optional $ o A..: "is_pinned"
+    chat_id <- optional $ o A..: "chat_id"
     return $ ToggleChatIsPinned { is_pinned = is_pinned, chat_id = chat_id }

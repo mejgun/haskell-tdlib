@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.CreateSecretChat where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CreateSecretChat = 
- CreateSecretChat { secret_chat_id :: Int }  deriving (Show)
+ CreateSecretChat { secret_chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON CreateSecretChat where
  toJSON (CreateSecretChat { secret_chat_id = secret_chat_id }) =
@@ -21,5 +22,5 @@ instance T.FromJSON CreateSecretChat where
   where
    parseCreateSecretChat :: A.Value -> T.Parser CreateSecretChat
    parseCreateSecretChat = A.withObject "CreateSecretChat" $ \o -> do
-    secret_chat_id <- o A..: "secret_chat_id"
+    secret_chat_id <- optional $ o A..: "secret_chat_id"
     return $ CreateSecretChat { secret_chat_id = secret_chat_id }

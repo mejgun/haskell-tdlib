@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetScopeNotificationSettings where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.NotificationSettingsScope as NotificationSettingsScope
 
 data GetScopeNotificationSettings = 
- GetScopeNotificationSettings { scope :: NotificationSettingsScope.NotificationSettingsScope }  deriving (Show)
+ GetScopeNotificationSettings { scope :: Maybe NotificationSettingsScope.NotificationSettingsScope }  deriving (Show)
 
 instance T.ToJSON GetScopeNotificationSettings where
  toJSON (GetScopeNotificationSettings { scope = scope }) =
@@ -22,5 +23,5 @@ instance T.FromJSON GetScopeNotificationSettings where
   where
    parseGetScopeNotificationSettings :: A.Value -> T.Parser GetScopeNotificationSettings
    parseGetScopeNotificationSettings = A.withObject "GetScopeNotificationSettings" $ \o -> do
-    scope <- o A..: "scope"
+    scope <- optional $ o A..: "scope"
     return $ GetScopeNotificationSettings { scope = scope }

@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.HttpUrl where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data HttpUrl = 
- HttpUrl { url :: String }  deriving (Show)
+ HttpUrl { url :: Maybe String }  deriving (Show)
 
 instance T.ToJSON HttpUrl where
  toJSON (HttpUrl { url = url }) =
@@ -21,5 +22,5 @@ instance T.FromJSON HttpUrl where
   where
    parseHttpUrl :: A.Value -> T.Parser HttpUrl
    parseHttpUrl = A.withObject "HttpUrl" $ \o -> do
-    url <- o A..: "url"
+    url <- optional $ o A..: "url"
     return $ HttpUrl { url = url }

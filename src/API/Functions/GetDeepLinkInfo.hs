@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetDeepLinkInfo where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetDeepLinkInfo = 
- GetDeepLinkInfo { link :: String }  deriving (Show)
+ GetDeepLinkInfo { link :: Maybe String }  deriving (Show)
 
 instance T.ToJSON GetDeepLinkInfo where
  toJSON (GetDeepLinkInfo { link = link }) =
@@ -21,5 +22,5 @@ instance T.FromJSON GetDeepLinkInfo where
   where
    parseGetDeepLinkInfo :: A.Value -> T.Parser GetDeepLinkInfo
    parseGetDeepLinkInfo = A.withObject "GetDeepLinkInfo" $ \o -> do
-    link <- o A..: "link"
+    link <- optional $ o A..: "link"
     return $ GetDeepLinkInfo { link = link }

@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Minithumbnail where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Minithumbnail = 
- Minithumbnail { _data :: String, height :: Int, width :: Int }  deriving (Show)
+ Minithumbnail { _data :: Maybe String, height :: Maybe Int, width :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON Minithumbnail where
  toJSON (Minithumbnail { _data = _data, height = height, width = width }) =
@@ -21,7 +22,7 @@ instance T.FromJSON Minithumbnail where
   where
    parseMinithumbnail :: A.Value -> T.Parser Minithumbnail
    parseMinithumbnail = A.withObject "Minithumbnail" $ \o -> do
-    _data <- o A..: "data"
-    height <- o A..: "height"
-    width <- o A..: "width"
+    _data <- optional $ o A..: "data"
+    height <- optional $ o A..: "height"
+    width <- optional $ o A..: "width"
     return $ Minithumbnail { _data = _data, height = height, width = width }

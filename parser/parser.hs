@@ -133,6 +133,7 @@ writeToFiles addr modName m =
     [ generated
     , "{-# LANGUAGE OverloadedStrings #-}\n"
     , moduleName d
+    , "import Control.Applicative (optional)\n" -- i have to use optional. (.:?) and (.:!) don't help. need to find out why
     , "import qualified Data.Aeson as A\n"
     , "import qualified Data.Aeson.Types as T\n"
     , (imports $ keys e)
@@ -149,6 +150,13 @@ writeToFiles addr modName m =
       ["import {-# SOURCE #-} qualified ", api, ".", k, " as ", k, "\n"]
     )
     ks
+  keys :: [(T.Text, [(T.Text, T.Text)])] -> [T.Text]
+  keys e = uniq $ foldl
+    (\acc (_, b) ->
+      (foldl (\acc2 (_, d) -> (myAdd (T.replace "Maybe " "" d) acc2)) acc b)
+    )
+    []
+    e
   ww :: [(T.Text, [(T.Text, T.Text)])] -> T.Text
   ww e =
     T.intercalate " \n | " $ map (\(a, b) -> T.concat [toTitle a, www b]) e
@@ -156,11 +164,6 @@ writeToFiles addr modName m =
     case T.intercalate ", " (map (\(a, b) -> T.concat [a, " :: ", b]) e) of
       "" -> ""
       p  -> T.concat [" { ", p, " } "]
-  keys :: [(T.Text, [(T.Text, T.Text)])] -> [T.Text]
-  keys e = uniq $ foldl
-    (\acc (_, b) -> (foldl (\acc2 (_, d) -> (myAdd d acc2)) acc b))
-    []
-    e
   toJsonString :: T.Text -> [(T.Text, [(T.Text, T.Text)])] -> T.Text
   toJsonString m e = T.concat
     [ "\n\ninstance T.ToJSON "
@@ -217,8 +220,14 @@ writeToFiles addr modName m =
           , "\" $ \\o -> do\n"
           , T.intercalate "\n"
           $  map
-               (\(c, _) -> T.concat
-                 ["    ", c, " <- o A..: \"", T.dropAround (== '_') c, "\""]
+               (\(c, _) ->
+                 T.concat
+                   [ "    "
+                   , c
+                   , " <- optional $ o A..: \""
+                   , T.dropAround (== '_') c
+                   , "\""
+                   ]
                )
                b
           ++ [ T.concat
@@ -303,7 +312,7 @@ parseParams = Map.mapWithKey (\k v -> map (\(a, b) -> (a, go k b)) v)
   go aMod s  = do
     let w = T.words s
     let a = map (T.breakOn ":") w
-    map (\(c, d) -> (c, conv aMod d)) a
+    map (\(c, d) -> (c, T.concat ["Maybe ", conv aMod d])) a
   conv aMod s = case T.dropAround (== ':') s of
     "Bool"   -> "Bool"
     "int32"  -> "Int"

@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PassportSuitableElement where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 
 data PassportSuitableElement = 
- PassportSuitableElement { is_native_name_required :: Bool, is_translation_required :: Bool, is_selfie_required :: Bool, _type :: PassportElementType.PassportElementType }  deriving (Show)
+ PassportSuitableElement { is_native_name_required :: Maybe Bool, is_translation_required :: Maybe Bool, is_selfie_required :: Maybe Bool, _type :: Maybe PassportElementType.PassportElementType }  deriving (Show)
 
 instance T.ToJSON PassportSuitableElement where
  toJSON (PassportSuitableElement { is_native_name_required = is_native_name_required, is_translation_required = is_translation_required, is_selfie_required = is_selfie_required, _type = _type }) =
@@ -22,8 +23,8 @@ instance T.FromJSON PassportSuitableElement where
   where
    parsePassportSuitableElement :: A.Value -> T.Parser PassportSuitableElement
    parsePassportSuitableElement = A.withObject "PassportSuitableElement" $ \o -> do
-    is_native_name_required <- o A..: "is_native_name_required"
-    is_translation_required <- o A..: "is_translation_required"
-    is_selfie_required <- o A..: "is_selfie_required"
-    _type <- o A..: "type"
+    is_native_name_required <- optional $ o A..: "is_native_name_required"
+    is_translation_required <- optional $ o A..: "is_translation_required"
+    is_selfie_required <- optional $ o A..: "is_selfie_required"
+    _type <- optional $ o A..: "type"
     return $ PassportSuitableElement { is_native_name_required = is_native_name_required, is_translation_required = is_translation_required, is_selfie_required = is_selfie_required, _type = _type }

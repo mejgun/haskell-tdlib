@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SendBotStartMessage where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SendBotStartMessage = 
- SendBotStartMessage { parameter :: String, chat_id :: Int, bot_user_id :: Int }  deriving (Show)
+ SendBotStartMessage { parameter :: Maybe String, chat_id :: Maybe Int, bot_user_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON SendBotStartMessage where
  toJSON (SendBotStartMessage { parameter = parameter, chat_id = chat_id, bot_user_id = bot_user_id }) =
@@ -21,7 +22,7 @@ instance T.FromJSON SendBotStartMessage where
   where
    parseSendBotStartMessage :: A.Value -> T.Parser SendBotStartMessage
    parseSendBotStartMessage = A.withObject "SendBotStartMessage" $ \o -> do
-    parameter <- o A..: "parameter"
-    chat_id <- o A..: "chat_id"
-    bot_user_id <- o A..: "bot_user_id"
+    parameter <- optional $ o A..: "parameter"
+    chat_id <- optional $ o A..: "chat_id"
+    bot_user_id <- optional $ o A..: "bot_user_id"
     return $ SendBotStartMessage { parameter = parameter, chat_id = chat_id, bot_user_id = bot_user_id }

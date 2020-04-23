@@ -2,17 +2,18 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.JsonValue where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.JsonObjectMember as JsonObjectMember
 
 data JsonValue = 
  JsonValueNull 
- | JsonValueBoolean { __value :: Bool }  
- | JsonValueNumber { _value :: Float }  
- | JsonValueString { value :: String }  
- | JsonValueArray { values :: [JsonValue] }  
- | JsonValueObject { members :: [JsonObjectMember.JsonObjectMember] }  deriving (Show)
+ | JsonValueBoolean { __value :: Maybe Bool }  
+ | JsonValueNumber { _value :: Maybe Float }  
+ | JsonValueString { value :: Maybe String }  
+ | JsonValueArray { values :: Maybe [JsonValue] }  
+ | JsonValueObject { members :: Maybe [JsonObjectMember.JsonObjectMember] }  deriving (Show)
 
 instance T.ToJSON JsonValue where
  toJSON (JsonValueNull {  }) =
@@ -51,25 +52,25 @@ instance T.FromJSON JsonValue where
 
    parseJsonValueBoolean :: A.Value -> T.Parser JsonValue
    parseJsonValueBoolean = A.withObject "JsonValueBoolean" $ \o -> do
-    __value <- o A..: "value"
+    __value <- optional $ o A..: "value"
     return $ JsonValueBoolean { __value = __value }
 
    parseJsonValueNumber :: A.Value -> T.Parser JsonValue
    parseJsonValueNumber = A.withObject "JsonValueNumber" $ \o -> do
-    _value <- o A..: "value"
+    _value <- optional $ o A..: "value"
     return $ JsonValueNumber { _value = _value }
 
    parseJsonValueString :: A.Value -> T.Parser JsonValue
    parseJsonValueString = A.withObject "JsonValueString" $ \o -> do
-    value <- o A..: "value"
+    value <- optional $ o A..: "value"
     return $ JsonValueString { value = value }
 
    parseJsonValueArray :: A.Value -> T.Parser JsonValue
    parseJsonValueArray = A.withObject "JsonValueArray" $ \o -> do
-    values <- o A..: "values"
+    values <- optional $ o A..: "values"
     return $ JsonValueArray { values = values }
 
    parseJsonValueObject :: A.Value -> T.Parser JsonValue
    parseJsonValueObject = A.withObject "JsonValueObject" $ \o -> do
-    members <- o A..: "members"
+    members <- optional $ o A..: "members"
     return $ JsonValueObject { members = members }

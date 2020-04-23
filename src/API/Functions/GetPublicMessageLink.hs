@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetPublicMessageLink where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetPublicMessageLink = 
- GetPublicMessageLink { for_album :: Bool, message_id :: Int, chat_id :: Int }  deriving (Show)
+ GetPublicMessageLink { for_album :: Maybe Bool, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON GetPublicMessageLink where
  toJSON (GetPublicMessageLink { for_album = for_album, message_id = message_id, chat_id = chat_id }) =
@@ -21,7 +22,7 @@ instance T.FromJSON GetPublicMessageLink where
   where
    parseGetPublicMessageLink :: A.Value -> T.Parser GetPublicMessageLink
    parseGetPublicMessageLink = A.withObject "GetPublicMessageLink" $ \o -> do
-    for_album <- o A..: "for_album"
-    message_id <- o A..: "message_id"
-    chat_id <- o A..: "chat_id"
+    for_album <- optional $ o A..: "for_album"
+    message_id <- optional $ o A..: "message_id"
+    chat_id <- optional $ o A..: "chat_id"
     return $ GetPublicMessageLink { for_album = for_album, message_id = message_id, chat_id = chat_id }

@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.TextEntityType where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -20,9 +21,9 @@ data TextEntityType =
  | TextEntityTypeStrikethrough 
  | TextEntityTypeCode 
  | TextEntityTypePre 
- | TextEntityTypePreCode { language :: String }  
- | TextEntityTypeTextUrl { url :: String }  
- | TextEntityTypeMentionName { user_id :: Int }  deriving (Show)
+ | TextEntityTypePreCode { language :: Maybe String }  
+ | TextEntityTypeTextUrl { url :: Maybe String }  
+ | TextEntityTypeMentionName { user_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON TextEntityType where
  toJSON (TextEntityTypeMention {  }) =
@@ -157,15 +158,15 @@ instance T.FromJSON TextEntityType where
 
    parseTextEntityTypePreCode :: A.Value -> T.Parser TextEntityType
    parseTextEntityTypePreCode = A.withObject "TextEntityTypePreCode" $ \o -> do
-    language <- o A..: "language"
+    language <- optional $ o A..: "language"
     return $ TextEntityTypePreCode { language = language }
 
    parseTextEntityTypeTextUrl :: A.Value -> T.Parser TextEntityType
    parseTextEntityTypeTextUrl = A.withObject "TextEntityTypeTextUrl" $ \o -> do
-    url <- o A..: "url"
+    url <- optional $ o A..: "url"
     return $ TextEntityTypeTextUrl { url = url }
 
    parseTextEntityTypeMentionName :: A.Value -> T.Parser TextEntityType
    parseTextEntityTypeMentionName = A.withObject "TextEntityTypeMentionName" $ \o -> do
-    user_id <- o A..: "user_id"
+    user_id <- optional $ o A..: "user_id"
     return $ TextEntityTypeMentionName { user_id = user_id }

@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatEvents where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatEvent as ChatEvent
 
 data ChatEvents = 
- ChatEvents { events :: [ChatEvent.ChatEvent] }  deriving (Show)
+ ChatEvents { events :: Maybe [ChatEvent.ChatEvent] }  deriving (Show)
 
 instance T.ToJSON ChatEvents where
  toJSON (ChatEvents { events = events }) =
@@ -22,5 +23,5 @@ instance T.FromJSON ChatEvents where
   where
    parseChatEvents :: A.Value -> T.Parser ChatEvents
    parseChatEvents = A.withObject "ChatEvents" $ \o -> do
-    events <- o A..: "events"
+    events <- optional $ o A..: "events"
     return $ ChatEvents { events = events }

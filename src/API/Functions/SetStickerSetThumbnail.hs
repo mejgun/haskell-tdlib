@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetStickerSetThumbnail where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data SetStickerSetThumbnail = 
- SetStickerSetThumbnail { thumbnail :: InputFile.InputFile, name :: String, user_id :: Int }  deriving (Show)
+ SetStickerSetThumbnail { thumbnail :: Maybe InputFile.InputFile, name :: Maybe String, user_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON SetStickerSetThumbnail where
  toJSON (SetStickerSetThumbnail { thumbnail = thumbnail, name = name, user_id = user_id }) =
@@ -22,7 +23,7 @@ instance T.FromJSON SetStickerSetThumbnail where
   where
    parseSetStickerSetThumbnail :: A.Value -> T.Parser SetStickerSetThumbnail
    parseSetStickerSetThumbnail = A.withObject "SetStickerSetThumbnail" $ \o -> do
-    thumbnail <- o A..: "thumbnail"
-    name <- o A..: "name"
-    user_id <- o A..: "user_id"
+    thumbnail <- optional $ o A..: "thumbnail"
+    name <- optional $ o A..: "name"
+    user_id <- optional $ o A..: "user_id"
     return $ SetStickerSetThumbnail { thumbnail = thumbnail, name = name, user_id = user_id }

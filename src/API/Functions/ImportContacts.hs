@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ImportContacts where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Contact as Contact
 
 data ImportContacts = 
- ImportContacts { contacts :: [Contact.Contact] }  deriving (Show)
+ ImportContacts { contacts :: Maybe [Contact.Contact] }  deriving (Show)
 
 instance T.ToJSON ImportContacts where
  toJSON (ImportContacts { contacts = contacts }) =
@@ -22,5 +23,5 @@ instance T.FromJSON ImportContacts where
   where
    parseImportContacts :: A.Value -> T.Parser ImportContacts
    parseImportContacts = A.withObject "ImportContacts" $ \o -> do
-    contacts <- o A..: "contacts"
+    contacts <- optional $ o A..: "contacts"
     return $ ImportContacts { contacts = contacts }

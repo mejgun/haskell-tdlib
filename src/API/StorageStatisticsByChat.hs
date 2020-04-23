@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.StorageStatisticsByChat where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.StorageStatisticsByFileType as StorageStatisticsByFileType
 
 data StorageStatisticsByChat = 
- StorageStatisticsByChat { by_file_type :: [StorageStatisticsByFileType.StorageStatisticsByFileType], count :: Int, size :: Int, chat_id :: Int }  deriving (Show)
+ StorageStatisticsByChat { by_file_type :: Maybe [StorageStatisticsByFileType.StorageStatisticsByFileType], count :: Maybe Int, size :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON StorageStatisticsByChat where
  toJSON (StorageStatisticsByChat { by_file_type = by_file_type, count = count, size = size, chat_id = chat_id }) =
@@ -22,8 +23,8 @@ instance T.FromJSON StorageStatisticsByChat where
   where
    parseStorageStatisticsByChat :: A.Value -> T.Parser StorageStatisticsByChat
    parseStorageStatisticsByChat = A.withObject "StorageStatisticsByChat" $ \o -> do
-    by_file_type <- o A..: "by_file_type"
-    count <- o A..: "count"
-    size <- o A..: "size"
-    chat_id <- o A..: "chat_id"
+    by_file_type <- optional $ o A..: "by_file_type"
+    count <- optional $ o A..: "count"
+    size <- optional $ o A..: "size"
+    chat_id <- optional $ o A..: "chat_id"
     return $ StorageStatisticsByChat { by_file_type = by_file_type, count = count, size = size, chat_id = chat_id }

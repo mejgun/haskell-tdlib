@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.UnpinChatMessage where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data UnpinChatMessage = 
- UnpinChatMessage { chat_id :: Int }  deriving (Show)
+ UnpinChatMessage { chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON UnpinChatMessage where
  toJSON (UnpinChatMessage { chat_id = chat_id }) =
@@ -21,5 +22,5 @@ instance T.FromJSON UnpinChatMessage where
   where
    parseUnpinChatMessage :: A.Value -> T.Parser UnpinChatMessage
    parseUnpinChatMessage = A.withObject "UnpinChatMessage" $ \o -> do
-    chat_id <- o A..: "chat_id"
+    chat_id <- optional $ o A..: "chat_id"
     return $ UnpinChatMessage { chat_id = chat_id }

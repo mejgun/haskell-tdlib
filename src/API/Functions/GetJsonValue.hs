@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetJsonValue where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetJsonValue = 
- GetJsonValue { json :: String }  deriving (Show)
+ GetJsonValue { json :: Maybe String }  deriving (Show)
 
 instance T.ToJSON GetJsonValue where
  toJSON (GetJsonValue { json = json }) =
@@ -21,5 +22,5 @@ instance T.FromJSON GetJsonValue where
   where
    parseGetJsonValue :: A.Value -> T.Parser GetJsonValue
    parseGetJsonValue = A.withObject "GetJsonValue" $ \o -> do
-    json <- o A..: "json"
+    json <- optional $ o A..: "json"
     return $ GetJsonValue { json = json }

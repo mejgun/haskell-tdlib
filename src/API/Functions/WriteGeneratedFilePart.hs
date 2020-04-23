@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.WriteGeneratedFilePart where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data WriteGeneratedFilePart = 
- WriteGeneratedFilePart { _data :: String, offset :: Int, generation_id :: Int }  deriving (Show)
+ WriteGeneratedFilePart { _data :: Maybe String, offset :: Maybe Int, generation_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON WriteGeneratedFilePart where
  toJSON (WriteGeneratedFilePart { _data = _data, offset = offset, generation_id = generation_id }) =
@@ -21,7 +22,7 @@ instance T.FromJSON WriteGeneratedFilePart where
   where
    parseWriteGeneratedFilePart :: A.Value -> T.Parser WriteGeneratedFilePart
    parseWriteGeneratedFilePart = A.withObject "WriteGeneratedFilePart" $ \o -> do
-    _data <- o A..: "data"
-    offset <- o A..: "offset"
-    generation_id <- o A..: "generation_id"
+    _data <- optional $ o A..: "data"
+    offset <- optional $ o A..: "offset"
+    generation_id <- optional $ o A..: "generation_id"
     return $ WriteGeneratedFilePart { _data = _data, offset = offset, generation_id = generation_id }

@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.TerminateSession where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data TerminateSession = 
- TerminateSession { session_id :: Int }  deriving (Show)
+ TerminateSession { session_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON TerminateSession where
  toJSON (TerminateSession { session_id = session_id }) =
@@ -21,5 +22,5 @@ instance T.FromJSON TerminateSession where
   where
    parseTerminateSession :: A.Value -> T.Parser TerminateSession
    parseTerminateSession = A.withObject "TerminateSession" $ \o -> do
-    session_id <- o A..: "session_id"
+    session_id <- optional $ o A..: "session_id"
     return $ TerminateSession { session_id = session_id }

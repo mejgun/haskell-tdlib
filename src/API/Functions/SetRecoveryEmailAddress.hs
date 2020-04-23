@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetRecoveryEmailAddress where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetRecoveryEmailAddress = 
- SetRecoveryEmailAddress { new_recovery_email_address :: String, password :: String }  deriving (Show)
+ SetRecoveryEmailAddress { new_recovery_email_address :: Maybe String, password :: Maybe String }  deriving (Show)
 
 instance T.ToJSON SetRecoveryEmailAddress where
  toJSON (SetRecoveryEmailAddress { new_recovery_email_address = new_recovery_email_address, password = password }) =
@@ -21,6 +22,6 @@ instance T.FromJSON SetRecoveryEmailAddress where
   where
    parseSetRecoveryEmailAddress :: A.Value -> T.Parser SetRecoveryEmailAddress
    parseSetRecoveryEmailAddress = A.withObject "SetRecoveryEmailAddress" $ \o -> do
-    new_recovery_email_address <- o A..: "new_recovery_email_address"
-    password <- o A..: "password"
+    new_recovery_email_address <- optional $ o A..: "new_recovery_email_address"
+    password <- optional $ o A..: "password"
     return $ SetRecoveryEmailAddress { new_recovery_email_address = new_recovery_email_address, password = password }

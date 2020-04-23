@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.RemoveFavoriteSticker where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data RemoveFavoriteSticker = 
- RemoveFavoriteSticker { sticker :: InputFile.InputFile }  deriving (Show)
+ RemoveFavoriteSticker { sticker :: Maybe InputFile.InputFile }  deriving (Show)
 
 instance T.ToJSON RemoveFavoriteSticker where
  toJSON (RemoveFavoriteSticker { sticker = sticker }) =
@@ -22,5 +23,5 @@ instance T.FromJSON RemoveFavoriteSticker where
   where
    parseRemoveFavoriteSticker :: A.Value -> T.Parser RemoveFavoriteSticker
    parseRemoveFavoriteSticker = A.withObject "RemoveFavoriteSticker" $ \o -> do
-    sticker <- o A..: "sticker"
+    sticker <- optional $ o A..: "sticker"
     return $ RemoveFavoriteSticker { sticker = sticker }

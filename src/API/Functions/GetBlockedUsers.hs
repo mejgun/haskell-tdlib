@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetBlockedUsers where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetBlockedUsers = 
- GetBlockedUsers { limit :: Int, offset :: Int }  deriving (Show)
+ GetBlockedUsers { limit :: Maybe Int, offset :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON GetBlockedUsers where
  toJSON (GetBlockedUsers { limit = limit, offset = offset }) =
@@ -21,6 +22,6 @@ instance T.FromJSON GetBlockedUsers where
   where
    parseGetBlockedUsers :: A.Value -> T.Parser GetBlockedUsers
    parseGetBlockedUsers = A.withObject "GetBlockedUsers" $ \o -> do
-    limit <- o A..: "limit"
-    offset <- o A..: "offset"
+    limit <- optional $ o A..: "limit"
+    offset <- optional $ o A..: "offset"
     return $ GetBlockedUsers { limit = limit, offset = offset }

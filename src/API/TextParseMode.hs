@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.TextParseMode where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data TextParseMode = 
- TextParseModeMarkdown { version :: Int }  
+ TextParseModeMarkdown { version :: Maybe Int }  
  | TextParseModeHTML deriving (Show)
 
 instance T.ToJSON TextParseMode where
@@ -26,7 +27,7 @@ instance T.FromJSON TextParseMode where
   where
    parseTextParseModeMarkdown :: A.Value -> T.Parser TextParseMode
    parseTextParseModeMarkdown = A.withObject "TextParseModeMarkdown" $ \o -> do
-    version <- o A..: "version"
+    version <- optional $ o A..: "version"
     return $ TextParseModeMarkdown { version = version }
 
    parseTextParseModeHTML :: A.Value -> T.Parser TextParseMode

@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SearchCallMessages where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SearchCallMessages = 
- SearchCallMessages { only_missed :: Bool, limit :: Int, from_message_id :: Int }  deriving (Show)
+ SearchCallMessages { only_missed :: Maybe Bool, limit :: Maybe Int, from_message_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON SearchCallMessages where
  toJSON (SearchCallMessages { only_missed = only_missed, limit = limit, from_message_id = from_message_id }) =
@@ -21,7 +22,7 @@ instance T.FromJSON SearchCallMessages where
   where
    parseSearchCallMessages :: A.Value -> T.Parser SearchCallMessages
    parseSearchCallMessages = A.withObject "SearchCallMessages" $ \o -> do
-    only_missed <- o A..: "only_missed"
-    limit <- o A..: "limit"
-    from_message_id <- o A..: "from_message_id"
+    only_missed <- optional $ o A..: "only_missed"
+    limit <- optional $ o A..: "limit"
+    from_message_id <- optional $ o A..: "from_message_id"
     return $ SearchCallMessages { only_missed = only_missed, limit = limit, from_message_id = from_message_id }

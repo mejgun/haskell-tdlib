@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.AnswerCallbackQuery where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data AnswerCallbackQuery = 
- AnswerCallbackQuery { cache_time :: Int, url :: String, show_alert :: Bool, text :: String, callback_query_id :: Int }  deriving (Show)
+ AnswerCallbackQuery { cache_time :: Maybe Int, url :: Maybe String, show_alert :: Maybe Bool, text :: Maybe String, callback_query_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON AnswerCallbackQuery where
  toJSON (AnswerCallbackQuery { cache_time = cache_time, url = url, show_alert = show_alert, text = text, callback_query_id = callback_query_id }) =
@@ -21,9 +22,9 @@ instance T.FromJSON AnswerCallbackQuery where
   where
    parseAnswerCallbackQuery :: A.Value -> T.Parser AnswerCallbackQuery
    parseAnswerCallbackQuery = A.withObject "AnswerCallbackQuery" $ \o -> do
-    cache_time <- o A..: "cache_time"
-    url <- o A..: "url"
-    show_alert <- o A..: "show_alert"
-    text <- o A..: "text"
-    callback_query_id <- o A..: "callback_query_id"
+    cache_time <- optional $ o A..: "cache_time"
+    url <- optional $ o A..: "url"
+    show_alert <- optional $ o A..: "show_alert"
+    text <- optional $ o A..: "text"
+    callback_query_id <- optional $ o A..: "callback_query_id"
     return $ AnswerCallbackQuery { cache_time = cache_time, url = url, show_alert = show_alert, text = text, callback_query_id = callback_query_id }

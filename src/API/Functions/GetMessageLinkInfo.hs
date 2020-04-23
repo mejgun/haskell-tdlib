@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetMessageLinkInfo where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetMessageLinkInfo = 
- GetMessageLinkInfo { url :: String }  deriving (Show)
+ GetMessageLinkInfo { url :: Maybe String }  deriving (Show)
 
 instance T.ToJSON GetMessageLinkInfo where
  toJSON (GetMessageLinkInfo { url = url }) =
@@ -21,5 +22,5 @@ instance T.FromJSON GetMessageLinkInfo where
   where
    parseGetMessageLinkInfo :: A.Value -> T.Parser GetMessageLinkInfo
    parseGetMessageLinkInfo = A.withObject "GetMessageLinkInfo" $ \o -> do
-    url <- o A..: "url"
+    url <- optional $ o A..: "url"
     return $ GetMessageLinkInfo { url = url }

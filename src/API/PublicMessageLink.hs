@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PublicMessageLink where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data PublicMessageLink = 
- PublicMessageLink { html :: String, link :: String }  deriving (Show)
+ PublicMessageLink { html :: Maybe String, link :: Maybe String }  deriving (Show)
 
 instance T.ToJSON PublicMessageLink where
  toJSON (PublicMessageLink { html = html, link = link }) =
@@ -21,6 +22,6 @@ instance T.FromJSON PublicMessageLink where
   where
    parsePublicMessageLink :: A.Value -> T.Parser PublicMessageLink
    parsePublicMessageLink = A.withObject "PublicMessageLink" $ \o -> do
-    html <- o A..: "html"
-    link <- o A..: "link"
+    html <- optional $ o A..: "html"
+    link <- optional $ o A..: "link"
     return $ PublicMessageLink { html = html, link = link }

@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetPollVoters where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetPollVoters = 
- GetPollVoters { limit :: Int, offset :: Int, option_id :: Int, message_id :: Int, chat_id :: Int }  deriving (Show)
+ GetPollVoters { limit :: Maybe Int, offset :: Maybe Int, option_id :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON GetPollVoters where
  toJSON (GetPollVoters { limit = limit, offset = offset, option_id = option_id, message_id = message_id, chat_id = chat_id }) =
@@ -21,9 +22,9 @@ instance T.FromJSON GetPollVoters where
   where
    parseGetPollVoters :: A.Value -> T.Parser GetPollVoters
    parseGetPollVoters = A.withObject "GetPollVoters" $ \o -> do
-    limit <- o A..: "limit"
-    offset <- o A..: "offset"
-    option_id <- o A..: "option_id"
-    message_id <- o A..: "message_id"
-    chat_id <- o A..: "chat_id"
+    limit <- optional $ o A..: "limit"
+    offset <- optional $ o A..: "offset"
+    option_id <- optional $ o A..: "option_id"
+    message_id <- optional $ o A..: "message_id"
+    chat_id <- optional $ o A..: "chat_id"
     return $ GetPollVoters { limit = limit, offset = offset, option_id = option_id, message_id = message_id, chat_id = chat_id }

@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ReorderInstalledStickerSets where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ReorderInstalledStickerSets = 
- ReorderInstalledStickerSets { sticker_set_ids :: [Int], is_masks :: Bool }  deriving (Show)
+ ReorderInstalledStickerSets { sticker_set_ids :: Maybe [Int], is_masks :: Maybe Bool }  deriving (Show)
 
 instance T.ToJSON ReorderInstalledStickerSets where
  toJSON (ReorderInstalledStickerSets { sticker_set_ids = sticker_set_ids, is_masks = is_masks }) =
@@ -21,6 +22,6 @@ instance T.FromJSON ReorderInstalledStickerSets where
   where
    parseReorderInstalledStickerSets :: A.Value -> T.Parser ReorderInstalledStickerSets
    parseReorderInstalledStickerSets = A.withObject "ReorderInstalledStickerSets" $ \o -> do
-    sticker_set_ids <- o A..: "sticker_set_ids"
-    is_masks <- o A..: "is_masks"
+    sticker_set_ids <- optional $ o A..: "sticker_set_ids"
+    is_masks <- optional $ o A..: "is_masks"
     return $ ReorderInstalledStickerSets { sticker_set_ids = sticker_set_ids, is_masks = is_masks }

@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PhotoSize where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
 
 data PhotoSize = 
- PhotoSize { height :: Int, width :: Int, photo :: File.File, _type :: String }  deriving (Show)
+ PhotoSize { height :: Maybe Int, width :: Maybe Int, photo :: Maybe File.File, _type :: Maybe String }  deriving (Show)
 
 instance T.ToJSON PhotoSize where
  toJSON (PhotoSize { height = height, width = width, photo = photo, _type = _type }) =
@@ -22,8 +23,8 @@ instance T.FromJSON PhotoSize where
   where
    parsePhotoSize :: A.Value -> T.Parser PhotoSize
    parsePhotoSize = A.withObject "PhotoSize" $ \o -> do
-    height <- o A..: "height"
-    width <- o A..: "width"
-    photo <- o A..: "photo"
-    _type <- o A..: "type"
+    height <- optional $ o A..: "height"
+    width <- optional $ o A..: "width"
+    photo <- optional $ o A..: "photo"
+    _type <- optional $ o A..: "type"
     return $ PhotoSize { height = height, width = width, photo = photo, _type = _type }

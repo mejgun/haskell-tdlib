@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.AcceptTermsOfService where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data AcceptTermsOfService = 
- AcceptTermsOfService { terms_of_service_id :: String }  deriving (Show)
+ AcceptTermsOfService { terms_of_service_id :: Maybe String }  deriving (Show)
 
 instance T.ToJSON AcceptTermsOfService where
  toJSON (AcceptTermsOfService { terms_of_service_id = terms_of_service_id }) =
@@ -21,5 +22,5 @@ instance T.FromJSON AcceptTermsOfService where
   where
    parseAcceptTermsOfService :: A.Value -> T.Parser AcceptTermsOfService
    parseAcceptTermsOfService = A.withObject "AcceptTermsOfService" $ \o -> do
-    terms_of_service_id <- o A..: "terms_of_service_id"
+    terms_of_service_id <- optional $ o A..: "terms_of_service_id"
     return $ AcceptTermsOfService { terms_of_service_id = terms_of_service_id }

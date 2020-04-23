@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetInlineGameScore where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetInlineGameScore = 
- SetInlineGameScore { force :: Bool, score :: Int, user_id :: Int, edit_message :: Bool, inline_message_id :: String }  deriving (Show)
+ SetInlineGameScore { force :: Maybe Bool, score :: Maybe Int, user_id :: Maybe Int, edit_message :: Maybe Bool, inline_message_id :: Maybe String }  deriving (Show)
 
 instance T.ToJSON SetInlineGameScore where
  toJSON (SetInlineGameScore { force = force, score = score, user_id = user_id, edit_message = edit_message, inline_message_id = inline_message_id }) =
@@ -21,9 +22,9 @@ instance T.FromJSON SetInlineGameScore where
   where
    parseSetInlineGameScore :: A.Value -> T.Parser SetInlineGameScore
    parseSetInlineGameScore = A.withObject "SetInlineGameScore" $ \o -> do
-    force <- o A..: "force"
-    score <- o A..: "score"
-    user_id <- o A..: "user_id"
-    edit_message <- o A..: "edit_message"
-    inline_message_id <- o A..: "inline_message_id"
+    force <- optional $ o A..: "force"
+    score <- optional $ o A..: "score"
+    user_id <- optional $ o A..: "user_id"
+    edit_message <- optional $ o A..: "edit_message"
+    inline_message_id <- optional $ o A..: "inline_message_id"
     return $ SetInlineGameScore { force = force, score = score, user_id = user_id, edit_message = edit_message, inline_message_id = inline_message_id }

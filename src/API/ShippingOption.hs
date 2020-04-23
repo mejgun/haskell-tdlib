@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ShippingOption where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LabeledPricePart as LabeledPricePart
 
 data ShippingOption = 
- ShippingOption { price_parts :: [LabeledPricePart.LabeledPricePart], title :: String, _id :: String }  deriving (Show)
+ ShippingOption { price_parts :: Maybe [LabeledPricePart.LabeledPricePart], title :: Maybe String, _id :: Maybe String }  deriving (Show)
 
 instance T.ToJSON ShippingOption where
  toJSON (ShippingOption { price_parts = price_parts, title = title, _id = _id }) =
@@ -22,7 +23,7 @@ instance T.FromJSON ShippingOption where
   where
    parseShippingOption :: A.Value -> T.Parser ShippingOption
    parseShippingOption = A.withObject "ShippingOption" $ \o -> do
-    price_parts <- o A..: "price_parts"
-    title <- o A..: "title"
-    _id <- o A..: "id"
+    price_parts <- optional $ o A..: "price_parts"
+    title <- optional $ o A..: "title"
+    _id <- optional $ o A..: "id"
     return $ ShippingOption { price_parts = price_parts, title = title, _id = _id }

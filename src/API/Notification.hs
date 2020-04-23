@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Notification where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.NotificationType as NotificationType
 
 data Notification = 
- Notification { _type :: NotificationType.NotificationType, is_silent :: Bool, date :: Int, _id :: Int }  deriving (Show)
+ Notification { _type :: Maybe NotificationType.NotificationType, is_silent :: Maybe Bool, date :: Maybe Int, _id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON Notification where
  toJSON (Notification { _type = _type, is_silent = is_silent, date = date, _id = _id }) =
@@ -22,8 +23,8 @@ instance T.FromJSON Notification where
   where
    parseNotification :: A.Value -> T.Parser Notification
    parseNotification = A.withObject "Notification" $ \o -> do
-    _type <- o A..: "type"
-    is_silent <- o A..: "is_silent"
-    date <- o A..: "date"
-    _id <- o A..: "id"
+    _type <- optional $ o A..: "type"
+    is_silent <- optional $ o A..: "is_silent"
+    date <- optional $ o A..: "date"
+    _id <- optional $ o A..: "id"
     return $ Notification { _type = _type, is_silent = is_silent, date = date, _id = _id }

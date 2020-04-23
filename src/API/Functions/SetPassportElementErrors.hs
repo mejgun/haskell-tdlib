@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetPassportElementErrors where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputPassportElementError as InputPassportElementError
 
 data SetPassportElementErrors = 
- SetPassportElementErrors { errors :: [InputPassportElementError.InputPassportElementError], user_id :: Int }  deriving (Show)
+ SetPassportElementErrors { errors :: Maybe [InputPassportElementError.InputPassportElementError], user_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON SetPassportElementErrors where
  toJSON (SetPassportElementErrors { errors = errors, user_id = user_id }) =
@@ -22,6 +23,6 @@ instance T.FromJSON SetPassportElementErrors where
   where
    parseSetPassportElementErrors :: A.Value -> T.Parser SetPassportElementErrors
    parseSetPassportElementErrors = A.withObject "SetPassportElementErrors" $ \o -> do
-    errors <- o A..: "errors"
-    user_id <- o A..: "user_id"
+    errors <- optional $ o A..: "errors"
+    user_id <- optional $ o A..: "user_id"
     return $ SetPassportElementErrors { errors = errors, user_id = user_id }

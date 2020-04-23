@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ResendAuthenticationCode where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 

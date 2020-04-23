@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetNetworkType where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.NetworkType as NetworkType
 
 data SetNetworkType = 
- SetNetworkType { _type :: NetworkType.NetworkType }  deriving (Show)
+ SetNetworkType { _type :: Maybe NetworkType.NetworkType }  deriving (Show)
 
 instance T.ToJSON SetNetworkType where
  toJSON (SetNetworkType { _type = _type }) =
@@ -22,5 +23,5 @@ instance T.FromJSON SetNetworkType where
   where
    parseSetNetworkType :: A.Value -> T.Parser SetNetworkType
    parseSetNetworkType = A.withObject "SetNetworkType" $ \o -> do
-    _type <- o A..: "type"
+    _type <- optional $ o A..: "type"
     return $ SetNetworkType { _type = _type }

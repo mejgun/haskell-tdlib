@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PushReceiverId where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data PushReceiverId = 
- PushReceiverId { _id :: Int }  deriving (Show)
+ PushReceiverId { _id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON PushReceiverId where
  toJSON (PushReceiverId { _id = _id }) =
@@ -21,5 +22,5 @@ instance T.FromJSON PushReceiverId where
   where
    parsePushReceiverId :: A.Value -> T.Parser PushReceiverId
    parsePushReceiverId = A.withObject "PushReceiverId" $ \o -> do
-    _id <- o A..: "id"
+    _id <- optional $ o A..: "id"
     return $ PushReceiverId { _id = _id }

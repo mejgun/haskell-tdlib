@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.DisconnectWebsite where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data DisconnectWebsite = 
- DisconnectWebsite { website_id :: Int }  deriving (Show)
+ DisconnectWebsite { website_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON DisconnectWebsite where
  toJSON (DisconnectWebsite { website_id = website_id }) =
@@ -21,5 +22,5 @@ instance T.FromJSON DisconnectWebsite where
   where
    parseDisconnectWebsite :: A.Value -> T.Parser DisconnectWebsite
    parseDisconnectWebsite = A.withObject "DisconnectWebsite" $ \o -> do
-    website_id <- o A..: "website_id"
+    website_id <- optional $ o A..: "website_id"
     return $ DisconnectWebsite { website_id = website_id }

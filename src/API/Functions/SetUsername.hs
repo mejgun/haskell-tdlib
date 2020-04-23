@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetUsername where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetUsername = 
- SetUsername { username :: String }  deriving (Show)
+ SetUsername { username :: Maybe String }  deriving (Show)
 
 instance T.ToJSON SetUsername where
  toJSON (SetUsername { username = username }) =
@@ -21,5 +22,5 @@ instance T.FromJSON SetUsername where
   where
    parseSetUsername :: A.Value -> T.Parser SetUsername
    parseSetUsername = A.withObject "SetUsername" $ \o -> do
-    username <- o A..: "username"
+    username <- optional $ o A..: "username"
     return $ SetUsername { username = username }

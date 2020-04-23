@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SearchChatRecentLocationMessages where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SearchChatRecentLocationMessages = 
- SearchChatRecentLocationMessages { limit :: Int, chat_id :: Int }  deriving (Show)
+ SearchChatRecentLocationMessages { limit :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON SearchChatRecentLocationMessages where
  toJSON (SearchChatRecentLocationMessages { limit = limit, chat_id = chat_id }) =
@@ -21,6 +22,6 @@ instance T.FromJSON SearchChatRecentLocationMessages where
   where
    parseSearchChatRecentLocationMessages :: A.Value -> T.Parser SearchChatRecentLocationMessages
    parseSearchChatRecentLocationMessages = A.withObject "SearchChatRecentLocationMessages" $ \o -> do
-    limit <- o A..: "limit"
-    chat_id <- o A..: "chat_id"
+    limit <- optional $ o A..: "limit"
+    chat_id <- optional $ o A..: "chat_id"
     return $ SearchChatRecentLocationMessages { limit = limit, chat_id = chat_id }

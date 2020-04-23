@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ProcessPushNotification where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ProcessPushNotification = 
- ProcessPushNotification { payload :: String }  deriving (Show)
+ ProcessPushNotification { payload :: Maybe String }  deriving (Show)
 
 instance T.ToJSON ProcessPushNotification where
  toJSON (ProcessPushNotification { payload = payload }) =
@@ -21,5 +22,5 @@ instance T.FromJSON ProcessPushNotification where
   where
    parseProcessPushNotification :: A.Value -> T.Parser ProcessPushNotification
    parseProcessPushNotification = A.withObject "ProcessPushNotification" $ \o -> do
-    payload <- o A..: "payload"
+    payload <- optional $ o A..: "payload"
     return $ ProcessPushNotification { payload = payload }

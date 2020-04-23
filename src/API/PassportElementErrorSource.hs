@@ -2,18 +2,19 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PassportElementErrorSource where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data PassportElementErrorSource = 
  PassportElementErrorSourceUnspecified 
- | PassportElementErrorSourceDataField { field_name :: String }  
+ | PassportElementErrorSourceDataField { field_name :: Maybe String }  
  | PassportElementErrorSourceFrontSide 
  | PassportElementErrorSourceReverseSide 
  | PassportElementErrorSourceSelfie 
- | PassportElementErrorSourceTranslationFile { file_index :: Int }  
+ | PassportElementErrorSourceTranslationFile { file_index :: Maybe Int }  
  | PassportElementErrorSourceTranslationFiles 
- | PassportElementErrorSourceFile { file_index :: Int }  
+ | PassportElementErrorSourceFile { file_index :: Maybe Int }  
  | PassportElementErrorSourceFiles deriving (Show)
 
 instance T.ToJSON PassportElementErrorSource where
@@ -65,7 +66,7 @@ instance T.FromJSON PassportElementErrorSource where
 
    parsePassportElementErrorSourceDataField :: A.Value -> T.Parser PassportElementErrorSource
    parsePassportElementErrorSourceDataField = A.withObject "PassportElementErrorSourceDataField" $ \o -> do
-    field_name <- o A..: "field_name"
+    field_name <- optional $ o A..: "field_name"
     return $ PassportElementErrorSourceDataField { field_name = field_name }
 
    parsePassportElementErrorSourceFrontSide :: A.Value -> T.Parser PassportElementErrorSource
@@ -82,7 +83,7 @@ instance T.FromJSON PassportElementErrorSource where
 
    parsePassportElementErrorSourceTranslationFile :: A.Value -> T.Parser PassportElementErrorSource
    parsePassportElementErrorSourceTranslationFile = A.withObject "PassportElementErrorSourceTranslationFile" $ \o -> do
-    file_index <- o A..: "file_index"
+    file_index <- optional $ o A..: "file_index"
     return $ PassportElementErrorSourceTranslationFile { file_index = file_index }
 
    parsePassportElementErrorSourceTranslationFiles :: A.Value -> T.Parser PassportElementErrorSource
@@ -91,7 +92,7 @@ instance T.FromJSON PassportElementErrorSource where
 
    parsePassportElementErrorSourceFile :: A.Value -> T.Parser PassportElementErrorSource
    parsePassportElementErrorSourceFile = A.withObject "PassportElementErrorSourceFile" $ \o -> do
-    file_index <- o A..: "file_index"
+    file_index <- optional $ o A..: "file_index"
     return $ PassportElementErrorSourceFile { file_index = file_index }
 
    parsePassportElementErrorSourceFiles :: A.Value -> T.Parser PassportElementErrorSource

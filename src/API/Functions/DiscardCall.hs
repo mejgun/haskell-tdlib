@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.DiscardCall where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data DiscardCall = 
- DiscardCall { connection_id :: Int, duration :: Int, is_disconnected :: Bool, call_id :: Int }  deriving (Show)
+ DiscardCall { connection_id :: Maybe Int, duration :: Maybe Int, is_disconnected :: Maybe Bool, call_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON DiscardCall where
  toJSON (DiscardCall { connection_id = connection_id, duration = duration, is_disconnected = is_disconnected, call_id = call_id }) =
@@ -21,8 +22,8 @@ instance T.FromJSON DiscardCall where
   where
    parseDiscardCall :: A.Value -> T.Parser DiscardCall
    parseDiscardCall = A.withObject "DiscardCall" $ \o -> do
-    connection_id <- o A..: "connection_id"
-    duration <- o A..: "duration"
-    is_disconnected <- o A..: "is_disconnected"
-    call_id <- o A..: "call_id"
+    connection_id <- optional $ o A..: "connection_id"
+    duration <- optional $ o A..: "duration"
+    is_disconnected <- optional $ o A..: "is_disconnected"
+    call_id <- optional $ o A..: "call_id"
     return $ DiscardCall { connection_id = connection_id, duration = duration, is_disconnected = is_disconnected, call_id = call_id }

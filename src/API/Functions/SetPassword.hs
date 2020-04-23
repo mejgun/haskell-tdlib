@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetPassword where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetPassword = 
- SetPassword { new_recovery_email_address :: String, set_recovery_email_address :: Bool, new_hint :: String, new_password :: String, old_password :: String }  deriving (Show)
+ SetPassword { new_recovery_email_address :: Maybe String, set_recovery_email_address :: Maybe Bool, new_hint :: Maybe String, new_password :: Maybe String, old_password :: Maybe String }  deriving (Show)
 
 instance T.ToJSON SetPassword where
  toJSON (SetPassword { new_recovery_email_address = new_recovery_email_address, set_recovery_email_address = set_recovery_email_address, new_hint = new_hint, new_password = new_password, old_password = old_password }) =
@@ -21,9 +22,9 @@ instance T.FromJSON SetPassword where
   where
    parseSetPassword :: A.Value -> T.Parser SetPassword
    parseSetPassword = A.withObject "SetPassword" $ \o -> do
-    new_recovery_email_address <- o A..: "new_recovery_email_address"
-    set_recovery_email_address <- o A..: "set_recovery_email_address"
-    new_hint <- o A..: "new_hint"
-    new_password <- o A..: "new_password"
-    old_password <- o A..: "old_password"
+    new_recovery_email_address <- optional $ o A..: "new_recovery_email_address"
+    set_recovery_email_address <- optional $ o A..: "set_recovery_email_address"
+    new_hint <- optional $ o A..: "new_hint"
+    new_password <- optional $ o A..: "new_password"
+    old_password <- optional $ o A..: "old_password"
     return $ SetPassword { new_recovery_email_address = new_recovery_email_address, set_recovery_email_address = set_recovery_email_address, new_hint = new_hint, new_password = new_password, old_password = old_password }

@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SearchChatsOnServer where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SearchChatsOnServer = 
- SearchChatsOnServer { limit :: Int, query :: String }  deriving (Show)
+ SearchChatsOnServer { limit :: Maybe Int, query :: Maybe String }  deriving (Show)
 
 instance T.ToJSON SearchChatsOnServer where
  toJSON (SearchChatsOnServer { limit = limit, query = query }) =
@@ -21,6 +22,6 @@ instance T.FromJSON SearchChatsOnServer where
   where
    parseSearchChatsOnServer :: A.Value -> T.Parser SearchChatsOnServer
    parseSearchChatsOnServer = A.withObject "SearchChatsOnServer" $ \o -> do
-    limit <- o A..: "limit"
-    query <- o A..: "query"
+    limit <- optional $ o A..: "limit"
+    query <- optional $ o A..: "query"
     return $ SearchChatsOnServer { limit = limit, query = query }

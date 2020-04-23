@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SendPhoneNumberVerificationCode where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PhoneNumberAuthenticationSettings as PhoneNumberAuthenticationSettings
 
 data SendPhoneNumberVerificationCode = 
- SendPhoneNumberVerificationCode { settings :: PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings, phone_number :: String }  deriving (Show)
+ SendPhoneNumberVerificationCode { settings :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings, phone_number :: Maybe String }  deriving (Show)
 
 instance T.ToJSON SendPhoneNumberVerificationCode where
  toJSON (SendPhoneNumberVerificationCode { settings = settings, phone_number = phone_number }) =
@@ -22,6 +23,6 @@ instance T.FromJSON SendPhoneNumberVerificationCode where
   where
    parseSendPhoneNumberVerificationCode :: A.Value -> T.Parser SendPhoneNumberVerificationCode
    parseSendPhoneNumberVerificationCode = A.withObject "SendPhoneNumberVerificationCode" $ \o -> do
-    settings <- o A..: "settings"
-    phone_number <- o A..: "phone_number"
+    settings <- optional $ o A..: "settings"
+    phone_number <- optional $ o A..: "phone_number"
     return $ SendPhoneNumberVerificationCode { settings = settings, phone_number = phone_number }

@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetChatScheduledMessages where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetChatScheduledMessages = 
- GetChatScheduledMessages { chat_id :: Int }  deriving (Show)
+ GetChatScheduledMessages { chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON GetChatScheduledMessages where
  toJSON (GetChatScheduledMessages { chat_id = chat_id }) =
@@ -21,5 +22,5 @@ instance T.FromJSON GetChatScheduledMessages where
   where
    parseGetChatScheduledMessages :: A.Value -> T.Parser GetChatScheduledMessages
    parseGetChatScheduledMessages = A.withObject "GetChatScheduledMessages" $ \o -> do
-    chat_id <- o A..: "chat_id"
+    chat_id <- optional $ o A..: "chat_id"
     return $ GetChatScheduledMessages { chat_id = chat_id }

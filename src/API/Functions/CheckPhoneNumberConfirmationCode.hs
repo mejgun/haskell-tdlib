@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.CheckPhoneNumberConfirmationCode where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CheckPhoneNumberConfirmationCode = 
- CheckPhoneNumberConfirmationCode { code :: String }  deriving (Show)
+ CheckPhoneNumberConfirmationCode { code :: Maybe String }  deriving (Show)
 
 instance T.ToJSON CheckPhoneNumberConfirmationCode where
  toJSON (CheckPhoneNumberConfirmationCode { code = code }) =
@@ -21,5 +22,5 @@ instance T.FromJSON CheckPhoneNumberConfirmationCode where
   where
    parseCheckPhoneNumberConfirmationCode :: A.Value -> T.Parser CheckPhoneNumberConfirmationCode
    parseCheckPhoneNumberConfirmationCode = A.withObject "CheckPhoneNumberConfirmationCode" $ \o -> do
-    code <- o A..: "code"
+    code <- optional $ o A..: "code"
     return $ CheckPhoneNumberConfirmationCode { code = code }

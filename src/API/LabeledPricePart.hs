@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.LabeledPricePart where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data LabeledPricePart = 
- LabeledPricePart { amount :: Int, label :: String }  deriving (Show)
+ LabeledPricePart { amount :: Maybe Int, label :: Maybe String }  deriving (Show)
 
 instance T.ToJSON LabeledPricePart where
  toJSON (LabeledPricePart { amount = amount, label = label }) =
@@ -21,6 +22,6 @@ instance T.FromJSON LabeledPricePart where
   where
    parseLabeledPricePart :: A.Value -> T.Parser LabeledPricePart
    parseLabeledPricePart = A.withObject "LabeledPricePart" $ \o -> do
-    amount <- o A..: "amount"
-    label <- o A..: "label"
+    amount <- optional $ o A..: "amount"
+    label <- optional $ o A..: "label"
     return $ LabeledPricePart { amount = amount, label = label }

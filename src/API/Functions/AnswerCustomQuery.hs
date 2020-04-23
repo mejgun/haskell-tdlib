@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.AnswerCustomQuery where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data AnswerCustomQuery = 
- AnswerCustomQuery { _data :: String, custom_query_id :: Int }  deriving (Show)
+ AnswerCustomQuery { _data :: Maybe String, custom_query_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON AnswerCustomQuery where
  toJSON (AnswerCustomQuery { _data = _data, custom_query_id = custom_query_id }) =
@@ -21,6 +22,6 @@ instance T.FromJSON AnswerCustomQuery where
   where
    parseAnswerCustomQuery :: A.Value -> T.Parser AnswerCustomQuery
    parseAnswerCustomQuery = A.withObject "AnswerCustomQuery" $ \o -> do
-    _data <- o A..: "data"
-    custom_query_id <- o A..: "custom_query_id"
+    _data <- optional $ o A..: "data"
+    custom_query_id <- optional $ o A..: "custom_query_id"
     return $ AnswerCustomQuery { _data = _data, custom_query_id = custom_query_id }

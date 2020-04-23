@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ParseMarkdown where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
 data ParseMarkdown = 
- ParseMarkdown { text :: FormattedText.FormattedText }  deriving (Show)
+ ParseMarkdown { text :: Maybe FormattedText.FormattedText }  deriving (Show)
 
 instance T.ToJSON ParseMarkdown where
  toJSON (ParseMarkdown { text = text }) =
@@ -22,5 +23,5 @@ instance T.FromJSON ParseMarkdown where
   where
    parseParseMarkdown :: A.Value -> T.Parser ParseMarkdown
    parseParseMarkdown = A.withObject "ParseMarkdown" $ \o -> do
-    text <- o A..: "text"
+    text <- optional $ o A..: "text"
     return $ ParseMarkdown { text = text }

@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetPassportAuthorizationForm where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetPassportAuthorizationForm = 
- GetPassportAuthorizationForm { nonce :: String, public_key :: String, scope :: String, bot_user_id :: Int }  deriving (Show)
+ GetPassportAuthorizationForm { nonce :: Maybe String, public_key :: Maybe String, scope :: Maybe String, bot_user_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON GetPassportAuthorizationForm where
  toJSON (GetPassportAuthorizationForm { nonce = nonce, public_key = public_key, scope = scope, bot_user_id = bot_user_id }) =
@@ -21,8 +22,8 @@ instance T.FromJSON GetPassportAuthorizationForm where
   where
    parseGetPassportAuthorizationForm :: A.Value -> T.Parser GetPassportAuthorizationForm
    parseGetPassportAuthorizationForm = A.withObject "GetPassportAuthorizationForm" $ \o -> do
-    nonce <- o A..: "nonce"
-    public_key <- o A..: "public_key"
-    scope <- o A..: "scope"
-    bot_user_id <- o A..: "bot_user_id"
+    nonce <- optional $ o A..: "nonce"
+    public_key <- optional $ o A..: "public_key"
+    scope <- optional $ o A..: "scope"
+    bot_user_id <- optional $ o A..: "bot_user_id"
     return $ GetPassportAuthorizationForm { nonce = nonce, public_key = public_key, scope = scope, bot_user_id = bot_user_id }

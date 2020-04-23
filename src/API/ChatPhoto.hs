@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatPhoto where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
 
 data ChatPhoto = 
- ChatPhoto { big :: File.File, small :: File.File }  deriving (Show)
+ ChatPhoto { big :: Maybe File.File, small :: Maybe File.File }  deriving (Show)
 
 instance T.ToJSON ChatPhoto where
  toJSON (ChatPhoto { big = big, small = small }) =
@@ -22,6 +23,6 @@ instance T.FromJSON ChatPhoto where
   where
    parseChatPhoto :: A.Value -> T.Parser ChatPhoto
    parseChatPhoto = A.withObject "ChatPhoto" $ \o -> do
-    big <- o A..: "big"
-    small <- o A..: "small"
+    big <- optional $ o A..: "big"
+    small <- optional $ o A..: "small"
     return $ ChatPhoto { big = big, small = small }

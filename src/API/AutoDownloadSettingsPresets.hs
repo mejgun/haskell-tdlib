@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.AutoDownloadSettingsPresets where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.AutoDownloadSettings as AutoDownloadSettings
 
 data AutoDownloadSettingsPresets = 
- AutoDownloadSettingsPresets { high :: AutoDownloadSettings.AutoDownloadSettings, medium :: AutoDownloadSettings.AutoDownloadSettings, low :: AutoDownloadSettings.AutoDownloadSettings }  deriving (Show)
+ AutoDownloadSettingsPresets { high :: Maybe AutoDownloadSettings.AutoDownloadSettings, medium :: Maybe AutoDownloadSettings.AutoDownloadSettings, low :: Maybe AutoDownloadSettings.AutoDownloadSettings }  deriving (Show)
 
 instance T.ToJSON AutoDownloadSettingsPresets where
  toJSON (AutoDownloadSettingsPresets { high = high, medium = medium, low = low }) =
@@ -22,7 +23,7 @@ instance T.FromJSON AutoDownloadSettingsPresets where
   where
    parseAutoDownloadSettingsPresets :: A.Value -> T.Parser AutoDownloadSettingsPresets
    parseAutoDownloadSettingsPresets = A.withObject "AutoDownloadSettingsPresets" $ \o -> do
-    high <- o A..: "high"
-    medium <- o A..: "medium"
-    low <- o A..: "low"
+    high <- optional $ o A..: "high"
+    medium <- optional $ o A..: "medium"
+    low <- optional $ o A..: "low"
     return $ AutoDownloadSettingsPresets { high = high, medium = medium, low = low }

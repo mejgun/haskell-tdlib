@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SaveApplicationLogEvent where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.JsonValue as JsonValue
 
 data SaveApplicationLogEvent = 
- SaveApplicationLogEvent { _data :: JsonValue.JsonValue, chat_id :: Int, _type :: String }  deriving (Show)
+ SaveApplicationLogEvent { _data :: Maybe JsonValue.JsonValue, chat_id :: Maybe Int, _type :: Maybe String }  deriving (Show)
 
 instance T.ToJSON SaveApplicationLogEvent where
  toJSON (SaveApplicationLogEvent { _data = _data, chat_id = chat_id, _type = _type }) =
@@ -22,7 +23,7 @@ instance T.FromJSON SaveApplicationLogEvent where
   where
    parseSaveApplicationLogEvent :: A.Value -> T.Parser SaveApplicationLogEvent
    parseSaveApplicationLogEvent = A.withObject "SaveApplicationLogEvent" $ \o -> do
-    _data <- o A..: "data"
-    chat_id <- o A..: "chat_id"
-    _type <- o A..: "type"
+    _data <- optional $ o A..: "data"
+    chat_id <- optional $ o A..: "chat_id"
+    _type <- optional $ o A..: "type"
     return $ SaveApplicationLogEvent { _data = _data, chat_id = chat_id, _type = _type }

@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.InputThumbnail where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data InputThumbnail = 
- InputThumbnail { height :: Int, width :: Int, thumbnail :: InputFile.InputFile }  deriving (Show)
+ InputThumbnail { height :: Maybe Int, width :: Maybe Int, thumbnail :: Maybe InputFile.InputFile }  deriving (Show)
 
 instance T.ToJSON InputThumbnail where
  toJSON (InputThumbnail { height = height, width = width, thumbnail = thumbnail }) =
@@ -22,7 +23,7 @@ instance T.FromJSON InputThumbnail where
   where
    parseInputThumbnail :: A.Value -> T.Parser InputThumbnail
    parseInputThumbnail = A.withObject "InputThumbnail" $ \o -> do
-    height <- o A..: "height"
-    width <- o A..: "width"
-    thumbnail <- o A..: "thumbnail"
+    height <- optional $ o A..: "height"
+    width <- optional $ o A..: "width"
+    thumbnail <- optional $ o A..: "thumbnail"
     return $ InputThumbnail { height = height, width = width, thumbnail = thumbnail }

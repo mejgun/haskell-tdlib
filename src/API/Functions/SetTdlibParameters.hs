@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetTdlibParameters where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TdlibParameters as TdlibParameters
 
 data SetTdlibParameters = 
- SetTdlibParameters { parameters :: TdlibParameters.TdlibParameters }  deriving (Show)
+ SetTdlibParameters { parameters :: Maybe TdlibParameters.TdlibParameters }  deriving (Show)
 
 instance T.ToJSON SetTdlibParameters where
  toJSON (SetTdlibParameters { parameters = parameters }) =
@@ -22,5 +23,5 @@ instance T.FromJSON SetTdlibParameters where
   where
    parseSetTdlibParameters :: A.Value -> T.Parser SetTdlibParameters
    parseSetTdlibParameters = A.withObject "SetTdlibParameters" $ \o -> do
-    parameters <- o A..: "parameters"
+    parameters <- optional $ o A..: "parameters"
     return $ SetTdlibParameters { parameters = parameters }

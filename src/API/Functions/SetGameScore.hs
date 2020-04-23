@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetGameScore where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetGameScore = 
- SetGameScore { force :: Bool, score :: Int, user_id :: Int, edit_message :: Bool, message_id :: Int, chat_id :: Int }  deriving (Show)
+ SetGameScore { force :: Maybe Bool, score :: Maybe Int, user_id :: Maybe Int, edit_message :: Maybe Bool, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON SetGameScore where
  toJSON (SetGameScore { force = force, score = score, user_id = user_id, edit_message = edit_message, message_id = message_id, chat_id = chat_id }) =
@@ -21,10 +22,10 @@ instance T.FromJSON SetGameScore where
   where
    parseSetGameScore :: A.Value -> T.Parser SetGameScore
    parseSetGameScore = A.withObject "SetGameScore" $ \o -> do
-    force <- o A..: "force"
-    score <- o A..: "score"
-    user_id <- o A..: "user_id"
-    edit_message <- o A..: "edit_message"
-    message_id <- o A..: "message_id"
-    chat_id <- o A..: "chat_id"
+    force <- optional $ o A..: "force"
+    score <- optional $ o A..: "score"
+    user_id <- optional $ o A..: "user_id"
+    edit_message <- optional $ o A..: "edit_message"
+    message_id <- optional $ o A..: "message_id"
+    chat_id <- optional $ o A..: "chat_id"
     return $ SetGameScore { force = force, score = score, user_id = user_id, edit_message = edit_message, message_id = message_id, chat_id = chat_id }

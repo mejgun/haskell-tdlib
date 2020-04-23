@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Document where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
@@ -9,7 +10,7 @@ import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 
 data Document = 
- Document { document :: File.File, thumbnail :: PhotoSize.PhotoSize, minithumbnail :: Minithumbnail.Minithumbnail, mime_type :: String, file_name :: String }  deriving (Show)
+ Document { document :: Maybe File.File, thumbnail :: Maybe PhotoSize.PhotoSize, minithumbnail :: Maybe Minithumbnail.Minithumbnail, mime_type :: Maybe String, file_name :: Maybe String }  deriving (Show)
 
 instance T.ToJSON Document where
  toJSON (Document { document = document, thumbnail = thumbnail, minithumbnail = minithumbnail, mime_type = mime_type, file_name = file_name }) =
@@ -24,9 +25,9 @@ instance T.FromJSON Document where
   where
    parseDocument :: A.Value -> T.Parser Document
    parseDocument = A.withObject "Document" $ \o -> do
-    document <- o A..: "document"
-    thumbnail <- o A..: "thumbnail"
-    minithumbnail <- o A..: "minithumbnail"
-    mime_type <- o A..: "mime_type"
-    file_name <- o A..: "file_name"
+    document <- optional $ o A..: "document"
+    thumbnail <- optional $ o A..: "thumbnail"
+    minithumbnail <- optional $ o A..: "minithumbnail"
+    mime_type <- optional $ o A..: "mime_type"
+    file_name <- optional $ o A..: "file_name"
     return $ Document { document = document, thumbnail = thumbnail, minithumbnail = minithumbnail, mime_type = mime_type, file_name = file_name }

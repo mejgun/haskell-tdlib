@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ViewMessages where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ViewMessages = 
- ViewMessages { force_read :: Bool, message_ids :: [Int], chat_id :: Int }  deriving (Show)
+ ViewMessages { force_read :: Maybe Bool, message_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON ViewMessages where
  toJSON (ViewMessages { force_read = force_read, message_ids = message_ids, chat_id = chat_id }) =
@@ -21,7 +22,7 @@ instance T.FromJSON ViewMessages where
   where
    parseViewMessages :: A.Value -> T.Parser ViewMessages
    parseViewMessages = A.withObject "ViewMessages" $ \o -> do
-    force_read <- o A..: "force_read"
-    message_ids <- o A..: "message_ids"
-    chat_id <- o A..: "chat_id"
+    force_read <- optional $ o A..: "force_read"
+    message_ids <- optional $ o A..: "message_ids"
+    chat_id <- optional $ o A..: "chat_id"
     return $ ViewMessages { force_read = force_read, message_ids = message_ids, chat_id = chat_id }

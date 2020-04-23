@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.UploadStickerFile where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data UploadStickerFile = 
- UploadStickerFile { png_sticker :: InputFile.InputFile, user_id :: Int }  deriving (Show)
+ UploadStickerFile { png_sticker :: Maybe InputFile.InputFile, user_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON UploadStickerFile where
  toJSON (UploadStickerFile { png_sticker = png_sticker, user_id = user_id }) =
@@ -22,6 +23,6 @@ instance T.FromJSON UploadStickerFile where
   where
    parseUploadStickerFile :: A.Value -> T.Parser UploadStickerFile
    parseUploadStickerFile = A.withObject "UploadStickerFile" $ \o -> do
-    png_sticker <- o A..: "png_sticker"
-    user_id <- o A..: "user_id"
+    png_sticker <- optional $ o A..: "png_sticker"
+    user_id <- optional $ o A..: "user_id"
     return $ UploadStickerFile { png_sticker = png_sticker, user_id = user_id }

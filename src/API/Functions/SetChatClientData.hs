@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetChatClientData where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetChatClientData = 
- SetChatClientData { client_data :: String, chat_id :: Int }  deriving (Show)
+ SetChatClientData { client_data :: Maybe String, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON SetChatClientData where
  toJSON (SetChatClientData { client_data = client_data, chat_id = chat_id }) =
@@ -21,6 +22,6 @@ instance T.FromJSON SetChatClientData where
   where
    parseSetChatClientData :: A.Value -> T.Parser SetChatClientData
    parseSetChatClientData = A.withObject "SetChatClientData" $ \o -> do
-    client_data <- o A..: "client_data"
-    chat_id <- o A..: "chat_id"
+    client_data <- optional $ o A..: "client_data"
+    chat_id <- optional $ o A..: "chat_id"
     return $ SetChatClientData { client_data = client_data, chat_id = chat_id }

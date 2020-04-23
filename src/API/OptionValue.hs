@@ -2,14 +2,15 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.OptionValue where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data OptionValue = 
- OptionValueBoolean { __value :: Bool }  
+ OptionValueBoolean { __value :: Maybe Bool }  
  | OptionValueEmpty 
- | OptionValueInteger { _value :: Int }  
- | OptionValueString { value :: String }  deriving (Show)
+ | OptionValueInteger { _value :: Maybe Int }  
+ | OptionValueString { value :: Maybe String }  deriving (Show)
 
 instance T.ToJSON OptionValue where
  toJSON (OptionValueBoolean { __value = __value }) =
@@ -36,7 +37,7 @@ instance T.FromJSON OptionValue where
   where
    parseOptionValueBoolean :: A.Value -> T.Parser OptionValue
    parseOptionValueBoolean = A.withObject "OptionValueBoolean" $ \o -> do
-    __value <- o A..: "value"
+    __value <- optional $ o A..: "value"
     return $ OptionValueBoolean { __value = __value }
 
    parseOptionValueEmpty :: A.Value -> T.Parser OptionValue
@@ -45,10 +46,10 @@ instance T.FromJSON OptionValue where
 
    parseOptionValueInteger :: A.Value -> T.Parser OptionValue
    parseOptionValueInteger = A.withObject "OptionValueInteger" $ \o -> do
-    _value <- o A..: "value"
+    _value <- optional $ o A..: "value"
     return $ OptionValueInteger { _value = _value }
 
    parseOptionValueString :: A.Value -> T.Parser OptionValue
    parseOptionValueString = A.withObject "OptionValueString" $ \o -> do
-    value <- o A..: "value"
+    value <- optional $ o A..: "value"
     return $ OptionValueString { value = value }

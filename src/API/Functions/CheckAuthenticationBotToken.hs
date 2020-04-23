@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.CheckAuthenticationBotToken where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CheckAuthenticationBotToken = 
- CheckAuthenticationBotToken { token :: String }  deriving (Show)
+ CheckAuthenticationBotToken { token :: Maybe String }  deriving (Show)
 
 instance T.ToJSON CheckAuthenticationBotToken where
  toJSON (CheckAuthenticationBotToken { token = token }) =
@@ -21,5 +22,5 @@ instance T.FromJSON CheckAuthenticationBotToken where
   where
    parseCheckAuthenticationBotToken :: A.Value -> T.Parser CheckAuthenticationBotToken
    parseCheckAuthenticationBotToken = A.withObject "CheckAuthenticationBotToken" $ \o -> do
-    token <- o A..: "token"
+    token <- optional $ o A..: "token"
     return $ CheckAuthenticationBotToken { token = token }

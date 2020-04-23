@@ -2,22 +2,23 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatAction where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ChatAction = 
  ChatActionTyping 
  | ChatActionRecordingVideo 
- | ChatActionUploadingVideo { progress :: Int }  
+ | ChatActionUploadingVideo { progress :: Maybe Int }  
  | ChatActionRecordingVoiceNote 
- | ChatActionUploadingVoiceNote { progress :: Int }  
- | ChatActionUploadingPhoto { progress :: Int }  
- | ChatActionUploadingDocument { progress :: Int }  
+ | ChatActionUploadingVoiceNote { progress :: Maybe Int }  
+ | ChatActionUploadingPhoto { progress :: Maybe Int }  
+ | ChatActionUploadingDocument { progress :: Maybe Int }  
  | ChatActionChoosingLocation 
  | ChatActionChoosingContact 
  | ChatActionStartPlayingGame 
  | ChatActionRecordingVideoNote 
- | ChatActionUploadingVideoNote { progress :: Int }  
+ | ChatActionUploadingVideoNote { progress :: Maybe Int }  
  | ChatActionCancel deriving (Show)
 
 instance T.ToJSON ChatAction where
@@ -89,7 +90,7 @@ instance T.FromJSON ChatAction where
 
    parseChatActionUploadingVideo :: A.Value -> T.Parser ChatAction
    parseChatActionUploadingVideo = A.withObject "ChatActionUploadingVideo" $ \o -> do
-    progress <- o A..: "progress"
+    progress <- optional $ o A..: "progress"
     return $ ChatActionUploadingVideo { progress = progress }
 
    parseChatActionRecordingVoiceNote :: A.Value -> T.Parser ChatAction
@@ -98,17 +99,17 @@ instance T.FromJSON ChatAction where
 
    parseChatActionUploadingVoiceNote :: A.Value -> T.Parser ChatAction
    parseChatActionUploadingVoiceNote = A.withObject "ChatActionUploadingVoiceNote" $ \o -> do
-    progress <- o A..: "progress"
+    progress <- optional $ o A..: "progress"
     return $ ChatActionUploadingVoiceNote { progress = progress }
 
    parseChatActionUploadingPhoto :: A.Value -> T.Parser ChatAction
    parseChatActionUploadingPhoto = A.withObject "ChatActionUploadingPhoto" $ \o -> do
-    progress <- o A..: "progress"
+    progress <- optional $ o A..: "progress"
     return $ ChatActionUploadingPhoto { progress = progress }
 
    parseChatActionUploadingDocument :: A.Value -> T.Parser ChatAction
    parseChatActionUploadingDocument = A.withObject "ChatActionUploadingDocument" $ \o -> do
-    progress <- o A..: "progress"
+    progress <- optional $ o A..: "progress"
     return $ ChatActionUploadingDocument { progress = progress }
 
    parseChatActionChoosingLocation :: A.Value -> T.Parser ChatAction
@@ -129,7 +130,7 @@ instance T.FromJSON ChatAction where
 
    parseChatActionUploadingVideoNote :: A.Value -> T.Parser ChatAction
    parseChatActionUploadingVideoNote = A.withObject "ChatActionUploadingVideoNote" $ \o -> do
-    progress <- o A..: "progress"
+    progress <- optional $ o A..: "progress"
     return $ ChatActionUploadingVideoNote { progress = progress }
 
    parseChatActionCancel :: A.Value -> T.Parser ChatAction

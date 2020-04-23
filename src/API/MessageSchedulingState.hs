@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.MessageSchedulingState where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data MessageSchedulingState = 
- MessageSchedulingStateSendAtDate { send_date :: Int }  
+ MessageSchedulingStateSendAtDate { send_date :: Maybe Int }  
  | MessageSchedulingStateSendWhenOnline deriving (Show)
 
 instance T.ToJSON MessageSchedulingState where
@@ -26,7 +27,7 @@ instance T.FromJSON MessageSchedulingState where
   where
    parseMessageSchedulingStateSendAtDate :: A.Value -> T.Parser MessageSchedulingState
    parseMessageSchedulingStateSendAtDate = A.withObject "MessageSchedulingStateSendAtDate" $ \o -> do
-    send_date <- o A..: "send_date"
+    send_date <- optional $ o A..: "send_date"
     return $ MessageSchedulingStateSendAtDate { send_date = send_date }
 
    parseMessageSchedulingStateSendWhenOnline :: A.Value -> T.Parser MessageSchedulingState

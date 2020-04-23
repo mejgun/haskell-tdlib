@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.EditCustomLanguagePackInfo where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LanguagePackInfo as LanguagePackInfo
 
 data EditCustomLanguagePackInfo = 
- EditCustomLanguagePackInfo { info :: LanguagePackInfo.LanguagePackInfo }  deriving (Show)
+ EditCustomLanguagePackInfo { info :: Maybe LanguagePackInfo.LanguagePackInfo }  deriving (Show)
 
 instance T.ToJSON EditCustomLanguagePackInfo where
  toJSON (EditCustomLanguagePackInfo { info = info }) =
@@ -22,5 +23,5 @@ instance T.FromJSON EditCustomLanguagePackInfo where
   where
    parseEditCustomLanguagePackInfo :: A.Value -> T.Parser EditCustomLanguagePackInfo
    parseEditCustomLanguagePackInfo = A.withObject "EditCustomLanguagePackInfo" $ \o -> do
-    info <- o A..: "info"
+    info <- optional $ o A..: "info"
     return $ EditCustomLanguagePackInfo { info = info }

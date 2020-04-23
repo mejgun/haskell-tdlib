@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.AuthorizationState where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.AuthenticationCodeInfo as AuthenticationCodeInfo
@@ -9,12 +10,12 @@ import {-# SOURCE #-} qualified API.TermsOfService as TermsOfService
 
 data AuthorizationState = 
  AuthorizationStateWaitTdlibParameters 
- | AuthorizationStateWaitEncryptionKey { is_encrypted :: Bool }  
+ | AuthorizationStateWaitEncryptionKey { is_encrypted :: Maybe Bool }  
  | AuthorizationStateWaitPhoneNumber 
- | AuthorizationStateWaitCode { code_info :: AuthenticationCodeInfo.AuthenticationCodeInfo }  
- | AuthorizationStateWaitOtherDeviceConfirmation { link :: String }  
- | AuthorizationStateWaitRegistration { terms_of_service :: TermsOfService.TermsOfService }  
- | AuthorizationStateWaitPassword { recovery_email_address_pattern :: String, has_recovery_email_address :: Bool, password_hint :: String }  
+ | AuthorizationStateWaitCode { code_info :: Maybe AuthenticationCodeInfo.AuthenticationCodeInfo }  
+ | AuthorizationStateWaitOtherDeviceConfirmation { link :: Maybe String }  
+ | AuthorizationStateWaitRegistration { terms_of_service :: Maybe TermsOfService.TermsOfService }  
+ | AuthorizationStateWaitPassword { recovery_email_address_pattern :: Maybe String, has_recovery_email_address :: Maybe Bool, password_hint :: Maybe String }  
  | AuthorizationStateReady 
  | AuthorizationStateLoggingOut 
  | AuthorizationStateClosing 
@@ -77,7 +78,7 @@ instance T.FromJSON AuthorizationState where
 
    parseAuthorizationStateWaitEncryptionKey :: A.Value -> T.Parser AuthorizationState
    parseAuthorizationStateWaitEncryptionKey = A.withObject "AuthorizationStateWaitEncryptionKey" $ \o -> do
-    is_encrypted <- o A..: "is_encrypted"
+    is_encrypted <- optional $ o A..: "is_encrypted"
     return $ AuthorizationStateWaitEncryptionKey { is_encrypted = is_encrypted }
 
    parseAuthorizationStateWaitPhoneNumber :: A.Value -> T.Parser AuthorizationState
@@ -86,24 +87,24 @@ instance T.FromJSON AuthorizationState where
 
    parseAuthorizationStateWaitCode :: A.Value -> T.Parser AuthorizationState
    parseAuthorizationStateWaitCode = A.withObject "AuthorizationStateWaitCode" $ \o -> do
-    code_info <- o A..: "code_info"
+    code_info <- optional $ o A..: "code_info"
     return $ AuthorizationStateWaitCode { code_info = code_info }
 
    parseAuthorizationStateWaitOtherDeviceConfirmation :: A.Value -> T.Parser AuthorizationState
    parseAuthorizationStateWaitOtherDeviceConfirmation = A.withObject "AuthorizationStateWaitOtherDeviceConfirmation" $ \o -> do
-    link <- o A..: "link"
+    link <- optional $ o A..: "link"
     return $ AuthorizationStateWaitOtherDeviceConfirmation { link = link }
 
    parseAuthorizationStateWaitRegistration :: A.Value -> T.Parser AuthorizationState
    parseAuthorizationStateWaitRegistration = A.withObject "AuthorizationStateWaitRegistration" $ \o -> do
-    terms_of_service <- o A..: "terms_of_service"
+    terms_of_service <- optional $ o A..: "terms_of_service"
     return $ AuthorizationStateWaitRegistration { terms_of_service = terms_of_service }
 
    parseAuthorizationStateWaitPassword :: A.Value -> T.Parser AuthorizationState
    parseAuthorizationStateWaitPassword = A.withObject "AuthorizationStateWaitPassword" $ \o -> do
-    recovery_email_address_pattern <- o A..: "recovery_email_address_pattern"
-    has_recovery_email_address <- o A..: "has_recovery_email_address"
-    password_hint <- o A..: "password_hint"
+    recovery_email_address_pattern <- optional $ o A..: "recovery_email_address_pattern"
+    has_recovery_email_address <- optional $ o A..: "has_recovery_email_address"
+    password_hint <- optional $ o A..: "password_hint"
     return $ AuthorizationStateWaitPassword { recovery_email_address_pattern = recovery_email_address_pattern, has_recovery_email_address = has_recovery_email_address, password_hint = password_hint }
 
    parseAuthorizationStateReady :: A.Value -> T.Parser AuthorizationState

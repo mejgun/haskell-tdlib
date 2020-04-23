@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.AddFavoriteSticker where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data AddFavoriteSticker = 
- AddFavoriteSticker { sticker :: InputFile.InputFile }  deriving (Show)
+ AddFavoriteSticker { sticker :: Maybe InputFile.InputFile }  deriving (Show)
 
 instance T.ToJSON AddFavoriteSticker where
  toJSON (AddFavoriteSticker { sticker = sticker }) =
@@ -22,5 +23,5 @@ instance T.FromJSON AddFavoriteSticker where
   where
    parseAddFavoriteSticker :: A.Value -> T.Parser AddFavoriteSticker
    parseAddFavoriteSticker = A.withObject "AddFavoriteSticker" $ \o -> do
-    sticker <- o A..: "sticker"
+    sticker <- optional $ o A..: "sticker"
     return $ AddFavoriteSticker { sticker = sticker }

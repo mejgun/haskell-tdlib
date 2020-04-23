@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.AuthenticationCodeInfo where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.AuthenticationCodeType as AuthenticationCodeType
 
 data AuthenticationCodeInfo = 
- AuthenticationCodeInfo { timeout :: Int, next_type :: AuthenticationCodeType.AuthenticationCodeType, _type :: AuthenticationCodeType.AuthenticationCodeType, phone_number :: String }  deriving (Show)
+ AuthenticationCodeInfo { timeout :: Maybe Int, next_type :: Maybe AuthenticationCodeType.AuthenticationCodeType, _type :: Maybe AuthenticationCodeType.AuthenticationCodeType, phone_number :: Maybe String }  deriving (Show)
 
 instance T.ToJSON AuthenticationCodeInfo where
  toJSON (AuthenticationCodeInfo { timeout = timeout, next_type = next_type, _type = _type, phone_number = phone_number }) =
@@ -22,8 +23,8 @@ instance T.FromJSON AuthenticationCodeInfo where
   where
    parseAuthenticationCodeInfo :: A.Value -> T.Parser AuthenticationCodeInfo
    parseAuthenticationCodeInfo = A.withObject "AuthenticationCodeInfo" $ \o -> do
-    timeout <- o A..: "timeout"
-    next_type <- o A..: "next_type"
-    _type <- o A..: "type"
-    phone_number <- o A..: "phone_number"
+    timeout <- optional $ o A..: "timeout"
+    next_type <- optional $ o A..: "next_type"
+    _type <- optional $ o A..: "type"
+    phone_number <- optional $ o A..: "phone_number"
     return $ AuthenticationCodeInfo { timeout = timeout, next_type = next_type, _type = _type, phone_number = phone_number }

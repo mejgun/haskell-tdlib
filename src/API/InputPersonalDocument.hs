@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.InputPersonalDocument where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data InputPersonalDocument = 
- InputPersonalDocument { translation :: [InputFile.InputFile], files :: [InputFile.InputFile] }  deriving (Show)
+ InputPersonalDocument { translation :: Maybe [InputFile.InputFile], files :: Maybe [InputFile.InputFile] }  deriving (Show)
 
 instance T.ToJSON InputPersonalDocument where
  toJSON (InputPersonalDocument { translation = translation, files = files }) =
@@ -22,6 +23,6 @@ instance T.FromJSON InputPersonalDocument where
   where
    parseInputPersonalDocument :: A.Value -> T.Parser InputPersonalDocument
    parseInputPersonalDocument = A.withObject "InputPersonalDocument" $ \o -> do
-    translation <- o A..: "translation"
-    files <- o A..: "files"
+    translation <- optional $ o A..: "translation"
+    files <- optional $ o A..: "files"
     return $ InputPersonalDocument { translation = translation, files = files }

@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ReadFilePart where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ReadFilePart = 
- ReadFilePart { count :: Int, offset :: Int, file_id :: Int }  deriving (Show)
+ ReadFilePart { count :: Maybe Int, offset :: Maybe Int, file_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON ReadFilePart where
  toJSON (ReadFilePart { count = count, offset = offset, file_id = file_id }) =
@@ -21,7 +22,7 @@ instance T.FromJSON ReadFilePart where
   where
    parseReadFilePart :: A.Value -> T.Parser ReadFilePart
    parseReadFilePart = A.withObject "ReadFilePart" $ \o -> do
-    count <- o A..: "count"
-    offset <- o A..: "offset"
-    file_id <- o A..: "file_id"
+    count <- optional $ o A..: "count"
+    offset <- optional $ o A..: "offset"
+    file_id <- optional $ o A..: "file_id"
     return $ ReadFilePart { count = count, offset = offset, file_id = file_id }

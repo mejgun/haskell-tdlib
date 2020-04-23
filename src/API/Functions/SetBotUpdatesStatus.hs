@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetBotUpdatesStatus where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetBotUpdatesStatus = 
- SetBotUpdatesStatus { error_message :: String, pending_update_count :: Int }  deriving (Show)
+ SetBotUpdatesStatus { error_message :: Maybe String, pending_update_count :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON SetBotUpdatesStatus where
  toJSON (SetBotUpdatesStatus { error_message = error_message, pending_update_count = pending_update_count }) =
@@ -21,6 +22,6 @@ instance T.FromJSON SetBotUpdatesStatus where
   where
    parseSetBotUpdatesStatus :: A.Value -> T.Parser SetBotUpdatesStatus
    parseSetBotUpdatesStatus = A.withObject "SetBotUpdatesStatus" $ \o -> do
-    error_message <- o A..: "error_message"
-    pending_update_count <- o A..: "pending_update_count"
+    error_message <- optional $ o A..: "error_message"
+    pending_update_count <- optional $ o A..: "pending_update_count"
     return $ SetBotUpdatesStatus { error_message = error_message, pending_update_count = pending_update_count }

@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetSupergroupFullInfo where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetSupergroupFullInfo = 
- GetSupergroupFullInfo { supergroup_id :: Int }  deriving (Show)
+ GetSupergroupFullInfo { supergroup_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON GetSupergroupFullInfo where
  toJSON (GetSupergroupFullInfo { supergroup_id = supergroup_id }) =
@@ -21,5 +22,5 @@ instance T.FromJSON GetSupergroupFullInfo where
   where
    parseGetSupergroupFullInfo :: A.Value -> T.Parser GetSupergroupFullInfo
    parseGetSupergroupFullInfo = A.withObject "GetSupergroupFullInfo" $ \o -> do
-    supergroup_id <- o A..: "supergroup_id"
+    supergroup_id <- optional $ o A..: "supergroup_id"
     return $ GetSupergroupFullInfo { supergroup_id = supergroup_id }

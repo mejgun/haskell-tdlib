@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SendPaymentForm where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputCredentials as InputCredentials
 
 data SendPaymentForm = 
- SendPaymentForm { credentials :: InputCredentials.InputCredentials, shipping_option_id :: String, order_info_id :: String, message_id :: Int, chat_id :: Int }  deriving (Show)
+ SendPaymentForm { credentials :: Maybe InputCredentials.InputCredentials, shipping_option_id :: Maybe String, order_info_id :: Maybe String, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON SendPaymentForm where
  toJSON (SendPaymentForm { credentials = credentials, shipping_option_id = shipping_option_id, order_info_id = order_info_id, message_id = message_id, chat_id = chat_id }) =
@@ -22,9 +23,9 @@ instance T.FromJSON SendPaymentForm where
   where
    parseSendPaymentForm :: A.Value -> T.Parser SendPaymentForm
    parseSendPaymentForm = A.withObject "SendPaymentForm" $ \o -> do
-    credentials <- o A..: "credentials"
-    shipping_option_id <- o A..: "shipping_option_id"
-    order_info_id <- o A..: "order_info_id"
-    message_id <- o A..: "message_id"
-    chat_id <- o A..: "chat_id"
+    credentials <- optional $ o A..: "credentials"
+    shipping_option_id <- optional $ o A..: "shipping_option_id"
+    order_info_id <- optional $ o A..: "order_info_id"
+    message_id <- optional $ o A..: "message_id"
+    chat_id <- optional $ o A..: "chat_id"
     return $ SendPaymentForm { credentials = credentials, shipping_option_id = shipping_option_id, order_info_id = order_info_id, message_id = message_id, chat_id = chat_id }

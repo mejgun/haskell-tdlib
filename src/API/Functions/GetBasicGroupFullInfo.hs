@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetBasicGroupFullInfo where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetBasicGroupFullInfo = 
- GetBasicGroupFullInfo { basic_group_id :: Int }  deriving (Show)
+ GetBasicGroupFullInfo { basic_group_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON GetBasicGroupFullInfo where
  toJSON (GetBasicGroupFullInfo { basic_group_id = basic_group_id }) =
@@ -21,5 +22,5 @@ instance T.FromJSON GetBasicGroupFullInfo where
   where
    parseGetBasicGroupFullInfo :: A.Value -> T.Parser GetBasicGroupFullInfo
    parseGetBasicGroupFullInfo = A.withObject "GetBasicGroupFullInfo" $ \o -> do
-    basic_group_id <- o A..: "basic_group_id"
+    basic_group_id <- optional $ o A..: "basic_group_id"
     return $ GetBasicGroupFullInfo { basic_group_id = basic_group_id }

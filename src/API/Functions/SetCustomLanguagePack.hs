@@ -2,13 +2,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetCustomLanguagePack where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LanguagePackString as LanguagePackString
 import {-# SOURCE #-} qualified API.LanguagePackInfo as LanguagePackInfo
 
 data SetCustomLanguagePack = 
- SetCustomLanguagePack { strings :: [LanguagePackString.LanguagePackString], info :: LanguagePackInfo.LanguagePackInfo }  deriving (Show)
+ SetCustomLanguagePack { strings :: Maybe [LanguagePackString.LanguagePackString], info :: Maybe LanguagePackInfo.LanguagePackInfo }  deriving (Show)
 
 instance T.ToJSON SetCustomLanguagePack where
  toJSON (SetCustomLanguagePack { strings = strings, info = info }) =
@@ -23,6 +24,6 @@ instance T.FromJSON SetCustomLanguagePack where
   where
    parseSetCustomLanguagePack :: A.Value -> T.Parser SetCustomLanguagePack
    parseSetCustomLanguagePack = A.withObject "SetCustomLanguagePack" $ \o -> do
-    strings <- o A..: "strings"
-    info <- o A..: "info"
+    strings <- optional $ o A..: "strings"
+    info <- optional $ o A..: "info"
     return $ SetCustomLanguagePack { strings = strings, info = info }

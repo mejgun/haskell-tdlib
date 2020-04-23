@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.DownloadFile where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data DownloadFile = 
- DownloadFile { synchronous :: Bool, limit :: Int, offset :: Int, priority :: Int, file_id :: Int }  deriving (Show)
+ DownloadFile { synchronous :: Maybe Bool, limit :: Maybe Int, offset :: Maybe Int, priority :: Maybe Int, file_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON DownloadFile where
  toJSON (DownloadFile { synchronous = synchronous, limit = limit, offset = offset, priority = priority, file_id = file_id }) =
@@ -21,9 +22,9 @@ instance T.FromJSON DownloadFile where
   where
    parseDownloadFile :: A.Value -> T.Parser DownloadFile
    parseDownloadFile = A.withObject "DownloadFile" $ \o -> do
-    synchronous <- o A..: "synchronous"
-    limit <- o A..: "limit"
-    offset <- o A..: "offset"
-    priority <- o A..: "priority"
-    file_id <- o A..: "file_id"
+    synchronous <- optional $ o A..: "synchronous"
+    limit <- optional $ o A..: "limit"
+    offset <- optional $ o A..: "offset"
+    priority <- optional $ o A..: "priority"
+    file_id <- optional $ o A..: "file_id"
     return $ DownloadFile { synchronous = synchronous, limit = limit, offset = offset, priority = priority, file_id = file_id }

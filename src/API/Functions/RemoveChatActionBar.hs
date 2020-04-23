@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.RemoveChatActionBar where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data RemoveChatActionBar = 
- RemoveChatActionBar { chat_id :: Int }  deriving (Show)
+ RemoveChatActionBar { chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON RemoveChatActionBar where
  toJSON (RemoveChatActionBar { chat_id = chat_id }) =
@@ -21,5 +22,5 @@ instance T.FromJSON RemoveChatActionBar where
   where
    parseRemoveChatActionBar :: A.Value -> T.Parser RemoveChatActionBar
    parseRemoveChatActionBar = A.withObject "RemoveChatActionBar" $ \o -> do
-    chat_id <- o A..: "chat_id"
+    chat_id <- optional $ o A..: "chat_id"
     return $ RemoveChatActionBar { chat_id = chat_id }

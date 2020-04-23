@@ -2,13 +2,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.MessageForwardOrigin where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data MessageForwardOrigin = 
- MessageForwardOriginUser { sender_user_id :: Int }  
- | MessageForwardOriginHiddenUser { sender_name :: String }  
- | MessageForwardOriginChannel { author_signature :: String, message_id :: Int, chat_id :: Int }  deriving (Show)
+ MessageForwardOriginUser { sender_user_id :: Maybe Int }  
+ | MessageForwardOriginHiddenUser { sender_name :: Maybe String }  
+ | MessageForwardOriginChannel { author_signature :: Maybe String, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON MessageForwardOrigin where
  toJSON (MessageForwardOriginUser { sender_user_id = sender_user_id }) =
@@ -31,17 +32,17 @@ instance T.FromJSON MessageForwardOrigin where
   where
    parseMessageForwardOriginUser :: A.Value -> T.Parser MessageForwardOrigin
    parseMessageForwardOriginUser = A.withObject "MessageForwardOriginUser" $ \o -> do
-    sender_user_id <- o A..: "sender_user_id"
+    sender_user_id <- optional $ o A..: "sender_user_id"
     return $ MessageForwardOriginUser { sender_user_id = sender_user_id }
 
    parseMessageForwardOriginHiddenUser :: A.Value -> T.Parser MessageForwardOrigin
    parseMessageForwardOriginHiddenUser = A.withObject "MessageForwardOriginHiddenUser" $ \o -> do
-    sender_name <- o A..: "sender_name"
+    sender_name <- optional $ o A..: "sender_name"
     return $ MessageForwardOriginHiddenUser { sender_name = sender_name }
 
    parseMessageForwardOriginChannel :: A.Value -> T.Parser MessageForwardOrigin
    parseMessageForwardOriginChannel = A.withObject "MessageForwardOriginChannel" $ \o -> do
-    author_signature <- o A..: "author_signature"
-    message_id <- o A..: "message_id"
-    chat_id <- o A..: "chat_id"
+    author_signature <- optional $ o A..: "author_signature"
+    message_id <- optional $ o A..: "message_id"
+    chat_id <- optional $ o A..: "chat_id"
     return $ MessageForwardOriginChannel { author_signature = author_signature, message_id = message_id, chat_id = chat_id }

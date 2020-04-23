@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.RemoveSavedAnimation where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data RemoveSavedAnimation = 
- RemoveSavedAnimation { animation :: InputFile.InputFile }  deriving (Show)
+ RemoveSavedAnimation { animation :: Maybe InputFile.InputFile }  deriving (Show)
 
 instance T.ToJSON RemoveSavedAnimation where
  toJSON (RemoveSavedAnimation { animation = animation }) =
@@ -22,5 +23,5 @@ instance T.FromJSON RemoveSavedAnimation where
   where
    parseRemoveSavedAnimation :: A.Value -> T.Parser RemoveSavedAnimation
    parseRemoveSavedAnimation = A.withObject "RemoveSavedAnimation" $ \o -> do
-    animation <- o A..: "animation"
+    animation <- optional $ o A..: "animation"
     return $ RemoveSavedAnimation { animation = animation }

@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.TestCallVectorStringObject where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TestString as TestString
 
 data TestCallVectorStringObject = 
- TestCallVectorStringObject { x :: [TestString.TestString] }  deriving (Show)
+ TestCallVectorStringObject { x :: Maybe [TestString.TestString] }  deriving (Show)
 
 instance T.ToJSON TestCallVectorStringObject where
  toJSON (TestCallVectorStringObject { x = x }) =
@@ -22,5 +23,5 @@ instance T.FromJSON TestCallVectorStringObject where
   where
    parseTestCallVectorStringObject :: A.Value -> T.Parser TestCallVectorStringObject
    parseTestCallVectorStringObject = A.withObject "TestCallVectorStringObject" $ \o -> do
-    x <- o A..: "x"
+    x <- optional $ o A..: "x"
     return $ TestCallVectorStringObject { x = x }

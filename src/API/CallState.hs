@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.CallState where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.CallConnection as CallConnection
@@ -10,12 +11,12 @@ import {-# SOURCE #-} qualified API.CallDiscardReason as CallDiscardReason
 import {-# SOURCE #-} qualified API.Error as Error
 
 data CallState = 
- CallStatePending { is_received :: Bool, is_created :: Bool }  
+ CallStatePending { is_received :: Maybe Bool, is_created :: Maybe Bool }  
  | CallStateExchangingKeys 
- | CallStateReady { allow_p2p :: Bool, emojis :: [String], encryption_key :: String, config :: String, connections :: [CallConnection.CallConnection], protocol :: CallProtocol.CallProtocol }  
+ | CallStateReady { allow_p2p :: Maybe Bool, emojis :: Maybe [String], encryption_key :: Maybe String, config :: Maybe String, connections :: Maybe [CallConnection.CallConnection], protocol :: Maybe CallProtocol.CallProtocol }  
  | CallStateHangingUp 
- | CallStateDiscarded { need_debug_information :: Bool, need_rating :: Bool, reason :: CallDiscardReason.CallDiscardReason }  
- | CallStateError { _error :: Error.Error }  deriving (Show)
+ | CallStateDiscarded { need_debug_information :: Maybe Bool, need_rating :: Maybe Bool, reason :: Maybe CallDiscardReason.CallDiscardReason }  
+ | CallStateError { _error :: Maybe Error.Error }  deriving (Show)
 
 instance T.ToJSON CallState where
  toJSON (CallStatePending { is_received = is_received, is_created = is_created }) =
@@ -50,8 +51,8 @@ instance T.FromJSON CallState where
   where
    parseCallStatePending :: A.Value -> T.Parser CallState
    parseCallStatePending = A.withObject "CallStatePending" $ \o -> do
-    is_received <- o A..: "is_received"
-    is_created <- o A..: "is_created"
+    is_received <- optional $ o A..: "is_received"
+    is_created <- optional $ o A..: "is_created"
     return $ CallStatePending { is_received = is_received, is_created = is_created }
 
    parseCallStateExchangingKeys :: A.Value -> T.Parser CallState
@@ -60,12 +61,12 @@ instance T.FromJSON CallState where
 
    parseCallStateReady :: A.Value -> T.Parser CallState
    parseCallStateReady = A.withObject "CallStateReady" $ \o -> do
-    allow_p2p <- o A..: "allow_p2p"
-    emojis <- o A..: "emojis"
-    encryption_key <- o A..: "encryption_key"
-    config <- o A..: "config"
-    connections <- o A..: "connections"
-    protocol <- o A..: "protocol"
+    allow_p2p <- optional $ o A..: "allow_p2p"
+    emojis <- optional $ o A..: "emojis"
+    encryption_key <- optional $ o A..: "encryption_key"
+    config <- optional $ o A..: "config"
+    connections <- optional $ o A..: "connections"
+    protocol <- optional $ o A..: "protocol"
     return $ CallStateReady { allow_p2p = allow_p2p, emojis = emojis, encryption_key = encryption_key, config = config, connections = connections, protocol = protocol }
 
    parseCallStateHangingUp :: A.Value -> T.Parser CallState
@@ -74,12 +75,12 @@ instance T.FromJSON CallState where
 
    parseCallStateDiscarded :: A.Value -> T.Parser CallState
    parseCallStateDiscarded = A.withObject "CallStateDiscarded" $ \o -> do
-    need_debug_information <- o A..: "need_debug_information"
-    need_rating <- o A..: "need_rating"
-    reason <- o A..: "reason"
+    need_debug_information <- optional $ o A..: "need_debug_information"
+    need_rating <- optional $ o A..: "need_rating"
+    reason <- optional $ o A..: "reason"
     return $ CallStateDiscarded { need_debug_information = need_debug_information, need_rating = need_rating, reason = reason }
 
    parseCallStateError :: A.Value -> T.Parser CallState
    parseCallStateError = A.withObject "CallStateError" $ \o -> do
-    _error <- o A..: "error"
+    _error <- optional $ o A..: "error"
     return $ CallStateError { _error = _error }

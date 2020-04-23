@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Backgrounds where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Background as Background
 
 data Backgrounds = 
- Backgrounds { backgrounds :: [Background.Background] }  deriving (Show)
+ Backgrounds { backgrounds :: Maybe [Background.Background] }  deriving (Show)
 
 instance T.ToJSON Backgrounds where
  toJSON (Backgrounds { backgrounds = backgrounds }) =
@@ -22,5 +23,5 @@ instance T.FromJSON Backgrounds where
   where
    parseBackgrounds :: A.Value -> T.Parser Backgrounds
    parseBackgrounds = A.withObject "Backgrounds" $ \o -> do
-    backgrounds <- o A..: "backgrounds"
+    backgrounds <- optional $ o A..: "backgrounds"
     return $ Backgrounds { backgrounds = backgrounds }

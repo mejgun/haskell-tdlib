@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.OrderInfo where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Address as Address
 
 data OrderInfo = 
- OrderInfo { shipping_address :: Address.Address, email_address :: String, phone_number :: String, name :: String }  deriving (Show)
+ OrderInfo { shipping_address :: Maybe Address.Address, email_address :: Maybe String, phone_number :: Maybe String, name :: Maybe String }  deriving (Show)
 
 instance T.ToJSON OrderInfo where
  toJSON (OrderInfo { shipping_address = shipping_address, email_address = email_address, phone_number = phone_number, name = name }) =
@@ -22,8 +23,8 @@ instance T.FromJSON OrderInfo where
   where
    parseOrderInfo :: A.Value -> T.Parser OrderInfo
    parseOrderInfo = A.withObject "OrderInfo" $ \o -> do
-    shipping_address <- o A..: "shipping_address"
-    email_address <- o A..: "email_address"
-    phone_number <- o A..: "phone_number"
-    name <- o A..: "name"
+    shipping_address <- optional $ o A..: "shipping_address"
+    email_address <- optional $ o A..: "email_address"
+    phone_number <- optional $ o A..: "phone_number"
+    name <- optional $ o A..: "name"
     return $ OrderInfo { shipping_address = shipping_address, email_address = email_address, phone_number = phone_number, name = name }

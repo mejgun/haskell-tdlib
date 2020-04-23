@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.BackgroundFill where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data BackgroundFill = 
- BackgroundFillSolid { color :: Int }  
- | BackgroundFillGradient { rotation_angle :: Int, bottom_color :: Int, top_color :: Int }  deriving (Show)
+ BackgroundFillSolid { color :: Maybe Int }  
+ | BackgroundFillGradient { rotation_angle :: Maybe Int, bottom_color :: Maybe Int, top_color :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON BackgroundFill where
  toJSON (BackgroundFillSolid { color = color }) =
@@ -26,12 +27,12 @@ instance T.FromJSON BackgroundFill where
   where
    parseBackgroundFillSolid :: A.Value -> T.Parser BackgroundFill
    parseBackgroundFillSolid = A.withObject "BackgroundFillSolid" $ \o -> do
-    color <- o A..: "color"
+    color <- optional $ o A..: "color"
     return $ BackgroundFillSolid { color = color }
 
    parseBackgroundFillGradient :: A.Value -> T.Parser BackgroundFill
    parseBackgroundFillGradient = A.withObject "BackgroundFillGradient" $ \o -> do
-    rotation_angle <- o A..: "rotation_angle"
-    bottom_color <- o A..: "bottom_color"
-    top_color <- o A..: "top_color"
+    rotation_angle <- optional $ o A..: "rotation_angle"
+    bottom_color <- optional $ o A..: "bottom_color"
+    top_color <- optional $ o A..: "top_color"
     return $ BackgroundFillGradient { rotation_angle = rotation_angle, bottom_color = bottom_color, top_color = top_color }

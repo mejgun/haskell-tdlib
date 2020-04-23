@@ -2,16 +2,17 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.SupergroupMembersFilter where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SupergroupMembersFilter = 
  SupergroupMembersFilterRecent 
- | SupergroupMembersFilterContacts { query :: String }  
+ | SupergroupMembersFilterContacts { query :: Maybe String }  
  | SupergroupMembersFilterAdministrators 
- | SupergroupMembersFilterSearch { query :: String }  
- | SupergroupMembersFilterRestricted { query :: String }  
- | SupergroupMembersFilterBanned { query :: String }  
+ | SupergroupMembersFilterSearch { query :: Maybe String }  
+ | SupergroupMembersFilterRestricted { query :: Maybe String }  
+ | SupergroupMembersFilterBanned { query :: Maybe String }  
  | SupergroupMembersFilterBots deriving (Show)
 
 instance T.ToJSON SupergroupMembersFilter where
@@ -55,7 +56,7 @@ instance T.FromJSON SupergroupMembersFilter where
 
    parseSupergroupMembersFilterContacts :: A.Value -> T.Parser SupergroupMembersFilter
    parseSupergroupMembersFilterContacts = A.withObject "SupergroupMembersFilterContacts" $ \o -> do
-    query <- o A..: "query"
+    query <- optional $ o A..: "query"
     return $ SupergroupMembersFilterContacts { query = query }
 
    parseSupergroupMembersFilterAdministrators :: A.Value -> T.Parser SupergroupMembersFilter
@@ -64,17 +65,17 @@ instance T.FromJSON SupergroupMembersFilter where
 
    parseSupergroupMembersFilterSearch :: A.Value -> T.Parser SupergroupMembersFilter
    parseSupergroupMembersFilterSearch = A.withObject "SupergroupMembersFilterSearch" $ \o -> do
-    query <- o A..: "query"
+    query <- optional $ o A..: "query"
     return $ SupergroupMembersFilterSearch { query = query }
 
    parseSupergroupMembersFilterRestricted :: A.Value -> T.Parser SupergroupMembersFilter
    parseSupergroupMembersFilterRestricted = A.withObject "SupergroupMembersFilterRestricted" $ \o -> do
-    query <- o A..: "query"
+    query <- optional $ o A..: "query"
     return $ SupergroupMembersFilterRestricted { query = query }
 
    parseSupergroupMembersFilterBanned :: A.Value -> T.Parser SupergroupMembersFilter
    parseSupergroupMembersFilterBanned = A.withObject "SupergroupMembersFilterBanned" $ \o -> do
-    query <- o A..: "query"
+    query <- optional $ o A..: "query"
     return $ SupergroupMembersFilterBanned { query = query }
 
    parseSupergroupMembersFilterBots :: A.Value -> T.Parser SupergroupMembersFilter

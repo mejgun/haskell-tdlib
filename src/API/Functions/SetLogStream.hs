@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetLogStream where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LogStream as LogStream
 
 data SetLogStream = 
- SetLogStream { log_stream :: LogStream.LogStream }  deriving (Show)
+ SetLogStream { log_stream :: Maybe LogStream.LogStream }  deriving (Show)
 
 instance T.ToJSON SetLogStream where
  toJSON (SetLogStream { log_stream = log_stream }) =
@@ -22,5 +23,5 @@ instance T.FromJSON SetLogStream where
   where
    parseSetLogStream :: A.Value -> T.Parser SetLogStream
    parseSetLogStream = A.withObject "SetLogStream" $ \o -> do
-    log_stream <- o A..: "log_stream"
+    log_stream <- optional $ o A..: "log_stream"
     return $ SetLogStream { log_stream = log_stream }

@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.FoundMessages where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Message as Message
 
 data FoundMessages = 
- FoundMessages { next_from_search_id :: Int, messages :: [Message.Message] }  deriving (Show)
+ FoundMessages { next_from_search_id :: Maybe Int, messages :: Maybe [Message.Message] }  deriving (Show)
 
 instance T.ToJSON FoundMessages where
  toJSON (FoundMessages { next_from_search_id = next_from_search_id, messages = messages }) =
@@ -22,6 +23,6 @@ instance T.FromJSON FoundMessages where
   where
    parseFoundMessages :: A.Value -> T.Parser FoundMessages
    parseFoundMessages = A.withObject "FoundMessages" $ \o -> do
-    next_from_search_id <- o A..: "next_from_search_id"
-    messages <- o A..: "messages"
+    next_from_search_id <- optional $ o A..: "next_from_search_id"
+    messages <- optional $ o A..: "messages"
     return $ FoundMessages { next_from_search_id = next_from_search_id, messages = messages }

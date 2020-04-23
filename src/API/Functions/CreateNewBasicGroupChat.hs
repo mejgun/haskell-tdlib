@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.CreateNewBasicGroupChat where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CreateNewBasicGroupChat = 
- CreateNewBasicGroupChat { title :: String, user_ids :: [Int] }  deriving (Show)
+ CreateNewBasicGroupChat { title :: Maybe String, user_ids :: Maybe [Int] }  deriving (Show)
 
 instance T.ToJSON CreateNewBasicGroupChat where
  toJSON (CreateNewBasicGroupChat { title = title, user_ids = user_ids }) =
@@ -21,6 +22,6 @@ instance T.FromJSON CreateNewBasicGroupChat where
   where
    parseCreateNewBasicGroupChat :: A.Value -> T.Parser CreateNewBasicGroupChat
    parseCreateNewBasicGroupChat = A.withObject "CreateNewBasicGroupChat" $ \o -> do
-    title <- o A..: "title"
-    user_ids <- o A..: "user_ids"
+    title <- optional $ o A..: "title"
+    user_ids <- optional $ o A..: "user_ids"
     return $ CreateNewBasicGroupChat { title = title, user_ids = user_ids }

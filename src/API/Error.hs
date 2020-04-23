@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Error where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Error = 
- Error { message :: String, code :: Int }  deriving (Show)
+ Error { message :: Maybe String, code :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON Error where
  toJSON (Error { message = message, code = code }) =
@@ -21,6 +22,6 @@ instance T.FromJSON Error where
   where
    parseError :: A.Value -> T.Parser Error
    parseError = A.withObject "Error" $ \o -> do
-    message <- o A..: "message"
-    code <- o A..: "code"
+    message <- optional $ o A..: "message"
+    code <- optional $ o A..: "code"
     return $ Error { message = message, code = code }

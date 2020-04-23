@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SearchInstalledStickerSets where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SearchInstalledStickerSets = 
- SearchInstalledStickerSets { limit :: Int, query :: String, is_masks :: Bool }  deriving (Show)
+ SearchInstalledStickerSets { limit :: Maybe Int, query :: Maybe String, is_masks :: Maybe Bool }  deriving (Show)
 
 instance T.ToJSON SearchInstalledStickerSets where
  toJSON (SearchInstalledStickerSets { limit = limit, query = query, is_masks = is_masks }) =
@@ -21,7 +22,7 @@ instance T.FromJSON SearchInstalledStickerSets where
   where
    parseSearchInstalledStickerSets :: A.Value -> T.Parser SearchInstalledStickerSets
    parseSearchInstalledStickerSets = A.withObject "SearchInstalledStickerSets" $ \o -> do
-    limit <- o A..: "limit"
-    query <- o A..: "query"
-    is_masks <- o A..: "is_masks"
+    limit <- optional $ o A..: "limit"
+    query <- optional $ o A..: "query"
+    is_masks <- optional $ o A..: "is_masks"
     return $ SearchInstalledStickerSets { limit = limit, query = query, is_masks = is_masks }

@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SearchStickers where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SearchStickers = 
- SearchStickers { limit :: Int, emoji :: String }  deriving (Show)
+ SearchStickers { limit :: Maybe Int, emoji :: Maybe String }  deriving (Show)
 
 instance T.ToJSON SearchStickers where
  toJSON (SearchStickers { limit = limit, emoji = emoji }) =
@@ -21,6 +22,6 @@ instance T.FromJSON SearchStickers where
   where
    parseSearchStickers :: A.Value -> T.Parser SearchStickers
    parseSearchStickers = A.withObject "SearchStickers" $ \o -> do
-    limit <- o A..: "limit"
-    emoji <- o A..: "emoji"
+    limit <- optional $ o A..: "limit"
+    emoji <- optional $ o A..: "emoji"
     return $ SearchStickers { limit = limit, emoji = emoji }

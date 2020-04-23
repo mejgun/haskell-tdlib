@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetLanguagePackStrings where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetLanguagePackStrings = 
- GetLanguagePackStrings { keys :: [String], language_pack_id :: String }  deriving (Show)
+ GetLanguagePackStrings { keys :: Maybe [String], language_pack_id :: Maybe String }  deriving (Show)
 
 instance T.ToJSON GetLanguagePackStrings where
  toJSON (GetLanguagePackStrings { keys = keys, language_pack_id = language_pack_id }) =
@@ -21,6 +22,6 @@ instance T.FromJSON GetLanguagePackStrings where
   where
    parseGetLanguagePackStrings :: A.Value -> T.Parser GetLanguagePackStrings
    parseGetLanguagePackStrings = A.withObject "GetLanguagePackStrings" $ \o -> do
-    keys <- o A..: "keys"
-    language_pack_id <- o A..: "language_pack_id"
+    keys <- optional $ o A..: "keys"
+    language_pack_id <- optional $ o A..: "language_pack_id"
     return $ GetLanguagePackStrings { keys = keys, language_pack_id = language_pack_id }

@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.EmailAddressAuthenticationCodeInfo where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data EmailAddressAuthenticationCodeInfo = 
- EmailAddressAuthenticationCodeInfo { _length :: Int, email_address_pattern :: String }  deriving (Show)
+ EmailAddressAuthenticationCodeInfo { _length :: Maybe Int, email_address_pattern :: Maybe String }  deriving (Show)
 
 instance T.ToJSON EmailAddressAuthenticationCodeInfo where
  toJSON (EmailAddressAuthenticationCodeInfo { _length = _length, email_address_pattern = email_address_pattern }) =
@@ -21,6 +22,6 @@ instance T.FromJSON EmailAddressAuthenticationCodeInfo where
   where
    parseEmailAddressAuthenticationCodeInfo :: A.Value -> T.Parser EmailAddressAuthenticationCodeInfo
    parseEmailAddressAuthenticationCodeInfo = A.withObject "EmailAddressAuthenticationCodeInfo" $ \o -> do
-    _length <- o A..: "length"
-    email_address_pattern <- o A..: "email_address_pattern"
+    _length <- optional $ o A..: "length"
+    email_address_pattern <- optional $ o A..: "email_address_pattern"
     return $ EmailAddressAuthenticationCodeInfo { _length = _length, email_address_pattern = email_address_pattern }

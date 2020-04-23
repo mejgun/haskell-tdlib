@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.KeyboardButton where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.KeyboardButtonType as KeyboardButtonType
 
 data KeyboardButton = 
- KeyboardButton { _type :: KeyboardButtonType.KeyboardButtonType, text :: String }  deriving (Show)
+ KeyboardButton { _type :: Maybe KeyboardButtonType.KeyboardButtonType, text :: Maybe String }  deriving (Show)
 
 instance T.ToJSON KeyboardButton where
  toJSON (KeyboardButton { _type = _type, text = text }) =
@@ -22,6 +23,6 @@ instance T.FromJSON KeyboardButton where
   where
    parseKeyboardButton :: A.Value -> T.Parser KeyboardButton
    parseKeyboardButton = A.withObject "KeyboardButton" $ \o -> do
-    _type <- o A..: "type"
-    text <- o A..: "text"
+    _type <- optional $ o A..: "type"
+    text <- optional $ o A..: "text"
     return $ KeyboardButton { _type = _type, text = text }

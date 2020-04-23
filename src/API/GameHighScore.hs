@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.GameHighScore where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GameHighScore = 
- GameHighScore { score :: Int, user_id :: Int, position :: Int }  deriving (Show)
+ GameHighScore { score :: Maybe Int, user_id :: Maybe Int, position :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON GameHighScore where
  toJSON (GameHighScore { score = score, user_id = user_id, position = position }) =
@@ -21,7 +22,7 @@ instance T.FromJSON GameHighScore where
   where
    parseGameHighScore :: A.Value -> T.Parser GameHighScore
    parseGameHighScore = A.withObject "GameHighScore" $ \o -> do
-    score <- o A..: "score"
-    user_id <- o A..: "user_id"
-    position <- o A..: "position"
+    score <- optional $ o A..: "score"
+    user_id <- optional $ o A..: "user_id"
+    position <- optional $ o A..: "position"
     return $ GameHighScore { score = score, user_id = user_id, position = position }

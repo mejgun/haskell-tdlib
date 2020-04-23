@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.CreateCall where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.CallProtocol as CallProtocol
 
 data CreateCall = 
- CreateCall { protocol :: CallProtocol.CallProtocol, user_id :: Int }  deriving (Show)
+ CreateCall { protocol :: Maybe CallProtocol.CallProtocol, user_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON CreateCall where
  toJSON (CreateCall { protocol = protocol, user_id = user_id }) =
@@ -22,6 +23,6 @@ instance T.FromJSON CreateCall where
   where
    parseCreateCall :: A.Value -> T.Parser CreateCall
    parseCreateCall = A.withObject "CreateCall" $ \o -> do
-    protocol <- o A..: "protocol"
-    user_id <- o A..: "user_id"
+    protocol <- optional $ o A..: "protocol"
+    user_id <- optional $ o A..: "user_id"
     return $ CreateCall { protocol = protocol, user_id = user_id }

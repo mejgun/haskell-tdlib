@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.InlineQueryResults where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InlineQueryResult as InlineQueryResult
 
 data InlineQueryResults = 
- InlineQueryResults { switch_pm_parameter :: String, switch_pm_text :: String, results :: [InlineQueryResult.InlineQueryResult], next_offset :: String, inline_query_id :: Int }  deriving (Show)
+ InlineQueryResults { switch_pm_parameter :: Maybe String, switch_pm_text :: Maybe String, results :: Maybe [InlineQueryResult.InlineQueryResult], next_offset :: Maybe String, inline_query_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON InlineQueryResults where
  toJSON (InlineQueryResults { switch_pm_parameter = switch_pm_parameter, switch_pm_text = switch_pm_text, results = results, next_offset = next_offset, inline_query_id = inline_query_id }) =
@@ -22,9 +23,9 @@ instance T.FromJSON InlineQueryResults where
   where
    parseInlineQueryResults :: A.Value -> T.Parser InlineQueryResults
    parseInlineQueryResults = A.withObject "InlineQueryResults" $ \o -> do
-    switch_pm_parameter <- o A..: "switch_pm_parameter"
-    switch_pm_text <- o A..: "switch_pm_text"
-    results <- o A..: "results"
-    next_offset <- o A..: "next_offset"
-    inline_query_id <- o A..: "inline_query_id"
+    switch_pm_parameter <- optional $ o A..: "switch_pm_parameter"
+    switch_pm_text <- optional $ o A..: "switch_pm_text"
+    results <- optional $ o A..: "results"
+    next_offset <- optional $ o A..: "next_offset"
+    inline_query_id <- optional $ o A..: "inline_query_id"
     return $ InlineQueryResults { switch_pm_parameter = switch_pm_parameter, switch_pm_text = switch_pm_text, results = results, next_offset = next_offset, inline_query_id = inline_query_id }

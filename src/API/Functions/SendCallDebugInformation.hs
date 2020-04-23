@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SendCallDebugInformation where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SendCallDebugInformation = 
- SendCallDebugInformation { debug_information :: String, call_id :: Int }  deriving (Show)
+ SendCallDebugInformation { debug_information :: Maybe String, call_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON SendCallDebugInformation where
  toJSON (SendCallDebugInformation { debug_information = debug_information, call_id = call_id }) =
@@ -21,6 +22,6 @@ instance T.FromJSON SendCallDebugInformation where
   where
    parseSendCallDebugInformation :: A.Value -> T.Parser SendCallDebugInformation
    parseSendCallDebugInformation = A.withObject "SendCallDebugInformation" $ \o -> do
-    debug_information <- o A..: "debug_information"
-    call_id <- o A..: "call_id"
+    debug_information <- optional $ o A..: "debug_information"
+    call_id <- optional $ o A..: "call_id"
     return $ SendCallDebugInformation { debug_information = debug_information, call_id = call_id }

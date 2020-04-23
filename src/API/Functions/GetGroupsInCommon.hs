@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetGroupsInCommon where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetGroupsInCommon = 
- GetGroupsInCommon { limit :: Int, offset_chat_id :: Int, user_id :: Int }  deriving (Show)
+ GetGroupsInCommon { limit :: Maybe Int, offset_chat_id :: Maybe Int, user_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON GetGroupsInCommon where
  toJSON (GetGroupsInCommon { limit = limit, offset_chat_id = offset_chat_id, user_id = user_id }) =
@@ -21,7 +22,7 @@ instance T.FromJSON GetGroupsInCommon where
   where
    parseGetGroupsInCommon :: A.Value -> T.Parser GetGroupsInCommon
    parseGetGroupsInCommon = A.withObject "GetGroupsInCommon" $ \o -> do
-    limit <- o A..: "limit"
-    offset_chat_id <- o A..: "offset_chat_id"
-    user_id <- o A..: "user_id"
+    limit <- optional $ o A..: "limit"
+    offset_chat_id <- optional $ o A..: "offset_chat_id"
+    user_id <- optional $ o A..: "user_id"
     return $ GetGroupsInCommon { limit = limit, offset_chat_id = offset_chat_id, user_id = user_id }

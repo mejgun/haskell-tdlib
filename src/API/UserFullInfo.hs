@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.UserFullInfo where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BotInfo as BotInfo
 
 data UserFullInfo = 
- UserFullInfo { bot_info :: BotInfo.BotInfo, group_in_common_count :: Int, share_text :: String, bio :: String, need_phone_number_privacy_exception :: Bool, has_private_calls :: Bool, can_be_called :: Bool, is_blocked :: Bool }  deriving (Show)
+ UserFullInfo { bot_info :: Maybe BotInfo.BotInfo, group_in_common_count :: Maybe Int, share_text :: Maybe String, bio :: Maybe String, need_phone_number_privacy_exception :: Maybe Bool, has_private_calls :: Maybe Bool, can_be_called :: Maybe Bool, is_blocked :: Maybe Bool }  deriving (Show)
 
 instance T.ToJSON UserFullInfo where
  toJSON (UserFullInfo { bot_info = bot_info, group_in_common_count = group_in_common_count, share_text = share_text, bio = bio, need_phone_number_privacy_exception = need_phone_number_privacy_exception, has_private_calls = has_private_calls, can_be_called = can_be_called, is_blocked = is_blocked }) =
@@ -22,12 +23,12 @@ instance T.FromJSON UserFullInfo where
   where
    parseUserFullInfo :: A.Value -> T.Parser UserFullInfo
    parseUserFullInfo = A.withObject "UserFullInfo" $ \o -> do
-    bot_info <- o A..: "bot_info"
-    group_in_common_count <- o A..: "group_in_common_count"
-    share_text <- o A..: "share_text"
-    bio <- o A..: "bio"
-    need_phone_number_privacy_exception <- o A..: "need_phone_number_privacy_exception"
-    has_private_calls <- o A..: "has_private_calls"
-    can_be_called <- o A..: "can_be_called"
-    is_blocked <- o A..: "is_blocked"
+    bot_info <- optional $ o A..: "bot_info"
+    group_in_common_count <- optional $ o A..: "group_in_common_count"
+    share_text <- optional $ o A..: "share_text"
+    bio <- optional $ o A..: "bio"
+    need_phone_number_privacy_exception <- optional $ o A..: "need_phone_number_privacy_exception"
+    has_private_calls <- optional $ o A..: "has_private_calls"
+    can_be_called <- optional $ o A..: "can_be_called"
+    is_blocked <- optional $ o A..: "is_blocked"
     return $ UserFullInfo { bot_info = bot_info, group_in_common_count = group_in_common_count, share_text = share_text, bio = bio, need_phone_number_privacy_exception = need_phone_number_privacy_exception, has_private_calls = has_private_calls, can_be_called = can_be_called, is_blocked = is_blocked }

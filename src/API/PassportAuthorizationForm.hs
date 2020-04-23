@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PassportAuthorizationForm where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PassportRequiredElement as PassportRequiredElement
 
 data PassportAuthorizationForm = 
- PassportAuthorizationForm { privacy_policy_url :: String, required_elements :: [PassportRequiredElement.PassportRequiredElement], _id :: Int }  deriving (Show)
+ PassportAuthorizationForm { privacy_policy_url :: Maybe String, required_elements :: Maybe [PassportRequiredElement.PassportRequiredElement], _id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON PassportAuthorizationForm where
  toJSON (PassportAuthorizationForm { privacy_policy_url = privacy_policy_url, required_elements = required_elements, _id = _id }) =
@@ -22,7 +23,7 @@ instance T.FromJSON PassportAuthorizationForm where
   where
    parsePassportAuthorizationForm :: A.Value -> T.Parser PassportAuthorizationForm
    parsePassportAuthorizationForm = A.withObject "PassportAuthorizationForm" $ \o -> do
-    privacy_policy_url <- o A..: "privacy_policy_url"
-    required_elements <- o A..: "required_elements"
-    _id <- o A..: "id"
+    privacy_policy_url <- optional $ o A..: "privacy_policy_url"
+    required_elements <- optional $ o A..: "required_elements"
+    _id <- optional $ o A..: "id"
     return $ PassportAuthorizationForm { privacy_policy_url = privacy_policy_url, required_elements = required_elements, _id = _id }

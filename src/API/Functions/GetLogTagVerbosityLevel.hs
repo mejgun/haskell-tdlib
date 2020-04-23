@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetLogTagVerbosityLevel where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetLogTagVerbosityLevel = 
- GetLogTagVerbosityLevel { tag :: String }  deriving (Show)
+ GetLogTagVerbosityLevel { tag :: Maybe String }  deriving (Show)
 
 instance T.ToJSON GetLogTagVerbosityLevel where
  toJSON (GetLogTagVerbosityLevel { tag = tag }) =
@@ -21,5 +22,5 @@ instance T.FromJSON GetLogTagVerbosityLevel where
   where
    parseGetLogTagVerbosityLevel :: A.Value -> T.Parser GetLogTagVerbosityLevel
    parseGetLogTagVerbosityLevel = A.withObject "GetLogTagVerbosityLevel" $ \o -> do
-    tag <- o A..: "tag"
+    tag <- optional $ o A..: "tag"
     return $ GetLogTagVerbosityLevel { tag = tag }

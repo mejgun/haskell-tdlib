@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.CheckRecoveryEmailAddressCode where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CheckRecoveryEmailAddressCode = 
- CheckRecoveryEmailAddressCode { code :: String }  deriving (Show)
+ CheckRecoveryEmailAddressCode { code :: Maybe String }  deriving (Show)
 
 instance T.ToJSON CheckRecoveryEmailAddressCode where
  toJSON (CheckRecoveryEmailAddressCode { code = code }) =
@@ -21,5 +22,5 @@ instance T.FromJSON CheckRecoveryEmailAddressCode where
   where
    parseCheckRecoveryEmailAddressCode :: A.Value -> T.Parser CheckRecoveryEmailAddressCode
    parseCheckRecoveryEmailAddressCode = A.withObject "CheckRecoveryEmailAddressCode" $ \o -> do
-    code <- o A..: "code"
+    code <- optional $ o A..: "code"
     return $ CheckRecoveryEmailAddressCode { code = code }

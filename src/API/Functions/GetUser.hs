@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetUser where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetUser = 
- GetUser { user_id :: Int }  deriving (Show)
+ GetUser { user_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON GetUser where
  toJSON (GetUser { user_id = user_id }) =
@@ -21,5 +22,5 @@ instance T.FromJSON GetUser where
   where
    parseGetUser :: A.Value -> T.Parser GetUser
    parseGetUser = A.withObject "GetUser" $ \o -> do
-    user_id <- o A..: "user_id"
+    user_id <- optional $ o A..: "user_id"
     return $ GetUser { user_id = user_id }

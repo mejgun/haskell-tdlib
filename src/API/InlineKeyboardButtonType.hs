@@ -2,15 +2,16 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.InlineKeyboardButtonType where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data InlineKeyboardButtonType = 
- InlineKeyboardButtonTypeUrl { url :: String }  
- | InlineKeyboardButtonTypeLoginUrl { forward_text :: String, _id :: Int, url :: String }  
- | InlineKeyboardButtonTypeCallback { _data :: String }  
+ InlineKeyboardButtonTypeUrl { url :: Maybe String }  
+ | InlineKeyboardButtonTypeLoginUrl { forward_text :: Maybe String, _id :: Maybe Int, url :: Maybe String }  
+ | InlineKeyboardButtonTypeCallback { _data :: Maybe String }  
  | InlineKeyboardButtonTypeCallbackGame 
- | InlineKeyboardButtonTypeSwitchInline { in_current_chat :: Bool, query :: String }  
+ | InlineKeyboardButtonTypeSwitchInline { in_current_chat :: Maybe Bool, query :: Maybe String }  
  | InlineKeyboardButtonTypeBuy deriving (Show)
 
 instance T.ToJSON InlineKeyboardButtonType where
@@ -46,19 +47,19 @@ instance T.FromJSON InlineKeyboardButtonType where
   where
    parseInlineKeyboardButtonTypeUrl :: A.Value -> T.Parser InlineKeyboardButtonType
    parseInlineKeyboardButtonTypeUrl = A.withObject "InlineKeyboardButtonTypeUrl" $ \o -> do
-    url <- o A..: "url"
+    url <- optional $ o A..: "url"
     return $ InlineKeyboardButtonTypeUrl { url = url }
 
    parseInlineKeyboardButtonTypeLoginUrl :: A.Value -> T.Parser InlineKeyboardButtonType
    parseInlineKeyboardButtonTypeLoginUrl = A.withObject "InlineKeyboardButtonTypeLoginUrl" $ \o -> do
-    forward_text <- o A..: "forward_text"
-    _id <- o A..: "id"
-    url <- o A..: "url"
+    forward_text <- optional $ o A..: "forward_text"
+    _id <- optional $ o A..: "id"
+    url <- optional $ o A..: "url"
     return $ InlineKeyboardButtonTypeLoginUrl { forward_text = forward_text, _id = _id, url = url }
 
    parseInlineKeyboardButtonTypeCallback :: A.Value -> T.Parser InlineKeyboardButtonType
    parseInlineKeyboardButtonTypeCallback = A.withObject "InlineKeyboardButtonTypeCallback" $ \o -> do
-    _data <- o A..: "data"
+    _data <- optional $ o A..: "data"
     return $ InlineKeyboardButtonTypeCallback { _data = _data }
 
    parseInlineKeyboardButtonTypeCallbackGame :: A.Value -> T.Parser InlineKeyboardButtonType
@@ -67,8 +68,8 @@ instance T.FromJSON InlineKeyboardButtonType where
 
    parseInlineKeyboardButtonTypeSwitchInline :: A.Value -> T.Parser InlineKeyboardButtonType
    parseInlineKeyboardButtonTypeSwitchInline = A.withObject "InlineKeyboardButtonTypeSwitchInline" $ \o -> do
-    in_current_chat <- o A..: "in_current_chat"
-    query <- o A..: "query"
+    in_current_chat <- optional $ o A..: "in_current_chat"
+    query <- optional $ o A..: "query"
     return $ InlineKeyboardButtonTypeSwitchInline { in_current_chat = in_current_chat, query = query }
 
    parseInlineKeyboardButtonTypeBuy :: A.Value -> T.Parser InlineKeyboardButtonType

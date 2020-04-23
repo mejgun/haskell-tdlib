@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ToggleChatDefaultDisableNotification where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ToggleChatDefaultDisableNotification = 
- ToggleChatDefaultDisableNotification { default_disable_notification :: Bool, chat_id :: Int }  deriving (Show)
+ ToggleChatDefaultDisableNotification { default_disable_notification :: Maybe Bool, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON ToggleChatDefaultDisableNotification where
  toJSON (ToggleChatDefaultDisableNotification { default_disable_notification = default_disable_notification, chat_id = chat_id }) =
@@ -21,6 +22,6 @@ instance T.FromJSON ToggleChatDefaultDisableNotification where
   where
    parseToggleChatDefaultDisableNotification :: A.Value -> T.Parser ToggleChatDefaultDisableNotification
    parseToggleChatDefaultDisableNotification = A.withObject "ToggleChatDefaultDisableNotification" $ \o -> do
-    default_disable_notification <- o A..: "default_disable_notification"
-    chat_id <- o A..: "chat_id"
+    default_disable_notification <- optional $ o A..: "default_disable_notification"
+    chat_id <- optional $ o A..: "chat_id"
     return $ ToggleChatDefaultDisableNotification { default_disable_notification = default_disable_notification, chat_id = chat_id }

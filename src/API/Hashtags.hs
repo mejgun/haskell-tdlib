@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Hashtags where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Hashtags = 
- Hashtags { hashtags :: [String] }  deriving (Show)
+ Hashtags { hashtags :: Maybe [String] }  deriving (Show)
 
 instance T.ToJSON Hashtags where
  toJSON (Hashtags { hashtags = hashtags }) =
@@ -21,5 +22,5 @@ instance T.FromJSON Hashtags where
   where
    parseHashtags :: A.Value -> T.Parser Hashtags
    parseHashtags = A.withObject "Hashtags" $ \o -> do
-    hashtags <- o A..: "hashtags"
+    hashtags <- optional $ o A..: "hashtags"
     return $ Hashtags { hashtags = hashtags }

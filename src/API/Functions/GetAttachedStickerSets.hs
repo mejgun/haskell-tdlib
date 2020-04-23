@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetAttachedStickerSets where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetAttachedStickerSets = 
- GetAttachedStickerSets { file_id :: Int }  deriving (Show)
+ GetAttachedStickerSets { file_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON GetAttachedStickerSets where
  toJSON (GetAttachedStickerSets { file_id = file_id }) =
@@ -21,5 +22,5 @@ instance T.FromJSON GetAttachedStickerSets where
   where
    parseGetAttachedStickerSets :: A.Value -> T.Parser GetAttachedStickerSets
    parseGetAttachedStickerSets = A.withObject "GetAttachedStickerSets" $ \o -> do
-    file_id <- o A..: "file_id"
+    file_id <- optional $ o A..: "file_id"
     return $ GetAttachedStickerSets { file_id = file_id }

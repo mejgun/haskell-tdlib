@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.AddProxy where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ProxyType as ProxyType
 
 data AddProxy = 
- AddProxy { _type :: ProxyType.ProxyType, enable :: Bool, port :: Int, server :: String }  deriving (Show)
+ AddProxy { _type :: Maybe ProxyType.ProxyType, enable :: Maybe Bool, port :: Maybe Int, server :: Maybe String }  deriving (Show)
 
 instance T.ToJSON AddProxy where
  toJSON (AddProxy { _type = _type, enable = enable, port = port, server = server }) =
@@ -22,8 +23,8 @@ instance T.FromJSON AddProxy where
   where
    parseAddProxy :: A.Value -> T.Parser AddProxy
    parseAddProxy = A.withObject "AddProxy" $ \o -> do
-    _type <- o A..: "type"
-    enable <- o A..: "enable"
-    port <- o A..: "port"
-    server <- o A..: "server"
+    _type <- optional $ o A..: "type"
+    enable <- optional $ o A..: "enable"
+    port <- optional $ o A..: "port"
+    server <- optional $ o A..: "server"
     return $ AddProxy { _type = _type, enable = enable, port = port, server = server }

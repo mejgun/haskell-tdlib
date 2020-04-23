@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PaymentResult where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data PaymentResult = 
- PaymentResult { verification_url :: String, success :: Bool }  deriving (Show)
+ PaymentResult { verification_url :: Maybe String, success :: Maybe Bool }  deriving (Show)
 
 instance T.ToJSON PaymentResult where
  toJSON (PaymentResult { verification_url = verification_url, success = success }) =
@@ -21,6 +22,6 @@ instance T.FromJSON PaymentResult where
   where
    parsePaymentResult :: A.Value -> T.Parser PaymentResult
    parsePaymentResult = A.withObject "PaymentResult" $ \o -> do
-    verification_url <- o A..: "verification_url"
-    success <- o A..: "success"
+    verification_url <- optional $ o A..: "verification_url"
+    success <- optional $ o A..: "success"
     return $ PaymentResult { verification_url = verification_url, success = success }

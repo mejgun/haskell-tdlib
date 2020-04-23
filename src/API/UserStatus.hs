@@ -2,13 +2,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.UserStatus where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data UserStatus = 
  UserStatusEmpty 
- | UserStatusOnline { expires :: Int }  
- | UserStatusOffline { was_online :: Int }  
+ | UserStatusOnline { expires :: Maybe Int }  
+ | UserStatusOffline { was_online :: Maybe Int }  
  | UserStatusRecently 
  | UserStatusLastWeek 
  | UserStatusLastMonth deriving (Show)
@@ -50,12 +51,12 @@ instance T.FromJSON UserStatus where
 
    parseUserStatusOnline :: A.Value -> T.Parser UserStatus
    parseUserStatusOnline = A.withObject "UserStatusOnline" $ \o -> do
-    expires <- o A..: "expires"
+    expires <- optional $ o A..: "expires"
     return $ UserStatusOnline { expires = expires }
 
    parseUserStatusOffline :: A.Value -> T.Parser UserStatus
    parseUserStatusOffline = A.withObject "UserStatusOffline" $ \o -> do
-    was_online <- o A..: "was_online"
+    was_online <- optional $ o A..: "was_online"
     return $ UserStatusOffline { was_online = was_online }
 
    parseUserStatusRecently :: A.Value -> T.Parser UserStatus

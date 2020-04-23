@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetMessageLink where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetMessageLink = 
- GetMessageLink { message_id :: Int, chat_id :: Int }  deriving (Show)
+ GetMessageLink { message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON GetMessageLink where
  toJSON (GetMessageLink { message_id = message_id, chat_id = chat_id }) =
@@ -21,6 +22,6 @@ instance T.FromJSON GetMessageLink where
   where
    parseGetMessageLink :: A.Value -> T.Parser GetMessageLink
    parseGetMessageLink = A.withObject "GetMessageLink" $ \o -> do
-    message_id <- o A..: "message_id"
-    chat_id <- o A..: "chat_id"
+    message_id <- optional $ o A..: "message_id"
+    chat_id <- optional $ o A..: "chat_id"
     return $ GetMessageLink { message_id = message_id, chat_id = chat_id }

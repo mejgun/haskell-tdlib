@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.RemoveRecentHashtag where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data RemoveRecentHashtag = 
- RemoveRecentHashtag { hashtag :: String }  deriving (Show)
+ RemoveRecentHashtag { hashtag :: Maybe String }  deriving (Show)
 
 instance T.ToJSON RemoveRecentHashtag where
  toJSON (RemoveRecentHashtag { hashtag = hashtag }) =
@@ -21,5 +22,5 @@ instance T.FromJSON RemoveRecentHashtag where
   where
    parseRemoveRecentHashtag :: A.Value -> T.Parser RemoveRecentHashtag
    parseRemoveRecentHashtag = A.withObject "RemoveRecentHashtag" $ \o -> do
-    hashtag <- o A..: "hashtag"
+    hashtag <- optional $ o A..: "hashtag"
     return $ RemoveRecentHashtag { hashtag = hashtag }

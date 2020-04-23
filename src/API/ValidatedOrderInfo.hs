@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ValidatedOrderInfo where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ShippingOption as ShippingOption
 
 data ValidatedOrderInfo = 
- ValidatedOrderInfo { shipping_options :: [ShippingOption.ShippingOption], order_info_id :: String }  deriving (Show)
+ ValidatedOrderInfo { shipping_options :: Maybe [ShippingOption.ShippingOption], order_info_id :: Maybe String }  deriving (Show)
 
 instance T.ToJSON ValidatedOrderInfo where
  toJSON (ValidatedOrderInfo { shipping_options = shipping_options, order_info_id = order_info_id }) =
@@ -22,6 +23,6 @@ instance T.FromJSON ValidatedOrderInfo where
   where
    parseValidatedOrderInfo :: A.Value -> T.Parser ValidatedOrderInfo
    parseValidatedOrderInfo = A.withObject "ValidatedOrderInfo" $ \o -> do
-    shipping_options <- o A..: "shipping_options"
-    order_info_id <- o A..: "order_info_id"
+    shipping_options <- optional $ o A..: "shipping_options"
+    order_info_id <- optional $ o A..: "order_info_id"
     return $ ValidatedOrderInfo { shipping_options = shipping_options, order_info_id = order_info_id }

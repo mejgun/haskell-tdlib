@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.CreateNewSupergroupChat where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatLocation as ChatLocation
 
 data CreateNewSupergroupChat = 
- CreateNewSupergroupChat { location :: ChatLocation.ChatLocation, description :: String, is_channel :: Bool, title :: String }  deriving (Show)
+ CreateNewSupergroupChat { location :: Maybe ChatLocation.ChatLocation, description :: Maybe String, is_channel :: Maybe Bool, title :: Maybe String }  deriving (Show)
 
 instance T.ToJSON CreateNewSupergroupChat where
  toJSON (CreateNewSupergroupChat { location = location, description = description, is_channel = is_channel, title = title }) =
@@ -22,8 +23,8 @@ instance T.FromJSON CreateNewSupergroupChat where
   where
    parseCreateNewSupergroupChat :: A.Value -> T.Parser CreateNewSupergroupChat
    parseCreateNewSupergroupChat = A.withObject "CreateNewSupergroupChat" $ \o -> do
-    location <- o A..: "location"
-    description <- o A..: "description"
-    is_channel <- o A..: "is_channel"
-    title <- o A..: "title"
+    location <- optional $ o A..: "location"
+    description <- optional $ o A..: "description"
+    is_channel <- optional $ o A..: "is_channel"
+    title <- optional $ o A..: "title"
     return $ CreateNewSupergroupChat { location = location, description = description, is_channel = is_channel, title = title }

@@ -10,7 +10,7 @@
 </span><span id="line-10"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="CheckChatUsernameResultUsernameInvalid"><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResultUsernameInvalid"><span class="hs-identifier hs-var">CheckChatUsernameResultUsernameInvalid</span></a></span></span><span> </span><span>
 </span><span id="line-11"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="CheckChatUsernameResultUsernameOccupied"><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResultUsernameOccupied"><span class="hs-identifier hs-var">CheckChatUsernameResultUsernameOccupied</span></a></span></span><span> </span><span>
 </span><span id="line-12"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="CheckChatUsernameResultPublicChatsTooMuch"><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResultPublicChatsTooMuch"><span class="hs-identifier hs-var">CheckChatUsernameResultPublicChatsTooMuch</span></a></span></span><span> </span><span>
-</span><span id="line-13"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="CheckChatUsernameResultPublicGroupsUnavailable"><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResultPublicGroupsUnavailable"><span class="hs-identifier hs-var">CheckChatUsernameResultPublicGroupsUnavailable</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679360873"><span id="local-6989586621679360875"><span id="local-6989586621679360877"><span class="annot"><span class="annottext">Int -&gt; CheckChatUsernameResult -&gt; ShowS
+</span><span id="line-13"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="CheckChatUsernameResultPublicGroupsUnavailable"><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResultPublicGroupsUnavailable"><span class="hs-identifier hs-var">CheckChatUsernameResultPublicGroupsUnavailable</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679366915"><span id="local-6989586621679366917"><span id="local-6989586621679366919"><span class="annot"><span class="annottext">Int -&gt; CheckChatUsernameResult -&gt; ShowS
 [CheckChatUsernameResult] -&gt; ShowS
 CheckChatUsernameResult -&gt; String
 (Int -&gt; CheckChatUsernameResult -&gt; ShowS)
@@ -27,8 +27,8 @@ showsPrec :: Int -&gt; CheckChatUsernameResult -&gt; ShowS
 $cshowsPrec :: Int -&gt; CheckChatUsernameResult -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679360865"><span id="local-6989586621679360867"><span id="local-6989586621679360869"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResult"><span class="hs-identifier hs-type">CheckChatUsernameResult</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-16"></span><span> </span><span id="local-6989586621679360863"><span class="annot"><span class="annottext">toJSON :: CheckChatUsernameResult -&gt; Value
+</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679366907"><span id="local-6989586621679366909"><span id="local-6989586621679366911"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResult"><span class="hs-identifier hs-type">CheckChatUsernameResult</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-16"></span><span> </span><span id="local-6989586621679366905"><span class="annot"><span class="annottext">toJSON :: CheckChatUsernameResult -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResultOk"><span class="hs-identifier hs-type">CheckChatUsernameResultOk</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-17"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -64,40 +64,40 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;checkChatUsernameResultPublicGroupsUnavailable&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-30"></span><span>
-</span><span id="line-31"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679360856"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResult"><span class="hs-identifier hs-type">CheckChatUsernameResult</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-32"></span><span> </span><span id="local-6989586621679360854"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CheckChatUsernameResult
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679360852"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679360852"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679360850"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679360850"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679360849"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360849"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679360850"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-31"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679366898"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResult"><span class="hs-identifier hs-type">CheckChatUsernameResult</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-32"></span><span> </span><span id="local-6989586621679366896"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CheckChatUsernameResult
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679366894"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679366894"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679366892"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679366892"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679366891"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679366891"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679366892"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-34"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679360849"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679366891"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-35"></span><span>   </span><span class="hs-string">&quot;checkChatUsernameResultOk&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CheckChatUsernameResult
-</span><a href="#local-6989586621679360847"><span class="hs-identifier hs-var">parseCheckChatUsernameResultOk</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679360852"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679366889"><span class="hs-identifier hs-var">parseCheckChatUsernameResultOk</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679366894"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-36"></span><span>   </span><span class="hs-string">&quot;checkChatUsernameResultUsernameInvalid&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CheckChatUsernameResult
-</span><a href="#local-6989586621679360846"><span class="hs-identifier hs-var">parseCheckChatUsernameResultUsernameInvalid</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679360852"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679366888"><span class="hs-identifier hs-var">parseCheckChatUsernameResultUsernameInvalid</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679366894"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-37"></span><span>   </span><span class="hs-string">&quot;checkChatUsernameResultUsernameOccupied&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CheckChatUsernameResult
-</span><a href="#local-6989586621679360845"><span class="hs-identifier hs-var">parseCheckChatUsernameResultUsernameOccupied</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679360852"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679366887"><span class="hs-identifier hs-var">parseCheckChatUsernameResultUsernameOccupied</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679366894"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-38"></span><span>   </span><span class="hs-string">&quot;checkChatUsernameResultPublicChatsTooMuch&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CheckChatUsernameResult
-</span><a href="#local-6989586621679360844"><span class="hs-identifier hs-var">parseCheckChatUsernameResultPublicChatsTooMuch</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679360852"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679366886"><span class="hs-identifier hs-var">parseCheckChatUsernameResultPublicChatsTooMuch</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679366894"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-39"></span><span>   </span><span class="hs-string">&quot;checkChatUsernameResultPublicGroupsUnavailable&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CheckChatUsernameResult
-</span><a href="#local-6989586621679360843"><span class="hs-identifier hs-var">parseCheckChatUsernameResultPublicGroupsUnavailable</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679360852"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679366885"><span class="hs-identifier hs-var">parseCheckChatUsernameResultPublicGroupsUnavailable</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679366894"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-40"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CheckChatUsernameResult
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-41"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-42"></span><span>   </span><span class="annot"><a href="#local-6989586621679360847"><span class="hs-identifier hs-type">parseCheckChatUsernameResultOk</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResult"><span class="hs-identifier hs-type">CheckChatUsernameResult</span></a></span><span>
-</span><span id="line-43"></span><span>   </span><span id="local-6989586621679360847"><span class="annot"><span class="annottext">parseCheckChatUsernameResultOk :: Value -&gt; Parser CheckChatUsernameResult
-</span><a href="#local-6989586621679360847"><span class="hs-identifier hs-var hs-var">parseCheckChatUsernameResultOk</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-42"></span><span>   </span><span class="annot"><a href="#local-6989586621679366889"><span class="hs-identifier hs-type">parseCheckChatUsernameResultOk</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResult"><span class="hs-identifier hs-type">CheckChatUsernameResult</span></a></span><span>
+</span><span id="line-43"></span><span>   </span><span id="local-6989586621679366889"><span class="annot"><span class="annottext">parseCheckChatUsernameResultOk :: Value -&gt; Parser CheckChatUsernameResult
+</span><a href="#local-6989586621679366889"><span class="hs-identifier hs-var hs-var">parseCheckChatUsernameResultOk</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CheckChatUsernameResult)
 -&gt; Value
 -&gt; Parser CheckChatUsernameResult
@@ -108,8 +108,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CheckChatUsernameResult
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360841"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679360841"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679366883"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679366883"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-44"></span><span>    </span><span class="annot"><span class="annottext">CheckChatUsernameResult -&gt; Parser CheckChatUsernameResult
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CheckChatUsernameResult -&gt; Parser CheckChatUsernameResult)
@@ -118,9 +118,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CheckChatUsernameResultOk :: CheckChatUsernameResult
 </span><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResultOk"><span class="hs-identifier hs-type hs-type">CheckChatUsernameResultOk</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-45"></span><span>
-</span><span id="line-46"></span><span>   </span><span class="annot"><a href="#local-6989586621679360846"><span class="hs-identifier hs-type">parseCheckChatUsernameResultUsernameInvalid</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResult"><span class="hs-identifier hs-type">CheckChatUsernameResult</span></a></span><span>
-</span><span id="line-47"></span><span>   </span><span id="local-6989586621679360846"><span class="annot"><span class="annottext">parseCheckChatUsernameResultUsernameInvalid :: Value -&gt; Parser CheckChatUsernameResult
-</span><a href="#local-6989586621679360846"><span class="hs-identifier hs-var hs-var">parseCheckChatUsernameResultUsernameInvalid</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-46"></span><span>   </span><span class="annot"><a href="#local-6989586621679366888"><span class="hs-identifier hs-type">parseCheckChatUsernameResultUsernameInvalid</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResult"><span class="hs-identifier hs-type">CheckChatUsernameResult</span></a></span><span>
+</span><span id="line-47"></span><span>   </span><span id="local-6989586621679366888"><span class="annot"><span class="annottext">parseCheckChatUsernameResultUsernameInvalid :: Value -&gt; Parser CheckChatUsernameResult
+</span><a href="#local-6989586621679366888"><span class="hs-identifier hs-var hs-var">parseCheckChatUsernameResultUsernameInvalid</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CheckChatUsernameResult)
 -&gt; Value
 -&gt; Parser CheckChatUsernameResult
@@ -131,8 +131,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CheckChatUsernameResult
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360839"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679360839"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679366881"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679366881"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-48"></span><span>    </span><span class="annot"><span class="annottext">CheckChatUsernameResult -&gt; Parser CheckChatUsernameResult
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CheckChatUsernameResult -&gt; Parser CheckChatUsernameResult)
@@ -141,9 +141,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CheckChatUsernameResultUsernameInvalid :: CheckChatUsernameResult
 </span><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResultUsernameInvalid"><span class="hs-identifier hs-type hs-type">CheckChatUsernameResultUsernameInvalid</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-49"></span><span>
-</span><span id="line-50"></span><span>   </span><span class="annot"><a href="#local-6989586621679360845"><span class="hs-identifier hs-type">parseCheckChatUsernameResultUsernameOccupied</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResult"><span class="hs-identifier hs-type">CheckChatUsernameResult</span></a></span><span>
-</span><span id="line-51"></span><span>   </span><span id="local-6989586621679360845"><span class="annot"><span class="annottext">parseCheckChatUsernameResultUsernameOccupied :: Value -&gt; Parser CheckChatUsernameResult
-</span><a href="#local-6989586621679360845"><span class="hs-identifier hs-var hs-var">parseCheckChatUsernameResultUsernameOccupied</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-50"></span><span>   </span><span class="annot"><a href="#local-6989586621679366887"><span class="hs-identifier hs-type">parseCheckChatUsernameResultUsernameOccupied</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResult"><span class="hs-identifier hs-type">CheckChatUsernameResult</span></a></span><span>
+</span><span id="line-51"></span><span>   </span><span id="local-6989586621679366887"><span class="annot"><span class="annottext">parseCheckChatUsernameResultUsernameOccupied :: Value -&gt; Parser CheckChatUsernameResult
+</span><a href="#local-6989586621679366887"><span class="hs-identifier hs-var hs-var">parseCheckChatUsernameResultUsernameOccupied</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CheckChatUsernameResult)
 -&gt; Value
 -&gt; Parser CheckChatUsernameResult
@@ -154,8 +154,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CheckChatUsernameResult
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360837"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679360837"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679366879"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679366879"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-52"></span><span>    </span><span class="annot"><span class="annottext">CheckChatUsernameResult -&gt; Parser CheckChatUsernameResult
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CheckChatUsernameResult -&gt; Parser CheckChatUsernameResult)
@@ -164,9 +164,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CheckChatUsernameResultUsernameOccupied :: CheckChatUsernameResult
 </span><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResultUsernameOccupied"><span class="hs-identifier hs-type hs-type">CheckChatUsernameResultUsernameOccupied</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-53"></span><span>
-</span><span id="line-54"></span><span>   </span><span class="annot"><a href="#local-6989586621679360844"><span class="hs-identifier hs-type">parseCheckChatUsernameResultPublicChatsTooMuch</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResult"><span class="hs-identifier hs-type">CheckChatUsernameResult</span></a></span><span>
-</span><span id="line-55"></span><span>   </span><span id="local-6989586621679360844"><span class="annot"><span class="annottext">parseCheckChatUsernameResultPublicChatsTooMuch :: Value -&gt; Parser CheckChatUsernameResult
-</span><a href="#local-6989586621679360844"><span class="hs-identifier hs-var hs-var">parseCheckChatUsernameResultPublicChatsTooMuch</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-54"></span><span>   </span><span class="annot"><a href="#local-6989586621679366886"><span class="hs-identifier hs-type">parseCheckChatUsernameResultPublicChatsTooMuch</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResult"><span class="hs-identifier hs-type">CheckChatUsernameResult</span></a></span><span>
+</span><span id="line-55"></span><span>   </span><span id="local-6989586621679366886"><span class="annot"><span class="annottext">parseCheckChatUsernameResultPublicChatsTooMuch :: Value -&gt; Parser CheckChatUsernameResult
+</span><a href="#local-6989586621679366886"><span class="hs-identifier hs-var hs-var">parseCheckChatUsernameResultPublicChatsTooMuch</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CheckChatUsernameResult)
 -&gt; Value
 -&gt; Parser CheckChatUsernameResult
@@ -177,8 +177,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CheckChatUsernameResult
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360835"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679360835"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679366877"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679366877"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-56"></span><span>    </span><span class="annot"><span class="annottext">CheckChatUsernameResult -&gt; Parser CheckChatUsernameResult
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CheckChatUsernameResult -&gt; Parser CheckChatUsernameResult)
@@ -187,9 +187,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CheckChatUsernameResultPublicChatsTooMuch :: CheckChatUsernameResult
 </span><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResultPublicChatsTooMuch"><span class="hs-identifier hs-type hs-type">CheckChatUsernameResultPublicChatsTooMuch</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-57"></span><span>
-</span><span id="line-58"></span><span>   </span><span class="annot"><a href="#local-6989586621679360843"><span class="hs-identifier hs-type">parseCheckChatUsernameResultPublicGroupsUnavailable</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResult"><span class="hs-identifier hs-type">CheckChatUsernameResult</span></a></span><span>
-</span><span id="line-59"></span><span>   </span><span id="local-6989586621679360843"><span class="annot"><span class="annottext">parseCheckChatUsernameResultPublicGroupsUnavailable :: Value -&gt; Parser CheckChatUsernameResult
-</span><a href="#local-6989586621679360843"><span class="hs-identifier hs-var hs-var">parseCheckChatUsernameResultPublicGroupsUnavailable</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-58"></span><span>   </span><span class="annot"><a href="#local-6989586621679366885"><span class="hs-identifier hs-type">parseCheckChatUsernameResultPublicGroupsUnavailable</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CheckChatUsernameResult.html#CheckChatUsernameResult"><span class="hs-identifier hs-type">CheckChatUsernameResult</span></a></span><span>
+</span><span id="line-59"></span><span>   </span><span id="local-6989586621679366885"><span class="annot"><span class="annottext">parseCheckChatUsernameResultPublicGroupsUnavailable :: Value -&gt; Parser CheckChatUsernameResult
+</span><a href="#local-6989586621679366885"><span class="hs-identifier hs-var hs-var">parseCheckChatUsernameResultPublicGroupsUnavailable</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CheckChatUsernameResult)
 -&gt; Value
 -&gt; Parser CheckChatUsernameResult
@@ -200,8 +200,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CheckChatUsernameResult
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679360833"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679360833"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679366875"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679366875"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-60"></span><span>    </span><span class="annot"><span class="annottext">CheckChatUsernameResult -&gt; Parser CheckChatUsernameResult
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CheckChatUsernameResult -&gt; Parser CheckChatUsernameResult)

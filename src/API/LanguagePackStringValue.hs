@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.LanguagePackStringValue where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data LanguagePackStringValue = 
- LanguagePackStringValueOrdinary { value :: String }  
- | LanguagePackStringValuePluralized { other_value :: String, many_value :: String, few_value :: String, two_value :: String, one_value :: String, zero_value :: String }  
+ LanguagePackStringValueOrdinary { value :: Maybe String }  
+ | LanguagePackStringValuePluralized { other_value :: Maybe String, many_value :: Maybe String, few_value :: Maybe String, two_value :: Maybe String, one_value :: Maybe String, zero_value :: Maybe String }  
  | LanguagePackStringValueDeleted deriving (Show)
 
 instance T.ToJSON LanguagePackStringValue where
@@ -31,17 +32,17 @@ instance T.FromJSON LanguagePackStringValue where
   where
    parseLanguagePackStringValueOrdinary :: A.Value -> T.Parser LanguagePackStringValue
    parseLanguagePackStringValueOrdinary = A.withObject "LanguagePackStringValueOrdinary" $ \o -> do
-    value <- o A..: "value"
+    value <- optional $ o A..: "value"
     return $ LanguagePackStringValueOrdinary { value = value }
 
    parseLanguagePackStringValuePluralized :: A.Value -> T.Parser LanguagePackStringValue
    parseLanguagePackStringValuePluralized = A.withObject "LanguagePackStringValuePluralized" $ \o -> do
-    other_value <- o A..: "other_value"
-    many_value <- o A..: "many_value"
-    few_value <- o A..: "few_value"
-    two_value <- o A..: "two_value"
-    one_value <- o A..: "one_value"
-    zero_value <- o A..: "zero_value"
+    other_value <- optional $ o A..: "other_value"
+    many_value <- optional $ o A..: "many_value"
+    few_value <- optional $ o A..: "few_value"
+    two_value <- optional $ o A..: "two_value"
+    one_value <- optional $ o A..: "one_value"
+    zero_value <- optional $ o A..: "zero_value"
     return $ LanguagePackStringValuePluralized { other_value = other_value, many_value = many_value, few_value = few_value, two_value = two_value, one_value = one_value, zero_value = zero_value }
 
    parseLanguagePackStringValueDeleted :: A.Value -> T.Parser LanguagePackStringValue

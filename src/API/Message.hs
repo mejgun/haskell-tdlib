@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Message where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
@@ -11,7 +12,7 @@ import {-# SOURCE #-} qualified API.MessageSchedulingState as MessageSchedulingS
 import {-# SOURCE #-} qualified API.MessageSendingState as MessageSendingState
 
 data Message = 
- Message { reply_markup :: ReplyMarkup.ReplyMarkup, content :: MessageContent.MessageContent, restriction_reason :: String, media_album_id :: Int, views :: Int, author_signature :: String, via_bot_user_id :: Int, ttl_expires_in :: Float, ttl :: Int, reply_to_message_id :: Int, forward_info :: MessageForwardInfo.MessageForwardInfo, edit_date :: Int, date :: Int, contains_unread_mention :: Bool, is_channel_post :: Bool, can_be_deleted_for_all_users :: Bool, can_be_deleted_only_for_self :: Bool, can_be_forwarded :: Bool, can_be_edited :: Bool, is_outgoing :: Bool, scheduling_state :: MessageSchedulingState.MessageSchedulingState, sending_state :: MessageSendingState.MessageSendingState, chat_id :: Int, sender_user_id :: Int, _id :: Int }  deriving (Show)
+ Message { reply_markup :: Maybe ReplyMarkup.ReplyMarkup, content :: Maybe MessageContent.MessageContent, restriction_reason :: Maybe String, media_album_id :: Maybe Int, views :: Maybe Int, author_signature :: Maybe String, via_bot_user_id :: Maybe Int, ttl_expires_in :: Maybe Float, ttl :: Maybe Int, reply_to_message_id :: Maybe Int, forward_info :: Maybe MessageForwardInfo.MessageForwardInfo, edit_date :: Maybe Int, date :: Maybe Int, contains_unread_mention :: Maybe Bool, is_channel_post :: Maybe Bool, can_be_deleted_for_all_users :: Maybe Bool, can_be_deleted_only_for_self :: Maybe Bool, can_be_forwarded :: Maybe Bool, can_be_edited :: Maybe Bool, is_outgoing :: Maybe Bool, scheduling_state :: Maybe MessageSchedulingState.MessageSchedulingState, sending_state :: Maybe MessageSendingState.MessageSendingState, chat_id :: Maybe Int, sender_user_id :: Maybe Int, _id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON Message where
  toJSON (Message { reply_markup = reply_markup, content = content, restriction_reason = restriction_reason, media_album_id = media_album_id, views = views, author_signature = author_signature, via_bot_user_id = via_bot_user_id, ttl_expires_in = ttl_expires_in, ttl = ttl, reply_to_message_id = reply_to_message_id, forward_info = forward_info, edit_date = edit_date, date = date, contains_unread_mention = contains_unread_mention, is_channel_post = is_channel_post, can_be_deleted_for_all_users = can_be_deleted_for_all_users, can_be_deleted_only_for_self = can_be_deleted_only_for_self, can_be_forwarded = can_be_forwarded, can_be_edited = can_be_edited, is_outgoing = is_outgoing, scheduling_state = scheduling_state, sending_state = sending_state, chat_id = chat_id, sender_user_id = sender_user_id, _id = _id }) =
@@ -26,29 +27,29 @@ instance T.FromJSON Message where
   where
    parseMessage :: A.Value -> T.Parser Message
    parseMessage = A.withObject "Message" $ \o -> do
-    reply_markup <- o A..: "reply_markup"
-    content <- o A..: "content"
-    restriction_reason <- o A..: "restriction_reason"
-    media_album_id <- o A..: "media_album_id"
-    views <- o A..: "views"
-    author_signature <- o A..: "author_signature"
-    via_bot_user_id <- o A..: "via_bot_user_id"
-    ttl_expires_in <- o A..: "ttl_expires_in"
-    ttl <- o A..: "ttl"
-    reply_to_message_id <- o A..: "reply_to_message_id"
-    forward_info <- o A..: "forward_info"
-    edit_date <- o A..: "edit_date"
-    date <- o A..: "date"
-    contains_unread_mention <- o A..: "contains_unread_mention"
-    is_channel_post <- o A..: "is_channel_post"
-    can_be_deleted_for_all_users <- o A..: "can_be_deleted_for_all_users"
-    can_be_deleted_only_for_self <- o A..: "can_be_deleted_only_for_self"
-    can_be_forwarded <- o A..: "can_be_forwarded"
-    can_be_edited <- o A..: "can_be_edited"
-    is_outgoing <- o A..: "is_outgoing"
-    scheduling_state <- o A..: "scheduling_state"
-    sending_state <- o A..: "sending_state"
-    chat_id <- o A..: "chat_id"
-    sender_user_id <- o A..: "sender_user_id"
-    _id <- o A..: "id"
+    reply_markup <- optional $ o A..: "reply_markup"
+    content <- optional $ o A..: "content"
+    restriction_reason <- optional $ o A..: "restriction_reason"
+    media_album_id <- optional $ o A..: "media_album_id"
+    views <- optional $ o A..: "views"
+    author_signature <- optional $ o A..: "author_signature"
+    via_bot_user_id <- optional $ o A..: "via_bot_user_id"
+    ttl_expires_in <- optional $ o A..: "ttl_expires_in"
+    ttl <- optional $ o A..: "ttl"
+    reply_to_message_id <- optional $ o A..: "reply_to_message_id"
+    forward_info <- optional $ o A..: "forward_info"
+    edit_date <- optional $ o A..: "edit_date"
+    date <- optional $ o A..: "date"
+    contains_unread_mention <- optional $ o A..: "contains_unread_mention"
+    is_channel_post <- optional $ o A..: "is_channel_post"
+    can_be_deleted_for_all_users <- optional $ o A..: "can_be_deleted_for_all_users"
+    can_be_deleted_only_for_self <- optional $ o A..: "can_be_deleted_only_for_self"
+    can_be_forwarded <- optional $ o A..: "can_be_forwarded"
+    can_be_edited <- optional $ o A..: "can_be_edited"
+    is_outgoing <- optional $ o A..: "is_outgoing"
+    scheduling_state <- optional $ o A..: "scheduling_state"
+    sending_state <- optional $ o A..: "sending_state"
+    chat_id <- optional $ o A..: "chat_id"
+    sender_user_id <- optional $ o A..: "sender_user_id"
+    _id <- optional $ o A..: "id"
     return $ Message { reply_markup = reply_markup, content = content, restriction_reason = restriction_reason, media_album_id = media_album_id, views = views, author_signature = author_signature, via_bot_user_id = via_bot_user_id, ttl_expires_in = ttl_expires_in, ttl = ttl, reply_to_message_id = reply_to_message_id, forward_info = forward_info, edit_date = edit_date, date = date, contains_unread_mention = contains_unread_mention, is_channel_post = is_channel_post, can_be_deleted_for_all_users = can_be_deleted_for_all_users, can_be_deleted_only_for_self = can_be_deleted_only_for_self, can_be_forwarded = can_be_forwarded, can_be_edited = can_be_edited, is_outgoing = is_outgoing, scheduling_state = scheduling_state, sending_state = sending_state, chat_id = chat_id, sender_user_id = sender_user_id, _id = _id }

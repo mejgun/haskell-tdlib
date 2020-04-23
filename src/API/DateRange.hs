@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.DateRange where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data DateRange = 
- DateRange { end_date :: Int, start_date :: Int }  deriving (Show)
+ DateRange { end_date :: Maybe Int, start_date :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON DateRange where
  toJSON (DateRange { end_date = end_date, start_date = start_date }) =
@@ -21,6 +22,6 @@ instance T.FromJSON DateRange where
   where
    parseDateRange :: A.Value -> T.Parser DateRange
    parseDateRange = A.withObject "DateRange" $ \o -> do
-    end_date <- o A..: "end_date"
-    start_date <- o A..: "start_date"
+    end_date <- optional $ o A..: "end_date"
+    start_date <- optional $ o A..: "start_date"
     return $ DateRange { end_date = end_date, start_date = start_date }

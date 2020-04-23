@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.VoiceNote where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
 
 data VoiceNote = 
- VoiceNote { voice :: File.File, mime_type :: String, waveform :: String, duration :: Int }  deriving (Show)
+ VoiceNote { voice :: Maybe File.File, mime_type :: Maybe String, waveform :: Maybe String, duration :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON VoiceNote where
  toJSON (VoiceNote { voice = voice, mime_type = mime_type, waveform = waveform, duration = duration }) =
@@ -22,8 +23,8 @@ instance T.FromJSON VoiceNote where
   where
    parseVoiceNote :: A.Value -> T.Parser VoiceNote
    parseVoiceNote = A.withObject "VoiceNote" $ \o -> do
-    voice <- o A..: "voice"
-    mime_type <- o A..: "mime_type"
-    waveform <- o A..: "waveform"
-    duration <- o A..: "duration"
+    voice <- optional $ o A..: "voice"
+    mime_type <- optional $ o A..: "mime_type"
+    waveform <- optional $ o A..: "waveform"
+    duration <- optional $ o A..: "duration"
     return $ VoiceNote { voice = voice, mime_type = mime_type, waveform = waveform, duration = duration }

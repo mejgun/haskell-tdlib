@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Messages where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Message as Message
 
 data Messages = 
- Messages { messages :: [Message.Message], total_count :: Int }  deriving (Show)
+ Messages { messages :: Maybe [Message.Message], total_count :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON Messages where
  toJSON (Messages { messages = messages, total_count = total_count }) =
@@ -22,6 +23,6 @@ instance T.FromJSON Messages where
   where
    parseMessages :: A.Value -> T.Parser Messages
    parseMessages = A.withObject "Messages" $ \o -> do
-    messages <- o A..: "messages"
-    total_count <- o A..: "total_count"
+    messages <- optional $ o A..: "messages"
+    total_count <- optional $ o A..: "total_count"
     return $ Messages { messages = messages, total_count = total_count }

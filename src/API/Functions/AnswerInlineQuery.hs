@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.AnswerInlineQuery where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputInlineQueryResult as InputInlineQueryResult
 
 data AnswerInlineQuery = 
- AnswerInlineQuery { switch_pm_parameter :: String, switch_pm_text :: String, next_offset :: String, cache_time :: Int, results :: [InputInlineQueryResult.InputInlineQueryResult], is_personal :: Bool, inline_query_id :: Int }  deriving (Show)
+ AnswerInlineQuery { switch_pm_parameter :: Maybe String, switch_pm_text :: Maybe String, next_offset :: Maybe String, cache_time :: Maybe Int, results :: Maybe [InputInlineQueryResult.InputInlineQueryResult], is_personal :: Maybe Bool, inline_query_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON AnswerInlineQuery where
  toJSON (AnswerInlineQuery { switch_pm_parameter = switch_pm_parameter, switch_pm_text = switch_pm_text, next_offset = next_offset, cache_time = cache_time, results = results, is_personal = is_personal, inline_query_id = inline_query_id }) =
@@ -22,11 +23,11 @@ instance T.FromJSON AnswerInlineQuery where
   where
    parseAnswerInlineQuery :: A.Value -> T.Parser AnswerInlineQuery
    parseAnswerInlineQuery = A.withObject "AnswerInlineQuery" $ \o -> do
-    switch_pm_parameter <- o A..: "switch_pm_parameter"
-    switch_pm_text <- o A..: "switch_pm_text"
-    next_offset <- o A..: "next_offset"
-    cache_time <- o A..: "cache_time"
-    results <- o A..: "results"
-    is_personal <- o A..: "is_personal"
-    inline_query_id <- o A..: "inline_query_id"
+    switch_pm_parameter <- optional $ o A..: "switch_pm_parameter"
+    switch_pm_text <- optional $ o A..: "switch_pm_text"
+    next_offset <- optional $ o A..: "next_offset"
+    cache_time <- optional $ o A..: "cache_time"
+    results <- optional $ o A..: "results"
+    is_personal <- optional $ o A..: "is_personal"
+    inline_query_id <- optional $ o A..: "inline_query_id"
     return $ AnswerInlineQuery { switch_pm_parameter = switch_pm_parameter, switch_pm_text = switch_pm_text, next_offset = next_offset, cache_time = cache_time, results = results, is_personal = is_personal, inline_query_id = inline_query_id }

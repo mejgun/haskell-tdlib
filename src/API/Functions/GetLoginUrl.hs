@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetLoginUrl where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetLoginUrl = 
- GetLoginUrl { allow_write_access :: Bool, button_id :: Int, message_id :: Int, chat_id :: Int }  deriving (Show)
+ GetLoginUrl { allow_write_access :: Maybe Bool, button_id :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON GetLoginUrl where
  toJSON (GetLoginUrl { allow_write_access = allow_write_access, button_id = button_id, message_id = message_id, chat_id = chat_id }) =
@@ -21,8 +22,8 @@ instance T.FromJSON GetLoginUrl where
   where
    parseGetLoginUrl :: A.Value -> T.Parser GetLoginUrl
    parseGetLoginUrl = A.withObject "GetLoginUrl" $ \o -> do
-    allow_write_access <- o A..: "allow_write_access"
-    button_id <- o A..: "button_id"
-    message_id <- o A..: "message_id"
-    chat_id <- o A..: "chat_id"
+    allow_write_access <- optional $ o A..: "allow_write_access"
+    button_id <- optional $ o A..: "button_id"
+    message_id <- optional $ o A..: "message_id"
+    chat_id <- optional $ o A..: "chat_id"
     return $ GetLoginUrl { allow_write_access = allow_write_access, button_id = button_id, message_id = message_id, chat_id = chat_id }

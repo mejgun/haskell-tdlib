@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetStickerEmojis where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data GetStickerEmojis = 
- GetStickerEmojis { sticker :: InputFile.InputFile }  deriving (Show)
+ GetStickerEmojis { sticker :: Maybe InputFile.InputFile }  deriving (Show)
 
 instance T.ToJSON GetStickerEmojis where
  toJSON (GetStickerEmojis { sticker = sticker }) =
@@ -22,5 +23,5 @@ instance T.FromJSON GetStickerEmojis where
   where
    parseGetStickerEmojis :: A.Value -> T.Parser GetStickerEmojis
    parseGetStickerEmojis = A.withObject "GetStickerEmojis" $ \o -> do
-    sticker <- o A..: "sticker"
+    sticker <- optional $ o A..: "sticker"
     return $ GetStickerEmojis { sticker = sticker }

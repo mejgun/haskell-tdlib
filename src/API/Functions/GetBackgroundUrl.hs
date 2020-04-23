@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetBackgroundUrl where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BackgroundType as BackgroundType
 
 data GetBackgroundUrl = 
- GetBackgroundUrl { _type :: BackgroundType.BackgroundType, name :: String }  deriving (Show)
+ GetBackgroundUrl { _type :: Maybe BackgroundType.BackgroundType, name :: Maybe String }  deriving (Show)
 
 instance T.ToJSON GetBackgroundUrl where
  toJSON (GetBackgroundUrl { _type = _type, name = name }) =
@@ -22,6 +23,6 @@ instance T.FromJSON GetBackgroundUrl where
   where
    parseGetBackgroundUrl :: A.Value -> T.Parser GetBackgroundUrl
    parseGetBackgroundUrl = A.withObject "GetBackgroundUrl" $ \o -> do
-    _type <- o A..: "type"
-    name <- o A..: "name"
+    _type <- optional $ o A..: "type"
+    name <- optional $ o A..: "name"
     return $ GetBackgroundUrl { _type = _type, name = name }

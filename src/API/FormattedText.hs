@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.FormattedText where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TextEntity as TextEntity
 
 data FormattedText = 
- FormattedText { entities :: [TextEntity.TextEntity], text :: String }  deriving (Show)
+ FormattedText { entities :: Maybe [TextEntity.TextEntity], text :: Maybe String }  deriving (Show)
 
 instance T.ToJSON FormattedText where
  toJSON (FormattedText { entities = entities, text = text }) =
@@ -22,6 +23,6 @@ instance T.FromJSON FormattedText where
   where
    parseFormattedText :: A.Value -> T.Parser FormattedText
    parseFormattedText = A.withObject "FormattedText" $ \o -> do
-    entities <- o A..: "entities"
-    text <- o A..: "text"
+    entities <- optional $ o A..: "entities"
+    text <- optional $ o A..: "text"
     return $ FormattedText { entities = entities, text = text }

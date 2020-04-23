@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.AddSavedAnimation where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data AddSavedAnimation = 
- AddSavedAnimation { animation :: InputFile.InputFile }  deriving (Show)
+ AddSavedAnimation { animation :: Maybe InputFile.InputFile }  deriving (Show)
 
 instance T.ToJSON AddSavedAnimation where
  toJSON (AddSavedAnimation { animation = animation }) =
@@ -22,5 +23,5 @@ instance T.FromJSON AddSavedAnimation where
   where
    parseAddSavedAnimation :: A.Value -> T.Parser AddSavedAnimation
    parseAddSavedAnimation = A.withObject "AddSavedAnimation" $ \o -> do
-    animation <- o A..: "animation"
+    animation <- optional $ o A..: "animation"
     return $ AddSavedAnimation { animation = animation }

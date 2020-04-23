@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Chats where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Chats = 
- Chats { chat_ids :: [Int] }  deriving (Show)
+ Chats { chat_ids :: Maybe [Int] }  deriving (Show)
 
 instance T.ToJSON Chats where
  toJSON (Chats { chat_ids = chat_ids }) =
@@ -21,5 +22,5 @@ instance T.FromJSON Chats where
   where
    parseChats :: A.Value -> T.Parser Chats
    parseChats = A.withObject "Chats" $ \o -> do
-    chat_ids <- o A..: "chat_ids"
+    chat_ids <- optional $ o A..: "chat_ids"
     return $ Chats { chat_ids = chat_ids }

@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatReportReason where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -12,7 +13,7 @@ data ChatReportReason =
  | ChatReportReasonChildAbuse 
  | ChatReportReasonCopyright 
  | ChatReportReasonUnrelatedLocation 
- | ChatReportReasonCustom { text :: String }  deriving (Show)
+ | ChatReportReasonCustom { text :: Maybe String }  deriving (Show)
 
 instance T.ToJSON ChatReportReason where
  toJSON (ChatReportReasonSpam {  }) =
@@ -75,5 +76,5 @@ instance T.FromJSON ChatReportReason where
 
    parseChatReportReasonCustom :: A.Value -> T.Parser ChatReportReason
    parseChatReportReasonCustom = A.withObject "ChatReportReasonCustom" $ \o -> do
-    text <- o A..: "text"
+    text <- optional $ o A..: "text"
     return $ ChatReportReasonCustom { text = text }

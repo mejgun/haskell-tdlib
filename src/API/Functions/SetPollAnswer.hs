@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetPollAnswer where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetPollAnswer = 
- SetPollAnswer { option_ids :: [Int], message_id :: Int, chat_id :: Int }  deriving (Show)
+ SetPollAnswer { option_ids :: Maybe [Int], message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON SetPollAnswer where
  toJSON (SetPollAnswer { option_ids = option_ids, message_id = message_id, chat_id = chat_id }) =
@@ -21,7 +22,7 @@ instance T.FromJSON SetPollAnswer where
   where
    parseSetPollAnswer :: A.Value -> T.Parser SetPollAnswer
    parseSetPollAnswer = A.withObject "SetPollAnswer" $ \o -> do
-    option_ids <- o A..: "option_ids"
-    message_id <- o A..: "message_id"
-    chat_id <- o A..: "chat_id"
+    option_ids <- optional $ o A..: "option_ids"
+    message_id <- optional $ o A..: "message_id"
+    chat_id <- optional $ o A..: "chat_id"
     return $ SetPollAnswer { option_ids = option_ids, message_id = message_id, chat_id = chat_id }

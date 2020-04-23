@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetFileGenerationProgress where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetFileGenerationProgress = 
- SetFileGenerationProgress { local_prefix_size :: Int, expected_size :: Int, generation_id :: Int }  deriving (Show)
+ SetFileGenerationProgress { local_prefix_size :: Maybe Int, expected_size :: Maybe Int, generation_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON SetFileGenerationProgress where
  toJSON (SetFileGenerationProgress { local_prefix_size = local_prefix_size, expected_size = expected_size, generation_id = generation_id }) =
@@ -21,7 +22,7 @@ instance T.FromJSON SetFileGenerationProgress where
   where
    parseSetFileGenerationProgress :: A.Value -> T.Parser SetFileGenerationProgress
    parseSetFileGenerationProgress = A.withObject "SetFileGenerationProgress" $ \o -> do
-    local_prefix_size <- o A..: "local_prefix_size"
-    expected_size <- o A..: "expected_size"
-    generation_id <- o A..: "generation_id"
+    local_prefix_size <- optional $ o A..: "local_prefix_size"
+    expected_size <- optional $ o A..: "expected_size"
+    generation_id <- optional $ o A..: "generation_id"
     return $ SetFileGenerationProgress { local_prefix_size = local_prefix_size, expected_size = expected_size, generation_id = generation_id }

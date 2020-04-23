@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.AddChatMember where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data AddChatMember = 
- AddChatMember { forward_limit :: Int, user_id :: Int, chat_id :: Int }  deriving (Show)
+ AddChatMember { forward_limit :: Maybe Int, user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON AddChatMember where
  toJSON (AddChatMember { forward_limit = forward_limit, user_id = user_id, chat_id = chat_id }) =
@@ -21,7 +22,7 @@ instance T.FromJSON AddChatMember where
   where
    parseAddChatMember :: A.Value -> T.Parser AddChatMember
    parseAddChatMember = A.withObject "AddChatMember" $ \o -> do
-    forward_limit <- o A..: "forward_limit"
-    user_id <- o A..: "user_id"
-    chat_id <- o A..: "chat_id"
+    forward_limit <- optional $ o A..: "forward_limit"
+    user_id <- optional $ o A..: "user_id"
+    chat_id <- optional $ o A..: "chat_id"
     return $ AddChatMember { forward_limit = forward_limit, user_id = user_id, chat_id = chat_id }

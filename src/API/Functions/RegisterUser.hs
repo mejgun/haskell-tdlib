@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.RegisterUser where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data RegisterUser = 
- RegisterUser { last_name :: String, first_name :: String }  deriving (Show)
+ RegisterUser { last_name :: Maybe String, first_name :: Maybe String }  deriving (Show)
 
 instance T.ToJSON RegisterUser where
  toJSON (RegisterUser { last_name = last_name, first_name = first_name }) =
@@ -21,6 +22,6 @@ instance T.FromJSON RegisterUser where
   where
    parseRegisterUser :: A.Value -> T.Parser RegisterUser
    parseRegisterUser = A.withObject "RegisterUser" $ \o -> do
-    last_name <- o A..: "last_name"
-    first_name <- o A..: "first_name"
+    last_name <- optional $ o A..: "last_name"
+    first_name <- optional $ o A..: "first_name"
     return $ RegisterUser { last_name = last_name, first_name = first_name }

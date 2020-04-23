@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.BotCommand where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data BotCommand = 
- BotCommand { description :: String, command :: String }  deriving (Show)
+ BotCommand { description :: Maybe String, command :: Maybe String }  deriving (Show)
 
 instance T.ToJSON BotCommand where
  toJSON (BotCommand { description = description, command = command }) =
@@ -21,6 +22,6 @@ instance T.FromJSON BotCommand where
   where
    parseBotCommand :: A.Value -> T.Parser BotCommand
    parseBotCommand = A.withObject "BotCommand" $ \o -> do
-    description <- o A..: "description"
-    command <- o A..: "command"
+    description <- optional $ o A..: "description"
+    command <- optional $ o A..: "command"
     return $ BotCommand { description = description, command = command }

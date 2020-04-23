@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.MessageForwardInfo where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.MessageForwardOrigin as MessageForwardOrigin
 
 data MessageForwardInfo = 
- MessageForwardInfo { from_message_id :: Int, from_chat_id :: Int, date :: Int, origin :: MessageForwardOrigin.MessageForwardOrigin }  deriving (Show)
+ MessageForwardInfo { from_message_id :: Maybe Int, from_chat_id :: Maybe Int, date :: Maybe Int, origin :: Maybe MessageForwardOrigin.MessageForwardOrigin }  deriving (Show)
 
 instance T.ToJSON MessageForwardInfo where
  toJSON (MessageForwardInfo { from_message_id = from_message_id, from_chat_id = from_chat_id, date = date, origin = origin }) =
@@ -22,8 +23,8 @@ instance T.FromJSON MessageForwardInfo where
   where
    parseMessageForwardInfo :: A.Value -> T.Parser MessageForwardInfo
    parseMessageForwardInfo = A.withObject "MessageForwardInfo" $ \o -> do
-    from_message_id <- o A..: "from_message_id"
-    from_chat_id <- o A..: "from_chat_id"
-    date <- o A..: "date"
-    origin <- o A..: "origin"
+    from_message_id <- optional $ o A..: "from_message_id"
+    from_chat_id <- optional $ o A..: "from_chat_id"
+    date <- optional $ o A..: "date"
+    origin <- optional $ o A..: "origin"
     return $ MessageForwardInfo { from_message_id = from_message_id, from_chat_id = from_chat_id, date = date, origin = origin }

@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.MessageContent where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.WebPage as WebPage
@@ -26,46 +27,46 @@ import {-# SOURCE #-} qualified API.EncryptedCredentials as EncryptedCredentials
 import {-# SOURCE #-} qualified API.EncryptedPassportElement as EncryptedPassportElement
 
 data MessageContent = 
- MessageText { web_page :: WebPage.WebPage, _text :: FormattedText.FormattedText }  
- | MessageAnimation { is_secret :: Bool, caption :: FormattedText.FormattedText, animation :: Animation.Animation }  
- | MessageAudio { caption :: FormattedText.FormattedText, audio :: Audio.Audio }  
- | MessageDocument { caption :: FormattedText.FormattedText, document :: Document.Document }  
- | MessagePhoto { is_secret :: Bool, caption :: FormattedText.FormattedText, photo :: Photo.Photo }  
+ MessageText { web_page :: Maybe WebPage.WebPage, _text :: Maybe FormattedText.FormattedText }  
+ | MessageAnimation { is_secret :: Maybe Bool, caption :: Maybe FormattedText.FormattedText, animation :: Maybe Animation.Animation }  
+ | MessageAudio { caption :: Maybe FormattedText.FormattedText, audio :: Maybe Audio.Audio }  
+ | MessageDocument { caption :: Maybe FormattedText.FormattedText, document :: Maybe Document.Document }  
+ | MessagePhoto { is_secret :: Maybe Bool, caption :: Maybe FormattedText.FormattedText, photo :: Maybe Photo.Photo }  
  | MessageExpiredPhoto 
- | MessageSticker { sticker :: Sticker.Sticker }  
- | MessageVideo { is_secret :: Bool, caption :: FormattedText.FormattedText, video :: Video.Video }  
+ | MessageSticker { sticker :: Maybe Sticker.Sticker }  
+ | MessageVideo { is_secret :: Maybe Bool, caption :: Maybe FormattedText.FormattedText, video :: Maybe Video.Video }  
  | MessageExpiredVideo 
- | MessageVideoNote { is_secret :: Bool, is_viewed :: Bool, video_note :: VideoNote.VideoNote }  
- | MessageVoiceNote { is_listened :: Bool, caption :: FormattedText.FormattedText, voice_note :: VoiceNote.VoiceNote }  
- | MessageLocation { expires_in :: Int, live_period :: Int, location :: Location.Location }  
- | MessageVenue { venue :: Venue.Venue }  
- | MessageContact { contact :: Contact.Contact }  
- | MessageDice { value :: Int }  
- | MessageGame { game :: Game.Game }  
- | MessagePoll { poll :: Poll.Poll }  
- | MessageInvoice { receipt_message_id :: Int, need_shipping_address :: Bool, is_test :: Bool, start_parameter :: String, total_amount :: Int, currency :: String, photo :: Photo.Photo, description :: String, title :: String }  
- | MessageCall { duration :: Int, discard_reason :: CallDiscardReason.CallDiscardReason }  
- | MessageBasicGroupChatCreate { member_user_ids :: [Int], title :: String }  
- | MessageSupergroupChatCreate { title :: String }  
- | MessageChatChangeTitle { title :: String }  
- | MessageChatChangePhoto { photo :: Photo.Photo }  
+ | MessageVideoNote { is_secret :: Maybe Bool, is_viewed :: Maybe Bool, video_note :: Maybe VideoNote.VideoNote }  
+ | MessageVoiceNote { is_listened :: Maybe Bool, caption :: Maybe FormattedText.FormattedText, voice_note :: Maybe VoiceNote.VoiceNote }  
+ | MessageLocation { expires_in :: Maybe Int, live_period :: Maybe Int, location :: Maybe Location.Location }  
+ | MessageVenue { venue :: Maybe Venue.Venue }  
+ | MessageContact { contact :: Maybe Contact.Contact }  
+ | MessageDice { value :: Maybe Int }  
+ | MessageGame { game :: Maybe Game.Game }  
+ | MessagePoll { poll :: Maybe Poll.Poll }  
+ | MessageInvoice { receipt_message_id :: Maybe Int, need_shipping_address :: Maybe Bool, is_test :: Maybe Bool, start_parameter :: Maybe String, total_amount :: Maybe Int, currency :: Maybe String, photo :: Maybe Photo.Photo, description :: Maybe String, title :: Maybe String }  
+ | MessageCall { duration :: Maybe Int, discard_reason :: Maybe CallDiscardReason.CallDiscardReason }  
+ | MessageBasicGroupChatCreate { member_user_ids :: Maybe [Int], title :: Maybe String }  
+ | MessageSupergroupChatCreate { title :: Maybe String }  
+ | MessageChatChangeTitle { title :: Maybe String }  
+ | MessageChatChangePhoto { photo :: Maybe Photo.Photo }  
  | MessageChatDeletePhoto 
- | MessageChatAddMembers { member_user_ids :: [Int] }  
+ | MessageChatAddMembers { member_user_ids :: Maybe [Int] }  
  | MessageChatJoinByLink 
- | MessageChatDeleteMember { user_id :: Int }  
- | MessageChatUpgradeTo { supergroup_id :: Int }  
- | MessageChatUpgradeFrom { basic_group_id :: Int, title :: String }  
- | MessagePinMessage { message_id :: Int }  
+ | MessageChatDeleteMember { user_id :: Maybe Int }  
+ | MessageChatUpgradeTo { supergroup_id :: Maybe Int }  
+ | MessageChatUpgradeFrom { basic_group_id :: Maybe Int, title :: Maybe String }  
+ | MessagePinMessage { message_id :: Maybe Int }  
  | MessageScreenshotTaken 
- | MessageChatSetTtl { ttl :: Int }  
- | MessageCustomServiceAction { text :: String }  
- | MessageGameScore { score :: Int, game_id :: Int, game_message_id :: Int }  
- | MessagePaymentSuccessful { total_amount :: Int, currency :: String, invoice_message_id :: Int }  
- | MessagePaymentSuccessfulBot { provider_payment_charge_id :: String, telegram_payment_charge_id :: String, order_info :: OrderInfo.OrderInfo, shipping_option_id :: String, invoice_payload :: String, total_amount :: Int, currency :: String, invoice_message_id :: Int }  
+ | MessageChatSetTtl { ttl :: Maybe Int }  
+ | MessageCustomServiceAction { text :: Maybe String }  
+ | MessageGameScore { score :: Maybe Int, game_id :: Maybe Int, game_message_id :: Maybe Int }  
+ | MessagePaymentSuccessful { total_amount :: Maybe Int, currency :: Maybe String, invoice_message_id :: Maybe Int }  
+ | MessagePaymentSuccessfulBot { provider_payment_charge_id :: Maybe String, telegram_payment_charge_id :: Maybe String, order_info :: Maybe OrderInfo.OrderInfo, shipping_option_id :: Maybe String, invoice_payload :: Maybe String, total_amount :: Maybe Int, currency :: Maybe String, invoice_message_id :: Maybe Int }  
  | MessageContactRegistered 
- | MessageWebsiteConnected { domain_name :: String }  
- | MessagePassportDataSent { types :: [PassportElementType.PassportElementType] }  
- | MessagePassportDataReceived { credentials :: EncryptedCredentials.EncryptedCredentials, elements :: [EncryptedPassportElement.EncryptedPassportElement] }  
+ | MessageWebsiteConnected { domain_name :: Maybe String }  
+ | MessagePassportDataSent { types :: Maybe [PassportElementType.PassportElementType] }  
+ | MessagePassportDataReceived { credentials :: Maybe EncryptedCredentials.EncryptedCredentials, elements :: Maybe [EncryptedPassportElement.EncryptedPassportElement] }  
  | MessageUnsupported deriving (Show)
 
 instance T.ToJSON MessageContent where
@@ -241,34 +242,34 @@ instance T.FromJSON MessageContent where
   where
    parseMessageText :: A.Value -> T.Parser MessageContent
    parseMessageText = A.withObject "MessageText" $ \o -> do
-    web_page <- o A..: "web_page"
-    _text <- o A..: "text"
+    web_page <- optional $ o A..: "web_page"
+    _text <- optional $ o A..: "text"
     return $ MessageText { web_page = web_page, _text = _text }
 
    parseMessageAnimation :: A.Value -> T.Parser MessageContent
    parseMessageAnimation = A.withObject "MessageAnimation" $ \o -> do
-    is_secret <- o A..: "is_secret"
-    caption <- o A..: "caption"
-    animation <- o A..: "animation"
+    is_secret <- optional $ o A..: "is_secret"
+    caption <- optional $ o A..: "caption"
+    animation <- optional $ o A..: "animation"
     return $ MessageAnimation { is_secret = is_secret, caption = caption, animation = animation }
 
    parseMessageAudio :: A.Value -> T.Parser MessageContent
    parseMessageAudio = A.withObject "MessageAudio" $ \o -> do
-    caption <- o A..: "caption"
-    audio <- o A..: "audio"
+    caption <- optional $ o A..: "caption"
+    audio <- optional $ o A..: "audio"
     return $ MessageAudio { caption = caption, audio = audio }
 
    parseMessageDocument :: A.Value -> T.Parser MessageContent
    parseMessageDocument = A.withObject "MessageDocument" $ \o -> do
-    caption <- o A..: "caption"
-    document <- o A..: "document"
+    caption <- optional $ o A..: "caption"
+    document <- optional $ o A..: "document"
     return $ MessageDocument { caption = caption, document = document }
 
    parseMessagePhoto :: A.Value -> T.Parser MessageContent
    parseMessagePhoto = A.withObject "MessagePhoto" $ \o -> do
-    is_secret <- o A..: "is_secret"
-    caption <- o A..: "caption"
-    photo <- o A..: "photo"
+    is_secret <- optional $ o A..: "is_secret"
+    caption <- optional $ o A..: "caption"
+    photo <- optional $ o A..: "photo"
     return $ MessagePhoto { is_secret = is_secret, caption = caption, photo = photo }
 
    parseMessageExpiredPhoto :: A.Value -> T.Parser MessageContent
@@ -277,14 +278,14 @@ instance T.FromJSON MessageContent where
 
    parseMessageSticker :: A.Value -> T.Parser MessageContent
    parseMessageSticker = A.withObject "MessageSticker" $ \o -> do
-    sticker <- o A..: "sticker"
+    sticker <- optional $ o A..: "sticker"
     return $ MessageSticker { sticker = sticker }
 
    parseMessageVideo :: A.Value -> T.Parser MessageContent
    parseMessageVideo = A.withObject "MessageVideo" $ \o -> do
-    is_secret <- o A..: "is_secret"
-    caption <- o A..: "caption"
-    video <- o A..: "video"
+    is_secret <- optional $ o A..: "is_secret"
+    caption <- optional $ o A..: "caption"
+    video <- optional $ o A..: "video"
     return $ MessageVideo { is_secret = is_secret, caption = caption, video = video }
 
    parseMessageExpiredVideo :: A.Value -> T.Parser MessageContent
@@ -293,88 +294,88 @@ instance T.FromJSON MessageContent where
 
    parseMessageVideoNote :: A.Value -> T.Parser MessageContent
    parseMessageVideoNote = A.withObject "MessageVideoNote" $ \o -> do
-    is_secret <- o A..: "is_secret"
-    is_viewed <- o A..: "is_viewed"
-    video_note <- o A..: "video_note"
+    is_secret <- optional $ o A..: "is_secret"
+    is_viewed <- optional $ o A..: "is_viewed"
+    video_note <- optional $ o A..: "video_note"
     return $ MessageVideoNote { is_secret = is_secret, is_viewed = is_viewed, video_note = video_note }
 
    parseMessageVoiceNote :: A.Value -> T.Parser MessageContent
    parseMessageVoiceNote = A.withObject "MessageVoiceNote" $ \o -> do
-    is_listened <- o A..: "is_listened"
-    caption <- o A..: "caption"
-    voice_note <- o A..: "voice_note"
+    is_listened <- optional $ o A..: "is_listened"
+    caption <- optional $ o A..: "caption"
+    voice_note <- optional $ o A..: "voice_note"
     return $ MessageVoiceNote { is_listened = is_listened, caption = caption, voice_note = voice_note }
 
    parseMessageLocation :: A.Value -> T.Parser MessageContent
    parseMessageLocation = A.withObject "MessageLocation" $ \o -> do
-    expires_in <- o A..: "expires_in"
-    live_period <- o A..: "live_period"
-    location <- o A..: "location"
+    expires_in <- optional $ o A..: "expires_in"
+    live_period <- optional $ o A..: "live_period"
+    location <- optional $ o A..: "location"
     return $ MessageLocation { expires_in = expires_in, live_period = live_period, location = location }
 
    parseMessageVenue :: A.Value -> T.Parser MessageContent
    parseMessageVenue = A.withObject "MessageVenue" $ \o -> do
-    venue <- o A..: "venue"
+    venue <- optional $ o A..: "venue"
     return $ MessageVenue { venue = venue }
 
    parseMessageContact :: A.Value -> T.Parser MessageContent
    parseMessageContact = A.withObject "MessageContact" $ \o -> do
-    contact <- o A..: "contact"
+    contact <- optional $ o A..: "contact"
     return $ MessageContact { contact = contact }
 
    parseMessageDice :: A.Value -> T.Parser MessageContent
    parseMessageDice = A.withObject "MessageDice" $ \o -> do
-    value <- o A..: "value"
+    value <- optional $ o A..: "value"
     return $ MessageDice { value = value }
 
    parseMessageGame :: A.Value -> T.Parser MessageContent
    parseMessageGame = A.withObject "MessageGame" $ \o -> do
-    game <- o A..: "game"
+    game <- optional $ o A..: "game"
     return $ MessageGame { game = game }
 
    parseMessagePoll :: A.Value -> T.Parser MessageContent
    parseMessagePoll = A.withObject "MessagePoll" $ \o -> do
-    poll <- o A..: "poll"
+    poll <- optional $ o A..: "poll"
     return $ MessagePoll { poll = poll }
 
    parseMessageInvoice :: A.Value -> T.Parser MessageContent
    parseMessageInvoice = A.withObject "MessageInvoice" $ \o -> do
-    receipt_message_id <- o A..: "receipt_message_id"
-    need_shipping_address <- o A..: "need_shipping_address"
-    is_test <- o A..: "is_test"
-    start_parameter <- o A..: "start_parameter"
-    total_amount <- o A..: "total_amount"
-    currency <- o A..: "currency"
-    photo <- o A..: "photo"
-    description <- o A..: "description"
-    title <- o A..: "title"
+    receipt_message_id <- optional $ o A..: "receipt_message_id"
+    need_shipping_address <- optional $ o A..: "need_shipping_address"
+    is_test <- optional $ o A..: "is_test"
+    start_parameter <- optional $ o A..: "start_parameter"
+    total_amount <- optional $ o A..: "total_amount"
+    currency <- optional $ o A..: "currency"
+    photo <- optional $ o A..: "photo"
+    description <- optional $ o A..: "description"
+    title <- optional $ o A..: "title"
     return $ MessageInvoice { receipt_message_id = receipt_message_id, need_shipping_address = need_shipping_address, is_test = is_test, start_parameter = start_parameter, total_amount = total_amount, currency = currency, photo = photo, description = description, title = title }
 
    parseMessageCall :: A.Value -> T.Parser MessageContent
    parseMessageCall = A.withObject "MessageCall" $ \o -> do
-    duration <- o A..: "duration"
-    discard_reason <- o A..: "discard_reason"
+    duration <- optional $ o A..: "duration"
+    discard_reason <- optional $ o A..: "discard_reason"
     return $ MessageCall { duration = duration, discard_reason = discard_reason }
 
    parseMessageBasicGroupChatCreate :: A.Value -> T.Parser MessageContent
    parseMessageBasicGroupChatCreate = A.withObject "MessageBasicGroupChatCreate" $ \o -> do
-    member_user_ids <- o A..: "member_user_ids"
-    title <- o A..: "title"
+    member_user_ids <- optional $ o A..: "member_user_ids"
+    title <- optional $ o A..: "title"
     return $ MessageBasicGroupChatCreate { member_user_ids = member_user_ids, title = title }
 
    parseMessageSupergroupChatCreate :: A.Value -> T.Parser MessageContent
    parseMessageSupergroupChatCreate = A.withObject "MessageSupergroupChatCreate" $ \o -> do
-    title <- o A..: "title"
+    title <- optional $ o A..: "title"
     return $ MessageSupergroupChatCreate { title = title }
 
    parseMessageChatChangeTitle :: A.Value -> T.Parser MessageContent
    parseMessageChatChangeTitle = A.withObject "MessageChatChangeTitle" $ \o -> do
-    title <- o A..: "title"
+    title <- optional $ o A..: "title"
     return $ MessageChatChangeTitle { title = title }
 
    parseMessageChatChangePhoto :: A.Value -> T.Parser MessageContent
    parseMessageChatChangePhoto = A.withObject "MessageChatChangePhoto" $ \o -> do
-    photo <- o A..: "photo"
+    photo <- optional $ o A..: "photo"
     return $ MessageChatChangePhoto { photo = photo }
 
    parseMessageChatDeletePhoto :: A.Value -> T.Parser MessageContent
@@ -383,7 +384,7 @@ instance T.FromJSON MessageContent where
 
    parseMessageChatAddMembers :: A.Value -> T.Parser MessageContent
    parseMessageChatAddMembers = A.withObject "MessageChatAddMembers" $ \o -> do
-    member_user_ids <- o A..: "member_user_ids"
+    member_user_ids <- optional $ o A..: "member_user_ids"
     return $ MessageChatAddMembers { member_user_ids = member_user_ids }
 
    parseMessageChatJoinByLink :: A.Value -> T.Parser MessageContent
@@ -392,23 +393,23 @@ instance T.FromJSON MessageContent where
 
    parseMessageChatDeleteMember :: A.Value -> T.Parser MessageContent
    parseMessageChatDeleteMember = A.withObject "MessageChatDeleteMember" $ \o -> do
-    user_id <- o A..: "user_id"
+    user_id <- optional $ o A..: "user_id"
     return $ MessageChatDeleteMember { user_id = user_id }
 
    parseMessageChatUpgradeTo :: A.Value -> T.Parser MessageContent
    parseMessageChatUpgradeTo = A.withObject "MessageChatUpgradeTo" $ \o -> do
-    supergroup_id <- o A..: "supergroup_id"
+    supergroup_id <- optional $ o A..: "supergroup_id"
     return $ MessageChatUpgradeTo { supergroup_id = supergroup_id }
 
    parseMessageChatUpgradeFrom :: A.Value -> T.Parser MessageContent
    parseMessageChatUpgradeFrom = A.withObject "MessageChatUpgradeFrom" $ \o -> do
-    basic_group_id <- o A..: "basic_group_id"
-    title <- o A..: "title"
+    basic_group_id <- optional $ o A..: "basic_group_id"
+    title <- optional $ o A..: "title"
     return $ MessageChatUpgradeFrom { basic_group_id = basic_group_id, title = title }
 
    parseMessagePinMessage :: A.Value -> T.Parser MessageContent
    parseMessagePinMessage = A.withObject "MessagePinMessage" $ \o -> do
-    message_id <- o A..: "message_id"
+    message_id <- optional $ o A..: "message_id"
     return $ MessagePinMessage { message_id = message_id }
 
    parseMessageScreenshotTaken :: A.Value -> T.Parser MessageContent
@@ -417,38 +418,38 @@ instance T.FromJSON MessageContent where
 
    parseMessageChatSetTtl :: A.Value -> T.Parser MessageContent
    parseMessageChatSetTtl = A.withObject "MessageChatSetTtl" $ \o -> do
-    ttl <- o A..: "ttl"
+    ttl <- optional $ o A..: "ttl"
     return $ MessageChatSetTtl { ttl = ttl }
 
    parseMessageCustomServiceAction :: A.Value -> T.Parser MessageContent
    parseMessageCustomServiceAction = A.withObject "MessageCustomServiceAction" $ \o -> do
-    text <- o A..: "text"
+    text <- optional $ o A..: "text"
     return $ MessageCustomServiceAction { text = text }
 
    parseMessageGameScore :: A.Value -> T.Parser MessageContent
    parseMessageGameScore = A.withObject "MessageGameScore" $ \o -> do
-    score <- o A..: "score"
-    game_id <- o A..: "game_id"
-    game_message_id <- o A..: "game_message_id"
+    score <- optional $ o A..: "score"
+    game_id <- optional $ o A..: "game_id"
+    game_message_id <- optional $ o A..: "game_message_id"
     return $ MessageGameScore { score = score, game_id = game_id, game_message_id = game_message_id }
 
    parseMessagePaymentSuccessful :: A.Value -> T.Parser MessageContent
    parseMessagePaymentSuccessful = A.withObject "MessagePaymentSuccessful" $ \o -> do
-    total_amount <- o A..: "total_amount"
-    currency <- o A..: "currency"
-    invoice_message_id <- o A..: "invoice_message_id"
+    total_amount <- optional $ o A..: "total_amount"
+    currency <- optional $ o A..: "currency"
+    invoice_message_id <- optional $ o A..: "invoice_message_id"
     return $ MessagePaymentSuccessful { total_amount = total_amount, currency = currency, invoice_message_id = invoice_message_id }
 
    parseMessagePaymentSuccessfulBot :: A.Value -> T.Parser MessageContent
    parseMessagePaymentSuccessfulBot = A.withObject "MessagePaymentSuccessfulBot" $ \o -> do
-    provider_payment_charge_id <- o A..: "provider_payment_charge_id"
-    telegram_payment_charge_id <- o A..: "telegram_payment_charge_id"
-    order_info <- o A..: "order_info"
-    shipping_option_id <- o A..: "shipping_option_id"
-    invoice_payload <- o A..: "invoice_payload"
-    total_amount <- o A..: "total_amount"
-    currency <- o A..: "currency"
-    invoice_message_id <- o A..: "invoice_message_id"
+    provider_payment_charge_id <- optional $ o A..: "provider_payment_charge_id"
+    telegram_payment_charge_id <- optional $ o A..: "telegram_payment_charge_id"
+    order_info <- optional $ o A..: "order_info"
+    shipping_option_id <- optional $ o A..: "shipping_option_id"
+    invoice_payload <- optional $ o A..: "invoice_payload"
+    total_amount <- optional $ o A..: "total_amount"
+    currency <- optional $ o A..: "currency"
+    invoice_message_id <- optional $ o A..: "invoice_message_id"
     return $ MessagePaymentSuccessfulBot { provider_payment_charge_id = provider_payment_charge_id, telegram_payment_charge_id = telegram_payment_charge_id, order_info = order_info, shipping_option_id = shipping_option_id, invoice_payload = invoice_payload, total_amount = total_amount, currency = currency, invoice_message_id = invoice_message_id }
 
    parseMessageContactRegistered :: A.Value -> T.Parser MessageContent
@@ -457,18 +458,18 @@ instance T.FromJSON MessageContent where
 
    parseMessageWebsiteConnected :: A.Value -> T.Parser MessageContent
    parseMessageWebsiteConnected = A.withObject "MessageWebsiteConnected" $ \o -> do
-    domain_name <- o A..: "domain_name"
+    domain_name <- optional $ o A..: "domain_name"
     return $ MessageWebsiteConnected { domain_name = domain_name }
 
    parseMessagePassportDataSent :: A.Value -> T.Parser MessageContent
    parseMessagePassportDataSent = A.withObject "MessagePassportDataSent" $ \o -> do
-    types <- o A..: "types"
+    types <- optional $ o A..: "types"
     return $ MessagePassportDataSent { types = types }
 
    parseMessagePassportDataReceived :: A.Value -> T.Parser MessageContent
    parseMessagePassportDataReceived = A.withObject "MessagePassportDataReceived" $ \o -> do
-    credentials <- o A..: "credentials"
-    elements <- o A..: "elements"
+    credentials <- optional $ o A..: "credentials"
+    elements <- optional $ o A..: "elements"
     return $ MessagePassportDataReceived { credentials = credentials, elements = elements }
 
    parseMessageUnsupported :: A.Value -> T.Parser MessageContent

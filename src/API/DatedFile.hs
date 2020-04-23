@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.DatedFile where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
 
 data DatedFile = 
- DatedFile { date :: Int, file :: File.File }  deriving (Show)
+ DatedFile { date :: Maybe Int, file :: Maybe File.File }  deriving (Show)
 
 instance T.ToJSON DatedFile where
  toJSON (DatedFile { date = date, file = file }) =
@@ -22,6 +23,6 @@ instance T.FromJSON DatedFile where
   where
    parseDatedFile :: A.Value -> T.Parser DatedFile
    parseDatedFile = A.withObject "DatedFile" $ \o -> do
-    date <- o A..: "date"
-    file <- o A..: "file"
+    date <- optional $ o A..: "date"
+    file <- optional $ o A..: "file"
     return $ DatedFile { date = date, file = file }

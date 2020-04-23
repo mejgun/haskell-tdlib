@@ -2,13 +2,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Poll where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PollType as PollType
 import {-# SOURCE #-} qualified API.PollOption as PollOption
 
 data Poll = 
- Poll { is_closed :: Bool, _type :: PollType.PollType, is_anonymous :: Bool, recent_voter_user_ids :: [Int], total_voter_count :: Int, options :: [PollOption.PollOption], question :: String, _id :: Int }  deriving (Show)
+ Poll { is_closed :: Maybe Bool, _type :: Maybe PollType.PollType, is_anonymous :: Maybe Bool, recent_voter_user_ids :: Maybe [Int], total_voter_count :: Maybe Int, options :: Maybe [PollOption.PollOption], question :: Maybe String, _id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON Poll where
  toJSON (Poll { is_closed = is_closed, _type = _type, is_anonymous = is_anonymous, recent_voter_user_ids = recent_voter_user_ids, total_voter_count = total_voter_count, options = options, question = question, _id = _id }) =
@@ -23,12 +24,12 @@ instance T.FromJSON Poll where
   where
    parsePoll :: A.Value -> T.Parser Poll
    parsePoll = A.withObject "Poll" $ \o -> do
-    is_closed <- o A..: "is_closed"
-    _type <- o A..: "type"
-    is_anonymous <- o A..: "is_anonymous"
-    recent_voter_user_ids <- o A..: "recent_voter_user_ids"
-    total_voter_count <- o A..: "total_voter_count"
-    options <- o A..: "options"
-    question <- o A..: "question"
-    _id <- o A..: "id"
+    is_closed <- optional $ o A..: "is_closed"
+    _type <- optional $ o A..: "type"
+    is_anonymous <- optional $ o A..: "is_anonymous"
+    recent_voter_user_ids <- optional $ o A..: "recent_voter_user_ids"
+    total_voter_count <- optional $ o A..: "total_voter_count"
+    options <- optional $ o A..: "options"
+    question <- optional $ o A..: "question"
+    _id <- optional $ o A..: "id"
     return $ Poll { is_closed = is_closed, _type = _type, is_anonymous = is_anonymous, recent_voter_user_ids = recent_voter_user_ids, total_voter_count = total_voter_count, options = options, question = question, _id = _id }

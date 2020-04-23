@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.JoinChatByInviteLink where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data JoinChatByInviteLink = 
- JoinChatByInviteLink { invite_link :: String }  deriving (Show)
+ JoinChatByInviteLink { invite_link :: Maybe String }  deriving (Show)
 
 instance T.ToJSON JoinChatByInviteLink where
  toJSON (JoinChatByInviteLink { invite_link = invite_link }) =
@@ -21,5 +22,5 @@ instance T.FromJSON JoinChatByInviteLink where
   where
    parseJoinChatByInviteLink :: A.Value -> T.Parser JoinChatByInviteLink
    parseJoinChatByInviteLink = A.withObject "JoinChatByInviteLink" $ \o -> do
-    invite_link <- o A..: "invite_link"
+    invite_link <- optional $ o A..: "invite_link"
     return $ JoinChatByInviteLink { invite_link = invite_link }

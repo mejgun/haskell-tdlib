@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetChatChatList where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatList as ChatList
 
 data SetChatChatList = 
- SetChatChatList { chat_list :: ChatList.ChatList, chat_id :: Int }  deriving (Show)
+ SetChatChatList { chat_list :: Maybe ChatList.ChatList, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON SetChatChatList where
  toJSON (SetChatChatList { chat_list = chat_list, chat_id = chat_id }) =
@@ -22,6 +23,6 @@ instance T.FromJSON SetChatChatList where
   where
    parseSetChatChatList :: A.Value -> T.Parser SetChatChatList
    parseSetChatChatList = A.withObject "SetChatChatList" $ \o -> do
-    chat_list <- o A..: "chat_list"
-    chat_id <- o A..: "chat_id"
+    chat_list <- optional $ o A..: "chat_list"
+    chat_id <- optional $ o A..: "chat_id"
     return $ SetChatChatList { chat_list = chat_list, chat_id = chat_id }

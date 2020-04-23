@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetChatDescription where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetChatDescription = 
- SetChatDescription { description :: String, chat_id :: Int }  deriving (Show)
+ SetChatDescription { description :: Maybe String, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON SetChatDescription where
  toJSON (SetChatDescription { description = description, chat_id = chat_id }) =
@@ -21,6 +22,6 @@ instance T.FromJSON SetChatDescription where
   where
    parseSetChatDescription :: A.Value -> T.Parser SetChatDescription
    parseSetChatDescription = A.withObject "SetChatDescription" $ \o -> do
-    description <- o A..: "description"
-    chat_id <- o A..: "chat_id"
+    description <- optional $ o A..: "description"
+    chat_id <- optional $ o A..: "chat_id"
     return $ SetChatDescription { description = description, chat_id = chat_id }

@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Seconds where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Seconds = 
- Seconds { seconds :: Float }  deriving (Show)
+ Seconds { seconds :: Maybe Float }  deriving (Show)
 
 instance T.ToJSON Seconds where
  toJSON (Seconds { seconds = seconds }) =
@@ -21,5 +22,5 @@ instance T.FromJSON Seconds where
   where
    parseSeconds :: A.Value -> T.Parser Seconds
    parseSeconds = A.withObject "Seconds" $ \o -> do
-    seconds <- o A..: "seconds"
+    seconds <- optional $ o A..: "seconds"
     return $ Seconds { seconds = seconds }

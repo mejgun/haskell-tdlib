@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetChatMessageByDate where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetChatMessageByDate = 
- GetChatMessageByDate { date :: Int, chat_id :: Int }  deriving (Show)
+ GetChatMessageByDate { date :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON GetChatMessageByDate where
  toJSON (GetChatMessageByDate { date = date, chat_id = chat_id }) =
@@ -21,6 +22,6 @@ instance T.FromJSON GetChatMessageByDate where
   where
    parseGetChatMessageByDate :: A.Value -> T.Parser GetChatMessageByDate
    parseGetChatMessageByDate = A.withObject "GetChatMessageByDate" $ \o -> do
-    date <- o A..: "date"
-    chat_id <- o A..: "chat_id"
+    date <- optional $ o A..: "date"
+    chat_id <- optional $ o A..: "chat_id"
     return $ GetChatMessageByDate { date = date, chat_id = chat_id }

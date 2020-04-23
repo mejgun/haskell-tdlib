@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PageBlockTableCell where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PageBlockVerticalAlignment as PageBlockVerticalAlignment
@@ -9,7 +10,7 @@ import {-# SOURCE #-} qualified API.PageBlockHorizontalAlignment as PageBlockHor
 import {-# SOURCE #-} qualified API.RichText as RichText
 
 data PageBlockTableCell = 
- PageBlockTableCell { valign :: PageBlockVerticalAlignment.PageBlockVerticalAlignment, align :: PageBlockHorizontalAlignment.PageBlockHorizontalAlignment, rowspan :: Int, colspan :: Int, is_header :: Bool, text :: RichText.RichText }  deriving (Show)
+ PageBlockTableCell { valign :: Maybe PageBlockVerticalAlignment.PageBlockVerticalAlignment, align :: Maybe PageBlockHorizontalAlignment.PageBlockHorizontalAlignment, rowspan :: Maybe Int, colspan :: Maybe Int, is_header :: Maybe Bool, text :: Maybe RichText.RichText }  deriving (Show)
 
 instance T.ToJSON PageBlockTableCell where
  toJSON (PageBlockTableCell { valign = valign, align = align, rowspan = rowspan, colspan = colspan, is_header = is_header, text = text }) =
@@ -24,10 +25,10 @@ instance T.FromJSON PageBlockTableCell where
   where
    parsePageBlockTableCell :: A.Value -> T.Parser PageBlockTableCell
    parsePageBlockTableCell = A.withObject "PageBlockTableCell" $ \o -> do
-    valign <- o A..: "valign"
-    align <- o A..: "align"
-    rowspan <- o A..: "rowspan"
-    colspan <- o A..: "colspan"
-    is_header <- o A..: "is_header"
-    text <- o A..: "text"
+    valign <- optional $ o A..: "valign"
+    align <- optional $ o A..: "align"
+    rowspan <- optional $ o A..: "rowspan"
+    colspan <- optional $ o A..: "colspan"
+    is_header <- optional $ o A..: "is_header"
+    text <- optional $ o A..: "text"
     return $ PageBlockTableCell { valign = valign, align = align, rowspan = rowspan, colspan = colspan, is_header = is_header, text = text }

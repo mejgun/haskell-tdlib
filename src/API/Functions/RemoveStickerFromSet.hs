@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.RemoveStickerFromSet where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data RemoveStickerFromSet = 
- RemoveStickerFromSet { sticker :: InputFile.InputFile }  deriving (Show)
+ RemoveStickerFromSet { sticker :: Maybe InputFile.InputFile }  deriving (Show)
 
 instance T.ToJSON RemoveStickerFromSet where
  toJSON (RemoveStickerFromSet { sticker = sticker }) =
@@ -22,5 +23,5 @@ instance T.FromJSON RemoveStickerFromSet where
   where
    parseRemoveStickerFromSet :: A.Value -> T.Parser RemoveStickerFromSet
    parseRemoveStickerFromSet = A.withObject "RemoveStickerFromSet" $ \o -> do
-    sticker <- o A..: "sticker"
+    sticker <- optional $ o A..: "sticker"
     return $ RemoveStickerFromSet { sticker = sticker }

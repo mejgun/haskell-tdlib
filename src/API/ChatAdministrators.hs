@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatAdministrators where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatAdministrator as ChatAdministrator
 
 data ChatAdministrators = 
- ChatAdministrators { administrators :: [ChatAdministrator.ChatAdministrator] }  deriving (Show)
+ ChatAdministrators { administrators :: Maybe [ChatAdministrator.ChatAdministrator] }  deriving (Show)
 
 instance T.ToJSON ChatAdministrators where
  toJSON (ChatAdministrators { administrators = administrators }) =
@@ -22,5 +23,5 @@ instance T.FromJSON ChatAdministrators where
   where
    parseChatAdministrators :: A.Value -> T.Parser ChatAdministrators
    parseChatAdministrators = A.withObject "ChatAdministrators" $ \o -> do
-    administrators <- o A..: "administrators"
+    administrators <- optional $ o A..: "administrators"
     return $ ChatAdministrators { administrators = administrators }

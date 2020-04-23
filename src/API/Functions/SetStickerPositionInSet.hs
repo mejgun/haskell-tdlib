@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetStickerPositionInSet where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data SetStickerPositionInSet = 
- SetStickerPositionInSet { position :: Int, sticker :: InputFile.InputFile }  deriving (Show)
+ SetStickerPositionInSet { position :: Maybe Int, sticker :: Maybe InputFile.InputFile }  deriving (Show)
 
 instance T.ToJSON SetStickerPositionInSet where
  toJSON (SetStickerPositionInSet { position = position, sticker = sticker }) =
@@ -22,6 +23,6 @@ instance T.FromJSON SetStickerPositionInSet where
   where
    parseSetStickerPositionInSet :: A.Value -> T.Parser SetStickerPositionInSet
    parseSetStickerPositionInSet = A.withObject "SetStickerPositionInSet" $ \o -> do
-    position <- o A..: "position"
-    sticker <- o A..: "sticker"
+    position <- optional $ o A..: "position"
+    sticker <- optional $ o A..: "sticker"
     return $ SetStickerPositionInSet { position = position, sticker = sticker }

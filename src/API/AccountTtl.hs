@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.AccountTtl where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data AccountTtl = 
- AccountTtl { days :: Int }  deriving (Show)
+ AccountTtl { days :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON AccountTtl where
  toJSON (AccountTtl { days = days }) =
@@ -21,5 +22,5 @@ instance T.FromJSON AccountTtl where
   where
    parseAccountTtl :: A.Value -> T.Parser AccountTtl
    parseAccountTtl = A.withObject "AccountTtl" $ \o -> do
-    days <- o A..: "days"
+    days <- optional $ o A..: "days"
     return $ AccountTtl { days = days }

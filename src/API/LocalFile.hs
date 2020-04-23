@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.LocalFile where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data LocalFile = 
- LocalFile { downloaded_size :: Int, downloaded_prefix_size :: Int, download_offset :: Int, is_downloading_completed :: Bool, is_downloading_active :: Bool, can_be_deleted :: Bool, can_be_downloaded :: Bool, path :: String }  deriving (Show)
+ LocalFile { downloaded_size :: Maybe Int, downloaded_prefix_size :: Maybe Int, download_offset :: Maybe Int, is_downloading_completed :: Maybe Bool, is_downloading_active :: Maybe Bool, can_be_deleted :: Maybe Bool, can_be_downloaded :: Maybe Bool, path :: Maybe String }  deriving (Show)
 
 instance T.ToJSON LocalFile where
  toJSON (LocalFile { downloaded_size = downloaded_size, downloaded_prefix_size = downloaded_prefix_size, download_offset = download_offset, is_downloading_completed = is_downloading_completed, is_downloading_active = is_downloading_active, can_be_deleted = can_be_deleted, can_be_downloaded = can_be_downloaded, path = path }) =
@@ -21,12 +22,12 @@ instance T.FromJSON LocalFile where
   where
    parseLocalFile :: A.Value -> T.Parser LocalFile
    parseLocalFile = A.withObject "LocalFile" $ \o -> do
-    downloaded_size <- o A..: "downloaded_size"
-    downloaded_prefix_size <- o A..: "downloaded_prefix_size"
-    download_offset <- o A..: "download_offset"
-    is_downloading_completed <- o A..: "is_downloading_completed"
-    is_downloading_active <- o A..: "is_downloading_active"
-    can_be_deleted <- o A..: "can_be_deleted"
-    can_be_downloaded <- o A..: "can_be_downloaded"
-    path <- o A..: "path"
+    downloaded_size <- optional $ o A..: "downloaded_size"
+    downloaded_prefix_size <- optional $ o A..: "downloaded_prefix_size"
+    download_offset <- optional $ o A..: "download_offset"
+    is_downloading_completed <- optional $ o A..: "is_downloading_completed"
+    is_downloading_active <- optional $ o A..: "is_downloading_active"
+    can_be_deleted <- optional $ o A..: "can_be_deleted"
+    can_be_downloaded <- optional $ o A..: "can_be_downloaded"
+    path <- optional $ o A..: "path"
     return $ LocalFile { downloaded_size = downloaded_size, downloaded_prefix_size = downloaded_prefix_size, download_offset = download_offset, is_downloading_completed = is_downloading_completed, is_downloading_active = is_downloading_active, can_be_deleted = can_be_deleted, can_be_downloaded = can_be_downloaded, path = path }

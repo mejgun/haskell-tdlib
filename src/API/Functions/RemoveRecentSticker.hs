@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.RemoveRecentSticker where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data RemoveRecentSticker = 
- RemoveRecentSticker { sticker :: InputFile.InputFile, is_attached :: Bool }  deriving (Show)
+ RemoveRecentSticker { sticker :: Maybe InputFile.InputFile, is_attached :: Maybe Bool }  deriving (Show)
 
 instance T.ToJSON RemoveRecentSticker where
  toJSON (RemoveRecentSticker { sticker = sticker, is_attached = is_attached }) =
@@ -22,6 +23,6 @@ instance T.FromJSON RemoveRecentSticker where
   where
    parseRemoveRecentSticker :: A.Value -> T.Parser RemoveRecentSticker
    parseRemoveRecentSticker = A.withObject "RemoveRecentSticker" $ \o -> do
-    sticker <- o A..: "sticker"
-    is_attached <- o A..: "is_attached"
+    sticker <- optional $ o A..: "sticker"
+    is_attached <- optional $ o A..: "is_attached"
     return $ RemoveRecentSticker { sticker = sticker, is_attached = is_attached }

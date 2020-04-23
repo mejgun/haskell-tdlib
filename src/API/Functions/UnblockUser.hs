@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.UnblockUser where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data UnblockUser = 
- UnblockUser { user_id :: Int }  deriving (Show)
+ UnblockUser { user_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON UnblockUser where
  toJSON (UnblockUser { user_id = user_id }) =
@@ -21,5 +22,5 @@ instance T.FromJSON UnblockUser where
   where
    parseUnblockUser :: A.Value -> T.Parser UnblockUser
    parseUnblockUser = A.withObject "UnblockUser" $ \o -> do
-    user_id <- o A..: "user_id"
+    user_id <- optional $ o A..: "user_id"
     return $ UnblockUser { user_id = user_id }

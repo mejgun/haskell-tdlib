@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ProfilePhoto where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
 
 data ProfilePhoto = 
- ProfilePhoto { big :: File.File, small :: File.File, _id :: Int }  deriving (Show)
+ ProfilePhoto { big :: Maybe File.File, small :: Maybe File.File, _id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON ProfilePhoto where
  toJSON (ProfilePhoto { big = big, small = small, _id = _id }) =
@@ -22,7 +23,7 @@ instance T.FromJSON ProfilePhoto where
   where
    parseProfilePhoto :: A.Value -> T.Parser ProfilePhoto
    parseProfilePhoto = A.withObject "ProfilePhoto" $ \o -> do
-    big <- o A..: "big"
-    small <- o A..: "small"
-    _id <- o A..: "id"
+    big <- optional $ o A..: "big"
+    small <- optional $ o A..: "small"
+    _id <- optional $ o A..: "id"
     return $ ProfilePhoto { big = big, small = small, _id = _id }

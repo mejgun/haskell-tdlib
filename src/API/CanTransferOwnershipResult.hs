@@ -2,14 +2,15 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.CanTransferOwnershipResult where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CanTransferOwnershipResult = 
  CanTransferOwnershipResultOk 
  | CanTransferOwnershipResultPasswordNeeded 
- | CanTransferOwnershipResultPasswordTooFresh { retry_after :: Int }  
- | CanTransferOwnershipResultSessionTooFresh { retry_after :: Int }  deriving (Show)
+ | CanTransferOwnershipResultPasswordTooFresh { retry_after :: Maybe Int }  
+ | CanTransferOwnershipResultSessionTooFresh { retry_after :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON CanTransferOwnershipResult where
  toJSON (CanTransferOwnershipResultOk {  }) =
@@ -44,10 +45,10 @@ instance T.FromJSON CanTransferOwnershipResult where
 
    parseCanTransferOwnershipResultPasswordTooFresh :: A.Value -> T.Parser CanTransferOwnershipResult
    parseCanTransferOwnershipResultPasswordTooFresh = A.withObject "CanTransferOwnershipResultPasswordTooFresh" $ \o -> do
-    retry_after <- o A..: "retry_after"
+    retry_after <- optional $ o A..: "retry_after"
     return $ CanTransferOwnershipResultPasswordTooFresh { retry_after = retry_after }
 
    parseCanTransferOwnershipResultSessionTooFresh :: A.Value -> T.Parser CanTransferOwnershipResult
    parseCanTransferOwnershipResultSessionTooFresh = A.withObject "CanTransferOwnershipResultSessionTooFresh" $ \o -> do
-    retry_after <- o A..: "retry_after"
+    retry_after <- optional $ o A..: "retry_after"
     return $ CanTransferOwnershipResultSessionTooFresh { retry_after = retry_after }

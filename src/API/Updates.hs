@@ -2,12 +2,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Updates where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Update as Update
 
 data Updates = 
- Updates { updates :: [Update.Update] }  deriving (Show)
+ Updates { updates :: Maybe [Update.Update] }  deriving (Show)
 
 instance T.ToJSON Updates where
  toJSON (Updates { updates = updates }) =
@@ -22,5 +23,5 @@ instance T.FromJSON Updates where
   where
    parseUpdates :: A.Value -> T.Parser Updates
    parseUpdates = A.withObject "Updates" $ \o -> do
-    updates <- o A..: "updates"
+    updates <- optional $ o A..: "updates"
     return $ Updates { updates = updates }

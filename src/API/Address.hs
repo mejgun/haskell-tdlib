@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Address where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Address = 
- Address { postal_code :: String, street_line2 :: String, street_line1 :: String, city :: String, state :: String, country_code :: String }  deriving (Show)
+ Address { postal_code :: Maybe String, street_line2 :: Maybe String, street_line1 :: Maybe String, city :: Maybe String, state :: Maybe String, country_code :: Maybe String }  deriving (Show)
 
 instance T.ToJSON Address where
  toJSON (Address { postal_code = postal_code, street_line2 = street_line2, street_line1 = street_line1, city = city, state = state, country_code = country_code }) =
@@ -21,10 +22,10 @@ instance T.FromJSON Address where
   where
    parseAddress :: A.Value -> T.Parser Address
    parseAddress = A.withObject "Address" $ \o -> do
-    postal_code <- o A..: "postal_code"
-    street_line2 <- o A..: "street_line2"
-    street_line1 <- o A..: "street_line1"
-    city <- o A..: "city"
-    state <- o A..: "state"
-    country_code <- o A..: "country_code"
+    postal_code <- optional $ o A..: "postal_code"
+    street_line2 <- optional $ o A..: "street_line2"
+    street_line1 <- optional $ o A..: "street_line1"
+    city <- optional $ o A..: "city"
+    state <- optional $ o A..: "state"
+    country_code <- optional $ o A..: "country_code"
     return $ Address { postal_code = postal_code, street_line2 = street_line2, street_line1 = street_line1, city = city, state = state, country_code = country_code }

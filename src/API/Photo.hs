@@ -2,13 +2,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Photo where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 
 data Photo = 
- Photo { sizes :: [PhotoSize.PhotoSize], minithumbnail :: Minithumbnail.Minithumbnail, has_stickers :: Bool }  deriving (Show)
+ Photo { sizes :: Maybe [PhotoSize.PhotoSize], minithumbnail :: Maybe Minithumbnail.Minithumbnail, has_stickers :: Maybe Bool }  deriving (Show)
 
 instance T.ToJSON Photo where
  toJSON (Photo { sizes = sizes, minithumbnail = minithumbnail, has_stickers = has_stickers }) =
@@ -23,7 +24,7 @@ instance T.FromJSON Photo where
   where
    parsePhoto :: A.Value -> T.Parser Photo
    parsePhoto = A.withObject "Photo" $ \o -> do
-    sizes <- o A..: "sizes"
-    minithumbnail <- o A..: "minithumbnail"
-    has_stickers <- o A..: "has_stickers"
+    sizes <- optional $ o A..: "sizes"
+    minithumbnail <- optional $ o A..: "minithumbnail"
+    has_stickers <- optional $ o A..: "has_stickers"
     return $ Photo { sizes = sizes, minithumbnail = minithumbnail, has_stickers = has_stickers }

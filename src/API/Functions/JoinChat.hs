@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.JoinChat where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data JoinChat = 
- JoinChat { chat_id :: Int }  deriving (Show)
+ JoinChat { chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON JoinChat where
  toJSON (JoinChat { chat_id = chat_id }) =
@@ -21,5 +22,5 @@ instance T.FromJSON JoinChat where
   where
    parseJoinChat :: A.Value -> T.Parser JoinChat
    parseJoinChat = A.withObject "JoinChat" $ \o -> do
-    chat_id <- o A..: "chat_id"
+    chat_id <- optional $ o A..: "chat_id"
     return $ JoinChat { chat_id = chat_id }

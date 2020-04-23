@@ -10,7 +10,7 @@
 </span><span id="line-10"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="NetworkTypeMobile"><span class="annot"><a href="API.NetworkType.html#NetworkTypeMobile"><span class="hs-identifier hs-var">NetworkTypeMobile</span></a></span></span><span> </span><span>
 </span><span id="line-11"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="NetworkTypeMobileRoaming"><span class="annot"><a href="API.NetworkType.html#NetworkTypeMobileRoaming"><span class="hs-identifier hs-var">NetworkTypeMobileRoaming</span></a></span></span><span> </span><span>
 </span><span id="line-12"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="NetworkTypeWiFi"><span class="annot"><a href="API.NetworkType.html#NetworkTypeWiFi"><span class="hs-identifier hs-var">NetworkTypeWiFi</span></a></span></span><span> </span><span>
-</span><span id="line-13"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="NetworkTypeOther"><span class="annot"><a href="API.NetworkType.html#NetworkTypeOther"><span class="hs-identifier hs-var">NetworkTypeOther</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679387963"><span id="local-6989586621679387965"><span id="local-6989586621679387967"><span class="annot"><span class="annottext">Int -&gt; NetworkType -&gt; ShowS
+</span><span id="line-13"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="NetworkTypeOther"><span class="annot"><a href="API.NetworkType.html#NetworkTypeOther"><span class="hs-identifier hs-var">NetworkTypeOther</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679394005"><span id="local-6989586621679394007"><span id="local-6989586621679394009"><span class="annot"><span class="annottext">Int -&gt; NetworkType -&gt; ShowS
 [NetworkType] -&gt; ShowS
 NetworkType -&gt; String
 (Int -&gt; NetworkType -&gt; ShowS)
@@ -27,8 +27,8 @@ showsPrec :: Int -&gt; NetworkType -&gt; ShowS
 $cshowsPrec :: Int -&gt; NetworkType -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679387955"><span id="local-6989586621679387957"><span id="local-6989586621679387959"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.NetworkType.html#NetworkType"><span class="hs-identifier hs-type">NetworkType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-16"></span><span> </span><span id="local-6989586621679387953"><span class="annot"><span class="annottext">toJSON :: NetworkType -&gt; Value
+</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679393997"><span id="local-6989586621679393999"><span id="local-6989586621679394001"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.NetworkType.html#NetworkType"><span class="hs-identifier hs-type">NetworkType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-16"></span><span> </span><span id="local-6989586621679393995"><span class="annot"><span class="annottext">toJSON :: NetworkType -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.NetworkType.html#NetworkTypeNone"><span class="hs-identifier hs-type">NetworkTypeNone</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-17"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -64,47 +64,47 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;networkTypeOther&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-30"></span><span>
-</span><span id="line-31"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679387946"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.NetworkType.html#NetworkType"><span class="hs-identifier hs-type">NetworkType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-32"></span><span> </span><span id="local-6989586621679387944"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser NetworkType
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679387942"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679387942"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679387940"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679387940"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679387939"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679387939"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679387940"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-31"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679393988"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.NetworkType.html#NetworkType"><span class="hs-identifier hs-type">NetworkType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-32"></span><span> </span><span id="local-6989586621679393986"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser NetworkType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679393984"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679393984"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679393982"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679393982"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679393981"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679393981"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679393982"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-34"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679387939"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679393981"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-35"></span><span>   </span><span class="hs-string">&quot;networkTypeNone&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NetworkType
-</span><a href="#local-6989586621679387937"><span class="hs-identifier hs-var">parseNetworkTypeNone</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679387942"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679393979"><span class="hs-identifier hs-var">parseNetworkTypeNone</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679393984"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-36"></span><span>   </span><span class="hs-string">&quot;networkTypeMobile&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NetworkType
-</span><a href="#local-6989586621679387936"><span class="hs-identifier hs-var">parseNetworkTypeMobile</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679387942"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679393978"><span class="hs-identifier hs-var">parseNetworkTypeMobile</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679393984"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-37"></span><span>   </span><span class="hs-string">&quot;networkTypeMobileRoaming&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NetworkType
-</span><a href="#local-6989586621679387935"><span class="hs-identifier hs-var">parseNetworkTypeMobileRoaming</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679387942"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679393977"><span class="hs-identifier hs-var">parseNetworkTypeMobileRoaming</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679393984"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-38"></span><span>   </span><span class="hs-string">&quot;networkTypeWiFi&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NetworkType
-</span><a href="#local-6989586621679387934"><span class="hs-identifier hs-var">parseNetworkTypeWiFi</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679387942"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679393976"><span class="hs-identifier hs-var">parseNetworkTypeWiFi</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679393984"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-39"></span><span>   </span><span class="hs-string">&quot;networkTypeOther&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NetworkType
-</span><a href="#local-6989586621679387933"><span class="hs-identifier hs-var">parseNetworkTypeOther</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679387942"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679393975"><span class="hs-identifier hs-var">parseNetworkTypeOther</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679393984"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-40"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser NetworkType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-41"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-42"></span><span>   </span><span class="annot"><a href="#local-6989586621679387937"><span class="hs-identifier hs-type">parseNetworkTypeNone</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NetworkType.html#NetworkType"><span class="hs-identifier hs-type">NetworkType</span></a></span><span>
-</span><span id="line-43"></span><span>   </span><span id="local-6989586621679387937"><span class="annot"><span class="annottext">parseNetworkTypeNone :: Value -&gt; Parser NetworkType
-</span><a href="#local-6989586621679387937"><span class="hs-identifier hs-var hs-var">parseNetworkTypeNone</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-42"></span><span>   </span><span class="annot"><a href="#local-6989586621679393979"><span class="hs-identifier hs-type">parseNetworkTypeNone</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NetworkType.html#NetworkType"><span class="hs-identifier hs-type">NetworkType</span></a></span><span>
+</span><span id="line-43"></span><span>   </span><span id="local-6989586621679393979"><span class="annot"><span class="annottext">parseNetworkTypeNone :: Value -&gt; Parser NetworkType
+</span><a href="#local-6989586621679393979"><span class="hs-identifier hs-var hs-var">parseNetworkTypeNone</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser NetworkType) -&gt; Value -&gt; Parser NetworkType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;NetworkTypeNone&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser NetworkType) -&gt; Value -&gt; Parser NetworkType)
 -&gt; (Object -&gt; Parser NetworkType) -&gt; Value -&gt; Parser NetworkType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679387931"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679387931"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679393973"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679393973"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-44"></span><span>    </span><span class="annot"><span class="annottext">NetworkType -&gt; Parser NetworkType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(NetworkType -&gt; Parser NetworkType)
@@ -113,16 +113,16 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">NetworkTypeNone :: NetworkType
 </span><a href="API.NetworkType.html#NetworkTypeNone"><span class="hs-identifier hs-type hs-type">NetworkTypeNone</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-45"></span><span>
-</span><span id="line-46"></span><span>   </span><span class="annot"><a href="#local-6989586621679387936"><span class="hs-identifier hs-type">parseNetworkTypeMobile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NetworkType.html#NetworkType"><span class="hs-identifier hs-type">NetworkType</span></a></span><span>
-</span><span id="line-47"></span><span>   </span><span id="local-6989586621679387936"><span class="annot"><span class="annottext">parseNetworkTypeMobile :: Value -&gt; Parser NetworkType
-</span><a href="#local-6989586621679387936"><span class="hs-identifier hs-var hs-var">parseNetworkTypeMobile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-46"></span><span>   </span><span class="annot"><a href="#local-6989586621679393978"><span class="hs-identifier hs-type">parseNetworkTypeMobile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NetworkType.html#NetworkType"><span class="hs-identifier hs-type">NetworkType</span></a></span><span>
+</span><span id="line-47"></span><span>   </span><span id="local-6989586621679393978"><span class="annot"><span class="annottext">parseNetworkTypeMobile :: Value -&gt; Parser NetworkType
+</span><a href="#local-6989586621679393978"><span class="hs-identifier hs-var hs-var">parseNetworkTypeMobile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser NetworkType) -&gt; Value -&gt; Parser NetworkType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;NetworkTypeMobile&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser NetworkType) -&gt; Value -&gt; Parser NetworkType)
 -&gt; (Object -&gt; Parser NetworkType) -&gt; Value -&gt; Parser NetworkType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679387929"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679387929"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679393971"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679393971"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-48"></span><span>    </span><span class="annot"><span class="annottext">NetworkType -&gt; Parser NetworkType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(NetworkType -&gt; Parser NetworkType)
@@ -131,16 +131,16 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">NetworkTypeMobile :: NetworkType
 </span><a href="API.NetworkType.html#NetworkTypeMobile"><span class="hs-identifier hs-type hs-type">NetworkTypeMobile</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-49"></span><span>
-</span><span id="line-50"></span><span>   </span><span class="annot"><a href="#local-6989586621679387935"><span class="hs-identifier hs-type">parseNetworkTypeMobileRoaming</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NetworkType.html#NetworkType"><span class="hs-identifier hs-type">NetworkType</span></a></span><span>
-</span><span id="line-51"></span><span>   </span><span id="local-6989586621679387935"><span class="annot"><span class="annottext">parseNetworkTypeMobileRoaming :: Value -&gt; Parser NetworkType
-</span><a href="#local-6989586621679387935"><span class="hs-identifier hs-var hs-var">parseNetworkTypeMobileRoaming</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-50"></span><span>   </span><span class="annot"><a href="#local-6989586621679393977"><span class="hs-identifier hs-type">parseNetworkTypeMobileRoaming</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NetworkType.html#NetworkType"><span class="hs-identifier hs-type">NetworkType</span></a></span><span>
+</span><span id="line-51"></span><span>   </span><span id="local-6989586621679393977"><span class="annot"><span class="annottext">parseNetworkTypeMobileRoaming :: Value -&gt; Parser NetworkType
+</span><a href="#local-6989586621679393977"><span class="hs-identifier hs-var hs-var">parseNetworkTypeMobileRoaming</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser NetworkType) -&gt; Value -&gt; Parser NetworkType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;NetworkTypeMobileRoaming&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser NetworkType) -&gt; Value -&gt; Parser NetworkType)
 -&gt; (Object -&gt; Parser NetworkType) -&gt; Value -&gt; Parser NetworkType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679387927"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679387927"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679393969"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679393969"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-52"></span><span>    </span><span class="annot"><span class="annottext">NetworkType -&gt; Parser NetworkType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(NetworkType -&gt; Parser NetworkType)
@@ -149,16 +149,16 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">NetworkTypeMobileRoaming :: NetworkType
 </span><a href="API.NetworkType.html#NetworkTypeMobileRoaming"><span class="hs-identifier hs-type hs-type">NetworkTypeMobileRoaming</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-53"></span><span>
-</span><span id="line-54"></span><span>   </span><span class="annot"><a href="#local-6989586621679387934"><span class="hs-identifier hs-type">parseNetworkTypeWiFi</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NetworkType.html#NetworkType"><span class="hs-identifier hs-type">NetworkType</span></a></span><span>
-</span><span id="line-55"></span><span>   </span><span id="local-6989586621679387934"><span class="annot"><span class="annottext">parseNetworkTypeWiFi :: Value -&gt; Parser NetworkType
-</span><a href="#local-6989586621679387934"><span class="hs-identifier hs-var hs-var">parseNetworkTypeWiFi</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-54"></span><span>   </span><span class="annot"><a href="#local-6989586621679393976"><span class="hs-identifier hs-type">parseNetworkTypeWiFi</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NetworkType.html#NetworkType"><span class="hs-identifier hs-type">NetworkType</span></a></span><span>
+</span><span id="line-55"></span><span>   </span><span id="local-6989586621679393976"><span class="annot"><span class="annottext">parseNetworkTypeWiFi :: Value -&gt; Parser NetworkType
+</span><a href="#local-6989586621679393976"><span class="hs-identifier hs-var hs-var">parseNetworkTypeWiFi</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser NetworkType) -&gt; Value -&gt; Parser NetworkType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;NetworkTypeWiFi&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser NetworkType) -&gt; Value -&gt; Parser NetworkType)
 -&gt; (Object -&gt; Parser NetworkType) -&gt; Value -&gt; Parser NetworkType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679387925"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679387925"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679393967"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679393967"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-56"></span><span>    </span><span class="annot"><span class="annottext">NetworkType -&gt; Parser NetworkType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(NetworkType -&gt; Parser NetworkType)
@@ -167,16 +167,16 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">NetworkTypeWiFi :: NetworkType
 </span><a href="API.NetworkType.html#NetworkTypeWiFi"><span class="hs-identifier hs-type hs-type">NetworkTypeWiFi</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-57"></span><span>
-</span><span id="line-58"></span><span>   </span><span class="annot"><a href="#local-6989586621679387933"><span class="hs-identifier hs-type">parseNetworkTypeOther</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NetworkType.html#NetworkType"><span class="hs-identifier hs-type">NetworkType</span></a></span><span>
-</span><span id="line-59"></span><span>   </span><span id="local-6989586621679387933"><span class="annot"><span class="annottext">parseNetworkTypeOther :: Value -&gt; Parser NetworkType
-</span><a href="#local-6989586621679387933"><span class="hs-identifier hs-var hs-var">parseNetworkTypeOther</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-58"></span><span>   </span><span class="annot"><a href="#local-6989586621679393975"><span class="hs-identifier hs-type">parseNetworkTypeOther</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NetworkType.html#NetworkType"><span class="hs-identifier hs-type">NetworkType</span></a></span><span>
+</span><span id="line-59"></span><span>   </span><span id="local-6989586621679393975"><span class="annot"><span class="annottext">parseNetworkTypeOther :: Value -&gt; Parser NetworkType
+</span><a href="#local-6989586621679393975"><span class="hs-identifier hs-var hs-var">parseNetworkTypeOther</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser NetworkType) -&gt; Value -&gt; Parser NetworkType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;NetworkTypeOther&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser NetworkType) -&gt; Value -&gt; Parser NetworkType)
 -&gt; (Object -&gt; Parser NetworkType) -&gt; Value -&gt; Parser NetworkType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679387923"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679387923"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679393965"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679393965"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-60"></span><span>    </span><span class="annot"><span class="annottext">NetworkType -&gt; Parser NetworkType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(NetworkType -&gt; Parser NetworkType)

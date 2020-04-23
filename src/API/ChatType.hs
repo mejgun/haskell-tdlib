@@ -2,14 +2,15 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatType where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ChatType = 
- ChatTypePrivate { user_id :: Int }  
- | ChatTypeBasicGroup { basic_group_id :: Int }  
- | ChatTypeSupergroup { is_channel :: Bool, supergroup_id :: Int }  
- | ChatTypeSecret { user_id :: Int, secret_chat_id :: Int }  deriving (Show)
+ ChatTypePrivate { user_id :: Maybe Int }  
+ | ChatTypeBasicGroup { basic_group_id :: Maybe Int }  
+ | ChatTypeSupergroup { is_channel :: Maybe Bool, supergroup_id :: Maybe Int }  
+ | ChatTypeSecret { user_id :: Maybe Int, secret_chat_id :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON ChatType where
  toJSON (ChatTypePrivate { user_id = user_id }) =
@@ -36,22 +37,22 @@ instance T.FromJSON ChatType where
   where
    parseChatTypePrivate :: A.Value -> T.Parser ChatType
    parseChatTypePrivate = A.withObject "ChatTypePrivate" $ \o -> do
-    user_id <- o A..: "user_id"
+    user_id <- optional $ o A..: "user_id"
     return $ ChatTypePrivate { user_id = user_id }
 
    parseChatTypeBasicGroup :: A.Value -> T.Parser ChatType
    parseChatTypeBasicGroup = A.withObject "ChatTypeBasicGroup" $ \o -> do
-    basic_group_id <- o A..: "basic_group_id"
+    basic_group_id <- optional $ o A..: "basic_group_id"
     return $ ChatTypeBasicGroup { basic_group_id = basic_group_id }
 
    parseChatTypeSupergroup :: A.Value -> T.Parser ChatType
    parseChatTypeSupergroup = A.withObject "ChatTypeSupergroup" $ \o -> do
-    is_channel <- o A..: "is_channel"
-    supergroup_id <- o A..: "supergroup_id"
+    is_channel <- optional $ o A..: "is_channel"
+    supergroup_id <- optional $ o A..: "supergroup_id"
     return $ ChatTypeSupergroup { is_channel = is_channel, supergroup_id = supergroup_id }
 
    parseChatTypeSecret :: A.Value -> T.Parser ChatType
    parseChatTypeSecret = A.withObject "ChatTypeSecret" $ \o -> do
-    user_id <- o A..: "user_id"
-    secret_chat_id <- o A..: "secret_chat_id"
+    user_id <- optional $ o A..: "user_id"
+    secret_chat_id <- optional $ o A..: "secret_chat_id"
     return $ ChatTypeSecret { user_id = user_id, secret_chat_id = secret_chat_id }

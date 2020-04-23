@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.TestCallBytes where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data TestCallBytes = 
- TestCallBytes { x :: String }  deriving (Show)
+ TestCallBytes { x :: Maybe String }  deriving (Show)
 
 instance T.ToJSON TestCallBytes where
  toJSON (TestCallBytes { x = x }) =
@@ -21,5 +22,5 @@ instance T.FromJSON TestCallBytes where
   where
    parseTestCallBytes :: A.Value -> T.Parser TestCallBytes
    parseTestCallBytes = A.withObject "TestCallBytes" $ \o -> do
-    x <- o A..: "x"
+    x <- optional $ o A..: "x"
     return $ TestCallBytes { x = x }

@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetStorageStatistics where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetStorageStatistics = 
- GetStorageStatistics { chat_limit :: Int }  deriving (Show)
+ GetStorageStatistics { chat_limit :: Maybe Int }  deriving (Show)
 
 instance T.ToJSON GetStorageStatistics where
  toJSON (GetStorageStatistics { chat_limit = chat_limit }) =
@@ -21,5 +22,5 @@ instance T.FromJSON GetStorageStatistics where
   where
    parseGetStorageStatistics :: A.Value -> T.Parser GetStorageStatistics
    parseGetStorageStatistics = A.withObject "GetStorageStatistics" $ \o -> do
-    chat_limit <- o A..: "chat_limit"
+    chat_limit <- optional $ o A..: "chat_limit"
     return $ GetStorageStatistics { chat_limit = chat_limit }

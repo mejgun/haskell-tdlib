@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetLocalizationTargetInfo where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetLocalizationTargetInfo = 
- GetLocalizationTargetInfo { only_local :: Bool }  deriving (Show)
+ GetLocalizationTargetInfo { only_local :: Maybe Bool }  deriving (Show)
 
 instance T.ToJSON GetLocalizationTargetInfo where
  toJSON (GetLocalizationTargetInfo { only_local = only_local }) =
@@ -21,5 +22,5 @@ instance T.FromJSON GetLocalizationTargetInfo where
   where
    parseGetLocalizationTargetInfo :: A.Value -> T.Parser GetLocalizationTargetInfo
    parseGetLocalizationTargetInfo = A.withObject "GetLocalizationTargetInfo" $ \o -> do
-    only_local <- o A..: "only_local"
+    only_local <- optional $ o A..: "only_local"
     return $ GetLocalizationTargetInfo { only_local = only_local }

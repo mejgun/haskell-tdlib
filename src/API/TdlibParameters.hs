@@ -2,11 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.TdlibParameters where
 
+import Control.Applicative (optional)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data TdlibParameters = 
- TdlibParameters { ignore_file_names :: Bool, enable_storage_optimizer :: Bool, application_version :: String, system_version :: String, device_model :: String, system_language_code :: String, api_hash :: String, api_id :: Int, use_secret_chats :: Bool, use_message_database :: Bool, use_chat_info_database :: Bool, use_file_database :: Bool, files_directory :: String, database_directory :: String, use_test_dc :: Bool }  deriving (Show)
+ TdlibParameters { ignore_file_names :: Maybe Bool, enable_storage_optimizer :: Maybe Bool, application_version :: Maybe String, system_version :: Maybe String, device_model :: Maybe String, system_language_code :: Maybe String, api_hash :: Maybe String, api_id :: Maybe Int, use_secret_chats :: Maybe Bool, use_message_database :: Maybe Bool, use_chat_info_database :: Maybe Bool, use_file_database :: Maybe Bool, files_directory :: Maybe String, database_directory :: Maybe String, use_test_dc :: Maybe Bool }  deriving (Show)
 
 instance T.ToJSON TdlibParameters where
  toJSON (TdlibParameters { ignore_file_names = ignore_file_names, enable_storage_optimizer = enable_storage_optimizer, application_version = application_version, system_version = system_version, device_model = device_model, system_language_code = system_language_code, api_hash = api_hash, api_id = api_id, use_secret_chats = use_secret_chats, use_message_database = use_message_database, use_chat_info_database = use_chat_info_database, use_file_database = use_file_database, files_directory = files_directory, database_directory = database_directory, use_test_dc = use_test_dc }) =
@@ -21,19 +22,19 @@ instance T.FromJSON TdlibParameters where
   where
    parseTdlibParameters :: A.Value -> T.Parser TdlibParameters
    parseTdlibParameters = A.withObject "TdlibParameters" $ \o -> do
-    ignore_file_names <- o A..: "ignore_file_names"
-    enable_storage_optimizer <- o A..: "enable_storage_optimizer"
-    application_version <- o A..: "application_version"
-    system_version <- o A..: "system_version"
-    device_model <- o A..: "device_model"
-    system_language_code <- o A..: "system_language_code"
-    api_hash <- o A..: "api_hash"
-    api_id <- o A..: "api_id"
-    use_secret_chats <- o A..: "use_secret_chats"
-    use_message_database <- o A..: "use_message_database"
-    use_chat_info_database <- o A..: "use_chat_info_database"
-    use_file_database <- o A..: "use_file_database"
-    files_directory <- o A..: "files_directory"
-    database_directory <- o A..: "database_directory"
-    use_test_dc <- o A..: "use_test_dc"
+    ignore_file_names <- optional $ o A..: "ignore_file_names"
+    enable_storage_optimizer <- optional $ o A..: "enable_storage_optimizer"
+    application_version <- optional $ o A..: "application_version"
+    system_version <- optional $ o A..: "system_version"
+    device_model <- optional $ o A..: "device_model"
+    system_language_code <- optional $ o A..: "system_language_code"
+    api_hash <- optional $ o A..: "api_hash"
+    api_id <- optional $ o A..: "api_id"
+    use_secret_chats <- optional $ o A..: "use_secret_chats"
+    use_message_database <- optional $ o A..: "use_message_database"
+    use_chat_info_database <- optional $ o A..: "use_chat_info_database"
+    use_file_database <- optional $ o A..: "use_file_database"
+    files_directory <- optional $ o A..: "files_directory"
+    database_directory <- optional $ o A..: "database_directory"
+    use_test_dc <- optional $ o A..: "use_test_dc"
     return $ TdlibParameters { ignore_file_names = ignore_file_names, enable_storage_optimizer = enable_storage_optimizer, application_version = application_version, system_version = system_version, device_model = device_model, system_language_code = system_language_code, api_hash = api_hash, api_id = api_id, use_secret_chats = use_secret_chats, use_message_database = use_message_database, use_chat_info_database = use_chat_info_database, use_file_database = use_file_database, files_directory = files_directory, database_directory = database_directory, use_test_dc = use_test_dc }
