@@ -2,15 +2,16 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.TermsOfService</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.FormattedText.html"><span class="hs-identifier">API.FormattedText</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">FormattedText</span></span><span>
-</span><span id="line-8"></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="TermsOfService"><span class="annot"><a href="API.TermsOfService.html#TermsOfService"><span class="hs-identifier hs-var">TermsOfService</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-10"></span><span> </span><span id="TermsOfService"><span class="annot"><a href="API.TermsOfService.html#TermsOfService"><span class="hs-identifier hs-var">TermsOfService</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="show_popup"><span class="annot"><span class="annottext">TermsOfService -&gt; Maybe Bool
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.FormattedText.html"><span class="hs-identifier">API.FormattedText</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">FormattedText</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="TermsOfService"><span class="annot"><a href="API.TermsOfService.html#TermsOfService"><span class="hs-identifier hs-var">TermsOfService</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-11"></span><span> </span><span id="TermsOfService"><span class="annot"><a href="API.TermsOfService.html#TermsOfService"><span class="hs-identifier hs-var">TermsOfService</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="show_popup"><span class="annot"><span class="annottext">TermsOfService -&gt; Maybe Bool
 </span><a href="API.TermsOfService.html#show_popup"><span class="hs-identifier hs-var hs-var">show_popup</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="min_user_age"><span class="annot"><span class="annottext">TermsOfService -&gt; Maybe Int
 </span><a href="API.TermsOfService.html#min_user_age"><span class="hs-identifier hs-var hs-var">min_user_age</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="text"><span class="annot"><span class="annottext">TermsOfService -&gt; Maybe FormattedText
-</span><a href="API.TermsOfService.html#text"><span class="hs-identifier hs-var hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.FormattedText.html#FormattedText"><span class="hs-identifier hs-type">FormattedText.FormattedText</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679404267"><span id="local-6989586621679404269"><span id="local-6989586621679404271"><span class="annot"><span class="annottext">Int -&gt; TermsOfService -&gt; ShowS
+</span><a href="API.TermsOfService.html#text"><span class="hs-identifier hs-var hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.FormattedText.html#FormattedText"><span class="hs-identifier hs-type">FormattedText.FormattedText</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679416492"><span id="local-6989586621679416494"><span id="local-6989586621679416496"><span class="annot"><span class="annottext">Int -&gt; TermsOfService -&gt; ShowS
 [TermsOfService] -&gt; ShowS
 TermsOfService -&gt; String
 (Int -&gt; TermsOfService -&gt; ShowS)
@@ -26,53 +27,53 @@ $cshow :: TermsOfService -&gt; String
 showsPrec :: Int -&gt; TermsOfService -&gt; ShowS
 $cshowsPrec :: Int -&gt; TermsOfService -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679404259"><span id="local-6989586621679404261"><span id="local-6989586621679404263"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.TermsOfService.html#TermsOfService"><span class="hs-identifier hs-type">TermsOfService</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679404257"><span class="annot"><span class="annottext">toJSON :: TermsOfService -&gt; Value
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679416484"><span id="local-6989586621679416486"><span id="local-6989586621679416488"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.TermsOfService.html#TermsOfService"><span class="hs-identifier hs-type">TermsOfService</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679416482"><span class="annot"><span class="annottext">toJSON :: TermsOfService -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.TermsOfService.html#TermsOfService"><span class="hs-identifier hs-type">TermsOfService</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">show_popup :: TermsOfService -&gt; Maybe Bool
-</span><a href="API.TermsOfService.html#show_popup"><span class="hs-identifier hs-var">show_popup</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404255"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679404255"><span class="hs-identifier hs-var">show_popup</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">min_user_age :: TermsOfService -&gt; Maybe Int
-</span><a href="API.TermsOfService.html#min_user_age"><span class="hs-identifier hs-var">min_user_age</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404254"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679404254"><span class="hs-identifier hs-var">min_user_age</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">text :: TermsOfService -&gt; Maybe FormattedText
-</span><a href="API.TermsOfService.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404253"><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679404253"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.TermsOfService.html#show_popup"><span class="hs-identifier hs-var">show_popup</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679416480"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679416480"><span class="hs-identifier hs-var">show_popup</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">min_user_age :: TermsOfService -&gt; Maybe Int
+</span><a href="API.TermsOfService.html#min_user_age"><span class="hs-identifier hs-var">min_user_age</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679416479"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679416479"><span class="hs-identifier hs-var">min_user_age</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">text :: TermsOfService -&gt; Maybe FormattedText
+</span><a href="API.TermsOfService.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679416478"><span class="annot"><span class="annottext">Maybe FormattedText
+</span><a href="#local-6989586621679416478"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;termsOfService&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;show_popup&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679404255"><span class="hs-identifier hs-var">show_popup</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;min_user_age&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679416480"><span class="hs-identifier hs-var">show_popup</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;min_user_age&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679404254"><span class="hs-identifier hs-var">min_user_age</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe FormattedText -&gt; Pair
+</span><a href="#local-6989586621679416479"><span class="hs-identifier hs-var">min_user_age</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe FormattedText -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679404253"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679404247"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.TermsOfService.html#TermsOfService"><span class="hs-identifier hs-type">TermsOfService</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679404245"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TermsOfService
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679404243"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679404243"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679404241"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679404241"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679404240"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679404240"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679404241"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679416478"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-16"></span><span>
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679416472"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.TermsOfService.html#TermsOfService"><span class="hs-identifier hs-type">TermsOfService</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679416470"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TermsOfService
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679416468"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679416468"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679416466"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679416466"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679416465"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679416465"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679416466"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679404240"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;termsOfService&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TermsOfService
-</span><a href="#local-6989586621679404238"><span class="hs-identifier hs-var">parseTermsOfService</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679404243"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TermsOfService
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679416465"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;termsOfService&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TermsOfService
+</span><a href="#local-6989586621679416463"><span class="hs-identifier hs-var">parseTermsOfService</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679416468"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TermsOfService
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679404238"><span class="hs-identifier hs-type">parseTermsOfService</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TermsOfService.html#TermsOfService"><span class="hs-identifier hs-type">TermsOfService</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679404238"><span class="annot"><span class="annottext">parseTermsOfService :: Value -&gt; Parser TermsOfService
-</span><a href="#local-6989586621679404238"><span class="hs-identifier hs-var hs-var">parseTermsOfService</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679416463"><span class="hs-identifier hs-type">parseTermsOfService</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TermsOfService.html#TermsOfService"><span class="hs-identifier hs-type">TermsOfService</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679416463"><span class="annot"><span class="annottext">parseTermsOfService :: Value -&gt; Parser TermsOfService
+</span><a href="#local-6989586621679416463"><span class="hs-identifier hs-var hs-var">parseTermsOfService</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TermsOfService)
 -&gt; Value
 -&gt; Parser TermsOfService
@@ -83,24 +84,39 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TermsOfService
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679404236"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679404236"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679404235"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679404235"><span class="hs-identifier hs-var">show_popup</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679404236"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679416461"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679416461"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679416460"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679416460"><span class="hs-identifier hs-var">show_popup</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
+</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
+-&gt; Parser Bool -&gt; Parser (Maybe Bool)
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679416461"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;show_popup&quot;</span></span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679404234"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679404234"><span class="hs-identifier hs-var">min_user_age</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679404236"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679416459"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679416459"><span class="hs-identifier hs-var">min_user_age</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
+</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
+-&gt; Parser Int -&gt; Parser (Maybe Int)
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679416461"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;min_user_age&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679404233"><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679404233"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679404236"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe FormattedText)
+</span><span id="line-28"></span><span>    </span><span id="local-6989586621679416458"><span class="annot"><span class="annottext">Maybe FormattedText
+</span><a href="#local-6989586621679416458"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser FormattedText -&gt; Parser (Maybe FormattedText)
+forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
+</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser FormattedText -&gt; Parser (Maybe FormattedText))
+-&gt; Parser FormattedText -&gt; Parser (Maybe FormattedText)
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679416461"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser FormattedText
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;text&quot;</span></span><span>
-</span><span id="line-28"></span><span>    </span><span class="annot"><span class="annottext">TermsOfService -&gt; Parser TermsOfService
+</span><span id="line-29"></span><span>    </span><span class="annot"><span class="annottext">TermsOfService -&gt; Parser TermsOfService
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TermsOfService -&gt; Parser TermsOfService)
 -&gt; TermsOfService -&gt; Parser TermsOfService
@@ -108,8 +124,8 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TermsOfService :: Maybe Bool -&gt; Maybe Int -&gt; Maybe FormattedText -&gt; TermsOfService
 </span><a href="API.TermsOfService.html#TermsOfService"><span class="hs-identifier hs-type hs-type">TermsOfService</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">show_popup :: Maybe Bool
 </span><a href="API.TermsOfService.html#show_popup"><span class="hs-identifier hs-var">show_popup</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679404235"><span class="hs-identifier hs-var">show_popup</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">min_user_age :: Maybe Int
+</span><a href="#local-6989586621679416460"><span class="hs-identifier hs-var">show_popup</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">min_user_age :: Maybe Int
 </span><a href="API.TermsOfService.html#min_user_age"><span class="hs-identifier hs-var">min_user_age</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679404234"><span class="hs-identifier hs-var">min_user_age</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">text :: Maybe FormattedText
+</span><a href="#local-6989586621679416459"><span class="hs-identifier hs-var">min_user_age</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">text :: Maybe FormattedText
 </span><a href="API.TermsOfService.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679404233"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679416458"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

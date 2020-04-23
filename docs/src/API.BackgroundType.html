@@ -2,18 +2,19 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.BackgroundType</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.BackgroundFill.html"><span class="hs-identifier">API.BackgroundFill</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">BackgroundFill</span></span><span>
-</span><span id="line-8"></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="BackgroundType"><span class="annot"><a href="API.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-var">BackgroundType</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-10"></span><span> </span><span id="BackgroundTypeWallpaper"><span class="annot"><a href="API.BackgroundType.html#BackgroundTypeWallpaper"><span class="hs-identifier hs-var">BackgroundTypeWallpaper</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="is_moving"><span class="annot"><span class="annottext">BackgroundType -&gt; Maybe Bool
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.BackgroundFill.html"><span class="hs-identifier">API.BackgroundFill</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">BackgroundFill</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="BackgroundType"><span class="annot"><a href="API.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-var">BackgroundType</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-11"></span><span> </span><span id="BackgroundTypeWallpaper"><span class="annot"><a href="API.BackgroundType.html#BackgroundTypeWallpaper"><span class="hs-identifier hs-var">BackgroundTypeWallpaper</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="is_moving"><span class="annot"><span class="annottext">BackgroundType -&gt; Maybe Bool
 </span><a href="API.BackgroundType.html#is_moving"><span class="hs-identifier hs-var hs-var">is_moving</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="is_blurred"><span class="annot"><span class="annottext">BackgroundType -&gt; Maybe Bool
 </span><a href="API.BackgroundType.html#is_blurred"><span class="hs-identifier hs-var hs-var">is_blurred</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
-</span><span id="line-11"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="BackgroundTypePattern"><span class="annot"><a href="API.BackgroundType.html#BackgroundTypePattern"><span class="hs-identifier hs-var">BackgroundTypePattern</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="is_moving"><span class="annot"><a href="API.BackgroundType.html#is_moving"><span class="hs-identifier hs-var">is_moving</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="intensity"><span class="annot"><span class="annottext">BackgroundType -&gt; Maybe Int
+</span><span id="line-12"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="BackgroundTypePattern"><span class="annot"><a href="API.BackgroundType.html#BackgroundTypePattern"><span class="hs-identifier hs-var">BackgroundTypePattern</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="is_moving"><span class="annot"><a href="API.BackgroundType.html#is_moving"><span class="hs-identifier hs-var">is_moving</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="intensity"><span class="annot"><span class="annottext">BackgroundType -&gt; Maybe Int
 </span><a href="API.BackgroundType.html#intensity"><span class="hs-identifier hs-var hs-var">intensity</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="fill"><span class="annot"><span class="annottext">BackgroundType -&gt; Maybe BackgroundFill
 </span><a href="API.BackgroundType.html#fill"><span class="hs-identifier hs-var hs-var">fill</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.BackgroundFill.html#BackgroundFill"><span class="hs-identifier hs-type">BackgroundFill.BackgroundFill</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span>
-</span><span id="line-12"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="BackgroundTypeFill"><span class="annot"><a href="API.BackgroundType.html#BackgroundTypeFill"><span class="hs-identifier hs-var">BackgroundTypeFill</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="fill"><span class="annot"><a href="API.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.BackgroundFill.html#BackgroundFill"><span class="hs-identifier hs-type">BackgroundFill.BackgroundFill</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679363925"><span id="local-6989586621679363927"><span id="local-6989586621679363929"><span class="annot"><span class="annottext">Int -&gt; BackgroundType -&gt; ShowS
+</span><span id="line-13"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="BackgroundTypeFill"><span class="annot"><a href="API.BackgroundType.html#BackgroundTypeFill"><span class="hs-identifier hs-var">BackgroundTypeFill</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="fill"><span class="annot"><a href="API.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.BackgroundFill.html#BackgroundFill"><span class="hs-identifier hs-type">BackgroundFill.BackgroundFill</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679374116"><span id="local-6989586621679374118"><span id="local-6989586621679374120"><span class="annot"><span class="annottext">Int -&gt; BackgroundType -&gt; ShowS
 [BackgroundType] -&gt; ShowS
 BackgroundType -&gt; String
 (Int -&gt; BackgroundType -&gt; ShowS)
@@ -29,88 +30,88 @@ $cshow :: BackgroundType -&gt; String
 showsPrec :: Int -&gt; BackgroundType -&gt; ShowS
 $cshowsPrec :: Int -&gt; BackgroundType -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-13"></span><span>
-</span><span id="line-14"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679363917"><span id="local-6989586621679363919"><span id="local-6989586621679363921"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-15"></span><span> </span><span id="local-6989586621679363915"><span class="annot"><span class="annottext">toJSON :: BackgroundType -&gt; Value
+</span><span id="line-14"></span><span>
+</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679374108"><span id="local-6989586621679374110"><span id="local-6989586621679374112"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-16"></span><span> </span><span id="local-6989586621679374106"><span class="annot"><span class="annottext">toJSON :: BackgroundType -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.BackgroundType.html#BackgroundTypeWallpaper"><span class="hs-identifier hs-type">BackgroundTypeWallpaper</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_moving :: BackgroundType -&gt; Maybe Bool
-</span><a href="API.BackgroundType.html#is_moving"><span class="hs-identifier hs-var">is_moving</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679363913"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679363913"><span class="hs-identifier hs-var">is_moving</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_blurred :: BackgroundType -&gt; Maybe Bool
-</span><a href="API.BackgroundType.html#is_blurred"><span class="hs-identifier hs-var">is_blurred</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679363912"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679363912"><span class="hs-identifier hs-var">is_blurred</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-16"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.BackgroundType.html#is_moving"><span class="hs-identifier hs-var">is_moving</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679374104"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679374104"><span class="hs-identifier hs-var">is_moving</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_blurred :: BackgroundType -&gt; Maybe Bool
+</span><a href="API.BackgroundType.html#is_blurred"><span class="hs-identifier hs-var">is_blurred</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679374103"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679374103"><span class="hs-identifier hs-var">is_blurred</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-17"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;backgroundTypeWallpaper&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_moving&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679363913"><span class="hs-identifier hs-var">is_moving</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_blurred&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679374104"><span class="hs-identifier hs-var">is_moving</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_blurred&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679363912"><span class="hs-identifier hs-var">is_blurred</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.BackgroundType.html#BackgroundTypePattern"><span class="hs-identifier hs-type">BackgroundTypePattern</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_moving :: BackgroundType -&gt; Maybe Bool
-</span><a href="API.BackgroundType.html#is_moving"><span class="hs-identifier hs-var">is_moving</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679363908"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679363908"><span class="hs-identifier hs-var">is_moving</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">intensity :: BackgroundType -&gt; Maybe Int
-</span><a href="API.BackgroundType.html#intensity"><span class="hs-identifier hs-var">intensity</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679363907"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679363907"><span class="hs-identifier hs-var">intensity</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">fill :: BackgroundType -&gt; Maybe BackgroundFill
-</span><a href="API.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679363906"><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679363906"><span class="hs-identifier hs-var">fill</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-19"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="#local-6989586621679374103"><span class="hs-identifier hs-var">is_blurred</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-18"></span><span>
+</span><span id="line-19"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.BackgroundType.html#BackgroundTypePattern"><span class="hs-identifier hs-type">BackgroundTypePattern</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_moving :: BackgroundType -&gt; Maybe Bool
+</span><a href="API.BackgroundType.html#is_moving"><span class="hs-identifier hs-var">is_moving</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679374099"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679374099"><span class="hs-identifier hs-var">is_moving</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">intensity :: BackgroundType -&gt; Maybe Int
+</span><a href="API.BackgroundType.html#intensity"><span class="hs-identifier hs-var">intensity</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679374098"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679374098"><span class="hs-identifier hs-var">intensity</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">fill :: BackgroundType -&gt; Maybe BackgroundFill
+</span><a href="API.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679374097"><span class="annot"><span class="annottext">Maybe BackgroundFill
+</span><a href="#local-6989586621679374097"><span class="hs-identifier hs-var">fill</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-20"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;backgroundTypePattern&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_moving&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679363908"><span class="hs-identifier hs-var">is_moving</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;intensity&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679374099"><span class="hs-identifier hs-var">is_moving</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;intensity&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679363907"><span class="hs-identifier hs-var">intensity</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;fill&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe BackgroundFill -&gt; Pair
+</span><a href="#local-6989586621679374098"><span class="hs-identifier hs-var">intensity</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;fill&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe BackgroundFill -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679363906"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.BackgroundType.html#BackgroundTypeFill"><span class="hs-identifier hs-type">BackgroundTypeFill</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">fill :: BackgroundType -&gt; Maybe BackgroundFill
-</span><a href="API.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679363905"><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679363905"><span class="hs-identifier hs-var">fill</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-22"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="#local-6989586621679374097"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-21"></span><span>
+</span><span id="line-22"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.BackgroundType.html#BackgroundTypeFill"><span class="hs-identifier hs-type">BackgroundTypeFill</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">fill :: BackgroundType -&gt; Maybe BackgroundFill
+</span><a href="API.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679374096"><span class="annot"><span class="annottext">Maybe BackgroundFill
+</span><a href="#local-6989586621679374096"><span class="hs-identifier hs-var">fill</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-23"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;backgroundTypeFill&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;fill&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe BackgroundFill -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679363905"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679363902"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span> </span><span id="local-6989586621679363900"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser BackgroundType
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679363898"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679363898"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679363896"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679363896"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>  </span><span id="local-6989586621679363895"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679363895"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679363896"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679374096"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-24"></span><span>
+</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679374093"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span> </span><span id="local-6989586621679374091"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser BackgroundType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679374089"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679374089"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679374087"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679374087"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-27"></span><span>  </span><span id="local-6989586621679374086"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679374086"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679374087"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-27"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679363895"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-28"></span><span>   </span><span class="hs-string">&quot;backgroundTypeWallpaper&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BackgroundType
-</span><a href="#local-6989586621679363893"><span class="hs-identifier hs-var">parseBackgroundTypeWallpaper</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679363898"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-29"></span><span>   </span><span class="hs-string">&quot;backgroundTypePattern&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BackgroundType
-</span><a href="#local-6989586621679363892"><span class="hs-identifier hs-var">parseBackgroundTypePattern</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679363898"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-30"></span><span>   </span><span class="hs-string">&quot;backgroundTypeFill&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BackgroundType
-</span><a href="#local-6989586621679363891"><span class="hs-identifier hs-var">parseBackgroundTypeFill</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679363898"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-31"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser BackgroundType
+</span><span id="line-28"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679374086"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-29"></span><span>   </span><span class="hs-string">&quot;backgroundTypeWallpaper&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BackgroundType
+</span><a href="#local-6989586621679374084"><span class="hs-identifier hs-var">parseBackgroundTypeWallpaper</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679374089"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-30"></span><span>   </span><span class="hs-string">&quot;backgroundTypePattern&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BackgroundType
+</span><a href="#local-6989586621679374083"><span class="hs-identifier hs-var">parseBackgroundTypePattern</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679374089"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-31"></span><span>   </span><span class="hs-string">&quot;backgroundTypeFill&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser BackgroundType
+</span><a href="#local-6989586621679374082"><span class="hs-identifier hs-var">parseBackgroundTypeFill</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679374089"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-32"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser BackgroundType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-32"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>   </span><span class="annot"><a href="#local-6989586621679363893"><span class="hs-identifier hs-type">parseBackgroundTypeWallpaper</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span><span>
-</span><span id="line-34"></span><span>   </span><span id="local-6989586621679363893"><span class="annot"><span class="annottext">parseBackgroundTypeWallpaper :: Value -&gt; Parser BackgroundType
-</span><a href="#local-6989586621679363893"><span class="hs-identifier hs-var hs-var">parseBackgroundTypeWallpaper</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-33"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span>   </span><span class="annot"><a href="#local-6989586621679374084"><span class="hs-identifier hs-type">parseBackgroundTypeWallpaper</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span><span>
+</span><span id="line-35"></span><span>   </span><span id="local-6989586621679374084"><span class="annot"><span class="annottext">parseBackgroundTypeWallpaper :: Value -&gt; Parser BackgroundType
+</span><a href="#local-6989586621679374084"><span class="hs-identifier hs-var hs-var">parseBackgroundTypeWallpaper</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser BackgroundType)
 -&gt; Value
 -&gt; Parser BackgroundType
@@ -121,19 +122,29 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser BackgroundType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679363889"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679363889"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-35"></span><span>    </span><span id="local-6989586621679363888"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679363888"><span class="hs-identifier hs-var">is_moving</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679363889"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679374080"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679374080"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-36"></span><span>    </span><span id="local-6989586621679374079"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679374079"><span class="hs-identifier hs-var">is_moving</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
+</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
+-&gt; Parser Bool -&gt; Parser (Maybe Bool)
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679374080"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_moving&quot;</span></span><span>
-</span><span id="line-36"></span><span>    </span><span id="local-6989586621679363887"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679363887"><span class="hs-identifier hs-var">is_blurred</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679363889"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-37"></span><span>    </span><span id="local-6989586621679374078"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679374078"><span class="hs-identifier hs-var">is_blurred</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
+</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
+-&gt; Parser Bool -&gt; Parser (Maybe Bool)
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679374080"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_blurred&quot;</span></span><span>
-</span><span id="line-37"></span><span>    </span><span class="annot"><span class="annottext">BackgroundType -&gt; Parser BackgroundType
+</span><span id="line-38"></span><span>    </span><span class="annot"><span class="annottext">BackgroundType -&gt; Parser BackgroundType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(BackgroundType -&gt; Parser BackgroundType)
 -&gt; BackgroundType -&gt; Parser BackgroundType
@@ -141,13 +152,13 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">BackgroundTypeWallpaper :: Maybe Bool -&gt; Maybe Bool -&gt; BackgroundType
 </span><a href="API.BackgroundType.html#BackgroundTypeWallpaper"><span class="hs-identifier hs-type hs-type">BackgroundTypeWallpaper</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_moving :: Maybe Bool
 </span><a href="API.BackgroundType.html#is_moving"><span class="hs-identifier hs-var">is_moving</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679363888"><span class="hs-identifier hs-var">is_moving</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_blurred :: Maybe Bool
+</span><a href="#local-6989586621679374079"><span class="hs-identifier hs-var">is_moving</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_blurred :: Maybe Bool
 </span><a href="API.BackgroundType.html#is_blurred"><span class="hs-identifier hs-var">is_blurred</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679363887"><span class="hs-identifier hs-var">is_blurred</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-38"></span><span>
-</span><span id="line-39"></span><span>   </span><span class="annot"><a href="#local-6989586621679363892"><span class="hs-identifier hs-type">parseBackgroundTypePattern</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span><span>
-</span><span id="line-40"></span><span>   </span><span id="local-6989586621679363892"><span class="annot"><span class="annottext">parseBackgroundTypePattern :: Value -&gt; Parser BackgroundType
-</span><a href="#local-6989586621679363892"><span class="hs-identifier hs-var hs-var">parseBackgroundTypePattern</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679374078"><span class="hs-identifier hs-var">is_blurred</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-39"></span><span>
+</span><span id="line-40"></span><span>   </span><span class="annot"><a href="#local-6989586621679374083"><span class="hs-identifier hs-type">parseBackgroundTypePattern</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span><span>
+</span><span id="line-41"></span><span>   </span><span id="local-6989586621679374083"><span class="annot"><span class="annottext">parseBackgroundTypePattern :: Value -&gt; Parser BackgroundType
+</span><a href="#local-6989586621679374083"><span class="hs-identifier hs-var hs-var">parseBackgroundTypePattern</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser BackgroundType)
 -&gt; Value
 -&gt; Parser BackgroundType
@@ -158,24 +169,39 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser BackgroundType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679363885"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679363885"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-41"></span><span>    </span><span id="local-6989586621679363884"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679363884"><span class="hs-identifier hs-var">is_moving</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679363885"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679374076"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679374076"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-42"></span><span>    </span><span id="local-6989586621679374075"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679374075"><span class="hs-identifier hs-var">is_moving</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
+</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
+-&gt; Parser Bool -&gt; Parser (Maybe Bool)
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679374076"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_moving&quot;</span></span><span>
-</span><span id="line-42"></span><span>    </span><span id="local-6989586621679363883"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679363883"><span class="hs-identifier hs-var">intensity</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679363885"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-43"></span><span>    </span><span id="local-6989586621679374074"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679374074"><span class="hs-identifier hs-var">intensity</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
+</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
+-&gt; Parser Int -&gt; Parser (Maybe Int)
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679374076"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;intensity&quot;</span></span><span>
-</span><span id="line-43"></span><span>    </span><span id="local-6989586621679363882"><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679363882"><span class="hs-identifier hs-var">fill</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679363885"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe BackgroundFill)
+</span><span id="line-44"></span><span>    </span><span id="local-6989586621679374073"><span class="annot"><span class="annottext">Maybe BackgroundFill
+</span><a href="#local-6989586621679374073"><span class="hs-identifier hs-var">fill</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser BackgroundFill -&gt; Parser (Maybe BackgroundFill)
+forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
+</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser BackgroundFill -&gt; Parser (Maybe BackgroundFill))
+-&gt; Parser BackgroundFill -&gt; Parser (Maybe BackgroundFill)
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679374076"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser BackgroundFill
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;fill&quot;</span></span><span>
-</span><span id="line-44"></span><span>    </span><span class="annot"><span class="annottext">BackgroundType -&gt; Parser BackgroundType
+</span><span id="line-45"></span><span>    </span><span class="annot"><span class="annottext">BackgroundType -&gt; Parser BackgroundType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(BackgroundType -&gt; Parser BackgroundType)
 -&gt; BackgroundType -&gt; Parser BackgroundType
@@ -183,15 +209,15 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">BackgroundTypePattern :: Maybe Bool -&gt; Maybe Int -&gt; Maybe BackgroundFill -&gt; BackgroundType
 </span><a href="API.BackgroundType.html#BackgroundTypePattern"><span class="hs-identifier hs-type hs-type">BackgroundTypePattern</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_moving :: Maybe Bool
 </span><a href="API.BackgroundType.html#is_moving"><span class="hs-identifier hs-var">is_moving</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679363884"><span class="hs-identifier hs-var">is_moving</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">intensity :: Maybe Int
+</span><a href="#local-6989586621679374075"><span class="hs-identifier hs-var">is_moving</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">intensity :: Maybe Int
 </span><a href="API.BackgroundType.html#intensity"><span class="hs-identifier hs-var">intensity</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679363883"><span class="hs-identifier hs-var">intensity</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">fill :: Maybe BackgroundFill
+</span><a href="#local-6989586621679374074"><span class="hs-identifier hs-var">intensity</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">fill :: Maybe BackgroundFill
 </span><a href="API.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679363882"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-45"></span><span>
-</span><span id="line-46"></span><span>   </span><span class="annot"><a href="#local-6989586621679363891"><span class="hs-identifier hs-type">parseBackgroundTypeFill</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span><span>
-</span><span id="line-47"></span><span>   </span><span id="local-6989586621679363891"><span class="annot"><span class="annottext">parseBackgroundTypeFill :: Value -&gt; Parser BackgroundType
-</span><a href="#local-6989586621679363891"><span class="hs-identifier hs-var hs-var">parseBackgroundTypeFill</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679374073"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-46"></span><span>
+</span><span id="line-47"></span><span>   </span><span class="annot"><a href="#local-6989586621679374082"><span class="hs-identifier hs-type">parseBackgroundTypeFill</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType</span></a></span><span>
+</span><span id="line-48"></span><span>   </span><span id="local-6989586621679374082"><span class="annot"><span class="annottext">parseBackgroundTypeFill :: Value -&gt; Parser BackgroundType
+</span><a href="#local-6989586621679374082"><span class="hs-identifier hs-var hs-var">parseBackgroundTypeFill</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser BackgroundType)
 -&gt; Value
 -&gt; Parser BackgroundType
@@ -202,14 +228,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser BackgroundType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679363880"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679363880"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-48"></span><span>    </span><span id="local-6989586621679363879"><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679363879"><span class="hs-identifier hs-var">fill</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679363880"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe BackgroundFill)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679374071"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679374071"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-49"></span><span>    </span><span id="local-6989586621679374070"><span class="annot"><span class="annottext">Maybe BackgroundFill
+</span><a href="#local-6989586621679374070"><span class="hs-identifier hs-var">fill</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser BackgroundFill -&gt; Parser (Maybe BackgroundFill)
+forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
+</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser BackgroundFill -&gt; Parser (Maybe BackgroundFill))
+-&gt; Parser BackgroundFill -&gt; Parser (Maybe BackgroundFill)
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679374071"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser BackgroundFill
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;fill&quot;</span></span><span>
-</span><span id="line-49"></span><span>    </span><span class="annot"><span class="annottext">BackgroundType -&gt; Parser BackgroundType
+</span><span id="line-50"></span><span>    </span><span class="annot"><span class="annottext">BackgroundType -&gt; Parser BackgroundType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(BackgroundType -&gt; Parser BackgroundType)
 -&gt; BackgroundType -&gt; Parser BackgroundType
@@ -217,4 +248,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">BackgroundTypeFill :: Maybe BackgroundFill -&gt; BackgroundType
 </span><a href="API.BackgroundType.html#BackgroundTypeFill"><span class="hs-identifier hs-type hs-type">BackgroundTypeFill</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">fill :: Maybe BackgroundFill
 </span><a href="API.BackgroundType.html#fill"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe BackgroundFill
-</span><a href="#local-6989586621679363879"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679374070"><span class="hs-identifier hs-var">fill</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

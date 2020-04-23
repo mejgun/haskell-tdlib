@@ -2,13 +2,14 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.TextParseMode</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span>
-</span><span id="line-8"></span><span class="hs-keyword">data</span><span> </span><span id="TextParseMode"><span class="annot"><a href="API.TextParseMode.html#TextParseMode"><span class="hs-identifier hs-var">TextParseMode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-9"></span><span> </span><span id="TextParseModeMarkdown"><span class="annot"><a href="API.TextParseMode.html#TextParseModeMarkdown"><span class="hs-identifier hs-var">TextParseModeMarkdown</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="version"><span class="annot"><span class="annottext">TextParseMode -&gt; Maybe Int
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-8"></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="TextParseMode"><span class="annot"><a href="API.TextParseMode.html#TextParseMode"><span class="hs-identifier hs-var">TextParseMode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-10"></span><span> </span><span id="TextParseModeMarkdown"><span class="annot"><a href="API.TextParseMode.html#TextParseModeMarkdown"><span class="hs-identifier hs-var">TextParseModeMarkdown</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="version"><span class="annot"><span class="annottext">TextParseMode -&gt; Maybe Int
 </span><a href="API.TextParseMode.html#version"><span class="hs-identifier hs-var hs-var">version</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
-</span><span id="line-10"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="TextParseModeHTML"><span class="annot"><a href="API.TextParseMode.html#TextParseModeHTML"><span class="hs-identifier hs-var">TextParseModeHTML</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679405387"><span id="local-6989586621679405389"><span id="local-6989586621679405391"><span class="annot"><span class="annottext">Int -&gt; TextParseMode -&gt; ShowS
+</span><span id="line-11"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="TextParseModeHTML"><span class="annot"><a href="API.TextParseMode.html#TextParseModeHTML"><span class="hs-identifier hs-var">TextParseModeHTML</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679417676"><span id="local-6989586621679417678"><span id="local-6989586621679417680"><span class="annot"><span class="annottext">Int -&gt; TextParseMode -&gt; ShowS
 [TextParseMode] -&gt; ShowS
 TextParseMode -&gt; String
 (Int -&gt; TextParseMode -&gt; ShowS)
@@ -24,53 +25,53 @@ $cshow :: TextParseMode -&gt; String
 showsPrec :: Int -&gt; TextParseMode -&gt; ShowS
 $cshowsPrec :: Int -&gt; TextParseMode -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405379"><span id="local-6989586621679405381"><span id="local-6989586621679405383"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.TextParseMode.html#TextParseMode"><span class="hs-identifier hs-type">TextParseMode</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679405377"><span class="annot"><span class="annottext">toJSON :: TextParseMode -&gt; Value
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417668"><span id="local-6989586621679417670"><span id="local-6989586621679417672"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.TextParseMode.html#TextParseMode"><span class="hs-identifier hs-type">TextParseMode</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679417666"><span class="annot"><span class="annottext">toJSON :: TextParseMode -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.TextParseMode.html#TextParseModeMarkdown"><span class="hs-identifier hs-type">TextParseModeMarkdown</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">version :: TextParseMode -&gt; Maybe Int
-</span><a href="API.TextParseMode.html#version"><span class="hs-identifier hs-var">version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405375"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679405375"><span class="hs-identifier hs-var">version</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.TextParseMode.html#version"><span class="hs-identifier hs-var">version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417664"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679417664"><span class="hs-identifier hs-var">version</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;textParseModeMarkdown&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;version&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679405375"><span class="hs-identifier hs-var">version</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.TextParseMode.html#TextParseModeHTML"><span class="hs-identifier hs-type">TextParseModeHTML</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-17"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="#local-6989586621679417664"><span class="hs-identifier hs-var">version</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-16"></span><span>
+</span><span id="line-17"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.TextParseMode.html#TextParseModeHTML"><span class="hs-identifier hs-type">TextParseModeHTML</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-18"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;textParseModeHTML&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-18"></span><span>
-</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405369"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.TextParseMode.html#TextParseMode"><span class="hs-identifier hs-type">TextParseMode</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-20"></span><span> </span><span id="local-6989586621679405367"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TextParseMode
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679405365"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679405365"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679405363"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679405363"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679405362"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679405362"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679405363"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417658"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.TextParseMode.html#TextParseMode"><span class="hs-identifier hs-type">TextParseMode</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span> </span><span id="local-6989586621679417656"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TextParseMode
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679417654"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679417654"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679417652"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679417652"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679417651"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679417651"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679417652"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-22"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679405362"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-23"></span><span>   </span><span class="hs-string">&quot;textParseModeMarkdown&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextParseMode
-</span><a href="#local-6989586621679405360"><span class="hs-identifier hs-var">parseTextParseModeMarkdown</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679405365"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span class="hs-string">&quot;textParseModeHTML&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextParseMode
-</span><a href="#local-6989586621679405359"><span class="hs-identifier hs-var">parseTextParseModeHTML</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679405365"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TextParseMode
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679417651"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-24"></span><span>   </span><span class="hs-string">&quot;textParseModeMarkdown&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextParseMode
+</span><a href="#local-6989586621679417649"><span class="hs-identifier hs-var">parseTextParseModeMarkdown</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679417654"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span class="hs-string">&quot;textParseModeHTML&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TextParseMode
+</span><a href="#local-6989586621679417648"><span class="hs-identifier hs-var">parseTextParseModeHTML</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679417654"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-26"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TextParseMode
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-26"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-27"></span><span>   </span><span class="annot"><a href="#local-6989586621679405360"><span class="hs-identifier hs-type">parseTextParseModeMarkdown</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextParseMode.html#TextParseMode"><span class="hs-identifier hs-type">TextParseMode</span></a></span><span>
-</span><span id="line-28"></span><span>   </span><span id="local-6989586621679405360"><span class="annot"><span class="annottext">parseTextParseModeMarkdown :: Value -&gt; Parser TextParseMode
-</span><a href="#local-6989586621679405360"><span class="hs-identifier hs-var hs-var">parseTextParseModeMarkdown</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-27"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-28"></span><span>   </span><span class="annot"><a href="#local-6989586621679417649"><span class="hs-identifier hs-type">parseTextParseModeMarkdown</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextParseMode.html#TextParseMode"><span class="hs-identifier hs-type">TextParseMode</span></a></span><span>
+</span><span id="line-29"></span><span>   </span><span id="local-6989586621679417649"><span class="annot"><span class="annottext">parseTextParseModeMarkdown :: Value -&gt; Parser TextParseMode
+</span><a href="#local-6989586621679417649"><span class="hs-identifier hs-var hs-var">parseTextParseModeMarkdown</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextParseMode)
 -&gt; Value
 -&gt; Parser TextParseMode
@@ -80,14 +81,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextParseMode
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679405357"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679405357"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-29"></span><span>    </span><span id="local-6989586621679405356"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679405356"><span class="hs-identifier hs-var">version</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679405357"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679417646"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679417646"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-30"></span><span>    </span><span id="local-6989586621679417645"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679417645"><span class="hs-identifier hs-var">version</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
+</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
+-&gt; Parser Int -&gt; Parser (Maybe Int)
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679417646"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;version&quot;</span></span><span>
-</span><span id="line-30"></span><span>    </span><span class="annot"><span class="annottext">TextParseMode -&gt; Parser TextParseMode
+</span><span id="line-31"></span><span>    </span><span class="annot"><span class="annottext">TextParseMode -&gt; Parser TextParseMode
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TextParseMode -&gt; Parser TextParseMode)
 -&gt; TextParseMode -&gt; Parser TextParseMode
@@ -95,11 +101,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TextParseModeMarkdown :: Maybe Int -&gt; TextParseMode
 </span><a href="API.TextParseMode.html#TextParseModeMarkdown"><span class="hs-identifier hs-type hs-type">TextParseModeMarkdown</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">version :: Maybe Int
 </span><a href="API.TextParseMode.html#version"><span class="hs-identifier hs-var">version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679405356"><span class="hs-identifier hs-var">version</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span>   </span><span class="annot"><a href="#local-6989586621679405359"><span class="hs-identifier hs-type">parseTextParseModeHTML</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextParseMode.html#TextParseMode"><span class="hs-identifier hs-type">TextParseMode</span></a></span><span>
-</span><span id="line-33"></span><span>   </span><span id="local-6989586621679405359"><span class="annot"><span class="annottext">parseTextParseModeHTML :: Value -&gt; Parser TextParseMode
-</span><a href="#local-6989586621679405359"><span class="hs-identifier hs-var hs-var">parseTextParseModeHTML</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679417645"><span class="hs-identifier hs-var">version</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-32"></span><span>
+</span><span id="line-33"></span><span>   </span><span class="annot"><a href="#local-6989586621679417648"><span class="hs-identifier hs-type">parseTextParseModeHTML</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TextParseMode.html#TextParseMode"><span class="hs-identifier hs-type">TextParseMode</span></a></span><span>
+</span><span id="line-34"></span><span>   </span><span id="local-6989586621679417648"><span class="annot"><span class="annottext">parseTextParseModeHTML :: Value -&gt; Parser TextParseMode
+</span><a href="#local-6989586621679417648"><span class="hs-identifier hs-var hs-var">parseTextParseModeHTML</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TextParseMode)
 -&gt; Value
 -&gt; Parser TextParseMode
@@ -109,9 +115,9 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TextParseMode
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679405354"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679405354"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-34"></span><span>    </span><span class="annot"><span class="annottext">TextParseMode -&gt; Parser TextParseMode
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679417643"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679417643"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-35"></span><span>    </span><span class="annot"><span class="annottext">TextParseMode -&gt; Parser TextParseMode
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TextParseMode -&gt; Parser TextParseMode)
 -&gt; TextParseMode -&gt; Parser TextParseMode

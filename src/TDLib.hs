@@ -71,7 +71,7 @@ receive c = dec $ c_receive c 1.0
     if cs == nullPtr
       then return Nothing
       else do
-        --B.packCString cs >>= print --DEBUG
+        -- B.packCString cs >>= print --DEBUG
         A.decodeStrict <$> B.packCString cs
 
 destroy :: Client -> IO ()

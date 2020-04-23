@@ -2,12 +2,13 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Functions.SetBio</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span>
-</span><span id="line-8"></span><span class="hs-keyword">data</span><span> </span><span id="SetBio"><span class="annot"><a href="API.Functions.SetBio.html#SetBio"><span class="hs-identifier hs-var">SetBio</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-9"></span><span> </span><span id="SetBio"><span class="annot"><a href="API.Functions.SetBio.html#SetBio"><span class="hs-identifier hs-var">SetBio</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="bio"><span class="annot"><span class="annottext">SetBio -&gt; Maybe String
-</span><a href="API.Functions.SetBio.html#bio"><span class="hs-identifier hs-var hs-var">bio</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679384121"><span id="local-6989586621679384123"><span id="local-6989586621679384125"><span class="annot"><span class="annottext">Int -&gt; SetBio -&gt; ShowS
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-8"></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="SetBio"><span class="annot"><a href="API.Functions.SetBio.html#SetBio"><span class="hs-identifier hs-var">SetBio</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-10"></span><span> </span><span id="SetBio"><span class="annot"><a href="API.Functions.SetBio.html#SetBio"><span class="hs-identifier hs-var">SetBio</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="bio"><span class="annot"><span class="annottext">SetBio -&gt; Maybe String
+</span><a href="API.Functions.SetBio.html#bio"><span class="hs-identifier hs-var hs-var">bio</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679395330"><span id="local-6989586621679395332"><span id="local-6989586621679395334"><span class="annot"><span class="annottext">Int -&gt; SetBio -&gt; ShowS
 [SetBio] -&gt; ShowS
 SetBio -&gt; String
 (Int -&gt; SetBio -&gt; ShowS)
@@ -21,59 +22,64 @@ $cshow :: SetBio -&gt; String
 showsPrec :: Int -&gt; SetBio -&gt; ShowS
 $cshowsPrec :: Int -&gt; SetBio -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679384113"><span id="local-6989586621679384115"><span id="local-6989586621679384117"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetBio.html#SetBio"><span class="hs-identifier hs-type">SetBio</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-12"></span><span> </span><span id="local-6989586621679384111"><span class="annot"><span class="annottext">toJSON :: SetBio -&gt; Value
+</span><span id="line-11"></span><span>
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679395322"><span id="local-6989586621679395324"><span id="local-6989586621679395326"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetBio.html#SetBio"><span class="hs-identifier hs-type">SetBio</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679395320"><span class="annot"><span class="annottext">toJSON :: SetBio -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.SetBio.html#SetBio"><span class="hs-identifier hs-type">SetBio</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">bio :: SetBio -&gt; Maybe String
-</span><a href="API.Functions.SetBio.html#bio"><span class="hs-identifier hs-var">bio</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679384109"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679384109"><span class="hs-identifier hs-var">bio</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-13"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.Functions.SetBio.html#bio"><span class="hs-identifier hs-var">bio</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679395318"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679395318"><span class="hs-identifier hs-var">bio</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;setBio&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;bio&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679384109"><span class="hs-identifier hs-var">bio</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679384103"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetBio.html#SetBio"><span class="hs-identifier hs-type">SetBio</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-16"></span><span> </span><span id="local-6989586621679384101"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetBio
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679384099"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679384099"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679384097"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679384097"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-17"></span><span>  </span><span id="local-6989586621679384096"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679384096"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679384097"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679395318"><span class="hs-identifier hs-var">bio</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-15"></span><span>
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679395312"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetBio.html#SetBio"><span class="hs-identifier hs-type">SetBio</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679395310"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetBio
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679395308"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679395308"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679395306"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679395306"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679395305"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679395305"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679395306"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679384096"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-19"></span><span>   </span><span class="hs-string">&quot;setBio&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SetBio
-</span><a href="#local-6989586621679384094"><span class="hs-identifier hs-var">parseSetBio</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679384099"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-20"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SetBio
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679395305"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;setBio&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SetBio
+</span><a href="#local-6989586621679395303"><span class="hs-identifier hs-var">parseSetBio</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679395308"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SetBio
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-21"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679384094"><span class="hs-identifier hs-type">parseSetBio</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetBio.html#SetBio"><span class="hs-identifier hs-type">SetBio</span></a></span><span>
-</span><span id="line-23"></span><span>   </span><span id="local-6989586621679384094"><span class="annot"><span class="annottext">parseSetBio :: Value -&gt; Parser SetBio
-</span><a href="#local-6989586621679384094"><span class="hs-identifier hs-var hs-var">parseSetBio</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser SetBio) -&gt; Value -&gt; Parser SetBio
+</span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679395303"><span class="hs-identifier hs-type">parseSetBio</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetBio.html#SetBio"><span class="hs-identifier hs-type">SetBio</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679395303"><span class="annot"><span class="annottext">parseSetBio :: Value -&gt; Parser SetBio
+</span><a href="#local-6989586621679395303"><span class="hs-identifier hs-var hs-var">parseSetBio</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser SetBio) -&gt; Value -&gt; Parser SetBio
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;SetBio&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser SetBio) -&gt; Value -&gt; Parser SetBio)
 -&gt; (Object -&gt; Parser SetBio) -&gt; Value -&gt; Parser SetBio
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679384092"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679384092"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-24"></span><span>    </span><span id="local-6989586621679384091"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679384091"><span class="hs-identifier hs-var">bio</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679384092"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679395301"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679395301"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679395300"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679395300"><span class="hs-identifier hs-var">bio</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
+</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
+-&gt; Parser String -&gt; Parser (Maybe String)
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679395301"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;bio&quot;</span></span><span>
-</span><span id="line-25"></span><span>    </span><span class="annot"><span class="annottext">SetBio -&gt; Parser SetBio
+</span><span id="line-26"></span><span>    </span><span class="annot"><span class="annottext">SetBio -&gt; Parser SetBio
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SetBio -&gt; Parser SetBio) -&gt; SetBio -&gt; Parser SetBio
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SetBio :: Maybe String -&gt; SetBio
 </span><a href="API.Functions.SetBio.html#SetBio"><span class="hs-identifier hs-type hs-type">SetBio</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">bio :: Maybe String
 </span><a href="API.Functions.SetBio.html#bio"><span class="hs-identifier hs-var">bio</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679384091"><span class="hs-identifier hs-var">bio</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679395300"><span class="hs-identifier hs-var">bio</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

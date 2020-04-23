@@ -2,14 +2,15 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Functions.DeleteChatHistory</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span>
-</span><span id="line-8"></span><span class="hs-keyword">data</span><span> </span><span id="DeleteChatHistory"><span class="annot"><a href="API.Functions.DeleteChatHistory.html#DeleteChatHistory"><span class="hs-identifier hs-var">DeleteChatHistory</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-9"></span><span> </span><span id="DeleteChatHistory"><span class="annot"><a href="API.Functions.DeleteChatHistory.html#DeleteChatHistory"><span class="hs-identifier hs-var">DeleteChatHistory</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="revoke"><span class="annot"><span class="annottext">DeleteChatHistory -&gt; Maybe Bool
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-8"></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="DeleteChatHistory"><span class="annot"><a href="API.Functions.DeleteChatHistory.html#DeleteChatHistory"><span class="hs-identifier hs-var">DeleteChatHistory</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-10"></span><span> </span><span id="DeleteChatHistory"><span class="annot"><a href="API.Functions.DeleteChatHistory.html#DeleteChatHistory"><span class="hs-identifier hs-var">DeleteChatHistory</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="revoke"><span class="annot"><span class="annottext">DeleteChatHistory -&gt; Maybe Bool
 </span><a href="API.Functions.DeleteChatHistory.html#revoke"><span class="hs-identifier hs-var hs-var">revoke</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="remove_from_chat_list"><span class="annot"><span class="annottext">DeleteChatHistory -&gt; Maybe Bool
 </span><a href="API.Functions.DeleteChatHistory.html#remove_from_chat_list"><span class="hs-identifier hs-var hs-var">remove_from_chat_list</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="chat_id"><span class="annot"><span class="annottext">DeleteChatHistory -&gt; Maybe Int
-</span><a href="API.Functions.DeleteChatHistory.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679371701"><span id="local-6989586621679371703"><span id="local-6989586621679371705"><span class="annot"><span class="annottext">Int -&gt; DeleteChatHistory -&gt; ShowS
+</span><a href="API.Functions.DeleteChatHistory.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679382288"><span id="local-6989586621679382290"><span id="local-6989586621679382292"><span class="annot"><span class="annottext">Int -&gt; DeleteChatHistory -&gt; ShowS
 [DeleteChatHistory] -&gt; ShowS
 DeleteChatHistory -&gt; String
 (Int -&gt; DeleteChatHistory -&gt; ShowS)
@@ -25,53 +26,53 @@ $cshow :: DeleteChatHistory -&gt; String
 showsPrec :: Int -&gt; DeleteChatHistory -&gt; ShowS
 $cshowsPrec :: Int -&gt; DeleteChatHistory -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679371693"><span id="local-6989586621679371695"><span id="local-6989586621679371697"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteChatHistory.html#DeleteChatHistory"><span class="hs-identifier hs-type">DeleteChatHistory</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-12"></span><span> </span><span id="local-6989586621679371691"><span class="annot"><span class="annottext">toJSON :: DeleteChatHistory -&gt; Value
+</span><span id="line-11"></span><span>
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679382280"><span id="local-6989586621679382282"><span id="local-6989586621679382284"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteChatHistory.html#DeleteChatHistory"><span class="hs-identifier hs-type">DeleteChatHistory</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679382278"><span class="annot"><span class="annottext">toJSON :: DeleteChatHistory -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.DeleteChatHistory.html#DeleteChatHistory"><span class="hs-identifier hs-type">DeleteChatHistory</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">revoke :: DeleteChatHistory -&gt; Maybe Bool
-</span><a href="API.Functions.DeleteChatHistory.html#revoke"><span class="hs-identifier hs-var">revoke</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679371689"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679371689"><span class="hs-identifier hs-var">revoke</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">remove_from_chat_list :: DeleteChatHistory -&gt; Maybe Bool
-</span><a href="API.Functions.DeleteChatHistory.html#remove_from_chat_list"><span class="hs-identifier hs-var">remove_from_chat_list</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679371688"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679371688"><span class="hs-identifier hs-var">remove_from_chat_list</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: DeleteChatHistory -&gt; Maybe Int
-</span><a href="API.Functions.DeleteChatHistory.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679371687"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679371687"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-13"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.Functions.DeleteChatHistory.html#revoke"><span class="hs-identifier hs-var">revoke</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679382276"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679382276"><span class="hs-identifier hs-var">revoke</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">remove_from_chat_list :: DeleteChatHistory -&gt; Maybe Bool
+</span><a href="API.Functions.DeleteChatHistory.html#remove_from_chat_list"><span class="hs-identifier hs-var">remove_from_chat_list</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679382275"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679382275"><span class="hs-identifier hs-var">remove_from_chat_list</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: DeleteChatHistory -&gt; Maybe Int
+</span><a href="API.Functions.DeleteChatHistory.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679382274"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679382274"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;deleteChatHistory&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;revoke&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679371689"><span class="hs-identifier hs-var">revoke</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;remove_from_chat_list&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679382276"><span class="hs-identifier hs-var">revoke</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;remove_from_chat_list&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679371688"><span class="hs-identifier hs-var">remove_from_chat_list</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679382275"><span class="hs-identifier hs-var">remove_from_chat_list</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679371687"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679371681"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteChatHistory.html#DeleteChatHistory"><span class="hs-identifier hs-type">DeleteChatHistory</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-16"></span><span> </span><span id="local-6989586621679371679"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser DeleteChatHistory
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679371677"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679371677"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679371675"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679371675"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-17"></span><span>  </span><span id="local-6989586621679371674"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679371674"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679371675"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679382274"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-15"></span><span>
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679382268"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteChatHistory.html#DeleteChatHistory"><span class="hs-identifier hs-type">DeleteChatHistory</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679382266"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser DeleteChatHistory
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679382264"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679382264"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679382262"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679382262"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679382261"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679382261"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679382262"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679371674"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-19"></span><span>   </span><span class="hs-string">&quot;deleteChatHistory&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DeleteChatHistory
-</span><a href="#local-6989586621679371672"><span class="hs-identifier hs-var">parseDeleteChatHistory</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679371677"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-20"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser DeleteChatHistory
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679382261"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;deleteChatHistory&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DeleteChatHistory
+</span><a href="#local-6989586621679382259"><span class="hs-identifier hs-var">parseDeleteChatHistory</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679382264"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser DeleteChatHistory
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-21"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679371672"><span class="hs-identifier hs-type">parseDeleteChatHistory</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteChatHistory.html#DeleteChatHistory"><span class="hs-identifier hs-type">DeleteChatHistory</span></a></span><span>
-</span><span id="line-23"></span><span>   </span><span id="local-6989586621679371672"><span class="annot"><span class="annottext">parseDeleteChatHistory :: Value -&gt; Parser DeleteChatHistory
-</span><a href="#local-6989586621679371672"><span class="hs-identifier hs-var hs-var">parseDeleteChatHistory</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679382259"><span class="hs-identifier hs-type">parseDeleteChatHistory</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.DeleteChatHistory.html#DeleteChatHistory"><span class="hs-identifier hs-type">DeleteChatHistory</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679382259"><span class="annot"><span class="annottext">parseDeleteChatHistory :: Value -&gt; Parser DeleteChatHistory
+</span><a href="#local-6989586621679382259"><span class="hs-identifier hs-var hs-var">parseDeleteChatHistory</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DeleteChatHistory)
 -&gt; Value
 -&gt; Parser DeleteChatHistory
@@ -82,24 +83,39 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser DeleteChatHistory
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679371670"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679371670"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-24"></span><span>    </span><span id="local-6989586621679371669"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679371669"><span class="hs-identifier hs-var">revoke</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679371670"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679382257"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679382257"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679382256"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679382256"><span class="hs-identifier hs-var">revoke</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
+</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
+-&gt; Parser Bool -&gt; Parser (Maybe Bool)
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679382257"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;revoke&quot;</span></span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679371668"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679371668"><span class="hs-identifier hs-var">remove_from_chat_list</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679371670"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679382255"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679382255"><span class="hs-identifier hs-var">remove_from_chat_list</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
+</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
+-&gt; Parser Bool -&gt; Parser (Maybe Bool)
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679382257"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;remove_from_chat_list&quot;</span></span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679371667"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679371667"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679371670"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679382254"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679382254"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
+</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
+-&gt; Parser Int -&gt; Parser (Maybe Int)
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679382257"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">DeleteChatHistory -&gt; Parser DeleteChatHistory
+</span><span id="line-28"></span><span>    </span><span class="annot"><span class="annottext">DeleteChatHistory -&gt; Parser DeleteChatHistory
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(DeleteChatHistory -&gt; Parser DeleteChatHistory)
 -&gt; DeleteChatHistory -&gt; Parser DeleteChatHistory
@@ -107,8 +123,8 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">DeleteChatHistory :: Maybe Bool -&gt; Maybe Bool -&gt; Maybe Int -&gt; DeleteChatHistory
 </span><a href="API.Functions.DeleteChatHistory.html#DeleteChatHistory"><span class="hs-identifier hs-type hs-type">DeleteChatHistory</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">revoke :: Maybe Bool
 </span><a href="API.Functions.DeleteChatHistory.html#revoke"><span class="hs-identifier hs-var">revoke</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679371669"><span class="hs-identifier hs-var">revoke</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">remove_from_chat_list :: Maybe Bool
+</span><a href="#local-6989586621679382256"><span class="hs-identifier hs-var">revoke</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">remove_from_chat_list :: Maybe Bool
 </span><a href="API.Functions.DeleteChatHistory.html#remove_from_chat_list"><span class="hs-identifier hs-var">remove_from_chat_list</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679371668"><span class="hs-identifier hs-var">remove_from_chat_list</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
+</span><a href="#local-6989586621679382255"><span class="hs-identifier hs-var">remove_from_chat_list</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
 </span><a href="API.Functions.DeleteChatHistory.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679371667"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679382254"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

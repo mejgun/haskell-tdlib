@@ -2,12 +2,13 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Functions.GetBasicGroup</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-7"></span><span>
-</span><span id="line-8"></span><span class="hs-keyword">data</span><span> </span><span id="GetBasicGroup"><span class="annot"><a href="API.Functions.GetBasicGroup.html#GetBasicGroup"><span class="hs-identifier hs-var">GetBasicGroup</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-9"></span><span> </span><span id="GetBasicGroup"><span class="annot"><a href="API.Functions.GetBasicGroup.html#GetBasicGroup"><span class="hs-identifier hs-var">GetBasicGroup</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="basic_group_id"><span class="annot"><span class="annottext">GetBasicGroup -&gt; Maybe Int
-</span><a href="API.Functions.GetBasicGroup.html#basic_group_id"><span class="hs-identifier hs-var hs-var">basic_group_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679373701"><span id="local-6989586621679373703"><span id="local-6989586621679373705"><span class="annot"><span class="annottext">Int -&gt; GetBasicGroup -&gt; ShowS
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-8"></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="GetBasicGroup"><span class="annot"><a href="API.Functions.GetBasicGroup.html#GetBasicGroup"><span class="hs-identifier hs-var">GetBasicGroup</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-10"></span><span> </span><span id="GetBasicGroup"><span class="annot"><a href="API.Functions.GetBasicGroup.html#GetBasicGroup"><span class="hs-identifier hs-var">GetBasicGroup</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="basic_group_id"><span class="annot"><span class="annottext">GetBasicGroup -&gt; Maybe Int
+</span><a href="API.Functions.GetBasicGroup.html#basic_group_id"><span class="hs-identifier hs-var hs-var">basic_group_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679384379"><span id="local-6989586621679384381"><span id="local-6989586621679384383"><span class="annot"><span class="annottext">Int -&gt; GetBasicGroup -&gt; ShowS
 [GetBasicGroup] -&gt; ShowS
 GetBasicGroup -&gt; String
 (Int -&gt; GetBasicGroup -&gt; ShowS)
@@ -23,43 +24,43 @@ $cshow :: GetBasicGroup -&gt; String
 showsPrec :: Int -&gt; GetBasicGroup -&gt; ShowS
 $cshowsPrec :: Int -&gt; GetBasicGroup -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679373693"><span id="local-6989586621679373695"><span id="local-6989586621679373697"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetBasicGroup.html#GetBasicGroup"><span class="hs-identifier hs-type">GetBasicGroup</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-12"></span><span> </span><span id="local-6989586621679373691"><span class="annot"><span class="annottext">toJSON :: GetBasicGroup -&gt; Value
+</span><span id="line-11"></span><span>
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679384371"><span id="local-6989586621679384373"><span id="local-6989586621679384375"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetBasicGroup.html#GetBasicGroup"><span class="hs-identifier hs-type">GetBasicGroup</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679384369"><span class="annot"><span class="annottext">toJSON :: GetBasicGroup -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.GetBasicGroup.html#GetBasicGroup"><span class="hs-identifier hs-type">GetBasicGroup</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">basic_group_id :: GetBasicGroup -&gt; Maybe Int
-</span><a href="API.Functions.GetBasicGroup.html#basic_group_id"><span class="hs-identifier hs-var">basic_group_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679373689"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679373689"><span class="hs-identifier hs-var">basic_group_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-13"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.Functions.GetBasicGroup.html#basic_group_id"><span class="hs-identifier hs-var">basic_group_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679384367"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679384367"><span class="hs-identifier hs-var">basic_group_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;getBasicGroup&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;basic_group_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679373689"><span class="hs-identifier hs-var">basic_group_id</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679373683"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetBasicGroup.html#GetBasicGroup"><span class="hs-identifier hs-type">GetBasicGroup</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-16"></span><span> </span><span id="local-6989586621679373681"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetBasicGroup
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679373679"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679373679"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679373677"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679373677"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-17"></span><span>  </span><span id="local-6989586621679373676"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679373676"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679373677"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679384367"><span class="hs-identifier hs-var">basic_group_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-15"></span><span>
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679384361"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetBasicGroup.html#GetBasicGroup"><span class="hs-identifier hs-type">GetBasicGroup</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679384359"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetBasicGroup
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679384357"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679384357"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679384355"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679384355"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679384354"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679384354"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679384355"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-18"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679373676"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-19"></span><span>   </span><span class="hs-string">&quot;getBasicGroup&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetBasicGroup
-</span><a href="#local-6989586621679373674"><span class="hs-identifier hs-var">parseGetBasicGroup</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679373679"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-20"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetBasicGroup
+</span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679384354"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;getBasicGroup&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetBasicGroup
+</span><a href="#local-6989586621679384352"><span class="hs-identifier hs-var">parseGetBasicGroup</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679384357"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetBasicGroup
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-21"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span>   </span><span class="annot"><a href="#local-6989586621679373674"><span class="hs-identifier hs-type">parseGetBasicGroup</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetBasicGroup.html#GetBasicGroup"><span class="hs-identifier hs-type">GetBasicGroup</span></a></span><span>
-</span><span id="line-23"></span><span>   </span><span id="local-6989586621679373674"><span class="annot"><span class="annottext">parseGetBasicGroup :: Value -&gt; Parser GetBasicGroup
-</span><a href="#local-6989586621679373674"><span class="hs-identifier hs-var hs-var">parseGetBasicGroup</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679384352"><span class="hs-identifier hs-type">parseGetBasicGroup</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetBasicGroup.html#GetBasicGroup"><span class="hs-identifier hs-type">GetBasicGroup</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679384352"><span class="annot"><span class="annottext">parseGetBasicGroup :: Value -&gt; Parser GetBasicGroup
+</span><a href="#local-6989586621679384352"><span class="hs-identifier hs-var hs-var">parseGetBasicGroup</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GetBasicGroup)
 -&gt; Value
 -&gt; Parser GetBasicGroup
@@ -69,14 +70,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser GetBasicGroup
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679373672"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679373672"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-24"></span><span>    </span><span id="local-6989586621679373671"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679373671"><span class="hs-identifier hs-var">basic_group_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679373672"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679384350"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679384350"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679384349"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679384349"><span class="hs-identifier hs-var">basic_group_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
+</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
+-&gt; Parser Int -&gt; Parser (Maybe Int)
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679384350"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;basic_group_id&quot;</span></span><span>
-</span><span id="line-25"></span><span>    </span><span class="annot"><span class="annottext">GetBasicGroup -&gt; Parser GetBasicGroup
+</span><span id="line-26"></span><span>    </span><span class="annot"><span class="annottext">GetBasicGroup -&gt; Parser GetBasicGroup
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(GetBasicGroup -&gt; Parser GetBasicGroup)
 -&gt; GetBasicGroup -&gt; Parser GetBasicGroup
@@ -84,4 +90,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">GetBasicGroup :: Maybe Int -&gt; GetBasicGroup
 </span><a href="API.Functions.GetBasicGroup.html#GetBasicGroup"><span class="hs-identifier hs-type hs-type">GetBasicGroup</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">basic_group_id :: Maybe Int
 </span><a href="API.Functions.GetBasicGroup.html#basic_group_id"><span class="hs-identifier hs-var">basic_group_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679373671"><span class="hs-identifier hs-var">basic_group_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679384349"><span class="hs-identifier hs-var">basic_group_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
