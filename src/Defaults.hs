@@ -23,22 +23,3 @@ defaultTdlibParameters = TdlibParameters.TdlibParameters
   , TdlibParameters.database_directory       = Just "tdlib_db"
   , TdlibParameters.use_test_dc              = Just False
   }
-
-
-defaultSendTextMessage :: SendMessage.SendMessage
-defaultSendTextMessage = SendMessage.SendMessage
-  { SendMessage.chat_id               = Nothing
-  , SendMessage.reply_to_message_id   = Just 0
-  , SendMessage.input_message_content = Just
-    InputMessageContent.InputMessageText
-      { InputMessageContent.clear_draft = Just True
-      , InputMessageContent.disable_web_page_preview = Just False
-      , InputMessageContent.text = Just FormattedText.FormattedText
-                                     { FormattedText.entities = Nothing
-                                     , FormattedText.text = Just "default text"
-                                     }
-      }
-  , SendMessage.reply_markup          = Nothing
-  , SendMessage.options               = Nothing
-  }
-

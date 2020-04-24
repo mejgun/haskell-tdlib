@@ -8,16 +8,15 @@ import           API.Functions.SetLogVerbosityLevel
 import           API.Functions.SetTdlibParameters
 import           API.Functions.CheckDatabaseEncryptionKey
 import           API.Functions.CheckAuthenticationBotToken
-import qualified API.Functions.SendMessage     as SendMessage
+import qualified API.Functions.SendMessage     as SM
 
 import           Defaults
 
 import           API.AuthorizationState
-import qualified API.Update                    as Update
-import qualified API.ConnectionState           as ConnectionState
-import qualified API.Message                   as Message
-import qualified API.InputMessageContent       as InputMessageContent
-import qualified API.FormattedText             as FormattedText
+import qualified API.Update                    as U
+import qualified API.Message                   as M
+import qualified API.InputMessageContent       as IMC
+import qualified API.FormattedText             as FT
 
 
 main :: IO ()
@@ -33,24 +32,25 @@ mainLoop c = do
     Just (ResultWithExtra res _) -> do
       print res
       case res of
-        Update (Update.UpdateAuthorizationState { Update.authorization_state = s })
-          -> handleAuthState c s
-        Update (Update.UpdateNewMessage { Update.message = Just (Message.Message { Message.chat_id = cID, Message.sender_user_id = sID }) })
+        Update (U.UpdateAuthorizationState { U.authorization_state = s }) ->
+          handleAuthState c s
+        Update (U.UpdateNewMessage { U.message = Just (M.Message { M.chat_id = cID, M.sender_user_id = sID }) })
           -> if cID == sID
             then send
               c
-              defaultSendTextMessage
-                { SendMessage.chat_id               = cID
-                , SendMessage.input_message_content = Just
-                  InputMessageContent.InputMessageText
-                    { InputMessageContent.clear_draft              = Just True
-                    , InputMessageContent.disable_web_page_preview = Just False
-                    , InputMessageContent.text                     = Just
-                      FormattedText.FormattedText
-                        { FormattedText.text     = Just "Привет. 你好"
-                        , FormattedText.entities = Nothing
-                        }
-                    }
+              SM.SendMessage
+                { SM.chat_id               = cID
+                , SM.reply_to_message_id   = Nothing
+                , SM.reply_markup          = Nothing
+                , SM.options               = Nothing
+                , SM.input_message_content = Just IMC.InputMessageText
+                  { IMC.clear_draft              = Just True
+                  , IMC.disable_web_page_preview = Just False
+                  , IMC.text                     = Just FT.FormattedText
+                                                     { FT.text = Just "Привет. 你好"
+                                                     , FT.entities = Nothing
+                                                     }
+                  }
                 }
             else return ()
         _ -> return ()
