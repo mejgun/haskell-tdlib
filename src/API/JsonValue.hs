@@ -13,7 +13,7 @@ data JsonValue =
  | JsonValueNumber { _value :: Maybe Float }  
  | JsonValueString { value :: Maybe String }  
  | JsonValueArray { values :: Maybe [JsonValue] }  
- | JsonValueObject { members :: Maybe [JsonObjectMember.JsonObjectMember] }  deriving (Show)
+ | JsonValueObject { members :: Maybe [JsonObjectMember.JsonObjectMember] }  deriving (Show, Eq)
 
 instance T.ToJSON JsonValue where
  toJSON (JsonValueNull {  }) =

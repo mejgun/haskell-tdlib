@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.SecretChatState as SecretChatState
 
 data SecretChat = 
- SecretChat { layer :: Maybe Int, key_hash :: Maybe String, ttl :: Maybe Int, is_outbound :: Maybe Bool, state :: Maybe SecretChatState.SecretChatState, user_id :: Maybe Int, _id :: Maybe Int }  deriving (Show)
+ SecretChat { layer :: Maybe Int, key_hash :: Maybe String, ttl :: Maybe Int, is_outbound :: Maybe Bool, state :: Maybe SecretChatState.SecretChatState, user_id :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SecretChat where
  toJSON (SecretChat { layer = layer, key_hash = key_hash, ttl = ttl, is_outbound = is_outbound, state = state, user_id = user_id, _id = _id }) =

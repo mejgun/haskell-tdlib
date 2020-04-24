@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data EnableProxy = 
- EnableProxy { proxy_id :: Maybe Int }  deriving (Show)
+ EnableProxy { proxy_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON EnableProxy where
  toJSON (EnableProxy { proxy_id = proxy_id }) =

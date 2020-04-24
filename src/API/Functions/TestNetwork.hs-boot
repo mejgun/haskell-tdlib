@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data TestNetwork
 
+instance Eq TestNetwork
+
 instance ToJSON TestNetwork
 
 instance FromJSON TestNetwork

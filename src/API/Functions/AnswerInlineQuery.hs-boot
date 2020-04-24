@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data AnswerInlineQuery
 
+instance Eq AnswerInlineQuery
+
 instance ToJSON AnswerInlineQuery
 
 instance FromJSON AnswerInlineQuery

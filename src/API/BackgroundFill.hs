@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 
 data BackgroundFill = 
  BackgroundFillSolid { color :: Maybe Int }  
- | BackgroundFillGradient { rotation_angle :: Maybe Int, bottom_color :: Maybe Int, top_color :: Maybe Int }  deriving (Show)
+ | BackgroundFillGradient { rotation_angle :: Maybe Int, bottom_color :: Maybe Int, top_color :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON BackgroundFill where
  toJSON (BackgroundFillSolid { color = color }) =

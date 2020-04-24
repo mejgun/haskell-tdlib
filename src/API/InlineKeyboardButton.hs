@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InlineKeyboardButtonType as InlineKeyboardButtonType
 
 data InlineKeyboardButton = 
- InlineKeyboardButton { _type :: Maybe InlineKeyboardButtonType.InlineKeyboardButtonType, text :: Maybe String }  deriving (Show)
+ InlineKeyboardButton { _type :: Maybe InlineKeyboardButtonType.InlineKeyboardButtonType, text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON InlineKeyboardButton where
  toJSON (InlineKeyboardButton { _type = _type, text = text }) =

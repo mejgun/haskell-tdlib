@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data LabeledPricePart
 
+instance Eq LabeledPricePart
+
 instance ToJSON LabeledPricePart
 
 instance FromJSON LabeledPricePart

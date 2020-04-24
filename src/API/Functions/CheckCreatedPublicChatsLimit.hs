@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PublicChatType as PublicChatType
 
 data CheckCreatedPublicChatsLimit = 
- CheckCreatedPublicChatsLimit { _type :: Maybe PublicChatType.PublicChatType }  deriving (Show)
+ CheckCreatedPublicChatsLimit { _type :: Maybe PublicChatType.PublicChatType }  deriving (Show, Eq)
 
 instance T.ToJSON CheckCreatedPublicChatsLimit where
  toJSON (CheckCreatedPublicChatsLimit { _type = _type }) =

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.CallbackQueryPayload as CallbackQueryPayload
 
 data GetCallbackQueryAnswer = 
- GetCallbackQueryAnswer { payload :: Maybe CallbackQueryPayload.CallbackQueryPayload, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ GetCallbackQueryAnswer { payload :: Maybe CallbackQueryPayload.CallbackQueryPayload, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetCallbackQueryAnswer where
  toJSON (GetCallbackQueryAnswer { payload = payload, message_id = message_id, chat_id = chat_id }) =

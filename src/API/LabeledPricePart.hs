@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data LabeledPricePart = 
- LabeledPricePart { amount :: Maybe Int, label :: Maybe String }  deriving (Show)
+ LabeledPricePart { amount :: Maybe Int, label :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON LabeledPricePart where
  toJSON (LabeledPricePart { amount = amount, label = label }) =

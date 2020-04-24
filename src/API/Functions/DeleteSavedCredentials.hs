@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data DeleteSavedCredentials = 
- DeleteSavedCredentials deriving (Show)
+ DeleteSavedCredentials deriving (Show, Eq)
 
 instance T.ToJSON DeleteSavedCredentials where
  toJSON (DeleteSavedCredentials {  }) =

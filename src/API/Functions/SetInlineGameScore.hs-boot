@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetInlineGameScore
 
+instance Eq SetInlineGameScore
+
 instance ToJSON SetInlineGameScore
 
 instance FromJSON SetInlineGameScore

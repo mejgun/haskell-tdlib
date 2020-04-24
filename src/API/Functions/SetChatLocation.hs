@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatLocation as ChatLocation
 
 data SetChatLocation = 
- SetChatLocation { location :: Maybe ChatLocation.ChatLocation, chat_id :: Maybe Int }  deriving (Show)
+ SetChatLocation { location :: Maybe ChatLocation.ChatLocation, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatLocation where
  toJSON (SetChatLocation { location = location, chat_id = chat_id }) =

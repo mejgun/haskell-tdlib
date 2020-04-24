@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data AddRecentSticker
 
+instance Eq AddRecentSticker
+
 instance ToJSON AddRecentSticker
 
 instance FromJSON AddRecentSticker

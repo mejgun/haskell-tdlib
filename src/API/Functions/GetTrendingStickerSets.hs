@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetTrendingStickerSets = 
- GetTrendingStickerSets deriving (Show)
+ GetTrendingStickerSets deriving (Show, Eq)
 
 instance T.ToJSON GetTrendingStickerSets where
  toJSON (GetTrendingStickerSets {  }) =

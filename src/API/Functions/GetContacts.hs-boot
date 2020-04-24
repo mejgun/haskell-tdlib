@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetContacts
 
+instance Eq GetContacts
+
 instance ToJSON GetContacts
 
 instance FromJSON GetContacts

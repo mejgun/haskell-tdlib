@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CallbackQueryAnswer = 
- CallbackQueryAnswer { url :: Maybe String, show_alert :: Maybe Bool, text :: Maybe String }  deriving (Show)
+ CallbackQueryAnswer { url :: Maybe String, show_alert :: Maybe Bool, text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CallbackQueryAnswer where
  toJSON (CallbackQueryAnswer { url = url, show_alert = show_alert, text = text }) =

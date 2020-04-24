@@ -19,7 +19,7 @@ data AuthorizationState =
  | AuthorizationStateReady 
  | AuthorizationStateLoggingOut 
  | AuthorizationStateClosing 
- | AuthorizationStateClosed deriving (Show)
+ | AuthorizationStateClosed deriving (Show, Eq)
 
 instance T.ToJSON AuthorizationState where
  toJSON (AuthorizationStateWaitTdlibParameters {  }) =

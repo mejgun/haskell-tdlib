@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data RemoveNotification = 
- RemoveNotification { notification_id :: Maybe Int, notification_group_id :: Maybe Int }  deriving (Show)
+ RemoveNotification { notification_id :: Maybe Int, notification_group_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveNotification where
  toJSON (RemoveNotification { notification_id = notification_id, notification_group_id = notification_group_id }) =

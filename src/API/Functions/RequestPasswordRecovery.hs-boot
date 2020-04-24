@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data RequestPasswordRecovery
 
+instance Eq RequestPasswordRecovery
+
 instance ToJSON RequestPasswordRecovery
 
 instance FromJSON RequestPasswordRecovery

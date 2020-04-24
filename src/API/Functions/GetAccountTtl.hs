@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetAccountTtl = 
- GetAccountTtl deriving (Show)
+ GetAccountTtl deriving (Show, Eq)
 
 instance T.ToJSON GetAccountTtl where
  toJSON (GetAccountTtl {  }) =

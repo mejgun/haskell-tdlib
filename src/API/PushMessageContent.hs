@@ -40,7 +40,7 @@ data PushMessageContent =
  | PushMessageContentChatDeleteMember { is_left :: Maybe Bool, is_current_user :: Maybe Bool, member_name :: Maybe String }  
  | PushMessageContentChatJoinByLink 
  | PushMessageContentMessageForwards { total_count :: Maybe Int }  
- | PushMessageContentMediaAlbum { has_videos :: Maybe Bool, has_photos :: Maybe Bool, total_count :: Maybe Int }  deriving (Show)
+ | PushMessageContentMediaAlbum { has_videos :: Maybe Bool, has_photos :: Maybe Bool, total_count :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON PushMessageContent where
  toJSON (PushMessageContentHidden { is_pinned = is_pinned }) =

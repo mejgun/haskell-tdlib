@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetDatabaseEncryptionKey = 
- SetDatabaseEncryptionKey { new_encryption_key :: Maybe String }  deriving (Show)
+ SetDatabaseEncryptionKey { new_encryption_key :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SetDatabaseEncryptionKey where
  toJSON (SetDatabaseEncryptionKey { new_encryption_key = new_encryption_key }) =

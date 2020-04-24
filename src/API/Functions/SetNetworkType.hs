@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.NetworkType as NetworkType
 
 data SetNetworkType = 
- SetNetworkType { _type :: Maybe NetworkType.NetworkType }  deriving (Show)
+ SetNetworkType { _type :: Maybe NetworkType.NetworkType }  deriving (Show, Eq)
 
 instance T.ToJSON SetNetworkType where
  toJSON (SetNetworkType { _type = _type }) =

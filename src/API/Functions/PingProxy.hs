@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data PingProxy = 
- PingProxy { proxy_id :: Maybe Int }  deriving (Show)
+ PingProxy { proxy_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON PingProxy where
  toJSON (PingProxy { proxy_id = proxy_id }) =

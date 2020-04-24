@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data CallbackQueryPayload
 
+instance Eq CallbackQueryPayload
+
 instance ToJSON CallbackQueryPayload
 
 instance FromJSON CallbackQueryPayload

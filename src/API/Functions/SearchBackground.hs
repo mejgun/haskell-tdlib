@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SearchBackground = 
- SearchBackground { name :: Maybe String }  deriving (Show)
+ SearchBackground { name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SearchBackground where
  toJSON (SearchBackground { name = name }) =

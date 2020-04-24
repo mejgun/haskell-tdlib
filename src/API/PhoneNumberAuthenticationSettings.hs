@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data PhoneNumberAuthenticationSettings = 
- PhoneNumberAuthenticationSettings { allow_sms_retriever_api :: Maybe Bool, is_current_phone_number :: Maybe Bool, allow_flash_call :: Maybe Bool }  deriving (Show)
+ PhoneNumberAuthenticationSettings { allow_sms_retriever_api :: Maybe Bool, is_current_phone_number :: Maybe Bool, allow_flash_call :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON PhoneNumberAuthenticationSettings where
  toJSON (PhoneNumberAuthenticationSettings { allow_sms_retriever_api = allow_sms_retriever_api, is_current_phone_number = is_current_phone_number, allow_flash_call = allow_flash_call }) =

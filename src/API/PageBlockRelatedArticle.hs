@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Photo as Photo
 
 data PageBlockRelatedArticle = 
- PageBlockRelatedArticle { publish_date :: Maybe Int, author :: Maybe String, photo :: Maybe Photo.Photo, description :: Maybe String, title :: Maybe String, url :: Maybe String }  deriving (Show)
+ PageBlockRelatedArticle { publish_date :: Maybe Int, author :: Maybe String, photo :: Maybe Photo.Photo, description :: Maybe String, title :: Maybe String, url :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON PageBlockRelatedArticle where
  toJSON (PageBlockRelatedArticle { publish_date = publish_date, author = author, photo = photo, description = description, title = title, url = url }) =

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetBackgroundUrl
 
+instance Eq GetBackgroundUrl
+
 instance ToJSON GetBackgroundUrl
 
 instance FromJSON GetBackgroundUrl

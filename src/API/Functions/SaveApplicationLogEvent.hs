@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.JsonValue as JsonValue
 
 data SaveApplicationLogEvent = 
- SaveApplicationLogEvent { _data :: Maybe JsonValue.JsonValue, chat_id :: Maybe Int, _type :: Maybe String }  deriving (Show)
+ SaveApplicationLogEvent { _data :: Maybe JsonValue.JsonValue, chat_id :: Maybe Int, _type :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SaveApplicationLogEvent where
  toJSON (SaveApplicationLogEvent { _data = _data, chat_id = chat_id, _type = _type }) =

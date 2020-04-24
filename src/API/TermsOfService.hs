@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
 data TermsOfService = 
- TermsOfService { show_popup :: Maybe Bool, min_user_age :: Maybe Int, text :: Maybe FormattedText.FormattedText }  deriving (Show)
+ TermsOfService { show_popup :: Maybe Bool, min_user_age :: Maybe Int, text :: Maybe FormattedText.FormattedText }  deriving (Show, Eq)
 
 instance T.ToJSON TermsOfService where
  toJSON (TermsOfService { show_popup = show_popup, min_user_age = min_user_age, text = text }) =

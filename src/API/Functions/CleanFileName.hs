@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CleanFileName = 
- CleanFileName { file_name :: Maybe String }  deriving (Show)
+ CleanFileName { file_name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CleanFileName where
  toJSON (CleanFileName { file_name = file_name }) =

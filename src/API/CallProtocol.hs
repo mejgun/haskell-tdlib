@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CallProtocol = 
- CallProtocol { library_versions :: Maybe [String], max_layer :: Maybe Int, min_layer :: Maybe Int, udp_reflector :: Maybe Bool, udp_p2p :: Maybe Bool }  deriving (Show)
+ CallProtocol { library_versions :: Maybe [String], max_layer :: Maybe Int, min_layer :: Maybe Int, udp_reflector :: Maybe Bool, udp_p2p :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON CallProtocol where
  toJSON (CallProtocol { library_versions = library_versions, max_layer = max_layer, min_layer = min_layer, udp_reflector = udp_reflector, udp_p2p = udp_p2p }) =

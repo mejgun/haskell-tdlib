@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetBotUpdatesStatus
 
+instance Eq SetBotUpdatesStatus
+
 instance ToJSON SetBotUpdatesStatus
 
 instance FromJSON SetBotUpdatesStatus

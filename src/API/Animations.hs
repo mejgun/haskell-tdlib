@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Animation as Animation
 
 data Animations = 
- Animations { animations :: Maybe [Animation.Animation] }  deriving (Show)
+ Animations { animations :: Maybe [Animation.Animation] }  deriving (Show, Eq)
 
 instance T.ToJSON Animations where
  toJSON (Animations { animations = animations }) =

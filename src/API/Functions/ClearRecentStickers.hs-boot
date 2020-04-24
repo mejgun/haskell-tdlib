@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ClearRecentStickers
 
+instance Eq ClearRecentStickers
+
 instance ToJSON ClearRecentStickers
 
 instance FromJSON ClearRecentStickers

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data TestGetDifference = 
- TestGetDifference deriving (Show)
+ TestGetDifference deriving (Show, Eq)
 
 instance T.ToJSON TestGetDifference where
  toJSON (TestGetDifference {  }) =

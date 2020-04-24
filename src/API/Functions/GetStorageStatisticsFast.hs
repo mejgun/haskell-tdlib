@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetStorageStatisticsFast = 
- GetStorageStatisticsFast deriving (Show)
+ GetStorageStatisticsFast deriving (Show, Eq)
 
 instance T.ToJSON GetStorageStatisticsFast where
  toJSON (GetStorageStatisticsFast {  }) =

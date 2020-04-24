@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data InputThumbnail = 
- InputThumbnail { height :: Maybe Int, width :: Maybe Int, thumbnail :: Maybe InputFile.InputFile }  deriving (Show)
+ InputThumbnail { height :: Maybe Int, width :: Maybe Int, thumbnail :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON InputThumbnail where
  toJSON (InputThumbnail { height = height, width = width, thumbnail = thumbnail }) =

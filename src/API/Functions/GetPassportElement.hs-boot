@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetPassportElement
 
+instance Eq GetPassportElement
+
 instance ToJSON GetPassportElement
 
 instance FromJSON GetPassportElement

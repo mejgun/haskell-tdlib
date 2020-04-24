@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetSupergroupStickerSet = 
- SetSupergroupStickerSet { sticker_set_id :: Maybe Int, supergroup_id :: Maybe Int }  deriving (Show)
+ SetSupergroupStickerSet { sticker_set_id :: Maybe Int, supergroup_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetSupergroupStickerSet where
  toJSON (SetSupergroupStickerSet { sticker_set_id = sticker_set_id, supergroup_id = supergroup_id }) =

@@ -10,7 +10,7 @@
 </span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="RegisterDevice"><span class="annot"><a href="API.Functions.RegisterDevice.html#RegisterDevice"><span class="hs-identifier hs-var">RegisterDevice</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-11"></span><span> </span><span id="RegisterDevice"><span class="annot"><a href="API.Functions.RegisterDevice.html#RegisterDevice"><span class="hs-identifier hs-var">RegisterDevice</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="other_user_ids"><span class="annot"><span class="annottext">RegisterDevice -&gt; Maybe [Int]
 </span><a href="API.Functions.RegisterDevice.html#other_user_ids"><span class="hs-identifier hs-var hs-var">other_user_ids</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="device_token"><span class="annot"><span class="annottext">RegisterDevice -&gt; Maybe DeviceToken
-</span><a href="API.Functions.RegisterDevice.html#device_token"><span class="hs-identifier hs-var hs-var">device_token</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken.DeviceToken</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679391738"><span id="local-6989586621679391740"><span id="local-6989586621679391742"><span class="annot"><span class="annottext">Int -&gt; RegisterDevice -&gt; ShowS
+</span><a href="API.Functions.RegisterDevice.html#device_token"><span class="hs-identifier hs-var hs-var">device_token</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken.DeviceToken</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679422256"><span id="local-6989586621679422258"><span id="local-6989586621679422260"><span class="annot"><span class="annottext">Int -&gt; RegisterDevice -&gt; ShowS
 [RegisterDevice] -&gt; ShowS
 RegisterDevice -&gt; String
 (Int -&gt; RegisterDevice -&gt; ShowS)
@@ -25,15 +25,23 @@ show :: RegisterDevice -&gt; String
 $cshow :: RegisterDevice -&gt; String
 showsPrec :: Int -&gt; RegisterDevice -&gt; ShowS
 $cshowsPrec :: Int -&gt; RegisterDevice -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679422251"><span id="local-6989586621679422253"><span class="annot"><span class="annottext">RegisterDevice -&gt; RegisterDevice -&gt; Bool
+(RegisterDevice -&gt; RegisterDevice -&gt; Bool)
+-&gt; (RegisterDevice -&gt; RegisterDevice -&gt; Bool) -&gt; Eq RegisterDevice
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: RegisterDevice -&gt; RegisterDevice -&gt; Bool
+$c/= :: RegisterDevice -&gt; RegisterDevice -&gt; Bool
+== :: RegisterDevice -&gt; RegisterDevice -&gt; Bool
+$c== :: RegisterDevice -&gt; RegisterDevice -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679391730"><span id="local-6989586621679391732"><span id="local-6989586621679391734"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.RegisterDevice.html#RegisterDevice"><span class="hs-identifier hs-type">RegisterDevice</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679391728"><span class="annot"><span class="annottext">toJSON :: RegisterDevice -&gt; Value
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679422243"><span id="local-6989586621679422245"><span id="local-6989586621679422247"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.RegisterDevice.html#RegisterDevice"><span class="hs-identifier hs-type">RegisterDevice</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679422241"><span class="annot"><span class="annottext">toJSON :: RegisterDevice -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.RegisterDevice.html#RegisterDevice"><span class="hs-identifier hs-type">RegisterDevice</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">other_user_ids :: RegisterDevice -&gt; Maybe [Int]
-</span><a href="API.Functions.RegisterDevice.html#other_user_ids"><span class="hs-identifier hs-var">other_user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679391726"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679391726"><span class="hs-identifier hs-var">other_user_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_token :: RegisterDevice -&gt; Maybe DeviceToken
-</span><a href="API.Functions.RegisterDevice.html#device_token"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679391725"><span class="annot"><span class="annottext">Maybe DeviceToken
-</span><a href="#local-6989586621679391725"><span class="hs-identifier hs-var">device_token</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.RegisterDevice.html#other_user_ids"><span class="hs-identifier hs-var">other_user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422239"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679422239"><span class="hs-identifier hs-var">other_user_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_token :: RegisterDevice -&gt; Maybe DeviceToken
+</span><a href="API.Functions.RegisterDevice.html#device_token"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679422238"><span class="annot"><span class="annottext">Maybe DeviceToken
+</span><a href="#local-6989586621679422238"><span class="hs-identifier hs-var">device_token</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -41,33 +49,33 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;registerDevice&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;other_user_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [Int] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679391726"><span class="hs-identifier hs-var">other_user_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;device_token&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe DeviceToken -&gt; Pair
+</span><a href="#local-6989586621679422239"><span class="hs-identifier hs-var">other_user_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;device_token&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe DeviceToken -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe DeviceToken
-</span><a href="#local-6989586621679391725"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679422238"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679391719"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.RegisterDevice.html#RegisterDevice"><span class="hs-identifier hs-type">RegisterDevice</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679391717"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser RegisterDevice
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679391715"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679391715"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679391713"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679391713"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679391712"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679391712"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679391713"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679422232"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.RegisterDevice.html#RegisterDevice"><span class="hs-identifier hs-type">RegisterDevice</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679422230"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser RegisterDevice
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679422228"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679422228"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679422226"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679422226"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679422225"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679422225"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679422226"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679391712"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679422225"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;registerDevice&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser RegisterDevice
-</span><a href="#local-6989586621679391710"><span class="hs-identifier hs-var">parseRegisterDevice</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679391715"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679422223"><span class="hs-identifier hs-var">parseRegisterDevice</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679422228"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser RegisterDevice
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679391710"><span class="hs-identifier hs-type">parseRegisterDevice</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.RegisterDevice.html#RegisterDevice"><span class="hs-identifier hs-type">RegisterDevice</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span id="local-6989586621679391710"><span class="annot"><span class="annottext">parseRegisterDevice :: Value -&gt; Parser RegisterDevice
-</span><a href="#local-6989586621679391710"><span class="hs-identifier hs-var hs-var">parseRegisterDevice</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679422223"><span class="hs-identifier hs-type">parseRegisterDevice</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.RegisterDevice.html#RegisterDevice"><span class="hs-identifier hs-type">RegisterDevice</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679422223"><span class="annot"><span class="annottext">parseRegisterDevice :: Value -&gt; Parser RegisterDevice
+</span><a href="#local-6989586621679422223"><span class="hs-identifier hs-var hs-var">parseRegisterDevice</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser RegisterDevice)
 -&gt; Value
 -&gt; Parser RegisterDevice
@@ -78,26 +86,26 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser RegisterDevice
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679391708"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679391708"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679391707"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679391707"><span class="hs-identifier hs-var">other_user_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [Int] -&gt; Parser (Maybe [Int])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679422221"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679422221"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679422220"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679422220"><span class="hs-identifier hs-var">other_user_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [Int] -&gt; Parser (Maybe [Int])
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser [Int] -&gt; Parser (Maybe [Int]))
 -&gt; Parser [Int] -&gt; Parser (Maybe [Int])
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679391708"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [Int]
+</span><a href="#local-6989586621679422221"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [Int]
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;other_user_ids&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679391706"><span class="annot"><span class="annottext">Maybe DeviceToken
-</span><a href="#local-6989586621679391706"><span class="hs-identifier hs-var">device_token</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser DeviceToken -&gt; Parser (Maybe DeviceToken)
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679422219"><span class="annot"><span class="annottext">Maybe DeviceToken
+</span><a href="#local-6989586621679422219"><span class="hs-identifier hs-var">device_token</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser DeviceToken -&gt; Parser (Maybe DeviceToken)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser DeviceToken -&gt; Parser (Maybe DeviceToken))
 -&gt; Parser DeviceToken -&gt; Parser (Maybe DeviceToken)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679391708"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser DeviceToken
+</span><a href="#local-6989586621679422221"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser DeviceToken
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;device_token&quot;</span></span><span>
 </span><span id="line-28"></span><span>    </span><span class="annot"><span class="annottext">RegisterDevice -&gt; Parser RegisterDevice
@@ -108,6 +116,6 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">RegisterDevice :: Maybe [Int] -&gt; Maybe DeviceToken -&gt; RegisterDevice
 </span><a href="API.Functions.RegisterDevice.html#RegisterDevice"><span class="hs-identifier hs-type hs-type">RegisterDevice</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">other_user_ids :: Maybe [Int]
 </span><a href="API.Functions.RegisterDevice.html#other_user_ids"><span class="hs-identifier hs-var">other_user_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679391707"><span class="hs-identifier hs-var">other_user_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_token :: Maybe DeviceToken
+</span><a href="#local-6989586621679422220"><span class="hs-identifier hs-var">other_user_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_token :: Maybe DeviceToken
 </span><a href="API.Functions.RegisterDevice.html#device_token"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe DeviceToken
-</span><a href="#local-6989586621679391706"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679422219"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

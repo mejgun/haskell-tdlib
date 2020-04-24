@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SendMessageAlbum
 
+instance Eq SendMessageAlbum
+
 instance ToJSON SendMessageAlbum
 
 instance FromJSON SendMessageAlbum

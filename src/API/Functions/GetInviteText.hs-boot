@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetInviteText
 
+instance Eq GetInviteText
+
 instance ToJSON GetInviteText
 
 instance FromJSON GetInviteText

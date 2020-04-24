@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ProxyType as ProxyType
 
 data AddProxy = 
- AddProxy { _type :: Maybe ProxyType.ProxyType, enable :: Maybe Bool, port :: Maybe Int, server :: Maybe String }  deriving (Show)
+ AddProxy { _type :: Maybe ProxyType.ProxyType, enable :: Maybe Bool, port :: Maybe Int, server :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON AddProxy where
  toJSON (AddProxy { _type = _type, enable = enable, port = port, server = server }) =

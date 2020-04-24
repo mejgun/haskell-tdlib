@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
 
 data DatedFile = 
- DatedFile { date :: Maybe Int, file :: Maybe File.File }  deriving (Show)
+ DatedFile { date :: Maybe Int, file :: Maybe File.File }  deriving (Show, Eq)
 
 instance T.ToJSON DatedFile where
  toJSON (DatedFile { date = date, file = file }) =

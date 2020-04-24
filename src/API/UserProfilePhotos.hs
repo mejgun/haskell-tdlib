@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.UserProfilePhoto as UserProfilePhoto
 
 data UserProfilePhotos = 
- UserProfilePhotos { photos :: Maybe [UserProfilePhoto.UserProfilePhoto], total_count :: Maybe Int }  deriving (Show)
+ UserProfilePhotos { photos :: Maybe [UserProfilePhoto.UserProfilePhoto], total_count :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON UserProfilePhotos where
  toJSON (UserProfilePhotos { photos = photos, total_count = total_count }) =

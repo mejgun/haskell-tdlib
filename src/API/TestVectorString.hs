@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data TestVectorString = 
- TestVectorString { value :: Maybe [String] }  deriving (Show)
+ TestVectorString { value :: Maybe [String] }  deriving (Show, Eq)
 
 instance T.ToJSON TestVectorString where
  toJSON (TestVectorString { value = value }) =

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetChatPermissions
 
+instance Eq SetChatPermissions
+
 instance ToJSON SetChatPermissions
 
 instance FromJSON SetChatPermissions

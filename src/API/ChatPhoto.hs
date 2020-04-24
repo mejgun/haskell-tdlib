@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
 
 data ChatPhoto = 
- ChatPhoto { big :: Maybe File.File, small :: Maybe File.File }  deriving (Show)
+ ChatPhoto { big :: Maybe File.File, small :: Maybe File.File }  deriving (Show, Eq)
 
 instance T.ToJSON ChatPhoto where
  toJSON (ChatPhoto { big = big, small = small }) =

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ViewTrendingStickerSets = 
- ViewTrendingStickerSets { sticker_set_ids :: Maybe [Int] }  deriving (Show)
+ ViewTrendingStickerSets { sticker_set_ids :: Maybe [Int] }  deriving (Show, Eq)
 
 instance T.ToJSON ViewTrendingStickerSets where
  toJSON (ViewTrendingStickerSets { sticker_set_ids = sticker_set_ids }) =

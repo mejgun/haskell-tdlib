@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data AnswerCustomQuery = 
- AnswerCustomQuery { _data :: Maybe String, custom_query_id :: Maybe Int }  deriving (Show)
+ AnswerCustomQuery { _data :: Maybe String, custom_query_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON AnswerCustomQuery where
  toJSON (AnswerCustomQuery { _data = _data, custom_query_id = custom_query_id }) =

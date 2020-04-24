@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data WriteGeneratedFilePart = 
- WriteGeneratedFilePart { _data :: Maybe String, offset :: Maybe Int, generation_id :: Maybe Int }  deriving (Show)
+ WriteGeneratedFilePart { _data :: Maybe String, offset :: Maybe Int, generation_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON WriteGeneratedFilePart where
  toJSON (WriteGeneratedFilePart { _data = _data, offset = offset, generation_id = generation_id }) =

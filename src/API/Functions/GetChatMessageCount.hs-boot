@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetChatMessageCount
 
+instance Eq GetChatMessageCount
+
 instance ToJSON GetChatMessageCount
 
 instance FromJSON GetChatMessageCount

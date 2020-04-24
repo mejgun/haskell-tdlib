@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TopChatCategory as TopChatCategory
 
 data GetTopChats = 
- GetTopChats { limit :: Maybe Int, category :: Maybe TopChatCategory.TopChatCategory }  deriving (Show)
+ GetTopChats { limit :: Maybe Int, category :: Maybe TopChatCategory.TopChatCategory }  deriving (Show, Eq)
 
 instance T.ToJSON GetTopChats where
  toJSON (GetTopChats { limit = limit, category = category }) =

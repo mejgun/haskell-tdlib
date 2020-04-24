@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data DeleteSavedCredentials
 
+instance Eq DeleteSavedCredentials
+
 instance ToJSON DeleteSavedCredentials
 
 instance FromJSON DeleteSavedCredentials

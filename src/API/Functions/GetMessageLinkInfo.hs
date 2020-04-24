@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetMessageLinkInfo = 
- GetMessageLinkInfo { url :: Maybe String }  deriving (Show)
+ GetMessageLinkInfo { url :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetMessageLinkInfo where
  toJSON (GetMessageLinkInfo { url = url }) =

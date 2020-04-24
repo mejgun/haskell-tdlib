@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 
 data LoginUrlInfo = 
  LoginUrlInfoOpen { skip_confirm :: Maybe Bool, url :: Maybe String }  
- | LoginUrlInfoRequestConfirmation { request_write_access :: Maybe Bool, bot_user_id :: Maybe Int, domain :: Maybe String, url :: Maybe String }  deriving (Show)
+ | LoginUrlInfoRequestConfirmation { request_write_access :: Maybe Bool, bot_user_id :: Maybe Int, domain :: Maybe String, url :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON LoginUrlInfo where
  toJSON (LoginUrlInfoOpen { skip_confirm = skip_confirm, url = url }) =

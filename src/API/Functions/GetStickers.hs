@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetStickers = 
- GetStickers { limit :: Maybe Int, emoji :: Maybe String }  deriving (Show)
+ GetStickers { limit :: Maybe Int, emoji :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetStickers where
  toJSON (GetStickers { limit = limit, emoji = emoji }) =

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data OpenMessageContent = 
- OpenMessageContent { message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ OpenMessageContent { message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON OpenMessageContent where
  toJSON (OpenMessageContent { message_id = message_id, chat_id = chat_id }) =

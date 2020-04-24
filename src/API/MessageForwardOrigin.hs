@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 data MessageForwardOrigin = 
  MessageForwardOriginUser { sender_user_id :: Maybe Int }  
  | MessageForwardOriginHiddenUser { sender_name :: Maybe String }  
- | MessageForwardOriginChannel { author_signature :: Maybe String, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ | MessageForwardOriginChannel { author_signature :: Maybe String, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON MessageForwardOrigin where
  toJSON (MessageForwardOriginUser { sender_user_id = sender_user_id }) =

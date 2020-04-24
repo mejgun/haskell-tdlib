@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data TransferChatOwnership
 
+instance Eq TransferChatOwnership
+
 instance ToJSON TransferChatOwnership
 
 instance FromJSON TransferChatOwnership

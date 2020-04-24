@@ -12,7 +12,7 @@ data ChatMembersFilter =
  | ChatMembersFilterMembers 
  | ChatMembersFilterRestricted 
  | ChatMembersFilterBanned 
- | ChatMembersFilterBots deriving (Show)
+ | ChatMembersFilterBots deriving (Show, Eq)
 
 instance T.ToJSON ChatMembersFilter where
  toJSON (ChatMembersFilterContacts {  }) =

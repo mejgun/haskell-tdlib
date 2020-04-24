@@ -10,7 +10,7 @@ data OptionValue =
  OptionValueBoolean { __value :: Maybe Bool }  
  | OptionValueEmpty 
  | OptionValueInteger { _value :: Maybe Int }  
- | OptionValueString { value :: Maybe String }  deriving (Show)
+ | OptionValueString { value :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON OptionValue where
  toJSON (OptionValueBoolean { __value = __value }) =

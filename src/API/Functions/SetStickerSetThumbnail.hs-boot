@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetStickerSetThumbnail
 
+instance Eq SetStickerSetThumbnail
+
 instance ToJSON SetStickerSetThumbnail
 
 instance FromJSON SetStickerSetThumbnail

@@ -8,7 +8,7 @@
 </span><span id="line-8"></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="SendChatScreenshotTakenNotification"><span class="annot"><a href="API.Functions.SendChatScreenshotTakenNotification.html#SendChatScreenshotTakenNotification"><span class="hs-identifier hs-var">SendChatScreenshotTakenNotification</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-10"></span><span> </span><span id="SendChatScreenshotTakenNotification"><span class="annot"><a href="API.Functions.SendChatScreenshotTakenNotification.html#SendChatScreenshotTakenNotification"><span class="hs-identifier hs-var">SendChatScreenshotTakenNotification</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="chat_id"><span class="annot"><span class="annottext">SendChatScreenshotTakenNotification -&gt; Maybe Int
-</span><a href="API.Functions.SendChatScreenshotTakenNotification.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679394915"><span id="local-6989586621679394917"><span id="local-6989586621679394919"><span class="annot"><span class="annottext">Int -&gt; SendChatScreenshotTakenNotification -&gt; ShowS
+</span><a href="API.Functions.SendChatScreenshotTakenNotification.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679425709"><span id="local-6989586621679425711"><span id="local-6989586621679425713"><span class="annot"><span class="annottext">Int -&gt; SendChatScreenshotTakenNotification -&gt; ShowS
 [SendChatScreenshotTakenNotification] -&gt; ShowS
 SendChatScreenshotTakenNotification -&gt; String
 (Int -&gt; SendChatScreenshotTakenNotification -&gt; ShowS)
@@ -23,13 +23,29 @@ show :: SendChatScreenshotTakenNotification -&gt; String
 $cshow :: SendChatScreenshotTakenNotification -&gt; String
 showsPrec :: Int -&gt; SendChatScreenshotTakenNotification -&gt; ShowS
 $cshowsPrec :: Int -&gt; SendChatScreenshotTakenNotification -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679425704"><span id="local-6989586621679425706"><span class="annot"><span class="annottext">SendChatScreenshotTakenNotification
+-&gt; SendChatScreenshotTakenNotification -&gt; Bool
+(SendChatScreenshotTakenNotification
+ -&gt; SendChatScreenshotTakenNotification -&gt; Bool)
+-&gt; (SendChatScreenshotTakenNotification
+    -&gt; SendChatScreenshotTakenNotification -&gt; Bool)
+-&gt; Eq SendChatScreenshotTakenNotification
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: SendChatScreenshotTakenNotification
+-&gt; SendChatScreenshotTakenNotification -&gt; Bool
+$c/= :: SendChatScreenshotTakenNotification
+-&gt; SendChatScreenshotTakenNotification -&gt; Bool
+== :: SendChatScreenshotTakenNotification
+-&gt; SendChatScreenshotTakenNotification -&gt; Bool
+$c== :: SendChatScreenshotTakenNotification
+-&gt; SendChatScreenshotTakenNotification -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679394907"><span id="local-6989586621679394909"><span id="local-6989586621679394911"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SendChatScreenshotTakenNotification.html#SendChatScreenshotTakenNotification"><span class="hs-identifier hs-type">SendChatScreenshotTakenNotification</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679394905"><span class="annot"><span class="annottext">toJSON :: SendChatScreenshotTakenNotification -&gt; Value
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679425696"><span id="local-6989586621679425698"><span id="local-6989586621679425700"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SendChatScreenshotTakenNotification.html#SendChatScreenshotTakenNotification"><span class="hs-identifier hs-type">SendChatScreenshotTakenNotification</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679425694"><span class="annot"><span class="annottext">toJSON :: SendChatScreenshotTakenNotification -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.SendChatScreenshotTakenNotification.html#SendChatScreenshotTakenNotification"><span class="hs-identifier hs-type">SendChatScreenshotTakenNotification</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_id :: SendChatScreenshotTakenNotification -&gt; Maybe Int
-</span><a href="API.Functions.SendChatScreenshotTakenNotification.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679394903"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679394903"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.SendChatScreenshotTakenNotification.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425692"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679425692"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -37,30 +53,30 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;sendChatScreenshotTakenNotification&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679394903"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679425692"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679394897"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SendChatScreenshotTakenNotification.html#SendChatScreenshotTakenNotification"><span class="hs-identifier hs-type">SendChatScreenshotTakenNotification</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679394895"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SendChatScreenshotTakenNotification
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679394893"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679394893"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679394891"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679394891"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679394890"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679394890"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679394891"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679425686"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SendChatScreenshotTakenNotification.html#SendChatScreenshotTakenNotification"><span class="hs-identifier hs-type">SendChatScreenshotTakenNotification</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679425684"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SendChatScreenshotTakenNotification
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679425682"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679425682"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679425680"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679425680"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679425679"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679425679"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679425680"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679394890"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679425679"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;sendChatScreenshotTakenNotification&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SendChatScreenshotTakenNotification
-</span><a href="#local-6989586621679394888"><span class="hs-identifier hs-var">parseSendChatScreenshotTakenNotification</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679394893"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679425677"><span class="hs-identifier hs-var">parseSendChatScreenshotTakenNotification</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679425682"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SendChatScreenshotTakenNotification
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679394888"><span class="hs-identifier hs-type">parseSendChatScreenshotTakenNotification</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SendChatScreenshotTakenNotification.html#SendChatScreenshotTakenNotification"><span class="hs-identifier hs-type">SendChatScreenshotTakenNotification</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679394888"><span class="annot"><span class="annottext">parseSendChatScreenshotTakenNotification :: Value -&gt; Parser SendChatScreenshotTakenNotification
-</span><a href="#local-6989586621679394888"><span class="hs-identifier hs-var hs-var">parseSendChatScreenshotTakenNotification</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679425677"><span class="hs-identifier hs-type">parseSendChatScreenshotTakenNotification</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SendChatScreenshotTakenNotification.html#SendChatScreenshotTakenNotification"><span class="hs-identifier hs-type">SendChatScreenshotTakenNotification</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679425677"><span class="annot"><span class="annottext">parseSendChatScreenshotTakenNotification :: Value -&gt; Parser SendChatScreenshotTakenNotification
+</span><a href="#local-6989586621679425677"><span class="hs-identifier hs-var hs-var">parseSendChatScreenshotTakenNotification</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SendChatScreenshotTakenNotification)
 -&gt; Value
 -&gt; Parser SendChatScreenshotTakenNotification
@@ -71,16 +87,16 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SendChatScreenshotTakenNotification
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679394886"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679394886"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679394885"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679394885"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679425675"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679425675"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679425674"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679425674"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679394886"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679425675"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span>
 </span><span id="line-26"></span><span>    </span><span class="annot"><span class="annottext">SendChatScreenshotTakenNotification
@@ -94,4 +110,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SendChatScreenshotTakenNotification :: Maybe Int -&gt; SendChatScreenshotTakenNotification
 </span><a href="API.Functions.SendChatScreenshotTakenNotification.html#SendChatScreenshotTakenNotification"><span class="hs-identifier hs-type hs-type">SendChatScreenshotTakenNotification</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
 </span><a href="API.Functions.SendChatScreenshotTakenNotification.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679394885"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679425674"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

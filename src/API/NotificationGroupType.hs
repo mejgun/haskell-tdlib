@@ -10,7 +10,7 @@ data NotificationGroupType =
  NotificationGroupTypeMessages 
  | NotificationGroupTypeMentions 
  | NotificationGroupTypeSecretChat 
- | NotificationGroupTypeCalls deriving (Show)
+ | NotificationGroupTypeCalls deriving (Show, Eq)
 
 instance T.ToJSON NotificationGroupType where
  toJSON (NotificationGroupTypeMessages {  }) =

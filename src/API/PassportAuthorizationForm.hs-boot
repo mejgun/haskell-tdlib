@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data PassportAuthorizationForm
 
+instance Eq PassportAuthorizationForm
+
 instance ToJSON PassportAuthorizationForm
 
 instance FromJSON PassportAuthorizationForm

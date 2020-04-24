@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetDeepLinkInfo
 
+instance Eq GetDeepLinkInfo
+
 instance ToJSON GetDeepLinkInfo
 
 instance FromJSON GetDeepLinkInfo

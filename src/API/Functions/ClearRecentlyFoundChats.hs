@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ClearRecentlyFoundChats = 
- ClearRecentlyFoundChats deriving (Show)
+ ClearRecentlyFoundChats deriving (Show, Eq)
 
 instance T.ToJSON ClearRecentlyFoundChats where
  toJSON (ClearRecentlyFoundChats {  }) =

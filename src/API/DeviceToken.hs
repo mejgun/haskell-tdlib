@@ -17,7 +17,7 @@ data DeviceToken =
  | DeviceTokenSimplePush { endpoint :: Maybe String }  
  | DeviceTokenUbuntuPush { token :: Maybe String }  
  | DeviceTokenBlackBerryPush { token :: Maybe String }  
- | DeviceTokenTizenPush { reg_id :: Maybe String }  deriving (Show)
+ | DeviceTokenTizenPush { reg_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON DeviceToken where
  toJSON (DeviceTokenFirebaseCloudMessaging { encrypt = encrypt, token = token }) =

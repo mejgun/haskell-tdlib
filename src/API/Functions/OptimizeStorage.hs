@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FileType as FileType
 
 data OptimizeStorage = 
- OptimizeStorage { chat_limit :: Maybe Int, return_deleted_file_statistics :: Maybe Bool, exclude_chat_ids :: Maybe [Int], chat_ids :: Maybe [Int], file_types :: Maybe [FileType.FileType], immunity_delay :: Maybe Int, count :: Maybe Int, ttl :: Maybe Int, size :: Maybe Int }  deriving (Show)
+ OptimizeStorage { chat_limit :: Maybe Int, return_deleted_file_statistics :: Maybe Bool, exclude_chat_ids :: Maybe [Int], chat_ids :: Maybe [Int], file_types :: Maybe [FileType.FileType], immunity_delay :: Maybe Int, count :: Maybe Int, ttl :: Maybe Int, size :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON OptimizeStorage where
  toJSON (OptimizeStorage { chat_limit = chat_limit, return_deleted_file_statistics = return_deleted_file_statistics, exclude_chat_ids = exclude_chat_ids, chat_ids = chat_ids, file_types = file_types, immunity_delay = immunity_delay, count = count, ttl = ttl, size = size }) =

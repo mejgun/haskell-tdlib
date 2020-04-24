@@ -7,7 +7,7 @@
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
 </span><span id="line-8"></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="GetCurrentState"><span class="annot"><a href="API.Functions.GetCurrentState.html#GetCurrentState"><span class="hs-identifier hs-var">GetCurrentState</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-10"></span><span> </span><span id="GetCurrentState"><span class="annot"><a href="API.Functions.GetCurrentState.html#GetCurrentState"><span class="hs-identifier hs-var">GetCurrentState</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679385720"><span id="local-6989586621679385722"><span id="local-6989586621679385724"><span class="annot"><span class="annottext">Int -&gt; GetCurrentState -&gt; ShowS
+</span><span id="line-10"></span><span> </span><span id="GetCurrentState"><span class="annot"><a href="API.Functions.GetCurrentState.html#GetCurrentState"><span class="hs-identifier hs-var">GetCurrentState</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679415710"><span id="local-6989586621679415712"><span id="local-6989586621679415714"><span class="annot"><span class="annottext">Int -&gt; GetCurrentState -&gt; ShowS
 [GetCurrentState] -&gt; ShowS
 GetCurrentState -&gt; String
 (Int -&gt; GetCurrentState -&gt; ShowS)
@@ -22,10 +22,19 @@ show :: GetCurrentState -&gt; String
 $cshow :: GetCurrentState -&gt; String
 showsPrec :: Int -&gt; GetCurrentState -&gt; ShowS
 $cshowsPrec :: Int -&gt; GetCurrentState -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679415705"><span id="local-6989586621679415707"><span class="annot"><span class="annottext">GetCurrentState -&gt; GetCurrentState -&gt; Bool
+(GetCurrentState -&gt; GetCurrentState -&gt; Bool)
+-&gt; (GetCurrentState -&gt; GetCurrentState -&gt; Bool)
+-&gt; Eq GetCurrentState
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: GetCurrentState -&gt; GetCurrentState -&gt; Bool
+$c/= :: GetCurrentState -&gt; GetCurrentState -&gt; Bool
+== :: GetCurrentState -&gt; GetCurrentState -&gt; Bool
+$c== :: GetCurrentState -&gt; GetCurrentState -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679385712"><span id="local-6989586621679385714"><span id="local-6989586621679385716"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetCurrentState.html#GetCurrentState"><span class="hs-identifier hs-type">GetCurrentState</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679385710"><span class="annot"><span class="annottext">toJSON :: GetCurrentState -&gt; Value
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679415697"><span id="local-6989586621679415699"><span id="local-6989586621679415701"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetCurrentState.html#GetCurrentState"><span class="hs-identifier hs-type">GetCurrentState</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679415695"><span class="annot"><span class="annottext">toJSON :: GetCurrentState -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.GetCurrentState.html#GetCurrentState"><span class="hs-identifier hs-type">GetCurrentState</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -33,28 +42,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;getCurrentState&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679385703"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetCurrentState.html#GetCurrentState"><span class="hs-identifier hs-type">GetCurrentState</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679385701"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetCurrentState
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679385699"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679385699"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679385697"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679385697"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679385696"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679385696"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679385697"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679415688"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetCurrentState.html#GetCurrentState"><span class="hs-identifier hs-type">GetCurrentState</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679415686"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetCurrentState
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679415684"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679415684"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679415682"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679415682"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679415681"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679415681"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679415682"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679385696"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679415681"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;getCurrentState&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetCurrentState
-</span><a href="#local-6989586621679385694"><span class="hs-identifier hs-var">parseGetCurrentState</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679385699"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679415679"><span class="hs-identifier hs-var">parseGetCurrentState</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679415684"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetCurrentState
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679385694"><span class="hs-identifier hs-type">parseGetCurrentState</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetCurrentState.html#GetCurrentState"><span class="hs-identifier hs-type">GetCurrentState</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679385694"><span class="annot"><span class="annottext">parseGetCurrentState :: Value -&gt; Parser GetCurrentState
-</span><a href="#local-6989586621679385694"><span class="hs-identifier hs-var hs-var">parseGetCurrentState</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679415679"><span class="hs-identifier hs-type">parseGetCurrentState</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetCurrentState.html#GetCurrentState"><span class="hs-identifier hs-type">GetCurrentState</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679415679"><span class="annot"><span class="annottext">parseGetCurrentState :: Value -&gt; Parser GetCurrentState
+</span><a href="#local-6989586621679415679"><span class="hs-identifier hs-var hs-var">parseGetCurrentState</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GetCurrentState)
 -&gt; Value
 -&gt; Parser GetCurrentState
@@ -65,8 +74,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser GetCurrentState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679385692"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679385692"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679415677"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679415677"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-25"></span><span>    </span><span class="annot"><span class="annottext">GetCurrentState -&gt; Parser GetCurrentState
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(GetCurrentState -&gt; Parser GetCurrentState)

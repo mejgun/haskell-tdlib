@@ -10,7 +10,7 @@ import {-# SOURCE #-} qualified API.ProfilePhoto as ProfilePhoto
 import {-# SOURCE #-} qualified API.UserStatus as UserStatus
 
 data User = 
- User { language_code :: Maybe String, _type :: Maybe UserType.UserType, have_access :: Maybe Bool, is_scam :: Maybe Bool, restriction_reason :: Maybe String, is_support :: Maybe Bool, is_verified :: Maybe Bool, is_mutual_contact :: Maybe Bool, is_contact :: Maybe Bool, profile_photo :: Maybe ProfilePhoto.ProfilePhoto, status :: Maybe UserStatus.UserStatus, phone_number :: Maybe String, username :: Maybe String, last_name :: Maybe String, first_name :: Maybe String, _id :: Maybe Int }  deriving (Show)
+ User { language_code :: Maybe String, _type :: Maybe UserType.UserType, have_access :: Maybe Bool, is_scam :: Maybe Bool, restriction_reason :: Maybe String, is_support :: Maybe Bool, is_verified :: Maybe Bool, is_mutual_contact :: Maybe Bool, is_contact :: Maybe Bool, profile_photo :: Maybe ProfilePhoto.ProfilePhoto, status :: Maybe UserStatus.UserStatus, phone_number :: Maybe String, username :: Maybe String, last_name :: Maybe String, first_name :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON User where
  toJSON (User { language_code = language_code, _type = _type, have_access = have_access, is_scam = is_scam, restriction_reason = restriction_reason, is_support = is_support, is_verified = is_verified, is_mutual_contact = is_mutual_contact, is_contact = is_contact, profile_photo = profile_photo, status = status, phone_number = phone_number, username = username, last_name = last_name, first_name = first_name, _id = _id }) =

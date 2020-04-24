@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Location as Location
 
 data GetInlineQueryResults = 
- GetInlineQueryResults { offset :: Maybe String, query :: Maybe String, user_location :: Maybe Location.Location, chat_id :: Maybe Int, bot_user_id :: Maybe Int }  deriving (Show)
+ GetInlineQueryResults { offset :: Maybe String, query :: Maybe String, user_location :: Maybe Location.Location, chat_id :: Maybe Int, bot_user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetInlineQueryResults where
  toJSON (GetInlineQueryResults { offset = offset, query = query, user_location = user_location, chat_id = chat_id, bot_user_id = bot_user_id }) =

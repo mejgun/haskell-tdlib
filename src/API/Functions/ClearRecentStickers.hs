@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ClearRecentStickers = 
- ClearRecentStickers { is_attached :: Maybe Bool }  deriving (Show)
+ ClearRecentStickers { is_attached :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON ClearRecentStickers where
  toJSON (ClearRecentStickers { is_attached = is_attached }) =

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatLocation as ChatLocation
 
 data CreateNewSupergroupChat = 
- CreateNewSupergroupChat { location :: Maybe ChatLocation.ChatLocation, description :: Maybe String, is_channel :: Maybe Bool, title :: Maybe String }  deriving (Show)
+ CreateNewSupergroupChat { location :: Maybe ChatLocation.ChatLocation, description :: Maybe String, is_channel :: Maybe Bool, title :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CreateNewSupergroupChat where
  toJSON (CreateNewSupergroupChat { location = location, description = description, is_channel = is_channel, title = title }) =

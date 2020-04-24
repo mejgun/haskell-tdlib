@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ClearAllDraftMessages = 
- ClearAllDraftMessages { exclude_secret_chats :: Maybe Bool }  deriving (Show)
+ ClearAllDraftMessages { exclude_secret_chats :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON ClearAllDraftMessages where
  toJSON (ClearAllDraftMessages { exclude_secret_chats = exclude_secret_chats }) =

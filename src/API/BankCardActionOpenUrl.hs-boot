@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data BankCardActionOpenUrl
 
+instance Eq BankCardActionOpenUrl
+
 instance ToJSON BankCardActionOpenUrl
 
 instance FromJSON BankCardActionOpenUrl

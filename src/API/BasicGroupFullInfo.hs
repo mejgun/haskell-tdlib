@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatMember as ChatMember
 
 data BasicGroupFullInfo = 
- BasicGroupFullInfo { invite_link :: Maybe String, members :: Maybe [ChatMember.ChatMember], creator_user_id :: Maybe Int, description :: Maybe String }  deriving (Show)
+ BasicGroupFullInfo { invite_link :: Maybe String, members :: Maybe [ChatMember.ChatMember], creator_user_id :: Maybe Int, description :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON BasicGroupFullInfo where
  toJSON (BasicGroupFullInfo { invite_link = invite_link, members = members, creator_user_id = creator_user_id, description = description }) =

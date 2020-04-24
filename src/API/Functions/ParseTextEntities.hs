@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TextParseMode as TextParseMode
 
 data ParseTextEntities = 
- ParseTextEntities { parse_mode :: Maybe TextParseMode.TextParseMode, text :: Maybe String }  deriving (Show)
+ ParseTextEntities { parse_mode :: Maybe TextParseMode.TextParseMode, text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON ParseTextEntities where
  toJSON (ParseTextEntities { parse_mode = parse_mode, text = text }) =

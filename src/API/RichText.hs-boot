@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data RichText
 
+instance Eq RichText
+
 instance ToJSON RichText
 
 instance FromJSON RichText

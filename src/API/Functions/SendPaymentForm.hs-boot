@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SendPaymentForm
 
+instance Eq SendPaymentForm
+
 instance ToJSON SendPaymentForm
 
 instance FromJSON SendPaymentForm

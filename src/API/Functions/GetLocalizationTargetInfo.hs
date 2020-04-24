@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetLocalizationTargetInfo = 
- GetLocalizationTargetInfo { only_local :: Maybe Bool }  deriving (Show)
+ GetLocalizationTargetInfo { only_local :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON GetLocalizationTargetInfo where
  toJSON (GetLocalizationTargetInfo { only_local = only_local }) =

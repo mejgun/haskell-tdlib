@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data EmailAddressAuthenticationCodeInfo
 
+instance Eq EmailAddressAuthenticationCodeInfo
+
 instance ToJSON EmailAddressAuthenticationCodeInfo
 
 instance FromJSON EmailAddressAuthenticationCodeInfo

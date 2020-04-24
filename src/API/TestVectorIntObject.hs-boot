@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data TestVectorIntObject
 
+instance Eq TestVectorIntObject
+
 instance ToJSON TestVectorIntObject
 
 instance FromJSON TestVectorIntObject

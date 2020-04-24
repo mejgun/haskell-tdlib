@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetChatNotificationSettingsExceptions
 
+instance Eq GetChatNotificationSettingsExceptions
+
 instance ToJSON GetChatNotificationSettingsExceptions
 
 instance FromJSON GetChatNotificationSettingsExceptions

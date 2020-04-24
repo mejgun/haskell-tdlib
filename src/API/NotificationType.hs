@@ -12,7 +12,7 @@ data NotificationType =
  NotificationTypeNewMessage { message :: Maybe Message.Message }  
  | NotificationTypeNewSecretChat 
  | NotificationTypeNewCall { call_id :: Maybe Int }  
- | NotificationTypeNewPushMessage { content :: Maybe PushMessageContent.PushMessageContent, is_outgoing :: Maybe Bool, sender_name :: Maybe String, sender_user_id :: Maybe Int, message_id :: Maybe Int }  deriving (Show)
+ | NotificationTypeNewPushMessage { content :: Maybe PushMessageContent.PushMessageContent, is_outgoing :: Maybe Bool, sender_name :: Maybe String, sender_user_id :: Maybe Int, message_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON NotificationType where
  toJSON (NotificationTypeNewMessage { message = message }) =

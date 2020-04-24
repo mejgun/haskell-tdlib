@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 
 data PollType = 
  PollTypeRegular { allow_multiple_answers :: Maybe Bool }  
- | PollTypeQuiz { correct_option_id :: Maybe Int }  deriving (Show)
+ | PollTypeQuiz { correct_option_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON PollType where
  toJSON (PollTypeRegular { allow_multiple_answers = allow_multiple_answers }) =

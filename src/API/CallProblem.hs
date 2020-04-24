@@ -13,7 +13,7 @@ data CallProblem =
  | CallProblemDistortedSpeech 
  | CallProblemSilentLocal 
  | CallProblemSilentRemote 
- | CallProblemDropped deriving (Show)
+ | CallProblemDropped deriving (Show, Eq)
 
 instance T.ToJSON CallProblem where
  toJSON (CallProblemEcho {  }) =

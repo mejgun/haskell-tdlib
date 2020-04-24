@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Session as Session
 
 data Sessions = 
- Sessions { sessions :: Maybe [Session.Session] }  deriving (Show)
+ Sessions { sessions :: Maybe [Session.Session] }  deriving (Show, Eq)
 
 instance T.ToJSON Sessions where
  toJSON (Sessions { sessions = sessions }) =

@@ -23,7 +23,7 @@ data TextEntityType =
  | TextEntityTypePre 
  | TextEntityTypePreCode { language :: Maybe String }  
  | TextEntityTypeTextUrl { url :: Maybe String }  
- | TextEntityTypeMentionName { user_id :: Maybe Int }  deriving (Show)
+ | TextEntityTypeMentionName { user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON TextEntityType where
  toJSON (TextEntityTypeMention {  }) =

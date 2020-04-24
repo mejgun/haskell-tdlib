@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PageBlock as PageBlock
 
 data PageBlockListItem = 
- PageBlockListItem { page_blocks :: Maybe [PageBlock.PageBlock], label :: Maybe String }  deriving (Show)
+ PageBlockListItem { page_blocks :: Maybe [PageBlock.PageBlock], label :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON PageBlockListItem where
  toJSON (PageBlockListItem { page_blocks = page_blocks, label = label }) =

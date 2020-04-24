@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetWebPagePreview
 
+instance Eq GetWebPagePreview
+
 instance ToJSON GetWebPagePreview
 
 instance FromJSON GetWebPagePreview

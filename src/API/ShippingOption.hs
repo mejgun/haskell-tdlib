@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LabeledPricePart as LabeledPricePart
 
 data ShippingOption = 
- ShippingOption { price_parts :: Maybe [LabeledPricePart.LabeledPricePart], title :: Maybe String, _id :: Maybe String }  deriving (Show)
+ ShippingOption { price_parts :: Maybe [LabeledPricePart.LabeledPricePart], title :: Maybe String, _id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON ShippingOption where
  toJSON (ShippingOption { price_parts = price_parts, title = title, _id = _id }) =

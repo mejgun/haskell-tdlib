@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetGroupsInCommon = 
- GetGroupsInCommon { limit :: Maybe Int, offset_chat_id :: Maybe Int, user_id :: Maybe Int }  deriving (Show)
+ GetGroupsInCommon { limit :: Maybe Int, offset_chat_id :: Maybe Int, user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetGroupsInCommon where
  toJSON (GetGroupsInCommon { limit = limit, offset_chat_id = offset_chat_id, user_id = user_id }) =

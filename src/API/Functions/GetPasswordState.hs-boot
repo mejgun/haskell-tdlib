@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetPasswordState
 
+instance Eq GetPasswordState
+
 instance ToJSON GetPasswordState
 
 instance FromJSON GetPasswordState

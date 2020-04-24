@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data TemporaryPasswordState
 
+instance Eq TemporaryPasswordState
+
 instance ToJSON TemporaryPasswordState
 
 instance FromJSON TemporaryPasswordState

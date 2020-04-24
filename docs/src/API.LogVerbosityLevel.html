@@ -8,7 +8,7 @@
 </span><span id="line-8"></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="LogVerbosityLevel"><span class="annot"><a href="API.LogVerbosityLevel.html#LogVerbosityLevel"><span class="hs-identifier hs-var">LogVerbosityLevel</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-10"></span><span> </span><span id="LogVerbosityLevel"><span class="annot"><a href="API.LogVerbosityLevel.html#LogVerbosityLevel"><span class="hs-identifier hs-var">LogVerbosityLevel</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="verbosity_level"><span class="annot"><span class="annottext">LogVerbosityLevel -&gt; Maybe Int
-</span><a href="API.LogVerbosityLevel.html#verbosity_level"><span class="hs-identifier hs-var hs-var">verbosity_level</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679404136"><span id="local-6989586621679404138"><span id="local-6989586621679404140"><span class="annot"><span class="annottext">Int -&gt; LogVerbosityLevel -&gt; ShowS
+</span><a href="API.LogVerbosityLevel.html#verbosity_level"><span class="hs-identifier hs-var hs-var">verbosity_level</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679435680"><span id="local-6989586621679435682"><span id="local-6989586621679435684"><span class="annot"><span class="annottext">Int -&gt; LogVerbosityLevel -&gt; ShowS
 [LogVerbosityLevel] -&gt; ShowS
 LogVerbosityLevel -&gt; String
 (Int -&gt; LogVerbosityLevel -&gt; ShowS)
@@ -23,13 +23,22 @@ show :: LogVerbosityLevel -&gt; String
 $cshow :: LogVerbosityLevel -&gt; String
 showsPrec :: Int -&gt; LogVerbosityLevel -&gt; ShowS
 $cshowsPrec :: Int -&gt; LogVerbosityLevel -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679435675"><span id="local-6989586621679435677"><span class="annot"><span class="annottext">LogVerbosityLevel -&gt; LogVerbosityLevel -&gt; Bool
+(LogVerbosityLevel -&gt; LogVerbosityLevel -&gt; Bool)
+-&gt; (LogVerbosityLevel -&gt; LogVerbosityLevel -&gt; Bool)
+-&gt; Eq LogVerbosityLevel
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: LogVerbosityLevel -&gt; LogVerbosityLevel -&gt; Bool
+$c/= :: LogVerbosityLevel -&gt; LogVerbosityLevel -&gt; Bool
+== :: LogVerbosityLevel -&gt; LogVerbosityLevel -&gt; Bool
+$c== :: LogVerbosityLevel -&gt; LogVerbosityLevel -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679404128"><span id="local-6989586621679404130"><span id="local-6989586621679404132"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.LogVerbosityLevel.html#LogVerbosityLevel"><span class="hs-identifier hs-type">LogVerbosityLevel</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679404126"><span class="annot"><span class="annottext">toJSON :: LogVerbosityLevel -&gt; Value
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679435667"><span id="local-6989586621679435669"><span id="local-6989586621679435671"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.LogVerbosityLevel.html#LogVerbosityLevel"><span class="hs-identifier hs-type">LogVerbosityLevel</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679435665"><span class="annot"><span class="annottext">toJSON :: LogVerbosityLevel -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.LogVerbosityLevel.html#LogVerbosityLevel"><span class="hs-identifier hs-type">LogVerbosityLevel</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">verbosity_level :: LogVerbosityLevel -&gt; Maybe Int
-</span><a href="API.LogVerbosityLevel.html#verbosity_level"><span class="hs-identifier hs-var">verbosity_level</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404124"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679404124"><span class="hs-identifier hs-var">verbosity_level</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.LogVerbosityLevel.html#verbosity_level"><span class="hs-identifier hs-var">verbosity_level</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679435663"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679435663"><span class="hs-identifier hs-var">verbosity_level</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -37,30 +46,30 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;logVerbosityLevel&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;verbosity_level&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679404124"><span class="hs-identifier hs-var">verbosity_level</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679435663"><span class="hs-identifier hs-var">verbosity_level</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679404118"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.LogVerbosityLevel.html#LogVerbosityLevel"><span class="hs-identifier hs-type">LogVerbosityLevel</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679404116"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser LogVerbosityLevel
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679404114"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679404114"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679404112"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679404112"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679404111"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679404111"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679404112"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679435657"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.LogVerbosityLevel.html#LogVerbosityLevel"><span class="hs-identifier hs-type">LogVerbosityLevel</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679435655"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser LogVerbosityLevel
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679435653"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679435653"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679435651"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679435651"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679435650"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679435650"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679435651"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679404111"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679435650"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;logVerbosityLevel&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser LogVerbosityLevel
-</span><a href="#local-6989586621679404109"><span class="hs-identifier hs-var">parseLogVerbosityLevel</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679404114"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679435648"><span class="hs-identifier hs-var">parseLogVerbosityLevel</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679435653"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser LogVerbosityLevel
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679404109"><span class="hs-identifier hs-type">parseLogVerbosityLevel</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.LogVerbosityLevel.html#LogVerbosityLevel"><span class="hs-identifier hs-type">LogVerbosityLevel</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679404109"><span class="annot"><span class="annottext">parseLogVerbosityLevel :: Value -&gt; Parser LogVerbosityLevel
-</span><a href="#local-6989586621679404109"><span class="hs-identifier hs-var hs-var">parseLogVerbosityLevel</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679435648"><span class="hs-identifier hs-type">parseLogVerbosityLevel</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.LogVerbosityLevel.html#LogVerbosityLevel"><span class="hs-identifier hs-type">LogVerbosityLevel</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679435648"><span class="annot"><span class="annottext">parseLogVerbosityLevel :: Value -&gt; Parser LogVerbosityLevel
+</span><a href="#local-6989586621679435648"><span class="hs-identifier hs-var hs-var">parseLogVerbosityLevel</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser LogVerbosityLevel)
 -&gt; Value
 -&gt; Parser LogVerbosityLevel
@@ -71,16 +80,16 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser LogVerbosityLevel
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679404107"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679404107"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679404106"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679404106"><span class="hs-identifier hs-var">verbosity_level</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679435646"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679435646"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679435645"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679435645"><span class="hs-identifier hs-var">verbosity_level</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679404107"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679435646"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;verbosity_level&quot;</span></span><span>
 </span><span id="line-26"></span><span>    </span><span class="annot"><span class="annottext">LogVerbosityLevel -&gt; Parser LogVerbosityLevel
@@ -91,4 +100,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">LogVerbosityLevel :: Maybe Int -&gt; LogVerbosityLevel
 </span><a href="API.LogVerbosityLevel.html#LogVerbosityLevel"><span class="hs-identifier hs-type hs-type">LogVerbosityLevel</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">verbosity_level :: Maybe Int
 </span><a href="API.LogVerbosityLevel.html#verbosity_level"><span class="hs-identifier hs-var">verbosity_level</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679404106"><span class="hs-identifier hs-var">verbosity_level</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679435645"><span class="hs-identifier hs-var">verbosity_level</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

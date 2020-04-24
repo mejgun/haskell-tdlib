@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data TestUseUpdate
 
+instance Eq TestUseUpdate
+
 instance ToJSON TestUseUpdate
 
 instance FromJSON TestUseUpdate

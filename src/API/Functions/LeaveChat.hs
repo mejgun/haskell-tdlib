@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data LeaveChat = 
- LeaveChat { chat_id :: Maybe Int }  deriving (Show)
+ LeaveChat { chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON LeaveChat where
  toJSON (LeaveChat { chat_id = chat_id }) =

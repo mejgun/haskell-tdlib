@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data DisconnectAllWebsites
 
+instance Eq DisconnectAllWebsites
+
 instance ToJSON DisconnectAllWebsites
 
 instance FromJSON DisconnectAllWebsites

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetDatabaseStatistics
 
+instance Eq GetDatabaseStatistics
+
 instance ToJSON GetDatabaseStatistics
 
 instance FromJSON GetDatabaseStatistics

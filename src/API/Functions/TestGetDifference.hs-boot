@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data TestGetDifference
 
+instance Eq TestGetDifference
+
 instance ToJSON TestGetDifference
 
 instance FromJSON TestGetDifference

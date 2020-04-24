@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data InputCredentials
 
+instance Eq InputCredentials
+
 instance ToJSON InputCredentials
 
 instance FromJSON InputCredentials

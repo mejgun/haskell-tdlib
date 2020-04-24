@@ -10,7 +10,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data InputSticker = 
  InputStickerStatic { mask_position :: Maybe MaskPosition.MaskPosition, emojis :: Maybe String, sticker :: Maybe InputFile.InputFile }  
- | InputStickerAnimated { emojis :: Maybe String, sticker :: Maybe InputFile.InputFile }  deriving (Show)
+ | InputStickerAnimated { emojis :: Maybe String, sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON InputSticker where
  toJSON (InputStickerStatic { mask_position = mask_position, emojis = emojis, sticker = sticker }) =

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetCurrentState = 
- GetCurrentState deriving (Show)
+ GetCurrentState deriving (Show, Eq)
 
 instance T.ToJSON GetCurrentState where
  toJSON (GetCurrentState {  }) =

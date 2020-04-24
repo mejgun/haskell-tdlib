@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetDatabaseStatistics = 
- GetDatabaseStatistics deriving (Show)
+ GetDatabaseStatistics deriving (Show, Eq)
 
 instance T.ToJSON GetDatabaseStatistics where
  toJSON (GetDatabaseStatistics {  }) =

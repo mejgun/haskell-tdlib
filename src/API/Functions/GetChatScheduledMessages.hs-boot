@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetChatScheduledMessages
 
+instance Eq GetChatScheduledMessages
+
 instance ToJSON GetChatScheduledMessages
 
 instance FromJSON GetChatScheduledMessages

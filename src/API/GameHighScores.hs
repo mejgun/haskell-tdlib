@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.GameHighScore as GameHighScore
 
 data GameHighScores = 
- GameHighScores { scores :: Maybe [GameHighScore.GameHighScore] }  deriving (Show)
+ GameHighScores { scores :: Maybe [GameHighScore.GameHighScore] }  deriving (Show, Eq)
 
 instance T.ToJSON GameHighScores where
  toJSON (GameHighScores { scores = scores }) =

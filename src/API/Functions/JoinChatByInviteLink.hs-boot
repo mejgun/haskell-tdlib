@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data JoinChatByInviteLink
 
+instance Eq JoinChatByInviteLink
+
 instance ToJSON JoinChatByInviteLink
 
 instance FromJSON JoinChatByInviteLink

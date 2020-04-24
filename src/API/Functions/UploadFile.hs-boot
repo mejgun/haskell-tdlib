@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data UploadFile
 
+instance Eq UploadFile
+
 instance ToJSON UploadFile
 
 instance FromJSON UploadFile

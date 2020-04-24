@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SecretChatState
 
+instance Eq SecretChatState
+
 instance ToJSON SecretChatState
 
 instance FromJSON SecretChatState

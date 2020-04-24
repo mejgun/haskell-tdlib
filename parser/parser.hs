@@ -52,6 +52,8 @@ writeToFiles addr modName m =
     , "data "
     , d
     , "\n\ndata ResultWithExtra"
+    , "\n\ninstance Eq "
+    , d
     , "\n\ninstance FromJSON "
     , d
     , "\n\ninstance Show "
@@ -70,8 +72,8 @@ writeToFiles addr modName m =
     , d
     , " = \n "
     , T.intercalate " \n | " ww
-    , " deriving (Show)"
-    , "\n\ndata ResultWithExtra = ResultWithExtra GeneralResult (Maybe String) deriving (Show)"
+    , " deriving (Show, Eq)"
+    , "\n\ndata ResultWithExtra = ResultWithExtra GeneralResult (Maybe String) deriving (Show, Eq)"
     , "\n\ninstance T.FromJSON ResultWithExtra where\n"
     , " parseJSON v@(T.Object obj) = do\n"
     , "   case (T.fromJSON v :: T.Result GeneralResult) of\n"
@@ -119,13 +121,13 @@ writeToFiles addr modName m =
     , "import Data.Aeson.Types\n\n"
     , "data "
     , d
+    , "\n\ninstance Eq "
+    , d
     , "\n\ninstance ToJSON "
     , d
-    , "\n\n"
-    , "instance FromJSON "
+    , "\n\ninstance FromJSON "
     , d
-    , "\n\n"
-    , "instance Show "
+    , "\n\ninstance Show "
     , d
     , "\n\n"
     ]
@@ -141,7 +143,7 @@ writeToFiles addr modName m =
     , d
     , " = \n "
     , ww e
-    , " deriving (Show)"
+    , " deriving (Show, Eq)"
     , toJsonString d e
     ]
   imports :: [T.Text] -> T.Text

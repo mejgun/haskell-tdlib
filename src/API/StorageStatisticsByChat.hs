@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.StorageStatisticsByFileType as StorageStatisticsByFileType
 
 data StorageStatisticsByChat = 
- StorageStatisticsByChat { by_file_type :: Maybe [StorageStatisticsByFileType.StorageStatisticsByFileType], count :: Maybe Int, size :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ StorageStatisticsByChat { by_file_type :: Maybe [StorageStatisticsByFileType.StorageStatisticsByFileType], count :: Maybe Int, size :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON StorageStatisticsByChat where
  toJSON (StorageStatisticsByChat { by_file_type = by_file_type, count = count, size = size, chat_id = chat_id }) =

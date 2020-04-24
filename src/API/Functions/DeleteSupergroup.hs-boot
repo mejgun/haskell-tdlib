@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data DeleteSupergroup
 
+instance Eq DeleteSupergroup
+
 instance ToJSON DeleteSupergroup
 
 instance FromJSON DeleteSupergroup

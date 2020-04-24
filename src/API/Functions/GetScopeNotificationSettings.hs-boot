@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetScopeNotificationSettings
 
+instance Eq GetScopeNotificationSettings
+
 instance ToJSON GetScopeNotificationSettings
 
 instance FromJSON GetScopeNotificationSettings

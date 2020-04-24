@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 data ProxyType = 
  ProxyTypeSocks5 { password :: Maybe String, username :: Maybe String }  
  | ProxyTypeHttp { http_only :: Maybe Bool, password :: Maybe String, username :: Maybe String }  
- | ProxyTypeMtproto { secret :: Maybe String }  deriving (Show)
+ | ProxyTypeMtproto { secret :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON ProxyType where
  toJSON (ProxyTypeSocks5 { password = password, username = username }) =

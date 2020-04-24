@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data RemoveRecentlyFoundChat = 
- RemoveRecentlyFoundChat { chat_id :: Maybe Int }  deriving (Show)
+ RemoveRecentlyFoundChat { chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveRecentlyFoundChat where
  toJSON (RemoveRecentlyFoundChat { chat_id = chat_id }) =

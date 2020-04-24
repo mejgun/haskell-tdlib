@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CreatePrivateChat = 
- CreatePrivateChat { force :: Maybe Bool, user_id :: Maybe Int }  deriving (Show)
+ CreatePrivateChat { force :: Maybe Bool, user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CreatePrivateChat where
  toJSON (CreatePrivateChat { force = force, user_id = user_id }) =

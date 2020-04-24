@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data RemoveBackground = 
- RemoveBackground { background_id :: Maybe Int }  deriving (Show)
+ RemoveBackground { background_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveBackground where
  toJSON (RemoveBackground { background_id = background_id }) =

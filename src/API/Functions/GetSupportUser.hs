@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetSupportUser = 
- GetSupportUser deriving (Show)
+ GetSupportUser deriving (Show, Eq)
 
 instance T.ToJSON GetSupportUser where
  toJSON (GetSupportUser {  }) =

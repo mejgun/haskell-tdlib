@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data RemoveRecentHashtag = 
- RemoveRecentHashtag { hashtag :: Maybe String }  deriving (Show)
+ RemoveRecentHashtag { hashtag :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveRecentHashtag where
  toJSON (RemoveRecentHashtag { hashtag = hashtag }) =

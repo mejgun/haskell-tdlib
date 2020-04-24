@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LanguagePackStringValue as LanguagePackStringValue
 
 data LanguagePackString = 
- LanguagePackString { value :: Maybe LanguagePackStringValue.LanguagePackStringValue, key :: Maybe String }  deriving (Show)
+ LanguagePackString { value :: Maybe LanguagePackStringValue.LanguagePackStringValue, key :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON LanguagePackString where
  toJSON (LanguagePackString { value = value, key = key }) =

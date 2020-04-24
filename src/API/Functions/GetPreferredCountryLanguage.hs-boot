@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetPreferredCountryLanguage
 
+instance Eq GetPreferredCountryLanguage
+
 instance ToJSON GetPreferredCountryLanguage
 
 instance FromJSON GetPreferredCountryLanguage

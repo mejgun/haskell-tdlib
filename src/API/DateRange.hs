@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data DateRange = 
- DateRange { end_date :: Maybe Int, start_date :: Maybe Int }  deriving (Show)
+ DateRange { end_date :: Maybe Int, start_date :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON DateRange where
  toJSON (DateRange { end_date = end_date, start_date = start_date }) =

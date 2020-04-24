@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Ok = 
- Ok deriving (Show)
+ Ok deriving (Show, Eq)
 
 instance T.ToJSON Ok where
  toJSON (Ok {  }) =

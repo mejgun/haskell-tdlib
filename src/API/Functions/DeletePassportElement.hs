@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 
 data DeletePassportElement = 
- DeletePassportElement { _type :: Maybe PassportElementType.PassportElementType }  deriving (Show)
+ DeletePassportElement { _type :: Maybe PassportElementType.PassportElementType }  deriving (Show, Eq)
 
 instance T.ToJSON DeletePassportElement where
  toJSON (DeletePassportElement { _type = _type }) =

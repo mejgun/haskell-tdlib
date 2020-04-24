@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetPassportElementErrors
 
+instance Eq SetPassportElementErrors
+
 instance ToJSON SetPassportElementErrors
 
 instance FromJSON SetPassportElementErrors

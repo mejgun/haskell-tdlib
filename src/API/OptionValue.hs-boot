@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data OptionValue
 
+instance Eq OptionValue
+
 instance ToJSON OptionValue
 
 instance FromJSON OptionValue

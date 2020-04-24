@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data AddRecentlyFoundChat
 
+instance Eq AddRecentlyFoundChat
+
 instance ToJSON AddRecentlyFoundChat
 
 instance FromJSON AddRecentlyFoundChat

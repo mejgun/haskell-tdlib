@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Error as Error
 
 data TestReturnError = 
- TestReturnError { _error :: Maybe Error.Error }  deriving (Show)
+ TestReturnError { _error :: Maybe Error.Error }  deriving (Show, Eq)
 
 instance T.ToJSON TestReturnError where
  toJSON (TestReturnError { _error = _error }) =

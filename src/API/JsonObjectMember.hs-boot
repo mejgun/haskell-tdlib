@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data JsonObjectMember
 
+instance Eq JsonObjectMember
+
 instance ToJSON JsonObjectMember
 
 instance FromJSON JsonObjectMember

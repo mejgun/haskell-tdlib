@@ -10,7 +10,7 @@ data InputCredentials =
  InputCredentialsSaved { saved_credentials_id :: Maybe String }  
  | InputCredentialsNew { allow_save :: Maybe Bool, _data :: Maybe String }  
  | InputCredentialsAndroidPay { _data :: Maybe String }  
- | InputCredentialsApplePay { _data :: Maybe String }  deriving (Show)
+ | InputCredentialsApplePay { _data :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON InputCredentials where
  toJSON (InputCredentialsSaved { saved_credentials_id = saved_credentials_id }) =

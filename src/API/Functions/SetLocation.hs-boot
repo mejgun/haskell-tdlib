@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetLocation
 
+instance Eq SetLocation
+
 instance ToJSON SetLocation
 
 instance FromJSON SetLocation

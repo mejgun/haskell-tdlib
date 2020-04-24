@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data StorageStatistics
 
+instance Eq StorageStatistics
+
 instance ToJSON StorageStatistics
 
 instance FromJSON StorageStatistics

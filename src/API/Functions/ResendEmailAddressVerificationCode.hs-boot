@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ResendEmailAddressVerificationCode
 
+instance Eq ResendEmailAddressVerificationCode
+
 instance ToJSON ResendEmailAddressVerificationCode
 
 instance FromJSON ResendEmailAddressVerificationCode

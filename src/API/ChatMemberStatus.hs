@@ -13,7 +13,7 @@ data ChatMemberStatus =
  | ChatMemberStatusMember 
  | ChatMemberStatusRestricted { permissions :: Maybe ChatPermissions.ChatPermissions, restricted_until_date :: Maybe Int, is_member :: Maybe Bool }  
  | ChatMemberStatusLeft 
- | ChatMemberStatusBanned { banned_until_date :: Maybe Int }  deriving (Show)
+ | ChatMemberStatusBanned { banned_until_date :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ChatMemberStatus where
  toJSON (ChatMemberStatusCreator { is_member = is_member, custom_title = custom_title }) =

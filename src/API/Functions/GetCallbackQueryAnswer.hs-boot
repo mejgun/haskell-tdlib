@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetCallbackQueryAnswer
 
+instance Eq GetCallbackQueryAnswer
+
 instance ToJSON GetCallbackQueryAnswer
 
 instance FromJSON GetCallbackQueryAnswer

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Message as Message
 
 data MessageLinkInfo = 
- MessageLinkInfo { for_album :: Maybe Bool, message :: Maybe Message.Message, chat_id :: Maybe Int, is_public :: Maybe Bool }  deriving (Show)
+ MessageLinkInfo { for_album :: Maybe Bool, message :: Maybe Message.Message, chat_id :: Maybe Int, is_public :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON MessageLinkInfo where
  toJSON (MessageLinkInfo { for_album = for_album, message = message, chat_id = chat_id, is_public = is_public }) =

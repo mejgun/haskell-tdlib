@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data LogTags = 
- LogTags { tags :: Maybe [String] }  deriving (Show)
+ LogTags { tags :: Maybe [String] }  deriving (Show, Eq)
 
 instance T.ToJSON LogTags where
  toJSON (LogTags { tags = tags }) =

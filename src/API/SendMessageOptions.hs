@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.MessageSchedulingState as MessageSchedulingState
 
 data SendMessageOptions = 
- SendMessageOptions { scheduling_state :: Maybe MessageSchedulingState.MessageSchedulingState, from_background :: Maybe Bool, disable_notification :: Maybe Bool }  deriving (Show)
+ SendMessageOptions { scheduling_state :: Maybe MessageSchedulingState.MessageSchedulingState, from_background :: Maybe Bool, disable_notification :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON SendMessageOptions where
  toJSON (SendMessageOptions { scheduling_state = scheduling_state, from_background = from_background, disable_notification = disable_notification }) =

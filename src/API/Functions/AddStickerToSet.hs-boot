@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data AddStickerToSet
 
+instance Eq AddStickerToSet
+
 instance ToJSON AddStickerToSet
 
 instance FromJSON AddStickerToSet

@@ -10,7 +10,7 @@
 </span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="AcceptCall"><span class="annot"><a href="API.Functions.AcceptCall.html#AcceptCall"><span class="hs-identifier hs-var">AcceptCall</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-11"></span><span> </span><span id="AcceptCall"><span class="annot"><a href="API.Functions.AcceptCall.html#AcceptCall"><span class="hs-identifier hs-var">AcceptCall</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="protocol"><span class="annot"><span class="annottext">AcceptCall -&gt; Maybe CallProtocol
 </span><a href="API.Functions.AcceptCall.html#protocol"><span class="hs-identifier hs-var hs-var">protocol</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.CallProtocol.html#CallProtocol"><span class="hs-identifier hs-type">CallProtocol.CallProtocol</span></a></span><span class="hs-special">,</span><span> </span><span id="call_id"><span class="annot"><span class="annottext">AcceptCall -&gt; Maybe Int
-</span><a href="API.Functions.AcceptCall.html#call_id"><span class="hs-identifier hs-var hs-var">call_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679379034"><span id="local-6989586621679379036"><span id="local-6989586621679379038"><span class="annot"><span class="annottext">Int -&gt; AcceptCall -&gt; ShowS
+</span><a href="API.Functions.AcceptCall.html#call_id"><span class="hs-identifier hs-var hs-var">call_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679408442"><span id="local-6989586621679408444"><span id="local-6989586621679408446"><span class="annot"><span class="annottext">Int -&gt; AcceptCall -&gt; ShowS
 [AcceptCall] -&gt; ShowS
 AcceptCall -&gt; String
 (Int -&gt; AcceptCall -&gt; ShowS)
@@ -25,15 +25,23 @@ show :: AcceptCall -&gt; String
 $cshow :: AcceptCall -&gt; String
 showsPrec :: Int -&gt; AcceptCall -&gt; ShowS
 $cshowsPrec :: Int -&gt; AcceptCall -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679408437"><span id="local-6989586621679408439"><span class="annot"><span class="annottext">AcceptCall -&gt; AcceptCall -&gt; Bool
+(AcceptCall -&gt; AcceptCall -&gt; Bool)
+-&gt; (AcceptCall -&gt; AcceptCall -&gt; Bool) -&gt; Eq AcceptCall
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: AcceptCall -&gt; AcceptCall -&gt; Bool
+$c/= :: AcceptCall -&gt; AcceptCall -&gt; Bool
+== :: AcceptCall -&gt; AcceptCall -&gt; Bool
+$c== :: AcceptCall -&gt; AcceptCall -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679379026"><span id="local-6989586621679379028"><span id="local-6989586621679379030"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AcceptCall.html#AcceptCall"><span class="hs-identifier hs-type">AcceptCall</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679379024"><span class="annot"><span class="annottext">toJSON :: AcceptCall -&gt; Value
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408429"><span id="local-6989586621679408431"><span id="local-6989586621679408433"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AcceptCall.html#AcceptCall"><span class="hs-identifier hs-type">AcceptCall</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679408427"><span class="annot"><span class="annottext">toJSON :: AcceptCall -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.AcceptCall.html#AcceptCall"><span class="hs-identifier hs-type">AcceptCall</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">protocol :: AcceptCall -&gt; Maybe CallProtocol
-</span><a href="API.Functions.AcceptCall.html#protocol"><span class="hs-identifier hs-var">protocol</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679379022"><span class="annot"><span class="annottext">Maybe CallProtocol
-</span><a href="#local-6989586621679379022"><span class="hs-identifier hs-var">protocol</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">call_id :: AcceptCall -&gt; Maybe Int
-</span><a href="API.Functions.AcceptCall.html#call_id"><span class="hs-identifier hs-var">call_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679379021"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679379021"><span class="hs-identifier hs-var">call_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.AcceptCall.html#protocol"><span class="hs-identifier hs-var">protocol</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408425"><span class="annot"><span class="annottext">Maybe CallProtocol
+</span><a href="#local-6989586621679408425"><span class="hs-identifier hs-var">protocol</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">call_id :: AcceptCall -&gt; Maybe Int
+</span><a href="API.Functions.AcceptCall.html#call_id"><span class="hs-identifier hs-var">call_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408424"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679408424"><span class="hs-identifier hs-var">call_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -41,58 +49,58 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;acceptCall&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;protocol&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe CallProtocol -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe CallProtocol
-</span><a href="#local-6989586621679379022"><span class="hs-identifier hs-var">protocol</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;call_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679408425"><span class="hs-identifier hs-var">protocol</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;call_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679379021"><span class="hs-identifier hs-var">call_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679408424"><span class="hs-identifier hs-var">call_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679379015"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AcceptCall.html#AcceptCall"><span class="hs-identifier hs-type">AcceptCall</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679379013"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AcceptCall
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679379011"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679379011"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679379009"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679379009"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679379008"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679379008"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679379009"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408418"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AcceptCall.html#AcceptCall"><span class="hs-identifier hs-type">AcceptCall</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679408416"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AcceptCall
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679408414"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679408414"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679408412"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679408412"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679408411"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679408411"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679408412"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679379008"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679408411"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;acceptCall&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AcceptCall
-</span><a href="#local-6989586621679379006"><span class="hs-identifier hs-var">parseAcceptCall</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679379011"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679408409"><span class="hs-identifier hs-var">parseAcceptCall</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679408414"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser AcceptCall
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679379006"><span class="hs-identifier hs-type">parseAcceptCall</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.AcceptCall.html#AcceptCall"><span class="hs-identifier hs-type">AcceptCall</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span id="local-6989586621679379006"><span class="annot"><span class="annottext">parseAcceptCall :: Value -&gt; Parser AcceptCall
-</span><a href="#local-6989586621679379006"><span class="hs-identifier hs-var hs-var">parseAcceptCall</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679408409"><span class="hs-identifier hs-type">parseAcceptCall</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.AcceptCall.html#AcceptCall"><span class="hs-identifier hs-type">AcceptCall</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679408409"><span class="annot"><span class="annottext">parseAcceptCall :: Value -&gt; Parser AcceptCall
+</span><a href="#local-6989586621679408409"><span class="hs-identifier hs-var hs-var">parseAcceptCall</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AcceptCall) -&gt; Value -&gt; Parser AcceptCall
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;AcceptCall&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser AcceptCall) -&gt; Value -&gt; Parser AcceptCall)
 -&gt; (Object -&gt; Parser AcceptCall) -&gt; Value -&gt; Parser AcceptCall
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679379004"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679379004"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679379003"><span class="annot"><span class="annottext">Maybe CallProtocol
-</span><a href="#local-6989586621679379003"><span class="hs-identifier hs-var">protocol</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser CallProtocol -&gt; Parser (Maybe CallProtocol)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408407"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679408407"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679408406"><span class="annot"><span class="annottext">Maybe CallProtocol
+</span><a href="#local-6989586621679408406"><span class="hs-identifier hs-var">protocol</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser CallProtocol -&gt; Parser (Maybe CallProtocol)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser CallProtocol -&gt; Parser (Maybe CallProtocol))
 -&gt; Parser CallProtocol -&gt; Parser (Maybe CallProtocol)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679379004"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser CallProtocol
+</span><a href="#local-6989586621679408407"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser CallProtocol
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;protocol&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679379002"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679379002"><span class="hs-identifier hs-var">call_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679408405"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679408405"><span class="hs-identifier hs-var">call_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679379004"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679408407"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;call_id&quot;</span></span><span>
 </span><span id="line-28"></span><span>    </span><span class="annot"><span class="annottext">AcceptCall -&gt; Parser AcceptCall
@@ -103,6 +111,6 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AcceptCall :: Maybe CallProtocol -&gt; Maybe Int -&gt; AcceptCall
 </span><a href="API.Functions.AcceptCall.html#AcceptCall"><span class="hs-identifier hs-type hs-type">AcceptCall</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">protocol :: Maybe CallProtocol
 </span><a href="API.Functions.AcceptCall.html#protocol"><span class="hs-identifier hs-var">protocol</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe CallProtocol
-</span><a href="#local-6989586621679379003"><span class="hs-identifier hs-var">protocol</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">call_id :: Maybe Int
+</span><a href="#local-6989586621679408406"><span class="hs-identifier hs-var">protocol</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">call_id :: Maybe Int
 </span><a href="API.Functions.AcceptCall.html#call_id"><span class="hs-identifier hs-var">call_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679379002"><span class="hs-identifier hs-var">call_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679408405"><span class="hs-identifier hs-var">call_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

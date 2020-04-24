@@ -10,7 +10,7 @@ data CanTransferOwnershipResult =
  CanTransferOwnershipResultOk 
  | CanTransferOwnershipResultPasswordNeeded 
  | CanTransferOwnershipResultPasswordTooFresh { retry_after :: Maybe Int }  
- | CanTransferOwnershipResultSessionTooFresh { retry_after :: Maybe Int }  deriving (Show)
+ | CanTransferOwnershipResultSessionTooFresh { retry_after :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CanTransferOwnershipResult where
  toJSON (CanTransferOwnershipResultOk {  }) =

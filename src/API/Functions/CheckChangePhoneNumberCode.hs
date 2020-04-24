@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CheckChangePhoneNumberCode = 
- CheckChangePhoneNumberCode { code :: Maybe String }  deriving (Show)
+ CheckChangePhoneNumberCode { code :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CheckChangePhoneNumberCode where
  toJSON (CheckChangePhoneNumberCode { code = code }) =

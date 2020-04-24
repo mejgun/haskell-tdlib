@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data PaymentResult = 
- PaymentResult { verification_url :: Maybe String, success :: Maybe Bool }  deriving (Show)
+ PaymentResult { verification_url :: Maybe String, success :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON PaymentResult where
  toJSON (PaymentResult { verification_url = verification_url, success = success }) =

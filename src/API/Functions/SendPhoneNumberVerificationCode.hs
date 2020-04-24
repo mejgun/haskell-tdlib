@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PhoneNumberAuthenticationSettings as PhoneNumberAuthenticationSettings
 
 data SendPhoneNumberVerificationCode = 
- SendPhoneNumberVerificationCode { settings :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings, phone_number :: Maybe String }  deriving (Show)
+ SendPhoneNumberVerificationCode { settings :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings, phone_number :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SendPhoneNumberVerificationCode where
  toJSON (SendPhoneNumberVerificationCode { settings = settings, phone_number = phone_number }) =

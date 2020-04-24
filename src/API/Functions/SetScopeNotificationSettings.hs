@@ -9,7 +9,7 @@ import {-# SOURCE #-} qualified API.ScopeNotificationSettings as ScopeNotificati
 import {-# SOURCE #-} qualified API.NotificationSettingsScope as NotificationSettingsScope
 
 data SetScopeNotificationSettings = 
- SetScopeNotificationSettings { notification_settings :: Maybe ScopeNotificationSettings.ScopeNotificationSettings, scope :: Maybe NotificationSettingsScope.NotificationSettingsScope }  deriving (Show)
+ SetScopeNotificationSettings { notification_settings :: Maybe ScopeNotificationSettings.ScopeNotificationSettings, scope :: Maybe NotificationSettingsScope.NotificationSettingsScope }  deriving (Show, Eq)
 
 instance T.ToJSON SetScopeNotificationSettings where
  toJSON (SetScopeNotificationSettings { notification_settings = notification_settings, scope = scope }) =

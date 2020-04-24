@@ -30,7 +30,7 @@ data InlineQueryResult =
  | InlineQueryResultPhoto { description :: Maybe String, title :: Maybe String, photo :: Maybe Photo.Photo, _id :: Maybe String }  
  | InlineQueryResultSticker { sticker :: Maybe Sticker.Sticker, _id :: Maybe String }  
  | InlineQueryResultVideo { description :: Maybe String, title :: Maybe String, video :: Maybe Video.Video, _id :: Maybe String }  
- | InlineQueryResultVoiceNote { title :: Maybe String, voice_note :: Maybe VoiceNote.VoiceNote, _id :: Maybe String }  deriving (Show)
+ | InlineQueryResultVoiceNote { title :: Maybe String, voice_note :: Maybe VoiceNote.VoiceNote, _id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON InlineQueryResult where
  toJSON (InlineQueryResultArticle { thumbnail = thumbnail, description = description, title = title, hide_url = hide_url, url = url, _id = _id }) =

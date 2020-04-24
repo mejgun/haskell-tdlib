@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetFile = 
- GetFile { file_id :: Maybe Int }  deriving (Show)
+ GetFile { file_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetFile where
  toJSON (GetFile { file_id = file_id }) =

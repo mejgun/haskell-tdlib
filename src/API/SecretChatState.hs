@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 data SecretChatState = 
  SecretChatStatePending 
  | SecretChatStateReady 
- | SecretChatStateClosed deriving (Show)
+ | SecretChatStateClosed deriving (Show, Eq)
 
 instance T.ToJSON SecretChatState where
  toJSON (SecretChatStatePending {  }) =

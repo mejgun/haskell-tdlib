@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetStickers
 
+instance Eq GetStickers
+
 instance ToJSON GetStickers
 
 instance FromJSON GetStickers

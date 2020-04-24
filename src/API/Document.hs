@@ -10,7 +10,7 @@ import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 
 data Document = 
- Document { document :: Maybe File.File, thumbnail :: Maybe PhotoSize.PhotoSize, minithumbnail :: Maybe Minithumbnail.Minithumbnail, mime_type :: Maybe String, file_name :: Maybe String }  deriving (Show)
+ Document { document :: Maybe File.File, thumbnail :: Maybe PhotoSize.PhotoSize, minithumbnail :: Maybe Minithumbnail.Minithumbnail, mime_type :: Maybe String, file_name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON Document where
  toJSON (Document { document = document, thumbnail = thumbnail, minithumbnail = minithumbnail, mime_type = mime_type, file_name = file_name }) =

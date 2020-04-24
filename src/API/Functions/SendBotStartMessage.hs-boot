@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SendBotStartMessage
 
+instance Eq SendBotStartMessage
+
 instance ToJSON SendBotStartMessage
 
 instance FromJSON SendBotStartMessage

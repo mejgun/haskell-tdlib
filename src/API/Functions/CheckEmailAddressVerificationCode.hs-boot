@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data CheckEmailAddressVerificationCode
 
+instance Eq CheckEmailAddressVerificationCode
+
 instance ToJSON CheckEmailAddressVerificationCode
 
 instance FromJSON CheckEmailAddressVerificationCode

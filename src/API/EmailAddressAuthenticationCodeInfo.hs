@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data EmailAddressAuthenticationCodeInfo = 
- EmailAddressAuthenticationCodeInfo { _length :: Maybe Int, email_address_pattern :: Maybe String }  deriving (Show)
+ EmailAddressAuthenticationCodeInfo { _length :: Maybe Int, email_address_pattern :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON EmailAddressAuthenticationCodeInfo where
  toJSON (EmailAddressAuthenticationCodeInfo { _length = _length, email_address_pattern = email_address_pattern }) =

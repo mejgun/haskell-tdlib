@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetChatStatisticsUrl
 
+instance Eq GetChatStatisticsUrl
+
 instance ToJSON GetChatStatisticsUrl
 
 instance FromJSON GetChatStatisticsUrl

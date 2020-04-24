@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data StickerSetInfo
 
+instance Eq StickerSetInfo
+
 instance ToJSON StickerSetInfo
 
 instance FromJSON StickerSetInfo

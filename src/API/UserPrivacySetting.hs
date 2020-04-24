@@ -14,7 +14,7 @@ data UserPrivacySetting =
  | UserPrivacySettingAllowChatInvites 
  | UserPrivacySettingAllowCalls 
  | UserPrivacySettingAllowPeerToPeerCalls 
- | UserPrivacySettingAllowFindingByPhoneNumber deriving (Show)
+ | UserPrivacySettingAllowFindingByPhoneNumber deriving (Show, Eq)
 
 instance T.ToJSON UserPrivacySetting where
  toJSON (UserPrivacySettingShowStatus {  }) =

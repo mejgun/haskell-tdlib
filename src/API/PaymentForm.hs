@@ -11,7 +11,7 @@ import {-# SOURCE #-} qualified API.PaymentsProviderStripe as PaymentsProviderSt
 import {-# SOURCE #-} qualified API.Invoice as Invoice
 
 data PaymentForm = 
- PaymentForm { need_password :: Maybe Bool, can_save_credentials :: Maybe Bool, saved_credentials :: Maybe SavedCredentials.SavedCredentials, saved_order_info :: Maybe OrderInfo.OrderInfo, payments_provider :: Maybe PaymentsProviderStripe.PaymentsProviderStripe, url :: Maybe String, invoice :: Maybe Invoice.Invoice }  deriving (Show)
+ PaymentForm { need_password :: Maybe Bool, can_save_credentials :: Maybe Bool, saved_credentials :: Maybe SavedCredentials.SavedCredentials, saved_order_info :: Maybe OrderInfo.OrderInfo, payments_provider :: Maybe PaymentsProviderStripe.PaymentsProviderStripe, url :: Maybe String, invoice :: Maybe Invoice.Invoice }  deriving (Show, Eq)
 
 instance T.ToJSON PaymentForm where
  toJSON (PaymentForm { need_password = need_password, can_save_credentials = can_save_credentials, saved_credentials = saved_credentials, saved_order_info = saved_order_info, payments_provider = payments_provider, url = url, invoice = invoice }) =

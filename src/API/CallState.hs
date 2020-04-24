@@ -16,7 +16,7 @@ data CallState =
  | CallStateReady { allow_p2p :: Maybe Bool, emojis :: Maybe [String], encryption_key :: Maybe String, config :: Maybe String, connections :: Maybe [CallConnection.CallConnection], protocol :: Maybe CallProtocol.CallProtocol }  
  | CallStateHangingUp 
  | CallStateDiscarded { need_debug_information :: Maybe Bool, need_rating :: Maybe Bool, reason :: Maybe CallDiscardReason.CallDiscardReason }  
- | CallStateError { _error :: Maybe Error.Error }  deriving (Show)
+ | CallStateError { _error :: Maybe Error.Error }  deriving (Show, Eq)
 
 instance T.ToJSON CallState where
  toJSON (CallStatePending { is_received = is_received, is_created = is_created }) =

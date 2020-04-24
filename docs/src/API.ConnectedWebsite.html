@@ -16,7 +16,7 @@
 </span><a href="API.ConnectedWebsite.html#browser"><span class="hs-identifier hs-var hs-var">browser</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="bot_user_id"><span class="annot"><span class="annottext">ConnectedWebsite -&gt; Maybe Int
 </span><a href="API.ConnectedWebsite.html#bot_user_id"><span class="hs-identifier hs-var hs-var">bot_user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="domain_name"><span class="annot"><span class="annottext">ConnectedWebsite -&gt; Maybe String
 </span><a href="API.ConnectedWebsite.html#domain_name"><span class="hs-identifier hs-var hs-var">domain_name</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="_id"><span class="annot"><span class="annottext">ConnectedWebsite -&gt; Maybe Int
-</span><a href="API.ConnectedWebsite.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679377331"><span id="local-6989586621679377333"><span id="local-6989586621679377335"><span class="annot"><span class="annottext">Int -&gt; ConnectedWebsite -&gt; ShowS
+</span><a href="API.ConnectedWebsite.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679406612"><span id="local-6989586621679406614"><span id="local-6989586621679406616"><span class="annot"><span class="annottext">Int -&gt; ConnectedWebsite -&gt; ShowS
 [ConnectedWebsite] -&gt; ShowS
 ConnectedWebsite -&gt; String
 (Int -&gt; ConnectedWebsite -&gt; ShowS)
@@ -31,29 +31,38 @@ show :: ConnectedWebsite -&gt; String
 $cshow :: ConnectedWebsite -&gt; String
 showsPrec :: Int -&gt; ConnectedWebsite -&gt; ShowS
 $cshowsPrec :: Int -&gt; ConnectedWebsite -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679406607"><span id="local-6989586621679406609"><span class="annot"><span class="annottext">ConnectedWebsite -&gt; ConnectedWebsite -&gt; Bool
+(ConnectedWebsite -&gt; ConnectedWebsite -&gt; Bool)
+-&gt; (ConnectedWebsite -&gt; ConnectedWebsite -&gt; Bool)
+-&gt; Eq ConnectedWebsite
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: ConnectedWebsite -&gt; ConnectedWebsite -&gt; Bool
+$c/= :: ConnectedWebsite -&gt; ConnectedWebsite -&gt; Bool
+== :: ConnectedWebsite -&gt; ConnectedWebsite -&gt; Bool
+$c== :: ConnectedWebsite -&gt; ConnectedWebsite -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679377323"><span id="local-6989586621679377325"><span id="local-6989586621679377327"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ConnectedWebsite.html#ConnectedWebsite"><span class="hs-identifier hs-type">ConnectedWebsite</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679377321"><span class="annot"><span class="annottext">toJSON :: ConnectedWebsite -&gt; Value
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679406599"><span id="local-6989586621679406601"><span id="local-6989586621679406603"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ConnectedWebsite.html#ConnectedWebsite"><span class="hs-identifier hs-type">ConnectedWebsite</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679406597"><span class="annot"><span class="annottext">toJSON :: ConnectedWebsite -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.ConnectedWebsite.html#ConnectedWebsite"><span class="hs-identifier hs-type">ConnectedWebsite</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">location :: ConnectedWebsite -&gt; Maybe String
-</span><a href="API.ConnectedWebsite.html#location"><span class="hs-identifier hs-var">location</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679377319"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377319"><span class="hs-identifier hs-var">location</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ip :: ConnectedWebsite -&gt; Maybe String
-</span><a href="API.ConnectedWebsite.html#ip"><span class="hs-identifier hs-var">ip</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679377318"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377318"><span class="hs-identifier hs-var">ip</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">last_active_date :: ConnectedWebsite -&gt; Maybe Int
-</span><a href="API.ConnectedWebsite.html#last_active_date"><span class="hs-identifier hs-var">last_active_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679377317"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377317"><span class="hs-identifier hs-var">last_active_date</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">log_in_date :: ConnectedWebsite -&gt; Maybe Int
-</span><a href="API.ConnectedWebsite.html#log_in_date"><span class="hs-identifier hs-var">log_in_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679377316"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377316"><span class="hs-identifier hs-var">log_in_date</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">platform :: ConnectedWebsite -&gt; Maybe String
-</span><a href="API.ConnectedWebsite.html#platform"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679377315"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377315"><span class="hs-identifier hs-var">platform</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">browser :: ConnectedWebsite -&gt; Maybe String
-</span><a href="API.ConnectedWebsite.html#browser"><span class="hs-identifier hs-var">browser</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679377314"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377314"><span class="hs-identifier hs-var">browser</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">bot_user_id :: ConnectedWebsite -&gt; Maybe Int
-</span><a href="API.ConnectedWebsite.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679377313"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377313"><span class="hs-identifier hs-var">bot_user_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">domain_name :: ConnectedWebsite -&gt; Maybe String
-</span><a href="API.ConnectedWebsite.html#domain_name"><span class="hs-identifier hs-var">domain_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679377312"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377312"><span class="hs-identifier hs-var">domain_name</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: ConnectedWebsite -&gt; Maybe Int
-</span><a href="API.ConnectedWebsite.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679377311"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377311"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.ConnectedWebsite.html#location"><span class="hs-identifier hs-var">location</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406595"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679406595"><span class="hs-identifier hs-var">location</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ip :: ConnectedWebsite -&gt; Maybe String
+</span><a href="API.ConnectedWebsite.html#ip"><span class="hs-identifier hs-var">ip</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406594"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679406594"><span class="hs-identifier hs-var">ip</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">last_active_date :: ConnectedWebsite -&gt; Maybe Int
+</span><a href="API.ConnectedWebsite.html#last_active_date"><span class="hs-identifier hs-var">last_active_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406593"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679406593"><span class="hs-identifier hs-var">last_active_date</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">log_in_date :: ConnectedWebsite -&gt; Maybe Int
+</span><a href="API.ConnectedWebsite.html#log_in_date"><span class="hs-identifier hs-var">log_in_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406592"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679406592"><span class="hs-identifier hs-var">log_in_date</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">platform :: ConnectedWebsite -&gt; Maybe String
+</span><a href="API.ConnectedWebsite.html#platform"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406591"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679406591"><span class="hs-identifier hs-var">platform</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">browser :: ConnectedWebsite -&gt; Maybe String
+</span><a href="API.ConnectedWebsite.html#browser"><span class="hs-identifier hs-var">browser</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406590"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679406590"><span class="hs-identifier hs-var">browser</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">bot_user_id :: ConnectedWebsite -&gt; Maybe Int
+</span><a href="API.ConnectedWebsite.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406589"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679406589"><span class="hs-identifier hs-var">bot_user_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">domain_name :: ConnectedWebsite -&gt; Maybe String
+</span><a href="API.ConnectedWebsite.html#domain_name"><span class="hs-identifier hs-var">domain_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406588"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679406588"><span class="hs-identifier hs-var">domain_name</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: ConnectedWebsite -&gt; Maybe Int
+</span><a href="API.ConnectedWebsite.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406587"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679406587"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -61,54 +70,54 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;connectedWebsite&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;location&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377319"><span class="hs-identifier hs-var">location</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;ip&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679406595"><span class="hs-identifier hs-var">location</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;ip&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377318"><span class="hs-identifier hs-var">ip</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;last_active_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679406594"><span class="hs-identifier hs-var">ip</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;last_active_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377317"><span class="hs-identifier hs-var">last_active_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;log_in_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679406593"><span class="hs-identifier hs-var">last_active_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;log_in_date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377316"><span class="hs-identifier hs-var">log_in_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;platform&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679406592"><span class="hs-identifier hs-var">log_in_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;platform&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377315"><span class="hs-identifier hs-var">platform</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;browser&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679406591"><span class="hs-identifier hs-var">platform</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;browser&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377314"><span class="hs-identifier hs-var">browser</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;bot_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679406590"><span class="hs-identifier hs-var">browser</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;bot_user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377313"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;domain_name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679406589"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;domain_name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377312"><span class="hs-identifier hs-var">domain_name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679406588"><span class="hs-identifier hs-var">domain_name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377311"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679406587"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679377305"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ConnectedWebsite.html#ConnectedWebsite"><span class="hs-identifier hs-type">ConnectedWebsite</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679377303"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ConnectedWebsite
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679377301"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679377301"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679377299"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679377299"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679377298"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679377298"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679377299"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679406581"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ConnectedWebsite.html#ConnectedWebsite"><span class="hs-identifier hs-type">ConnectedWebsite</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679406579"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ConnectedWebsite
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679406577"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679406577"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679406575"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679406575"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679406574"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679406574"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679406575"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679377298"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679406574"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;connectedWebsite&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ConnectedWebsite
-</span><a href="#local-6989586621679377296"><span class="hs-identifier hs-var">parseConnectedWebsite</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679377301"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679406572"><span class="hs-identifier hs-var">parseConnectedWebsite</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679406577"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ConnectedWebsite
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679377296"><span class="hs-identifier hs-type">parseConnectedWebsite</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ConnectedWebsite.html#ConnectedWebsite"><span class="hs-identifier hs-type">ConnectedWebsite</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679377296"><span class="annot"><span class="annottext">parseConnectedWebsite :: Value -&gt; Parser ConnectedWebsite
-</span><a href="#local-6989586621679377296"><span class="hs-identifier hs-var hs-var">parseConnectedWebsite</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679406572"><span class="hs-identifier hs-type">parseConnectedWebsite</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ConnectedWebsite.html#ConnectedWebsite"><span class="hs-identifier hs-type">ConnectedWebsite</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679406572"><span class="annot"><span class="annottext">parseConnectedWebsite :: Value -&gt; Parser ConnectedWebsite
+</span><a href="#local-6989586621679406572"><span class="hs-identifier hs-var hs-var">parseConnectedWebsite</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ConnectedWebsite)
 -&gt; Value
 -&gt; Parser ConnectedWebsite
@@ -119,96 +128,96 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ConnectedWebsite
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679377294"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679377294"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679377293"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377293"><span class="hs-identifier hs-var">location</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679406570"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679406570"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679406569"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679406569"><span class="hs-identifier hs-var">location</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679377294"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679406570"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;location&quot;</span></span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679377292"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377292"><span class="hs-identifier hs-var">ip</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679406568"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679406568"><span class="hs-identifier hs-var">ip</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679377294"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679406570"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;ip&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679377291"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377291"><span class="hs-identifier hs-var">last_active_date</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679406567"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679406567"><span class="hs-identifier hs-var">last_active_date</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679377294"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679406570"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;last_active_date&quot;</span></span><span>
-</span><span id="line-28"></span><span>    </span><span id="local-6989586621679377290"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377290"><span class="hs-identifier hs-var">log_in_date</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span id="line-28"></span><span>    </span><span id="local-6989586621679406566"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679406566"><span class="hs-identifier hs-var">log_in_date</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679377294"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679406570"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;log_in_date&quot;</span></span><span>
-</span><span id="line-29"></span><span>    </span><span id="local-6989586621679377289"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377289"><span class="hs-identifier hs-var">platform</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span id="line-29"></span><span>    </span><span id="local-6989586621679406565"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679406565"><span class="hs-identifier hs-var">platform</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679377294"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679406570"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;platform&quot;</span></span><span>
-</span><span id="line-30"></span><span>    </span><span id="local-6989586621679377288"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377288"><span class="hs-identifier hs-var">browser</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span id="line-30"></span><span>    </span><span id="local-6989586621679406564"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679406564"><span class="hs-identifier hs-var">browser</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679377294"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679406570"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;browser&quot;</span></span><span>
-</span><span id="line-31"></span><span>    </span><span id="local-6989586621679377287"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377287"><span class="hs-identifier hs-var">bot_user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span id="line-31"></span><span>    </span><span id="local-6989586621679406563"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679406563"><span class="hs-identifier hs-var">bot_user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679377294"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679406570"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;bot_user_id&quot;</span></span><span>
-</span><span id="line-32"></span><span>    </span><span id="local-6989586621679377286"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377286"><span class="hs-identifier hs-var">domain_name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span id="line-32"></span><span>    </span><span id="local-6989586621679406562"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679406562"><span class="hs-identifier hs-var">domain_name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679377294"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679406570"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;domain_name&quot;</span></span><span>
-</span><span id="line-33"></span><span>    </span><span id="local-6989586621679377285"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377285"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span id="line-33"></span><span>    </span><span id="local-6989586621679406561"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679406561"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679377294"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679406570"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span>
 </span><span id="line-34"></span><span>    </span><span class="annot"><span class="annottext">ConnectedWebsite -&gt; Parser ConnectedWebsite
@@ -228,20 +237,20 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; ConnectedWebsite
 </span><a href="API.ConnectedWebsite.html#ConnectedWebsite"><span class="hs-identifier hs-type hs-type">ConnectedWebsite</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">location :: Maybe String
 </span><a href="API.ConnectedWebsite.html#location"><span class="hs-identifier hs-var">location</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377293"><span class="hs-identifier hs-var">location</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ip :: Maybe String
+</span><a href="#local-6989586621679406569"><span class="hs-identifier hs-var">location</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">ip :: Maybe String
 </span><a href="API.ConnectedWebsite.html#ip"><span class="hs-identifier hs-var">ip</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377292"><span class="hs-identifier hs-var">ip</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">last_active_date :: Maybe Int
+</span><a href="#local-6989586621679406568"><span class="hs-identifier hs-var">ip</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">last_active_date :: Maybe Int
 </span><a href="API.ConnectedWebsite.html#last_active_date"><span class="hs-identifier hs-var">last_active_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377291"><span class="hs-identifier hs-var">last_active_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">log_in_date :: Maybe Int
+</span><a href="#local-6989586621679406567"><span class="hs-identifier hs-var">last_active_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">log_in_date :: Maybe Int
 </span><a href="API.ConnectedWebsite.html#log_in_date"><span class="hs-identifier hs-var">log_in_date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377290"><span class="hs-identifier hs-var">log_in_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">platform :: Maybe String
+</span><a href="#local-6989586621679406566"><span class="hs-identifier hs-var">log_in_date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">platform :: Maybe String
 </span><a href="API.ConnectedWebsite.html#platform"><span class="hs-identifier hs-var">platform</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377289"><span class="hs-identifier hs-var">platform</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">browser :: Maybe String
+</span><a href="#local-6989586621679406565"><span class="hs-identifier hs-var">platform</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">browser :: Maybe String
 </span><a href="API.ConnectedWebsite.html#browser"><span class="hs-identifier hs-var">browser</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377288"><span class="hs-identifier hs-var">browser</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">bot_user_id :: Maybe Int
+</span><a href="#local-6989586621679406564"><span class="hs-identifier hs-var">browser</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">bot_user_id :: Maybe Int
 </span><a href="API.ConnectedWebsite.html#bot_user_id"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377287"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">domain_name :: Maybe String
+</span><a href="#local-6989586621679406563"><span class="hs-identifier hs-var">bot_user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">domain_name :: Maybe String
 </span><a href="API.ConnectedWebsite.html#domain_name"><span class="hs-identifier hs-var">domain_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679377286"><span class="hs-identifier hs-var">domain_name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Maybe Int
+</span><a href="#local-6989586621679406562"><span class="hs-identifier hs-var">domain_name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Maybe Int
 </span><a href="API.ConnectedWebsite.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679377285"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679406561"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatNotificationSettings as ChatNotificationSettings
 
 data SetChatNotificationSettings = 
- SetChatNotificationSettings { notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings, chat_id :: Maybe Int }  deriving (Show)
+ SetChatNotificationSettings { notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatNotificationSettings where
  toJSON (SetChatNotificationSettings { notification_settings = notification_settings, chat_id = chat_id }) =

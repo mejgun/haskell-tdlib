@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.CallProblem as CallProblem
 
 data SendCallRating = 
- SendCallRating { problems :: Maybe [CallProblem.CallProblem], comment :: Maybe String, rating :: Maybe Int, call_id :: Maybe Int }  deriving (Show)
+ SendCallRating { problems :: Maybe [CallProblem.CallProblem], comment :: Maybe String, rating :: Maybe Int, call_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendCallRating where
  toJSON (SendCallRating { problems = problems, comment = comment, rating = rating, call_id = call_id }) =

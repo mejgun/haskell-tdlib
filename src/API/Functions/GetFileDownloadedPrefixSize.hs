@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetFileDownloadedPrefixSize = 
- GetFileDownloadedPrefixSize { offset :: Maybe Int, file_id :: Maybe Int }  deriving (Show)
+ GetFileDownloadedPrefixSize { offset :: Maybe Int, file_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetFileDownloadedPrefixSize where
  toJSON (GetFileDownloadedPrefixSize { offset = offset, file_id = file_id }) =

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.DeviceToken as DeviceToken
 
 data RegisterDevice = 
- RegisterDevice { other_user_ids :: Maybe [Int], device_token :: Maybe DeviceToken.DeviceToken }  deriving (Show)
+ RegisterDevice { other_user_ids :: Maybe [Int], device_token :: Maybe DeviceToken.DeviceToken }  deriving (Show, Eq)
 
 instance T.ToJSON RegisterDevice where
  toJSON (RegisterDevice { other_user_ids = other_user_ids, device_token = device_token }) =

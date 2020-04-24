@@ -9,7 +9,7 @@
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="GetMarkdownText"><span class="annot"><a href="API.Functions.GetMarkdownText.html#GetMarkdownText"><span class="hs-identifier hs-var">GetMarkdownText</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-11"></span><span> </span><span id="GetMarkdownText"><span class="annot"><a href="API.Functions.GetMarkdownText.html#GetMarkdownText"><span class="hs-identifier hs-var">GetMarkdownText</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="text"><span class="annot"><span class="annottext">GetMarkdownText -&gt; Maybe FormattedText
-</span><a href="API.Functions.GetMarkdownText.html#text"><span class="hs-identifier hs-var hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.FormattedText.html#FormattedText"><span class="hs-identifier hs-type">FormattedText.FormattedText</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679387549"><span id="local-6989586621679387551"><span id="local-6989586621679387553"><span class="annot"><span class="annottext">Int -&gt; GetMarkdownText -&gt; ShowS
+</span><a href="API.Functions.GetMarkdownText.html#text"><span class="hs-identifier hs-var hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.FormattedText.html#FormattedText"><span class="hs-identifier hs-type">FormattedText.FormattedText</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679417701"><span id="local-6989586621679417703"><span id="local-6989586621679417705"><span class="annot"><span class="annottext">Int -&gt; GetMarkdownText -&gt; ShowS
 [GetMarkdownText] -&gt; ShowS
 GetMarkdownText -&gt; String
 (Int -&gt; GetMarkdownText -&gt; ShowS)
@@ -24,13 +24,22 @@ show :: GetMarkdownText -&gt; String
 $cshow :: GetMarkdownText -&gt; String
 showsPrec :: Int -&gt; GetMarkdownText -&gt; ShowS
 $cshowsPrec :: Int -&gt; GetMarkdownText -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679417696"><span id="local-6989586621679417698"><span class="annot"><span class="annottext">GetMarkdownText -&gt; GetMarkdownText -&gt; Bool
+(GetMarkdownText -&gt; GetMarkdownText -&gt; Bool)
+-&gt; (GetMarkdownText -&gt; GetMarkdownText -&gt; Bool)
+-&gt; Eq GetMarkdownText
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: GetMarkdownText -&gt; GetMarkdownText -&gt; Bool
+$c/= :: GetMarkdownText -&gt; GetMarkdownText -&gt; Bool
+== :: GetMarkdownText -&gt; GetMarkdownText -&gt; Bool
+$c== :: GetMarkdownText -&gt; GetMarkdownText -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679387541"><span id="local-6989586621679387543"><span id="local-6989586621679387545"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetMarkdownText.html#GetMarkdownText"><span class="hs-identifier hs-type">GetMarkdownText</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679387539"><span class="annot"><span class="annottext">toJSON :: GetMarkdownText -&gt; Value
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417688"><span id="local-6989586621679417690"><span id="local-6989586621679417692"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetMarkdownText.html#GetMarkdownText"><span class="hs-identifier hs-type">GetMarkdownText</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679417686"><span class="annot"><span class="annottext">toJSON :: GetMarkdownText -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.GetMarkdownText.html#GetMarkdownText"><span class="hs-identifier hs-type">GetMarkdownText</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">text :: GetMarkdownText -&gt; Maybe FormattedText
-</span><a href="API.Functions.GetMarkdownText.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679387537"><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679387537"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.GetMarkdownText.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417684"><span class="annot"><span class="annottext">Maybe FormattedText
+</span><a href="#local-6989586621679417684"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -38,30 +47,30 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;getMarkdownText&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe FormattedText -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679387537"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679417684"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679387531"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetMarkdownText.html#GetMarkdownText"><span class="hs-identifier hs-type">GetMarkdownText</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679387529"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetMarkdownText
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679387527"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679387527"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679387525"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679387525"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679387524"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679387524"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679387525"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417678"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetMarkdownText.html#GetMarkdownText"><span class="hs-identifier hs-type">GetMarkdownText</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679417676"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetMarkdownText
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679417674"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679417674"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679417672"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679417672"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679417671"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679417671"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679417672"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679387524"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679417671"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;getMarkdownText&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetMarkdownText
-</span><a href="#local-6989586621679387522"><span class="hs-identifier hs-var">parseGetMarkdownText</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679387527"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679417669"><span class="hs-identifier hs-var">parseGetMarkdownText</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679417674"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetMarkdownText
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679387522"><span class="hs-identifier hs-type">parseGetMarkdownText</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetMarkdownText.html#GetMarkdownText"><span class="hs-identifier hs-type">GetMarkdownText</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span id="local-6989586621679387522"><span class="annot"><span class="annottext">parseGetMarkdownText :: Value -&gt; Parser GetMarkdownText
-</span><a href="#local-6989586621679387522"><span class="hs-identifier hs-var hs-var">parseGetMarkdownText</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679417669"><span class="hs-identifier hs-type">parseGetMarkdownText</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetMarkdownText.html#GetMarkdownText"><span class="hs-identifier hs-type">GetMarkdownText</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679417669"><span class="annot"><span class="annottext">parseGetMarkdownText :: Value -&gt; Parser GetMarkdownText
+</span><a href="#local-6989586621679417669"><span class="hs-identifier hs-var hs-var">parseGetMarkdownText</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GetMarkdownText)
 -&gt; Value
 -&gt; Parser GetMarkdownText
@@ -72,16 +81,16 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser GetMarkdownText
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679387520"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679387520"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679387519"><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679387519"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser FormattedText -&gt; Parser (Maybe FormattedText)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679417667"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679417667"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679417666"><span class="annot"><span class="annottext">Maybe FormattedText
+</span><a href="#local-6989586621679417666"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser FormattedText -&gt; Parser (Maybe FormattedText)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser FormattedText -&gt; Parser (Maybe FormattedText))
 -&gt; Parser FormattedText -&gt; Parser (Maybe FormattedText)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679387520"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser FormattedText
+</span><a href="#local-6989586621679417667"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser FormattedText
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;text&quot;</span></span><span>
 </span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">GetMarkdownText -&gt; Parser GetMarkdownText
@@ -92,4 +101,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">GetMarkdownText :: Maybe FormattedText -&gt; GetMarkdownText
 </span><a href="API.Functions.GetMarkdownText.html#GetMarkdownText"><span class="hs-identifier hs-type hs-type">GetMarkdownText</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">text :: Maybe FormattedText
 </span><a href="API.Functions.GetMarkdownText.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
-</span><a href="#local-6989586621679387519"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679417666"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

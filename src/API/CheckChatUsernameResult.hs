@@ -11,7 +11,7 @@ data CheckChatUsernameResult =
  | CheckChatUsernameResultUsernameInvalid 
  | CheckChatUsernameResultUsernameOccupied 
  | CheckChatUsernameResultPublicChatsTooMuch 
- | CheckChatUsernameResultPublicGroupsUnavailable deriving (Show)
+ | CheckChatUsernameResultPublicGroupsUnavailable deriving (Show, Eq)
 
 instance T.ToJSON CheckChatUsernameResult where
  toJSON (CheckChatUsernameResultOk {  }) =

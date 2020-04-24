@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetNetworkStatistics = 
- GetNetworkStatistics { only_current :: Maybe Bool }  deriving (Show)
+ GetNetworkStatistics { only_current :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON GetNetworkStatistics where
  toJSON (GetNetworkStatistics { only_current = only_current }) =

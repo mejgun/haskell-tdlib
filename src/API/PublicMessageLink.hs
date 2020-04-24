@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data PublicMessageLink = 
- PublicMessageLink { html :: Maybe String, link :: Maybe String }  deriving (Show)
+ PublicMessageLink { html :: Maybe String, link :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON PublicMessageLink where
  toJSON (PublicMessageLink { html = html, link = link }) =

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data UserType
 
+instance Eq UserType
+
 instance ToJSON UserType
 
 instance FromJSON UserType

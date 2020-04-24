@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data RemoveContacts
 
+instance Eq RemoveContacts
+
 instance ToJSON RemoveContacts
 
 instance FromJSON RemoveContacts

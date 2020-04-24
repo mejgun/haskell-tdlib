@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetConnectedWebsites = 
- GetConnectedWebsites deriving (Show)
+ GetConnectedWebsites deriving (Show, Eq)
 
 instance T.ToJSON GetConnectedWebsites where
  toJSON (GetConnectedWebsites {  }) =

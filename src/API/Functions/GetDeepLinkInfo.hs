@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetDeepLinkInfo = 
- GetDeepLinkInfo { link :: Maybe String }  deriving (Show)
+ GetDeepLinkInfo { link :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetDeepLinkInfo where
  toJSON (GetDeepLinkInfo { link = link }) =

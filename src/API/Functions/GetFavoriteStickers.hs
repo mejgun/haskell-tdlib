@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetFavoriteStickers = 
- GetFavoriteStickers deriving (Show)
+ GetFavoriteStickers deriving (Show, Eq)
 
 instance T.ToJSON GetFavoriteStickers where
  toJSON (GetFavoriteStickers {  }) =

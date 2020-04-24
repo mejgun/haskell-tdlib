@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
 data DeepLinkInfo = 
- DeepLinkInfo { need_update_application :: Maybe Bool, text :: Maybe FormattedText.FormattedText }  deriving (Show)
+ DeepLinkInfo { need_update_application :: Maybe Bool, text :: Maybe FormattedText.FormattedText }  deriving (Show, Eq)
 
 instance T.ToJSON DeepLinkInfo where
  toJSON (DeepLinkInfo { need_update_application = need_update_application, text = text }) =

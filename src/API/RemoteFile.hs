@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data RemoteFile = 
- RemoteFile { uploaded_size :: Maybe Int, is_uploading_completed :: Maybe Bool, is_uploading_active :: Maybe Bool, unique_id :: Maybe String, _id :: Maybe String }  deriving (Show)
+ RemoteFile { uploaded_size :: Maybe Int, is_uploading_completed :: Maybe Bool, is_uploading_active :: Maybe Bool, unique_id :: Maybe String, _id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON RemoteFile where
  toJSON (RemoteFile { uploaded_size = uploaded_size, is_uploading_completed = is_uploading_completed, is_uploading_active = is_uploading_active, unique_id = unique_id, _id = _id }) =

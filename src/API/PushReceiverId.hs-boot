@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data PushReceiverId
 
+instance Eq PushReceiverId
+
 instance ToJSON PushReceiverId
 
 instance FromJSON PushReceiverId

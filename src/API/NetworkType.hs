@@ -11,7 +11,7 @@ data NetworkType =
  | NetworkTypeMobile 
  | NetworkTypeMobileRoaming 
  | NetworkTypeWiFi 
- | NetworkTypeOther deriving (Show)
+ | NetworkTypeOther deriving (Show, Eq)
 
 instance T.ToJSON NetworkType where
  toJSON (NetworkTypeNone {  }) =

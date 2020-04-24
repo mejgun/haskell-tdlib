@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data DeleteProfilePhoto = 
- DeleteProfilePhoto { profile_photo_id :: Maybe Int }  deriving (Show)
+ DeleteProfilePhoto { profile_photo_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON DeleteProfilePhoto where
  toJSON (DeleteProfilePhoto { profile_photo_id = profile_photo_id }) =

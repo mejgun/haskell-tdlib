@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetChatStatisticsGraph = 
- GetChatStatisticsGraph { x :: Maybe Int, token :: Maybe String, chat_id :: Maybe Int }  deriving (Show)
+ GetChatStatisticsGraph { x :: Maybe Int, token :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetChatStatisticsGraph where
  toJSON (GetChatStatisticsGraph { x = x, token = token, chat_id = chat_id }) =

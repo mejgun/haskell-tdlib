@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data AccountTtl = 
- AccountTtl { days :: Maybe Int }  deriving (Show)
+ AccountTtl { days :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON AccountTtl where
  toJSON (AccountTtl { days = days }) =

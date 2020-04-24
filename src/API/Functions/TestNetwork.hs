@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data TestNetwork = 
- TestNetwork deriving (Show)
+ TestNetwork deriving (Show, Eq)
 
 instance T.ToJSON TestNetwork where
  toJSON (TestNetwork {  }) =

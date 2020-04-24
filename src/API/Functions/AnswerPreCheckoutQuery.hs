@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data AnswerPreCheckoutQuery = 
- AnswerPreCheckoutQuery { error_message :: Maybe String, pre_checkout_query_id :: Maybe Int }  deriving (Show)
+ AnswerPreCheckoutQuery { error_message :: Maybe String, pre_checkout_query_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON AnswerPreCheckoutQuery where
  toJSON (AnswerPreCheckoutQuery { error_message = error_message, pre_checkout_query_id = pre_checkout_query_id }) =

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ConfirmQrCodeAuthentication = 
- ConfirmQrCodeAuthentication { link :: Maybe String }  deriving (Show)
+ ConfirmQrCodeAuthentication { link :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON ConfirmQrCodeAuthentication where
  toJSON (ConfirmQrCodeAuthentication { link = link }) =

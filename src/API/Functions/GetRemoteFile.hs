@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FileType as FileType
 
 data GetRemoteFile = 
- GetRemoteFile { file_type :: Maybe FileType.FileType, remote_file_id :: Maybe String }  deriving (Show)
+ GetRemoteFile { file_type :: Maybe FileType.FileType, remote_file_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetRemoteFile where
  toJSON (GetRemoteFile { file_type = file_type, remote_file_id = remote_file_id }) =

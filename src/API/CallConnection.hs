@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CallConnection = 
- CallConnection { peer_tag :: Maybe String, port :: Maybe Int, ipv6 :: Maybe String, ip :: Maybe String, _id :: Maybe Int }  deriving (Show)
+ CallConnection { peer_tag :: Maybe String, port :: Maybe Int, ipv6 :: Maybe String, ip :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CallConnection where
  toJSON (CallConnection { peer_tag = peer_tag, port = port, ipv6 = ipv6, ip = ip, _id = _id }) =

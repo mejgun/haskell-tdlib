@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data InputBackground
 
+instance Eq InputBackground
+
 instance ToJSON InputBackground
 
 instance FromJSON InputBackground

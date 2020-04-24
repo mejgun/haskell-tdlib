@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ResendPhoneNumberVerificationCode
 
+instance Eq ResendPhoneNumberVerificationCode
+
 instance ToJSON ResendPhoneNumberVerificationCode
 
 instance FromJSON ResendPhoneNumberVerificationCode

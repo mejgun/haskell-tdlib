@@ -13,7 +13,7 @@
 </span><a href="API.Functions.EditMessageText.html#input_message_content"><span class="hs-identifier hs-var hs-var">input_message_content</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.InputMessageContent.html#InputMessageContent"><span class="hs-identifier hs-type">InputMessageContent.InputMessageContent</span></a></span><span class="hs-special">,</span><span> </span><span id="reply_markup"><span class="annot"><span class="annottext">EditMessageText -&gt; Maybe ReplyMarkup
 </span><a href="API.Functions.EditMessageText.html#reply_markup"><span class="hs-identifier hs-var hs-var">reply_markup</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.ReplyMarkup.html#ReplyMarkup"><span class="hs-identifier hs-type">ReplyMarkup.ReplyMarkup</span></a></span><span class="hs-special">,</span><span> </span><span id="message_id"><span class="annot"><span class="annottext">EditMessageText -&gt; Maybe Int
 </span><a href="API.Functions.EditMessageText.html#message_id"><span class="hs-identifier hs-var hs-var">message_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="chat_id"><span class="annot"><span class="annottext">EditMessageText -&gt; Maybe Int
-</span><a href="API.Functions.EditMessageText.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679411511"><span id="local-6989586621679411513"><span id="local-6989586621679411515"><span class="annot"><span class="annottext">Int -&gt; EditMessageText -&gt; ShowS
+</span><a href="API.Functions.EditMessageText.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679443590"><span id="local-6989586621679443592"><span id="local-6989586621679443594"><span class="annot"><span class="annottext">Int -&gt; EditMessageText -&gt; ShowS
 [EditMessageText] -&gt; ShowS
 EditMessageText -&gt; String
 (Int -&gt; EditMessageText -&gt; ShowS)
@@ -28,19 +28,28 @@ show :: EditMessageText -&gt; String
 $cshow :: EditMessageText -&gt; String
 showsPrec :: Int -&gt; EditMessageText -&gt; ShowS
 $cshowsPrec :: Int -&gt; EditMessageText -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679443585"><span id="local-6989586621679443587"><span class="annot"><span class="annottext">EditMessageText -&gt; EditMessageText -&gt; Bool
+(EditMessageText -&gt; EditMessageText -&gt; Bool)
+-&gt; (EditMessageText -&gt; EditMessageText -&gt; Bool)
+-&gt; Eq EditMessageText
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: EditMessageText -&gt; EditMessageText -&gt; Bool
+$c/= :: EditMessageText -&gt; EditMessageText -&gt; Bool
+== :: EditMessageText -&gt; EditMessageText -&gt; Bool
+$c== :: EditMessageText -&gt; EditMessageText -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-13"></span><span>
-</span><span id="line-14"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679411503"><span id="local-6989586621679411505"><span id="local-6989586621679411507"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.EditMessageText.html#EditMessageText"><span class="hs-identifier hs-type">EditMessageText</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-15"></span><span> </span><span id="local-6989586621679411501"><span class="annot"><span class="annottext">toJSON :: EditMessageText -&gt; Value
+</span><span id="line-14"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679443577"><span id="local-6989586621679443579"><span id="local-6989586621679443581"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.EditMessageText.html#EditMessageText"><span class="hs-identifier hs-type">EditMessageText</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-15"></span><span> </span><span id="local-6989586621679443575"><span class="annot"><span class="annottext">toJSON :: EditMessageText -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.EditMessageText.html#EditMessageText"><span class="hs-identifier hs-type">EditMessageText</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">input_message_content :: EditMessageText -&gt; Maybe InputMessageContent
-</span><a href="API.Functions.EditMessageText.html#input_message_content"><span class="hs-identifier hs-var">input_message_content</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411499"><span class="annot"><span class="annottext">Maybe InputMessageContent
-</span><a href="#local-6989586621679411499"><span class="hs-identifier hs-var">input_message_content</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reply_markup :: EditMessageText -&gt; Maybe ReplyMarkup
-</span><a href="API.Functions.EditMessageText.html#reply_markup"><span class="hs-identifier hs-var">reply_markup</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411498"><span class="annot"><span class="annottext">Maybe ReplyMarkup
-</span><a href="#local-6989586621679411498"><span class="hs-identifier hs-var">reply_markup</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">message_id :: EditMessageText -&gt; Maybe Int
-</span><a href="API.Functions.EditMessageText.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411497"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679411497"><span class="hs-identifier hs-var">message_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: EditMessageText -&gt; Maybe Int
-</span><a href="API.Functions.EditMessageText.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411496"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679411496"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.EditMessageText.html#input_message_content"><span class="hs-identifier hs-var">input_message_content</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443573"><span class="annot"><span class="annottext">Maybe InputMessageContent
+</span><a href="#local-6989586621679443573"><span class="hs-identifier hs-var">input_message_content</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reply_markup :: EditMessageText -&gt; Maybe ReplyMarkup
+</span><a href="API.Functions.EditMessageText.html#reply_markup"><span class="hs-identifier hs-var">reply_markup</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443572"><span class="annot"><span class="annottext">Maybe ReplyMarkup
+</span><a href="#local-6989586621679443572"><span class="hs-identifier hs-var">reply_markup</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">message_id :: EditMessageText -&gt; Maybe Int
+</span><a href="API.Functions.EditMessageText.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443571"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679443571"><span class="hs-identifier hs-var">message_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: EditMessageText -&gt; Maybe Int
+</span><a href="API.Functions.EditMessageText.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443570"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679443570"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-16"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -48,39 +57,39 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;editMessageText&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;input_message_content&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe InputMessageContent -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputMessageContent
-</span><a href="#local-6989586621679411499"><span class="hs-identifier hs-var">input_message_content</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;reply_markup&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ReplyMarkup -&gt; Pair
+</span><a href="#local-6989586621679443573"><span class="hs-identifier hs-var">input_message_content</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;reply_markup&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ReplyMarkup -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ReplyMarkup
-</span><a href="#local-6989586621679411498"><span class="hs-identifier hs-var">reply_markup</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679443572"><span class="hs-identifier hs-var">reply_markup</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679411497"><span class="hs-identifier hs-var">message_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679443571"><span class="hs-identifier hs-var">message_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679411496"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679443570"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679411490"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.EditMessageText.html#EditMessageText"><span class="hs-identifier hs-type">EditMessageText</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-19"></span><span> </span><span id="local-6989586621679411488"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser EditMessageText
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679411486"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679411486"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679411484"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679411484"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-20"></span><span>  </span><span id="local-6989586621679411483"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679411483"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411484"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679443564"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.EditMessageText.html#EditMessageText"><span class="hs-identifier hs-type">EditMessageText</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span> </span><span id="local-6989586621679443562"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser EditMessageText
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679443560"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679443560"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679443558"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679443558"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-20"></span><span>  </span><span id="local-6989586621679443557"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679443557"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679443558"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-21"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679411483"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679443557"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-22"></span><span>   </span><span class="hs-string">&quot;editMessageText&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser EditMessageText
-</span><a href="#local-6989586621679411481"><span class="hs-identifier hs-var">parseEditMessageText</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679411486"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679443555"><span class="hs-identifier hs-var">parseEditMessageText</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679443560"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-23"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser EditMessageText
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-24"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span>   </span><span class="annot"><a href="#local-6989586621679411481"><span class="hs-identifier hs-type">parseEditMessageText</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.EditMessageText.html#EditMessageText"><span class="hs-identifier hs-type">EditMessageText</span></a></span><span>
-</span><span id="line-26"></span><span>   </span><span id="local-6989586621679411481"><span class="annot"><span class="annottext">parseEditMessageText :: Value -&gt; Parser EditMessageText
-</span><a href="#local-6989586621679411481"><span class="hs-identifier hs-var hs-var">parseEditMessageText</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-25"></span><span>   </span><span class="annot"><a href="#local-6989586621679443555"><span class="hs-identifier hs-type">parseEditMessageText</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.EditMessageText.html#EditMessageText"><span class="hs-identifier hs-type">EditMessageText</span></a></span><span>
+</span><span id="line-26"></span><span>   </span><span id="local-6989586621679443555"><span class="annot"><span class="annottext">parseEditMessageText :: Value -&gt; Parser EditMessageText
+</span><a href="#local-6989586621679443555"><span class="hs-identifier hs-var hs-var">parseEditMessageText</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser EditMessageText)
 -&gt; Value
 -&gt; Parser EditMessageText
@@ -91,46 +100,46 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser EditMessageText
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679411479"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679411479"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679411478"><span class="annot"><span class="annottext">Maybe InputMessageContent
-</span><a href="#local-6989586621679411478"><span class="hs-identifier hs-var">input_message_content</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser InputMessageContent -&gt; Parser (Maybe InputMessageContent)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679443553"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679443553"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679443552"><span class="annot"><span class="annottext">Maybe InputMessageContent
+</span><a href="#local-6989586621679443552"><span class="hs-identifier hs-var">input_message_content</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser InputMessageContent -&gt; Parser (Maybe InputMessageContent)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser InputMessageContent -&gt; Parser (Maybe InputMessageContent))
 -&gt; Parser InputMessageContent -&gt; Parser (Maybe InputMessageContent)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411479"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser InputMessageContent
+</span><a href="#local-6989586621679443553"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser InputMessageContent
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;input_message_content&quot;</span></span><span>
-</span><span id="line-28"></span><span>    </span><span id="local-6989586621679411477"><span class="annot"><span class="annottext">Maybe ReplyMarkup
-</span><a href="#local-6989586621679411477"><span class="hs-identifier hs-var">reply_markup</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser ReplyMarkup -&gt; Parser (Maybe ReplyMarkup)
+</span><span id="line-28"></span><span>    </span><span id="local-6989586621679443551"><span class="annot"><span class="annottext">Maybe ReplyMarkup
+</span><a href="#local-6989586621679443551"><span class="hs-identifier hs-var">reply_markup</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser ReplyMarkup -&gt; Parser (Maybe ReplyMarkup)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser ReplyMarkup -&gt; Parser (Maybe ReplyMarkup))
 -&gt; Parser ReplyMarkup -&gt; Parser (Maybe ReplyMarkup)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411479"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser ReplyMarkup
+</span><a href="#local-6989586621679443553"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser ReplyMarkup
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;reply_markup&quot;</span></span><span>
-</span><span id="line-29"></span><span>    </span><span id="local-6989586621679411476"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679411476"><span class="hs-identifier hs-var">message_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span id="line-29"></span><span>    </span><span id="local-6989586621679443550"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679443550"><span class="hs-identifier hs-var">message_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411479"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679443553"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;message_id&quot;</span></span><span>
-</span><span id="line-30"></span><span>    </span><span id="local-6989586621679411475"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679411475"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span id="line-30"></span><span>    </span><span id="local-6989586621679443549"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679443549"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411479"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679443553"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span>
 </span><span id="line-31"></span><span>    </span><span class="annot"><span class="annottext">EditMessageText -&gt; Parser EditMessageText
@@ -142,10 +151,10 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; Maybe ReplyMarkup -&gt; Maybe Int -&gt; Maybe Int -&gt; EditMessageText
 </span><a href="API.Functions.EditMessageText.html#EditMessageText"><span class="hs-identifier hs-type hs-type">EditMessageText</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">input_message_content :: Maybe InputMessageContent
 </span><a href="API.Functions.EditMessageText.html#input_message_content"><span class="hs-identifier hs-var">input_message_content</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe InputMessageContent
-</span><a href="#local-6989586621679411478"><span class="hs-identifier hs-var">input_message_content</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reply_markup :: Maybe ReplyMarkup
+</span><a href="#local-6989586621679443552"><span class="hs-identifier hs-var">input_message_content</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reply_markup :: Maybe ReplyMarkup
 </span><a href="API.Functions.EditMessageText.html#reply_markup"><span class="hs-identifier hs-var">reply_markup</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe ReplyMarkup
-</span><a href="#local-6989586621679411477"><span class="hs-identifier hs-var">reply_markup</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">message_id :: Maybe Int
+</span><a href="#local-6989586621679443551"><span class="hs-identifier hs-var">reply_markup</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">message_id :: Maybe Int
 </span><a href="API.Functions.EditMessageText.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679411476"><span class="hs-identifier hs-var">message_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
+</span><a href="#local-6989586621679443550"><span class="hs-identifier hs-var">message_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
 </span><a href="API.Functions.EditMessageText.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679411475"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679443549"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

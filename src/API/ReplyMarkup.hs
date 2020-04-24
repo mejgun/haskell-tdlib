@@ -12,7 +12,7 @@ data ReplyMarkup =
  ReplyMarkupRemoveKeyboard { is_personal :: Maybe Bool }  
  | ReplyMarkupForceReply { is_personal :: Maybe Bool }  
  | ReplyMarkupShowKeyboard { is_personal :: Maybe Bool, one_time :: Maybe Bool, resize_keyboard :: Maybe Bool, _rows :: Maybe [KeyboardButton.KeyboardButton] }  
- | ReplyMarkupInlineKeyboard { rows :: Maybe [InlineKeyboardButton.InlineKeyboardButton] }  deriving (Show)
+ | ReplyMarkupInlineKeyboard { rows :: Maybe [InlineKeyboardButton.InlineKeyboardButton] }  deriving (Show, Eq)
 
 instance T.ToJSON ReplyMarkup where
  toJSON (ReplyMarkupRemoveKeyboard { is_personal = is_personal }) =

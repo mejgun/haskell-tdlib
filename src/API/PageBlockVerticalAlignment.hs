@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 data PageBlockVerticalAlignment = 
  PageBlockVerticalAlignmentTop 
  | PageBlockVerticalAlignmentMiddle 
- | PageBlockVerticalAlignmentBottom deriving (Show)
+ | PageBlockVerticalAlignmentBottom deriving (Show, Eq)
 
 instance T.ToJSON PageBlockVerticalAlignment where
  toJSON (PageBlockVerticalAlignmentTop {  }) =

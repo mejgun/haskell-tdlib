@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetProxies = 
- GetProxies deriving (Show)
+ GetProxies deriving (Show, Eq)
 
 instance T.ToJSON GetProxies where
  toJSON (GetProxies {  }) =

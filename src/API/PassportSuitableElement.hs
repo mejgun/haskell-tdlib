@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 
 data PassportSuitableElement = 
- PassportSuitableElement { is_native_name_required :: Maybe Bool, is_translation_required :: Maybe Bool, is_selfie_required :: Maybe Bool, _type :: Maybe PassportElementType.PassportElementType }  deriving (Show)
+ PassportSuitableElement { is_native_name_required :: Maybe Bool, is_translation_required :: Maybe Bool, is_selfie_required :: Maybe Bool, _type :: Maybe PassportElementType.PassportElementType }  deriving (Show, Eq)
 
 instance T.ToJSON PassportSuitableElement where
  toJSON (PassportSuitableElement { is_native_name_required = is_native_name_required, is_translation_required = is_translation_required, is_selfie_required = is_selfie_required, _type = _type }) =

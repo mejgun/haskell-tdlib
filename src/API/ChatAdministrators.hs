@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatAdministrator as ChatAdministrator
 
 data ChatAdministrators = 
- ChatAdministrators { administrators :: Maybe [ChatAdministrator.ChatAdministrator] }  deriving (Show)
+ ChatAdministrators { administrators :: Maybe [ChatAdministrator.ChatAdministrator] }  deriving (Show, Eq)
 
 instance T.ToJSON ChatAdministrators where
  toJSON (ChatAdministrators { administrators = administrators }) =

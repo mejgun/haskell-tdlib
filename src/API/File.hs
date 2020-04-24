@@ -9,7 +9,7 @@ import {-# SOURCE #-} qualified API.RemoteFile as RemoteFile
 import {-# SOURCE #-} qualified API.LocalFile as LocalFile
 
 data File = 
- File { remote :: Maybe RemoteFile.RemoteFile, local :: Maybe LocalFile.LocalFile, expected_size :: Maybe Int, size :: Maybe Int, _id :: Maybe Int }  deriving (Show)
+ File { remote :: Maybe RemoteFile.RemoteFile, local :: Maybe LocalFile.LocalFile, expected_size :: Maybe Int, size :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON File where
  toJSON (File { remote = remote, local = local, expected_size = expected_size, size = size, _id = _id }) =

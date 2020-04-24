@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data FilePart = 
- FilePart { _data :: Maybe String }  deriving (Show)
+ FilePart { _data :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON FilePart where
  toJSON (FilePart { _data = _data }) =

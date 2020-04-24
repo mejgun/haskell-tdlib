@@ -10,7 +10,7 @@ import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 
 data Audio = 
- Audio { audio :: Maybe File.File, album_cover_thumbnail :: Maybe PhotoSize.PhotoSize, album_cover_minithumbnail :: Maybe Minithumbnail.Minithumbnail, mime_type :: Maybe String, file_name :: Maybe String, performer :: Maybe String, title :: Maybe String, duration :: Maybe Int }  deriving (Show)
+ Audio { audio :: Maybe File.File, album_cover_thumbnail :: Maybe PhotoSize.PhotoSize, album_cover_minithumbnail :: Maybe Minithumbnail.Minithumbnail, mime_type :: Maybe String, file_name :: Maybe String, performer :: Maybe String, title :: Maybe String, duration :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Audio where
  toJSON (Audio { audio = audio, album_cover_thumbnail = album_cover_thumbnail, album_cover_minithumbnail = album_cover_minithumbnail, mime_type = mime_type, file_name = file_name, performer = performer, title = title, duration = duration }) =

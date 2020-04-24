@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data DeleteLanguagePack
 
+instance Eq DeleteLanguagePack
+
 instance ToJSON DeleteLanguagePack
 
 instance FromJSON DeleteLanguagePack

@@ -10,7 +10,7 @@ import {-# SOURCE #-} qualified API.PageBlockHorizontalAlignment as PageBlockHor
 import {-# SOURCE #-} qualified API.RichText as RichText
 
 data PageBlockTableCell = 
- PageBlockTableCell { valign :: Maybe PageBlockVerticalAlignment.PageBlockVerticalAlignment, align :: Maybe PageBlockHorizontalAlignment.PageBlockHorizontalAlignment, rowspan :: Maybe Int, colspan :: Maybe Int, is_header :: Maybe Bool, text :: Maybe RichText.RichText }  deriving (Show)
+ PageBlockTableCell { valign :: Maybe PageBlockVerticalAlignment.PageBlockVerticalAlignment, align :: Maybe PageBlockHorizontalAlignment.PageBlockHorizontalAlignment, rowspan :: Maybe Int, colspan :: Maybe Int, is_header :: Maybe Bool, text :: Maybe RichText.RichText }  deriving (Show, Eq)
 
 instance T.ToJSON PageBlockTableCell where
  toJSON (PageBlockTableCell { valign = valign, align = align, rowspan = rowspan, colspan = colspan, is_header = is_header, text = text }) =

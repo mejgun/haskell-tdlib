@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SearchEmojis
 
+instance Eq SearchEmojis
+
 instance ToJSON SearchEmojis
 
 instance FromJSON SearchEmojis

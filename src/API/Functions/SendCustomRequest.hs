@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SendCustomRequest = 
- SendCustomRequest { parameters :: Maybe String, method :: Maybe String }  deriving (Show)
+ SendCustomRequest { parameters :: Maybe String, method :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SendCustomRequest where
  toJSON (SendCustomRequest { parameters = parameters, method = method }) =

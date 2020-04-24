@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.CallProtocol as CallProtocol
 
 data CreateCall = 
- CreateCall { protocol :: Maybe CallProtocol.CallProtocol, user_id :: Maybe Int }  deriving (Show)
+ CreateCall { protocol :: Maybe CallProtocol.CallProtocol, user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CreateCall where
  toJSON (CreateCall { protocol = protocol, user_id = user_id }) =

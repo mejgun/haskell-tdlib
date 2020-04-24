@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TMeUrl as TMeUrl
 
 data TMeUrls = 
- TMeUrls { urls :: Maybe [TMeUrl.TMeUrl] }  deriving (Show)
+ TMeUrls { urls :: Maybe [TMeUrl.TMeUrl] }  deriving (Show, Eq)
 
 instance T.ToJSON TMeUrls where
  toJSON (TMeUrls { urls = urls }) =

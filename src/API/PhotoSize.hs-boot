@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data PhotoSize
 
+instance Eq PhotoSize
+
 instance ToJSON PhotoSize
 
 instance FromJSON PhotoSize

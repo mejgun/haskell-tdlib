@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data CreateBasicGroupChat
 
+instance Eq CreateBasicGroupChat
+
 instance ToJSON CreateBasicGroupChat
 
 instance FromJSON CreateBasicGroupChat

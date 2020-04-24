@@ -12,7 +12,7 @@ data UserStatus =
  | UserStatusOffline { was_online :: Maybe Int }  
  | UserStatusRecently 
  | UserStatusLastWeek 
- | UserStatusLastMonth deriving (Show)
+ | UserStatusLastMonth deriving (Show, Eq)
 
 instance T.ToJSON UserStatus where
  toJSON (UserStatusEmpty {  }) =

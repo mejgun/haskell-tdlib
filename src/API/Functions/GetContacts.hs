@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetContacts = 
- GetContacts deriving (Show)
+ GetContacts deriving (Show, Eq)
 
 instance T.ToJSON GetContacts where
  toJSON (GetContacts {  }) =

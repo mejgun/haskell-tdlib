@@ -10,7 +10,7 @@ import {-# SOURCE #-} qualified API.NetworkType as NetworkType
 
 data NetworkStatisticsEntry = 
  NetworkStatisticsEntryFile { received_bytes :: Maybe Int, sent_bytes :: Maybe Int, network_type :: Maybe NetworkType.NetworkType, file_type :: Maybe FileType.FileType }  
- | NetworkStatisticsEntryCall { duration :: Maybe Float, received_bytes :: Maybe Int, sent_bytes :: Maybe Int, network_type :: Maybe NetworkType.NetworkType }  deriving (Show)
+ | NetworkStatisticsEntryCall { duration :: Maybe Float, received_bytes :: Maybe Int, sent_bytes :: Maybe Int, network_type :: Maybe NetworkType.NetworkType }  deriving (Show, Eq)
 
 instance T.ToJSON NetworkStatisticsEntry where
  toJSON (NetworkStatisticsEntryFile { received_bytes = received_bytes, sent_bytes = sent_bytes, network_type = network_type, file_type = file_type }) =

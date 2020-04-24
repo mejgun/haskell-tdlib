@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetTopChats
 
+instance Eq GetTopChats
+
 instance ToJSON GetTopChats
 
 instance FromJSON GetTopChats

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SearchChatRecentLocationMessages = 
- SearchChatRecentLocationMessages { limit :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ SearchChatRecentLocationMessages { limit :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SearchChatRecentLocationMessages where
  toJSON (SearchChatRecentLocationMessages { limit = limit, chat_id = chat_id }) =

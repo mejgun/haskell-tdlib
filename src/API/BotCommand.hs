@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data BotCommand = 
- BotCommand { description :: Maybe String, command :: Maybe String }  deriving (Show)
+ BotCommand { description :: Maybe String, command :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON BotCommand where
  toJSON (BotCommand { description = description, command = command }) =

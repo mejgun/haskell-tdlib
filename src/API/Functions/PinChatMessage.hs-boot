@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data PinChatMessage
 
+instance Eq PinChatMessage
+
 instance ToJSON PinChatMessage
 
 instance FromJSON PinChatMessage

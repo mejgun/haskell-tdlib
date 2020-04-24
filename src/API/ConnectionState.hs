@@ -11,7 +11,7 @@ data ConnectionState =
  | ConnectionStateConnectingToProxy 
  | ConnectionStateConnecting 
  | ConnectionStateUpdating 
- | ConnectionStateReady deriving (Show)
+ | ConnectionStateReady deriving (Show, Eq)
 
 instance T.ToJSON ConnectionState where
  toJSON (ConnectionStateWaitingForNetwork {  }) =

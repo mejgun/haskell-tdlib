@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.MessageSchedulingState as MessageSchedulingState
 
 data EditMessageSchedulingState = 
- EditMessageSchedulingState { scheduling_state :: Maybe MessageSchedulingState.MessageSchedulingState, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ EditMessageSchedulingState { scheduling_state :: Maybe MessageSchedulingState.MessageSchedulingState, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON EditMessageSchedulingState where
  toJSON (EditMessageSchedulingState { scheduling_state = scheduling_state, message_id = message_id, chat_id = chat_id }) =

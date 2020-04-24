@@ -13,7 +13,7 @@ data SupergroupMembersFilter =
  | SupergroupMembersFilterSearch { query :: Maybe String }  
  | SupergroupMembersFilterRestricted { query :: Maybe String }  
  | SupergroupMembersFilterBanned { query :: Maybe String }  
- | SupergroupMembersFilterBots deriving (Show)
+ | SupergroupMembersFilterBots deriving (Show, Eq)
 
 instance T.ToJSON SupergroupMembersFilter where
  toJSON (SupergroupMembersFilterRecent {  }) =

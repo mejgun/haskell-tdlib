@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data CreateSupergroupChat
 
+instance Eq CreateSupergroupChat
+
 instance ToJSON CreateSupergroupChat
 
 instance FromJSON CreateSupergroupChat

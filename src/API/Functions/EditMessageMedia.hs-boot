@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data EditMessageMedia
 
+instance Eq EditMessageMedia
+
 instance ToJSON EditMessageMedia
 
 instance FromJSON EditMessageMedia

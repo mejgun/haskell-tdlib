@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data InputPassportElementErrorSource
 
+instance Eq InputPassportElementErrorSource
+
 instance ToJSON InputPassportElementErrorSource
 
 instance FromJSON InputPassportElementErrorSource

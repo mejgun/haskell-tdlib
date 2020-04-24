@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data DeleteChatMessagesFromUser = 
- DeleteChatMessagesFromUser { user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ DeleteChatMessagesFromUser { user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON DeleteChatMessagesFromUser where
  toJSON (DeleteChatMessagesFromUser { user_id = user_id, chat_id = chat_id }) =

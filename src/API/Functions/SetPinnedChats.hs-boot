@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetPinnedChats
 
+instance Eq SetPinnedChats
+
 instance ToJSON SetPinnedChats
 
 instance FromJSON SetPinnedChats

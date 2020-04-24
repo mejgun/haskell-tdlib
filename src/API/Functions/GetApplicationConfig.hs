@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetApplicationConfig = 
- GetApplicationConfig deriving (Show)
+ GetApplicationConfig deriving (Show, Eq)
 
 instance T.ToJSON GetApplicationConfig where
  toJSON (GetApplicationConfig {  }) =

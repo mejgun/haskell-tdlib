@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Text = 
- Text { text :: Maybe String }  deriving (Show)
+ Text { text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON Text where
  toJSON (Text { text = text }) =

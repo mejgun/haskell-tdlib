@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BackgroundType as BackgroundType
 
 data GetBackgroundUrl = 
- GetBackgroundUrl { _type :: Maybe BackgroundType.BackgroundType, name :: Maybe String }  deriving (Show)
+ GetBackgroundUrl { _type :: Maybe BackgroundType.BackgroundType, name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetBackgroundUrl where
  toJSON (GetBackgroundUrl { _type = _type, name = name }) =

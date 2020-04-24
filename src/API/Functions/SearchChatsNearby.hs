@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Location as Location
 
 data SearchChatsNearby = 
- SearchChatsNearby { location :: Maybe Location.Location }  deriving (Show)
+ SearchChatsNearby { location :: Maybe Location.Location }  deriving (Show, Eq)
 
 instance T.ToJSON SearchChatsNearby where
  toJSON (SearchChatsNearby { location = location }) =

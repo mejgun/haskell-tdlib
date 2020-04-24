@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ToggleChatDefaultDisableNotification
 
+instance Eq ToggleChatDefaultDisableNotification
+
 instance ToJSON ToggleChatDefaultDisableNotification
 
 instance FromJSON ToggleChatDefaultDisableNotification

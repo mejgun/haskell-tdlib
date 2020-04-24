@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TdlibParameters as TdlibParameters
 
 data SetTdlibParameters = 
- SetTdlibParameters { parameters :: Maybe TdlibParameters.TdlibParameters }  deriving (Show)
+ SetTdlibParameters { parameters :: Maybe TdlibParameters.TdlibParameters }  deriving (Show, Eq)
 
 instance T.ToJSON SetTdlibParameters where
  toJSON (SetTdlibParameters { parameters = parameters }) =

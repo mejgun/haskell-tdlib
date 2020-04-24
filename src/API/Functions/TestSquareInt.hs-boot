@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data TestSquareInt
 
+instance Eq TestSquareInt
+
 instance ToJSON TestSquareInt
 
 instance FromJSON TestSquareInt

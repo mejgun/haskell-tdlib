@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data Game
 
+instance Eq Game
+
 instance ToJSON Game
 
 instance FromJSON Game

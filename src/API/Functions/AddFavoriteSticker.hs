@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data AddFavoriteSticker = 
- AddFavoriteSticker { sticker :: Maybe InputFile.InputFile }  deriving (Show)
+ AddFavoriteSticker { sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON AddFavoriteSticker where
  toJSON (AddFavoriteSticker { sticker = sticker }) =

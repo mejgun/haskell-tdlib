@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetLogTagVerbosityLevel = 
- GetLogTagVerbosityLevel { tag :: Maybe String }  deriving (Show)
+ GetLogTagVerbosityLevel { tag :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetLogTagVerbosityLevel where
  toJSON (GetLogTagVerbosityLevel { tag = tag }) =

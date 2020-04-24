@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetConnectedWebsites
 
+instance Eq GetConnectedWebsites
+
 instance ToJSON GetConnectedWebsites
 
 instance FromJSON GetConnectedWebsites

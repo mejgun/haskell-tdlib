@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data AnswerPreCheckoutQuery
 
+instance Eq AnswerPreCheckoutQuery
+
 instance ToJSON AnswerPreCheckoutQuery
 
 instance FromJSON AnswerPreCheckoutQuery

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetProfilePhoto
 
+instance Eq SetProfilePhoto
+
 instance ToJSON SetProfilePhoto
 
 instance FromJSON SetProfilePhoto

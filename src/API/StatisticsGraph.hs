@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 data StatisticsGraph = 
  StatisticsGraphData { zoom_token :: Maybe String, json_data :: Maybe String }  
  | StatisticsGraphAsync { token :: Maybe String }  
- | StatisticsGraphError { error_message :: Maybe String }  deriving (Show)
+ | StatisticsGraphError { error_message :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON StatisticsGraph where
  toJSON (StatisticsGraphData { zoom_token = zoom_token, json_data = json_data }) =

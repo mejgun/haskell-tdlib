@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetPreferredCountryLanguage = 
- GetPreferredCountryLanguage { country_code :: Maybe String }  deriving (Show)
+ GetPreferredCountryLanguage { country_code :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetPreferredCountryLanguage where
  toJSON (GetPreferredCountryLanguage { country_code = country_code }) =

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetFileGenerationProgress
 
+instance Eq SetFileGenerationProgress
+
 instance ToJSON SetFileGenerationProgress
 
 instance FromJSON SetFileGenerationProgress

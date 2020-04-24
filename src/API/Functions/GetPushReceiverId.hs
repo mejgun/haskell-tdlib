@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetPushReceiverId = 
- GetPushReceiverId { payload :: Maybe String }  deriving (Show)
+ GetPushReceiverId { payload :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetPushReceiverId where
  toJSON (GetPushReceiverId { payload = payload }) =

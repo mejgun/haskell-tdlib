@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ResendChangePhoneNumberCode
 
+instance Eq ResendChangePhoneNumberCode
+
 instance ToJSON ResendChangePhoneNumberCode
 
 instance FromJSON ResendChangePhoneNumberCode

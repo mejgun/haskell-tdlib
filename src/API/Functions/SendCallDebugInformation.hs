@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SendCallDebugInformation = 
- SendCallDebugInformation { debug_information :: Maybe String, call_id :: Maybe Int }  deriving (Show)
+ SendCallDebugInformation { debug_information :: Maybe String, call_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendCallDebugInformation where
  toJSON (SendCallDebugInformation { debug_information = debug_information, call_id = call_id }) =

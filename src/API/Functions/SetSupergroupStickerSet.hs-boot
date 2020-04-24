@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetSupergroupStickerSet
 
+instance Eq SetSupergroupStickerSet
+
 instance ToJSON SetSupergroupStickerSet
 
 instance FromJSON SetSupergroupStickerSet

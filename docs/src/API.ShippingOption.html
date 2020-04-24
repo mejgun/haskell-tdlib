@@ -11,7 +11,7 @@
 </span><span id="line-11"></span><span> </span><span id="ShippingOption"><span class="annot"><a href="API.ShippingOption.html#ShippingOption"><span class="hs-identifier hs-var">ShippingOption</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="price_parts"><span class="annot"><span class="annottext">ShippingOption -&gt; Maybe [LabeledPricePart]
 </span><a href="API.ShippingOption.html#price_parts"><span class="hs-identifier hs-var hs-var">price_parts</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.LabeledPricePart.html#LabeledPricePart"><span class="hs-identifier hs-type">LabeledPricePart.LabeledPricePart</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="title"><span class="annot"><span class="annottext">ShippingOption -&gt; Maybe String
 </span><a href="API.ShippingOption.html#title"><span class="hs-identifier hs-var hs-var">title</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="_id"><span class="annot"><span class="annottext">ShippingOption -&gt; Maybe String
-</span><a href="API.ShippingOption.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679414380"><span id="local-6989586621679414382"><span id="local-6989586621679414384"><span class="annot"><span class="annottext">Int -&gt; ShippingOption -&gt; ShowS
+</span><a href="API.ShippingOption.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679446664"><span id="local-6989586621679446666"><span id="local-6989586621679446668"><span class="annot"><span class="annottext">Int -&gt; ShippingOption -&gt; ShowS
 [ShippingOption] -&gt; ShowS
 ShippingOption -&gt; String
 (Int -&gt; ShippingOption -&gt; ShowS)
@@ -26,17 +26,25 @@ show :: ShippingOption -&gt; String
 $cshow :: ShippingOption -&gt; String
 showsPrec :: Int -&gt; ShippingOption -&gt; ShowS
 $cshowsPrec :: Int -&gt; ShippingOption -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679446659"><span id="local-6989586621679446661"><span class="annot"><span class="annottext">ShippingOption -&gt; ShippingOption -&gt; Bool
+(ShippingOption -&gt; ShippingOption -&gt; Bool)
+-&gt; (ShippingOption -&gt; ShippingOption -&gt; Bool) -&gt; Eq ShippingOption
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: ShippingOption -&gt; ShippingOption -&gt; Bool
+$c/= :: ShippingOption -&gt; ShippingOption -&gt; Bool
+== :: ShippingOption -&gt; ShippingOption -&gt; Bool
+$c== :: ShippingOption -&gt; ShippingOption -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414372"><span id="local-6989586621679414374"><span id="local-6989586621679414376"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ShippingOption.html#ShippingOption"><span class="hs-identifier hs-type">ShippingOption</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679414370"><span class="annot"><span class="annottext">toJSON :: ShippingOption -&gt; Value
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446651"><span id="local-6989586621679446653"><span id="local-6989586621679446655"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ShippingOption.html#ShippingOption"><span class="hs-identifier hs-type">ShippingOption</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679446649"><span class="annot"><span class="annottext">toJSON :: ShippingOption -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.ShippingOption.html#ShippingOption"><span class="hs-identifier hs-type">ShippingOption</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">price_parts :: ShippingOption -&gt; Maybe [LabeledPricePart]
-</span><a href="API.ShippingOption.html#price_parts"><span class="hs-identifier hs-var">price_parts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414368"><span class="annot"><span class="annottext">Maybe [LabeledPricePart]
-</span><a href="#local-6989586621679414368"><span class="hs-identifier hs-var">price_parts</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: ShippingOption -&gt; Maybe String
-</span><a href="API.ShippingOption.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414367"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414367"><span class="hs-identifier hs-var">title</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: ShippingOption -&gt; Maybe String
-</span><a href="API.ShippingOption.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414366"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414366"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.ShippingOption.html#price_parts"><span class="hs-identifier hs-var">price_parts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446647"><span class="annot"><span class="annottext">Maybe [LabeledPricePart]
+</span><a href="#local-6989586621679446647"><span class="hs-identifier hs-var">price_parts</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: ShippingOption -&gt; Maybe String
+</span><a href="API.ShippingOption.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446646"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679446646"><span class="hs-identifier hs-var">title</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: ShippingOption -&gt; Maybe String
+</span><a href="API.ShippingOption.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446645"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679446645"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -44,36 +52,36 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;shippingOption&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;price_parts&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [LabeledPricePart] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [LabeledPricePart]
-</span><a href="#local-6989586621679414368"><span class="hs-identifier hs-var">price_parts</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679446647"><span class="hs-identifier hs-var">price_parts</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;title&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414367"><span class="hs-identifier hs-var">title</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679446646"><span class="hs-identifier hs-var">title</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414366"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679446645"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414360"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ShippingOption.html#ShippingOption"><span class="hs-identifier hs-type">ShippingOption</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679414358"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ShippingOption
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679414356"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679414356"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679414354"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679414354"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679414353"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679414353"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679414354"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446639"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ShippingOption.html#ShippingOption"><span class="hs-identifier hs-type">ShippingOption</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679446637"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ShippingOption
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679446635"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679446635"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679446633"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679446633"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679446632"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679446632"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446633"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679414353"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679446632"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;shippingOption&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ShippingOption
-</span><a href="#local-6989586621679414351"><span class="hs-identifier hs-var">parseShippingOption</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679414356"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679446630"><span class="hs-identifier hs-var">parseShippingOption</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679446635"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ShippingOption
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679414351"><span class="hs-identifier hs-type">parseShippingOption</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ShippingOption.html#ShippingOption"><span class="hs-identifier hs-type">ShippingOption</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span id="local-6989586621679414351"><span class="annot"><span class="annottext">parseShippingOption :: Value -&gt; Parser ShippingOption
-</span><a href="#local-6989586621679414351"><span class="hs-identifier hs-var hs-var">parseShippingOption</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679446630"><span class="hs-identifier hs-type">parseShippingOption</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ShippingOption.html#ShippingOption"><span class="hs-identifier hs-type">ShippingOption</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679446630"><span class="annot"><span class="annottext">parseShippingOption :: Value -&gt; Parser ShippingOption
+</span><a href="#local-6989586621679446630"><span class="hs-identifier hs-var hs-var">parseShippingOption</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ShippingOption)
 -&gt; Value
 -&gt; Parser ShippingOption
@@ -84,36 +92,36 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ShippingOption
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679414349"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679414349"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679414348"><span class="annot"><span class="annottext">Maybe [LabeledPricePart]
-</span><a href="#local-6989586621679414348"><span class="hs-identifier hs-var">price_parts</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [LabeledPricePart] -&gt; Parser (Maybe [LabeledPricePart])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679446628"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679446628"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679446627"><span class="annot"><span class="annottext">Maybe [LabeledPricePart]
+</span><a href="#local-6989586621679446627"><span class="hs-identifier hs-var">price_parts</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [LabeledPricePart] -&gt; Parser (Maybe [LabeledPricePart])
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser [LabeledPricePart] -&gt; Parser (Maybe [LabeledPricePart]))
 -&gt; Parser [LabeledPricePart] -&gt; Parser (Maybe [LabeledPricePart])
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679414349"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [LabeledPricePart]
+</span><a href="#local-6989586621679446628"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [LabeledPricePart]
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;price_parts&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679414347"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414347"><span class="hs-identifier hs-var">title</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679446626"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679446626"><span class="hs-identifier hs-var">title</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679414349"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679446628"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;title&quot;</span></span><span>
-</span><span id="line-28"></span><span>    </span><span id="local-6989586621679414346"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414346"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span id="line-28"></span><span>    </span><span id="local-6989586621679446625"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679446625"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679414349"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679446628"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span>
 </span><span id="line-29"></span><span>    </span><span class="annot"><span class="annottext">ShippingOption -&gt; Parser ShippingOption
@@ -125,8 +133,8 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; Maybe String -&gt; Maybe String -&gt; ShippingOption
 </span><a href="API.ShippingOption.html#ShippingOption"><span class="hs-identifier hs-type hs-type">ShippingOption</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">price_parts :: Maybe [LabeledPricePart]
 </span><a href="API.ShippingOption.html#price_parts"><span class="hs-identifier hs-var">price_parts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [LabeledPricePart]
-</span><a href="#local-6989586621679414348"><span class="hs-identifier hs-var">price_parts</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: Maybe String
+</span><a href="#local-6989586621679446627"><span class="hs-identifier hs-var">price_parts</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: Maybe String
 </span><a href="API.ShippingOption.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414347"><span class="hs-identifier hs-var">title</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Maybe String
+</span><a href="#local-6989586621679446626"><span class="hs-identifier hs-var">title</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Maybe String
 </span><a href="API.ShippingOption.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414346"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679446625"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

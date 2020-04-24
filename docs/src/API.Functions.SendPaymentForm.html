@@ -13,7 +13,7 @@
 </span><a href="API.Functions.SendPaymentForm.html#shipping_option_id"><span class="hs-identifier hs-var hs-var">shipping_option_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="order_info_id"><span class="annot"><span class="annottext">SendPaymentForm -&gt; Maybe String
 </span><a href="API.Functions.SendPaymentForm.html#order_info_id"><span class="hs-identifier hs-var hs-var">order_info_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="message_id"><span class="annot"><span class="annottext">SendPaymentForm -&gt; Maybe Int
 </span><a href="API.Functions.SendPaymentForm.html#message_id"><span class="hs-identifier hs-var hs-var">message_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="chat_id"><span class="annot"><span class="annottext">SendPaymentForm -&gt; Maybe Int
-</span><a href="API.Functions.SendPaymentForm.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679399899"><span id="local-6989586621679399901"><span id="local-6989586621679399903"><span class="annot"><span class="annottext">Int -&gt; SendPaymentForm -&gt; ShowS
+</span><a href="API.Functions.SendPaymentForm.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679431113"><span id="local-6989586621679431115"><span id="local-6989586621679431117"><span class="annot"><span class="annottext">Int -&gt; SendPaymentForm -&gt; ShowS
 [SendPaymentForm] -&gt; ShowS
 SendPaymentForm -&gt; String
 (Int -&gt; SendPaymentForm -&gt; ShowS)
@@ -28,21 +28,30 @@ show :: SendPaymentForm -&gt; String
 $cshow :: SendPaymentForm -&gt; String
 showsPrec :: Int -&gt; SendPaymentForm -&gt; ShowS
 $cshowsPrec :: Int -&gt; SendPaymentForm -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679431108"><span id="local-6989586621679431110"><span class="annot"><span class="annottext">SendPaymentForm -&gt; SendPaymentForm -&gt; Bool
+(SendPaymentForm -&gt; SendPaymentForm -&gt; Bool)
+-&gt; (SendPaymentForm -&gt; SendPaymentForm -&gt; Bool)
+-&gt; Eq SendPaymentForm
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: SendPaymentForm -&gt; SendPaymentForm -&gt; Bool
+$c/= :: SendPaymentForm -&gt; SendPaymentForm -&gt; Bool
+== :: SendPaymentForm -&gt; SendPaymentForm -&gt; Bool
+$c== :: SendPaymentForm -&gt; SendPaymentForm -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679399891"><span id="local-6989586621679399893"><span id="local-6989586621679399895"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SendPaymentForm.html#SendPaymentForm"><span class="hs-identifier hs-type">SendPaymentForm</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679399889"><span class="annot"><span class="annottext">toJSON :: SendPaymentForm -&gt; Value
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679431100"><span id="local-6989586621679431102"><span id="local-6989586621679431104"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SendPaymentForm.html#SendPaymentForm"><span class="hs-identifier hs-type">SendPaymentForm</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679431098"><span class="annot"><span class="annottext">toJSON :: SendPaymentForm -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.SendPaymentForm.html#SendPaymentForm"><span class="hs-identifier hs-type">SendPaymentForm</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">credentials :: SendPaymentForm -&gt; Maybe InputCredentials
-</span><a href="API.Functions.SendPaymentForm.html#credentials"><span class="hs-identifier hs-var">credentials</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399887"><span class="annot"><span class="annottext">Maybe InputCredentials
-</span><a href="#local-6989586621679399887"><span class="hs-identifier hs-var">credentials</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">shipping_option_id :: SendPaymentForm -&gt; Maybe String
-</span><a href="API.Functions.SendPaymentForm.html#shipping_option_id"><span class="hs-identifier hs-var">shipping_option_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399886"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679399886"><span class="hs-identifier hs-var">shipping_option_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">order_info_id :: SendPaymentForm -&gt; Maybe String
-</span><a href="API.Functions.SendPaymentForm.html#order_info_id"><span class="hs-identifier hs-var">order_info_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399885"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679399885"><span class="hs-identifier hs-var">order_info_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">message_id :: SendPaymentForm -&gt; Maybe Int
-</span><a href="API.Functions.SendPaymentForm.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399884"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679399884"><span class="hs-identifier hs-var">message_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: SendPaymentForm -&gt; Maybe Int
-</span><a href="API.Functions.SendPaymentForm.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679399883"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679399883"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.SendPaymentForm.html#credentials"><span class="hs-identifier hs-var">credentials</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431096"><span class="annot"><span class="annottext">Maybe InputCredentials
+</span><a href="#local-6989586621679431096"><span class="hs-identifier hs-var">credentials</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">shipping_option_id :: SendPaymentForm -&gt; Maybe String
+</span><a href="API.Functions.SendPaymentForm.html#shipping_option_id"><span class="hs-identifier hs-var">shipping_option_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431095"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679431095"><span class="hs-identifier hs-var">shipping_option_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">order_info_id :: SendPaymentForm -&gt; Maybe String
+</span><a href="API.Functions.SendPaymentForm.html#order_info_id"><span class="hs-identifier hs-var">order_info_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431094"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679431094"><span class="hs-identifier hs-var">order_info_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">message_id :: SendPaymentForm -&gt; Maybe Int
+</span><a href="API.Functions.SendPaymentForm.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431093"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679431093"><span class="hs-identifier hs-var">message_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: SendPaymentForm -&gt; Maybe Int
+</span><a href="API.Functions.SendPaymentForm.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431092"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679431092"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -50,42 +59,42 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;sendPaymentForm&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;credentials&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe InputCredentials -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputCredentials
-</span><a href="#local-6989586621679399887"><span class="hs-identifier hs-var">credentials</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;shipping_option_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679431096"><span class="hs-identifier hs-var">credentials</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;shipping_option_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679399886"><span class="hs-identifier hs-var">shipping_option_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;order_info_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679431095"><span class="hs-identifier hs-var">shipping_option_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;order_info_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679399885"><span class="hs-identifier hs-var">order_info_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679431094"><span class="hs-identifier hs-var">order_info_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679399884"><span class="hs-identifier hs-var">message_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679431093"><span class="hs-identifier hs-var">message_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679399883"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679431092"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679399877"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SendPaymentForm.html#SendPaymentForm"><span class="hs-identifier hs-type">SendPaymentForm</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679399875"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SendPaymentForm
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679399873"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679399873"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679399871"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679399871"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679399870"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679399870"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679399871"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679431086"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SendPaymentForm.html#SendPaymentForm"><span class="hs-identifier hs-type">SendPaymentForm</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679431084"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SendPaymentForm
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679431082"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679431082"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679431080"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679431080"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679431079"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679431079"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679431080"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679399870"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679431079"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;sendPaymentForm&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SendPaymentForm
-</span><a href="#local-6989586621679399868"><span class="hs-identifier hs-var">parseSendPaymentForm</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679399873"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679431077"><span class="hs-identifier hs-var">parseSendPaymentForm</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679431082"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SendPaymentForm
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679399868"><span class="hs-identifier hs-type">parseSendPaymentForm</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SendPaymentForm.html#SendPaymentForm"><span class="hs-identifier hs-type">SendPaymentForm</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span id="local-6989586621679399868"><span class="annot"><span class="annottext">parseSendPaymentForm :: Value -&gt; Parser SendPaymentForm
-</span><a href="#local-6989586621679399868"><span class="hs-identifier hs-var hs-var">parseSendPaymentForm</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679431077"><span class="hs-identifier hs-type">parseSendPaymentForm</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SendPaymentForm.html#SendPaymentForm"><span class="hs-identifier hs-type">SendPaymentForm</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679431077"><span class="annot"><span class="annottext">parseSendPaymentForm :: Value -&gt; Parser SendPaymentForm
+</span><a href="#local-6989586621679431077"><span class="hs-identifier hs-var hs-var">parseSendPaymentForm</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SendPaymentForm)
 -&gt; Value
 -&gt; Parser SendPaymentForm
@@ -96,56 +105,56 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SendPaymentForm
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679399866"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679399866"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679399865"><span class="annot"><span class="annottext">Maybe InputCredentials
-</span><a href="#local-6989586621679399865"><span class="hs-identifier hs-var">credentials</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser InputCredentials -&gt; Parser (Maybe InputCredentials)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679431075"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679431075"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679431074"><span class="annot"><span class="annottext">Maybe InputCredentials
+</span><a href="#local-6989586621679431074"><span class="hs-identifier hs-var">credentials</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser InputCredentials -&gt; Parser (Maybe InputCredentials)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser InputCredentials -&gt; Parser (Maybe InputCredentials))
 -&gt; Parser InputCredentials -&gt; Parser (Maybe InputCredentials)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679399866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser InputCredentials
+</span><a href="#local-6989586621679431075"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser InputCredentials
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;credentials&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679399864"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679399864"><span class="hs-identifier hs-var">shipping_option_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679431073"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679431073"><span class="hs-identifier hs-var">shipping_option_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679399866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679431075"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;shipping_option_id&quot;</span></span><span>
-</span><span id="line-28"></span><span>    </span><span id="local-6989586621679399863"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679399863"><span class="hs-identifier hs-var">order_info_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span id="line-28"></span><span>    </span><span id="local-6989586621679431072"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679431072"><span class="hs-identifier hs-var">order_info_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679399866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679431075"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;order_info_id&quot;</span></span><span>
-</span><span id="line-29"></span><span>    </span><span id="local-6989586621679399862"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679399862"><span class="hs-identifier hs-var">message_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span id="line-29"></span><span>    </span><span id="local-6989586621679431071"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679431071"><span class="hs-identifier hs-var">message_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679399866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679431075"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;message_id&quot;</span></span><span>
-</span><span id="line-30"></span><span>    </span><span id="local-6989586621679399861"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679399861"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span id="line-30"></span><span>    </span><span id="local-6989586621679431070"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679431070"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679399866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679431075"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span>
 </span><span id="line-31"></span><span>    </span><span class="annot"><span class="annottext">SendPaymentForm -&gt; Parser SendPaymentForm
@@ -161,12 +170,12 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; SendPaymentForm
 </span><a href="API.Functions.SendPaymentForm.html#SendPaymentForm"><span class="hs-identifier hs-type hs-type">SendPaymentForm</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">credentials :: Maybe InputCredentials
 </span><a href="API.Functions.SendPaymentForm.html#credentials"><span class="hs-identifier hs-var">credentials</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe InputCredentials
-</span><a href="#local-6989586621679399865"><span class="hs-identifier hs-var">credentials</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">shipping_option_id :: Maybe String
+</span><a href="#local-6989586621679431074"><span class="hs-identifier hs-var">credentials</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">shipping_option_id :: Maybe String
 </span><a href="API.Functions.SendPaymentForm.html#shipping_option_id"><span class="hs-identifier hs-var">shipping_option_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679399864"><span class="hs-identifier hs-var">shipping_option_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">order_info_id :: Maybe String
+</span><a href="#local-6989586621679431073"><span class="hs-identifier hs-var">shipping_option_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">order_info_id :: Maybe String
 </span><a href="API.Functions.SendPaymentForm.html#order_info_id"><span class="hs-identifier hs-var">order_info_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679399863"><span class="hs-identifier hs-var">order_info_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">message_id :: Maybe Int
+</span><a href="#local-6989586621679431072"><span class="hs-identifier hs-var">order_info_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">message_id :: Maybe Int
 </span><a href="API.Functions.SendPaymentForm.html#message_id"><span class="hs-identifier hs-var">message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679399862"><span class="hs-identifier hs-var">message_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
+</span><a href="#local-6989586621679431071"><span class="hs-identifier hs-var">message_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
 </span><a href="API.Functions.SendPaymentForm.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679399861"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679431070"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

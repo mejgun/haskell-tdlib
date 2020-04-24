@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data StorageStatisticsByChat
 
+instance Eq StorageStatisticsByChat
+
 instance ToJSON StorageStatisticsByChat
 
 instance FromJSON StorageStatisticsByChat

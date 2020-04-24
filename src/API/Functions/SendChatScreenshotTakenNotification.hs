@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SendChatScreenshotTakenNotification = 
- SendChatScreenshotTakenNotification { chat_id :: Maybe Int }  deriving (Show)
+ SendChatScreenshotTakenNotification { chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendChatScreenshotTakenNotification where
  toJSON (SendChatScreenshotTakenNotification { chat_id = chat_id }) =

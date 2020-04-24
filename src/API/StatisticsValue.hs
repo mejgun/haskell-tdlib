@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data StatisticsValue = 
- StatisticsValue { growth_rate_percentage :: Maybe Float, previous_value :: Maybe Float, value :: Maybe Float }  deriving (Show)
+ StatisticsValue { growth_rate_percentage :: Maybe Float, previous_value :: Maybe Float, value :: Maybe Float }  deriving (Show, Eq)
 
 instance T.ToJSON StatisticsValue where
  toJSON (StatisticsValue { growth_rate_percentage = growth_rate_percentage, previous_value = previous_value, value = value }) =

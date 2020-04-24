@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ToggleSupergroupIsAllHistoryAvailable
 
+instance Eq ToggleSupergroupIsAllHistoryAvailable
+
 instance ToJSON ToggleSupergroupIsAllHistoryAvailable
 
 instance FromJSON ToggleSupergroupIsAllHistoryAvailable

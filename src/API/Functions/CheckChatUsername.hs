@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CheckChatUsername = 
- CheckChatUsername { username :: Maybe String, chat_id :: Maybe Int }  deriving (Show)
+ CheckChatUsername { username :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CheckChatUsername where
  toJSON (CheckChatUsername { username = username, chat_id = chat_id }) =

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data EditInlineMessageText
 
+instance Eq EditInlineMessageText
+
 instance ToJSON EditInlineMessageText
 
 instance FromJSON EditInlineMessageText

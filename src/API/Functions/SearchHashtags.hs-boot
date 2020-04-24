@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SearchHashtags
 
+instance Eq SearchHashtags
+
 instance ToJSON SearchHashtags
 
 instance FromJSON SearchHashtags

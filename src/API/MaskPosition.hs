@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.MaskPoint as MaskPoint
 
 data MaskPosition = 
- MaskPosition { scale :: Maybe Float, y_shift :: Maybe Float, x_shift :: Maybe Float, point :: Maybe MaskPoint.MaskPoint }  deriving (Show)
+ MaskPosition { scale :: Maybe Float, y_shift :: Maybe Float, x_shift :: Maybe Float, point :: Maybe MaskPoint.MaskPoint }  deriving (Show, Eq)
 
 instance T.ToJSON MaskPosition where
  toJSON (MaskPosition { scale = scale, y_shift = y_shift, x_shift = x_shift, point = point }) =

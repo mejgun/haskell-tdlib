@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ToggleSupergroupSignMessages
 
+instance Eq ToggleSupergroupSignMessages
+
 instance ToJSON ToggleSupergroupSignMessages
 
 instance FromJSON ToggleSupergroupSignMessages

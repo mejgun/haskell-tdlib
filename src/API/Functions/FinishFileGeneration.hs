@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Error as Error
 
 data FinishFileGeneration = 
- FinishFileGeneration { _error :: Maybe Error.Error, generation_id :: Maybe Int }  deriving (Show)
+ FinishFileGeneration { _error :: Maybe Error.Error, generation_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON FinishFileGeneration where
  toJSON (FinishFileGeneration { _error = _error, generation_id = generation_id }) =

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatAction as ChatAction
 
 data SendChatAction = 
- SendChatAction { action :: Maybe ChatAction.ChatAction, chat_id :: Maybe Int }  deriving (Show)
+ SendChatAction { action :: Maybe ChatAction.ChatAction, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendChatAction where
  toJSON (SendChatAction { action = action, chat_id = chat_id }) =

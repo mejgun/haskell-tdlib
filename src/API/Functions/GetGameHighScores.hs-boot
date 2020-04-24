@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetGameHighScores
 
+instance Eq GetGameHighScores
+
 instance ToJSON GetGameHighScores
 
 instance FromJSON GetGameHighScores

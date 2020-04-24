@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SearchChatRecentLocationMessages
 
+instance Eq SearchChatRecentLocationMessages
+
 instance ToJSON SearchChatRecentLocationMessages
 
 instance FromJSON SearchChatRecentLocationMessages

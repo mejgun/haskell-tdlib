@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SendBotStartMessage = 
- SendBotStartMessage { parameter :: Maybe String, chat_id :: Maybe Int, bot_user_id :: Maybe Int }  deriving (Show)
+ SendBotStartMessage { parameter :: Maybe String, chat_id :: Maybe Int, bot_user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendBotStartMessage where
  toJSON (SendBotStartMessage { parameter = parameter, chat_id = chat_id, bot_user_id = bot_user_id }) =

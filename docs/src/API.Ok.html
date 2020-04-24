@@ -7,7 +7,7 @@
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
 </span><span id="line-8"></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="Ok"><span class="annot"><a href="API.Ok.html#Ok"><span class="hs-identifier hs-var">Ok</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-10"></span><span> </span><span id="Ok"><span class="annot"><a href="API.Ok.html#Ok"><span class="hs-identifier hs-var">Ok</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679406263"><span id="local-6989586621679406265"><span id="local-6989586621679406267"><span class="annot"><span class="annottext">Int -&gt; Ok -&gt; ShowS
+</span><span id="line-10"></span><span> </span><span id="Ok"><span class="annot"><a href="API.Ok.html#Ok"><span class="hs-identifier hs-var">Ok</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679437969"><span id="local-6989586621679437971"><span id="local-6989586621679437973"><span class="annot"><span class="annottext">Int -&gt; Ok -&gt; ShowS
 [Ok] -&gt; ShowS
 Ok -&gt; String
 (Int -&gt; Ok -&gt; ShowS)
@@ -20,10 +20,17 @@ show :: Ok -&gt; String
 $cshow :: Ok -&gt; String
 showsPrec :: Int -&gt; Ok -&gt; ShowS
 $cshowsPrec :: Int -&gt; Ok -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679437964"><span id="local-6989586621679437966"><span class="annot"><span class="annottext">Ok -&gt; Ok -&gt; Bool
+(Ok -&gt; Ok -&gt; Bool) -&gt; (Ok -&gt; Ok -&gt; Bool) -&gt; Eq Ok
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: Ok -&gt; Ok -&gt; Bool
+$c/= :: Ok -&gt; Ok -&gt; Bool
+== :: Ok -&gt; Ok -&gt; Bool
+$c== :: Ok -&gt; Ok -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679406255"><span id="local-6989586621679406257"><span id="local-6989586621679406259"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Ok.html#Ok"><span class="hs-identifier hs-type">Ok</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679406253"><span class="annot"><span class="annottext">toJSON :: Ok -&gt; Value
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679437956"><span id="local-6989586621679437958"><span id="local-6989586621679437960"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Ok.html#Ok"><span class="hs-identifier hs-type">Ok</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679437954"><span class="annot"><span class="annottext">toJSON :: Ok -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Ok.html#Ok"><span class="hs-identifier hs-type">Ok</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -31,34 +38,34 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;ok&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679406246"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Ok.html#Ok"><span class="hs-identifier hs-type">Ok</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679406244"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Ok
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679406242"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679406242"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679406240"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679406240"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679406239"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679406239"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679406240"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679437947"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Ok.html#Ok"><span class="hs-identifier hs-type">Ok</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679437945"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Ok
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679437943"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679437943"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679437941"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679437941"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679437940"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679437940"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679437941"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679406239"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679437940"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;ok&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser Ok
-</span><a href="#local-6989586621679406237"><span class="hs-identifier hs-var">parseOk</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406242"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679437938"><span class="hs-identifier hs-var">parseOk</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679437943"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser Ok
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679406237"><span class="hs-identifier hs-type">parseOk</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Ok.html#Ok"><span class="hs-identifier hs-type">Ok</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679406237"><span class="annot"><span class="annottext">parseOk :: Value -&gt; Parser Ok
-</span><a href="#local-6989586621679406237"><span class="hs-identifier hs-var hs-var">parseOk</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Ok) -&gt; Value -&gt; Parser Ok
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679437938"><span class="hs-identifier hs-type">parseOk</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Ok.html#Ok"><span class="hs-identifier hs-type">Ok</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679437938"><span class="annot"><span class="annottext">parseOk :: Value -&gt; Parser Ok
+</span><a href="#local-6989586621679437938"><span class="hs-identifier hs-var hs-var">parseOk</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Ok) -&gt; Value -&gt; Parser Ok
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;Ok&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser Ok) -&gt; Value -&gt; Parser Ok)
 -&gt; (Object -&gt; Parser Ok) -&gt; Value -&gt; Parser Ok
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679406235"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679406235"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679437936"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679437936"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-25"></span><span>    </span><span class="annot"><span class="annottext">Ok -&gt; Parser Ok
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(Ok -&gt; Parser Ok) -&gt; Ok -&gt; Parser Ok

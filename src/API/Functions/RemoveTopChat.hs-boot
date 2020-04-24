@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data RemoveTopChat
 
+instance Eq RemoveTopChat
+
 instance ToJSON RemoveTopChat
 
 instance FromJSON RemoveTopChat

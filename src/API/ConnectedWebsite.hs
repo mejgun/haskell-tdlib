@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ConnectedWebsite = 
- ConnectedWebsite { location :: Maybe String, ip :: Maybe String, last_active_date :: Maybe Int, log_in_date :: Maybe Int, platform :: Maybe String, browser :: Maybe String, bot_user_id :: Maybe Int, domain_name :: Maybe String, _id :: Maybe Int }  deriving (Show)
+ ConnectedWebsite { location :: Maybe String, ip :: Maybe String, last_active_date :: Maybe Int, log_in_date :: Maybe Int, platform :: Maybe String, browser :: Maybe String, bot_user_id :: Maybe Int, domain_name :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ConnectedWebsite where
  toJSON (ConnectedWebsite { location = location, ip = ip, last_active_date = last_active_date, log_in_date = log_in_date, platform = platform, browser = browser, bot_user_id = bot_user_id, domain_name = domain_name, _id = _id }) =

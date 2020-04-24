@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetSupergroup
 
+instance Eq GetSupergroup
+
 instance ToJSON GetSupergroup
 
 instance FromJSON GetSupergroup

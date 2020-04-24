@@ -13,7 +13,7 @@ data TopChatCategory =
  | TopChatCategoryChannels 
  | TopChatCategoryInlineBots 
  | TopChatCategoryCalls 
- | TopChatCategoryForwardChats deriving (Show)
+ | TopChatCategoryForwardChats deriving (Show, Eq)
 
 instance T.ToJSON TopChatCategory where
  toJSON (TopChatCategoryUsers {  }) =

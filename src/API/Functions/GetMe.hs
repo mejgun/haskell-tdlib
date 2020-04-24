@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetMe = 
- GetMe deriving (Show)
+ GetMe deriving (Show, Eq)
 
 instance T.ToJSON GetMe where
  toJSON (GetMe {  }) =

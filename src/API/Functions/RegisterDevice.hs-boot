@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data RegisterDevice
 
+instance Eq RegisterDevice
+
 instance ToJSON RegisterDevice
 
 instance FromJSON RegisterDevice

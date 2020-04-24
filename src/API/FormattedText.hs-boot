@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data FormattedText
 
+instance Eq FormattedText
+
 instance ToJSON FormattedText
 
 instance FromJSON FormattedText

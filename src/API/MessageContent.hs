@@ -67,7 +67,7 @@ data MessageContent =
  | MessageWebsiteConnected { domain_name :: Maybe String }  
  | MessagePassportDataSent { types :: Maybe [PassportElementType.PassportElementType] }  
  | MessagePassportDataReceived { credentials :: Maybe EncryptedCredentials.EncryptedCredentials, elements :: Maybe [EncryptedPassportElement.EncryptedPassportElement] }  
- | MessageUnsupported deriving (Show)
+ | MessageUnsupported deriving (Show, Eq)
 
 instance T.ToJSON MessageContent where
  toJSON (MessageText { web_page = web_page, _text = _text }) =

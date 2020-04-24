@@ -10,7 +10,7 @@
 </span><span id="line-10"></span><span> </span><span id="CallbackQueryPayloadData"><span class="annot"><a href="API.CallbackQueryPayload.html#CallbackQueryPayloadData"><span class="hs-identifier hs-var">CallbackQueryPayloadData</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="_data"><span class="annot"><span class="annottext">CallbackQueryPayload -&gt; Maybe String
 </span><a href="API.CallbackQueryPayload.html#_data"><span class="hs-identifier hs-var hs-var">_data</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
 </span><span id="line-11"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="CallbackQueryPayloadGame"><span class="annot"><a href="API.CallbackQueryPayload.html#CallbackQueryPayloadGame"><span class="hs-identifier hs-var">CallbackQueryPayloadGame</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="game_short_name"><span class="annot"><span class="annottext">CallbackQueryPayload -&gt; Maybe String
-</span><a href="API.CallbackQueryPayload.html#game_short_name"><span class="hs-identifier hs-var hs-var">game_short_name</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679375094"><span id="local-6989586621679375096"><span id="local-6989586621679375098"><span class="annot"><span class="annottext">Int -&gt; CallbackQueryPayload -&gt; ShowS
+</span><a href="API.CallbackQueryPayload.html#game_short_name"><span class="hs-identifier hs-var hs-var">game_short_name</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679404213"><span id="local-6989586621679404215"><span id="local-6989586621679404217"><span class="annot"><span class="annottext">Int -&gt; CallbackQueryPayload -&gt; ShowS
 [CallbackQueryPayload] -&gt; ShowS
 CallbackQueryPayload -&gt; String
 (Int -&gt; CallbackQueryPayload -&gt; ShowS)
@@ -25,13 +25,22 @@ show :: CallbackQueryPayload -&gt; String
 $cshow :: CallbackQueryPayload -&gt; String
 showsPrec :: Int -&gt; CallbackQueryPayload -&gt; ShowS
 $cshowsPrec :: Int -&gt; CallbackQueryPayload -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679404208"><span id="local-6989586621679404210"><span class="annot"><span class="annottext">CallbackQueryPayload -&gt; CallbackQueryPayload -&gt; Bool
+(CallbackQueryPayload -&gt; CallbackQueryPayload -&gt; Bool)
+-&gt; (CallbackQueryPayload -&gt; CallbackQueryPayload -&gt; Bool)
+-&gt; Eq CallbackQueryPayload
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: CallbackQueryPayload -&gt; CallbackQueryPayload -&gt; Bool
+$c/= :: CallbackQueryPayload -&gt; CallbackQueryPayload -&gt; Bool
+== :: CallbackQueryPayload -&gt; CallbackQueryPayload -&gt; Bool
+$c== :: CallbackQueryPayload -&gt; CallbackQueryPayload -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679375086"><span id="local-6989586621679375088"><span id="local-6989586621679375090"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.CallbackQueryPayload.html#CallbackQueryPayload"><span class="hs-identifier hs-type">CallbackQueryPayload</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679375084"><span class="annot"><span class="annottext">toJSON :: CallbackQueryPayload -&gt; Value
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679404200"><span id="local-6989586621679404202"><span id="local-6989586621679404204"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.CallbackQueryPayload.html#CallbackQueryPayload"><span class="hs-identifier hs-type">CallbackQueryPayload</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679404198"><span class="annot"><span class="annottext">toJSON :: CallbackQueryPayload -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.CallbackQueryPayload.html#CallbackQueryPayloadData"><span class="hs-identifier hs-type">CallbackQueryPayloadData</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_data :: CallbackQueryPayload -&gt; Maybe String
-</span><a href="API.CallbackQueryPayload.html#_data"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679375082"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679375082"><span class="hs-identifier hs-var">_data</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.CallbackQueryPayload.html#_data"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404196"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404196"><span class="hs-identifier hs-var">_data</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -39,11 +48,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;callbackQueryPayloadData&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;data&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679375082"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679404196"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-16"></span><span>
 </span><span id="line-17"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.CallbackQueryPayload.html#CallbackQueryPayloadGame"><span class="hs-identifier hs-type">CallbackQueryPayloadGame</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">game_short_name :: CallbackQueryPayload -&gt; Maybe String
-</span><a href="API.CallbackQueryPayload.html#game_short_name"><span class="hs-identifier hs-var">game_short_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679375078"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679375078"><span class="hs-identifier hs-var">game_short_name</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.CallbackQueryPayload.html#game_short_name"><span class="hs-identifier hs-var">game_short_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679404192"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404192"><span class="hs-identifier hs-var">game_short_name</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-18"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -51,33 +60,33 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;callbackQueryPayloadGame&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;game_short_name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679375078"><span class="hs-identifier hs-var">game_short_name</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679404192"><span class="hs-identifier hs-var">game_short_name</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679375075"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.CallbackQueryPayload.html#CallbackQueryPayload"><span class="hs-identifier hs-type">CallbackQueryPayload</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span> </span><span id="local-6989586621679375073"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CallbackQueryPayload
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679375071"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679375071"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679375069"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679375069"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-22"></span><span>  </span><span id="local-6989586621679375068"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679375068"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679375069"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679404189"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.CallbackQueryPayload.html#CallbackQueryPayload"><span class="hs-identifier hs-type">CallbackQueryPayload</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span> </span><span id="local-6989586621679404187"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CallbackQueryPayload
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679404185"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679404185"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679404183"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679404183"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679404182"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679404182"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679404183"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679375068"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679404182"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-24"></span><span>   </span><span class="hs-string">&quot;callbackQueryPayloadData&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallbackQueryPayload
-</span><a href="#local-6989586621679375066"><span class="hs-identifier hs-var">parseCallbackQueryPayloadData</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679375071"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679404180"><span class="hs-identifier hs-var">parseCallbackQueryPayloadData</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679404185"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-25"></span><span>   </span><span class="hs-string">&quot;callbackQueryPayloadGame&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallbackQueryPayload
-</span><a href="#local-6989586621679375065"><span class="hs-identifier hs-var">parseCallbackQueryPayloadGame</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679375071"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679404179"><span class="hs-identifier hs-var">parseCallbackQueryPayloadGame</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679404185"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-26"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CallbackQueryPayload
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-27"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-28"></span><span>   </span><span class="annot"><a href="#local-6989586621679375066"><span class="hs-identifier hs-type">parseCallbackQueryPayloadData</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallbackQueryPayload.html#CallbackQueryPayload"><span class="hs-identifier hs-type">CallbackQueryPayload</span></a></span><span>
-</span><span id="line-29"></span><span>   </span><span id="local-6989586621679375066"><span class="annot"><span class="annottext">parseCallbackQueryPayloadData :: Value -&gt; Parser CallbackQueryPayload
-</span><a href="#local-6989586621679375066"><span class="hs-identifier hs-var hs-var">parseCallbackQueryPayloadData</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-28"></span><span>   </span><span class="annot"><a href="#local-6989586621679404180"><span class="hs-identifier hs-type">parseCallbackQueryPayloadData</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallbackQueryPayload.html#CallbackQueryPayload"><span class="hs-identifier hs-type">CallbackQueryPayload</span></a></span><span>
+</span><span id="line-29"></span><span>   </span><span id="local-6989586621679404180"><span class="annot"><span class="annottext">parseCallbackQueryPayloadData :: Value -&gt; Parser CallbackQueryPayload
+</span><a href="#local-6989586621679404180"><span class="hs-identifier hs-var hs-var">parseCallbackQueryPayloadData</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CallbackQueryPayload)
 -&gt; Value
 -&gt; Parser CallbackQueryPayload
@@ -88,16 +97,16 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CallbackQueryPayload
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679375063"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679375063"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-30"></span><span>    </span><span id="local-6989586621679375062"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679375062"><span class="hs-identifier hs-var">_data</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679404177"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679404177"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-30"></span><span>    </span><span id="local-6989586621679404176"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404176"><span class="hs-identifier hs-var">_data</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679375063"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679404177"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;data&quot;</span></span><span>
 </span><span id="line-31"></span><span>    </span><span class="annot"><span class="annottext">CallbackQueryPayload -&gt; Parser CallbackQueryPayload
@@ -108,11 +117,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallbackQueryPayloadData :: Maybe String -&gt; CallbackQueryPayload
 </span><a href="API.CallbackQueryPayload.html#CallbackQueryPayloadData"><span class="hs-identifier hs-type hs-type">CallbackQueryPayloadData</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_data :: Maybe String
 </span><a href="API.CallbackQueryPayload.html#_data"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679375062"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679404176"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-32"></span><span>
-</span><span id="line-33"></span><span>   </span><span class="annot"><a href="#local-6989586621679375065"><span class="hs-identifier hs-type">parseCallbackQueryPayloadGame</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallbackQueryPayload.html#CallbackQueryPayload"><span class="hs-identifier hs-type">CallbackQueryPayload</span></a></span><span>
-</span><span id="line-34"></span><span>   </span><span id="local-6989586621679375065"><span class="annot"><span class="annottext">parseCallbackQueryPayloadGame :: Value -&gt; Parser CallbackQueryPayload
-</span><a href="#local-6989586621679375065"><span class="hs-identifier hs-var hs-var">parseCallbackQueryPayloadGame</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-33"></span><span>   </span><span class="annot"><a href="#local-6989586621679404179"><span class="hs-identifier hs-type">parseCallbackQueryPayloadGame</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallbackQueryPayload.html#CallbackQueryPayload"><span class="hs-identifier hs-type">CallbackQueryPayload</span></a></span><span>
+</span><span id="line-34"></span><span>   </span><span id="local-6989586621679404179"><span class="annot"><span class="annottext">parseCallbackQueryPayloadGame :: Value -&gt; Parser CallbackQueryPayload
+</span><a href="#local-6989586621679404179"><span class="hs-identifier hs-var hs-var">parseCallbackQueryPayloadGame</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CallbackQueryPayload)
 -&gt; Value
 -&gt; Parser CallbackQueryPayload
@@ -123,16 +132,16 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CallbackQueryPayload
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679375060"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679375060"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-35"></span><span>    </span><span id="local-6989586621679375059"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679375059"><span class="hs-identifier hs-var">game_short_name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679404174"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679404174"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-35"></span><span>    </span><span id="local-6989586621679404173"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679404173"><span class="hs-identifier hs-var">game_short_name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679375060"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679404174"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;game_short_name&quot;</span></span><span>
 </span><span id="line-36"></span><span>    </span><span class="annot"><span class="annottext">CallbackQueryPayload -&gt; Parser CallbackQueryPayload
@@ -143,4 +152,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallbackQueryPayloadGame :: Maybe String -&gt; CallbackQueryPayload
 </span><a href="API.CallbackQueryPayload.html#CallbackQueryPayloadGame"><span class="hs-identifier hs-type hs-type">CallbackQueryPayloadGame</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">game_short_name :: Maybe String
 </span><a href="API.CallbackQueryPayload.html#game_short_name"><span class="hs-identifier hs-var">game_short_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679375059"><span class="hs-identifier hs-var">game_short_name</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679404173"><span class="hs-identifier hs-var">game_short_name</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

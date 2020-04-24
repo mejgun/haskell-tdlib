@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.DraftMessage as DraftMessage
 
 data SetChatDraftMessage = 
- SetChatDraftMessage { draft_message :: Maybe DraftMessage.DraftMessage, chat_id :: Maybe Int }  deriving (Show)
+ SetChatDraftMessage { draft_message :: Maybe DraftMessage.DraftMessage, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatDraftMessage where
  toJSON (SetChatDraftMessage { draft_message = draft_message, chat_id = chat_id }) =

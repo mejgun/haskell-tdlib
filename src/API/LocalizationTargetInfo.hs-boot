@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data LocalizationTargetInfo
 
+instance Eq LocalizationTargetInfo
+
 instance ToJSON LocalizationTargetInfo
 
 instance FromJSON LocalizationTargetInfo

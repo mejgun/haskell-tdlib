@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Count = 
- Count { count :: Maybe Int }  deriving (Show)
+ Count { count :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Count where
  toJSON (Count { count = count }) =

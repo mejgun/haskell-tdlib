@@ -22,7 +22,7 @@ data SearchMessagesFilter =
  | SearchMessagesFilterVideoNote 
  | SearchMessagesFilterVoiceAndVideoNote 
  | SearchMessagesFilterMention 
- | SearchMessagesFilterUnreadMention deriving (Show)
+ | SearchMessagesFilterUnreadMention deriving (Show, Eq)
 
 instance T.ToJSON SearchMessagesFilter where
  toJSON (SearchMessagesFilterEmpty {  }) =

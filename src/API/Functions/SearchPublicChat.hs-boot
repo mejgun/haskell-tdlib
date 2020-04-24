@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SearchPublicChat
 
+instance Eq SearchPublicChat
+
 instance ToJSON SearchPublicChat
 
 instance FromJSON SearchPublicChat

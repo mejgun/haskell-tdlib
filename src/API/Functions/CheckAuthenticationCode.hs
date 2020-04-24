@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CheckAuthenticationCode = 
- CheckAuthenticationCode { code :: Maybe String }  deriving (Show)
+ CheckAuthenticationCode { code :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CheckAuthenticationCode where
  toJSON (CheckAuthenticationCode { code = code }) =

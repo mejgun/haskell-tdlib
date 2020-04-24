@@ -9,7 +9,7 @@ import {-# SOURCE #-} qualified API.Notification as Notification
 import {-# SOURCE #-} qualified API.NotificationGroupType as NotificationGroupType
 
 data NotificationGroup = 
- NotificationGroup { notifications :: Maybe [Notification.Notification], total_count :: Maybe Int, chat_id :: Maybe Int, _type :: Maybe NotificationGroupType.NotificationGroupType, _id :: Maybe Int }  deriving (Show)
+ NotificationGroup { notifications :: Maybe [Notification.Notification], total_count :: Maybe Int, chat_id :: Maybe Int, _type :: Maybe NotificationGroupType.NotificationGroupType, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON NotificationGroup where
  toJSON (NotificationGroup { notifications = notifications, total_count = total_count, chat_id = chat_id, _type = _type, _id = _id }) =

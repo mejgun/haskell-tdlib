@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ChatEventLogFilters = 
- ChatEventLogFilters { setting_changes :: Maybe Bool, info_changes :: Maybe Bool, member_restrictions :: Maybe Bool, member_promotions :: Maybe Bool, member_invites :: Maybe Bool, member_leaves :: Maybe Bool, member_joins :: Maybe Bool, message_pins :: Maybe Bool, message_deletions :: Maybe Bool, message_edits :: Maybe Bool }  deriving (Show)
+ ChatEventLogFilters { setting_changes :: Maybe Bool, info_changes :: Maybe Bool, member_restrictions :: Maybe Bool, member_promotions :: Maybe Bool, member_invites :: Maybe Bool, member_leaves :: Maybe Bool, member_joins :: Maybe Bool, message_pins :: Maybe Bool, message_deletions :: Maybe Bool, message_edits :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON ChatEventLogFilters where
  toJSON (ChatEventLogFilters { setting_changes = setting_changes, info_changes = info_changes, member_restrictions = member_restrictions, member_promotions = member_promotions, member_invites = member_invites, member_leaves = member_leaves, member_joins = member_joins, message_pins = message_pins, message_deletions = message_deletions, message_edits = message_edits }) =

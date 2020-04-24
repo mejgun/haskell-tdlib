@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PublicChatType as PublicChatType
 
 data GetCreatedPublicChats = 
- GetCreatedPublicChats { _type :: Maybe PublicChatType.PublicChatType }  deriving (Show)
+ GetCreatedPublicChats { _type :: Maybe PublicChatType.PublicChatType }  deriving (Show, Eq)
 
 instance T.ToJSON GetCreatedPublicChats where
  toJSON (GetCreatedPublicChats { _type = _type }) =

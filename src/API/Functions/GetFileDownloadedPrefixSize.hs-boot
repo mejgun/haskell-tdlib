@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetFileDownloadedPrefixSize
 
+instance Eq GetFileDownloadedPrefixSize
+
 instance ToJSON GetFileDownloadedPrefixSize
 
 instance FromJSON GetFileDownloadedPrefixSize

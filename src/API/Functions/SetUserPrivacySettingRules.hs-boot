@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetUserPrivacySettingRules
 
+instance Eq SetUserPrivacySettingRules
+
 instance ToJSON SetUserPrivacySettingRules
 
 instance FromJSON SetUserPrivacySettingRules

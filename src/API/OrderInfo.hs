@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Address as Address
 
 data OrderInfo = 
- OrderInfo { shipping_address :: Maybe Address.Address, email_address :: Maybe String, phone_number :: Maybe String, name :: Maybe String }  deriving (Show)
+ OrderInfo { shipping_address :: Maybe Address.Address, email_address :: Maybe String, phone_number :: Maybe String, name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON OrderInfo where
  toJSON (OrderInfo { shipping_address = shipping_address, email_address = email_address, phone_number = phone_number, name = name }) =

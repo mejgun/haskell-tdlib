@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 data PageBlockHorizontalAlignment = 
  PageBlockHorizontalAlignmentLeft 
  | PageBlockHorizontalAlignmentCenter 
- | PageBlockHorizontalAlignmentRight deriving (Show)
+ | PageBlockHorizontalAlignmentRight deriving (Show, Eq)
 
 instance T.ToJSON PageBlockHorizontalAlignment where
  toJSON (PageBlockHorizontalAlignmentLeft {  }) =

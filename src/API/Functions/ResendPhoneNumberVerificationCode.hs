@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ResendPhoneNumberVerificationCode = 
- ResendPhoneNumberVerificationCode deriving (Show)
+ ResendPhoneNumberVerificationCode deriving (Show, Eq)
 
 instance T.ToJSON ResendPhoneNumberVerificationCode where
  toJSON (ResendPhoneNumberVerificationCode {  }) =

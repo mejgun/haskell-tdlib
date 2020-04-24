@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CancelDownloadFile = 
- CancelDownloadFile { only_if_pending :: Maybe Bool, file_id :: Maybe Int }  deriving (Show)
+ CancelDownloadFile { only_if_pending :: Maybe Bool, file_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CancelDownloadFile where
  toJSON (CancelDownloadFile { only_if_pending = only_if_pending, file_id = file_id }) =

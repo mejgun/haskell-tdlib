@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LanguagePackInfo as LanguagePackInfo
 
 data LocalizationTargetInfo = 
- LocalizationTargetInfo { language_packs :: Maybe [LanguagePackInfo.LanguagePackInfo] }  deriving (Show)
+ LocalizationTargetInfo { language_packs :: Maybe [LanguagePackInfo.LanguagePackInfo] }  deriving (Show, Eq)
 
 instance T.ToJSON LocalizationTargetInfo where
  toJSON (LocalizationTargetInfo { language_packs = language_packs }) =

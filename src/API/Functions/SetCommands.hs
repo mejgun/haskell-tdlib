@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BotCommand as BotCommand
 
 data SetCommands = 
- SetCommands { commands :: Maybe [BotCommand.BotCommand] }  deriving (Show)
+ SetCommands { commands :: Maybe [BotCommand.BotCommand] }  deriving (Show, Eq)
 
 instance T.ToJSON SetCommands where
  toJSON (SetCommands { commands = commands }) =

@@ -9,7 +9,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data InputBackground = 
  InputBackgroundLocal { background :: Maybe InputFile.InputFile }  
- | InputBackgroundRemote { background_id :: Maybe Int }  deriving (Show)
+ | InputBackgroundRemote { background_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON InputBackground where
  toJSON (InputBackgroundLocal { background = background }) =

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SearchEmojis = 
- SearchEmojis { input_language_code :: Maybe String, exact_match :: Maybe Bool, text :: Maybe String }  deriving (Show)
+ SearchEmojis { input_language_code :: Maybe String, exact_match :: Maybe Bool, text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SearchEmojis where
  toJSON (SearchEmojis { input_language_code = input_language_code, exact_match = exact_match, text = text }) =

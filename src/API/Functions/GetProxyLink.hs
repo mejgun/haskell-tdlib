@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetProxyLink = 
- GetProxyLink { proxy_id :: Maybe Int }  deriving (Show)
+ GetProxyLink { proxy_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetProxyLink where
  toJSON (GetProxyLink { proxy_id = proxy_id }) =

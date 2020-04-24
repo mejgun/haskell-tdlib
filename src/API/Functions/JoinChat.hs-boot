@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data JoinChat
 
+instance Eq JoinChat
+
 instance ToJSON JoinChat
 
 instance FromJSON JoinChat

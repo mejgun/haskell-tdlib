@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data RemoveContacts = 
- RemoveContacts { user_ids :: Maybe [Int] }  deriving (Show)
+ RemoveContacts { user_ids :: Maybe [Int] }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveContacts where
  toJSON (RemoveContacts { user_ids = user_ids }) =

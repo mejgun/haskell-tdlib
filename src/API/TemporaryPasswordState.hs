@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data TemporaryPasswordState = 
- TemporaryPasswordState { valid_for :: Maybe Int, has_password :: Maybe Bool }  deriving (Show)
+ TemporaryPasswordState { valid_for :: Maybe Int, has_password :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON TemporaryPasswordState where
  toJSON (TemporaryPasswordState { valid_for = valid_for, has_password = has_password }) =

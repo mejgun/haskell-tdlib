@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data DeleteSupergroup = 
- DeleteSupergroup { supergroup_id :: Maybe Int }  deriving (Show)
+ DeleteSupergroup { supergroup_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON DeleteSupergroup where
  toJSON (DeleteSupergroup { supergroup_id = supergroup_id }) =

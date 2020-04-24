@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data NotificationGroupType
 
+instance Eq NotificationGroupType
+
 instance ToJSON NotificationGroupType
 
 instance FromJSON NotificationGroupType

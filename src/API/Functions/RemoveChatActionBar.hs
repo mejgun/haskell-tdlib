@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data RemoveChatActionBar = 
- RemoveChatActionBar { chat_id :: Maybe Int }  deriving (Show)
+ RemoveChatActionBar { chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveChatActionBar where
  toJSON (RemoveChatActionBar { chat_id = chat_id }) =

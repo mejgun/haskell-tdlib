@@ -11,7 +11,7 @@
 </span><a href="API.PaymentsProviderStripe.html#need_cardholder_name"><span class="hs-identifier hs-var hs-var">need_cardholder_name</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="need_postal_code"><span class="annot"><span class="annottext">PaymentsProviderStripe -&gt; Maybe Bool
 </span><a href="API.PaymentsProviderStripe.html#need_postal_code"><span class="hs-identifier hs-var hs-var">need_postal_code</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="need_country"><span class="annot"><span class="annottext">PaymentsProviderStripe -&gt; Maybe Bool
 </span><a href="API.PaymentsProviderStripe.html#need_country"><span class="hs-identifier hs-var hs-var">need_country</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="publishable_key"><span class="annot"><span class="annottext">PaymentsProviderStripe -&gt; Maybe String
-</span><a href="API.PaymentsProviderStripe.html#publishable_key"><span class="hs-identifier hs-var hs-var">publishable_key</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679408049"><span id="local-6989586621679408051"><span id="local-6989586621679408053"><span class="annot"><span class="annottext">Int -&gt; PaymentsProviderStripe -&gt; ShowS
+</span><a href="API.PaymentsProviderStripe.html#publishable_key"><span class="hs-identifier hs-var hs-var">publishable_key</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679439894"><span id="local-6989586621679439896"><span id="local-6989586621679439898"><span class="annot"><span class="annottext">Int -&gt; PaymentsProviderStripe -&gt; ShowS
 [PaymentsProviderStripe] -&gt; ShowS
 PaymentsProviderStripe -&gt; String
 (Int -&gt; PaymentsProviderStripe -&gt; ShowS)
@@ -26,19 +26,28 @@ show :: PaymentsProviderStripe -&gt; String
 $cshow :: PaymentsProviderStripe -&gt; String
 showsPrec :: Int -&gt; PaymentsProviderStripe -&gt; ShowS
 $cshowsPrec :: Int -&gt; PaymentsProviderStripe -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679439889"><span id="local-6989586621679439891"><span class="annot"><span class="annottext">PaymentsProviderStripe -&gt; PaymentsProviderStripe -&gt; Bool
+(PaymentsProviderStripe -&gt; PaymentsProviderStripe -&gt; Bool)
+-&gt; (PaymentsProviderStripe -&gt; PaymentsProviderStripe -&gt; Bool)
+-&gt; Eq PaymentsProviderStripe
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: PaymentsProviderStripe -&gt; PaymentsProviderStripe -&gt; Bool
+$c/= :: PaymentsProviderStripe -&gt; PaymentsProviderStripe -&gt; Bool
+== :: PaymentsProviderStripe -&gt; PaymentsProviderStripe -&gt; Bool
+$c== :: PaymentsProviderStripe -&gt; PaymentsProviderStripe -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408041"><span id="local-6989586621679408043"><span id="local-6989586621679408045"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.PaymentsProviderStripe.html#PaymentsProviderStripe"><span class="hs-identifier hs-type">PaymentsProviderStripe</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679408039"><span class="annot"><span class="annottext">toJSON :: PaymentsProviderStripe -&gt; Value
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679439881"><span id="local-6989586621679439883"><span id="local-6989586621679439885"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.PaymentsProviderStripe.html#PaymentsProviderStripe"><span class="hs-identifier hs-type">PaymentsProviderStripe</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679439879"><span class="annot"><span class="annottext">toJSON :: PaymentsProviderStripe -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.PaymentsProviderStripe.html#PaymentsProviderStripe"><span class="hs-identifier hs-type">PaymentsProviderStripe</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">need_cardholder_name :: PaymentsProviderStripe -&gt; Maybe Bool
-</span><a href="API.PaymentsProviderStripe.html#need_cardholder_name"><span class="hs-identifier hs-var">need_cardholder_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408037"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679408037"><span class="hs-identifier hs-var">need_cardholder_name</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">need_postal_code :: PaymentsProviderStripe -&gt; Maybe Bool
-</span><a href="API.PaymentsProviderStripe.html#need_postal_code"><span class="hs-identifier hs-var">need_postal_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408036"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679408036"><span class="hs-identifier hs-var">need_postal_code</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">need_country :: PaymentsProviderStripe -&gt; Maybe Bool
-</span><a href="API.PaymentsProviderStripe.html#need_country"><span class="hs-identifier hs-var">need_country</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408035"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679408035"><span class="hs-identifier hs-var">need_country</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">publishable_key :: PaymentsProviderStripe -&gt; Maybe String
-</span><a href="API.PaymentsProviderStripe.html#publishable_key"><span class="hs-identifier hs-var">publishable_key</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408034"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679408034"><span class="hs-identifier hs-var">publishable_key</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.PaymentsProviderStripe.html#need_cardholder_name"><span class="hs-identifier hs-var">need_cardholder_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679439877"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679439877"><span class="hs-identifier hs-var">need_cardholder_name</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">need_postal_code :: PaymentsProviderStripe -&gt; Maybe Bool
+</span><a href="API.PaymentsProviderStripe.html#need_postal_code"><span class="hs-identifier hs-var">need_postal_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679439876"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679439876"><span class="hs-identifier hs-var">need_postal_code</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">need_country :: PaymentsProviderStripe -&gt; Maybe Bool
+</span><a href="API.PaymentsProviderStripe.html#need_country"><span class="hs-identifier hs-var">need_country</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679439875"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679439875"><span class="hs-identifier hs-var">need_country</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">publishable_key :: PaymentsProviderStripe -&gt; Maybe String
+</span><a href="API.PaymentsProviderStripe.html#publishable_key"><span class="hs-identifier hs-var">publishable_key</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679439874"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679439874"><span class="hs-identifier hs-var">publishable_key</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -46,39 +55,39 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;paymentsProviderStripe&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;need_cardholder_name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679408037"><span class="hs-identifier hs-var">need_cardholder_name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;need_postal_code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679439877"><span class="hs-identifier hs-var">need_cardholder_name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;need_postal_code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679408036"><span class="hs-identifier hs-var">need_postal_code</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;need_country&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679439876"><span class="hs-identifier hs-var">need_postal_code</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;need_country&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679408035"><span class="hs-identifier hs-var">need_country</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;publishable_key&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679439875"><span class="hs-identifier hs-var">need_country</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;publishable_key&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679408034"><span class="hs-identifier hs-var">publishable_key</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679439874"><span class="hs-identifier hs-var">publishable_key</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408028"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.PaymentsProviderStripe.html#PaymentsProviderStripe"><span class="hs-identifier hs-type">PaymentsProviderStripe</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679408026"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PaymentsProviderStripe
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679408024"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679408024"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679408022"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679408022"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679408021"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679408021"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679408022"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679439868"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.PaymentsProviderStripe.html#PaymentsProviderStripe"><span class="hs-identifier hs-type">PaymentsProviderStripe</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679439866"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PaymentsProviderStripe
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679439864"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679439864"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679439862"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679439862"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679439861"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679439861"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679439862"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679408021"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679439861"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;paymentsProviderStripe&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PaymentsProviderStripe
-</span><a href="#local-6989586621679408019"><span class="hs-identifier hs-var">parsePaymentsProviderStripe</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408024"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679439859"><span class="hs-identifier hs-var">parsePaymentsProviderStripe</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679439864"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PaymentsProviderStripe
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679408019"><span class="hs-identifier hs-type">parsePaymentsProviderStripe</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PaymentsProviderStripe.html#PaymentsProviderStripe"><span class="hs-identifier hs-type">PaymentsProviderStripe</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679408019"><span class="annot"><span class="annottext">parsePaymentsProviderStripe :: Value -&gt; Parser PaymentsProviderStripe
-</span><a href="#local-6989586621679408019"><span class="hs-identifier hs-var hs-var">parsePaymentsProviderStripe</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679439859"><span class="hs-identifier hs-type">parsePaymentsProviderStripe</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PaymentsProviderStripe.html#PaymentsProviderStripe"><span class="hs-identifier hs-type">PaymentsProviderStripe</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679439859"><span class="annot"><span class="annottext">parsePaymentsProviderStripe :: Value -&gt; Parser PaymentsProviderStripe
+</span><a href="#local-6989586621679439859"><span class="hs-identifier hs-var hs-var">parsePaymentsProviderStripe</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser PaymentsProviderStripe)
 -&gt; Value
 -&gt; Parser PaymentsProviderStripe
@@ -89,46 +98,46 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser PaymentsProviderStripe
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408017"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408017"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679408016"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679408016"><span class="hs-identifier hs-var">need_cardholder_name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679439857"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679439857"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679439856"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679439856"><span class="hs-identifier hs-var">need_cardholder_name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
 -&gt; Parser Bool -&gt; Parser (Maybe Bool)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679408017"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><a href="#local-6989586621679439857"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;need_cardholder_name&quot;</span></span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679408015"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679408015"><span class="hs-identifier hs-var">need_postal_code</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679439855"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679439855"><span class="hs-identifier hs-var">need_postal_code</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
 -&gt; Parser Bool -&gt; Parser (Maybe Bool)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679408017"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><a href="#local-6989586621679439857"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;need_postal_code&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679408014"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679408014"><span class="hs-identifier hs-var">need_country</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679439854"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679439854"><span class="hs-identifier hs-var">need_country</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
 -&gt; Parser Bool -&gt; Parser (Maybe Bool)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679408017"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><a href="#local-6989586621679439857"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;need_country&quot;</span></span><span>
-</span><span id="line-28"></span><span>    </span><span id="local-6989586621679408013"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679408013"><span class="hs-identifier hs-var">publishable_key</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span id="line-28"></span><span>    </span><span id="local-6989586621679439853"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679439853"><span class="hs-identifier hs-var">publishable_key</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679408017"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679439857"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;publishable_key&quot;</span></span><span>
 </span><span id="line-29"></span><span>    </span><span class="annot"><span class="annottext">PaymentsProviderStripe -&gt; Parser PaymentsProviderStripe
@@ -143,10 +152,10 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; PaymentsProviderStripe
 </span><a href="API.PaymentsProviderStripe.html#PaymentsProviderStripe"><span class="hs-identifier hs-type hs-type">PaymentsProviderStripe</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">need_cardholder_name :: Maybe Bool
 </span><a href="API.PaymentsProviderStripe.html#need_cardholder_name"><span class="hs-identifier hs-var">need_cardholder_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679408016"><span class="hs-identifier hs-var">need_cardholder_name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">need_postal_code :: Maybe Bool
+</span><a href="#local-6989586621679439856"><span class="hs-identifier hs-var">need_cardholder_name</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">need_postal_code :: Maybe Bool
 </span><a href="API.PaymentsProviderStripe.html#need_postal_code"><span class="hs-identifier hs-var">need_postal_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679408015"><span class="hs-identifier hs-var">need_postal_code</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">need_country :: Maybe Bool
+</span><a href="#local-6989586621679439855"><span class="hs-identifier hs-var">need_postal_code</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">need_country :: Maybe Bool
 </span><a href="API.PaymentsProviderStripe.html#need_country"><span class="hs-identifier hs-var">need_country</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679408014"><span class="hs-identifier hs-var">need_country</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">publishable_key :: Maybe String
+</span><a href="#local-6989586621679439854"><span class="hs-identifier hs-var">need_country</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">publishable_key :: Maybe String
 </span><a href="API.PaymentsProviderStripe.html#publishable_key"><span class="hs-identifier hs-var">publishable_key</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679408013"><span class="hs-identifier hs-var">publishable_key</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679439853"><span class="hs-identifier hs-var">publishable_key</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

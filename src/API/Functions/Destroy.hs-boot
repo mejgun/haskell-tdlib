@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data Destroy
 
+instance Eq Destroy
+
 instance ToJSON Destroy
 
 instance FromJSON Destroy

@@ -10,7 +10,7 @@ data UserType =
  UserTypeRegular 
  | UserTypeDeleted 
  | UserTypeBot { need_location :: Maybe Bool, inline_query_placeholder :: Maybe String, is_inline :: Maybe Bool, can_read_all_group_messages :: Maybe Bool, can_join_groups :: Maybe Bool }  
- | UserTypeUnknown deriving (Show)
+ | UserTypeUnknown deriving (Show, Eq)
 
 instance T.ToJSON UserType where
  toJSON (UserTypeRegular {  }) =

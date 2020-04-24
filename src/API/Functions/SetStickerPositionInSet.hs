@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data SetStickerPositionInSet = 
- SetStickerPositionInSet { position :: Maybe Int, sticker :: Maybe InputFile.InputFile }  deriving (Show)
+ SetStickerPositionInSet { position :: Maybe Int, sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON SetStickerPositionInSet where
  toJSON (SetStickerPositionInSet { position = position, sticker = sticker }) =

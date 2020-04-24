@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Destroy = 
- Destroy deriving (Show)
+ Destroy deriving (Show, Eq)
 
 instance T.ToJSON Destroy where
  toJSON (Destroy {  }) =

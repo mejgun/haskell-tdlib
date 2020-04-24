@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetChatMember
 
+instance Eq GetChatMember
+
 instance ToJSON GetChatMember
 
 instance FromJSON GetChatMember

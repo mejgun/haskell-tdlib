@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data TestCallVectorInt = 
- TestCallVectorInt { x :: Maybe [Int] }  deriving (Show)
+ TestCallVectorInt { x :: Maybe [Int] }  deriving (Show, Eq)
 
 instance T.ToJSON TestCallVectorInt where
  toJSON (TestCallVectorInt { x = x }) =

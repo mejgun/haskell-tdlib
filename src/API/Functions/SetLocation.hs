@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Location as Location
 
 data SetLocation = 
- SetLocation { location :: Maybe Location.Location }  deriving (Show)
+ SetLocation { location :: Maybe Location.Location }  deriving (Show, Eq)
 
 instance T.ToJSON SetLocation where
  toJSON (SetLocation { location = location }) =

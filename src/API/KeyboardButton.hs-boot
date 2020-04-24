@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data KeyboardButton
 
+instance Eq KeyboardButton
+
 instance ToJSON KeyboardButton
 
 instance FromJSON KeyboardButton

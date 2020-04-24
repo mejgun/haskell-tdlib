@@ -9,7 +9,7 @@ import {-# SOURCE #-} qualified API.FileType as FileType
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data UploadFile = 
- UploadFile { priority :: Maybe Int, file_type :: Maybe FileType.FileType, file :: Maybe InputFile.InputFile }  deriving (Show)
+ UploadFile { priority :: Maybe Int, file_type :: Maybe FileType.FileType, file :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON UploadFile where
  toJSON (UploadFile { priority = priority, file_type = file_type, file = file }) =

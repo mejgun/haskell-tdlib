@@ -9,7 +9,7 @@ import {-# SOURCE #-} qualified API.NetworkType as NetworkType
 import {-# SOURCE #-} qualified API.AutoDownloadSettings as AutoDownloadSettings
 
 data SetAutoDownloadSettings = 
- SetAutoDownloadSettings { _type :: Maybe NetworkType.NetworkType, settings :: Maybe AutoDownloadSettings.AutoDownloadSettings }  deriving (Show)
+ SetAutoDownloadSettings { _type :: Maybe NetworkType.NetworkType, settings :: Maybe AutoDownloadSettings.AutoDownloadSettings }  deriving (Show, Eq)
 
 instance T.ToJSON SetAutoDownloadSettings where
  toJSON (SetAutoDownloadSettings { _type = _type, settings = settings }) =

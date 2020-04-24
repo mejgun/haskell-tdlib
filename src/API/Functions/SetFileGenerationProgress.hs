@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetFileGenerationProgress = 
- SetFileGenerationProgress { local_prefix_size :: Maybe Int, expected_size :: Maybe Int, generation_id :: Maybe Int }  deriving (Show)
+ SetFileGenerationProgress { local_prefix_size :: Maybe Int, expected_size :: Maybe Int, generation_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetFileGenerationProgress where
  toJSON (SetFileGenerationProgress { local_prefix_size = local_prefix_size, expected_size = expected_size, generation_id = generation_id }) =

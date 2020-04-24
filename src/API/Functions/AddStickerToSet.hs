@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputSticker as InputSticker
 
 data AddStickerToSet = 
- AddStickerToSet { sticker :: Maybe InputSticker.InputSticker, name :: Maybe String, user_id :: Maybe Int }  deriving (Show)
+ AddStickerToSet { sticker :: Maybe InputSticker.InputSticker, name :: Maybe String, user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON AddStickerToSet where
  toJSON (AddStickerToSet { sticker = sticker, name = name, user_id = user_id }) =

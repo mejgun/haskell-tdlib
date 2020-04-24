@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.AutoDownloadSettings as AutoDownloadSettings
 
 data AutoDownloadSettingsPresets = 
- AutoDownloadSettingsPresets { high :: Maybe AutoDownloadSettings.AutoDownloadSettings, medium :: Maybe AutoDownloadSettings.AutoDownloadSettings, low :: Maybe AutoDownloadSettings.AutoDownloadSettings }  deriving (Show)
+ AutoDownloadSettingsPresets { high :: Maybe AutoDownloadSettings.AutoDownloadSettings, medium :: Maybe AutoDownloadSettings.AutoDownloadSettings, low :: Maybe AutoDownloadSettings.AutoDownloadSettings }  deriving (Show, Eq)
 
 instance T.ToJSON AutoDownloadSettingsPresets where
  toJSON (AutoDownloadSettingsPresets { high = high, medium = medium, low = low }) =

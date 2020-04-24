@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetPollVoters
 
+instance Eq GetPollVoters
+
 instance ToJSON GetPollVoters
 
 instance FromJSON GetPollVoters

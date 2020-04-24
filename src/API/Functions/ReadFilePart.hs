@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ReadFilePart = 
- ReadFilePart { count :: Maybe Int, offset :: Maybe Int, file_id :: Maybe Int }  deriving (Show)
+ ReadFilePart { count :: Maybe Int, offset :: Maybe Int, file_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ReadFilePart where
  toJSON (ReadFilePart { count = count, offset = offset, file_id = file_id }) =

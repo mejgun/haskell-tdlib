@@ -9,7 +9,7 @@ import {-# SOURCE #-} qualified API.BackgroundType as BackgroundType
 import {-# SOURCE #-} qualified API.Document as Document
 
 data Background = 
- Background { _type :: Maybe BackgroundType.BackgroundType, document :: Maybe Document.Document, name :: Maybe String, is_dark :: Maybe Bool, is_default :: Maybe Bool, _id :: Maybe Int }  deriving (Show)
+ Background { _type :: Maybe BackgroundType.BackgroundType, document :: Maybe Document.Document, name :: Maybe String, is_dark :: Maybe Bool, is_default :: Maybe Bool, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Background where
  toJSON (Background { _type = _type, document = document, name = name, is_dark = is_dark, is_default = is_default, _id = _id }) =

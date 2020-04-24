@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.NotificationSettingsScope as NotificationSettingsScope
 
 data GetChatNotificationSettingsExceptions = 
- GetChatNotificationSettingsExceptions { compare_sound :: Maybe Bool, scope :: Maybe NotificationSettingsScope.NotificationSettingsScope }  deriving (Show)
+ GetChatNotificationSettingsExceptions { compare_sound :: Maybe Bool, scope :: Maybe NotificationSettingsScope.NotificationSettingsScope }  deriving (Show, Eq)
 
 instance T.ToJSON GetChatNotificationSettingsExceptions where
  toJSON (GetChatNotificationSettingsExceptions { compare_sound = compare_sound, scope = scope }) =

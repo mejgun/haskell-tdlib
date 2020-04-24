@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetApplicationConfig
 
+instance Eq GetApplicationConfig
+
 instance ToJSON GetApplicationConfig
 
 instance FromJSON GetApplicationConfig

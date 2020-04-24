@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data LocalFile = 
- LocalFile { downloaded_size :: Maybe Int, downloaded_prefix_size :: Maybe Int, download_offset :: Maybe Int, is_downloading_completed :: Maybe Bool, is_downloading_active :: Maybe Bool, can_be_deleted :: Maybe Bool, can_be_downloaded :: Maybe Bool, path :: Maybe String }  deriving (Show)
+ LocalFile { downloaded_size :: Maybe Int, downloaded_prefix_size :: Maybe Int, download_offset :: Maybe Int, is_downloading_completed :: Maybe Bool, is_downloading_active :: Maybe Bool, can_be_deleted :: Maybe Bool, can_be_downloaded :: Maybe Bool, path :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON LocalFile where
  toJSON (LocalFile { downloaded_size = downloaded_size, downloaded_prefix_size = downloaded_prefix_size, download_offset = download_offset, is_downloading_completed = is_downloading_completed, is_downloading_active = is_downloading_active, can_be_deleted = can_be_deleted, can_be_downloaded = can_be_downloaded, path = path }) =

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.NotificationType as NotificationType
 
 data Notification = 
- Notification { _type :: Maybe NotificationType.NotificationType, is_silent :: Maybe Bool, date :: Maybe Int, _id :: Maybe Int }  deriving (Show)
+ Notification { _type :: Maybe NotificationType.NotificationType, is_silent :: Maybe Bool, date :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Notification where
  toJSON (Notification { _type = _type, is_silent = is_silent, date = date, _id = _id }) =

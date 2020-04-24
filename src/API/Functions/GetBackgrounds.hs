@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetBackgrounds = 
- GetBackgrounds { for_dark_theme :: Maybe Bool }  deriving (Show)
+ GetBackgrounds { for_dark_theme :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON GetBackgrounds where
  toJSON (GetBackgrounds { for_dark_theme = for_dark_theme }) =

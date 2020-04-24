@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ReorderInstalledStickerSets = 
- ReorderInstalledStickerSets { sticker_set_ids :: Maybe [Int], is_masks :: Maybe Bool }  deriving (Show)
+ ReorderInstalledStickerSets { sticker_set_ids :: Maybe [Int], is_masks :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON ReorderInstalledStickerSets where
  toJSON (ReorderInstalledStickerSets { sticker_set_ids = sticker_set_ids, is_masks = is_masks }) =

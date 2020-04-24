@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ResendRecoveryEmailAddressCode
 
+instance Eq ResendRecoveryEmailAddressCode
+
 instance ToJSON ResendRecoveryEmailAddressCode
 
 instance FromJSON ResendRecoveryEmailAddressCode

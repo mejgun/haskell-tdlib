@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data PageBlockVerticalAlignment
 
+instance Eq PageBlockVerticalAlignment
+
 instance ToJSON PageBlockVerticalAlignment
 
 instance FromJSON PageBlockVerticalAlignment

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 
 data SendPassportAuthorizationForm = 
- SendPassportAuthorizationForm { types :: Maybe [PassportElementType.PassportElementType], autorization_form_id :: Maybe Int }  deriving (Show)
+ SendPassportAuthorizationForm { types :: Maybe [PassportElementType.PassportElementType], autorization_form_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendPassportAuthorizationForm where
  toJSON (SendPassportAuthorizationForm { types = types, autorization_form_id = autorization_form_id }) =

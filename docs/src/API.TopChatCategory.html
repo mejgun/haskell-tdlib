@@ -13,7 +13,7 @@
 </span><span id="line-13"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="TopChatCategoryChannels"><span class="annot"><a href="API.TopChatCategory.html#TopChatCategoryChannels"><span class="hs-identifier hs-var">TopChatCategoryChannels</span></a></span></span><span> </span><span>
 </span><span id="line-14"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="TopChatCategoryInlineBots"><span class="annot"><a href="API.TopChatCategory.html#TopChatCategoryInlineBots"><span class="hs-identifier hs-var">TopChatCategoryInlineBots</span></a></span></span><span> </span><span>
 </span><span id="line-15"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="TopChatCategoryCalls"><span class="annot"><a href="API.TopChatCategory.html#TopChatCategoryCalls"><span class="hs-identifier hs-var">TopChatCategoryCalls</span></a></span></span><span> </span><span>
-</span><span id="line-16"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="TopChatCategoryForwardChats"><span class="annot"><a href="API.TopChatCategory.html#TopChatCategoryForwardChats"><span class="hs-identifier hs-var">TopChatCategoryForwardChats</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679417905"><span id="local-6989586621679417907"><span id="local-6989586621679417909"><span class="annot"><span class="annottext">Int -&gt; TopChatCategory -&gt; ShowS
+</span><span id="line-16"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="TopChatCategoryForwardChats"><span class="annot"><a href="API.TopChatCategory.html#TopChatCategoryForwardChats"><span class="hs-identifier hs-var">TopChatCategoryForwardChats</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679450448"><span id="local-6989586621679450450"><span id="local-6989586621679450452"><span class="annot"><span class="annottext">Int -&gt; TopChatCategory -&gt; ShowS
 [TopChatCategory] -&gt; ShowS
 TopChatCategory -&gt; String
 (Int -&gt; TopChatCategory -&gt; ShowS)
@@ -28,10 +28,19 @@ show :: TopChatCategory -&gt; String
 $cshow :: TopChatCategory -&gt; String
 showsPrec :: Int -&gt; TopChatCategory -&gt; ShowS
 $cshowsPrec :: Int -&gt; TopChatCategory -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679450443"><span id="local-6989586621679450445"><span class="annot"><span class="annottext">TopChatCategory -&gt; TopChatCategory -&gt; Bool
+(TopChatCategory -&gt; TopChatCategory -&gt; Bool)
+-&gt; (TopChatCategory -&gt; TopChatCategory -&gt; Bool)
+-&gt; Eq TopChatCategory
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: TopChatCategory -&gt; TopChatCategory -&gt; Bool
+$c/= :: TopChatCategory -&gt; TopChatCategory -&gt; Bool
+== :: TopChatCategory -&gt; TopChatCategory -&gt; Bool
+$c== :: TopChatCategory -&gt; TopChatCategory -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417897"><span id="local-6989586621679417899"><span id="local-6989586621679417901"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-19"></span><span> </span><span id="local-6989586621679417895"><span class="annot"><span class="annottext">toJSON :: TopChatCategory -&gt; Value
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679450435"><span id="local-6989586621679450437"><span id="local-6989586621679450439"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span> </span><span id="local-6989586621679450433"><span class="annot"><span class="annottext">toJSON :: TopChatCategory -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategoryUsers"><span class="hs-identifier hs-type">TopChatCategoryUsers</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-20"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -81,46 +90,46 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;topChatCategoryForwardChats&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-39"></span><span>
-</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417888"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-41"></span><span> </span><span id="local-6989586621679417886"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TopChatCategory
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679417884"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679417884"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679417882"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679417882"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-42"></span><span>  </span><span id="local-6989586621679417881"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679417881"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679417882"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679450426"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-41"></span><span> </span><span id="local-6989586621679450424"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TopChatCategory
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679450422"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679450422"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679450420"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679450420"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-42"></span><span>  </span><span id="local-6989586621679450419"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679450419"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679450420"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-43"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679417881"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679450419"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-44"></span><span>   </span><span class="hs-string">&quot;topChatCategoryUsers&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TopChatCategory
-</span><a href="#local-6989586621679417879"><span class="hs-identifier hs-var">parseTopChatCategoryUsers</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679417884"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679450417"><span class="hs-identifier hs-var">parseTopChatCategoryUsers</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679450422"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-45"></span><span>   </span><span class="hs-string">&quot;topChatCategoryBots&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TopChatCategory
-</span><a href="#local-6989586621679417878"><span class="hs-identifier hs-var">parseTopChatCategoryBots</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679417884"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679450416"><span class="hs-identifier hs-var">parseTopChatCategoryBots</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679450422"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-46"></span><span>   </span><span class="hs-string">&quot;topChatCategoryGroups&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TopChatCategory
-</span><a href="#local-6989586621679417877"><span class="hs-identifier hs-var">parseTopChatCategoryGroups</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679417884"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679450415"><span class="hs-identifier hs-var">parseTopChatCategoryGroups</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679450422"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-47"></span><span>   </span><span class="hs-string">&quot;topChatCategoryChannels&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TopChatCategory
-</span><a href="#local-6989586621679417876"><span class="hs-identifier hs-var">parseTopChatCategoryChannels</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679417884"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679450414"><span class="hs-identifier hs-var">parseTopChatCategoryChannels</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679450422"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-48"></span><span>   </span><span class="hs-string">&quot;topChatCategoryInlineBots&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TopChatCategory
-</span><a href="#local-6989586621679417875"><span class="hs-identifier hs-var">parseTopChatCategoryInlineBots</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679417884"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679450413"><span class="hs-identifier hs-var">parseTopChatCategoryInlineBots</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679450422"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-49"></span><span>   </span><span class="hs-string">&quot;topChatCategoryCalls&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TopChatCategory
-</span><a href="#local-6989586621679417874"><span class="hs-identifier hs-var">parseTopChatCategoryCalls</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679417884"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679450412"><span class="hs-identifier hs-var">parseTopChatCategoryCalls</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679450422"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-50"></span><span>   </span><span class="hs-string">&quot;topChatCategoryForwardChats&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TopChatCategory
-</span><a href="#local-6989586621679417873"><span class="hs-identifier hs-var">parseTopChatCategoryForwardChats</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679417884"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679450411"><span class="hs-identifier hs-var">parseTopChatCategoryForwardChats</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679450422"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-51"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TopChatCategory
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-52"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-53"></span><span>   </span><span class="annot"><a href="#local-6989586621679417879"><span class="hs-identifier hs-type">parseTopChatCategoryUsers</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory</span></a></span><span>
-</span><span id="line-54"></span><span>   </span><span id="local-6989586621679417879"><span class="annot"><span class="annottext">parseTopChatCategoryUsers :: Value -&gt; Parser TopChatCategory
-</span><a href="#local-6989586621679417879"><span class="hs-identifier hs-var hs-var">parseTopChatCategoryUsers</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-53"></span><span>   </span><span class="annot"><a href="#local-6989586621679450417"><span class="hs-identifier hs-type">parseTopChatCategoryUsers</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory</span></a></span><span>
+</span><span id="line-54"></span><span>   </span><span id="local-6989586621679450417"><span class="annot"><span class="annottext">parseTopChatCategoryUsers :: Value -&gt; Parser TopChatCategory
+</span><a href="#local-6989586621679450417"><span class="hs-identifier hs-var hs-var">parseTopChatCategoryUsers</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TopChatCategory)
 -&gt; Value
 -&gt; Parser TopChatCategory
@@ -131,8 +140,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TopChatCategory
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679417871"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679417871"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679450409"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679450409"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-55"></span><span>    </span><span class="annot"><span class="annottext">TopChatCategory -&gt; Parser TopChatCategory
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TopChatCategory -&gt; Parser TopChatCategory)
@@ -141,9 +150,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TopChatCategoryUsers :: TopChatCategory
 </span><a href="API.TopChatCategory.html#TopChatCategoryUsers"><span class="hs-identifier hs-type hs-type">TopChatCategoryUsers</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-56"></span><span>
-</span><span id="line-57"></span><span>   </span><span class="annot"><a href="#local-6989586621679417878"><span class="hs-identifier hs-type">parseTopChatCategoryBots</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory</span></a></span><span>
-</span><span id="line-58"></span><span>   </span><span id="local-6989586621679417878"><span class="annot"><span class="annottext">parseTopChatCategoryBots :: Value -&gt; Parser TopChatCategory
-</span><a href="#local-6989586621679417878"><span class="hs-identifier hs-var hs-var">parseTopChatCategoryBots</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-57"></span><span>   </span><span class="annot"><a href="#local-6989586621679450416"><span class="hs-identifier hs-type">parseTopChatCategoryBots</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory</span></a></span><span>
+</span><span id="line-58"></span><span>   </span><span id="local-6989586621679450416"><span class="annot"><span class="annottext">parseTopChatCategoryBots :: Value -&gt; Parser TopChatCategory
+</span><a href="#local-6989586621679450416"><span class="hs-identifier hs-var hs-var">parseTopChatCategoryBots</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TopChatCategory)
 -&gt; Value
 -&gt; Parser TopChatCategory
@@ -154,8 +163,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TopChatCategory
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679417869"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679417869"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679450407"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679450407"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-59"></span><span>    </span><span class="annot"><span class="annottext">TopChatCategory -&gt; Parser TopChatCategory
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TopChatCategory -&gt; Parser TopChatCategory)
@@ -164,9 +173,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TopChatCategoryBots :: TopChatCategory
 </span><a href="API.TopChatCategory.html#TopChatCategoryBots"><span class="hs-identifier hs-type hs-type">TopChatCategoryBots</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-60"></span><span>
-</span><span id="line-61"></span><span>   </span><span class="annot"><a href="#local-6989586621679417877"><span class="hs-identifier hs-type">parseTopChatCategoryGroups</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory</span></a></span><span>
-</span><span id="line-62"></span><span>   </span><span id="local-6989586621679417877"><span class="annot"><span class="annottext">parseTopChatCategoryGroups :: Value -&gt; Parser TopChatCategory
-</span><a href="#local-6989586621679417877"><span class="hs-identifier hs-var hs-var">parseTopChatCategoryGroups</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-61"></span><span>   </span><span class="annot"><a href="#local-6989586621679450415"><span class="hs-identifier hs-type">parseTopChatCategoryGroups</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory</span></a></span><span>
+</span><span id="line-62"></span><span>   </span><span id="local-6989586621679450415"><span class="annot"><span class="annottext">parseTopChatCategoryGroups :: Value -&gt; Parser TopChatCategory
+</span><a href="#local-6989586621679450415"><span class="hs-identifier hs-var hs-var">parseTopChatCategoryGroups</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TopChatCategory)
 -&gt; Value
 -&gt; Parser TopChatCategory
@@ -177,8 +186,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TopChatCategory
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679417867"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679417867"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679450405"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679450405"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-63"></span><span>    </span><span class="annot"><span class="annottext">TopChatCategory -&gt; Parser TopChatCategory
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TopChatCategory -&gt; Parser TopChatCategory)
@@ -187,9 +196,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TopChatCategoryGroups :: TopChatCategory
 </span><a href="API.TopChatCategory.html#TopChatCategoryGroups"><span class="hs-identifier hs-type hs-type">TopChatCategoryGroups</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-64"></span><span>
-</span><span id="line-65"></span><span>   </span><span class="annot"><a href="#local-6989586621679417876"><span class="hs-identifier hs-type">parseTopChatCategoryChannels</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory</span></a></span><span>
-</span><span id="line-66"></span><span>   </span><span id="local-6989586621679417876"><span class="annot"><span class="annottext">parseTopChatCategoryChannels :: Value -&gt; Parser TopChatCategory
-</span><a href="#local-6989586621679417876"><span class="hs-identifier hs-var hs-var">parseTopChatCategoryChannels</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-65"></span><span>   </span><span class="annot"><a href="#local-6989586621679450414"><span class="hs-identifier hs-type">parseTopChatCategoryChannels</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory</span></a></span><span>
+</span><span id="line-66"></span><span>   </span><span id="local-6989586621679450414"><span class="annot"><span class="annottext">parseTopChatCategoryChannels :: Value -&gt; Parser TopChatCategory
+</span><a href="#local-6989586621679450414"><span class="hs-identifier hs-var hs-var">parseTopChatCategoryChannels</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TopChatCategory)
 -&gt; Value
 -&gt; Parser TopChatCategory
@@ -200,8 +209,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TopChatCategory
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679417865"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679417865"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679450403"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679450403"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-67"></span><span>    </span><span class="annot"><span class="annottext">TopChatCategory -&gt; Parser TopChatCategory
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TopChatCategory -&gt; Parser TopChatCategory)
@@ -210,9 +219,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TopChatCategoryChannels :: TopChatCategory
 </span><a href="API.TopChatCategory.html#TopChatCategoryChannels"><span class="hs-identifier hs-type hs-type">TopChatCategoryChannels</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-68"></span><span>
-</span><span id="line-69"></span><span>   </span><span class="annot"><a href="#local-6989586621679417875"><span class="hs-identifier hs-type">parseTopChatCategoryInlineBots</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory</span></a></span><span>
-</span><span id="line-70"></span><span>   </span><span id="local-6989586621679417875"><span class="annot"><span class="annottext">parseTopChatCategoryInlineBots :: Value -&gt; Parser TopChatCategory
-</span><a href="#local-6989586621679417875"><span class="hs-identifier hs-var hs-var">parseTopChatCategoryInlineBots</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-69"></span><span>   </span><span class="annot"><a href="#local-6989586621679450413"><span class="hs-identifier hs-type">parseTopChatCategoryInlineBots</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory</span></a></span><span>
+</span><span id="line-70"></span><span>   </span><span id="local-6989586621679450413"><span class="annot"><span class="annottext">parseTopChatCategoryInlineBots :: Value -&gt; Parser TopChatCategory
+</span><a href="#local-6989586621679450413"><span class="hs-identifier hs-var hs-var">parseTopChatCategoryInlineBots</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TopChatCategory)
 -&gt; Value
 -&gt; Parser TopChatCategory
@@ -223,8 +232,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TopChatCategory
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679417863"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679417863"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679450401"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679450401"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-71"></span><span>    </span><span class="annot"><span class="annottext">TopChatCategory -&gt; Parser TopChatCategory
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TopChatCategory -&gt; Parser TopChatCategory)
@@ -233,9 +242,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TopChatCategoryInlineBots :: TopChatCategory
 </span><a href="API.TopChatCategory.html#TopChatCategoryInlineBots"><span class="hs-identifier hs-type hs-type">TopChatCategoryInlineBots</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-72"></span><span>
-</span><span id="line-73"></span><span>   </span><span class="annot"><a href="#local-6989586621679417874"><span class="hs-identifier hs-type">parseTopChatCategoryCalls</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory</span></a></span><span>
-</span><span id="line-74"></span><span>   </span><span id="local-6989586621679417874"><span class="annot"><span class="annottext">parseTopChatCategoryCalls :: Value -&gt; Parser TopChatCategory
-</span><a href="#local-6989586621679417874"><span class="hs-identifier hs-var hs-var">parseTopChatCategoryCalls</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-73"></span><span>   </span><span class="annot"><a href="#local-6989586621679450412"><span class="hs-identifier hs-type">parseTopChatCategoryCalls</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory</span></a></span><span>
+</span><span id="line-74"></span><span>   </span><span id="local-6989586621679450412"><span class="annot"><span class="annottext">parseTopChatCategoryCalls :: Value -&gt; Parser TopChatCategory
+</span><a href="#local-6989586621679450412"><span class="hs-identifier hs-var hs-var">parseTopChatCategoryCalls</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TopChatCategory)
 -&gt; Value
 -&gt; Parser TopChatCategory
@@ -246,8 +255,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TopChatCategory
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679417861"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679417861"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679450399"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679450399"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-75"></span><span>    </span><span class="annot"><span class="annottext">TopChatCategory -&gt; Parser TopChatCategory
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TopChatCategory -&gt; Parser TopChatCategory)
@@ -256,9 +265,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TopChatCategoryCalls :: TopChatCategory
 </span><a href="API.TopChatCategory.html#TopChatCategoryCalls"><span class="hs-identifier hs-type hs-type">TopChatCategoryCalls</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-76"></span><span>
-</span><span id="line-77"></span><span>   </span><span class="annot"><a href="#local-6989586621679417873"><span class="hs-identifier hs-type">parseTopChatCategoryForwardChats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory</span></a></span><span>
-</span><span id="line-78"></span><span>   </span><span id="local-6989586621679417873"><span class="annot"><span class="annottext">parseTopChatCategoryForwardChats :: Value -&gt; Parser TopChatCategory
-</span><a href="#local-6989586621679417873"><span class="hs-identifier hs-var hs-var">parseTopChatCategoryForwardChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-77"></span><span>   </span><span class="annot"><a href="#local-6989586621679450411"><span class="hs-identifier hs-type">parseTopChatCategoryForwardChats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TopChatCategory.html#TopChatCategory"><span class="hs-identifier hs-type">TopChatCategory</span></a></span><span>
+</span><span id="line-78"></span><span>   </span><span id="local-6989586621679450411"><span class="annot"><span class="annottext">parseTopChatCategoryForwardChats :: Value -&gt; Parser TopChatCategory
+</span><a href="#local-6989586621679450411"><span class="hs-identifier hs-var hs-var">parseTopChatCategoryForwardChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TopChatCategory)
 -&gt; Value
 -&gt; Parser TopChatCategory
@@ -269,8 +278,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TopChatCategory
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679417859"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679417859"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679450397"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679450397"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-79"></span><span>    </span><span class="annot"><span class="annottext">TopChatCategory -&gt; Parser TopChatCategory
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TopChatCategory -&gt; Parser TopChatCategory)

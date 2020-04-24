@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetPassword
 
+instance Eq SetPassword
+
 instance ToJSON SetPassword
 
 instance FromJSON SetPassword

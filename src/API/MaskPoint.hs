@@ -10,7 +10,7 @@ data MaskPoint =
  MaskPointForehead 
  | MaskPointEyes 
  | MaskPointMouth 
- | MaskPointChin deriving (Show)
+ | MaskPointChin deriving (Show, Eq)
 
 instance T.ToJSON MaskPoint where
  toJSON (MaskPointForehead {  }) =

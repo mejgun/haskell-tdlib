@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data InputPersonalDocument = 
- InputPersonalDocument { translation :: Maybe [InputFile.InputFile], files :: Maybe [InputFile.InputFile] }  deriving (Show)
+ InputPersonalDocument { translation :: Maybe [InputFile.InputFile], files :: Maybe [InputFile.InputFile] }  deriving (Show, Eq)
 
 instance T.ToJSON InputPersonalDocument where
  toJSON (InputPersonalDocument { translation = translation, files = files }) =

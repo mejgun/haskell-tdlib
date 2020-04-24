@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data GetStickerEmojis = 
- GetStickerEmojis { sticker :: Maybe InputFile.InputFile }  deriving (Show)
+ GetStickerEmojis { sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON GetStickerEmojis where
  toJSON (GetStickerEmojis { sticker = sticker }) =

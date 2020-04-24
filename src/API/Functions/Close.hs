@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Close = 
- Close deriving (Show)
+ Close deriving (Show, Eq)
 
 instance T.ToJSON Close where
  toJSON (Close {  }) =

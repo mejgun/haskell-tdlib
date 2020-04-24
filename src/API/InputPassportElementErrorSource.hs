@@ -15,7 +15,7 @@ data InputPassportElementErrorSource =
  | InputPassportElementErrorSourceTranslationFile { file_hash :: Maybe String }  
  | InputPassportElementErrorSourceTranslationFiles { file_hashes :: Maybe [String] }  
  | InputPassportElementErrorSourceFile { file_hash :: Maybe String }  
- | InputPassportElementErrorSourceFiles { file_hashes :: Maybe [String] }  deriving (Show)
+ | InputPassportElementErrorSourceFiles { file_hashes :: Maybe [String] }  deriving (Show, Eq)
 
 instance T.ToJSON InputPassportElementErrorSource where
  toJSON (InputPassportElementErrorSourceUnspecified { element_hash = element_hash }) =

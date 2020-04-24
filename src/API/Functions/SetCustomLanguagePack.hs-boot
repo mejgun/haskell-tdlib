@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetCustomLanguagePack
 
+instance Eq SetCustomLanguagePack
+
 instance ToJSON SetCustomLanguagePack
 
 instance FromJSON SetCustomLanguagePack

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data EditInlineMessageCaption
 
+instance Eq EditInlineMessageCaption
+
 instance ToJSON EditInlineMessageCaption
 
 instance FromJSON EditInlineMessageCaption

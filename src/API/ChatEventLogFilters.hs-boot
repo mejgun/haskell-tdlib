@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ChatEventLogFilters
 
+instance Eq ChatEventLogFilters
+
 instance ToJSON ChatEventLogFilters
 
 instance FromJSON ChatEventLogFilters

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data NetworkStatistics
 
+instance Eq NetworkStatistics
+
 instance ToJSON NetworkStatistics
 
 instance FromJSON NetworkStatistics

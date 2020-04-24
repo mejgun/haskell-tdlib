@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CloseSecretChat = 
- CloseSecretChat { secret_chat_id :: Maybe Int }  deriving (Show)
+ CloseSecretChat { secret_chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CloseSecretChat where
  toJSON (CloseSecretChat { secret_chat_id = secret_chat_id }) =

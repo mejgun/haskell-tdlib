@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Minithumbnail = 
- Minithumbnail { _data :: Maybe String, height :: Maybe Int, width :: Maybe Int }  deriving (Show)
+ Minithumbnail { _data :: Maybe String, height :: Maybe Int, width :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Minithumbnail where
  toJSON (Minithumbnail { _data = _data, height = height, width = width }) =

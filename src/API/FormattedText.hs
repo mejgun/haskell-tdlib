@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TextEntity as TextEntity
 
 data FormattedText = 
- FormattedText { entities :: Maybe [TextEntity.TextEntity], text :: Maybe String }  deriving (Show)
+ FormattedText { entities :: Maybe [TextEntity.TextEntity], text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON FormattedText where
  toJSON (FormattedText { entities = entities, text = text }) =

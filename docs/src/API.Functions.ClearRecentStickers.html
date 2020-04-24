@@ -8,7 +8,7 @@
 </span><span id="line-8"></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="ClearRecentStickers"><span class="annot"><a href="API.Functions.ClearRecentStickers.html#ClearRecentStickers"><span class="hs-identifier hs-var">ClearRecentStickers</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-10"></span><span> </span><span id="ClearRecentStickers"><span class="annot"><a href="API.Functions.ClearRecentStickers.html#ClearRecentStickers"><span class="hs-identifier hs-var">ClearRecentStickers</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="is_attached"><span class="annot"><span class="annottext">ClearRecentStickers -&gt; Maybe Bool
-</span><a href="API.Functions.ClearRecentStickers.html#is_attached"><span class="hs-identifier hs-var hs-var">is_attached</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679381179"><span id="local-6989586621679381181"><span id="local-6989586621679381183"><span class="annot"><span class="annottext">Int -&gt; ClearRecentStickers -&gt; ShowS
+</span><a href="API.Functions.ClearRecentStickers.html#is_attached"><span class="hs-identifier hs-var hs-var">is_attached</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679410773"><span id="local-6989586621679410775"><span id="local-6989586621679410777"><span class="annot"><span class="annottext">Int -&gt; ClearRecentStickers -&gt; ShowS
 [ClearRecentStickers] -&gt; ShowS
 ClearRecentStickers -&gt; String
 (Int -&gt; ClearRecentStickers -&gt; ShowS)
@@ -23,13 +23,22 @@ show :: ClearRecentStickers -&gt; String
 $cshow :: ClearRecentStickers -&gt; String
 showsPrec :: Int -&gt; ClearRecentStickers -&gt; ShowS
 $cshowsPrec :: Int -&gt; ClearRecentStickers -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679410768"><span id="local-6989586621679410770"><span class="annot"><span class="annottext">ClearRecentStickers -&gt; ClearRecentStickers -&gt; Bool
+(ClearRecentStickers -&gt; ClearRecentStickers -&gt; Bool)
+-&gt; (ClearRecentStickers -&gt; ClearRecentStickers -&gt; Bool)
+-&gt; Eq ClearRecentStickers
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: ClearRecentStickers -&gt; ClearRecentStickers -&gt; Bool
+$c/= :: ClearRecentStickers -&gt; ClearRecentStickers -&gt; Bool
+== :: ClearRecentStickers -&gt; ClearRecentStickers -&gt; Bool
+$c== :: ClearRecentStickers -&gt; ClearRecentStickers -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679381171"><span id="local-6989586621679381173"><span id="local-6989586621679381175"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ClearRecentStickers.html#ClearRecentStickers"><span class="hs-identifier hs-type">ClearRecentStickers</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679381169"><span class="annot"><span class="annottext">toJSON :: ClearRecentStickers -&gt; Value
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679410760"><span id="local-6989586621679410762"><span id="local-6989586621679410764"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ClearRecentStickers.html#ClearRecentStickers"><span class="hs-identifier hs-type">ClearRecentStickers</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679410758"><span class="annot"><span class="annottext">toJSON :: ClearRecentStickers -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.ClearRecentStickers.html#ClearRecentStickers"><span class="hs-identifier hs-type">ClearRecentStickers</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_attached :: ClearRecentStickers -&gt; Maybe Bool
-</span><a href="API.Functions.ClearRecentStickers.html#is_attached"><span class="hs-identifier hs-var">is_attached</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679381167"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679381167"><span class="hs-identifier hs-var">is_attached</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.ClearRecentStickers.html#is_attached"><span class="hs-identifier hs-var">is_attached</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410756"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679410756"><span class="hs-identifier hs-var">is_attached</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -37,30 +46,30 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;clearRecentStickers&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_attached&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679381167"><span class="hs-identifier hs-var">is_attached</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679410756"><span class="hs-identifier hs-var">is_attached</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679381161"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ClearRecentStickers.html#ClearRecentStickers"><span class="hs-identifier hs-type">ClearRecentStickers</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679381159"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ClearRecentStickers
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679381157"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679381157"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679381155"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679381155"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679381154"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679381154"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679381155"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679410750"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ClearRecentStickers.html#ClearRecentStickers"><span class="hs-identifier hs-type">ClearRecentStickers</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679410748"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ClearRecentStickers
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679410746"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679410746"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679410744"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679410744"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679410743"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679410743"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679410744"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679381154"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679410743"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;clearRecentStickers&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ClearRecentStickers
-</span><a href="#local-6989586621679381152"><span class="hs-identifier hs-var">parseClearRecentStickers</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679381157"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679410741"><span class="hs-identifier hs-var">parseClearRecentStickers</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679410746"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ClearRecentStickers
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679381152"><span class="hs-identifier hs-type">parseClearRecentStickers</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ClearRecentStickers.html#ClearRecentStickers"><span class="hs-identifier hs-type">ClearRecentStickers</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679381152"><span class="annot"><span class="annottext">parseClearRecentStickers :: Value -&gt; Parser ClearRecentStickers
-</span><a href="#local-6989586621679381152"><span class="hs-identifier hs-var hs-var">parseClearRecentStickers</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679410741"><span class="hs-identifier hs-type">parseClearRecentStickers</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ClearRecentStickers.html#ClearRecentStickers"><span class="hs-identifier hs-type">ClearRecentStickers</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679410741"><span class="annot"><span class="annottext">parseClearRecentStickers :: Value -&gt; Parser ClearRecentStickers
+</span><a href="#local-6989586621679410741"><span class="hs-identifier hs-var hs-var">parseClearRecentStickers</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ClearRecentStickers)
 -&gt; Value
 -&gt; Parser ClearRecentStickers
@@ -71,16 +80,16 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ClearRecentStickers
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679381150"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679381150"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679381149"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679381149"><span class="hs-identifier hs-var">is_attached</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679410739"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679410739"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679410738"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679410738"><span class="hs-identifier hs-var">is_attached</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
 -&gt; Parser Bool -&gt; Parser (Maybe Bool)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679381150"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><a href="#local-6989586621679410739"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_attached&quot;</span></span><span>
 </span><span id="line-26"></span><span>    </span><span class="annot"><span class="annottext">ClearRecentStickers -&gt; Parser ClearRecentStickers
@@ -91,4 +100,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ClearRecentStickers :: Maybe Bool -&gt; ClearRecentStickers
 </span><a href="API.Functions.ClearRecentStickers.html#ClearRecentStickers"><span class="hs-identifier hs-type hs-type">ClearRecentStickers</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_attached :: Maybe Bool
 </span><a href="API.Functions.ClearRecentStickers.html#is_attached"><span class="hs-identifier hs-var">is_attached</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679381149"><span class="hs-identifier hs-var">is_attached</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679410738"><span class="hs-identifier hs-var">is_attached</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data RecoverPassword = 
- RecoverPassword { recovery_code :: Maybe String }  deriving (Show)
+ RecoverPassword { recovery_code :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON RecoverPassword where
  toJSON (RecoverPassword { recovery_code = recovery_code }) =

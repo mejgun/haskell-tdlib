@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data CallConnection
 
+instance Eq CallConnection
+
 instance ToJSON CallConnection
 
 instance FromJSON CallConnection

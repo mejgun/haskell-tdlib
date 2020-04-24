@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data Minithumbnail
 
+instance Eq Minithumbnail
+
 instance ToJSON Minithumbnail
 
 instance FromJSON Minithumbnail

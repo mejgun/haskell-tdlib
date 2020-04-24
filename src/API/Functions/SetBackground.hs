@@ -9,7 +9,7 @@ import {-# SOURCE #-} qualified API.BackgroundType as BackgroundType
 import {-# SOURCE #-} qualified API.InputBackground as InputBackground
 
 data SetBackground = 
- SetBackground { for_dark_theme :: Maybe Bool, _type :: Maybe BackgroundType.BackgroundType, background :: Maybe InputBackground.InputBackground }  deriving (Show)
+ SetBackground { for_dark_theme :: Maybe Bool, _type :: Maybe BackgroundType.BackgroundType, background :: Maybe InputBackground.InputBackground }  deriving (Show, Eq)
 
 instance T.ToJSON SetBackground where
  toJSON (SetBackground { for_dark_theme = for_dark_theme, _type = _type, background = background }) =

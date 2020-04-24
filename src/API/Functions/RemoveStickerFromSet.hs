@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data RemoveStickerFromSet = 
- RemoveStickerFromSet { sticker :: Maybe InputFile.InputFile }  deriving (Show)
+ RemoveStickerFromSet { sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveStickerFromSet where
  toJSON (RemoveStickerFromSet { sticker = sticker }) =

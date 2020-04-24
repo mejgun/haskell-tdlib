@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetBotUpdatesStatus = 
- SetBotUpdatesStatus { error_message :: Maybe String, pending_update_count :: Maybe Int }  deriving (Show)
+ SetBotUpdatesStatus { error_message :: Maybe String, pending_update_count :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetBotUpdatesStatus where
  toJSON (SetBotUpdatesStatus { error_message = error_message, pending_update_count = pending_update_count }) =

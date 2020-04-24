@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data EncryptedCredentials
 
+instance Eq EncryptedCredentials
+
 instance ToJSON EncryptedCredentials
 
 instance FromJSON EncryptedCredentials

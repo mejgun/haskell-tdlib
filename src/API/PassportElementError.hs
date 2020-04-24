@@ -9,7 +9,7 @@ import {-# SOURCE #-} qualified API.PassportElementErrorSource as PassportElemen
 import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 
 data PassportElementError = 
- PassportElementError { source :: Maybe PassportElementErrorSource.PassportElementErrorSource, message :: Maybe String, _type :: Maybe PassportElementType.PassportElementType }  deriving (Show)
+ PassportElementError { source :: Maybe PassportElementErrorSource.PassportElementErrorSource, message :: Maybe String, _type :: Maybe PassportElementType.PassportElementType }  deriving (Show, Eq)
 
 instance T.ToJSON PassportElementError where
  toJSON (PassportElementError { source = source, message = message, _type = _type }) =

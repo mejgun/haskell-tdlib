@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetSuitableDiscussionChats = 
- GetSuitableDiscussionChats deriving (Show)
+ GetSuitableDiscussionChats deriving (Show, Eq)
 
 instance T.ToJSON GetSuitableDiscussionChats where
  toJSON (GetSuitableDiscussionChats {  }) =

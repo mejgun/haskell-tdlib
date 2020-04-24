@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data CheckChatUsername
 
+instance Eq CheckChatUsername
+
 instance ToJSON CheckChatUsername
 
 instance FromJSON CheckChatUsername

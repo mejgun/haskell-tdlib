@@ -11,7 +11,7 @@ data TMeUrlType =
  TMeUrlTypeUser { user_id :: Maybe Int }  
  | TMeUrlTypeSupergroup { supergroup_id :: Maybe Int }  
  | TMeUrlTypeChatInvite { info :: Maybe ChatInviteLinkInfo.ChatInviteLinkInfo }  
- | TMeUrlTypeStickerSet { sticker_set_id :: Maybe Int }  deriving (Show)
+ | TMeUrlTypeStickerSet { sticker_set_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON TMeUrlType where
  toJSON (TMeUrlTypeUser { user_id = user_id }) =

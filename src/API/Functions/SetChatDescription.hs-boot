@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetChatDescription
 
+instance Eq SetChatDescription
+
 instance ToJSON SetChatDescription
 
 instance FromJSON SetChatDescription

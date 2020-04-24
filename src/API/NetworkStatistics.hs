@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.NetworkStatisticsEntry as NetworkStatisticsEntry
 
 data NetworkStatistics = 
- NetworkStatistics { entries :: Maybe [NetworkStatisticsEntry.NetworkStatisticsEntry], since_date :: Maybe Int }  deriving (Show)
+ NetworkStatistics { entries :: Maybe [NetworkStatisticsEntry.NetworkStatisticsEntry], since_date :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON NetworkStatistics where
  toJSON (NetworkStatistics { entries = entries, since_date = since_date }) =

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data RemoveSavedAnimation = 
- RemoveSavedAnimation { animation :: Maybe InputFile.InputFile }  deriving (Show)
+ RemoveSavedAnimation { animation :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveSavedAnimation where
  toJSON (RemoveSavedAnimation { animation = animation }) =

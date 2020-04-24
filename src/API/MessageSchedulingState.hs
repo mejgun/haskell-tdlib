@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 
 data MessageSchedulingState = 
  MessageSchedulingStateSendAtDate { send_date :: Maybe Int }  
- | MessageSchedulingStateSendWhenOnline deriving (Show)
+ | MessageSchedulingStateSendWhenOnline deriving (Show, Eq)
 
 instance T.ToJSON MessageSchedulingState where
  toJSON (MessageSchedulingStateSendAtDate { send_date = send_date }) =

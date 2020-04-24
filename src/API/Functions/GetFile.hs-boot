@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetFile
 
+instance Eq GetFile
+
 instance ToJSON GetFile
 
 instance FromJSON GetFile

@@ -10,7 +10,7 @@ data InputFile =
  InputFileId { __id :: Maybe Int }  
  | InputFileRemote { _id :: Maybe String }  
  | InputFileLocal { path :: Maybe String }  
- | InputFileGenerated { expected_size :: Maybe Int, conversion :: Maybe String, original_path :: Maybe String }  deriving (Show)
+ | InputFileGenerated { expected_size :: Maybe Int, conversion :: Maybe String, original_path :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON InputFile where
  toJSON (InputFileId { __id = __id }) =

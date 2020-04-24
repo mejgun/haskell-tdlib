@@ -8,7 +8,7 @@
 </span><span id="line-8"></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="DisconnectWebsite"><span class="annot"><a href="API.Functions.DisconnectWebsite.html#DisconnectWebsite"><span class="hs-identifier hs-var">DisconnectWebsite</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-10"></span><span> </span><span id="DisconnectWebsite"><span class="annot"><a href="API.Functions.DisconnectWebsite.html#DisconnectWebsite"><span class="hs-identifier hs-var">DisconnectWebsite</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="website_id"><span class="annot"><span class="annottext">DisconnectWebsite -&gt; Maybe Int
-</span><a href="API.Functions.DisconnectWebsite.html#website_id"><span class="hs-identifier hs-var hs-var">website_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679383233"><span id="local-6989586621679383235"><span id="local-6989586621679383237"><span class="annot"><span class="annottext">Int -&gt; DisconnectWebsite -&gt; ShowS
+</span><a href="API.Functions.DisconnectWebsite.html#website_id"><span class="hs-identifier hs-var hs-var">website_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679413007"><span id="local-6989586621679413009"><span id="local-6989586621679413011"><span class="annot"><span class="annottext">Int -&gt; DisconnectWebsite -&gt; ShowS
 [DisconnectWebsite] -&gt; ShowS
 DisconnectWebsite -&gt; String
 (Int -&gt; DisconnectWebsite -&gt; ShowS)
@@ -23,13 +23,22 @@ show :: DisconnectWebsite -&gt; String
 $cshow :: DisconnectWebsite -&gt; String
 showsPrec :: Int -&gt; DisconnectWebsite -&gt; ShowS
 $cshowsPrec :: Int -&gt; DisconnectWebsite -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679413002"><span id="local-6989586621679413004"><span class="annot"><span class="annottext">DisconnectWebsite -&gt; DisconnectWebsite -&gt; Bool
+(DisconnectWebsite -&gt; DisconnectWebsite -&gt; Bool)
+-&gt; (DisconnectWebsite -&gt; DisconnectWebsite -&gt; Bool)
+-&gt; Eq DisconnectWebsite
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: DisconnectWebsite -&gt; DisconnectWebsite -&gt; Bool
+$c/= :: DisconnectWebsite -&gt; DisconnectWebsite -&gt; Bool
+== :: DisconnectWebsite -&gt; DisconnectWebsite -&gt; Bool
+$c== :: DisconnectWebsite -&gt; DisconnectWebsite -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679383225"><span id="local-6989586621679383227"><span id="local-6989586621679383229"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DisconnectWebsite.html#DisconnectWebsite"><span class="hs-identifier hs-type">DisconnectWebsite</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679383223"><span class="annot"><span class="annottext">toJSON :: DisconnectWebsite -&gt; Value
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412994"><span id="local-6989586621679412996"><span id="local-6989586621679412998"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DisconnectWebsite.html#DisconnectWebsite"><span class="hs-identifier hs-type">DisconnectWebsite</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679412992"><span class="annot"><span class="annottext">toJSON :: DisconnectWebsite -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.DisconnectWebsite.html#DisconnectWebsite"><span class="hs-identifier hs-type">DisconnectWebsite</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">website_id :: DisconnectWebsite -&gt; Maybe Int
-</span><a href="API.Functions.DisconnectWebsite.html#website_id"><span class="hs-identifier hs-var">website_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679383221"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679383221"><span class="hs-identifier hs-var">website_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.DisconnectWebsite.html#website_id"><span class="hs-identifier hs-var">website_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412990"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412990"><span class="hs-identifier hs-var">website_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -37,30 +46,30 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;disconnectWebsite&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;website_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679383221"><span class="hs-identifier hs-var">website_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679412990"><span class="hs-identifier hs-var">website_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679383215"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DisconnectWebsite.html#DisconnectWebsite"><span class="hs-identifier hs-type">DisconnectWebsite</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679383213"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser DisconnectWebsite
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679383211"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679383211"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679383209"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679383209"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679383208"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679383208"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679383209"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412984"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DisconnectWebsite.html#DisconnectWebsite"><span class="hs-identifier hs-type">DisconnectWebsite</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679412982"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser DisconnectWebsite
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679412980"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679412980"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679412978"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679412978"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679412977"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679412977"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412978"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679383208"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679412977"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;disconnectWebsite&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DisconnectWebsite
-</span><a href="#local-6989586621679383206"><span class="hs-identifier hs-var">parseDisconnectWebsite</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679383211"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679412975"><span class="hs-identifier hs-var">parseDisconnectWebsite</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412980"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser DisconnectWebsite
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679383206"><span class="hs-identifier hs-type">parseDisconnectWebsite</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.DisconnectWebsite.html#DisconnectWebsite"><span class="hs-identifier hs-type">DisconnectWebsite</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679383206"><span class="annot"><span class="annottext">parseDisconnectWebsite :: Value -&gt; Parser DisconnectWebsite
-</span><a href="#local-6989586621679383206"><span class="hs-identifier hs-var hs-var">parseDisconnectWebsite</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679412975"><span class="hs-identifier hs-type">parseDisconnectWebsite</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.DisconnectWebsite.html#DisconnectWebsite"><span class="hs-identifier hs-type">DisconnectWebsite</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679412975"><span class="annot"><span class="annottext">parseDisconnectWebsite :: Value -&gt; Parser DisconnectWebsite
+</span><a href="#local-6989586621679412975"><span class="hs-identifier hs-var hs-var">parseDisconnectWebsite</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DisconnectWebsite)
 -&gt; Value
 -&gt; Parser DisconnectWebsite
@@ -71,16 +80,16 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser DisconnectWebsite
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679383204"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679383204"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679383203"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679383203"><span class="hs-identifier hs-var">website_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412973"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412973"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679412972"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679412972"><span class="hs-identifier hs-var">website_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679383204"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679412973"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;website_id&quot;</span></span><span>
 </span><span id="line-26"></span><span>    </span><span class="annot"><span class="annottext">DisconnectWebsite -&gt; Parser DisconnectWebsite
@@ -91,4 +100,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">DisconnectWebsite :: Maybe Int -&gt; DisconnectWebsite
 </span><a href="API.Functions.DisconnectWebsite.html#DisconnectWebsite"><span class="hs-identifier hs-type hs-type">DisconnectWebsite</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">website_id :: Maybe Int
 </span><a href="API.Functions.DisconnectWebsite.html#website_id"><span class="hs-identifier hs-var">website_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679383203"><span class="hs-identifier hs-var">website_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679412972"><span class="hs-identifier hs-var">website_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

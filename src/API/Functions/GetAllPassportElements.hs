@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetAllPassportElements = 
- GetAllPassportElements { password :: Maybe String }  deriving (Show)
+ GetAllPassportElements { password :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetAllPassportElements where
  toJSON (GetAllPassportElements { password = password }) =

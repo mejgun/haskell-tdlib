@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Contact = 
- Contact { user_id :: Maybe Int, vcard :: Maybe String, last_name :: Maybe String, first_name :: Maybe String, phone_number :: Maybe String }  deriving (Show)
+ Contact { user_id :: Maybe Int, vcard :: Maybe String, last_name :: Maybe String, first_name :: Maybe String, phone_number :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON Contact where
  toJSON (Contact { user_id = user_id, vcard = vcard, last_name = last_name, first_name = first_name, phone_number = phone_number }) =

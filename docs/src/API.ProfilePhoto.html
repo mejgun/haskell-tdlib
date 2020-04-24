@@ -11,7 +11,7 @@
 </span><span id="line-11"></span><span> </span><span id="ProfilePhoto"><span class="annot"><a href="API.ProfilePhoto.html#ProfilePhoto"><span class="hs-identifier hs-var">ProfilePhoto</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="big"><span class="annot"><span class="annottext">ProfilePhoto -&gt; Maybe File
 </span><a href="API.ProfilePhoto.html#big"><span class="hs-identifier hs-var hs-var">big</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.File.html#File"><span class="hs-identifier hs-type">File.File</span></a></span><span class="hs-special">,</span><span> </span><span id="small"><span class="annot"><span class="annottext">ProfilePhoto -&gt; Maybe File
 </span><a href="API.ProfilePhoto.html#small"><span class="hs-identifier hs-var hs-var">small</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.File.html#File"><span class="hs-identifier hs-type">File.File</span></a></span><span class="hs-special">,</span><span> </span><span id="_id"><span class="annot"><span class="annottext">ProfilePhoto -&gt; Maybe Int
-</span><a href="API.ProfilePhoto.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679410059"><span id="local-6989586621679410061"><span id="local-6989586621679410063"><span class="annot"><span class="annottext">Int -&gt; ProfilePhoto -&gt; ShowS
+</span><a href="API.ProfilePhoto.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679442030"><span id="local-6989586621679442032"><span id="local-6989586621679442034"><span class="annot"><span class="annottext">Int -&gt; ProfilePhoto -&gt; ShowS
 [ProfilePhoto] -&gt; ShowS
 ProfilePhoto -&gt; String
 (Int -&gt; ProfilePhoto -&gt; ShowS)
@@ -26,17 +26,25 @@ show :: ProfilePhoto -&gt; String
 $cshow :: ProfilePhoto -&gt; String
 showsPrec :: Int -&gt; ProfilePhoto -&gt; ShowS
 $cshowsPrec :: Int -&gt; ProfilePhoto -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679442025"><span id="local-6989586621679442027"><span class="annot"><span class="annottext">ProfilePhoto -&gt; ProfilePhoto -&gt; Bool
+(ProfilePhoto -&gt; ProfilePhoto -&gt; Bool)
+-&gt; (ProfilePhoto -&gt; ProfilePhoto -&gt; Bool) -&gt; Eq ProfilePhoto
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: ProfilePhoto -&gt; ProfilePhoto -&gt; Bool
+$c/= :: ProfilePhoto -&gt; ProfilePhoto -&gt; Bool
+== :: ProfilePhoto -&gt; ProfilePhoto -&gt; Bool
+$c== :: ProfilePhoto -&gt; ProfilePhoto -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679410051"><span id="local-6989586621679410053"><span id="local-6989586621679410055"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ProfilePhoto.html#ProfilePhoto"><span class="hs-identifier hs-type">ProfilePhoto</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679410049"><span class="annot"><span class="annottext">toJSON :: ProfilePhoto -&gt; Value
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679442017"><span id="local-6989586621679442019"><span id="local-6989586621679442021"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ProfilePhoto.html#ProfilePhoto"><span class="hs-identifier hs-type">ProfilePhoto</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679442015"><span class="annot"><span class="annottext">toJSON :: ProfilePhoto -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.ProfilePhoto.html#ProfilePhoto"><span class="hs-identifier hs-type">ProfilePhoto</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">big :: ProfilePhoto -&gt; Maybe File
-</span><a href="API.ProfilePhoto.html#big"><span class="hs-identifier hs-var">big</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410047"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679410047"><span class="hs-identifier hs-var">big</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">small :: ProfilePhoto -&gt; Maybe File
-</span><a href="API.ProfilePhoto.html#small"><span class="hs-identifier hs-var">small</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410046"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679410046"><span class="hs-identifier hs-var">small</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: ProfilePhoto -&gt; Maybe Int
-</span><a href="API.ProfilePhoto.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410045"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679410045"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.ProfilePhoto.html#big"><span class="hs-identifier hs-var">big</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679442013"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679442013"><span class="hs-identifier hs-var">big</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">small :: ProfilePhoto -&gt; Maybe File
+</span><a href="API.ProfilePhoto.html#small"><span class="hs-identifier hs-var">small</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679442012"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679442012"><span class="hs-identifier hs-var">small</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: ProfilePhoto -&gt; Maybe Int
+</span><a href="API.ProfilePhoto.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679442011"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679442011"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -44,71 +52,71 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;profilePhoto&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;big&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe File -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679410047"><span class="hs-identifier hs-var">big</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;small&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe File -&gt; Pair
+</span><a href="#local-6989586621679442013"><span class="hs-identifier hs-var">big</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;small&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe File -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679410046"><span class="hs-identifier hs-var">small</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679442012"><span class="hs-identifier hs-var">small</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679410045"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679442011"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679410039"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ProfilePhoto.html#ProfilePhoto"><span class="hs-identifier hs-type">ProfilePhoto</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679410037"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ProfilePhoto
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679410035"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679410035"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679410033"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679410033"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679410032"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679410032"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679410033"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679442005"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ProfilePhoto.html#ProfilePhoto"><span class="hs-identifier hs-type">ProfilePhoto</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679442003"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ProfilePhoto
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679442001"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679442001"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679441999"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679441999"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679441998"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679441998"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679441999"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679410032"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679441998"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;profilePhoto&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ProfilePhoto
-</span><a href="#local-6989586621679410030"><span class="hs-identifier hs-var">parseProfilePhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679410035"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679441996"><span class="hs-identifier hs-var">parseProfilePhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679442001"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ProfilePhoto
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679410030"><span class="hs-identifier hs-type">parseProfilePhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ProfilePhoto.html#ProfilePhoto"><span class="hs-identifier hs-type">ProfilePhoto</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span id="local-6989586621679410030"><span class="annot"><span class="annottext">parseProfilePhoto :: Value -&gt; Parser ProfilePhoto
-</span><a href="#local-6989586621679410030"><span class="hs-identifier hs-var hs-var">parseProfilePhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679441996"><span class="hs-identifier hs-type">parseProfilePhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ProfilePhoto.html#ProfilePhoto"><span class="hs-identifier hs-type">ProfilePhoto</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679441996"><span class="annot"><span class="annottext">parseProfilePhoto :: Value -&gt; Parser ProfilePhoto
+</span><a href="#local-6989586621679441996"><span class="hs-identifier hs-var hs-var">parseProfilePhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ProfilePhoto) -&gt; Value -&gt; Parser ProfilePhoto
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;ProfilePhoto&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser ProfilePhoto) -&gt; Value -&gt; Parser ProfilePhoto)
 -&gt; (Object -&gt; Parser ProfilePhoto) -&gt; Value -&gt; Parser ProfilePhoto
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679410028"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679410028"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679410027"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679410027"><span class="hs-identifier hs-var">big</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser File -&gt; Parser (Maybe File)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679441994"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679441994"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679441993"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679441993"><span class="hs-identifier hs-var">big</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser File -&gt; Parser (Maybe File)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser File -&gt; Parser (Maybe File))
 -&gt; Parser File -&gt; Parser (Maybe File)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679410028"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser File
+</span><a href="#local-6989586621679441994"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser File
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;big&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679410026"><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679410026"><span class="hs-identifier hs-var">small</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser File -&gt; Parser (Maybe File)
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679441992"><span class="annot"><span class="annottext">Maybe File
+</span><a href="#local-6989586621679441992"><span class="hs-identifier hs-var">small</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser File -&gt; Parser (Maybe File)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser File -&gt; Parser (Maybe File))
 -&gt; Parser File -&gt; Parser (Maybe File)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679410028"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser File
+</span><a href="#local-6989586621679441994"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser File
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;small&quot;</span></span><span>
-</span><span id="line-28"></span><span>    </span><span id="local-6989586621679410025"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679410025"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span id="line-28"></span><span>    </span><span id="local-6989586621679441991"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679441991"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679410028"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679441994"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span>
 </span><span id="line-29"></span><span>    </span><span class="annot"><span class="annottext">ProfilePhoto -&gt; Parser ProfilePhoto
@@ -119,8 +127,8 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ProfilePhoto :: Maybe File -&gt; Maybe File -&gt; Maybe Int -&gt; ProfilePhoto
 </span><a href="API.ProfilePhoto.html#ProfilePhoto"><span class="hs-identifier hs-type hs-type">ProfilePhoto</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">big :: Maybe File
 </span><a href="API.ProfilePhoto.html#big"><span class="hs-identifier hs-var">big</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679410027"><span class="hs-identifier hs-var">big</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">small :: Maybe File
+</span><a href="#local-6989586621679441993"><span class="hs-identifier hs-var">big</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">small :: Maybe File
 </span><a href="API.ProfilePhoto.html#small"><span class="hs-identifier hs-var">small</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe File
-</span><a href="#local-6989586621679410026"><span class="hs-identifier hs-var">small</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Maybe Int
+</span><a href="#local-6989586621679441992"><span class="hs-identifier hs-var">small</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Maybe Int
 </span><a href="API.ProfilePhoto.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679410025"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679441991"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

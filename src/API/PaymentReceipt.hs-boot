@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data PaymentReceipt
 
+instance Eq PaymentReceipt
+
 instance ToJSON PaymentReceipt
 
 instance FromJSON PaymentReceipt

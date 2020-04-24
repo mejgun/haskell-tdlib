@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data PhoneNumberAuthenticationSettings
 
+instance Eq PhoneNumberAuthenticationSettings
+
 instance ToJSON PhoneNumberAuthenticationSettings
 
 instance FromJSON PhoneNumberAuthenticationSettings

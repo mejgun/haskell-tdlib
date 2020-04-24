@@ -8,7 +8,7 @@
 </span><span id="line-8"></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="GetFileExtension"><span class="annot"><a href="API.Functions.GetFileExtension.html#GetFileExtension"><span class="hs-identifier hs-var">GetFileExtension</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-10"></span><span> </span><span id="GetFileExtension"><span class="annot"><a href="API.Functions.GetFileExtension.html#GetFileExtension"><span class="hs-identifier hs-var">GetFileExtension</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="mime_type"><span class="annot"><span class="annottext">GetFileExtension -&gt; Maybe String
-</span><a href="API.Functions.GetFileExtension.html#mime_type"><span class="hs-identifier hs-var hs-var">mime_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679386183"><span id="local-6989586621679386185"><span id="local-6989586621679386187"><span class="annot"><span class="annottext">Int -&gt; GetFileExtension -&gt; ShowS
+</span><a href="API.Functions.GetFileExtension.html#mime_type"><span class="hs-identifier hs-var hs-var">mime_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679416215"><span id="local-6989586621679416217"><span id="local-6989586621679416219"><span class="annot"><span class="annottext">Int -&gt; GetFileExtension -&gt; ShowS
 [GetFileExtension] -&gt; ShowS
 GetFileExtension -&gt; String
 (Int -&gt; GetFileExtension -&gt; ShowS)
@@ -23,13 +23,22 @@ show :: GetFileExtension -&gt; String
 $cshow :: GetFileExtension -&gt; String
 showsPrec :: Int -&gt; GetFileExtension -&gt; ShowS
 $cshowsPrec :: Int -&gt; GetFileExtension -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679416210"><span id="local-6989586621679416212"><span class="annot"><span class="annottext">GetFileExtension -&gt; GetFileExtension -&gt; Bool
+(GetFileExtension -&gt; GetFileExtension -&gt; Bool)
+-&gt; (GetFileExtension -&gt; GetFileExtension -&gt; Bool)
+-&gt; Eq GetFileExtension
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: GetFileExtension -&gt; GetFileExtension -&gt; Bool
+$c/= :: GetFileExtension -&gt; GetFileExtension -&gt; Bool
+== :: GetFileExtension -&gt; GetFileExtension -&gt; Bool
+$c== :: GetFileExtension -&gt; GetFileExtension -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679386175"><span id="local-6989586621679386177"><span id="local-6989586621679386179"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetFileExtension.html#GetFileExtension"><span class="hs-identifier hs-type">GetFileExtension</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679386173"><span class="annot"><span class="annottext">toJSON :: GetFileExtension -&gt; Value
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679416202"><span id="local-6989586621679416204"><span id="local-6989586621679416206"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetFileExtension.html#GetFileExtension"><span class="hs-identifier hs-type">GetFileExtension</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679416200"><span class="annot"><span class="annottext">toJSON :: GetFileExtension -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.GetFileExtension.html#GetFileExtension"><span class="hs-identifier hs-type">GetFileExtension</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">mime_type :: GetFileExtension -&gt; Maybe String
-</span><a href="API.Functions.GetFileExtension.html#mime_type"><span class="hs-identifier hs-var">mime_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679386171"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679386171"><span class="hs-identifier hs-var">mime_type</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.GetFileExtension.html#mime_type"><span class="hs-identifier hs-var">mime_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679416198"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679416198"><span class="hs-identifier hs-var">mime_type</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -37,30 +46,30 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;getFileExtension&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;mime_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679386171"><span class="hs-identifier hs-var">mime_type</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679416198"><span class="hs-identifier hs-var">mime_type</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679386165"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetFileExtension.html#GetFileExtension"><span class="hs-identifier hs-type">GetFileExtension</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679386163"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetFileExtension
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679386161"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679386161"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679386159"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679386159"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679386158"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679386158"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679386159"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679416192"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetFileExtension.html#GetFileExtension"><span class="hs-identifier hs-type">GetFileExtension</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679416190"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetFileExtension
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679416188"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679416188"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679416186"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679416186"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679416185"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679416185"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679416186"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679386158"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679416185"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;getFileExtension&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetFileExtension
-</span><a href="#local-6989586621679386156"><span class="hs-identifier hs-var">parseGetFileExtension</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679386161"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679416183"><span class="hs-identifier hs-var">parseGetFileExtension</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679416188"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetFileExtension
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679386156"><span class="hs-identifier hs-type">parseGetFileExtension</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetFileExtension.html#GetFileExtension"><span class="hs-identifier hs-type">GetFileExtension</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679386156"><span class="annot"><span class="annottext">parseGetFileExtension :: Value -&gt; Parser GetFileExtension
-</span><a href="#local-6989586621679386156"><span class="hs-identifier hs-var hs-var">parseGetFileExtension</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679416183"><span class="hs-identifier hs-type">parseGetFileExtension</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetFileExtension.html#GetFileExtension"><span class="hs-identifier hs-type">GetFileExtension</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679416183"><span class="annot"><span class="annottext">parseGetFileExtension :: Value -&gt; Parser GetFileExtension
+</span><a href="#local-6989586621679416183"><span class="hs-identifier hs-var hs-var">parseGetFileExtension</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GetFileExtension)
 -&gt; Value
 -&gt; Parser GetFileExtension
@@ -71,16 +80,16 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser GetFileExtension
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679386154"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679386154"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679386153"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679386153"><span class="hs-identifier hs-var">mime_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679416181"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679416181"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679416180"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679416180"><span class="hs-identifier hs-var">mime_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679386154"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679416181"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;mime_type&quot;</span></span><span>
 </span><span id="line-26"></span><span>    </span><span class="annot"><span class="annottext">GetFileExtension -&gt; Parser GetFileExtension
@@ -91,4 +100,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">GetFileExtension :: Maybe String -&gt; GetFileExtension
 </span><a href="API.Functions.GetFileExtension.html#GetFileExtension"><span class="hs-identifier hs-type hs-type">GetFileExtension</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">mime_type :: Maybe String
 </span><a href="API.Functions.GetFileExtension.html#mime_type"><span class="hs-identifier hs-var">mime_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679386153"><span class="hs-identifier hs-var">mime_type</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679416180"><span class="hs-identifier hs-var">mime_type</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

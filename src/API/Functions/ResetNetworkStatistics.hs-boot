@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ResetNetworkStatistics
 
+instance Eq ResetNetworkStatistics
+
 instance ToJSON ResetNetworkStatistics
 
 instance FromJSON ResetNetworkStatistics

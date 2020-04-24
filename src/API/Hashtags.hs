@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Hashtags = 
- Hashtags { hashtags :: Maybe [String] }  deriving (Show)
+ Hashtags { hashtags :: Maybe [String] }  deriving (Show, Eq)
 
 instance T.ToJSON Hashtags where
  toJSON (Hashtags { hashtags = hashtags }) =

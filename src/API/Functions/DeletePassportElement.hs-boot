@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data DeletePassportElement
 
+instance Eq DeletePassportElement
+
 instance ToJSON DeletePassportElement
 
 instance FromJSON DeletePassportElement

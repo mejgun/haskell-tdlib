@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetBio
 
+instance Eq SetBio
+
 instance ToJSON SetBio
 
 instance FromJSON SetBio

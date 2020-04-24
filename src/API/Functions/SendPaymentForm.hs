@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputCredentials as InputCredentials
 
 data SendPaymentForm = 
- SendPaymentForm { credentials :: Maybe InputCredentials.InputCredentials, shipping_option_id :: Maybe String, order_info_id :: Maybe String, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ SendPaymentForm { credentials :: Maybe InputCredentials.InputCredentials, shipping_option_id :: Maybe String, order_info_id :: Maybe String, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendPaymentForm where
  toJSON (SendPaymentForm { credentials = credentials, shipping_option_id = shipping_option_id, order_info_id = order_info_id, message_id = message_id, chat_id = chat_id }) =

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data Chats
 
+instance Eq Chats
+
 instance ToJSON Chats
 
 instance FromJSON Chats

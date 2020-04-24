@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatNearby as ChatNearby
 
 data ChatsNearby = 
- ChatsNearby { supergroups_nearby :: Maybe [ChatNearby.ChatNearby], users_nearby :: Maybe [ChatNearby.ChatNearby] }  deriving (Show)
+ ChatsNearby { supergroups_nearby :: Maybe [ChatNearby.ChatNearby], users_nearby :: Maybe [ChatNearby.ChatNearby] }  deriving (Show, Eq)
 
 instance T.ToJSON ChatsNearby where
  toJSON (ChatsNearby { supergroups_nearby = supergroups_nearby, users_nearby = users_nearby }) =

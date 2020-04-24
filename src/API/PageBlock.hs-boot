@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data PageBlock
 
+instance Eq PageBlock
+
 instance ToJSON PageBlock
 
 instance FromJSON PageBlock

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetUserProfilePhotos = 
- GetUserProfilePhotos { limit :: Maybe Int, offset :: Maybe Int, user_id :: Maybe Int }  deriving (Show)
+ GetUserProfilePhotos { limit :: Maybe Int, offset :: Maybe Int, user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetUserProfilePhotos where
  toJSON (GetUserProfilePhotos { limit = limit, offset = offset, user_id = user_id }) =

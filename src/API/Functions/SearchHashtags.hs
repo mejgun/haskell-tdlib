@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SearchHashtags = 
- SearchHashtags { limit :: Maybe Int, prefix :: Maybe String }  deriving (Show)
+ SearchHashtags { limit :: Maybe Int, prefix :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SearchHashtags where
  toJSON (SearchHashtags { limit = limit, prefix = prefix }) =

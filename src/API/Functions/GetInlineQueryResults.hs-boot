@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetInlineQueryResults
 
+instance Eq GetInlineQueryResults
+
 instance ToJSON GetInlineQueryResults
 
 instance FromJSON GetInlineQueryResults

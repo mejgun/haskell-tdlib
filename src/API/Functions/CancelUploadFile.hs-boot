@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data CancelUploadFile
 
+instance Eq CancelUploadFile
+
 instance ToJSON CancelUploadFile
 
 instance FromJSON CancelUploadFile

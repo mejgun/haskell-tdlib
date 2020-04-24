@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatList as ChatList
 
 data GetChats = 
- GetChats { limit :: Maybe Int, offset_chat_id :: Maybe Int, offset_order :: Maybe Int, chat_list :: Maybe ChatList.ChatList }  deriving (Show)
+ GetChats { limit :: Maybe Int, offset_chat_id :: Maybe Int, offset_order :: Maybe Int, chat_list :: Maybe ChatList.ChatList }  deriving (Show, Eq)
 
 instance T.ToJSON GetChats where
  toJSON (GetChats { limit = limit, offset_chat_id = offset_chat_id, offset_order = offset_order, chat_list = chat_list }) =

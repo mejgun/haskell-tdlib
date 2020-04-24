@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SendChatSetTtlMessage = 
- SendChatSetTtlMessage { ttl :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ SendChatSetTtlMessage { ttl :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendChatSetTtlMessage where
  toJSON (SendChatSetTtlMessage { ttl = ttl, chat_id = chat_id }) =

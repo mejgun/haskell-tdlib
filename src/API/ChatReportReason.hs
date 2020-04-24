@@ -13,7 +13,7 @@ data ChatReportReason =
  | ChatReportReasonChildAbuse 
  | ChatReportReasonCopyright 
  | ChatReportReasonUnrelatedLocation 
- | ChatReportReasonCustom { text :: Maybe String }  deriving (Show)
+ | ChatReportReasonCustom { text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON ChatReportReason where
  toJSON (ChatReportReasonSpam {  }) =

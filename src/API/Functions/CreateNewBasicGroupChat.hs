@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CreateNewBasicGroupChat = 
- CreateNewBasicGroupChat { title :: Maybe String, user_ids :: Maybe [Int] }  deriving (Show)
+ CreateNewBasicGroupChat { title :: Maybe String, user_ids :: Maybe [Int] }  deriving (Show, Eq)
 
 instance T.ToJSON CreateNewBasicGroupChat where
  toJSON (CreateNewBasicGroupChat { title = title, user_ids = user_ids }) =

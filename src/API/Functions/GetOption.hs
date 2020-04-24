@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetOption = 
- GetOption { name :: Maybe String }  deriving (Show)
+ GetOption { name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetOption where
  toJSON (GetOption { name = name }) =

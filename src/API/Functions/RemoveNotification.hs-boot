@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data RemoveNotification
 
+instance Eq RemoveNotification
+
 instance ToJSON RemoveNotification
 
 instance FromJSON RemoveNotification

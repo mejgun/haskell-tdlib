@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data Audio
 
+instance Eq Audio
+
 instance ToJSON Audio
 
 instance FromJSON Audio

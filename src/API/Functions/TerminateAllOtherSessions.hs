@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data TerminateAllOtherSessions = 
- TerminateAllOtherSessions deriving (Show)
+ TerminateAllOtherSessions deriving (Show, Eq)
 
 instance T.ToJSON TerminateAllOtherSessions where
  toJSON (TerminateAllOtherSessions {  }) =

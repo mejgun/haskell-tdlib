@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetChatPinnedMessage = 
- GetChatPinnedMessage { chat_id :: Maybe Int }  deriving (Show)
+ GetChatPinnedMessage { chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetChatPinnedMessage where
  toJSON (GetChatPinnedMessage { chat_id = chat_id }) =

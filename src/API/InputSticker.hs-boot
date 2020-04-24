@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data InputSticker
 
+instance Eq InputSticker
+
 instance ToJSON InputSticker
 
 instance FromJSON InputSticker

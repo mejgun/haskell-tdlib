@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SearchSecretMessages
 
+instance Eq SearchSecretMessages
+
 instance ToJSON SearchSecretMessages
 
 instance FromJSON SearchSecretMessages

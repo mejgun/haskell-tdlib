@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 
 data ChatList = 
  ChatListMain 
- | ChatListArchive deriving (Show)
+ | ChatListArchive deriving (Show, Eq)
 
 instance T.ToJSON ChatList where
  toJSON (ChatListMain {  }) =

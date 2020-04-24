@@ -10,7 +10,7 @@
 </span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="SetChatLocation"><span class="annot"><a href="API.Functions.SetChatLocation.html#SetChatLocation"><span class="hs-identifier hs-var">SetChatLocation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-11"></span><span> </span><span id="SetChatLocation"><span class="annot"><a href="API.Functions.SetChatLocation.html#SetChatLocation"><span class="hs-identifier hs-var">SetChatLocation</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="location"><span class="annot"><span class="annottext">SetChatLocation -&gt; Maybe ChatLocation
 </span><a href="API.Functions.SetChatLocation.html#location"><span class="hs-identifier hs-var hs-var">location</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.ChatLocation.html#ChatLocation"><span class="hs-identifier hs-type">ChatLocation.ChatLocation</span></a></span><span class="hs-special">,</span><span> </span><span id="chat_id"><span class="annot"><span class="annottext">SetChatLocation -&gt; Maybe Int
-</span><a href="API.Functions.SetChatLocation.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679395828"><span id="local-6989586621679395830"><span id="local-6989586621679395832"><span class="annot"><span class="annottext">Int -&gt; SetChatLocation -&gt; ShowS
+</span><a href="API.Functions.SetChatLocation.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679426700"><span id="local-6989586621679426702"><span id="local-6989586621679426704"><span class="annot"><span class="annottext">Int -&gt; SetChatLocation -&gt; ShowS
 [SetChatLocation] -&gt; ShowS
 SetChatLocation -&gt; String
 (Int -&gt; SetChatLocation -&gt; ShowS)
@@ -25,15 +25,24 @@ show :: SetChatLocation -&gt; String
 $cshow :: SetChatLocation -&gt; String
 showsPrec :: Int -&gt; SetChatLocation -&gt; ShowS
 $cshowsPrec :: Int -&gt; SetChatLocation -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679426695"><span id="local-6989586621679426697"><span class="annot"><span class="annottext">SetChatLocation -&gt; SetChatLocation -&gt; Bool
+(SetChatLocation -&gt; SetChatLocation -&gt; Bool)
+-&gt; (SetChatLocation -&gt; SetChatLocation -&gt; Bool)
+-&gt; Eq SetChatLocation
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: SetChatLocation -&gt; SetChatLocation -&gt; Bool
+$c/= :: SetChatLocation -&gt; SetChatLocation -&gt; Bool
+== :: SetChatLocation -&gt; SetChatLocation -&gt; Bool
+$c== :: SetChatLocation -&gt; SetChatLocation -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679395820"><span id="local-6989586621679395822"><span id="local-6989586621679395824"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetChatLocation.html#SetChatLocation"><span class="hs-identifier hs-type">SetChatLocation</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679395818"><span class="annot"><span class="annottext">toJSON :: SetChatLocation -&gt; Value
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679426687"><span id="local-6989586621679426689"><span id="local-6989586621679426691"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetChatLocation.html#SetChatLocation"><span class="hs-identifier hs-type">SetChatLocation</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679426685"><span class="annot"><span class="annottext">toJSON :: SetChatLocation -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.SetChatLocation.html#SetChatLocation"><span class="hs-identifier hs-type">SetChatLocation</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">location :: SetChatLocation -&gt; Maybe ChatLocation
-</span><a href="API.Functions.SetChatLocation.html#location"><span class="hs-identifier hs-var">location</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679395816"><span class="annot"><span class="annottext">Maybe ChatLocation
-</span><a href="#local-6989586621679395816"><span class="hs-identifier hs-var">location</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: SetChatLocation -&gt; Maybe Int
-</span><a href="API.Functions.SetChatLocation.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679395815"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679395815"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.SetChatLocation.html#location"><span class="hs-identifier hs-var">location</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426683"><span class="annot"><span class="annottext">Maybe ChatLocation
+</span><a href="#local-6989586621679426683"><span class="hs-identifier hs-var">location</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: SetChatLocation -&gt; Maybe Int
+</span><a href="API.Functions.SetChatLocation.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426682"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679426682"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -41,33 +50,33 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;setChatLocation&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;location&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ChatLocation -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ChatLocation
-</span><a href="#local-6989586621679395816"><span class="hs-identifier hs-var">location</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679426683"><span class="hs-identifier hs-var">location</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679395815"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679426682"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679395809"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetChatLocation.html#SetChatLocation"><span class="hs-identifier hs-type">SetChatLocation</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679395807"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetChatLocation
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679395805"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679395805"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679395803"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679395803"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679395802"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679395802"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679395803"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679426676"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetChatLocation.html#SetChatLocation"><span class="hs-identifier hs-type">SetChatLocation</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679426674"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetChatLocation
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679426672"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679426672"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679426670"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679426670"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679426669"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679426669"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679426670"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679395802"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679426669"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;setChatLocation&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SetChatLocation
-</span><a href="#local-6989586621679395800"><span class="hs-identifier hs-var">parseSetChatLocation</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679395805"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679426667"><span class="hs-identifier hs-var">parseSetChatLocation</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679426672"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SetChatLocation
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679395800"><span class="hs-identifier hs-type">parseSetChatLocation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetChatLocation.html#SetChatLocation"><span class="hs-identifier hs-type">SetChatLocation</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span id="local-6989586621679395800"><span class="annot"><span class="annottext">parseSetChatLocation :: Value -&gt; Parser SetChatLocation
-</span><a href="#local-6989586621679395800"><span class="hs-identifier hs-var hs-var">parseSetChatLocation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679426667"><span class="hs-identifier hs-type">parseSetChatLocation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetChatLocation.html#SetChatLocation"><span class="hs-identifier hs-type">SetChatLocation</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679426667"><span class="annot"><span class="annottext">parseSetChatLocation :: Value -&gt; Parser SetChatLocation
+</span><a href="#local-6989586621679426667"><span class="hs-identifier hs-var hs-var">parseSetChatLocation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SetChatLocation)
 -&gt; Value
 -&gt; Parser SetChatLocation
@@ -78,26 +87,26 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SetChatLocation
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679395798"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679395798"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679395797"><span class="annot"><span class="annottext">Maybe ChatLocation
-</span><a href="#local-6989586621679395797"><span class="hs-identifier hs-var">location</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser ChatLocation -&gt; Parser (Maybe ChatLocation)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679426665"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679426665"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679426664"><span class="annot"><span class="annottext">Maybe ChatLocation
+</span><a href="#local-6989586621679426664"><span class="hs-identifier hs-var">location</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser ChatLocation -&gt; Parser (Maybe ChatLocation)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser ChatLocation -&gt; Parser (Maybe ChatLocation))
 -&gt; Parser ChatLocation -&gt; Parser (Maybe ChatLocation)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679395798"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser ChatLocation
+</span><a href="#local-6989586621679426665"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser ChatLocation
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;location&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679395796"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679395796"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679426663"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679426663"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679395798"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679426665"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span>
 </span><span id="line-28"></span><span>    </span><span class="annot"><span class="annottext">SetChatLocation -&gt; Parser SetChatLocation
@@ -108,6 +117,6 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SetChatLocation :: Maybe ChatLocation -&gt; Maybe Int -&gt; SetChatLocation
 </span><a href="API.Functions.SetChatLocation.html#SetChatLocation"><span class="hs-identifier hs-type hs-type">SetChatLocation</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">location :: Maybe ChatLocation
 </span><a href="API.Functions.SetChatLocation.html#location"><span class="hs-identifier hs-var">location</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe ChatLocation
-</span><a href="#local-6989586621679395797"><span class="hs-identifier hs-var">location</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
+</span><a href="#local-6989586621679426664"><span class="hs-identifier hs-var">location</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
 </span><a href="API.Functions.SetChatLocation.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679395796"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679426663"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

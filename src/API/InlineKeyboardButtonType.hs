@@ -12,7 +12,7 @@ data InlineKeyboardButtonType =
  | InlineKeyboardButtonTypeCallback { _data :: Maybe String }  
  | InlineKeyboardButtonTypeCallbackGame 
  | InlineKeyboardButtonTypeSwitchInline { in_current_chat :: Maybe Bool, query :: Maybe String }  
- | InlineKeyboardButtonTypeBuy deriving (Show)
+ | InlineKeyboardButtonTypeBuy deriving (Show, Eq)
 
 instance T.ToJSON InlineKeyboardButtonType where
  toJSON (InlineKeyboardButtonTypeUrl { url = url }) =

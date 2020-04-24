@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ChatNearby = 
- ChatNearby { distance :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ ChatNearby { distance :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ChatNearby where
  toJSON (ChatNearby { distance = distance, chat_id = chat_id }) =

@@ -9,7 +9,7 @@
 </span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="AnswerPreCheckoutQuery"><span class="annot"><a href="API.Functions.AnswerPreCheckoutQuery.html#AnswerPreCheckoutQuery"><span class="hs-identifier hs-var">AnswerPreCheckoutQuery</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-10"></span><span> </span><span id="AnswerPreCheckoutQuery"><span class="annot"><a href="API.Functions.AnswerPreCheckoutQuery.html#AnswerPreCheckoutQuery"><span class="hs-identifier hs-var">AnswerPreCheckoutQuery</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="error_message"><span class="annot"><span class="annottext">AnswerPreCheckoutQuery -&gt; Maybe String
 </span><a href="API.Functions.AnswerPreCheckoutQuery.html#error_message"><span class="hs-identifier hs-var hs-var">error_message</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="pre_checkout_query_id"><span class="annot"><span class="annottext">AnswerPreCheckoutQuery -&gt; Maybe Int
-</span><a href="API.Functions.AnswerPreCheckoutQuery.html#pre_checkout_query_id"><span class="hs-identifier hs-var hs-var">pre_checkout_query_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679379749"><span id="local-6989586621679379751"><span id="local-6989586621679379753"><span class="annot"><span class="annottext">Int -&gt; AnswerPreCheckoutQuery -&gt; ShowS
+</span><a href="API.Functions.AnswerPreCheckoutQuery.html#pre_checkout_query_id"><span class="hs-identifier hs-var hs-var">pre_checkout_query_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679409217"><span id="local-6989586621679409219"><span id="local-6989586621679409221"><span class="annot"><span class="annottext">Int -&gt; AnswerPreCheckoutQuery -&gt; ShowS
 [AnswerPreCheckoutQuery] -&gt; ShowS
 AnswerPreCheckoutQuery -&gt; String
 (Int -&gt; AnswerPreCheckoutQuery -&gt; ShowS)
@@ -24,15 +24,24 @@ show :: AnswerPreCheckoutQuery -&gt; String
 $cshow :: AnswerPreCheckoutQuery -&gt; String
 showsPrec :: Int -&gt; AnswerPreCheckoutQuery -&gt; ShowS
 $cshowsPrec :: Int -&gt; AnswerPreCheckoutQuery -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679409212"><span id="local-6989586621679409214"><span class="annot"><span class="annottext">AnswerPreCheckoutQuery -&gt; AnswerPreCheckoutQuery -&gt; Bool
+(AnswerPreCheckoutQuery -&gt; AnswerPreCheckoutQuery -&gt; Bool)
+-&gt; (AnswerPreCheckoutQuery -&gt; AnswerPreCheckoutQuery -&gt; Bool)
+-&gt; Eq AnswerPreCheckoutQuery
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: AnswerPreCheckoutQuery -&gt; AnswerPreCheckoutQuery -&gt; Bool
+$c/= :: AnswerPreCheckoutQuery -&gt; AnswerPreCheckoutQuery -&gt; Bool
+== :: AnswerPreCheckoutQuery -&gt; AnswerPreCheckoutQuery -&gt; Bool
+$c== :: AnswerPreCheckoutQuery -&gt; AnswerPreCheckoutQuery -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679379741"><span id="local-6989586621679379743"><span id="local-6989586621679379745"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AnswerPreCheckoutQuery.html#AnswerPreCheckoutQuery"><span class="hs-identifier hs-type">AnswerPreCheckoutQuery</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679379739"><span class="annot"><span class="annottext">toJSON :: AnswerPreCheckoutQuery -&gt; Value
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409204"><span id="local-6989586621679409206"><span id="local-6989586621679409208"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AnswerPreCheckoutQuery.html#AnswerPreCheckoutQuery"><span class="hs-identifier hs-type">AnswerPreCheckoutQuery</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679409202"><span class="annot"><span class="annottext">toJSON :: AnswerPreCheckoutQuery -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.AnswerPreCheckoutQuery.html#AnswerPreCheckoutQuery"><span class="hs-identifier hs-type">AnswerPreCheckoutQuery</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">error_message :: AnswerPreCheckoutQuery -&gt; Maybe String
-</span><a href="API.Functions.AnswerPreCheckoutQuery.html#error_message"><span class="hs-identifier hs-var">error_message</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679379737"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679379737"><span class="hs-identifier hs-var">error_message</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">pre_checkout_query_id :: AnswerPreCheckoutQuery -&gt; Maybe Int
-</span><a href="API.Functions.AnswerPreCheckoutQuery.html#pre_checkout_query_id"><span class="hs-identifier hs-var">pre_checkout_query_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679379736"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679379736"><span class="hs-identifier hs-var">pre_checkout_query_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.AnswerPreCheckoutQuery.html#error_message"><span class="hs-identifier hs-var">error_message</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409200"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679409200"><span class="hs-identifier hs-var">error_message</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">pre_checkout_query_id :: AnswerPreCheckoutQuery -&gt; Maybe Int
+</span><a href="API.Functions.AnswerPreCheckoutQuery.html#pre_checkout_query_id"><span class="hs-identifier hs-var">pre_checkout_query_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409199"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679409199"><span class="hs-identifier hs-var">pre_checkout_query_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -40,33 +49,33 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;answerPreCheckoutQuery&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;error_message&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679379737"><span class="hs-identifier hs-var">error_message</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;pre_checkout_query_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679409200"><span class="hs-identifier hs-var">error_message</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;pre_checkout_query_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679379736"><span class="hs-identifier hs-var">pre_checkout_query_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679409199"><span class="hs-identifier hs-var">pre_checkout_query_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679379730"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AnswerPreCheckoutQuery.html#AnswerPreCheckoutQuery"><span class="hs-identifier hs-type">AnswerPreCheckoutQuery</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679379728"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AnswerPreCheckoutQuery
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679379726"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679379726"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679379724"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679379724"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679379723"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679379723"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679379724"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409193"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AnswerPreCheckoutQuery.html#AnswerPreCheckoutQuery"><span class="hs-identifier hs-type">AnswerPreCheckoutQuery</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679409191"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AnswerPreCheckoutQuery
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679409189"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679409189"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679409187"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679409187"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679409186"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679409186"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679409187"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679379723"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679409186"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;answerPreCheckoutQuery&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AnswerPreCheckoutQuery
-</span><a href="#local-6989586621679379721"><span class="hs-identifier hs-var">parseAnswerPreCheckoutQuery</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679379726"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679409184"><span class="hs-identifier hs-var">parseAnswerPreCheckoutQuery</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679409189"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser AnswerPreCheckoutQuery
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679379721"><span class="hs-identifier hs-type">parseAnswerPreCheckoutQuery</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.AnswerPreCheckoutQuery.html#AnswerPreCheckoutQuery"><span class="hs-identifier hs-type">AnswerPreCheckoutQuery</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679379721"><span class="annot"><span class="annottext">parseAnswerPreCheckoutQuery :: Value -&gt; Parser AnswerPreCheckoutQuery
-</span><a href="#local-6989586621679379721"><span class="hs-identifier hs-var hs-var">parseAnswerPreCheckoutQuery</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679409184"><span class="hs-identifier hs-type">parseAnswerPreCheckoutQuery</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.AnswerPreCheckoutQuery.html#AnswerPreCheckoutQuery"><span class="hs-identifier hs-type">AnswerPreCheckoutQuery</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679409184"><span class="annot"><span class="annottext">parseAnswerPreCheckoutQuery :: Value -&gt; Parser AnswerPreCheckoutQuery
+</span><a href="#local-6989586621679409184"><span class="hs-identifier hs-var hs-var">parseAnswerPreCheckoutQuery</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AnswerPreCheckoutQuery)
 -&gt; Value
 -&gt; Parser AnswerPreCheckoutQuery
@@ -77,26 +86,26 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser AnswerPreCheckoutQuery
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679379719"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679379719"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679379718"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679379718"><span class="hs-identifier hs-var">error_message</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679409182"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679409182"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679409181"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679409181"><span class="hs-identifier hs-var">error_message</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679379719"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679409182"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;error_message&quot;</span></span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679379717"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679379717"><span class="hs-identifier hs-var">pre_checkout_query_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679409180"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679409180"><span class="hs-identifier hs-var">pre_checkout_query_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679379719"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679409182"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;pre_checkout_query_id&quot;</span></span><span>
 </span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">AnswerPreCheckoutQuery -&gt; Parser AnswerPreCheckoutQuery
@@ -107,6 +116,6 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AnswerPreCheckoutQuery :: Maybe String -&gt; Maybe Int -&gt; AnswerPreCheckoutQuery
 </span><a href="API.Functions.AnswerPreCheckoutQuery.html#AnswerPreCheckoutQuery"><span class="hs-identifier hs-type hs-type">AnswerPreCheckoutQuery</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">error_message :: Maybe String
 </span><a href="API.Functions.AnswerPreCheckoutQuery.html#error_message"><span class="hs-identifier hs-var">error_message</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679379718"><span class="hs-identifier hs-var">error_message</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">pre_checkout_query_id :: Maybe Int
+</span><a href="#local-6989586621679409181"><span class="hs-identifier hs-var">error_message</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">pre_checkout_query_id :: Maybe Int
 </span><a href="API.Functions.AnswerPreCheckoutQuery.html#pre_checkout_query_id"><span class="hs-identifier hs-var">pre_checkout_query_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679379717"><span class="hs-identifier hs-var">pre_checkout_query_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679409180"><span class="hs-identifier hs-var">pre_checkout_query_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

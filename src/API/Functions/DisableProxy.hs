@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data DisableProxy = 
- DisableProxy deriving (Show)
+ DisableProxy deriving (Show, Eq)
 
 instance T.ToJSON DisableProxy where
  toJSON (DisableProxy {  }) =

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ImportedContacts = 
- ImportedContacts { importer_count :: Maybe [Int], user_ids :: Maybe [Int] }  deriving (Show)
+ ImportedContacts { importer_count :: Maybe [Int], user_ids :: Maybe [Int] }  deriving (Show, Eq)
 
 instance T.ToJSON ImportedContacts where
  toJSON (ImportedContacts { importer_count = importer_count, user_ids = user_ids }) =

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data DisconnectWebsite = 
- DisconnectWebsite { website_id :: Maybe Int }  deriving (Show)
+ DisconnectWebsite { website_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON DisconnectWebsite where
  toJSON (DisconnectWebsite { website_id = website_id }) =

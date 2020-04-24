@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data RemoveRecentHashtag
 
+instance Eq RemoveRecentHashtag
+
 instance ToJSON RemoveRecentHashtag
 
 instance FromJSON RemoveRecentHashtag

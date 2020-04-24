@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetMessageLinkInfo
 
+instance Eq GetMessageLinkInfo
+
 instance ToJSON GetMessageLinkInfo
 
 instance FromJSON GetMessageLinkInfo

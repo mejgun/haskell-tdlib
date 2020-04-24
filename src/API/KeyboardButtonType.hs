@@ -10,7 +10,7 @@ data KeyboardButtonType =
  KeyboardButtonTypeText 
  | KeyboardButtonTypeRequestPhoneNumber 
  | KeyboardButtonTypeRequestLocation 
- | KeyboardButtonTypeRequestPoll { force_quiz :: Maybe Bool, force_regular :: Maybe Bool }  deriving (Show)
+ | KeyboardButtonTypeRequestPoll { force_quiz :: Maybe Bool, force_regular :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON KeyboardButtonType where
  toJSON (KeyboardButtonTypeText {  }) =

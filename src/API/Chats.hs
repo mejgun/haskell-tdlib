@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Chats = 
- Chats { chat_ids :: Maybe [Int] }  deriving (Show)
+ Chats { chat_ids :: Maybe [Int] }  deriving (Show, Eq)
 
 instance T.ToJSON Chats where
  toJSON (Chats { chat_ids = chat_ids }) =

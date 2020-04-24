@@ -9,7 +9,7 @@ import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
 import {-# SOURCE #-} qualified API.SendMessageOptions as SendMessageOptions
 
 data SendMessageAlbum = 
- SendMessageAlbum { input_message_contents :: Maybe [InputMessageContent.InputMessageContent], options :: Maybe SendMessageOptions.SendMessageOptions, reply_to_message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ SendMessageAlbum { input_message_contents :: Maybe [InputMessageContent.InputMessageContent], options :: Maybe SendMessageOptions.SendMessageOptions, reply_to_message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendMessageAlbum where
  toJSON (SendMessageAlbum { input_message_contents = input_message_contents, options = options, reply_to_message_id = reply_to_message_id, chat_id = chat_id }) =

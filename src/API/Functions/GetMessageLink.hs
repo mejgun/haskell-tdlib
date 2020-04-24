@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetMessageLink = 
- GetMessageLink { message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ GetMessageLink { message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetMessageLink where
  toJSON (GetMessageLink { message_id = message_id, chat_id = chat_id }) =

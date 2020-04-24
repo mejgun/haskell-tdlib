@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetNetworkStatistics
 
+instance Eq GetNetworkStatistics
+
 instance ToJSON GetNetworkStatistics
 
 instance FromJSON GetNetworkStatistics

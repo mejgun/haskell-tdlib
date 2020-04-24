@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetStickerEmojis
 
+instance Eq GetStickerEmojis
+
 instance ToJSON GetStickerEmojis
 
 instance FromJSON GetStickerEmojis

@@ -8,7 +8,7 @@
 </span><span id="line-8"></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="CancelUploadFile"><span class="annot"><a href="API.Functions.CancelUploadFile.html#CancelUploadFile"><span class="hs-identifier hs-var">CancelUploadFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-10"></span><span> </span><span id="CancelUploadFile"><span class="annot"><a href="API.Functions.CancelUploadFile.html#CancelUploadFile"><span class="hs-identifier hs-var">CancelUploadFile</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="file_id"><span class="annot"><span class="annottext">CancelUploadFile -&gt; Maybe Int
-</span><a href="API.Functions.CancelUploadFile.html#file_id"><span class="hs-identifier hs-var hs-var">file_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679380019"><span id="local-6989586621679380021"><span id="local-6989586621679380023"><span class="annot"><span class="annottext">Int -&gt; CancelUploadFile -&gt; ShowS
+</span><a href="API.Functions.CancelUploadFile.html#file_id"><span class="hs-identifier hs-var hs-var">file_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679409511"><span id="local-6989586621679409513"><span id="local-6989586621679409515"><span class="annot"><span class="annottext">Int -&gt; CancelUploadFile -&gt; ShowS
 [CancelUploadFile] -&gt; ShowS
 CancelUploadFile -&gt; String
 (Int -&gt; CancelUploadFile -&gt; ShowS)
@@ -23,13 +23,22 @@ show :: CancelUploadFile -&gt; String
 $cshow :: CancelUploadFile -&gt; String
 showsPrec :: Int -&gt; CancelUploadFile -&gt; ShowS
 $cshowsPrec :: Int -&gt; CancelUploadFile -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679409506"><span id="local-6989586621679409508"><span class="annot"><span class="annottext">CancelUploadFile -&gt; CancelUploadFile -&gt; Bool
+(CancelUploadFile -&gt; CancelUploadFile -&gt; Bool)
+-&gt; (CancelUploadFile -&gt; CancelUploadFile -&gt; Bool)
+-&gt; Eq CancelUploadFile
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: CancelUploadFile -&gt; CancelUploadFile -&gt; Bool
+$c/= :: CancelUploadFile -&gt; CancelUploadFile -&gt; Bool
+== :: CancelUploadFile -&gt; CancelUploadFile -&gt; Bool
+$c== :: CancelUploadFile -&gt; CancelUploadFile -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679380011"><span id="local-6989586621679380013"><span id="local-6989586621679380015"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CancelUploadFile.html#CancelUploadFile"><span class="hs-identifier hs-type">CancelUploadFile</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679380009"><span class="annot"><span class="annottext">toJSON :: CancelUploadFile -&gt; Value
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409498"><span id="local-6989586621679409500"><span id="local-6989586621679409502"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CancelUploadFile.html#CancelUploadFile"><span class="hs-identifier hs-type">CancelUploadFile</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679409496"><span class="annot"><span class="annottext">toJSON :: CancelUploadFile -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.CancelUploadFile.html#CancelUploadFile"><span class="hs-identifier hs-type">CancelUploadFile</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">file_id :: CancelUploadFile -&gt; Maybe Int
-</span><a href="API.Functions.CancelUploadFile.html#file_id"><span class="hs-identifier hs-var">file_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679380007"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679380007"><span class="hs-identifier hs-var">file_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.CancelUploadFile.html#file_id"><span class="hs-identifier hs-var">file_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409494"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679409494"><span class="hs-identifier hs-var">file_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -37,30 +46,30 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;cancelUploadFile&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;file_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679380007"><span class="hs-identifier hs-var">file_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679409494"><span class="hs-identifier hs-var">file_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679380001"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CancelUploadFile.html#CancelUploadFile"><span class="hs-identifier hs-type">CancelUploadFile</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679379999"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CancelUploadFile
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679379997"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679379997"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679379995"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679379995"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679379994"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679379994"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679379995"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409488"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CancelUploadFile.html#CancelUploadFile"><span class="hs-identifier hs-type">CancelUploadFile</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679409486"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CancelUploadFile
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679409484"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679409484"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679409482"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679409482"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679409481"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679409481"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679409482"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679379994"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679409481"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;cancelUploadFile&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CancelUploadFile
-</span><a href="#local-6989586621679379992"><span class="hs-identifier hs-var">parseCancelUploadFile</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679379997"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679409479"><span class="hs-identifier hs-var">parseCancelUploadFile</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679409484"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CancelUploadFile
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679379992"><span class="hs-identifier hs-type">parseCancelUploadFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.CancelUploadFile.html#CancelUploadFile"><span class="hs-identifier hs-type">CancelUploadFile</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679379992"><span class="annot"><span class="annottext">parseCancelUploadFile :: Value -&gt; Parser CancelUploadFile
-</span><a href="#local-6989586621679379992"><span class="hs-identifier hs-var hs-var">parseCancelUploadFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679409479"><span class="hs-identifier hs-type">parseCancelUploadFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.CancelUploadFile.html#CancelUploadFile"><span class="hs-identifier hs-type">CancelUploadFile</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679409479"><span class="annot"><span class="annottext">parseCancelUploadFile :: Value -&gt; Parser CancelUploadFile
+</span><a href="#local-6989586621679409479"><span class="hs-identifier hs-var hs-var">parseCancelUploadFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CancelUploadFile)
 -&gt; Value
 -&gt; Parser CancelUploadFile
@@ -71,16 +80,16 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CancelUploadFile
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679379990"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679379990"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679379989"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679379989"><span class="hs-identifier hs-var">file_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679409477"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679409477"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679409476"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679409476"><span class="hs-identifier hs-var">file_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679379990"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679409477"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;file_id&quot;</span></span><span>
 </span><span id="line-26"></span><span>    </span><span class="annot"><span class="annottext">CancelUploadFile -&gt; Parser CancelUploadFile
@@ -91,4 +100,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CancelUploadFile :: Maybe Int -&gt; CancelUploadFile
 </span><a href="API.Functions.CancelUploadFile.html#CancelUploadFile"><span class="hs-identifier hs-type hs-type">CancelUploadFile</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">file_id :: Maybe Int
 </span><a href="API.Functions.CancelUploadFile.html#file_id"><span class="hs-identifier hs-var">file_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679379989"><span class="hs-identifier hs-var">file_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679409476"><span class="hs-identifier hs-var">file_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

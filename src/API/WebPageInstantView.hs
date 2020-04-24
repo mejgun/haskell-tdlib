@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PageBlock as PageBlock
 
 data WebPageInstantView = 
- WebPageInstantView { is_full :: Maybe Bool, is_rtl :: Maybe Bool, version :: Maybe Int, view_count :: Maybe Int, page_blocks :: Maybe [PageBlock.PageBlock] }  deriving (Show)
+ WebPageInstantView { is_full :: Maybe Bool, is_rtl :: Maybe Bool, version :: Maybe Int, view_count :: Maybe Int, page_blocks :: Maybe [PageBlock.PageBlock] }  deriving (Show, Eq)
 
 instance T.ToJSON WebPageInstantView where
  toJSON (WebPageInstantView { is_full = is_full, is_rtl = is_rtl, version = version, view_count = view_count, page_blocks = page_blocks }) =

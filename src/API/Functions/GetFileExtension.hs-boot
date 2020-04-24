@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetFileExtension
 
+instance Eq GetFileExtension
+
 instance ToJSON GetFileExtension
 
 instance FromJSON GetFileExtension

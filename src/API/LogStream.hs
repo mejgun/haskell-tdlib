@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 data LogStream = 
  LogStreamDefault 
  | LogStreamFile { max_file_size :: Maybe Int, path :: Maybe String }  
- | LogStreamEmpty deriving (Show)
+ | LogStreamEmpty deriving (Show, Eq)
 
 instance T.ToJSON LogStream where
  toJSON (LogStreamDefault {  }) =

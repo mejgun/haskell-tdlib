@@ -123,7 +123,7 @@ data Update =
  | UpdateNewCustomEvent { event :: Maybe String }  
  | UpdateNewCustomQuery { timeout :: Maybe Int, _data :: Maybe String, _id :: Maybe Int }  
  | UpdatePoll { poll :: Maybe Poll.Poll }  
- | UpdatePollAnswer { option_ids :: Maybe [Int], user_id :: Maybe Int, poll_id :: Maybe Int }  deriving (Show)
+ | UpdatePollAnswer { option_ids :: Maybe [Int], user_id :: Maybe Int, poll_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Update where
  toJSON (UpdateAuthorizationState { authorization_state = authorization_state }) =

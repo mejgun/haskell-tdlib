@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data TestBytes
 
+instance Eq TestBytes
+
 instance ToJSON TestBytes
 
 instance FromJSON TestBytes

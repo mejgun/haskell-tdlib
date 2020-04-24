@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Contact as Contact
 
 data AddContact = 
- AddContact { share_phone_number :: Maybe Bool, contact :: Maybe Contact.Contact }  deriving (Show)
+ AddContact { share_phone_number :: Maybe Bool, contact :: Maybe Contact.Contact }  deriving (Show, Eq)
 
 instance T.ToJSON AddContact where
  toJSON (AddContact { share_phone_number = share_phone_number, contact = contact }) =

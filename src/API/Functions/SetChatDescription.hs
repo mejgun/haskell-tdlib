@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetChatDescription = 
- SetChatDescription { description :: Maybe String, chat_id :: Maybe Int }  deriving (Show)
+ SetChatDescription { description :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatDescription where
  toJSON (SetChatDescription { description = description, chat_id = chat_id }) =

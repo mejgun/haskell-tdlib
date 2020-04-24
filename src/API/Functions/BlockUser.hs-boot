@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data BlockUser
 
+instance Eq BlockUser
+
 instance ToJSON BlockUser
 
 instance FromJSON BlockUser

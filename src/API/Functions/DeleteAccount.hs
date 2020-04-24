@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data DeleteAccount = 
- DeleteAccount { reason :: Maybe String }  deriving (Show)
+ DeleteAccount { reason :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON DeleteAccount where
  toJSON (DeleteAccount { reason = reason }) =

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.OrderInfo as OrderInfo
 
 data ValidateOrderInfo = 
- ValidateOrderInfo { allow_save :: Maybe Bool, order_info :: Maybe OrderInfo.OrderInfo, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ ValidateOrderInfo { allow_save :: Maybe Bool, order_info :: Maybe OrderInfo.OrderInfo, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ValidateOrderInfo where
  toJSON (ValidateOrderInfo { allow_save = allow_save, order_info = order_info, message_id = message_id, chat_id = chat_id }) =

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data PassportRequiredElement
 
+instance Eq PassportRequiredElement
+
 instance ToJSON PassportRequiredElement
 
 instance FromJSON PassportRequiredElement

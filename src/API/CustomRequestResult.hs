@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CustomRequestResult = 
- CustomRequestResult { result :: Maybe String }  deriving (Show)
+ CustomRequestResult { result :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CustomRequestResult where
  toJSON (CustomRequestResult { result = result }) =

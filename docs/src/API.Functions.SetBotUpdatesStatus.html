@@ -9,7 +9,7 @@
 </span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="SetBotUpdatesStatus"><span class="annot"><a href="API.Functions.SetBotUpdatesStatus.html#SetBotUpdatesStatus"><span class="hs-identifier hs-var">SetBotUpdatesStatus</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-10"></span><span> </span><span id="SetBotUpdatesStatus"><span class="annot"><a href="API.Functions.SetBotUpdatesStatus.html#SetBotUpdatesStatus"><span class="hs-identifier hs-var">SetBotUpdatesStatus</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="error_message"><span class="annot"><span class="annottext">SetBotUpdatesStatus -&gt; Maybe String
 </span><a href="API.Functions.SetBotUpdatesStatus.html#error_message"><span class="hs-identifier hs-var hs-var">error_message</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="pending_update_count"><span class="annot"><span class="annottext">SetBotUpdatesStatus -&gt; Maybe Int
-</span><a href="API.Functions.SetBotUpdatesStatus.html#pending_update_count"><span class="hs-identifier hs-var hs-var">pending_update_count</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679395400"><span id="local-6989586621679395402"><span id="local-6989586621679395404"><span class="annot"><span class="annottext">Int -&gt; SetBotUpdatesStatus -&gt; ShowS
+</span><a href="API.Functions.SetBotUpdatesStatus.html#pending_update_count"><span class="hs-identifier hs-var hs-var">pending_update_count</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679426236"><span id="local-6989586621679426238"><span id="local-6989586621679426240"><span class="annot"><span class="annottext">Int -&gt; SetBotUpdatesStatus -&gt; ShowS
 [SetBotUpdatesStatus] -&gt; ShowS
 SetBotUpdatesStatus -&gt; String
 (Int -&gt; SetBotUpdatesStatus -&gt; ShowS)
@@ -24,15 +24,24 @@ show :: SetBotUpdatesStatus -&gt; String
 $cshow :: SetBotUpdatesStatus -&gt; String
 showsPrec :: Int -&gt; SetBotUpdatesStatus -&gt; ShowS
 $cshowsPrec :: Int -&gt; SetBotUpdatesStatus -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679426231"><span id="local-6989586621679426233"><span class="annot"><span class="annottext">SetBotUpdatesStatus -&gt; SetBotUpdatesStatus -&gt; Bool
+(SetBotUpdatesStatus -&gt; SetBotUpdatesStatus -&gt; Bool)
+-&gt; (SetBotUpdatesStatus -&gt; SetBotUpdatesStatus -&gt; Bool)
+-&gt; Eq SetBotUpdatesStatus
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: SetBotUpdatesStatus -&gt; SetBotUpdatesStatus -&gt; Bool
+$c/= :: SetBotUpdatesStatus -&gt; SetBotUpdatesStatus -&gt; Bool
+== :: SetBotUpdatesStatus -&gt; SetBotUpdatesStatus -&gt; Bool
+$c== :: SetBotUpdatesStatus -&gt; SetBotUpdatesStatus -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679395392"><span id="local-6989586621679395394"><span id="local-6989586621679395396"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetBotUpdatesStatus.html#SetBotUpdatesStatus"><span class="hs-identifier hs-type">SetBotUpdatesStatus</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679395390"><span class="annot"><span class="annottext">toJSON :: SetBotUpdatesStatus -&gt; Value
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679426223"><span id="local-6989586621679426225"><span id="local-6989586621679426227"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetBotUpdatesStatus.html#SetBotUpdatesStatus"><span class="hs-identifier hs-type">SetBotUpdatesStatus</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679426221"><span class="annot"><span class="annottext">toJSON :: SetBotUpdatesStatus -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.SetBotUpdatesStatus.html#SetBotUpdatesStatus"><span class="hs-identifier hs-type">SetBotUpdatesStatus</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">error_message :: SetBotUpdatesStatus -&gt; Maybe String
-</span><a href="API.Functions.SetBotUpdatesStatus.html#error_message"><span class="hs-identifier hs-var">error_message</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679395388"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679395388"><span class="hs-identifier hs-var">error_message</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">pending_update_count :: SetBotUpdatesStatus -&gt; Maybe Int
-</span><a href="API.Functions.SetBotUpdatesStatus.html#pending_update_count"><span class="hs-identifier hs-var">pending_update_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679395387"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679395387"><span class="hs-identifier hs-var">pending_update_count</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.SetBotUpdatesStatus.html#error_message"><span class="hs-identifier hs-var">error_message</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426219"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679426219"><span class="hs-identifier hs-var">error_message</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">pending_update_count :: SetBotUpdatesStatus -&gt; Maybe Int
+</span><a href="API.Functions.SetBotUpdatesStatus.html#pending_update_count"><span class="hs-identifier hs-var">pending_update_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426218"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679426218"><span class="hs-identifier hs-var">pending_update_count</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -40,33 +49,33 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;setBotUpdatesStatus&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;error_message&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679395388"><span class="hs-identifier hs-var">error_message</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;pending_update_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679426219"><span class="hs-identifier hs-var">error_message</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;pending_update_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679395387"><span class="hs-identifier hs-var">pending_update_count</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679426218"><span class="hs-identifier hs-var">pending_update_count</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679395381"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetBotUpdatesStatus.html#SetBotUpdatesStatus"><span class="hs-identifier hs-type">SetBotUpdatesStatus</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679395379"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetBotUpdatesStatus
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679395377"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679395377"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679395375"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679395375"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679395374"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679395374"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679395375"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679426212"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetBotUpdatesStatus.html#SetBotUpdatesStatus"><span class="hs-identifier hs-type">SetBotUpdatesStatus</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679426210"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetBotUpdatesStatus
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679426208"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679426208"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679426206"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679426206"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679426205"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679426205"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679426206"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679395374"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679426205"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;setBotUpdatesStatus&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SetBotUpdatesStatus
-</span><a href="#local-6989586621679395372"><span class="hs-identifier hs-var">parseSetBotUpdatesStatus</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679395377"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679426203"><span class="hs-identifier hs-var">parseSetBotUpdatesStatus</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679426208"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SetBotUpdatesStatus
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679395372"><span class="hs-identifier hs-type">parseSetBotUpdatesStatus</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetBotUpdatesStatus.html#SetBotUpdatesStatus"><span class="hs-identifier hs-type">SetBotUpdatesStatus</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679395372"><span class="annot"><span class="annottext">parseSetBotUpdatesStatus :: Value -&gt; Parser SetBotUpdatesStatus
-</span><a href="#local-6989586621679395372"><span class="hs-identifier hs-var hs-var">parseSetBotUpdatesStatus</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679426203"><span class="hs-identifier hs-type">parseSetBotUpdatesStatus</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetBotUpdatesStatus.html#SetBotUpdatesStatus"><span class="hs-identifier hs-type">SetBotUpdatesStatus</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679426203"><span class="annot"><span class="annottext">parseSetBotUpdatesStatus :: Value -&gt; Parser SetBotUpdatesStatus
+</span><a href="#local-6989586621679426203"><span class="hs-identifier hs-var hs-var">parseSetBotUpdatesStatus</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SetBotUpdatesStatus)
 -&gt; Value
 -&gt; Parser SetBotUpdatesStatus
@@ -77,26 +86,26 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SetBotUpdatesStatus
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679395370"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679395370"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679395369"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679395369"><span class="hs-identifier hs-var">error_message</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679426201"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679426201"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679426200"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679426200"><span class="hs-identifier hs-var">error_message</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679395370"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679426201"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;error_message&quot;</span></span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679395368"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679395368"><span class="hs-identifier hs-var">pending_update_count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679426199"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679426199"><span class="hs-identifier hs-var">pending_update_count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679395370"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679426201"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;pending_update_count&quot;</span></span><span>
 </span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">SetBotUpdatesStatus -&gt; Parser SetBotUpdatesStatus
@@ -107,6 +116,6 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SetBotUpdatesStatus :: Maybe String -&gt; Maybe Int -&gt; SetBotUpdatesStatus
 </span><a href="API.Functions.SetBotUpdatesStatus.html#SetBotUpdatesStatus"><span class="hs-identifier hs-type hs-type">SetBotUpdatesStatus</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">error_message :: Maybe String
 </span><a href="API.Functions.SetBotUpdatesStatus.html#error_message"><span class="hs-identifier hs-var">error_message</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679395369"><span class="hs-identifier hs-var">error_message</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">pending_update_count :: Maybe Int
+</span><a href="#local-6989586621679426200"><span class="hs-identifier hs-var">error_message</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">pending_update_count :: Maybe Int
 </span><a href="API.Functions.SetBotUpdatesStatus.html#pending_update_count"><span class="hs-identifier hs-var">pending_update_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679395368"><span class="hs-identifier hs-var">pending_update_count</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679426199"><span class="hs-identifier hs-var">pending_update_count</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

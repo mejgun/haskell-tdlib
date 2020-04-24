@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetPublicMessageLink
 
+instance Eq GetPublicMessageLink
+
 instance ToJSON GetPublicMessageLink
 
 instance FromJSON GetPublicMessageLink

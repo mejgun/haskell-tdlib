@@ -9,7 +9,7 @@ import {-# SOURCE #-} qualified API.UserPrivacySettingRules as UserPrivacySettin
 import {-# SOURCE #-} qualified API.UserPrivacySetting as UserPrivacySetting
 
 data SetUserPrivacySettingRules = 
- SetUserPrivacySettingRules { rules :: Maybe UserPrivacySettingRules.UserPrivacySettingRules, setting :: Maybe UserPrivacySetting.UserPrivacySetting }  deriving (Show)
+ SetUserPrivacySettingRules { rules :: Maybe UserPrivacySettingRules.UserPrivacySettingRules, setting :: Maybe UserPrivacySetting.UserPrivacySetting }  deriving (Show, Eq)
 
 instance T.ToJSON SetUserPrivacySettingRules where
  toJSON (SetUserPrivacySettingRules { rules = rules, setting = setting }) =

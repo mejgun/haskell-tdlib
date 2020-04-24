@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetChatAdministrators = 
- GetChatAdministrators { chat_id :: Maybe Int }  deriving (Show)
+ GetChatAdministrators { chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetChatAdministrators where
  toJSON (GetChatAdministrators { chat_id = chat_id }) =

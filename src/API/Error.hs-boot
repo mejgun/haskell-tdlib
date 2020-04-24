@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data Error
 
+instance Eq Error
+
 instance ToJSON Error
 
 instance FromJSON Error

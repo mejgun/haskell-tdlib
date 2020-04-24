@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetChatHistory = 
- GetChatHistory { only_local :: Maybe Bool, limit :: Maybe Int, offset :: Maybe Int, from_message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ GetChatHistory { only_local :: Maybe Bool, limit :: Maybe Int, offset :: Maybe Int, from_message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetChatHistory where
  toJSON (GetChatHistory { only_local = only_local, limit = limit, offset = offset, from_message_id = from_message_id, chat_id = chat_id }) =

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data DownloadFile
 
+instance Eq DownloadFile
+
 instance ToJSON DownloadFile
 
 instance FromJSON DownloadFile

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SendMessage
 
+instance Eq SendMessage
+
 instance ToJSON SendMessage
 
 instance FromJSON SendMessage

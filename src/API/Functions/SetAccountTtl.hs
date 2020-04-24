@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.AccountTtl as AccountTtl
 
 data SetAccountTtl = 
- SetAccountTtl { ttl :: Maybe AccountTtl.AccountTtl }  deriving (Show)
+ SetAccountTtl { ttl :: Maybe AccountTtl.AccountTtl }  deriving (Show, Eq)
 
 instance T.ToJSON SetAccountTtl where
  toJSON (SetAccountTtl { ttl = ttl }) =

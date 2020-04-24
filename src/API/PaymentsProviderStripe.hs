@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data PaymentsProviderStripe = 
- PaymentsProviderStripe { need_cardholder_name :: Maybe Bool, need_postal_code :: Maybe Bool, need_country :: Maybe Bool, publishable_key :: Maybe String }  deriving (Show)
+ PaymentsProviderStripe { need_cardholder_name :: Maybe Bool, need_postal_code :: Maybe Bool, need_country :: Maybe Bool, publishable_key :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON PaymentsProviderStripe where
  toJSON (PaymentsProviderStripe { need_cardholder_name = need_cardholder_name, need_postal_code = need_postal_code, need_country = need_country, publishable_key = publishable_key }) =

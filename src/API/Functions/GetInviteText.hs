@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetInviteText = 
- GetInviteText deriving (Show)
+ GetInviteText deriving (Show, Eq)
 
 instance T.ToJSON GetInviteText where
  toJSON (GetInviteText {  }) =

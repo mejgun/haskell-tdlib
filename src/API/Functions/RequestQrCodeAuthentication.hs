@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data RequestQrCodeAuthentication = 
- RequestQrCodeAuthentication { other_user_ids :: Maybe [Int] }  deriving (Show)
+ RequestQrCodeAuthentication { other_user_ids :: Maybe [Int] }  deriving (Show, Eq)
 
 instance T.ToJSON RequestQrCodeAuthentication where
  toJSON (RequestQrCodeAuthentication { other_user_ids = other_user_ids }) =

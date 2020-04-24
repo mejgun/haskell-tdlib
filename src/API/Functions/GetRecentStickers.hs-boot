@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetRecentStickers
 
+instance Eq GetRecentStickers
+
 instance ToJSON GetRecentStickers
 
 instance FromJSON GetRecentStickers

@@ -9,7 +9,7 @@ import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 
 data EditInlineMessageMedia = 
- EditInlineMessageMedia { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, inline_message_id :: Maybe String }  deriving (Show)
+ EditInlineMessageMedia { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, inline_message_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON EditInlineMessageMedia where
  toJSON (EditInlineMessageMedia { input_message_content = input_message_content, reply_markup = reply_markup, inline_message_id = inline_message_id }) =

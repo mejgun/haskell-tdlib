@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data TMeUrls
 
+instance Eq TMeUrls
+
 instance ToJSON TMeUrls
 
 instance FromJSON TMeUrls

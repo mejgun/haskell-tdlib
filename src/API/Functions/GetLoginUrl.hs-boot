@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetLoginUrl
 
+instance Eq GetLoginUrl
+
 instance ToJSON GetLoginUrl
 
 instance FromJSON GetLoginUrl

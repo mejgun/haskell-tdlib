@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TestString as TestString
 
 data TestCallVectorStringObject = 
- TestCallVectorStringObject { x :: Maybe [TestString.TestString] }  deriving (Show)
+ TestCallVectorStringObject { x :: Maybe [TestString.TestString] }  deriving (Show, Eq)
 
 instance T.ToJSON TestCallVectorStringObject where
  toJSON (TestCallVectorStringObject { x = x }) =

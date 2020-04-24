@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetLogStream = 
- GetLogStream deriving (Show)
+ GetLogStream deriving (Show, Eq)
 
 instance T.ToJSON GetLogStream where
  toJSON (GetLogStream {  }) =

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data MessageForwardOrigin
 
+instance Eq MessageForwardOrigin
+
 instance ToJSON MessageForwardOrigin
 
 instance FromJSON MessageForwardOrigin

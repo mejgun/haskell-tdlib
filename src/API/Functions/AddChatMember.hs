@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data AddChatMember = 
- AddChatMember { forward_limit :: Maybe Int, user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ AddChatMember { forward_limit :: Maybe Int, user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON AddChatMember where
  toJSON (AddChatMember { forward_limit = forward_limit, user_id = user_id, chat_id = chat_id }) =

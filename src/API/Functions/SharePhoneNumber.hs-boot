@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SharePhoneNumber
 
+instance Eq SharePhoneNumber
+
 instance ToJSON SharePhoneNumber
 
 instance FromJSON SharePhoneNumber

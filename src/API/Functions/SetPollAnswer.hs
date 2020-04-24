@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetPollAnswer = 
- SetPollAnswer { option_ids :: Maybe [Int], message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ SetPollAnswer { option_ids :: Maybe [Int], message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetPollAnswer where
  toJSON (SetPollAnswer { option_ids = option_ids, message_id = message_id, chat_id = chat_id }) =

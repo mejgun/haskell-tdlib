@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data TransferChatOwnership = 
- TransferChatOwnership { password :: Maybe String, user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ TransferChatOwnership { password :: Maybe String, user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON TransferChatOwnership where
  toJSON (TransferChatOwnership { password = password, user_id = user_id, chat_id = chat_id }) =

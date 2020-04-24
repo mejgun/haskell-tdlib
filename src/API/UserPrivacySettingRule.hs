@@ -14,7 +14,7 @@ data UserPrivacySettingRule =
  | UserPrivacySettingRuleRestrictAll 
  | UserPrivacySettingRuleRestrictContacts 
  | UserPrivacySettingRuleRestrictUsers { user_ids :: Maybe [Int] }  
- | UserPrivacySettingRuleRestrictChatMembers { chat_ids :: Maybe [Int] }  deriving (Show)
+ | UserPrivacySettingRuleRestrictChatMembers { chat_ids :: Maybe [Int] }  deriving (Show, Eq)
 
 instance T.ToJSON UserPrivacySettingRule where
  toJSON (UserPrivacySettingRuleAllowAll {  }) =

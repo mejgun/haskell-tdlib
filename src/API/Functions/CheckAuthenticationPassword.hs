@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CheckAuthenticationPassword = 
- CheckAuthenticationPassword { password :: Maybe String }  deriving (Show)
+ CheckAuthenticationPassword { password :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CheckAuthenticationPassword where
  toJSON (CheckAuthenticationPassword { password = password }) =

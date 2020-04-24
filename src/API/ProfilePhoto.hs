@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
 
 data ProfilePhoto = 
- ProfilePhoto { big :: Maybe File.File, small :: Maybe File.File, _id :: Maybe Int }  deriving (Show)
+ ProfilePhoto { big :: Maybe File.File, small :: Maybe File.File, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ProfilePhoto where
  toJSON (ProfilePhoto { big = big, small = small, _id = _id }) =

@@ -10,7 +10,7 @@ import {-# SOURCE #-} qualified API.Photo as Photo
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
 data Game = 
- Game { animation :: Maybe Animation.Animation, photo :: Maybe Photo.Photo, description :: Maybe String, text :: Maybe FormattedText.FormattedText, title :: Maybe String, short_name :: Maybe String, _id :: Maybe Int }  deriving (Show)
+ Game { animation :: Maybe Animation.Animation, photo :: Maybe Photo.Photo, description :: Maybe String, text :: Maybe FormattedText.FormattedText, title :: Maybe String, short_name :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Game where
  toJSON (Game { animation = animation, photo = photo, description = description, text = text, title = title, short_name = short_name, _id = _id }) =

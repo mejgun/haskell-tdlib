@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetBlockedUsers = 
- GetBlockedUsers { limit :: Maybe Int, offset :: Maybe Int }  deriving (Show)
+ GetBlockedUsers { limit :: Maybe Int, offset :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetBlockedUsers where
  toJSON (GetBlockedUsers { limit = limit, offset = offset }) =

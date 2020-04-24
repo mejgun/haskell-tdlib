@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SearchBackground
 
+instance Eq SearchBackground
+
 instance ToJSON SearchBackground
 
 instance FromJSON SearchBackground

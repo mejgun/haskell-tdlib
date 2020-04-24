@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetAlarm = 
- SetAlarm { seconds :: Maybe Float }  deriving (Show)
+ SetAlarm { seconds :: Maybe Float }  deriving (Show, Eq)
 
 instance T.ToJSON SetAlarm where
  toJSON (SetAlarm { seconds = seconds }) =

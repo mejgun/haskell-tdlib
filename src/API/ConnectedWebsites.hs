@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ConnectedWebsite as ConnectedWebsite
 
 data ConnectedWebsites = 
- ConnectedWebsites { websites :: Maybe [ConnectedWebsite.ConnectedWebsite] }  deriving (Show)
+ ConnectedWebsites { websites :: Maybe [ConnectedWebsite.ConnectedWebsite] }  deriving (Show, Eq)
 
 instance T.ToJSON ConnectedWebsites where
  toJSON (ConnectedWebsites { websites = websites }) =

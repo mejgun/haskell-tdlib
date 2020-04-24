@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetStorageStatistics = 
- GetStorageStatistics { chat_limit :: Maybe Int }  deriving (Show)
+ GetStorageStatistics { chat_limit :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetStorageStatistics where
  toJSON (GetStorageStatistics { chat_limit = chat_limit }) =

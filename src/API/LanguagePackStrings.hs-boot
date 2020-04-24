@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data LanguagePackStrings
 
+instance Eq LanguagePackStrings
+
 instance ToJSON LanguagePackStrings
 
 instance FromJSON LanguagePackStrings

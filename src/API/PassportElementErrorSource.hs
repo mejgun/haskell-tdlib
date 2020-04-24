@@ -15,7 +15,7 @@ data PassportElementErrorSource =
  | PassportElementErrorSourceTranslationFile { file_index :: Maybe Int }  
  | PassportElementErrorSourceTranslationFiles 
  | PassportElementErrorSourceFile { file_index :: Maybe Int }  
- | PassportElementErrorSourceFiles deriving (Show)
+ | PassportElementErrorSourceFiles deriving (Show, Eq)
 
 instance T.ToJSON PassportElementErrorSource where
  toJSON (PassportElementErrorSourceUnspecified {  }) =

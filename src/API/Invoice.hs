@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LabeledPricePart as LabeledPricePart
 
 data Invoice = 
- Invoice { is_flexible :: Maybe Bool, send_email_address_to_provider :: Maybe Bool, send_phone_number_to_provider :: Maybe Bool, need_shipping_address :: Maybe Bool, need_email_address :: Maybe Bool, need_phone_number :: Maybe Bool, need_name :: Maybe Bool, is_test :: Maybe Bool, price_parts :: Maybe [LabeledPricePart.LabeledPricePart], currency :: Maybe String }  deriving (Show)
+ Invoice { is_flexible :: Maybe Bool, send_email_address_to_provider :: Maybe Bool, send_phone_number_to_provider :: Maybe Bool, need_shipping_address :: Maybe Bool, need_email_address :: Maybe Bool, need_phone_number :: Maybe Bool, need_name :: Maybe Bool, is_test :: Maybe Bool, price_parts :: Maybe [LabeledPricePart.LabeledPricePart], currency :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON Invoice where
  toJSON (Invoice { is_flexible = is_flexible, send_email_address_to_provider = send_email_address_to_provider, send_phone_number_to_provider = send_phone_number_to_provider, need_shipping_address = need_shipping_address, need_email_address = need_email_address, need_phone_number = need_phone_number, need_name = need_name, is_test = is_test, price_parts = price_parts, currency = currency }) =

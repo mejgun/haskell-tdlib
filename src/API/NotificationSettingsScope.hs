@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 data NotificationSettingsScope = 
  NotificationSettingsScopePrivateChats 
  | NotificationSettingsScopeGroupChats 
- | NotificationSettingsScopeChannelChats deriving (Show)
+ | NotificationSettingsScopeChannelChats deriving (Show, Eq)
 
 instance T.ToJSON NotificationSettingsScope where
  toJSON (NotificationSettingsScopePrivateChats {  }) =

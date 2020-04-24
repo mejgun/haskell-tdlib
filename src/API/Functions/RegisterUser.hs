@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data RegisterUser = 
- RegisterUser { last_name :: Maybe String, first_name :: Maybe String }  deriving (Show)
+ RegisterUser { last_name :: Maybe String, first_name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON RegisterUser where
  toJSON (RegisterUser { last_name = last_name, first_name = first_name }) =

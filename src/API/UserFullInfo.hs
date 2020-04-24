@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BotInfo as BotInfo
 
 data UserFullInfo = 
- UserFullInfo { bot_info :: Maybe BotInfo.BotInfo, group_in_common_count :: Maybe Int, share_text :: Maybe String, bio :: Maybe String, need_phone_number_privacy_exception :: Maybe Bool, has_private_calls :: Maybe Bool, can_be_called :: Maybe Bool, is_blocked :: Maybe Bool }  deriving (Show)
+ UserFullInfo { bot_info :: Maybe BotInfo.BotInfo, group_in_common_count :: Maybe Int, share_text :: Maybe String, bio :: Maybe String, need_phone_number_privacy_exception :: Maybe Bool, has_private_calls :: Maybe Bool, can_be_called :: Maybe Bool, is_blocked :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON UserFullInfo where
  toJSON (UserFullInfo { bot_info = bot_info, group_in_common_count = group_in_common_count, share_text = share_text, bio = bio, need_phone_number_privacy_exception = need_phone_number_privacy_exception, has_private_calls = has_private_calls, can_be_called = can_be_called, is_blocked = is_blocked }) =

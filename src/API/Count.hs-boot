@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data Count
 
+instance Eq Count
+
 instance ToJSON Count
 
 instance FromJSON Count

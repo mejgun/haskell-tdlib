@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetChatStatistics = 
- GetChatStatistics { is_dark :: Maybe Bool, chat_id :: Maybe Int }  deriving (Show)
+ GetChatStatistics { is_dark :: Maybe Bool, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetChatStatistics where
  toJSON (GetChatStatistics { is_dark = is_dark, chat_id = chat_id }) =

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetRecentInlineBots = 
- GetRecentInlineBots deriving (Show)
+ GetRecentInlineBots deriving (Show, Eq)
 
 instance T.ToJSON GetRecentInlineBots where
  toJSON (GetRecentInlineBots {  }) =

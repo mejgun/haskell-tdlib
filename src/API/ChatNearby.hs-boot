@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ChatNearby
 
+instance Eq ChatNearby
+
 instance ToJSON ChatNearby
 
 instance FromJSON ChatNearby

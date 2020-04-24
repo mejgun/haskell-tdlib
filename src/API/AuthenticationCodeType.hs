@@ -10,7 +10,7 @@ data AuthenticationCodeType =
  AuthenticationCodeTypeTelegramMessage { _length :: Maybe Int }  
  | AuthenticationCodeTypeSms { _length :: Maybe Int }  
  | AuthenticationCodeTypeCall { _length :: Maybe Int }  
- | AuthenticationCodeTypeFlashCall { pattern :: Maybe String }  deriving (Show)
+ | AuthenticationCodeTypeFlashCall { pattern :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON AuthenticationCodeType where
  toJSON (AuthenticationCodeTypeTelegramMessage { _length = _length }) =

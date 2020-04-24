@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.SendMessageOptions as SendMessageOptions
 
 data ForwardMessages = 
- ForwardMessages { remove_caption :: Maybe Bool, send_copy :: Maybe Bool, as_album :: Maybe Bool, options :: Maybe SendMessageOptions.SendMessageOptions, message_ids :: Maybe [Int], from_chat_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ ForwardMessages { remove_caption :: Maybe Bool, send_copy :: Maybe Bool, as_album :: Maybe Bool, options :: Maybe SendMessageOptions.SendMessageOptions, message_ids :: Maybe [Int], from_chat_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ForwardMessages where
  toJSON (ForwardMessages { remove_caption = remove_caption, send_copy = send_copy, as_album = as_album, options = options, message_ids = message_ids, from_chat_id = from_chat_id, chat_id = chat_id }) =

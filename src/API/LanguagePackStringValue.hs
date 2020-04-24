@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 data LanguagePackStringValue = 
  LanguagePackStringValueOrdinary { value :: Maybe String }  
  | LanguagePackStringValuePluralized { other_value :: Maybe String, many_value :: Maybe String, few_value :: Maybe String, two_value :: Maybe String, one_value :: Maybe String, zero_value :: Maybe String }  
- | LanguagePackStringValueDeleted deriving (Show)
+ | LanguagePackStringValueDeleted deriving (Show, Eq)
 
 instance T.ToJSON LanguagePackStringValue where
  toJSON (LanguagePackStringValueOrdinary { value = value }) =

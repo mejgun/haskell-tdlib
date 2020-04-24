@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data LogOut
 
+instance Eq LogOut
+
 instance ToJSON LogOut
 
 instance FromJSON LogOut

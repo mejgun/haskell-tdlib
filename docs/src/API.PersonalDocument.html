@@ -10,7 +10,7 @@
 </span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="PersonalDocument"><span class="annot"><a href="API.PersonalDocument.html#PersonalDocument"><span class="hs-identifier hs-var">PersonalDocument</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-11"></span><span> </span><span id="PersonalDocument"><span class="annot"><a href="API.PersonalDocument.html#PersonalDocument"><span class="hs-identifier hs-var">PersonalDocument</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="translation"><span class="annot"><span class="annottext">PersonalDocument -&gt; Maybe [DatedFile]
 </span><a href="API.PersonalDocument.html#translation"><span class="hs-identifier hs-var hs-var">translation</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.DatedFile.html#DatedFile"><span class="hs-identifier hs-type">DatedFile.DatedFile</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="files"><span class="annot"><span class="annottext">PersonalDocument -&gt; Maybe [DatedFile]
-</span><a href="API.PersonalDocument.html#files"><span class="hs-identifier hs-var hs-var">files</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.DatedFile.html#DatedFile"><span class="hs-identifier hs-type">DatedFile.DatedFile</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679408530"><span id="local-6989586621679408532"><span id="local-6989586621679408534"><span class="annot"><span class="annottext">Int -&gt; PersonalDocument -&gt; ShowS
+</span><a href="API.PersonalDocument.html#files"><span class="hs-identifier hs-var hs-var">files</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.DatedFile.html#DatedFile"><span class="hs-identifier hs-type">DatedFile.DatedFile</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679440399"><span id="local-6989586621679440401"><span id="local-6989586621679440403"><span class="annot"><span class="annottext">Int -&gt; PersonalDocument -&gt; ShowS
 [PersonalDocument] -&gt; ShowS
 PersonalDocument -&gt; String
 (Int -&gt; PersonalDocument -&gt; ShowS)
@@ -25,15 +25,24 @@ show :: PersonalDocument -&gt; String
 $cshow :: PersonalDocument -&gt; String
 showsPrec :: Int -&gt; PersonalDocument -&gt; ShowS
 $cshowsPrec :: Int -&gt; PersonalDocument -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679440394"><span id="local-6989586621679440396"><span class="annot"><span class="annottext">PersonalDocument -&gt; PersonalDocument -&gt; Bool
+(PersonalDocument -&gt; PersonalDocument -&gt; Bool)
+-&gt; (PersonalDocument -&gt; PersonalDocument -&gt; Bool)
+-&gt; Eq PersonalDocument
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: PersonalDocument -&gt; PersonalDocument -&gt; Bool
+$c/= :: PersonalDocument -&gt; PersonalDocument -&gt; Bool
+== :: PersonalDocument -&gt; PersonalDocument -&gt; Bool
+$c== :: PersonalDocument -&gt; PersonalDocument -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408522"><span id="local-6989586621679408524"><span id="local-6989586621679408526"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.PersonalDocument.html#PersonalDocument"><span class="hs-identifier hs-type">PersonalDocument</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679408520"><span class="annot"><span class="annottext">toJSON :: PersonalDocument -&gt; Value
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679440386"><span id="local-6989586621679440388"><span id="local-6989586621679440390"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.PersonalDocument.html#PersonalDocument"><span class="hs-identifier hs-type">PersonalDocument</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679440384"><span class="annot"><span class="annottext">toJSON :: PersonalDocument -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.PersonalDocument.html#PersonalDocument"><span class="hs-identifier hs-type">PersonalDocument</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">translation :: PersonalDocument -&gt; Maybe [DatedFile]
-</span><a href="API.PersonalDocument.html#translation"><span class="hs-identifier hs-var">translation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408518"><span class="annot"><span class="annottext">Maybe [DatedFile]
-</span><a href="#local-6989586621679408518"><span class="hs-identifier hs-var">translation</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">files :: PersonalDocument -&gt; Maybe [DatedFile]
-</span><a href="API.PersonalDocument.html#files"><span class="hs-identifier hs-var">files</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408517"><span class="annot"><span class="annottext">Maybe [DatedFile]
-</span><a href="#local-6989586621679408517"><span class="hs-identifier hs-var">files</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.PersonalDocument.html#translation"><span class="hs-identifier hs-var">translation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679440382"><span class="annot"><span class="annottext">Maybe [DatedFile]
+</span><a href="#local-6989586621679440382"><span class="hs-identifier hs-var">translation</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">files :: PersonalDocument -&gt; Maybe [DatedFile]
+</span><a href="API.PersonalDocument.html#files"><span class="hs-identifier hs-var">files</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679440381"><span class="annot"><span class="annottext">Maybe [DatedFile]
+</span><a href="#local-6989586621679440381"><span class="hs-identifier hs-var">files</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -41,33 +50,33 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;personalDocument&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;translation&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [DatedFile] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [DatedFile]
-</span><a href="#local-6989586621679408518"><span class="hs-identifier hs-var">translation</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;files&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [DatedFile] -&gt; Pair
+</span><a href="#local-6989586621679440382"><span class="hs-identifier hs-var">translation</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;files&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [DatedFile] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [DatedFile]
-</span><a href="#local-6989586621679408517"><span class="hs-identifier hs-var">files</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679440381"><span class="hs-identifier hs-var">files</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408511"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.PersonalDocument.html#PersonalDocument"><span class="hs-identifier hs-type">PersonalDocument</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679408509"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PersonalDocument
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679408507"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679408507"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679408505"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679408505"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679408504"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679408504"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679408505"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679440375"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.PersonalDocument.html#PersonalDocument"><span class="hs-identifier hs-type">PersonalDocument</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679440373"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PersonalDocument
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679440371"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679440371"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679440369"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679440369"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679440368"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679440368"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679440369"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679408504"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679440368"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;personalDocument&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PersonalDocument
-</span><a href="#local-6989586621679408502"><span class="hs-identifier hs-var">parsePersonalDocument</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408507"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679440366"><span class="hs-identifier hs-var">parsePersonalDocument</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679440371"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PersonalDocument
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679408502"><span class="hs-identifier hs-type">parsePersonalDocument</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PersonalDocument.html#PersonalDocument"><span class="hs-identifier hs-type">PersonalDocument</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span id="local-6989586621679408502"><span class="annot"><span class="annottext">parsePersonalDocument :: Value -&gt; Parser PersonalDocument
-</span><a href="#local-6989586621679408502"><span class="hs-identifier hs-var hs-var">parsePersonalDocument</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679440366"><span class="hs-identifier hs-type">parsePersonalDocument</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PersonalDocument.html#PersonalDocument"><span class="hs-identifier hs-type">PersonalDocument</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679440366"><span class="annot"><span class="annottext">parsePersonalDocument :: Value -&gt; Parser PersonalDocument
+</span><a href="#local-6989586621679440366"><span class="hs-identifier hs-var hs-var">parsePersonalDocument</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser PersonalDocument)
 -&gt; Value
 -&gt; Parser PersonalDocument
@@ -78,26 +87,26 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser PersonalDocument
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408500"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408500"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679408499"><span class="annot"><span class="annottext">Maybe [DatedFile]
-</span><a href="#local-6989586621679408499"><span class="hs-identifier hs-var">translation</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [DatedFile] -&gt; Parser (Maybe [DatedFile])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679440364"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679440364"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679440363"><span class="annot"><span class="annottext">Maybe [DatedFile]
+</span><a href="#local-6989586621679440363"><span class="hs-identifier hs-var">translation</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [DatedFile] -&gt; Parser (Maybe [DatedFile])
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser [DatedFile] -&gt; Parser (Maybe [DatedFile]))
 -&gt; Parser [DatedFile] -&gt; Parser (Maybe [DatedFile])
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679408500"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [DatedFile]
+</span><a href="#local-6989586621679440364"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [DatedFile]
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;translation&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679408498"><span class="annot"><span class="annottext">Maybe [DatedFile]
-</span><a href="#local-6989586621679408498"><span class="hs-identifier hs-var">files</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [DatedFile] -&gt; Parser (Maybe [DatedFile])
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679440362"><span class="annot"><span class="annottext">Maybe [DatedFile]
+</span><a href="#local-6989586621679440362"><span class="hs-identifier hs-var">files</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [DatedFile] -&gt; Parser (Maybe [DatedFile])
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser [DatedFile] -&gt; Parser (Maybe [DatedFile]))
 -&gt; Parser [DatedFile] -&gt; Parser (Maybe [DatedFile])
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679408500"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [DatedFile]
+</span><a href="#local-6989586621679440364"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [DatedFile]
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;files&quot;</span></span><span>
 </span><span id="line-28"></span><span>    </span><span class="annot"><span class="annottext">PersonalDocument -&gt; Parser PersonalDocument
@@ -108,6 +117,6 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">PersonalDocument :: Maybe [DatedFile] -&gt; Maybe [DatedFile] -&gt; PersonalDocument
 </span><a href="API.PersonalDocument.html#PersonalDocument"><span class="hs-identifier hs-type hs-type">PersonalDocument</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">translation :: Maybe [DatedFile]
 </span><a href="API.PersonalDocument.html#translation"><span class="hs-identifier hs-var">translation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [DatedFile]
-</span><a href="#local-6989586621679408499"><span class="hs-identifier hs-var">translation</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">files :: Maybe [DatedFile]
+</span><a href="#local-6989586621679440363"><span class="hs-identifier hs-var">translation</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">files :: Maybe [DatedFile]
 </span><a href="API.PersonalDocument.html#files"><span class="hs-identifier hs-var">files</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [DatedFile]
-</span><a href="#local-6989586621679408498"><span class="hs-identifier hs-var">files</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679440362"><span class="hs-identifier hs-var">files</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

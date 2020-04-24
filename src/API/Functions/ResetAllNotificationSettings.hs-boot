@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ResetAllNotificationSettings
 
+instance Eq ResetAllNotificationSettings
+
 instance ToJSON ResetAllNotificationSettings
 
 instance FromJSON ResetAllNotificationSettings

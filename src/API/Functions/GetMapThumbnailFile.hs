@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Location as Location
 
 data GetMapThumbnailFile = 
- GetMapThumbnailFile { chat_id :: Maybe Int, scale :: Maybe Int, height :: Maybe Int, width :: Maybe Int, zoom :: Maybe Int, location :: Maybe Location.Location }  deriving (Show)
+ GetMapThumbnailFile { chat_id :: Maybe Int, scale :: Maybe Int, height :: Maybe Int, width :: Maybe Int, zoom :: Maybe Int, location :: Maybe Location.Location }  deriving (Show, Eq)
 
 instance T.ToJSON GetMapThumbnailFile where
  toJSON (GetMapThumbnailFile { chat_id = chat_id, scale = scale, height = height, width = width, zoom = zoom, location = location }) =

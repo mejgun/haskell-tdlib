@@ -7,6 +7,8 @@ data GeneralResult
 
 data ResultWithExtra
 
+instance Eq GeneralResult
+
 instance FromJSON GeneralResult
 
 instance Show GeneralResult

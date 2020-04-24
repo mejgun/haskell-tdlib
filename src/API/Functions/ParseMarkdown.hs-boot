@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ParseMarkdown
 
+instance Eq ParseMarkdown
+
 instance ToJSON ParseMarkdown
 
 instance FromJSON ParseMarkdown

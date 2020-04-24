@@ -7,7 +7,7 @@
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
 </span><span id="line-8"></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="GetSavedOrderInfo"><span class="annot"><a href="API.Functions.GetSavedOrderInfo.html#GetSavedOrderInfo"><span class="hs-identifier hs-var">GetSavedOrderInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-10"></span><span> </span><span id="GetSavedOrderInfo"><span class="annot"><a href="API.Functions.GetSavedOrderInfo.html#GetSavedOrderInfo"><span class="hs-identifier hs-var">GetSavedOrderInfo</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679389409"><span id="local-6989586621679389411"><span id="local-6989586621679389413"><span class="annot"><span class="annottext">Int -&gt; GetSavedOrderInfo -&gt; ShowS
+</span><span id="line-10"></span><span> </span><span id="GetSavedOrderInfo"><span class="annot"><a href="API.Functions.GetSavedOrderInfo.html#GetSavedOrderInfo"><span class="hs-identifier hs-var">GetSavedOrderInfo</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679419723"><span id="local-6989586621679419725"><span id="local-6989586621679419727"><span class="annot"><span class="annottext">Int -&gt; GetSavedOrderInfo -&gt; ShowS
 [GetSavedOrderInfo] -&gt; ShowS
 GetSavedOrderInfo -&gt; String
 (Int -&gt; GetSavedOrderInfo -&gt; ShowS)
@@ -22,10 +22,19 @@ show :: GetSavedOrderInfo -&gt; String
 $cshow :: GetSavedOrderInfo -&gt; String
 showsPrec :: Int -&gt; GetSavedOrderInfo -&gt; ShowS
 $cshowsPrec :: Int -&gt; GetSavedOrderInfo -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679419718"><span id="local-6989586621679419720"><span class="annot"><span class="annottext">GetSavedOrderInfo -&gt; GetSavedOrderInfo -&gt; Bool
+(GetSavedOrderInfo -&gt; GetSavedOrderInfo -&gt; Bool)
+-&gt; (GetSavedOrderInfo -&gt; GetSavedOrderInfo -&gt; Bool)
+-&gt; Eq GetSavedOrderInfo
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: GetSavedOrderInfo -&gt; GetSavedOrderInfo -&gt; Bool
+$c/= :: GetSavedOrderInfo -&gt; GetSavedOrderInfo -&gt; Bool
+== :: GetSavedOrderInfo -&gt; GetSavedOrderInfo -&gt; Bool
+$c== :: GetSavedOrderInfo -&gt; GetSavedOrderInfo -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679389401"><span id="local-6989586621679389403"><span id="local-6989586621679389405"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetSavedOrderInfo.html#GetSavedOrderInfo"><span class="hs-identifier hs-type">GetSavedOrderInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679389399"><span class="annot"><span class="annottext">toJSON :: GetSavedOrderInfo -&gt; Value
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419710"><span id="local-6989586621679419712"><span id="local-6989586621679419714"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetSavedOrderInfo.html#GetSavedOrderInfo"><span class="hs-identifier hs-type">GetSavedOrderInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679419708"><span class="annot"><span class="annottext">toJSON :: GetSavedOrderInfo -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.GetSavedOrderInfo.html#GetSavedOrderInfo"><span class="hs-identifier hs-type">GetSavedOrderInfo</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -33,28 +42,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;getSavedOrderInfo&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679389392"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetSavedOrderInfo.html#GetSavedOrderInfo"><span class="hs-identifier hs-type">GetSavedOrderInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679389390"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetSavedOrderInfo
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679389388"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679389388"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679389386"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679389386"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679389385"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679389385"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679389386"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419701"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetSavedOrderInfo.html#GetSavedOrderInfo"><span class="hs-identifier hs-type">GetSavedOrderInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679419699"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetSavedOrderInfo
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679419697"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679419697"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679419695"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679419695"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679419694"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679419694"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679419695"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679389385"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679419694"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;getSavedOrderInfo&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetSavedOrderInfo
-</span><a href="#local-6989586621679389383"><span class="hs-identifier hs-var">parseGetSavedOrderInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679389388"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679419692"><span class="hs-identifier hs-var">parseGetSavedOrderInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679419697"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetSavedOrderInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679389383"><span class="hs-identifier hs-type">parseGetSavedOrderInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetSavedOrderInfo.html#GetSavedOrderInfo"><span class="hs-identifier hs-type">GetSavedOrderInfo</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679389383"><span class="annot"><span class="annottext">parseGetSavedOrderInfo :: Value -&gt; Parser GetSavedOrderInfo
-</span><a href="#local-6989586621679389383"><span class="hs-identifier hs-var hs-var">parseGetSavedOrderInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679419692"><span class="hs-identifier hs-type">parseGetSavedOrderInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetSavedOrderInfo.html#GetSavedOrderInfo"><span class="hs-identifier hs-type">GetSavedOrderInfo</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679419692"><span class="annot"><span class="annottext">parseGetSavedOrderInfo :: Value -&gt; Parser GetSavedOrderInfo
+</span><a href="#local-6989586621679419692"><span class="hs-identifier hs-var hs-var">parseGetSavedOrderInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GetSavedOrderInfo)
 -&gt; Value
 -&gt; Parser GetSavedOrderInfo
@@ -65,8 +74,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser GetSavedOrderInfo
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679389381"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679389381"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679419690"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679419690"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-25"></span><span>    </span><span class="annot"><span class="annottext">GetSavedOrderInfo -&gt; Parser GetSavedOrderInfo
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(GetSavedOrderInfo -&gt; Parser GetSavedOrderInfo)

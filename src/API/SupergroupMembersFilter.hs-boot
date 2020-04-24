@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SupergroupMembersFilter
 
+instance Eq SupergroupMembersFilter
+
 instance ToJSON SupergroupMembersFilter
 
 instance FromJSON SupergroupMembersFilter

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetLogVerbosityLevel = 
- SetLogVerbosityLevel { new_verbosity_level :: Maybe Int }  deriving (Show)
+ SetLogVerbosityLevel { new_verbosity_level :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetLogVerbosityLevel where
  toJSON (SetLogVerbosityLevel { new_verbosity_level = new_verbosity_level }) =

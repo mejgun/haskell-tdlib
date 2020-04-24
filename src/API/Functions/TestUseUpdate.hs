@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data TestUseUpdate = 
- TestUseUpdate deriving (Show)
+ TestUseUpdate deriving (Show, Eq)
 
 instance T.ToJSON TestUseUpdate where
  toJSON (TestUseUpdate {  }) =

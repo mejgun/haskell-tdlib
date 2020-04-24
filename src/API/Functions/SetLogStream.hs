@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LogStream as LogStream
 
 data SetLogStream = 
- SetLogStream { log_stream :: Maybe LogStream.LogStream }  deriving (Show)
+ SetLogStream { log_stream :: Maybe LogStream.LogStream }  deriving (Show, Eq)
 
 instance T.ToJSON SetLogStream where
  toJSON (SetLogStream { log_stream = log_stream }) =

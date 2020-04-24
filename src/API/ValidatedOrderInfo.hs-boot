@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ValidatedOrderInfo
 
+instance Eq ValidatedOrderInfo
+
 instance ToJSON ValidatedOrderInfo
 
 instance FromJSON ValidatedOrderInfo

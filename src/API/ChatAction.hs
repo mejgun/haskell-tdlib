@@ -19,7 +19,7 @@ data ChatAction =
  | ChatActionStartPlayingGame 
  | ChatActionRecordingVideoNote 
  | ChatActionUploadingVideoNote { progress :: Maybe Int }  
- | ChatActionCancel deriving (Show)
+ | ChatActionCancel deriving (Show, Eq)
 
 instance T.ToJSON ChatAction where
  toJSON (ChatActionTyping {  }) =

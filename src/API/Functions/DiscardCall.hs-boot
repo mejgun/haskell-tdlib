@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data DiscardCall
 
+instance Eq DiscardCall
+
 instance ToJSON DiscardCall
 
 instance FromJSON DiscardCall

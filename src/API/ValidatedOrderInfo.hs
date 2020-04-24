@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ShippingOption as ShippingOption
 
 data ValidatedOrderInfo = 
- ValidatedOrderInfo { shipping_options :: Maybe [ShippingOption.ShippingOption], order_info_id :: Maybe String }  deriving (Show)
+ ValidatedOrderInfo { shipping_options :: Maybe [ShippingOption.ShippingOption], order_info_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON ValidatedOrderInfo where
  toJSON (ValidatedOrderInfo { shipping_options = shipping_options, order_info_id = order_info_id }) =

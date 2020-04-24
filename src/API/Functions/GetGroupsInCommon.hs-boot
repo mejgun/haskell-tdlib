@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetGroupsInCommon
 
+instance Eq GetGroupsInCommon
+
 instance ToJSON GetGroupsInCommon
 
 instance FromJSON GetGroupsInCommon

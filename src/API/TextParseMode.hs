@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 
 data TextParseMode = 
  TextParseModeMarkdown { version :: Maybe Int }  
- | TextParseModeHTML deriving (Show)
+ | TextParseModeHTML deriving (Show, Eq)
 
 instance T.ToJSON TextParseMode where
  toJSON (TextParseModeMarkdown { version = version }) =

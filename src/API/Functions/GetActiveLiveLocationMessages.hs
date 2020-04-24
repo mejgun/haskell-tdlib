@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetActiveLiveLocationMessages = 
- GetActiveLiveLocationMessages deriving (Show)
+ GetActiveLiveLocationMessages deriving (Show, Eq)
 
 instance T.ToJSON GetActiveLiveLocationMessages where
  toJSON (GetActiveLiveLocationMessages {  }) =

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data DeleteProfilePhoto
 
+instance Eq DeleteProfilePhoto
+
 instance ToJSON DeleteProfilePhoto
 
 instance FromJSON DeleteProfilePhoto

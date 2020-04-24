@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ResendEmailAddressVerificationCode = 
- ResendEmailAddressVerificationCode deriving (Show)
+ ResendEmailAddressVerificationCode deriving (Show, Eq)
 
 instance T.ToJSON ResendEmailAddressVerificationCode where
  toJSON (ResendEmailAddressVerificationCode {  }) =

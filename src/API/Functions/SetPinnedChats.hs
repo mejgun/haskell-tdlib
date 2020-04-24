@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatList as ChatList
 
 data SetPinnedChats = 
- SetPinnedChats { chat_ids :: Maybe [Int], chat_list :: Maybe ChatList.ChatList }  deriving (Show)
+ SetPinnedChats { chat_ids :: Maybe [Int], chat_list :: Maybe ChatList.ChatList }  deriving (Show, Eq)
 
 instance T.ToJSON SetPinnedChats where
  toJSON (SetPinnedChats { chat_ids = chat_ids, chat_list = chat_list }) =

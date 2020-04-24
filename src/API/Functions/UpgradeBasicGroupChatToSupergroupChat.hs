@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data UpgradeBasicGroupChatToSupergroupChat = 
- UpgradeBasicGroupChatToSupergroupChat { chat_id :: Maybe Int }  deriving (Show)
+ UpgradeBasicGroupChatToSupergroupChat { chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON UpgradeBasicGroupChatToSupergroupChat where
  toJSON (UpgradeBasicGroupChatToSupergroupChat { chat_id = chat_id }) =

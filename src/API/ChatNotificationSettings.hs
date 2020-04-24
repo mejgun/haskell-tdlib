@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ChatNotificationSettings = 
- ChatNotificationSettings { disable_mention_notifications :: Maybe Bool, use_default_disable_mention_notifications :: Maybe Bool, disable_pinned_message_notifications :: Maybe Bool, use_default_disable_pinned_message_notifications :: Maybe Bool, show_preview :: Maybe Bool, use_default_show_preview :: Maybe Bool, sound :: Maybe String, use_default_sound :: Maybe Bool, mute_for :: Maybe Int, use_default_mute_for :: Maybe Bool }  deriving (Show)
+ ChatNotificationSettings { disable_mention_notifications :: Maybe Bool, use_default_disable_mention_notifications :: Maybe Bool, disable_pinned_message_notifications :: Maybe Bool, use_default_disable_pinned_message_notifications :: Maybe Bool, show_preview :: Maybe Bool, use_default_show_preview :: Maybe Bool, sound :: Maybe String, use_default_sound :: Maybe Bool, mute_for :: Maybe Int, use_default_mute_for :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON ChatNotificationSettings where
  toJSON (ChatNotificationSettings { disable_mention_notifications = disable_mention_notifications, use_default_disable_mention_notifications = use_default_disable_mention_notifications, disable_pinned_message_notifications = disable_pinned_message_notifications, use_default_disable_pinned_message_notifications = use_default_disable_pinned_message_notifications, show_preview = show_preview, use_default_show_preview = use_default_show_preview, sound = sound, use_default_sound = use_default_sound, mute_for = mute_for, use_default_mute_for = use_default_mute_for }) =

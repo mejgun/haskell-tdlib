@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data RegisterUser
 
+instance Eq RegisterUser
+
 instance ToJSON RegisterUser
 
 instance FromJSON RegisterUser

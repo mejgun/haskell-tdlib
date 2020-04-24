@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetBankCardInfo = 
- GetBankCardInfo { bank_card_number :: Maybe String }  deriving (Show)
+ GetBankCardInfo { bank_card_number :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetBankCardInfo where
  toJSON (GetBankCardInfo { bank_card_number = bank_card_number }) =

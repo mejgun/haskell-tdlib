@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetSupergroupUsername = 
- SetSupergroupUsername { username :: Maybe String, supergroup_id :: Maybe Int }  deriving (Show)
+ SetSupergroupUsername { username :: Maybe String, supergroup_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetSupergroupUsername where
  toJSON (SetSupergroupUsername { username = username, supergroup_id = supergroup_id }) =

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data RequestAuthenticationPasswordRecovery = 
- RequestAuthenticationPasswordRecovery deriving (Show)
+ RequestAuthenticationPasswordRecovery deriving (Show, Eq)
 
 instance T.ToJSON RequestAuthenticationPasswordRecovery where
  toJSON (RequestAuthenticationPasswordRecovery {  }) =

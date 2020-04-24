@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data BankCardActionOpenUrl = 
- BankCardActionOpenUrl { url :: Maybe String, text :: Maybe String }  deriving (Show)
+ BankCardActionOpenUrl { url :: Maybe String, text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON BankCardActionOpenUrl where
  toJSON (BankCardActionOpenUrl { url = url, text = text }) =

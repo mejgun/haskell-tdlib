@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetAccountTtl
 
+instance Eq SetAccountTtl
+
 instance ToJSON SetAccountTtl
 
 instance FromJSON SetAccountTtl

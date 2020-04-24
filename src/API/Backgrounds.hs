@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Background as Background
 
 data Backgrounds = 
- Backgrounds { backgrounds :: Maybe [Background.Background] }  deriving (Show)
+ Backgrounds { backgrounds :: Maybe [Background.Background] }  deriving (Show, Eq)
 
 instance T.ToJSON Backgrounds where
  toJSON (Backgrounds { backgrounds = backgrounds }) =

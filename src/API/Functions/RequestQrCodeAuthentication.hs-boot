@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data RequestQrCodeAuthentication
 
+instance Eq RequestQrCodeAuthentication
+
 instance ToJSON RequestQrCodeAuthentication
 
 instance FromJSON RequestQrCodeAuthentication

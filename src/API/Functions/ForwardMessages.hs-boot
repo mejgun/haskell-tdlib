@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ForwardMessages
 
+instance Eq ForwardMessages
+
 instance ToJSON ForwardMessages
 
 instance FromJSON ForwardMessages

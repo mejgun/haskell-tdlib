@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 
 data MessageSendingState = 
  MessageSendingStatePending 
- | MessageSendingStateFailed { retry_after :: Maybe Float, can_retry :: Maybe Bool, error_message :: Maybe String, error_code :: Maybe Int }  deriving (Show)
+ | MessageSendingStateFailed { retry_after :: Maybe Float, can_retry :: Maybe Bool, error_message :: Maybe String, error_code :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON MessageSendingState where
  toJSON (MessageSendingStatePending {  }) =

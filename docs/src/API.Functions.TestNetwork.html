@@ -7,7 +7,7 @@
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
 </span><span id="line-8"></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="TestNetwork"><span class="annot"><a href="API.Functions.TestNetwork.html#TestNetwork"><span class="hs-identifier hs-var">TestNetwork</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-10"></span><span> </span><span id="TestNetwork"><span class="annot"><a href="API.Functions.TestNetwork.html#TestNetwork"><span class="hs-identifier hs-var">TestNetwork</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679398010"><span id="local-6989586621679398012"><span id="local-6989586621679398014"><span class="annot"><span class="annottext">Int -&gt; TestNetwork -&gt; ShowS
+</span><span id="line-10"></span><span> </span><span id="TestNetwork"><span class="annot"><a href="API.Functions.TestNetwork.html#TestNetwork"><span class="hs-identifier hs-var">TestNetwork</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679429068"><span id="local-6989586621679429070"><span id="local-6989586621679429072"><span class="annot"><span class="annottext">Int -&gt; TestNetwork -&gt; ShowS
 [TestNetwork] -&gt; ShowS
 TestNetwork -&gt; String
 (Int -&gt; TestNetwork -&gt; ShowS)
@@ -22,10 +22,18 @@ show :: TestNetwork -&gt; String
 $cshow :: TestNetwork -&gt; String
 showsPrec :: Int -&gt; TestNetwork -&gt; ShowS
 $cshowsPrec :: Int -&gt; TestNetwork -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679429063"><span id="local-6989586621679429065"><span class="annot"><span class="annottext">TestNetwork -&gt; TestNetwork -&gt; Bool
+(TestNetwork -&gt; TestNetwork -&gt; Bool)
+-&gt; (TestNetwork -&gt; TestNetwork -&gt; Bool) -&gt; Eq TestNetwork
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: TestNetwork -&gt; TestNetwork -&gt; Bool
+$c/= :: TestNetwork -&gt; TestNetwork -&gt; Bool
+== :: TestNetwork -&gt; TestNetwork -&gt; Bool
+$c== :: TestNetwork -&gt; TestNetwork -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679398002"><span id="local-6989586621679398004"><span id="local-6989586621679398006"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestNetwork.html#TestNetwork"><span class="hs-identifier hs-type">TestNetwork</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679398000"><span class="annot"><span class="annottext">toJSON :: TestNetwork -&gt; Value
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679429055"><span id="local-6989586621679429057"><span id="local-6989586621679429059"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestNetwork.html#TestNetwork"><span class="hs-identifier hs-type">TestNetwork</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679429053"><span class="annot"><span class="annottext">toJSON :: TestNetwork -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.TestNetwork.html#TestNetwork"><span class="hs-identifier hs-type">TestNetwork</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -33,35 +41,35 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;testNetwork&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679397993"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestNetwork.html#TestNetwork"><span class="hs-identifier hs-type">TestNetwork</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679397991"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TestNetwork
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679397989"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679397989"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679397987"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679397987"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679397986"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679397986"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679397987"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679429046"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestNetwork.html#TestNetwork"><span class="hs-identifier hs-type">TestNetwork</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679429044"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TestNetwork
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679429042"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679429042"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679429040"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679429040"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679429039"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679429039"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679429040"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679397986"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679429039"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;testNetwork&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TestNetwork
-</span><a href="#local-6989586621679397984"><span class="hs-identifier hs-var">parseTestNetwork</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679397989"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679429037"><span class="hs-identifier hs-var">parseTestNetwork</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679429042"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TestNetwork
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679397984"><span class="hs-identifier hs-type">parseTestNetwork</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.TestNetwork.html#TestNetwork"><span class="hs-identifier hs-type">TestNetwork</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679397984"><span class="annot"><span class="annottext">parseTestNetwork :: Value -&gt; Parser TestNetwork
-</span><a href="#local-6989586621679397984"><span class="hs-identifier hs-var hs-var">parseTestNetwork</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679429037"><span class="hs-identifier hs-type">parseTestNetwork</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.TestNetwork.html#TestNetwork"><span class="hs-identifier hs-type">TestNetwork</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679429037"><span class="annot"><span class="annottext">parseTestNetwork :: Value -&gt; Parser TestNetwork
+</span><a href="#local-6989586621679429037"><span class="hs-identifier hs-var hs-var">parseTestNetwork</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TestNetwork) -&gt; Value -&gt; Parser TestNetwork
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;TestNetwork&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser TestNetwork) -&gt; Value -&gt; Parser TestNetwork)
 -&gt; (Object -&gt; Parser TestNetwork) -&gt; Value -&gt; Parser TestNetwork
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679397982"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679397982"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679429035"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679429035"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-25"></span><span>    </span><span class="annot"><span class="annottext">TestNetwork -&gt; Parser TestNetwork
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TestNetwork -&gt; Parser TestNetwork)

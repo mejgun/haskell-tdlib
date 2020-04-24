@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CheckChatInviteLink = 
- CheckChatInviteLink { invite_link :: Maybe String }  deriving (Show)
+ CheckChatInviteLink { invite_link :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CheckChatInviteLink where
  toJSON (CheckChatInviteLink { invite_link = invite_link }) =

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
 data ParseMarkdown = 
- ParseMarkdown { text :: Maybe FormattedText.FormattedText }  deriving (Show)
+ ParseMarkdown { text :: Maybe FormattedText.FormattedText }  deriving (Show, Eq)
 
 instance T.ToJSON ParseMarkdown where
  toJSON (ParseMarkdown { text = text }) =

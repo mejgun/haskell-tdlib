@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ResetNetworkStatistics = 
- ResetNetworkStatistics deriving (Show)
+ ResetNetworkStatistics deriving (Show, Eq)
 
 instance T.ToJSON ResetNetworkStatistics where
  toJSON (ResetNetworkStatistics {  }) =

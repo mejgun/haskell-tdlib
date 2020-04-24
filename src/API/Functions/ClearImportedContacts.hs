@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ClearImportedContacts = 
- ClearImportedContacts deriving (Show)
+ ClearImportedContacts deriving (Show, Eq)
 
 instance T.ToJSON ClearImportedContacts where
  toJSON (ClearImportedContacts {  }) =

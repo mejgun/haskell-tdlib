@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetProxyLink
 
+instance Eq GetProxyLink
+
 instance ToJSON GetProxyLink
 
 instance FromJSON GetProxyLink

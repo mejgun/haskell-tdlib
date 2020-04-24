@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ReadFilePart
 
+instance Eq ReadFilePart
+
 instance ToJSON ReadFilePart
 
 instance FromJSON ReadFilePart

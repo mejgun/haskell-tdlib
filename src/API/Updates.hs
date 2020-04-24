@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Update as Update
 
 data Updates = 
- Updates { updates :: Maybe [Update.Update] }  deriving (Show)
+ Updates { updates :: Maybe [Update.Update] }  deriving (Show, Eq)
 
 instance T.ToJSON Updates where
  toJSON (Updates { updates = updates }) =

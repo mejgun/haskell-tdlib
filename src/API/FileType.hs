@@ -22,7 +22,7 @@ data FileType =
  | FileTypeVideo 
  | FileTypeVideoNote 
  | FileTypeVoiceNote 
- | FileTypeWallpaper deriving (Show)
+ | FileTypeWallpaper deriving (Show, Eq)
 
 instance T.ToJSON FileType where
  toJSON (FileTypeNone {  }) =

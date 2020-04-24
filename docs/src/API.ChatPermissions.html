@@ -15,7 +15,7 @@
 </span><a href="API.ChatPermissions.html#can_send_other_messages"><span class="hs-identifier hs-var hs-var">can_send_other_messages</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="can_send_polls"><span class="annot"><span class="annottext">ChatPermissions -&gt; Maybe Bool
 </span><a href="API.ChatPermissions.html#can_send_polls"><span class="hs-identifier hs-var hs-var">can_send_polls</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="can_send_media_messages"><span class="annot"><span class="annottext">ChatPermissions -&gt; Maybe Bool
 </span><a href="API.ChatPermissions.html#can_send_media_messages"><span class="hs-identifier hs-var hs-var">can_send_media_messages</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="can_send_messages"><span class="annot"><span class="annottext">ChatPermissions -&gt; Maybe Bool
-</span><a href="API.ChatPermissions.html#can_send_messages"><span class="hs-identifier hs-var hs-var">can_send_messages</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679376674"><span id="local-6989586621679376676"><span id="local-6989586621679376678"><span class="annot"><span class="annottext">Int -&gt; ChatPermissions -&gt; ShowS
+</span><a href="API.ChatPermissions.html#can_send_messages"><span class="hs-identifier hs-var hs-var">can_send_messages</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679405907"><span id="local-6989586621679405909"><span id="local-6989586621679405911"><span class="annot"><span class="annottext">Int -&gt; ChatPermissions -&gt; ShowS
 [ChatPermissions] -&gt; ShowS
 ChatPermissions -&gt; String
 (Int -&gt; ChatPermissions -&gt; ShowS)
@@ -30,27 +30,36 @@ show :: ChatPermissions -&gt; String
 $cshow :: ChatPermissions -&gt; String
 showsPrec :: Int -&gt; ChatPermissions -&gt; ShowS
 $cshowsPrec :: Int -&gt; ChatPermissions -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679405902"><span id="local-6989586621679405904"><span class="annot"><span class="annottext">ChatPermissions -&gt; ChatPermissions -&gt; Bool
+(ChatPermissions -&gt; ChatPermissions -&gt; Bool)
+-&gt; (ChatPermissions -&gt; ChatPermissions -&gt; Bool)
+-&gt; Eq ChatPermissions
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: ChatPermissions -&gt; ChatPermissions -&gt; Bool
+$c/= :: ChatPermissions -&gt; ChatPermissions -&gt; Bool
+== :: ChatPermissions -&gt; ChatPermissions -&gt; Bool
+$c== :: ChatPermissions -&gt; ChatPermissions -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679376666"><span id="local-6989586621679376668"><span id="local-6989586621679376670"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ChatPermissions.html#ChatPermissions"><span class="hs-identifier hs-type">ChatPermissions</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679376664"><span class="annot"><span class="annottext">toJSON :: ChatPermissions -&gt; Value
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405894"><span id="local-6989586621679405896"><span id="local-6989586621679405898"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ChatPermissions.html#ChatPermissions"><span class="hs-identifier hs-type">ChatPermissions</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679405892"><span class="annot"><span class="annottext">toJSON :: ChatPermissions -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.ChatPermissions.html#ChatPermissions"><span class="hs-identifier hs-type">ChatPermissions</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">can_pin_messages :: ChatPermissions -&gt; Maybe Bool
-</span><a href="API.ChatPermissions.html#can_pin_messages"><span class="hs-identifier hs-var">can_pin_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679376662"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376662"><span class="hs-identifier hs-var">can_pin_messages</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_invite_users :: ChatPermissions -&gt; Maybe Bool
-</span><a href="API.ChatPermissions.html#can_invite_users"><span class="hs-identifier hs-var">can_invite_users</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679376661"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376661"><span class="hs-identifier hs-var">can_invite_users</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_change_info :: ChatPermissions -&gt; Maybe Bool
-</span><a href="API.ChatPermissions.html#can_change_info"><span class="hs-identifier hs-var">can_change_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679376660"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376660"><span class="hs-identifier hs-var">can_change_info</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_add_web_page_previews :: ChatPermissions -&gt; Maybe Bool
-</span><a href="API.ChatPermissions.html#can_add_web_page_previews"><span class="hs-identifier hs-var">can_add_web_page_previews</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679376659"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376659"><span class="hs-identifier hs-var">can_add_web_page_previews</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_send_other_messages :: ChatPermissions -&gt; Maybe Bool
-</span><a href="API.ChatPermissions.html#can_send_other_messages"><span class="hs-identifier hs-var">can_send_other_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679376658"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376658"><span class="hs-identifier hs-var">can_send_other_messages</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_send_polls :: ChatPermissions -&gt; Maybe Bool
-</span><a href="API.ChatPermissions.html#can_send_polls"><span class="hs-identifier hs-var">can_send_polls</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679376657"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376657"><span class="hs-identifier hs-var">can_send_polls</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_send_media_messages :: ChatPermissions -&gt; Maybe Bool
-</span><a href="API.ChatPermissions.html#can_send_media_messages"><span class="hs-identifier hs-var">can_send_media_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679376656"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376656"><span class="hs-identifier hs-var">can_send_media_messages</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_send_messages :: ChatPermissions -&gt; Maybe Bool
-</span><a href="API.ChatPermissions.html#can_send_messages"><span class="hs-identifier hs-var">can_send_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679376655"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376655"><span class="hs-identifier hs-var">can_send_messages</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.ChatPermissions.html#can_pin_messages"><span class="hs-identifier hs-var">can_pin_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405890"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679405890"><span class="hs-identifier hs-var">can_pin_messages</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_invite_users :: ChatPermissions -&gt; Maybe Bool
+</span><a href="API.ChatPermissions.html#can_invite_users"><span class="hs-identifier hs-var">can_invite_users</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405889"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679405889"><span class="hs-identifier hs-var">can_invite_users</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_change_info :: ChatPermissions -&gt; Maybe Bool
+</span><a href="API.ChatPermissions.html#can_change_info"><span class="hs-identifier hs-var">can_change_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405888"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679405888"><span class="hs-identifier hs-var">can_change_info</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_add_web_page_previews :: ChatPermissions -&gt; Maybe Bool
+</span><a href="API.ChatPermissions.html#can_add_web_page_previews"><span class="hs-identifier hs-var">can_add_web_page_previews</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405887"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679405887"><span class="hs-identifier hs-var">can_add_web_page_previews</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_send_other_messages :: ChatPermissions -&gt; Maybe Bool
+</span><a href="API.ChatPermissions.html#can_send_other_messages"><span class="hs-identifier hs-var">can_send_other_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405886"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679405886"><span class="hs-identifier hs-var">can_send_other_messages</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_send_polls :: ChatPermissions -&gt; Maybe Bool
+</span><a href="API.ChatPermissions.html#can_send_polls"><span class="hs-identifier hs-var">can_send_polls</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405885"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679405885"><span class="hs-identifier hs-var">can_send_polls</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_send_media_messages :: ChatPermissions -&gt; Maybe Bool
+</span><a href="API.ChatPermissions.html#can_send_media_messages"><span class="hs-identifier hs-var">can_send_media_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405884"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679405884"><span class="hs-identifier hs-var">can_send_media_messages</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_send_messages :: ChatPermissions -&gt; Maybe Bool
+</span><a href="API.ChatPermissions.html#can_send_messages"><span class="hs-identifier hs-var">can_send_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405883"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679405883"><span class="hs-identifier hs-var">can_send_messages</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -58,51 +67,51 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chatPermissions&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_pin_messages&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376662"><span class="hs-identifier hs-var">can_pin_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_invite_users&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679405890"><span class="hs-identifier hs-var">can_pin_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_invite_users&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376661"><span class="hs-identifier hs-var">can_invite_users</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_change_info&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679405889"><span class="hs-identifier hs-var">can_invite_users</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_change_info&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376660"><span class="hs-identifier hs-var">can_change_info</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_add_web_page_previews&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679405888"><span class="hs-identifier hs-var">can_change_info</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_add_web_page_previews&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376659"><span class="hs-identifier hs-var">can_add_web_page_previews</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_send_other_messages&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679405887"><span class="hs-identifier hs-var">can_add_web_page_previews</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_send_other_messages&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376658"><span class="hs-identifier hs-var">can_send_other_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_send_polls&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679405886"><span class="hs-identifier hs-var">can_send_other_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_send_polls&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376657"><span class="hs-identifier hs-var">can_send_polls</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_send_media_messages&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679405885"><span class="hs-identifier hs-var">can_send_polls</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_send_media_messages&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376656"><span class="hs-identifier hs-var">can_send_media_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_send_messages&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679405884"><span class="hs-identifier hs-var">can_send_media_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;can_send_messages&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376655"><span class="hs-identifier hs-var">can_send_messages</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679405883"><span class="hs-identifier hs-var">can_send_messages</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679376649"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ChatPermissions.html#ChatPermissions"><span class="hs-identifier hs-type">ChatPermissions</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679376647"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatPermissions
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679376645"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679376645"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679376643"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679376643"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679376642"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679376642"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679376643"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405877"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ChatPermissions.html#ChatPermissions"><span class="hs-identifier hs-type">ChatPermissions</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679405875"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatPermissions
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679405873"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679405873"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679405871"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679405871"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679405870"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679405870"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679405871"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679376642"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679405870"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;chatPermissions&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatPermissions
-</span><a href="#local-6989586621679376640"><span class="hs-identifier hs-var">parseChatPermissions</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679376645"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679405868"><span class="hs-identifier hs-var">parseChatPermissions</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679405873"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ChatPermissions
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679376640"><span class="hs-identifier hs-type">parseChatPermissions</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatPermissions.html#ChatPermissions"><span class="hs-identifier hs-type">ChatPermissions</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679376640"><span class="annot"><span class="annottext">parseChatPermissions :: Value -&gt; Parser ChatPermissions
-</span><a href="#local-6989586621679376640"><span class="hs-identifier hs-var hs-var">parseChatPermissions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679405868"><span class="hs-identifier hs-type">parseChatPermissions</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatPermissions.html#ChatPermissions"><span class="hs-identifier hs-type">ChatPermissions</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679405868"><span class="annot"><span class="annottext">parseChatPermissions :: Value -&gt; Parser ChatPermissions
+</span><a href="#local-6989586621679405868"><span class="hs-identifier hs-var hs-var">parseChatPermissions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatPermissions)
 -&gt; Value
 -&gt; Parser ChatPermissions
@@ -113,86 +122,86 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ChatPermissions
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679376638"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679376638"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679376637"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376637"><span class="hs-identifier hs-var">can_pin_messages</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679405866"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679405866"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679405865"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679405865"><span class="hs-identifier hs-var">can_pin_messages</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
 -&gt; Parser Bool -&gt; Parser (Maybe Bool)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679376638"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><a href="#local-6989586621679405866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_pin_messages&quot;</span></span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679376636"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376636"><span class="hs-identifier hs-var">can_invite_users</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679405864"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679405864"><span class="hs-identifier hs-var">can_invite_users</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
 -&gt; Parser Bool -&gt; Parser (Maybe Bool)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679376638"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><a href="#local-6989586621679405866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_invite_users&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679376635"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376635"><span class="hs-identifier hs-var">can_change_info</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679405863"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679405863"><span class="hs-identifier hs-var">can_change_info</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
 -&gt; Parser Bool -&gt; Parser (Maybe Bool)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679376638"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><a href="#local-6989586621679405866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_change_info&quot;</span></span><span>
-</span><span id="line-28"></span><span>    </span><span id="local-6989586621679376634"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376634"><span class="hs-identifier hs-var">can_add_web_page_previews</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+</span><span id="line-28"></span><span>    </span><span id="local-6989586621679405862"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679405862"><span class="hs-identifier hs-var">can_add_web_page_previews</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
 -&gt; Parser Bool -&gt; Parser (Maybe Bool)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679376638"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><a href="#local-6989586621679405866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_add_web_page_previews&quot;</span></span><span>
-</span><span id="line-29"></span><span>    </span><span id="local-6989586621679376633"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376633"><span class="hs-identifier hs-var">can_send_other_messages</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+</span><span id="line-29"></span><span>    </span><span id="local-6989586621679405861"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679405861"><span class="hs-identifier hs-var">can_send_other_messages</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
 -&gt; Parser Bool -&gt; Parser (Maybe Bool)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679376638"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><a href="#local-6989586621679405866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_send_other_messages&quot;</span></span><span>
-</span><span id="line-30"></span><span>    </span><span id="local-6989586621679376632"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376632"><span class="hs-identifier hs-var">can_send_polls</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+</span><span id="line-30"></span><span>    </span><span id="local-6989586621679405860"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679405860"><span class="hs-identifier hs-var">can_send_polls</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
 -&gt; Parser Bool -&gt; Parser (Maybe Bool)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679376638"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><a href="#local-6989586621679405866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_send_polls&quot;</span></span><span>
-</span><span id="line-31"></span><span>    </span><span id="local-6989586621679376631"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376631"><span class="hs-identifier hs-var">can_send_media_messages</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+</span><span id="line-31"></span><span>    </span><span id="local-6989586621679405859"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679405859"><span class="hs-identifier hs-var">can_send_media_messages</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
 -&gt; Parser Bool -&gt; Parser (Maybe Bool)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679376638"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><a href="#local-6989586621679405866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_send_media_messages&quot;</span></span><span>
-</span><span id="line-32"></span><span>    </span><span id="local-6989586621679376630"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376630"><span class="hs-identifier hs-var">can_send_messages</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+</span><span id="line-32"></span><span>    </span><span id="local-6989586621679405858"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679405858"><span class="hs-identifier hs-var">can_send_messages</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
 -&gt; Parser Bool -&gt; Parser (Maybe Bool)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679376638"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><a href="#local-6989586621679405866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;can_send_messages&quot;</span></span><span>
 </span><span id="line-33"></span><span>    </span><span class="annot"><span class="annottext">ChatPermissions -&gt; Parser ChatPermissions
@@ -211,18 +220,18 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; ChatPermissions
 </span><a href="API.ChatPermissions.html#ChatPermissions"><span class="hs-identifier hs-type hs-type">ChatPermissions</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">can_pin_messages :: Maybe Bool
 </span><a href="API.ChatPermissions.html#can_pin_messages"><span class="hs-identifier hs-var">can_pin_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376637"><span class="hs-identifier hs-var">can_pin_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_invite_users :: Maybe Bool
+</span><a href="#local-6989586621679405865"><span class="hs-identifier hs-var">can_pin_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_invite_users :: Maybe Bool
 </span><a href="API.ChatPermissions.html#can_invite_users"><span class="hs-identifier hs-var">can_invite_users</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376636"><span class="hs-identifier hs-var">can_invite_users</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_change_info :: Maybe Bool
+</span><a href="#local-6989586621679405864"><span class="hs-identifier hs-var">can_invite_users</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_change_info :: Maybe Bool
 </span><a href="API.ChatPermissions.html#can_change_info"><span class="hs-identifier hs-var">can_change_info</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376635"><span class="hs-identifier hs-var">can_change_info</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_add_web_page_previews :: Maybe Bool
+</span><a href="#local-6989586621679405863"><span class="hs-identifier hs-var">can_change_info</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_add_web_page_previews :: Maybe Bool
 </span><a href="API.ChatPermissions.html#can_add_web_page_previews"><span class="hs-identifier hs-var">can_add_web_page_previews</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376634"><span class="hs-identifier hs-var">can_add_web_page_previews</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_send_other_messages :: Maybe Bool
+</span><a href="#local-6989586621679405862"><span class="hs-identifier hs-var">can_add_web_page_previews</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_send_other_messages :: Maybe Bool
 </span><a href="API.ChatPermissions.html#can_send_other_messages"><span class="hs-identifier hs-var">can_send_other_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376633"><span class="hs-identifier hs-var">can_send_other_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_send_polls :: Maybe Bool
+</span><a href="#local-6989586621679405861"><span class="hs-identifier hs-var">can_send_other_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_send_polls :: Maybe Bool
 </span><a href="API.ChatPermissions.html#can_send_polls"><span class="hs-identifier hs-var">can_send_polls</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376632"><span class="hs-identifier hs-var">can_send_polls</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_send_media_messages :: Maybe Bool
+</span><a href="#local-6989586621679405860"><span class="hs-identifier hs-var">can_send_polls</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_send_media_messages :: Maybe Bool
 </span><a href="API.ChatPermissions.html#can_send_media_messages"><span class="hs-identifier hs-var">can_send_media_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376631"><span class="hs-identifier hs-var">can_send_media_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_send_messages :: Maybe Bool
+</span><a href="#local-6989586621679405859"><span class="hs-identifier hs-var">can_send_media_messages</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">can_send_messages :: Maybe Bool
 </span><a href="API.ChatPermissions.html#can_send_messages"><span class="hs-identifier hs-var">can_send_messages</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679376630"><span class="hs-identifier hs-var">can_send_messages</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679405858"><span class="hs-identifier hs-var">can_send_messages</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

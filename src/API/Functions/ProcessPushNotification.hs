@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ProcessPushNotification = 
- ProcessPushNotification { payload :: Maybe String }  deriving (Show)
+ ProcessPushNotification { payload :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON ProcessPushNotification where
  toJSON (ProcessPushNotification { payload = payload }) =

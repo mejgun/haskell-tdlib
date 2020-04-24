@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data Updates
 
+instance Eq Updates
+
 instance ToJSON Updates
 
 instance FromJSON Updates

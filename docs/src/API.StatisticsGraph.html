@@ -13,7 +13,7 @@
 </span><span id="line-11"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="StatisticsGraphAsync"><span class="annot"><a href="API.StatisticsGraph.html#StatisticsGraphAsync"><span class="hs-identifier hs-var">StatisticsGraphAsync</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="token"><span class="annot"><span class="annottext">StatisticsGraph -&gt; Maybe String
 </span><a href="API.StatisticsGraph.html#token"><span class="hs-identifier hs-var hs-var">token</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
 </span><span id="line-12"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="StatisticsGraphError"><span class="annot"><a href="API.StatisticsGraph.html#StatisticsGraphError"><span class="hs-identifier hs-var">StatisticsGraphError</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="error_message"><span class="annot"><span class="annottext">StatisticsGraph -&gt; Maybe String
-</span><a href="API.StatisticsGraph.html#error_message"><span class="hs-identifier hs-var hs-var">error_message</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679414463"><span id="local-6989586621679414465"><span id="local-6989586621679414467"><span class="annot"><span class="annottext">Int -&gt; StatisticsGraph -&gt; ShowS
+</span><a href="API.StatisticsGraph.html#error_message"><span class="hs-identifier hs-var hs-var">error_message</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679446753"><span id="local-6989586621679446755"><span id="local-6989586621679446757"><span class="annot"><span class="annottext">Int -&gt; StatisticsGraph -&gt; ShowS
 [StatisticsGraph] -&gt; ShowS
 StatisticsGraph -&gt; String
 (Int -&gt; StatisticsGraph -&gt; ShowS)
@@ -28,15 +28,24 @@ show :: StatisticsGraph -&gt; String
 $cshow :: StatisticsGraph -&gt; String
 showsPrec :: Int -&gt; StatisticsGraph -&gt; ShowS
 $cshowsPrec :: Int -&gt; StatisticsGraph -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679446748"><span id="local-6989586621679446750"><span class="annot"><span class="annottext">StatisticsGraph -&gt; StatisticsGraph -&gt; Bool
+(StatisticsGraph -&gt; StatisticsGraph -&gt; Bool)
+-&gt; (StatisticsGraph -&gt; StatisticsGraph -&gt; Bool)
+-&gt; Eq StatisticsGraph
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: StatisticsGraph -&gt; StatisticsGraph -&gt; Bool
+$c/= :: StatisticsGraph -&gt; StatisticsGraph -&gt; Bool
+== :: StatisticsGraph -&gt; StatisticsGraph -&gt; Bool
+$c== :: StatisticsGraph -&gt; StatisticsGraph -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-13"></span><span>
-</span><span id="line-14"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414455"><span id="local-6989586621679414457"><span id="local-6989586621679414459"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.StatisticsGraph.html#StatisticsGraph"><span class="hs-identifier hs-type">StatisticsGraph</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-15"></span><span> </span><span id="local-6989586621679414453"><span class="annot"><span class="annottext">toJSON :: StatisticsGraph -&gt; Value
+</span><span id="line-14"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446740"><span id="local-6989586621679446742"><span id="local-6989586621679446744"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.StatisticsGraph.html#StatisticsGraph"><span class="hs-identifier hs-type">StatisticsGraph</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-15"></span><span> </span><span id="local-6989586621679446738"><span class="annot"><span class="annottext">toJSON :: StatisticsGraph -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.StatisticsGraph.html#StatisticsGraphData"><span class="hs-identifier hs-type">StatisticsGraphData</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">zoom_token :: StatisticsGraph -&gt; Maybe String
-</span><a href="API.StatisticsGraph.html#zoom_token"><span class="hs-identifier hs-var">zoom_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414451"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414451"><span class="hs-identifier hs-var">zoom_token</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">json_data :: StatisticsGraph -&gt; Maybe String
-</span><a href="API.StatisticsGraph.html#json_data"><span class="hs-identifier hs-var">json_data</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414450"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414450"><span class="hs-identifier hs-var">json_data</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.StatisticsGraph.html#zoom_token"><span class="hs-identifier hs-var">zoom_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446736"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679446736"><span class="hs-identifier hs-var">zoom_token</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">json_data :: StatisticsGraph -&gt; Maybe String
+</span><a href="API.StatisticsGraph.html#json_data"><span class="hs-identifier hs-var">json_data</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446735"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679446735"><span class="hs-identifier hs-var">json_data</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-16"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -44,14 +53,14 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;statisticsGraphData&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;zoom_token&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414451"><span class="hs-identifier hs-var">zoom_token</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;json_data&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679446736"><span class="hs-identifier hs-var">zoom_token</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;json_data&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414450"><span class="hs-identifier hs-var">json_data</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679446735"><span class="hs-identifier hs-var">json_data</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-17"></span><span>
 </span><span id="line-18"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.StatisticsGraph.html#StatisticsGraphAsync"><span class="hs-identifier hs-type">StatisticsGraphAsync</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">token :: StatisticsGraph -&gt; Maybe String
-</span><a href="API.StatisticsGraph.html#token"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414446"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414446"><span class="hs-identifier hs-var">token</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.StatisticsGraph.html#token"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446731"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679446731"><span class="hs-identifier hs-var">token</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-19"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -59,11 +68,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;statisticsGraphAsync&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;token&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414446"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679446731"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-20"></span><span>
 </span><span id="line-21"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.StatisticsGraph.html#StatisticsGraphError"><span class="hs-identifier hs-type">StatisticsGraphError</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">error_message :: StatisticsGraph -&gt; Maybe String
-</span><a href="API.StatisticsGraph.html#error_message"><span class="hs-identifier hs-var">error_message</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414445"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414445"><span class="hs-identifier hs-var">error_message</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.StatisticsGraph.html#error_message"><span class="hs-identifier hs-var">error_message</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446730"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679446730"><span class="hs-identifier hs-var">error_message</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-22"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -71,36 +80,36 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;statisticsGraphError&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;error_message&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414445"><span class="hs-identifier hs-var">error_message</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679446730"><span class="hs-identifier hs-var">error_message</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414442"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.StatisticsGraph.html#StatisticsGraph"><span class="hs-identifier hs-type">StatisticsGraph</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span> </span><span id="local-6989586621679414440"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser StatisticsGraph
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679414438"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679414438"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679414436"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679414436"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>  </span><span id="local-6989586621679414435"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679414435"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679414436"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446727"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.StatisticsGraph.html#StatisticsGraph"><span class="hs-identifier hs-type">StatisticsGraph</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span> </span><span id="local-6989586621679446725"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser StatisticsGraph
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679446723"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679446723"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679446721"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679446721"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679446720"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679446720"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446721"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-27"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679414435"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679446720"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-28"></span><span>   </span><span class="hs-string">&quot;statisticsGraphData&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser StatisticsGraph
-</span><a href="#local-6989586621679414433"><span class="hs-identifier hs-var">parseStatisticsGraphData</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679414438"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679446718"><span class="hs-identifier hs-var">parseStatisticsGraphData</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679446723"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-29"></span><span>   </span><span class="hs-string">&quot;statisticsGraphAsync&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser StatisticsGraph
-</span><a href="#local-6989586621679414432"><span class="hs-identifier hs-var">parseStatisticsGraphAsync</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679414438"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679446717"><span class="hs-identifier hs-var">parseStatisticsGraphAsync</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679446723"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-30"></span><span>   </span><span class="hs-string">&quot;statisticsGraphError&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser StatisticsGraph
-</span><a href="#local-6989586621679414431"><span class="hs-identifier hs-var">parseStatisticsGraphError</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679414438"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679446716"><span class="hs-identifier hs-var">parseStatisticsGraphError</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679446723"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-31"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser StatisticsGraph
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-32"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>   </span><span class="annot"><a href="#local-6989586621679414433"><span class="hs-identifier hs-type">parseStatisticsGraphData</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.StatisticsGraph.html#StatisticsGraph"><span class="hs-identifier hs-type">StatisticsGraph</span></a></span><span>
-</span><span id="line-34"></span><span>   </span><span id="local-6989586621679414433"><span class="annot"><span class="annottext">parseStatisticsGraphData :: Value -&gt; Parser StatisticsGraph
-</span><a href="#local-6989586621679414433"><span class="hs-identifier hs-var hs-var">parseStatisticsGraphData</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-33"></span><span>   </span><span class="annot"><a href="#local-6989586621679446718"><span class="hs-identifier hs-type">parseStatisticsGraphData</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.StatisticsGraph.html#StatisticsGraph"><span class="hs-identifier hs-type">StatisticsGraph</span></a></span><span>
+</span><span id="line-34"></span><span>   </span><span id="local-6989586621679446718"><span class="annot"><span class="annottext">parseStatisticsGraphData :: Value -&gt; Parser StatisticsGraph
+</span><a href="#local-6989586621679446718"><span class="hs-identifier hs-var hs-var">parseStatisticsGraphData</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser StatisticsGraph)
 -&gt; Value
 -&gt; Parser StatisticsGraph
@@ -111,26 +120,26 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser StatisticsGraph
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679414429"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679414429"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-35"></span><span>    </span><span id="local-6989586621679414428"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414428"><span class="hs-identifier hs-var">zoom_token</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679446714"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679446714"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-35"></span><span>    </span><span id="local-6989586621679446713"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679446713"><span class="hs-identifier hs-var">zoom_token</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679414429"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679446714"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;zoom_token&quot;</span></span><span>
-</span><span id="line-36"></span><span>    </span><span id="local-6989586621679414427"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414427"><span class="hs-identifier hs-var">json_data</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span id="line-36"></span><span>    </span><span id="local-6989586621679446712"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679446712"><span class="hs-identifier hs-var">json_data</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679414429"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679446714"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;json_data&quot;</span></span><span>
 </span><span id="line-37"></span><span>    </span><span class="annot"><span class="annottext">StatisticsGraph -&gt; Parser StatisticsGraph
@@ -141,13 +150,13 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">StatisticsGraphData :: Maybe String -&gt; Maybe String -&gt; StatisticsGraph
 </span><a href="API.StatisticsGraph.html#StatisticsGraphData"><span class="hs-identifier hs-type hs-type">StatisticsGraphData</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">zoom_token :: Maybe String
 </span><a href="API.StatisticsGraph.html#zoom_token"><span class="hs-identifier hs-var">zoom_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414428"><span class="hs-identifier hs-var">zoom_token</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">json_data :: Maybe String
+</span><a href="#local-6989586621679446713"><span class="hs-identifier hs-var">zoom_token</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">json_data :: Maybe String
 </span><a href="API.StatisticsGraph.html#json_data"><span class="hs-identifier hs-var">json_data</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414427"><span class="hs-identifier hs-var">json_data</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679446712"><span class="hs-identifier hs-var">json_data</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-38"></span><span>
-</span><span id="line-39"></span><span>   </span><span class="annot"><a href="#local-6989586621679414432"><span class="hs-identifier hs-type">parseStatisticsGraphAsync</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.StatisticsGraph.html#StatisticsGraph"><span class="hs-identifier hs-type">StatisticsGraph</span></a></span><span>
-</span><span id="line-40"></span><span>   </span><span id="local-6989586621679414432"><span class="annot"><span class="annottext">parseStatisticsGraphAsync :: Value -&gt; Parser StatisticsGraph
-</span><a href="#local-6989586621679414432"><span class="hs-identifier hs-var hs-var">parseStatisticsGraphAsync</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-39"></span><span>   </span><span class="annot"><a href="#local-6989586621679446717"><span class="hs-identifier hs-type">parseStatisticsGraphAsync</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.StatisticsGraph.html#StatisticsGraph"><span class="hs-identifier hs-type">StatisticsGraph</span></a></span><span>
+</span><span id="line-40"></span><span>   </span><span id="local-6989586621679446717"><span class="annot"><span class="annottext">parseStatisticsGraphAsync :: Value -&gt; Parser StatisticsGraph
+</span><a href="#local-6989586621679446717"><span class="hs-identifier hs-var hs-var">parseStatisticsGraphAsync</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser StatisticsGraph)
 -&gt; Value
 -&gt; Parser StatisticsGraph
@@ -158,16 +167,16 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser StatisticsGraph
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679414425"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679414425"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-41"></span><span>    </span><span id="local-6989586621679414424"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414424"><span class="hs-identifier hs-var">token</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679446710"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679446710"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-41"></span><span>    </span><span id="local-6989586621679446709"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679446709"><span class="hs-identifier hs-var">token</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679414425"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679446710"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;token&quot;</span></span><span>
 </span><span id="line-42"></span><span>    </span><span class="annot"><span class="annottext">StatisticsGraph -&gt; Parser StatisticsGraph
@@ -178,11 +187,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">StatisticsGraphAsync :: Maybe String -&gt; StatisticsGraph
 </span><a href="API.StatisticsGraph.html#StatisticsGraphAsync"><span class="hs-identifier hs-type hs-type">StatisticsGraphAsync</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">token :: Maybe String
 </span><a href="API.StatisticsGraph.html#token"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414424"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679446709"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-43"></span><span>
-</span><span id="line-44"></span><span>   </span><span class="annot"><a href="#local-6989586621679414431"><span class="hs-identifier hs-type">parseStatisticsGraphError</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.StatisticsGraph.html#StatisticsGraph"><span class="hs-identifier hs-type">StatisticsGraph</span></a></span><span>
-</span><span id="line-45"></span><span>   </span><span id="local-6989586621679414431"><span class="annot"><span class="annottext">parseStatisticsGraphError :: Value -&gt; Parser StatisticsGraph
-</span><a href="#local-6989586621679414431"><span class="hs-identifier hs-var hs-var">parseStatisticsGraphError</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-44"></span><span>   </span><span class="annot"><a href="#local-6989586621679446716"><span class="hs-identifier hs-type">parseStatisticsGraphError</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.StatisticsGraph.html#StatisticsGraph"><span class="hs-identifier hs-type">StatisticsGraph</span></a></span><span>
+</span><span id="line-45"></span><span>   </span><span id="local-6989586621679446716"><span class="annot"><span class="annottext">parseStatisticsGraphError :: Value -&gt; Parser StatisticsGraph
+</span><a href="#local-6989586621679446716"><span class="hs-identifier hs-var hs-var">parseStatisticsGraphError</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser StatisticsGraph)
 -&gt; Value
 -&gt; Parser StatisticsGraph
@@ -193,16 +202,16 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser StatisticsGraph
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679414422"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679414422"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-46"></span><span>    </span><span id="local-6989586621679414421"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414421"><span class="hs-identifier hs-var">error_message</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679446707"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679446707"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-46"></span><span>    </span><span id="local-6989586621679446706"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679446706"><span class="hs-identifier hs-var">error_message</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679414422"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679446707"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;error_message&quot;</span></span><span>
 </span><span id="line-47"></span><span>    </span><span class="annot"><span class="annottext">StatisticsGraph -&gt; Parser StatisticsGraph
@@ -213,4 +222,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">StatisticsGraphError :: Maybe String -&gt; StatisticsGraph
 </span><a href="API.StatisticsGraph.html#StatisticsGraphError"><span class="hs-identifier hs-type hs-type">StatisticsGraphError</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">error_message :: Maybe String
 </span><a href="API.StatisticsGraph.html#error_message"><span class="hs-identifier hs-var">error_message</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414421"><span class="hs-identifier hs-var">error_message</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679446706"><span class="hs-identifier hs-var">error_message</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

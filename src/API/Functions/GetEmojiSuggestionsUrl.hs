@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetEmojiSuggestionsUrl = 
- GetEmojiSuggestionsUrl { language_code :: Maybe String }  deriving (Show)
+ GetEmojiSuggestionsUrl { language_code :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetEmojiSuggestionsUrl where
  toJSON (GetEmojiSuggestionsUrl { language_code = language_code }) =

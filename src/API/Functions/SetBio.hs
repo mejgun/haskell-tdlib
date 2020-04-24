@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetBio = 
- SetBio { bio :: Maybe String }  deriving (Show)
+ SetBio { bio :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SetBio where
  toJSON (SetBio { bio = bio }) =

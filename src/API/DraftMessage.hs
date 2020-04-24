@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
 
 data DraftMessage = 
- DraftMessage { input_message_text :: Maybe InputMessageContent.InputMessageContent, date :: Maybe Int, reply_to_message_id :: Maybe Int }  deriving (Show)
+ DraftMessage { input_message_text :: Maybe InputMessageContent.InputMessageContent, date :: Maybe Int, reply_to_message_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON DraftMessage where
  toJSON (DraftMessage { input_message_text = input_message_text, date = date, reply_to_message_id = reply_to_message_id }) =

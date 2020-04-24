@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data OpenMessageContent
 
+instance Eq OpenMessageContent
+
 instance ToJSON OpenMessageContent
 
 instance FromJSON OpenMessageContent

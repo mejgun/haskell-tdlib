@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SendChatScreenshotTakenNotification
 
+instance Eq SendChatScreenshotTakenNotification
+
 instance ToJSON SendChatScreenshotTakenNotification
 
 instance FromJSON SendChatScreenshotTakenNotification

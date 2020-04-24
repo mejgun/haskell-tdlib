@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Message as Message
 
 data Messages = 
- Messages { messages :: Maybe [Message.Message], total_count :: Maybe Int }  deriving (Show)
+ Messages { messages :: Maybe [Message.Message], total_count :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Messages where
  toJSON (Messages { messages = messages, total_count = total_count }) =

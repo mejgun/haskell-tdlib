@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetWebPageInstantView = 
- GetWebPageInstantView { force_full :: Maybe Bool, url :: Maybe String }  deriving (Show)
+ GetWebPageInstantView { force_full :: Maybe Bool, url :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetWebPageInstantView where
  toJSON (GetWebPageInstantView { force_full = force_full, url = url }) =

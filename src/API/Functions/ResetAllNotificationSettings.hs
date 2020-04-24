@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ResetAllNotificationSettings = 
- ResetAllNotificationSettings deriving (Show)
+ ResetAllNotificationSettings deriving (Show, Eq)
 
 instance T.ToJSON ResetAllNotificationSettings where
  toJSON (ResetAllNotificationSettings {  }) =

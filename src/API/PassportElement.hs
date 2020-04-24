@@ -23,7 +23,7 @@ data PassportElement =
  | PassportElementPassportRegistration { passport_registration :: Maybe PersonalDocument.PersonalDocument }  
  | PassportElementTemporaryRegistration { temporary_registration :: Maybe PersonalDocument.PersonalDocument }  
  | PassportElementPhoneNumber { phone_number :: Maybe String }  
- | PassportElementEmailAddress { email_address :: Maybe String }  deriving (Show)
+ | PassportElementEmailAddress { email_address :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON PassportElement where
  toJSON (PassportElementPersonalDetails { personal_details = personal_details }) =

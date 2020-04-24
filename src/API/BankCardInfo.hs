@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BankCardActionOpenUrl as BankCardActionOpenUrl
 
 data BankCardInfo = 
- BankCardInfo { actions :: Maybe [BankCardActionOpenUrl.BankCardActionOpenUrl], title :: Maybe String }  deriving (Show)
+ BankCardInfo { actions :: Maybe [BankCardActionOpenUrl.BankCardActionOpenUrl], title :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON BankCardInfo where
  toJSON (BankCardInfo { actions = actions, title = title }) =

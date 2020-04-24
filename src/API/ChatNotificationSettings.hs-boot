@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ChatNotificationSettings
 
+instance Eq ChatNotificationSettings
+
 instance ToJSON ChatNotificationSettings
 
 instance FromJSON ChatNotificationSettings

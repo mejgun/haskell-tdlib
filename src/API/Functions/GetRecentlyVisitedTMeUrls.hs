@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetRecentlyVisitedTMeUrls = 
- GetRecentlyVisitedTMeUrls { referrer :: Maybe String }  deriving (Show)
+ GetRecentlyVisitedTMeUrls { referrer :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetRecentlyVisitedTMeUrls where
  toJSON (GetRecentlyVisitedTMeUrls { referrer = referrer }) =

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ResetBackgrounds = 
- ResetBackgrounds deriving (Show)
+ ResetBackgrounds deriving (Show, Eq)
 
 instance T.ToJSON ResetBackgrounds where
  toJSON (ResetBackgrounds {  }) =

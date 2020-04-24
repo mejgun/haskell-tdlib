@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetLogStream
 
+instance Eq SetLogStream
+
 instance ToJSON SetLogStream
 
 instance FromJSON SetLogStream

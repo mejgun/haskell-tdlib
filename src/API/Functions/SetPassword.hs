@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetPassword = 
- SetPassword { new_recovery_email_address :: Maybe String, set_recovery_email_address :: Maybe Bool, new_hint :: Maybe String, new_password :: Maybe String, old_password :: Maybe String }  deriving (Show)
+ SetPassword { new_recovery_email_address :: Maybe String, set_recovery_email_address :: Maybe Bool, new_hint :: Maybe String, new_password :: Maybe String, old_password :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SetPassword where
  toJSON (SetPassword { new_recovery_email_address = new_recovery_email_address, set_recovery_email_address = set_recovery_email_address, new_hint = new_hint, new_password = new_password, old_password = old_password }) =

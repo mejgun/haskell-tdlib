@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Error = 
- Error { message :: Maybe String, code :: Maybe Int }  deriving (Show)
+ Error { message :: Maybe String, code :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Error where
  toJSON (Error { message = message, code = code }) =

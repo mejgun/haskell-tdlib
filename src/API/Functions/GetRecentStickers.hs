@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetRecentStickers = 
- GetRecentStickers { is_attached :: Maybe Bool }  deriving (Show)
+ GetRecentStickers { is_attached :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON GetRecentStickers where
  toJSON (GetRecentStickers { is_attached = is_attached }) =

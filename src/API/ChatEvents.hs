@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatEvent as ChatEvent
 
 data ChatEvents = 
- ChatEvents { events :: Maybe [ChatEvent.ChatEvent] }  deriving (Show)
+ ChatEvents { events :: Maybe [ChatEvent.ChatEvent] }  deriving (Show, Eq)
 
 instance T.ToJSON ChatEvents where
  toJSON (ChatEvents { events = events }) =

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data TestCallString
 
+instance Eq TestCallString
+
 instance ToJSON TestCallString
 
 instance FromJSON TestCallString

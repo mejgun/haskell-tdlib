@@ -9,7 +9,7 @@ import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 
 data Photo = 
- Photo { sizes :: Maybe [PhotoSize.PhotoSize], minithumbnail :: Maybe Minithumbnail.Minithumbnail, has_stickers :: Maybe Bool }  deriving (Show)
+ Photo { sizes :: Maybe [PhotoSize.PhotoSize], minithumbnail :: Maybe Minithumbnail.Minithumbnail, has_stickers :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON Photo where
  toJSON (Photo { sizes = sizes, minithumbnail = minithumbnail, has_stickers = has_stickers }) =

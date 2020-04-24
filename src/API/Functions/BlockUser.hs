@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data BlockUser = 
- BlockUser { user_id :: Maybe Int }  deriving (Show)
+ BlockUser { user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON BlockUser where
  toJSON (BlockUser { user_id = user_id }) =

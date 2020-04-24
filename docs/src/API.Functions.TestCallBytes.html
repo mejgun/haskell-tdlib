@@ -8,7 +8,7 @@
 </span><span id="line-8"></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="TestCallBytes"><span class="annot"><a href="API.Functions.TestCallBytes.html#TestCallBytes"><span class="hs-identifier hs-var">TestCallBytes</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-10"></span><span> </span><span id="TestCallBytes"><span class="annot"><a href="API.Functions.TestCallBytes.html#TestCallBytes"><span class="hs-identifier hs-var">TestCallBytes</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="x"><span class="annot"><span class="annottext">TestCallBytes -&gt; Maybe String
-</span><a href="API.Functions.TestCallBytes.html#x"><span class="hs-identifier hs-var hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679397616"><span id="local-6989586621679397618"><span id="local-6989586621679397620"><span class="annot"><span class="annottext">Int -&gt; TestCallBytes -&gt; ShowS
+</span><a href="API.Functions.TestCallBytes.html#x"><span class="hs-identifier hs-var hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679428638"><span id="local-6989586621679428640"><span id="local-6989586621679428642"><span class="annot"><span class="annottext">Int -&gt; TestCallBytes -&gt; ShowS
 [TestCallBytes] -&gt; ShowS
 TestCallBytes -&gt; String
 (Int -&gt; TestCallBytes -&gt; ShowS)
@@ -23,13 +23,21 @@ show :: TestCallBytes -&gt; String
 $cshow :: TestCallBytes -&gt; String
 showsPrec :: Int -&gt; TestCallBytes -&gt; ShowS
 $cshowsPrec :: Int -&gt; TestCallBytes -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679428633"><span id="local-6989586621679428635"><span class="annot"><span class="annottext">TestCallBytes -&gt; TestCallBytes -&gt; Bool
+(TestCallBytes -&gt; TestCallBytes -&gt; Bool)
+-&gt; (TestCallBytes -&gt; TestCallBytes -&gt; Bool) -&gt; Eq TestCallBytes
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: TestCallBytes -&gt; TestCallBytes -&gt; Bool
+$c/= :: TestCallBytes -&gt; TestCallBytes -&gt; Bool
+== :: TestCallBytes -&gt; TestCallBytes -&gt; Bool
+$c== :: TestCallBytes -&gt; TestCallBytes -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679397608"><span id="local-6989586621679397610"><span id="local-6989586621679397612"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestCallBytes.html#TestCallBytes"><span class="hs-identifier hs-type">TestCallBytes</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679397606"><span class="annot"><span class="annottext">toJSON :: TestCallBytes -&gt; Value
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428625"><span id="local-6989586621679428627"><span id="local-6989586621679428629"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestCallBytes.html#TestCallBytes"><span class="hs-identifier hs-type">TestCallBytes</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679428623"><span class="annot"><span class="annottext">toJSON :: TestCallBytes -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.TestCallBytes.html#TestCallBytes"><span class="hs-identifier hs-type">TestCallBytes</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">x :: TestCallBytes -&gt; Maybe String
-</span><a href="API.Functions.TestCallBytes.html#x"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679397604"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679397604"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.TestCallBytes.html#x"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428621"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679428621"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -37,30 +45,30 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;testCallBytes&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;x&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679397604"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679428621"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679397598"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestCallBytes.html#TestCallBytes"><span class="hs-identifier hs-type">TestCallBytes</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679397596"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TestCallBytes
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679397594"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679397594"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679397592"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679397592"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679397591"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679397591"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679397592"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428615"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestCallBytes.html#TestCallBytes"><span class="hs-identifier hs-type">TestCallBytes</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679428613"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TestCallBytes
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679428611"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679428611"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679428609"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679428609"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679428608"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679428608"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679428609"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679397591"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679428608"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;testCallBytes&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TestCallBytes
-</span><a href="#local-6989586621679397589"><span class="hs-identifier hs-var">parseTestCallBytes</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679397594"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679428606"><span class="hs-identifier hs-var">parseTestCallBytes</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679428611"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TestCallBytes
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679397589"><span class="hs-identifier hs-type">parseTestCallBytes</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.TestCallBytes.html#TestCallBytes"><span class="hs-identifier hs-type">TestCallBytes</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679397589"><span class="annot"><span class="annottext">parseTestCallBytes :: Value -&gt; Parser TestCallBytes
-</span><a href="#local-6989586621679397589"><span class="hs-identifier hs-var hs-var">parseTestCallBytes</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679428606"><span class="hs-identifier hs-type">parseTestCallBytes</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.TestCallBytes.html#TestCallBytes"><span class="hs-identifier hs-type">TestCallBytes</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679428606"><span class="annot"><span class="annottext">parseTestCallBytes :: Value -&gt; Parser TestCallBytes
+</span><a href="#local-6989586621679428606"><span class="hs-identifier hs-var hs-var">parseTestCallBytes</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TestCallBytes)
 -&gt; Value
 -&gt; Parser TestCallBytes
@@ -70,16 +78,16 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TestCallBytes
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679397587"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679397587"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679397586"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679397586"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679428604"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679428604"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679428603"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679428603"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679397587"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679428604"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;x&quot;</span></span><span>
 </span><span id="line-26"></span><span>    </span><span class="annot"><span class="annottext">TestCallBytes -&gt; Parser TestCallBytes
@@ -90,4 +98,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TestCallBytes :: Maybe String -&gt; TestCallBytes
 </span><a href="API.Functions.TestCallBytes.html#TestCallBytes"><span class="hs-identifier hs-type hs-type">TestCallBytes</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">x :: Maybe String
 </span><a href="API.Functions.TestCallBytes.html#x"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679397586"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679428603"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetStickerSet
 
+instance Eq GetStickerSet
+
 instance ToJSON GetStickerSet
 
 instance FromJSON GetStickerSet

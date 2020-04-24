@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data DeleteAccount
 
+instance Eq DeleteAccount
+
 instance ToJSON DeleteAccount
 
 instance FromJSON DeleteAccount

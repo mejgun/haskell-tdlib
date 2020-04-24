@@ -10,7 +10,7 @@
 </span><span id="line-10"></span><span> </span><span id="ReportSupergroupSpam"><span class="annot"><a href="API.Functions.ReportSupergroupSpam.html#ReportSupergroupSpam"><span class="hs-identifier hs-var">ReportSupergroupSpam</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="message_ids"><span class="annot"><span class="annottext">ReportSupergroupSpam -&gt; Maybe [Int]
 </span><a href="API.Functions.ReportSupergroupSpam.html#message_ids"><span class="hs-identifier hs-var hs-var">message_ids</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="user_id"><span class="annot"><span class="annottext">ReportSupergroupSpam -&gt; Maybe Int
 </span><a href="API.Functions.ReportSupergroupSpam.html#user_id"><span class="hs-identifier hs-var hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="supergroup_id"><span class="annot"><span class="annottext">ReportSupergroupSpam -&gt; Maybe Int
-</span><a href="API.Functions.ReportSupergroupSpam.html#supergroup_id"><span class="hs-identifier hs-var hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679392579"><span id="local-6989586621679392581"><span id="local-6989586621679392583"><span class="annot"><span class="annottext">Int -&gt; ReportSupergroupSpam -&gt; ShowS
+</span><a href="API.Functions.ReportSupergroupSpam.html#supergroup_id"><span class="hs-identifier hs-var hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679423169"><span id="local-6989586621679423171"><span id="local-6989586621679423173"><span class="annot"><span class="annottext">Int -&gt; ReportSupergroupSpam -&gt; ShowS
 [ReportSupergroupSpam] -&gt; ShowS
 ReportSupergroupSpam -&gt; String
 (Int -&gt; ReportSupergroupSpam -&gt; ShowS)
@@ -25,17 +25,26 @@ show :: ReportSupergroupSpam -&gt; String
 $cshow :: ReportSupergroupSpam -&gt; String
 showsPrec :: Int -&gt; ReportSupergroupSpam -&gt; ShowS
 $cshowsPrec :: Int -&gt; ReportSupergroupSpam -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679423164"><span id="local-6989586621679423166"><span class="annot"><span class="annottext">ReportSupergroupSpam -&gt; ReportSupergroupSpam -&gt; Bool
+(ReportSupergroupSpam -&gt; ReportSupergroupSpam -&gt; Bool)
+-&gt; (ReportSupergroupSpam -&gt; ReportSupergroupSpam -&gt; Bool)
+-&gt; Eq ReportSupergroupSpam
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: ReportSupergroupSpam -&gt; ReportSupergroupSpam -&gt; Bool
+$c/= :: ReportSupergroupSpam -&gt; ReportSupergroupSpam -&gt; Bool
+== :: ReportSupergroupSpam -&gt; ReportSupergroupSpam -&gt; Bool
+$c== :: ReportSupergroupSpam -&gt; ReportSupergroupSpam -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679392571"><span id="local-6989586621679392573"><span id="local-6989586621679392575"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ReportSupergroupSpam.html#ReportSupergroupSpam"><span class="hs-identifier hs-type">ReportSupergroupSpam</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679392569"><span class="annot"><span class="annottext">toJSON :: ReportSupergroupSpam -&gt; Value
+</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679423156"><span id="local-6989586621679423158"><span id="local-6989586621679423160"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ReportSupergroupSpam.html#ReportSupergroupSpam"><span class="hs-identifier hs-type">ReportSupergroupSpam</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-13"></span><span> </span><span id="local-6989586621679423154"><span class="annot"><span class="annottext">toJSON :: ReportSupergroupSpam -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.ReportSupergroupSpam.html#ReportSupergroupSpam"><span class="hs-identifier hs-type">ReportSupergroupSpam</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">message_ids :: ReportSupergroupSpam -&gt; Maybe [Int]
-</span><a href="API.Functions.ReportSupergroupSpam.html#message_ids"><span class="hs-identifier hs-var">message_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679392567"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679392567"><span class="hs-identifier hs-var">message_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">user_id :: ReportSupergroupSpam -&gt; Maybe Int
-</span><a href="API.Functions.ReportSupergroupSpam.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679392566"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679392566"><span class="hs-identifier hs-var">user_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supergroup_id :: ReportSupergroupSpam -&gt; Maybe Int
-</span><a href="API.Functions.ReportSupergroupSpam.html#supergroup_id"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679392565"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679392565"><span class="hs-identifier hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.ReportSupergroupSpam.html#message_ids"><span class="hs-identifier hs-var">message_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423152"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679423152"><span class="hs-identifier hs-var">message_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">user_id :: ReportSupergroupSpam -&gt; Maybe Int
+</span><a href="API.Functions.ReportSupergroupSpam.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423151"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679423151"><span class="hs-identifier hs-var">user_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supergroup_id :: ReportSupergroupSpam -&gt; Maybe Int
+</span><a href="API.Functions.ReportSupergroupSpam.html#supergroup_id"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679423150"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679423150"><span class="hs-identifier hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -43,36 +52,36 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;reportSupergroupSpam&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;message_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [Int] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679392567"><span class="hs-identifier hs-var">message_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679423152"><span class="hs-identifier hs-var">message_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679392566"><span class="hs-identifier hs-var">user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;supergroup_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679423151"><span class="hs-identifier hs-var">user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;supergroup_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679392565"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679423150"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679392559"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ReportSupergroupSpam.html#ReportSupergroupSpam"><span class="hs-identifier hs-type">ReportSupergroupSpam</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679392557"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ReportSupergroupSpam
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679392555"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679392555"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679392553"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679392553"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679392552"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679392552"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679392553"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679423144"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ReportSupergroupSpam.html#ReportSupergroupSpam"><span class="hs-identifier hs-type">ReportSupergroupSpam</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679423142"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ReportSupergroupSpam
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679423140"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679423140"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679423138"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679423138"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-18"></span><span>  </span><span id="local-6989586621679423137"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679423137"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679423138"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679392552"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679423137"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;reportSupergroupSpam&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ReportSupergroupSpam
-</span><a href="#local-6989586621679392550"><span class="hs-identifier hs-var">parseReportSupergroupSpam</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679392555"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679423135"><span class="hs-identifier hs-var">parseReportSupergroupSpam</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679423140"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ReportSupergroupSpam
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679392550"><span class="hs-identifier hs-type">parseReportSupergroupSpam</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ReportSupergroupSpam.html#ReportSupergroupSpam"><span class="hs-identifier hs-type">ReportSupergroupSpam</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679392550"><span class="annot"><span class="annottext">parseReportSupergroupSpam :: Value -&gt; Parser ReportSupergroupSpam
-</span><a href="#local-6989586621679392550"><span class="hs-identifier hs-var hs-var">parseReportSupergroupSpam</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679423135"><span class="hs-identifier hs-type">parseReportSupergroupSpam</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ReportSupergroupSpam.html#ReportSupergroupSpam"><span class="hs-identifier hs-type">ReportSupergroupSpam</span></a></span><span>
+</span><span id="line-24"></span><span>   </span><span id="local-6989586621679423135"><span class="annot"><span class="annottext">parseReportSupergroupSpam :: Value -&gt; Parser ReportSupergroupSpam
+</span><a href="#local-6989586621679423135"><span class="hs-identifier hs-var hs-var">parseReportSupergroupSpam</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ReportSupergroupSpam)
 -&gt; Value
 -&gt; Parser ReportSupergroupSpam
@@ -83,36 +92,36 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ReportSupergroupSpam
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679392548"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679392548"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679392547"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679392547"><span class="hs-identifier hs-var">message_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [Int] -&gt; Parser (Maybe [Int])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679423133"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679423133"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>    </span><span id="local-6989586621679423132"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679423132"><span class="hs-identifier hs-var">message_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [Int] -&gt; Parser (Maybe [Int])
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser [Int] -&gt; Parser (Maybe [Int]))
 -&gt; Parser [Int] -&gt; Parser (Maybe [Int])
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679392548"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [Int]
+</span><a href="#local-6989586621679423133"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [Int]
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;message_ids&quot;</span></span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679392546"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679392546"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679423131"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679423131"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679392548"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679423133"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;user_id&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679392545"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679392545"><span class="hs-identifier hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679423130"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679423130"><span class="hs-identifier hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
 -&gt; Parser Int -&gt; Parser (Maybe Int)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679392548"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><a href="#local-6989586621679423133"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;supergroup_id&quot;</span></span><span>
 </span><span id="line-28"></span><span>    </span><span class="annot"><span class="annottext">ReportSupergroupSpam -&gt; Parser ReportSupergroupSpam
@@ -123,8 +132,8 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ReportSupergroupSpam :: Maybe [Int] -&gt; Maybe Int -&gt; Maybe Int -&gt; ReportSupergroupSpam
 </span><a href="API.Functions.ReportSupergroupSpam.html#ReportSupergroupSpam"><span class="hs-identifier hs-type hs-type">ReportSupergroupSpam</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">message_ids :: Maybe [Int]
 </span><a href="API.Functions.ReportSupergroupSpam.html#message_ids"><span class="hs-identifier hs-var">message_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679392547"><span class="hs-identifier hs-var">message_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">user_id :: Maybe Int
+</span><a href="#local-6989586621679423132"><span class="hs-identifier hs-var">message_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">user_id :: Maybe Int
 </span><a href="API.Functions.ReportSupergroupSpam.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679392546"><span class="hs-identifier hs-var">user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supergroup_id :: Maybe Int
+</span><a href="#local-6989586621679423131"><span class="hs-identifier hs-var">user_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supergroup_id :: Maybe Int
 </span><a href="API.Functions.ReportSupergroupSpam.html#supergroup_id"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679392545"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679423130"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

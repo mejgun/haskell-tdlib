@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LanguagePackString as LanguagePackString
 
 data SetCustomLanguagePackString = 
- SetCustomLanguagePackString { new_string :: Maybe LanguagePackString.LanguagePackString, language_pack_id :: Maybe String }  deriving (Show)
+ SetCustomLanguagePackString { new_string :: Maybe LanguagePackString.LanguagePackString, language_pack_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SetCustomLanguagePackString where
  toJSON (SetCustomLanguagePackString { new_string = new_string, language_pack_id = language_pack_id }) =

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Users = 
- Users { user_ids :: Maybe [Int], total_count :: Maybe Int }  deriving (Show)
+ Users { user_ids :: Maybe [Int], total_count :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Users where
  toJSON (Users { user_ids = user_ids, total_count = total_count }) =

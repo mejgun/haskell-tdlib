@@ -11,7 +11,7 @@ data ChatActionBar =
  | ChatActionBarReportUnrelatedLocation 
  | ChatActionBarReportAddBlock 
  | ChatActionBarAddContact 
- | ChatActionBarSharePhoneNumber deriving (Show)
+ | ChatActionBarSharePhoneNumber deriving (Show, Eq)
 
 instance T.ToJSON ChatActionBar where
  toJSON (ChatActionBarReportSpam {  }) =

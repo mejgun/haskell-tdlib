@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetActiveSessions = 
- GetActiveSessions deriving (Show)
+ GetActiveSessions deriving (Show, Eq)
 
 instance T.ToJSON GetActiveSessions where
  toJSON (GetActiveSessions {  }) =

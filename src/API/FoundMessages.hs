@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Message as Message
 
 data FoundMessages = 
- FoundMessages { next_from_search_id :: Maybe Int, messages :: Maybe [Message.Message] }  deriving (Show)
+ FoundMessages { next_from_search_id :: Maybe Int, messages :: Maybe [Message.Message] }  deriving (Show, Eq)
 
 instance T.ToJSON FoundMessages where
  toJSON (FoundMessages { next_from_search_id = next_from_search_id, messages = messages }) =

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetSupportUser
 
+instance Eq GetSupportUser
+
 instance ToJSON GetSupportUser
 
 instance FromJSON GetSupportUser

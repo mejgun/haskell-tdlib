@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CancelUploadFile = 
- CancelUploadFile { file_id :: Maybe Int }  deriving (Show)
+ CancelUploadFile { file_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CancelUploadFile where
  toJSON (CancelUploadFile { file_id = file_id }) =

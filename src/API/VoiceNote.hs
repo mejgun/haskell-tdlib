@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
 
 data VoiceNote = 
- VoiceNote { voice :: Maybe File.File, mime_type :: Maybe String, waveform :: Maybe String, duration :: Maybe Int }  deriving (Show)
+ VoiceNote { voice :: Maybe File.File, mime_type :: Maybe String, waveform :: Maybe String, duration :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON VoiceNote where
  toJSON (VoiceNote { voice = voice, mime_type = mime_type, waveform = waveform, duration = duration }) =

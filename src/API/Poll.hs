@@ -9,7 +9,7 @@ import {-# SOURCE #-} qualified API.PollType as PollType
 import {-# SOURCE #-} qualified API.PollOption as PollOption
 
 data Poll = 
- Poll { is_closed :: Maybe Bool, _type :: Maybe PollType.PollType, is_anonymous :: Maybe Bool, recent_voter_user_ids :: Maybe [Int], total_voter_count :: Maybe Int, options :: Maybe [PollOption.PollOption], question :: Maybe String, _id :: Maybe Int }  deriving (Show)
+ Poll { is_closed :: Maybe Bool, _type :: Maybe PollType.PollType, is_anonymous :: Maybe Bool, recent_voter_user_ids :: Maybe [Int], total_voter_count :: Maybe Int, options :: Maybe [PollOption.PollOption], question :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Poll where
  toJSON (Poll { is_closed = is_closed, _type = _type, is_anonymous = is_anonymous, recent_voter_user_ids = recent_voter_user_ids, total_voter_count = total_voter_count, options = options, question = question, _id = _id }) =

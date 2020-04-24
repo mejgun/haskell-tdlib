@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ResendAuthenticationCode
 
+instance Eq ResendAuthenticationCode
+
 instance ToJSON ResendAuthenticationCode
 
 instance FromJSON ResendAuthenticationCode

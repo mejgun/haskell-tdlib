@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetArchivedStickerSets = 
- GetArchivedStickerSets { limit :: Maybe Int, offset_sticker_set_id :: Maybe Int, is_masks :: Maybe Bool }  deriving (Show)
+ GetArchivedStickerSets { limit :: Maybe Int, offset_sticker_set_id :: Maybe Int, is_masks :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON GetArchivedStickerSets where
  toJSON (GetArchivedStickerSets { limit = limit, offset_sticker_set_id = offset_sticker_set_id, is_masks = is_masks }) =

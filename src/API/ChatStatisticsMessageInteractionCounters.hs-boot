@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ChatStatisticsMessageInteractionCounters
 
+instance Eq ChatStatisticsMessageInteractionCounters
+
 instance ToJSON ChatStatisticsMessageInteractionCounters
 
 instance FromJSON ChatStatisticsMessageInteractionCounters

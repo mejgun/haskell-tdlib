@@ -9,7 +9,7 @@ import {-# SOURCE #-} qualified API.DatedFile as DatedFile
 import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 
 data EncryptedPassportElement = 
- EncryptedPassportElement { hash :: Maybe String, value :: Maybe String, files :: Maybe [DatedFile.DatedFile], translation :: Maybe [DatedFile.DatedFile], selfie :: Maybe DatedFile.DatedFile, reverse_side :: Maybe DatedFile.DatedFile, front_side :: Maybe DatedFile.DatedFile, _data :: Maybe String, _type :: Maybe PassportElementType.PassportElementType }  deriving (Show)
+ EncryptedPassportElement { hash :: Maybe String, value :: Maybe String, files :: Maybe [DatedFile.DatedFile], translation :: Maybe [DatedFile.DatedFile], selfie :: Maybe DatedFile.DatedFile, reverse_side :: Maybe DatedFile.DatedFile, front_side :: Maybe DatedFile.DatedFile, _data :: Maybe String, _type :: Maybe PassportElementType.PassportElementType }  deriving (Show, Eq)
 
 instance T.ToJSON EncryptedPassportElement where
  toJSON (EncryptedPassportElement { hash = hash, value = value, files = files, translation = translation, selfie = selfie, reverse_side = reverse_side, front_side = front_side, _data = _data, _type = _type }) =

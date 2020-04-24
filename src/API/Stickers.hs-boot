@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data Stickers
 
+instance Eq Stickers
+
 instance ToJSON Stickers
 
 instance FromJSON Stickers

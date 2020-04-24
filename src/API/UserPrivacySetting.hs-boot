@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data UserPrivacySetting
 
+instance Eq UserPrivacySetting
+
 instance ToJSON UserPrivacySetting
 
 instance FromJSON UserPrivacySetting

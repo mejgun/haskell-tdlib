@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CreateTemporaryPassword = 
- CreateTemporaryPassword { valid_for :: Maybe Int, password :: Maybe String }  deriving (Show)
+ CreateTemporaryPassword { valid_for :: Maybe Int, password :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CreateTemporaryPassword where
  toJSON (CreateTemporaryPassword { valid_for = valid_for, password = password }) =

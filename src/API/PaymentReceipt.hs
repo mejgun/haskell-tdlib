@@ -10,7 +10,7 @@ import {-# SOURCE #-} qualified API.OrderInfo as OrderInfo
 import {-# SOURCE #-} qualified API.Invoice as Invoice
 
 data PaymentReceipt = 
- PaymentReceipt { credentials_title :: Maybe String, shipping_option :: Maybe ShippingOption.ShippingOption, order_info :: Maybe OrderInfo.OrderInfo, invoice :: Maybe Invoice.Invoice, payments_provider_user_id :: Maybe Int, date :: Maybe Int }  deriving (Show)
+ PaymentReceipt { credentials_title :: Maybe String, shipping_option :: Maybe ShippingOption.ShippingOption, order_info :: Maybe OrderInfo.OrderInfo, invoice :: Maybe Invoice.Invoice, payments_provider_user_id :: Maybe Int, date :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON PaymentReceipt where
  toJSON (PaymentReceipt { credentials_title = credentials_title, shipping_option = shipping_option, order_info = order_info, invoice = invoice, payments_provider_user_id = payments_provider_user_id, date = date }) =

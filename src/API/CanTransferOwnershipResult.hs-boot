@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data CanTransferOwnershipResult
 
+instance Eq CanTransferOwnershipResult
+
 instance ToJSON CanTransferOwnershipResult
 
 instance FromJSON CanTransferOwnershipResult

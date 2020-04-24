@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data ReplyMarkup
 
+instance Eq ReplyMarkup
+
 instance ToJSON ReplyMarkup
 
 instance FromJSON ReplyMarkup

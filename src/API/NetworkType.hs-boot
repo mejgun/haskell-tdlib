@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data NetworkType
 
+instance Eq NetworkType
+
 instance ToJSON NetworkType
 
 instance FromJSON NetworkType

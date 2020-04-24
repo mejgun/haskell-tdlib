@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 
 data EditInlineMessageReplyMarkup = 
- EditInlineMessageReplyMarkup { reply_markup :: Maybe ReplyMarkup.ReplyMarkup, inline_message_id :: Maybe String }  deriving (Show)
+ EditInlineMessageReplyMarkup { reply_markup :: Maybe ReplyMarkup.ReplyMarkup, inline_message_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON EditInlineMessageReplyMarkup where
  toJSON (EditInlineMessageReplyMarkup { reply_markup = reply_markup, inline_message_id = inline_message_id }) =

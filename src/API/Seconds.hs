@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Seconds = 
- Seconds { seconds :: Maybe Float }  deriving (Show)
+ Seconds { seconds :: Maybe Float }  deriving (Show, Eq)
 
 instance T.ToJSON Seconds where
  toJSON (Seconds { seconds = seconds }) =

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.OptionValue as OptionValue
 
 data SetOption = 
- SetOption { value :: Maybe OptionValue.OptionValue, name :: Maybe String }  deriving (Show)
+ SetOption { value :: Maybe OptionValue.OptionValue, name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SetOption where
  toJSON (SetOption { value = value, name = name }) =

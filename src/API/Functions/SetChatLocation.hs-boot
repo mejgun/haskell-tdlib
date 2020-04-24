@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetChatLocation
 
+instance Eq SetChatLocation
+
 instance ToJSON SetChatLocation
 
 instance FromJSON SetChatLocation

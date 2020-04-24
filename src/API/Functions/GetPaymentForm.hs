@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetPaymentForm = 
- GetPaymentForm { message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ GetPaymentForm { message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetPaymentForm where
  toJSON (GetPaymentForm { message_id = message_id, chat_id = chat_id }) =

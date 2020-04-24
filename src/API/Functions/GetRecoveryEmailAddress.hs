@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetRecoveryEmailAddress = 
- GetRecoveryEmailAddress { password :: Maybe String }  deriving (Show)
+ GetRecoveryEmailAddress { password :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetRecoveryEmailAddress where
  toJSON (GetRecoveryEmailAddress { password = password }) =

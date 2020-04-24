@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data DeleteFile = 
- DeleteFile { file_id :: Maybe Int }  deriving (Show)
+ DeleteFile { file_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON DeleteFile where
  toJSON (DeleteFile { file_id = file_id }) =

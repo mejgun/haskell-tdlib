@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetFileMimeType = 
- GetFileMimeType { file_name :: Maybe String }  deriving (Show)
+ GetFileMimeType { file_name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetFileMimeType where
  toJSON (GetFileMimeType { file_name = file_name }) =

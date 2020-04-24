@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetStickerSet = 
- GetStickerSet { set_id :: Maybe Int }  deriving (Show)
+ GetStickerSet { set_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetStickerSet where
  toJSON (GetStickerSet { set_id = set_id }) =

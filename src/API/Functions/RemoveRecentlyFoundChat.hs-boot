@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data RemoveRecentlyFoundChat
 
+instance Eq RemoveRecentlyFoundChat
+
 instance ToJSON RemoveRecentlyFoundChat
 
 instance FromJSON RemoveRecentlyFoundChat

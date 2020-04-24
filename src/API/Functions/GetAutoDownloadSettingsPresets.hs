@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetAutoDownloadSettingsPresets = 
- GetAutoDownloadSettingsPresets deriving (Show)
+ GetAutoDownloadSettingsPresets deriving (Show, Eq)
 
 instance T.ToJSON GetAutoDownloadSettingsPresets where
  toJSON (GetAutoDownloadSettingsPresets {  }) =

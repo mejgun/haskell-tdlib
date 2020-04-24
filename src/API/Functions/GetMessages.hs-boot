@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetMessages
 
+instance Eq GetMessages
+
 instance ToJSON GetMessages
 
 instance FromJSON GetMessages

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data Proxy
 
+instance Eq Proxy
+
 instance ToJSON Proxy
 
 instance FromJSON Proxy

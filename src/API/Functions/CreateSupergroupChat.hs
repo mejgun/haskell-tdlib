@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CreateSupergroupChat = 
- CreateSupergroupChat { force :: Maybe Bool, supergroup_id :: Maybe Int }  deriving (Show)
+ CreateSupergroupChat { force :: Maybe Bool, supergroup_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CreateSupergroupChat where
  toJSON (CreateSupergroupChat { force = force, supergroup_id = supergroup_id }) =

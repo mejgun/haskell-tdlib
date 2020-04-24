@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetBasicGroup = 
- GetBasicGroup { basic_group_id :: Maybe Int }  deriving (Show)
+ GetBasicGroup { basic_group_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetBasicGroup where
  toJSON (GetBasicGroup { basic_group_id = basic_group_id }) =

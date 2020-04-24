@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ChatPermissions = 
- ChatPermissions { can_pin_messages :: Maybe Bool, can_invite_users :: Maybe Bool, can_change_info :: Maybe Bool, can_add_web_page_previews :: Maybe Bool, can_send_other_messages :: Maybe Bool, can_send_polls :: Maybe Bool, can_send_media_messages :: Maybe Bool, can_send_messages :: Maybe Bool }  deriving (Show)
+ ChatPermissions { can_pin_messages :: Maybe Bool, can_invite_users :: Maybe Bool, can_change_info :: Maybe Bool, can_add_web_page_previews :: Maybe Bool, can_send_other_messages :: Maybe Bool, can_send_polls :: Maybe Bool, can_send_media_messages :: Maybe Bool, can_send_messages :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON ChatPermissions where
  toJSON (ChatPermissions { can_pin_messages = can_pin_messages, can_invite_users = can_invite_users, can_change_info = can_change_info, can_add_web_page_previews = can_add_web_page_previews, can_send_other_messages = can_send_other_messages, can_send_polls = can_send_polls, can_send_media_messages = can_send_media_messages, can_send_messages = can_send_messages }) =

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetMessageLocally
 
+instance Eq GetMessageLocally
+
 instance ToJSON GetMessageLocally
 
 instance FromJSON GetMessageLocally

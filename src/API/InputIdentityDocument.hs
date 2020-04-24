@@ -9,7 +9,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 import {-# SOURCE #-} qualified API.Date as Date
 
 data InputIdentityDocument = 
- InputIdentityDocument { translation :: Maybe [InputFile.InputFile], selfie :: Maybe InputFile.InputFile, reverse_side :: Maybe InputFile.InputFile, front_side :: Maybe InputFile.InputFile, expiry_date :: Maybe Date.Date, number :: Maybe String }  deriving (Show)
+ InputIdentityDocument { translation :: Maybe [InputFile.InputFile], selfie :: Maybe InputFile.InputFile, reverse_side :: Maybe InputFile.InputFile, front_side :: Maybe InputFile.InputFile, expiry_date :: Maybe Date.Date, number :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON InputIdentityDocument where
  toJSON (InputIdentityDocument { translation = translation, selfie = selfie, reverse_side = reverse_side, front_side = front_side, expiry_date = expiry_date, number = number }) =

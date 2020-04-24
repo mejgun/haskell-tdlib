@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data Sessions
 
+instance Eq Sessions
+
 instance ToJSON Sessions
 
 instance FromJSON Sessions

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetInactiveSupergroupChats = 
- GetInactiveSupergroupChats deriving (Show)
+ GetInactiveSupergroupChats deriving (Show, Eq)
 
 instance T.ToJSON GetInactiveSupergroupChats where
  toJSON (GetInactiveSupergroupChats {  }) =

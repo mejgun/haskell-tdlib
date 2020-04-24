@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data CustomRequestResult
 
+instance Eq CustomRequestResult
+
 instance ToJSON CustomRequestResult
 
 instance FromJSON CustomRequestResult

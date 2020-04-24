@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SharePhoneNumber = 
- SharePhoneNumber { user_id :: Maybe Int }  deriving (Show)
+ SharePhoneNumber { user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SharePhoneNumber where
  toJSON (SharePhoneNumber { user_id = user_id }) =

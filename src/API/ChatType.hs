@@ -10,7 +10,7 @@ data ChatType =
  ChatTypePrivate { user_id :: Maybe Int }  
  | ChatTypeBasicGroup { basic_group_id :: Maybe Int }  
  | ChatTypeSupergroup { is_channel :: Maybe Bool, supergroup_id :: Maybe Int }  
- | ChatTypeSecret { user_id :: Maybe Int, secret_chat_id :: Maybe Int }  deriving (Show)
+ | ChatTypeSecret { user_id :: Maybe Int, secret_chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ChatType where
  toJSON (ChatTypePrivate { user_id = user_id }) =

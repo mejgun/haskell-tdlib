@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetChatDiscussionGroup
 
+instance Eq SetChatDiscussionGroup
+
 instance ToJSON SetChatDiscussionGroup
 
 instance FromJSON SetChatDiscussionGroup

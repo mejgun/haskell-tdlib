@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputPassportElementError as InputPassportElementError
 
 data SetPassportElementErrors = 
- SetPassportElementErrors { errors :: Maybe [InputPassportElementError.InputPassportElementError], user_id :: Maybe Int }  deriving (Show)
+ SetPassportElementErrors { errors :: Maybe [InputPassportElementError.InputPassportElementError], user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetPassportElementErrors where
  toJSON (SetPassportElementErrors { errors = errors, user_id = user_id }) =

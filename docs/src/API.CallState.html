@@ -28,7 +28,7 @@
 </span><a href="API.CallState.html#need_rating"><span class="hs-identifier hs-var hs-var">need_rating</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="reason"><span class="annot"><span class="annottext">CallState -&gt; Maybe CallDiscardReason
 </span><a href="API.CallState.html#reason"><span class="hs-identifier hs-var hs-var">reason</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReason"><span class="hs-identifier hs-type">CallDiscardReason.CallDiscardReason</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span>
 </span><span id="line-19"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="CallStateError"><span class="annot"><a href="API.CallState.html#CallStateError"><span class="hs-identifier hs-var">CallStateError</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="_error"><span class="annot"><span class="annottext">CallState -&gt; Maybe Error
-</span><a href="API.CallState.html#_error"><span class="hs-identifier hs-var hs-var">_error</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.Error.html#Error"><span class="hs-identifier hs-type">Error.Error</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679378467"><span id="local-6989586621679378469"><span id="local-6989586621679378471"><span class="annot"><span class="annottext">Int -&gt; CallState -&gt; ShowS
+</span><a href="API.CallState.html#_error"><span class="hs-identifier hs-var hs-var">_error</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.Error.html#Error"><span class="hs-identifier hs-type">Error.Error</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679407832"><span id="local-6989586621679407834"><span id="local-6989586621679407836"><span class="annot"><span class="annottext">Int -&gt; CallState -&gt; ShowS
 [CallState] -&gt; ShowS
 CallState -&gt; String
 (Int -&gt; CallState -&gt; ShowS)
@@ -43,15 +43,23 @@ show :: CallState -&gt; String
 $cshow :: CallState -&gt; String
 showsPrec :: Int -&gt; CallState -&gt; ShowS
 $cshowsPrec :: Int -&gt; CallState -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679407827"><span id="local-6989586621679407829"><span class="annot"><span class="annottext">CallState -&gt; CallState -&gt; Bool
+(CallState -&gt; CallState -&gt; Bool)
+-&gt; (CallState -&gt; CallState -&gt; Bool) -&gt; Eq CallState
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: CallState -&gt; CallState -&gt; Bool
+$c/= :: CallState -&gt; CallState -&gt; Bool
+== :: CallState -&gt; CallState -&gt; Bool
+$c== :: CallState -&gt; CallState -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679378459"><span id="local-6989586621679378461"><span id="local-6989586621679378463"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.CallState.html#CallState"><span class="hs-identifier hs-type">CallState</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span> </span><span id="local-6989586621679378457"><span class="annot"><span class="annottext">toJSON :: CallState -&gt; Value
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679407819"><span id="local-6989586621679407821"><span id="local-6989586621679407823"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.CallState.html#CallState"><span class="hs-identifier hs-type">CallState</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span> </span><span id="local-6989586621679407817"><span class="annot"><span class="annottext">toJSON :: CallState -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.CallState.html#CallStatePending"><span class="hs-identifier hs-type">CallStatePending</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_received :: CallState -&gt; Maybe Bool
-</span><a href="API.CallState.html#is_received"><span class="hs-identifier hs-var">is_received</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378455"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378455"><span class="hs-identifier hs-var">is_received</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_created :: CallState -&gt; Maybe Bool
-</span><a href="API.CallState.html#is_created"><span class="hs-identifier hs-var">is_created</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378454"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378454"><span class="hs-identifier hs-var">is_created</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.CallState.html#is_received"><span class="hs-identifier hs-var">is_received</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407815"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679407815"><span class="hs-identifier hs-var">is_received</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_created :: CallState -&gt; Maybe Bool
+</span><a href="API.CallState.html#is_created"><span class="hs-identifier hs-var">is_created</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407814"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679407814"><span class="hs-identifier hs-var">is_created</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-23"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -59,10 +67,10 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;callStatePending&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_received&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378455"><span class="hs-identifier hs-var">is_received</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_created&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679407815"><span class="hs-identifier hs-var">is_received</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_created&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378454"><span class="hs-identifier hs-var">is_created</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679407814"><span class="hs-identifier hs-var">is_created</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-24"></span><span>
 </span><span id="line-25"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.CallState.html#CallStateExchangingKeys"><span class="hs-identifier hs-type">CallStateExchangingKeys</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
@@ -72,18 +80,18 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;callStateExchangingKeys&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-27"></span><span>
 </span><span id="line-28"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.CallState.html#CallStateReady"><span class="hs-identifier hs-type">CallStateReady</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">allow_p2p :: CallState -&gt; Maybe Bool
-</span><a href="API.CallState.html#allow_p2p"><span class="hs-identifier hs-var">allow_p2p</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378450"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378450"><span class="hs-identifier hs-var">allow_p2p</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">emojis :: CallState -&gt; Maybe [String]
-</span><a href="API.CallState.html#emojis"><span class="hs-identifier hs-var">emojis</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378449"><span class="annot"><span class="annottext">Maybe [String]
-</span><a href="#local-6989586621679378449"><span class="hs-identifier hs-var">emojis</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">encryption_key :: CallState -&gt; Maybe String
-</span><a href="API.CallState.html#encryption_key"><span class="hs-identifier hs-var">encryption_key</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378448"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679378448"><span class="hs-identifier hs-var">encryption_key</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">config :: CallState -&gt; Maybe String
-</span><a href="API.CallState.html#config"><span class="hs-identifier hs-var">config</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378447"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679378447"><span class="hs-identifier hs-var">config</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">connections :: CallState -&gt; Maybe [CallConnection]
-</span><a href="API.CallState.html#connections"><span class="hs-identifier hs-var">connections</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378446"><span class="annot"><span class="annottext">Maybe [CallConnection]
-</span><a href="#local-6989586621679378446"><span class="hs-identifier hs-var">connections</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">protocol :: CallState -&gt; Maybe CallProtocol
-</span><a href="API.CallState.html#protocol"><span class="hs-identifier hs-var">protocol</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378445"><span class="annot"><span class="annottext">Maybe CallProtocol
-</span><a href="#local-6989586621679378445"><span class="hs-identifier hs-var">protocol</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.CallState.html#allow_p2p"><span class="hs-identifier hs-var">allow_p2p</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407810"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679407810"><span class="hs-identifier hs-var">allow_p2p</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">emojis :: CallState -&gt; Maybe [String]
+</span><a href="API.CallState.html#emojis"><span class="hs-identifier hs-var">emojis</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407809"><span class="annot"><span class="annottext">Maybe [String]
+</span><a href="#local-6989586621679407809"><span class="hs-identifier hs-var">emojis</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">encryption_key :: CallState -&gt; Maybe String
+</span><a href="API.CallState.html#encryption_key"><span class="hs-identifier hs-var">encryption_key</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407808"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679407808"><span class="hs-identifier hs-var">encryption_key</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">config :: CallState -&gt; Maybe String
+</span><a href="API.CallState.html#config"><span class="hs-identifier hs-var">config</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407807"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679407807"><span class="hs-identifier hs-var">config</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">connections :: CallState -&gt; Maybe [CallConnection]
+</span><a href="API.CallState.html#connections"><span class="hs-identifier hs-var">connections</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407806"><span class="annot"><span class="annottext">Maybe [CallConnection]
+</span><a href="#local-6989586621679407806"><span class="hs-identifier hs-var">connections</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">protocol :: CallState -&gt; Maybe CallProtocol
+</span><a href="API.CallState.html#protocol"><span class="hs-identifier hs-var">protocol</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407805"><span class="annot"><span class="annottext">Maybe CallProtocol
+</span><a href="#local-6989586621679407805"><span class="hs-identifier hs-var">protocol</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-29"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -91,22 +99,22 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;callStateReady&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;allow_p2p&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378450"><span class="hs-identifier hs-var">allow_p2p</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;emojis&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [String] -&gt; Pair
+</span><a href="#local-6989586621679407810"><span class="hs-identifier hs-var">allow_p2p</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;emojis&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [String] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [String]
-</span><a href="#local-6989586621679378449"><span class="hs-identifier hs-var">emojis</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;encryption_key&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679407809"><span class="hs-identifier hs-var">emojis</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;encryption_key&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679378448"><span class="hs-identifier hs-var">encryption_key</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;config&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679407808"><span class="hs-identifier hs-var">encryption_key</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;config&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679378447"><span class="hs-identifier hs-var">config</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;connections&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [CallConnection] -&gt; Pair
+</span><a href="#local-6989586621679407807"><span class="hs-identifier hs-var">config</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;connections&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [CallConnection] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [CallConnection]
-</span><a href="#local-6989586621679378446"><span class="hs-identifier hs-var">connections</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;protocol&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe CallProtocol -&gt; Pair
+</span><a href="#local-6989586621679407806"><span class="hs-identifier hs-var">connections</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;protocol&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe CallProtocol -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe CallProtocol
-</span><a href="#local-6989586621679378445"><span class="hs-identifier hs-var">protocol</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679407805"><span class="hs-identifier hs-var">protocol</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-30"></span><span>
 </span><span id="line-31"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.CallState.html#CallStateHangingUp"><span class="hs-identifier hs-type">CallStateHangingUp</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-32"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
@@ -116,12 +124,12 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;callStateHangingUp&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-33"></span><span>
 </span><span id="line-34"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.CallState.html#CallStateDiscarded"><span class="hs-identifier hs-type">CallStateDiscarded</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">need_debug_information :: CallState -&gt; Maybe Bool
-</span><a href="API.CallState.html#need_debug_information"><span class="hs-identifier hs-var">need_debug_information</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378444"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378444"><span class="hs-identifier hs-var">need_debug_information</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">need_rating :: CallState -&gt; Maybe Bool
-</span><a href="API.CallState.html#need_rating"><span class="hs-identifier hs-var">need_rating</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378443"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378443"><span class="hs-identifier hs-var">need_rating</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reason :: CallState -&gt; Maybe CallDiscardReason
-</span><a href="API.CallState.html#reason"><span class="hs-identifier hs-var">reason</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378442"><span class="annot"><span class="annottext">Maybe CallDiscardReason
-</span><a href="#local-6989586621679378442"><span class="hs-identifier hs-var">reason</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.CallState.html#need_debug_information"><span class="hs-identifier hs-var">need_debug_information</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407804"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679407804"><span class="hs-identifier hs-var">need_debug_information</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">need_rating :: CallState -&gt; Maybe Bool
+</span><a href="API.CallState.html#need_rating"><span class="hs-identifier hs-var">need_rating</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407803"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679407803"><span class="hs-identifier hs-var">need_rating</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reason :: CallState -&gt; Maybe CallDiscardReason
+</span><a href="API.CallState.html#reason"><span class="hs-identifier hs-var">reason</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407802"><span class="annot"><span class="annottext">Maybe CallDiscardReason
+</span><a href="#local-6989586621679407802"><span class="hs-identifier hs-var">reason</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-35"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -129,17 +137,17 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;callStateDiscarded&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;need_debug_information&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378444"><span class="hs-identifier hs-var">need_debug_information</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;need_rating&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679407804"><span class="hs-identifier hs-var">need_debug_information</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;need_rating&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378443"><span class="hs-identifier hs-var">need_rating</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;reason&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe CallDiscardReason -&gt; Pair
+</span><a href="#local-6989586621679407803"><span class="hs-identifier hs-var">need_rating</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;reason&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe CallDiscardReason -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe CallDiscardReason
-</span><a href="#local-6989586621679378442"><span class="hs-identifier hs-var">reason</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679407802"><span class="hs-identifier hs-var">reason</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-36"></span><span>
 </span><span id="line-37"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.CallState.html#CallStateError"><span class="hs-identifier hs-type">CallStateError</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_error :: CallState -&gt; Maybe Error
-</span><a href="API.CallState.html#_error"><span class="hs-identifier hs-var">_error</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679378441"><span class="annot"><span class="annottext">Maybe Error
-</span><a href="#local-6989586621679378441"><span class="hs-identifier hs-var">_error</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.CallState.html#_error"><span class="hs-identifier hs-var">_error</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407801"><span class="annot"><span class="annottext">Maybe Error
+</span><a href="#local-6989586621679407801"><span class="hs-identifier hs-var">_error</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-38"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -147,69 +155,69 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;callStateError&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;error&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Error -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Error
-</span><a href="#local-6989586621679378441"><span class="hs-identifier hs-var">_error</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679407801"><span class="hs-identifier hs-var">_error</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-39"></span><span>
-</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679378438"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.CallState.html#CallState"><span class="hs-identifier hs-type">CallState</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-41"></span><span> </span><span id="local-6989586621679378436"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CallState
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679378434"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679378434"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679378432"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679378432"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-42"></span><span>  </span><span id="local-6989586621679378431"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679378431"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679378432"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679407798"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.CallState.html#CallState"><span class="hs-identifier hs-type">CallState</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-41"></span><span> </span><span id="local-6989586621679407796"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CallState
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679407794"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679407794"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679407792"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679407792"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-42"></span><span>  </span><span id="local-6989586621679407791"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679407791"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679407792"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-43"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679378431"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679407791"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-44"></span><span>   </span><span class="hs-string">&quot;callStatePending&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallState
-</span><a href="#local-6989586621679378429"><span class="hs-identifier hs-var">parseCallStatePending</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679378434"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407789"><span class="hs-identifier hs-var">parseCallStatePending</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407794"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-45"></span><span>   </span><span class="hs-string">&quot;callStateExchangingKeys&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallState
-</span><a href="#local-6989586621679378428"><span class="hs-identifier hs-var">parseCallStateExchangingKeys</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679378434"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407788"><span class="hs-identifier hs-var">parseCallStateExchangingKeys</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407794"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-46"></span><span>   </span><span class="hs-string">&quot;callStateReady&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallState
-</span><a href="#local-6989586621679378427"><span class="hs-identifier hs-var">parseCallStateReady</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679378434"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407787"><span class="hs-identifier hs-var">parseCallStateReady</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407794"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-47"></span><span>   </span><span class="hs-string">&quot;callStateHangingUp&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallState
-</span><a href="#local-6989586621679378426"><span class="hs-identifier hs-var">parseCallStateHangingUp</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679378434"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407786"><span class="hs-identifier hs-var">parseCallStateHangingUp</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407794"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-48"></span><span>   </span><span class="hs-string">&quot;callStateDiscarded&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallState
-</span><a href="#local-6989586621679378425"><span class="hs-identifier hs-var">parseCallStateDiscarded</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679378434"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407785"><span class="hs-identifier hs-var">parseCallStateDiscarded</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407794"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-49"></span><span>   </span><span class="hs-string">&quot;callStateError&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallState
-</span><a href="#local-6989586621679378424"><span class="hs-identifier hs-var">parseCallStateError</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679378434"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407784"><span class="hs-identifier hs-var">parseCallStateError</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407794"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-50"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CallState
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-51"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-52"></span><span>   </span><span class="annot"><a href="#local-6989586621679378429"><span class="hs-identifier hs-type">parseCallStatePending</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallState.html#CallState"><span class="hs-identifier hs-type">CallState</span></a></span><span>
-</span><span id="line-53"></span><span>   </span><span id="local-6989586621679378429"><span class="annot"><span class="annottext">parseCallStatePending :: Value -&gt; Parser CallState
-</span><a href="#local-6989586621679378429"><span class="hs-identifier hs-var hs-var">parseCallStatePending</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState
+</span><span id="line-52"></span><span>   </span><span class="annot"><a href="#local-6989586621679407789"><span class="hs-identifier hs-type">parseCallStatePending</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallState.html#CallState"><span class="hs-identifier hs-type">CallState</span></a></span><span>
+</span><span id="line-53"></span><span>   </span><span id="local-6989586621679407789"><span class="annot"><span class="annottext">parseCallStatePending :: Value -&gt; Parser CallState
+</span><a href="#local-6989586621679407789"><span class="hs-identifier hs-var hs-var">parseCallStatePending</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;CallStatePending&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState)
 -&gt; (Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679378422"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679378422"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-54"></span><span>    </span><span id="local-6989586621679378421"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378421"><span class="hs-identifier hs-var">is_received</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679407782"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679407782"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-54"></span><span>    </span><span id="local-6989586621679407781"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679407781"><span class="hs-identifier hs-var">is_received</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
 -&gt; Parser Bool -&gt; Parser (Maybe Bool)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679378422"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><a href="#local-6989586621679407782"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_received&quot;</span></span><span>
-</span><span id="line-55"></span><span>    </span><span id="local-6989586621679378420"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378420"><span class="hs-identifier hs-var">is_created</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+</span><span id="line-55"></span><span>    </span><span id="local-6989586621679407780"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679407780"><span class="hs-identifier hs-var">is_created</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
 -&gt; Parser Bool -&gt; Parser (Maybe Bool)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679378422"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><a href="#local-6989586621679407782"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_created&quot;</span></span><span>
 </span><span id="line-56"></span><span>    </span><span class="annot"><span class="annottext">CallState -&gt; Parser CallState
@@ -219,19 +227,19 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallStatePending :: Maybe Bool -&gt; Maybe Bool -&gt; CallState
 </span><a href="API.CallState.html#CallStatePending"><span class="hs-identifier hs-type hs-type">CallStatePending</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_received :: Maybe Bool
 </span><a href="API.CallState.html#is_received"><span class="hs-identifier hs-var">is_received</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378421"><span class="hs-identifier hs-var">is_received</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_created :: Maybe Bool
+</span><a href="#local-6989586621679407781"><span class="hs-identifier hs-var">is_received</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_created :: Maybe Bool
 </span><a href="API.CallState.html#is_created"><span class="hs-identifier hs-var">is_created</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378420"><span class="hs-identifier hs-var">is_created</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679407780"><span class="hs-identifier hs-var">is_created</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-57"></span><span>
-</span><span id="line-58"></span><span>   </span><span class="annot"><a href="#local-6989586621679378428"><span class="hs-identifier hs-type">parseCallStateExchangingKeys</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallState.html#CallState"><span class="hs-identifier hs-type">CallState</span></a></span><span>
-</span><span id="line-59"></span><span>   </span><span id="local-6989586621679378428"><span class="annot"><span class="annottext">parseCallStateExchangingKeys :: Value -&gt; Parser CallState
-</span><a href="#local-6989586621679378428"><span class="hs-identifier hs-var hs-var">parseCallStateExchangingKeys</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState
+</span><span id="line-58"></span><span>   </span><span class="annot"><a href="#local-6989586621679407788"><span class="hs-identifier hs-type">parseCallStateExchangingKeys</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallState.html#CallState"><span class="hs-identifier hs-type">CallState</span></a></span><span>
+</span><span id="line-59"></span><span>   </span><span id="local-6989586621679407788"><span class="annot"><span class="annottext">parseCallStateExchangingKeys :: Value -&gt; Parser CallState
+</span><a href="#local-6989586621679407788"><span class="hs-identifier hs-var hs-var">parseCallStateExchangingKeys</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;CallStateExchangingKeys&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState)
 -&gt; (Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679378418"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679378418"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679407778"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679407778"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-60"></span><span>    </span><span class="annot"><span class="annottext">CallState -&gt; Parser CallState
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CallState -&gt; Parser CallState) -&gt; CallState -&gt; Parser CallState
@@ -239,73 +247,73 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallStateExchangingKeys :: CallState
 </span><a href="API.CallState.html#CallStateExchangingKeys"><span class="hs-identifier hs-type hs-type">CallStateExchangingKeys</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-61"></span><span>
-</span><span id="line-62"></span><span>   </span><span class="annot"><a href="#local-6989586621679378427"><span class="hs-identifier hs-type">parseCallStateReady</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallState.html#CallState"><span class="hs-identifier hs-type">CallState</span></a></span><span>
-</span><span id="line-63"></span><span>   </span><span id="local-6989586621679378427"><span class="annot"><span class="annottext">parseCallStateReady :: Value -&gt; Parser CallState
-</span><a href="#local-6989586621679378427"><span class="hs-identifier hs-var hs-var">parseCallStateReady</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState
+</span><span id="line-62"></span><span>   </span><span class="annot"><a href="#local-6989586621679407787"><span class="hs-identifier hs-type">parseCallStateReady</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallState.html#CallState"><span class="hs-identifier hs-type">CallState</span></a></span><span>
+</span><span id="line-63"></span><span>   </span><span id="local-6989586621679407787"><span class="annot"><span class="annottext">parseCallStateReady :: Value -&gt; Parser CallState
+</span><a href="#local-6989586621679407787"><span class="hs-identifier hs-var hs-var">parseCallStateReady</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;CallStateReady&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState)
 -&gt; (Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679378416"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679378416"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-64"></span><span>    </span><span id="local-6989586621679378415"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378415"><span class="hs-identifier hs-var">allow_p2p</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679407776"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679407776"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-64"></span><span>    </span><span id="local-6989586621679407775"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679407775"><span class="hs-identifier hs-var">allow_p2p</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
 -&gt; Parser Bool -&gt; Parser (Maybe Bool)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679378416"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><a href="#local-6989586621679407776"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;allow_p2p&quot;</span></span><span>
-</span><span id="line-65"></span><span>    </span><span id="local-6989586621679378414"><span class="annot"><span class="annottext">Maybe [String]
-</span><a href="#local-6989586621679378414"><span class="hs-identifier hs-var">emojis</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [String] -&gt; Parser (Maybe [String])
+</span><span id="line-65"></span><span>    </span><span id="local-6989586621679407774"><span class="annot"><span class="annottext">Maybe [String]
+</span><a href="#local-6989586621679407774"><span class="hs-identifier hs-var">emojis</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [String] -&gt; Parser (Maybe [String])
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser [String] -&gt; Parser (Maybe [String]))
 -&gt; Parser [String] -&gt; Parser (Maybe [String])
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679378416"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [String]
+</span><a href="#local-6989586621679407776"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [String]
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;emojis&quot;</span></span><span>
-</span><span id="line-66"></span><span>    </span><span id="local-6989586621679378413"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679378413"><span class="hs-identifier hs-var">encryption_key</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span id="line-66"></span><span>    </span><span id="local-6989586621679407773"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679407773"><span class="hs-identifier hs-var">encryption_key</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679378416"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679407776"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;encryption_key&quot;</span></span><span>
-</span><span id="line-67"></span><span>    </span><span id="local-6989586621679378412"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679378412"><span class="hs-identifier hs-var">config</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span id="line-67"></span><span>    </span><span id="local-6989586621679407772"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679407772"><span class="hs-identifier hs-var">config</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679378416"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679407776"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;config&quot;</span></span><span>
-</span><span id="line-68"></span><span>    </span><span id="local-6989586621679378411"><span class="annot"><span class="annottext">Maybe [CallConnection]
-</span><a href="#local-6989586621679378411"><span class="hs-identifier hs-var">connections</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [CallConnection] -&gt; Parser (Maybe [CallConnection])
+</span><span id="line-68"></span><span>    </span><span id="local-6989586621679407771"><span class="annot"><span class="annottext">Maybe [CallConnection]
+</span><a href="#local-6989586621679407771"><span class="hs-identifier hs-var">connections</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [CallConnection] -&gt; Parser (Maybe [CallConnection])
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser [CallConnection] -&gt; Parser (Maybe [CallConnection]))
 -&gt; Parser [CallConnection] -&gt; Parser (Maybe [CallConnection])
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679378416"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [CallConnection]
+</span><a href="#local-6989586621679407776"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [CallConnection]
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;connections&quot;</span></span><span>
-</span><span id="line-69"></span><span>    </span><span id="local-6989586621679378410"><span class="annot"><span class="annottext">Maybe CallProtocol
-</span><a href="#local-6989586621679378410"><span class="hs-identifier hs-var">protocol</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser CallProtocol -&gt; Parser (Maybe CallProtocol)
+</span><span id="line-69"></span><span>    </span><span id="local-6989586621679407770"><span class="annot"><span class="annottext">Maybe CallProtocol
+</span><a href="#local-6989586621679407770"><span class="hs-identifier hs-var">protocol</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser CallProtocol -&gt; Parser (Maybe CallProtocol)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser CallProtocol -&gt; Parser (Maybe CallProtocol))
 -&gt; Parser CallProtocol -&gt; Parser (Maybe CallProtocol)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679378416"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser CallProtocol
+</span><a href="#local-6989586621679407776"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser CallProtocol
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;protocol&quot;</span></span><span>
 </span><span id="line-70"></span><span>    </span><span class="annot"><span class="annottext">CallState -&gt; Parser CallState
@@ -321,27 +329,27 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; CallState
 </span><a href="API.CallState.html#CallStateReady"><span class="hs-identifier hs-type hs-type">CallStateReady</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">allow_p2p :: Maybe Bool
 </span><a href="API.CallState.html#allow_p2p"><span class="hs-identifier hs-var">allow_p2p</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378415"><span class="hs-identifier hs-var">allow_p2p</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">emojis :: Maybe [String]
+</span><a href="#local-6989586621679407775"><span class="hs-identifier hs-var">allow_p2p</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">emojis :: Maybe [String]
 </span><a href="API.CallState.html#emojis"><span class="hs-identifier hs-var">emojis</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [String]
-</span><a href="#local-6989586621679378414"><span class="hs-identifier hs-var">emojis</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">encryption_key :: Maybe String
+</span><a href="#local-6989586621679407774"><span class="hs-identifier hs-var">emojis</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">encryption_key :: Maybe String
 </span><a href="API.CallState.html#encryption_key"><span class="hs-identifier hs-var">encryption_key</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679378413"><span class="hs-identifier hs-var">encryption_key</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">config :: Maybe String
+</span><a href="#local-6989586621679407773"><span class="hs-identifier hs-var">encryption_key</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">config :: Maybe String
 </span><a href="API.CallState.html#config"><span class="hs-identifier hs-var">config</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679378412"><span class="hs-identifier hs-var">config</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">connections :: Maybe [CallConnection]
+</span><a href="#local-6989586621679407772"><span class="hs-identifier hs-var">config</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">connections :: Maybe [CallConnection]
 </span><a href="API.CallState.html#connections"><span class="hs-identifier hs-var">connections</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [CallConnection]
-</span><a href="#local-6989586621679378411"><span class="hs-identifier hs-var">connections</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">protocol :: Maybe CallProtocol
+</span><a href="#local-6989586621679407771"><span class="hs-identifier hs-var">connections</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">protocol :: Maybe CallProtocol
 </span><a href="API.CallState.html#protocol"><span class="hs-identifier hs-var">protocol</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe CallProtocol
-</span><a href="#local-6989586621679378410"><span class="hs-identifier hs-var">protocol</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679407770"><span class="hs-identifier hs-var">protocol</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-71"></span><span>
-</span><span id="line-72"></span><span>   </span><span class="annot"><a href="#local-6989586621679378426"><span class="hs-identifier hs-type">parseCallStateHangingUp</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallState.html#CallState"><span class="hs-identifier hs-type">CallState</span></a></span><span>
-</span><span id="line-73"></span><span>   </span><span id="local-6989586621679378426"><span class="annot"><span class="annottext">parseCallStateHangingUp :: Value -&gt; Parser CallState
-</span><a href="#local-6989586621679378426"><span class="hs-identifier hs-var hs-var">parseCallStateHangingUp</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState
+</span><span id="line-72"></span><span>   </span><span class="annot"><a href="#local-6989586621679407786"><span class="hs-identifier hs-type">parseCallStateHangingUp</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallState.html#CallState"><span class="hs-identifier hs-type">CallState</span></a></span><span>
+</span><span id="line-73"></span><span>   </span><span id="local-6989586621679407786"><span class="annot"><span class="annottext">parseCallStateHangingUp :: Value -&gt; Parser CallState
+</span><a href="#local-6989586621679407786"><span class="hs-identifier hs-var hs-var">parseCallStateHangingUp</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;CallStateHangingUp&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState)
 -&gt; (Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679378408"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679378408"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679407768"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679407768"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-74"></span><span>    </span><span class="annot"><span class="annottext">CallState -&gt; Parser CallState
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CallState -&gt; Parser CallState) -&gt; CallState -&gt; Parser CallState
@@ -349,43 +357,43 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallStateHangingUp :: CallState
 </span><a href="API.CallState.html#CallStateHangingUp"><span class="hs-identifier hs-type hs-type">CallStateHangingUp</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-75"></span><span>
-</span><span id="line-76"></span><span>   </span><span class="annot"><a href="#local-6989586621679378425"><span class="hs-identifier hs-type">parseCallStateDiscarded</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallState.html#CallState"><span class="hs-identifier hs-type">CallState</span></a></span><span>
-</span><span id="line-77"></span><span>   </span><span id="local-6989586621679378425"><span class="annot"><span class="annottext">parseCallStateDiscarded :: Value -&gt; Parser CallState
-</span><a href="#local-6989586621679378425"><span class="hs-identifier hs-var hs-var">parseCallStateDiscarded</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState
+</span><span id="line-76"></span><span>   </span><span class="annot"><a href="#local-6989586621679407785"><span class="hs-identifier hs-type">parseCallStateDiscarded</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallState.html#CallState"><span class="hs-identifier hs-type">CallState</span></a></span><span>
+</span><span id="line-77"></span><span>   </span><span id="local-6989586621679407785"><span class="annot"><span class="annottext">parseCallStateDiscarded :: Value -&gt; Parser CallState
+</span><a href="#local-6989586621679407785"><span class="hs-identifier hs-var hs-var">parseCallStateDiscarded</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;CallStateDiscarded&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState)
 -&gt; (Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679378406"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679378406"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-78"></span><span>    </span><span id="local-6989586621679378405"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378405"><span class="hs-identifier hs-var">need_debug_information</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679407766"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679407766"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-78"></span><span>    </span><span id="local-6989586621679407765"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679407765"><span class="hs-identifier hs-var">need_debug_information</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
 -&gt; Parser Bool -&gt; Parser (Maybe Bool)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679378406"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><a href="#local-6989586621679407766"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;need_debug_information&quot;</span></span><span>
-</span><span id="line-79"></span><span>    </span><span id="local-6989586621679378404"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378404"><span class="hs-identifier hs-var">need_rating</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
+</span><span id="line-79"></span><span>    </span><span id="local-6989586621679407764"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679407764"><span class="hs-identifier hs-var">need_rating</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
 -&gt; Parser Bool -&gt; Parser (Maybe Bool)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679378406"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><a href="#local-6989586621679407766"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;need_rating&quot;</span></span><span>
-</span><span id="line-80"></span><span>    </span><span id="local-6989586621679378403"><span class="annot"><span class="annottext">Maybe CallDiscardReason
-</span><a href="#local-6989586621679378403"><span class="hs-identifier hs-var">reason</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser CallDiscardReason -&gt; Parser (Maybe CallDiscardReason)
+</span><span id="line-80"></span><span>    </span><span id="local-6989586621679407763"><span class="annot"><span class="annottext">Maybe CallDiscardReason
+</span><a href="#local-6989586621679407763"><span class="hs-identifier hs-var">reason</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser CallDiscardReason -&gt; Parser (Maybe CallDiscardReason)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser CallDiscardReason -&gt; Parser (Maybe CallDiscardReason))
 -&gt; Parser CallDiscardReason -&gt; Parser (Maybe CallDiscardReason)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679378406"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser CallDiscardReason
+</span><a href="#local-6989586621679407766"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser CallDiscardReason
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;reason&quot;</span></span><span>
 </span><span id="line-81"></span><span>    </span><span class="annot"><span class="annottext">CallState -&gt; Parser CallState
@@ -395,29 +403,29 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallStateDiscarded :: Maybe Bool -&gt; Maybe Bool -&gt; Maybe CallDiscardReason -&gt; CallState
 </span><a href="API.CallState.html#CallStateDiscarded"><span class="hs-identifier hs-type hs-type">CallStateDiscarded</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">need_debug_information :: Maybe Bool
 </span><a href="API.CallState.html#need_debug_information"><span class="hs-identifier hs-var">need_debug_information</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378405"><span class="hs-identifier hs-var">need_debug_information</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">need_rating :: Maybe Bool
+</span><a href="#local-6989586621679407765"><span class="hs-identifier hs-var">need_debug_information</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">need_rating :: Maybe Bool
 </span><a href="API.CallState.html#need_rating"><span class="hs-identifier hs-var">need_rating</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679378404"><span class="hs-identifier hs-var">need_rating</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reason :: Maybe CallDiscardReason
+</span><a href="#local-6989586621679407764"><span class="hs-identifier hs-var">need_rating</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reason :: Maybe CallDiscardReason
 </span><a href="API.CallState.html#reason"><span class="hs-identifier hs-var">reason</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe CallDiscardReason
-</span><a href="#local-6989586621679378403"><span class="hs-identifier hs-var">reason</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679407763"><span class="hs-identifier hs-var">reason</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-82"></span><span>
-</span><span id="line-83"></span><span>   </span><span class="annot"><a href="#local-6989586621679378424"><span class="hs-identifier hs-type">parseCallStateError</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallState.html#CallState"><span class="hs-identifier hs-type">CallState</span></a></span><span>
-</span><span id="line-84"></span><span>   </span><span id="local-6989586621679378424"><span class="annot"><span class="annottext">parseCallStateError :: Value -&gt; Parser CallState
-</span><a href="#local-6989586621679378424"><span class="hs-identifier hs-var hs-var">parseCallStateError</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState
+</span><span id="line-83"></span><span>   </span><span class="annot"><a href="#local-6989586621679407784"><span class="hs-identifier hs-type">parseCallStateError</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallState.html#CallState"><span class="hs-identifier hs-type">CallState</span></a></span><span>
+</span><span id="line-84"></span><span>   </span><span id="local-6989586621679407784"><span class="annot"><span class="annottext">parseCallStateError :: Value -&gt; Parser CallState
+</span><a href="#local-6989586621679407784"><span class="hs-identifier hs-var hs-var">parseCallStateError</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;CallStateError&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState)
 -&gt; (Object -&gt; Parser CallState) -&gt; Value -&gt; Parser CallState
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679378401"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679378401"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-85"></span><span>    </span><span id="local-6989586621679378400"><span class="annot"><span class="annottext">Maybe Error
-</span><a href="#local-6989586621679378400"><span class="hs-identifier hs-var">_error</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Error -&gt; Parser (Maybe Error)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679407761"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679407761"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-85"></span><span>    </span><span id="local-6989586621679407760"><span class="annot"><span class="annottext">Maybe Error
+</span><a href="#local-6989586621679407760"><span class="hs-identifier hs-var">_error</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Error -&gt; Parser (Maybe Error)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Error -&gt; Parser (Maybe Error))
 -&gt; Parser Error -&gt; Parser (Maybe Error)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679378401"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Error
+</span><a href="#local-6989586621679407761"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Error
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;error&quot;</span></span><span>
 </span><span id="line-86"></span><span>    </span><span class="annot"><span class="annottext">CallState -&gt; Parser CallState
@@ -427,4 +435,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallStateError :: Maybe Error -&gt; CallState
 </span><a href="API.CallState.html#CallStateError"><span class="hs-identifier hs-type hs-type">CallStateError</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_error :: Maybe Error
 </span><a href="API.CallState.html#_error"><span class="hs-identifier hs-var">_error</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Error
-</span><a href="#local-6989586621679378400"><span class="hs-identifier hs-var">_error</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679407760"><span class="hs-identifier hs-var">_error</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

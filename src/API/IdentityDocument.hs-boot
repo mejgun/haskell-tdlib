@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data IdentityDocument
 
+instance Eq IdentityDocument
+
 instance ToJSON IdentityDocument
 
 instance FromJSON IdentityDocument

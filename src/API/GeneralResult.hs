@@ -213,9 +213,9 @@ data GeneralResult =
  | TestInt TestInt.TestInt 
  | Ok Ok.Ok 
  | Update Update.Update 
- | Error Error.Error deriving (Show)
+ | Error Error.Error deriving (Show, Eq)
 
-data ResultWithExtra = ResultWithExtra GeneralResult (Maybe String) deriving (Show)
+data ResultWithExtra = ResultWithExtra GeneralResult (Maybe String) deriving (Show, Eq)
 
 instance T.FromJSON ResultWithExtra where
  parseJSON v@(T.Object obj) = do

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data AnswerShippingQuery
 
+instance Eq AnswerShippingQuery
+
 instance ToJSON AnswerShippingQuery
 
 instance FromJSON AnswerShippingQuery

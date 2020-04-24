@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatPermissions as ChatPermissions
 
 data SetChatPermissions = 
- SetChatPermissions { permissions :: Maybe ChatPermissions.ChatPermissions, chat_id :: Maybe Int }  deriving (Show)
+ SetChatPermissions { permissions :: Maybe ChatPermissions.ChatPermissions, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatPermissions where
  toJSON (SetChatPermissions { permissions = permissions, chat_id = chat_id }) =

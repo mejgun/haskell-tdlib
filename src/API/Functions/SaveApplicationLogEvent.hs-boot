@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SaveApplicationLogEvent
 
+instance Eq SaveApplicationLogEvent
+
 instance ToJSON SaveApplicationLogEvent
 
 instance FromJSON SaveApplicationLogEvent

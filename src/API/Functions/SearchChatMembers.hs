@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatMembersFilter as ChatMembersFilter
 
 data SearchChatMembers = 
- SearchChatMembers { _filter :: Maybe ChatMembersFilter.ChatMembersFilter, limit :: Maybe Int, query :: Maybe String, chat_id :: Maybe Int }  deriving (Show)
+ SearchChatMembers { _filter :: Maybe ChatMembersFilter.ChatMembersFilter, limit :: Maybe Int, query :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SearchChatMembers where
  toJSON (SearchChatMembers { _filter = _filter, limit = limit, query = query, chat_id = chat_id }) =

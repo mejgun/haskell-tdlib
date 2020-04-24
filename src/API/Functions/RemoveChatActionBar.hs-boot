@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data RemoveChatActionBar
 
+instance Eq RemoveChatActionBar
+
 instance ToJSON RemoveChatActionBar
 
 instance FromJSON RemoveChatActionBar

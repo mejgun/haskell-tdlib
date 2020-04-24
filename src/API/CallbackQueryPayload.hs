@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 
 data CallbackQueryPayload = 
  CallbackQueryPayloadData { _data :: Maybe String }  
- | CallbackQueryPayloadGame { game_short_name :: Maybe String }  deriving (Show)
+ | CallbackQueryPayloadGame { game_short_name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CallbackQueryPayload where
  toJSON (CallbackQueryPayloadData { _data = _data }) =

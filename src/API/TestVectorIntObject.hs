@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TestInt as TestInt
 
 data TestVectorIntObject = 
- TestVectorIntObject { value :: Maybe [TestInt.TestInt] }  deriving (Show)
+ TestVectorIntObject { value :: Maybe [TestInt.TestInt] }  deriving (Show, Eq)
 
 instance T.ToJSON TestVectorIntObject where
  toJSON (TestVectorIntObject { value = value }) =

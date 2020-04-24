@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data MaskPoint
 
+instance Eq MaskPoint
+
 instance ToJSON MaskPoint
 
 instance FromJSON MaskPoint

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.JsonValue as JsonValue
 
 data JsonObjectMember = 
- JsonObjectMember { value :: Maybe JsonValue.JsonValue, key :: Maybe String }  deriving (Show)
+ JsonObjectMember { value :: Maybe JsonValue.JsonValue, key :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON JsonObjectMember where
  toJSON (JsonObjectMember { value = value, key = key }) =

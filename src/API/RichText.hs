@@ -24,7 +24,7 @@ data RichText =
  | RichTextReference { url :: Maybe String, reference_text :: Maybe RichText, text :: Maybe RichText }  
  | RichTextAnchor { name :: Maybe String }  
  | RichTextAnchorLink { url :: Maybe String, name :: Maybe String, text :: Maybe RichText }  
- | RichTexts { texts :: Maybe [RichText] }  deriving (Show)
+ | RichTexts { texts :: Maybe [RichText] }  deriving (Show, Eq)
 
 instance T.ToJSON RichText where
  toJSON (RichTextPlain { _text = _text }) =

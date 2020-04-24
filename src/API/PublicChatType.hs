@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 
 data PublicChatType = 
  PublicChatTypeHasUsername 
- | PublicChatTypeIsLocationBased deriving (Show)
+ | PublicChatTypeIsLocationBased deriving (Show, Eq)
 
 instance T.ToJSON PublicChatType where
  toJSON (PublicChatTypeHasUsername {  }) =

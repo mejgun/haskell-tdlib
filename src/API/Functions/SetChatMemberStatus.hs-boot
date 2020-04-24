@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetChatMemberStatus
 
+instance Eq SetChatMemberStatus
+
 instance ToJSON SetChatMemberStatus
 
 instance FromJSON SetChatMemberStatus

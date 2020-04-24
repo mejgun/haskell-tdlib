@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data UpgradeBasicGroupChatToSupergroupChat
 
+instance Eq UpgradeBasicGroupChatToSupergroupChat
+
 instance ToJSON UpgradeBasicGroupChatToSupergroupChat
 
 instance FromJSON UpgradeBasicGroupChatToSupergroupChat

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data AddLocalMessage
 
+instance Eq AddLocalMessage
+
 instance ToJSON AddLocalMessage
 
 instance FromJSON AddLocalMessage

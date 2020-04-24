@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data DisconnectAllWebsites = 
- DisconnectAllWebsites deriving (Show)
+ DisconnectAllWebsites deriving (Show, Eq)
 
 instance T.ToJSON DisconnectAllWebsites where
  toJSON (DisconnectAllWebsites {  }) =

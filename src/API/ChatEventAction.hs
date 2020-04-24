@@ -33,7 +33,7 @@ data ChatEventAction =
  | ChatEventSignMessagesToggled { sign_messages :: Maybe Bool }  
  | ChatEventStickerSetChanged { new_sticker_set_id :: Maybe Int, old_sticker_set_id :: Maybe Int }  
  | ChatEventLocationChanged { new_location :: Maybe ChatLocation.ChatLocation, old_location :: Maybe ChatLocation.ChatLocation }  
- | ChatEventIsAllHistoryAvailableToggled { is_all_history_available :: Maybe Bool }  deriving (Show)
+ | ChatEventIsAllHistoryAvailableToggled { is_all_history_available :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON ChatEventAction where
  toJSON (ChatEventMessageEdited { new_message = new_message, old_message = old_message }) =

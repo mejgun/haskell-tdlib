@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SearchPublicChat = 
- SearchPublicChat { username :: Maybe String }  deriving (Show)
+ SearchPublicChat { username :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SearchPublicChat where
  toJSON (SearchPublicChat { username = username }) =

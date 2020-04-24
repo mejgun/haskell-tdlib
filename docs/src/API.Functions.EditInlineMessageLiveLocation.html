@@ -12,7 +12,7 @@
 </span><span id="line-12"></span><span> </span><span id="EditInlineMessageLiveLocation"><span class="annot"><a href="API.Functions.EditInlineMessageLiveLocation.html#EditInlineMessageLiveLocation"><span class="hs-identifier hs-var">EditInlineMessageLiveLocation</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="location"><span class="annot"><span class="annottext">EditInlineMessageLiveLocation -&gt; Maybe Location
 </span><a href="API.Functions.EditInlineMessageLiveLocation.html#location"><span class="hs-identifier hs-var hs-var">location</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.Location.html#Location"><span class="hs-identifier hs-type">Location.Location</span></a></span><span class="hs-special">,</span><span> </span><span id="reply_markup"><span class="annot"><span class="annottext">EditInlineMessageLiveLocation -&gt; Maybe ReplyMarkup
 </span><a href="API.Functions.EditInlineMessageLiveLocation.html#reply_markup"><span class="hs-identifier hs-var hs-var">reply_markup</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.ReplyMarkup.html#ReplyMarkup"><span class="hs-identifier hs-type">ReplyMarkup.ReplyMarkup</span></a></span><span class="hs-special">,</span><span> </span><span id="inline_message_id"><span class="annot"><span class="annottext">EditInlineMessageLiveLocation -&gt; Maybe String
-</span><a href="API.Functions.EditInlineMessageLiveLocation.html#inline_message_id"><span class="hs-identifier hs-var hs-var">inline_message_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679412124"><span id="local-6989586621679412126"><span id="local-6989586621679412128"><span class="annot"><span class="annottext">Int -&gt; EditInlineMessageLiveLocation -&gt; ShowS
+</span><a href="API.Functions.EditInlineMessageLiveLocation.html#inline_message_id"><span class="hs-identifier hs-var hs-var">inline_message_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679444251"><span id="local-6989586621679444253"><span id="local-6989586621679444255"><span class="annot"><span class="annottext">Int -&gt; EditInlineMessageLiveLocation -&gt; ShowS
 [EditInlineMessageLiveLocation] -&gt; ShowS
 EditInlineMessageLiveLocation -&gt; String
 (Int -&gt; EditInlineMessageLiveLocation -&gt; ShowS)
@@ -27,17 +27,33 @@ show :: EditInlineMessageLiveLocation -&gt; String
 $cshow :: EditInlineMessageLiveLocation -&gt; String
 showsPrec :: Int -&gt; EditInlineMessageLiveLocation -&gt; ShowS
 $cshowsPrec :: Int -&gt; EditInlineMessageLiveLocation -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679444246"><span id="local-6989586621679444248"><span class="annot"><span class="annottext">EditInlineMessageLiveLocation
+-&gt; EditInlineMessageLiveLocation -&gt; Bool
+(EditInlineMessageLiveLocation
+ -&gt; EditInlineMessageLiveLocation -&gt; Bool)
+-&gt; (EditInlineMessageLiveLocation
+    -&gt; EditInlineMessageLiveLocation -&gt; Bool)
+-&gt; Eq EditInlineMessageLiveLocation
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: EditInlineMessageLiveLocation
+-&gt; EditInlineMessageLiveLocation -&gt; Bool
+$c/= :: EditInlineMessageLiveLocation
+-&gt; EditInlineMessageLiveLocation -&gt; Bool
+== :: EditInlineMessageLiveLocation
+-&gt; EditInlineMessageLiveLocation -&gt; Bool
+$c== :: EditInlineMessageLiveLocation
+-&gt; EditInlineMessageLiveLocation -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-13"></span><span>
-</span><span id="line-14"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412116"><span id="local-6989586621679412118"><span id="local-6989586621679412120"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.EditInlineMessageLiveLocation.html#EditInlineMessageLiveLocation"><span class="hs-identifier hs-type">EditInlineMessageLiveLocation</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-15"></span><span> </span><span id="local-6989586621679412114"><span class="annot"><span class="annottext">toJSON :: EditInlineMessageLiveLocation -&gt; Value
+</span><span id="line-14"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679444238"><span id="local-6989586621679444240"><span id="local-6989586621679444242"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.EditInlineMessageLiveLocation.html#EditInlineMessageLiveLocation"><span class="hs-identifier hs-type">EditInlineMessageLiveLocation</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-15"></span><span> </span><span id="local-6989586621679444236"><span class="annot"><span class="annottext">toJSON :: EditInlineMessageLiveLocation -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.EditInlineMessageLiveLocation.html#EditInlineMessageLiveLocation"><span class="hs-identifier hs-type">EditInlineMessageLiveLocation</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">location :: EditInlineMessageLiveLocation -&gt; Maybe Location
-</span><a href="API.Functions.EditInlineMessageLiveLocation.html#location"><span class="hs-identifier hs-var">location</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412112"><span class="annot"><span class="annottext">Maybe Location
-</span><a href="#local-6989586621679412112"><span class="hs-identifier hs-var">location</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reply_markup :: EditInlineMessageLiveLocation -&gt; Maybe ReplyMarkup
-</span><a href="API.Functions.EditInlineMessageLiveLocation.html#reply_markup"><span class="hs-identifier hs-var">reply_markup</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412111"><span class="annot"><span class="annottext">Maybe ReplyMarkup
-</span><a href="#local-6989586621679412111"><span class="hs-identifier hs-var">reply_markup</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">inline_message_id :: EditInlineMessageLiveLocation -&gt; Maybe String
-</span><a href="API.Functions.EditInlineMessageLiveLocation.html#inline_message_id"><span class="hs-identifier hs-var">inline_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412110"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679412110"><span class="hs-identifier hs-var">inline_message_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.EditInlineMessageLiveLocation.html#location"><span class="hs-identifier hs-var">location</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679444234"><span class="annot"><span class="annottext">Maybe Location
+</span><a href="#local-6989586621679444234"><span class="hs-identifier hs-var">location</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reply_markup :: EditInlineMessageLiveLocation -&gt; Maybe ReplyMarkup
+</span><a href="API.Functions.EditInlineMessageLiveLocation.html#reply_markup"><span class="hs-identifier hs-var">reply_markup</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679444233"><span class="annot"><span class="annottext">Maybe ReplyMarkup
+</span><a href="#local-6989586621679444233"><span class="hs-identifier hs-var">reply_markup</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">inline_message_id :: EditInlineMessageLiveLocation -&gt; Maybe String
+</span><a href="API.Functions.EditInlineMessageLiveLocation.html#inline_message_id"><span class="hs-identifier hs-var">inline_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679444232"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679444232"><span class="hs-identifier hs-var">inline_message_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-16"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -45,36 +61,36 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;editInlineMessageLiveLocation&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;location&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Location -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Location
-</span><a href="#local-6989586621679412112"><span class="hs-identifier hs-var">location</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;reply_markup&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ReplyMarkup -&gt; Pair
+</span><a href="#local-6989586621679444234"><span class="hs-identifier hs-var">location</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;reply_markup&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe ReplyMarkup -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe ReplyMarkup
-</span><a href="#local-6989586621679412111"><span class="hs-identifier hs-var">reply_markup</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;inline_message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679444233"><span class="hs-identifier hs-var">reply_markup</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;inline_message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679412110"><span class="hs-identifier hs-var">inline_message_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679444232"><span class="hs-identifier hs-var">inline_message_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412104"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.EditInlineMessageLiveLocation.html#EditInlineMessageLiveLocation"><span class="hs-identifier hs-type">EditInlineMessageLiveLocation</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-19"></span><span> </span><span id="local-6989586621679412102"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser EditInlineMessageLiveLocation
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679412100"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679412100"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679412098"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679412098"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-20"></span><span>  </span><span id="local-6989586621679412097"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679412097"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679412098"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679444226"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.EditInlineMessageLiveLocation.html#EditInlineMessageLiveLocation"><span class="hs-identifier hs-type">EditInlineMessageLiveLocation</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span> </span><span id="local-6989586621679444224"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser EditInlineMessageLiveLocation
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679444222"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679444222"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679444220"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679444220"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-20"></span><span>  </span><span id="local-6989586621679444219"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679444219"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679444220"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-21"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679412097"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679444219"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-22"></span><span>   </span><span class="hs-string">&quot;editInlineMessageLiveLocation&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser EditInlineMessageLiveLocation
-</span><a href="#local-6989586621679412095"><span class="hs-identifier hs-var">parseEditInlineMessageLiveLocation</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679412100"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679444217"><span class="hs-identifier hs-var">parseEditInlineMessageLiveLocation</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679444222"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-23"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser EditInlineMessageLiveLocation
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-24"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span>   </span><span class="annot"><a href="#local-6989586621679412095"><span class="hs-identifier hs-type">parseEditInlineMessageLiveLocation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.EditInlineMessageLiveLocation.html#EditInlineMessageLiveLocation"><span class="hs-identifier hs-type">EditInlineMessageLiveLocation</span></a></span><span>
-</span><span id="line-26"></span><span>   </span><span id="local-6989586621679412095"><span class="annot"><span class="annottext">parseEditInlineMessageLiveLocation :: Value -&gt; Parser EditInlineMessageLiveLocation
-</span><a href="#local-6989586621679412095"><span class="hs-identifier hs-var hs-var">parseEditInlineMessageLiveLocation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-25"></span><span>   </span><span class="annot"><a href="#local-6989586621679444217"><span class="hs-identifier hs-type">parseEditInlineMessageLiveLocation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.EditInlineMessageLiveLocation.html#EditInlineMessageLiveLocation"><span class="hs-identifier hs-type">EditInlineMessageLiveLocation</span></a></span><span>
+</span><span id="line-26"></span><span>   </span><span id="local-6989586621679444217"><span class="annot"><span class="annottext">parseEditInlineMessageLiveLocation :: Value -&gt; Parser EditInlineMessageLiveLocation
+</span><a href="#local-6989586621679444217"><span class="hs-identifier hs-var hs-var">parseEditInlineMessageLiveLocation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser EditInlineMessageLiveLocation)
 -&gt; Value
 -&gt; Parser EditInlineMessageLiveLocation
@@ -85,36 +101,36 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser EditInlineMessageLiveLocation
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412093"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679412093"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679412092"><span class="annot"><span class="annottext">Maybe Location
-</span><a href="#local-6989586621679412092"><span class="hs-identifier hs-var">location</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Location -&gt; Parser (Maybe Location)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679444215"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679444215"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679444214"><span class="annot"><span class="annottext">Maybe Location
+</span><a href="#local-6989586621679444214"><span class="hs-identifier hs-var">location</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Location -&gt; Parser (Maybe Location)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Location -&gt; Parser (Maybe Location))
 -&gt; Parser Location -&gt; Parser (Maybe Location)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679412093"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Location
+</span><a href="#local-6989586621679444215"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Location
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;location&quot;</span></span><span>
-</span><span id="line-28"></span><span>    </span><span id="local-6989586621679412091"><span class="annot"><span class="annottext">Maybe ReplyMarkup
-</span><a href="#local-6989586621679412091"><span class="hs-identifier hs-var">reply_markup</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser ReplyMarkup -&gt; Parser (Maybe ReplyMarkup)
+</span><span id="line-28"></span><span>    </span><span id="local-6989586621679444213"><span class="annot"><span class="annottext">Maybe ReplyMarkup
+</span><a href="#local-6989586621679444213"><span class="hs-identifier hs-var">reply_markup</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser ReplyMarkup -&gt; Parser (Maybe ReplyMarkup)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser ReplyMarkup -&gt; Parser (Maybe ReplyMarkup))
 -&gt; Parser ReplyMarkup -&gt; Parser (Maybe ReplyMarkup)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679412093"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser ReplyMarkup
+</span><a href="#local-6989586621679444215"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser ReplyMarkup
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;reply_markup&quot;</span></span><span>
-</span><span id="line-29"></span><span>    </span><span id="local-6989586621679412090"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679412090"><span class="hs-identifier hs-var">inline_message_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span id="line-29"></span><span>    </span><span id="local-6989586621679444212"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679444212"><span class="hs-identifier hs-var">inline_message_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679412093"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679444215"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;inline_message_id&quot;</span></span><span>
 </span><span id="line-30"></span><span>    </span><span class="annot"><span class="annottext">EditInlineMessageLiveLocation
@@ -131,8 +147,8 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; EditInlineMessageLiveLocation
 </span><a href="API.Functions.EditInlineMessageLiveLocation.html#EditInlineMessageLiveLocation"><span class="hs-identifier hs-type hs-type">EditInlineMessageLiveLocation</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">location :: Maybe Location
 </span><a href="API.Functions.EditInlineMessageLiveLocation.html#location"><span class="hs-identifier hs-var">location</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Location
-</span><a href="#local-6989586621679412092"><span class="hs-identifier hs-var">location</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reply_markup :: Maybe ReplyMarkup
+</span><a href="#local-6989586621679444214"><span class="hs-identifier hs-var">location</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reply_markup :: Maybe ReplyMarkup
 </span><a href="API.Functions.EditInlineMessageLiveLocation.html#reply_markup"><span class="hs-identifier hs-var">reply_markup</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe ReplyMarkup
-</span><a href="#local-6989586621679412091"><span class="hs-identifier hs-var">reply_markup</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">inline_message_id :: Maybe String
+</span><a href="#local-6989586621679444213"><span class="hs-identifier hs-var">reply_markup</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">inline_message_id :: Maybe String
 </span><a href="API.Functions.EditInlineMessageLiveLocation.html#inline_message_id"><span class="hs-identifier hs-var">inline_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679412090"><span class="hs-identifier hs-var">inline_message_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679444212"><span class="hs-identifier hs-var">inline_message_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

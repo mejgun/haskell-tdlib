@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data AddCustomServerLanguagePack = 
- AddCustomServerLanguagePack { language_pack_id :: Maybe String }  deriving (Show)
+ AddCustomServerLanguagePack { language_pack_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON AddCustomServerLanguagePack where
  toJSON (AddCustomServerLanguagePack { language_pack_id = language_pack_id }) =

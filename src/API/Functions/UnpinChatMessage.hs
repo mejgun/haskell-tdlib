@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data UnpinChatMessage = 
- UnpinChatMessage { chat_id :: Maybe Int }  deriving (Show)
+ UnpinChatMessage { chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON UnpinChatMessage where
  toJSON (UnpinChatMessage { chat_id = chat_id }) =

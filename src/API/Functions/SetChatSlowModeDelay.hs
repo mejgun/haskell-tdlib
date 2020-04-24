@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetChatSlowModeDelay = 
- SetChatSlowModeDelay { slow_mode_delay :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ SetChatSlowModeDelay { slow_mode_delay :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatSlowModeDelay where
  toJSON (SetChatSlowModeDelay { slow_mode_delay = slow_mode_delay, chat_id = chat_id }) =

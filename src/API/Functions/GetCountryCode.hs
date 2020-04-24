@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetCountryCode = 
- GetCountryCode deriving (Show)
+ GetCountryCode deriving (Show, Eq)
 
 instance T.ToJSON GetCountryCode where
  toJSON (GetCountryCode {  }) =

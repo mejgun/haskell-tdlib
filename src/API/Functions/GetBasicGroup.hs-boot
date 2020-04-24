@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetBasicGroup
 
+instance Eq GetBasicGroup
+
 instance ToJSON GetBasicGroup
 
 instance FromJSON GetBasicGroup

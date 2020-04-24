@@ -10,7 +10,7 @@ import {-# SOURCE #-} qualified API.BackgroundFill as BackgroundFill
 data BackgroundType = 
  BackgroundTypeWallpaper { is_moving :: Maybe Bool, is_blurred :: Maybe Bool }  
  | BackgroundTypePattern { is_moving :: Maybe Bool, intensity :: Maybe Int, fill :: Maybe BackgroundFill.BackgroundFill }  
- | BackgroundTypeFill { fill :: Maybe BackgroundFill.BackgroundFill }  deriving (Show)
+ | BackgroundTypeFill { fill :: Maybe BackgroundFill.BackgroundFill }  deriving (Show, Eq)
 
 instance T.ToJSON BackgroundType where
  toJSON (BackgroundTypeWallpaper { is_moving = is_moving, is_blurred = is_blurred }) =

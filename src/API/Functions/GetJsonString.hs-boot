@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetJsonString
 
+instance Eq GetJsonString
+
 instance ToJSON GetJsonString
 
 instance FromJSON GetJsonString

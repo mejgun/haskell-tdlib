@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data CallId = 
- CallId { _id :: Maybe Int }  deriving (Show)
+ CallId { _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CallId where
  toJSON (CallId { _id = _id }) =

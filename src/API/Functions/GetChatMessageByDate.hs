@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetChatMessageByDate = 
- GetChatMessageByDate { date :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ GetChatMessageByDate { date :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetChatMessageByDate where
  toJSON (GetChatMessageByDate { date = date, chat_id = chat_id }) =

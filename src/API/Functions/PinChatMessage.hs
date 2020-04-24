@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data PinChatMessage = 
- PinChatMessage { disable_notification :: Maybe Bool, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ PinChatMessage { disable_notification :: Maybe Bool, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON PinChatMessage where
  toJSON (PinChatMessage { disable_notification = disable_notification, message_id = message_id, chat_id = chat_id }) =

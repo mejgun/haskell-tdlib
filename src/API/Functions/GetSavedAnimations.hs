@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetSavedAnimations = 
- GetSavedAnimations deriving (Show)
+ GetSavedAnimations deriving (Show, Eq)
 
 instance T.ToJSON GetSavedAnimations where
  toJSON (GetSavedAnimations {  }) =

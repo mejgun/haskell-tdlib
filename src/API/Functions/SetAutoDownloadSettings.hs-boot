@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetAutoDownloadSettings
 
+instance Eq SetAutoDownloadSettings
+
 instance ToJSON SetAutoDownloadSettings
 
 instance FromJSON SetAutoDownloadSettings

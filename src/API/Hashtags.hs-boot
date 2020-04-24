@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data Hashtags
 
+instance Eq Hashtags
+
 instance ToJSON Hashtags
 
 instance FromJSON Hashtags

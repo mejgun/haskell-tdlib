@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ResendRecoveryEmailAddressCode = 
- ResendRecoveryEmailAddressCode deriving (Show)
+ ResendRecoveryEmailAddressCode deriving (Show, Eq)
 
 instance T.ToJSON ResendRecoveryEmailAddressCode where
  toJSON (ResendRecoveryEmailAddressCode {  }) =

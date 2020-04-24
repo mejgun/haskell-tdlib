@@ -10,7 +10,7 @@
 </span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="SetCustomLanguagePackString"><span class="annot"><a href="API.Functions.SetCustomLanguagePackString.html#SetCustomLanguagePackString"><span class="hs-identifier hs-var">SetCustomLanguagePackString</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-11"></span><span> </span><span id="SetCustomLanguagePackString"><span class="annot"><a href="API.Functions.SetCustomLanguagePackString.html#SetCustomLanguagePackString"><span class="hs-identifier hs-var">SetCustomLanguagePackString</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="new_string"><span class="annot"><span class="annottext">SetCustomLanguagePackString -&gt; Maybe LanguagePackString
 </span><a href="API.Functions.SetCustomLanguagePackString.html#new_string"><span class="hs-identifier hs-var hs-var">new_string</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.LanguagePackString.html#LanguagePackString"><span class="hs-identifier hs-type">LanguagePackString.LanguagePackString</span></a></span><span class="hs-special">,</span><span> </span><span id="language_pack_id"><span class="annot"><span class="annottext">SetCustomLanguagePackString -&gt; Maybe String
-</span><a href="API.Functions.SetCustomLanguagePackString.html#language_pack_id"><span class="hs-identifier hs-var hs-var">language_pack_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679402938"><span id="local-6989586621679402940"><span id="local-6989586621679402942"><span class="annot"><span class="annottext">Int -&gt; SetCustomLanguagePackString -&gt; ShowS
+</span><a href="API.Functions.SetCustomLanguagePackString.html#language_pack_id"><span class="hs-identifier hs-var hs-var">language_pack_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679434386"><span id="local-6989586621679434388"><span id="local-6989586621679434390"><span class="annot"><span class="annottext">Int -&gt; SetCustomLanguagePackString -&gt; ShowS
 [SetCustomLanguagePackString] -&gt; ShowS
 SetCustomLanguagePackString -&gt; String
 (Int -&gt; SetCustomLanguagePackString -&gt; ShowS)
@@ -25,15 +25,26 @@ show :: SetCustomLanguagePackString -&gt; String
 $cshow :: SetCustomLanguagePackString -&gt; String
 showsPrec :: Int -&gt; SetCustomLanguagePackString -&gt; ShowS
 $cshowsPrec :: Int -&gt; SetCustomLanguagePackString -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679434381"><span id="local-6989586621679434383"><span class="annot"><span class="annottext">SetCustomLanguagePackString -&gt; SetCustomLanguagePackString -&gt; Bool
+(SetCustomLanguagePackString
+ -&gt; SetCustomLanguagePackString -&gt; Bool)
+-&gt; (SetCustomLanguagePackString
+    -&gt; SetCustomLanguagePackString -&gt; Bool)
+-&gt; Eq SetCustomLanguagePackString
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: SetCustomLanguagePackString -&gt; SetCustomLanguagePackString -&gt; Bool
+$c/= :: SetCustomLanguagePackString -&gt; SetCustomLanguagePackString -&gt; Bool
+== :: SetCustomLanguagePackString -&gt; SetCustomLanguagePackString -&gt; Bool
+$c== :: SetCustomLanguagePackString -&gt; SetCustomLanguagePackString -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679402930"><span id="local-6989586621679402932"><span id="local-6989586621679402934"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetCustomLanguagePackString.html#SetCustomLanguagePackString"><span class="hs-identifier hs-type">SetCustomLanguagePackString</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679402928"><span class="annot"><span class="annottext">toJSON :: SetCustomLanguagePackString -&gt; Value
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434373"><span id="local-6989586621679434375"><span id="local-6989586621679434377"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetCustomLanguagePackString.html#SetCustomLanguagePackString"><span class="hs-identifier hs-type">SetCustomLanguagePackString</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679434371"><span class="annot"><span class="annottext">toJSON :: SetCustomLanguagePackString -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.SetCustomLanguagePackString.html#SetCustomLanguagePackString"><span class="hs-identifier hs-type">SetCustomLanguagePackString</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">new_string :: SetCustomLanguagePackString -&gt; Maybe LanguagePackString
-</span><a href="API.Functions.SetCustomLanguagePackString.html#new_string"><span class="hs-identifier hs-var">new_string</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402926"><span class="annot"><span class="annottext">Maybe LanguagePackString
-</span><a href="#local-6989586621679402926"><span class="hs-identifier hs-var">new_string</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">language_pack_id :: SetCustomLanguagePackString -&gt; Maybe String
-</span><a href="API.Functions.SetCustomLanguagePackString.html#language_pack_id"><span class="hs-identifier hs-var">language_pack_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679402925"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679402925"><span class="hs-identifier hs-var">language_pack_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.SetCustomLanguagePackString.html#new_string"><span class="hs-identifier hs-var">new_string</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434369"><span class="annot"><span class="annottext">Maybe LanguagePackString
+</span><a href="#local-6989586621679434369"><span class="hs-identifier hs-var">new_string</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">language_pack_id :: SetCustomLanguagePackString -&gt; Maybe String
+</span><a href="API.Functions.SetCustomLanguagePackString.html#language_pack_id"><span class="hs-identifier hs-var">language_pack_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679434368"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679434368"><span class="hs-identifier hs-var">language_pack_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -41,33 +52,33 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;setCustomLanguagePackString&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;new_string&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe LanguagePackString -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe LanguagePackString
-</span><a href="#local-6989586621679402926"><span class="hs-identifier hs-var">new_string</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;language_pack_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679434369"><span class="hs-identifier hs-var">new_string</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;language_pack_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679402925"><span class="hs-identifier hs-var">language_pack_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679434368"><span class="hs-identifier hs-var">language_pack_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679402919"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetCustomLanguagePackString.html#SetCustomLanguagePackString"><span class="hs-identifier hs-type">SetCustomLanguagePackString</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679402917"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetCustomLanguagePackString
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679402915"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679402915"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679402913"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679402913"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679402912"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679402912"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679402913"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434362"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetCustomLanguagePackString.html#SetCustomLanguagePackString"><span class="hs-identifier hs-type">SetCustomLanguagePackString</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679434360"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetCustomLanguagePackString
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679434358"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679434358"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679434356"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679434356"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679434355"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679434355"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679434356"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679402912"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679434355"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;setCustomLanguagePackString&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SetCustomLanguagePackString
-</span><a href="#local-6989586621679402910"><span class="hs-identifier hs-var">parseSetCustomLanguagePackString</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679402915"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679434353"><span class="hs-identifier hs-var">parseSetCustomLanguagePackString</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679434358"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SetCustomLanguagePackString
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679402910"><span class="hs-identifier hs-type">parseSetCustomLanguagePackString</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetCustomLanguagePackString.html#SetCustomLanguagePackString"><span class="hs-identifier hs-type">SetCustomLanguagePackString</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span id="local-6989586621679402910"><span class="annot"><span class="annottext">parseSetCustomLanguagePackString :: Value -&gt; Parser SetCustomLanguagePackString
-</span><a href="#local-6989586621679402910"><span class="hs-identifier hs-var hs-var">parseSetCustomLanguagePackString</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679434353"><span class="hs-identifier hs-type">parseSetCustomLanguagePackString</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetCustomLanguagePackString.html#SetCustomLanguagePackString"><span class="hs-identifier hs-type">SetCustomLanguagePackString</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679434353"><span class="annot"><span class="annottext">parseSetCustomLanguagePackString :: Value -&gt; Parser SetCustomLanguagePackString
+</span><a href="#local-6989586621679434353"><span class="hs-identifier hs-var hs-var">parseSetCustomLanguagePackString</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SetCustomLanguagePackString)
 -&gt; Value
 -&gt; Parser SetCustomLanguagePackString
@@ -78,26 +89,26 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SetCustomLanguagePackString
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679402908"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679402908"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679402907"><span class="annot"><span class="annottext">Maybe LanguagePackString
-</span><a href="#local-6989586621679402907"><span class="hs-identifier hs-var">new_string</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser LanguagePackString -&gt; Parser (Maybe LanguagePackString)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679434351"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679434351"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679434350"><span class="annot"><span class="annottext">Maybe LanguagePackString
+</span><a href="#local-6989586621679434350"><span class="hs-identifier hs-var">new_string</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser LanguagePackString -&gt; Parser (Maybe LanguagePackString)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser LanguagePackString -&gt; Parser (Maybe LanguagePackString))
 -&gt; Parser LanguagePackString -&gt; Parser (Maybe LanguagePackString)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679402908"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser LanguagePackString
+</span><a href="#local-6989586621679434351"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser LanguagePackString
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;new_string&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679402906"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679402906"><span class="hs-identifier hs-var">language_pack_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679434349"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679434349"><span class="hs-identifier hs-var">language_pack_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
 -&gt; Parser String -&gt; Parser (Maybe String)
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679402908"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679434351"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;language_pack_id&quot;</span></span><span>
 </span><span id="line-28"></span><span>    </span><span class="annot"><span class="annottext">SetCustomLanguagePackString -&gt; Parser SetCustomLanguagePackString
@@ -110,6 +121,6 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; Maybe String -&gt; SetCustomLanguagePackString
 </span><a href="API.Functions.SetCustomLanguagePackString.html#SetCustomLanguagePackString"><span class="hs-identifier hs-type hs-type">SetCustomLanguagePackString</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">new_string :: Maybe LanguagePackString
 </span><a href="API.Functions.SetCustomLanguagePackString.html#new_string"><span class="hs-identifier hs-var">new_string</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe LanguagePackString
-</span><a href="#local-6989586621679402907"><span class="hs-identifier hs-var">new_string</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">language_pack_id :: Maybe String
+</span><a href="#local-6989586621679434350"><span class="hs-identifier hs-var">new_string</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">language_pack_id :: Maybe String
 </span><a href="API.Functions.SetCustomLanguagePackString.html#language_pack_id"><span class="hs-identifier hs-var">language_pack_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679402906"><span class="hs-identifier hs-var">language_pack_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679434349"><span class="hs-identifier hs-var">language_pack_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

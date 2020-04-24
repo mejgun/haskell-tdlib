@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data PushReceiverId = 
- PushReceiverId { _id :: Maybe Int }  deriving (Show)
+ PushReceiverId { _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON PushReceiverId where
  toJSON (PushReceiverId { _id = _id }) =

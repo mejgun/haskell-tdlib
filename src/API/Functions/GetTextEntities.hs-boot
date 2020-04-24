@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetTextEntities
 
+instance Eq GetTextEntities
+
 instance ToJSON GetTextEntities
 
 instance FromJSON GetTextEntities

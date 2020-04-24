@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ReportSupergroupSpam = 
- ReportSupergroupSpam { message_ids :: Maybe [Int], user_id :: Maybe Int, supergroup_id :: Maybe Int }  deriving (Show)
+ ReportSupergroupSpam { message_ids :: Maybe [Int], user_id :: Maybe Int, supergroup_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ReportSupergroupSpam where
  toJSON (ReportSupergroupSpam { message_ids = message_ids, user_id = user_id, supergroup_id = supergroup_id }) =

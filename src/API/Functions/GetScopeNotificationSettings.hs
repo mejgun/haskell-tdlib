@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.NotificationSettingsScope as NotificationSettingsScope
 
 data GetScopeNotificationSettings = 
- GetScopeNotificationSettings { scope :: Maybe NotificationSettingsScope.NotificationSettingsScope }  deriving (Show)
+ GetScopeNotificationSettings { scope :: Maybe NotificationSettingsScope.NotificationSettingsScope }  deriving (Show, Eq)
 
 instance T.ToJSON GetScopeNotificationSettings where
  toJSON (GetScopeNotificationSettings { scope = scope }) =

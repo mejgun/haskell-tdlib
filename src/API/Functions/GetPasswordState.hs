@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetPasswordState = 
- GetPasswordState deriving (Show)
+ GetPasswordState deriving (Show, Eq)
 
 instance T.ToJSON GetPasswordState where
  toJSON (GetPasswordState {  }) =

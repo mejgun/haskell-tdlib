@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LanguagePackInfo as LanguagePackInfo
 
 data EditCustomLanguagePackInfo = 
- EditCustomLanguagePackInfo { info :: Maybe LanguagePackInfo.LanguagePackInfo }  deriving (Show)
+ EditCustomLanguagePackInfo { info :: Maybe LanguagePackInfo.LanguagePackInfo }  deriving (Show, Eq)
 
 instance T.ToJSON EditCustomLanguagePackInfo where
  toJSON (EditCustomLanguagePackInfo { info = info }) =

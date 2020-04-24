@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data LogOut = 
- LogOut deriving (Show)
+ LogOut deriving (Show, Eq)
 
 instance T.ToJSON LogOut where
  toJSON (LogOut {  }) =

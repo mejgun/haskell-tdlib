@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetSavedOrderInfo
 
+instance Eq GetSavedOrderInfo
+
 instance ToJSON GetSavedOrderInfo
 
 instance FromJSON GetSavedOrderInfo

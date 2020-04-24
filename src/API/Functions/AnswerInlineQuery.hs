@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputInlineQueryResult as InputInlineQueryResult
 
 data AnswerInlineQuery = 
- AnswerInlineQuery { switch_pm_parameter :: Maybe String, switch_pm_text :: Maybe String, next_offset :: Maybe String, cache_time :: Maybe Int, results :: Maybe [InputInlineQueryResult.InputInlineQueryResult], is_personal :: Maybe Bool, inline_query_id :: Maybe Int }  deriving (Show)
+ AnswerInlineQuery { switch_pm_parameter :: Maybe String, switch_pm_text :: Maybe String, next_offset :: Maybe String, cache_time :: Maybe Int, results :: Maybe [InputInlineQueryResult.InputInlineQueryResult], is_personal :: Maybe Bool, inline_query_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON AnswerInlineQuery where
  toJSON (AnswerInlineQuery { switch_pm_parameter = switch_pm_parameter, switch_pm_text = switch_pm_text, next_offset = next_offset, cache_time = cache_time, results = results, is_personal = is_personal, inline_query_id = inline_query_id }) =

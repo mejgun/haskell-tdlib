@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetAlarm
 
+instance Eq SetAlarm
+
 instance ToJSON SetAlarm
 
 instance FromJSON SetAlarm

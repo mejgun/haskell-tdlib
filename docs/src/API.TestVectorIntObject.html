@@ -9,7 +9,7 @@
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="TestVectorIntObject"><span class="annot"><a href="API.TestVectorIntObject.html#TestVectorIntObject"><span class="hs-identifier hs-var">TestVectorIntObject</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-11"></span><span> </span><span id="TestVectorIntObject"><span class="annot"><a href="API.TestVectorIntObject.html#TestVectorIntObject"><span class="hs-identifier hs-var">TestVectorIntObject</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="value"><span class="annot"><span class="annottext">TestVectorIntObject -&gt; Maybe [TestInt]
-</span><a href="API.TestVectorIntObject.html#value"><span class="hs-identifier hs-var hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.TestInt.html#TestInt"><span class="hs-identifier hs-type">TestInt.TestInt</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679416973"><span id="local-6989586621679416975"><span id="local-6989586621679416977"><span class="annot"><span class="annottext">Int -&gt; TestVectorIntObject -&gt; ShowS
+</span><a href="API.TestVectorIntObject.html#value"><span class="hs-identifier hs-var hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.TestInt.html#TestInt"><span class="hs-identifier hs-type">TestInt.TestInt</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679449443"><span id="local-6989586621679449445"><span id="local-6989586621679449447"><span class="annot"><span class="annottext">Int -&gt; TestVectorIntObject -&gt; ShowS
 [TestVectorIntObject] -&gt; ShowS
 TestVectorIntObject -&gt; String
 (Int -&gt; TestVectorIntObject -&gt; ShowS)
@@ -24,13 +24,22 @@ show :: TestVectorIntObject -&gt; String
 $cshow :: TestVectorIntObject -&gt; String
 showsPrec :: Int -&gt; TestVectorIntObject -&gt; ShowS
 $cshowsPrec :: Int -&gt; TestVectorIntObject -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679449438"><span id="local-6989586621679449440"><span class="annot"><span class="annottext">TestVectorIntObject -&gt; TestVectorIntObject -&gt; Bool
+(TestVectorIntObject -&gt; TestVectorIntObject -&gt; Bool)
+-&gt; (TestVectorIntObject -&gt; TestVectorIntObject -&gt; Bool)
+-&gt; Eq TestVectorIntObject
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: TestVectorIntObject -&gt; TestVectorIntObject -&gt; Bool
+$c/= :: TestVectorIntObject -&gt; TestVectorIntObject -&gt; Bool
+== :: TestVectorIntObject -&gt; TestVectorIntObject -&gt; Bool
+$c== :: TestVectorIntObject -&gt; TestVectorIntObject -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679416965"><span id="local-6989586621679416967"><span id="local-6989586621679416969"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.TestVectorIntObject.html#TestVectorIntObject"><span class="hs-identifier hs-type">TestVectorIntObject</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679416963"><span class="annot"><span class="annottext">toJSON :: TestVectorIntObject -&gt; Value
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679449430"><span id="local-6989586621679449432"><span id="local-6989586621679449434"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.TestVectorIntObject.html#TestVectorIntObject"><span class="hs-identifier hs-type">TestVectorIntObject</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679449428"><span class="annot"><span class="annottext">toJSON :: TestVectorIntObject -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.TestVectorIntObject.html#TestVectorIntObject"><span class="hs-identifier hs-type">TestVectorIntObject</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">value :: TestVectorIntObject -&gt; Maybe [TestInt]
-</span><a href="API.TestVectorIntObject.html#value"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679416961"><span class="annot"><span class="annottext">Maybe [TestInt]
-</span><a href="#local-6989586621679416961"><span class="hs-identifier hs-var">value</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.TestVectorIntObject.html#value"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449426"><span class="annot"><span class="annottext">Maybe [TestInt]
+</span><a href="#local-6989586621679449426"><span class="hs-identifier hs-var">value</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -38,30 +47,30 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;testVectorIntObject&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;value&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [TestInt] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [TestInt]
-</span><a href="#local-6989586621679416961"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679449426"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679416955"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.TestVectorIntObject.html#TestVectorIntObject"><span class="hs-identifier hs-type">TestVectorIntObject</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679416953"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TestVectorIntObject
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679416951"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679416951"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679416949"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679416949"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679416948"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679416948"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679416949"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679449420"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.TestVectorIntObject.html#TestVectorIntObject"><span class="hs-identifier hs-type">TestVectorIntObject</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679449418"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TestVectorIntObject
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679449416"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679449416"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679449414"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679449414"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679449413"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679449413"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679449414"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679416948"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679449413"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;testVectorIntObject&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TestVectorIntObject
-</span><a href="#local-6989586621679416946"><span class="hs-identifier hs-var">parseTestVectorIntObject</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679416951"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679449411"><span class="hs-identifier hs-var">parseTestVectorIntObject</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679449416"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TestVectorIntObject
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679416946"><span class="hs-identifier hs-type">parseTestVectorIntObject</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TestVectorIntObject.html#TestVectorIntObject"><span class="hs-identifier hs-type">TestVectorIntObject</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span id="local-6989586621679416946"><span class="annot"><span class="annottext">parseTestVectorIntObject :: Value -&gt; Parser TestVectorIntObject
-</span><a href="#local-6989586621679416946"><span class="hs-identifier hs-var hs-var">parseTestVectorIntObject</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679449411"><span class="hs-identifier hs-type">parseTestVectorIntObject</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TestVectorIntObject.html#TestVectorIntObject"><span class="hs-identifier hs-type">TestVectorIntObject</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679449411"><span class="annot"><span class="annottext">parseTestVectorIntObject :: Value -&gt; Parser TestVectorIntObject
+</span><a href="#local-6989586621679449411"><span class="hs-identifier hs-var hs-var">parseTestVectorIntObject</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TestVectorIntObject)
 -&gt; Value
 -&gt; Parser TestVectorIntObject
@@ -72,16 +81,16 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser TestVectorIntObject
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679416944"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679416944"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679416943"><span class="annot"><span class="annottext">Maybe [TestInt]
-</span><a href="#local-6989586621679416943"><span class="hs-identifier hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [TestInt] -&gt; Parser (Maybe [TestInt])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679449409"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679449409"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679449408"><span class="annot"><span class="annottext">Maybe [TestInt]
+</span><a href="#local-6989586621679449408"><span class="hs-identifier hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [TestInt] -&gt; Parser (Maybe [TestInt])
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser [TestInt] -&gt; Parser (Maybe [TestInt]))
 -&gt; Parser [TestInt] -&gt; Parser (Maybe [TestInt])
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679416944"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [TestInt]
+</span><a href="#local-6989586621679449409"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [TestInt]
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;value&quot;</span></span><span>
 </span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">TestVectorIntObject -&gt; Parser TestVectorIntObject
@@ -92,4 +101,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TestVectorIntObject :: Maybe [TestInt] -&gt; TestVectorIntObject
 </span><a href="API.TestVectorIntObject.html#TestVectorIntObject"><span class="hs-identifier hs-type hs-type">TestVectorIntObject</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">value :: Maybe [TestInt]
 </span><a href="API.TestVectorIntObject.html#value"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [TestInt]
-</span><a href="#local-6989586621679416943"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679449408"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

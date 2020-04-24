@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data Location = 
- Location { longitude :: Maybe Float, latitude :: Maybe Float }  deriving (Show)
+ Location { longitude :: Maybe Float, latitude :: Maybe Float }  deriving (Show, Eq)
 
 instance T.ToJSON Location where
  toJSON (Location { longitude = longitude, latitude = latitude }) =

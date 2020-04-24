@@ -19,7 +19,7 @@ data PassportElementType =
  | PassportElementTypePassportRegistration 
  | PassportElementTypeTemporaryRegistration 
  | PassportElementTypePhoneNumber 
- | PassportElementTypeEmailAddress deriving (Show)
+ | PassportElementTypeEmailAddress deriving (Show, Eq)
 
 instance T.ToJSON PassportElementType where
  toJSON (PassportElementTypePersonalDetails {  }) =

@@ -9,7 +9,7 @@ import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 
 data EditMessageCaption = 
- EditMessageCaption { caption :: Maybe FormattedText.FormattedText, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show)
+ EditMessageCaption { caption :: Maybe FormattedText.FormattedText, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON EditMessageCaption where
  toJSON (EditMessageCaption { caption = caption, reply_markup = reply_markup, message_id = message_id, chat_id = chat_id }) =

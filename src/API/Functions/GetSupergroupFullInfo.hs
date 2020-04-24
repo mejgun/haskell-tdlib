@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetSupergroupFullInfo = 
- GetSupergroupFullInfo { supergroup_id :: Maybe Int }  deriving (Show)
+ GetSupergroupFullInfo { supergroup_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetSupergroupFullInfo where
  toJSON (GetSupergroupFullInfo { supergroup_id = supergroup_id }) =

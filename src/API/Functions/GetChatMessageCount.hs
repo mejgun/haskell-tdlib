@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.SearchMessagesFilter as SearchMessagesFilter
 
 data GetChatMessageCount = 
- GetChatMessageCount { return_local :: Maybe Bool, _filter :: Maybe SearchMessagesFilter.SearchMessagesFilter, chat_id :: Maybe Int }  deriving (Show)
+ GetChatMessageCount { return_local :: Maybe Bool, _filter :: Maybe SearchMessagesFilter.SearchMessagesFilter, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetChatMessageCount where
  toJSON (GetChatMessageCount { return_local = return_local, _filter = _filter, chat_id = chat_id }) =

@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data RemoveBackground
 
+instance Eq RemoveBackground
+
 instance ToJSON RemoveBackground
 
 instance FromJSON RemoveBackground

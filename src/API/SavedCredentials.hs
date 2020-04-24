@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SavedCredentials = 
- SavedCredentials { title :: Maybe String, _id :: Maybe String }  deriving (Show)
+ SavedCredentials { title :: Maybe String, _id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SavedCredentials where
  toJSON (SavedCredentials { title = title, _id = _id }) =

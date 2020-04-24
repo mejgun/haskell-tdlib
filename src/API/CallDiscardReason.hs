@@ -11,7 +11,7 @@ data CallDiscardReason =
  | CallDiscardReasonMissed 
  | CallDiscardReasonDeclined 
  | CallDiscardReasonDisconnected 
- | CallDiscardReasonHungUp deriving (Show)
+ | CallDiscardReasonHungUp deriving (Show, Eq)
 
 instance T.ToJSON CallDiscardReason where
  toJSON (CallDiscardReasonEmpty {  }) =

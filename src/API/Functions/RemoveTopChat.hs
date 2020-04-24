@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TopChatCategory as TopChatCategory
 
 data RemoveTopChat = 
- RemoveTopChat { chat_id :: Maybe Int, category :: Maybe TopChatCategory.TopChatCategory }  deriving (Show)
+ RemoveTopChat { chat_id :: Maybe Int, category :: Maybe TopChatCategory.TopChatCategory }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveTopChat where
  toJSON (RemoveTopChat { chat_id = chat_id, category = category }) =

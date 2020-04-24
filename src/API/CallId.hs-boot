@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data CallId
 
+instance Eq CallId
+
 instance ToJSON CallId
 
 instance FromJSON CallId

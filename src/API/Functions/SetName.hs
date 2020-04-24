@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SetName = 
- SetName { last_name :: Maybe String, first_name :: Maybe String }  deriving (Show)
+ SetName { last_name :: Maybe String, first_name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SetName where
  toJSON (SetName { last_name = last_name, first_name = first_name }) =

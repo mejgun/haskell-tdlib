@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data GetLanguagePackStrings = 
- GetLanguagePackStrings { keys :: Maybe [String], language_pack_id :: Maybe String }  deriving (Show)
+ GetLanguagePackStrings { keys :: Maybe [String], language_pack_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetLanguagePackStrings where
  toJSON (GetLanguagePackStrings { keys = keys, language_pack_id = language_pack_id }) =

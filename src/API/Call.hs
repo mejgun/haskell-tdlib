@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.CallState as CallState
 
 data Call = 
- Call { state :: Maybe CallState.CallState, is_outgoing :: Maybe Bool, user_id :: Maybe Int, _id :: Maybe Int }  deriving (Show)
+ Call { state :: Maybe CallState.CallState, is_outgoing :: Maybe Bool, user_id :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Call where
  toJSON (Call { state = state, is_outgoing = is_outgoing, user_id = user_id, _id = _id }) =

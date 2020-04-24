@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data RemoteFile
 
+instance Eq RemoteFile
+
 instance ToJSON RemoteFile
 
 instance FromJSON RemoteFile

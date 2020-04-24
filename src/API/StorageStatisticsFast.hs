@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data StorageStatisticsFast = 
- StorageStatisticsFast { log_size :: Maybe Int, language_pack_database_size :: Maybe Int, database_size :: Maybe Int, file_count :: Maybe Int, files_size :: Maybe Int }  deriving (Show)
+ StorageStatisticsFast { log_size :: Maybe Int, language_pack_database_size :: Maybe Int, database_size :: Maybe Int, file_count :: Maybe Int, files_size :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON StorageStatisticsFast where
  toJSON (StorageStatisticsFast { log_size = log_size, language_pack_database_size = language_pack_database_size, database_size = database_size, file_count = file_count, files_size = files_size }) =

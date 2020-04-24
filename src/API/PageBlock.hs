@@ -47,7 +47,7 @@ data PageBlock =
  | PageBlockTable { is_striped :: Maybe Bool, is_bordered :: Maybe Bool, cells :: Maybe [PageBlockTableCell.PageBlockTableCell], _caption :: Maybe RichText.RichText }  
  | PageBlockDetails { is_open :: Maybe Bool, page_blocks :: Maybe [PageBlock], header :: Maybe RichText.RichText }  
  | PageBlockRelatedArticles { articles :: Maybe [PageBlockRelatedArticle.PageBlockRelatedArticle], header :: Maybe RichText.RichText }  
- | PageBlockMap { caption :: Maybe PageBlockCaption.PageBlockCaption, height :: Maybe Int, width :: Maybe Int, zoom :: Maybe Int, location :: Maybe Location.Location }  deriving (Show)
+ | PageBlockMap { caption :: Maybe PageBlockCaption.PageBlockCaption, height :: Maybe Int, width :: Maybe Int, zoom :: Maybe Int, location :: Maybe Location.Location }  deriving (Show, Eq)
 
 instance T.ToJSON PageBlock where
  toJSON (PageBlockTitle { _title = _title }) =

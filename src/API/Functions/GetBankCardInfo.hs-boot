@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetBankCardInfo
 
+instance Eq GetBankCardInfo
+
 instance ToJSON GetBankCardInfo
 
 instance FromJSON GetBankCardInfo

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data SearchStickerSets = 
- SearchStickerSets { query :: Maybe String }  deriving (Show)
+ SearchStickerSets { query :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SearchStickerSets where
  toJSON (SearchStickerSets { query = query }) =

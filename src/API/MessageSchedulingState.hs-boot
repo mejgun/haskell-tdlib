@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data MessageSchedulingState
 
+instance Eq MessageSchedulingState
+
 instance ToJSON MessageSchedulingState
 
 instance FromJSON MessageSchedulingState

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data LanguagePackInfo = 
- LanguagePackInfo { translation_url :: Maybe String, local_string_count :: Maybe Int, translated_string_count :: Maybe Int, total_string_count :: Maybe Int, is_installed :: Maybe Bool, is_beta :: Maybe Bool, is_rtl :: Maybe Bool, is_official :: Maybe Bool, plural_code :: Maybe String, native_name :: Maybe String, name :: Maybe String, base_language_pack_id :: Maybe String, _id :: Maybe String }  deriving (Show)
+ LanguagePackInfo { translation_url :: Maybe String, local_string_count :: Maybe Int, translated_string_count :: Maybe Int, total_string_count :: Maybe Int, is_installed :: Maybe Bool, is_beta :: Maybe Bool, is_rtl :: Maybe Bool, is_official :: Maybe Bool, plural_code :: Maybe String, native_name :: Maybe String, name :: Maybe String, base_language_pack_id :: Maybe String, _id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON LanguagePackInfo where
  toJSON (LanguagePackInfo { translation_url = translation_url, local_string_count = local_string_count, translated_string_count = translated_string_count, total_string_count = total_string_count, is_installed = is_installed, is_beta = is_beta, is_rtl = is_rtl, is_official = is_official, plural_code = plural_code, native_name = native_name, name = name, base_language_pack_id = base_language_pack_id, _id = _id }) =

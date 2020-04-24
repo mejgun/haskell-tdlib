@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data CreatePrivateChat
 
+instance Eq CreatePrivateChat
+
 instance ToJSON CreatePrivateChat
 
 instance FromJSON CreatePrivateChat

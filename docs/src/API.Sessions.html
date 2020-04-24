@@ -9,7 +9,7 @@
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="Sessions"><span class="annot"><a href="API.Sessions.html#Sessions"><span class="hs-identifier hs-var">Sessions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-11"></span><span> </span><span id="Sessions"><span class="annot"><a href="API.Sessions.html#Sessions"><span class="hs-identifier hs-var">Sessions</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="sessions"><span class="annot"><span class="annottext">Sessions -&gt; Maybe [Session]
-</span><a href="API.Sessions.html#sessions"><span class="hs-identifier hs-var hs-var">sessions</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.Session.html#Session"><span class="hs-identifier hs-type">Session.Session</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679414146"><span id="local-6989586621679414148"><span id="local-6989586621679414150"><span class="annot"><span class="annottext">Int -&gt; Sessions -&gt; ShowS
+</span><a href="API.Sessions.html#sessions"><span class="hs-identifier hs-var hs-var">sessions</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.Session.html#Session"><span class="hs-identifier hs-type">Session.Session</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679446412"><span id="local-6989586621679446414"><span id="local-6989586621679446416"><span class="annot"><span class="annottext">Int -&gt; Sessions -&gt; ShowS
 [Sessions] -&gt; ShowS
 Sessions -&gt; String
 (Int -&gt; Sessions -&gt; ShowS)
@@ -22,13 +22,21 @@ show :: Sessions -&gt; String
 $cshow :: Sessions -&gt; String
 showsPrec :: Int -&gt; Sessions -&gt; ShowS
 $cshowsPrec :: Int -&gt; Sessions -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679446407"><span id="local-6989586621679446409"><span class="annot"><span class="annottext">Sessions -&gt; Sessions -&gt; Bool
+(Sessions -&gt; Sessions -&gt; Bool)
+-&gt; (Sessions -&gt; Sessions -&gt; Bool) -&gt; Eq Sessions
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: Sessions -&gt; Sessions -&gt; Bool
+$c/= :: Sessions -&gt; Sessions -&gt; Bool
+== :: Sessions -&gt; Sessions -&gt; Bool
+$c== :: Sessions -&gt; Sessions -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414138"><span id="local-6989586621679414140"><span id="local-6989586621679414142"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Sessions.html#Sessions"><span class="hs-identifier hs-type">Sessions</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679414136"><span class="annot"><span class="annottext">toJSON :: Sessions -&gt; Value
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446399"><span id="local-6989586621679446401"><span id="local-6989586621679446403"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Sessions.html#Sessions"><span class="hs-identifier hs-type">Sessions</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679446397"><span class="annot"><span class="annottext">toJSON :: Sessions -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Sessions.html#Sessions"><span class="hs-identifier hs-type">Sessions</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sessions :: Sessions -&gt; Maybe [Session]
-</span><a href="API.Sessions.html#sessions"><span class="hs-identifier hs-var">sessions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414134"><span class="annot"><span class="annottext">Maybe [Session]
-</span><a href="#local-6989586621679414134"><span class="hs-identifier hs-var">sessions</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Sessions.html#sessions"><span class="hs-identifier hs-var">sessions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446395"><span class="annot"><span class="annottext">Maybe [Session]
+</span><a href="#local-6989586621679446395"><span class="hs-identifier hs-var">sessions</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -36,44 +44,44 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;sessions&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;sessions&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [Session] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Session]
-</span><a href="#local-6989586621679414134"><span class="hs-identifier hs-var">sessions</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679446395"><span class="hs-identifier hs-var">sessions</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414128"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Sessions.html#Sessions"><span class="hs-identifier hs-type">Sessions</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679414126"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Sessions
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679414124"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679414124"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679414122"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679414122"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679414121"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679414121"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679414122"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446389"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Sessions.html#Sessions"><span class="hs-identifier hs-type">Sessions</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679446387"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Sessions
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679446385"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679446385"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679446383"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679446383"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679446382"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679446382"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446383"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679414121"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679446382"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;sessions&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser Sessions
-</span><a href="#local-6989586621679414119"><span class="hs-identifier hs-var">parseSessions</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679414124"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679446380"><span class="hs-identifier hs-var">parseSessions</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679446385"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser Sessions
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679414119"><span class="hs-identifier hs-type">parseSessions</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Sessions.html#Sessions"><span class="hs-identifier hs-type">Sessions</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span id="local-6989586621679414119"><span class="annot"><span class="annottext">parseSessions :: Value -&gt; Parser Sessions
-</span><a href="#local-6989586621679414119"><span class="hs-identifier hs-var hs-var">parseSessions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Sessions) -&gt; Value -&gt; Parser Sessions
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679446380"><span class="hs-identifier hs-type">parseSessions</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Sessions.html#Sessions"><span class="hs-identifier hs-type">Sessions</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679446380"><span class="annot"><span class="annottext">parseSessions :: Value -&gt; Parser Sessions
+</span><a href="#local-6989586621679446380"><span class="hs-identifier hs-var hs-var">parseSessions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Sessions) -&gt; Value -&gt; Parser Sessions
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;Sessions&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser Sessions) -&gt; Value -&gt; Parser Sessions)
 -&gt; (Object -&gt; Parser Sessions) -&gt; Value -&gt; Parser Sessions
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679414117"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679414117"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679414116"><span class="annot"><span class="annottext">Maybe [Session]
-</span><a href="#local-6989586621679414116"><span class="hs-identifier hs-var">sessions</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [Session] -&gt; Parser (Maybe [Session])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679446378"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679446378"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679446377"><span class="annot"><span class="annottext">Maybe [Session]
+</span><a href="#local-6989586621679446377"><span class="hs-identifier hs-var">sessions</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [Session] -&gt; Parser (Maybe [Session])
 forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
 </span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser [Session] -&gt; Parser (Maybe [Session]))
 -&gt; Parser [Session] -&gt; Parser (Maybe [Session])
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679414117"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [Session]
+</span><a href="#local-6989586621679446378"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [Session]
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;sessions&quot;</span></span><span>
 </span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">Sessions -&gt; Parser Sessions
@@ -83,4 +91,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Sessions :: Maybe [Session] -&gt; Sessions
 </span><a href="API.Sessions.html#Sessions"><span class="hs-identifier hs-type hs-type">Sessions</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sessions :: Maybe [Session]
 </span><a href="API.Sessions.html#sessions"><span class="hs-identifier hs-var">sessions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [Session]
-</span><a href="#local-6989586621679414116"><span class="hs-identifier hs-var">sessions</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679446377"><span class="hs-identifier hs-var">sessions</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

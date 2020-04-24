@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SetTdlibParameters
 
+instance Eq SetTdlibParameters
+
 instance ToJSON SetTdlibParameters
 
 instance FromJSON SetTdlibParameters

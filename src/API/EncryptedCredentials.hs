@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data EncryptedCredentials = 
- EncryptedCredentials { secret :: Maybe String, hash :: Maybe String, _data :: Maybe String }  deriving (Show)
+ EncryptedCredentials { secret :: Maybe String, hash :: Maybe String, _data :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON EncryptedCredentials where
  toJSON (EncryptedCredentials { secret = secret, hash = hash, _data = _data }) =

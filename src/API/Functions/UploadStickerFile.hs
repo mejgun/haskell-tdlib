@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 data UploadStickerFile = 
- UploadStickerFile { png_sticker :: Maybe InputFile.InputFile, user_id :: Maybe Int }  deriving (Show)
+ UploadStickerFile { png_sticker :: Maybe InputFile.InputFile, user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON UploadStickerFile where
  toJSON (UploadStickerFile { png_sticker = png_sticker, user_id = user_id }) =

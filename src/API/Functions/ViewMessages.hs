@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ViewMessages = 
- ViewMessages { force_read :: Maybe Bool, message_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Show)
+ ViewMessages { force_read :: Maybe Bool, message_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ViewMessages where
  toJSON (ViewMessages { force_read = force_read, message_ids = message_ids, chat_id = chat_id }) =

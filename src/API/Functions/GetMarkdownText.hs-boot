@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data GetMarkdownText
 
+instance Eq GetMarkdownText
+
 instance ToJSON GetMarkdownText
 
 instance FromJSON GetMarkdownText

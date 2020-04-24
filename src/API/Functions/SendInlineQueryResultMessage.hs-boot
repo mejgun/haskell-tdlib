@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data SendInlineQueryResultMessage
 
+instance Eq SendInlineQueryResultMessage
+
 instance ToJSON SendInlineQueryResultMessage
 
 instance FromJSON SendInlineQueryResultMessage

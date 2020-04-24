@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
 data ResendAuthenticationCode = 
- ResendAuthenticationCode deriving (Show)
+ ResendAuthenticationCode deriving (Show, Eq)
 
 instance T.ToJSON ResendAuthenticationCode where
  toJSON (ResendAuthenticationCode {  }) =

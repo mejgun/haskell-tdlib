@@ -5,6 +5,8 @@ import Data.Aeson.Types
 
 data DeviceToken
 
+instance Eq DeviceToken
+
 instance ToJSON DeviceToken
 
 instance FromJSON DeviceToken

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.UserPrivacySettingRule as UserPrivacySettingRule
 
 data UserPrivacySettingRules = 
- UserPrivacySettingRules { rules :: Maybe [UserPrivacySettingRule.UserPrivacySettingRule] }  deriving (Show)
+ UserPrivacySettingRules { rules :: Maybe [UserPrivacySettingRule.UserPrivacySettingRule] }  deriving (Show, Eq)
 
 instance T.ToJSON UserPrivacySettingRules where
  toJSON (UserPrivacySettingRules { rules = rules }) =
