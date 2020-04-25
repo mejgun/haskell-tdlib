@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetChatEventLog where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatEventLogFilters as ChatEventLogFilters
@@ -23,10 +24,10 @@ instance T.FromJSON GetChatEventLog where
   where
    parseGetChatEventLog :: A.Value -> T.Parser GetChatEventLog
    parseGetChatEventLog = A.withObject "GetChatEventLog" $ \o -> do
-    user_ids <- optional $ o A..: "user_ids"
-    filters <- optional $ o A..: "filters"
-    limit <- optional $ o A..: "limit"
-    from_event_id <- optional $ o A..: "from_event_id"
-    query <- optional $ o A..: "query"
-    chat_id <- optional $ o A..: "chat_id"
+    user_ids <- o A..:? "user_ids"
+    filters <- o A..:? "filters"
+    limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
+    from_event_id <- mconcat [ o A..:? "from_event_id", readMaybe <$> (o A..: "from_event_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    query <- o A..:? "query"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetChatEventLog { user_ids = user_ids, filters = filters, limit = limit, from_event_id = from_event_id, query = query, chat_id = chat_id }

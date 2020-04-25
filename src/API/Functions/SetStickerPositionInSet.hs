@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetStickerPositionInSet where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
@@ -23,6 +24,6 @@ instance T.FromJSON SetStickerPositionInSet where
   where
    parseSetStickerPositionInSet :: A.Value -> T.Parser SetStickerPositionInSet
    parseSetStickerPositionInSet = A.withObject "SetStickerPositionInSet" $ \o -> do
-    position <- optional $ o A..: "position"
-    sticker <- optional $ o A..: "sticker"
+    position <- mconcat [ o A..:? "position", readMaybe <$> (o A..: "position" :: T.Parser String)] :: T.Parser (Maybe Int)
+    sticker <- o A..:? "sticker"
     return $ SetStickerPositionInSet { position = position, sticker = sticker }

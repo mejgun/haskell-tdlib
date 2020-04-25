@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetPreferredCountryLanguage where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON GetPreferredCountryLanguage where
   where
    parseGetPreferredCountryLanguage :: A.Value -> T.Parser GetPreferredCountryLanguage
    parseGetPreferredCountryLanguage = A.withObject "GetPreferredCountryLanguage" $ \o -> do
-    country_code <- optional $ o A..: "country_code"
+    country_code <- o A..:? "country_code"
     return $ GetPreferredCountryLanguage { country_code = country_code }

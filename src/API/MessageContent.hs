@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.MessageContent where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.WebPage as WebPage
@@ -242,34 +243,34 @@ instance T.FromJSON MessageContent where
   where
    parseMessageText :: A.Value -> T.Parser MessageContent
    parseMessageText = A.withObject "MessageText" $ \o -> do
-    web_page <- optional $ o A..: "web_page"
-    _text <- optional $ o A..: "text"
+    web_page <- o A..:? "web_page"
+    _text <- o A..:? "text"
     return $ MessageText { web_page = web_page, _text = _text }
 
    parseMessageAnimation :: A.Value -> T.Parser MessageContent
    parseMessageAnimation = A.withObject "MessageAnimation" $ \o -> do
-    is_secret <- optional $ o A..: "is_secret"
-    caption <- optional $ o A..: "caption"
-    animation <- optional $ o A..: "animation"
+    is_secret <- o A..:? "is_secret"
+    caption <- o A..:? "caption"
+    animation <- o A..:? "animation"
     return $ MessageAnimation { is_secret = is_secret, caption = caption, animation = animation }
 
    parseMessageAudio :: A.Value -> T.Parser MessageContent
    parseMessageAudio = A.withObject "MessageAudio" $ \o -> do
-    caption <- optional $ o A..: "caption"
-    audio <- optional $ o A..: "audio"
+    caption <- o A..:? "caption"
+    audio <- o A..:? "audio"
     return $ MessageAudio { caption = caption, audio = audio }
 
    parseMessageDocument :: A.Value -> T.Parser MessageContent
    parseMessageDocument = A.withObject "MessageDocument" $ \o -> do
-    caption <- optional $ o A..: "caption"
-    document <- optional $ o A..: "document"
+    caption <- o A..:? "caption"
+    document <- o A..:? "document"
     return $ MessageDocument { caption = caption, document = document }
 
    parseMessagePhoto :: A.Value -> T.Parser MessageContent
    parseMessagePhoto = A.withObject "MessagePhoto" $ \o -> do
-    is_secret <- optional $ o A..: "is_secret"
-    caption <- optional $ o A..: "caption"
-    photo <- optional $ o A..: "photo"
+    is_secret <- o A..:? "is_secret"
+    caption <- o A..:? "caption"
+    photo <- o A..:? "photo"
     return $ MessagePhoto { is_secret = is_secret, caption = caption, photo = photo }
 
    parseMessageExpiredPhoto :: A.Value -> T.Parser MessageContent
@@ -278,14 +279,14 @@ instance T.FromJSON MessageContent where
 
    parseMessageSticker :: A.Value -> T.Parser MessageContent
    parseMessageSticker = A.withObject "MessageSticker" $ \o -> do
-    sticker <- optional $ o A..: "sticker"
+    sticker <- o A..:? "sticker"
     return $ MessageSticker { sticker = sticker }
 
    parseMessageVideo :: A.Value -> T.Parser MessageContent
    parseMessageVideo = A.withObject "MessageVideo" $ \o -> do
-    is_secret <- optional $ o A..: "is_secret"
-    caption <- optional $ o A..: "caption"
-    video <- optional $ o A..: "video"
+    is_secret <- o A..:? "is_secret"
+    caption <- o A..:? "caption"
+    video <- o A..:? "video"
     return $ MessageVideo { is_secret = is_secret, caption = caption, video = video }
 
    parseMessageExpiredVideo :: A.Value -> T.Parser MessageContent
@@ -294,88 +295,88 @@ instance T.FromJSON MessageContent where
 
    parseMessageVideoNote :: A.Value -> T.Parser MessageContent
    parseMessageVideoNote = A.withObject "MessageVideoNote" $ \o -> do
-    is_secret <- optional $ o A..: "is_secret"
-    is_viewed <- optional $ o A..: "is_viewed"
-    video_note <- optional $ o A..: "video_note"
+    is_secret <- o A..:? "is_secret"
+    is_viewed <- o A..:? "is_viewed"
+    video_note <- o A..:? "video_note"
     return $ MessageVideoNote { is_secret = is_secret, is_viewed = is_viewed, video_note = video_note }
 
    parseMessageVoiceNote :: A.Value -> T.Parser MessageContent
    parseMessageVoiceNote = A.withObject "MessageVoiceNote" $ \o -> do
-    is_listened <- optional $ o A..: "is_listened"
-    caption <- optional $ o A..: "caption"
-    voice_note <- optional $ o A..: "voice_note"
+    is_listened <- o A..:? "is_listened"
+    caption <- o A..:? "caption"
+    voice_note <- o A..:? "voice_note"
     return $ MessageVoiceNote { is_listened = is_listened, caption = caption, voice_note = voice_note }
 
    parseMessageLocation :: A.Value -> T.Parser MessageContent
    parseMessageLocation = A.withObject "MessageLocation" $ \o -> do
-    expires_in <- optional $ o A..: "expires_in"
-    live_period <- optional $ o A..: "live_period"
-    location <- optional $ o A..: "location"
+    expires_in <- mconcat [ o A..:? "expires_in", readMaybe <$> (o A..: "expires_in" :: T.Parser String)] :: T.Parser (Maybe Int)
+    live_period <- mconcat [ o A..:? "live_period", readMaybe <$> (o A..: "live_period" :: T.Parser String)] :: T.Parser (Maybe Int)
+    location <- o A..:? "location"
     return $ MessageLocation { expires_in = expires_in, live_period = live_period, location = location }
 
    parseMessageVenue :: A.Value -> T.Parser MessageContent
    parseMessageVenue = A.withObject "MessageVenue" $ \o -> do
-    venue <- optional $ o A..: "venue"
+    venue <- o A..:? "venue"
     return $ MessageVenue { venue = venue }
 
    parseMessageContact :: A.Value -> T.Parser MessageContent
    parseMessageContact = A.withObject "MessageContact" $ \o -> do
-    contact <- optional $ o A..: "contact"
+    contact <- o A..:? "contact"
     return $ MessageContact { contact = contact }
 
    parseMessageDice :: A.Value -> T.Parser MessageContent
    parseMessageDice = A.withObject "MessageDice" $ \o -> do
-    value <- optional $ o A..: "value"
+    value <- mconcat [ o A..:? "value", readMaybe <$> (o A..: "value" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ MessageDice { value = value }
 
    parseMessageGame :: A.Value -> T.Parser MessageContent
    parseMessageGame = A.withObject "MessageGame" $ \o -> do
-    game <- optional $ o A..: "game"
+    game <- o A..:? "game"
     return $ MessageGame { game = game }
 
    parseMessagePoll :: A.Value -> T.Parser MessageContent
    parseMessagePoll = A.withObject "MessagePoll" $ \o -> do
-    poll <- optional $ o A..: "poll"
+    poll <- o A..:? "poll"
     return $ MessagePoll { poll = poll }
 
    parseMessageInvoice :: A.Value -> T.Parser MessageContent
    parseMessageInvoice = A.withObject "MessageInvoice" $ \o -> do
-    receipt_message_id <- optional $ o A..: "receipt_message_id"
-    need_shipping_address <- optional $ o A..: "need_shipping_address"
-    is_test <- optional $ o A..: "is_test"
-    start_parameter <- optional $ o A..: "start_parameter"
-    total_amount <- optional $ o A..: "total_amount"
-    currency <- optional $ o A..: "currency"
-    photo <- optional $ o A..: "photo"
-    description <- optional $ o A..: "description"
-    title <- optional $ o A..: "title"
+    receipt_message_id <- mconcat [ o A..:? "receipt_message_id", readMaybe <$> (o A..: "receipt_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    need_shipping_address <- o A..:? "need_shipping_address"
+    is_test <- o A..:? "is_test"
+    start_parameter <- o A..:? "start_parameter"
+    total_amount <- mconcat [ o A..:? "total_amount", readMaybe <$> (o A..: "total_amount" :: T.Parser String)] :: T.Parser (Maybe Int)
+    currency <- o A..:? "currency"
+    photo <- o A..:? "photo"
+    description <- o A..:? "description"
+    title <- o A..:? "title"
     return $ MessageInvoice { receipt_message_id = receipt_message_id, need_shipping_address = need_shipping_address, is_test = is_test, start_parameter = start_parameter, total_amount = total_amount, currency = currency, photo = photo, description = description, title = title }
 
    parseMessageCall :: A.Value -> T.Parser MessageContent
    parseMessageCall = A.withObject "MessageCall" $ \o -> do
-    duration <- optional $ o A..: "duration"
-    discard_reason <- optional $ o A..: "discard_reason"
+    duration <- mconcat [ o A..:? "duration", readMaybe <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+    discard_reason <- o A..:? "discard_reason"
     return $ MessageCall { duration = duration, discard_reason = discard_reason }
 
    parseMessageBasicGroupChatCreate :: A.Value -> T.Parser MessageContent
    parseMessageBasicGroupChatCreate = A.withObject "MessageBasicGroupChatCreate" $ \o -> do
-    member_user_ids <- optional $ o A..: "member_user_ids"
-    title <- optional $ o A..: "title"
+    member_user_ids <- o A..:? "member_user_ids"
+    title <- o A..:? "title"
     return $ MessageBasicGroupChatCreate { member_user_ids = member_user_ids, title = title }
 
    parseMessageSupergroupChatCreate :: A.Value -> T.Parser MessageContent
    parseMessageSupergroupChatCreate = A.withObject "MessageSupergroupChatCreate" $ \o -> do
-    title <- optional $ o A..: "title"
+    title <- o A..:? "title"
     return $ MessageSupergroupChatCreate { title = title }
 
    parseMessageChatChangeTitle :: A.Value -> T.Parser MessageContent
    parseMessageChatChangeTitle = A.withObject "MessageChatChangeTitle" $ \o -> do
-    title <- optional $ o A..: "title"
+    title <- o A..:? "title"
     return $ MessageChatChangeTitle { title = title }
 
    parseMessageChatChangePhoto :: A.Value -> T.Parser MessageContent
    parseMessageChatChangePhoto = A.withObject "MessageChatChangePhoto" $ \o -> do
-    photo <- optional $ o A..: "photo"
+    photo <- o A..:? "photo"
     return $ MessageChatChangePhoto { photo = photo }
 
    parseMessageChatDeletePhoto :: A.Value -> T.Parser MessageContent
@@ -384,7 +385,7 @@ instance T.FromJSON MessageContent where
 
    parseMessageChatAddMembers :: A.Value -> T.Parser MessageContent
    parseMessageChatAddMembers = A.withObject "MessageChatAddMembers" $ \o -> do
-    member_user_ids <- optional $ o A..: "member_user_ids"
+    member_user_ids <- o A..:? "member_user_ids"
     return $ MessageChatAddMembers { member_user_ids = member_user_ids }
 
    parseMessageChatJoinByLink :: A.Value -> T.Parser MessageContent
@@ -393,23 +394,23 @@ instance T.FromJSON MessageContent where
 
    parseMessageChatDeleteMember :: A.Value -> T.Parser MessageContent
    parseMessageChatDeleteMember = A.withObject "MessageChatDeleteMember" $ \o -> do
-    user_id <- optional $ o A..: "user_id"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ MessageChatDeleteMember { user_id = user_id }
 
    parseMessageChatUpgradeTo :: A.Value -> T.Parser MessageContent
    parseMessageChatUpgradeTo = A.withObject "MessageChatUpgradeTo" $ \o -> do
-    supergroup_id <- optional $ o A..: "supergroup_id"
+    supergroup_id <- mconcat [ o A..:? "supergroup_id", readMaybe <$> (o A..: "supergroup_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ MessageChatUpgradeTo { supergroup_id = supergroup_id }
 
    parseMessageChatUpgradeFrom :: A.Value -> T.Parser MessageContent
    parseMessageChatUpgradeFrom = A.withObject "MessageChatUpgradeFrom" $ \o -> do
-    basic_group_id <- optional $ o A..: "basic_group_id"
-    title <- optional $ o A..: "title"
+    basic_group_id <- mconcat [ o A..:? "basic_group_id", readMaybe <$> (o A..: "basic_group_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    title <- o A..:? "title"
     return $ MessageChatUpgradeFrom { basic_group_id = basic_group_id, title = title }
 
    parseMessagePinMessage :: A.Value -> T.Parser MessageContent
    parseMessagePinMessage = A.withObject "MessagePinMessage" $ \o -> do
-    message_id <- optional $ o A..: "message_id"
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ MessagePinMessage { message_id = message_id }
 
    parseMessageScreenshotTaken :: A.Value -> T.Parser MessageContent
@@ -418,38 +419,38 @@ instance T.FromJSON MessageContent where
 
    parseMessageChatSetTtl :: A.Value -> T.Parser MessageContent
    parseMessageChatSetTtl = A.withObject "MessageChatSetTtl" $ \o -> do
-    ttl <- optional $ o A..: "ttl"
+    ttl <- mconcat [ o A..:? "ttl", readMaybe <$> (o A..: "ttl" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ MessageChatSetTtl { ttl = ttl }
 
    parseMessageCustomServiceAction :: A.Value -> T.Parser MessageContent
    parseMessageCustomServiceAction = A.withObject "MessageCustomServiceAction" $ \o -> do
-    text <- optional $ o A..: "text"
+    text <- o A..:? "text"
     return $ MessageCustomServiceAction { text = text }
 
    parseMessageGameScore :: A.Value -> T.Parser MessageContent
    parseMessageGameScore = A.withObject "MessageGameScore" $ \o -> do
-    score <- optional $ o A..: "score"
-    game_id <- optional $ o A..: "game_id"
-    game_message_id <- optional $ o A..: "game_message_id"
+    score <- mconcat [ o A..:? "score", readMaybe <$> (o A..: "score" :: T.Parser String)] :: T.Parser (Maybe Int)
+    game_id <- mconcat [ o A..:? "game_id", readMaybe <$> (o A..: "game_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    game_message_id <- mconcat [ o A..:? "game_message_id", readMaybe <$> (o A..: "game_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ MessageGameScore { score = score, game_id = game_id, game_message_id = game_message_id }
 
    parseMessagePaymentSuccessful :: A.Value -> T.Parser MessageContent
    parseMessagePaymentSuccessful = A.withObject "MessagePaymentSuccessful" $ \o -> do
-    total_amount <- optional $ o A..: "total_amount"
-    currency <- optional $ o A..: "currency"
-    invoice_message_id <- optional $ o A..: "invoice_message_id"
+    total_amount <- mconcat [ o A..:? "total_amount", readMaybe <$> (o A..: "total_amount" :: T.Parser String)] :: T.Parser (Maybe Int)
+    currency <- o A..:? "currency"
+    invoice_message_id <- mconcat [ o A..:? "invoice_message_id", readMaybe <$> (o A..: "invoice_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ MessagePaymentSuccessful { total_amount = total_amount, currency = currency, invoice_message_id = invoice_message_id }
 
    parseMessagePaymentSuccessfulBot :: A.Value -> T.Parser MessageContent
    parseMessagePaymentSuccessfulBot = A.withObject "MessagePaymentSuccessfulBot" $ \o -> do
-    provider_payment_charge_id <- optional $ o A..: "provider_payment_charge_id"
-    telegram_payment_charge_id <- optional $ o A..: "telegram_payment_charge_id"
-    order_info <- optional $ o A..: "order_info"
-    shipping_option_id <- optional $ o A..: "shipping_option_id"
-    invoice_payload <- optional $ o A..: "invoice_payload"
-    total_amount <- optional $ o A..: "total_amount"
-    currency <- optional $ o A..: "currency"
-    invoice_message_id <- optional $ o A..: "invoice_message_id"
+    provider_payment_charge_id <- o A..:? "provider_payment_charge_id"
+    telegram_payment_charge_id <- o A..:? "telegram_payment_charge_id"
+    order_info <- o A..:? "order_info"
+    shipping_option_id <- o A..:? "shipping_option_id"
+    invoice_payload <- o A..:? "invoice_payload"
+    total_amount <- mconcat [ o A..:? "total_amount", readMaybe <$> (o A..: "total_amount" :: T.Parser String)] :: T.Parser (Maybe Int)
+    currency <- o A..:? "currency"
+    invoice_message_id <- mconcat [ o A..:? "invoice_message_id", readMaybe <$> (o A..: "invoice_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ MessagePaymentSuccessfulBot { provider_payment_charge_id = provider_payment_charge_id, telegram_payment_charge_id = telegram_payment_charge_id, order_info = order_info, shipping_option_id = shipping_option_id, invoice_payload = invoice_payload, total_amount = total_amount, currency = currency, invoice_message_id = invoice_message_id }
 
    parseMessageContactRegistered :: A.Value -> T.Parser MessageContent
@@ -458,18 +459,18 @@ instance T.FromJSON MessageContent where
 
    parseMessageWebsiteConnected :: A.Value -> T.Parser MessageContent
    parseMessageWebsiteConnected = A.withObject "MessageWebsiteConnected" $ \o -> do
-    domain_name <- optional $ o A..: "domain_name"
+    domain_name <- o A..:? "domain_name"
     return $ MessageWebsiteConnected { domain_name = domain_name }
 
    parseMessagePassportDataSent :: A.Value -> T.Parser MessageContent
    parseMessagePassportDataSent = A.withObject "MessagePassportDataSent" $ \o -> do
-    types <- optional $ o A..: "types"
+    types <- o A..:? "types"
     return $ MessagePassportDataSent { types = types }
 
    parseMessagePassportDataReceived :: A.Value -> T.Parser MessageContent
    parseMessagePassportDataReceived = A.withObject "MessagePassportDataReceived" $ \o -> do
-    credentials <- optional $ o A..: "credentials"
-    elements <- optional $ o A..: "elements"
+    credentials <- o A..:? "credentials"
+    elements <- o A..:? "elements"
     return $ MessagePassportDataReceived { credentials = credentials, elements = elements }
 
    parseMessageUnsupported :: A.Value -> T.Parser MessageContent

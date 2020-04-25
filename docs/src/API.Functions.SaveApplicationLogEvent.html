@@ -2,16 +2,17 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Functions.SaveApplicationLogEvent</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.JsonValue.html"><span class="hs-identifier">API.JsonValue</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">JsonValue</span></span><span>
-</span><span id="line-9"></span><span>
-</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="SaveApplicationLogEvent"><span class="annot"><a href="API.Functions.SaveApplicationLogEvent.html#SaveApplicationLogEvent"><span class="hs-identifier hs-var">SaveApplicationLogEvent</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-11"></span><span> </span><span id="SaveApplicationLogEvent"><span class="annot"><a href="API.Functions.SaveApplicationLogEvent.html#SaveApplicationLogEvent"><span class="hs-identifier hs-var">SaveApplicationLogEvent</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="_data"><span class="annot"><span class="annottext">SaveApplicationLogEvent -&gt; Maybe JsonValue
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.JsonValue.html"><span class="hs-identifier">API.JsonValue</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">JsonValue</span></span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-keyword">data</span><span> </span><span id="SaveApplicationLogEvent"><span class="annot"><a href="API.Functions.SaveApplicationLogEvent.html#SaveApplicationLogEvent"><span class="hs-identifier hs-var">SaveApplicationLogEvent</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-12"></span><span> </span><span id="SaveApplicationLogEvent"><span class="annot"><a href="API.Functions.SaveApplicationLogEvent.html#SaveApplicationLogEvent"><span class="hs-identifier hs-var">SaveApplicationLogEvent</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="_data"><span class="annot"><span class="annottext">SaveApplicationLogEvent -&gt; Maybe JsonValue
 </span><a href="API.Functions.SaveApplicationLogEvent.html#_data"><span class="hs-identifier hs-var hs-var">_data</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.JsonValue.html#JsonValue"><span class="hs-identifier hs-type">JsonValue.JsonValue</span></a></span><span class="hs-special">,</span><span> </span><span id="chat_id"><span class="annot"><span class="annottext">SaveApplicationLogEvent -&gt; Maybe Int
 </span><a href="API.Functions.SaveApplicationLogEvent.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="_type"><span class="annot"><span class="annottext">SaveApplicationLogEvent -&gt; Maybe String
-</span><a href="API.Functions.SaveApplicationLogEvent.html#_type"><span class="hs-identifier hs-var hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679433594"><span id="local-6989586621679433596"><span id="local-6989586621679433598"><span class="annot"><span class="annottext">Int -&gt; SaveApplicationLogEvent -&gt; ShowS
+</span><a href="API.Functions.SaveApplicationLogEvent.html#_type"><span class="hs-identifier hs-var hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679438506"><span id="local-6989586621679438508"><span id="local-6989586621679438510"><span class="annot"><span class="annottext">Int -&gt; SaveApplicationLogEvent -&gt; ShowS
 [SaveApplicationLogEvent] -&gt; ShowS
 SaveApplicationLogEvent -&gt; String
 (Int -&gt; SaveApplicationLogEvent -&gt; ShowS)
@@ -26,7 +27,7 @@ show :: SaveApplicationLogEvent -&gt; String
 $cshow :: SaveApplicationLogEvent -&gt; String
 showsPrec :: Int -&gt; SaveApplicationLogEvent -&gt; ShowS
 $cshowsPrec :: Int -&gt; SaveApplicationLogEvent -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679433589"><span id="local-6989586621679433591"><span class="annot"><span class="annottext">SaveApplicationLogEvent -&gt; SaveApplicationLogEvent -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679438501"><span id="local-6989586621679438503"><span class="annot"><span class="annottext">SaveApplicationLogEvent -&gt; SaveApplicationLogEvent -&gt; Bool
 (SaveApplicationLogEvent -&gt; SaveApplicationLogEvent -&gt; Bool)
 -&gt; (SaveApplicationLogEvent -&gt; SaveApplicationLogEvent -&gt; Bool)
 -&gt; Eq SaveApplicationLogEvent
@@ -36,53 +37,53 @@ $c/= :: SaveApplicationLogEvent -&gt; SaveApplicationLogEvent -&gt; Bool
 == :: SaveApplicationLogEvent -&gt; SaveApplicationLogEvent -&gt; Bool
 $c== :: SaveApplicationLogEvent -&gt; SaveApplicationLogEvent -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679433581"><span id="local-6989586621679433583"><span id="local-6989586621679433585"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SaveApplicationLogEvent.html#SaveApplicationLogEvent"><span class="hs-identifier hs-type">SaveApplicationLogEvent</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679433579"><span class="annot"><span class="annottext">toJSON :: SaveApplicationLogEvent -&gt; Value
+</span><span id="line-13"></span><span>
+</span><span id="line-14"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679438493"><span id="local-6989586621679438495"><span id="local-6989586621679438497"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SaveApplicationLogEvent.html#SaveApplicationLogEvent"><span class="hs-identifier hs-type">SaveApplicationLogEvent</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-15"></span><span> </span><span id="local-6989586621679438491"><span class="annot"><span class="annottext">toJSON :: SaveApplicationLogEvent -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.SaveApplicationLogEvent.html#SaveApplicationLogEvent"><span class="hs-identifier hs-type">SaveApplicationLogEvent</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_data :: SaveApplicationLogEvent -&gt; Maybe JsonValue
-</span><a href="API.Functions.SaveApplicationLogEvent.html#_data"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679433577"><span class="annot"><span class="annottext">Maybe JsonValue
-</span><a href="#local-6989586621679433577"><span class="hs-identifier hs-var">_data</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: SaveApplicationLogEvent -&gt; Maybe Int
-</span><a href="API.Functions.SaveApplicationLogEvent.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679433576"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679433576"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: SaveApplicationLogEvent -&gt; Maybe String
-</span><a href="API.Functions.SaveApplicationLogEvent.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679433575"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679433575"><span class="hs-identifier hs-var">_type</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.Functions.SaveApplicationLogEvent.html#_data"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438489"><span class="annot"><span class="annottext">Maybe JsonValue
+</span><a href="#local-6989586621679438489"><span class="hs-identifier hs-var">_data</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: SaveApplicationLogEvent -&gt; Maybe Int
+</span><a href="API.Functions.SaveApplicationLogEvent.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438488"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679438488"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: SaveApplicationLogEvent -&gt; Maybe String
+</span><a href="API.Functions.SaveApplicationLogEvent.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438487"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679438487"><span class="hs-identifier hs-var">_type</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-16"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;saveApplicationLogEvent&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;data&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe JsonValue -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe JsonValue
-</span><a href="#local-6989586621679433577"><span class="hs-identifier hs-var">_data</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679438489"><span class="hs-identifier hs-var">_data</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679433576"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679438488"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679433575"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679433569"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SaveApplicationLogEvent.html#SaveApplicationLogEvent"><span class="hs-identifier hs-type">SaveApplicationLogEvent</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679433567"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SaveApplicationLogEvent
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679433565"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679433565"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679433563"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679433563"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679433562"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679433562"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679433563"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679438487"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-17"></span><span>
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679438481"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SaveApplicationLogEvent.html#SaveApplicationLogEvent"><span class="hs-identifier hs-type">SaveApplicationLogEvent</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span> </span><span id="local-6989586621679438479"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SaveApplicationLogEvent
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679438477"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679438477"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679438475"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679438475"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-20"></span><span>  </span><span id="local-6989586621679438474"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679438474"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679438475"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679433562"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;saveApplicationLogEvent&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SaveApplicationLogEvent
-</span><a href="#local-6989586621679433560"><span class="hs-identifier hs-var">parseSaveApplicationLogEvent</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679433565"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SaveApplicationLogEvent
+</span><span id="line-21"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679438474"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-22"></span><span>   </span><span class="hs-string">&quot;saveApplicationLogEvent&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SaveApplicationLogEvent
+</span><a href="#local-6989586621679438472"><span class="hs-identifier hs-var">parseSaveApplicationLogEvent</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679438477"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-23"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SaveApplicationLogEvent
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679433560"><span class="hs-identifier hs-type">parseSaveApplicationLogEvent</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SaveApplicationLogEvent.html#SaveApplicationLogEvent"><span class="hs-identifier hs-type">SaveApplicationLogEvent</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span id="local-6989586621679433560"><span class="annot"><span class="annottext">parseSaveApplicationLogEvent :: Value -&gt; Parser SaveApplicationLogEvent
-</span><a href="#local-6989586621679433560"><span class="hs-identifier hs-var hs-var">parseSaveApplicationLogEvent</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span>   </span><span class="annot"><a href="#local-6989586621679438472"><span class="hs-identifier hs-type">parseSaveApplicationLogEvent</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SaveApplicationLogEvent.html#SaveApplicationLogEvent"><span class="hs-identifier hs-type">SaveApplicationLogEvent</span></a></span><span>
+</span><span id="line-26"></span><span>   </span><span id="local-6989586621679438472"><span class="annot"><span class="annottext">parseSaveApplicationLogEvent :: Value -&gt; Parser SaveApplicationLogEvent
+</span><a href="#local-6989586621679438472"><span class="hs-identifier hs-var hs-var">parseSaveApplicationLogEvent</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SaveApplicationLogEvent)
 -&gt; Value
 -&gt; Parser SaveApplicationLogEvent
@@ -93,39 +94,33 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SaveApplicationLogEvent
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679433558"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679433558"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679433557"><span class="annot"><span class="annottext">Maybe JsonValue
-</span><a href="#local-6989586621679433557"><span class="hs-identifier hs-var">_data</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser JsonValue -&gt; Parser (Maybe JsonValue)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser JsonValue -&gt; Parser (Maybe JsonValue))
--&gt; Parser JsonValue -&gt; Parser (Maybe JsonValue)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679433558"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser JsonValue
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679438470"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679438470"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679438469"><span class="annot"><span class="annottext">Maybe JsonValue
+</span><a href="#local-6989586621679438469"><span class="hs-identifier hs-var">_data</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679438470"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe JsonValue)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;data&quot;</span></span><span>
+</span><span id="line-28"></span><span>    </span><span id="local-6989586621679438467"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679438467"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+forall a. Monoid a =&gt; [a] -&gt; a
+</span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679438470"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679438470"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;data&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679433556"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679433556"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
--&gt; Parser Int -&gt; Parser (Maybe Int)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679433558"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span>
-</span><span id="line-28"></span><span>    </span><span id="local-6989586621679433555"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679433555"><span class="hs-identifier hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
--&gt; Parser String -&gt; Parser (Maybe String)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679433558"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;type&quot;</span></span><span>
-</span><span id="line-29"></span><span>    </span><span class="annot"><span class="annottext">SaveApplicationLogEvent -&gt; Parser SaveApplicationLogEvent
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-29"></span><span>    </span><span id="local-6989586621679438465"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679438465"><span class="hs-identifier hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679438470"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;type&quot;</span></span><span>
+</span><span id="line-30"></span><span>    </span><span class="annot"><span class="annottext">SaveApplicationLogEvent -&gt; Parser SaveApplicationLogEvent
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SaveApplicationLogEvent -&gt; Parser SaveApplicationLogEvent)
 -&gt; SaveApplicationLogEvent -&gt; Parser SaveApplicationLogEvent
@@ -134,8 +129,8 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; Maybe Int -&gt; Maybe String -&gt; SaveApplicationLogEvent
 </span><a href="API.Functions.SaveApplicationLogEvent.html#SaveApplicationLogEvent"><span class="hs-identifier hs-type hs-type">SaveApplicationLogEvent</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_data :: Maybe JsonValue
 </span><a href="API.Functions.SaveApplicationLogEvent.html#_data"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe JsonValue
-</span><a href="#local-6989586621679433557"><span class="hs-identifier hs-var">_data</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
+</span><a href="#local-6989586621679438469"><span class="hs-identifier hs-var">_data</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
 </span><a href="API.Functions.SaveApplicationLogEvent.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679433556"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: Maybe String
+</span><a href="#local-6989586621679438467"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: Maybe String
 </span><a href="API.Functions.SaveApplicationLogEvent.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679433555"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679438465"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

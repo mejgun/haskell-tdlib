@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.CreateNewSecretChat where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON CreateNewSecretChat where
   where
    parseCreateNewSecretChat :: A.Value -> T.Parser CreateNewSecretChat
    parseCreateNewSecretChat = A.withObject "CreateNewSecretChat" $ \o -> do
-    user_id <- optional $ o A..: "user_id"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ CreateNewSecretChat { user_id = user_id }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.CancelUploadFile where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON CancelUploadFile where
   where
    parseCancelUploadFile :: A.Value -> T.Parser CancelUploadFile
    parseCancelUploadFile = A.withObject "CancelUploadFile" $ \o -> do
-    file_id <- optional $ o A..: "file_id"
+    file_id <- mconcat [ o A..:? "file_id", readMaybe <$> (o A..: "file_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ CancelUploadFile { file_id = file_id }

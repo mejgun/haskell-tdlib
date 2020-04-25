@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetChatPermissions where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatPermissions as ChatPermissions
@@ -23,6 +24,6 @@ instance T.FromJSON SetChatPermissions where
   where
    parseSetChatPermissions :: A.Value -> T.Parser SetChatPermissions
    parseSetChatPermissions = A.withObject "SetChatPermissions" $ \o -> do
-    permissions <- optional $ o A..: "permissions"
-    chat_id <- optional $ o A..: "chat_id"
+    permissions <- o A..:? "permissions"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SetChatPermissions { permissions = permissions, chat_id = chat_id }

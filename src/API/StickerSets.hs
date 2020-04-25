@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.StickerSets where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.StickerSetInfo as StickerSetInfo
@@ -23,6 +24,6 @@ instance T.FromJSON StickerSets where
   where
    parseStickerSets :: A.Value -> T.Parser StickerSets
    parseStickerSets = A.withObject "StickerSets" $ \o -> do
-    sets <- optional $ o A..: "sets"
-    total_count <- optional $ o A..: "total_count"
+    sets <- o A..:? "sets"
+    total_count <- mconcat [ o A..:? "total_count", readMaybe <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ StickerSets { sets = sets, total_count = total_count }

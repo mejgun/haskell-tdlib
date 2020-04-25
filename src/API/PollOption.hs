@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PollOption where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,9 +23,9 @@ instance T.FromJSON PollOption where
   where
    parsePollOption :: A.Value -> T.Parser PollOption
    parsePollOption = A.withObject "PollOption" $ \o -> do
-    is_being_chosen <- optional $ o A..: "is_being_chosen"
-    is_chosen <- optional $ o A..: "is_chosen"
-    vote_percentage <- optional $ o A..: "vote_percentage"
-    voter_count <- optional $ o A..: "voter_count"
-    text <- optional $ o A..: "text"
+    is_being_chosen <- o A..:? "is_being_chosen"
+    is_chosen <- o A..:? "is_chosen"
+    vote_percentage <- mconcat [ o A..:? "vote_percentage", readMaybe <$> (o A..: "vote_percentage" :: T.Parser String)] :: T.Parser (Maybe Int)
+    voter_count <- mconcat [ o A..:? "voter_count", readMaybe <$> (o A..: "voter_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    text <- o A..:? "text"
     return $ PollOption { is_being_chosen = is_being_chosen, is_chosen = is_chosen, vote_percentage = vote_percentage, voter_count = voter_count, text = text }

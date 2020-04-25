@@ -2,12 +2,13 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Functions.GetRecentInlineBots</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-8"></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="GetRecentInlineBots"><span class="annot"><a href="API.Functions.GetRecentInlineBots.html#GetRecentInlineBots"><span class="hs-identifier hs-var">GetRecentInlineBots</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-10"></span><span> </span><span id="GetRecentInlineBots"><span class="annot"><a href="API.Functions.GetRecentInlineBots.html#GetRecentInlineBots"><span class="hs-identifier hs-var">GetRecentInlineBots</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679419210"><span id="local-6989586621679419212"><span id="local-6989586621679419214"><span class="annot"><span class="annottext">Int -&gt; GetRecentInlineBots -&gt; ShowS
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="GetRecentInlineBots"><span class="annot"><a href="API.Functions.GetRecentInlineBots.html#GetRecentInlineBots"><span class="hs-identifier hs-var">GetRecentInlineBots</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-11"></span><span> </span><span id="GetRecentInlineBots"><span class="annot"><a href="API.Functions.GetRecentInlineBots.html#GetRecentInlineBots"><span class="hs-identifier hs-var">GetRecentInlineBots</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679423802"><span id="local-6989586621679423804"><span id="local-6989586621679423806"><span class="annot"><span class="annottext">Int -&gt; GetRecentInlineBots -&gt; ShowS
 [GetRecentInlineBots] -&gt; ShowS
 GetRecentInlineBots -&gt; String
 (Int -&gt; GetRecentInlineBots -&gt; ShowS)
@@ -22,7 +23,7 @@ show :: GetRecentInlineBots -&gt; String
 $cshow :: GetRecentInlineBots -&gt; String
 showsPrec :: Int -&gt; GetRecentInlineBots -&gt; ShowS
 $cshowsPrec :: Int -&gt; GetRecentInlineBots -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679419205"><span id="local-6989586621679419207"><span class="annot"><span class="annottext">GetRecentInlineBots -&gt; GetRecentInlineBots -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679423797"><span id="local-6989586621679423799"><span class="annot"><span class="annottext">GetRecentInlineBots -&gt; GetRecentInlineBots -&gt; Bool
 (GetRecentInlineBots -&gt; GetRecentInlineBots -&gt; Bool)
 -&gt; (GetRecentInlineBots -&gt; GetRecentInlineBots -&gt; Bool)
 -&gt; Eq GetRecentInlineBots
@@ -32,38 +33,38 @@ $c/= :: GetRecentInlineBots -&gt; GetRecentInlineBots -&gt; Bool
 == :: GetRecentInlineBots -&gt; GetRecentInlineBots -&gt; Bool
 $c== :: GetRecentInlineBots -&gt; GetRecentInlineBots -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419197"><span id="local-6989586621679419199"><span id="local-6989586621679419201"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetRecentInlineBots.html#GetRecentInlineBots"><span class="hs-identifier hs-type">GetRecentInlineBots</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679419195"><span class="annot"><span class="annottext">toJSON :: GetRecentInlineBots -&gt; Value
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679423789"><span id="local-6989586621679423791"><span id="local-6989586621679423793"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetRecentInlineBots.html#GetRecentInlineBots"><span class="hs-identifier hs-type">GetRecentInlineBots</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679423787"><span class="annot"><span class="annottext">toJSON :: GetRecentInlineBots -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.GetRecentInlineBots.html#GetRecentInlineBots"><span class="hs-identifier hs-type">GetRecentInlineBots</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;getRecentInlineBots&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419188"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetRecentInlineBots.html#GetRecentInlineBots"><span class="hs-identifier hs-type">GetRecentInlineBots</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679419186"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetRecentInlineBots
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679419184"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679419184"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679419182"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679419182"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679419181"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679419181"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419182"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span>
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679423780"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetRecentInlineBots.html#GetRecentInlineBots"><span class="hs-identifier hs-type">GetRecentInlineBots</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679423778"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetRecentInlineBots
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679423776"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679423776"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679423774"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679423774"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679423773"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679423773"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679423774"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679419181"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;getRecentInlineBots&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetRecentInlineBots
-</span><a href="#local-6989586621679419179"><span class="hs-identifier hs-var">parseGetRecentInlineBots</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679419184"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetRecentInlineBots
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679423773"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;getRecentInlineBots&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetRecentInlineBots
+</span><a href="#local-6989586621679423771"><span class="hs-identifier hs-var">parseGetRecentInlineBots</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679423776"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetRecentInlineBots
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679419179"><span class="hs-identifier hs-type">parseGetRecentInlineBots</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetRecentInlineBots.html#GetRecentInlineBots"><span class="hs-identifier hs-type">GetRecentInlineBots</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679419179"><span class="annot"><span class="annottext">parseGetRecentInlineBots :: Value -&gt; Parser GetRecentInlineBots
-</span><a href="#local-6989586621679419179"><span class="hs-identifier hs-var hs-var">parseGetRecentInlineBots</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679423771"><span class="hs-identifier hs-type">parseGetRecentInlineBots</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetRecentInlineBots.html#GetRecentInlineBots"><span class="hs-identifier hs-type">GetRecentInlineBots</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679423771"><span class="annot"><span class="annottext">parseGetRecentInlineBots :: Value -&gt; Parser GetRecentInlineBots
+</span><a href="#local-6989586621679423771"><span class="hs-identifier hs-var hs-var">parseGetRecentInlineBots</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GetRecentInlineBots)
 -&gt; Value
 -&gt; Parser GetRecentInlineBots
@@ -74,9 +75,9 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser GetRecentInlineBots
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679419177"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679419177"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span class="annot"><span class="annottext">GetRecentInlineBots -&gt; Parser GetRecentInlineBots
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679423769"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679423769"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span class="annot"><span class="annottext">GetRecentInlineBots -&gt; Parser GetRecentInlineBots
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(GetRecentInlineBots -&gt; Parser GetRecentInlineBots)
 -&gt; GetRecentInlineBots -&gt; Parser GetRecentInlineBots

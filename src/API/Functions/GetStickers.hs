@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetStickers where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON GetStickers where
   where
    parseGetStickers :: A.Value -> T.Parser GetStickers
    parseGetStickers = A.withObject "GetStickers" $ \o -> do
-    limit <- optional $ o A..: "limit"
-    emoji <- optional $ o A..: "emoji"
+    limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
+    emoji <- o A..:? "emoji"
     return $ GetStickers { limit = limit, emoji = emoji }

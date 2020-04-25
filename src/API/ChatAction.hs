@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatAction where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -90,7 +91,7 @@ instance T.FromJSON ChatAction where
 
    parseChatActionUploadingVideo :: A.Value -> T.Parser ChatAction
    parseChatActionUploadingVideo = A.withObject "ChatActionUploadingVideo" $ \o -> do
-    progress <- optional $ o A..: "progress"
+    progress <- mconcat [ o A..:? "progress", readMaybe <$> (o A..: "progress" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatActionUploadingVideo { progress = progress }
 
    parseChatActionRecordingVoiceNote :: A.Value -> T.Parser ChatAction
@@ -99,17 +100,17 @@ instance T.FromJSON ChatAction where
 
    parseChatActionUploadingVoiceNote :: A.Value -> T.Parser ChatAction
    parseChatActionUploadingVoiceNote = A.withObject "ChatActionUploadingVoiceNote" $ \o -> do
-    progress <- optional $ o A..: "progress"
+    progress <- mconcat [ o A..:? "progress", readMaybe <$> (o A..: "progress" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatActionUploadingVoiceNote { progress = progress }
 
    parseChatActionUploadingPhoto :: A.Value -> T.Parser ChatAction
    parseChatActionUploadingPhoto = A.withObject "ChatActionUploadingPhoto" $ \o -> do
-    progress <- optional $ o A..: "progress"
+    progress <- mconcat [ o A..:? "progress", readMaybe <$> (o A..: "progress" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatActionUploadingPhoto { progress = progress }
 
    parseChatActionUploadingDocument :: A.Value -> T.Parser ChatAction
    parseChatActionUploadingDocument = A.withObject "ChatActionUploadingDocument" $ \o -> do
-    progress <- optional $ o A..: "progress"
+    progress <- mconcat [ o A..:? "progress", readMaybe <$> (o A..: "progress" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatActionUploadingDocument { progress = progress }
 
    parseChatActionChoosingLocation :: A.Value -> T.Parser ChatAction
@@ -130,7 +131,7 @@ instance T.FromJSON ChatAction where
 
    parseChatActionUploadingVideoNote :: A.Value -> T.Parser ChatAction
    parseChatActionUploadingVideoNote = A.withObject "ChatActionUploadingVideoNote" $ \o -> do
-    progress <- optional $ o A..: "progress"
+    progress <- mconcat [ o A..:? "progress", readMaybe <$> (o A..: "progress" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatActionUploadingVideoNote { progress = progress }
 
    parseChatActionCancel :: A.Value -> T.Parser ChatAction

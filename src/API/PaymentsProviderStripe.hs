@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PaymentsProviderStripe where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,8 +23,8 @@ instance T.FromJSON PaymentsProviderStripe where
   where
    parsePaymentsProviderStripe :: A.Value -> T.Parser PaymentsProviderStripe
    parsePaymentsProviderStripe = A.withObject "PaymentsProviderStripe" $ \o -> do
-    need_cardholder_name <- optional $ o A..: "need_cardholder_name"
-    need_postal_code <- optional $ o A..: "need_postal_code"
-    need_country <- optional $ o A..: "need_country"
-    publishable_key <- optional $ o A..: "publishable_key"
+    need_cardholder_name <- o A..:? "need_cardholder_name"
+    need_postal_code <- o A..:? "need_postal_code"
+    need_country <- o A..:? "need_country"
+    publishable_key <- o A..:? "publishable_key"
     return $ PaymentsProviderStripe { need_cardholder_name = need_cardholder_name, need_postal_code = need_postal_code, need_country = need_country, publishable_key = publishable_key }

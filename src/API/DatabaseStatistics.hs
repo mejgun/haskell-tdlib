@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.DatabaseStatistics where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON DatabaseStatistics where
   where
    parseDatabaseStatistics :: A.Value -> T.Parser DatabaseStatistics
    parseDatabaseStatistics = A.withObject "DatabaseStatistics" $ \o -> do
-    statistics <- optional $ o A..: "statistics"
+    statistics <- o A..:? "statistics"
     return $ DatabaseStatistics { statistics = statistics }

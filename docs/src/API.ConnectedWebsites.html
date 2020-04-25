@@ -2,14 +2,15 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.ConnectedWebsites</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.ConnectedWebsite.html"><span class="hs-identifier">API.ConnectedWebsite</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ConnectedWebsite</span></span><span>
-</span><span id="line-9"></span><span>
-</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="ConnectedWebsites"><span class="annot"><a href="API.ConnectedWebsites.html#ConnectedWebsites"><span class="hs-identifier hs-var">ConnectedWebsites</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-11"></span><span> </span><span id="ConnectedWebsites"><span class="annot"><a href="API.ConnectedWebsites.html#ConnectedWebsites"><span class="hs-identifier hs-var">ConnectedWebsites</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="websites"><span class="annot"><span class="annottext">ConnectedWebsites -&gt; Maybe [ConnectedWebsite]
-</span><a href="API.ConnectedWebsites.html#websites"><span class="hs-identifier hs-var hs-var">websites</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.ConnectedWebsite.html#ConnectedWebsite"><span class="hs-identifier hs-type">ConnectedWebsite.ConnectedWebsite</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679406694"><span id="local-6989586621679406696"><span id="local-6989586621679406698"><span class="annot"><span class="annottext">Int -&gt; ConnectedWebsites -&gt; ShowS
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.ConnectedWebsite.html"><span class="hs-identifier">API.ConnectedWebsite</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ConnectedWebsite</span></span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-keyword">data</span><span> </span><span id="ConnectedWebsites"><span class="annot"><a href="API.ConnectedWebsites.html#ConnectedWebsites"><span class="hs-identifier hs-var">ConnectedWebsites</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-12"></span><span> </span><span id="ConnectedWebsites"><span class="annot"><a href="API.ConnectedWebsites.html#ConnectedWebsites"><span class="hs-identifier hs-var">ConnectedWebsites</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="websites"><span class="annot"><span class="annottext">ConnectedWebsites -&gt; Maybe [ConnectedWebsite]
+</span><a href="API.ConnectedWebsites.html#websites"><span class="hs-identifier hs-var hs-var">websites</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.ConnectedWebsite.html#ConnectedWebsite"><span class="hs-identifier hs-type">ConnectedWebsite.ConnectedWebsite</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679411024"><span id="local-6989586621679411026"><span id="local-6989586621679411028"><span class="annot"><span class="annottext">Int -&gt; ConnectedWebsites -&gt; ShowS
 [ConnectedWebsites] -&gt; ShowS
 ConnectedWebsites -&gt; String
 (Int -&gt; ConnectedWebsites -&gt; ShowS)
@@ -24,7 +25,7 @@ show :: ConnectedWebsites -&gt; String
 $cshow :: ConnectedWebsites -&gt; String
 showsPrec :: Int -&gt; ConnectedWebsites -&gt; ShowS
 $cshowsPrec :: Int -&gt; ConnectedWebsites -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679406689"><span id="local-6989586621679406691"><span class="annot"><span class="annottext">ConnectedWebsites -&gt; ConnectedWebsites -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679411019"><span id="local-6989586621679411021"><span class="annot"><span class="annottext">ConnectedWebsites -&gt; ConnectedWebsites -&gt; Bool
 (ConnectedWebsites -&gt; ConnectedWebsites -&gt; Bool)
 -&gt; (ConnectedWebsites -&gt; ConnectedWebsites -&gt; Bool)
 -&gt; Eq ConnectedWebsites
@@ -34,43 +35,43 @@ $c/= :: ConnectedWebsites -&gt; ConnectedWebsites -&gt; Bool
 == :: ConnectedWebsites -&gt; ConnectedWebsites -&gt; Bool
 $c== :: ConnectedWebsites -&gt; ConnectedWebsites -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679406681"><span id="local-6989586621679406683"><span id="local-6989586621679406685"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ConnectedWebsites.html#ConnectedWebsites"><span class="hs-identifier hs-type">ConnectedWebsites</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679406679"><span class="annot"><span class="annottext">toJSON :: ConnectedWebsites -&gt; Value
+</span><span id="line-13"></span><span>
+</span><span id="line-14"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679411011"><span id="local-6989586621679411013"><span id="local-6989586621679411015"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ConnectedWebsites.html#ConnectedWebsites"><span class="hs-identifier hs-type">ConnectedWebsites</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-15"></span><span> </span><span id="local-6989586621679411009"><span class="annot"><span class="annottext">toJSON :: ConnectedWebsites -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.ConnectedWebsites.html#ConnectedWebsites"><span class="hs-identifier hs-type">ConnectedWebsites</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">websites :: ConnectedWebsites -&gt; Maybe [ConnectedWebsite]
-</span><a href="API.ConnectedWebsites.html#websites"><span class="hs-identifier hs-var">websites</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406677"><span class="annot"><span class="annottext">Maybe [ConnectedWebsite]
-</span><a href="#local-6989586621679406677"><span class="hs-identifier hs-var">websites</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.ConnectedWebsites.html#websites"><span class="hs-identifier hs-var">websites</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411007"><span class="annot"><span class="annottext">Maybe [ConnectedWebsite]
+</span><a href="#local-6989586621679411007"><span class="hs-identifier hs-var">websites</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-16"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;connectedWebsites&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;websites&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [ConnectedWebsite] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [ConnectedWebsite]
-</span><a href="#local-6989586621679406677"><span class="hs-identifier hs-var">websites</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679406671"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ConnectedWebsites.html#ConnectedWebsites"><span class="hs-identifier hs-type">ConnectedWebsites</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679406669"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ConnectedWebsites
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679406667"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679406667"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679406665"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679406665"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679406664"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679406664"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679406665"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679411007"><span class="hs-identifier hs-var">websites</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-17"></span><span>
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679411001"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ConnectedWebsites.html#ConnectedWebsites"><span class="hs-identifier hs-type">ConnectedWebsites</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span> </span><span id="local-6989586621679410999"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ConnectedWebsites
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679410997"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679410997"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679410995"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679410995"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-20"></span><span>  </span><span id="local-6989586621679410994"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679410994"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679410995"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679406664"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;connectedWebsites&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ConnectedWebsites
-</span><a href="#local-6989586621679406662"><span class="hs-identifier hs-var">parseConnectedWebsites</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406667"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ConnectedWebsites
+</span><span id="line-21"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679410994"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-22"></span><span>   </span><span class="hs-string">&quot;connectedWebsites&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ConnectedWebsites
+</span><a href="#local-6989586621679410992"><span class="hs-identifier hs-var">parseConnectedWebsites</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679410997"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-23"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ConnectedWebsites
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679406662"><span class="hs-identifier hs-type">parseConnectedWebsites</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ConnectedWebsites.html#ConnectedWebsites"><span class="hs-identifier hs-type">ConnectedWebsites</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span id="local-6989586621679406662"><span class="annot"><span class="annottext">parseConnectedWebsites :: Value -&gt; Parser ConnectedWebsites
-</span><a href="#local-6989586621679406662"><span class="hs-identifier hs-var hs-var">parseConnectedWebsites</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span>   </span><span class="annot"><a href="#local-6989586621679410992"><span class="hs-identifier hs-type">parseConnectedWebsites</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ConnectedWebsites.html#ConnectedWebsites"><span class="hs-identifier hs-type">ConnectedWebsites</span></a></span><span>
+</span><span id="line-26"></span><span>   </span><span id="local-6989586621679410992"><span class="annot"><span class="annottext">parseConnectedWebsites :: Value -&gt; Parser ConnectedWebsites
+</span><a href="#local-6989586621679410992"><span class="hs-identifier hs-var hs-var">parseConnectedWebsites</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ConnectedWebsites)
 -&gt; Value
 -&gt; Parser ConnectedWebsites
@@ -81,19 +82,14 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ConnectedWebsites
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679406660"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679406660"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679406659"><span class="annot"><span class="annottext">Maybe [ConnectedWebsite]
-</span><a href="#local-6989586621679406659"><span class="hs-identifier hs-var">websites</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [ConnectedWebsite] -&gt; Parser (Maybe [ConnectedWebsite])
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser [ConnectedWebsite] -&gt; Parser (Maybe [ConnectedWebsite]))
--&gt; Parser [ConnectedWebsite] -&gt; Parser (Maybe [ConnectedWebsite])
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679406660"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [ConnectedWebsite]
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;websites&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">ConnectedWebsites -&gt; Parser ConnectedWebsites
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679410990"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679410990"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679410989"><span class="annot"><span class="annottext">Maybe [ConnectedWebsite]
+</span><a href="#local-6989586621679410989"><span class="hs-identifier hs-var">websites</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679410990"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [ConnectedWebsite])
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;websites&quot;</span></span><span>
+</span><span id="line-28"></span><span>    </span><span class="annot"><span class="annottext">ConnectedWebsites -&gt; Parser ConnectedWebsites
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ConnectedWebsites -&gt; Parser ConnectedWebsites)
 -&gt; ConnectedWebsites -&gt; Parser ConnectedWebsites
@@ -101,4 +97,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ConnectedWebsites :: Maybe [ConnectedWebsite] -&gt; ConnectedWebsites
 </span><a href="API.ConnectedWebsites.html#ConnectedWebsites"><span class="hs-identifier hs-type hs-type">ConnectedWebsites</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">websites :: Maybe [ConnectedWebsite]
 </span><a href="API.ConnectedWebsites.html#websites"><span class="hs-identifier hs-var">websites</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [ConnectedWebsite]
-</span><a href="#local-6989586621679406659"><span class="hs-identifier hs-var">websites</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679410989"><span class="hs-identifier hs-var">websites</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Sessions where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Session as Session
@@ -23,5 +24,5 @@ instance T.FromJSON Sessions where
   where
    parseSessions :: A.Value -> T.Parser Sessions
    parseSessions = A.withObject "Sessions" $ \o -> do
-    sessions <- optional $ o A..: "sessions"
+    sessions <- o A..:? "sessions"
     return $ Sessions { sessions = sessions }

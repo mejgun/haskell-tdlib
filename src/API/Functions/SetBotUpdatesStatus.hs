@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetBotUpdatesStatus where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON SetBotUpdatesStatus where
   where
    parseSetBotUpdatesStatus :: A.Value -> T.Parser SetBotUpdatesStatus
    parseSetBotUpdatesStatus = A.withObject "SetBotUpdatesStatus" $ \o -> do
-    error_message <- optional $ o A..: "error_message"
-    pending_update_count <- optional $ o A..: "pending_update_count"
+    error_message <- o A..:? "error_message"
+    pending_update_count <- mconcat [ o A..:? "pending_update_count", readMaybe <$> (o A..: "pending_update_count" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SetBotUpdatesStatus { error_message = error_message, pending_update_count = pending_update_count }

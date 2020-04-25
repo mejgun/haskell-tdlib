@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PaymentReceipt where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ShippingOption as ShippingOption
@@ -25,10 +26,10 @@ instance T.FromJSON PaymentReceipt where
   where
    parsePaymentReceipt :: A.Value -> T.Parser PaymentReceipt
    parsePaymentReceipt = A.withObject "PaymentReceipt" $ \o -> do
-    credentials_title <- optional $ o A..: "credentials_title"
-    shipping_option <- optional $ o A..: "shipping_option"
-    order_info <- optional $ o A..: "order_info"
-    invoice <- optional $ o A..: "invoice"
-    payments_provider_user_id <- optional $ o A..: "payments_provider_user_id"
-    date <- optional $ o A..: "date"
+    credentials_title <- o A..:? "credentials_title"
+    shipping_option <- o A..:? "shipping_option"
+    order_info <- o A..:? "order_info"
+    invoice <- o A..:? "invoice"
+    payments_provider_user_id <- mconcat [ o A..:? "payments_provider_user_id", readMaybe <$> (o A..: "payments_provider_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    date <- mconcat [ o A..:? "date", readMaybe <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ PaymentReceipt { credentials_title = credentials_title, shipping_option = shipping_option, order_info = order_info, invoice = invoice, payments_provider_user_id = payments_provider_user_id, date = date }

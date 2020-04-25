@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.GameHighScores where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.GameHighScore as GameHighScore
@@ -23,5 +24,5 @@ instance T.FromJSON GameHighScores where
   where
    parseGameHighScores :: A.Value -> T.Parser GameHighScores
    parseGameHighScores = A.withObject "GameHighScores" $ \o -> do
-    scores <- optional $ o A..: "scores"
+    scores <- o A..:? "scores"
     return $ GameHighScores { scores = scores }

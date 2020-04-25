@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PaymentForm where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.SavedCredentials as SavedCredentials
@@ -26,11 +27,11 @@ instance T.FromJSON PaymentForm where
   where
    parsePaymentForm :: A.Value -> T.Parser PaymentForm
    parsePaymentForm = A.withObject "PaymentForm" $ \o -> do
-    need_password <- optional $ o A..: "need_password"
-    can_save_credentials <- optional $ o A..: "can_save_credentials"
-    saved_credentials <- optional $ o A..: "saved_credentials"
-    saved_order_info <- optional $ o A..: "saved_order_info"
-    payments_provider <- optional $ o A..: "payments_provider"
-    url <- optional $ o A..: "url"
-    invoice <- optional $ o A..: "invoice"
+    need_password <- o A..:? "need_password"
+    can_save_credentials <- o A..:? "can_save_credentials"
+    saved_credentials <- o A..:? "saved_credentials"
+    saved_order_info <- o A..:? "saved_order_info"
+    payments_provider <- o A..:? "payments_provider"
+    url <- o A..:? "url"
+    invoice <- o A..:? "invoice"
     return $ PaymentForm { need_password = need_password, can_save_credentials = can_save_credentials, saved_credentials = saved_credentials, saved_order_info = saved_order_info, payments_provider = payments_provider, url = url, invoice = invoice }

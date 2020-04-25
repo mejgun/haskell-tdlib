@@ -2,12 +2,13 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Functions.ResendChangePhoneNumberCode</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-8"></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="ResendChangePhoneNumberCode"><span class="annot"><a href="API.Functions.ResendChangePhoneNumberCode.html#ResendChangePhoneNumberCode"><span class="hs-identifier hs-var">ResendChangePhoneNumberCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-10"></span><span> </span><span id="ResendChangePhoneNumberCode"><span class="annot"><a href="API.Functions.ResendChangePhoneNumberCode.html#ResendChangePhoneNumberCode"><span class="hs-identifier hs-var">ResendChangePhoneNumberCode</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679423521"><span id="local-6989586621679423523"><span id="local-6989586621679423525"><span class="annot"><span class="annottext">Int -&gt; ResendChangePhoneNumberCode -&gt; ShowS
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="ResendChangePhoneNumberCode"><span class="annot"><a href="API.Functions.ResendChangePhoneNumberCode.html#ResendChangePhoneNumberCode"><span class="hs-identifier hs-var">ResendChangePhoneNumberCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-11"></span><span> </span><span id="ResendChangePhoneNumberCode"><span class="annot"><a href="API.Functions.ResendChangePhoneNumberCode.html#ResendChangePhoneNumberCode"><span class="hs-identifier hs-var">ResendChangePhoneNumberCode</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679428202"><span id="local-6989586621679428204"><span id="local-6989586621679428206"><span class="annot"><span class="annottext">Int -&gt; ResendChangePhoneNumberCode -&gt; ShowS
 [ResendChangePhoneNumberCode] -&gt; ShowS
 ResendChangePhoneNumberCode -&gt; String
 (Int -&gt; ResendChangePhoneNumberCode -&gt; ShowS)
@@ -22,7 +23,7 @@ show :: ResendChangePhoneNumberCode -&gt; String
 $cshow :: ResendChangePhoneNumberCode -&gt; String
 showsPrec :: Int -&gt; ResendChangePhoneNumberCode -&gt; ShowS
 $cshowsPrec :: Int -&gt; ResendChangePhoneNumberCode -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679423516"><span id="local-6989586621679423518"><span class="annot"><span class="annottext">ResendChangePhoneNumberCode -&gt; ResendChangePhoneNumberCode -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679428197"><span id="local-6989586621679428199"><span class="annot"><span class="annottext">ResendChangePhoneNumberCode -&gt; ResendChangePhoneNumberCode -&gt; Bool
 (ResendChangePhoneNumberCode
  -&gt; ResendChangePhoneNumberCode -&gt; Bool)
 -&gt; (ResendChangePhoneNumberCode
@@ -34,38 +35,38 @@ $c/= :: ResendChangePhoneNumberCode -&gt; ResendChangePhoneNumberCode -&gt; Bool
 == :: ResendChangePhoneNumberCode -&gt; ResendChangePhoneNumberCode -&gt; Bool
 $c== :: ResendChangePhoneNumberCode -&gt; ResendChangePhoneNumberCode -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679423508"><span id="local-6989586621679423510"><span id="local-6989586621679423512"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ResendChangePhoneNumberCode.html#ResendChangePhoneNumberCode"><span class="hs-identifier hs-type">ResendChangePhoneNumberCode</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679423506"><span class="annot"><span class="annottext">toJSON :: ResendChangePhoneNumberCode -&gt; Value
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428189"><span id="local-6989586621679428191"><span id="local-6989586621679428193"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ResendChangePhoneNumberCode.html#ResendChangePhoneNumberCode"><span class="hs-identifier hs-type">ResendChangePhoneNumberCode</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679428187"><span class="annot"><span class="annottext">toJSON :: ResendChangePhoneNumberCode -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.ResendChangePhoneNumberCode.html#ResendChangePhoneNumberCode"><span class="hs-identifier hs-type">ResendChangePhoneNumberCode</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;resendChangePhoneNumberCode&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679423499"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ResendChangePhoneNumberCode.html#ResendChangePhoneNumberCode"><span class="hs-identifier hs-type">ResendChangePhoneNumberCode</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679423497"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ResendChangePhoneNumberCode
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679423495"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679423495"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679423493"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679423493"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679423492"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679423492"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679423493"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-16"></span><span>
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428180"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ResendChangePhoneNumberCode.html#ResendChangePhoneNumberCode"><span class="hs-identifier hs-type">ResendChangePhoneNumberCode</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679428178"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ResendChangePhoneNumberCode
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679428176"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679428176"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679428174"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679428174"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679428173"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679428173"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679428174"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679423492"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;resendChangePhoneNumberCode&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ResendChangePhoneNumberCode
-</span><a href="#local-6989586621679423490"><span class="hs-identifier hs-var">parseResendChangePhoneNumberCode</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679423495"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ResendChangePhoneNumberCode
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679428173"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;resendChangePhoneNumberCode&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ResendChangePhoneNumberCode
+</span><a href="#local-6989586621679428171"><span class="hs-identifier hs-var">parseResendChangePhoneNumberCode</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679428176"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ResendChangePhoneNumberCode
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679423490"><span class="hs-identifier hs-type">parseResendChangePhoneNumberCode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ResendChangePhoneNumberCode.html#ResendChangePhoneNumberCode"><span class="hs-identifier hs-type">ResendChangePhoneNumberCode</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679423490"><span class="annot"><span class="annottext">parseResendChangePhoneNumberCode :: Value -&gt; Parser ResendChangePhoneNumberCode
-</span><a href="#local-6989586621679423490"><span class="hs-identifier hs-var hs-var">parseResendChangePhoneNumberCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679428171"><span class="hs-identifier hs-type">parseResendChangePhoneNumberCode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ResendChangePhoneNumberCode.html#ResendChangePhoneNumberCode"><span class="hs-identifier hs-type">ResendChangePhoneNumberCode</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679428171"><span class="annot"><span class="annottext">parseResendChangePhoneNumberCode :: Value -&gt; Parser ResendChangePhoneNumberCode
+</span><a href="#local-6989586621679428171"><span class="hs-identifier hs-var hs-var">parseResendChangePhoneNumberCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ResendChangePhoneNumberCode)
 -&gt; Value
 -&gt; Parser ResendChangePhoneNumberCode
@@ -76,9 +77,9 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ResendChangePhoneNumberCode
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679423488"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679423488"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span class="annot"><span class="annottext">ResendChangePhoneNumberCode -&gt; Parser ResendChangePhoneNumberCode
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679428169"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679428169"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span class="annot"><span class="annottext">ResendChangePhoneNumberCode -&gt; Parser ResendChangePhoneNumberCode
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ResendChangePhoneNumberCode -&gt; Parser ResendChangePhoneNumberCode)
 -&gt; ResendChangePhoneNumberCode

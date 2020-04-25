@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ViewTrendingStickerSets where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON ViewTrendingStickerSets where
   where
    parseViewTrendingStickerSets :: A.Value -> T.Parser ViewTrendingStickerSets
    parseViewTrendingStickerSets = A.withObject "ViewTrendingStickerSets" $ \o -> do
-    sticker_set_ids <- optional $ o A..: "sticker_set_ids"
+    sticker_set_ids <- o A..:? "sticker_set_ids"
     return $ ViewTrendingStickerSets { sticker_set_ids = sticker_set_ids }

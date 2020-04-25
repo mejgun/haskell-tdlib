@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.UserPrivacySettingRule where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -65,12 +66,12 @@ instance T.FromJSON UserPrivacySettingRule where
 
    parseUserPrivacySettingRuleAllowUsers :: A.Value -> T.Parser UserPrivacySettingRule
    parseUserPrivacySettingRuleAllowUsers = A.withObject "UserPrivacySettingRuleAllowUsers" $ \o -> do
-    user_ids <- optional $ o A..: "user_ids"
+    user_ids <- o A..:? "user_ids"
     return $ UserPrivacySettingRuleAllowUsers { user_ids = user_ids }
 
    parseUserPrivacySettingRuleAllowChatMembers :: A.Value -> T.Parser UserPrivacySettingRule
    parseUserPrivacySettingRuleAllowChatMembers = A.withObject "UserPrivacySettingRuleAllowChatMembers" $ \o -> do
-    chat_ids <- optional $ o A..: "chat_ids"
+    chat_ids <- o A..:? "chat_ids"
     return $ UserPrivacySettingRuleAllowChatMembers { chat_ids = chat_ids }
 
    parseUserPrivacySettingRuleRestrictAll :: A.Value -> T.Parser UserPrivacySettingRule
@@ -83,10 +84,10 @@ instance T.FromJSON UserPrivacySettingRule where
 
    parseUserPrivacySettingRuleRestrictUsers :: A.Value -> T.Parser UserPrivacySettingRule
    parseUserPrivacySettingRuleRestrictUsers = A.withObject "UserPrivacySettingRuleRestrictUsers" $ \o -> do
-    user_ids <- optional $ o A..: "user_ids"
+    user_ids <- o A..:? "user_ids"
     return $ UserPrivacySettingRuleRestrictUsers { user_ids = user_ids }
 
    parseUserPrivacySettingRuleRestrictChatMembers :: A.Value -> T.Parser UserPrivacySettingRule
    parseUserPrivacySettingRuleRestrictChatMembers = A.withObject "UserPrivacySettingRuleRestrictChatMembers" $ \o -> do
-    chat_ids <- optional $ o A..: "chat_ids"
+    chat_ids <- o A..:? "chat_ids"
     return $ UserPrivacySettingRuleRestrictChatMembers { chat_ids = chat_ids }

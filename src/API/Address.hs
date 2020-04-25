@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Address where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,10 +23,10 @@ instance T.FromJSON Address where
   where
    parseAddress :: A.Value -> T.Parser Address
    parseAddress = A.withObject "Address" $ \o -> do
-    postal_code <- optional $ o A..: "postal_code"
-    street_line2 <- optional $ o A..: "street_line2"
-    street_line1 <- optional $ o A..: "street_line1"
-    city <- optional $ o A..: "city"
-    state <- optional $ o A..: "state"
-    country_code <- optional $ o A..: "country_code"
+    postal_code <- o A..:? "postal_code"
+    street_line2 <- o A..:? "street_line2"
+    street_line1 <- o A..:? "street_line1"
+    city <- o A..:? "city"
+    state <- o A..:? "state"
+    country_code <- o A..:? "country_code"
     return $ Address { postal_code = postal_code, street_line2 = street_line2, street_line1 = street_line1, city = city, state = state, country_code = country_code }

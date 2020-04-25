@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ClearAllDraftMessages where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON ClearAllDraftMessages where
   where
    parseClearAllDraftMessages :: A.Value -> T.Parser ClearAllDraftMessages
    parseClearAllDraftMessages = A.withObject "ClearAllDraftMessages" $ \o -> do
-    exclude_secret_chats <- optional $ o A..: "exclude_secret_chats"
+    exclude_secret_chats <- o A..:? "exclude_secret_chats"
     return $ ClearAllDraftMessages { exclude_secret_chats = exclude_secret_chats }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.EncryptedCredentials where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,7 +23,7 @@ instance T.FromJSON EncryptedCredentials where
   where
    parseEncryptedCredentials :: A.Value -> T.Parser EncryptedCredentials
    parseEncryptedCredentials = A.withObject "EncryptedCredentials" $ \o -> do
-    secret <- optional $ o A..: "secret"
-    hash <- optional $ o A..: "hash"
-    _data <- optional $ o A..: "data"
+    secret <- o A..:? "secret"
+    hash <- o A..:? "hash"
+    _data <- o A..:? "data"
     return $ EncryptedCredentials { secret = secret, hash = hash, _data = _data }

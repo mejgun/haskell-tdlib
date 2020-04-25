@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.AddCustomServerLanguagePack where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON AddCustomServerLanguagePack where
   where
    parseAddCustomServerLanguagePack :: A.Value -> T.Parser AddCustomServerLanguagePack
    parseAddCustomServerLanguagePack = A.withObject "AddCustomServerLanguagePack" $ \o -> do
-    language_pack_id <- optional $ o A..: "language_pack_id"
+    language_pack_id <- o A..:? "language_pack_id"
     return $ AddCustomServerLanguagePack { language_pack_id = language_pack_id }

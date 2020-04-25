@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.AddChatMember where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,7 +23,7 @@ instance T.FromJSON AddChatMember where
   where
    parseAddChatMember :: A.Value -> T.Parser AddChatMember
    parseAddChatMember = A.withObject "AddChatMember" $ \o -> do
-    forward_limit <- optional $ o A..: "forward_limit"
-    user_id <- optional $ o A..: "user_id"
-    chat_id <- optional $ o A..: "chat_id"
+    forward_limit <- mconcat [ o A..:? "forward_limit", readMaybe <$> (o A..: "forward_limit" :: T.Parser String)] :: T.Parser (Maybe Int)
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ AddChatMember { forward_limit = forward_limit, user_id = user_id, chat_id = chat_id }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.TextEntity where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TextEntityType as TextEntityType
@@ -23,7 +24,7 @@ instance T.FromJSON TextEntity where
   where
    parseTextEntity :: A.Value -> T.Parser TextEntity
    parseTextEntity = A.withObject "TextEntity" $ \o -> do
-    _type <- optional $ o A..: "type"
-    _length <- optional $ o A..: "length"
-    offset <- optional $ o A..: "offset"
+    _type <- o A..:? "type"
+    _length <- mconcat [ o A..:? "_length", readMaybe <$> (o A..: "_length" :: T.Parser String)] :: T.Parser (Maybe Int)
+    offset <- mconcat [ o A..:? "offset", readMaybe <$> (o A..: "offset" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ TextEntity { _type = _type, _length = _length, offset = offset }

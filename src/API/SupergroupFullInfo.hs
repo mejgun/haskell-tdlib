@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.SupergroupFullInfo where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatLocation as ChatLocation
@@ -23,23 +24,23 @@ instance T.FromJSON SupergroupFullInfo where
   where
    parseSupergroupFullInfo :: A.Value -> T.Parser SupergroupFullInfo
    parseSupergroupFullInfo = A.withObject "SupergroupFullInfo" $ \o -> do
-    upgraded_from_max_message_id <- optional $ o A..: "upgraded_from_max_message_id"
-    upgraded_from_basic_group_id <- optional $ o A..: "upgraded_from_basic_group_id"
-    invite_link <- optional $ o A..: "invite_link"
-    location <- optional $ o A..: "location"
-    sticker_set_id <- optional $ o A..: "sticker_set_id"
-    is_all_history_available <- optional $ o A..: "is_all_history_available"
-    can_view_statistics <- optional $ o A..: "can_view_statistics"
-    can_set_location <- optional $ o A..: "can_set_location"
-    can_set_sticker_set <- optional $ o A..: "can_set_sticker_set"
-    can_set_username <- optional $ o A..: "can_set_username"
-    can_get_members <- optional $ o A..: "can_get_members"
-    slow_mode_delay_expires_in <- optional $ o A..: "slow_mode_delay_expires_in"
-    slow_mode_delay <- optional $ o A..: "slow_mode_delay"
-    linked_chat_id <- optional $ o A..: "linked_chat_id"
-    banned_count <- optional $ o A..: "banned_count"
-    restricted_count <- optional $ o A..: "restricted_count"
-    administrator_count <- optional $ o A..: "administrator_count"
-    member_count <- optional $ o A..: "member_count"
-    description <- optional $ o A..: "description"
+    upgraded_from_max_message_id <- mconcat [ o A..:? "upgraded_from_max_message_id", readMaybe <$> (o A..: "upgraded_from_max_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    upgraded_from_basic_group_id <- mconcat [ o A..:? "upgraded_from_basic_group_id", readMaybe <$> (o A..: "upgraded_from_basic_group_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    invite_link <- o A..:? "invite_link"
+    location <- o A..:? "location"
+    sticker_set_id <- mconcat [ o A..:? "sticker_set_id", readMaybe <$> (o A..: "sticker_set_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    is_all_history_available <- o A..:? "is_all_history_available"
+    can_view_statistics <- o A..:? "can_view_statistics"
+    can_set_location <- o A..:? "can_set_location"
+    can_set_sticker_set <- o A..:? "can_set_sticker_set"
+    can_set_username <- o A..:? "can_set_username"
+    can_get_members <- o A..:? "can_get_members"
+    slow_mode_delay_expires_in <- o A..:? "slow_mode_delay_expires_in"
+    slow_mode_delay <- mconcat [ o A..:? "slow_mode_delay", readMaybe <$> (o A..: "slow_mode_delay" :: T.Parser String)] :: T.Parser (Maybe Int)
+    linked_chat_id <- mconcat [ o A..:? "linked_chat_id", readMaybe <$> (o A..: "linked_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    banned_count <- mconcat [ o A..:? "banned_count", readMaybe <$> (o A..: "banned_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    restricted_count <- mconcat [ o A..:? "restricted_count", readMaybe <$> (o A..: "restricted_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    administrator_count <- mconcat [ o A..:? "administrator_count", readMaybe <$> (o A..: "administrator_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    member_count <- mconcat [ o A..:? "member_count", readMaybe <$> (o A..: "member_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    description <- o A..:? "description"
     return $ SupergroupFullInfo { upgraded_from_max_message_id = upgraded_from_max_message_id, upgraded_from_basic_group_id = upgraded_from_basic_group_id, invite_link = invite_link, location = location, sticker_set_id = sticker_set_id, is_all_history_available = is_all_history_available, can_view_statistics = can_view_statistics, can_set_location = can_set_location, can_set_sticker_set = can_set_sticker_set, can_set_username = can_set_username, can_get_members = can_get_members, slow_mode_delay_expires_in = slow_mode_delay_expires_in, slow_mode_delay = slow_mode_delay, linked_chat_id = linked_chat_id, banned_count = banned_count, restricted_count = restricted_count, administrator_count = administrator_count, member_count = member_count, description = description }

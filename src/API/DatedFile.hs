@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.DatedFile where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
@@ -23,6 +24,6 @@ instance T.FromJSON DatedFile where
   where
    parseDatedFile :: A.Value -> T.Parser DatedFile
    parseDatedFile = A.withObject "DatedFile" $ \o -> do
-    date <- optional $ o A..: "date"
-    file <- optional $ o A..: "file"
+    date <- mconcat [ o A..:? "date", readMaybe <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    file <- o A..:? "file"
     return $ DatedFile { date = date, file = file }

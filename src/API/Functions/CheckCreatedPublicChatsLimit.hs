@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.CheckCreatedPublicChatsLimit where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PublicChatType as PublicChatType
@@ -23,5 +24,5 @@ instance T.FromJSON CheckCreatedPublicChatsLimit where
   where
    parseCheckCreatedPublicChatsLimit :: A.Value -> T.Parser CheckCreatedPublicChatsLimit
    parseCheckCreatedPublicChatsLimit = A.withObject "CheckCreatedPublicChatsLimit" $ \o -> do
-    _type <- optional $ o A..: "type"
+    _type <- o A..:? "type"
     return $ CheckCreatedPublicChatsLimit { _type = _type }

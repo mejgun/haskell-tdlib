@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.BankCardActionOpenUrl where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON BankCardActionOpenUrl where
   where
    parseBankCardActionOpenUrl :: A.Value -> T.Parser BankCardActionOpenUrl
    parseBankCardActionOpenUrl = A.withObject "BankCardActionOpenUrl" $ \o -> do
-    url <- optional $ o A..: "url"
-    text <- optional $ o A..: "text"
+    url <- o A..:? "url"
+    text <- o A..:? "text"
     return $ BankCardActionOpenUrl { url = url, text = text }

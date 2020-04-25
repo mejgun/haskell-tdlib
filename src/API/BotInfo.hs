@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.BotInfo where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BotCommand as BotCommand
@@ -23,6 +24,6 @@ instance T.FromJSON BotInfo where
   where
    parseBotInfo :: A.Value -> T.Parser BotInfo
    parseBotInfo = A.withObject "BotInfo" $ \o -> do
-    commands <- optional $ o A..: "commands"
-    description <- optional $ o A..: "description"
+    commands <- o A..:? "commands"
+    description <- o A..:? "description"
     return $ BotInfo { commands = commands, description = description }

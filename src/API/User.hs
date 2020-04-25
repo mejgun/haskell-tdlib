@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.User where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.UserType as UserType
@@ -25,20 +26,20 @@ instance T.FromJSON User where
   where
    parseUser :: A.Value -> T.Parser User
    parseUser = A.withObject "User" $ \o -> do
-    language_code <- optional $ o A..: "language_code"
-    _type <- optional $ o A..: "type"
-    have_access <- optional $ o A..: "have_access"
-    is_scam <- optional $ o A..: "is_scam"
-    restriction_reason <- optional $ o A..: "restriction_reason"
-    is_support <- optional $ o A..: "is_support"
-    is_verified <- optional $ o A..: "is_verified"
-    is_mutual_contact <- optional $ o A..: "is_mutual_contact"
-    is_contact <- optional $ o A..: "is_contact"
-    profile_photo <- optional $ o A..: "profile_photo"
-    status <- optional $ o A..: "status"
-    phone_number <- optional $ o A..: "phone_number"
-    username <- optional $ o A..: "username"
-    last_name <- optional $ o A..: "last_name"
-    first_name <- optional $ o A..: "first_name"
-    _id <- optional $ o A..: "id"
+    language_code <- o A..:? "language_code"
+    _type <- o A..:? "type"
+    have_access <- o A..:? "have_access"
+    is_scam <- o A..:? "is_scam"
+    restriction_reason <- o A..:? "restriction_reason"
+    is_support <- o A..:? "is_support"
+    is_verified <- o A..:? "is_verified"
+    is_mutual_contact <- o A..:? "is_mutual_contact"
+    is_contact <- o A..:? "is_contact"
+    profile_photo <- o A..:? "profile_photo"
+    status <- o A..:? "status"
+    phone_number <- o A..:? "phone_number"
+    username <- o A..:? "username"
+    last_name <- o A..:? "last_name"
+    first_name <- o A..:? "first_name"
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ User { language_code = language_code, _type = _type, have_access = have_access, is_scam = is_scam, restriction_reason = restriction_reason, is_support = is_support, is_verified = is_verified, is_mutual_contact = is_mutual_contact, is_contact = is_contact, profile_photo = profile_photo, status = status, phone_number = phone_number, username = username, last_name = last_name, first_name = first_name, _id = _id }

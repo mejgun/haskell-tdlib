@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.WebPageInstantView where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PageBlock as PageBlock
@@ -23,9 +24,9 @@ instance T.FromJSON WebPageInstantView where
   where
    parseWebPageInstantView :: A.Value -> T.Parser WebPageInstantView
    parseWebPageInstantView = A.withObject "WebPageInstantView" $ \o -> do
-    is_full <- optional $ o A..: "is_full"
-    is_rtl <- optional $ o A..: "is_rtl"
-    version <- optional $ o A..: "version"
-    view_count <- optional $ o A..: "view_count"
-    page_blocks <- optional $ o A..: "page_blocks"
+    is_full <- o A..:? "is_full"
+    is_rtl <- o A..:? "is_rtl"
+    version <- mconcat [ o A..:? "version", readMaybe <$> (o A..: "version" :: T.Parser String)] :: T.Parser (Maybe Int)
+    view_count <- mconcat [ o A..:? "view_count", readMaybe <$> (o A..: "view_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    page_blocks <- o A..:? "page_blocks"
     return $ WebPageInstantView { is_full = is_full, is_rtl = is_rtl, version = version, view_count = view_count, page_blocks = page_blocks }

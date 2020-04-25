@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.MessageLinkInfo where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Message as Message
@@ -23,8 +24,8 @@ instance T.FromJSON MessageLinkInfo where
   where
    parseMessageLinkInfo :: A.Value -> T.Parser MessageLinkInfo
    parseMessageLinkInfo = A.withObject "MessageLinkInfo" $ \o -> do
-    for_album <- optional $ o A..: "for_album"
-    message <- optional $ o A..: "message"
-    chat_id <- optional $ o A..: "chat_id"
-    is_public <- optional $ o A..: "is_public"
+    for_album <- o A..:? "for_album"
+    message <- o A..:? "message"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    is_public <- o A..:? "is_public"
     return $ MessageLinkInfo { for_album = for_album, message = message, chat_id = chat_id, is_public = is_public }

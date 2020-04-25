@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.InputBackground where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
@@ -28,10 +29,10 @@ instance T.FromJSON InputBackground where
   where
    parseInputBackgroundLocal :: A.Value -> T.Parser InputBackground
    parseInputBackgroundLocal = A.withObject "InputBackgroundLocal" $ \o -> do
-    background <- optional $ o A..: "background"
+    background <- o A..:? "background"
     return $ InputBackgroundLocal { background = background }
 
    parseInputBackgroundRemote :: A.Value -> T.Parser InputBackground
    parseInputBackgroundRemote = A.withObject "InputBackgroundRemote" $ \o -> do
-    background_id <- optional $ o A..: "background_id"
+    background_id <- mconcat [ o A..:? "background_id", readMaybe <$> (o A..: "background_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ InputBackgroundRemote { background_id = background_id }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetUserPrivacySettingRules where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.UserPrivacySettingRules as UserPrivacySettingRules
@@ -24,6 +25,6 @@ instance T.FromJSON SetUserPrivacySettingRules where
   where
    parseSetUserPrivacySettingRules :: A.Value -> T.Parser SetUserPrivacySettingRules
    parseSetUserPrivacySettingRules = A.withObject "SetUserPrivacySettingRules" $ \o -> do
-    rules <- optional $ o A..: "rules"
-    setting <- optional $ o A..: "setting"
+    rules <- o A..:? "rules"
+    setting <- o A..:? "setting"
     return $ SetUserPrivacySettingRules { rules = rules, setting = setting }

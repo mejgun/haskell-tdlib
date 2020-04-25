@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.FoundMessages where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Message as Message
@@ -23,6 +24,6 @@ instance T.FromJSON FoundMessages where
   where
    parseFoundMessages :: A.Value -> T.Parser FoundMessages
    parseFoundMessages = A.withObject "FoundMessages" $ \o -> do
-    next_from_search_id <- optional $ o A..: "next_from_search_id"
-    messages <- optional $ o A..: "messages"
+    next_from_search_id <- mconcat [ o A..:? "next_from_search_id", readMaybe <$> (o A..: "next_from_search_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    messages <- o A..:? "messages"
     return $ FoundMessages { next_from_search_id = next_from_search_id, messages = messages }

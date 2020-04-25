@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ReportSupergroupSpam where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,7 +23,7 @@ instance T.FromJSON ReportSupergroupSpam where
   where
    parseReportSupergroupSpam :: A.Value -> T.Parser ReportSupergroupSpam
    parseReportSupergroupSpam = A.withObject "ReportSupergroupSpam" $ \o -> do
-    message_ids <- optional $ o A..: "message_ids"
-    user_id <- optional $ o A..: "user_id"
-    supergroup_id <- optional $ o A..: "supergroup_id"
+    message_ids <- o A..:? "message_ids"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    supergroup_id <- mconcat [ o A..:? "supergroup_id", readMaybe <$> (o A..: "supergroup_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ReportSupergroupSpam { message_ids = message_ids, user_id = user_id, supergroup_id = supergroup_id }

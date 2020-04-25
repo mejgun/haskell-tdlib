@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Messages where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Message as Message
@@ -23,6 +24,6 @@ instance T.FromJSON Messages where
   where
    parseMessages :: A.Value -> T.Parser Messages
    parseMessages = A.withObject "Messages" $ \o -> do
-    messages <- optional $ o A..: "messages"
-    total_count <- optional $ o A..: "total_count"
+    messages <- o A..:? "messages"
+    total_count <- mconcat [ o A..:? "total_count", readMaybe <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Messages { messages = messages, total_count = total_count }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatNearby where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON ChatNearby where
   where
    parseChatNearby :: A.Value -> T.Parser ChatNearby
    parseChatNearby = A.withObject "ChatNearby" $ \o -> do
-    distance <- optional $ o A..: "distance"
-    chat_id <- optional $ o A..: "chat_id"
+    distance <- mconcat [ o A..:? "distance", readMaybe <$> (o A..: "distance" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatNearby { distance = distance, chat_id = chat_id }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.EncryptedPassportElement where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.DatedFile as DatedFile
@@ -24,13 +25,13 @@ instance T.FromJSON EncryptedPassportElement where
   where
    parseEncryptedPassportElement :: A.Value -> T.Parser EncryptedPassportElement
    parseEncryptedPassportElement = A.withObject "EncryptedPassportElement" $ \o -> do
-    hash <- optional $ o A..: "hash"
-    value <- optional $ o A..: "value"
-    files <- optional $ o A..: "files"
-    translation <- optional $ o A..: "translation"
-    selfie <- optional $ o A..: "selfie"
-    reverse_side <- optional $ o A..: "reverse_side"
-    front_side <- optional $ o A..: "front_side"
-    _data <- optional $ o A..: "data"
-    _type <- optional $ o A..: "type"
+    hash <- o A..:? "hash"
+    value <- o A..:? "value"
+    files <- o A..:? "files"
+    translation <- o A..:? "translation"
+    selfie <- o A..:? "selfie"
+    reverse_side <- o A..:? "reverse_side"
+    front_side <- o A..:? "front_side"
+    _data <- o A..:? "data"
+    _type <- o A..:? "type"
     return $ EncryptedPassportElement { hash = hash, value = value, files = files, translation = translation, selfie = selfie, reverse_side = reverse_side, front_side = front_side, _data = _data, _type = _type }

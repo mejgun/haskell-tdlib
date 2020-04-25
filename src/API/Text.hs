@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Text where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON Text where
   where
    parseText :: A.Value -> T.Parser Text
    parseText = A.withObject "Text" $ \o -> do
-    text <- optional $ o A..: "text"
+    text <- o A..:? "text"
     return $ Text { text = text }

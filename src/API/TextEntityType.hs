@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.TextEntityType where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -158,15 +159,15 @@ instance T.FromJSON TextEntityType where
 
    parseTextEntityTypePreCode :: A.Value -> T.Parser TextEntityType
    parseTextEntityTypePreCode = A.withObject "TextEntityTypePreCode" $ \o -> do
-    language <- optional $ o A..: "language"
+    language <- o A..:? "language"
     return $ TextEntityTypePreCode { language = language }
 
    parseTextEntityTypeTextUrl :: A.Value -> T.Parser TextEntityType
    parseTextEntityTypeTextUrl = A.withObject "TextEntityTypeTextUrl" $ \o -> do
-    url <- optional $ o A..: "url"
+    url <- o A..:? "url"
     return $ TextEntityTypeTextUrl { url = url }
 
    parseTextEntityTypeMentionName :: A.Value -> T.Parser TextEntityType
    parseTextEntityTypeMentionName = A.withObject "TextEntityTypeMentionName" $ \o -> do
-    user_id <- optional $ o A..: "user_id"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ TextEntityTypeMentionName { user_id = user_id }

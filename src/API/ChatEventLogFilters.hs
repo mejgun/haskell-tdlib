@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatEventLogFilters where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,14 +23,14 @@ instance T.FromJSON ChatEventLogFilters where
   where
    parseChatEventLogFilters :: A.Value -> T.Parser ChatEventLogFilters
    parseChatEventLogFilters = A.withObject "ChatEventLogFilters" $ \o -> do
-    setting_changes <- optional $ o A..: "setting_changes"
-    info_changes <- optional $ o A..: "info_changes"
-    member_restrictions <- optional $ o A..: "member_restrictions"
-    member_promotions <- optional $ o A..: "member_promotions"
-    member_invites <- optional $ o A..: "member_invites"
-    member_leaves <- optional $ o A..: "member_leaves"
-    member_joins <- optional $ o A..: "member_joins"
-    message_pins <- optional $ o A..: "message_pins"
-    message_deletions <- optional $ o A..: "message_deletions"
-    message_edits <- optional $ o A..: "message_edits"
+    setting_changes <- o A..:? "setting_changes"
+    info_changes <- o A..:? "info_changes"
+    member_restrictions <- o A..:? "member_restrictions"
+    member_promotions <- o A..:? "member_promotions"
+    member_invites <- o A..:? "member_invites"
+    member_leaves <- o A..:? "member_leaves"
+    member_joins <- o A..:? "member_joins"
+    message_pins <- o A..:? "message_pins"
+    message_deletions <- o A..:? "message_deletions"
+    message_edits <- o A..:? "message_edits"
     return $ ChatEventLogFilters { setting_changes = setting_changes, info_changes = info_changes, member_restrictions = member_restrictions, member_promotions = member_promotions, member_invites = member_invites, member_leaves = member_leaves, member_joins = member_joins, message_pins = message_pins, message_deletions = message_deletions, message_edits = message_edits }

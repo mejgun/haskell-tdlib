@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetMarkdownText where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
@@ -23,5 +24,5 @@ instance T.FromJSON GetMarkdownText where
   where
    parseGetMarkdownText :: A.Value -> T.Parser GetMarkdownText
    parseGetMarkdownText = A.withObject "GetMarkdownText" $ \o -> do
-    text <- optional $ o A..: "text"
+    text <- o A..:? "text"
     return $ GetMarkdownText { text = text }

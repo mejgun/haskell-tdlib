@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.SendMessageOptions where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.MessageSchedulingState as MessageSchedulingState
@@ -23,7 +24,7 @@ instance T.FromJSON SendMessageOptions where
   where
    parseSendMessageOptions :: A.Value -> T.Parser SendMessageOptions
    parseSendMessageOptions = A.withObject "SendMessageOptions" $ \o -> do
-    scheduling_state <- optional $ o A..: "scheduling_state"
-    from_background <- optional $ o A..: "from_background"
-    disable_notification <- optional $ o A..: "disable_notification"
+    scheduling_state <- o A..:? "scheduling_state"
+    from_background <- o A..:? "from_background"
+    disable_notification <- o A..:? "disable_notification"
     return $ SendMessageOptions { scheduling_state = scheduling_state, from_background = from_background, disable_notification = disable_notification }

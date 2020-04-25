@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SendMessageAlbum where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
@@ -24,8 +25,8 @@ instance T.FromJSON SendMessageAlbum where
   where
    parseSendMessageAlbum :: A.Value -> T.Parser SendMessageAlbum
    parseSendMessageAlbum = A.withObject "SendMessageAlbum" $ \o -> do
-    input_message_contents <- optional $ o A..: "input_message_contents"
-    options <- optional $ o A..: "options"
-    reply_to_message_id <- optional $ o A..: "reply_to_message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    input_message_contents <- o A..:? "input_message_contents"
+    options <- o A..:? "options"
+    reply_to_message_id <- mconcat [ o A..:? "reply_to_message_id", readMaybe <$> (o A..: "reply_to_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SendMessageAlbum { input_message_contents = input_message_contents, options = options, reply_to_message_id = reply_to_message_id, chat_id = chat_id }

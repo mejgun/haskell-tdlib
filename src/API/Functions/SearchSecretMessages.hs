@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SearchSecretMessages where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.SearchMessagesFilter as SearchMessagesFilter
@@ -23,9 +24,9 @@ instance T.FromJSON SearchSecretMessages where
   where
    parseSearchSecretMessages :: A.Value -> T.Parser SearchSecretMessages
    parseSearchSecretMessages = A.withObject "SearchSecretMessages" $ \o -> do
-    _filter <- optional $ o A..: "filter"
-    limit <- optional $ o A..: "limit"
-    from_search_id <- optional $ o A..: "from_search_id"
-    query <- optional $ o A..: "query"
-    chat_id <- optional $ o A..: "chat_id"
+    _filter <- o A..:? "filter"
+    limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
+    from_search_id <- mconcat [ o A..:? "from_search_id", readMaybe <$> (o A..: "from_search_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    query <- o A..:? "query"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SearchSecretMessages { _filter = _filter, limit = limit, from_search_id = from_search_id, query = query, chat_id = chat_id }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetTopChats where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TopChatCategory as TopChatCategory
@@ -23,6 +24,6 @@ instance T.FromJSON GetTopChats where
   where
    parseGetTopChats :: A.Value -> T.Parser GetTopChats
    parseGetTopChats = A.withObject "GetTopChats" $ \o -> do
-    limit <- optional $ o A..: "limit"
-    category <- optional $ o A..: "category"
+    limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
+    category <- o A..:? "category"
     return $ GetTopChats { limit = limit, category = category }

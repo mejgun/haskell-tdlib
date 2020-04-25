@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetChatNotificationSettingsExceptions where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.NotificationSettingsScope as NotificationSettingsScope
@@ -23,6 +24,6 @@ instance T.FromJSON GetChatNotificationSettingsExceptions where
   where
    parseGetChatNotificationSettingsExceptions :: A.Value -> T.Parser GetChatNotificationSettingsExceptions
    parseGetChatNotificationSettingsExceptions = A.withObject "GetChatNotificationSettingsExceptions" $ \o -> do
-    compare_sound <- optional $ o A..: "compare_sound"
-    scope <- optional $ o A..: "scope"
+    compare_sound <- o A..:? "compare_sound"
+    scope <- o A..:? "scope"
     return $ GetChatNotificationSettingsExceptions { compare_sound = compare_sound, scope = scope }

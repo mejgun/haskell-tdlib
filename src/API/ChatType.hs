@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatType where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -37,22 +38,22 @@ instance T.FromJSON ChatType where
   where
    parseChatTypePrivate :: A.Value -> T.Parser ChatType
    parseChatTypePrivate = A.withObject "ChatTypePrivate" $ \o -> do
-    user_id <- optional $ o A..: "user_id"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatTypePrivate { user_id = user_id }
 
    parseChatTypeBasicGroup :: A.Value -> T.Parser ChatType
    parseChatTypeBasicGroup = A.withObject "ChatTypeBasicGroup" $ \o -> do
-    basic_group_id <- optional $ o A..: "basic_group_id"
+    basic_group_id <- mconcat [ o A..:? "basic_group_id", readMaybe <$> (o A..: "basic_group_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatTypeBasicGroup { basic_group_id = basic_group_id }
 
    parseChatTypeSupergroup :: A.Value -> T.Parser ChatType
    parseChatTypeSupergroup = A.withObject "ChatTypeSupergroup" $ \o -> do
-    is_channel <- optional $ o A..: "is_channel"
-    supergroup_id <- optional $ o A..: "supergroup_id"
+    is_channel <- o A..:? "is_channel"
+    supergroup_id <- mconcat [ o A..:? "supergroup_id", readMaybe <$> (o A..: "supergroup_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatTypeSupergroup { is_channel = is_channel, supergroup_id = supergroup_id }
 
    parseChatTypeSecret :: A.Value -> T.Parser ChatType
    parseChatTypeSecret = A.withObject "ChatTypeSecret" $ \o -> do
-    user_id <- optional $ o A..: "user_id"
-    secret_chat_id <- optional $ o A..: "secret_chat_id"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    secret_chat_id <- mconcat [ o A..:? "secret_chat_id", readMaybe <$> (o A..: "secret_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatTypeSecret { user_id = user_id, secret_chat_id = secret_chat_id }

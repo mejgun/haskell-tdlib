@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetPollVoters where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,9 +23,9 @@ instance T.FromJSON GetPollVoters where
   where
    parseGetPollVoters :: A.Value -> T.Parser GetPollVoters
    parseGetPollVoters = A.withObject "GetPollVoters" $ \o -> do
-    limit <- optional $ o A..: "limit"
-    offset <- optional $ o A..: "offset"
-    option_id <- optional $ o A..: "option_id"
-    message_id <- optional $ o A..: "message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
+    offset <- mconcat [ o A..:? "offset", readMaybe <$> (o A..: "offset" :: T.Parser String)] :: T.Parser (Maybe Int)
+    option_id <- mconcat [ o A..:? "option_id", readMaybe <$> (o A..: "option_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetPollVoters { limit = limit, offset = offset, option_id = option_id, message_id = message_id, chat_id = chat_id }

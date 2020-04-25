@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.RecoverPassword where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON RecoverPassword where
   where
    parseRecoverPassword :: A.Value -> T.Parser RecoverPassword
    parseRecoverPassword = A.withObject "RecoverPassword" $ \o -> do
-    recovery_code <- optional $ o A..: "recovery_code"
+    recovery_code <- o A..:? "recovery_code"
     return $ RecoverPassword { recovery_code = recovery_code }

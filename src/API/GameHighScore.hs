@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.GameHighScore where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,7 +23,7 @@ instance T.FromJSON GameHighScore where
   where
    parseGameHighScore :: A.Value -> T.Parser GameHighScore
    parseGameHighScore = A.withObject "GameHighScore" $ \o -> do
-    score <- optional $ o A..: "score"
-    user_id <- optional $ o A..: "user_id"
-    position <- optional $ o A..: "position"
+    score <- mconcat [ o A..:? "score", readMaybe <$> (o A..: "score" :: T.Parser String)] :: T.Parser (Maybe Int)
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    position <- mconcat [ o A..:? "position", readMaybe <$> (o A..: "position" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GameHighScore { score = score, user_id = user_id, position = position }

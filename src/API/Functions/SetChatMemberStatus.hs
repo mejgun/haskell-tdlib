@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetChatMemberStatus where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatMemberStatus as ChatMemberStatus
@@ -23,7 +24,7 @@ instance T.FromJSON SetChatMemberStatus where
   where
    parseSetChatMemberStatus :: A.Value -> T.Parser SetChatMemberStatus
    parseSetChatMemberStatus = A.withObject "SetChatMemberStatus" $ \o -> do
-    status <- optional $ o A..: "status"
-    user_id <- optional $ o A..: "user_id"
-    chat_id <- optional $ o A..: "chat_id"
+    status <- o A..:? "status"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SetChatMemberStatus { status = status, user_id = user_id, chat_id = chat_id }

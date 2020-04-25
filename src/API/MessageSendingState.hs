@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.MessageSendingState where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -31,8 +32,8 @@ instance T.FromJSON MessageSendingState where
 
    parseMessageSendingStateFailed :: A.Value -> T.Parser MessageSendingState
    parseMessageSendingStateFailed = A.withObject "MessageSendingStateFailed" $ \o -> do
-    retry_after <- optional $ o A..: "retry_after"
-    can_retry <- optional $ o A..: "can_retry"
-    error_message <- optional $ o A..: "error_message"
-    error_code <- optional $ o A..: "error_code"
+    retry_after <- o A..:? "retry_after"
+    can_retry <- o A..:? "can_retry"
+    error_message <- o A..:? "error_message"
+    error_code <- mconcat [ o A..:? "error_code", readMaybe <$> (o A..: "error_code" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ MessageSendingStateFailed { retry_after = retry_after, can_retry = can_retry, error_message = error_message, error_code = error_code }

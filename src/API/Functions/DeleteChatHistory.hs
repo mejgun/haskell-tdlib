@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.DeleteChatHistory where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,7 +23,7 @@ instance T.FromJSON DeleteChatHistory where
   where
    parseDeleteChatHistory :: A.Value -> T.Parser DeleteChatHistory
    parseDeleteChatHistory = A.withObject "DeleteChatHistory" $ \o -> do
-    revoke <- optional $ o A..: "revoke"
-    remove_from_chat_list <- optional $ o A..: "remove_from_chat_list"
-    chat_id <- optional $ o A..: "chat_id"
+    revoke <- o A..:? "revoke"
+    remove_from_chat_list <- o A..:? "remove_from_chat_list"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ DeleteChatHistory { revoke = revoke, remove_from_chat_list = remove_from_chat_list, chat_id = chat_id }

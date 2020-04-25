@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Contact where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,9 +23,9 @@ instance T.FromJSON Contact where
   where
    parseContact :: A.Value -> T.Parser Contact
    parseContact = A.withObject "Contact" $ \o -> do
-    user_id <- optional $ o A..: "user_id"
-    vcard <- optional $ o A..: "vcard"
-    last_name <- optional $ o A..: "last_name"
-    first_name <- optional $ o A..: "first_name"
-    phone_number <- optional $ o A..: "phone_number"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    vcard <- o A..:? "vcard"
+    last_name <- o A..:? "last_name"
+    first_name <- o A..:? "first_name"
+    phone_number <- o A..:? "phone_number"
     return $ Contact { user_id = user_id, vcard = vcard, last_name = last_name, first_name = first_name, phone_number = phone_number }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.NetworkStatistics where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.NetworkStatisticsEntry as NetworkStatisticsEntry
@@ -23,6 +24,6 @@ instance T.FromJSON NetworkStatistics where
   where
    parseNetworkStatistics :: A.Value -> T.Parser NetworkStatistics
    parseNetworkStatistics = A.withObject "NetworkStatistics" $ \o -> do
-    entries <- optional $ o A..: "entries"
-    since_date <- optional $ o A..: "since_date"
+    entries <- o A..:? "entries"
+    since_date <- mconcat [ o A..:? "since_date", readMaybe <$> (o A..: "since_date" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ NetworkStatistics { entries = entries, since_date = since_date }

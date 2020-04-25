@@ -2,16 +2,17 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.PassportAuthorizationForm</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.PassportRequiredElement.html"><span class="hs-identifier">API.PassportRequiredElement</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">PassportRequiredElement</span></span><span>
-</span><span id="line-9"></span><span>
-</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="PassportAuthorizationForm"><span class="annot"><a href="API.PassportAuthorizationForm.html#PassportAuthorizationForm"><span class="hs-identifier hs-var">PassportAuthorizationForm</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-11"></span><span> </span><span id="PassportAuthorizationForm"><span class="annot"><a href="API.PassportAuthorizationForm.html#PassportAuthorizationForm"><span class="hs-identifier hs-var">PassportAuthorizationForm</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="privacy_policy_url"><span class="annot"><span class="annottext">PassportAuthorizationForm -&gt; Maybe String
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.PassportRequiredElement.html"><span class="hs-identifier">API.PassportRequiredElement</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">PassportRequiredElement</span></span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-keyword">data</span><span> </span><span id="PassportAuthorizationForm"><span class="annot"><a href="API.PassportAuthorizationForm.html#PassportAuthorizationForm"><span class="hs-identifier hs-var">PassportAuthorizationForm</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-12"></span><span> </span><span id="PassportAuthorizationForm"><span class="annot"><a href="API.PassportAuthorizationForm.html#PassportAuthorizationForm"><span class="hs-identifier hs-var">PassportAuthorizationForm</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="privacy_policy_url"><span class="annot"><span class="annottext">PassportAuthorizationForm -&gt; Maybe String
 </span><a href="API.PassportAuthorizationForm.html#privacy_policy_url"><span class="hs-identifier hs-var hs-var">privacy_policy_url</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="required_elements"><span class="annot"><span class="annottext">PassportAuthorizationForm -&gt; Maybe [PassportRequiredElement]
 </span><a href="API.PassportAuthorizationForm.html#required_elements"><span class="hs-identifier hs-var hs-var">required_elements</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.PassportRequiredElement.html#PassportRequiredElement"><span class="hs-identifier hs-type">PassportRequiredElement.PassportRequiredElement</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="_id"><span class="annot"><span class="annottext">PassportAuthorizationForm -&gt; Maybe Int
-</span><a href="API.PassportAuthorizationForm.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679439488"><span id="local-6989586621679439490"><span id="local-6989586621679439492"><span class="annot"><span class="annottext">Int -&gt; PassportAuthorizationForm -&gt; ShowS
+</span><a href="API.PassportAuthorizationForm.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679444473"><span id="local-6989586621679444475"><span id="local-6989586621679444477"><span class="annot"><span class="annottext">Int -&gt; PassportAuthorizationForm -&gt; ShowS
 [PassportAuthorizationForm] -&gt; ShowS
 PassportAuthorizationForm -&gt; String
 (Int -&gt; PassportAuthorizationForm -&gt; ShowS)
@@ -26,7 +27,7 @@ show :: PassportAuthorizationForm -&gt; String
 $cshow :: PassportAuthorizationForm -&gt; String
 showsPrec :: Int -&gt; PassportAuthorizationForm -&gt; ShowS
 $cshowsPrec :: Int -&gt; PassportAuthorizationForm -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679439483"><span id="local-6989586621679439485"><span class="annot"><span class="annottext">PassportAuthorizationForm -&gt; PassportAuthorizationForm -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679444468"><span id="local-6989586621679444470"><span class="annot"><span class="annottext">PassportAuthorizationForm -&gt; PassportAuthorizationForm -&gt; Bool
 (PassportAuthorizationForm -&gt; PassportAuthorizationForm -&gt; Bool)
 -&gt; (PassportAuthorizationForm -&gt; PassportAuthorizationForm -&gt; Bool)
 -&gt; Eq PassportAuthorizationForm
@@ -36,53 +37,53 @@ $c/= :: PassportAuthorizationForm -&gt; PassportAuthorizationForm -&gt; Bool
 == :: PassportAuthorizationForm -&gt; PassportAuthorizationForm -&gt; Bool
 $c== :: PassportAuthorizationForm -&gt; PassportAuthorizationForm -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679439475"><span id="local-6989586621679439477"><span id="local-6989586621679439479"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.PassportAuthorizationForm.html#PassportAuthorizationForm"><span class="hs-identifier hs-type">PassportAuthorizationForm</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679439473"><span class="annot"><span class="annottext">toJSON :: PassportAuthorizationForm -&gt; Value
+</span><span id="line-13"></span><span>
+</span><span id="line-14"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679444460"><span id="local-6989586621679444462"><span id="local-6989586621679444464"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.PassportAuthorizationForm.html#PassportAuthorizationForm"><span class="hs-identifier hs-type">PassportAuthorizationForm</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-15"></span><span> </span><span id="local-6989586621679444458"><span class="annot"><span class="annottext">toJSON :: PassportAuthorizationForm -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.PassportAuthorizationForm.html#PassportAuthorizationForm"><span class="hs-identifier hs-type">PassportAuthorizationForm</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">privacy_policy_url :: PassportAuthorizationForm -&gt; Maybe String
-</span><a href="API.PassportAuthorizationForm.html#privacy_policy_url"><span class="hs-identifier hs-var">privacy_policy_url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679439471"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679439471"><span class="hs-identifier hs-var">privacy_policy_url</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">required_elements :: PassportAuthorizationForm -&gt; Maybe [PassportRequiredElement]
-</span><a href="API.PassportAuthorizationForm.html#required_elements"><span class="hs-identifier hs-var">required_elements</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679439470"><span class="annot"><span class="annottext">Maybe [PassportRequiredElement]
-</span><a href="#local-6989586621679439470"><span class="hs-identifier hs-var">required_elements</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: PassportAuthorizationForm -&gt; Maybe Int
-</span><a href="API.PassportAuthorizationForm.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679439469"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679439469"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.PassportAuthorizationForm.html#privacy_policy_url"><span class="hs-identifier hs-var">privacy_policy_url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679444456"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679444456"><span class="hs-identifier hs-var">privacy_policy_url</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">required_elements :: PassportAuthorizationForm -&gt; Maybe [PassportRequiredElement]
+</span><a href="API.PassportAuthorizationForm.html#required_elements"><span class="hs-identifier hs-var">required_elements</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679444455"><span class="annot"><span class="annottext">Maybe [PassportRequiredElement]
+</span><a href="#local-6989586621679444455"><span class="hs-identifier hs-var">required_elements</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: PassportAuthorizationForm -&gt; Maybe Int
+</span><a href="API.PassportAuthorizationForm.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679444454"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679444454"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-16"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;passportAuthorizationForm&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;privacy_policy_url&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679439471"><span class="hs-identifier hs-var">privacy_policy_url</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;required_elements&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [PassportRequiredElement] -&gt; Pair
+</span><a href="#local-6989586621679444456"><span class="hs-identifier hs-var">privacy_policy_url</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;required_elements&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [PassportRequiredElement] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [PassportRequiredElement]
-</span><a href="#local-6989586621679439470"><span class="hs-identifier hs-var">required_elements</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679444455"><span class="hs-identifier hs-var">required_elements</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679439469"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679439463"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.PassportAuthorizationForm.html#PassportAuthorizationForm"><span class="hs-identifier hs-type">PassportAuthorizationForm</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679439461"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PassportAuthorizationForm
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679439459"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679439459"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679439457"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679439457"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679439456"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679439456"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679439457"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679444454"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-17"></span><span>
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679444448"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.PassportAuthorizationForm.html#PassportAuthorizationForm"><span class="hs-identifier hs-type">PassportAuthorizationForm</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span> </span><span id="local-6989586621679444446"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PassportAuthorizationForm
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679444444"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679444444"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679444442"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679444442"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-20"></span><span>  </span><span id="local-6989586621679444441"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679444441"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679444442"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679439456"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;passportAuthorizationForm&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PassportAuthorizationForm
-</span><a href="#local-6989586621679439454"><span class="hs-identifier hs-var">parsePassportAuthorizationForm</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679439459"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PassportAuthorizationForm
+</span><span id="line-21"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679444441"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-22"></span><span>   </span><span class="hs-string">&quot;passportAuthorizationForm&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PassportAuthorizationForm
+</span><a href="#local-6989586621679444439"><span class="hs-identifier hs-var">parsePassportAuthorizationForm</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679444444"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-23"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PassportAuthorizationForm
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679439454"><span class="hs-identifier hs-type">parsePassportAuthorizationForm</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PassportAuthorizationForm.html#PassportAuthorizationForm"><span class="hs-identifier hs-type">PassportAuthorizationForm</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span id="local-6989586621679439454"><span class="annot"><span class="annottext">parsePassportAuthorizationForm :: Value -&gt; Parser PassportAuthorizationForm
-</span><a href="#local-6989586621679439454"><span class="hs-identifier hs-var hs-var">parsePassportAuthorizationForm</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span>   </span><span class="annot"><a href="#local-6989586621679444439"><span class="hs-identifier hs-type">parsePassportAuthorizationForm</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PassportAuthorizationForm.html#PassportAuthorizationForm"><span class="hs-identifier hs-type">PassportAuthorizationForm</span></a></span><span>
+</span><span id="line-26"></span><span>   </span><span id="local-6989586621679444439"><span class="annot"><span class="annottext">parsePassportAuthorizationForm :: Value -&gt; Parser PassportAuthorizationForm
+</span><a href="#local-6989586621679444439"><span class="hs-identifier hs-var hs-var">parsePassportAuthorizationForm</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser PassportAuthorizationForm)
 -&gt; Value
 -&gt; Parser PassportAuthorizationForm
@@ -93,42 +94,33 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser PassportAuthorizationForm
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679439452"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679439452"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679439451"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679439451"><span class="hs-identifier hs-var">privacy_policy_url</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
--&gt; Parser String -&gt; Parser (Maybe String)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679439452"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679444437"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679444437"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679444436"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679444436"><span class="hs-identifier hs-var">privacy_policy_url</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679444437"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;privacy_policy_url&quot;</span></span><span>
+</span><span id="line-28"></span><span>    </span><span id="local-6989586621679444434"><span class="annot"><span class="annottext">Maybe [PassportRequiredElement]
+</span><a href="#local-6989586621679444434"><span class="hs-identifier hs-var">required_elements</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679444437"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PassportRequiredElement])
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;required_elements&quot;</span></span><span>
+</span><span id="line-29"></span><span>    </span><span id="local-6989586621679444433"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679444433"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+forall a. Monoid a =&gt; [a] -&gt; a
+</span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679444437"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679444437"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;privacy_policy_url&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679439450"><span class="annot"><span class="annottext">Maybe [PassportRequiredElement]
-</span><a href="#local-6989586621679439450"><span class="hs-identifier hs-var">required_elements</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [PassportRequiredElement]
--&gt; Parser (Maybe [PassportRequiredElement])
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser [PassportRequiredElement]
- -&gt; Parser (Maybe [PassportRequiredElement]))
--&gt; Parser [PassportRequiredElement]
--&gt; Parser (Maybe [PassportRequiredElement])
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679439452"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [PassportRequiredElement]
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;required_elements&quot;</span></span><span>
-</span><span id="line-28"></span><span>    </span><span id="local-6989586621679439449"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679439449"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
--&gt; Parser Int -&gt; Parser (Maybe Int)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679439452"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span>
-</span><span id="line-29"></span><span>    </span><span class="annot"><span class="annottext">PassportAuthorizationForm -&gt; Parser PassportAuthorizationForm
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-30"></span><span>    </span><span class="annot"><span class="annottext">PassportAuthorizationForm -&gt; Parser PassportAuthorizationForm
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(PassportAuthorizationForm -&gt; Parser PassportAuthorizationForm)
 -&gt; PassportAuthorizationForm -&gt; Parser PassportAuthorizationForm
@@ -139,8 +131,8 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; PassportAuthorizationForm
 </span><a href="API.PassportAuthorizationForm.html#PassportAuthorizationForm"><span class="hs-identifier hs-type hs-type">PassportAuthorizationForm</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">privacy_policy_url :: Maybe String
 </span><a href="API.PassportAuthorizationForm.html#privacy_policy_url"><span class="hs-identifier hs-var">privacy_policy_url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679439451"><span class="hs-identifier hs-var">privacy_policy_url</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">required_elements :: Maybe [PassportRequiredElement]
+</span><a href="#local-6989586621679444436"><span class="hs-identifier hs-var">privacy_policy_url</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">required_elements :: Maybe [PassportRequiredElement]
 </span><a href="API.PassportAuthorizationForm.html#required_elements"><span class="hs-identifier hs-var">required_elements</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [PassportRequiredElement]
-</span><a href="#local-6989586621679439450"><span class="hs-identifier hs-var">required_elements</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Maybe Int
+</span><a href="#local-6989586621679444434"><span class="hs-identifier hs-var">required_elements</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Maybe Int
 </span><a href="API.PassportAuthorizationForm.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679439449"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679444433"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

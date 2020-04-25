@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.MessageSchedulingState where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -27,7 +28,7 @@ instance T.FromJSON MessageSchedulingState where
   where
    parseMessageSchedulingStateSendAtDate :: A.Value -> T.Parser MessageSchedulingState
    parseMessageSchedulingStateSendAtDate = A.withObject "MessageSchedulingStateSendAtDate" $ \o -> do
-    send_date <- optional $ o A..: "send_date"
+    send_date <- mconcat [ o A..:? "send_date", readMaybe <$> (o A..: "send_date" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ MessageSchedulingStateSendAtDate { send_date = send_date }
 
    parseMessageSchedulingStateSendWhenOnline :: A.Value -> T.Parser MessageSchedulingState

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.DiscardCall where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,8 +23,8 @@ instance T.FromJSON DiscardCall where
   where
    parseDiscardCall :: A.Value -> T.Parser DiscardCall
    parseDiscardCall = A.withObject "DiscardCall" $ \o -> do
-    connection_id <- optional $ o A..: "connection_id"
-    duration <- optional $ o A..: "duration"
-    is_disconnected <- optional $ o A..: "is_disconnected"
-    call_id <- optional $ o A..: "call_id"
+    connection_id <- mconcat [ o A..:? "connection_id", readMaybe <$> (o A..: "connection_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    duration <- mconcat [ o A..:? "duration", readMaybe <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+    is_disconnected <- o A..:? "is_disconnected"
+    call_id <- mconcat [ o A..:? "call_id", readMaybe <$> (o A..: "call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ DiscardCall { connection_id = connection_id, duration = duration, is_disconnected = is_disconnected, call_id = call_id }

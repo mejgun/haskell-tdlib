@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetProfilePhoto where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
@@ -23,5 +24,5 @@ instance T.FromJSON SetProfilePhoto where
   where
    parseSetProfilePhoto :: A.Value -> T.Parser SetProfilePhoto
    parseSetProfilePhoto = A.withObject "SetProfilePhoto" $ \o -> do
-    photo <- optional $ o A..: "photo"
+    photo <- o A..:? "photo"
     return $ SetProfilePhoto { photo = photo }

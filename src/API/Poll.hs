@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Poll where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PollType as PollType
@@ -24,12 +25,12 @@ instance T.FromJSON Poll where
   where
    parsePoll :: A.Value -> T.Parser Poll
    parsePoll = A.withObject "Poll" $ \o -> do
-    is_closed <- optional $ o A..: "is_closed"
-    _type <- optional $ o A..: "type"
-    is_anonymous <- optional $ o A..: "is_anonymous"
-    recent_voter_user_ids <- optional $ o A..: "recent_voter_user_ids"
-    total_voter_count <- optional $ o A..: "total_voter_count"
-    options <- optional $ o A..: "options"
-    question <- optional $ o A..: "question"
-    _id <- optional $ o A..: "id"
+    is_closed <- o A..:? "is_closed"
+    _type <- o A..:? "type"
+    is_anonymous <- o A..:? "is_anonymous"
+    recent_voter_user_ids <- o A..:? "recent_voter_user_ids"
+    total_voter_count <- mconcat [ o A..:? "total_voter_count", readMaybe <$> (o A..: "total_voter_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    options <- o A..:? "options"
+    question <- o A..:? "question"
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Poll { is_closed = is_closed, _type = _type, is_anonymous = is_anonymous, recent_voter_user_ids = recent_voter_user_ids, total_voter_count = total_voter_count, options = options, question = question, _id = _id }

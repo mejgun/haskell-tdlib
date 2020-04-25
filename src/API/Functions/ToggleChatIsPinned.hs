@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ToggleChatIsPinned where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON ToggleChatIsPinned where
   where
    parseToggleChatIsPinned :: A.Value -> T.Parser ToggleChatIsPinned
    parseToggleChatIsPinned = A.withObject "ToggleChatIsPinned" $ \o -> do
-    is_pinned <- optional $ o A..: "is_pinned"
-    chat_id <- optional $ o A..: "chat_id"
+    is_pinned <- o A..:? "is_pinned"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ToggleChatIsPinned { is_pinned = is_pinned, chat_id = chat_id }

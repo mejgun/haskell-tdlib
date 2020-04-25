@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.CleanFileName where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON CleanFileName where
   where
    parseCleanFileName :: A.Value -> T.Parser CleanFileName
    parseCleanFileName = A.withObject "CleanFileName" $ \o -> do
-    file_name <- optional $ o A..: "file_name"
+    file_name <- o A..:? "file_name"
     return $ CleanFileName { file_name = file_name }

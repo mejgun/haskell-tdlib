@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.TestInt where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON TestInt where
   where
    parseTestInt :: A.Value -> T.Parser TestInt
    parseTestInt = A.withObject "TestInt" $ \o -> do
-    value <- optional $ o A..: "value"
+    value <- mconcat [ o A..:? "value", readMaybe <$> (o A..: "value" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ TestInt { value = value }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.StorageStatistics where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.StorageStatisticsByChat as StorageStatisticsByChat
@@ -23,7 +24,7 @@ instance T.FromJSON StorageStatistics where
   where
    parseStorageStatistics :: A.Value -> T.Parser StorageStatistics
    parseStorageStatistics = A.withObject "StorageStatistics" $ \o -> do
-    by_chat <- optional $ o A..: "by_chat"
-    count <- optional $ o A..: "count"
-    size <- optional $ o A..: "size"
+    by_chat <- o A..:? "by_chat"
+    count <- mconcat [ o A..:? "count", readMaybe <$> (o A..: "count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    size <- mconcat [ o A..:? "size", readMaybe <$> (o A..: "size" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ StorageStatistics { by_chat = by_chat, count = count, size = size }

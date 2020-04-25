@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetMapThumbnailFile where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Location as Location
@@ -23,10 +24,10 @@ instance T.FromJSON GetMapThumbnailFile where
   where
    parseGetMapThumbnailFile :: A.Value -> T.Parser GetMapThumbnailFile
    parseGetMapThumbnailFile = A.withObject "GetMapThumbnailFile" $ \o -> do
-    chat_id <- optional $ o A..: "chat_id"
-    scale <- optional $ o A..: "scale"
-    height <- optional $ o A..: "height"
-    width <- optional $ o A..: "width"
-    zoom <- optional $ o A..: "zoom"
-    location <- optional $ o A..: "location"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    scale <- mconcat [ o A..:? "scale", readMaybe <$> (o A..: "scale" :: T.Parser String)] :: T.Parser (Maybe Int)
+    height <- mconcat [ o A..:? "height", readMaybe <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    width <- mconcat [ o A..:? "width", readMaybe <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    zoom <- mconcat [ o A..:? "zoom", readMaybe <$> (o A..: "zoom" :: T.Parser String)] :: T.Parser (Maybe Int)
+    location <- o A..:? "location"
     return $ GetMapThumbnailFile { chat_id = chat_id, scale = scale, height = height, width = width, zoom = zoom, location = location }

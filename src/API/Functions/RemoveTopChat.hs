@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.RemoveTopChat where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TopChatCategory as TopChatCategory
@@ -23,6 +24,6 @@ instance T.FromJSON RemoveTopChat where
   where
    parseRemoveTopChat :: A.Value -> T.Parser RemoveTopChat
    parseRemoveTopChat = A.withObject "RemoveTopChat" $ \o -> do
-    chat_id <- optional $ o A..: "chat_id"
-    category <- optional $ o A..: "category"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    category <- o A..:? "category"
     return $ RemoveTopChat { chat_id = chat_id, category = category }

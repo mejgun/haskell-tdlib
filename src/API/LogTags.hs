@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.LogTags where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON LogTags where
   where
    parseLogTags :: A.Value -> T.Parser LogTags
    parseLogTags = A.withObject "LogTags" $ \o -> do
-    tags <- optional $ o A..: "tags"
+    tags <- o A..:? "tags"
     return $ LogTags { tags = tags }

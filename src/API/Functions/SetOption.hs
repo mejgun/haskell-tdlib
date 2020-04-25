@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetOption where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.OptionValue as OptionValue
@@ -23,6 +24,6 @@ instance T.FromJSON SetOption where
   where
    parseSetOption :: A.Value -> T.Parser SetOption
    parseSetOption = A.withObject "SetOption" $ \o -> do
-    value <- optional $ o A..: "value"
-    name <- optional $ o A..: "name"
+    value <- o A..:? "value"
+    name <- o A..:? "name"
     return $ SetOption { value = value, name = name }

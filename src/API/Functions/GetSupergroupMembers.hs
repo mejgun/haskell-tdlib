@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetSupergroupMembers where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.SupergroupMembersFilter as SupergroupMembersFilter
@@ -23,8 +24,8 @@ instance T.FromJSON GetSupergroupMembers where
   where
    parseGetSupergroupMembers :: A.Value -> T.Parser GetSupergroupMembers
    parseGetSupergroupMembers = A.withObject "GetSupergroupMembers" $ \o -> do
-    limit <- optional $ o A..: "limit"
-    offset <- optional $ o A..: "offset"
-    _filter <- optional $ o A..: "filter"
-    supergroup_id <- optional $ o A..: "supergroup_id"
+    limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
+    offset <- mconcat [ o A..:? "offset", readMaybe <$> (o A..: "offset" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _filter <- o A..:? "filter"
+    supergroup_id <- mconcat [ o A..:? "supergroup_id", readMaybe <$> (o A..: "supergroup_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetSupergroupMembers { limit = limit, offset = offset, _filter = _filter, supergroup_id = supergroup_id }

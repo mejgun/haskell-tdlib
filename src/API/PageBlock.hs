@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PageBlock where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PageBlockListItem as PageBlockListItem
@@ -174,49 +175,49 @@ instance T.FromJSON PageBlock where
   where
    parsePageBlockTitle :: A.Value -> T.Parser PageBlock
    parsePageBlockTitle = A.withObject "PageBlockTitle" $ \o -> do
-    _title <- optional $ o A..: "title"
+    _title <- o A..:? "title"
     return $ PageBlockTitle { _title = _title }
 
    parsePageBlockSubtitle :: A.Value -> T.Parser PageBlock
    parsePageBlockSubtitle = A.withObject "PageBlockSubtitle" $ \o -> do
-    subtitle <- optional $ o A..: "subtitle"
+    subtitle <- o A..:? "subtitle"
     return $ PageBlockSubtitle { subtitle = subtitle }
 
    parsePageBlockAuthorDate :: A.Value -> T.Parser PageBlock
    parsePageBlockAuthorDate = A.withObject "PageBlockAuthorDate" $ \o -> do
-    publish_date <- optional $ o A..: "publish_date"
-    _author <- optional $ o A..: "author"
+    publish_date <- mconcat [ o A..:? "publish_date", readMaybe <$> (o A..: "publish_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _author <- o A..:? "author"
     return $ PageBlockAuthorDate { publish_date = publish_date, _author = _author }
 
    parsePageBlockHeader :: A.Value -> T.Parser PageBlock
    parsePageBlockHeader = A.withObject "PageBlockHeader" $ \o -> do
-    header <- optional $ o A..: "header"
+    header <- o A..:? "header"
     return $ PageBlockHeader { header = header }
 
    parsePageBlockSubheader :: A.Value -> T.Parser PageBlock
    parsePageBlockSubheader = A.withObject "PageBlockSubheader" $ \o -> do
-    subheader <- optional $ o A..: "subheader"
+    subheader <- o A..:? "subheader"
     return $ PageBlockSubheader { subheader = subheader }
 
    parsePageBlockKicker :: A.Value -> T.Parser PageBlock
    parsePageBlockKicker = A.withObject "PageBlockKicker" $ \o -> do
-    kicker <- optional $ o A..: "kicker"
+    kicker <- o A..:? "kicker"
     return $ PageBlockKicker { kicker = kicker }
 
    parsePageBlockParagraph :: A.Value -> T.Parser PageBlock
    parsePageBlockParagraph = A.withObject "PageBlockParagraph" $ \o -> do
-    text <- optional $ o A..: "text"
+    text <- o A..:? "text"
     return $ PageBlockParagraph { text = text }
 
    parsePageBlockPreformatted :: A.Value -> T.Parser PageBlock
    parsePageBlockPreformatted = A.withObject "PageBlockPreformatted" $ \o -> do
-    language <- optional $ o A..: "language"
-    text <- optional $ o A..: "text"
+    language <- o A..:? "language"
+    text <- o A..:? "text"
     return $ PageBlockPreformatted { language = language, text = text }
 
    parsePageBlockFooter :: A.Value -> T.Parser PageBlock
    parsePageBlockFooter = A.withObject "PageBlockFooter" $ \o -> do
-    footer <- optional $ o A..: "footer"
+    footer <- o A..:? "footer"
     return $ PageBlockFooter { footer = footer }
 
    parsePageBlockDivider :: A.Value -> T.Parser PageBlock
@@ -225,132 +226,132 @@ instance T.FromJSON PageBlock where
 
    parsePageBlockAnchor :: A.Value -> T.Parser PageBlock
    parsePageBlockAnchor = A.withObject "PageBlockAnchor" $ \o -> do
-    name <- optional $ o A..: "name"
+    name <- o A..:? "name"
     return $ PageBlockAnchor { name = name }
 
    parsePageBlockList :: A.Value -> T.Parser PageBlock
    parsePageBlockList = A.withObject "PageBlockList" $ \o -> do
-    items <- optional $ o A..: "items"
+    items <- o A..:? "items"
     return $ PageBlockList { items = items }
 
    parsePageBlockBlockQuote :: A.Value -> T.Parser PageBlock
    parsePageBlockBlockQuote = A.withObject "PageBlockBlockQuote" $ \o -> do
-    credit <- optional $ o A..: "credit"
-    text <- optional $ o A..: "text"
+    credit <- o A..:? "credit"
+    text <- o A..:? "text"
     return $ PageBlockBlockQuote { credit = credit, text = text }
 
    parsePageBlockPullQuote :: A.Value -> T.Parser PageBlock
    parsePageBlockPullQuote = A.withObject "PageBlockPullQuote" $ \o -> do
-    credit <- optional $ o A..: "credit"
-    text <- optional $ o A..: "text"
+    credit <- o A..:? "credit"
+    text <- o A..:? "text"
     return $ PageBlockPullQuote { credit = credit, text = text }
 
    parsePageBlockAnimation :: A.Value -> T.Parser PageBlock
    parsePageBlockAnimation = A.withObject "PageBlockAnimation" $ \o -> do
-    need_autoplay <- optional $ o A..: "need_autoplay"
-    caption <- optional $ o A..: "caption"
-    animation <- optional $ o A..: "animation"
+    need_autoplay <- o A..:? "need_autoplay"
+    caption <- o A..:? "caption"
+    animation <- o A..:? "animation"
     return $ PageBlockAnimation { need_autoplay = need_autoplay, caption = caption, animation = animation }
 
    parsePageBlockAudio :: A.Value -> T.Parser PageBlock
    parsePageBlockAudio = A.withObject "PageBlockAudio" $ \o -> do
-    caption <- optional $ o A..: "caption"
-    audio <- optional $ o A..: "audio"
+    caption <- o A..:? "caption"
+    audio <- o A..:? "audio"
     return $ PageBlockAudio { caption = caption, audio = audio }
 
    parsePageBlockPhoto :: A.Value -> T.Parser PageBlock
    parsePageBlockPhoto = A.withObject "PageBlockPhoto" $ \o -> do
-    url <- optional $ o A..: "url"
-    caption <- optional $ o A..: "caption"
-    _photo <- optional $ o A..: "photo"
+    url <- o A..:? "url"
+    caption <- o A..:? "caption"
+    _photo <- o A..:? "photo"
     return $ PageBlockPhoto { url = url, caption = caption, _photo = _photo }
 
    parsePageBlockVideo :: A.Value -> T.Parser PageBlock
    parsePageBlockVideo = A.withObject "PageBlockVideo" $ \o -> do
-    is_looped <- optional $ o A..: "is_looped"
-    need_autoplay <- optional $ o A..: "need_autoplay"
-    caption <- optional $ o A..: "caption"
-    video <- optional $ o A..: "video"
+    is_looped <- o A..:? "is_looped"
+    need_autoplay <- o A..:? "need_autoplay"
+    caption <- o A..:? "caption"
+    video <- o A..:? "video"
     return $ PageBlockVideo { is_looped = is_looped, need_autoplay = need_autoplay, caption = caption, video = video }
 
    parsePageBlockVoiceNote :: A.Value -> T.Parser PageBlock
    parsePageBlockVoiceNote = A.withObject "PageBlockVoiceNote" $ \o -> do
-    caption <- optional $ o A..: "caption"
-    voice_note <- optional $ o A..: "voice_note"
+    caption <- o A..:? "caption"
+    voice_note <- o A..:? "voice_note"
     return $ PageBlockVoiceNote { caption = caption, voice_note = voice_note }
 
    parsePageBlockCover :: A.Value -> T.Parser PageBlock
    parsePageBlockCover = A.withObject "PageBlockCover" $ \o -> do
-    cover <- optional $ o A..: "cover"
+    cover <- o A..:? "cover"
     return $ PageBlockCover { cover = cover }
 
    parsePageBlockEmbedded :: A.Value -> T.Parser PageBlock
    parsePageBlockEmbedded = A.withObject "PageBlockEmbedded" $ \o -> do
-    allow_scrolling <- optional $ o A..: "allow_scrolling"
-    is_full_width <- optional $ o A..: "is_full_width"
-    caption <- optional $ o A..: "caption"
-    height <- optional $ o A..: "height"
-    width <- optional $ o A..: "width"
-    poster_photo <- optional $ o A..: "poster_photo"
-    html <- optional $ o A..: "html"
-    url <- optional $ o A..: "url"
+    allow_scrolling <- o A..:? "allow_scrolling"
+    is_full_width <- o A..:? "is_full_width"
+    caption <- o A..:? "caption"
+    height <- mconcat [ o A..:? "height", readMaybe <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    width <- mconcat [ o A..:? "width", readMaybe <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    poster_photo <- o A..:? "poster_photo"
+    html <- o A..:? "html"
+    url <- o A..:? "url"
     return $ PageBlockEmbedded { allow_scrolling = allow_scrolling, is_full_width = is_full_width, caption = caption, height = height, width = width, poster_photo = poster_photo, html = html, url = url }
 
    parsePageBlockEmbeddedPost :: A.Value -> T.Parser PageBlock
    parsePageBlockEmbeddedPost = A.withObject "PageBlockEmbeddedPost" $ \o -> do
-    caption <- optional $ o A..: "caption"
-    page_blocks <- optional $ o A..: "page_blocks"
-    date <- optional $ o A..: "date"
-    author_photo <- optional $ o A..: "author_photo"
-    author <- optional $ o A..: "author"
-    url <- optional $ o A..: "url"
+    caption <- o A..:? "caption"
+    page_blocks <- o A..:? "page_blocks"
+    date <- mconcat [ o A..:? "date", readMaybe <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    author_photo <- o A..:? "author_photo"
+    author <- o A..:? "author"
+    url <- o A..:? "url"
     return $ PageBlockEmbeddedPost { caption = caption, page_blocks = page_blocks, date = date, author_photo = author_photo, author = author, url = url }
 
    parsePageBlockCollage :: A.Value -> T.Parser PageBlock
    parsePageBlockCollage = A.withObject "PageBlockCollage" $ \o -> do
-    caption <- optional $ o A..: "caption"
-    page_blocks <- optional $ o A..: "page_blocks"
+    caption <- o A..:? "caption"
+    page_blocks <- o A..:? "page_blocks"
     return $ PageBlockCollage { caption = caption, page_blocks = page_blocks }
 
    parsePageBlockSlideshow :: A.Value -> T.Parser PageBlock
    parsePageBlockSlideshow = A.withObject "PageBlockSlideshow" $ \o -> do
-    caption <- optional $ o A..: "caption"
-    page_blocks <- optional $ o A..: "page_blocks"
+    caption <- o A..:? "caption"
+    page_blocks <- o A..:? "page_blocks"
     return $ PageBlockSlideshow { caption = caption, page_blocks = page_blocks }
 
    parsePageBlockChatLink :: A.Value -> T.Parser PageBlock
    parsePageBlockChatLink = A.withObject "PageBlockChatLink" $ \o -> do
-    username <- optional $ o A..: "username"
-    photo <- optional $ o A..: "photo"
-    title <- optional $ o A..: "title"
+    username <- o A..:? "username"
+    photo <- o A..:? "photo"
+    title <- o A..:? "title"
     return $ PageBlockChatLink { username = username, photo = photo, title = title }
 
    parsePageBlockTable :: A.Value -> T.Parser PageBlock
    parsePageBlockTable = A.withObject "PageBlockTable" $ \o -> do
-    is_striped <- optional $ o A..: "is_striped"
-    is_bordered <- optional $ o A..: "is_bordered"
-    cells <- optional $ o A..: "cells"
-    _caption <- optional $ o A..: "caption"
+    is_striped <- o A..:? "is_striped"
+    is_bordered <- o A..:? "is_bordered"
+    cells <- o A..:? "cells"
+    _caption <- o A..:? "caption"
     return $ PageBlockTable { is_striped = is_striped, is_bordered = is_bordered, cells = cells, _caption = _caption }
 
    parsePageBlockDetails :: A.Value -> T.Parser PageBlock
    parsePageBlockDetails = A.withObject "PageBlockDetails" $ \o -> do
-    is_open <- optional $ o A..: "is_open"
-    page_blocks <- optional $ o A..: "page_blocks"
-    header <- optional $ o A..: "header"
+    is_open <- o A..:? "is_open"
+    page_blocks <- o A..:? "page_blocks"
+    header <- o A..:? "header"
     return $ PageBlockDetails { is_open = is_open, page_blocks = page_blocks, header = header }
 
    parsePageBlockRelatedArticles :: A.Value -> T.Parser PageBlock
    parsePageBlockRelatedArticles = A.withObject "PageBlockRelatedArticles" $ \o -> do
-    articles <- optional $ o A..: "articles"
-    header <- optional $ o A..: "header"
+    articles <- o A..:? "articles"
+    header <- o A..:? "header"
     return $ PageBlockRelatedArticles { articles = articles, header = header }
 
    parsePageBlockMap :: A.Value -> T.Parser PageBlock
    parsePageBlockMap = A.withObject "PageBlockMap" $ \o -> do
-    caption <- optional $ o A..: "caption"
-    height <- optional $ o A..: "height"
-    width <- optional $ o A..: "width"
-    zoom <- optional $ o A..: "zoom"
-    location <- optional $ o A..: "location"
+    caption <- o A..:? "caption"
+    height <- mconcat [ o A..:? "height", readMaybe <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    width <- mconcat [ o A..:? "width", readMaybe <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    zoom <- mconcat [ o A..:? "zoom", readMaybe <$> (o A..: "zoom" :: T.Parser String)] :: T.Parser (Maybe Int)
+    location <- o A..:? "location"
     return $ PageBlockMap { caption = caption, height = height, width = width, zoom = zoom, location = location }

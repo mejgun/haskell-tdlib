@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.MaskPosition where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.MaskPoint as MaskPoint
@@ -23,8 +24,8 @@ instance T.FromJSON MaskPosition where
   where
    parseMaskPosition :: A.Value -> T.Parser MaskPosition
    parseMaskPosition = A.withObject "MaskPosition" $ \o -> do
-    scale <- optional $ o A..: "scale"
-    y_shift <- optional $ o A..: "y_shift"
-    x_shift <- optional $ o A..: "x_shift"
-    point <- optional $ o A..: "point"
+    scale <- o A..:? "scale"
+    y_shift <- o A..:? "y_shift"
+    x_shift <- o A..:? "x_shift"
+    point <- o A..:? "point"
     return $ MaskPosition { scale = scale, y_shift = y_shift, x_shift = x_shift, point = point }

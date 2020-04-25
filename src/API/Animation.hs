@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Animation where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
@@ -25,12 +26,12 @@ instance T.FromJSON Animation where
   where
    parseAnimation :: A.Value -> T.Parser Animation
    parseAnimation = A.withObject "Animation" $ \o -> do
-    animation <- optional $ o A..: "animation"
-    thumbnail <- optional $ o A..: "thumbnail"
-    minithumbnail <- optional $ o A..: "minithumbnail"
-    mime_type <- optional $ o A..: "mime_type"
-    file_name <- optional $ o A..: "file_name"
-    height <- optional $ o A..: "height"
-    width <- optional $ o A..: "width"
-    duration <- optional $ o A..: "duration"
+    animation <- o A..:? "animation"
+    thumbnail <- o A..:? "thumbnail"
+    minithumbnail <- o A..:? "minithumbnail"
+    mime_type <- o A..:? "mime_type"
+    file_name <- o A..:? "file_name"
+    height <- mconcat [ o A..:? "height", readMaybe <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    width <- mconcat [ o A..:? "width", readMaybe <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    duration <- mconcat [ o A..:? "duration", readMaybe <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Animation { animation = animation, thumbnail = thumbnail, minithumbnail = minithumbnail, mime_type = mime_type, file_name = file_name, height = height, width = width, duration = duration }

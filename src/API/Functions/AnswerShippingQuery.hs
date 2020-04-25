@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.AnswerShippingQuery where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ShippingOption as ShippingOption
@@ -23,7 +24,7 @@ instance T.FromJSON AnswerShippingQuery where
   where
    parseAnswerShippingQuery :: A.Value -> T.Parser AnswerShippingQuery
    parseAnswerShippingQuery = A.withObject "AnswerShippingQuery" $ \o -> do
-    error_message <- optional $ o A..: "error_message"
-    shipping_options <- optional $ o A..: "shipping_options"
-    shipping_query_id <- optional $ o A..: "shipping_query_id"
+    error_message <- o A..:? "error_message"
+    shipping_options <- o A..:? "shipping_options"
+    shipping_query_id <- mconcat [ o A..:? "shipping_query_id", readMaybe <$> (o A..: "shipping_query_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ AnswerShippingQuery { error_message = error_message, shipping_options = shipping_options, shipping_query_id = shipping_query_id }

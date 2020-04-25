@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Chat where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.DraftMessage as DraftMessage
@@ -30,30 +31,30 @@ instance T.FromJSON Chat where
   where
    parseChat :: A.Value -> T.Parser Chat
    parseChat = A.withObject "Chat" $ \o -> do
-    client_data <- optional $ o A..: "client_data"
-    draft_message <- optional $ o A..: "draft_message"
-    reply_markup_message_id <- optional $ o A..: "reply_markup_message_id"
-    pinned_message_id <- optional $ o A..: "pinned_message_id"
-    action_bar <- optional $ o A..: "action_bar"
-    notification_settings <- optional $ o A..: "notification_settings"
-    unread_mention_count <- optional $ o A..: "unread_mention_count"
-    last_read_outbox_message_id <- optional $ o A..: "last_read_outbox_message_id"
-    last_read_inbox_message_id <- optional $ o A..: "last_read_inbox_message_id"
-    unread_count <- optional $ o A..: "unread_count"
-    default_disable_notification <- optional $ o A..: "default_disable_notification"
-    can_be_reported <- optional $ o A..: "can_be_reported"
-    can_be_deleted_for_all_users <- optional $ o A..: "can_be_deleted_for_all_users"
-    can_be_deleted_only_for_self <- optional $ o A..: "can_be_deleted_only_for_self"
-    has_scheduled_messages <- optional $ o A..: "has_scheduled_messages"
-    is_sponsored <- optional $ o A..: "is_sponsored"
-    is_marked_as_unread <- optional $ o A..: "is_marked_as_unread"
-    is_pinned <- optional $ o A..: "is_pinned"
-    order <- optional $ o A..: "order"
-    last_message <- optional $ o A..: "last_message"
-    permissions <- optional $ o A..: "permissions"
-    photo <- optional $ o A..: "photo"
-    title <- optional $ o A..: "title"
-    chat_list <- optional $ o A..: "chat_list"
-    _type <- optional $ o A..: "type"
-    _id <- optional $ o A..: "id"
+    client_data <- o A..:? "client_data"
+    draft_message <- o A..:? "draft_message"
+    reply_markup_message_id <- mconcat [ o A..:? "reply_markup_message_id", readMaybe <$> (o A..: "reply_markup_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    pinned_message_id <- mconcat [ o A..:? "pinned_message_id", readMaybe <$> (o A..: "pinned_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    action_bar <- o A..:? "action_bar"
+    notification_settings <- o A..:? "notification_settings"
+    unread_mention_count <- mconcat [ o A..:? "unread_mention_count", readMaybe <$> (o A..: "unread_mention_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    last_read_outbox_message_id <- mconcat [ o A..:? "last_read_outbox_message_id", readMaybe <$> (o A..: "last_read_outbox_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    last_read_inbox_message_id <- mconcat [ o A..:? "last_read_inbox_message_id", readMaybe <$> (o A..: "last_read_inbox_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    unread_count <- mconcat [ o A..:? "unread_count", readMaybe <$> (o A..: "unread_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    default_disable_notification <- o A..:? "default_disable_notification"
+    can_be_reported <- o A..:? "can_be_reported"
+    can_be_deleted_for_all_users <- o A..:? "can_be_deleted_for_all_users"
+    can_be_deleted_only_for_self <- o A..:? "can_be_deleted_only_for_self"
+    has_scheduled_messages <- o A..:? "has_scheduled_messages"
+    is_sponsored <- o A..:? "is_sponsored"
+    is_marked_as_unread <- o A..:? "is_marked_as_unread"
+    is_pinned <- o A..:? "is_pinned"
+    order <- mconcat [ o A..:? "order", readMaybe <$> (o A..: "order" :: T.Parser String)] :: T.Parser (Maybe Int)
+    last_message <- o A..:? "last_message"
+    permissions <- o A..:? "permissions"
+    photo <- o A..:? "photo"
+    title <- o A..:? "title"
+    chat_list <- o A..:? "chat_list"
+    _type <- o A..:? "type"
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Chat { client_data = client_data, draft_message = draft_message, reply_markup_message_id = reply_markup_message_id, pinned_message_id = pinned_message_id, action_bar = action_bar, notification_settings = notification_settings, unread_mention_count = unread_mention_count, last_read_outbox_message_id = last_read_outbox_message_id, last_read_inbox_message_id = last_read_inbox_message_id, unread_count = unread_count, default_disable_notification = default_disable_notification, can_be_reported = can_be_reported, can_be_deleted_for_all_users = can_be_deleted_for_all_users, can_be_deleted_only_for_self = can_be_deleted_only_for_self, has_scheduled_messages = has_scheduled_messages, is_sponsored = is_sponsored, is_marked_as_unread = is_marked_as_unread, is_pinned = is_pinned, order = order, last_message = last_message, permissions = permissions, photo = photo, title = title, chat_list = chat_list, _type = _type, _id = _id }

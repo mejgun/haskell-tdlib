@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetSupergroupStickerSet where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON SetSupergroupStickerSet where
   where
    parseSetSupergroupStickerSet :: A.Value -> T.Parser SetSupergroupStickerSet
    parseSetSupergroupStickerSet = A.withObject "SetSupergroupStickerSet" $ \o -> do
-    sticker_set_id <- optional $ o A..: "sticker_set_id"
-    supergroup_id <- optional $ o A..: "supergroup_id"
+    sticker_set_id <- mconcat [ o A..:? "sticker_set_id", readMaybe <$> (o A..: "sticker_set_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    supergroup_id <- mconcat [ o A..:? "supergroup_id", readMaybe <$> (o A..: "supergroup_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SetSupergroupStickerSet { sticker_set_id = sticker_set_id, supergroup_id = supergroup_id }

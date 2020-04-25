@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.FilePart where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON FilePart where
   where
    parseFilePart :: A.Value -> T.Parser FilePart
    parseFilePart = A.withObject "FilePart" $ \o -> do
-    _data <- optional $ o A..: "data"
+    _data <- o A..:? "data"
     return $ FilePart { _data = _data }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.CanTransferOwnershipResult where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -45,10 +46,10 @@ instance T.FromJSON CanTransferOwnershipResult where
 
    parseCanTransferOwnershipResultPasswordTooFresh :: A.Value -> T.Parser CanTransferOwnershipResult
    parseCanTransferOwnershipResultPasswordTooFresh = A.withObject "CanTransferOwnershipResultPasswordTooFresh" $ \o -> do
-    retry_after <- optional $ o A..: "retry_after"
+    retry_after <- mconcat [ o A..:? "retry_after", readMaybe <$> (o A..: "retry_after" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ CanTransferOwnershipResultPasswordTooFresh { retry_after = retry_after }
 
    parseCanTransferOwnershipResultSessionTooFresh :: A.Value -> T.Parser CanTransferOwnershipResult
    parseCanTransferOwnershipResultSessionTooFresh = A.withObject "CanTransferOwnershipResultSessionTooFresh" $ \o -> do
-    retry_after <- optional $ o A..: "retry_after"
+    retry_after <- mconcat [ o A..:? "retry_after", readMaybe <$> (o A..: "retry_after" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ CanTransferOwnershipResultSessionTooFresh { retry_after = retry_after }

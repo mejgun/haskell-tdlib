@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetEmojiSuggestionsUrl where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON GetEmojiSuggestionsUrl where
   where
    parseGetEmojiSuggestionsUrl :: A.Value -> T.Parser GetEmojiSuggestionsUrl
    parseGetEmojiSuggestionsUrl = A.withObject "GetEmojiSuggestionsUrl" $ \o -> do
-    language_code <- optional $ o A..: "language_code"
+    language_code <- o A..:? "language_code"
     return $ GetEmojiSuggestionsUrl { language_code = language_code }

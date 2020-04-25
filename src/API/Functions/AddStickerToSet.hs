@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.AddStickerToSet where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputSticker as InputSticker
@@ -23,7 +24,7 @@ instance T.FromJSON AddStickerToSet where
   where
    parseAddStickerToSet :: A.Value -> T.Parser AddStickerToSet
    parseAddStickerToSet = A.withObject "AddStickerToSet" $ \o -> do
-    sticker <- optional $ o A..: "sticker"
-    name <- optional $ o A..: "name"
-    user_id <- optional $ o A..: "user_id"
+    sticker <- o A..:? "sticker"
+    name <- o A..:? "name"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ AddStickerToSet { sticker = sticker, name = name, user_id = user_id }

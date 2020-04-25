@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PageBlockCaption where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.RichText as RichText
@@ -23,6 +24,6 @@ instance T.FromJSON PageBlockCaption where
   where
    parsePageBlockCaption :: A.Value -> T.Parser PageBlockCaption
    parsePageBlockCaption = A.withObject "PageBlockCaption" $ \o -> do
-    credit <- optional $ o A..: "credit"
-    text <- optional $ o A..: "text"
+    credit <- o A..:? "credit"
+    text <- o A..:? "text"
     return $ PageBlockCaption { credit = credit, text = text }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.UserProfilePhotos where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.UserProfilePhoto as UserProfilePhoto
@@ -23,6 +24,6 @@ instance T.FromJSON UserProfilePhotos where
   where
    parseUserProfilePhotos :: A.Value -> T.Parser UserProfilePhotos
    parseUserProfilePhotos = A.withObject "UserProfilePhotos" $ \o -> do
-    photos <- optional $ o A..: "photos"
-    total_count <- optional $ o A..: "total_count"
+    photos <- o A..:? "photos"
+    total_count <- mconcat [ o A..:? "total_count", readMaybe <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UserProfilePhotos { photos = photos, total_count = total_count }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SearchPublicChat where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON SearchPublicChat where
   where
    parseSearchPublicChat :: A.Value -> T.Parser SearchPublicChat
    parseSearchPublicChat = A.withObject "SearchPublicChat" $ \o -> do
-    username <- optional $ o A..: "username"
+    username <- o A..:? "username"
     return $ SearchPublicChat { username = username }

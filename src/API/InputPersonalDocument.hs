@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.InputPersonalDocument where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
@@ -23,6 +24,6 @@ instance T.FromJSON InputPersonalDocument where
   where
    parseInputPersonalDocument :: A.Value -> T.Parser InputPersonalDocument
    parseInputPersonalDocument = A.withObject "InputPersonalDocument" $ \o -> do
-    translation <- optional $ o A..: "translation"
-    files <- optional $ o A..: "files"
+    translation <- o A..:? "translation"
+    files <- o A..:? "files"
     return $ InputPersonalDocument { translation = translation, files = files }

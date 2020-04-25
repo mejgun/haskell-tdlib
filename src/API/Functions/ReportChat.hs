@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ReportChat where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatReportReason as ChatReportReason
@@ -23,7 +24,7 @@ instance T.FromJSON ReportChat where
   where
    parseReportChat :: A.Value -> T.Parser ReportChat
    parseReportChat = A.withObject "ReportChat" $ \o -> do
-    message_ids <- optional $ o A..: "message_ids"
-    reason <- optional $ o A..: "reason"
-    chat_id <- optional $ o A..: "chat_id"
+    message_ids <- o A..:? "message_ids"
+    reason <- o A..:? "reason"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ReportChat { message_ids = message_ids, reason = reason, chat_id = chat_id }

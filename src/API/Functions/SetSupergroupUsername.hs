@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetSupergroupUsername where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON SetSupergroupUsername where
   where
    parseSetSupergroupUsername :: A.Value -> T.Parser SetSupergroupUsername
    parseSetSupergroupUsername = A.withObject "SetSupergroupUsername" $ \o -> do
-    username <- optional $ o A..: "username"
-    supergroup_id <- optional $ o A..: "supergroup_id"
+    username <- o A..:? "username"
+    supergroup_id <- mconcat [ o A..:? "supergroup_id", readMaybe <$> (o A..: "supergroup_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SetSupergroupUsername { username = username, supergroup_id = supergroup_id }

@@ -2,13 +2,14 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Functions.CheckRecoveryEmailAddressCode</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-8"></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="CheckRecoveryEmailAddressCode"><span class="annot"><a href="API.Functions.CheckRecoveryEmailAddressCode.html#CheckRecoveryEmailAddressCode"><span class="hs-identifier hs-var">CheckRecoveryEmailAddressCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-10"></span><span> </span><span id="CheckRecoveryEmailAddressCode"><span class="annot"><a href="API.Functions.CheckRecoveryEmailAddressCode.html#CheckRecoveryEmailAddressCode"><span class="hs-identifier hs-var">CheckRecoveryEmailAddressCode</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="code"><span class="annot"><span class="annottext">CheckRecoveryEmailAddressCode -&gt; Maybe String
-</span><a href="API.Functions.CheckRecoveryEmailAddressCode.html#code"><span class="hs-identifier hs-var hs-var">code</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679410483"><span id="local-6989586621679410485"><span id="local-6989586621679410487"><span class="annot"><span class="annottext">Int -&gt; CheckRecoveryEmailAddressCode -&gt; ShowS
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="CheckRecoveryEmailAddressCode"><span class="annot"><a href="API.Functions.CheckRecoveryEmailAddressCode.html#CheckRecoveryEmailAddressCode"><span class="hs-identifier hs-var">CheckRecoveryEmailAddressCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-11"></span><span> </span><span id="CheckRecoveryEmailAddressCode"><span class="annot"><a href="API.Functions.CheckRecoveryEmailAddressCode.html#CheckRecoveryEmailAddressCode"><span class="hs-identifier hs-var">CheckRecoveryEmailAddressCode</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="code"><span class="annot"><span class="annottext">CheckRecoveryEmailAddressCode -&gt; Maybe String
+</span><a href="API.Functions.CheckRecoveryEmailAddressCode.html#code"><span class="hs-identifier hs-var hs-var">code</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679414874"><span id="local-6989586621679414876"><span id="local-6989586621679414878"><span class="annot"><span class="annottext">Int -&gt; CheckRecoveryEmailAddressCode -&gt; ShowS
 [CheckRecoveryEmailAddressCode] -&gt; ShowS
 CheckRecoveryEmailAddressCode -&gt; String
 (Int -&gt; CheckRecoveryEmailAddressCode -&gt; ShowS)
@@ -23,7 +24,7 @@ show :: CheckRecoveryEmailAddressCode -&gt; String
 $cshow :: CheckRecoveryEmailAddressCode -&gt; String
 showsPrec :: Int -&gt; CheckRecoveryEmailAddressCode -&gt; ShowS
 $cshowsPrec :: Int -&gt; CheckRecoveryEmailAddressCode -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679410478"><span id="local-6989586621679410480"><span class="annot"><span class="annottext">CheckRecoveryEmailAddressCode
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679414869"><span id="local-6989586621679414871"><span class="annot"><span class="annottext">CheckRecoveryEmailAddressCode
 -&gt; CheckRecoveryEmailAddressCode -&gt; Bool
 (CheckRecoveryEmailAddressCode
  -&gt; CheckRecoveryEmailAddressCode -&gt; Bool)
@@ -40,43 +41,43 @@ $c/= :: CheckRecoveryEmailAddressCode
 $c== :: CheckRecoveryEmailAddressCode
 -&gt; CheckRecoveryEmailAddressCode -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679410470"><span id="local-6989586621679410472"><span id="local-6989586621679410474"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CheckRecoveryEmailAddressCode.html#CheckRecoveryEmailAddressCode"><span class="hs-identifier hs-type">CheckRecoveryEmailAddressCode</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679410468"><span class="annot"><span class="annottext">toJSON :: CheckRecoveryEmailAddressCode -&gt; Value
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414861"><span id="local-6989586621679414863"><span id="local-6989586621679414865"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CheckRecoveryEmailAddressCode.html#CheckRecoveryEmailAddressCode"><span class="hs-identifier hs-type">CheckRecoveryEmailAddressCode</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679414859"><span class="annot"><span class="annottext">toJSON :: CheckRecoveryEmailAddressCode -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.CheckRecoveryEmailAddressCode.html#CheckRecoveryEmailAddressCode"><span class="hs-identifier hs-type">CheckRecoveryEmailAddressCode</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">code :: CheckRecoveryEmailAddressCode -&gt; Maybe String
-</span><a href="API.Functions.CheckRecoveryEmailAddressCode.html#code"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679410466"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679410466"><span class="hs-identifier hs-var">code</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.Functions.CheckRecoveryEmailAddressCode.html#code"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414857"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679414857"><span class="hs-identifier hs-var">code</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;checkRecoveryEmailAddressCode&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679410466"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679410460"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CheckRecoveryEmailAddressCode.html#CheckRecoveryEmailAddressCode"><span class="hs-identifier hs-type">CheckRecoveryEmailAddressCode</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679410458"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CheckRecoveryEmailAddressCode
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679410456"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679410456"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679410454"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679410454"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679410453"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679410453"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679410454"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679414857"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-16"></span><span>
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414851"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CheckRecoveryEmailAddressCode.html#CheckRecoveryEmailAddressCode"><span class="hs-identifier hs-type">CheckRecoveryEmailAddressCode</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679414849"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CheckRecoveryEmailAddressCode
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679414847"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679414847"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679414845"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679414845"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679414844"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679414844"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679414845"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679410453"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;checkRecoveryEmailAddressCode&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CheckRecoveryEmailAddressCode
-</span><a href="#local-6989586621679410451"><span class="hs-identifier hs-var">parseCheckRecoveryEmailAddressCode</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679410456"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CheckRecoveryEmailAddressCode
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679414844"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;checkRecoveryEmailAddressCode&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CheckRecoveryEmailAddressCode
+</span><a href="#local-6989586621679414842"><span class="hs-identifier hs-var">parseCheckRecoveryEmailAddressCode</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679414847"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CheckRecoveryEmailAddressCode
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679410451"><span class="hs-identifier hs-type">parseCheckRecoveryEmailAddressCode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.CheckRecoveryEmailAddressCode.html#CheckRecoveryEmailAddressCode"><span class="hs-identifier hs-type">CheckRecoveryEmailAddressCode</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679410451"><span class="annot"><span class="annottext">parseCheckRecoveryEmailAddressCode :: Value -&gt; Parser CheckRecoveryEmailAddressCode
-</span><a href="#local-6989586621679410451"><span class="hs-identifier hs-var hs-var">parseCheckRecoveryEmailAddressCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679414842"><span class="hs-identifier hs-type">parseCheckRecoveryEmailAddressCode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.CheckRecoveryEmailAddressCode.html#CheckRecoveryEmailAddressCode"><span class="hs-identifier hs-type">CheckRecoveryEmailAddressCode</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679414842"><span class="annot"><span class="annottext">parseCheckRecoveryEmailAddressCode :: Value -&gt; Parser CheckRecoveryEmailAddressCode
+</span><a href="#local-6989586621679414842"><span class="hs-identifier hs-var hs-var">parseCheckRecoveryEmailAddressCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CheckRecoveryEmailAddressCode)
 -&gt; Value
 -&gt; Parser CheckRecoveryEmailAddressCode
@@ -87,19 +88,14 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CheckRecoveryEmailAddressCode
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679410449"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679410449"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679410448"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679410448"><span class="hs-identifier hs-var">code</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
--&gt; Parser String -&gt; Parser (Maybe String)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679410449"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;code&quot;</span></span><span>
-</span><span id="line-26"></span><span>    </span><span class="annot"><span class="annottext">CheckRecoveryEmailAddressCode
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679414840"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679414840"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679414839"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679414839"><span class="hs-identifier hs-var">code</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679414840"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;code&quot;</span></span><span>
+</span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">CheckRecoveryEmailAddressCode
 -&gt; Parser CheckRecoveryEmailAddressCode
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CheckRecoveryEmailAddressCode
@@ -110,4 +106,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CheckRecoveryEmailAddressCode :: Maybe String -&gt; CheckRecoveryEmailAddressCode
 </span><a href="API.Functions.CheckRecoveryEmailAddressCode.html#CheckRecoveryEmailAddressCode"><span class="hs-identifier hs-type hs-type">CheckRecoveryEmailAddressCode</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">code :: Maybe String
 </span><a href="API.Functions.CheckRecoveryEmailAddressCode.html#code"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679410448"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679414839"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

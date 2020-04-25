@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.DateRange where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON DateRange where
   where
    parseDateRange :: A.Value -> T.Parser DateRange
    parseDateRange = A.withObject "DateRange" $ \o -> do
-    end_date <- optional $ o A..: "end_date"
-    start_date <- optional $ o A..: "start_date"
+    end_date <- mconcat [ o A..:? "end_date", readMaybe <$> (o A..: "end_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    start_date <- mconcat [ o A..:? "start_date", readMaybe <$> (o A..: "start_date" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ DateRange { end_date = end_date, start_date = start_date }

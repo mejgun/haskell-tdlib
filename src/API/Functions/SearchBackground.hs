@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SearchBackground where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON SearchBackground where
   where
    parseSearchBackground :: A.Value -> T.Parser SearchBackground
    parseSearchBackground = A.withObject "SearchBackground" $ \o -> do
-    name <- optional $ o A..: "name"
+    name <- o A..:? "name"
     return $ SearchBackground { name = name }

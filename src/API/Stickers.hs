@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Stickers where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Sticker as Sticker
@@ -23,5 +24,5 @@ instance T.FromJSON Stickers where
   where
    parseStickers :: A.Value -> T.Parser Stickers
    parseStickers = A.withObject "Stickers" $ \o -> do
-    stickers <- optional $ o A..: "stickers"
+    stickers <- o A..:? "stickers"
     return $ Stickers { stickers = stickers }

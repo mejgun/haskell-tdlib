@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ProxyType where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -32,18 +33,18 @@ instance T.FromJSON ProxyType where
   where
    parseProxyTypeSocks5 :: A.Value -> T.Parser ProxyType
    parseProxyTypeSocks5 = A.withObject "ProxyTypeSocks5" $ \o -> do
-    password <- optional $ o A..: "password"
-    username <- optional $ o A..: "username"
+    password <- o A..:? "password"
+    username <- o A..:? "username"
     return $ ProxyTypeSocks5 { password = password, username = username }
 
    parseProxyTypeHttp :: A.Value -> T.Parser ProxyType
    parseProxyTypeHttp = A.withObject "ProxyTypeHttp" $ \o -> do
-    http_only <- optional $ o A..: "http_only"
-    password <- optional $ o A..: "password"
-    username <- optional $ o A..: "username"
+    http_only <- o A..:? "http_only"
+    password <- o A..:? "password"
+    username <- o A..:? "username"
     return $ ProxyTypeHttp { http_only = http_only, password = password, username = username }
 
    parseProxyTypeMtproto :: A.Value -> T.Parser ProxyType
    parseProxyTypeMtproto = A.withObject "ProxyTypeMtproto" $ \o -> do
-    secret <- optional $ o A..: "secret"
+    secret <- o A..:? "secret"
     return $ ProxyTypeMtproto { secret = secret }

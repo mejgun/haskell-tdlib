@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.TestProxy where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ProxyType as ProxyType
@@ -23,9 +24,9 @@ instance T.FromJSON TestProxy where
   where
    parseTestProxy :: A.Value -> T.Parser TestProxy
    parseTestProxy = A.withObject "TestProxy" $ \o -> do
-    timeout <- optional $ o A..: "timeout"
-    dc_id <- optional $ o A..: "dc_id"
-    _type <- optional $ o A..: "type"
-    port <- optional $ o A..: "port"
-    server <- optional $ o A..: "server"
+    timeout <- o A..:? "timeout"
+    dc_id <- mconcat [ o A..:? "dc_id", readMaybe <$> (o A..: "dc_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _type <- o A..:? "type"
+    port <- mconcat [ o A..:? "port", readMaybe <$> (o A..: "port" :: T.Parser String)] :: T.Parser (Maybe Int)
+    server <- o A..:? "server"
     return $ TestProxy { timeout = timeout, dc_id = dc_id, _type = _type, port = port, server = server }

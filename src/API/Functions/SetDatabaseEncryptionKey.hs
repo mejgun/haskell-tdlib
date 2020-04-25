@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetDatabaseEncryptionKey where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON SetDatabaseEncryptionKey where
   where
    parseSetDatabaseEncryptionKey :: A.Value -> T.Parser SetDatabaseEncryptionKey
    parseSetDatabaseEncryptionKey = A.withObject "SetDatabaseEncryptionKey" $ \o -> do
-    new_encryption_key <- optional $ o A..: "new_encryption_key"
+    new_encryption_key <- o A..:? "new_encryption_key"
     return $ SetDatabaseEncryptionKey { new_encryption_key = new_encryption_key }

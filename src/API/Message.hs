@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Message where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
@@ -27,29 +28,29 @@ instance T.FromJSON Message where
   where
    parseMessage :: A.Value -> T.Parser Message
    parseMessage = A.withObject "Message" $ \o -> do
-    reply_markup <- optional $ o A..: "reply_markup"
-    content <- optional $ o A..: "content"
-    restriction_reason <- optional $ o A..: "restriction_reason"
-    media_album_id <- optional $ o A..: "media_album_id"
-    views <- optional $ o A..: "views"
-    author_signature <- optional $ o A..: "author_signature"
-    via_bot_user_id <- optional $ o A..: "via_bot_user_id"
-    ttl_expires_in <- optional $ o A..: "ttl_expires_in"
-    ttl <- optional $ o A..: "ttl"
-    reply_to_message_id <- optional $ o A..: "reply_to_message_id"
-    forward_info <- optional $ o A..: "forward_info"
-    edit_date <- optional $ o A..: "edit_date"
-    date <- optional $ o A..: "date"
-    contains_unread_mention <- optional $ o A..: "contains_unread_mention"
-    is_channel_post <- optional $ o A..: "is_channel_post"
-    can_be_deleted_for_all_users <- optional $ o A..: "can_be_deleted_for_all_users"
-    can_be_deleted_only_for_self <- optional $ o A..: "can_be_deleted_only_for_self"
-    can_be_forwarded <- optional $ o A..: "can_be_forwarded"
-    can_be_edited <- optional $ o A..: "can_be_edited"
-    is_outgoing <- optional $ o A..: "is_outgoing"
-    scheduling_state <- optional $ o A..: "scheduling_state"
-    sending_state <- optional $ o A..: "sending_state"
-    chat_id <- optional $ o A..: "chat_id"
-    sender_user_id <- optional $ o A..: "sender_user_id"
-    _id <- optional $ o A..: "id"
+    reply_markup <- o A..:? "reply_markup"
+    content <- o A..:? "content"
+    restriction_reason <- o A..:? "restriction_reason"
+    media_album_id <- mconcat [ o A..:? "media_album_id", readMaybe <$> (o A..: "media_album_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    views <- mconcat [ o A..:? "views", readMaybe <$> (o A..: "views" :: T.Parser String)] :: T.Parser (Maybe Int)
+    author_signature <- o A..:? "author_signature"
+    via_bot_user_id <- mconcat [ o A..:? "via_bot_user_id", readMaybe <$> (o A..: "via_bot_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    ttl_expires_in <- o A..:? "ttl_expires_in"
+    ttl <- mconcat [ o A..:? "ttl", readMaybe <$> (o A..: "ttl" :: T.Parser String)] :: T.Parser (Maybe Int)
+    reply_to_message_id <- mconcat [ o A..:? "reply_to_message_id", readMaybe <$> (o A..: "reply_to_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    forward_info <- o A..:? "forward_info"
+    edit_date <- mconcat [ o A..:? "edit_date", readMaybe <$> (o A..: "edit_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    date <- mconcat [ o A..:? "date", readMaybe <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    contains_unread_mention <- o A..:? "contains_unread_mention"
+    is_channel_post <- o A..:? "is_channel_post"
+    can_be_deleted_for_all_users <- o A..:? "can_be_deleted_for_all_users"
+    can_be_deleted_only_for_self <- o A..:? "can_be_deleted_only_for_self"
+    can_be_forwarded <- o A..:? "can_be_forwarded"
+    can_be_edited <- o A..:? "can_be_edited"
+    is_outgoing <- o A..:? "is_outgoing"
+    scheduling_state <- o A..:? "scheduling_state"
+    sending_state <- o A..:? "sending_state"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    sender_user_id <- mconcat [ o A..:? "sender_user_id", readMaybe <$> (o A..: "sender_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Message { reply_markup = reply_markup, content = content, restriction_reason = restriction_reason, media_album_id = media_album_id, views = views, author_signature = author_signature, via_bot_user_id = via_bot_user_id, ttl_expires_in = ttl_expires_in, ttl = ttl, reply_to_message_id = reply_to_message_id, forward_info = forward_info, edit_date = edit_date, date = date, contains_unread_mention = contains_unread_mention, is_channel_post = is_channel_post, can_be_deleted_for_all_users = can_be_deleted_for_all_users, can_be_deleted_only_for_self = can_be_deleted_only_for_self, can_be_forwarded = can_be_forwarded, can_be_edited = can_be_edited, is_outgoing = is_outgoing, scheduling_state = scheduling_state, sending_state = sending_state, chat_id = chat_id, sender_user_id = sender_user_id, _id = _id }

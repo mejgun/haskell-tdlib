@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Proxies where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Proxy as Proxy
@@ -23,5 +24,5 @@ instance T.FromJSON Proxies where
   where
    parseProxies :: A.Value -> T.Parser Proxies
    parseProxies = A.withObject "Proxies" $ \o -> do
-    proxies <- optional $ o A..: "proxies"
+    proxies <- o A..:? "proxies"
     return $ Proxies { proxies = proxies }

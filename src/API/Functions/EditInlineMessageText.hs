@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.EditInlineMessageText where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
@@ -24,7 +25,7 @@ instance T.FromJSON EditInlineMessageText where
   where
    parseEditInlineMessageText :: A.Value -> T.Parser EditInlineMessageText
    parseEditInlineMessageText = A.withObject "EditInlineMessageText" $ \o -> do
-    input_message_content <- optional $ o A..: "input_message_content"
-    reply_markup <- optional $ o A..: "reply_markup"
-    inline_message_id <- optional $ o A..: "inline_message_id"
+    input_message_content <- o A..:? "input_message_content"
+    reply_markup <- o A..:? "reply_markup"
+    inline_message_id <- o A..:? "inline_message_id"
     return $ EditInlineMessageText { input_message_content = input_message_content, reply_markup = reply_markup, inline_message_id = inline_message_id }

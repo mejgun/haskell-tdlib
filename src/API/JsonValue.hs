@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.JsonValue where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.JsonObjectMember as JsonObjectMember
@@ -52,25 +53,25 @@ instance T.FromJSON JsonValue where
 
    parseJsonValueBoolean :: A.Value -> T.Parser JsonValue
    parseJsonValueBoolean = A.withObject "JsonValueBoolean" $ \o -> do
-    __value <- optional $ o A..: "value"
+    __value <- o A..:? "value"
     return $ JsonValueBoolean { __value = __value }
 
    parseJsonValueNumber :: A.Value -> T.Parser JsonValue
    parseJsonValueNumber = A.withObject "JsonValueNumber" $ \o -> do
-    _value <- optional $ o A..: "value"
+    _value <- o A..:? "value"
     return $ JsonValueNumber { _value = _value }
 
    parseJsonValueString :: A.Value -> T.Parser JsonValue
    parseJsonValueString = A.withObject "JsonValueString" $ \o -> do
-    value <- optional $ o A..: "value"
+    value <- o A..:? "value"
     return $ JsonValueString { value = value }
 
    parseJsonValueArray :: A.Value -> T.Parser JsonValue
    parseJsonValueArray = A.withObject "JsonValueArray" $ \o -> do
-    values <- optional $ o A..: "values"
+    values <- o A..:? "values"
     return $ JsonValueArray { values = values }
 
    parseJsonValueObject :: A.Value -> T.Parser JsonValue
    parseJsonValueObject = A.withObject "JsonValueObject" $ \o -> do
-    members <- optional $ o A..: "members"
+    members <- o A..:? "members"
     return $ JsonValueObject { members = members }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Venue where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Location as Location
@@ -23,10 +24,10 @@ instance T.FromJSON Venue where
   where
    parseVenue :: A.Value -> T.Parser Venue
    parseVenue = A.withObject "Venue" $ \o -> do
-    _type <- optional $ o A..: "type"
-    _id <- optional $ o A..: "id"
-    provider <- optional $ o A..: "provider"
-    address <- optional $ o A..: "address"
-    title <- optional $ o A..: "title"
-    location <- optional $ o A..: "location"
+    _type <- o A..:? "type"
+    _id <- o A..:? "id"
+    provider <- o A..:? "provider"
+    address <- o A..:? "address"
+    title <- o A..:? "title"
+    location <- o A..:? "location"
     return $ Venue { _type = _type, _id = _id, provider = provider, address = address, title = title, location = location }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.CloseSecretChat where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON CloseSecretChat where
   where
    parseCloseSecretChat :: A.Value -> T.Parser CloseSecretChat
    parseCloseSecretChat = A.withObject "CloseSecretChat" $ \o -> do
-    secret_chat_id <- optional $ o A..: "secret_chat_id"
+    secret_chat_id <- mconcat [ o A..:? "secret_chat_id", readMaybe <$> (o A..: "secret_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ CloseSecretChat { secret_chat_id = secret_chat_id }

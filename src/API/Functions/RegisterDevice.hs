@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.RegisterDevice where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.DeviceToken as DeviceToken
@@ -23,6 +24,6 @@ instance T.FromJSON RegisterDevice where
   where
    parseRegisterDevice :: A.Value -> T.Parser RegisterDevice
    parseRegisterDevice = A.withObject "RegisterDevice" $ \o -> do
-    other_user_ids <- optional $ o A..: "other_user_ids"
-    device_token <- optional $ o A..: "device_token"
+    other_user_ids <- o A..:? "other_user_ids"
+    device_token <- o A..:? "device_token"
     return $ RegisterDevice { other_user_ids = other_user_ids, device_token = device_token }

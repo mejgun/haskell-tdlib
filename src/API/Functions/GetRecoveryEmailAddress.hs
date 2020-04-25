@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetRecoveryEmailAddress where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON GetRecoveryEmailAddress where
   where
    parseGetRecoveryEmailAddress :: A.Value -> T.Parser GetRecoveryEmailAddress
    parseGetRecoveryEmailAddress = A.withObject "GetRecoveryEmailAddress" $ \o -> do
-    password <- optional $ o A..: "password"
+    password <- o A..:? "password"
     return $ GetRecoveryEmailAddress { password = password }

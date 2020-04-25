@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatMembers where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatMember as ChatMember
@@ -23,6 +24,6 @@ instance T.FromJSON ChatMembers where
   where
    parseChatMembers :: A.Value -> T.Parser ChatMembers
    parseChatMembers = A.withObject "ChatMembers" $ \o -> do
-    members <- optional $ o A..: "members"
-    total_count <- optional $ o A..: "total_count"
+    members <- o A..:? "members"
+    total_count <- mconcat [ o A..:? "total_count", readMaybe <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatMembers { members = members, total_count = total_count }

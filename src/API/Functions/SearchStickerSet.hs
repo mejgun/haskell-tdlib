@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SearchStickerSet where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON SearchStickerSet where
   where
    parseSearchStickerSet :: A.Value -> T.Parser SearchStickerSet
    parseSearchStickerSet = A.withObject "SearchStickerSet" $ \o -> do
-    name <- optional $ o A..: "name"
+    name <- o A..:? "name"
     return $ SearchStickerSet { name = name }

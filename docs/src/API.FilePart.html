@@ -2,13 +2,14 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.FilePart</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-8"></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="FilePart"><span class="annot"><a href="API.FilePart.html#FilePart"><span class="hs-identifier hs-var">FilePart</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-10"></span><span> </span><span id="FilePart"><span class="annot"><a href="API.FilePart.html#FilePart"><span class="hs-identifier hs-var">FilePart</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="_data"><span class="annot"><span class="annottext">FilePart -&gt; Maybe String
-</span><a href="API.FilePart.html#_data"><span class="hs-identifier hs-var hs-var">_data</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679408159"><span id="local-6989586621679408161"><span id="local-6989586621679408163"><span class="annot"><span class="annottext">Int -&gt; FilePart -&gt; ShowS
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="FilePart"><span class="annot"><a href="API.FilePart.html#FilePart"><span class="hs-identifier hs-var">FilePart</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-11"></span><span> </span><span id="FilePart"><span class="annot"><a href="API.FilePart.html#FilePart"><span class="hs-identifier hs-var">FilePart</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="_data"><span class="annot"><span class="annottext">FilePart -&gt; Maybe String
+</span><a href="API.FilePart.html#_data"><span class="hs-identifier hs-var hs-var">_data</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679412513"><span id="local-6989586621679412515"><span id="local-6989586621679412517"><span class="annot"><span class="annottext">Int -&gt; FilePart -&gt; ShowS
 [FilePart] -&gt; ShowS
 FilePart -&gt; String
 (Int -&gt; FilePart -&gt; ShowS)
@@ -21,7 +22,7 @@ show :: FilePart -&gt; String
 $cshow :: FilePart -&gt; String
 showsPrec :: Int -&gt; FilePart -&gt; ShowS
 $cshowsPrec :: Int -&gt; FilePart -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679408154"><span id="local-6989586621679408156"><span class="annot"><span class="annottext">FilePart -&gt; FilePart -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679412508"><span id="local-6989586621679412510"><span class="annot"><span class="annottext">FilePart -&gt; FilePart -&gt; Bool
 (FilePart -&gt; FilePart -&gt; Bool)
 -&gt; (FilePart -&gt; FilePart -&gt; Bool) -&gt; Eq FilePart
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -30,64 +31,59 @@ $c/= :: FilePart -&gt; FilePart -&gt; Bool
 == :: FilePart -&gt; FilePart -&gt; Bool
 $c== :: FilePart -&gt; FilePart -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408146"><span id="local-6989586621679408148"><span id="local-6989586621679408150"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.FilePart.html#FilePart"><span class="hs-identifier hs-type">FilePart</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679408144"><span class="annot"><span class="annottext">toJSON :: FilePart -&gt; Value
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412500"><span id="local-6989586621679412502"><span id="local-6989586621679412504"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.FilePart.html#FilePart"><span class="hs-identifier hs-type">FilePart</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679412498"><span class="annot"><span class="annottext">toJSON :: FilePart -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FilePart.html#FilePart"><span class="hs-identifier hs-type">FilePart</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_data :: FilePart -&gt; Maybe String
-</span><a href="API.FilePart.html#_data"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679408142"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679408142"><span class="hs-identifier hs-var">_data</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.FilePart.html#_data"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412496"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412496"><span class="hs-identifier hs-var">_data</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;filePart&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;data&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679408142"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408136"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.FilePart.html#FilePart"><span class="hs-identifier hs-type">FilePart</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679408134"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser FilePart
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679408132"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679408132"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679408130"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679408130"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679408129"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679408129"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679408130"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679412496"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-16"></span><span>
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412490"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.FilePart.html#FilePart"><span class="hs-identifier hs-type">FilePart</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679412488"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser FilePart
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679412486"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679412486"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679412484"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679412484"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679412483"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679412483"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412484"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679408129"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;filePart&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FilePart
-</span><a href="#local-6989586621679408127"><span class="hs-identifier hs-var">parseFilePart</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408132"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser FilePart
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679412483"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;filePart&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FilePart
+</span><a href="#local-6989586621679412481"><span class="hs-identifier hs-var">parseFilePart</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412486"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser FilePart
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679408127"><span class="hs-identifier hs-type">parseFilePart</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FilePart.html#FilePart"><span class="hs-identifier hs-type">FilePart</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679408127"><span class="annot"><span class="annottext">parseFilePart :: Value -&gt; Parser FilePart
-</span><a href="#local-6989586621679408127"><span class="hs-identifier hs-var hs-var">parseFilePart</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FilePart) -&gt; Value -&gt; Parser FilePart
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679412481"><span class="hs-identifier hs-type">parseFilePart</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FilePart.html#FilePart"><span class="hs-identifier hs-type">FilePart</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679412481"><span class="annot"><span class="annottext">parseFilePart :: Value -&gt; Parser FilePart
+</span><a href="#local-6989586621679412481"><span class="hs-identifier hs-var hs-var">parseFilePart</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FilePart) -&gt; Value -&gt; Parser FilePart
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;FilePart&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser FilePart) -&gt; Value -&gt; Parser FilePart)
 -&gt; (Object -&gt; Parser FilePart) -&gt; Value -&gt; Parser FilePart
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408125"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408125"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679408124"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679408124"><span class="hs-identifier hs-var">_data</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
--&gt; Parser String -&gt; Parser (Maybe String)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679408125"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;data&quot;</span></span><span>
-</span><span id="line-26"></span><span>    </span><span class="annot"><span class="annottext">FilePart -&gt; Parser FilePart
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412479"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412479"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679412478"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412478"><span class="hs-identifier hs-var">_data</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412479"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;data&quot;</span></span><span>
+</span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">FilePart -&gt; Parser FilePart
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(FilePart -&gt; Parser FilePart) -&gt; FilePart -&gt; Parser FilePart
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FilePart :: Maybe String -&gt; FilePart
 </span><a href="API.FilePart.html#FilePart"><span class="hs-identifier hs-type hs-type">FilePart</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_data :: Maybe String
 </span><a href="API.FilePart.html#_data"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679408124"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679412478"><span class="hs-identifier hs-var">_data</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetRecentlyVisitedTMeUrls where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON GetRecentlyVisitedTMeUrls where
   where
    parseGetRecentlyVisitedTMeUrls :: A.Value -> T.Parser GetRecentlyVisitedTMeUrls
    parseGetRecentlyVisitedTMeUrls = A.withObject "GetRecentlyVisitedTMeUrls" $ \o -> do
-    referrer <- optional $ o A..: "referrer"
+    referrer <- o A..:? "referrer"
     return $ GetRecentlyVisitedTMeUrls { referrer = referrer }

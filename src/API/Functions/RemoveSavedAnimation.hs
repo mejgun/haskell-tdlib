@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.RemoveSavedAnimation where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
@@ -23,5 +24,5 @@ instance T.FromJSON RemoveSavedAnimation where
   where
    parseRemoveSavedAnimation :: A.Value -> T.Parser RemoveSavedAnimation
    parseRemoveSavedAnimation = A.withObject "RemoveSavedAnimation" $ \o -> do
-    animation <- optional $ o A..: "animation"
+    animation <- o A..:? "animation"
     return $ RemoveSavedAnimation { animation = animation }

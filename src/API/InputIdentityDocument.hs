@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.InputIdentityDocument where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
@@ -24,10 +25,10 @@ instance T.FromJSON InputIdentityDocument where
   where
    parseInputIdentityDocument :: A.Value -> T.Parser InputIdentityDocument
    parseInputIdentityDocument = A.withObject "InputIdentityDocument" $ \o -> do
-    translation <- optional $ o A..: "translation"
-    selfie <- optional $ o A..: "selfie"
-    reverse_side <- optional $ o A..: "reverse_side"
-    front_side <- optional $ o A..: "front_side"
-    expiry_date <- optional $ o A..: "expiry_date"
-    number <- optional $ o A..: "number"
+    translation <- o A..:? "translation"
+    selfie <- o A..:? "selfie"
+    reverse_side <- o A..:? "reverse_side"
+    front_side <- o A..:? "front_side"
+    expiry_date <- o A..:? "expiry_date"
+    number <- o A..:? "number"
     return $ InputIdentityDocument { translation = translation, selfie = selfie, reverse_side = reverse_side, front_side = front_side, expiry_date = expiry_date, number = number }

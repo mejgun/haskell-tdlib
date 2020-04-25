@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.EditMessageReplyMarkup where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
@@ -23,7 +24,7 @@ instance T.FromJSON EditMessageReplyMarkup where
   where
    parseEditMessageReplyMarkup :: A.Value -> T.Parser EditMessageReplyMarkup
    parseEditMessageReplyMarkup = A.withObject "EditMessageReplyMarkup" $ \o -> do
-    reply_markup <- optional $ o A..: "reply_markup"
-    message_id <- optional $ o A..: "message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    reply_markup <- o A..:? "reply_markup"
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ EditMessageReplyMarkup { reply_markup = reply_markup, message_id = message_id, chat_id = chat_id }

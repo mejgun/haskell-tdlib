@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.CallbackQueryAnswer where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,7 +23,7 @@ instance T.FromJSON CallbackQueryAnswer where
   where
    parseCallbackQueryAnswer :: A.Value -> T.Parser CallbackQueryAnswer
    parseCallbackQueryAnswer = A.withObject "CallbackQueryAnswer" $ \o -> do
-    url <- optional $ o A..: "url"
-    show_alert <- optional $ o A..: "show_alert"
-    text <- optional $ o A..: "text"
+    url <- o A..:? "url"
+    show_alert <- o A..:? "show_alert"
+    text <- o A..:? "text"
     return $ CallbackQueryAnswer { url = url, show_alert = show_alert, text = text }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetCreatedPublicChats where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PublicChatType as PublicChatType
@@ -23,5 +24,5 @@ instance T.FromJSON GetCreatedPublicChats where
   where
    parseGetCreatedPublicChats :: A.Value -> T.Parser GetCreatedPublicChats
    parseGetCreatedPublicChats = A.withObject "GetCreatedPublicChats" $ \o -> do
-    _type <- optional $ o A..: "type"
+    _type <- o A..:? "type"
     return $ GetCreatedPublicChats { _type = _type }

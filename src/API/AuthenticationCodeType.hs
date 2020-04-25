@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.AuthenticationCodeType where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -37,20 +38,20 @@ instance T.FromJSON AuthenticationCodeType where
   where
    parseAuthenticationCodeTypeTelegramMessage :: A.Value -> T.Parser AuthenticationCodeType
    parseAuthenticationCodeTypeTelegramMessage = A.withObject "AuthenticationCodeTypeTelegramMessage" $ \o -> do
-    _length <- optional $ o A..: "length"
+    _length <- mconcat [ o A..:? "_length", readMaybe <$> (o A..: "_length" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ AuthenticationCodeTypeTelegramMessage { _length = _length }
 
    parseAuthenticationCodeTypeSms :: A.Value -> T.Parser AuthenticationCodeType
    parseAuthenticationCodeTypeSms = A.withObject "AuthenticationCodeTypeSms" $ \o -> do
-    _length <- optional $ o A..: "length"
+    _length <- mconcat [ o A..:? "_length", readMaybe <$> (o A..: "_length" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ AuthenticationCodeTypeSms { _length = _length }
 
    parseAuthenticationCodeTypeCall :: A.Value -> T.Parser AuthenticationCodeType
    parseAuthenticationCodeTypeCall = A.withObject "AuthenticationCodeTypeCall" $ \o -> do
-    _length <- optional $ o A..: "length"
+    _length <- mconcat [ o A..:? "_length", readMaybe <$> (o A..: "_length" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ AuthenticationCodeTypeCall { _length = _length }
 
    parseAuthenticationCodeTypeFlashCall :: A.Value -> T.Parser AuthenticationCodeType
    parseAuthenticationCodeTypeFlashCall = A.withObject "AuthenticationCodeTypeFlashCall" $ \o -> do
-    pattern <- optional $ o A..: "pattern"
+    pattern <- o A..:? "pattern"
     return $ AuthenticationCodeTypeFlashCall { pattern = pattern }

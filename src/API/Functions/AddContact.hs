@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.AddContact where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Contact as Contact
@@ -23,6 +24,6 @@ instance T.FromJSON AddContact where
   where
    parseAddContact :: A.Value -> T.Parser AddContact
    parseAddContact = A.withObject "AddContact" $ \o -> do
-    share_phone_number <- optional $ o A..: "share_phone_number"
-    contact <- optional $ o A..: "contact"
+    share_phone_number <- o A..:? "share_phone_number"
+    contact <- o A..:? "contact"
     return $ AddContact { share_phone_number = share_phone_number, contact = contact }

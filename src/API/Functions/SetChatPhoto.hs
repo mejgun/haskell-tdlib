@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetChatPhoto where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
@@ -23,6 +24,6 @@ instance T.FromJSON SetChatPhoto where
   where
    parseSetChatPhoto :: A.Value -> T.Parser SetChatPhoto
    parseSetChatPhoto = A.withObject "SetChatPhoto" $ \o -> do
-    photo <- optional $ o A..: "photo"
-    chat_id <- optional $ o A..: "chat_id"
+    photo <- o A..:? "photo"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SetChatPhoto { photo = photo, chat_id = chat_id }

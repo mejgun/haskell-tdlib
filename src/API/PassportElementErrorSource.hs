@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PassportElementErrorSource where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -66,7 +67,7 @@ instance T.FromJSON PassportElementErrorSource where
 
    parsePassportElementErrorSourceDataField :: A.Value -> T.Parser PassportElementErrorSource
    parsePassportElementErrorSourceDataField = A.withObject "PassportElementErrorSourceDataField" $ \o -> do
-    field_name <- optional $ o A..: "field_name"
+    field_name <- o A..:? "field_name"
     return $ PassportElementErrorSourceDataField { field_name = field_name }
 
    parsePassportElementErrorSourceFrontSide :: A.Value -> T.Parser PassportElementErrorSource
@@ -83,7 +84,7 @@ instance T.FromJSON PassportElementErrorSource where
 
    parsePassportElementErrorSourceTranslationFile :: A.Value -> T.Parser PassportElementErrorSource
    parsePassportElementErrorSourceTranslationFile = A.withObject "PassportElementErrorSourceTranslationFile" $ \o -> do
-    file_index <- optional $ o A..: "file_index"
+    file_index <- mconcat [ o A..:? "file_index", readMaybe <$> (o A..: "file_index" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ PassportElementErrorSourceTranslationFile { file_index = file_index }
 
    parsePassportElementErrorSourceTranslationFiles :: A.Value -> T.Parser PassportElementErrorSource
@@ -92,7 +93,7 @@ instance T.FromJSON PassportElementErrorSource where
 
    parsePassportElementErrorSourceFile :: A.Value -> T.Parser PassportElementErrorSource
    parsePassportElementErrorSourceFile = A.withObject "PassportElementErrorSourceFile" $ \o -> do
-    file_index <- optional $ o A..: "file_index"
+    file_index <- mconcat [ o A..:? "file_index", readMaybe <$> (o A..: "file_index" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ PassportElementErrorSourceFile { file_index = file_index }
 
    parsePassportElementErrorSourceFiles :: A.Value -> T.Parser PassportElementErrorSource

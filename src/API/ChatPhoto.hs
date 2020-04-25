@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatPhoto where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
@@ -23,6 +24,6 @@ instance T.FromJSON ChatPhoto where
   where
    parseChatPhoto :: A.Value -> T.Parser ChatPhoto
    parseChatPhoto = A.withObject "ChatPhoto" $ \o -> do
-    big <- optional $ o A..: "big"
-    small <- optional $ o A..: "small"
+    big <- o A..:? "big"
+    small <- o A..:? "small"
     return $ ChatPhoto { big = big, small = small }

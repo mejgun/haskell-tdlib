@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Emojis where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON Emojis where
   where
    parseEmojis :: A.Value -> T.Parser Emojis
    parseEmojis = A.withObject "Emojis" $ \o -> do
-    emojis <- optional $ o A..: "emojis"
+    emojis <- o A..:? "emojis"
     return $ Emojis { emojis = emojis }

@@ -2,12 +2,13 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.ChatNotificationSettings</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-8"></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="ChatNotificationSettings"><span class="annot"><a href="API.ChatNotificationSettings.html#ChatNotificationSettings"><span class="hs-identifier hs-var">ChatNotificationSettings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-10"></span><span> </span><span id="ChatNotificationSettings"><span class="annot"><a href="API.ChatNotificationSettings.html#ChatNotificationSettings"><span class="hs-identifier hs-var">ChatNotificationSettings</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="disable_mention_notifications"><span class="annot"><span class="annottext">ChatNotificationSettings -&gt; Maybe Bool
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="ChatNotificationSettings"><span class="annot"><a href="API.ChatNotificationSettings.html#ChatNotificationSettings"><span class="hs-identifier hs-var">ChatNotificationSettings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-11"></span><span> </span><span id="ChatNotificationSettings"><span class="annot"><a href="API.ChatNotificationSettings.html#ChatNotificationSettings"><span class="hs-identifier hs-var">ChatNotificationSettings</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="disable_mention_notifications"><span class="annot"><span class="annottext">ChatNotificationSettings -&gt; Maybe Bool
 </span><a href="API.ChatNotificationSettings.html#disable_mention_notifications"><span class="hs-identifier hs-var hs-var">disable_mention_notifications</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="use_default_disable_mention_notifications"><span class="annot"><span class="annottext">ChatNotificationSettings -&gt; Maybe Bool
 </span><a href="API.ChatNotificationSettings.html#use_default_disable_mention_notifications"><span class="hs-identifier hs-var hs-var">use_default_disable_mention_notifications</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="disable_pinned_message_notifications"><span class="annot"><span class="annottext">ChatNotificationSettings -&gt; Maybe Bool
 </span><a href="API.ChatNotificationSettings.html#disable_pinned_message_notifications"><span class="hs-identifier hs-var hs-var">disable_pinned_message_notifications</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="use_default_disable_pinned_message_notifications"><span class="annot"><span class="annottext">ChatNotificationSettings -&gt; Maybe Bool
@@ -17,7 +18,7 @@
 </span><a href="API.ChatNotificationSettings.html#sound"><span class="hs-identifier hs-var hs-var">sound</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="use_default_sound"><span class="annot"><span class="annottext">ChatNotificationSettings -&gt; Maybe Bool
 </span><a href="API.ChatNotificationSettings.html#use_default_sound"><span class="hs-identifier hs-var hs-var">use_default_sound</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="mute_for"><span class="annot"><span class="annottext">ChatNotificationSettings -&gt; Maybe Int
 </span><a href="API.ChatNotificationSettings.html#mute_for"><span class="hs-identifier hs-var hs-var">mute_for</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="use_default_mute_for"><span class="annot"><span class="annottext">ChatNotificationSettings -&gt; Maybe Bool
-</span><a href="API.ChatNotificationSettings.html#use_default_mute_for"><span class="hs-identifier hs-var hs-var">use_default_mute_for</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679405672"><span id="local-6989586621679405674"><span id="local-6989586621679405676"><span class="annot"><span class="annottext">Int -&gt; ChatNotificationSettings -&gt; ShowS
+</span><a href="API.ChatNotificationSettings.html#use_default_mute_for"><span class="hs-identifier hs-var hs-var">use_default_mute_for</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679409983"><span id="local-6989586621679409985"><span id="local-6989586621679409987"><span class="annot"><span class="annottext">Int -&gt; ChatNotificationSettings -&gt; ShowS
 [ChatNotificationSettings] -&gt; ShowS
 ChatNotificationSettings -&gt; String
 (Int -&gt; ChatNotificationSettings -&gt; ShowS)
@@ -32,7 +33,7 @@ show :: ChatNotificationSettings -&gt; String
 $cshow :: ChatNotificationSettings -&gt; String
 showsPrec :: Int -&gt; ChatNotificationSettings -&gt; ShowS
 $cshowsPrec :: Int -&gt; ChatNotificationSettings -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679405667"><span id="local-6989586621679405669"><span class="annot"><span class="annottext">ChatNotificationSettings -&gt; ChatNotificationSettings -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679409978"><span id="local-6989586621679409980"><span class="annot"><span class="annottext">ChatNotificationSettings -&gt; ChatNotificationSettings -&gt; Bool
 (ChatNotificationSettings -&gt; ChatNotificationSettings -&gt; Bool)
 -&gt; (ChatNotificationSettings -&gt; ChatNotificationSettings -&gt; Bool)
 -&gt; Eq ChatNotificationSettings
@@ -42,88 +43,88 @@ $c/= :: ChatNotificationSettings -&gt; ChatNotificationSettings -&gt; Bool
 == :: ChatNotificationSettings -&gt; ChatNotificationSettings -&gt; Bool
 $c== :: ChatNotificationSettings -&gt; ChatNotificationSettings -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405659"><span id="local-6989586621679405661"><span id="local-6989586621679405663"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ChatNotificationSettings.html#ChatNotificationSettings"><span class="hs-identifier hs-type">ChatNotificationSettings</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679405657"><span class="annot"><span class="annottext">toJSON :: ChatNotificationSettings -&gt; Value
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409970"><span id="local-6989586621679409972"><span id="local-6989586621679409974"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ChatNotificationSettings.html#ChatNotificationSettings"><span class="hs-identifier hs-type">ChatNotificationSettings</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679409968"><span class="annot"><span class="annottext">toJSON :: ChatNotificationSettings -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.ChatNotificationSettings.html#ChatNotificationSettings"><span class="hs-identifier hs-type">ChatNotificationSettings</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">disable_mention_notifications :: ChatNotificationSettings -&gt; Maybe Bool
-</span><a href="API.ChatNotificationSettings.html#disable_mention_notifications"><span class="hs-identifier hs-var">disable_mention_notifications</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405655"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405655"><span class="hs-identifier hs-var">disable_mention_notifications</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_disable_mention_notifications :: ChatNotificationSettings -&gt; Maybe Bool
-</span><a href="API.ChatNotificationSettings.html#use_default_disable_mention_notifications"><span class="hs-identifier hs-var">use_default_disable_mention_notifications</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405654"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405654"><span class="hs-identifier hs-var">use_default_disable_mention_notifications</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">disable_pinned_message_notifications :: ChatNotificationSettings -&gt; Maybe Bool
-</span><a href="API.ChatNotificationSettings.html#disable_pinned_message_notifications"><span class="hs-identifier hs-var">disable_pinned_message_notifications</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405653"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405653"><span class="hs-identifier hs-var">disable_pinned_message_notifications</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_disable_pinned_message_notifications :: ChatNotificationSettings -&gt; Maybe Bool
-</span><a href="API.ChatNotificationSettings.html#use_default_disable_pinned_message_notifications"><span class="hs-identifier hs-var">use_default_disable_pinned_message_notifications</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405652"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405652"><span class="hs-identifier hs-var">use_default_disable_pinned_message_notifications</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">show_preview :: ChatNotificationSettings -&gt; Maybe Bool
-</span><a href="API.ChatNotificationSettings.html#show_preview"><span class="hs-identifier hs-var">show_preview</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405651"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405651"><span class="hs-identifier hs-var">show_preview</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_show_preview :: ChatNotificationSettings -&gt; Maybe Bool
-</span><a href="API.ChatNotificationSettings.html#use_default_show_preview"><span class="hs-identifier hs-var">use_default_show_preview</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405650"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405650"><span class="hs-identifier hs-var">use_default_show_preview</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sound :: ChatNotificationSettings -&gt; Maybe String
-</span><a href="API.ChatNotificationSettings.html#sound"><span class="hs-identifier hs-var">sound</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405649"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679405649"><span class="hs-identifier hs-var">sound</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_sound :: ChatNotificationSettings -&gt; Maybe Bool
-</span><a href="API.ChatNotificationSettings.html#use_default_sound"><span class="hs-identifier hs-var">use_default_sound</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405648"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405648"><span class="hs-identifier hs-var">use_default_sound</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">mute_for :: ChatNotificationSettings -&gt; Maybe Int
-</span><a href="API.ChatNotificationSettings.html#mute_for"><span class="hs-identifier hs-var">mute_for</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405647"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679405647"><span class="hs-identifier hs-var">mute_for</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_mute_for :: ChatNotificationSettings -&gt; Maybe Bool
-</span><a href="API.ChatNotificationSettings.html#use_default_mute_for"><span class="hs-identifier hs-var">use_default_mute_for</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679405646"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405646"><span class="hs-identifier hs-var">use_default_mute_for</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.ChatNotificationSettings.html#disable_mention_notifications"><span class="hs-identifier hs-var">disable_mention_notifications</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409966"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409966"><span class="hs-identifier hs-var">disable_mention_notifications</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_disable_mention_notifications :: ChatNotificationSettings -&gt; Maybe Bool
+</span><a href="API.ChatNotificationSettings.html#use_default_disable_mention_notifications"><span class="hs-identifier hs-var">use_default_disable_mention_notifications</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409965"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409965"><span class="hs-identifier hs-var">use_default_disable_mention_notifications</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">disable_pinned_message_notifications :: ChatNotificationSettings -&gt; Maybe Bool
+</span><a href="API.ChatNotificationSettings.html#disable_pinned_message_notifications"><span class="hs-identifier hs-var">disable_pinned_message_notifications</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409964"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409964"><span class="hs-identifier hs-var">disable_pinned_message_notifications</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_disable_pinned_message_notifications :: ChatNotificationSettings -&gt; Maybe Bool
+</span><a href="API.ChatNotificationSettings.html#use_default_disable_pinned_message_notifications"><span class="hs-identifier hs-var">use_default_disable_pinned_message_notifications</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409963"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409963"><span class="hs-identifier hs-var">use_default_disable_pinned_message_notifications</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">show_preview :: ChatNotificationSettings -&gt; Maybe Bool
+</span><a href="API.ChatNotificationSettings.html#show_preview"><span class="hs-identifier hs-var">show_preview</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409962"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409962"><span class="hs-identifier hs-var">show_preview</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_show_preview :: ChatNotificationSettings -&gt; Maybe Bool
+</span><a href="API.ChatNotificationSettings.html#use_default_show_preview"><span class="hs-identifier hs-var">use_default_show_preview</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409961"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409961"><span class="hs-identifier hs-var">use_default_show_preview</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sound :: ChatNotificationSettings -&gt; Maybe String
+</span><a href="API.ChatNotificationSettings.html#sound"><span class="hs-identifier hs-var">sound</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409960"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679409960"><span class="hs-identifier hs-var">sound</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_sound :: ChatNotificationSettings -&gt; Maybe Bool
+</span><a href="API.ChatNotificationSettings.html#use_default_sound"><span class="hs-identifier hs-var">use_default_sound</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409959"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409959"><span class="hs-identifier hs-var">use_default_sound</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">mute_for :: ChatNotificationSettings -&gt; Maybe Int
+</span><a href="API.ChatNotificationSettings.html#mute_for"><span class="hs-identifier hs-var">mute_for</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409958"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679409958"><span class="hs-identifier hs-var">mute_for</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_mute_for :: ChatNotificationSettings -&gt; Maybe Bool
+</span><a href="API.ChatNotificationSettings.html#use_default_mute_for"><span class="hs-identifier hs-var">use_default_mute_for</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409957"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409957"><span class="hs-identifier hs-var">use_default_mute_for</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chatNotificationSettings&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;disable_mention_notifications&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405655"><span class="hs-identifier hs-var">disable_mention_notifications</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_disable_mention_notifications&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679409966"><span class="hs-identifier hs-var">disable_mention_notifications</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_disable_mention_notifications&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405654"><span class="hs-identifier hs-var">use_default_disable_mention_notifications</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;disable_pinned_message_notifications&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679409965"><span class="hs-identifier hs-var">use_default_disable_mention_notifications</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;disable_pinned_message_notifications&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405653"><span class="hs-identifier hs-var">disable_pinned_message_notifications</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_disable_pinned_message_notifications&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679409964"><span class="hs-identifier hs-var">disable_pinned_message_notifications</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_disable_pinned_message_notifications&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405652"><span class="hs-identifier hs-var">use_default_disable_pinned_message_notifications</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;show_preview&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679409963"><span class="hs-identifier hs-var">use_default_disable_pinned_message_notifications</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;show_preview&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405651"><span class="hs-identifier hs-var">show_preview</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_show_preview&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679409962"><span class="hs-identifier hs-var">show_preview</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_show_preview&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405650"><span class="hs-identifier hs-var">use_default_show_preview</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;sound&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679409961"><span class="hs-identifier hs-var">use_default_show_preview</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;sound&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679405649"><span class="hs-identifier hs-var">sound</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_sound&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679409960"><span class="hs-identifier hs-var">sound</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_sound&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405648"><span class="hs-identifier hs-var">use_default_sound</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;mute_for&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679409959"><span class="hs-identifier hs-var">use_default_sound</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;mute_for&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679405647"><span class="hs-identifier hs-var">mute_for</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_mute_for&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679409958"><span class="hs-identifier hs-var">mute_for</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_mute_for&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405646"><span class="hs-identifier hs-var">use_default_mute_for</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679405640"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ChatNotificationSettings.html#ChatNotificationSettings"><span class="hs-identifier hs-type">ChatNotificationSettings</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679405638"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatNotificationSettings
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679405636"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679405636"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679405634"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679405634"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679405633"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679405633"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679405634"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679409957"><span class="hs-identifier hs-var">use_default_mute_for</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-16"></span><span>
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409951"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ChatNotificationSettings.html#ChatNotificationSettings"><span class="hs-identifier hs-type">ChatNotificationSettings</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679409949"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatNotificationSettings
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679409947"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679409947"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679409945"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679409945"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679409944"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679409944"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679409945"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679405633"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;chatNotificationSettings&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatNotificationSettings
-</span><a href="#local-6989586621679405631"><span class="hs-identifier hs-var">parseChatNotificationSettings</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679405636"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ChatNotificationSettings
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679409944"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;chatNotificationSettings&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatNotificationSettings
+</span><a href="#local-6989586621679409942"><span class="hs-identifier hs-var">parseChatNotificationSettings</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679409947"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ChatNotificationSettings
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679405631"><span class="hs-identifier hs-type">parseChatNotificationSettings</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatNotificationSettings.html#ChatNotificationSettings"><span class="hs-identifier hs-type">ChatNotificationSettings</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679405631"><span class="annot"><span class="annottext">parseChatNotificationSettings :: Value -&gt; Parser ChatNotificationSettings
-</span><a href="#local-6989586621679405631"><span class="hs-identifier hs-var hs-var">parseChatNotificationSettings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679409942"><span class="hs-identifier hs-type">parseChatNotificationSettings</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatNotificationSettings.html#ChatNotificationSettings"><span class="hs-identifier hs-type">ChatNotificationSettings</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679409942"><span class="annot"><span class="annottext">parseChatNotificationSettings :: Value -&gt; Parser ChatNotificationSettings
+</span><a href="#local-6989586621679409942"><span class="hs-identifier hs-var hs-var">parseChatNotificationSettings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatNotificationSettings)
 -&gt; Value
 -&gt; Parser ChatNotificationSettings
@@ -134,109 +135,68 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ChatNotificationSettings
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679405629"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679405629"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679405628"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405628"><span class="hs-identifier hs-var">disable_mention_notifications</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
--&gt; Parser Bool -&gt; Parser (Maybe Bool)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679405629"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679409940"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679409940"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679409939"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409939"><span class="hs-identifier hs-var">disable_mention_notifications</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679409940"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;disable_mention_notifications&quot;</span></span><span>
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679409937"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409937"><span class="hs-identifier hs-var">use_default_disable_mention_notifications</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679409940"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_disable_mention_notifications&quot;</span></span><span>
+</span><span id="line-28"></span><span>    </span><span id="local-6989586621679409936"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409936"><span class="hs-identifier hs-var">disable_pinned_message_notifications</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679409940"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;disable_pinned_message_notifications&quot;</span></span><span>
+</span><span id="line-29"></span><span>    </span><span id="local-6989586621679409935"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409935"><span class="hs-identifier hs-var">use_default_disable_pinned_message_notifications</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679409940"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_disable_pinned_message_notifications&quot;</span></span><span>
+</span><span id="line-30"></span><span>    </span><span id="local-6989586621679409934"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409934"><span class="hs-identifier hs-var">show_preview</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679409940"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;show_preview&quot;</span></span><span>
+</span><span id="line-31"></span><span>    </span><span id="local-6989586621679409933"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409933"><span class="hs-identifier hs-var">use_default_show_preview</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679409940"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_show_preview&quot;</span></span><span>
+</span><span id="line-32"></span><span>    </span><span id="local-6989586621679409932"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679409932"><span class="hs-identifier hs-var">sound</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679409940"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;sound&quot;</span></span><span>
+</span><span id="line-33"></span><span>    </span><span id="local-6989586621679409931"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409931"><span class="hs-identifier hs-var">use_default_sound</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679409940"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_sound&quot;</span></span><span>
+</span><span id="line-34"></span><span>    </span><span id="local-6989586621679409930"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679409930"><span class="hs-identifier hs-var">mute_for</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+forall a. Monoid a =&gt; [a] -&gt; a
+</span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679409940"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;mute_for&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679409940"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;disable_mention_notifications&quot;</span></span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679405627"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405627"><span class="hs-identifier hs-var">use_default_disable_mention_notifications</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
--&gt; Parser Bool -&gt; Parser (Maybe Bool)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679405629"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_disable_mention_notifications&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679405626"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405626"><span class="hs-identifier hs-var">disable_pinned_message_notifications</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
--&gt; Parser Bool -&gt; Parser (Maybe Bool)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679405629"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;disable_pinned_message_notifications&quot;</span></span><span>
-</span><span id="line-28"></span><span>    </span><span id="local-6989586621679405625"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405625"><span class="hs-identifier hs-var">use_default_disable_pinned_message_notifications</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
--&gt; Parser Bool -&gt; Parser (Maybe Bool)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679405629"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_disable_pinned_message_notifications&quot;</span></span><span>
-</span><span id="line-29"></span><span>    </span><span id="local-6989586621679405624"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405624"><span class="hs-identifier hs-var">show_preview</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
--&gt; Parser Bool -&gt; Parser (Maybe Bool)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679405629"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;show_preview&quot;</span></span><span>
-</span><span id="line-30"></span><span>    </span><span id="local-6989586621679405623"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405623"><span class="hs-identifier hs-var">use_default_show_preview</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
--&gt; Parser Bool -&gt; Parser (Maybe Bool)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679405629"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_show_preview&quot;</span></span><span>
-</span><span id="line-31"></span><span>    </span><span id="local-6989586621679405622"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679405622"><span class="hs-identifier hs-var">sound</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
--&gt; Parser String -&gt; Parser (Maybe String)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679405629"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;sound&quot;</span></span><span>
-</span><span id="line-32"></span><span>    </span><span id="local-6989586621679405621"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405621"><span class="hs-identifier hs-var">use_default_sound</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
--&gt; Parser Bool -&gt; Parser (Maybe Bool)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679405629"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_sound&quot;</span></span><span>
-</span><span id="line-33"></span><span>    </span><span id="local-6989586621679405620"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679405620"><span class="hs-identifier hs-var">mute_for</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
--&gt; Parser Int -&gt; Parser (Maybe Int)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679405629"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;mute_for&quot;</span></span><span>
-</span><span id="line-34"></span><span>    </span><span id="local-6989586621679405619"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405619"><span class="hs-identifier hs-var">use_default_mute_for</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Bool -&gt; Parser (Maybe Bool)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Bool -&gt; Parser (Maybe Bool))
--&gt; Parser Bool -&gt; Parser (Maybe Bool)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679405629"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Bool
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_mute_for&quot;</span></span><span>
-</span><span id="line-35"></span><span>    </span><span class="annot"><span class="annottext">ChatNotificationSettings -&gt; Parser ChatNotificationSettings
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;mute_for&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-35"></span><span>    </span><span id="local-6989586621679409928"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679409928"><span class="hs-identifier hs-var">use_default_mute_for</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679409940"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;use_default_mute_for&quot;</span></span><span>
+</span><span id="line-36"></span><span>    </span><span class="annot"><span class="annottext">ChatNotificationSettings -&gt; Parser ChatNotificationSettings
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ChatNotificationSettings -&gt; Parser ChatNotificationSettings)
 -&gt; ChatNotificationSettings -&gt; Parser ChatNotificationSettings
@@ -254,22 +214,22 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; ChatNotificationSettings
 </span><a href="API.ChatNotificationSettings.html#ChatNotificationSettings"><span class="hs-identifier hs-type hs-type">ChatNotificationSettings</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">disable_mention_notifications :: Maybe Bool
 </span><a href="API.ChatNotificationSettings.html#disable_mention_notifications"><span class="hs-identifier hs-var">disable_mention_notifications</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405628"><span class="hs-identifier hs-var">disable_mention_notifications</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_disable_mention_notifications :: Maybe Bool
+</span><a href="#local-6989586621679409939"><span class="hs-identifier hs-var">disable_mention_notifications</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_disable_mention_notifications :: Maybe Bool
 </span><a href="API.ChatNotificationSettings.html#use_default_disable_mention_notifications"><span class="hs-identifier hs-var">use_default_disable_mention_notifications</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405627"><span class="hs-identifier hs-var">use_default_disable_mention_notifications</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">disable_pinned_message_notifications :: Maybe Bool
+</span><a href="#local-6989586621679409937"><span class="hs-identifier hs-var">use_default_disable_mention_notifications</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">disable_pinned_message_notifications :: Maybe Bool
 </span><a href="API.ChatNotificationSettings.html#disable_pinned_message_notifications"><span class="hs-identifier hs-var">disable_pinned_message_notifications</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405626"><span class="hs-identifier hs-var">disable_pinned_message_notifications</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_disable_pinned_message_notifications :: Maybe Bool
+</span><a href="#local-6989586621679409936"><span class="hs-identifier hs-var">disable_pinned_message_notifications</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_disable_pinned_message_notifications :: Maybe Bool
 </span><a href="API.ChatNotificationSettings.html#use_default_disable_pinned_message_notifications"><span class="hs-identifier hs-var">use_default_disable_pinned_message_notifications</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405625"><span class="hs-identifier hs-var">use_default_disable_pinned_message_notifications</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">show_preview :: Maybe Bool
+</span><a href="#local-6989586621679409935"><span class="hs-identifier hs-var">use_default_disable_pinned_message_notifications</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">show_preview :: Maybe Bool
 </span><a href="API.ChatNotificationSettings.html#show_preview"><span class="hs-identifier hs-var">show_preview</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405624"><span class="hs-identifier hs-var">show_preview</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_show_preview :: Maybe Bool
+</span><a href="#local-6989586621679409934"><span class="hs-identifier hs-var">show_preview</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_show_preview :: Maybe Bool
 </span><a href="API.ChatNotificationSettings.html#use_default_show_preview"><span class="hs-identifier hs-var">use_default_show_preview</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405623"><span class="hs-identifier hs-var">use_default_show_preview</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sound :: Maybe String
+</span><a href="#local-6989586621679409933"><span class="hs-identifier hs-var">use_default_show_preview</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sound :: Maybe String
 </span><a href="API.ChatNotificationSettings.html#sound"><span class="hs-identifier hs-var">sound</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679405622"><span class="hs-identifier hs-var">sound</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_sound :: Maybe Bool
+</span><a href="#local-6989586621679409932"><span class="hs-identifier hs-var">sound</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_sound :: Maybe Bool
 </span><a href="API.ChatNotificationSettings.html#use_default_sound"><span class="hs-identifier hs-var">use_default_sound</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405621"><span class="hs-identifier hs-var">use_default_sound</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">mute_for :: Maybe Int
+</span><a href="#local-6989586621679409931"><span class="hs-identifier hs-var">use_default_sound</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">mute_for :: Maybe Int
 </span><a href="API.ChatNotificationSettings.html#mute_for"><span class="hs-identifier hs-var">mute_for</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679405620"><span class="hs-identifier hs-var">mute_for</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_mute_for :: Maybe Bool
+</span><a href="#local-6989586621679409930"><span class="hs-identifier hs-var">mute_for</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_default_mute_for :: Maybe Bool
 </span><a href="API.ChatNotificationSettings.html#use_default_mute_for"><span class="hs-identifier hs-var">use_default_mute_for</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679405619"><span class="hs-identifier hs-var">use_default_mute_for</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679409928"><span class="hs-identifier hs-var">use_default_mute_for</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

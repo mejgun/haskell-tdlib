@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.RemoveContacts where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON RemoveContacts where
   where
    parseRemoveContacts :: A.Value -> T.Parser RemoveContacts
    parseRemoveContacts = A.withObject "RemoveContacts" $ \o -> do
-    user_ids <- optional $ o A..: "user_ids"
+    user_ids <- o A..:? "user_ids"
     return $ RemoveContacts { user_ids = user_ids }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetName where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON SetName where
   where
    parseSetName :: A.Value -> T.Parser SetName
    parseSetName = A.withObject "SetName" $ \o -> do
-    last_name <- optional $ o A..: "last_name"
-    first_name <- optional $ o A..: "first_name"
+    last_name <- o A..:? "last_name"
+    first_name <- o A..:? "first_name"
     return $ SetName { last_name = last_name, first_name = first_name }

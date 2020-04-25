@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PageBlockTableCell where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PageBlockVerticalAlignment as PageBlockVerticalAlignment
@@ -25,10 +26,10 @@ instance T.FromJSON PageBlockTableCell where
   where
    parsePageBlockTableCell :: A.Value -> T.Parser PageBlockTableCell
    parsePageBlockTableCell = A.withObject "PageBlockTableCell" $ \o -> do
-    valign <- optional $ o A..: "valign"
-    align <- optional $ o A..: "align"
-    rowspan <- optional $ o A..: "rowspan"
-    colspan <- optional $ o A..: "colspan"
-    is_header <- optional $ o A..: "is_header"
-    text <- optional $ o A..: "text"
+    valign <- o A..:? "valign"
+    align <- o A..:? "align"
+    rowspan <- mconcat [ o A..:? "rowspan", readMaybe <$> (o A..: "rowspan" :: T.Parser String)] :: T.Parser (Maybe Int)
+    colspan <- mconcat [ o A..:? "colspan", readMaybe <$> (o A..: "colspan" :: T.Parser String)] :: T.Parser (Maybe Int)
+    is_header <- o A..:? "is_header"
+    text <- o A..:? "text"
     return $ PageBlockTableCell { valign = valign, align = align, rowspan = rowspan, colspan = colspan, is_header = is_header, text = text }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.TextParseMode where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -27,7 +28,7 @@ instance T.FromJSON TextParseMode where
   where
    parseTextParseModeMarkdown :: A.Value -> T.Parser TextParseMode
    parseTextParseModeMarkdown = A.withObject "TextParseModeMarkdown" $ \o -> do
-    version <- optional $ o A..: "version"
+    version <- mconcat [ o A..:? "version", readMaybe <$> (o A..: "version" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ TextParseModeMarkdown { version = version }
 
    parseTextParseModeHTML :: A.Value -> T.Parser TextParseMode

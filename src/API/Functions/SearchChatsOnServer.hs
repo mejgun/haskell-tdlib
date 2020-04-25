@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SearchChatsOnServer where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON SearchChatsOnServer where
   where
    parseSearchChatsOnServer :: A.Value -> T.Parser SearchChatsOnServer
    parseSearchChatsOnServer = A.withObject "SearchChatsOnServer" $ \o -> do
-    limit <- optional $ o A..: "limit"
-    query <- optional $ o A..: "query"
+    limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
+    query <- o A..:? "query"
     return $ SearchChatsOnServer { limit = limit, query = query }

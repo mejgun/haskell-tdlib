@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetChatClientData where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON SetChatClientData where
   where
    parseSetChatClientData :: A.Value -> T.Parser SetChatClientData
    parseSetChatClientData = A.withObject "SetChatClientData" $ \o -> do
-    client_data <- optional $ o A..: "client_data"
-    chat_id <- optional $ o A..: "chat_id"
+    client_data <- o A..:? "client_data"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SetChatClientData { client_data = client_data, chat_id = chat_id }

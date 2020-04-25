@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.NotificationType where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Message as Message
@@ -39,7 +40,7 @@ instance T.FromJSON NotificationType where
   where
    parseNotificationTypeNewMessage :: A.Value -> T.Parser NotificationType
    parseNotificationTypeNewMessage = A.withObject "NotificationTypeNewMessage" $ \o -> do
-    message <- optional $ o A..: "message"
+    message <- o A..:? "message"
     return $ NotificationTypeNewMessage { message = message }
 
    parseNotificationTypeNewSecretChat :: A.Value -> T.Parser NotificationType
@@ -48,14 +49,14 @@ instance T.FromJSON NotificationType where
 
    parseNotificationTypeNewCall :: A.Value -> T.Parser NotificationType
    parseNotificationTypeNewCall = A.withObject "NotificationTypeNewCall" $ \o -> do
-    call_id <- optional $ o A..: "call_id"
+    call_id <- mconcat [ o A..:? "call_id", readMaybe <$> (o A..: "call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ NotificationTypeNewCall { call_id = call_id }
 
    parseNotificationTypeNewPushMessage :: A.Value -> T.Parser NotificationType
    parseNotificationTypeNewPushMessage = A.withObject "NotificationTypeNewPushMessage" $ \o -> do
-    content <- optional $ o A..: "content"
-    is_outgoing <- optional $ o A..: "is_outgoing"
-    sender_name <- optional $ o A..: "sender_name"
-    sender_user_id <- optional $ o A..: "sender_user_id"
-    message_id <- optional $ o A..: "message_id"
+    content <- o A..:? "content"
+    is_outgoing <- o A..:? "is_outgoing"
+    sender_name <- o A..:? "sender_name"
+    sender_user_id <- mconcat [ o A..:? "sender_user_id", readMaybe <$> (o A..: "sender_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ NotificationTypeNewPushMessage { content = content, is_outgoing = is_outgoing, sender_name = sender_name, sender_user_id = sender_user_id, message_id = message_id }

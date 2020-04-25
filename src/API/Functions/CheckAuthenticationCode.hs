@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.CheckAuthenticationCode where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON CheckAuthenticationCode where
   where
    parseCheckAuthenticationCode :: A.Value -> T.Parser CheckAuthenticationCode
    parseCheckAuthenticationCode = A.withObject "CheckAuthenticationCode" $ \o -> do
-    code <- optional $ o A..: "code"
+    code <- o A..:? "code"
     return $ CheckAuthenticationCode { code = code }

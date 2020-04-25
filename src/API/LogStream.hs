@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.LogStream where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -36,8 +37,8 @@ instance T.FromJSON LogStream where
 
    parseLogStreamFile :: A.Value -> T.Parser LogStream
    parseLogStreamFile = A.withObject "LogStreamFile" $ \o -> do
-    max_file_size <- optional $ o A..: "max_file_size"
-    path <- optional $ o A..: "path"
+    max_file_size <- mconcat [ o A..:? "max_file_size", readMaybe <$> (o A..: "max_file_size" :: T.Parser String)] :: T.Parser (Maybe Int)
+    path <- o A..:? "path"
     return $ LogStreamFile { max_file_size = max_file_size, path = path }
 
    parseLogStreamEmpty :: A.Value -> T.Parser LogStream

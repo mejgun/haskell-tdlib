@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatStatisticsMessageInteractionCounters where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,7 +23,7 @@ instance T.FromJSON ChatStatisticsMessageInteractionCounters where
   where
    parseChatStatisticsMessageInteractionCounters :: A.Value -> T.Parser ChatStatisticsMessageInteractionCounters
    parseChatStatisticsMessageInteractionCounters = A.withObject "ChatStatisticsMessageInteractionCounters" $ \o -> do
-    forward_count <- optional $ o A..: "forward_count"
-    view_count <- optional $ o A..: "view_count"
-    message_id <- optional $ o A..: "message_id"
+    forward_count <- mconcat [ o A..:? "forward_count", readMaybe <$> (o A..: "forward_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    view_count <- mconcat [ o A..:? "view_count", readMaybe <$> (o A..: "view_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatStatisticsMessageInteractionCounters { forward_count = forward_count, view_count = view_count, message_id = message_id }

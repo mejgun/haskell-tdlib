@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.EditMessageCaption where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
@@ -24,8 +25,8 @@ instance T.FromJSON EditMessageCaption where
   where
    parseEditMessageCaption :: A.Value -> T.Parser EditMessageCaption
    parseEditMessageCaption = A.withObject "EditMessageCaption" $ \o -> do
-    caption <- optional $ o A..: "caption"
-    reply_markup <- optional $ o A..: "reply_markup"
-    message_id <- optional $ o A..: "message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    caption <- o A..:? "caption"
+    reply_markup <- o A..:? "reply_markup"
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ EditMessageCaption { caption = caption, reply_markup = reply_markup, message_id = message_id, chat_id = chat_id }

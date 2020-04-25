@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.InputMessageContent where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputThumbnail as InputThumbnail
@@ -110,100 +111,100 @@ instance T.FromJSON InputMessageContent where
   where
    parseInputMessageText :: A.Value -> T.Parser InputMessageContent
    parseInputMessageText = A.withObject "InputMessageText" $ \o -> do
-    clear_draft <- optional $ o A..: "clear_draft"
-    disable_web_page_preview <- optional $ o A..: "disable_web_page_preview"
-    text <- optional $ o A..: "text"
+    clear_draft <- o A..:? "clear_draft"
+    disable_web_page_preview <- o A..:? "disable_web_page_preview"
+    text <- o A..:? "text"
     return $ InputMessageText { clear_draft = clear_draft, disable_web_page_preview = disable_web_page_preview, text = text }
 
    parseInputMessageAnimation :: A.Value -> T.Parser InputMessageContent
    parseInputMessageAnimation = A.withObject "InputMessageAnimation" $ \o -> do
-    caption <- optional $ o A..: "caption"
-    height <- optional $ o A..: "height"
-    width <- optional $ o A..: "width"
-    duration <- optional $ o A..: "duration"
-    thumbnail <- optional $ o A..: "thumbnail"
-    animation <- optional $ o A..: "animation"
+    caption <- o A..:? "caption"
+    height <- mconcat [ o A..:? "height", readMaybe <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    width <- mconcat [ o A..:? "width", readMaybe <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    duration <- mconcat [ o A..:? "duration", readMaybe <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+    thumbnail <- o A..:? "thumbnail"
+    animation <- o A..:? "animation"
     return $ InputMessageAnimation { caption = caption, height = height, width = width, duration = duration, thumbnail = thumbnail, animation = animation }
 
    parseInputMessageAudio :: A.Value -> T.Parser InputMessageContent
    parseInputMessageAudio = A.withObject "InputMessageAudio" $ \o -> do
-    caption <- optional $ o A..: "caption"
-    performer <- optional $ o A..: "performer"
-    title <- optional $ o A..: "title"
-    duration <- optional $ o A..: "duration"
-    album_cover_thumbnail <- optional $ o A..: "album_cover_thumbnail"
-    audio <- optional $ o A..: "audio"
+    caption <- o A..:? "caption"
+    performer <- o A..:? "performer"
+    title <- o A..:? "title"
+    duration <- mconcat [ o A..:? "duration", readMaybe <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+    album_cover_thumbnail <- o A..:? "album_cover_thumbnail"
+    audio <- o A..:? "audio"
     return $ InputMessageAudio { caption = caption, performer = performer, title = title, duration = duration, album_cover_thumbnail = album_cover_thumbnail, audio = audio }
 
    parseInputMessageDocument :: A.Value -> T.Parser InputMessageContent
    parseInputMessageDocument = A.withObject "InputMessageDocument" $ \o -> do
-    caption <- optional $ o A..: "caption"
-    thumbnail <- optional $ o A..: "thumbnail"
-    document <- optional $ o A..: "document"
+    caption <- o A..:? "caption"
+    thumbnail <- o A..:? "thumbnail"
+    document <- o A..:? "document"
     return $ InputMessageDocument { caption = caption, thumbnail = thumbnail, document = document }
 
    parseInputMessagePhoto :: A.Value -> T.Parser InputMessageContent
    parseInputMessagePhoto = A.withObject "InputMessagePhoto" $ \o -> do
-    ttl <- optional $ o A..: "ttl"
-    caption <- optional $ o A..: "caption"
-    height <- optional $ o A..: "height"
-    width <- optional $ o A..: "width"
-    added_sticker_file_ids <- optional $ o A..: "added_sticker_file_ids"
-    thumbnail <- optional $ o A..: "thumbnail"
-    photo <- optional $ o A..: "photo"
+    ttl <- mconcat [ o A..:? "ttl", readMaybe <$> (o A..: "ttl" :: T.Parser String)] :: T.Parser (Maybe Int)
+    caption <- o A..:? "caption"
+    height <- mconcat [ o A..:? "height", readMaybe <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    width <- mconcat [ o A..:? "width", readMaybe <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    added_sticker_file_ids <- o A..:? "added_sticker_file_ids"
+    thumbnail <- o A..:? "thumbnail"
+    photo <- o A..:? "photo"
     return $ InputMessagePhoto { ttl = ttl, caption = caption, height = height, width = width, added_sticker_file_ids = added_sticker_file_ids, thumbnail = thumbnail, photo = photo }
 
    parseInputMessageSticker :: A.Value -> T.Parser InputMessageContent
    parseInputMessageSticker = A.withObject "InputMessageSticker" $ \o -> do
-    height <- optional $ o A..: "height"
-    width <- optional $ o A..: "width"
-    thumbnail <- optional $ o A..: "thumbnail"
-    sticker <- optional $ o A..: "sticker"
+    height <- mconcat [ o A..:? "height", readMaybe <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    width <- mconcat [ o A..:? "width", readMaybe <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    thumbnail <- o A..:? "thumbnail"
+    sticker <- o A..:? "sticker"
     return $ InputMessageSticker { height = height, width = width, thumbnail = thumbnail, sticker = sticker }
 
    parseInputMessageVideo :: A.Value -> T.Parser InputMessageContent
    parseInputMessageVideo = A.withObject "InputMessageVideo" $ \o -> do
-    ttl <- optional $ o A..: "ttl"
-    caption <- optional $ o A..: "caption"
-    supports_streaming <- optional $ o A..: "supports_streaming"
-    height <- optional $ o A..: "height"
-    width <- optional $ o A..: "width"
-    duration <- optional $ o A..: "duration"
-    added_sticker_file_ids <- optional $ o A..: "added_sticker_file_ids"
-    thumbnail <- optional $ o A..: "thumbnail"
-    video <- optional $ o A..: "video"
+    ttl <- mconcat [ o A..:? "ttl", readMaybe <$> (o A..: "ttl" :: T.Parser String)] :: T.Parser (Maybe Int)
+    caption <- o A..:? "caption"
+    supports_streaming <- o A..:? "supports_streaming"
+    height <- mconcat [ o A..:? "height", readMaybe <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    width <- mconcat [ o A..:? "width", readMaybe <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    duration <- mconcat [ o A..:? "duration", readMaybe <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+    added_sticker_file_ids <- o A..:? "added_sticker_file_ids"
+    thumbnail <- o A..:? "thumbnail"
+    video <- o A..:? "video"
     return $ InputMessageVideo { ttl = ttl, caption = caption, supports_streaming = supports_streaming, height = height, width = width, duration = duration, added_sticker_file_ids = added_sticker_file_ids, thumbnail = thumbnail, video = video }
 
    parseInputMessageVideoNote :: A.Value -> T.Parser InputMessageContent
    parseInputMessageVideoNote = A.withObject "InputMessageVideoNote" $ \o -> do
-    _length <- optional $ o A..: "length"
-    duration <- optional $ o A..: "duration"
-    thumbnail <- optional $ o A..: "thumbnail"
-    video_note <- optional $ o A..: "video_note"
+    _length <- mconcat [ o A..:? "_length", readMaybe <$> (o A..: "_length" :: T.Parser String)] :: T.Parser (Maybe Int)
+    duration <- mconcat [ o A..:? "duration", readMaybe <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+    thumbnail <- o A..:? "thumbnail"
+    video_note <- o A..:? "video_note"
     return $ InputMessageVideoNote { _length = _length, duration = duration, thumbnail = thumbnail, video_note = video_note }
 
    parseInputMessageVoiceNote :: A.Value -> T.Parser InputMessageContent
    parseInputMessageVoiceNote = A.withObject "InputMessageVoiceNote" $ \o -> do
-    caption <- optional $ o A..: "caption"
-    waveform <- optional $ o A..: "waveform"
-    duration <- optional $ o A..: "duration"
-    voice_note <- optional $ o A..: "voice_note"
+    caption <- o A..:? "caption"
+    waveform <- o A..:? "waveform"
+    duration <- mconcat [ o A..:? "duration", readMaybe <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+    voice_note <- o A..:? "voice_note"
     return $ InputMessageVoiceNote { caption = caption, waveform = waveform, duration = duration, voice_note = voice_note }
 
    parseInputMessageLocation :: A.Value -> T.Parser InputMessageContent
    parseInputMessageLocation = A.withObject "InputMessageLocation" $ \o -> do
-    live_period <- optional $ o A..: "live_period"
-    location <- optional $ o A..: "location"
+    live_period <- mconcat [ o A..:? "live_period", readMaybe <$> (o A..: "live_period" :: T.Parser String)] :: T.Parser (Maybe Int)
+    location <- o A..:? "location"
     return $ InputMessageLocation { live_period = live_period, location = location }
 
    parseInputMessageVenue :: A.Value -> T.Parser InputMessageContent
    parseInputMessageVenue = A.withObject "InputMessageVenue" $ \o -> do
-    venue <- optional $ o A..: "venue"
+    venue <- o A..:? "venue"
     return $ InputMessageVenue { venue = venue }
 
    parseInputMessageContact :: A.Value -> T.Parser InputMessageContent
    parseInputMessageContact = A.withObject "InputMessageContact" $ \o -> do
-    contact <- optional $ o A..: "contact"
+    contact <- o A..:? "contact"
     return $ InputMessageContact { contact = contact }
 
    parseInputMessageDice :: A.Value -> T.Parser InputMessageContent
@@ -212,39 +213,39 @@ instance T.FromJSON InputMessageContent where
 
    parseInputMessageGame :: A.Value -> T.Parser InputMessageContent
    parseInputMessageGame = A.withObject "InputMessageGame" $ \o -> do
-    game_short_name <- optional $ o A..: "game_short_name"
-    bot_user_id <- optional $ o A..: "bot_user_id"
+    game_short_name <- o A..:? "game_short_name"
+    bot_user_id <- mconcat [ o A..:? "bot_user_id", readMaybe <$> (o A..: "bot_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ InputMessageGame { game_short_name = game_short_name, bot_user_id = bot_user_id }
 
    parseInputMessageInvoice :: A.Value -> T.Parser InputMessageContent
    parseInputMessageInvoice = A.withObject "InputMessageInvoice" $ \o -> do
-    start_parameter <- optional $ o A..: "start_parameter"
-    provider_data <- optional $ o A..: "provider_data"
-    provider_token <- optional $ o A..: "provider_token"
-    payload <- optional $ o A..: "payload"
-    photo_height <- optional $ o A..: "photo_height"
-    photo_width <- optional $ o A..: "photo_width"
-    photo_size <- optional $ o A..: "photo_size"
-    photo_url <- optional $ o A..: "photo_url"
-    description <- optional $ o A..: "description"
-    title <- optional $ o A..: "title"
-    invoice <- optional $ o A..: "invoice"
+    start_parameter <- o A..:? "start_parameter"
+    provider_data <- o A..:? "provider_data"
+    provider_token <- o A..:? "provider_token"
+    payload <- o A..:? "payload"
+    photo_height <- mconcat [ o A..:? "photo_height", readMaybe <$> (o A..: "photo_height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    photo_width <- mconcat [ o A..:? "photo_width", readMaybe <$> (o A..: "photo_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    photo_size <- mconcat [ o A..:? "photo_size", readMaybe <$> (o A..: "photo_size" :: T.Parser String)] :: T.Parser (Maybe Int)
+    photo_url <- o A..:? "photo_url"
+    description <- o A..:? "description"
+    title <- o A..:? "title"
+    invoice <- o A..:? "invoice"
     return $ InputMessageInvoice { start_parameter = start_parameter, provider_data = provider_data, provider_token = provider_token, payload = payload, photo_height = photo_height, photo_width = photo_width, photo_size = photo_size, photo_url = photo_url, description = description, title = title, invoice = invoice }
 
    parseInputMessagePoll :: A.Value -> T.Parser InputMessageContent
    parseInputMessagePoll = A.withObject "InputMessagePoll" $ \o -> do
-    is_closed <- optional $ o A..: "is_closed"
-    _type <- optional $ o A..: "type"
-    is_anonymous <- optional $ o A..: "is_anonymous"
-    options <- optional $ o A..: "options"
-    question <- optional $ o A..: "question"
+    is_closed <- o A..:? "is_closed"
+    _type <- o A..:? "type"
+    is_anonymous <- o A..:? "is_anonymous"
+    options <- o A..:? "options"
+    question <- o A..:? "question"
     return $ InputMessagePoll { is_closed = is_closed, _type = _type, is_anonymous = is_anonymous, options = options, question = question }
 
    parseInputMessageForwarded :: A.Value -> T.Parser InputMessageContent
    parseInputMessageForwarded = A.withObject "InputMessageForwarded" $ \o -> do
-    remove_caption <- optional $ o A..: "remove_caption"
-    send_copy <- optional $ o A..: "send_copy"
-    in_game_share <- optional $ o A..: "in_game_share"
-    message_id <- optional $ o A..: "message_id"
-    from_chat_id <- optional $ o A..: "from_chat_id"
+    remove_caption <- o A..:? "remove_caption"
+    send_copy <- o A..:? "send_copy"
+    in_game_share <- o A..:? "in_game_share"
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    from_chat_id <- mconcat [ o A..:? "from_chat_id", readMaybe <$> (o A..: "from_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ InputMessageForwarded { remove_caption = remove_caption, send_copy = send_copy, in_game_share = in_game_share, message_id = message_id, from_chat_id = from_chat_id }

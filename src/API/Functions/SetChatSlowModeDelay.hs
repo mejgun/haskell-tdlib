@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetChatSlowModeDelay where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON SetChatSlowModeDelay where
   where
    parseSetChatSlowModeDelay :: A.Value -> T.Parser SetChatSlowModeDelay
    parseSetChatSlowModeDelay = A.withObject "SetChatSlowModeDelay" $ \o -> do
-    slow_mode_delay <- optional $ o A..: "slow_mode_delay"
-    chat_id <- optional $ o A..: "chat_id"
+    slow_mode_delay <- mconcat [ o A..:? "slow_mode_delay", readMaybe <$> (o A..: "slow_mode_delay" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SetChatSlowModeDelay { slow_mode_delay = slow_mode_delay, chat_id = chat_id }

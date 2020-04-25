@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetAutoDownloadSettings where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.NetworkType as NetworkType
@@ -24,6 +25,6 @@ instance T.FromJSON SetAutoDownloadSettings where
   where
    parseSetAutoDownloadSettings :: A.Value -> T.Parser SetAutoDownloadSettings
    parseSetAutoDownloadSettings = A.withObject "SetAutoDownloadSettings" $ \o -> do
-    _type <- optional $ o A..: "type"
-    settings <- optional $ o A..: "settings"
+    _type <- o A..:? "type"
+    settings <- o A..:? "settings"
     return $ SetAutoDownloadSettings { _type = _type, settings = settings }

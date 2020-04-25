@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SendPhoneNumberConfirmationCode where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PhoneNumberAuthenticationSettings as PhoneNumberAuthenticationSettings
@@ -23,7 +24,7 @@ instance T.FromJSON SendPhoneNumberConfirmationCode where
   where
    parseSendPhoneNumberConfirmationCode :: A.Value -> T.Parser SendPhoneNumberConfirmationCode
    parseSendPhoneNumberConfirmationCode = A.withObject "SendPhoneNumberConfirmationCode" $ \o -> do
-    settings <- optional $ o A..: "settings"
-    phone_number <- optional $ o A..: "phone_number"
-    hash <- optional $ o A..: "hash"
+    settings <- o A..:? "settings"
+    phone_number <- o A..:? "phone_number"
+    hash <- o A..:? "hash"
     return $ SendPhoneNumberConfirmationCode { settings = settings, phone_number = phone_number, hash = hash }

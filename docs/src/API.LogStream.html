@@ -2,16 +2,17 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.LogStream</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-8"></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="LogStream"><span class="annot"><a href="API.LogStream.html#LogStream"><span class="hs-identifier hs-var">LogStream</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-10"></span><span> </span><span id="LogStreamDefault"><span class="annot"><a href="API.LogStream.html#LogStreamDefault"><span class="hs-identifier hs-var">LogStreamDefault</span></a></span></span><span> </span><span>
-</span><span id="line-11"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="LogStreamFile"><span class="annot"><a href="API.LogStream.html#LogStreamFile"><span class="hs-identifier hs-var">LogStreamFile</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="max_file_size"><span class="annot"><span class="annottext">LogStream -&gt; Maybe Int
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="LogStream"><span class="annot"><a href="API.LogStream.html#LogStream"><span class="hs-identifier hs-var">LogStream</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-11"></span><span> </span><span id="LogStreamDefault"><span class="annot"><a href="API.LogStream.html#LogStreamDefault"><span class="hs-identifier hs-var">LogStreamDefault</span></a></span></span><span> </span><span>
+</span><span id="line-12"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="LogStreamFile"><span class="annot"><a href="API.LogStream.html#LogStreamFile"><span class="hs-identifier hs-var">LogStreamFile</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="max_file_size"><span class="annot"><span class="annottext">LogStream -&gt; Maybe Int
 </span><a href="API.LogStream.html#max_file_size"><span class="hs-identifier hs-var hs-var">max_file_size</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="path"><span class="annot"><span class="annottext">LogStream -&gt; Maybe String
 </span><a href="API.LogStream.html#path"><span class="hs-identifier hs-var hs-var">path</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
-</span><span id="line-12"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="LogStreamEmpty"><span class="annot"><a href="API.LogStream.html#LogStreamEmpty"><span class="hs-identifier hs-var">LogStreamEmpty</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679435529"><span id="local-6989586621679435531"><span id="local-6989586621679435533"><span class="annot"><span class="annottext">Int -&gt; LogStream -&gt; ShowS
+</span><span id="line-13"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="LogStreamEmpty"><span class="annot"><a href="API.LogStream.html#LogStreamEmpty"><span class="hs-identifier hs-var">LogStreamEmpty</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679440448"><span id="local-6989586621679440450"><span id="local-6989586621679440452"><span class="annot"><span class="annottext">Int -&gt; LogStream -&gt; ShowS
 [LogStream] -&gt; ShowS
 LogStream -&gt; String
 (Int -&gt; LogStream -&gt; ShowS)
@@ -26,7 +27,7 @@ show :: LogStream -&gt; String
 $cshow :: LogStream -&gt; String
 showsPrec :: Int -&gt; LogStream -&gt; ShowS
 $cshowsPrec :: Int -&gt; LogStream -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679435524"><span id="local-6989586621679435526"><span class="annot"><span class="annottext">LogStream -&gt; LogStream -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679440443"><span id="local-6989586621679440445"><span class="annot"><span class="annottext">LogStream -&gt; LogStream -&gt; Bool
 (LogStream -&gt; LogStream -&gt; Bool)
 -&gt; (LogStream -&gt; LogStream -&gt; Bool) -&gt; Eq LogStream
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -35,131 +36,130 @@ $c/= :: LogStream -&gt; LogStream -&gt; Bool
 == :: LogStream -&gt; LogStream -&gt; Bool
 $c== :: LogStream -&gt; LogStream -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-13"></span><span>
-</span><span id="line-14"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679435516"><span id="local-6989586621679435518"><span id="local-6989586621679435520"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.LogStream.html#LogStream"><span class="hs-identifier hs-type">LogStream</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-15"></span><span> </span><span id="local-6989586621679435514"><span class="annot"><span class="annottext">toJSON :: LogStream -&gt; Value
+</span><span id="line-14"></span><span>
+</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679440435"><span id="local-6989586621679440437"><span id="local-6989586621679440439"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.LogStream.html#LogStream"><span class="hs-identifier hs-type">LogStream</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-16"></span><span> </span><span id="local-6989586621679440433"><span class="annot"><span class="annottext">toJSON :: LogStream -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.LogStream.html#LogStreamDefault"><span class="hs-identifier hs-type">LogStreamDefault</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-16"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-17"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;logStreamDefault&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.LogStream.html#LogStreamFile"><span class="hs-identifier hs-type">LogStreamFile</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">max_file_size :: LogStream -&gt; Maybe Int
-</span><a href="API.LogStream.html#max_file_size"><span class="hs-identifier hs-var">max_file_size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679435509"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679435509"><span class="hs-identifier hs-var">max_file_size</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">path :: LogStream -&gt; Maybe String
-</span><a href="API.LogStream.html#path"><span class="hs-identifier hs-var">path</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679435508"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679435508"><span class="hs-identifier hs-var">path</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-19"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-18"></span><span>
+</span><span id="line-19"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.LogStream.html#LogStreamFile"><span class="hs-identifier hs-type">LogStreamFile</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">max_file_size :: LogStream -&gt; Maybe Int
+</span><a href="API.LogStream.html#max_file_size"><span class="hs-identifier hs-var">max_file_size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679440428"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679440428"><span class="hs-identifier hs-var">max_file_size</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">path :: LogStream -&gt; Maybe String
+</span><a href="API.LogStream.html#path"><span class="hs-identifier hs-var">path</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679440427"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679440427"><span class="hs-identifier hs-var">path</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-20"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;logStreamFile&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;max_file_size&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679435509"><span class="hs-identifier hs-var">max_file_size</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;path&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679440428"><span class="hs-identifier hs-var">max_file_size</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;path&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679435508"><span class="hs-identifier hs-var">path</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.LogStream.html#LogStreamEmpty"><span class="hs-identifier hs-type">LogStreamEmpty</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-22"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="#local-6989586621679440427"><span class="hs-identifier hs-var">path</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-21"></span><span>
+</span><span id="line-22"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.LogStream.html#LogStreamEmpty"><span class="hs-identifier hs-type">LogStreamEmpty</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-23"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;logStreamEmpty&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679435505"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.LogStream.html#LogStream"><span class="hs-identifier hs-type">LogStream</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span> </span><span id="local-6989586621679435503"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser LogStream
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679435501"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679435501"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679435499"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679435499"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>  </span><span id="local-6989586621679435498"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679435498"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679435499"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-24"></span><span>
+</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679440424"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.LogStream.html#LogStream"><span class="hs-identifier hs-type">LogStream</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span> </span><span id="local-6989586621679440422"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser LogStream
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679440420"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679440420"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679440418"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679440418"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-27"></span><span>  </span><span id="local-6989586621679440417"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679440417"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679440418"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-27"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679435498"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-28"></span><span>   </span><span class="hs-string">&quot;logStreamDefault&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser LogStream
-</span><a href="#local-6989586621679435496"><span class="hs-identifier hs-var">parseLogStreamDefault</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679435501"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-29"></span><span>   </span><span class="hs-string">&quot;logStreamFile&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser LogStream
-</span><a href="#local-6989586621679435495"><span class="hs-identifier hs-var">parseLogStreamFile</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679435501"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-30"></span><span>   </span><span class="hs-string">&quot;logStreamEmpty&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser LogStream
-</span><a href="#local-6989586621679435494"><span class="hs-identifier hs-var">parseLogStreamEmpty</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679435501"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-31"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser LogStream
+</span><span id="line-28"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679440417"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-29"></span><span>   </span><span class="hs-string">&quot;logStreamDefault&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser LogStream
+</span><a href="#local-6989586621679440415"><span class="hs-identifier hs-var">parseLogStreamDefault</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679440420"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-30"></span><span>   </span><span class="hs-string">&quot;logStreamFile&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser LogStream
+</span><a href="#local-6989586621679440414"><span class="hs-identifier hs-var">parseLogStreamFile</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679440420"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-31"></span><span>   </span><span class="hs-string">&quot;logStreamEmpty&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser LogStream
+</span><a href="#local-6989586621679440413"><span class="hs-identifier hs-var">parseLogStreamEmpty</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679440420"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-32"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser LogStream
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-32"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>   </span><span class="annot"><a href="#local-6989586621679435496"><span class="hs-identifier hs-type">parseLogStreamDefault</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.LogStream.html#LogStream"><span class="hs-identifier hs-type">LogStream</span></a></span><span>
-</span><span id="line-34"></span><span>   </span><span id="local-6989586621679435496"><span class="annot"><span class="annottext">parseLogStreamDefault :: Value -&gt; Parser LogStream
-</span><a href="#local-6989586621679435496"><span class="hs-identifier hs-var hs-var">parseLogStreamDefault</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser LogStream) -&gt; Value -&gt; Parser LogStream
+</span><span id="line-33"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span>   </span><span class="annot"><a href="#local-6989586621679440415"><span class="hs-identifier hs-type">parseLogStreamDefault</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.LogStream.html#LogStream"><span class="hs-identifier hs-type">LogStream</span></a></span><span>
+</span><span id="line-35"></span><span>   </span><span id="local-6989586621679440415"><span class="annot"><span class="annottext">parseLogStreamDefault :: Value -&gt; Parser LogStream
+</span><a href="#local-6989586621679440415"><span class="hs-identifier hs-var hs-var">parseLogStreamDefault</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser LogStream) -&gt; Value -&gt; Parser LogStream
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;LogStreamDefault&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser LogStream) -&gt; Value -&gt; Parser LogStream)
 -&gt; (Object -&gt; Parser LogStream) -&gt; Value -&gt; Parser LogStream
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679435492"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679435492"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-35"></span><span>    </span><span class="annot"><span class="annottext">LogStream -&gt; Parser LogStream
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679440411"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679440411"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-36"></span><span>    </span><span class="annot"><span class="annottext">LogStream -&gt; Parser LogStream
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(LogStream -&gt; Parser LogStream) -&gt; LogStream -&gt; Parser LogStream
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">LogStreamDefault :: LogStream
 </span><a href="API.LogStream.html#LogStreamDefault"><span class="hs-identifier hs-type hs-type">LogStreamDefault</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-36"></span><span>
-</span><span id="line-37"></span><span>   </span><span class="annot"><a href="#local-6989586621679435495"><span class="hs-identifier hs-type">parseLogStreamFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.LogStream.html#LogStream"><span class="hs-identifier hs-type">LogStream</span></a></span><span>
-</span><span id="line-38"></span><span>   </span><span id="local-6989586621679435495"><span class="annot"><span class="annottext">parseLogStreamFile :: Value -&gt; Parser LogStream
-</span><a href="#local-6989586621679435495"><span class="hs-identifier hs-var hs-var">parseLogStreamFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser LogStream) -&gt; Value -&gt; Parser LogStream
+</span><span id="line-37"></span><span>
+</span><span id="line-38"></span><span>   </span><span class="annot"><a href="#local-6989586621679440414"><span class="hs-identifier hs-type">parseLogStreamFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.LogStream.html#LogStream"><span class="hs-identifier hs-type">LogStream</span></a></span><span>
+</span><span id="line-39"></span><span>   </span><span id="local-6989586621679440414"><span class="annot"><span class="annottext">parseLogStreamFile :: Value -&gt; Parser LogStream
+</span><a href="#local-6989586621679440414"><span class="hs-identifier hs-var hs-var">parseLogStreamFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser LogStream) -&gt; Value -&gt; Parser LogStream
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;LogStreamFile&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser LogStream) -&gt; Value -&gt; Parser LogStream)
 -&gt; (Object -&gt; Parser LogStream) -&gt; Value -&gt; Parser LogStream
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679435490"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679435490"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-39"></span><span>    </span><span id="local-6989586621679435489"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679435489"><span class="hs-identifier hs-var">max_file_size</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser Int -&gt; Parser (Maybe Int)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser Int -&gt; Parser (Maybe Int))
--&gt; Parser Int -&gt; Parser (Maybe Int)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679435490"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser Int
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679440409"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679440409"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-40"></span><span>    </span><span id="local-6989586621679440408"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679440408"><span class="hs-identifier hs-var">max_file_size</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+forall a. Monoid a =&gt; [a] -&gt; a
+</span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679440409"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;max_file_size&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679440409"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;max_file_size&quot;</span></span><span>
-</span><span id="line-40"></span><span>    </span><span id="local-6989586621679435488"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679435488"><span class="hs-identifier hs-var">path</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
--&gt; Parser String -&gt; Parser (Maybe String)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679435490"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;path&quot;</span></span><span>
-</span><span id="line-41"></span><span>    </span><span class="annot"><span class="annottext">LogStream -&gt; Parser LogStream
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;max_file_size&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-41"></span><span>    </span><span id="local-6989586621679440405"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679440405"><span class="hs-identifier hs-var">path</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679440409"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;path&quot;</span></span><span>
+</span><span id="line-42"></span><span>    </span><span class="annot"><span class="annottext">LogStream -&gt; Parser LogStream
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(LogStream -&gt; Parser LogStream) -&gt; LogStream -&gt; Parser LogStream
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">LogStreamFile :: Maybe Int -&gt; Maybe String -&gt; LogStream
 </span><a href="API.LogStream.html#LogStreamFile"><span class="hs-identifier hs-type hs-type">LogStreamFile</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">max_file_size :: Maybe Int
 </span><a href="API.LogStream.html#max_file_size"><span class="hs-identifier hs-var">max_file_size</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679435489"><span class="hs-identifier hs-var">max_file_size</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">path :: Maybe String
+</span><a href="#local-6989586621679440408"><span class="hs-identifier hs-var">max_file_size</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">path :: Maybe String
 </span><a href="API.LogStream.html#path"><span class="hs-identifier hs-var">path</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679435488"><span class="hs-identifier hs-var">path</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-42"></span><span>
-</span><span id="line-43"></span><span>   </span><span class="annot"><a href="#local-6989586621679435494"><span class="hs-identifier hs-type">parseLogStreamEmpty</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.LogStream.html#LogStream"><span class="hs-identifier hs-type">LogStream</span></a></span><span>
-</span><span id="line-44"></span><span>   </span><span id="local-6989586621679435494"><span class="annot"><span class="annottext">parseLogStreamEmpty :: Value -&gt; Parser LogStream
-</span><a href="#local-6989586621679435494"><span class="hs-identifier hs-var hs-var">parseLogStreamEmpty</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser LogStream) -&gt; Value -&gt; Parser LogStream
+</span><a href="#local-6989586621679440405"><span class="hs-identifier hs-var">path</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-43"></span><span>
+</span><span id="line-44"></span><span>   </span><span class="annot"><a href="#local-6989586621679440413"><span class="hs-identifier hs-type">parseLogStreamEmpty</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.LogStream.html#LogStream"><span class="hs-identifier hs-type">LogStream</span></a></span><span>
+</span><span id="line-45"></span><span>   </span><span id="local-6989586621679440413"><span class="annot"><span class="annottext">parseLogStreamEmpty :: Value -&gt; Parser LogStream
+</span><a href="#local-6989586621679440413"><span class="hs-identifier hs-var hs-var">parseLogStreamEmpty</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser LogStream) -&gt; Value -&gt; Parser LogStream
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;LogStreamEmpty&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser LogStream) -&gt; Value -&gt; Parser LogStream)
 -&gt; (Object -&gt; Parser LogStream) -&gt; Value -&gt; Parser LogStream
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679435486"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679435486"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-45"></span><span>    </span><span class="annot"><span class="annottext">LogStream -&gt; Parser LogStream
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679440403"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679440403"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-46"></span><span>    </span><span class="annot"><span class="annottext">LogStream -&gt; Parser LogStream
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(LogStream -&gt; Parser LogStream) -&gt; LogStream -&gt; Parser LogStream
 forall a b. (a -&gt; b) -&gt; a -&gt; b

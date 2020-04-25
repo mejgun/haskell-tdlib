@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ConfirmQrCodeAuthentication where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON ConfirmQrCodeAuthentication where
   where
    parseConfirmQrCodeAuthentication :: A.Value -> T.Parser ConfirmQrCodeAuthentication
    parseConfirmQrCodeAuthentication = A.withObject "ConfirmQrCodeAuthentication" $ \o -> do
-    link <- optional $ o A..: "link"
+    link <- o A..:? "link"
     return $ ConfirmQrCodeAuthentication { link = link }

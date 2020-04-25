@@ -2,13 +2,14 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Functions.JoinChatByInviteLink</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-8"></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="JoinChatByInviteLink"><span class="annot"><a href="API.Functions.JoinChatByInviteLink.html#JoinChatByInviteLink"><span class="hs-identifier hs-var">JoinChatByInviteLink</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-10"></span><span> </span><span id="JoinChatByInviteLink"><span class="annot"><a href="API.Functions.JoinChatByInviteLink.html#JoinChatByInviteLink"><span class="hs-identifier hs-var">JoinChatByInviteLink</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="invite_link"><span class="annot"><span class="annottext">JoinChatByInviteLink -&gt; Maybe String
-</span><a href="API.Functions.JoinChatByInviteLink.html#invite_link"><span class="hs-identifier hs-var hs-var">invite_link</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679421183"><span id="local-6989586621679421185"><span id="local-6989586621679421187"><span class="annot"><span class="annottext">Int -&gt; JoinChatByInviteLink -&gt; ShowS
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="JoinChatByInviteLink"><span class="annot"><a href="API.Functions.JoinChatByInviteLink.html#JoinChatByInviteLink"><span class="hs-identifier hs-var">JoinChatByInviteLink</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-11"></span><span> </span><span id="JoinChatByInviteLink"><span class="annot"><a href="API.Functions.JoinChatByInviteLink.html#JoinChatByInviteLink"><span class="hs-identifier hs-var">JoinChatByInviteLink</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="invite_link"><span class="annot"><span class="annottext">JoinChatByInviteLink -&gt; Maybe String
+</span><a href="API.Functions.JoinChatByInviteLink.html#invite_link"><span class="hs-identifier hs-var hs-var">invite_link</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679425812"><span id="local-6989586621679425814"><span id="local-6989586621679425816"><span class="annot"><span class="annottext">Int -&gt; JoinChatByInviteLink -&gt; ShowS
 [JoinChatByInviteLink] -&gt; ShowS
 JoinChatByInviteLink -&gt; String
 (Int -&gt; JoinChatByInviteLink -&gt; ShowS)
@@ -23,7 +24,7 @@ show :: JoinChatByInviteLink -&gt; String
 $cshow :: JoinChatByInviteLink -&gt; String
 showsPrec :: Int -&gt; JoinChatByInviteLink -&gt; ShowS
 $cshowsPrec :: Int -&gt; JoinChatByInviteLink -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679421178"><span id="local-6989586621679421180"><span class="annot"><span class="annottext">JoinChatByInviteLink -&gt; JoinChatByInviteLink -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679425807"><span id="local-6989586621679425809"><span class="annot"><span class="annottext">JoinChatByInviteLink -&gt; JoinChatByInviteLink -&gt; Bool
 (JoinChatByInviteLink -&gt; JoinChatByInviteLink -&gt; Bool)
 -&gt; (JoinChatByInviteLink -&gt; JoinChatByInviteLink -&gt; Bool)
 -&gt; Eq JoinChatByInviteLink
@@ -33,43 +34,43 @@ $c/= :: JoinChatByInviteLink -&gt; JoinChatByInviteLink -&gt; Bool
 == :: JoinChatByInviteLink -&gt; JoinChatByInviteLink -&gt; Bool
 $c== :: JoinChatByInviteLink -&gt; JoinChatByInviteLink -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679421170"><span id="local-6989586621679421172"><span id="local-6989586621679421174"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.JoinChatByInviteLink.html#JoinChatByInviteLink"><span class="hs-identifier hs-type">JoinChatByInviteLink</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679421168"><span class="annot"><span class="annottext">toJSON :: JoinChatByInviteLink -&gt; Value
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679425799"><span id="local-6989586621679425801"><span id="local-6989586621679425803"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.JoinChatByInviteLink.html#JoinChatByInviteLink"><span class="hs-identifier hs-type">JoinChatByInviteLink</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679425797"><span class="annot"><span class="annottext">toJSON :: JoinChatByInviteLink -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.JoinChatByInviteLink.html#JoinChatByInviteLink"><span class="hs-identifier hs-type">JoinChatByInviteLink</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">invite_link :: JoinChatByInviteLink -&gt; Maybe String
-</span><a href="API.Functions.JoinChatByInviteLink.html#invite_link"><span class="hs-identifier hs-var">invite_link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679421166"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679421166"><span class="hs-identifier hs-var">invite_link</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.Functions.JoinChatByInviteLink.html#invite_link"><span class="hs-identifier hs-var">invite_link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425795"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679425795"><span class="hs-identifier hs-var">invite_link</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;joinChatByInviteLink&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;invite_link&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679421166"><span class="hs-identifier hs-var">invite_link</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679421160"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.JoinChatByInviteLink.html#JoinChatByInviteLink"><span class="hs-identifier hs-type">JoinChatByInviteLink</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679421158"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser JoinChatByInviteLink
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679421156"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679421156"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679421154"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679421154"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679421153"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679421153"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679421154"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679425795"><span class="hs-identifier hs-var">invite_link</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-16"></span><span>
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679425789"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.JoinChatByInviteLink.html#JoinChatByInviteLink"><span class="hs-identifier hs-type">JoinChatByInviteLink</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679425787"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser JoinChatByInviteLink
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679425785"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679425785"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679425783"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679425783"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679425782"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679425782"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679425783"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679421153"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;joinChatByInviteLink&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser JoinChatByInviteLink
-</span><a href="#local-6989586621679421151"><span class="hs-identifier hs-var">parseJoinChatByInviteLink</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679421156"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser JoinChatByInviteLink
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679425782"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;joinChatByInviteLink&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser JoinChatByInviteLink
+</span><a href="#local-6989586621679425780"><span class="hs-identifier hs-var">parseJoinChatByInviteLink</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679425785"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser JoinChatByInviteLink
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679421151"><span class="hs-identifier hs-type">parseJoinChatByInviteLink</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.JoinChatByInviteLink.html#JoinChatByInviteLink"><span class="hs-identifier hs-type">JoinChatByInviteLink</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679421151"><span class="annot"><span class="annottext">parseJoinChatByInviteLink :: Value -&gt; Parser JoinChatByInviteLink
-</span><a href="#local-6989586621679421151"><span class="hs-identifier hs-var hs-var">parseJoinChatByInviteLink</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679425780"><span class="hs-identifier hs-type">parseJoinChatByInviteLink</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.JoinChatByInviteLink.html#JoinChatByInviteLink"><span class="hs-identifier hs-type">JoinChatByInviteLink</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679425780"><span class="annot"><span class="annottext">parseJoinChatByInviteLink :: Value -&gt; Parser JoinChatByInviteLink
+</span><a href="#local-6989586621679425780"><span class="hs-identifier hs-var hs-var">parseJoinChatByInviteLink</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser JoinChatByInviteLink)
 -&gt; Value
 -&gt; Parser JoinChatByInviteLink
@@ -80,19 +81,14 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser JoinChatByInviteLink
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679421149"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679421149"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679421148"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679421148"><span class="hs-identifier hs-var">invite_link</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
--&gt; Parser String -&gt; Parser (Maybe String)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679421149"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;invite_link&quot;</span></span><span>
-</span><span id="line-26"></span><span>    </span><span class="annot"><span class="annottext">JoinChatByInviteLink -&gt; Parser JoinChatByInviteLink
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679425778"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679425778"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679425777"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679425777"><span class="hs-identifier hs-var">invite_link</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679425778"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;invite_link&quot;</span></span><span>
+</span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">JoinChatByInviteLink -&gt; Parser JoinChatByInviteLink
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(JoinChatByInviteLink -&gt; Parser JoinChatByInviteLink)
 -&gt; JoinChatByInviteLink -&gt; Parser JoinChatByInviteLink
@@ -100,4 +96,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">JoinChatByInviteLink :: Maybe String -&gt; JoinChatByInviteLink
 </span><a href="API.Functions.JoinChatByInviteLink.html#JoinChatByInviteLink"><span class="hs-identifier hs-type hs-type">JoinChatByInviteLink</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">invite_link :: Maybe String
 </span><a href="API.Functions.JoinChatByInviteLink.html#invite_link"><span class="hs-identifier hs-var">invite_link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679421148"><span class="hs-identifier hs-var">invite_link</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679425777"><span class="hs-identifier hs-var">invite_link</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatsNearby where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatNearby as ChatNearby
@@ -23,6 +24,6 @@ instance T.FromJSON ChatsNearby where
   where
    parseChatsNearby :: A.Value -> T.Parser ChatsNearby
    parseChatsNearby = A.withObject "ChatsNearby" $ \o -> do
-    supergroups_nearby <- optional $ o A..: "supergroups_nearby"
-    users_nearby <- optional $ o A..: "users_nearby"
+    supergroups_nearby <- o A..:? "supergroups_nearby"
+    users_nearby <- o A..:? "users_nearby"
     return $ ChatsNearby { supergroups_nearby = supergroups_nearby, users_nearby = users_nearby }

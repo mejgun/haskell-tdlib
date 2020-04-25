@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.FormattedText where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TextEntity as TextEntity
@@ -23,6 +24,6 @@ instance T.FromJSON FormattedText where
   where
    parseFormattedText :: A.Value -> T.Parser FormattedText
    parseFormattedText = A.withObject "FormattedText" $ \o -> do
-    entities <- optional $ o A..: "entities"
-    text <- optional $ o A..: "text"
+    entities <- o A..:? "entities"
+    text <- o A..:? "text"
     return $ FormattedText { entities = entities, text = text }

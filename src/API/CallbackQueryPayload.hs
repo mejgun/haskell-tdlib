@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.CallbackQueryPayload where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -27,10 +28,10 @@ instance T.FromJSON CallbackQueryPayload where
   where
    parseCallbackQueryPayloadData :: A.Value -> T.Parser CallbackQueryPayload
    parseCallbackQueryPayloadData = A.withObject "CallbackQueryPayloadData" $ \o -> do
-    _data <- optional $ o A..: "data"
+    _data <- o A..:? "data"
     return $ CallbackQueryPayloadData { _data = _data }
 
    parseCallbackQueryPayloadGame :: A.Value -> T.Parser CallbackQueryPayload
    parseCallbackQueryPayloadGame = A.withObject "CallbackQueryPayloadGame" $ \o -> do
-    game_short_name <- optional $ o A..: "game_short_name"
+    game_short_name <- o A..:? "game_short_name"
     return $ CallbackQueryPayloadGame { game_short_name = game_short_name }

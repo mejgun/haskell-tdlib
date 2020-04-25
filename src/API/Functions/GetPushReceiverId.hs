@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetPushReceiverId where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON GetPushReceiverId where
   where
    parseGetPushReceiverId :: A.Value -> T.Parser GetPushReceiverId
    parseGetPushReceiverId = A.withObject "GetPushReceiverId" $ \o -> do
-    payload <- optional $ o A..: "payload"
+    payload <- o A..:? "payload"
     return $ GetPushReceiverId { payload = payload }

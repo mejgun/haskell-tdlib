@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ReorderInstalledStickerSets where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON ReorderInstalledStickerSets where
   where
    parseReorderInstalledStickerSets :: A.Value -> T.Parser ReorderInstalledStickerSets
    parseReorderInstalledStickerSets = A.withObject "ReorderInstalledStickerSets" $ \o -> do
-    sticker_set_ids <- optional $ o A..: "sticker_set_ids"
-    is_masks <- optional $ o A..: "is_masks"
+    sticker_set_ids <- o A..:? "sticker_set_ids"
+    is_masks <- o A..:? "is_masks"
     return $ ReorderInstalledStickerSets { sticker_set_ids = sticker_set_ids, is_masks = is_masks }

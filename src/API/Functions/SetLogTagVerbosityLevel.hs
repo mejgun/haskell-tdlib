@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetLogTagVerbosityLevel where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON SetLogTagVerbosityLevel where
   where
    parseSetLogTagVerbosityLevel :: A.Value -> T.Parser SetLogTagVerbosityLevel
    parseSetLogTagVerbosityLevel = A.withObject "SetLogTagVerbosityLevel" $ \o -> do
-    new_verbosity_level <- optional $ o A..: "new_verbosity_level"
-    tag <- optional $ o A..: "tag"
+    new_verbosity_level <- mconcat [ o A..:? "new_verbosity_level", readMaybe <$> (o A..: "new_verbosity_level" :: T.Parser String)] :: T.Parser (Maybe Int)
+    tag <- o A..:? "tag"
     return $ SetLogTagVerbosityLevel { new_verbosity_level = new_verbosity_level, tag = tag }

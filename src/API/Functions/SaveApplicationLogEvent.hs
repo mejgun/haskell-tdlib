@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SaveApplicationLogEvent where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.JsonValue as JsonValue
@@ -23,7 +24,7 @@ instance T.FromJSON SaveApplicationLogEvent where
   where
    parseSaveApplicationLogEvent :: A.Value -> T.Parser SaveApplicationLogEvent
    parseSaveApplicationLogEvent = A.withObject "SaveApplicationLogEvent" $ \o -> do
-    _data <- optional $ o A..: "data"
-    chat_id <- optional $ o A..: "chat_id"
-    _type <- optional $ o A..: "type"
+    _data <- o A..:? "data"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _type <- o A..:? "type"
     return $ SaveApplicationLogEvent { _data = _data, chat_id = chat_id, _type = _type }

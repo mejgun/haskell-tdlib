@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatEvent where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatEventAction as ChatEventAction
@@ -23,8 +24,8 @@ instance T.FromJSON ChatEvent where
   where
    parseChatEvent :: A.Value -> T.Parser ChatEvent
    parseChatEvent = A.withObject "ChatEvent" $ \o -> do
-    action <- optional $ o A..: "action"
-    user_id <- optional $ o A..: "user_id"
-    date <- optional $ o A..: "date"
-    _id <- optional $ o A..: "id"
+    action <- o A..:? "action"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    date <- mconcat [ o A..:? "date", readMaybe <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatEvent { action = action, user_id = user_id, date = date, _id = _id }

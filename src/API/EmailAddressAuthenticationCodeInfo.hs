@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.EmailAddressAuthenticationCodeInfo where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON EmailAddressAuthenticationCodeInfo where
   where
    parseEmailAddressAuthenticationCodeInfo :: A.Value -> T.Parser EmailAddressAuthenticationCodeInfo
    parseEmailAddressAuthenticationCodeInfo = A.withObject "EmailAddressAuthenticationCodeInfo" $ \o -> do
-    _length <- optional $ o A..: "length"
-    email_address_pattern <- optional $ o A..: "email_address_pattern"
+    _length <- mconcat [ o A..:? "_length", readMaybe <$> (o A..: "_length" :: T.Parser String)] :: T.Parser (Maybe Int)
+    email_address_pattern <- o A..:? "email_address_pattern"
     return $ EmailAddressAuthenticationCodeInfo { _length = _length, email_address_pattern = email_address_pattern }

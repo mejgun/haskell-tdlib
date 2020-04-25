@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.MessageForwardOrigin where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -32,17 +33,17 @@ instance T.FromJSON MessageForwardOrigin where
   where
    parseMessageForwardOriginUser :: A.Value -> T.Parser MessageForwardOrigin
    parseMessageForwardOriginUser = A.withObject "MessageForwardOriginUser" $ \o -> do
-    sender_user_id <- optional $ o A..: "sender_user_id"
+    sender_user_id <- mconcat [ o A..:? "sender_user_id", readMaybe <$> (o A..: "sender_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ MessageForwardOriginUser { sender_user_id = sender_user_id }
 
    parseMessageForwardOriginHiddenUser :: A.Value -> T.Parser MessageForwardOrigin
    parseMessageForwardOriginHiddenUser = A.withObject "MessageForwardOriginHiddenUser" $ \o -> do
-    sender_name <- optional $ o A..: "sender_name"
+    sender_name <- o A..:? "sender_name"
     return $ MessageForwardOriginHiddenUser { sender_name = sender_name }
 
    parseMessageForwardOriginChannel :: A.Value -> T.Parser MessageForwardOrigin
    parseMessageForwardOriginChannel = A.withObject "MessageForwardOriginChannel" $ \o -> do
-    author_signature <- optional $ o A..: "author_signature"
-    message_id <- optional $ o A..: "message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    author_signature <- o A..:? "author_signature"
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ MessageForwardOriginChannel { author_signature = author_signature, message_id = message_id, chat_id = chat_id }

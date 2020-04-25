@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.TestBytes where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON TestBytes where
   where
    parseTestBytes :: A.Value -> T.Parser TestBytes
    parseTestBytes = A.withObject "TestBytes" $ \o -> do
-    value <- optional $ o A..: "value"
+    value <- o A..:? "value"
     return $ TestBytes { value = value }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.TestVectorStringObject where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TestString as TestString
@@ -23,5 +24,5 @@ instance T.FromJSON TestVectorStringObject where
   where
    parseTestVectorStringObject :: A.Value -> T.Parser TestVectorStringObject
    parseTestVectorStringObject = A.withObject "TestVectorStringObject" $ \o -> do
-    value <- optional $ o A..: "value"
+    value <- o A..:? "value"
     return $ TestVectorStringObject { value = value }

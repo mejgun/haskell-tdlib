@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetFileMimeType where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON GetFileMimeType where
   where
    parseGetFileMimeType :: A.Value -> T.Parser GetFileMimeType
    parseGetFileMimeType = A.withObject "GetFileMimeType" $ \o -> do
-    file_name <- optional $ o A..: "file_name"
+    file_name <- o A..:? "file_name"
     return $ GetFileMimeType { file_name = file_name }

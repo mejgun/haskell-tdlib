@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.InputFile where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -37,22 +38,22 @@ instance T.FromJSON InputFile where
   where
    parseInputFileId :: A.Value -> T.Parser InputFile
    parseInputFileId = A.withObject "InputFileId" $ \o -> do
-    __id <- optional $ o A..: "id"
+    __id <- mconcat [ o A..:? "__id", readMaybe <$> (o A..: "__id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ InputFileId { __id = __id }
 
    parseInputFileRemote :: A.Value -> T.Parser InputFile
    parseInputFileRemote = A.withObject "InputFileRemote" $ \o -> do
-    _id <- optional $ o A..: "id"
+    _id <- o A..:? "id"
     return $ InputFileRemote { _id = _id }
 
    parseInputFileLocal :: A.Value -> T.Parser InputFile
    parseInputFileLocal = A.withObject "InputFileLocal" $ \o -> do
-    path <- optional $ o A..: "path"
+    path <- o A..:? "path"
     return $ InputFileLocal { path = path }
 
    parseInputFileGenerated :: A.Value -> T.Parser InputFile
    parseInputFileGenerated = A.withObject "InputFileGenerated" $ \o -> do
-    expected_size <- optional $ o A..: "expected_size"
-    conversion <- optional $ o A..: "conversion"
-    original_path <- optional $ o A..: "original_path"
+    expected_size <- mconcat [ o A..:? "expected_size", readMaybe <$> (o A..: "expected_size" :: T.Parser String)] :: T.Parser (Maybe Int)
+    conversion <- o A..:? "conversion"
+    original_path <- o A..:? "original_path"
     return $ InputFileGenerated { expected_size = expected_size, conversion = conversion, original_path = original_path }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ReplyMarkup where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.KeyboardButton as KeyboardButton
@@ -39,23 +40,23 @@ instance T.FromJSON ReplyMarkup where
   where
    parseReplyMarkupRemoveKeyboard :: A.Value -> T.Parser ReplyMarkup
    parseReplyMarkupRemoveKeyboard = A.withObject "ReplyMarkupRemoveKeyboard" $ \o -> do
-    is_personal <- optional $ o A..: "is_personal"
+    is_personal <- o A..:? "is_personal"
     return $ ReplyMarkupRemoveKeyboard { is_personal = is_personal }
 
    parseReplyMarkupForceReply :: A.Value -> T.Parser ReplyMarkup
    parseReplyMarkupForceReply = A.withObject "ReplyMarkupForceReply" $ \o -> do
-    is_personal <- optional $ o A..: "is_personal"
+    is_personal <- o A..:? "is_personal"
     return $ ReplyMarkupForceReply { is_personal = is_personal }
 
    parseReplyMarkupShowKeyboard :: A.Value -> T.Parser ReplyMarkup
    parseReplyMarkupShowKeyboard = A.withObject "ReplyMarkupShowKeyboard" $ \o -> do
-    is_personal <- optional $ o A..: "is_personal"
-    one_time <- optional $ o A..: "one_time"
-    resize_keyboard <- optional $ o A..: "resize_keyboard"
-    _rows <- optional $ o A..: "rows"
+    is_personal <- o A..:? "is_personal"
+    one_time <- o A..:? "one_time"
+    resize_keyboard <- o A..:? "resize_keyboard"
+    _rows <- o A..:? "rows"
     return $ ReplyMarkupShowKeyboard { is_personal = is_personal, one_time = one_time, resize_keyboard = resize_keyboard, _rows = _rows }
 
    parseReplyMarkupInlineKeyboard :: A.Value -> T.Parser ReplyMarkup
    parseReplyMarkupInlineKeyboard = A.withObject "ReplyMarkupInlineKeyboard" $ \o -> do
-    rows <- optional $ o A..: "rows"
+    rows <- o A..:? "rows"
     return $ ReplyMarkupInlineKeyboard { rows = rows }

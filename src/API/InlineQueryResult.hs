@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.InlineQueryResult where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Contact as Contact
@@ -89,88 +90,88 @@ instance T.FromJSON InlineQueryResult where
   where
    parseInlineQueryResultArticle :: A.Value -> T.Parser InlineQueryResult
    parseInlineQueryResultArticle = A.withObject "InlineQueryResultArticle" $ \o -> do
-    thumbnail <- optional $ o A..: "thumbnail"
-    description <- optional $ o A..: "description"
-    title <- optional $ o A..: "title"
-    hide_url <- optional $ o A..: "hide_url"
-    url <- optional $ o A..: "url"
-    _id <- optional $ o A..: "id"
+    thumbnail <- o A..:? "thumbnail"
+    description <- o A..:? "description"
+    title <- o A..:? "title"
+    hide_url <- o A..:? "hide_url"
+    url <- o A..:? "url"
+    _id <- o A..:? "id"
     return $ InlineQueryResultArticle { thumbnail = thumbnail, description = description, title = title, hide_url = hide_url, url = url, _id = _id }
 
    parseInlineQueryResultContact :: A.Value -> T.Parser InlineQueryResult
    parseInlineQueryResultContact = A.withObject "InlineQueryResultContact" $ \o -> do
-    thumbnail <- optional $ o A..: "thumbnail"
-    contact <- optional $ o A..: "contact"
-    _id <- optional $ o A..: "id"
+    thumbnail <- o A..:? "thumbnail"
+    contact <- o A..:? "contact"
+    _id <- o A..:? "id"
     return $ InlineQueryResultContact { thumbnail = thumbnail, contact = contact, _id = _id }
 
    parseInlineQueryResultLocation :: A.Value -> T.Parser InlineQueryResult
    parseInlineQueryResultLocation = A.withObject "InlineQueryResultLocation" $ \o -> do
-    thumbnail <- optional $ o A..: "thumbnail"
-    title <- optional $ o A..: "title"
-    location <- optional $ o A..: "location"
-    _id <- optional $ o A..: "id"
+    thumbnail <- o A..:? "thumbnail"
+    title <- o A..:? "title"
+    location <- o A..:? "location"
+    _id <- o A..:? "id"
     return $ InlineQueryResultLocation { thumbnail = thumbnail, title = title, location = location, _id = _id }
 
    parseInlineQueryResultVenue :: A.Value -> T.Parser InlineQueryResult
    parseInlineQueryResultVenue = A.withObject "InlineQueryResultVenue" $ \o -> do
-    thumbnail <- optional $ o A..: "thumbnail"
-    venue <- optional $ o A..: "venue"
-    _id <- optional $ o A..: "id"
+    thumbnail <- o A..:? "thumbnail"
+    venue <- o A..:? "venue"
+    _id <- o A..:? "id"
     return $ InlineQueryResultVenue { thumbnail = thumbnail, venue = venue, _id = _id }
 
    parseInlineQueryResultGame :: A.Value -> T.Parser InlineQueryResult
    parseInlineQueryResultGame = A.withObject "InlineQueryResultGame" $ \o -> do
-    game <- optional $ o A..: "game"
-    _id <- optional $ o A..: "id"
+    game <- o A..:? "game"
+    _id <- o A..:? "id"
     return $ InlineQueryResultGame { game = game, _id = _id }
 
    parseInlineQueryResultAnimation :: A.Value -> T.Parser InlineQueryResult
    parseInlineQueryResultAnimation = A.withObject "InlineQueryResultAnimation" $ \o -> do
-    title <- optional $ o A..: "title"
-    animation <- optional $ o A..: "animation"
-    _id <- optional $ o A..: "id"
+    title <- o A..:? "title"
+    animation <- o A..:? "animation"
+    _id <- o A..:? "id"
     return $ InlineQueryResultAnimation { title = title, animation = animation, _id = _id }
 
    parseInlineQueryResultAudio :: A.Value -> T.Parser InlineQueryResult
    parseInlineQueryResultAudio = A.withObject "InlineQueryResultAudio" $ \o -> do
-    audio <- optional $ o A..: "audio"
-    _id <- optional $ o A..: "id"
+    audio <- o A..:? "audio"
+    _id <- o A..:? "id"
     return $ InlineQueryResultAudio { audio = audio, _id = _id }
 
    parseInlineQueryResultDocument :: A.Value -> T.Parser InlineQueryResult
    parseInlineQueryResultDocument = A.withObject "InlineQueryResultDocument" $ \o -> do
-    description <- optional $ o A..: "description"
-    title <- optional $ o A..: "title"
-    document <- optional $ o A..: "document"
-    _id <- optional $ o A..: "id"
+    description <- o A..:? "description"
+    title <- o A..:? "title"
+    document <- o A..:? "document"
+    _id <- o A..:? "id"
     return $ InlineQueryResultDocument { description = description, title = title, document = document, _id = _id }
 
    parseInlineQueryResultPhoto :: A.Value -> T.Parser InlineQueryResult
    parseInlineQueryResultPhoto = A.withObject "InlineQueryResultPhoto" $ \o -> do
-    description <- optional $ o A..: "description"
-    title <- optional $ o A..: "title"
-    photo <- optional $ o A..: "photo"
-    _id <- optional $ o A..: "id"
+    description <- o A..:? "description"
+    title <- o A..:? "title"
+    photo <- o A..:? "photo"
+    _id <- o A..:? "id"
     return $ InlineQueryResultPhoto { description = description, title = title, photo = photo, _id = _id }
 
    parseInlineQueryResultSticker :: A.Value -> T.Parser InlineQueryResult
    parseInlineQueryResultSticker = A.withObject "InlineQueryResultSticker" $ \o -> do
-    sticker <- optional $ o A..: "sticker"
-    _id <- optional $ o A..: "id"
+    sticker <- o A..:? "sticker"
+    _id <- o A..:? "id"
     return $ InlineQueryResultSticker { sticker = sticker, _id = _id }
 
    parseInlineQueryResultVideo :: A.Value -> T.Parser InlineQueryResult
    parseInlineQueryResultVideo = A.withObject "InlineQueryResultVideo" $ \o -> do
-    description <- optional $ o A..: "description"
-    title <- optional $ o A..: "title"
-    video <- optional $ o A..: "video"
-    _id <- optional $ o A..: "id"
+    description <- o A..:? "description"
+    title <- o A..:? "title"
+    video <- o A..:? "video"
+    _id <- o A..:? "id"
     return $ InlineQueryResultVideo { description = description, title = title, video = video, _id = _id }
 
    parseInlineQueryResultVoiceNote :: A.Value -> T.Parser InlineQueryResult
    parseInlineQueryResultVoiceNote = A.withObject "InlineQueryResultVoiceNote" $ \o -> do
-    title <- optional $ o A..: "title"
-    voice_note <- optional $ o A..: "voice_note"
-    _id <- optional $ o A..: "id"
+    title <- o A..:? "title"
+    voice_note <- o A..:? "voice_note"
+    _id <- o A..:? "id"
     return $ InlineQueryResultVoiceNote { title = title, voice_note = voice_note, _id = _id }

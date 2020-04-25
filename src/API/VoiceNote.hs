@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.VoiceNote where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
@@ -23,8 +24,8 @@ instance T.FromJSON VoiceNote where
   where
    parseVoiceNote :: A.Value -> T.Parser VoiceNote
    parseVoiceNote = A.withObject "VoiceNote" $ \o -> do
-    voice <- optional $ o A..: "voice"
-    mime_type <- optional $ o A..: "mime_type"
-    waveform <- optional $ o A..: "waveform"
-    duration <- optional $ o A..: "duration"
+    voice <- o A..:? "voice"
+    mime_type <- o A..:? "mime_type"
+    waveform <- o A..:? "waveform"
+    duration <- mconcat [ o A..:? "duration", readMaybe <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ VoiceNote { voice = voice, mime_type = mime_type, waveform = waveform, duration = duration }

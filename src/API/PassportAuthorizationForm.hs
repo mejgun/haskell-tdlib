@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PassportAuthorizationForm where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PassportRequiredElement as PassportRequiredElement
@@ -23,7 +24,7 @@ instance T.FromJSON PassportAuthorizationForm where
   where
    parsePassportAuthorizationForm :: A.Value -> T.Parser PassportAuthorizationForm
    parsePassportAuthorizationForm = A.withObject "PassportAuthorizationForm" $ \o -> do
-    privacy_policy_url <- optional $ o A..: "privacy_policy_url"
-    required_elements <- optional $ o A..: "required_elements"
-    _id <- optional $ o A..: "id"
+    privacy_policy_url <- o A..:? "privacy_policy_url"
+    required_elements <- o A..:? "required_elements"
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ PassportAuthorizationForm { privacy_policy_url = privacy_policy_url, required_elements = required_elements, _id = _id }

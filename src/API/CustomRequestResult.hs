@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.CustomRequestResult where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON CustomRequestResult where
   where
    parseCustomRequestResult :: A.Value -> T.Parser CustomRequestResult
    parseCustomRequestResult = A.withObject "CustomRequestResult" $ \o -> do
-    result <- optional $ o A..: "result"
+    result <- o A..:? "result"
     return $ CustomRequestResult { result = result }

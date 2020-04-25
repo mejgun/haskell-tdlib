@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.InputInlineQueryResult where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Contact as Contact
@@ -87,156 +88,156 @@ instance T.FromJSON InputInlineQueryResult where
   where
    parseInputInlineQueryResultAnimatedGif :: A.Value -> T.Parser InputInlineQueryResult
    parseInputInlineQueryResultAnimatedGif = A.withObject "InputInlineQueryResultAnimatedGif" $ \o -> do
-    input_message_content <- optional $ o A..: "input_message_content"
-    reply_markup <- optional $ o A..: "reply_markup"
-    gif_height <- optional $ o A..: "gif_height"
-    gif_width <- optional $ o A..: "gif_width"
-    gif_duration <- optional $ o A..: "gif_duration"
-    gif_url <- optional $ o A..: "gif_url"
-    thumbnail_url <- optional $ o A..: "thumbnail_url"
-    title <- optional $ o A..: "title"
-    _id <- optional $ o A..: "id"
+    input_message_content <- o A..:? "input_message_content"
+    reply_markup <- o A..:? "reply_markup"
+    gif_height <- mconcat [ o A..:? "gif_height", readMaybe <$> (o A..: "gif_height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    gif_width <- mconcat [ o A..:? "gif_width", readMaybe <$> (o A..: "gif_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    gif_duration <- mconcat [ o A..:? "gif_duration", readMaybe <$> (o A..: "gif_duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+    gif_url <- o A..:? "gif_url"
+    thumbnail_url <- o A..:? "thumbnail_url"
+    title <- o A..:? "title"
+    _id <- o A..:? "id"
     return $ InputInlineQueryResultAnimatedGif { input_message_content = input_message_content, reply_markup = reply_markup, gif_height = gif_height, gif_width = gif_width, gif_duration = gif_duration, gif_url = gif_url, thumbnail_url = thumbnail_url, title = title, _id = _id }
 
    parseInputInlineQueryResultAnimatedMpeg4 :: A.Value -> T.Parser InputInlineQueryResult
    parseInputInlineQueryResultAnimatedMpeg4 = A.withObject "InputInlineQueryResultAnimatedMpeg4" $ \o -> do
-    input_message_content <- optional $ o A..: "input_message_content"
-    reply_markup <- optional $ o A..: "reply_markup"
-    mpeg4_height <- optional $ o A..: "mpeg4_height"
-    mpeg4_width <- optional $ o A..: "mpeg4_width"
-    mpeg4_duration <- optional $ o A..: "mpeg4_duration"
-    mpeg4_url <- optional $ o A..: "mpeg4_url"
-    thumbnail_url <- optional $ o A..: "thumbnail_url"
-    title <- optional $ o A..: "title"
-    _id <- optional $ o A..: "id"
+    input_message_content <- o A..:? "input_message_content"
+    reply_markup <- o A..:? "reply_markup"
+    mpeg4_height <- mconcat [ o A..:? "mpeg4_height", readMaybe <$> (o A..: "mpeg4_height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    mpeg4_width <- mconcat [ o A..:? "mpeg4_width", readMaybe <$> (o A..: "mpeg4_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    mpeg4_duration <- mconcat [ o A..:? "mpeg4_duration", readMaybe <$> (o A..: "mpeg4_duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+    mpeg4_url <- o A..:? "mpeg4_url"
+    thumbnail_url <- o A..:? "thumbnail_url"
+    title <- o A..:? "title"
+    _id <- o A..:? "id"
     return $ InputInlineQueryResultAnimatedMpeg4 { input_message_content = input_message_content, reply_markup = reply_markup, mpeg4_height = mpeg4_height, mpeg4_width = mpeg4_width, mpeg4_duration = mpeg4_duration, mpeg4_url = mpeg4_url, thumbnail_url = thumbnail_url, title = title, _id = _id }
 
    parseInputInlineQueryResultArticle :: A.Value -> T.Parser InputInlineQueryResult
    parseInputInlineQueryResultArticle = A.withObject "InputInlineQueryResultArticle" $ \o -> do
-    input_message_content <- optional $ o A..: "input_message_content"
-    reply_markup <- optional $ o A..: "reply_markup"
-    thumbnail_height <- optional $ o A..: "thumbnail_height"
-    thumbnail_width <- optional $ o A..: "thumbnail_width"
-    thumbnail_url <- optional $ o A..: "thumbnail_url"
-    description <- optional $ o A..: "description"
-    title <- optional $ o A..: "title"
-    hide_url <- optional $ o A..: "hide_url"
-    url <- optional $ o A..: "url"
-    _id <- optional $ o A..: "id"
+    input_message_content <- o A..:? "input_message_content"
+    reply_markup <- o A..:? "reply_markup"
+    thumbnail_height <- mconcat [ o A..:? "thumbnail_height", readMaybe <$> (o A..: "thumbnail_height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    thumbnail_width <- mconcat [ o A..:? "thumbnail_width", readMaybe <$> (o A..: "thumbnail_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    thumbnail_url <- o A..:? "thumbnail_url"
+    description <- o A..:? "description"
+    title <- o A..:? "title"
+    hide_url <- o A..:? "hide_url"
+    url <- o A..:? "url"
+    _id <- o A..:? "id"
     return $ InputInlineQueryResultArticle { input_message_content = input_message_content, reply_markup = reply_markup, thumbnail_height = thumbnail_height, thumbnail_width = thumbnail_width, thumbnail_url = thumbnail_url, description = description, title = title, hide_url = hide_url, url = url, _id = _id }
 
    parseInputInlineQueryResultAudio :: A.Value -> T.Parser InputInlineQueryResult
    parseInputInlineQueryResultAudio = A.withObject "InputInlineQueryResultAudio" $ \o -> do
-    input_message_content <- optional $ o A..: "input_message_content"
-    reply_markup <- optional $ o A..: "reply_markup"
-    audio_duration <- optional $ o A..: "audio_duration"
-    audio_url <- optional $ o A..: "audio_url"
-    performer <- optional $ o A..: "performer"
-    title <- optional $ o A..: "title"
-    _id <- optional $ o A..: "id"
+    input_message_content <- o A..:? "input_message_content"
+    reply_markup <- o A..:? "reply_markup"
+    audio_duration <- mconcat [ o A..:? "audio_duration", readMaybe <$> (o A..: "audio_duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+    audio_url <- o A..:? "audio_url"
+    performer <- o A..:? "performer"
+    title <- o A..:? "title"
+    _id <- o A..:? "id"
     return $ InputInlineQueryResultAudio { input_message_content = input_message_content, reply_markup = reply_markup, audio_duration = audio_duration, audio_url = audio_url, performer = performer, title = title, _id = _id }
 
    parseInputInlineQueryResultContact :: A.Value -> T.Parser InputInlineQueryResult
    parseInputInlineQueryResultContact = A.withObject "InputInlineQueryResultContact" $ \o -> do
-    input_message_content <- optional $ o A..: "input_message_content"
-    reply_markup <- optional $ o A..: "reply_markup"
-    thumbnail_height <- optional $ o A..: "thumbnail_height"
-    thumbnail_width <- optional $ o A..: "thumbnail_width"
-    thumbnail_url <- optional $ o A..: "thumbnail_url"
-    contact <- optional $ o A..: "contact"
-    _id <- optional $ o A..: "id"
+    input_message_content <- o A..:? "input_message_content"
+    reply_markup <- o A..:? "reply_markup"
+    thumbnail_height <- mconcat [ o A..:? "thumbnail_height", readMaybe <$> (o A..: "thumbnail_height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    thumbnail_width <- mconcat [ o A..:? "thumbnail_width", readMaybe <$> (o A..: "thumbnail_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    thumbnail_url <- o A..:? "thumbnail_url"
+    contact <- o A..:? "contact"
+    _id <- o A..:? "id"
     return $ InputInlineQueryResultContact { input_message_content = input_message_content, reply_markup = reply_markup, thumbnail_height = thumbnail_height, thumbnail_width = thumbnail_width, thumbnail_url = thumbnail_url, contact = contact, _id = _id }
 
    parseInputInlineQueryResultDocument :: A.Value -> T.Parser InputInlineQueryResult
    parseInputInlineQueryResultDocument = A.withObject "InputInlineQueryResultDocument" $ \o -> do
-    input_message_content <- optional $ o A..: "input_message_content"
-    reply_markup <- optional $ o A..: "reply_markup"
-    thumbnail_height <- optional $ o A..: "thumbnail_height"
-    thumbnail_width <- optional $ o A..: "thumbnail_width"
-    thumbnail_url <- optional $ o A..: "thumbnail_url"
-    mime_type <- optional $ o A..: "mime_type"
-    document_url <- optional $ o A..: "document_url"
-    description <- optional $ o A..: "description"
-    title <- optional $ o A..: "title"
-    _id <- optional $ o A..: "id"
+    input_message_content <- o A..:? "input_message_content"
+    reply_markup <- o A..:? "reply_markup"
+    thumbnail_height <- mconcat [ o A..:? "thumbnail_height", readMaybe <$> (o A..: "thumbnail_height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    thumbnail_width <- mconcat [ o A..:? "thumbnail_width", readMaybe <$> (o A..: "thumbnail_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    thumbnail_url <- o A..:? "thumbnail_url"
+    mime_type <- o A..:? "mime_type"
+    document_url <- o A..:? "document_url"
+    description <- o A..:? "description"
+    title <- o A..:? "title"
+    _id <- o A..:? "id"
     return $ InputInlineQueryResultDocument { input_message_content = input_message_content, reply_markup = reply_markup, thumbnail_height = thumbnail_height, thumbnail_width = thumbnail_width, thumbnail_url = thumbnail_url, mime_type = mime_type, document_url = document_url, description = description, title = title, _id = _id }
 
    parseInputInlineQueryResultGame :: A.Value -> T.Parser InputInlineQueryResult
    parseInputInlineQueryResultGame = A.withObject "InputInlineQueryResultGame" $ \o -> do
-    reply_markup <- optional $ o A..: "reply_markup"
-    game_short_name <- optional $ o A..: "game_short_name"
-    _id <- optional $ o A..: "id"
+    reply_markup <- o A..:? "reply_markup"
+    game_short_name <- o A..:? "game_short_name"
+    _id <- o A..:? "id"
     return $ InputInlineQueryResultGame { reply_markup = reply_markup, game_short_name = game_short_name, _id = _id }
 
    parseInputInlineQueryResultLocation :: A.Value -> T.Parser InputInlineQueryResult
    parseInputInlineQueryResultLocation = A.withObject "InputInlineQueryResultLocation" $ \o -> do
-    input_message_content <- optional $ o A..: "input_message_content"
-    reply_markup <- optional $ o A..: "reply_markup"
-    thumbnail_height <- optional $ o A..: "thumbnail_height"
-    thumbnail_width <- optional $ o A..: "thumbnail_width"
-    thumbnail_url <- optional $ o A..: "thumbnail_url"
-    title <- optional $ o A..: "title"
-    live_period <- optional $ o A..: "live_period"
-    location <- optional $ o A..: "location"
-    _id <- optional $ o A..: "id"
+    input_message_content <- o A..:? "input_message_content"
+    reply_markup <- o A..:? "reply_markup"
+    thumbnail_height <- mconcat [ o A..:? "thumbnail_height", readMaybe <$> (o A..: "thumbnail_height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    thumbnail_width <- mconcat [ o A..:? "thumbnail_width", readMaybe <$> (o A..: "thumbnail_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    thumbnail_url <- o A..:? "thumbnail_url"
+    title <- o A..:? "title"
+    live_period <- mconcat [ o A..:? "live_period", readMaybe <$> (o A..: "live_period" :: T.Parser String)] :: T.Parser (Maybe Int)
+    location <- o A..:? "location"
+    _id <- o A..:? "id"
     return $ InputInlineQueryResultLocation { input_message_content = input_message_content, reply_markup = reply_markup, thumbnail_height = thumbnail_height, thumbnail_width = thumbnail_width, thumbnail_url = thumbnail_url, title = title, live_period = live_period, location = location, _id = _id }
 
    parseInputInlineQueryResultPhoto :: A.Value -> T.Parser InputInlineQueryResult
    parseInputInlineQueryResultPhoto = A.withObject "InputInlineQueryResultPhoto" $ \o -> do
-    input_message_content <- optional $ o A..: "input_message_content"
-    reply_markup <- optional $ o A..: "reply_markup"
-    photo_height <- optional $ o A..: "photo_height"
-    photo_width <- optional $ o A..: "photo_width"
-    photo_url <- optional $ o A..: "photo_url"
-    thumbnail_url <- optional $ o A..: "thumbnail_url"
-    description <- optional $ o A..: "description"
-    title <- optional $ o A..: "title"
-    _id <- optional $ o A..: "id"
+    input_message_content <- o A..:? "input_message_content"
+    reply_markup <- o A..:? "reply_markup"
+    photo_height <- mconcat [ o A..:? "photo_height", readMaybe <$> (o A..: "photo_height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    photo_width <- mconcat [ o A..:? "photo_width", readMaybe <$> (o A..: "photo_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    photo_url <- o A..:? "photo_url"
+    thumbnail_url <- o A..:? "thumbnail_url"
+    description <- o A..:? "description"
+    title <- o A..:? "title"
+    _id <- o A..:? "id"
     return $ InputInlineQueryResultPhoto { input_message_content = input_message_content, reply_markup = reply_markup, photo_height = photo_height, photo_width = photo_width, photo_url = photo_url, thumbnail_url = thumbnail_url, description = description, title = title, _id = _id }
 
    parseInputInlineQueryResultSticker :: A.Value -> T.Parser InputInlineQueryResult
    parseInputInlineQueryResultSticker = A.withObject "InputInlineQueryResultSticker" $ \o -> do
-    input_message_content <- optional $ o A..: "input_message_content"
-    reply_markup <- optional $ o A..: "reply_markup"
-    sticker_height <- optional $ o A..: "sticker_height"
-    sticker_width <- optional $ o A..: "sticker_width"
-    sticker_url <- optional $ o A..: "sticker_url"
-    thumbnail_url <- optional $ o A..: "thumbnail_url"
-    _id <- optional $ o A..: "id"
+    input_message_content <- o A..:? "input_message_content"
+    reply_markup <- o A..:? "reply_markup"
+    sticker_height <- mconcat [ o A..:? "sticker_height", readMaybe <$> (o A..: "sticker_height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    sticker_width <- mconcat [ o A..:? "sticker_width", readMaybe <$> (o A..: "sticker_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    sticker_url <- o A..:? "sticker_url"
+    thumbnail_url <- o A..:? "thumbnail_url"
+    _id <- o A..:? "id"
     return $ InputInlineQueryResultSticker { input_message_content = input_message_content, reply_markup = reply_markup, sticker_height = sticker_height, sticker_width = sticker_width, sticker_url = sticker_url, thumbnail_url = thumbnail_url, _id = _id }
 
    parseInputInlineQueryResultVenue :: A.Value -> T.Parser InputInlineQueryResult
    parseInputInlineQueryResultVenue = A.withObject "InputInlineQueryResultVenue" $ \o -> do
-    input_message_content <- optional $ o A..: "input_message_content"
-    reply_markup <- optional $ o A..: "reply_markup"
-    thumbnail_height <- optional $ o A..: "thumbnail_height"
-    thumbnail_width <- optional $ o A..: "thumbnail_width"
-    thumbnail_url <- optional $ o A..: "thumbnail_url"
-    venue <- optional $ o A..: "venue"
-    _id <- optional $ o A..: "id"
+    input_message_content <- o A..:? "input_message_content"
+    reply_markup <- o A..:? "reply_markup"
+    thumbnail_height <- mconcat [ o A..:? "thumbnail_height", readMaybe <$> (o A..: "thumbnail_height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    thumbnail_width <- mconcat [ o A..:? "thumbnail_width", readMaybe <$> (o A..: "thumbnail_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    thumbnail_url <- o A..:? "thumbnail_url"
+    venue <- o A..:? "venue"
+    _id <- o A..:? "id"
     return $ InputInlineQueryResultVenue { input_message_content = input_message_content, reply_markup = reply_markup, thumbnail_height = thumbnail_height, thumbnail_width = thumbnail_width, thumbnail_url = thumbnail_url, venue = venue, _id = _id }
 
    parseInputInlineQueryResultVideo :: A.Value -> T.Parser InputInlineQueryResult
    parseInputInlineQueryResultVideo = A.withObject "InputInlineQueryResultVideo" $ \o -> do
-    input_message_content <- optional $ o A..: "input_message_content"
-    reply_markup <- optional $ o A..: "reply_markup"
-    video_duration <- optional $ o A..: "video_duration"
-    video_height <- optional $ o A..: "video_height"
-    video_width <- optional $ o A..: "video_width"
-    mime_type <- optional $ o A..: "mime_type"
-    video_url <- optional $ o A..: "video_url"
-    thumbnail_url <- optional $ o A..: "thumbnail_url"
-    description <- optional $ o A..: "description"
-    title <- optional $ o A..: "title"
-    _id <- optional $ o A..: "id"
+    input_message_content <- o A..:? "input_message_content"
+    reply_markup <- o A..:? "reply_markup"
+    video_duration <- mconcat [ o A..:? "video_duration", readMaybe <$> (o A..: "video_duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+    video_height <- mconcat [ o A..:? "video_height", readMaybe <$> (o A..: "video_height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    video_width <- mconcat [ o A..:? "video_width", readMaybe <$> (o A..: "video_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    mime_type <- o A..:? "mime_type"
+    video_url <- o A..:? "video_url"
+    thumbnail_url <- o A..:? "thumbnail_url"
+    description <- o A..:? "description"
+    title <- o A..:? "title"
+    _id <- o A..:? "id"
     return $ InputInlineQueryResultVideo { input_message_content = input_message_content, reply_markup = reply_markup, video_duration = video_duration, video_height = video_height, video_width = video_width, mime_type = mime_type, video_url = video_url, thumbnail_url = thumbnail_url, description = description, title = title, _id = _id }
 
    parseInputInlineQueryResultVoiceNote :: A.Value -> T.Parser InputInlineQueryResult
    parseInputInlineQueryResultVoiceNote = A.withObject "InputInlineQueryResultVoiceNote" $ \o -> do
-    input_message_content <- optional $ o A..: "input_message_content"
-    reply_markup <- optional $ o A..: "reply_markup"
-    voice_note_duration <- optional $ o A..: "voice_note_duration"
-    voice_note_url <- optional $ o A..: "voice_note_url"
-    title <- optional $ o A..: "title"
-    _id <- optional $ o A..: "id"
+    input_message_content <- o A..:? "input_message_content"
+    reply_markup <- o A..:? "reply_markup"
+    voice_note_duration <- mconcat [ o A..:? "voice_note_duration", readMaybe <$> (o A..: "voice_note_duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+    voice_note_url <- o A..:? "voice_note_url"
+    title <- o A..:? "title"
+    _id <- o A..:? "id"
     return $ InputInlineQueryResultVoiceNote { input_message_content = input_message_content, reply_markup = reply_markup, voice_note_duration = voice_note_duration, voice_note_url = voice_note_url, title = title, _id = _id }

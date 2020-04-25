@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.DeleteAccount where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON DeleteAccount where
   where
    parseDeleteAccount :: A.Value -> T.Parser DeleteAccount
    parseDeleteAccount = A.withObject "DeleteAccount" $ \o -> do
-    reason <- optional $ o A..: "reason"
+    reason <- o A..:? "reason"
     return $ DeleteAccount { reason = reason }

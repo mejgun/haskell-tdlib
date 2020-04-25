@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.BackgroundType where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BackgroundFill as BackgroundFill
@@ -33,18 +34,18 @@ instance T.FromJSON BackgroundType where
   where
    parseBackgroundTypeWallpaper :: A.Value -> T.Parser BackgroundType
    parseBackgroundTypeWallpaper = A.withObject "BackgroundTypeWallpaper" $ \o -> do
-    is_moving <- optional $ o A..: "is_moving"
-    is_blurred <- optional $ o A..: "is_blurred"
+    is_moving <- o A..:? "is_moving"
+    is_blurred <- o A..:? "is_blurred"
     return $ BackgroundTypeWallpaper { is_moving = is_moving, is_blurred = is_blurred }
 
    parseBackgroundTypePattern :: A.Value -> T.Parser BackgroundType
    parseBackgroundTypePattern = A.withObject "BackgroundTypePattern" $ \o -> do
-    is_moving <- optional $ o A..: "is_moving"
-    intensity <- optional $ o A..: "intensity"
-    fill <- optional $ o A..: "fill"
+    is_moving <- o A..:? "is_moving"
+    intensity <- mconcat [ o A..:? "intensity", readMaybe <$> (o A..: "intensity" :: T.Parser String)] :: T.Parser (Maybe Int)
+    fill <- o A..:? "fill"
     return $ BackgroundTypePattern { is_moving = is_moving, intensity = intensity, fill = fill }
 
    parseBackgroundTypeFill :: A.Value -> T.Parser BackgroundType
    parseBackgroundTypeFill = A.withObject "BackgroundTypeFill" $ \o -> do
-    fill <- optional $ o A..: "fill"
+    fill <- o A..:? "fill"
     return $ BackgroundTypeFill { fill = fill }

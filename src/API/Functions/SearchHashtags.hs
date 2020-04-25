@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SearchHashtags where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON SearchHashtags where
   where
    parseSearchHashtags :: A.Value -> T.Parser SearchHashtags
    parseSearchHashtags = A.withObject "SearchHashtags" $ \o -> do
-    limit <- optional $ o A..: "limit"
-    prefix <- optional $ o A..: "prefix"
+    limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
+    prefix <- o A..:? "prefix"
     return $ SearchHashtags { limit = limit, prefix = prefix }

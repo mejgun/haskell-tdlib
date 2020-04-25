@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Date where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,7 +23,7 @@ instance T.FromJSON Date where
   where
    parseDate :: A.Value -> T.Parser Date
    parseDate = A.withObject "Date" $ \o -> do
-    year <- optional $ o A..: "year"
-    month <- optional $ o A..: "month"
-    day <- optional $ o A..: "day"
+    year <- mconcat [ o A..:? "year", readMaybe <$> (o A..: "year" :: T.Parser String)] :: T.Parser (Maybe Int)
+    month <- mconcat [ o A..:? "month", readMaybe <$> (o A..: "month" :: T.Parser String)] :: T.Parser (Maybe Int)
+    day <- mconcat [ o A..:? "day", readMaybe <$> (o A..: "day" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Date { year = year, month = month, day = day }

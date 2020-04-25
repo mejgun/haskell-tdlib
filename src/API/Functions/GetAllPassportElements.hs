@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetAllPassportElements where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON GetAllPassportElements where
   where
    parseGetAllPassportElements :: A.Value -> T.Parser GetAllPassportElements
    parseGetAllPassportElements = A.withObject "GetAllPassportElements" $ \o -> do
-    password <- optional $ o A..: "password"
+    password <- o A..:? "password"
     return $ GetAllPassportElements { password = password }

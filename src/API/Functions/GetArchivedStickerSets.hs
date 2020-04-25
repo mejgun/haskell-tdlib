@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetArchivedStickerSets where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,7 +23,7 @@ instance T.FromJSON GetArchivedStickerSets where
   where
    parseGetArchivedStickerSets :: A.Value -> T.Parser GetArchivedStickerSets
    parseGetArchivedStickerSets = A.withObject "GetArchivedStickerSets" $ \o -> do
-    limit <- optional $ o A..: "limit"
-    offset_sticker_set_id <- optional $ o A..: "offset_sticker_set_id"
-    is_masks <- optional $ o A..: "is_masks"
+    limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
+    offset_sticker_set_id <- mconcat [ o A..:? "offset_sticker_set_id", readMaybe <$> (o A..: "offset_sticker_set_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    is_masks <- o A..:? "is_masks"
     return $ GetArchivedStickerSets { limit = limit, offset_sticker_set_id = offset_sticker_set_id, is_masks = is_masks }

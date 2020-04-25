@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.LanguagePackString where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LanguagePackStringValue as LanguagePackStringValue
@@ -23,6 +24,6 @@ instance T.FromJSON LanguagePackString where
   where
    parseLanguagePackString :: A.Value -> T.Parser LanguagePackString
    parseLanguagePackString = A.withObject "LanguagePackString" $ \o -> do
-    value <- optional $ o A..: "value"
-    key <- optional $ o A..: "key"
+    value <- o A..:? "value"
+    key <- o A..:? "key"
     return $ LanguagePackString { value = value, key = key }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PageBlockListItem where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PageBlock as PageBlock
@@ -23,6 +24,6 @@ instance T.FromJSON PageBlockListItem where
   where
    parsePageBlockListItem :: A.Value -> T.Parser PageBlockListItem
    parsePageBlockListItem = A.withObject "PageBlockListItem" $ \o -> do
-    page_blocks <- optional $ o A..: "page_blocks"
-    label <- optional $ o A..: "label"
+    page_blocks <- o A..:? "page_blocks"
+    label <- o A..:? "label"
     return $ PageBlockListItem { page_blocks = page_blocks, label = label }

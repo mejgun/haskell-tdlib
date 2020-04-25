@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetFileExtension where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON GetFileExtension where
   where
    parseGetFileExtension :: A.Value -> T.Parser GetFileExtension
    parseGetFileExtension = A.withObject "GetFileExtension" $ \o -> do
-    mime_type <- optional $ o A..: "mime_type"
+    mime_type <- o A..:? "mime_type"
     return $ GetFileExtension { mime_type = mime_type }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Document where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
@@ -25,9 +26,9 @@ instance T.FromJSON Document where
   where
    parseDocument :: A.Value -> T.Parser Document
    parseDocument = A.withObject "Document" $ \o -> do
-    document <- optional $ o A..: "document"
-    thumbnail <- optional $ o A..: "thumbnail"
-    minithumbnail <- optional $ o A..: "minithumbnail"
-    mime_type <- optional $ o A..: "mime_type"
-    file_name <- optional $ o A..: "file_name"
+    document <- o A..:? "document"
+    thumbnail <- o A..:? "thumbnail"
+    minithumbnail <- o A..:? "minithumbnail"
+    mime_type <- o A..:? "mime_type"
+    file_name <- o A..:? "file_name"
     return $ Document { document = document, thumbnail = thumbnail, minithumbnail = minithumbnail, mime_type = mime_type, file_name = file_name }

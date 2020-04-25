@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ForwardMessages where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.SendMessageOptions as SendMessageOptions
@@ -23,11 +24,11 @@ instance T.FromJSON ForwardMessages where
   where
    parseForwardMessages :: A.Value -> T.Parser ForwardMessages
    parseForwardMessages = A.withObject "ForwardMessages" $ \o -> do
-    remove_caption <- optional $ o A..: "remove_caption"
-    send_copy <- optional $ o A..: "send_copy"
-    as_album <- optional $ o A..: "as_album"
-    options <- optional $ o A..: "options"
-    message_ids <- optional $ o A..: "message_ids"
-    from_chat_id <- optional $ o A..: "from_chat_id"
-    chat_id <- optional $ o A..: "chat_id"
+    remove_caption <- o A..:? "remove_caption"
+    send_copy <- o A..:? "send_copy"
+    as_album <- o A..:? "as_album"
+    options <- o A..:? "options"
+    message_ids <- o A..:? "message_ids"
+    from_chat_id <- mconcat [ o A..:? "from_chat_id", readMaybe <$> (o A..: "from_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ForwardMessages { remove_caption = remove_caption, send_copy = send_copy, as_album = as_album, options = options, message_ids = message_ids, from_chat_id = from_chat_id, chat_id = chat_id }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ClearRecentStickers where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON ClearRecentStickers where
   where
    parseClearRecentStickers :: A.Value -> T.Parser ClearRecentStickers
    parseClearRecentStickers = A.withObject "ClearRecentStickers" $ \o -> do
-    is_attached <- optional $ o A..: "is_attached"
+    is_attached <- o A..:? "is_attached"
     return $ ClearRecentStickers { is_attached = is_attached }

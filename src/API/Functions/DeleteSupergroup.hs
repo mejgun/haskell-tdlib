@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.DeleteSupergroup where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON DeleteSupergroup where
   where
    parseDeleteSupergroup :: A.Value -> T.Parser DeleteSupergroup
    parseDeleteSupergroup = A.withObject "DeleteSupergroup" $ \o -> do
-    supergroup_id <- optional $ o A..: "supergroup_id"
+    supergroup_id <- mconcat [ o A..:? "supergroup_id", readMaybe <$> (o A..: "supergroup_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ DeleteSupergroup { supergroup_id = supergroup_id }

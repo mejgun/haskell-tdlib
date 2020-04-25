@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.FinishFileGeneration where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Error as Error
@@ -23,6 +24,6 @@ instance T.FromJSON FinishFileGeneration where
   where
    parseFinishFileGeneration :: A.Value -> T.Parser FinishFileGeneration
    parseFinishFileGeneration = A.withObject "FinishFileGeneration" $ \o -> do
-    _error <- optional $ o A..: "error"
-    generation_id <- optional $ o A..: "generation_id"
+    _error <- o A..:? "error"
+    generation_id <- mconcat [ o A..:? "generation_id", readMaybe <$> (o A..: "generation_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ FinishFileGeneration { _error = _error, generation_id = generation_id }

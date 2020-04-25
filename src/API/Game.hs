@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Game where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Animation as Animation
@@ -25,11 +26,11 @@ instance T.FromJSON Game where
   where
    parseGame :: A.Value -> T.Parser Game
    parseGame = A.withObject "Game" $ \o -> do
-    animation <- optional $ o A..: "animation"
-    photo <- optional $ o A..: "photo"
-    description <- optional $ o A..: "description"
-    text <- optional $ o A..: "text"
-    title <- optional $ o A..: "title"
-    short_name <- optional $ o A..: "short_name"
-    _id <- optional $ o A..: "id"
+    animation <- o A..:? "animation"
+    photo <- o A..:? "photo"
+    description <- o A..:? "description"
+    text <- o A..:? "text"
+    title <- o A..:? "title"
+    short_name <- o A..:? "short_name"
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Game { animation = animation, photo = photo, description = description, text = text, title = title, short_name = short_name, _id = _id }

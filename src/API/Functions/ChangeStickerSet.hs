@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ChangeStickerSet where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,7 +23,7 @@ instance T.FromJSON ChangeStickerSet where
   where
    parseChangeStickerSet :: A.Value -> T.Parser ChangeStickerSet
    parseChangeStickerSet = A.withObject "ChangeStickerSet" $ \o -> do
-    is_archived <- optional $ o A..: "is_archived"
-    is_installed <- optional $ o A..: "is_installed"
-    set_id <- optional $ o A..: "set_id"
+    is_archived <- o A..:? "is_archived"
+    is_installed <- o A..:? "is_installed"
+    set_id <- mconcat [ o A..:? "set_id", readMaybe <$> (o A..: "set_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChangeStickerSet { is_archived = is_archived, is_installed = is_installed, set_id = set_id }

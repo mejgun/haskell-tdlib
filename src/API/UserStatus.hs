@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.UserStatus where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -51,12 +52,12 @@ instance T.FromJSON UserStatus where
 
    parseUserStatusOnline :: A.Value -> T.Parser UserStatus
    parseUserStatusOnline = A.withObject "UserStatusOnline" $ \o -> do
-    expires <- optional $ o A..: "expires"
+    expires <- mconcat [ o A..:? "expires", readMaybe <$> (o A..: "expires" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UserStatusOnline { expires = expires }
 
    parseUserStatusOffline :: A.Value -> T.Parser UserStatus
    parseUserStatusOffline = A.withObject "UserStatusOffline" $ \o -> do
-    was_online <- optional $ o A..: "was_online"
+    was_online <- mconcat [ o A..:? "was_online", readMaybe <$> (o A..: "was_online" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UserStatusOffline { was_online = was_online }
 
    parseUserStatusRecently :: A.Value -> T.Parser UserStatus

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetCommands where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BotCommand as BotCommand
@@ -23,5 +24,5 @@ instance T.FromJSON SetCommands where
   where
    parseSetCommands :: A.Value -> T.Parser SetCommands
    parseSetCommands = A.withObject "SetCommands" $ \o -> do
-    commands <- optional $ o A..: "commands"
+    commands <- o A..:? "commands"
     return $ SetCommands { commands = commands }

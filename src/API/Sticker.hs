@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Sticker where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
@@ -25,13 +26,13 @@ instance T.FromJSON Sticker where
   where
    parseSticker :: A.Value -> T.Parser Sticker
    parseSticker = A.withObject "Sticker" $ \o -> do
-    sticker <- optional $ o A..: "sticker"
-    thumbnail <- optional $ o A..: "thumbnail"
-    mask_position <- optional $ o A..: "mask_position"
-    is_mask <- optional $ o A..: "is_mask"
-    is_animated <- optional $ o A..: "is_animated"
-    emoji <- optional $ o A..: "emoji"
-    height <- optional $ o A..: "height"
-    width <- optional $ o A..: "width"
-    set_id <- optional $ o A..: "set_id"
+    sticker <- o A..:? "sticker"
+    thumbnail <- o A..:? "thumbnail"
+    mask_position <- o A..:? "mask_position"
+    is_mask <- o A..:? "is_mask"
+    is_animated <- o A..:? "is_animated"
+    emoji <- o A..:? "emoji"
+    height <- mconcat [ o A..:? "height", readMaybe <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    width <- mconcat [ o A..:? "width", readMaybe <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    set_id <- mconcat [ o A..:? "set_id", readMaybe <$> (o A..: "set_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Sticker { sticker = sticker, thumbnail = thumbnail, mask_position = mask_position, is_mask = is_mask, is_animated = is_animated, emoji = emoji, height = height, width = width, set_id = set_id }

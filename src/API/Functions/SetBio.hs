@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetBio where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON SetBio where
   where
    parseSetBio :: A.Value -> T.Parser SetBio
    parseSetBio = A.withObject "SetBio" $ \o -> do
-    bio <- optional $ o A..: "bio"
+    bio <- o A..:? "bio"
     return $ SetBio { bio = bio }

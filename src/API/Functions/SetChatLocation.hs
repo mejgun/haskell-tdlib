@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetChatLocation where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatLocation as ChatLocation
@@ -23,6 +24,6 @@ instance T.FromJSON SetChatLocation where
   where
    parseSetChatLocation :: A.Value -> T.Parser SetChatLocation
    parseSetChatLocation = A.withObject "SetChatLocation" $ \o -> do
-    location <- optional $ o A..: "location"
-    chat_id <- optional $ o A..: "chat_id"
+    location <- o A..:? "location"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SetChatLocation { location = location, chat_id = chat_id }

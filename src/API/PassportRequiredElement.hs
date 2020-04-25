@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PassportRequiredElement where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PassportSuitableElement as PassportSuitableElement
@@ -23,5 +24,5 @@ instance T.FromJSON PassportRequiredElement where
   where
    parsePassportRequiredElement :: A.Value -> T.Parser PassportRequiredElement
    parsePassportRequiredElement = A.withObject "PassportRequiredElement" $ \o -> do
-    suitable_elements <- optional $ o A..: "suitable_elements"
+    suitable_elements <- o A..:? "suitable_elements"
     return $ PassportRequiredElement { suitable_elements = suitable_elements }

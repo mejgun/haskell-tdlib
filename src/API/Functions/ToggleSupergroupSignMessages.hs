@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ToggleSupergroupSignMessages where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON ToggleSupergroupSignMessages where
   where
    parseToggleSupergroupSignMessages :: A.Value -> T.Parser ToggleSupergroupSignMessages
    parseToggleSupergroupSignMessages = A.withObject "ToggleSupergroupSignMessages" $ \o -> do
-    sign_messages <- optional $ o A..: "sign_messages"
-    supergroup_id <- optional $ o A..: "supergroup_id"
+    sign_messages <- o A..:? "sign_messages"
+    supergroup_id <- mconcat [ o A..:? "supergroup_id", readMaybe <$> (o A..: "supergroup_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ToggleSupergroupSignMessages { sign_messages = sign_messages, supergroup_id = supergroup_id }

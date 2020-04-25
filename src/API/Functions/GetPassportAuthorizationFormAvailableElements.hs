@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetPassportAuthorizationFormAvailableElements where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON GetPassportAuthorizationFormAvailableElements where
   where
    parseGetPassportAuthorizationFormAvailableElements :: A.Value -> T.Parser GetPassportAuthorizationFormAvailableElements
    parseGetPassportAuthorizationFormAvailableElements = A.withObject "GetPassportAuthorizationFormAvailableElements" $ \o -> do
-    password <- optional $ o A..: "password"
-    autorization_form_id <- optional $ o A..: "autorization_form_id"
+    password <- o A..:? "password"
+    autorization_form_id <- mconcat [ o A..:? "autorization_form_id", readMaybe <$> (o A..: "autorization_form_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetPassportAuthorizationFormAvailableElements { password = password, autorization_form_id = autorization_form_id }

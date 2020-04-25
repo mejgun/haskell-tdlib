@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.WebPage where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.VoiceNote as VoiceNote
@@ -31,25 +32,25 @@ instance T.FromJSON WebPage where
   where
    parseWebPage :: A.Value -> T.Parser WebPage
    parseWebPage = A.withObject "WebPage" $ \o -> do
-    instant_view_version <- optional $ o A..: "instant_view_version"
-    voice_note <- optional $ o A..: "voice_note"
-    video_note <- optional $ o A..: "video_note"
-    video <- optional $ o A..: "video"
-    sticker <- optional $ o A..: "sticker"
-    document <- optional $ o A..: "document"
-    audio <- optional $ o A..: "audio"
-    animation <- optional $ o A..: "animation"
-    author <- optional $ o A..: "author"
-    duration <- optional $ o A..: "duration"
-    embed_height <- optional $ o A..: "embed_height"
-    embed_width <- optional $ o A..: "embed_width"
-    embed_type <- optional $ o A..: "embed_type"
-    embed_url <- optional $ o A..: "embed_url"
-    photo <- optional $ o A..: "photo"
-    description <- optional $ o A..: "description"
-    title <- optional $ o A..: "title"
-    site_name <- optional $ o A..: "site_name"
-    _type <- optional $ o A..: "type"
-    display_url <- optional $ o A..: "display_url"
-    url <- optional $ o A..: "url"
+    instant_view_version <- mconcat [ o A..:? "instant_view_version", readMaybe <$> (o A..: "instant_view_version" :: T.Parser String)] :: T.Parser (Maybe Int)
+    voice_note <- o A..:? "voice_note"
+    video_note <- o A..:? "video_note"
+    video <- o A..:? "video"
+    sticker <- o A..:? "sticker"
+    document <- o A..:? "document"
+    audio <- o A..:? "audio"
+    animation <- o A..:? "animation"
+    author <- o A..:? "author"
+    duration <- mconcat [ o A..:? "duration", readMaybe <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+    embed_height <- mconcat [ o A..:? "embed_height", readMaybe <$> (o A..: "embed_height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    embed_width <- mconcat [ o A..:? "embed_width", readMaybe <$> (o A..: "embed_width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    embed_type <- o A..:? "embed_type"
+    embed_url <- o A..:? "embed_url"
+    photo <- o A..:? "photo"
+    description <- o A..:? "description"
+    title <- o A..:? "title"
+    site_name <- o A..:? "site_name"
+    _type <- o A..:? "type"
+    display_url <- o A..:? "display_url"
+    url <- o A..:? "url"
     return $ WebPage { instant_view_version = instant_view_version, voice_note = voice_note, video_note = video_note, video = video, sticker = sticker, document = document, audio = audio, animation = animation, author = author, duration = duration, embed_height = embed_height, embed_width = embed_width, embed_type = embed_type, embed_url = embed_url, photo = photo, description = description, title = title, site_name = site_name, _type = _type, display_url = display_url, url = url }

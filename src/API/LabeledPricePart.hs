@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.LabeledPricePart where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON LabeledPricePart where
   where
    parseLabeledPricePart :: A.Value -> T.Parser LabeledPricePart
    parseLabeledPricePart = A.withObject "LabeledPricePart" $ \o -> do
-    amount <- optional $ o A..: "amount"
-    label <- optional $ o A..: "label"
+    amount <- mconcat [ o A..:? "amount", readMaybe <$> (o A..: "amount" :: T.Parser String)] :: T.Parser (Maybe Int)
+    label <- o A..:? "label"
     return $ LabeledPricePart { amount = amount, label = label }

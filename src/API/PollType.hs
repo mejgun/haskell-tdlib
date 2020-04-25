@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PollType where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -27,10 +28,10 @@ instance T.FromJSON PollType where
   where
    parsePollTypeRegular :: A.Value -> T.Parser PollType
    parsePollTypeRegular = A.withObject "PollTypeRegular" $ \o -> do
-    allow_multiple_answers <- optional $ o A..: "allow_multiple_answers"
+    allow_multiple_answers <- o A..:? "allow_multiple_answers"
     return $ PollTypeRegular { allow_multiple_answers = allow_multiple_answers }
 
    parsePollTypeQuiz :: A.Value -> T.Parser PollType
    parsePollTypeQuiz = A.withObject "PollTypeQuiz" $ \o -> do
-    correct_option_id <- optional $ o A..: "correct_option_id"
+    correct_option_id <- mconcat [ o A..:? "correct_option_id", readMaybe <$> (o A..: "correct_option_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ PollTypeQuiz { correct_option_id = correct_option_id }

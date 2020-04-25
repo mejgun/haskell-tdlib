@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ToggleSupergroupIsAllHistoryAvailable where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON ToggleSupergroupIsAllHistoryAvailable where
   where
    parseToggleSupergroupIsAllHistoryAvailable :: A.Value -> T.Parser ToggleSupergroupIsAllHistoryAvailable
    parseToggleSupergroupIsAllHistoryAvailable = A.withObject "ToggleSupergroupIsAllHistoryAvailable" $ \o -> do
-    is_all_history_available <- optional $ o A..: "is_all_history_available"
-    supergroup_id <- optional $ o A..: "supergroup_id"
+    is_all_history_available <- o A..:? "is_all_history_available"
+    supergroup_id <- mconcat [ o A..:? "supergroup_id", readMaybe <$> (o A..: "supergroup_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ToggleSupergroupIsAllHistoryAvailable { is_all_history_available = is_all_history_available, supergroup_id = supergroup_id }

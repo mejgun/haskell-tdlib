@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.UserType where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -45,11 +46,11 @@ instance T.FromJSON UserType where
 
    parseUserTypeBot :: A.Value -> T.Parser UserType
    parseUserTypeBot = A.withObject "UserTypeBot" $ \o -> do
-    need_location <- optional $ o A..: "need_location"
-    inline_query_placeholder <- optional $ o A..: "inline_query_placeholder"
-    is_inline <- optional $ o A..: "is_inline"
-    can_read_all_group_messages <- optional $ o A..: "can_read_all_group_messages"
-    can_join_groups <- optional $ o A..: "can_join_groups"
+    need_location <- o A..:? "need_location"
+    inline_query_placeholder <- o A..:? "inline_query_placeholder"
+    is_inline <- o A..:? "is_inline"
+    can_read_all_group_messages <- o A..:? "can_read_all_group_messages"
+    can_join_groups <- o A..:? "can_join_groups"
     return $ UserTypeBot { need_location = need_location, inline_query_placeholder = inline_query_placeholder, is_inline = is_inline, can_read_all_group_messages = can_read_all_group_messages, can_join_groups = can_join_groups }
 
    parseUserTypeUnknown :: A.Value -> T.Parser UserType

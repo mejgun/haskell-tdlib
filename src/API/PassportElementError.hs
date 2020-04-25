@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PassportElementError where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PassportElementErrorSource as PassportElementErrorSource
@@ -24,7 +25,7 @@ instance T.FromJSON PassportElementError where
   where
    parsePassportElementError :: A.Value -> T.Parser PassportElementError
    parsePassportElementError = A.withObject "PassportElementError" $ \o -> do
-    source <- optional $ o A..: "source"
-    message <- optional $ o A..: "message"
-    _type <- optional $ o A..: "type"
+    source <- o A..:? "source"
+    message <- o A..:? "message"
+    _type <- o A..:? "type"
     return $ PassportElementError { source = source, message = message, _type = _type }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatMemberStatus where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatPermissions as ChatPermissions
@@ -48,22 +49,22 @@ instance T.FromJSON ChatMemberStatus where
   where
    parseChatMemberStatusCreator :: A.Value -> T.Parser ChatMemberStatus
    parseChatMemberStatusCreator = A.withObject "ChatMemberStatusCreator" $ \o -> do
-    is_member <- optional $ o A..: "is_member"
-    custom_title <- optional $ o A..: "custom_title"
+    is_member <- o A..:? "is_member"
+    custom_title <- o A..:? "custom_title"
     return $ ChatMemberStatusCreator { is_member = is_member, custom_title = custom_title }
 
    parseChatMemberStatusAdministrator :: A.Value -> T.Parser ChatMemberStatus
    parseChatMemberStatusAdministrator = A.withObject "ChatMemberStatusAdministrator" $ \o -> do
-    can_promote_members <- optional $ o A..: "can_promote_members"
-    can_pin_messages <- optional $ o A..: "can_pin_messages"
-    can_restrict_members <- optional $ o A..: "can_restrict_members"
-    can_invite_users <- optional $ o A..: "can_invite_users"
-    can_delete_messages <- optional $ o A..: "can_delete_messages"
-    can_edit_messages <- optional $ o A..: "can_edit_messages"
-    can_post_messages <- optional $ o A..: "can_post_messages"
-    can_change_info <- optional $ o A..: "can_change_info"
-    can_be_edited <- optional $ o A..: "can_be_edited"
-    custom_title <- optional $ o A..: "custom_title"
+    can_promote_members <- o A..:? "can_promote_members"
+    can_pin_messages <- o A..:? "can_pin_messages"
+    can_restrict_members <- o A..:? "can_restrict_members"
+    can_invite_users <- o A..:? "can_invite_users"
+    can_delete_messages <- o A..:? "can_delete_messages"
+    can_edit_messages <- o A..:? "can_edit_messages"
+    can_post_messages <- o A..:? "can_post_messages"
+    can_change_info <- o A..:? "can_change_info"
+    can_be_edited <- o A..:? "can_be_edited"
+    custom_title <- o A..:? "custom_title"
     return $ ChatMemberStatusAdministrator { can_promote_members = can_promote_members, can_pin_messages = can_pin_messages, can_restrict_members = can_restrict_members, can_invite_users = can_invite_users, can_delete_messages = can_delete_messages, can_edit_messages = can_edit_messages, can_post_messages = can_post_messages, can_change_info = can_change_info, can_be_edited = can_be_edited, custom_title = custom_title }
 
    parseChatMemberStatusMember :: A.Value -> T.Parser ChatMemberStatus
@@ -72,9 +73,9 @@ instance T.FromJSON ChatMemberStatus where
 
    parseChatMemberStatusRestricted :: A.Value -> T.Parser ChatMemberStatus
    parseChatMemberStatusRestricted = A.withObject "ChatMemberStatusRestricted" $ \o -> do
-    permissions <- optional $ o A..: "permissions"
-    restricted_until_date <- optional $ o A..: "restricted_until_date"
-    is_member <- optional $ o A..: "is_member"
+    permissions <- o A..:? "permissions"
+    restricted_until_date <- mconcat [ o A..:? "restricted_until_date", readMaybe <$> (o A..: "restricted_until_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    is_member <- o A..:? "is_member"
     return $ ChatMemberStatusRestricted { permissions = permissions, restricted_until_date = restricted_until_date, is_member = is_member }
 
    parseChatMemberStatusLeft :: A.Value -> T.Parser ChatMemberStatus
@@ -83,5 +84,5 @@ instance T.FromJSON ChatMemberStatus where
 
    parseChatMemberStatusBanned :: A.Value -> T.Parser ChatMemberStatus
    parseChatMemberStatusBanned = A.withObject "ChatMemberStatusBanned" $ \o -> do
-    banned_until_date <- optional $ o A..: "banned_until_date"
+    banned_until_date <- mconcat [ o A..:? "banned_until_date", readMaybe <$> (o A..: "banned_until_date" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatMemberStatusBanned { banned_until_date = banned_until_date }

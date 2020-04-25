@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.RemoveRecentSticker where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
@@ -23,6 +24,6 @@ instance T.FromJSON RemoveRecentSticker where
   where
    parseRemoveRecentSticker :: A.Value -> T.Parser RemoveRecentSticker
    parseRemoveRecentSticker = A.withObject "RemoveRecentSticker" $ \o -> do
-    sticker <- optional $ o A..: "sticker"
-    is_attached <- optional $ o A..: "is_attached"
+    sticker <- o A..:? "sticker"
+    is_attached <- o A..:? "is_attached"
     return $ RemoveRecentSticker { sticker = sticker, is_attached = is_attached }

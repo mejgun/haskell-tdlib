@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SendCustomRequest where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON SendCustomRequest where
   where
    parseSendCustomRequest :: A.Value -> T.Parser SendCustomRequest
    parseSendCustomRequest = A.withObject "SendCustomRequest" $ \o -> do
-    parameters <- optional $ o A..: "parameters"
-    method <- optional $ o A..: "method"
+    parameters <- o A..:? "parameters"
+    method <- o A..:? "method"
     return $ SendCustomRequest { parameters = parameters, method = method }

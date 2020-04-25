@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.DownloadFile where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,9 +23,9 @@ instance T.FromJSON DownloadFile where
   where
    parseDownloadFile :: A.Value -> T.Parser DownloadFile
    parseDownloadFile = A.withObject "DownloadFile" $ \o -> do
-    synchronous <- optional $ o A..: "synchronous"
-    limit <- optional $ o A..: "limit"
-    offset <- optional $ o A..: "offset"
-    priority <- optional $ o A..: "priority"
-    file_id <- optional $ o A..: "file_id"
+    synchronous <- o A..:? "synchronous"
+    limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
+    offset <- mconcat [ o A..:? "offset", readMaybe <$> (o A..: "offset" :: T.Parser String)] :: T.Parser (Maybe Int)
+    priority <- mconcat [ o A..:? "priority", readMaybe <$> (o A..: "priority" :: T.Parser String)] :: T.Parser (Maybe Int)
+    file_id <- mconcat [ o A..:? "file_id", readMaybe <$> (o A..: "file_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ DownloadFile { synchronous = synchronous, limit = limit, offset = offset, priority = priority, file_id = file_id }

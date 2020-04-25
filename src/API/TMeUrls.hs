@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.TMeUrls where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TMeUrl as TMeUrl
@@ -23,5 +24,5 @@ instance T.FromJSON TMeUrls where
   where
    parseTMeUrls :: A.Value -> T.Parser TMeUrls
    parseTMeUrls = A.withObject "TMeUrls" $ \o -> do
-    urls <- optional $ o A..: "urls"
+    urls <- o A..:? "urls"
     return $ TMeUrls { urls = urls }

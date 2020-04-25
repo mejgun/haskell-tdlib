@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SendChatScreenshotTakenNotification where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON SendChatScreenshotTakenNotification where
   where
    parseSendChatScreenshotTakenNotification :: A.Value -> T.Parser SendChatScreenshotTakenNotification
    parseSendChatScreenshotTakenNotification = A.withObject "SendChatScreenshotTakenNotification" $ \o -> do
-    chat_id <- optional $ o A..: "chat_id"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SendChatScreenshotTakenNotification { chat_id = chat_id }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetGroupsInCommon where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,7 +23,7 @@ instance T.FromJSON GetGroupsInCommon where
   where
    parseGetGroupsInCommon :: A.Value -> T.Parser GetGroupsInCommon
    parseGetGroupsInCommon = A.withObject "GetGroupsInCommon" $ \o -> do
-    limit <- optional $ o A..: "limit"
-    offset_chat_id <- optional $ o A..: "offset_chat_id"
-    user_id <- optional $ o A..: "user_id"
+    limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
+    offset_chat_id <- mconcat [ o A..:? "offset_chat_id", readMaybe <$> (o A..: "offset_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetGroupsInCommon { limit = limit, offset_chat_id = offset_chat_id, user_id = user_id }

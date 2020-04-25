@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.StatisticsGraph where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -32,16 +33,16 @@ instance T.FromJSON StatisticsGraph where
   where
    parseStatisticsGraphData :: A.Value -> T.Parser StatisticsGraph
    parseStatisticsGraphData = A.withObject "StatisticsGraphData" $ \o -> do
-    zoom_token <- optional $ o A..: "zoom_token"
-    json_data <- optional $ o A..: "json_data"
+    zoom_token <- o A..:? "zoom_token"
+    json_data <- o A..:? "json_data"
     return $ StatisticsGraphData { zoom_token = zoom_token, json_data = json_data }
 
    parseStatisticsGraphAsync :: A.Value -> T.Parser StatisticsGraph
    parseStatisticsGraphAsync = A.withObject "StatisticsGraphAsync" $ \o -> do
-    token <- optional $ o A..: "token"
+    token <- o A..:? "token"
     return $ StatisticsGraphAsync { token = token }
 
    parseStatisticsGraphError :: A.Value -> T.Parser StatisticsGraph
    parseStatisticsGraphError = A.withObject "StatisticsGraphError" $ \o -> do
-    error_message <- optional $ o A..: "error_message"
+    error_message <- o A..:? "error_message"
     return $ StatisticsGraphError { error_message = error_message }

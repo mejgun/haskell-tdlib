@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Update where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.AuthorizationState as AuthorizationState
@@ -438,489 +439,489 @@ instance T.FromJSON Update where
   where
    parseUpdateAuthorizationState :: A.Value -> T.Parser Update
    parseUpdateAuthorizationState = A.withObject "UpdateAuthorizationState" $ \o -> do
-    authorization_state <- optional $ o A..: "authorization_state"
+    authorization_state <- o A..:? "authorization_state"
     return $ UpdateAuthorizationState { authorization_state = authorization_state }
 
    parseUpdateNewMessage :: A.Value -> T.Parser Update
    parseUpdateNewMessage = A.withObject "UpdateNewMessage" $ \o -> do
-    message <- optional $ o A..: "message"
+    message <- o A..:? "message"
     return $ UpdateNewMessage { message = message }
 
    parseUpdateMessageSendAcknowledged :: A.Value -> T.Parser Update
    parseUpdateMessageSendAcknowledged = A.withObject "UpdateMessageSendAcknowledged" $ \o -> do
-    message_id <- optional $ o A..: "message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateMessageSendAcknowledged { message_id = message_id, chat_id = chat_id }
 
    parseUpdateMessageSendSucceeded :: A.Value -> T.Parser Update
    parseUpdateMessageSendSucceeded = A.withObject "UpdateMessageSendSucceeded" $ \o -> do
-    old_message_id <- optional $ o A..: "old_message_id"
-    message <- optional $ o A..: "message"
+    old_message_id <- mconcat [ o A..:? "old_message_id", readMaybe <$> (o A..: "old_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    message <- o A..:? "message"
     return $ UpdateMessageSendSucceeded { old_message_id = old_message_id, message = message }
 
    parseUpdateMessageSendFailed :: A.Value -> T.Parser Update
    parseUpdateMessageSendFailed = A.withObject "UpdateMessageSendFailed" $ \o -> do
-    error_message <- optional $ o A..: "error_message"
-    error_code <- optional $ o A..: "error_code"
-    old_message_id <- optional $ o A..: "old_message_id"
-    message <- optional $ o A..: "message"
+    error_message <- o A..:? "error_message"
+    error_code <- mconcat [ o A..:? "error_code", readMaybe <$> (o A..: "error_code" :: T.Parser String)] :: T.Parser (Maybe Int)
+    old_message_id <- mconcat [ o A..:? "old_message_id", readMaybe <$> (o A..: "old_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    message <- o A..:? "message"
     return $ UpdateMessageSendFailed { error_message = error_message, error_code = error_code, old_message_id = old_message_id, message = message }
 
    parseUpdateMessageContent :: A.Value -> T.Parser Update
    parseUpdateMessageContent = A.withObject "UpdateMessageContent" $ \o -> do
-    new_content <- optional $ o A..: "new_content"
-    message_id <- optional $ o A..: "message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    new_content <- o A..:? "new_content"
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateMessageContent { new_content = new_content, message_id = message_id, chat_id = chat_id }
 
    parseUpdateMessageEdited :: A.Value -> T.Parser Update
    parseUpdateMessageEdited = A.withObject "UpdateMessageEdited" $ \o -> do
-    reply_markup <- optional $ o A..: "reply_markup"
-    edit_date <- optional $ o A..: "edit_date"
-    message_id <- optional $ o A..: "message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    reply_markup <- o A..:? "reply_markup"
+    edit_date <- mconcat [ o A..:? "edit_date", readMaybe <$> (o A..: "edit_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateMessageEdited { reply_markup = reply_markup, edit_date = edit_date, message_id = message_id, chat_id = chat_id }
 
    parseUpdateMessageViews :: A.Value -> T.Parser Update
    parseUpdateMessageViews = A.withObject "UpdateMessageViews" $ \o -> do
-    views <- optional $ o A..: "views"
-    message_id <- optional $ o A..: "message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    views <- mconcat [ o A..:? "views", readMaybe <$> (o A..: "views" :: T.Parser String)] :: T.Parser (Maybe Int)
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateMessageViews { views = views, message_id = message_id, chat_id = chat_id }
 
    parseUpdateMessageContentOpened :: A.Value -> T.Parser Update
    parseUpdateMessageContentOpened = A.withObject "UpdateMessageContentOpened" $ \o -> do
-    message_id <- optional $ o A..: "message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateMessageContentOpened { message_id = message_id, chat_id = chat_id }
 
    parseUpdateMessageMentionRead :: A.Value -> T.Parser Update
    parseUpdateMessageMentionRead = A.withObject "UpdateMessageMentionRead" $ \o -> do
-    unread_mention_count <- optional $ o A..: "unread_mention_count"
-    message_id <- optional $ o A..: "message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    unread_mention_count <- mconcat [ o A..:? "unread_mention_count", readMaybe <$> (o A..: "unread_mention_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateMessageMentionRead { unread_mention_count = unread_mention_count, message_id = message_id, chat_id = chat_id }
 
    parseUpdateMessageLiveLocationViewed :: A.Value -> T.Parser Update
    parseUpdateMessageLiveLocationViewed = A.withObject "UpdateMessageLiveLocationViewed" $ \o -> do
-    message_id <- optional $ o A..: "message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateMessageLiveLocationViewed { message_id = message_id, chat_id = chat_id }
 
    parseUpdateNewChat :: A.Value -> T.Parser Update
    parseUpdateNewChat = A.withObject "UpdateNewChat" $ \o -> do
-    chat <- optional $ o A..: "chat"
+    chat <- o A..:? "chat"
     return $ UpdateNewChat { chat = chat }
 
    parseUpdateChatChatList :: A.Value -> T.Parser Update
    parseUpdateChatChatList = A.withObject "UpdateChatChatList" $ \o -> do
-    chat_list <- optional $ o A..: "chat_list"
-    chat_id <- optional $ o A..: "chat_id"
+    chat_list <- o A..:? "chat_list"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatChatList { chat_list = chat_list, chat_id = chat_id }
 
    parseUpdateChatTitle :: A.Value -> T.Parser Update
    parseUpdateChatTitle = A.withObject "UpdateChatTitle" $ \o -> do
-    title <- optional $ o A..: "title"
-    chat_id <- optional $ o A..: "chat_id"
+    title <- o A..:? "title"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatTitle { title = title, chat_id = chat_id }
 
    parseUpdateChatPhoto :: A.Value -> T.Parser Update
    parseUpdateChatPhoto = A.withObject "UpdateChatPhoto" $ \o -> do
-    photo <- optional $ o A..: "photo"
-    chat_id <- optional $ o A..: "chat_id"
+    photo <- o A..:? "photo"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatPhoto { photo = photo, chat_id = chat_id }
 
    parseUpdateChatPermissions :: A.Value -> T.Parser Update
    parseUpdateChatPermissions = A.withObject "UpdateChatPermissions" $ \o -> do
-    permissions <- optional $ o A..: "permissions"
-    chat_id <- optional $ o A..: "chat_id"
+    permissions <- o A..:? "permissions"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatPermissions { permissions = permissions, chat_id = chat_id }
 
    parseUpdateChatLastMessage :: A.Value -> T.Parser Update
    parseUpdateChatLastMessage = A.withObject "UpdateChatLastMessage" $ \o -> do
-    order <- optional $ o A..: "order"
-    last_message <- optional $ o A..: "last_message"
-    chat_id <- optional $ o A..: "chat_id"
+    order <- mconcat [ o A..:? "order", readMaybe <$> (o A..: "order" :: T.Parser String)] :: T.Parser (Maybe Int)
+    last_message <- o A..:? "last_message"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatLastMessage { order = order, last_message = last_message, chat_id = chat_id }
 
    parseUpdateChatOrder :: A.Value -> T.Parser Update
    parseUpdateChatOrder = A.withObject "UpdateChatOrder" $ \o -> do
-    order <- optional $ o A..: "order"
-    chat_id <- optional $ o A..: "chat_id"
+    order <- mconcat [ o A..:? "order", readMaybe <$> (o A..: "order" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatOrder { order = order, chat_id = chat_id }
 
    parseUpdateChatIsPinned :: A.Value -> T.Parser Update
    parseUpdateChatIsPinned = A.withObject "UpdateChatIsPinned" $ \o -> do
-    order <- optional $ o A..: "order"
-    is_pinned <- optional $ o A..: "is_pinned"
-    chat_id <- optional $ o A..: "chat_id"
+    order <- mconcat [ o A..:? "order", readMaybe <$> (o A..: "order" :: T.Parser String)] :: T.Parser (Maybe Int)
+    is_pinned <- o A..:? "is_pinned"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatIsPinned { order = order, is_pinned = is_pinned, chat_id = chat_id }
 
    parseUpdateChatIsMarkedAsUnread :: A.Value -> T.Parser Update
    parseUpdateChatIsMarkedAsUnread = A.withObject "UpdateChatIsMarkedAsUnread" $ \o -> do
-    is_marked_as_unread <- optional $ o A..: "is_marked_as_unread"
-    chat_id <- optional $ o A..: "chat_id"
+    is_marked_as_unread <- o A..:? "is_marked_as_unread"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatIsMarkedAsUnread { is_marked_as_unread = is_marked_as_unread, chat_id = chat_id }
 
    parseUpdateChatIsSponsored :: A.Value -> T.Parser Update
    parseUpdateChatIsSponsored = A.withObject "UpdateChatIsSponsored" $ \o -> do
-    order <- optional $ o A..: "order"
-    is_sponsored <- optional $ o A..: "is_sponsored"
-    chat_id <- optional $ o A..: "chat_id"
+    order <- mconcat [ o A..:? "order", readMaybe <$> (o A..: "order" :: T.Parser String)] :: T.Parser (Maybe Int)
+    is_sponsored <- o A..:? "is_sponsored"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatIsSponsored { order = order, is_sponsored = is_sponsored, chat_id = chat_id }
 
    parseUpdateChatHasScheduledMessages :: A.Value -> T.Parser Update
    parseUpdateChatHasScheduledMessages = A.withObject "UpdateChatHasScheduledMessages" $ \o -> do
-    has_scheduled_messages <- optional $ o A..: "has_scheduled_messages"
-    chat_id <- optional $ o A..: "chat_id"
+    has_scheduled_messages <- o A..:? "has_scheduled_messages"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatHasScheduledMessages { has_scheduled_messages = has_scheduled_messages, chat_id = chat_id }
 
    parseUpdateChatDefaultDisableNotification :: A.Value -> T.Parser Update
    parseUpdateChatDefaultDisableNotification = A.withObject "UpdateChatDefaultDisableNotification" $ \o -> do
-    default_disable_notification <- optional $ o A..: "default_disable_notification"
-    chat_id <- optional $ o A..: "chat_id"
+    default_disable_notification <- o A..:? "default_disable_notification"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatDefaultDisableNotification { default_disable_notification = default_disable_notification, chat_id = chat_id }
 
    parseUpdateChatReadInbox :: A.Value -> T.Parser Update
    parseUpdateChatReadInbox = A.withObject "UpdateChatReadInbox" $ \o -> do
-    unread_count <- optional $ o A..: "unread_count"
-    last_read_inbox_message_id <- optional $ o A..: "last_read_inbox_message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    unread_count <- mconcat [ o A..:? "unread_count", readMaybe <$> (o A..: "unread_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    last_read_inbox_message_id <- mconcat [ o A..:? "last_read_inbox_message_id", readMaybe <$> (o A..: "last_read_inbox_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatReadInbox { unread_count = unread_count, last_read_inbox_message_id = last_read_inbox_message_id, chat_id = chat_id }
 
    parseUpdateChatReadOutbox :: A.Value -> T.Parser Update
    parseUpdateChatReadOutbox = A.withObject "UpdateChatReadOutbox" $ \o -> do
-    last_read_outbox_message_id <- optional $ o A..: "last_read_outbox_message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    last_read_outbox_message_id <- mconcat [ o A..:? "last_read_outbox_message_id", readMaybe <$> (o A..: "last_read_outbox_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatReadOutbox { last_read_outbox_message_id = last_read_outbox_message_id, chat_id = chat_id }
 
    parseUpdateChatUnreadMentionCount :: A.Value -> T.Parser Update
    parseUpdateChatUnreadMentionCount = A.withObject "UpdateChatUnreadMentionCount" $ \o -> do
-    unread_mention_count <- optional $ o A..: "unread_mention_count"
-    chat_id <- optional $ o A..: "chat_id"
+    unread_mention_count <- mconcat [ o A..:? "unread_mention_count", readMaybe <$> (o A..: "unread_mention_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatUnreadMentionCount { unread_mention_count = unread_mention_count, chat_id = chat_id }
 
    parseUpdateChatNotificationSettings :: A.Value -> T.Parser Update
    parseUpdateChatNotificationSettings = A.withObject "UpdateChatNotificationSettings" $ \o -> do
-    _notification_settings <- optional $ o A..: "notification_settings"
-    chat_id <- optional $ o A..: "chat_id"
+    _notification_settings <- o A..:? "notification_settings"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatNotificationSettings { _notification_settings = _notification_settings, chat_id = chat_id }
 
    parseUpdateScopeNotificationSettings :: A.Value -> T.Parser Update
    parseUpdateScopeNotificationSettings = A.withObject "UpdateScopeNotificationSettings" $ \o -> do
-    notification_settings <- optional $ o A..: "notification_settings"
-    scope <- optional $ o A..: "scope"
+    notification_settings <- o A..:? "notification_settings"
+    scope <- o A..:? "scope"
     return $ UpdateScopeNotificationSettings { notification_settings = notification_settings, scope = scope }
 
    parseUpdateChatActionBar :: A.Value -> T.Parser Update
    parseUpdateChatActionBar = A.withObject "UpdateChatActionBar" $ \o -> do
-    action_bar <- optional $ o A..: "action_bar"
-    chat_id <- optional $ o A..: "chat_id"
+    action_bar <- o A..:? "action_bar"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatActionBar { action_bar = action_bar, chat_id = chat_id }
 
    parseUpdateChatPinnedMessage :: A.Value -> T.Parser Update
    parseUpdateChatPinnedMessage = A.withObject "UpdateChatPinnedMessage" $ \o -> do
-    pinned_message_id <- optional $ o A..: "pinned_message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    pinned_message_id <- mconcat [ o A..:? "pinned_message_id", readMaybe <$> (o A..: "pinned_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatPinnedMessage { pinned_message_id = pinned_message_id, chat_id = chat_id }
 
    parseUpdateChatReplyMarkup :: A.Value -> T.Parser Update
    parseUpdateChatReplyMarkup = A.withObject "UpdateChatReplyMarkup" $ \o -> do
-    reply_markup_message_id <- optional $ o A..: "reply_markup_message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    reply_markup_message_id <- mconcat [ o A..:? "reply_markup_message_id", readMaybe <$> (o A..: "reply_markup_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatReplyMarkup { reply_markup_message_id = reply_markup_message_id, chat_id = chat_id }
 
    parseUpdateChatDraftMessage :: A.Value -> T.Parser Update
    parseUpdateChatDraftMessage = A.withObject "UpdateChatDraftMessage" $ \o -> do
-    order <- optional $ o A..: "order"
-    draft_message <- optional $ o A..: "draft_message"
-    chat_id <- optional $ o A..: "chat_id"
+    order <- mconcat [ o A..:? "order", readMaybe <$> (o A..: "order" :: T.Parser String)] :: T.Parser (Maybe Int)
+    draft_message <- o A..:? "draft_message"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatDraftMessage { order = order, draft_message = draft_message, chat_id = chat_id }
 
    parseUpdateChatOnlineMemberCount :: A.Value -> T.Parser Update
    parseUpdateChatOnlineMemberCount = A.withObject "UpdateChatOnlineMemberCount" $ \o -> do
-    online_member_count <- optional $ o A..: "online_member_count"
-    chat_id <- optional $ o A..: "chat_id"
+    online_member_count <- mconcat [ o A..:? "online_member_count", readMaybe <$> (o A..: "online_member_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatOnlineMemberCount { online_member_count = online_member_count, chat_id = chat_id }
 
    parseUpdateNotification :: A.Value -> T.Parser Update
    parseUpdateNotification = A.withObject "UpdateNotification" $ \o -> do
-    notification <- optional $ o A..: "notification"
-    notification_group_id <- optional $ o A..: "notification_group_id"
+    notification <- o A..:? "notification"
+    notification_group_id <- mconcat [ o A..:? "notification_group_id", readMaybe <$> (o A..: "notification_group_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateNotification { notification = notification, notification_group_id = notification_group_id }
 
    parseUpdateNotificationGroup :: A.Value -> T.Parser Update
    parseUpdateNotificationGroup = A.withObject "UpdateNotificationGroup" $ \o -> do
-    removed_notification_ids <- optional $ o A..: "removed_notification_ids"
-    added_notifications <- optional $ o A..: "added_notifications"
-    total_count <- optional $ o A..: "total_count"
-    is_silent <- optional $ o A..: "is_silent"
-    notification_settings_chat_id <- optional $ o A..: "notification_settings_chat_id"
-    chat_id <- optional $ o A..: "chat_id"
-    __type <- optional $ o A..: "type"
-    notification_group_id <- optional $ o A..: "notification_group_id"
+    removed_notification_ids <- o A..:? "removed_notification_ids"
+    added_notifications <- o A..:? "added_notifications"
+    total_count <- mconcat [ o A..:? "total_count", readMaybe <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    is_silent <- o A..:? "is_silent"
+    notification_settings_chat_id <- mconcat [ o A..:? "notification_settings_chat_id", readMaybe <$> (o A..: "notification_settings_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    __type <- o A..:? "type"
+    notification_group_id <- mconcat [ o A..:? "notification_group_id", readMaybe <$> (o A..: "notification_group_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateNotificationGroup { removed_notification_ids = removed_notification_ids, added_notifications = added_notifications, total_count = total_count, is_silent = is_silent, notification_settings_chat_id = notification_settings_chat_id, chat_id = chat_id, __type = __type, notification_group_id = notification_group_id }
 
    parseUpdateActiveNotifications :: A.Value -> T.Parser Update
    parseUpdateActiveNotifications = A.withObject "UpdateActiveNotifications" $ \o -> do
-    groups <- optional $ o A..: "groups"
+    groups <- o A..:? "groups"
     return $ UpdateActiveNotifications { groups = groups }
 
    parseUpdateHavePendingNotifications :: A.Value -> T.Parser Update
    parseUpdateHavePendingNotifications = A.withObject "UpdateHavePendingNotifications" $ \o -> do
-    have_unreceived_notifications <- optional $ o A..: "have_unreceived_notifications"
-    have_delayed_notifications <- optional $ o A..: "have_delayed_notifications"
+    have_unreceived_notifications <- o A..:? "have_unreceived_notifications"
+    have_delayed_notifications <- o A..:? "have_delayed_notifications"
     return $ UpdateHavePendingNotifications { have_unreceived_notifications = have_unreceived_notifications, have_delayed_notifications = have_delayed_notifications }
 
    parseUpdateDeleteMessages :: A.Value -> T.Parser Update
    parseUpdateDeleteMessages = A.withObject "UpdateDeleteMessages" $ \o -> do
-    from_cache <- optional $ o A..: "from_cache"
-    is_permanent <- optional $ o A..: "is_permanent"
-    message_ids <- optional $ o A..: "message_ids"
-    chat_id <- optional $ o A..: "chat_id"
+    from_cache <- o A..:? "from_cache"
+    is_permanent <- o A..:? "is_permanent"
+    message_ids <- o A..:? "message_ids"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateDeleteMessages { from_cache = from_cache, is_permanent = is_permanent, message_ids = message_ids, chat_id = chat_id }
 
    parseUpdateUserChatAction :: A.Value -> T.Parser Update
    parseUpdateUserChatAction = A.withObject "UpdateUserChatAction" $ \o -> do
-    action <- optional $ o A..: "action"
-    user_id <- optional $ o A..: "user_id"
-    chat_id <- optional $ o A..: "chat_id"
+    action <- o A..:? "action"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateUserChatAction { action = action, user_id = user_id, chat_id = chat_id }
 
    parseUpdateUserStatus :: A.Value -> T.Parser Update
    parseUpdateUserStatus = A.withObject "UpdateUserStatus" $ \o -> do
-    status <- optional $ o A..: "status"
-    user_id <- optional $ o A..: "user_id"
+    status <- o A..:? "status"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateUserStatus { status = status, user_id = user_id }
 
    parseUpdateUser :: A.Value -> T.Parser Update
    parseUpdateUser = A.withObject "UpdateUser" $ \o -> do
-    user <- optional $ o A..: "user"
+    user <- o A..:? "user"
     return $ UpdateUser { user = user }
 
    parseUpdateBasicGroup :: A.Value -> T.Parser Update
    parseUpdateBasicGroup = A.withObject "UpdateBasicGroup" $ \o -> do
-    basic_group <- optional $ o A..: "basic_group"
+    basic_group <- o A..:? "basic_group"
     return $ UpdateBasicGroup { basic_group = basic_group }
 
    parseUpdateSupergroup :: A.Value -> T.Parser Update
    parseUpdateSupergroup = A.withObject "UpdateSupergroup" $ \o -> do
-    supergroup <- optional $ o A..: "supergroup"
+    supergroup <- o A..:? "supergroup"
     return $ UpdateSupergroup { supergroup = supergroup }
 
    parseUpdateSecretChat :: A.Value -> T.Parser Update
    parseUpdateSecretChat = A.withObject "UpdateSecretChat" $ \o -> do
-    secret_chat <- optional $ o A..: "secret_chat"
+    secret_chat <- o A..:? "secret_chat"
     return $ UpdateSecretChat { secret_chat = secret_chat }
 
    parseUpdateUserFullInfo :: A.Value -> T.Parser Update
    parseUpdateUserFullInfo = A.withObject "UpdateUserFullInfo" $ \o -> do
-    user_full_info <- optional $ o A..: "user_full_info"
-    user_id <- optional $ o A..: "user_id"
+    user_full_info <- o A..:? "user_full_info"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateUserFullInfo { user_full_info = user_full_info, user_id = user_id }
 
    parseUpdateBasicGroupFullInfo :: A.Value -> T.Parser Update
    parseUpdateBasicGroupFullInfo = A.withObject "UpdateBasicGroupFullInfo" $ \o -> do
-    basic_group_full_info <- optional $ o A..: "basic_group_full_info"
-    basic_group_id <- optional $ o A..: "basic_group_id"
+    basic_group_full_info <- o A..:? "basic_group_full_info"
+    basic_group_id <- mconcat [ o A..:? "basic_group_id", readMaybe <$> (o A..: "basic_group_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateBasicGroupFullInfo { basic_group_full_info = basic_group_full_info, basic_group_id = basic_group_id }
 
    parseUpdateSupergroupFullInfo :: A.Value -> T.Parser Update
    parseUpdateSupergroupFullInfo = A.withObject "UpdateSupergroupFullInfo" $ \o -> do
-    supergroup_full_info <- optional $ o A..: "supergroup_full_info"
-    supergroup_id <- optional $ o A..: "supergroup_id"
+    supergroup_full_info <- o A..:? "supergroup_full_info"
+    supergroup_id <- mconcat [ o A..:? "supergroup_id", readMaybe <$> (o A..: "supergroup_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateSupergroupFullInfo { supergroup_full_info = supergroup_full_info, supergroup_id = supergroup_id }
 
    parseUpdateServiceNotification :: A.Value -> T.Parser Update
    parseUpdateServiceNotification = A.withObject "UpdateServiceNotification" $ \o -> do
-    content <- optional $ o A..: "content"
-    _type <- optional $ o A..: "type"
+    content <- o A..:? "content"
+    _type <- o A..:? "type"
     return $ UpdateServiceNotification { content = content, _type = _type }
 
    parseUpdateFile :: A.Value -> T.Parser Update
    parseUpdateFile = A.withObject "UpdateFile" $ \o -> do
-    file <- optional $ o A..: "file"
+    file <- o A..:? "file"
     return $ UpdateFile { file = file }
 
    parseUpdateFileGenerationStart :: A.Value -> T.Parser Update
    parseUpdateFileGenerationStart = A.withObject "UpdateFileGenerationStart" $ \o -> do
-    conversion <- optional $ o A..: "conversion"
-    destination_path <- optional $ o A..: "destination_path"
-    original_path <- optional $ o A..: "original_path"
-    generation_id <- optional $ o A..: "generation_id"
+    conversion <- o A..:? "conversion"
+    destination_path <- o A..:? "destination_path"
+    original_path <- o A..:? "original_path"
+    generation_id <- mconcat [ o A..:? "generation_id", readMaybe <$> (o A..: "generation_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateFileGenerationStart { conversion = conversion, destination_path = destination_path, original_path = original_path, generation_id = generation_id }
 
    parseUpdateFileGenerationStop :: A.Value -> T.Parser Update
    parseUpdateFileGenerationStop = A.withObject "UpdateFileGenerationStop" $ \o -> do
-    generation_id <- optional $ o A..: "generation_id"
+    generation_id <- mconcat [ o A..:? "generation_id", readMaybe <$> (o A..: "generation_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateFileGenerationStop { generation_id = generation_id }
 
    parseUpdateCall :: A.Value -> T.Parser Update
    parseUpdateCall = A.withObject "UpdateCall" $ \o -> do
-    call <- optional $ o A..: "call"
+    call <- o A..:? "call"
     return $ UpdateCall { call = call }
 
    parseUpdateUserPrivacySettingRules :: A.Value -> T.Parser Update
    parseUpdateUserPrivacySettingRules = A.withObject "UpdateUserPrivacySettingRules" $ \o -> do
-    rules <- optional $ o A..: "rules"
-    setting <- optional $ o A..: "setting"
+    rules <- o A..:? "rules"
+    setting <- o A..:? "setting"
     return $ UpdateUserPrivacySettingRules { rules = rules, setting = setting }
 
    parseUpdateUnreadMessageCount :: A.Value -> T.Parser Update
    parseUpdateUnreadMessageCount = A.withObject "UpdateUnreadMessageCount" $ \o -> do
-    unread_unmuted_count <- optional $ o A..: "unread_unmuted_count"
-    unread_count <- optional $ o A..: "unread_count"
-    chat_list <- optional $ o A..: "chat_list"
+    unread_unmuted_count <- mconcat [ o A..:? "unread_unmuted_count", readMaybe <$> (o A..: "unread_unmuted_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    unread_count <- mconcat [ o A..:? "unread_count", readMaybe <$> (o A..: "unread_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_list <- o A..:? "chat_list"
     return $ UpdateUnreadMessageCount { unread_unmuted_count = unread_unmuted_count, unread_count = unread_count, chat_list = chat_list }
 
    parseUpdateUnreadChatCount :: A.Value -> T.Parser Update
    parseUpdateUnreadChatCount = A.withObject "UpdateUnreadChatCount" $ \o -> do
-    marked_as_unread_unmuted_count <- optional $ o A..: "marked_as_unread_unmuted_count"
-    marked_as_unread_count <- optional $ o A..: "marked_as_unread_count"
-    unread_unmuted_count <- optional $ o A..: "unread_unmuted_count"
-    unread_count <- optional $ o A..: "unread_count"
-    total_count <- optional $ o A..: "total_count"
-    chat_list <- optional $ o A..: "chat_list"
+    marked_as_unread_unmuted_count <- mconcat [ o A..:? "marked_as_unread_unmuted_count", readMaybe <$> (o A..: "marked_as_unread_unmuted_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    marked_as_unread_count <- mconcat [ o A..:? "marked_as_unread_count", readMaybe <$> (o A..: "marked_as_unread_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    unread_unmuted_count <- mconcat [ o A..:? "unread_unmuted_count", readMaybe <$> (o A..: "unread_unmuted_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    unread_count <- mconcat [ o A..:? "unread_count", readMaybe <$> (o A..: "unread_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    total_count <- mconcat [ o A..:? "total_count", readMaybe <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_list <- o A..:? "chat_list"
     return $ UpdateUnreadChatCount { marked_as_unread_unmuted_count = marked_as_unread_unmuted_count, marked_as_unread_count = marked_as_unread_count, unread_unmuted_count = unread_unmuted_count, unread_count = unread_count, total_count = total_count, chat_list = chat_list }
 
    parseUpdateOption :: A.Value -> T.Parser Update
    parseUpdateOption = A.withObject "UpdateOption" $ \o -> do
-    value <- optional $ o A..: "value"
-    name <- optional $ o A..: "name"
+    value <- o A..:? "value"
+    name <- o A..:? "name"
     return $ UpdateOption { value = value, name = name }
 
    parseUpdateInstalledStickerSets :: A.Value -> T.Parser Update
    parseUpdateInstalledStickerSets = A.withObject "UpdateInstalledStickerSets" $ \o -> do
-    sticker_set_ids <- optional $ o A..: "sticker_set_ids"
-    is_masks <- optional $ o A..: "is_masks"
+    sticker_set_ids <- o A..:? "sticker_set_ids"
+    is_masks <- o A..:? "is_masks"
     return $ UpdateInstalledStickerSets { sticker_set_ids = sticker_set_ids, is_masks = is_masks }
 
    parseUpdateTrendingStickerSets :: A.Value -> T.Parser Update
    parseUpdateTrendingStickerSets = A.withObject "UpdateTrendingStickerSets" $ \o -> do
-    sticker_sets <- optional $ o A..: "sticker_sets"
+    sticker_sets <- o A..:? "sticker_sets"
     return $ UpdateTrendingStickerSets { sticker_sets = sticker_sets }
 
    parseUpdateRecentStickers :: A.Value -> T.Parser Update
    parseUpdateRecentStickers = A.withObject "UpdateRecentStickers" $ \o -> do
-    sticker_ids <- optional $ o A..: "sticker_ids"
-    is_attached <- optional $ o A..: "is_attached"
+    sticker_ids <- o A..:? "sticker_ids"
+    is_attached <- o A..:? "is_attached"
     return $ UpdateRecentStickers { sticker_ids = sticker_ids, is_attached = is_attached }
 
    parseUpdateFavoriteStickers :: A.Value -> T.Parser Update
    parseUpdateFavoriteStickers = A.withObject "UpdateFavoriteStickers" $ \o -> do
-    sticker_ids <- optional $ o A..: "sticker_ids"
+    sticker_ids <- o A..:? "sticker_ids"
     return $ UpdateFavoriteStickers { sticker_ids = sticker_ids }
 
    parseUpdateSavedAnimations :: A.Value -> T.Parser Update
    parseUpdateSavedAnimations = A.withObject "UpdateSavedAnimations" $ \o -> do
-    animation_ids <- optional $ o A..: "animation_ids"
+    animation_ids <- o A..:? "animation_ids"
     return $ UpdateSavedAnimations { animation_ids = animation_ids }
 
    parseUpdateSelectedBackground :: A.Value -> T.Parser Update
    parseUpdateSelectedBackground = A.withObject "UpdateSelectedBackground" $ \o -> do
-    background <- optional $ o A..: "background"
-    for_dark_theme <- optional $ o A..: "for_dark_theme"
+    background <- o A..:? "background"
+    for_dark_theme <- o A..:? "for_dark_theme"
     return $ UpdateSelectedBackground { background = background, for_dark_theme = for_dark_theme }
 
    parseUpdateLanguagePackStrings :: A.Value -> T.Parser Update
    parseUpdateLanguagePackStrings = A.withObject "UpdateLanguagePackStrings" $ \o -> do
-    strings <- optional $ o A..: "strings"
-    language_pack_id <- optional $ o A..: "language_pack_id"
-    localization_target <- optional $ o A..: "localization_target"
+    strings <- o A..:? "strings"
+    language_pack_id <- o A..:? "language_pack_id"
+    localization_target <- o A..:? "localization_target"
     return $ UpdateLanguagePackStrings { strings = strings, language_pack_id = language_pack_id, localization_target = localization_target }
 
    parseUpdateConnectionState :: A.Value -> T.Parser Update
    parseUpdateConnectionState = A.withObject "UpdateConnectionState" $ \o -> do
-    state <- optional $ o A..: "state"
+    state <- o A..:? "state"
     return $ UpdateConnectionState { state = state }
 
    parseUpdateTermsOfService :: A.Value -> T.Parser Update
    parseUpdateTermsOfService = A.withObject "UpdateTermsOfService" $ \o -> do
-    terms_of_service <- optional $ o A..: "terms_of_service"
-    terms_of_service_id <- optional $ o A..: "terms_of_service_id"
+    terms_of_service <- o A..:? "terms_of_service"
+    terms_of_service_id <- o A..:? "terms_of_service_id"
     return $ UpdateTermsOfService { terms_of_service = terms_of_service, terms_of_service_id = terms_of_service_id }
 
    parseUpdateUsersNearby :: A.Value -> T.Parser Update
    parseUpdateUsersNearby = A.withObject "UpdateUsersNearby" $ \o -> do
-    users_nearby <- optional $ o A..: "users_nearby"
+    users_nearby <- o A..:? "users_nearby"
     return $ UpdateUsersNearby { users_nearby = users_nearby }
 
    parseUpdateNewInlineQuery :: A.Value -> T.Parser Update
    parseUpdateNewInlineQuery = A.withObject "UpdateNewInlineQuery" $ \o -> do
-    offset <- optional $ o A..: "offset"
-    query <- optional $ o A..: "query"
-    user_location <- optional $ o A..: "user_location"
-    sender_user_id <- optional $ o A..: "sender_user_id"
-    _id <- optional $ o A..: "id"
+    offset <- o A..:? "offset"
+    query <- o A..:? "query"
+    user_location <- o A..:? "user_location"
+    sender_user_id <- mconcat [ o A..:? "sender_user_id", readMaybe <$> (o A..: "sender_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateNewInlineQuery { offset = offset, query = query, user_location = user_location, sender_user_id = sender_user_id, _id = _id }
 
    parseUpdateNewChosenInlineResult :: A.Value -> T.Parser Update
    parseUpdateNewChosenInlineResult = A.withObject "UpdateNewChosenInlineResult" $ \o -> do
-    inline_message_id <- optional $ o A..: "inline_message_id"
-    result_id <- optional $ o A..: "result_id"
-    query <- optional $ o A..: "query"
-    user_location <- optional $ o A..: "user_location"
-    sender_user_id <- optional $ o A..: "sender_user_id"
+    inline_message_id <- o A..:? "inline_message_id"
+    result_id <- o A..:? "result_id"
+    query <- o A..:? "query"
+    user_location <- o A..:? "user_location"
+    sender_user_id <- mconcat [ o A..:? "sender_user_id", readMaybe <$> (o A..: "sender_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateNewChosenInlineResult { inline_message_id = inline_message_id, result_id = result_id, query = query, user_location = user_location, sender_user_id = sender_user_id }
 
    parseUpdateNewCallbackQuery :: A.Value -> T.Parser Update
    parseUpdateNewCallbackQuery = A.withObject "UpdateNewCallbackQuery" $ \o -> do
-    payload <- optional $ o A..: "payload"
-    chat_instance <- optional $ o A..: "chat_instance"
-    message_id <- optional $ o A..: "message_id"
-    chat_id <- optional $ o A..: "chat_id"
-    sender_user_id <- optional $ o A..: "sender_user_id"
-    _id <- optional $ o A..: "id"
+    payload <- o A..:? "payload"
+    chat_instance <- mconcat [ o A..:? "chat_instance", readMaybe <$> (o A..: "chat_instance" :: T.Parser String)] :: T.Parser (Maybe Int)
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    sender_user_id <- mconcat [ o A..:? "sender_user_id", readMaybe <$> (o A..: "sender_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateNewCallbackQuery { payload = payload, chat_instance = chat_instance, message_id = message_id, chat_id = chat_id, sender_user_id = sender_user_id, _id = _id }
 
    parseUpdateNewInlineCallbackQuery :: A.Value -> T.Parser Update
    parseUpdateNewInlineCallbackQuery = A.withObject "UpdateNewInlineCallbackQuery" $ \o -> do
-    payload <- optional $ o A..: "payload"
-    chat_instance <- optional $ o A..: "chat_instance"
-    inline_message_id <- optional $ o A..: "inline_message_id"
-    sender_user_id <- optional $ o A..: "sender_user_id"
-    _id <- optional $ o A..: "id"
+    payload <- o A..:? "payload"
+    chat_instance <- mconcat [ o A..:? "chat_instance", readMaybe <$> (o A..: "chat_instance" :: T.Parser String)] :: T.Parser (Maybe Int)
+    inline_message_id <- o A..:? "inline_message_id"
+    sender_user_id <- mconcat [ o A..:? "sender_user_id", readMaybe <$> (o A..: "sender_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateNewInlineCallbackQuery { payload = payload, chat_instance = chat_instance, inline_message_id = inline_message_id, sender_user_id = sender_user_id, _id = _id }
 
    parseUpdateNewShippingQuery :: A.Value -> T.Parser Update
    parseUpdateNewShippingQuery = A.withObject "UpdateNewShippingQuery" $ \o -> do
-    shipping_address <- optional $ o A..: "shipping_address"
-    invoice_payload <- optional $ o A..: "invoice_payload"
-    sender_user_id <- optional $ o A..: "sender_user_id"
-    _id <- optional $ o A..: "id"
+    shipping_address <- o A..:? "shipping_address"
+    invoice_payload <- o A..:? "invoice_payload"
+    sender_user_id <- mconcat [ o A..:? "sender_user_id", readMaybe <$> (o A..: "sender_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateNewShippingQuery { shipping_address = shipping_address, invoice_payload = invoice_payload, sender_user_id = sender_user_id, _id = _id }
 
    parseUpdateNewPreCheckoutQuery :: A.Value -> T.Parser Update
    parseUpdateNewPreCheckoutQuery = A.withObject "UpdateNewPreCheckoutQuery" $ \o -> do
-    order_info <- optional $ o A..: "order_info"
-    shipping_option_id <- optional $ o A..: "shipping_option_id"
-    invoice_payload <- optional $ o A..: "invoice_payload"
-    total_amount <- optional $ o A..: "total_amount"
-    currency <- optional $ o A..: "currency"
-    sender_user_id <- optional $ o A..: "sender_user_id"
-    _id <- optional $ o A..: "id"
+    order_info <- o A..:? "order_info"
+    shipping_option_id <- o A..:? "shipping_option_id"
+    invoice_payload <- o A..:? "invoice_payload"
+    total_amount <- mconcat [ o A..:? "total_amount", readMaybe <$> (o A..: "total_amount" :: T.Parser String)] :: T.Parser (Maybe Int)
+    currency <- o A..:? "currency"
+    sender_user_id <- mconcat [ o A..:? "sender_user_id", readMaybe <$> (o A..: "sender_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateNewPreCheckoutQuery { order_info = order_info, shipping_option_id = shipping_option_id, invoice_payload = invoice_payload, total_amount = total_amount, currency = currency, sender_user_id = sender_user_id, _id = _id }
 
    parseUpdateNewCustomEvent :: A.Value -> T.Parser Update
    parseUpdateNewCustomEvent = A.withObject "UpdateNewCustomEvent" $ \o -> do
-    event <- optional $ o A..: "event"
+    event <- o A..:? "event"
     return $ UpdateNewCustomEvent { event = event }
 
    parseUpdateNewCustomQuery :: A.Value -> T.Parser Update
    parseUpdateNewCustomQuery = A.withObject "UpdateNewCustomQuery" $ \o -> do
-    timeout <- optional $ o A..: "timeout"
-    _data <- optional $ o A..: "data"
-    _id <- optional $ o A..: "id"
+    timeout <- mconcat [ o A..:? "timeout", readMaybe <$> (o A..: "timeout" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _data <- o A..:? "data"
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateNewCustomQuery { timeout = timeout, _data = _data, _id = _id }
 
    parseUpdatePoll :: A.Value -> T.Parser Update
    parseUpdatePoll = A.withObject "UpdatePoll" $ \o -> do
-    poll <- optional $ o A..: "poll"
+    poll <- o A..:? "poll"
     return $ UpdatePoll { poll = poll }
 
    parseUpdatePollAnswer :: A.Value -> T.Parser Update
    parseUpdatePollAnswer = A.withObject "UpdatePollAnswer" $ \o -> do
-    option_ids <- optional $ o A..: "option_ids"
-    user_id <- optional $ o A..: "user_id"
-    poll_id <- optional $ o A..: "poll_id"
+    option_ids <- o A..:? "option_ids"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    poll_id <- mconcat [ o A..:? "poll_id", readMaybe <$> (o A..: "poll_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdatePollAnswer { option_ids = option_ids, user_id = user_id, poll_id = poll_id }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SendCallRating where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.CallProblem as CallProblem
@@ -23,8 +24,8 @@ instance T.FromJSON SendCallRating where
   where
    parseSendCallRating :: A.Value -> T.Parser SendCallRating
    parseSendCallRating = A.withObject "SendCallRating" $ \o -> do
-    problems <- optional $ o A..: "problems"
-    comment <- optional $ o A..: "comment"
-    rating <- optional $ o A..: "rating"
-    call_id <- optional $ o A..: "call_id"
+    problems <- o A..:? "problems"
+    comment <- o A..:? "comment"
+    rating <- mconcat [ o A..:? "rating", readMaybe <$> (o A..: "rating" :: T.Parser String)] :: T.Parser (Maybe Int)
+    call_id <- mconcat [ o A..:? "call_id", readMaybe <$> (o A..: "call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SendCallRating { problems = problems, comment = comment, rating = rating, call_id = call_id }

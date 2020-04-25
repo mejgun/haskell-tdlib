@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.AuthenticationCodeInfo where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.AuthenticationCodeType as AuthenticationCodeType
@@ -23,8 +24,8 @@ instance T.FromJSON AuthenticationCodeInfo where
   where
    parseAuthenticationCodeInfo :: A.Value -> T.Parser AuthenticationCodeInfo
    parseAuthenticationCodeInfo = A.withObject "AuthenticationCodeInfo" $ \o -> do
-    timeout <- optional $ o A..: "timeout"
-    next_type <- optional $ o A..: "next_type"
-    _type <- optional $ o A..: "type"
-    phone_number <- optional $ o A..: "phone_number"
+    timeout <- mconcat [ o A..:? "timeout", readMaybe <$> (o A..: "timeout" :: T.Parser String)] :: T.Parser (Maybe Int)
+    next_type <- o A..:? "next_type"
+    _type <- o A..:? "type"
+    phone_number <- o A..:? "phone_number"
     return $ AuthenticationCodeInfo { timeout = timeout, next_type = next_type, _type = _type, phone_number = phone_number }

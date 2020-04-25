@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SearchMessages where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatList as ChatList
@@ -23,10 +24,10 @@ instance T.FromJSON SearchMessages where
   where
    parseSearchMessages :: A.Value -> T.Parser SearchMessages
    parseSearchMessages = A.withObject "SearchMessages" $ \o -> do
-    limit <- optional $ o A..: "limit"
-    offset_message_id <- optional $ o A..: "offset_message_id"
-    offset_chat_id <- optional $ o A..: "offset_chat_id"
-    offset_date <- optional $ o A..: "offset_date"
-    query <- optional $ o A..: "query"
-    chat_list <- optional $ o A..: "chat_list"
+    limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
+    offset_message_id <- mconcat [ o A..:? "offset_message_id", readMaybe <$> (o A..: "offset_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    offset_chat_id <- mconcat [ o A..:? "offset_chat_id", readMaybe <$> (o A..: "offset_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    offset_date <- mconcat [ o A..:? "offset_date", readMaybe <$> (o A..: "offset_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    query <- o A..:? "query"
+    chat_list <- o A..:? "chat_list"
     return $ SearchMessages { limit = limit, offset_message_id = offset_message_id, offset_chat_id = offset_chat_id, offset_date = offset_date, query = query, chat_list = chat_list }

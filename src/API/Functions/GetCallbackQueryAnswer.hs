@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetCallbackQueryAnswer where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.CallbackQueryPayload as CallbackQueryPayload
@@ -23,7 +24,7 @@ instance T.FromJSON GetCallbackQueryAnswer where
   where
    parseGetCallbackQueryAnswer :: A.Value -> T.Parser GetCallbackQueryAnswer
    parseGetCallbackQueryAnswer = A.withObject "GetCallbackQueryAnswer" $ \o -> do
-    payload <- optional $ o A..: "payload"
-    message_id <- optional $ o A..: "message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    payload <- o A..:? "payload"
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetCallbackQueryAnswer { payload = payload, message_id = message_id, chat_id = chat_id }

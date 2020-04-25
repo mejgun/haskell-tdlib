@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PhoneNumberAuthenticationSettings where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,7 +23,7 @@ instance T.FromJSON PhoneNumberAuthenticationSettings where
   where
    parsePhoneNumberAuthenticationSettings :: A.Value -> T.Parser PhoneNumberAuthenticationSettings
    parsePhoneNumberAuthenticationSettings = A.withObject "PhoneNumberAuthenticationSettings" $ \o -> do
-    allow_sms_retriever_api <- optional $ o A..: "allow_sms_retriever_api"
-    is_current_phone_number <- optional $ o A..: "is_current_phone_number"
-    allow_flash_call <- optional $ o A..: "allow_flash_call"
+    allow_sms_retriever_api <- o A..:? "allow_sms_retriever_api"
+    is_current_phone_number <- o A..:? "is_current_phone_number"
+    allow_flash_call <- o A..:? "allow_flash_call"
     return $ PhoneNumberAuthenticationSettings { allow_sms_retriever_api = allow_sms_retriever_api, is_current_phone_number = is_current_phone_number, allow_flash_call = allow_flash_call }

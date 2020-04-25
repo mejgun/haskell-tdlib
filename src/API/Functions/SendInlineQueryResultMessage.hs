@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SendInlineQueryResultMessage where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.SendMessageOptions as SendMessageOptions
@@ -23,10 +24,10 @@ instance T.FromJSON SendInlineQueryResultMessage where
   where
    parseSendInlineQueryResultMessage :: A.Value -> T.Parser SendInlineQueryResultMessage
    parseSendInlineQueryResultMessage = A.withObject "SendInlineQueryResultMessage" $ \o -> do
-    hide_via_bot <- optional $ o A..: "hide_via_bot"
-    result_id <- optional $ o A..: "result_id"
-    query_id <- optional $ o A..: "query_id"
-    options <- optional $ o A..: "options"
-    reply_to_message_id <- optional $ o A..: "reply_to_message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    hide_via_bot <- o A..:? "hide_via_bot"
+    result_id <- o A..:? "result_id"
+    query_id <- mconcat [ o A..:? "query_id", readMaybe <$> (o A..: "query_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    options <- o A..:? "options"
+    reply_to_message_id <- mconcat [ o A..:? "reply_to_message_id", readMaybe <$> (o A..: "reply_to_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SendInlineQueryResultMessage { hide_via_bot = hide_via_bot, result_id = result_id, query_id = query_id, options = options, reply_to_message_id = reply_to_message_id, chat_id = chat_id }

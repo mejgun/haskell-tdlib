@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetWebPageInstantView where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON GetWebPageInstantView where
   where
    parseGetWebPageInstantView :: A.Value -> T.Parser GetWebPageInstantView
    parseGetWebPageInstantView = A.withObject "GetWebPageInstantView" $ \o -> do
-    force_full <- optional $ o A..: "force_full"
-    url <- optional $ o A..: "url"
+    force_full <- o A..:? "force_full"
+    url <- o A..:? "url"
     return $ GetWebPageInstantView { force_full = force_full, url = url }

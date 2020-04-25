@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatInviteLinkInfo where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatPhoto as ChatPhoto
@@ -24,11 +25,11 @@ instance T.FromJSON ChatInviteLinkInfo where
   where
    parseChatInviteLinkInfo :: A.Value -> T.Parser ChatInviteLinkInfo
    parseChatInviteLinkInfo = A.withObject "ChatInviteLinkInfo" $ \o -> do
-    is_public <- optional $ o A..: "is_public"
-    member_user_ids <- optional $ o A..: "member_user_ids"
-    member_count <- optional $ o A..: "member_count"
-    photo <- optional $ o A..: "photo"
-    title <- optional $ o A..: "title"
-    _type <- optional $ o A..: "type"
-    chat_id <- optional $ o A..: "chat_id"
+    is_public <- o A..:? "is_public"
+    member_user_ids <- o A..:? "member_user_ids"
+    member_count <- mconcat [ o A..:? "member_count", readMaybe <$> (o A..: "member_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    photo <- o A..:? "photo"
+    title <- o A..:? "title"
+    _type <- o A..:? "type"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatInviteLinkInfo { is_public = is_public, member_user_ids = member_user_ids, member_count = member_count, photo = photo, title = title, _type = _type, chat_id = chat_id }

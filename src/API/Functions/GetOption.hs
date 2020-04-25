@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetOption where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON GetOption where
   where
    parseGetOption :: A.Value -> T.Parser GetOption
    parseGetOption = A.withObject "GetOption" $ \o -> do
-    name <- optional $ o A..: "name"
+    name <- o A..:? "name"
     return $ GetOption { name = name }

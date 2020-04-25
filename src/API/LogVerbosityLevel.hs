@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.LogVerbosityLevel where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON LogVerbosityLevel where
   where
    parseLogVerbosityLevel :: A.Value -> T.Parser LogVerbosityLevel
    parseLogVerbosityLevel = A.withObject "LogVerbosityLevel" $ \o -> do
-    verbosity_level <- optional $ o A..: "verbosity_level"
+    verbosity_level <- mconcat [ o A..:? "verbosity_level", readMaybe <$> (o A..: "verbosity_level" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ LogVerbosityLevel { verbosity_level = verbosity_level }

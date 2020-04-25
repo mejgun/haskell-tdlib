@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.CallConnection where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,9 +23,9 @@ instance T.FromJSON CallConnection where
   where
    parseCallConnection :: A.Value -> T.Parser CallConnection
    parseCallConnection = A.withObject "CallConnection" $ \o -> do
-    peer_tag <- optional $ o A..: "peer_tag"
-    port <- optional $ o A..: "port"
-    ipv6 <- optional $ o A..: "ipv6"
-    ip <- optional $ o A..: "ip"
-    _id <- optional $ o A..: "id"
+    peer_tag <- o A..:? "peer_tag"
+    port <- mconcat [ o A..:? "port", readMaybe <$> (o A..: "port" :: T.Parser String)] :: T.Parser (Maybe Int)
+    ipv6 <- o A..:? "ipv6"
+    ip <- o A..:? "ip"
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ CallConnection { peer_tag = peer_tag, port = port, ipv6 = ipv6, ip = ip, _id = _id }

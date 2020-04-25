@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.ValidateOrderInfo where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.OrderInfo as OrderInfo
@@ -23,8 +24,8 @@ instance T.FromJSON ValidateOrderInfo where
   where
    parseValidateOrderInfo :: A.Value -> T.Parser ValidateOrderInfo
    parseValidateOrderInfo = A.withObject "ValidateOrderInfo" $ \o -> do
-    allow_save <- optional $ o A..: "allow_save"
-    order_info <- optional $ o A..: "order_info"
-    message_id <- optional $ o A..: "message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    allow_save <- o A..:? "allow_save"
+    order_info <- o A..:? "order_info"
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ValidateOrderInfo { allow_save = allow_save, order_info = order_info, message_id = message_id, chat_id = chat_id }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.CreateBasicGroupChat where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON CreateBasicGroupChat where
   where
    parseCreateBasicGroupChat :: A.Value -> T.Parser CreateBasicGroupChat
    parseCreateBasicGroupChat = A.withObject "CreateBasicGroupChat" $ \o -> do
-    force <- optional $ o A..: "force"
-    basic_group_id <- optional $ o A..: "basic_group_id"
+    force <- o A..:? "force"
+    basic_group_id <- mconcat [ o A..:? "basic_group_id", readMaybe <$> (o A..: "basic_group_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ CreateBasicGroupChat { force = force, basic_group_id = basic_group_id }

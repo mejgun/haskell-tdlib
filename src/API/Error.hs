@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Error where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON Error where
   where
    parseError :: A.Value -> T.Parser Error
    parseError = A.withObject "Error" $ \o -> do
-    message <- optional $ o A..: "message"
-    code <- optional $ o A..: "code"
+    message <- o A..:? "message"
+    code <- mconcat [ o A..:? "code", readMaybe <$> (o A..: "code" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Error { message = message, code = code }

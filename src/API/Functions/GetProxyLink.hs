@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetProxyLink where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON GetProxyLink where
   where
    parseGetProxyLink :: A.Value -> T.Parser GetProxyLink
    parseGetProxyLink = A.withObject "GetProxyLink" $ \o -> do
-    proxy_id <- optional $ o A..: "proxy_id"
+    proxy_id <- mconcat [ o A..:? "proxy_id", readMaybe <$> (o A..: "proxy_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetProxyLink { proxy_id = proxy_id }

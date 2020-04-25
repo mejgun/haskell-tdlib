@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SearchChatsNearby where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Location as Location
@@ -23,5 +24,5 @@ instance T.FromJSON SearchChatsNearby where
   where
    parseSearchChatsNearby :: A.Value -> T.Parser SearchChatsNearby
    parseSearchChatsNearby = A.withObject "SearchChatsNearby" $ \o -> do
-    location <- optional $ o A..: "location"
+    location <- o A..:? "location"
     return $ SearchChatsNearby { location = location }

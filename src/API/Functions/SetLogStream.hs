@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetLogStream where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LogStream as LogStream
@@ -23,5 +24,5 @@ instance T.FromJSON SetLogStream where
   where
    parseSetLogStream :: A.Value -> T.Parser SetLogStream
    parseSetLogStream = A.withObject "SetLogStream" $ \o -> do
-    log_stream <- optional $ o A..: "log_stream"
+    log_stream <- o A..:? "log_stream"
     return $ SetLogStream { log_stream = log_stream }

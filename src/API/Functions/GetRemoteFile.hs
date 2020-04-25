@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetRemoteFile where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FileType as FileType
@@ -23,6 +24,6 @@ instance T.FromJSON GetRemoteFile where
   where
    parseGetRemoteFile :: A.Value -> T.Parser GetRemoteFile
    parseGetRemoteFile = A.withObject "GetRemoteFile" $ \o -> do
-    file_type <- optional $ o A..: "file_type"
-    remote_file_id <- optional $ o A..: "remote_file_id"
+    file_type <- o A..:? "file_type"
+    remote_file_id <- o A..:? "remote_file_id"
     return $ GetRemoteFile { file_type = file_type, remote_file_id = remote_file_id }

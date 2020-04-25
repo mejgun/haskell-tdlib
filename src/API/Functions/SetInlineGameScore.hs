@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetInlineGameScore where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,9 +23,9 @@ instance T.FromJSON SetInlineGameScore where
   where
    parseSetInlineGameScore :: A.Value -> T.Parser SetInlineGameScore
    parseSetInlineGameScore = A.withObject "SetInlineGameScore" $ \o -> do
-    force <- optional $ o A..: "force"
-    score <- optional $ o A..: "score"
-    user_id <- optional $ o A..: "user_id"
-    edit_message <- optional $ o A..: "edit_message"
-    inline_message_id <- optional $ o A..: "inline_message_id"
+    force <- o A..:? "force"
+    score <- mconcat [ o A..:? "score", readMaybe <$> (o A..: "score" :: T.Parser String)] :: T.Parser (Maybe Int)
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    edit_message <- o A..:? "edit_message"
+    inline_message_id <- o A..:? "inline_message_id"
     return $ SetInlineGameScore { force = force, score = score, user_id = user_id, edit_message = edit_message, inline_message_id = inline_message_id }

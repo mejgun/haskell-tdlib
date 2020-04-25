@@ -80,8 +80,10 @@ mainLoop c st = do
         -- delete answering msg and clear sending state
         Update (U.UpdateMessageSendSucceeded { U.old_message_id = oldID }) ->
           let Just m = currentSendingMessage st
-              Just t = (==) <$> M._id m <*> oldID
-          in  if t then let newSt = clearState st in mainLoop c newSt else mainLoop c st
+              t      = (==) <$> M._id m <*> oldID
+          in  case t of
+                Just True -> let newSt = clearState st in mainLoop c newSt
+                _         -> mainLoop c st
         _ -> mainLoop c st
     -- no new msgs from tdlib => 
     -- we can take first message from queue and reply to it

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.CheckChatUsername where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON CheckChatUsername where
   where
    parseCheckChatUsername :: A.Value -> T.Parser CheckChatUsername
    parseCheckChatUsername = A.withObject "CheckChatUsername" $ \o -> do
-    username <- optional $ o A..: "username"
-    chat_id <- optional $ o A..: "chat_id"
+    username <- o A..:? "username"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ CheckChatUsername { username = username, chat_id = chat_id }

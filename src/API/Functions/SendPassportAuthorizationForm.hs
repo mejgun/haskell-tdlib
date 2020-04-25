@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SendPassportAuthorizationForm where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
@@ -23,6 +24,6 @@ instance T.FromJSON SendPassportAuthorizationForm where
   where
    parseSendPassportAuthorizationForm :: A.Value -> T.Parser SendPassportAuthorizationForm
    parseSendPassportAuthorizationForm = A.withObject "SendPassportAuthorizationForm" $ \o -> do
-    types <- optional $ o A..: "types"
-    autorization_form_id <- optional $ o A..: "autorization_form_id"
+    types <- o A..:? "types"
+    autorization_form_id <- mconcat [ o A..:? "autorization_form_id", readMaybe <$> (o A..: "autorization_form_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SendPassportAuthorizationForm { types = types, autorization_form_id = autorization_form_id }

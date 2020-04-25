@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.NotificationGroup where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Notification as Notification
@@ -24,9 +25,9 @@ instance T.FromJSON NotificationGroup where
   where
    parseNotificationGroup :: A.Value -> T.Parser NotificationGroup
    parseNotificationGroup = A.withObject "NotificationGroup" $ \o -> do
-    notifications <- optional $ o A..: "notifications"
-    total_count <- optional $ o A..: "total_count"
-    chat_id <- optional $ o A..: "chat_id"
-    _type <- optional $ o A..: "type"
-    _id <- optional $ o A..: "id"
+    notifications <- o A..:? "notifications"
+    total_count <- mconcat [ o A..:? "total_count", readMaybe <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _type <- o A..:? "type"
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ NotificationGroup { notifications = notifications, total_count = total_count, chat_id = chat_id, _type = _type, _id = _id }

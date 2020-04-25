@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.WriteGeneratedFilePart where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,7 +23,7 @@ instance T.FromJSON WriteGeneratedFilePart where
   where
    parseWriteGeneratedFilePart :: A.Value -> T.Parser WriteGeneratedFilePart
    parseWriteGeneratedFilePart = A.withObject "WriteGeneratedFilePart" $ \o -> do
-    _data <- optional $ o A..: "data"
-    offset <- optional $ o A..: "offset"
-    generation_id <- optional $ o A..: "generation_id"
+    _data <- o A..:? "data"
+    offset <- mconcat [ o A..:? "offset", readMaybe <$> (o A..: "offset" :: T.Parser String)] :: T.Parser (Maybe Int)
+    generation_id <- mconcat [ o A..:? "generation_id", readMaybe <$> (o A..: "generation_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ WriteGeneratedFilePart { _data = _data, offset = offset, generation_id = generation_id }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetInlineGameHighScores where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON GetInlineGameHighScores where
   where
    parseGetInlineGameHighScores :: A.Value -> T.Parser GetInlineGameHighScores
    parseGetInlineGameHighScores = A.withObject "GetInlineGameHighScores" $ \o -> do
-    user_id <- optional $ o A..: "user_id"
-    inline_message_id <- optional $ o A..: "inline_message_id"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    inline_message_id <- o A..:? "inline_message_id"
     return $ GetInlineGameHighScores { user_id = user_id, inline_message_id = inline_message_id }

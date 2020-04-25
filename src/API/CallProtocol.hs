@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.CallProtocol where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,9 +23,9 @@ instance T.FromJSON CallProtocol where
   where
    parseCallProtocol :: A.Value -> T.Parser CallProtocol
    parseCallProtocol = A.withObject "CallProtocol" $ \o -> do
-    library_versions <- optional $ o A..: "library_versions"
-    max_layer <- optional $ o A..: "max_layer"
-    min_layer <- optional $ o A..: "min_layer"
-    udp_reflector <- optional $ o A..: "udp_reflector"
-    udp_p2p <- optional $ o A..: "udp_p2p"
+    library_versions <- o A..:? "library_versions"
+    max_layer <- mconcat [ o A..:? "max_layer", readMaybe <$> (o A..: "max_layer" :: T.Parser String)] :: T.Parser (Maybe Int)
+    min_layer <- mconcat [ o A..:? "min_layer", readMaybe <$> (o A..: "min_layer" :: T.Parser String)] :: T.Parser (Maybe Int)
+    udp_reflector <- o A..:? "udp_reflector"
+    udp_p2p <- o A..:? "udp_p2p"
     return $ CallProtocol { library_versions = library_versions, max_layer = max_layer, min_layer = min_layer, udp_reflector = udp_reflector, udp_p2p = udp_p2p }

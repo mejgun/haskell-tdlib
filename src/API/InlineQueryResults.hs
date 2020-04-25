@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.InlineQueryResults where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InlineQueryResult as InlineQueryResult
@@ -23,9 +24,9 @@ instance T.FromJSON InlineQueryResults where
   where
    parseInlineQueryResults :: A.Value -> T.Parser InlineQueryResults
    parseInlineQueryResults = A.withObject "InlineQueryResults" $ \o -> do
-    switch_pm_parameter <- optional $ o A..: "switch_pm_parameter"
-    switch_pm_text <- optional $ o A..: "switch_pm_text"
-    results <- optional $ o A..: "results"
-    next_offset <- optional $ o A..: "next_offset"
-    inline_query_id <- optional $ o A..: "inline_query_id"
+    switch_pm_parameter <- o A..:? "switch_pm_parameter"
+    switch_pm_text <- o A..:? "switch_pm_text"
+    results <- o A..:? "results"
+    next_offset <- o A..:? "next_offset"
+    inline_query_id <- mconcat [ o A..:? "inline_query_id", readMaybe <$> (o A..: "inline_query_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ InlineQueryResults { switch_pm_parameter = switch_pm_parameter, switch_pm_text = switch_pm_text, results = results, next_offset = next_offset, inline_query_id = inline_query_id }

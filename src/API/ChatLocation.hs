@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.ChatLocation where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Location as Location
@@ -23,6 +24,6 @@ instance T.FromJSON ChatLocation where
   where
    parseChatLocation :: A.Value -> T.Parser ChatLocation
    parseChatLocation = A.withObject "ChatLocation" $ \o -> do
-    address <- optional $ o A..: "address"
-    location <- optional $ o A..: "location"
+    address <- o A..:? "address"
+    location <- o A..:? "location"
     return $ ChatLocation { address = address, location = location }

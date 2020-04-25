@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SendEmailAddressVerificationCode where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON SendEmailAddressVerificationCode where
   where
    parseSendEmailAddressVerificationCode :: A.Value -> T.Parser SendEmailAddressVerificationCode
    parseSendEmailAddressVerificationCode = A.withObject "SendEmailAddressVerificationCode" $ \o -> do
-    email_address <- optional $ o A..: "email_address"
+    email_address <- o A..:? "email_address"
     return $ SendEmailAddressVerificationCode { email_address = email_address }

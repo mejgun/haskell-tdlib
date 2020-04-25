@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Proxy where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ProxyType as ProxyType
@@ -23,10 +24,10 @@ instance T.FromJSON Proxy where
   where
    parseProxy :: A.Value -> T.Parser Proxy
    parseProxy = A.withObject "Proxy" $ \o -> do
-    _type <- optional $ o A..: "type"
-    is_enabled <- optional $ o A..: "is_enabled"
-    last_used_date <- optional $ o A..: "last_used_date"
-    port <- optional $ o A..: "port"
-    server <- optional $ o A..: "server"
-    _id <- optional $ o A..: "id"
+    _type <- o A..:? "type"
+    is_enabled <- o A..:? "is_enabled"
+    last_used_date <- mconcat [ o A..:? "last_used_date", readMaybe <$> (o A..: "last_used_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    port <- mconcat [ o A..:? "port", readMaybe <$> (o A..: "port" :: T.Parser String)] :: T.Parser (Maybe Int)
+    server <- o A..:? "server"
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Proxy { _type = _type, is_enabled = is_enabled, last_used_date = last_used_date, port = port, server = server, _id = _id }

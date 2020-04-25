@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.DeviceToken where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -72,61 +73,61 @@ instance T.FromJSON DeviceToken where
   where
    parseDeviceTokenFirebaseCloudMessaging :: A.Value -> T.Parser DeviceToken
    parseDeviceTokenFirebaseCloudMessaging = A.withObject "DeviceTokenFirebaseCloudMessaging" $ \o -> do
-    encrypt <- optional $ o A..: "encrypt"
-    token <- optional $ o A..: "token"
+    encrypt <- o A..:? "encrypt"
+    token <- o A..:? "token"
     return $ DeviceTokenFirebaseCloudMessaging { encrypt = encrypt, token = token }
 
    parseDeviceTokenApplePush :: A.Value -> T.Parser DeviceToken
    parseDeviceTokenApplePush = A.withObject "DeviceTokenApplePush" $ \o -> do
-    is_app_sandbox <- optional $ o A..: "is_app_sandbox"
-    device_token <- optional $ o A..: "device_token"
+    is_app_sandbox <- o A..:? "is_app_sandbox"
+    device_token <- o A..:? "device_token"
     return $ DeviceTokenApplePush { is_app_sandbox = is_app_sandbox, device_token = device_token }
 
    parseDeviceTokenApplePushVoIP :: A.Value -> T.Parser DeviceToken
    parseDeviceTokenApplePushVoIP = A.withObject "DeviceTokenApplePushVoIP" $ \o -> do
-    encrypt <- optional $ o A..: "encrypt"
-    is_app_sandbox <- optional $ o A..: "is_app_sandbox"
-    device_token <- optional $ o A..: "device_token"
+    encrypt <- o A..:? "encrypt"
+    is_app_sandbox <- o A..:? "is_app_sandbox"
+    device_token <- o A..:? "device_token"
     return $ DeviceTokenApplePushVoIP { encrypt = encrypt, is_app_sandbox = is_app_sandbox, device_token = device_token }
 
    parseDeviceTokenWindowsPush :: A.Value -> T.Parser DeviceToken
    parseDeviceTokenWindowsPush = A.withObject "DeviceTokenWindowsPush" $ \o -> do
-    access_token <- optional $ o A..: "access_token"
+    access_token <- o A..:? "access_token"
     return $ DeviceTokenWindowsPush { access_token = access_token }
 
    parseDeviceTokenMicrosoftPush :: A.Value -> T.Parser DeviceToken
    parseDeviceTokenMicrosoftPush = A.withObject "DeviceTokenMicrosoftPush" $ \o -> do
-    channel_uri <- optional $ o A..: "channel_uri"
+    channel_uri <- o A..:? "channel_uri"
     return $ DeviceTokenMicrosoftPush { channel_uri = channel_uri }
 
    parseDeviceTokenMicrosoftPushVoIP :: A.Value -> T.Parser DeviceToken
    parseDeviceTokenMicrosoftPushVoIP = A.withObject "DeviceTokenMicrosoftPushVoIP" $ \o -> do
-    channel_uri <- optional $ o A..: "channel_uri"
+    channel_uri <- o A..:? "channel_uri"
     return $ DeviceTokenMicrosoftPushVoIP { channel_uri = channel_uri }
 
    parseDeviceTokenWebPush :: A.Value -> T.Parser DeviceToken
    parseDeviceTokenWebPush = A.withObject "DeviceTokenWebPush" $ \o -> do
-    auth_base64url <- optional $ o A..: "auth_base64url"
-    p256dh_base64url <- optional $ o A..: "p256dh_base64url"
-    endpoint <- optional $ o A..: "endpoint"
+    auth_base64url <- o A..:? "auth_base64url"
+    p256dh_base64url <- o A..:? "p256dh_base64url"
+    endpoint <- o A..:? "endpoint"
     return $ DeviceTokenWebPush { auth_base64url = auth_base64url, p256dh_base64url = p256dh_base64url, endpoint = endpoint }
 
    parseDeviceTokenSimplePush :: A.Value -> T.Parser DeviceToken
    parseDeviceTokenSimplePush = A.withObject "DeviceTokenSimplePush" $ \o -> do
-    endpoint <- optional $ o A..: "endpoint"
+    endpoint <- o A..:? "endpoint"
     return $ DeviceTokenSimplePush { endpoint = endpoint }
 
    parseDeviceTokenUbuntuPush :: A.Value -> T.Parser DeviceToken
    parseDeviceTokenUbuntuPush = A.withObject "DeviceTokenUbuntuPush" $ \o -> do
-    token <- optional $ o A..: "token"
+    token <- o A..:? "token"
     return $ DeviceTokenUbuntuPush { token = token }
 
    parseDeviceTokenBlackBerryPush :: A.Value -> T.Parser DeviceToken
    parseDeviceTokenBlackBerryPush = A.withObject "DeviceTokenBlackBerryPush" $ \o -> do
-    token <- optional $ o A..: "token"
+    token <- o A..:? "token"
     return $ DeviceTokenBlackBerryPush { token = token }
 
    parseDeviceTokenTizenPush :: A.Value -> T.Parser DeviceToken
    parseDeviceTokenTizenPush = A.withObject "DeviceTokenTizenPush" $ \o -> do
-    reg_id <- optional $ o A..: "reg_id"
+    reg_id <- o A..:? "reg_id"
     return $ DeviceTokenTizenPush { reg_id = reg_id }

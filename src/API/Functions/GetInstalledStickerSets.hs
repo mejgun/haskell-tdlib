@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetInstalledStickerSets where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON GetInstalledStickerSets where
   where
    parseGetInstalledStickerSets :: A.Value -> T.Parser GetInstalledStickerSets
    parseGetInstalledStickerSets = A.withObject "GetInstalledStickerSets" $ \o -> do
-    is_masks <- optional $ o A..: "is_masks"
+    is_masks <- o A..:? "is_masks"
     return $ GetInstalledStickerSets { is_masks = is_masks }

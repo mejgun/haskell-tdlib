@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.RemoveNotificationGroup where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON RemoveNotificationGroup where
   where
    parseRemoveNotificationGroup :: A.Value -> T.Parser RemoveNotificationGroup
    parseRemoveNotificationGroup = A.withObject "RemoveNotificationGroup" $ \o -> do
-    max_notification_id <- optional $ o A..: "max_notification_id"
-    notification_group_id <- optional $ o A..: "notification_group_id"
+    max_notification_id <- mconcat [ o A..:? "max_notification_id", readMaybe <$> (o A..: "max_notification_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    notification_group_id <- mconcat [ o A..:? "notification_group_id", readMaybe <$> (o A..: "notification_group_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ RemoveNotificationGroup { max_notification_id = max_notification_id, notification_group_id = notification_group_id }

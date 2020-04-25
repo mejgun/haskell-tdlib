@@ -2,27 +2,28 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.FileType</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-8"></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="FileType"><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-var">FileType</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-10"></span><span> </span><span id="FileTypeNone"><span class="annot"><a href="API.FileType.html#FileTypeNone"><span class="hs-identifier hs-var">FileTypeNone</span></a></span></span><span> </span><span>
-</span><span id="line-11"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeAnimation"><span class="annot"><a href="API.FileType.html#FileTypeAnimation"><span class="hs-identifier hs-var">FileTypeAnimation</span></a></span></span><span> </span><span>
-</span><span id="line-12"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeAudio"><span class="annot"><a href="API.FileType.html#FileTypeAudio"><span class="hs-identifier hs-var">FileTypeAudio</span></a></span></span><span> </span><span>
-</span><span id="line-13"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeDocument"><span class="annot"><a href="API.FileType.html#FileTypeDocument"><span class="hs-identifier hs-var">FileTypeDocument</span></a></span></span><span> </span><span>
-</span><span id="line-14"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypePhoto"><span class="annot"><a href="API.FileType.html#FileTypePhoto"><span class="hs-identifier hs-var">FileTypePhoto</span></a></span></span><span> </span><span>
-</span><span id="line-15"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeProfilePhoto"><span class="annot"><a href="API.FileType.html#FileTypeProfilePhoto"><span class="hs-identifier hs-var">FileTypeProfilePhoto</span></a></span></span><span> </span><span>
-</span><span id="line-16"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeSecret"><span class="annot"><a href="API.FileType.html#FileTypeSecret"><span class="hs-identifier hs-var">FileTypeSecret</span></a></span></span><span> </span><span>
-</span><span id="line-17"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeSecretThumbnail"><span class="annot"><a href="API.FileType.html#FileTypeSecretThumbnail"><span class="hs-identifier hs-var">FileTypeSecretThumbnail</span></a></span></span><span> </span><span>
-</span><span id="line-18"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeSecure"><span class="annot"><a href="API.FileType.html#FileTypeSecure"><span class="hs-identifier hs-var">FileTypeSecure</span></a></span></span><span> </span><span>
-</span><span id="line-19"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeSticker"><span class="annot"><a href="API.FileType.html#FileTypeSticker"><span class="hs-identifier hs-var">FileTypeSticker</span></a></span></span><span> </span><span>
-</span><span id="line-20"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeThumbnail"><span class="annot"><a href="API.FileType.html#FileTypeThumbnail"><span class="hs-identifier hs-var">FileTypeThumbnail</span></a></span></span><span> </span><span>
-</span><span id="line-21"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeUnknown"><span class="annot"><a href="API.FileType.html#FileTypeUnknown"><span class="hs-identifier hs-var">FileTypeUnknown</span></a></span></span><span> </span><span>
-</span><span id="line-22"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeVideo"><span class="annot"><a href="API.FileType.html#FileTypeVideo"><span class="hs-identifier hs-var">FileTypeVideo</span></a></span></span><span> </span><span>
-</span><span id="line-23"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeVideoNote"><span class="annot"><a href="API.FileType.html#FileTypeVideoNote"><span class="hs-identifier hs-var">FileTypeVideoNote</span></a></span></span><span> </span><span>
-</span><span id="line-24"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeVoiceNote"><span class="annot"><a href="API.FileType.html#FileTypeVoiceNote"><span class="hs-identifier hs-var">FileTypeVoiceNote</span></a></span></span><span> </span><span>
-</span><span id="line-25"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeWallpaper"><span class="annot"><a href="API.FileType.html#FileTypeWallpaper"><span class="hs-identifier hs-var">FileTypeWallpaper</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679408276"><span id="local-6989586621679408278"><span id="local-6989586621679408280"><span class="annot"><span class="annottext">Int -&gt; FileType -&gt; ShowS
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="FileType"><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-var">FileType</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-11"></span><span> </span><span id="FileTypeNone"><span class="annot"><a href="API.FileType.html#FileTypeNone"><span class="hs-identifier hs-var">FileTypeNone</span></a></span></span><span> </span><span>
+</span><span id="line-12"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeAnimation"><span class="annot"><a href="API.FileType.html#FileTypeAnimation"><span class="hs-identifier hs-var">FileTypeAnimation</span></a></span></span><span> </span><span>
+</span><span id="line-13"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeAudio"><span class="annot"><a href="API.FileType.html#FileTypeAudio"><span class="hs-identifier hs-var">FileTypeAudio</span></a></span></span><span> </span><span>
+</span><span id="line-14"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeDocument"><span class="annot"><a href="API.FileType.html#FileTypeDocument"><span class="hs-identifier hs-var">FileTypeDocument</span></a></span></span><span> </span><span>
+</span><span id="line-15"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypePhoto"><span class="annot"><a href="API.FileType.html#FileTypePhoto"><span class="hs-identifier hs-var">FileTypePhoto</span></a></span></span><span> </span><span>
+</span><span id="line-16"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeProfilePhoto"><span class="annot"><a href="API.FileType.html#FileTypeProfilePhoto"><span class="hs-identifier hs-var">FileTypeProfilePhoto</span></a></span></span><span> </span><span>
+</span><span id="line-17"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeSecret"><span class="annot"><a href="API.FileType.html#FileTypeSecret"><span class="hs-identifier hs-var">FileTypeSecret</span></a></span></span><span> </span><span>
+</span><span id="line-18"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeSecretThumbnail"><span class="annot"><a href="API.FileType.html#FileTypeSecretThumbnail"><span class="hs-identifier hs-var">FileTypeSecretThumbnail</span></a></span></span><span> </span><span>
+</span><span id="line-19"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeSecure"><span class="annot"><a href="API.FileType.html#FileTypeSecure"><span class="hs-identifier hs-var">FileTypeSecure</span></a></span></span><span> </span><span>
+</span><span id="line-20"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeSticker"><span class="annot"><a href="API.FileType.html#FileTypeSticker"><span class="hs-identifier hs-var">FileTypeSticker</span></a></span></span><span> </span><span>
+</span><span id="line-21"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeThumbnail"><span class="annot"><a href="API.FileType.html#FileTypeThumbnail"><span class="hs-identifier hs-var">FileTypeThumbnail</span></a></span></span><span> </span><span>
+</span><span id="line-22"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeUnknown"><span class="annot"><a href="API.FileType.html#FileTypeUnknown"><span class="hs-identifier hs-var">FileTypeUnknown</span></a></span></span><span> </span><span>
+</span><span id="line-23"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeVideo"><span class="annot"><a href="API.FileType.html#FileTypeVideo"><span class="hs-identifier hs-var">FileTypeVideo</span></a></span></span><span> </span><span>
+</span><span id="line-24"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeVideoNote"><span class="annot"><a href="API.FileType.html#FileTypeVideoNote"><span class="hs-identifier hs-var">FileTypeVideoNote</span></a></span></span><span> </span><span>
+</span><span id="line-25"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeVoiceNote"><span class="annot"><a href="API.FileType.html#FileTypeVoiceNote"><span class="hs-identifier hs-var">FileTypeVoiceNote</span></a></span></span><span> </span><span>
+</span><span id="line-26"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="FileTypeWallpaper"><span class="annot"><a href="API.FileType.html#FileTypeWallpaper"><span class="hs-identifier hs-var">FileTypeWallpaper</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679412628"><span id="local-6989586621679412630"><span id="local-6989586621679412632"><span class="annot"><span class="annottext">Int -&gt; FileType -&gt; ShowS
 [FileType] -&gt; ShowS
 FileType -&gt; String
 (Int -&gt; FileType -&gt; ShowS)
@@ -35,7 +36,7 @@ show :: FileType -&gt; String
 $cshow :: FileType -&gt; String
 showsPrec :: Int -&gt; FileType -&gt; ShowS
 $cshowsPrec :: Int -&gt; FileType -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679408271"><span id="local-6989586621679408273"><span class="annot"><span class="annottext">FileType -&gt; FileType -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679412623"><span id="local-6989586621679412625"><span class="annot"><span class="annottext">FileType -&gt; FileType -&gt; Bool
 (FileType -&gt; FileType -&gt; Bool)
 -&gt; (FileType -&gt; FileType -&gt; Bool) -&gt; Eq FileType
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -44,435 +45,435 @@ $c/= :: FileType -&gt; FileType -&gt; Bool
 == :: FileType -&gt; FileType -&gt; Bool
 $c== :: FileType -&gt; FileType -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-26"></span><span>
-</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408263"><span id="local-6989586621679408265"><span id="local-6989586621679408267"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-28"></span><span> </span><span id="local-6989586621679408261"><span class="annot"><span class="annottext">toJSON :: FileType -&gt; Value
+</span><span id="line-27"></span><span>
+</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412615"><span id="local-6989586621679412617"><span id="local-6989586621679412619"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span> </span><span id="local-6989586621679412613"><span class="annot"><span class="annottext">toJSON :: FileType -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeNone"><span class="hs-identifier hs-type">FileTypeNone</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-29"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-30"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;fileTypeNone&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-30"></span><span>
-</span><span id="line-31"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeAnimation"><span class="hs-identifier hs-type">FileTypeAnimation</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-32"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-31"></span><span>
+</span><span id="line-32"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeAnimation"><span class="hs-identifier hs-type">FileTypeAnimation</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-33"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;fileTypeAnimation&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-33"></span><span>
-</span><span id="line-34"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeAudio"><span class="hs-identifier hs-type">FileTypeAudio</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-35"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-34"></span><span>
+</span><span id="line-35"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeAudio"><span class="hs-identifier hs-type">FileTypeAudio</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-36"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;fileTypeAudio&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-36"></span><span>
-</span><span id="line-37"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeDocument"><span class="hs-identifier hs-type">FileTypeDocument</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-38"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-37"></span><span>
+</span><span id="line-38"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeDocument"><span class="hs-identifier hs-type">FileTypeDocument</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-39"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;fileTypeDocument&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-39"></span><span>
-</span><span id="line-40"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypePhoto"><span class="hs-identifier hs-type">FileTypePhoto</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-41"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-40"></span><span>
+</span><span id="line-41"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypePhoto"><span class="hs-identifier hs-type">FileTypePhoto</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-42"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;fileTypePhoto&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-42"></span><span>
-</span><span id="line-43"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeProfilePhoto"><span class="hs-identifier hs-type">FileTypeProfilePhoto</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-44"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-43"></span><span>
+</span><span id="line-44"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeProfilePhoto"><span class="hs-identifier hs-type">FileTypeProfilePhoto</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-45"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;fileTypeProfilePhoto&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-45"></span><span>
-</span><span id="line-46"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeSecret"><span class="hs-identifier hs-type">FileTypeSecret</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-47"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-46"></span><span>
+</span><span id="line-47"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeSecret"><span class="hs-identifier hs-type">FileTypeSecret</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-48"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;fileTypeSecret&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-48"></span><span>
-</span><span id="line-49"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeSecretThumbnail"><span class="hs-identifier hs-type">FileTypeSecretThumbnail</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-50"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-49"></span><span>
+</span><span id="line-50"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeSecretThumbnail"><span class="hs-identifier hs-type">FileTypeSecretThumbnail</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-51"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;fileTypeSecretThumbnail&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-51"></span><span>
-</span><span id="line-52"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeSecure"><span class="hs-identifier hs-type">FileTypeSecure</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-53"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-52"></span><span>
+</span><span id="line-53"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeSecure"><span class="hs-identifier hs-type">FileTypeSecure</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-54"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;fileTypeSecure&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-54"></span><span>
-</span><span id="line-55"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeSticker"><span class="hs-identifier hs-type">FileTypeSticker</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-56"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-55"></span><span>
+</span><span id="line-56"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeSticker"><span class="hs-identifier hs-type">FileTypeSticker</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-57"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;fileTypeSticker&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-57"></span><span>
-</span><span id="line-58"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeThumbnail"><span class="hs-identifier hs-type">FileTypeThumbnail</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-59"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-58"></span><span>
+</span><span id="line-59"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeThumbnail"><span class="hs-identifier hs-type">FileTypeThumbnail</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-60"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;fileTypeThumbnail&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-60"></span><span>
-</span><span id="line-61"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeUnknown"><span class="hs-identifier hs-type">FileTypeUnknown</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-62"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-61"></span><span>
+</span><span id="line-62"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeUnknown"><span class="hs-identifier hs-type">FileTypeUnknown</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-63"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;fileTypeUnknown&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-63"></span><span>
-</span><span id="line-64"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeVideo"><span class="hs-identifier hs-type">FileTypeVideo</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-65"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-64"></span><span>
+</span><span id="line-65"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeVideo"><span class="hs-identifier hs-type">FileTypeVideo</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-66"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;fileTypeVideo&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-66"></span><span>
-</span><span id="line-67"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeVideoNote"><span class="hs-identifier hs-type">FileTypeVideoNote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-68"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-67"></span><span>
+</span><span id="line-68"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeVideoNote"><span class="hs-identifier hs-type">FileTypeVideoNote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-69"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;fileTypeVideoNote&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-69"></span><span>
-</span><span id="line-70"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeVoiceNote"><span class="hs-identifier hs-type">FileTypeVoiceNote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-71"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-70"></span><span>
+</span><span id="line-71"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeVoiceNote"><span class="hs-identifier hs-type">FileTypeVoiceNote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-72"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;fileTypeVoiceNote&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-72"></span><span>
-</span><span id="line-73"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeWallpaper"><span class="hs-identifier hs-type">FileTypeWallpaper</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-74"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-73"></span><span>
+</span><span id="line-74"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.FileType.html#FileTypeWallpaper"><span class="hs-identifier hs-type">FileTypeWallpaper</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-75"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;fileTypeWallpaper&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-75"></span><span>
-</span><span id="line-76"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408254"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-77"></span><span> </span><span id="local-6989586621679408252"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser FileType
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679408250"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679408250"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679408248"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679408248"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-78"></span><span>  </span><span id="local-6989586621679408247"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679408247"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679408248"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-76"></span><span>
+</span><span id="line-77"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412606"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-78"></span><span> </span><span id="local-6989586621679412604"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser FileType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679412602"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679412602"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679412600"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679412600"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-79"></span><span>  </span><span id="local-6989586621679412599"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679412599"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412600"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-79"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679408247"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-80"></span><span>   </span><span class="hs-string">&quot;fileTypeNone&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408245"><span class="hs-identifier hs-var">parseFileTypeNone</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408250"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-81"></span><span>   </span><span class="hs-string">&quot;fileTypeAnimation&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408244"><span class="hs-identifier hs-var">parseFileTypeAnimation</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408250"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-82"></span><span>   </span><span class="hs-string">&quot;fileTypeAudio&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408243"><span class="hs-identifier hs-var">parseFileTypeAudio</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408250"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-83"></span><span>   </span><span class="hs-string">&quot;fileTypeDocument&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408242"><span class="hs-identifier hs-var">parseFileTypeDocument</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408250"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-84"></span><span>   </span><span class="hs-string">&quot;fileTypePhoto&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408241"><span class="hs-identifier hs-var">parseFileTypePhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408250"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-85"></span><span>   </span><span class="hs-string">&quot;fileTypeProfilePhoto&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408240"><span class="hs-identifier hs-var">parseFileTypeProfilePhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408250"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-86"></span><span>   </span><span class="hs-string">&quot;fileTypeSecret&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408239"><span class="hs-identifier hs-var">parseFileTypeSecret</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408250"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-87"></span><span>   </span><span class="hs-string">&quot;fileTypeSecretThumbnail&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408238"><span class="hs-identifier hs-var">parseFileTypeSecretThumbnail</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408250"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-88"></span><span>   </span><span class="hs-string">&quot;fileTypeSecure&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408237"><span class="hs-identifier hs-var">parseFileTypeSecure</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408250"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-89"></span><span>   </span><span class="hs-string">&quot;fileTypeSticker&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408236"><span class="hs-identifier hs-var">parseFileTypeSticker</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408250"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-90"></span><span>   </span><span class="hs-string">&quot;fileTypeThumbnail&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408235"><span class="hs-identifier hs-var">parseFileTypeThumbnail</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408250"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-91"></span><span>   </span><span class="hs-string">&quot;fileTypeUnknown&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408234"><span class="hs-identifier hs-var">parseFileTypeUnknown</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408250"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-92"></span><span>   </span><span class="hs-string">&quot;fileTypeVideo&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408233"><span class="hs-identifier hs-var">parseFileTypeVideo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408250"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-93"></span><span>   </span><span class="hs-string">&quot;fileTypeVideoNote&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408232"><span class="hs-identifier hs-var">parseFileTypeVideoNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408250"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-94"></span><span>   </span><span class="hs-string">&quot;fileTypeVoiceNote&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408231"><span class="hs-identifier hs-var">parseFileTypeVoiceNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408250"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-95"></span><span>   </span><span class="hs-string">&quot;fileTypeWallpaper&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408230"><span class="hs-identifier hs-var">parseFileTypeWallpaper</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408250"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-96"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser FileType
+</span><span id="line-80"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679412599"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-81"></span><span>   </span><span class="hs-string">&quot;fileTypeNone&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412597"><span class="hs-identifier hs-var">parseFileTypeNone</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412602"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-82"></span><span>   </span><span class="hs-string">&quot;fileTypeAnimation&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412596"><span class="hs-identifier hs-var">parseFileTypeAnimation</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412602"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-83"></span><span>   </span><span class="hs-string">&quot;fileTypeAudio&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412595"><span class="hs-identifier hs-var">parseFileTypeAudio</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412602"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-84"></span><span>   </span><span class="hs-string">&quot;fileTypeDocument&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412594"><span class="hs-identifier hs-var">parseFileTypeDocument</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412602"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-85"></span><span>   </span><span class="hs-string">&quot;fileTypePhoto&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412593"><span class="hs-identifier hs-var">parseFileTypePhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412602"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-86"></span><span>   </span><span class="hs-string">&quot;fileTypeProfilePhoto&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412592"><span class="hs-identifier hs-var">parseFileTypeProfilePhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412602"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-87"></span><span>   </span><span class="hs-string">&quot;fileTypeSecret&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412591"><span class="hs-identifier hs-var">parseFileTypeSecret</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412602"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-88"></span><span>   </span><span class="hs-string">&quot;fileTypeSecretThumbnail&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412590"><span class="hs-identifier hs-var">parseFileTypeSecretThumbnail</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412602"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-89"></span><span>   </span><span class="hs-string">&quot;fileTypeSecure&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412589"><span class="hs-identifier hs-var">parseFileTypeSecure</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412602"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-90"></span><span>   </span><span class="hs-string">&quot;fileTypeSticker&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412588"><span class="hs-identifier hs-var">parseFileTypeSticker</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412602"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-91"></span><span>   </span><span class="hs-string">&quot;fileTypeThumbnail&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412587"><span class="hs-identifier hs-var">parseFileTypeThumbnail</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412602"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-92"></span><span>   </span><span class="hs-string">&quot;fileTypeUnknown&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412586"><span class="hs-identifier hs-var">parseFileTypeUnknown</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412602"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-93"></span><span>   </span><span class="hs-string">&quot;fileTypeVideo&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412585"><span class="hs-identifier hs-var">parseFileTypeVideo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412602"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-94"></span><span>   </span><span class="hs-string">&quot;fileTypeVideoNote&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412584"><span class="hs-identifier hs-var">parseFileTypeVideoNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412602"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-95"></span><span>   </span><span class="hs-string">&quot;fileTypeVoiceNote&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412583"><span class="hs-identifier hs-var">parseFileTypeVoiceNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412602"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-96"></span><span>   </span><span class="hs-string">&quot;fileTypeWallpaper&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412582"><span class="hs-identifier hs-var">parseFileTypeWallpaper</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412602"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-97"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser FileType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-97"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-98"></span><span>   </span><span class="annot"><a href="#local-6989586621679408245"><span class="hs-identifier hs-type">parseFileTypeNone</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
-</span><span id="line-99"></span><span>   </span><span id="local-6989586621679408245"><span class="annot"><span class="annottext">parseFileTypeNone :: Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408245"><span class="hs-identifier hs-var hs-var">parseFileTypeNone</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
+</span><span id="line-98"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-99"></span><span>   </span><span class="annot"><a href="#local-6989586621679412597"><span class="hs-identifier hs-type">parseFileTypeNone</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
+</span><span id="line-100"></span><span>   </span><span id="local-6989586621679412597"><span class="annot"><span class="annottext">parseFileTypeNone :: Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412597"><span class="hs-identifier hs-var hs-var">parseFileTypeNone</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;FileTypeNone&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType)
 -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408228"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408228"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-100"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412580"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412580"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-101"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(FileType -&gt; Parser FileType) -&gt; FileType -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FileTypeNone :: FileType
 </span><a href="API.FileType.html#FileTypeNone"><span class="hs-identifier hs-type hs-type">FileTypeNone</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-101"></span><span>
-</span><span id="line-102"></span><span>   </span><span class="annot"><a href="#local-6989586621679408244"><span class="hs-identifier hs-type">parseFileTypeAnimation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
-</span><span id="line-103"></span><span>   </span><span id="local-6989586621679408244"><span class="annot"><span class="annottext">parseFileTypeAnimation :: Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408244"><span class="hs-identifier hs-var hs-var">parseFileTypeAnimation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
+</span><span id="line-102"></span><span>
+</span><span id="line-103"></span><span>   </span><span class="annot"><a href="#local-6989586621679412596"><span class="hs-identifier hs-type">parseFileTypeAnimation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
+</span><span id="line-104"></span><span>   </span><span id="local-6989586621679412596"><span class="annot"><span class="annottext">parseFileTypeAnimation :: Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412596"><span class="hs-identifier hs-var hs-var">parseFileTypeAnimation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;FileTypeAnimation&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType)
 -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408226"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408226"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-104"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412578"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412578"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-105"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(FileType -&gt; Parser FileType) -&gt; FileType -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FileTypeAnimation :: FileType
 </span><a href="API.FileType.html#FileTypeAnimation"><span class="hs-identifier hs-type hs-type">FileTypeAnimation</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-105"></span><span>
-</span><span id="line-106"></span><span>   </span><span class="annot"><a href="#local-6989586621679408243"><span class="hs-identifier hs-type">parseFileTypeAudio</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
-</span><span id="line-107"></span><span>   </span><span id="local-6989586621679408243"><span class="annot"><span class="annottext">parseFileTypeAudio :: Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408243"><span class="hs-identifier hs-var hs-var">parseFileTypeAudio</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
+</span><span id="line-106"></span><span>
+</span><span id="line-107"></span><span>   </span><span class="annot"><a href="#local-6989586621679412595"><span class="hs-identifier hs-type">parseFileTypeAudio</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
+</span><span id="line-108"></span><span>   </span><span id="local-6989586621679412595"><span class="annot"><span class="annottext">parseFileTypeAudio :: Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412595"><span class="hs-identifier hs-var hs-var">parseFileTypeAudio</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;FileTypeAudio&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType)
 -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408224"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408224"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-108"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412576"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412576"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-109"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(FileType -&gt; Parser FileType) -&gt; FileType -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FileTypeAudio :: FileType
 </span><a href="API.FileType.html#FileTypeAudio"><span class="hs-identifier hs-type hs-type">FileTypeAudio</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-109"></span><span>
-</span><span id="line-110"></span><span>   </span><span class="annot"><a href="#local-6989586621679408242"><span class="hs-identifier hs-type">parseFileTypeDocument</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
-</span><span id="line-111"></span><span>   </span><span id="local-6989586621679408242"><span class="annot"><span class="annottext">parseFileTypeDocument :: Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408242"><span class="hs-identifier hs-var hs-var">parseFileTypeDocument</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
+</span><span id="line-110"></span><span>
+</span><span id="line-111"></span><span>   </span><span class="annot"><a href="#local-6989586621679412594"><span class="hs-identifier hs-type">parseFileTypeDocument</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
+</span><span id="line-112"></span><span>   </span><span id="local-6989586621679412594"><span class="annot"><span class="annottext">parseFileTypeDocument :: Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412594"><span class="hs-identifier hs-var hs-var">parseFileTypeDocument</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;FileTypeDocument&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType)
 -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408222"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408222"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-112"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412574"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412574"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-113"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(FileType -&gt; Parser FileType) -&gt; FileType -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FileTypeDocument :: FileType
 </span><a href="API.FileType.html#FileTypeDocument"><span class="hs-identifier hs-type hs-type">FileTypeDocument</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-113"></span><span>
-</span><span id="line-114"></span><span>   </span><span class="annot"><a href="#local-6989586621679408241"><span class="hs-identifier hs-type">parseFileTypePhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
-</span><span id="line-115"></span><span>   </span><span id="local-6989586621679408241"><span class="annot"><span class="annottext">parseFileTypePhoto :: Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408241"><span class="hs-identifier hs-var hs-var">parseFileTypePhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
+</span><span id="line-114"></span><span>
+</span><span id="line-115"></span><span>   </span><span class="annot"><a href="#local-6989586621679412593"><span class="hs-identifier hs-type">parseFileTypePhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
+</span><span id="line-116"></span><span>   </span><span id="local-6989586621679412593"><span class="annot"><span class="annottext">parseFileTypePhoto :: Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412593"><span class="hs-identifier hs-var hs-var">parseFileTypePhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;FileTypePhoto&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType)
 -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408220"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408220"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-116"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412572"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412572"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-117"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(FileType -&gt; Parser FileType) -&gt; FileType -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FileTypePhoto :: FileType
 </span><a href="API.FileType.html#FileTypePhoto"><span class="hs-identifier hs-type hs-type">FileTypePhoto</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-117"></span><span>
-</span><span id="line-118"></span><span>   </span><span class="annot"><a href="#local-6989586621679408240"><span class="hs-identifier hs-type">parseFileTypeProfilePhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
-</span><span id="line-119"></span><span>   </span><span id="local-6989586621679408240"><span class="annot"><span class="annottext">parseFileTypeProfilePhoto :: Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408240"><span class="hs-identifier hs-var hs-var">parseFileTypeProfilePhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
+</span><span id="line-118"></span><span>
+</span><span id="line-119"></span><span>   </span><span class="annot"><a href="#local-6989586621679412592"><span class="hs-identifier hs-type">parseFileTypeProfilePhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
+</span><span id="line-120"></span><span>   </span><span id="local-6989586621679412592"><span class="annot"><span class="annottext">parseFileTypeProfilePhoto :: Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412592"><span class="hs-identifier hs-var hs-var">parseFileTypeProfilePhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;FileTypeProfilePhoto&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType)
 -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408218"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408218"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-120"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412570"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412570"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-121"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(FileType -&gt; Parser FileType) -&gt; FileType -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FileTypeProfilePhoto :: FileType
 </span><a href="API.FileType.html#FileTypeProfilePhoto"><span class="hs-identifier hs-type hs-type">FileTypeProfilePhoto</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-121"></span><span>
-</span><span id="line-122"></span><span>   </span><span class="annot"><a href="#local-6989586621679408239"><span class="hs-identifier hs-type">parseFileTypeSecret</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
-</span><span id="line-123"></span><span>   </span><span id="local-6989586621679408239"><span class="annot"><span class="annottext">parseFileTypeSecret :: Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408239"><span class="hs-identifier hs-var hs-var">parseFileTypeSecret</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
+</span><span id="line-122"></span><span>
+</span><span id="line-123"></span><span>   </span><span class="annot"><a href="#local-6989586621679412591"><span class="hs-identifier hs-type">parseFileTypeSecret</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
+</span><span id="line-124"></span><span>   </span><span id="local-6989586621679412591"><span class="annot"><span class="annottext">parseFileTypeSecret :: Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412591"><span class="hs-identifier hs-var hs-var">parseFileTypeSecret</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;FileTypeSecret&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType)
 -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408216"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408216"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-124"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412568"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412568"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-125"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(FileType -&gt; Parser FileType) -&gt; FileType -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FileTypeSecret :: FileType
 </span><a href="API.FileType.html#FileTypeSecret"><span class="hs-identifier hs-type hs-type">FileTypeSecret</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-125"></span><span>
-</span><span id="line-126"></span><span>   </span><span class="annot"><a href="#local-6989586621679408238"><span class="hs-identifier hs-type">parseFileTypeSecretThumbnail</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
-</span><span id="line-127"></span><span>   </span><span id="local-6989586621679408238"><span class="annot"><span class="annottext">parseFileTypeSecretThumbnail :: Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408238"><span class="hs-identifier hs-var hs-var">parseFileTypeSecretThumbnail</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
+</span><span id="line-126"></span><span>
+</span><span id="line-127"></span><span>   </span><span class="annot"><a href="#local-6989586621679412590"><span class="hs-identifier hs-type">parseFileTypeSecretThumbnail</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
+</span><span id="line-128"></span><span>   </span><span id="local-6989586621679412590"><span class="annot"><span class="annottext">parseFileTypeSecretThumbnail :: Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412590"><span class="hs-identifier hs-var hs-var">parseFileTypeSecretThumbnail</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;FileTypeSecretThumbnail&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType)
 -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408214"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408214"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-128"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412566"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412566"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-129"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(FileType -&gt; Parser FileType) -&gt; FileType -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FileTypeSecretThumbnail :: FileType
 </span><a href="API.FileType.html#FileTypeSecretThumbnail"><span class="hs-identifier hs-type hs-type">FileTypeSecretThumbnail</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-129"></span><span>
-</span><span id="line-130"></span><span>   </span><span class="annot"><a href="#local-6989586621679408237"><span class="hs-identifier hs-type">parseFileTypeSecure</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
-</span><span id="line-131"></span><span>   </span><span id="local-6989586621679408237"><span class="annot"><span class="annottext">parseFileTypeSecure :: Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408237"><span class="hs-identifier hs-var hs-var">parseFileTypeSecure</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
+</span><span id="line-130"></span><span>
+</span><span id="line-131"></span><span>   </span><span class="annot"><a href="#local-6989586621679412589"><span class="hs-identifier hs-type">parseFileTypeSecure</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
+</span><span id="line-132"></span><span>   </span><span id="local-6989586621679412589"><span class="annot"><span class="annottext">parseFileTypeSecure :: Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412589"><span class="hs-identifier hs-var hs-var">parseFileTypeSecure</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;FileTypeSecure&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType)
 -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408212"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408212"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-132"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412564"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412564"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-133"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(FileType -&gt; Parser FileType) -&gt; FileType -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FileTypeSecure :: FileType
 </span><a href="API.FileType.html#FileTypeSecure"><span class="hs-identifier hs-type hs-type">FileTypeSecure</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-133"></span><span>
-</span><span id="line-134"></span><span>   </span><span class="annot"><a href="#local-6989586621679408236"><span class="hs-identifier hs-type">parseFileTypeSticker</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
-</span><span id="line-135"></span><span>   </span><span id="local-6989586621679408236"><span class="annot"><span class="annottext">parseFileTypeSticker :: Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408236"><span class="hs-identifier hs-var hs-var">parseFileTypeSticker</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
+</span><span id="line-134"></span><span>
+</span><span id="line-135"></span><span>   </span><span class="annot"><a href="#local-6989586621679412588"><span class="hs-identifier hs-type">parseFileTypeSticker</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
+</span><span id="line-136"></span><span>   </span><span id="local-6989586621679412588"><span class="annot"><span class="annottext">parseFileTypeSticker :: Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412588"><span class="hs-identifier hs-var hs-var">parseFileTypeSticker</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;FileTypeSticker&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType)
 -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408210"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408210"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-136"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412562"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412562"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-137"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(FileType -&gt; Parser FileType) -&gt; FileType -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FileTypeSticker :: FileType
 </span><a href="API.FileType.html#FileTypeSticker"><span class="hs-identifier hs-type hs-type">FileTypeSticker</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-137"></span><span>
-</span><span id="line-138"></span><span>   </span><span class="annot"><a href="#local-6989586621679408235"><span class="hs-identifier hs-type">parseFileTypeThumbnail</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
-</span><span id="line-139"></span><span>   </span><span id="local-6989586621679408235"><span class="annot"><span class="annottext">parseFileTypeThumbnail :: Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408235"><span class="hs-identifier hs-var hs-var">parseFileTypeThumbnail</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
+</span><span id="line-138"></span><span>
+</span><span id="line-139"></span><span>   </span><span class="annot"><a href="#local-6989586621679412587"><span class="hs-identifier hs-type">parseFileTypeThumbnail</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
+</span><span id="line-140"></span><span>   </span><span id="local-6989586621679412587"><span class="annot"><span class="annottext">parseFileTypeThumbnail :: Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412587"><span class="hs-identifier hs-var hs-var">parseFileTypeThumbnail</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;FileTypeThumbnail&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType)
 -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408208"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408208"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-140"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412560"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412560"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-141"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(FileType -&gt; Parser FileType) -&gt; FileType -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FileTypeThumbnail :: FileType
 </span><a href="API.FileType.html#FileTypeThumbnail"><span class="hs-identifier hs-type hs-type">FileTypeThumbnail</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-141"></span><span>
-</span><span id="line-142"></span><span>   </span><span class="annot"><a href="#local-6989586621679408234"><span class="hs-identifier hs-type">parseFileTypeUnknown</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
-</span><span id="line-143"></span><span>   </span><span id="local-6989586621679408234"><span class="annot"><span class="annottext">parseFileTypeUnknown :: Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408234"><span class="hs-identifier hs-var hs-var">parseFileTypeUnknown</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
+</span><span id="line-142"></span><span>
+</span><span id="line-143"></span><span>   </span><span class="annot"><a href="#local-6989586621679412586"><span class="hs-identifier hs-type">parseFileTypeUnknown</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
+</span><span id="line-144"></span><span>   </span><span id="local-6989586621679412586"><span class="annot"><span class="annottext">parseFileTypeUnknown :: Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412586"><span class="hs-identifier hs-var hs-var">parseFileTypeUnknown</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;FileTypeUnknown&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType)
 -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408206"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408206"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-144"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412558"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412558"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-145"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(FileType -&gt; Parser FileType) -&gt; FileType -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FileTypeUnknown :: FileType
 </span><a href="API.FileType.html#FileTypeUnknown"><span class="hs-identifier hs-type hs-type">FileTypeUnknown</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-145"></span><span>
-</span><span id="line-146"></span><span>   </span><span class="annot"><a href="#local-6989586621679408233"><span class="hs-identifier hs-type">parseFileTypeVideo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
-</span><span id="line-147"></span><span>   </span><span id="local-6989586621679408233"><span class="annot"><span class="annottext">parseFileTypeVideo :: Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408233"><span class="hs-identifier hs-var hs-var">parseFileTypeVideo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
+</span><span id="line-146"></span><span>
+</span><span id="line-147"></span><span>   </span><span class="annot"><a href="#local-6989586621679412585"><span class="hs-identifier hs-type">parseFileTypeVideo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
+</span><span id="line-148"></span><span>   </span><span id="local-6989586621679412585"><span class="annot"><span class="annottext">parseFileTypeVideo :: Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412585"><span class="hs-identifier hs-var hs-var">parseFileTypeVideo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;FileTypeVideo&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType)
 -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408204"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408204"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-148"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412556"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412556"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-149"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(FileType -&gt; Parser FileType) -&gt; FileType -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FileTypeVideo :: FileType
 </span><a href="API.FileType.html#FileTypeVideo"><span class="hs-identifier hs-type hs-type">FileTypeVideo</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-149"></span><span>
-</span><span id="line-150"></span><span>   </span><span class="annot"><a href="#local-6989586621679408232"><span class="hs-identifier hs-type">parseFileTypeVideoNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
-</span><span id="line-151"></span><span>   </span><span id="local-6989586621679408232"><span class="annot"><span class="annottext">parseFileTypeVideoNote :: Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408232"><span class="hs-identifier hs-var hs-var">parseFileTypeVideoNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
+</span><span id="line-150"></span><span>
+</span><span id="line-151"></span><span>   </span><span class="annot"><a href="#local-6989586621679412584"><span class="hs-identifier hs-type">parseFileTypeVideoNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
+</span><span id="line-152"></span><span>   </span><span id="local-6989586621679412584"><span class="annot"><span class="annottext">parseFileTypeVideoNote :: Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412584"><span class="hs-identifier hs-var hs-var">parseFileTypeVideoNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;FileTypeVideoNote&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType)
 -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408202"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408202"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-152"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412554"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412554"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-153"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(FileType -&gt; Parser FileType) -&gt; FileType -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FileTypeVideoNote :: FileType
 </span><a href="API.FileType.html#FileTypeVideoNote"><span class="hs-identifier hs-type hs-type">FileTypeVideoNote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-153"></span><span>
-</span><span id="line-154"></span><span>   </span><span class="annot"><a href="#local-6989586621679408231"><span class="hs-identifier hs-type">parseFileTypeVoiceNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
-</span><span id="line-155"></span><span>   </span><span id="local-6989586621679408231"><span class="annot"><span class="annottext">parseFileTypeVoiceNote :: Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408231"><span class="hs-identifier hs-var hs-var">parseFileTypeVoiceNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
+</span><span id="line-154"></span><span>
+</span><span id="line-155"></span><span>   </span><span class="annot"><a href="#local-6989586621679412583"><span class="hs-identifier hs-type">parseFileTypeVoiceNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
+</span><span id="line-156"></span><span>   </span><span id="local-6989586621679412583"><span class="annot"><span class="annottext">parseFileTypeVoiceNote :: Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412583"><span class="hs-identifier hs-var hs-var">parseFileTypeVoiceNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;FileTypeVoiceNote&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType)
 -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408200"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408200"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-156"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412552"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412552"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-157"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(FileType -&gt; Parser FileType) -&gt; FileType -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">FileTypeVoiceNote :: FileType
 </span><a href="API.FileType.html#FileTypeVoiceNote"><span class="hs-identifier hs-type hs-type">FileTypeVoiceNote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-157"></span><span>
-</span><span id="line-158"></span><span>   </span><span class="annot"><a href="#local-6989586621679408230"><span class="hs-identifier hs-type">parseFileTypeWallpaper</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
-</span><span id="line-159"></span><span>   </span><span id="local-6989586621679408230"><span class="annot"><span class="annottext">parseFileTypeWallpaper :: Value -&gt; Parser FileType
-</span><a href="#local-6989586621679408230"><span class="hs-identifier hs-var hs-var">parseFileTypeWallpaper</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
+</span><span id="line-158"></span><span>
+</span><span id="line-159"></span><span>   </span><span class="annot"><a href="#local-6989586621679412582"><span class="hs-identifier hs-type">parseFileTypeWallpaper</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType</span></a></span><span>
+</span><span id="line-160"></span><span>   </span><span id="local-6989586621679412582"><span class="annot"><span class="annottext">parseFileTypeWallpaper :: Value -&gt; Parser FileType
+</span><a href="#local-6989586621679412582"><span class="hs-identifier hs-var hs-var">parseFileTypeWallpaper</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;FileTypeWallpaper&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType)
 -&gt; (Object -&gt; Parser FileType) -&gt; Value -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408198"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408198"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-160"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412550"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412550"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-161"></span><span>    </span><span class="annot"><span class="annottext">FileType -&gt; Parser FileType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(FileType -&gt; Parser FileType) -&gt; FileType -&gt; Parser FileType
 forall a b. (a -&gt; b) -&gt; a -&gt; b

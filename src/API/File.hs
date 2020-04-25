@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.File where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.RemoteFile as RemoteFile
@@ -24,9 +25,9 @@ instance T.FromJSON File where
   where
    parseFile :: A.Value -> T.Parser File
    parseFile = A.withObject "File" $ \o -> do
-    remote <- optional $ o A..: "remote"
-    local <- optional $ o A..: "local"
-    expected_size <- optional $ o A..: "expected_size"
-    size <- optional $ o A..: "size"
-    _id <- optional $ o A..: "id"
+    remote <- o A..:? "remote"
+    local <- o A..:? "local"
+    expected_size <- mconcat [ o A..:? "expected_size", readMaybe <$> (o A..: "expected_size" :: T.Parser String)] :: T.Parser (Maybe Int)
+    size <- mconcat [ o A..:? "size", readMaybe <$> (o A..: "size" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ File { remote = remote, local = local, expected_size = expected_size, size = size, _id = _id }

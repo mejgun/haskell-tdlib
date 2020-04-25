@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.AccountTtl where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON AccountTtl where
   where
    parseAccountTtl :: A.Value -> T.Parser AccountTtl
    parseAccountTtl = A.withObject "AccountTtl" $ \o -> do
-    days <- optional $ o A..: "days"
+    days <- mconcat [ o A..:? "days", readMaybe <$> (o A..: "days" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ AccountTtl { days = days }

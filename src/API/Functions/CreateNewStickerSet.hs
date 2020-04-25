@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.CreateNewStickerSet where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputSticker as InputSticker
@@ -23,9 +24,9 @@ instance T.FromJSON CreateNewStickerSet where
   where
    parseCreateNewStickerSet :: A.Value -> T.Parser CreateNewStickerSet
    parseCreateNewStickerSet = A.withObject "CreateNewStickerSet" $ \o -> do
-    stickers <- optional $ o A..: "stickers"
-    is_masks <- optional $ o A..: "is_masks"
-    name <- optional $ o A..: "name"
-    title <- optional $ o A..: "title"
-    user_id <- optional $ o A..: "user_id"
+    stickers <- o A..:? "stickers"
+    is_masks <- o A..:? "is_masks"
+    name <- o A..:? "name"
+    title <- o A..:? "title"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ CreateNewStickerSet { stickers = stickers, is_masks = is_masks, name = name, title = title, user_id = user_id }

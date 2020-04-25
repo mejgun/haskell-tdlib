@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetChats where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatList as ChatList
@@ -23,8 +24,8 @@ instance T.FromJSON GetChats where
   where
    parseGetChats :: A.Value -> T.Parser GetChats
    parseGetChats = A.withObject "GetChats" $ \o -> do
-    limit <- optional $ o A..: "limit"
-    offset_chat_id <- optional $ o A..: "offset_chat_id"
-    offset_order <- optional $ o A..: "offset_order"
-    chat_list <- optional $ o A..: "chat_list"
+    limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
+    offset_chat_id <- mconcat [ o A..:? "offset_chat_id", readMaybe <$> (o A..: "offset_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    offset_order <- mconcat [ o A..:? "offset_order", readMaybe <$> (o A..: "offset_order" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_list <- o A..:? "chat_list"
     return $ GetChats { limit = limit, offset_chat_id = offset_chat_id, offset_order = offset_order, chat_list = chat_list }

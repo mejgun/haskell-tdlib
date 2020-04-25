@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.RemoteFile where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,9 +23,9 @@ instance T.FromJSON RemoteFile where
   where
    parseRemoteFile :: A.Value -> T.Parser RemoteFile
    parseRemoteFile = A.withObject "RemoteFile" $ \o -> do
-    uploaded_size <- optional $ o A..: "uploaded_size"
-    is_uploading_completed <- optional $ o A..: "is_uploading_completed"
-    is_uploading_active <- optional $ o A..: "is_uploading_active"
-    unique_id <- optional $ o A..: "unique_id"
-    _id <- optional $ o A..: "id"
+    uploaded_size <- mconcat [ o A..:? "uploaded_size", readMaybe <$> (o A..: "uploaded_size" :: T.Parser String)] :: T.Parser (Maybe Int)
+    is_uploading_completed <- o A..:? "is_uploading_completed"
+    is_uploading_active <- o A..:? "is_uploading_active"
+    unique_id <- o A..:? "unique_id"
+    _id <- o A..:? "id"
     return $ RemoteFile { uploaded_size = uploaded_size, is_uploading_completed = is_uploading_completed, is_uploading_active = is_uploading_active, unique_id = unique_id, _id = _id }

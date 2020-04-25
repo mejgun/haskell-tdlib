@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.DeleteProfilePhoto where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON DeleteProfilePhoto where
   where
    parseDeleteProfilePhoto :: A.Value -> T.Parser DeleteProfilePhoto
    parseDeleteProfilePhoto = A.withObject "DeleteProfilePhoto" $ \o -> do
-    profile_photo_id <- optional $ o A..: "profile_photo_id"
+    profile_photo_id <- mconcat [ o A..:? "profile_photo_id", readMaybe <$> (o A..: "profile_photo_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ DeleteProfilePhoto { profile_photo_id = profile_photo_id }

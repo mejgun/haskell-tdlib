@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.RemoveBackground where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON RemoveBackground where
   where
    parseRemoveBackground :: A.Value -> T.Parser RemoveBackground
    parseRemoveBackground = A.withObject "RemoveBackground" $ \o -> do
-    background_id <- optional $ o A..: "background_id"
+    background_id <- mconcat [ o A..:? "background_id", readMaybe <$> (o A..: "background_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ RemoveBackground { background_id = background_id }

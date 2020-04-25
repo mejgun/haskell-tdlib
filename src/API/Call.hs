@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Call where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.CallState as CallState
@@ -23,8 +24,8 @@ instance T.FromJSON Call where
   where
    parseCall :: A.Value -> T.Parser Call
    parseCall = A.withObject "Call" $ \o -> do
-    state <- optional $ o A..: "state"
-    is_outgoing <- optional $ o A..: "is_outgoing"
-    user_id <- optional $ o A..: "user_id"
-    _id <- optional $ o A..: "id"
+    state <- o A..:? "state"
+    is_outgoing <- o A..:? "is_outgoing"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Call { state = state, is_outgoing = is_outgoing, user_id = user_id, _id = _id }

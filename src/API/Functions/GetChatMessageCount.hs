@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetChatMessageCount where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.SearchMessagesFilter as SearchMessagesFilter
@@ -23,7 +24,7 @@ instance T.FromJSON GetChatMessageCount where
   where
    parseGetChatMessageCount :: A.Value -> T.Parser GetChatMessageCount
    parseGetChatMessageCount = A.withObject "GetChatMessageCount" $ \o -> do
-    return_local <- optional $ o A..: "return_local"
-    _filter <- optional $ o A..: "filter"
-    chat_id <- optional $ o A..: "chat_id"
+    return_local <- o A..:? "return_local"
+    _filter <- o A..:? "filter"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetChatMessageCount { return_local = return_local, _filter = _filter, chat_id = chat_id }

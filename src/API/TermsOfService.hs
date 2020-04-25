@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.TermsOfService where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
@@ -23,7 +24,7 @@ instance T.FromJSON TermsOfService where
   where
    parseTermsOfService :: A.Value -> T.Parser TermsOfService
    parseTermsOfService = A.withObject "TermsOfService" $ \o -> do
-    show_popup <- optional $ o A..: "show_popup"
-    min_user_age <- optional $ o A..: "min_user_age"
-    text <- optional $ o A..: "text"
+    show_popup <- o A..:? "show_popup"
+    min_user_age <- mconcat [ o A..:? "min_user_age", readMaybe <$> (o A..: "min_user_age" :: T.Parser String)] :: T.Parser (Maybe Int)
+    text <- o A..:? "text"
     return $ TermsOfService { show_popup = show_popup, min_user_age = min_user_age, text = text }

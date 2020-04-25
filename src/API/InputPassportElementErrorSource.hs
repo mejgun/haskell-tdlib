@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.InputPassportElementErrorSource where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -62,46 +63,46 @@ instance T.FromJSON InputPassportElementErrorSource where
   where
    parseInputPassportElementErrorSourceUnspecified :: A.Value -> T.Parser InputPassportElementErrorSource
    parseInputPassportElementErrorSourceUnspecified = A.withObject "InputPassportElementErrorSourceUnspecified" $ \o -> do
-    element_hash <- optional $ o A..: "element_hash"
+    element_hash <- o A..:? "element_hash"
     return $ InputPassportElementErrorSourceUnspecified { element_hash = element_hash }
 
    parseInputPassportElementErrorSourceDataField :: A.Value -> T.Parser InputPassportElementErrorSource
    parseInputPassportElementErrorSourceDataField = A.withObject "InputPassportElementErrorSourceDataField" $ \o -> do
-    data_hash <- optional $ o A..: "data_hash"
-    field_name <- optional $ o A..: "field_name"
+    data_hash <- o A..:? "data_hash"
+    field_name <- o A..:? "field_name"
     return $ InputPassportElementErrorSourceDataField { data_hash = data_hash, field_name = field_name }
 
    parseInputPassportElementErrorSourceFrontSide :: A.Value -> T.Parser InputPassportElementErrorSource
    parseInputPassportElementErrorSourceFrontSide = A.withObject "InputPassportElementErrorSourceFrontSide" $ \o -> do
-    file_hash <- optional $ o A..: "file_hash"
+    file_hash <- o A..:? "file_hash"
     return $ InputPassportElementErrorSourceFrontSide { file_hash = file_hash }
 
    parseInputPassportElementErrorSourceReverseSide :: A.Value -> T.Parser InputPassportElementErrorSource
    parseInputPassportElementErrorSourceReverseSide = A.withObject "InputPassportElementErrorSourceReverseSide" $ \o -> do
-    file_hash <- optional $ o A..: "file_hash"
+    file_hash <- o A..:? "file_hash"
     return $ InputPassportElementErrorSourceReverseSide { file_hash = file_hash }
 
    parseInputPassportElementErrorSourceSelfie :: A.Value -> T.Parser InputPassportElementErrorSource
    parseInputPassportElementErrorSourceSelfie = A.withObject "InputPassportElementErrorSourceSelfie" $ \o -> do
-    file_hash <- optional $ o A..: "file_hash"
+    file_hash <- o A..:? "file_hash"
     return $ InputPassportElementErrorSourceSelfie { file_hash = file_hash }
 
    parseInputPassportElementErrorSourceTranslationFile :: A.Value -> T.Parser InputPassportElementErrorSource
    parseInputPassportElementErrorSourceTranslationFile = A.withObject "InputPassportElementErrorSourceTranslationFile" $ \o -> do
-    file_hash <- optional $ o A..: "file_hash"
+    file_hash <- o A..:? "file_hash"
     return $ InputPassportElementErrorSourceTranslationFile { file_hash = file_hash }
 
    parseInputPassportElementErrorSourceTranslationFiles :: A.Value -> T.Parser InputPassportElementErrorSource
    parseInputPassportElementErrorSourceTranslationFiles = A.withObject "InputPassportElementErrorSourceTranslationFiles" $ \o -> do
-    file_hashes <- optional $ o A..: "file_hashes"
+    file_hashes <- o A..:? "file_hashes"
     return $ InputPassportElementErrorSourceTranslationFiles { file_hashes = file_hashes }
 
    parseInputPassportElementErrorSourceFile :: A.Value -> T.Parser InputPassportElementErrorSource
    parseInputPassportElementErrorSourceFile = A.withObject "InputPassportElementErrorSourceFile" $ \o -> do
-    file_hash <- optional $ o A..: "file_hash"
+    file_hash <- o A..:? "file_hash"
     return $ InputPassportElementErrorSourceFile { file_hash = file_hash }
 
    parseInputPassportElementErrorSourceFiles :: A.Value -> T.Parser InputPassportElementErrorSource
    parseInputPassportElementErrorSourceFiles = A.withObject "InputPassportElementErrorSourceFiles" $ \o -> do
-    file_hashes <- optional $ o A..: "file_hashes"
+    file_hashes <- o A..:? "file_hashes"
     return $ InputPassportElementErrorSourceFiles { file_hashes = file_hashes }

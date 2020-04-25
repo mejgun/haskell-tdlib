@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SendBotStartMessage where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,7 +23,7 @@ instance T.FromJSON SendBotStartMessage where
   where
    parseSendBotStartMessage :: A.Value -> T.Parser SendBotStartMessage
    parseSendBotStartMessage = A.withObject "SendBotStartMessage" $ \o -> do
-    parameter <- optional $ o A..: "parameter"
-    chat_id <- optional $ o A..: "chat_id"
-    bot_user_id <- optional $ o A..: "bot_user_id"
+    parameter <- o A..:? "parameter"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    bot_user_id <- mconcat [ o A..:? "bot_user_id", readMaybe <$> (o A..: "bot_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SendBotStartMessage { parameter = parameter, chat_id = chat_id, bot_user_id = bot_user_id }

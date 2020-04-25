@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.StorageStatisticsFast where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,9 +23,9 @@ instance T.FromJSON StorageStatisticsFast where
   where
    parseStorageStatisticsFast :: A.Value -> T.Parser StorageStatisticsFast
    parseStorageStatisticsFast = A.withObject "StorageStatisticsFast" $ \o -> do
-    log_size <- optional $ o A..: "log_size"
-    language_pack_database_size <- optional $ o A..: "language_pack_database_size"
-    database_size <- optional $ o A..: "database_size"
-    file_count <- optional $ o A..: "file_count"
-    files_size <- optional $ o A..: "files_size"
+    log_size <- mconcat [ o A..:? "log_size", readMaybe <$> (o A..: "log_size" :: T.Parser String)] :: T.Parser (Maybe Int)
+    language_pack_database_size <- mconcat [ o A..:? "language_pack_database_size", readMaybe <$> (o A..: "language_pack_database_size" :: T.Parser String)] :: T.Parser (Maybe Int)
+    database_size <- mconcat [ o A..:? "database_size", readMaybe <$> (o A..: "database_size" :: T.Parser String)] :: T.Parser (Maybe Int)
+    file_count <- mconcat [ o A..:? "file_count", readMaybe <$> (o A..: "file_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    files_size <- mconcat [ o A..:? "files_size", readMaybe <$> (o A..: "files_size" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ StorageStatisticsFast { log_size = log_size, language_pack_database_size = language_pack_database_size, database_size = database_size, file_count = file_count, files_size = files_size }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetStickerSet where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON GetStickerSet where
   where
    parseGetStickerSet :: A.Value -> T.Parser GetStickerSet
    parseGetStickerSet = A.withObject "GetStickerSet" $ \o -> do
-    set_id <- optional $ o A..: "set_id"
+    set_id <- mconcat [ o A..:? "set_id", readMaybe <$> (o A..: "set_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetStickerSet { set_id = set_id }

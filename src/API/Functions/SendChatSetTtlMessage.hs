@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SendChatSetTtlMessage where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON SendChatSetTtlMessage where
   where
    parseSendChatSetTtlMessage :: A.Value -> T.Parser SendChatSetTtlMessage
    parseSendChatSetTtlMessage = A.withObject "SendChatSetTtlMessage" $ \o -> do
-    ttl <- optional $ o A..: "ttl"
-    chat_id <- optional $ o A..: "chat_id"
+    ttl <- mconcat [ o A..:? "ttl", readMaybe <$> (o A..: "ttl" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SendChatSetTtlMessage { ttl = ttl, chat_id = chat_id }

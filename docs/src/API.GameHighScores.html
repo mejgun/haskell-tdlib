@@ -2,14 +2,15 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.GameHighScores</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.GameHighScore.html"><span class="hs-identifier">API.GameHighScore</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">GameHighScore</span></span><span>
-</span><span id="line-9"></span><span>
-</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="GameHighScores"><span class="annot"><a href="API.GameHighScores.html#GameHighScores"><span class="hs-identifier hs-var">GameHighScores</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-11"></span><span> </span><span id="GameHighScores"><span class="annot"><a href="API.GameHighScores.html#GameHighScores"><span class="hs-identifier hs-var">GameHighScores</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="scores"><span class="annot"><span class="annottext">GameHighScores -&gt; Maybe [GameHighScore]
-</span><a href="API.GameHighScores.html#scores"><span class="hs-identifier hs-var hs-var">scores</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.GameHighScore.html#GameHighScore"><span class="hs-identifier hs-type">GameHighScore.GameHighScore</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679430356"><span id="local-6989586621679430358"><span id="local-6989586621679430360"><span class="annot"><span class="annottext">Int -&gt; GameHighScores -&gt; ShowS
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.GameHighScore.html"><span class="hs-identifier">API.GameHighScore</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">GameHighScore</span></span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-keyword">data</span><span> </span><span id="GameHighScores"><span class="annot"><a href="API.GameHighScores.html#GameHighScores"><span class="hs-identifier hs-var">GameHighScores</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-12"></span><span> </span><span id="GameHighScores"><span class="annot"><a href="API.GameHighScores.html#GameHighScores"><span class="hs-identifier hs-var">GameHighScores</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="scores"><span class="annot"><span class="annottext">GameHighScores -&gt; Maybe [GameHighScore]
+</span><a href="API.GameHighScores.html#scores"><span class="hs-identifier hs-var hs-var">scores</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.GameHighScore.html#GameHighScore"><span class="hs-identifier hs-type">GameHighScore.GameHighScore</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679435221"><span id="local-6989586621679435223"><span id="local-6989586621679435225"><span class="annot"><span class="annottext">Int -&gt; GameHighScores -&gt; ShowS
 [GameHighScores] -&gt; ShowS
 GameHighScores -&gt; String
 (Int -&gt; GameHighScores -&gt; ShowS)
@@ -24,7 +25,7 @@ show :: GameHighScores -&gt; String
 $cshow :: GameHighScores -&gt; String
 showsPrec :: Int -&gt; GameHighScores -&gt; ShowS
 $cshowsPrec :: Int -&gt; GameHighScores -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679430351"><span id="local-6989586621679430353"><span class="annot"><span class="annottext">GameHighScores -&gt; GameHighScores -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679435216"><span id="local-6989586621679435218"><span class="annot"><span class="annottext">GameHighScores -&gt; GameHighScores -&gt; Bool
 (GameHighScores -&gt; GameHighScores -&gt; Bool)
 -&gt; (GameHighScores -&gt; GameHighScores -&gt; Bool) -&gt; Eq GameHighScores
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -33,43 +34,43 @@ $c/= :: GameHighScores -&gt; GameHighScores -&gt; Bool
 == :: GameHighScores -&gt; GameHighScores -&gt; Bool
 $c== :: GameHighScores -&gt; GameHighScores -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430343"><span id="local-6989586621679430345"><span id="local-6989586621679430347"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.GameHighScores.html#GameHighScores"><span class="hs-identifier hs-type">GameHighScores</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679430341"><span class="annot"><span class="annottext">toJSON :: GameHighScores -&gt; Value
+</span><span id="line-13"></span><span>
+</span><span id="line-14"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679435208"><span id="local-6989586621679435210"><span id="local-6989586621679435212"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.GameHighScores.html#GameHighScores"><span class="hs-identifier hs-type">GameHighScores</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-15"></span><span> </span><span id="local-6989586621679435206"><span class="annot"><span class="annottext">toJSON :: GameHighScores -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.GameHighScores.html#GameHighScores"><span class="hs-identifier hs-type">GameHighScores</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">scores :: GameHighScores -&gt; Maybe [GameHighScore]
-</span><a href="API.GameHighScores.html#scores"><span class="hs-identifier hs-var">scores</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430339"><span class="annot"><span class="annottext">Maybe [GameHighScore]
-</span><a href="#local-6989586621679430339"><span class="hs-identifier hs-var">scores</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.GameHighScores.html#scores"><span class="hs-identifier hs-var">scores</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679435204"><span class="annot"><span class="annottext">Maybe [GameHighScore]
+</span><a href="#local-6989586621679435204"><span class="hs-identifier hs-var">scores</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-16"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;gameHighScores&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;scores&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [GameHighScore] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [GameHighScore]
-</span><a href="#local-6989586621679430339"><span class="hs-identifier hs-var">scores</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430333"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.GameHighScores.html#GameHighScores"><span class="hs-identifier hs-type">GameHighScores</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679430331"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GameHighScores
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679430329"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679430329"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679430327"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679430327"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679430326"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679430326"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679430327"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679435204"><span class="hs-identifier hs-var">scores</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-17"></span><span>
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679435198"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.GameHighScores.html#GameHighScores"><span class="hs-identifier hs-type">GameHighScores</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span> </span><span id="local-6989586621679435196"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GameHighScores
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679435194"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679435194"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679435192"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679435192"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-20"></span><span>  </span><span id="local-6989586621679435191"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679435191"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679435192"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679430326"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;gameHighScores&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GameHighScores
-</span><a href="#local-6989586621679430324"><span class="hs-identifier hs-var">parseGameHighScores</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679430329"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GameHighScores
+</span><span id="line-21"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679435191"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-22"></span><span>   </span><span class="hs-string">&quot;gameHighScores&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GameHighScores
+</span><a href="#local-6989586621679435189"><span class="hs-identifier hs-var">parseGameHighScores</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679435194"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-23"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GameHighScores
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679430324"><span class="hs-identifier hs-type">parseGameHighScores</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.GameHighScores.html#GameHighScores"><span class="hs-identifier hs-type">GameHighScores</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span id="local-6989586621679430324"><span class="annot"><span class="annottext">parseGameHighScores :: Value -&gt; Parser GameHighScores
-</span><a href="#local-6989586621679430324"><span class="hs-identifier hs-var hs-var">parseGameHighScores</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span>   </span><span class="annot"><a href="#local-6989586621679435189"><span class="hs-identifier hs-type">parseGameHighScores</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.GameHighScores.html#GameHighScores"><span class="hs-identifier hs-type">GameHighScores</span></a></span><span>
+</span><span id="line-26"></span><span>   </span><span id="local-6989586621679435189"><span class="annot"><span class="annottext">parseGameHighScores :: Value -&gt; Parser GameHighScores
+</span><a href="#local-6989586621679435189"><span class="hs-identifier hs-var hs-var">parseGameHighScores</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GameHighScores)
 -&gt; Value
 -&gt; Parser GameHighScores
@@ -80,19 +81,14 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser GameHighScores
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679430322"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679430322"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679430321"><span class="annot"><span class="annottext">Maybe [GameHighScore]
-</span><a href="#local-6989586621679430321"><span class="hs-identifier hs-var">scores</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser [GameHighScore] -&gt; Parser (Maybe [GameHighScore])
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser [GameHighScore] -&gt; Parser (Maybe [GameHighScore]))
--&gt; Parser [GameHighScore] -&gt; Parser (Maybe [GameHighScore])
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679430322"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser [GameHighScore]
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;scores&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">GameHighScores -&gt; Parser GameHighScores
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679435187"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679435187"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679435186"><span class="annot"><span class="annottext">Maybe [GameHighScore]
+</span><a href="#local-6989586621679435186"><span class="hs-identifier hs-var">scores</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679435187"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [GameHighScore])
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;scores&quot;</span></span><span>
+</span><span id="line-28"></span><span>    </span><span class="annot"><span class="annottext">GameHighScores -&gt; Parser GameHighScores
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(GameHighScores -&gt; Parser GameHighScores)
 -&gt; GameHighScores -&gt; Parser GameHighScores
@@ -100,4 +96,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">GameHighScores :: Maybe [GameHighScore] -&gt; GameHighScores
 </span><a href="API.GameHighScores.html#GameHighScores"><span class="hs-identifier hs-type hs-type">GameHighScores</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">scores :: Maybe [GameHighScore]
 </span><a href="API.GameHighScores.html#scores"><span class="hs-identifier hs-var">scores</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [GameHighScore]
-</span><a href="#local-6989586621679430321"><span class="hs-identifier hs-var">scores</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679435186"><span class="hs-identifier hs-var">scores</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

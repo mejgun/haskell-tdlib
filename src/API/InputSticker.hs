@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.InputSticker where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.MaskPosition as MaskPosition
@@ -29,13 +30,13 @@ instance T.FromJSON InputSticker where
   where
    parseInputStickerStatic :: A.Value -> T.Parser InputSticker
    parseInputStickerStatic = A.withObject "InputStickerStatic" $ \o -> do
-    mask_position <- optional $ o A..: "mask_position"
-    emojis <- optional $ o A..: "emojis"
-    sticker <- optional $ o A..: "sticker"
+    mask_position <- o A..:? "mask_position"
+    emojis <- o A..:? "emojis"
+    sticker <- o A..:? "sticker"
     return $ InputStickerStatic { mask_position = mask_position, emojis = emojis, sticker = sticker }
 
    parseInputStickerAnimated :: A.Value -> T.Parser InputSticker
    parseInputStickerAnimated = A.withObject "InputStickerAnimated" $ \o -> do
-    emojis <- optional $ o A..: "emojis"
-    sticker <- optional $ o A..: "sticker"
+    emojis <- o A..:? "emojis"
+    sticker <- o A..:? "sticker"
     return $ InputStickerAnimated { emojis = emojis, sticker = sticker }

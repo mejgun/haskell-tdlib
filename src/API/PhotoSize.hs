@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PhotoSize where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
@@ -23,8 +24,8 @@ instance T.FromJSON PhotoSize where
   where
    parsePhotoSize :: A.Value -> T.Parser PhotoSize
    parsePhotoSize = A.withObject "PhotoSize" $ \o -> do
-    height <- optional $ o A..: "height"
-    width <- optional $ o A..: "width"
-    photo <- optional $ o A..: "photo"
-    _type <- optional $ o A..: "type"
+    height <- mconcat [ o A..:? "height", readMaybe <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    width <- mconcat [ o A..:? "width", readMaybe <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    photo <- o A..:? "photo"
+    _type <- o A..:? "type"
     return $ PhotoSize { height = height, width = width, photo = photo, _type = _type }

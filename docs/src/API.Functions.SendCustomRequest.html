@@ -2,14 +2,15 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Functions.SendCustomRequest</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-8"></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="SendCustomRequest"><span class="annot"><a href="API.Functions.SendCustomRequest.html#SendCustomRequest"><span class="hs-identifier hs-var">SendCustomRequest</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-10"></span><span> </span><span id="SendCustomRequest"><span class="annot"><a href="API.Functions.SendCustomRequest.html#SendCustomRequest"><span class="hs-identifier hs-var">SendCustomRequest</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="parameters"><span class="annot"><span class="annottext">SendCustomRequest -&gt; Maybe String
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="SendCustomRequest"><span class="annot"><a href="API.Functions.SendCustomRequest.html#SendCustomRequest"><span class="hs-identifier hs-var">SendCustomRequest</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-11"></span><span> </span><span id="SendCustomRequest"><span class="annot"><a href="API.Functions.SendCustomRequest.html#SendCustomRequest"><span class="hs-identifier hs-var">SendCustomRequest</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="parameters"><span class="annot"><span class="annottext">SendCustomRequest -&gt; Maybe String
 </span><a href="API.Functions.SendCustomRequest.html#parameters"><span class="hs-identifier hs-var hs-var">parameters</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="method"><span class="annot"><span class="annottext">SendCustomRequest -&gt; Maybe String
-</span><a href="API.Functions.SendCustomRequest.html#method"><span class="hs-identifier hs-var hs-var">method</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679425862"><span id="local-6989586621679425864"><span id="local-6989586621679425866"><span class="annot"><span class="annottext">Int -&gt; SendCustomRequest -&gt; ShowS
+</span><a href="API.Functions.SendCustomRequest.html#method"><span class="hs-identifier hs-var hs-var">method</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679430606"><span id="local-6989586621679430608"><span id="local-6989586621679430610"><span class="annot"><span class="annottext">Int -&gt; SendCustomRequest -&gt; ShowS
 [SendCustomRequest] -&gt; ShowS
 SendCustomRequest -&gt; String
 (Int -&gt; SendCustomRequest -&gt; ShowS)
@@ -24,7 +25,7 @@ show :: SendCustomRequest -&gt; String
 $cshow :: SendCustomRequest -&gt; String
 showsPrec :: Int -&gt; SendCustomRequest -&gt; ShowS
 $cshowsPrec :: Int -&gt; SendCustomRequest -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679425857"><span id="local-6989586621679425859"><span class="annot"><span class="annottext">SendCustomRequest -&gt; SendCustomRequest -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679430601"><span id="local-6989586621679430603"><span class="annot"><span class="annottext">SendCustomRequest -&gt; SendCustomRequest -&gt; Bool
 (SendCustomRequest -&gt; SendCustomRequest -&gt; Bool)
 -&gt; (SendCustomRequest -&gt; SendCustomRequest -&gt; Bool)
 -&gt; Eq SendCustomRequest
@@ -34,48 +35,48 @@ $c/= :: SendCustomRequest -&gt; SendCustomRequest -&gt; Bool
 == :: SendCustomRequest -&gt; SendCustomRequest -&gt; Bool
 $c== :: SendCustomRequest -&gt; SendCustomRequest -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679425849"><span id="local-6989586621679425851"><span id="local-6989586621679425853"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SendCustomRequest.html#SendCustomRequest"><span class="hs-identifier hs-type">SendCustomRequest</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679425847"><span class="annot"><span class="annottext">toJSON :: SendCustomRequest -&gt; Value
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430593"><span id="local-6989586621679430595"><span id="local-6989586621679430597"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SendCustomRequest.html#SendCustomRequest"><span class="hs-identifier hs-type">SendCustomRequest</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679430591"><span class="annot"><span class="annottext">toJSON :: SendCustomRequest -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.SendCustomRequest.html#SendCustomRequest"><span class="hs-identifier hs-type">SendCustomRequest</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">parameters :: SendCustomRequest -&gt; Maybe String
-</span><a href="API.Functions.SendCustomRequest.html#parameters"><span class="hs-identifier hs-var">parameters</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425845"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425845"><span class="hs-identifier hs-var">parameters</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">method :: SendCustomRequest -&gt; Maybe String
-</span><a href="API.Functions.SendCustomRequest.html#method"><span class="hs-identifier hs-var">method</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425844"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425844"><span class="hs-identifier hs-var">method</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.Functions.SendCustomRequest.html#parameters"><span class="hs-identifier hs-var">parameters</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430589"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679430589"><span class="hs-identifier hs-var">parameters</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">method :: SendCustomRequest -&gt; Maybe String
+</span><a href="API.Functions.SendCustomRequest.html#method"><span class="hs-identifier hs-var">method</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430588"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679430588"><span class="hs-identifier hs-var">method</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;sendCustomRequest&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;parameters&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425845"><span class="hs-identifier hs-var">parameters</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;method&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679430589"><span class="hs-identifier hs-var">parameters</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;method&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425844"><span class="hs-identifier hs-var">method</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679425838"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SendCustomRequest.html#SendCustomRequest"><span class="hs-identifier hs-type">SendCustomRequest</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679425836"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SendCustomRequest
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679425834"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679425834"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679425832"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679425832"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679425831"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679425831"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425832"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679430588"><span class="hs-identifier hs-var">method</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-16"></span><span>
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430582"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SendCustomRequest.html#SendCustomRequest"><span class="hs-identifier hs-type">SendCustomRequest</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679430580"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SendCustomRequest
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679430578"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679430578"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679430576"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679430576"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679430575"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679430575"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679430576"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679425831"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;sendCustomRequest&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SendCustomRequest
-</span><a href="#local-6989586621679425829"><span class="hs-identifier hs-var">parseSendCustomRequest</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679425834"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SendCustomRequest
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679430575"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;sendCustomRequest&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SendCustomRequest
+</span><a href="#local-6989586621679430573"><span class="hs-identifier hs-var">parseSendCustomRequest</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679430578"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SendCustomRequest
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679425829"><span class="hs-identifier hs-type">parseSendCustomRequest</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SendCustomRequest.html#SendCustomRequest"><span class="hs-identifier hs-type">SendCustomRequest</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679425829"><span class="annot"><span class="annottext">parseSendCustomRequest :: Value -&gt; Parser SendCustomRequest
-</span><a href="#local-6989586621679425829"><span class="hs-identifier hs-var hs-var">parseSendCustomRequest</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679430573"><span class="hs-identifier hs-type">parseSendCustomRequest</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SendCustomRequest.html#SendCustomRequest"><span class="hs-identifier hs-type">SendCustomRequest</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679430573"><span class="annot"><span class="annottext">parseSendCustomRequest :: Value -&gt; Parser SendCustomRequest
+</span><a href="#local-6989586621679430573"><span class="hs-identifier hs-var hs-var">parseSendCustomRequest</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SendCustomRequest)
 -&gt; Value
 -&gt; Parser SendCustomRequest
@@ -86,29 +87,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SendCustomRequest
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679425827"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679425827"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679425826"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425826"><span class="hs-identifier hs-var">parameters</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
--&gt; Parser String -&gt; Parser (Maybe String)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425827"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;parameters&quot;</span></span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679425825"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425825"><span class="hs-identifier hs-var">method</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
--&gt; Parser String -&gt; Parser (Maybe String)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425827"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;method&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">SendCustomRequest -&gt; Parser SendCustomRequest
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679430571"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679430571"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679430570"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679430570"><span class="hs-identifier hs-var">parameters</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679430571"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;parameters&quot;</span></span><span>
+</span><span id="line-27"></span><span>    </span><span id="local-6989586621679430568"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679430568"><span class="hs-identifier hs-var">method</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679430571"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;method&quot;</span></span><span>
+</span><span id="line-28"></span><span>    </span><span class="annot"><span class="annottext">SendCustomRequest -&gt; Parser SendCustomRequest
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SendCustomRequest -&gt; Parser SendCustomRequest)
 -&gt; SendCustomRequest -&gt; Parser SendCustomRequest
@@ -116,6 +107,6 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SendCustomRequest :: Maybe String -&gt; Maybe String -&gt; SendCustomRequest
 </span><a href="API.Functions.SendCustomRequest.html#SendCustomRequest"><span class="hs-identifier hs-type hs-type">SendCustomRequest</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">parameters :: Maybe String
 </span><a href="API.Functions.SendCustomRequest.html#parameters"><span class="hs-identifier hs-var">parameters</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425826"><span class="hs-identifier hs-var">parameters</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">method :: Maybe String
+</span><a href="#local-6989586621679430570"><span class="hs-identifier hs-var">parameters</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">method :: Maybe String
 </span><a href="API.Functions.SendCustomRequest.html#method"><span class="hs-identifier hs-var">method</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679425825"><span class="hs-identifier hs-var">method</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679430568"><span class="hs-identifier hs-var">method</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

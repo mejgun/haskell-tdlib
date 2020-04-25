@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetNetworkStatistics where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON GetNetworkStatistics where
   where
    parseGetNetworkStatistics :: A.Value -> T.Parser GetNetworkStatistics
    parseGetNetworkStatistics = A.withObject "GetNetworkStatistics" $ \o -> do
-    only_current <- optional $ o A..: "only_current"
+    only_current <- o A..:? "only_current"
     return $ GetNetworkStatistics { only_current = only_current }

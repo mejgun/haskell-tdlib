@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.SecretChat where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.SecretChatState as SecretChatState
@@ -23,11 +24,11 @@ instance T.FromJSON SecretChat where
   where
    parseSecretChat :: A.Value -> T.Parser SecretChat
    parseSecretChat = A.withObject "SecretChat" $ \o -> do
-    layer <- optional $ o A..: "layer"
-    key_hash <- optional $ o A..: "key_hash"
-    ttl <- optional $ o A..: "ttl"
-    is_outbound <- optional $ o A..: "is_outbound"
-    state <- optional $ o A..: "state"
-    user_id <- optional $ o A..: "user_id"
-    _id <- optional $ o A..: "id"
+    layer <- mconcat [ o A..:? "layer", readMaybe <$> (o A..: "layer" :: T.Parser String)] :: T.Parser (Maybe Int)
+    key_hash <- o A..:? "key_hash"
+    ttl <- mconcat [ o A..:? "ttl", readMaybe <$> (o A..: "ttl" :: T.Parser String)] :: T.Parser (Maybe Int)
+    is_outbound <- o A..:? "is_outbound"
+    state <- o A..:? "state"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SecretChat { layer = layer, key_hash = key_hash, ttl = ttl, is_outbound = is_outbound, state = state, user_id = user_id, _id = _id }

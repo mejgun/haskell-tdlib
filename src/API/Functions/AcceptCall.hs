@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.AcceptCall where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.CallProtocol as CallProtocol
@@ -23,6 +24,6 @@ instance T.FromJSON AcceptCall where
   where
    parseAcceptCall :: A.Value -> T.Parser AcceptCall
    parseAcceptCall = A.withObject "AcceptCall" $ \o -> do
-    protocol <- optional $ o A..: "protocol"
-    call_id <- optional $ o A..: "call_id"
+    protocol <- o A..:? "protocol"
+    call_id <- mconcat [ o A..:? "call_id", readMaybe <$> (o A..: "call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ AcceptCall { protocol = protocol, call_id = call_id }

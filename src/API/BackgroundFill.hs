@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.BackgroundFill where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -27,12 +28,12 @@ instance T.FromJSON BackgroundFill where
   where
    parseBackgroundFillSolid :: A.Value -> T.Parser BackgroundFill
    parseBackgroundFillSolid = A.withObject "BackgroundFillSolid" $ \o -> do
-    color <- optional $ o A..: "color"
+    color <- mconcat [ o A..:? "color", readMaybe <$> (o A..: "color" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ BackgroundFillSolid { color = color }
 
    parseBackgroundFillGradient :: A.Value -> T.Parser BackgroundFill
    parseBackgroundFillGradient = A.withObject "BackgroundFillGradient" $ \o -> do
-    rotation_angle <- optional $ o A..: "rotation_angle"
-    bottom_color <- optional $ o A..: "bottom_color"
-    top_color <- optional $ o A..: "top_color"
+    rotation_angle <- mconcat [ o A..:? "rotation_angle", readMaybe <$> (o A..: "rotation_angle" :: T.Parser String)] :: T.Parser (Maybe Int)
+    bottom_color <- mconcat [ o A..:? "bottom_color", readMaybe <$> (o A..: "bottom_color" :: T.Parser String)] :: T.Parser (Maybe Int)
+    top_color <- mconcat [ o A..:? "top_color", readMaybe <$> (o A..: "top_color" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ BackgroundFillGradient { rotation_angle = rotation_angle, bottom_color = bottom_color, top_color = top_color }

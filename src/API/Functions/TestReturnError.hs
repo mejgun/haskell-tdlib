@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.TestReturnError where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Error as Error
@@ -23,5 +24,5 @@ instance T.FromJSON TestReturnError where
   where
    parseTestReturnError :: A.Value -> T.Parser TestReturnError
    parseTestReturnError = A.withObject "TestReturnError" $ \o -> do
-    _error <- optional $ o A..: "error"
+    _error <- o A..:? "error"
     return $ TestReturnError { _error = _error }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SendPaymentForm where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputCredentials as InputCredentials
@@ -23,9 +24,9 @@ instance T.FromJSON SendPaymentForm where
   where
    parseSendPaymentForm :: A.Value -> T.Parser SendPaymentForm
    parseSendPaymentForm = A.withObject "SendPaymentForm" $ \o -> do
-    credentials <- optional $ o A..: "credentials"
-    shipping_option_id <- optional $ o A..: "shipping_option_id"
-    order_info_id <- optional $ o A..: "order_info_id"
-    message_id <- optional $ o A..: "message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    credentials <- o A..:? "credentials"
+    shipping_option_id <- o A..:? "shipping_option_id"
+    order_info_id <- o A..:? "order_info_id"
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SendPaymentForm { credentials = credentials, shipping_option_id = shipping_option_id, order_info_id = order_info_id, message_id = message_id, chat_id = chat_id }

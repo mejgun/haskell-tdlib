@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.LanguagePackInfo where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,17 +23,17 @@ instance T.FromJSON LanguagePackInfo where
   where
    parseLanguagePackInfo :: A.Value -> T.Parser LanguagePackInfo
    parseLanguagePackInfo = A.withObject "LanguagePackInfo" $ \o -> do
-    translation_url <- optional $ o A..: "translation_url"
-    local_string_count <- optional $ o A..: "local_string_count"
-    translated_string_count <- optional $ o A..: "translated_string_count"
-    total_string_count <- optional $ o A..: "total_string_count"
-    is_installed <- optional $ o A..: "is_installed"
-    is_beta <- optional $ o A..: "is_beta"
-    is_rtl <- optional $ o A..: "is_rtl"
-    is_official <- optional $ o A..: "is_official"
-    plural_code <- optional $ o A..: "plural_code"
-    native_name <- optional $ o A..: "native_name"
-    name <- optional $ o A..: "name"
-    base_language_pack_id <- optional $ o A..: "base_language_pack_id"
-    _id <- optional $ o A..: "id"
+    translation_url <- o A..:? "translation_url"
+    local_string_count <- mconcat [ o A..:? "local_string_count", readMaybe <$> (o A..: "local_string_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    translated_string_count <- mconcat [ o A..:? "translated_string_count", readMaybe <$> (o A..: "translated_string_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    total_string_count <- mconcat [ o A..:? "total_string_count", readMaybe <$> (o A..: "total_string_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    is_installed <- o A..:? "is_installed"
+    is_beta <- o A..:? "is_beta"
+    is_rtl <- o A..:? "is_rtl"
+    is_official <- o A..:? "is_official"
+    plural_code <- o A..:? "plural_code"
+    native_name <- o A..:? "native_name"
+    name <- o A..:? "name"
+    base_language_pack_id <- o A..:? "base_language_pack_id"
+    _id <- o A..:? "id"
     return $ LanguagePackInfo { translation_url = translation_url, local_string_count = local_string_count, translated_string_count = translated_string_count, total_string_count = total_string_count, is_installed = is_installed, is_beta = is_beta, is_rtl = is_rtl, is_official = is_official, plural_code = plural_code, native_name = native_name, name = name, base_language_pack_id = base_language_pack_id, _id = _id }

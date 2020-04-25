@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetChatMessageByDate where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON GetChatMessageByDate where
   where
    parseGetChatMessageByDate :: A.Value -> T.Parser GetChatMessageByDate
    parseGetChatMessageByDate = A.withObject "GetChatMessageByDate" $ \o -> do
-    date <- optional $ o A..: "date"
-    chat_id <- optional $ o A..: "chat_id"
+    date <- mconcat [ o A..:? "date", readMaybe <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetChatMessageByDate { date = date, chat_id = chat_id }

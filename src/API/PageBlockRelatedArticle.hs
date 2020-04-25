@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.PageBlockRelatedArticle where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Photo as Photo
@@ -23,10 +24,10 @@ instance T.FromJSON PageBlockRelatedArticle where
   where
    parsePageBlockRelatedArticle :: A.Value -> T.Parser PageBlockRelatedArticle
    parsePageBlockRelatedArticle = A.withObject "PageBlockRelatedArticle" $ \o -> do
-    publish_date <- optional $ o A..: "publish_date"
-    author <- optional $ o A..: "author"
-    photo <- optional $ o A..: "photo"
-    description <- optional $ o A..: "description"
-    title <- optional $ o A..: "title"
-    url <- optional $ o A..: "url"
+    publish_date <- mconcat [ o A..:? "publish_date", readMaybe <$> (o A..: "publish_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    author <- o A..:? "author"
+    photo <- o A..:? "photo"
+    description <- o A..:? "description"
+    title <- o A..:? "title"
+    url <- o A..:? "url"
     return $ PageBlockRelatedArticle { publish_date = publish_date, author = author, photo = photo, description = description, title = title, url = url }

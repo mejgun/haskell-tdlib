@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Animations where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Animation as Animation
@@ -23,5 +24,5 @@ instance T.FromJSON Animations where
   where
    parseAnimations :: A.Value -> T.Parser Animations
    parseAnimations = A.withObject "Animations" $ \o -> do
-    animations <- optional $ o A..: "animations"
+    animations <- o A..:? "animations"
     return $ Animations { animations = animations }

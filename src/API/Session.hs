@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Session where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,19 +23,19 @@ instance T.FromJSON Session where
   where
    parseSession :: A.Value -> T.Parser Session
    parseSession = A.withObject "Session" $ \o -> do
-    region <- optional $ o A..: "region"
-    country <- optional $ o A..: "country"
-    ip <- optional $ o A..: "ip"
-    last_active_date <- optional $ o A..: "last_active_date"
-    log_in_date <- optional $ o A..: "log_in_date"
-    system_version <- optional $ o A..: "system_version"
-    platform <- optional $ o A..: "platform"
-    device_model <- optional $ o A..: "device_model"
-    is_official_application <- optional $ o A..: "is_official_application"
-    application_version <- optional $ o A..: "application_version"
-    application_name <- optional $ o A..: "application_name"
-    api_id <- optional $ o A..: "api_id"
-    is_password_pending <- optional $ o A..: "is_password_pending"
-    is_current <- optional $ o A..: "is_current"
-    _id <- optional $ o A..: "id"
+    region <- o A..:? "region"
+    country <- o A..:? "country"
+    ip <- o A..:? "ip"
+    last_active_date <- mconcat [ o A..:? "last_active_date", readMaybe <$> (o A..: "last_active_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    log_in_date <- mconcat [ o A..:? "log_in_date", readMaybe <$> (o A..: "log_in_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    system_version <- o A..:? "system_version"
+    platform <- o A..:? "platform"
+    device_model <- o A..:? "device_model"
+    is_official_application <- o A..:? "is_official_application"
+    application_version <- o A..:? "application_version"
+    application_name <- o A..:? "application_name"
+    api_id <- mconcat [ o A..:? "api_id", readMaybe <$> (o A..: "api_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    is_password_pending <- o A..:? "is_password_pending"
+    is_current <- o A..:? "is_current"
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Session { region = region, country = country, ip = ip, last_active_date = last_active_date, log_in_date = log_in_date, system_version = system_version, platform = platform, device_model = device_model, is_official_application = is_official_application, application_version = application_version, application_name = application_name, api_id = api_id, is_password_pending = is_password_pending, is_current = is_current, _id = _id }

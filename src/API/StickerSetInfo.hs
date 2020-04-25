@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.StickerSetInfo where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Sticker as Sticker
@@ -24,16 +25,16 @@ instance T.FromJSON StickerSetInfo where
   where
    parseStickerSetInfo :: A.Value -> T.Parser StickerSetInfo
    parseStickerSetInfo = A.withObject "StickerSetInfo" $ \o -> do
-    covers <- optional $ o A..: "covers"
-    size <- optional $ o A..: "size"
-    is_viewed <- optional $ o A..: "is_viewed"
-    is_masks <- optional $ o A..: "is_masks"
-    is_animated <- optional $ o A..: "is_animated"
-    is_official <- optional $ o A..: "is_official"
-    is_archived <- optional $ o A..: "is_archived"
-    is_installed <- optional $ o A..: "is_installed"
-    thumbnail <- optional $ o A..: "thumbnail"
-    name <- optional $ o A..: "name"
-    title <- optional $ o A..: "title"
-    _id <- optional $ o A..: "id"
+    covers <- o A..:? "covers"
+    size <- mconcat [ o A..:? "size", readMaybe <$> (o A..: "size" :: T.Parser String)] :: T.Parser (Maybe Int)
+    is_viewed <- o A..:? "is_viewed"
+    is_masks <- o A..:? "is_masks"
+    is_animated <- o A..:? "is_animated"
+    is_official <- o A..:? "is_official"
+    is_archived <- o A..:? "is_archived"
+    is_installed <- o A..:? "is_installed"
+    thumbnail <- o A..:? "thumbnail"
+    name <- o A..:? "name"
+    title <- o A..:? "title"
+    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ StickerSetInfo { covers = covers, size = size, is_viewed = is_viewed, is_masks = is_masks, is_animated = is_animated, is_official = is_official, is_archived = is_archived, is_installed = is_installed, thumbnail = thumbnail, name = name, title = title, _id = _id }

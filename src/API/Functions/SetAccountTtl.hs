@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetAccountTtl where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.AccountTtl as AccountTtl
@@ -23,5 +24,5 @@ instance T.FromJSON SetAccountTtl where
   where
    parseSetAccountTtl :: A.Value -> T.Parser SetAccountTtl
    parseSetAccountTtl = A.withObject "SetAccountTtl" $ \o -> do
-    ttl <- optional $ o A..: "ttl"
+    ttl <- o A..:? "ttl"
     return $ SetAccountTtl { ttl = ttl }

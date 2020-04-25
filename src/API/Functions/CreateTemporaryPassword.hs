@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.CreateTemporaryPassword where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON CreateTemporaryPassword where
   where
    parseCreateTemporaryPassword :: A.Value -> T.Parser CreateTemporaryPassword
    parseCreateTemporaryPassword = A.withObject "CreateTemporaryPassword" $ \o -> do
-    valid_for <- optional $ o A..: "valid_for"
-    password <- optional $ o A..: "password"
+    valid_for <- mconcat [ o A..:? "valid_for", readMaybe <$> (o A..: "valid_for" :: T.Parser String)] :: T.Parser (Maybe Int)
+    password <- o A..:? "password"
     return $ CreateTemporaryPassword { valid_for = valid_for, password = password }

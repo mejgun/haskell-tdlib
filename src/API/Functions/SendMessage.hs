@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SendMessage where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
@@ -25,9 +26,9 @@ instance T.FromJSON SendMessage where
   where
    parseSendMessage :: A.Value -> T.Parser SendMessage
    parseSendMessage = A.withObject "SendMessage" $ \o -> do
-    input_message_content <- optional $ o A..: "input_message_content"
-    reply_markup <- optional $ o A..: "reply_markup"
-    options <- optional $ o A..: "options"
-    reply_to_message_id <- optional $ o A..: "reply_to_message_id"
-    chat_id <- optional $ o A..: "chat_id"
+    input_message_content <- o A..:? "input_message_content"
+    reply_markup <- o A..:? "reply_markup"
+    options <- o A..:? "options"
+    reply_to_message_id <- mconcat [ o A..:? "reply_to_message_id", readMaybe <$> (o A..: "reply_to_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SendMessage { input_message_content = input_message_content, reply_markup = reply_markup, options = options, reply_to_message_id = reply_to_message_id, chat_id = chat_id }

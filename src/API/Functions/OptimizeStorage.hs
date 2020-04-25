@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.OptimizeStorage where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FileType as FileType
@@ -23,13 +24,13 @@ instance T.FromJSON OptimizeStorage where
   where
    parseOptimizeStorage :: A.Value -> T.Parser OptimizeStorage
    parseOptimizeStorage = A.withObject "OptimizeStorage" $ \o -> do
-    chat_limit <- optional $ o A..: "chat_limit"
-    return_deleted_file_statistics <- optional $ o A..: "return_deleted_file_statistics"
-    exclude_chat_ids <- optional $ o A..: "exclude_chat_ids"
-    chat_ids <- optional $ o A..: "chat_ids"
-    file_types <- optional $ o A..: "file_types"
-    immunity_delay <- optional $ o A..: "immunity_delay"
-    count <- optional $ o A..: "count"
-    ttl <- optional $ o A..: "ttl"
-    size <- optional $ o A..: "size"
+    chat_limit <- mconcat [ o A..:? "chat_limit", readMaybe <$> (o A..: "chat_limit" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return_deleted_file_statistics <- o A..:? "return_deleted_file_statistics"
+    exclude_chat_ids <- o A..:? "exclude_chat_ids"
+    chat_ids <- o A..:? "chat_ids"
+    file_types <- o A..:? "file_types"
+    immunity_delay <- mconcat [ o A..:? "immunity_delay", readMaybe <$> (o A..: "immunity_delay" :: T.Parser String)] :: T.Parser (Maybe Int)
+    count <- mconcat [ o A..:? "count", readMaybe <$> (o A..: "count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    ttl <- mconcat [ o A..:? "ttl", readMaybe <$> (o A..: "ttl" :: T.Parser String)] :: T.Parser (Maybe Int)
+    size <- mconcat [ o A..:? "size", readMaybe <$> (o A..: "size" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ OptimizeStorage { chat_limit = chat_limit, return_deleted_file_statistics = return_deleted_file_statistics, exclude_chat_ids = exclude_chat_ids, chat_ids = chat_ids, file_types = file_types, immunity_delay = immunity_delay, count = count, ttl = ttl, size = size }

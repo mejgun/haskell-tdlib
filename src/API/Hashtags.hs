@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Hashtags where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON Hashtags where
   where
    parseHashtags :: A.Value -> T.Parser Hashtags
    parseHashtags = A.withObject "Hashtags" $ \o -> do
-    hashtags <- optional $ o A..: "hashtags"
+    hashtags <- o A..:? "hashtags"
     return $ Hashtags { hashtags = hashtags }

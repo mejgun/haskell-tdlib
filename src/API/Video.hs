@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Video where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
@@ -25,14 +26,14 @@ instance T.FromJSON Video where
   where
    parseVideo :: A.Value -> T.Parser Video
    parseVideo = A.withObject "Video" $ \o -> do
-    video <- optional $ o A..: "video"
-    thumbnail <- optional $ o A..: "thumbnail"
-    minithumbnail <- optional $ o A..: "minithumbnail"
-    supports_streaming <- optional $ o A..: "supports_streaming"
-    has_stickers <- optional $ o A..: "has_stickers"
-    mime_type <- optional $ o A..: "mime_type"
-    file_name <- optional $ o A..: "file_name"
-    height <- optional $ o A..: "height"
-    width <- optional $ o A..: "width"
-    duration <- optional $ o A..: "duration"
+    video <- o A..:? "video"
+    thumbnail <- o A..:? "thumbnail"
+    minithumbnail <- o A..:? "minithumbnail"
+    supports_streaming <- o A..:? "supports_streaming"
+    has_stickers <- o A..:? "has_stickers"
+    mime_type <- o A..:? "mime_type"
+    file_name <- o A..:? "file_name"
+    height <- mconcat [ o A..:? "height", readMaybe <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
+    width <- mconcat [ o A..:? "width", readMaybe <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
+    duration <- mconcat [ o A..:? "duration", readMaybe <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Video { video = video, thumbnail = thumbnail, minithumbnail = minithumbnail, supports_streaming = supports_streaming, has_stickers = has_stickers, mime_type = mime_type, file_name = file_name, height = height, width = width, duration = duration }

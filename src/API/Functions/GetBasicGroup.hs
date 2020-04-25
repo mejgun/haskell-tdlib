@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetBasicGroup where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON GetBasicGroup where
   where
    parseGetBasicGroup :: A.Value -> T.Parser GetBasicGroup
    parseGetBasicGroup = A.withObject "GetBasicGroup" $ \o -> do
-    basic_group_id <- optional $ o A..: "basic_group_id"
+    basic_group_id <- mconcat [ o A..:? "basic_group_id", readMaybe <$> (o A..: "basic_group_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetBasicGroup { basic_group_id = basic_group_id }

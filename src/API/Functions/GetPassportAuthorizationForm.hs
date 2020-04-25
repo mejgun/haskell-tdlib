@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetPassportAuthorizationForm where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,8 +23,8 @@ instance T.FromJSON GetPassportAuthorizationForm where
   where
    parseGetPassportAuthorizationForm :: A.Value -> T.Parser GetPassportAuthorizationForm
    parseGetPassportAuthorizationForm = A.withObject "GetPassportAuthorizationForm" $ \o -> do
-    nonce <- optional $ o A..: "nonce"
-    public_key <- optional $ o A..: "public_key"
-    scope <- optional $ o A..: "scope"
-    bot_user_id <- optional $ o A..: "bot_user_id"
+    nonce <- o A..:? "nonce"
+    public_key <- o A..:? "public_key"
+    scope <- o A..:? "scope"
+    bot_user_id <- mconcat [ o A..:? "bot_user_id", readMaybe <$> (o A..: "bot_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetPassportAuthorizationForm { nonce = nonce, public_key = public_key, scope = scope, bot_user_id = bot_user_id }

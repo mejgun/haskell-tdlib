@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.UserFullInfo where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BotInfo as BotInfo
@@ -23,12 +24,12 @@ instance T.FromJSON UserFullInfo where
   where
    parseUserFullInfo :: A.Value -> T.Parser UserFullInfo
    parseUserFullInfo = A.withObject "UserFullInfo" $ \o -> do
-    bot_info <- optional $ o A..: "bot_info"
-    group_in_common_count <- optional $ o A..: "group_in_common_count"
-    share_text <- optional $ o A..: "share_text"
-    bio <- optional $ o A..: "bio"
-    need_phone_number_privacy_exception <- optional $ o A..: "need_phone_number_privacy_exception"
-    has_private_calls <- optional $ o A..: "has_private_calls"
-    can_be_called <- optional $ o A..: "can_be_called"
-    is_blocked <- optional $ o A..: "is_blocked"
+    bot_info <- o A..:? "bot_info"
+    group_in_common_count <- mconcat [ o A..:? "group_in_common_count", readMaybe <$> (o A..: "group_in_common_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    share_text <- o A..:? "share_text"
+    bio <- o A..:? "bio"
+    need_phone_number_privacy_exception <- o A..:? "need_phone_number_privacy_exception"
+    has_private_calls <- o A..:? "has_private_calls"
+    can_be_called <- o A..:? "can_be_called"
+    is_blocked <- o A..:? "is_blocked"
     return $ UserFullInfo { bot_info = bot_info, group_in_common_count = group_in_common_count, share_text = share_text, bio = bio, need_phone_number_privacy_exception = need_phone_number_privacy_exception, has_private_calls = has_private_calls, can_be_called = can_be_called, is_blocked = is_blocked }

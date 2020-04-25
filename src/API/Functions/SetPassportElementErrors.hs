@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetPassportElementErrors where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputPassportElementError as InputPassportElementError
@@ -23,6 +24,6 @@ instance T.FromJSON SetPassportElementErrors where
   where
    parseSetPassportElementErrors :: A.Value -> T.Parser SetPassportElementErrors
    parseSetPassportElementErrors = A.withObject "SetPassportElementErrors" $ \o -> do
-    errors <- optional $ o A..: "errors"
-    user_id <- optional $ o A..: "user_id"
+    errors <- o A..:? "errors"
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SetPassportElementErrors { errors = errors, user_id = user_id }

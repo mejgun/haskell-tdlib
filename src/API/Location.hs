@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Location where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON Location where
   where
    parseLocation :: A.Value -> T.Parser Location
    parseLocation = A.withObject "Location" $ \o -> do
-    longitude <- optional $ o A..: "longitude"
-    latitude <- optional $ o A..: "latitude"
+    longitude <- o A..:? "longitude"
+    latitude <- o A..:? "latitude"
     return $ Location { longitude = longitude, latitude = latitude }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.EditInlineMessageLiveLocation where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Location as Location
@@ -24,7 +25,7 @@ instance T.FromJSON EditInlineMessageLiveLocation where
   where
    parseEditInlineMessageLiveLocation :: A.Value -> T.Parser EditInlineMessageLiveLocation
    parseEditInlineMessageLiveLocation = A.withObject "EditInlineMessageLiveLocation" $ \o -> do
-    location <- optional $ o A..: "location"
-    reply_markup <- optional $ o A..: "reply_markup"
-    inline_message_id <- optional $ o A..: "inline_message_id"
+    location <- o A..:? "location"
+    reply_markup <- o A..:? "reply_markup"
+    inline_message_id <- o A..:? "inline_message_id"
     return $ EditInlineMessageLiveLocation { location = location, reply_markup = reply_markup, inline_message_id = inline_message_id }

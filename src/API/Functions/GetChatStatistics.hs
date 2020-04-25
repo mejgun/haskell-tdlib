@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetChatStatistics where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON GetChatStatistics where
   where
    parseGetChatStatistics :: A.Value -> T.Parser GetChatStatistics
    parseGetChatStatistics = A.withObject "GetChatStatistics" $ \o -> do
-    is_dark <- optional $ o A..: "is_dark"
-    chat_id <- optional $ o A..: "chat_id"
+    is_dark <- o A..:? "is_dark"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetChatStatistics { is_dark = is_dark, chat_id = chat_id }

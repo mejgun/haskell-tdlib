@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.JsonObjectMember where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.JsonValue as JsonValue
@@ -23,6 +24,6 @@ instance T.FromJSON JsonObjectMember where
   where
    parseJsonObjectMember :: A.Value -> T.Parser JsonObjectMember
    parseJsonObjectMember = A.withObject "JsonObjectMember" $ \o -> do
-    value <- optional $ o A..: "value"
-    key <- optional $ o A..: "key"
+    value <- o A..:? "value"
+    key <- o A..:? "key"
     return $ JsonObjectMember { value = value, key = key }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.AddLogMessage where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,6 +23,6 @@ instance T.FromJSON AddLogMessage where
   where
    parseAddLogMessage :: A.Value -> T.Parser AddLogMessage
    parseAddLogMessage = A.withObject "AddLogMessage" $ \o -> do
-    text <- optional $ o A..: "text"
-    verbosity_level <- optional $ o A..: "verbosity_level"
+    text <- o A..:? "text"
+    verbosity_level <- mconcat [ o A..:? "verbosity_level", readMaybe <$> (o A..: "verbosity_level" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ AddLogMessage { text = text, verbosity_level = verbosity_level }

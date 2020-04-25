@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.RequestQrCodeAuthentication where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON RequestQrCodeAuthentication where
   where
    parseRequestQrCodeAuthentication :: A.Value -> T.Parser RequestQrCodeAuthentication
    parseRequestQrCodeAuthentication = A.withObject "RequestQrCodeAuthentication" $ \o -> do
-    other_user_ids <- optional $ o A..: "other_user_ids"
+    other_user_ids <- o A..:? "other_user_ids"
     return $ RequestQrCodeAuthentication { other_user_ids = other_user_ids }

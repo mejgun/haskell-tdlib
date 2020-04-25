@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetAlarm where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,5 +23,5 @@ instance T.FromJSON SetAlarm where
   where
    parseSetAlarm :: A.Value -> T.Parser SetAlarm
    parseSetAlarm = A.withObject "SetAlarm" $ \o -> do
-    seconds <- optional $ o A..: "seconds"
+    seconds <- o A..:? "seconds"
     return $ SetAlarm { seconds = seconds }

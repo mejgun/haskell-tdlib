@@ -2,13 +2,14 @@
 </span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Functions.CheckChangePhoneNumberCode</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
-</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Control.Applicative</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">optional</span></span><span class="hs-special">)</span><span>
-</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-8"></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">data</span><span> </span><span id="CheckChangePhoneNumberCode"><span class="annot"><a href="API.Functions.CheckChangePhoneNumberCode.html#CheckChangePhoneNumberCode"><span class="hs-identifier hs-var">CheckChangePhoneNumberCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-10"></span><span> </span><span id="CheckChangePhoneNumberCode"><span class="annot"><a href="API.Functions.CheckChangePhoneNumberCode.html#CheckChangePhoneNumberCode"><span class="hs-identifier hs-var">CheckChangePhoneNumberCode</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="code"><span class="annot"><span class="annottext">CheckChangePhoneNumberCode -&gt; Maybe String
-</span><a href="API.Functions.CheckChangePhoneNumberCode.html#code"><span class="hs-identifier hs-var hs-var">code</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679409962"><span id="local-6989586621679409964"><span id="local-6989586621679409966"><span class="annot"><span class="annottext">Int -&gt; CheckChangePhoneNumberCode -&gt; ShowS
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="CheckChangePhoneNumberCode"><span class="annot"><a href="API.Functions.CheckChangePhoneNumberCode.html#CheckChangePhoneNumberCode"><span class="hs-identifier hs-var">CheckChangePhoneNumberCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-11"></span><span> </span><span id="CheckChangePhoneNumberCode"><span class="annot"><a href="API.Functions.CheckChangePhoneNumberCode.html#CheckChangePhoneNumberCode"><span class="hs-identifier hs-var">CheckChangePhoneNumberCode</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="code"><span class="annot"><span class="annottext">CheckChangePhoneNumberCode -&gt; Maybe String
+</span><a href="API.Functions.CheckChangePhoneNumberCode.html#code"><span class="hs-identifier hs-var hs-var">code</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679414355"><span id="local-6989586621679414357"><span id="local-6989586621679414359"><span class="annot"><span class="annottext">Int -&gt; CheckChangePhoneNumberCode -&gt; ShowS
 [CheckChangePhoneNumberCode] -&gt; ShowS
 CheckChangePhoneNumberCode -&gt; String
 (Int -&gt; CheckChangePhoneNumberCode -&gt; ShowS)
@@ -23,7 +24,7 @@ show :: CheckChangePhoneNumberCode -&gt; String
 $cshow :: CheckChangePhoneNumberCode -&gt; String
 showsPrec :: Int -&gt; CheckChangePhoneNumberCode -&gt; ShowS
 $cshowsPrec :: Int -&gt; CheckChangePhoneNumberCode -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679409957"><span id="local-6989586621679409959"><span class="annot"><span class="annottext">CheckChangePhoneNumberCode -&gt; CheckChangePhoneNumberCode -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679414350"><span id="local-6989586621679414352"><span class="annot"><span class="annottext">CheckChangePhoneNumberCode -&gt; CheckChangePhoneNumberCode -&gt; Bool
 (CheckChangePhoneNumberCode -&gt; CheckChangePhoneNumberCode -&gt; Bool)
 -&gt; (CheckChangePhoneNumberCode
     -&gt; CheckChangePhoneNumberCode -&gt; Bool)
@@ -34,43 +35,43 @@ $c/= :: CheckChangePhoneNumberCode -&gt; CheckChangePhoneNumberCode -&gt; Bool
 == :: CheckChangePhoneNumberCode -&gt; CheckChangePhoneNumberCode -&gt; Bool
 $c== :: CheckChangePhoneNumberCode -&gt; CheckChangePhoneNumberCode -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409949"><span id="local-6989586621679409951"><span id="local-6989586621679409953"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CheckChangePhoneNumberCode.html#CheckChangePhoneNumberCode"><span class="hs-identifier hs-type">CheckChangePhoneNumberCode</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-13"></span><span> </span><span id="local-6989586621679409947"><span class="annot"><span class="annottext">toJSON :: CheckChangePhoneNumberCode -&gt; Value
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414342"><span id="local-6989586621679414344"><span id="local-6989586621679414346"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CheckChangePhoneNumberCode.html#CheckChangePhoneNumberCode"><span class="hs-identifier hs-type">CheckChangePhoneNumberCode</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-14"></span><span> </span><span id="local-6989586621679414340"><span class="annot"><span class="annottext">toJSON :: CheckChangePhoneNumberCode -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.CheckChangePhoneNumberCode.html#CheckChangePhoneNumberCode"><span class="hs-identifier hs-type">CheckChangePhoneNumberCode</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">code :: CheckChangePhoneNumberCode -&gt; Maybe String
-</span><a href="API.Functions.CheckChangePhoneNumberCode.html#code"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679409945"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679409945"><span class="hs-identifier hs-var">code</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-14"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.Functions.CheckChangePhoneNumberCode.html#code"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414338"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679414338"><span class="hs-identifier hs-var">code</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;checkChangePhoneNumberCode&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679409945"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409939"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CheckChangePhoneNumberCode.html#CheckChangePhoneNumberCode"><span class="hs-identifier hs-type">CheckChangePhoneNumberCode</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679409937"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CheckChangePhoneNumberCode
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679409935"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679409935"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679409933"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679409933"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-18"></span><span>  </span><span id="local-6989586621679409932"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679409932"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679409933"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679414338"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-16"></span><span>
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414332"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CheckChangePhoneNumberCode.html#CheckChangePhoneNumberCode"><span class="hs-identifier hs-type">CheckChangePhoneNumberCode</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679414330"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CheckChangePhoneNumberCode
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679414328"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679414328"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679414326"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679414326"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-19"></span><span>  </span><span id="local-6989586621679414325"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679414325"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679414326"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-19"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679409932"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-20"></span><span>   </span><span class="hs-string">&quot;checkChangePhoneNumberCode&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CheckChangePhoneNumberCode
-</span><a href="#local-6989586621679409930"><span class="hs-identifier hs-var">parseCheckChangePhoneNumberCode</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679409935"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-21"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CheckChangePhoneNumberCode
+</span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679414325"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;checkChangePhoneNumberCode&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CheckChangePhoneNumberCode
+</span><a href="#local-6989586621679414323"><span class="hs-identifier hs-var">parseCheckChangePhoneNumberCode</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679414328"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CheckChangePhoneNumberCode
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-22"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span>   </span><span class="annot"><a href="#local-6989586621679409930"><span class="hs-identifier hs-type">parseCheckChangePhoneNumberCode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.CheckChangePhoneNumberCode.html#CheckChangePhoneNumberCode"><span class="hs-identifier hs-type">CheckChangePhoneNumberCode</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span id="local-6989586621679409930"><span class="annot"><span class="annottext">parseCheckChangePhoneNumberCode :: Value -&gt; Parser CheckChangePhoneNumberCode
-</span><a href="#local-6989586621679409930"><span class="hs-identifier hs-var hs-var">parseCheckChangePhoneNumberCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679414323"><span class="hs-identifier hs-type">parseCheckChangePhoneNumberCode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.CheckChangePhoneNumberCode.html#CheckChangePhoneNumberCode"><span class="hs-identifier hs-type">CheckChangePhoneNumberCode</span></a></span><span>
+</span><span id="line-25"></span><span>   </span><span id="local-6989586621679414323"><span class="annot"><span class="annottext">parseCheckChangePhoneNumberCode :: Value -&gt; Parser CheckChangePhoneNumberCode
+</span><a href="#local-6989586621679414323"><span class="hs-identifier hs-var hs-var">parseCheckChangePhoneNumberCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CheckChangePhoneNumberCode)
 -&gt; Value
 -&gt; Parser CheckChangePhoneNumberCode
@@ -81,19 +82,14 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CheckChangePhoneNumberCode
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679409928"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679409928"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>    </span><span id="local-6989586621679409927"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679409927"><span class="hs-identifier hs-var">code</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Parser String -&gt; Parser (Maybe String)
-forall (f :: * -&gt; *) a. Alternative f =&gt; f a -&gt; f (Maybe a)
-</span><span class="hs-identifier hs-var">optional</span></span><span> </span><span class="annot"><span class="annottext">(Parser String -&gt; Parser (Maybe String))
--&gt; Parser String -&gt; Parser (Maybe String)
-forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679409928"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
-forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;code&quot;</span></span><span>
-</span><span id="line-26"></span><span>    </span><span class="annot"><span class="annottext">CheckChangePhoneNumberCode -&gt; Parser CheckChangePhoneNumberCode
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679414321"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679414321"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>    </span><span id="local-6989586621679414320"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679414320"><span class="hs-identifier hs-var">code</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679414321"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;code&quot;</span></span><span>
+</span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">CheckChangePhoneNumberCode -&gt; Parser CheckChangePhoneNumberCode
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CheckChangePhoneNumberCode -&gt; Parser CheckChangePhoneNumberCode)
 -&gt; CheckChangePhoneNumberCode -&gt; Parser CheckChangePhoneNumberCode
@@ -101,4 +97,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CheckChangePhoneNumberCode :: Maybe String -&gt; CheckChangePhoneNumberCode
 </span><a href="API.Functions.CheckChangePhoneNumberCode.html#CheckChangePhoneNumberCode"><span class="hs-identifier hs-type hs-type">CheckChangePhoneNumberCode</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">code :: Maybe String
 </span><a href="API.Functions.CheckChangePhoneNumberCode.html#code"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679409927"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679414320"><span class="hs-identifier hs-var">code</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

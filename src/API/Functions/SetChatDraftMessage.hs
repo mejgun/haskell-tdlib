@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.SetChatDraftMessage where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.DraftMessage as DraftMessage
@@ -23,6 +24,6 @@ instance T.FromJSON SetChatDraftMessage where
   where
    parseSetChatDraftMessage :: A.Value -> T.Parser SetChatDraftMessage
    parseSetChatDraftMessage = A.withObject "SetChatDraftMessage" $ \o -> do
-    draft_message <- optional $ o A..: "draft_message"
-    chat_id <- optional $ o A..: "chat_id"
+    draft_message <- o A..:? "draft_message"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SetChatDraftMessage { draft_message = draft_message, chat_id = chat_id }

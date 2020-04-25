@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.LocalizationTargetInfo where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LanguagePackInfo as LanguagePackInfo
@@ -23,5 +24,5 @@ instance T.FromJSON LocalizationTargetInfo where
   where
    parseLocalizationTargetInfo :: A.Value -> T.Parser LocalizationTargetInfo
    parseLocalizationTargetInfo = A.withObject "LocalizationTargetInfo" $ \o -> do
-    language_packs <- optional $ o A..: "language_packs"
+    language_packs <- o A..:? "language_packs"
     return $ LocalizationTargetInfo { language_packs = language_packs }

@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 module API.Functions.GetChatStatisticsGraph where
 
-import Control.Applicative (optional)
+import Text.Read (readMaybe)
+
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
@@ -22,7 +23,7 @@ instance T.FromJSON GetChatStatisticsGraph where
   where
    parseGetChatStatisticsGraph :: A.Value -> T.Parser GetChatStatisticsGraph
    parseGetChatStatisticsGraph = A.withObject "GetChatStatisticsGraph" $ \o -> do
-    x <- optional $ o A..: "x"
-    token <- optional $ o A..: "token"
-    chat_id <- optional $ o A..: "chat_id"
+    x <- mconcat [ o A..:? "x", readMaybe <$> (o A..: "x" :: T.Parser String)] :: T.Parser (Maybe Int)
+    token <- o A..:? "token"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetChatStatisticsGraph { x = x, token = token, chat_id = chat_id }
