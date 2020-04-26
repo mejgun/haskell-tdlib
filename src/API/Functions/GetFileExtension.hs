@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. This is an offline method. Can be called before authorization. Can be called synchronously 
+-- 
+-- __mime_type__ The MIME type of the file
 data GetFileExtension = 
  GetFileExtension { mime_type :: Maybe String }  deriving (Show, Eq)
 

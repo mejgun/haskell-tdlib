@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes the type of a chat
 data ChatType = 
  ChatTypePrivate { user_id :: Maybe Int }  
  | ChatTypeBasicGroup { basic_group_id :: Maybe Int }  

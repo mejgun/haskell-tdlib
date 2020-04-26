@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.DatedFile as DatedFile
 
+-- |
+-- 
+-- A personal document, containing some information about a user 
+-- 
+-- __files__ List of files containing the pages of the document
+-- 
+-- __translation__ List of files containing a certified English translation of the document
 data PersonalDocument = 
  PersonalDocument { translation :: Maybe [DatedFile.DatedFile], files :: Maybe [DatedFile.DatedFile] }  deriving (Show, Eq)
 

@@ -10,8 +10,21 @@
 </span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.PhotoSize.html"><span class="hs-identifier">API.PhotoSize</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">PhotoSize</span></span><span>
 </span><span id="line-11"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.Minithumbnail.html"><span class="hs-identifier">API.Minithumbnail</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">Minithumbnail</span></span><span>
 </span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="VideoNote"><span class="annot"><a href="API.VideoNote.html#VideoNote"><span class="hs-identifier hs-var">VideoNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-14"></span><span> </span><span id="VideoNote"><span class="annot"><a href="API.VideoNote.html#VideoNote"><span class="hs-identifier hs-var">VideoNote</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="video"><span class="annot"><span class="annottext">VideoNote -&gt; Maybe File
+</span><span id="line-13"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-15"></span><span class="hs-comment">-- Describes a video note. The video must be equal in width and height, cropped to a circle, and stored in MPEG4 format </span><span>
+</span><span id="line-16"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-17"></span><span class="hs-comment">-- __duration__ Duration of the video, in seconds; as defined by the sender</span><span>
+</span><span id="line-18"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-19"></span><span class="hs-comment">-- __length__ Video width and height; as defined by the sender</span><span>
+</span><span id="line-20"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-21"></span><span class="hs-comment">-- __minithumbnail__ Video minithumbnail; may be null</span><span>
+</span><span id="line-22"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-23"></span><span class="hs-comment">-- __thumbnail__ Video thumbnail; as defined by the sender; may be null</span><span>
+</span><span id="line-24"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-25"></span><span class="hs-comment">-- __video__ File containing the video</span><span>
+</span><span id="line-26"></span><span class="hs-keyword">data</span><span> </span><span id="VideoNote"><span class="annot"><a href="API.VideoNote.html#VideoNote"><span class="hs-identifier hs-var">VideoNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-27"></span><span> </span><span id="VideoNote"><span class="annot"><a href="API.VideoNote.html#VideoNote"><span class="hs-identifier hs-var">VideoNote</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="video"><span class="annot"><span class="annottext">VideoNote -&gt; Maybe File
 </span><a href="API.VideoNote.html#video"><span class="hs-identifier hs-var hs-var">video</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.File.html#File"><span class="hs-identifier hs-type">File.File</span></a></span><span class="hs-special">,</span><span> </span><span id="thumbnail"><span class="annot"><span class="annottext">VideoNote -&gt; Maybe PhotoSize
 </span><a href="API.VideoNote.html#thumbnail"><span class="hs-identifier hs-var hs-var">thumbnail</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.PhotoSize.html#PhotoSize"><span class="hs-identifier hs-type">PhotoSize.PhotoSize</span></a></span><span class="hs-special">,</span><span> </span><span id="minithumbnail"><span class="annot"><span class="annottext">VideoNote -&gt; Maybe Minithumbnail
 </span><a href="API.VideoNote.html#minithumbnail"><span class="hs-identifier hs-var hs-var">minithumbnail</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.Minithumbnail.html#Minithumbnail"><span class="hs-identifier hs-type">Minithumbnail.Minithumbnail</span></a></span><span class="hs-special">,</span><span> </span><span id="_length"><span class="annot"><span class="annottext">VideoNote -&gt; Maybe Int
@@ -40,9 +53,9 @@ $c/= :: VideoNote -&gt; VideoNote -&gt; Bool
 == :: VideoNote -&gt; VideoNote -&gt; Bool
 $c== :: VideoNote -&gt; VideoNote -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679458758"><span id="local-6989586621679458760"><span id="local-6989586621679458762"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679458756"><span class="annot"><span class="annottext">toJSON :: VideoNote -&gt; Value
+</span><span id="line-28"></span><span>
+</span><span id="line-29"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679458758"><span id="local-6989586621679458760"><span id="local-6989586621679458762"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-30"></span><span> </span><span id="local-6989586621679458756"><span class="annot"><span class="annottext">toJSON :: VideoNote -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">video :: VideoNote -&gt; Maybe File
 </span><a href="API.VideoNote.html#video"><span class="hs-identifier hs-var">video</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679458754"><span class="annot"><span class="annottext">Maybe File
 </span><a href="#local-6989586621679458754"><span class="hs-identifier hs-var">video</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">thumbnail :: VideoNote -&gt; Maybe PhotoSize
@@ -54,7 +67,7 @@ $c== :: VideoNote -&gt; VideoNote -&gt; Bool
 </span><a href="#local-6989586621679458751"><span class="hs-identifier hs-var">_length</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">duration :: VideoNote -&gt; Maybe Int
 </span><a href="API.VideoNote.html#duration"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679458750"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679458750"><span class="hs-identifier hs-var">duration</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-18"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-31"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
@@ -74,28 +87,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679458750"><span class="hs-identifier hs-var">duration</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679458744"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span> </span><span id="local-6989586621679458742"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser VideoNote
+</span><span id="line-32"></span><span>
+</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679458744"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span> </span><span id="local-6989586621679458742"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser VideoNote
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679458740"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679458740"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679458738"><span class="annot"><span class="annottext">obj :: Object
 </span><a href="#local-6989586621679458738"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-22"></span><span>  </span><span id="local-6989586621679458737"><span class="annot"><span class="annottext">String
+</span><span id="line-35"></span><span>  </span><span id="local-6989586621679458737"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679458737"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679458738"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-23"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-36"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679458737"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-24"></span><span>   </span><span class="hs-string">&quot;videoNote&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser VideoNote
+</span><span id="line-37"></span><span>   </span><span class="hs-string">&quot;videoNote&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser VideoNote
 </span><a href="#local-6989586621679458735"><span class="hs-identifier hs-var">parseVideoNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679458740"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser VideoNote
+</span><span id="line-38"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser VideoNote
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-26"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-27"></span><span>   </span><span class="annot"><a href="#local-6989586621679458735"><span class="hs-identifier hs-type">parseVideoNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote</span></a></span><span>
-</span><span id="line-28"></span><span>   </span><span id="local-6989586621679458735"><span class="annot"><span class="annottext">parseVideoNote :: Value -&gt; Parser VideoNote
+</span><span id="line-39"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-40"></span><span>   </span><span class="annot"><a href="#local-6989586621679458735"><span class="hs-identifier hs-type">parseVideoNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.VideoNote.html#VideoNote"><span class="hs-identifier hs-type">VideoNote</span></a></span><span>
+</span><span id="line-41"></span><span>   </span><span id="local-6989586621679458735"><span class="annot"><span class="annottext">parseVideoNote :: Value -&gt; Parser VideoNote
 </span><a href="#local-6989586621679458735"><span class="hs-identifier hs-var hs-var">parseVideoNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser VideoNote) -&gt; Value -&gt; Parser VideoNote
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;VideoNote&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser VideoNote) -&gt; Value -&gt; Parser VideoNote)
@@ -103,22 +116,22 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679458733"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679458733"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-29"></span><span>    </span><span id="local-6989586621679458732"><span class="annot"><span class="annottext">Maybe File
+</span><span id="line-42"></span><span>    </span><span id="local-6989586621679458732"><span class="annot"><span class="annottext">Maybe File
 </span><a href="#local-6989586621679458732"><span class="hs-identifier hs-var">video</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679458733"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe File)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;video&quot;</span></span><span>
-</span><span id="line-30"></span><span>    </span><span id="local-6989586621679458730"><span class="annot"><span class="annottext">Maybe PhotoSize
+</span><span id="line-43"></span><span>    </span><span id="local-6989586621679458730"><span class="annot"><span class="annottext">Maybe PhotoSize
 </span><a href="#local-6989586621679458730"><span class="hs-identifier hs-var">thumbnail</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679458733"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe PhotoSize)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;thumbnail&quot;</span></span><span>
-</span><span id="line-31"></span><span>    </span><span id="local-6989586621679458729"><span class="annot"><span class="annottext">Maybe Minithumbnail
+</span><span id="line-44"></span><span>    </span><span id="local-6989586621679458729"><span class="annot"><span class="annottext">Maybe Minithumbnail
 </span><a href="#local-6989586621679458729"><span class="hs-identifier hs-var">minithumbnail</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679458733"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Minithumbnail)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;minithumbnail&quot;</span></span><span>
-</span><span id="line-32"></span><span>    </span><span id="local-6989586621679458728"><span class="annot"><span class="annottext">Maybe Int
+</span><span id="line-45"></span><span>    </span><span id="local-6989586621679458728"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679458728"><span class="hs-identifier hs-var">_length</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
@@ -132,7 +145,7 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="#local-6989586621679458733"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;_length&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-33"></span><span>    </span><span id="local-6989586621679458726"><span class="annot"><span class="annottext">Maybe Int
+</span><span id="line-46"></span><span>    </span><span id="local-6989586621679458726"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679458726"><span class="hs-identifier hs-var">duration</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
@@ -146,7 +159,7 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="#local-6989586621679458733"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;duration&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-34"></span><span>    </span><span class="annot"><span class="annottext">VideoNote -&gt; Parser VideoNote
+</span><span id="line-47"></span><span>    </span><span class="annot"><span class="annottext">VideoNote -&gt; Parser VideoNote
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(VideoNote -&gt; Parser VideoNote) -&gt; VideoNote -&gt; Parser VideoNote
 forall a b. (a -&gt; b) -&gt; a -&gt; b

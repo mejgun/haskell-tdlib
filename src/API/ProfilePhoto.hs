@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
 
+-- |
+-- 
+-- Describes a user profile photo 
+-- 
+-- __id__ Photo identifier; 0 for an empty photo. Can be used to find a photo in a list of userProfilePhotos
+-- 
+-- __small__ A small (160x160) user profile photo. The file can be downloaded only before the photo is changed
+-- 
+-- __big__ A big (640x640) user profile photo. The file can be downloaded only before the photo is changed
 data ProfilePhoto = 
  ProfilePhoto { big :: Maybe File.File, small :: Maybe File.File, _id :: Maybe Int }  deriving (Show, Eq)
 

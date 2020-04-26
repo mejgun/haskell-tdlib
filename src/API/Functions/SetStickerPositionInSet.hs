@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
+-- |
+-- 
+-- Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot
+-- 
+-- __sticker__ Sticker
+-- 
+-- __position__ New position of the sticker in the set, zero-based
 data SetStickerPositionInSet = 
  SetStickerPositionInSet { position :: Maybe Int, sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 

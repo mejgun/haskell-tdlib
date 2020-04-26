@@ -7,6 +7,25 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains auto-download settings
+-- 
+-- __is_auto_download_enabled__ True, if the auto-download is enabled
+-- 
+-- __max_photo_file_size__ The maximum size of a photo file to be auto-downloaded
+-- 
+-- __max_video_file_size__ The maximum size of a video file to be auto-downloaded
+-- 
+-- __max_other_file_size__ The maximum size of other file types to be auto-downloaded
+-- 
+-- __video_upload_bitrate__ The maximum suggested bitrate for uploaded videos
+-- 
+-- __preload_large_videos__ True, if the beginning of videos needs to be preloaded for instant playback
+-- 
+-- __preload_next_audio__ True, if the next audio track needs to be preloaded while the user is listening to an audio file
+-- 
+-- __use_less_data_for_calls__ True, if "use less data for calls" option needs to be enabled
 data AutoDownloadSettings = 
  AutoDownloadSettings { use_less_data_for_calls :: Maybe Bool, preload_next_audio :: Maybe Bool, preload_large_videos :: Maybe Bool, video_upload_bitrate :: Maybe Int, max_other_file_size :: Maybe Int, max_video_file_size :: Maybe Int, max_photo_file_size :: Maybe Int, is_auto_download_enabled :: Maybe Bool }  deriving (Show, Eq)
 

@@ -8,6 +8,25 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BotInfo as BotInfo
 
+-- |
+-- 
+-- Contains full information about a user (except the full list of profile photos) 
+-- 
+-- __is_blocked__ True, if the user is blacklisted by the current user
+-- 
+-- __can_be_called__ True, if the user can be called
+-- 
+-- __has_private_calls__ True, if the user can't be called due to their privacy settings
+-- 
+-- __need_phone_number_privacy_exception__ True, if the current user needs to explicitly allow to share their phone number with the user when the method addContact is used
+-- 
+-- __bio__ A short user bio
+-- 
+-- __share_text__ For bots, the text that is included with the link when users share the bot
+-- 
+-- __group_in_common_count__ Number of group chats where both the other user and the current user are a member; 0 for the current user
+-- 
+-- __bot_info__ If the user is a bot, information about the bot; may be null
 data UserFullInfo = 
  UserFullInfo { bot_info :: Maybe BotInfo.BotInfo, group_in_common_count :: Maybe Int, share_text :: Maybe String, bio :: Maybe String, need_phone_number_privacy_exception :: Maybe Bool, has_private_calls :: Maybe Bool, can_be_called :: Maybe Bool, is_blocked :: Maybe Bool }  deriving (Show, Eq)
 

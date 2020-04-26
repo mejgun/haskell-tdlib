@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains information about the payment method chosen by the user
 data InputCredentials = 
  InputCredentialsSaved { saved_credentials_id :: Maybe String }  
  | InputCredentialsNew { allow_save :: Maybe Bool, _data :: Maybe String }  

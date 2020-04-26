@@ -8,6 +8,21 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Photo as Photo
 
+-- |
+-- 
+-- Contains information about a related article 
+-- 
+-- __url__ Related article URL
+-- 
+-- __title__ Article title; may be empty
+-- 
+-- __param_description__ Article description; may be empty
+-- 
+-- __photo__ Article photo; may be null
+-- 
+-- __author__ Article author; may be empty
+-- 
+-- __publish_date__ Point in time (Unix timestamp) when the article was published; 0 if unknown
 data PageBlockRelatedArticle = 
  PageBlockRelatedArticle { publish_date :: Maybe Int, author :: Maybe String, photo :: Maybe Photo.Photo, description :: Maybe String, title :: Maybe String, url :: Maybe String }  deriving (Show, Eq)
 

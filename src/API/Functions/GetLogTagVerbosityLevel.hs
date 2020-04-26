@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns current verbosity level for a specified TDLib internal log tag. This is an offline method. Can be called before authorization. Can be called synchronously 
+-- 
+-- __tag__ Logging tag to change verbosity level
 data GetLogTagVerbosityLevel = 
  GetLogTagVerbosityLevel { tag :: Maybe String }  deriving (Show, Eq)
 

@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization 
+-- 
+-- __language_pack_id__ Language pack identifier
 data GetLanguagePackInfo = 
  GetLanguagePackInfo { language_pack_id :: Maybe String }  deriving (Show, Eq)
 

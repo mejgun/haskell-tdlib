@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TMeUrl as TMeUrl
 
+-- |
+-- 
+-- Contains a list of t.me URLs 
+-- 
+-- __urls__ List of URLs
 data TMeUrls = 
  TMeUrls { urls :: Maybe [TMeUrl.TMeUrl] }  deriving (Show, Eq)
 

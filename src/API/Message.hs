@@ -12,6 +12,59 @@ import {-# SOURCE #-} qualified API.MessageForwardInfo as MessageForwardInfo
 import {-# SOURCE #-} qualified API.MessageSchedulingState as MessageSchedulingState
 import {-# SOURCE #-} qualified API.MessageSendingState as MessageSendingState
 
+-- |
+-- 
+-- Describes a message
+-- 
+-- __id__ Message identifier, unique for the chat to which the message belongs
+-- 
+-- __sender_user_id__ Identifier of the user who sent the message; 0 if unknown. Currently, it is unknown for channel posts and for channel posts automatically forwarded to discussion group
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __sending_state__ Information about the sending state of the message; may be null
+-- 
+-- __scheduling_state__ Information about the scheduling state of the message; may be null
+-- 
+-- __is_outgoing__ True, if the message is outgoing
+-- 
+-- __can_be_edited__ True, if the message can be edited. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message by the client
+-- 
+-- __can_be_forwarded__ True, if the message can be forwarded
+-- 
+-- __can_be_deleted_only_for_self__ True, if the message can be deleted only for the current user while other users will continue to see it
+-- 
+-- __can_be_deleted_for_all_users__ True, if the message can be deleted for all users
+-- 
+-- __is_channel_post__ True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts
+-- 
+-- __contains_unread_mention__ True, if the message contains an unread mention for the current user
+-- 
+-- __date__ Point in time (Unix timestamp) when the message was sent
+-- 
+-- __edit_date__ Point in time (Unix timestamp) when the message was last edited
+-- 
+-- __forward_info__ Information about the initial message sender; may be null
+-- 
+-- __reply_to_message_id__ If non-zero, the identifier of the message this message is replying to; can be the identifier of a deleted message
+-- 
+-- __ttl__ For self-destructing messages, the message's TTL (Time To Live), in seconds; 0 if none. TDLib will send updateDeleteMessages or updateMessageContent once the TTL expires
+-- 
+-- __ttl_expires_in__ Time left before the message expires, in seconds
+-- 
+-- __via_bot_user_id__ If non-zero, the user identifier of the bot through which this message was sent
+-- 
+-- __author_signature__ For channel posts, optional author signature
+-- 
+-- __views__ Number of times this message was viewed
+-- 
+-- __media_album_id__ Unique identifier of an album this message belongs to. Only photos and videos can be grouped together in albums
+-- 
+-- __restriction_reason__ If non-empty, contains a human-readable description of the reason why access to this message must be restricted
+-- 
+-- __content__ Content of the message
+-- 
+-- __reply_markup__ Reply markup for the message; may be null
 data Message = 
  Message { reply_markup :: Maybe ReplyMarkup.ReplyMarkup, content :: Maybe MessageContent.MessageContent, restriction_reason :: Maybe String, media_album_id :: Maybe Int, views :: Maybe Int, author_signature :: Maybe String, via_bot_user_id :: Maybe Int, ttl_expires_in :: Maybe Float, ttl :: Maybe Int, reply_to_message_id :: Maybe Int, forward_info :: Maybe MessageForwardInfo.MessageForwardInfo, edit_date :: Maybe Int, date :: Maybe Int, contains_unread_mention :: Maybe Bool, is_channel_post :: Maybe Bool, can_be_deleted_for_all_users :: Maybe Bool, can_be_deleted_only_for_self :: Maybe Bool, can_be_forwarded :: Maybe Bool, can_be_edited :: Maybe Bool, is_outgoing :: Maybe Bool, scheduling_state :: Maybe MessageSchedulingState.MessageSchedulingState, sending_state :: Maybe MessageSendingState.MessageSendingState, chat_id :: Maybe Int, sender_user_id :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 

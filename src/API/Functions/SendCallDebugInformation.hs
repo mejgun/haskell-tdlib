@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Sends debug information for a call 
+-- 
+-- __call_id__ Call identifier
+-- 
+-- __debug_information__ Debug information in application-specific format
 data SendCallDebugInformation = 
  SendCallDebugInformation { debug_information :: Maybe String, call_id :: Maybe Int }  deriving (Show, Eq)
 

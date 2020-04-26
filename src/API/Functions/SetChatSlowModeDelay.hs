@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members rights 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __slow_mode_delay__ New slow mode delay for the chat; must be one of 0, 10, 30, 60, 300, 900, 3600
 data SetChatSlowModeDelay = 
  SetChatSlowModeDelay { slow_mode_delay :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

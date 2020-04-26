@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.UserPrivacySetting as UserPrivacySetting
 
+-- |
+-- 
+-- Returns the current privacy settings 
+-- 
+-- __setting__ The privacy setting
 data GetUserPrivacySettingRules = 
  GetUserPrivacySettingRules { setting :: Maybe UserPrivacySetting.UserPrivacySetting }  deriving (Show, Eq)
 

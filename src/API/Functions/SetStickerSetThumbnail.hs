@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
+-- |
+-- 
+-- Sets a sticker set thumbnail; for bots only. Returns the sticker set
+-- 
+-- __user_id__ Sticker set owner
+-- 
+-- __name__ Sticker set name
+-- 
+-- __thumbnail__ Thumbnail to set in PNG or TGS format. Animated thumbnail must be set for animated sticker sets and only for them. You can use a zero InputFileId to delete the thumbnail
 data SetStickerSetThumbnail = 
  SetStickerSetThumbnail { thumbnail :: Maybe InputFile.InputFile, name :: Maybe String, user_id :: Maybe Int }  deriving (Show, Eq)
 

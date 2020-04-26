@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains one row of the game high score table 
+-- 
+-- __position__ Position in the high score table
+-- 
+-- __user_id__ User identifier
+-- 
+-- __score__ User score
 data GameHighScore = 
  GameHighScore { score :: Maybe Int, user_id :: Maybe Int, position :: Maybe Int }  deriving (Show, Eq)
 

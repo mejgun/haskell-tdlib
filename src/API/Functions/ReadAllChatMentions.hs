@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Marks all mentions in a chat as read 
+-- 
+-- __chat_id__ Chat identifier
 data ReadAllChatMentions = 
  ReadAllChatMentions { chat_id :: Maybe Int }  deriving (Show, Eq)
 

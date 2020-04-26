@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatList as ChatList
 
+-- |
+-- 
+-- Moves a chat to a different chat list. Current chat list of the chat must ne non-null 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __chat_list__ New chat list of the chat. The chat with the current user (Saved Messages) and the chat 777000 (Telegram) can't be moved to the Archive chat list
 data SetChatChatList = 
  SetChatChatList { chat_list :: Maybe ChatList.ChatList, chat_id :: Maybe Int }  deriving (Show, Eq)
 

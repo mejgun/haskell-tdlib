@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 
+-- |
+-- 
+-- Deletes a Telegram Passport element 
+-- 
+-- __type__ Element type
 data DeletePassportElement = 
  DeletePassportElement { _type :: Maybe PassportElementType.PassportElementType }  deriving (Show, Eq)
 

@@ -9,6 +9,19 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.RemoteFile as RemoteFile
 import {-# SOURCE #-} qualified API.LocalFile as LocalFile
 
+-- |
+-- 
+-- Represents a file
+-- 
+-- __id__ Unique file identifier
+-- 
+-- __size__ File size; 0 if unknown
+-- 
+-- __expected_size__ Expected file size in case the exact file size is unknown, but an approximate size is known. Can be used to show download/upload progress
+-- 
+-- __local__ Information about the local copy of the file
+-- 
+-- __remote__ Information about the remote copy of the file
 data File = 
  File { remote :: Maybe RemoteFile.RemoteFile, local :: Maybe LocalFile.LocalFile, expected_size :: Maybe Int, size :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 

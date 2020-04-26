@@ -9,6 +9,21 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BackgroundType as BackgroundType
 import {-# SOURCE #-} qualified API.Document as Document
 
+-- |
+-- 
+-- Describes a chat background
+-- 
+-- __id__ Unique background identifier
+-- 
+-- __is_default__ True, if this is one of default backgrounds
+-- 
+-- __is_dark__ True, if the background is dark and is recommended to be used with dark theme
+-- 
+-- __name__ Unique background name
+-- 
+-- __document__ Document with the background; may be null. Null only for filled backgrounds
+-- 
+-- __type__ Type of the background
 data Background = 
  Background { _type :: Maybe BackgroundType.BackgroundType, document :: Maybe Document.Document, name :: Maybe String, is_dark :: Maybe Bool, is_default :: Maybe Bool, _id :: Maybe Int }  deriving (Show, Eq)
 

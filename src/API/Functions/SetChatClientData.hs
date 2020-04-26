@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Changes client data associated with a chat 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __client_data__ New value of client_data
 data SetChatClientData = 
  SetChatClientData { client_data :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 

@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Contact as Contact
 
+-- |
+-- 
+-- Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored 
+-- 
+-- __contacts__ The list of contacts to import or edit; contacts' vCard are ignored and are not imported
 data ImportContacts = 
  ImportContacts { contacts :: Maybe [Contact.Contact] }  deriving (Show, Eq)
 

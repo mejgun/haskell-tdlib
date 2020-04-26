@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes the reason why a call was discarded
 data CallDiscardReason = 
  CallDiscardReasonEmpty 
  | CallDiscardReasonMissed 

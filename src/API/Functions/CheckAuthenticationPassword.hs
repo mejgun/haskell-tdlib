@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Checks the authentication password for correctness. Works only when the current authorization state is authorizationStateWaitPassword 
+-- 
+-- __password__ The password to check
 data CheckAuthenticationPassword = 
  CheckAuthenticationPassword { password :: Maybe String }  deriving (Show, Eq)
 

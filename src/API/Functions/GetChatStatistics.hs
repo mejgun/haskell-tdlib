@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns detailed statistics about a chat. Currently this method can be used only for channels. Requires administrator rights in the channel 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __is_dark__ Pass true if a dark theme is used by the app
 data GetChatStatistics = 
  GetChatStatistics { is_dark :: Maybe Bool, chat_id :: Maybe Int }  deriving (Show, Eq)
 

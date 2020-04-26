@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes the type of a poll
 data PollType = 
  PollTypeRegular { allow_multiple_answers :: Maybe Bool }  
  | PollTypeQuiz { correct_option_id :: Maybe Int }  deriving (Show, Eq)

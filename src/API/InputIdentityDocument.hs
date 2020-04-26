@@ -9,6 +9,21 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 import {-# SOURCE #-} qualified API.Date as Date
 
+-- |
+-- 
+-- An identity document to be saved to Telegram Passport 
+-- 
+-- __number__ Document number; 1-24 characters
+-- 
+-- __expiry_date__ Document expiry date, if available
+-- 
+-- __front_side__ Front side of the document
+-- 
+-- __reverse_side__ Reverse side of the document; only for driver license and identity card
+-- 
+-- __selfie__ Selfie with the document, if available
+-- 
+-- __translation__ List of files containing a certified English translation of the document
 data InputIdentityDocument = 
  InputIdentityDocument { translation :: Maybe [InputFile.InputFile], selfie :: Maybe InputFile.InputFile, reverse_side :: Maybe InputFile.InputFile, front_side :: Maybe InputFile.InputFile, expiry_date :: Maybe Date.Date, number :: Maybe String }  deriving (Show, Eq)
 

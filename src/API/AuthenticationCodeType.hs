@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Provides information about the method by which an authentication code is delivered to the user
 data AuthenticationCodeType = 
  AuthenticationCodeTypeTelegramMessage { _length :: Maybe Int }  
  | AuthenticationCodeTypeSms { _length :: Maybe Int }  

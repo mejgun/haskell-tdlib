@@ -15,6 +15,9 @@ import {-# SOURCE #-} qualified API.Contact as Contact
 import {-# SOURCE #-} qualified API.Invoice as Invoice
 import {-# SOURCE #-} qualified API.PollType as PollType
 
+-- |
+-- 
+-- The content of a message to send
 data InputMessageContent = 
  InputMessageText { clear_draft :: Maybe Bool, disable_web_page_preview :: Maybe Bool, text :: Maybe FormattedText.FormattedText }  
  | InputMessageAnimation { caption :: Maybe FormattedText.FormattedText, height :: Maybe Int, width :: Maybe Int, duration :: Maybe Int, thumbnail :: Maybe InputThumbnail.InputThumbnail, animation :: Maybe InputFile.InputFile }  

@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns a list of common group chats with a given user. Chats are sorted by their type and creation date 
+-- 
+-- __user_id__ User identifier
+-- 
+-- __offset_chat_id__ Chat identifier starting from which to return chats; use 0 for the first request
+-- 
+-- __limit__ The maximum number of chats to be returned; up to 100
 data GetGroupsInCommon = 
  GetGroupsInCommon { limit :: Maybe Int, offset_chat_id :: Maybe Int, user_id :: Maybe Int }  deriving (Show, Eq)
 

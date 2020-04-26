@@ -7,6 +7,19 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains information about notification settings for several chats
+-- 
+-- __mute_for__ Time left before notifications will be unmuted, in seconds
+-- 
+-- __sound__ The name of an audio file to be used for notification sounds; only applies to iOS applications
+-- 
+-- __show_preview__ True, if message content should be displayed in notifications
+-- 
+-- __disable_pinned_message_notifications__ True, if notifications for incoming pinned messages will be created as for an ordinary unread message
+-- 
+-- __disable_mention_notifications__ True, if notifications for messages with mentions will be created as for an ordinary unread message
 data ScopeNotificationSettings = 
  ScopeNotificationSettings { disable_mention_notifications :: Maybe Bool, disable_pinned_message_notifications :: Maybe Bool, show_preview :: Maybe Bool, sound :: Maybe String, mute_for :: Maybe Int }  deriving (Show, Eq)
 

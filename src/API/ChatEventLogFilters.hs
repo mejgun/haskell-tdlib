@@ -7,6 +7,29 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Represents a set of filters used to obtain a chat event log
+-- 
+-- __message_edits__ True, if message edits should be returned
+-- 
+-- __message_deletions__ True, if message deletions should be returned
+-- 
+-- __message_pins__ True, if pin/unpin events should be returned
+-- 
+-- __member_joins__ True, if members joining events should be returned
+-- 
+-- __member_leaves__ True, if members leaving events should be returned
+-- 
+-- __member_invites__ True, if invited member events should be returned
+-- 
+-- __member_promotions__ True, if member promotion/demotion events should be returned
+-- 
+-- __member_restrictions__ True, if member restricted/unrestricted/banned/unbanned events should be returned
+-- 
+-- __info_changes__ True, if changes in chat information should be returned
+-- 
+-- __setting_changes__ True, if changes in chat settings should be returned
 data ChatEventLogFilters = 
  ChatEventLogFilters { setting_changes :: Maybe Bool, info_changes :: Maybe Bool, member_restrictions :: Maybe Bool, member_promotions :: Maybe Bool, member_invites :: Maybe Bool, member_leaves :: Maybe Bool, member_joins :: Maybe Bool, message_pins :: Maybe Bool, message_deletions :: Maybe Bool, message_edits :: Maybe Bool }  deriving (Show, Eq)
 

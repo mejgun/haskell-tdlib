@@ -8,6 +8,17 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.NotificationType as NotificationType
 
+-- |
+-- 
+-- Contains information about a notification 
+-- 
+-- __id__ Unique persistent identifier of this notification
+-- 
+-- __date__ Notification date
+-- 
+-- __is_silent__ True, if the notification was initially silent
+-- 
+-- __type__ Notification type
 data Notification = 
  Notification { _type :: Maybe NotificationType.NotificationType, is_silent :: Maybe Bool, date :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 

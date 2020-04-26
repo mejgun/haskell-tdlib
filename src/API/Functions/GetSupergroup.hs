@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns information about a supergroup or a channel by its identifier. This is an offline request if the current user is not a bot 
+-- 
+-- __supergroup_id__ Supergroup or channel identifier
 data GetSupergroup = 
  GetSupergroup { supergroup_id :: Maybe Int }  deriving (Show, Eq)
 

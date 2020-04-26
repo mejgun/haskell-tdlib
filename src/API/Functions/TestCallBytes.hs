@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns the received bytes; for testing only. This is an offline method. Can be called before authorization 
+-- 
+-- __x__ Bytes to return
 data TestCallBytes = 
  TestCallBytes { x :: Maybe String }  deriving (Show, Eq)
 

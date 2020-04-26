@@ -9,6 +9,15 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputPassportElementErrorSource as InputPassportElementErrorSource
 import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 
+-- |
+-- 
+-- Contains the description of an error in a Telegram Passport element; for bots only 
+-- 
+-- __type__ Type of Telegram Passport element that has the error
+-- 
+-- __message__ Error message
+-- 
+-- __source__ Error source
 data InputPassportElementError = 
  InputPassportElementError { source :: Maybe InputPassportElementErrorSource.InputPassportElementErrorSource, message :: Maybe String, _type :: Maybe PassportElementType.PassportElementType }  deriving (Show, Eq)
 

@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Resets all notification settings to their default values. By default, all chats are unmuted, the sound is set to "default" and message previews are shown
 data ResetAllNotificationSettings = 
  ResetAllNotificationSettings deriving (Show, Eq)
 

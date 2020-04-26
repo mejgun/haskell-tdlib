@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Session as Session
 
+-- |
+-- 
+-- Contains a list of sessions 
+-- 
+-- __sessions__ List of sessions
 data Sessions = 
  Sessions { sessions :: Maybe [Session.Session] }  deriving (Show, Eq)
 

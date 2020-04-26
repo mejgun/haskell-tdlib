@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat 
+-- 
+-- __user_ids__ Identifiers of users to be added to the basic group
+-- 
+-- __title__ Title of the new basic group; 1-128 characters
 data CreateNewBasicGroupChat = 
  CreateNewBasicGroupChat { title :: Maybe String, user_ids :: Maybe [Int] }  deriving (Show, Eq)
 

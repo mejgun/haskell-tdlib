@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns information about a single member of a chat 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __user_id__ User identifier
 data GetChatMember = 
  GetChatMember { user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

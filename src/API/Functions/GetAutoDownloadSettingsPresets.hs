@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns auto-download settings presets for the currently logged in user
 data GetAutoDownloadSettingsPresets = 
  GetAutoDownloadSettingsPresets deriving (Show, Eq)
 

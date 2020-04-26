@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Resets list of installed backgrounds to its default value
 data ResetBackgrounds = 
  ResetBackgrounds deriving (Show, Eq)
 

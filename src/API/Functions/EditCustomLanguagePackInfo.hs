@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LanguagePackInfo as LanguagePackInfo
 
+-- |
+-- 
+-- Edits information about a custom local language pack in the current localization target. Can be called before authorization 
+-- 
+-- __info__ New information about the custom local language pack
 data EditCustomLanguagePackInfo = 
  EditCustomLanguagePackInfo { info :: Maybe LanguagePackInfo.LanguagePackInfo }  deriving (Show, Eq)
 

@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatNotificationSettings as ChatNotificationSettings
 
+-- |
+-- 
+-- Changes the notification settings of a chat. Notification settings of a chat with the current user (Saved Messages) can't be changed
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __notification_settings__ New notification settings for the chat. If the chat is muted for more than 1 week, it is considered to be muted forever
 data SetChatNotificationSettings = 
  SetChatNotificationSettings { notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings, chat_id :: Maybe Int }  deriving (Show, Eq)
 

@@ -9,6 +9,13 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LanguagePackString as LanguagePackString
 import {-# SOURCE #-} qualified API.LanguagePackInfo as LanguagePackInfo
 
+-- |
+-- 
+-- Adds or changes a custom local language pack to the current localization target 
+-- 
+-- __info__ Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
+-- 
+-- __strings__ Strings of the new language pack
 data SetCustomLanguagePack = 
  SetCustomLanguagePack { strings :: Maybe [LanguagePackString.LanguagePackString], info :: Maybe LanguagePackInfo.LanguagePackInfo }  deriving (Show, Eq)
 

@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.JsonValue as JsonValue
 
+-- |
+-- 
+-- Saves application log event on the server. Can be called before authorization 
+-- 
+-- __type__ Event type
+-- 
+-- __chat_id__ Optional chat identifier, associated with the event
+-- 
+-- __data__ The log event data
 data SaveApplicationLogEvent = 
  SaveApplicationLogEvent { _data :: Maybe JsonValue.JsonValue, chat_id :: Maybe Int, _type :: Maybe String }  deriving (Show, Eq)
 

@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns full information about a basic group by its identifier 
+-- 
+-- __basic_group_id__ Basic group identifier
 data GetBasicGroupFullInfo = 
  GetBasicGroupFullInfo { basic_group_id :: Maybe Int }  deriving (Show, Eq)
 

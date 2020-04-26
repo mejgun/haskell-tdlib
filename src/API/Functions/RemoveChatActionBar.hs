@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Removes a chat action bar without any other action 
+-- 
+-- __chat_id__ Chat identifier
 data RemoveChatActionBar = 
  RemoveChatActionBar { chat_id :: Maybe Int }  deriving (Show, Eq)
 

@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Removes a proxy server. Can be called before authorization 
+-- 
+-- __proxy_id__ Proxy identifier
 data RemoveProxy = 
  RemoveProxy { proxy_id :: Maybe Int }  deriving (Show, Eq)
 

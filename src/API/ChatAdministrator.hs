@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains information about a chat administrator 
+-- 
+-- __user_id__ User identifier of the administrator
+-- 
+-- __custom_title__ Custom title of the administrator
+-- 
+-- __is_owner__ True, if the user is the owner of the chat
 data ChatAdministrator = 
  ChatAdministrator { is_owner :: Maybe Bool, custom_title :: Maybe String, user_id :: Maybe Int }  deriving (Show, Eq)
 

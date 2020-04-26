@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Deletes all messages in the chat. Use Chat.can_be_deleted_only_for_self and Chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __remove_from_chat_list__ Pass true if the chat should be removed from the chat list
+-- 
+-- __revoke__ Pass true to try to delete chat history for all users
 data DeleteChatHistory = 
  DeleteChatHistory { revoke :: Maybe Bool, remove_from_chat_list :: Maybe Bool, chat_id :: Maybe Int }  deriving (Show, Eq)
 

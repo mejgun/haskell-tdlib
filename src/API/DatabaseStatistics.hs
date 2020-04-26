@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains database statistics
+-- 
+-- __statistics__ Database statistics in an unspecified human-readable format
 data DatabaseStatistics = 
  DatabaseStatistics { statistics :: Maybe String }  deriving (Show, Eq)
 

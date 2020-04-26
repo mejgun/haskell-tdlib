@@ -10,8 +10,43 @@
 </span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.ProfilePhoto.html"><span class="hs-identifier">API.ProfilePhoto</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ProfilePhoto</span></span><span>
 </span><span id="line-11"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.UserStatus.html"><span class="hs-identifier">API.UserStatus</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">UserStatus</span></span><span>
 </span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="User"><span class="annot"><a href="API.User.html#User"><span class="hs-identifier hs-var">User</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-14"></span><span> </span><span id="User"><span class="annot"><a href="API.User.html#User"><span class="hs-identifier hs-var">User</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="language_code"><span class="annot"><span class="annottext">User -&gt; Maybe String
+</span><span id="line-13"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-15"></span><span class="hs-comment">-- Represents a user </span><span>
+</span><span id="line-16"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-17"></span><span class="hs-comment">-- __id__ User identifier</span><span>
+</span><span id="line-18"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-19"></span><span class="hs-comment">-- __first_name__ First name of the user</span><span>
+</span><span id="line-20"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-21"></span><span class="hs-comment">-- __last_name__ Last name of the user</span><span>
+</span><span id="line-22"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-23"></span><span class="hs-comment">-- __username__ Username of the user</span><span>
+</span><span id="line-24"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-25"></span><span class="hs-comment">-- __phone_number__ Phone number of the user</span><span>
+</span><span id="line-26"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-27"></span><span class="hs-comment">-- __status__ Current online status of the user</span><span>
+</span><span id="line-28"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-29"></span><span class="hs-comment">-- __profile_photo__ Profile photo of the user; may be null</span><span>
+</span><span id="line-30"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-31"></span><span class="hs-comment">-- __is_contact__ The user is a contact of the current user</span><span>
+</span><span id="line-32"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-33"></span><span class="hs-comment">-- __is_mutual_contact__ The user is a contact of the current user and the current user is a contact of the user</span><span>
+</span><span id="line-34"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-35"></span><span class="hs-comment">-- __is_verified__ True, if the user is verified</span><span>
+</span><span id="line-36"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-37"></span><span class="hs-comment">-- __is_support__ True, if the user is Telegram support account</span><span>
+</span><span id="line-38"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-39"></span><span class="hs-comment">-- __restriction_reason__ If non-empty, it contains a human-readable description of the reason why access to this user must be restricted</span><span>
+</span><span id="line-40"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-41"></span><span class="hs-comment">-- __is_scam__ True, if many users reported this user as a scam</span><span>
+</span><span id="line-42"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-43"></span><span class="hs-comment">-- __have_access__ If false, the user is inaccessible, and the only information known about the user is inside this class. It can't be passed to any method except GetUser</span><span>
+</span><span id="line-44"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-45"></span><span class="hs-comment">-- __type__ Type of the user</span><span>
+</span><span id="line-46"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-47"></span><span class="hs-comment">-- __language_code__ IETF language tag of the user's language; only available to bots</span><span>
+</span><span id="line-48"></span><span class="hs-keyword">data</span><span> </span><span id="User"><span class="annot"><a href="API.User.html#User"><span class="hs-identifier hs-var">User</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-49"></span><span> </span><span id="User"><span class="annot"><a href="API.User.html#User"><span class="hs-identifier hs-var">User</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="language_code"><span class="annot"><span class="annottext">User -&gt; Maybe String
 </span><a href="API.User.html#language_code"><span class="hs-identifier hs-var hs-var">language_code</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="_type"><span class="annot"><span class="annottext">User -&gt; Maybe UserType
 </span><a href="API.User.html#_type"><span class="hs-identifier hs-var hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.UserType.html#UserType"><span class="hs-identifier hs-type">UserType.UserType</span></a></span><span class="hs-special">,</span><span> </span><span id="have_access"><span class="annot"><span class="annottext">User -&gt; Maybe Bool
 </span><a href="API.User.html#have_access"><span class="hs-identifier hs-var hs-var">have_access</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="is_scam"><span class="annot"><span class="annottext">User -&gt; Maybe Bool
@@ -48,9 +83,9 @@ $c/= :: User -&gt; User -&gt; Bool
 == :: User -&gt; User -&gt; Bool
 $c== :: User -&gt; User -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679457483"><span id="local-6989586621679457485"><span id="local-6989586621679457487"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.User.html#User"><span class="hs-identifier hs-type">User</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679457481"><span class="annot"><span class="annottext">toJSON :: User -&gt; Value
+</span><span id="line-50"></span><span>
+</span><span id="line-51"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679457483"><span id="local-6989586621679457485"><span id="local-6989586621679457487"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.User.html#User"><span class="hs-identifier hs-type">User</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-52"></span><span> </span><span id="local-6989586621679457481"><span class="annot"><span class="annottext">toJSON :: User -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.User.html#User"><span class="hs-identifier hs-type">User</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">language_code :: User -&gt; Maybe String
 </span><a href="API.User.html#language_code"><span class="hs-identifier hs-var">language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679457479"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679457479"><span class="hs-identifier hs-var">language_code</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_type :: User -&gt; Maybe UserType
@@ -84,7 +119,7 @@ $c== :: User -&gt; User -&gt; Bool
 </span><a href="#local-6989586621679457465"><span class="hs-identifier hs-var">first_name</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: User -&gt; Maybe Int
 </span><a href="API.User.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679457464"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679457464"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-18"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-53"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
@@ -137,28 +172,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679457464"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679457458"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.User.html#User"><span class="hs-identifier hs-type">User</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span> </span><span id="local-6989586621679457456"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser User
+</span><span id="line-54"></span><span>
+</span><span id="line-55"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679457458"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.User.html#User"><span class="hs-identifier hs-type">User</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-56"></span><span> </span><span id="local-6989586621679457456"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser User
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679457454"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679457454"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679457452"><span class="annot"><span class="annottext">obj :: Object
 </span><a href="#local-6989586621679457452"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-22"></span><span>  </span><span id="local-6989586621679457451"><span class="annot"><span class="annottext">String
+</span><span id="line-57"></span><span>  </span><span id="local-6989586621679457451"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679457451"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679457452"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-23"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-58"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679457451"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-24"></span><span>   </span><span class="hs-string">&quot;user&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser User
+</span><span id="line-59"></span><span>   </span><span class="hs-string">&quot;user&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser User
 </span><a href="#local-6989586621679457449"><span class="hs-identifier hs-var">parseUser</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679457454"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser User
+</span><span id="line-60"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser User
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-26"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-27"></span><span>   </span><span class="annot"><a href="#local-6989586621679457449"><span class="hs-identifier hs-type">parseUser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.User.html#User"><span class="hs-identifier hs-type">User</span></a></span><span>
-</span><span id="line-28"></span><span>   </span><span id="local-6989586621679457449"><span class="annot"><span class="annottext">parseUser :: Value -&gt; Parser User
+</span><span id="line-61"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-62"></span><span>   </span><span class="annot"><a href="#local-6989586621679457449"><span class="hs-identifier hs-type">parseUser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.User.html#User"><span class="hs-identifier hs-type">User</span></a></span><span>
+</span><span id="line-63"></span><span>   </span><span id="local-6989586621679457449"><span class="annot"><span class="annottext">parseUser :: Value -&gt; Parser User
 </span><a href="#local-6989586621679457449"><span class="hs-identifier hs-var hs-var">parseUser</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser User) -&gt; Value -&gt; Parser User
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;User&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser User) -&gt; Value -&gt; Parser User)
@@ -166,82 +201,82 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679457447"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679457447"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-29"></span><span>    </span><span id="local-6989586621679457446"><span class="annot"><span class="annottext">Maybe String
+</span><span id="line-64"></span><span>    </span><span id="local-6989586621679457446"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679457446"><span class="hs-identifier hs-var">language_code</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679457447"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;language_code&quot;</span></span><span>
-</span><span id="line-30"></span><span>    </span><span id="local-6989586621679457444"><span class="annot"><span class="annottext">Maybe UserType
+</span><span id="line-65"></span><span>    </span><span id="local-6989586621679457444"><span class="annot"><span class="annottext">Maybe UserType
 </span><a href="#local-6989586621679457444"><span class="hs-identifier hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679457447"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe UserType)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;type&quot;</span></span><span>
-</span><span id="line-31"></span><span>    </span><span id="local-6989586621679457443"><span class="annot"><span class="annottext">Maybe Bool
+</span><span id="line-66"></span><span>    </span><span id="local-6989586621679457443"><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679457443"><span class="hs-identifier hs-var">have_access</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679457447"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;have_access&quot;</span></span><span>
-</span><span id="line-32"></span><span>    </span><span id="local-6989586621679457442"><span class="annot"><span class="annottext">Maybe Bool
+</span><span id="line-67"></span><span>    </span><span id="local-6989586621679457442"><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679457442"><span class="hs-identifier hs-var">is_scam</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679457447"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_scam&quot;</span></span><span>
-</span><span id="line-33"></span><span>    </span><span id="local-6989586621679457441"><span class="annot"><span class="annottext">Maybe String
+</span><span id="line-68"></span><span>    </span><span id="local-6989586621679457441"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679457441"><span class="hs-identifier hs-var">restriction_reason</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679457447"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;restriction_reason&quot;</span></span><span>
-</span><span id="line-34"></span><span>    </span><span id="local-6989586621679457440"><span class="annot"><span class="annottext">Maybe Bool
+</span><span id="line-69"></span><span>    </span><span id="local-6989586621679457440"><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679457440"><span class="hs-identifier hs-var">is_support</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679457447"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_support&quot;</span></span><span>
-</span><span id="line-35"></span><span>    </span><span id="local-6989586621679457439"><span class="annot"><span class="annottext">Maybe Bool
+</span><span id="line-70"></span><span>    </span><span id="local-6989586621679457439"><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679457439"><span class="hs-identifier hs-var">is_verified</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679457447"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_verified&quot;</span></span><span>
-</span><span id="line-36"></span><span>    </span><span id="local-6989586621679457438"><span class="annot"><span class="annottext">Maybe Bool
+</span><span id="line-71"></span><span>    </span><span id="local-6989586621679457438"><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679457438"><span class="hs-identifier hs-var">is_mutual_contact</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679457447"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_mutual_contact&quot;</span></span><span>
-</span><span id="line-37"></span><span>    </span><span id="local-6989586621679457437"><span class="annot"><span class="annottext">Maybe Bool
+</span><span id="line-72"></span><span>    </span><span id="local-6989586621679457437"><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679457437"><span class="hs-identifier hs-var">is_contact</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679457447"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_contact&quot;</span></span><span>
-</span><span id="line-38"></span><span>    </span><span id="local-6989586621679457436"><span class="annot"><span class="annottext">Maybe ProfilePhoto
+</span><span id="line-73"></span><span>    </span><span id="local-6989586621679457436"><span class="annot"><span class="annottext">Maybe ProfilePhoto
 </span><a href="#local-6989586621679457436"><span class="hs-identifier hs-var">profile_photo</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679457447"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ProfilePhoto)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;profile_photo&quot;</span></span><span>
-</span><span id="line-39"></span><span>    </span><span id="local-6989586621679457435"><span class="annot"><span class="annottext">Maybe UserStatus
+</span><span id="line-74"></span><span>    </span><span id="local-6989586621679457435"><span class="annot"><span class="annottext">Maybe UserStatus
 </span><a href="#local-6989586621679457435"><span class="hs-identifier hs-var">status</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679457447"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe UserStatus)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;status&quot;</span></span><span>
-</span><span id="line-40"></span><span>    </span><span id="local-6989586621679457434"><span class="annot"><span class="annottext">Maybe String
+</span><span id="line-75"></span><span>    </span><span id="local-6989586621679457434"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679457434"><span class="hs-identifier hs-var">phone_number</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679457447"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;phone_number&quot;</span></span><span>
-</span><span id="line-41"></span><span>    </span><span id="local-6989586621679457433"><span class="annot"><span class="annottext">Maybe String
+</span><span id="line-76"></span><span>    </span><span id="local-6989586621679457433"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679457433"><span class="hs-identifier hs-var">username</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679457447"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;username&quot;</span></span><span>
-</span><span id="line-42"></span><span>    </span><span id="local-6989586621679457432"><span class="annot"><span class="annottext">Maybe String
+</span><span id="line-77"></span><span>    </span><span id="local-6989586621679457432"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679457432"><span class="hs-identifier hs-var">last_name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679457447"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;last_name&quot;</span></span><span>
-</span><span id="line-43"></span><span>    </span><span id="local-6989586621679457431"><span class="annot"><span class="annottext">Maybe String
+</span><span id="line-78"></span><span>    </span><span id="local-6989586621679457431"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679457431"><span class="hs-identifier hs-var">first_name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679457447"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;first_name&quot;</span></span><span>
-</span><span id="line-44"></span><span>    </span><span id="local-6989586621679457430"><span class="annot"><span class="annottext">Maybe Int
+</span><span id="line-79"></span><span>    </span><span id="local-6989586621679457430"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679457430"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
@@ -255,7 +290,7 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="#local-6989586621679457447"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-45"></span><span>    </span><span class="annot"><span class="annottext">User -&gt; Parser User
+</span><span id="line-80"></span><span>    </span><span class="annot"><span class="annottext">User -&gt; Parser User
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(User -&gt; Parser User) -&gt; User -&gt; Parser User
 forall a b. (a -&gt; b) -&gt; a -&gt; b

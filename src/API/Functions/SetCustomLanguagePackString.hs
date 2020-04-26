@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LanguagePackString as LanguagePackString
 
+-- |
+-- 
+-- Adds, edits or deletes a string in a custom local language pack. Can be called before authorization 
+-- 
+-- __language_pack_id__ Identifier of a previously added custom local language pack in the current localization target
+-- 
+-- __new_string__ New language pack string
 data SetCustomLanguagePackString = 
  SetCustomLanguagePackString { new_string :: Maybe LanguagePackString.LanguagePackString, language_pack_id :: Maybe String }  deriving (Show, Eq)
 

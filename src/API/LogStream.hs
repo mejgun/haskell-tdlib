@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes a stream to which TDLib internal log is written
 data LogStream = 
  LogStreamDefault 
  | LogStreamFile { max_file_size :: Maybe Int, path :: Maybe String }  

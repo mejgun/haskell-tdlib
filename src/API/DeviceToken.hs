@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Represents a data needed to subscribe for push notifications through registerDevice method. To use specific push notification service, you must specify the correct application platform and upload valid server authentication data at https://my.telegram.org
 data DeviceToken = 
  DeviceTokenFirebaseCloudMessaging { encrypt :: Maybe Bool, token :: Maybe String }  
  | DeviceTokenApplePush { is_app_sandbox :: Maybe Bool, device_token :: Maybe String }  

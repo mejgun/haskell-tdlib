@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains information about the period of inactivity after which the current user's account will automatically be deleted 
+-- 
+-- __days__ Number of days of inactivity before the account will be flagged for deletion; should range from 30-366 days
 data AccountTtl = 
  AccountTtl { days :: Maybe Int }  deriving (Show, Eq)
 

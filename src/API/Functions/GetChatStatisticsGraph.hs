@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Loads asynchronous or zoomed in chat statistics graph 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __token__ The token for graph loading
+-- 
+-- __x__ X-value for zoomed in graph or 0 otherwise
 data GetChatStatisticsGraph = 
  GetChatStatisticsGraph { x :: Maybe Int, token :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 

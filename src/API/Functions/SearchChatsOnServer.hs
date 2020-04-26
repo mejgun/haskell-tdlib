@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the chat list 
+-- 
+-- __query__ Query to search for
+-- 
+-- __limit__ The maximum number of chats to be returned
 data SearchChatsOnServer = 
  SearchChatsOnServer { limit :: Maybe Int, query :: Maybe String }  deriving (Show, Eq)
 

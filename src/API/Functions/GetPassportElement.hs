@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 
+-- |
+-- 
+-- Returns one of the available Telegram Passport elements 
+-- 
+-- __type__ Telegram Passport element type
+-- 
+-- __password__ Password of the current user
 data GetPassportElement = 
  GetPassportElement { password :: Maybe String, _type :: Maybe PassportElementType.PassportElementType }  deriving (Show, Eq)
 

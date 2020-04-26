@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Changes the bio of the current user 
+-- 
+-- __bio__ The new value of the user bio; 0-70 characters without line feeds
 data SetBio = 
  SetBio { bio :: Maybe String }  deriving (Show, Eq)
 

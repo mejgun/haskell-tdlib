@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatMemberStatus as ChatMemberStatus
 
+-- |
+-- 
+-- Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for adding new members to the chat and transferring chat ownership; instead, use addChatMember or transferChatOwnership. The chat member status will not be changed until it has been synchronized with the server
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __user_id__ User identifier
+-- 
+-- __status__ The new status of the member in the chat
 data SetChatMemberStatus = 
  SetChatMemberStatus { status :: Maybe ChatMemberStatus.ChatMemberStatus, user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

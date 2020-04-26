@@ -7,6 +7,21 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates
+-- 
+-- __file_id__ Identifier of the file to download
+-- 
+-- __priority__ Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile was called will be downloaded first
+-- 
+-- __offset__ The starting position from which the file should be downloaded
+-- 
+-- __limit__ Number of bytes which should be downloaded starting from the "offset" position before the download will be automatically cancelled; use 0 to download without a limit
+-- 
+-- __synchronous__ If false, this request returns file state just after the download has been started. If true, this request returns file state only after
+-- 
+-- -the download has succeeded, has failed, has been cancelled or a new downloadFile request with different offset/limit parameters was sent
 data DownloadFile = 
  DownloadFile { synchronous :: Maybe Bool, limit :: Maybe Int, offset :: Maybe Int, priority :: Maybe Int, file_id :: Maybe Int }  deriving (Show, Eq)
 

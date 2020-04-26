@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Represents the value of an option
 data OptionValue = 
  OptionValueBoolean { __value :: Maybe Bool }  
  | OptionValueEmpty 

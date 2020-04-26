@@ -8,6 +8,25 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.SecretChatState as SecretChatState
 
+-- |
+-- 
+-- Represents a secret chat
+-- 
+-- __id__ Secret chat identifier
+-- 
+-- __user_id__ Identifier of the chat partner
+-- 
+-- __state__ State of the secret chat
+-- 
+-- __is_outbound__ True, if the chat was created by the current user; otherwise false
+-- 
+-- __ttl__ Current message Time To Live setting (self-destruct timer) for the chat, in seconds
+-- 
+-- __key_hash__ Hash of the currently used key for comparison with the hash of the chat partner's key. This is a string of 36 little-endian bytes, which must be split into groups of 2 bits, each denoting a pixel of one of 4 colors FFFFFF, D5E6F3, 2D5775, and 2F99C9.
+-- 
+-- -The pixels must be used to make a 12x12 square image filled from left to right, top to bottom. Alternatively, the first 32 bytes of the hash can be converted to the hexadecimal format and printed as 32 2-digit hex numbers
+-- 
+-- __layer__ Secret chat layer; determines features supported by the other client. Video notes are supported if the layer >= 66; nested text entities and underline and strikethrough entities are supported if the layer >= 101
 data SecretChat = 
  SecretChat { layer :: Maybe Int, key_hash :: Maybe String, ttl :: Maybe Int, is_outbound :: Maybe Bool, state :: Maybe SecretChatState.SecretChatState, user_id :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 

@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes the types of chats to which notification settings are applied
 data NotificationSettingsScope = 
  NotificationSettingsScopePrivateChats 
  | NotificationSettingsScopeGroupChats 

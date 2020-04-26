@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes the type of an inline keyboard button
 data InlineKeyboardButtonType = 
  InlineKeyboardButtonTypeUrl { url :: Maybe String }  
  | InlineKeyboardButtonTypeLoginUrl { forward_text :: Maybe String, _id :: Maybe Int, url :: Maybe String }  

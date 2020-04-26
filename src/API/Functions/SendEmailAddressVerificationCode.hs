@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Sends a code to verify an email address to be added to a user's Telegram Passport 
+-- 
+-- __email_address__ Email address
 data SendEmailAddressVerificationCode = 
  SendEmailAddressVerificationCode { email_address :: Maybe String }  deriving (Show, Eq)
 

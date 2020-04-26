@@ -9,6 +9,19 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Notification as Notification
 import {-# SOURCE #-} qualified API.NotificationGroupType as NotificationGroupType
 
+-- |
+-- 
+-- Describes a group of notifications 
+-- 
+-- __id__ Unique persistent auto-incremented from 1 identifier of the notification group
+-- 
+-- __type__ Type of the group
+-- 
+-- __chat_id__ Identifier of a chat to which all notifications in the group belong
+-- 
+-- __total_count__ Total number of active notifications in the group
+-- 
+-- __notifications__ The list of active notifications
 data NotificationGroup = 
  NotificationGroup { notifications :: Maybe [Notification.Notification], total_count :: Maybe Int, chat_id :: Maybe Int, _type :: Maybe NotificationGroupType.NotificationGroupType, _id :: Maybe Int }  deriving (Show, Eq)
 

@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns list of proxies that are currently set up. Can be called before authorization
 data GetProxies = 
  GetProxies deriving (Show, Eq)
 

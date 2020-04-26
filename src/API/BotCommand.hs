@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Represents a command supported by a bot 
+-- 
+-- __command__ Text of the bot command
+-- 
+-- __param_description__ Description of the bot command
 data BotCommand = 
  BotCommand { description :: Maybe String, command :: Maybe String }  deriving (Show, Eq)
 

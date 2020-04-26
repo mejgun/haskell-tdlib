@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Location as Location
 
+-- |
+-- 
+-- Changes the location of the current user. Needs to be called if GetOption("is_location_visible") is true and location changes for more than 1 kilometer 
+-- 
+-- __location__ The new location of the user
 data SetLocation = 
  SetLocation { location :: Maybe Location.Location }  deriving (Show, Eq)
 

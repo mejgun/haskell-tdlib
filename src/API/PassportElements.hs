@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PassportElement as PassportElement
 
+-- |
+-- 
+-- Contains information about saved Telegram Passport elements 
+-- 
+-- __elements__ Telegram Passport elements
 data PassportElements = 
  PassportElements { elements :: Maybe [PassportElement.PassportElement] }  deriving (Show, Eq)
 

@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- A simple object containing a vector of numbers; for testing only 
+-- 
+-- __value__ Vector of numbers
 data TestVectorInt = 
  TestVectorInt { value :: Maybe [Int] }  deriving (Show, Eq)
 

@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TextParseMode as TextParseMode
 
+-- |
+-- 
+-- Parses Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName entities contained in the text. This is an offline method. Can be called before authorization. Can be called synchronously 
+-- 
+-- __text__ The text to parse
+-- 
+-- __parse_mode__ Text parse mode
 data ParseTextEntities = 
  ParseTextEntities { parse_mode :: Maybe TextParseMode.TextParseMode, text :: Maybe String }  deriving (Show, Eq)
 

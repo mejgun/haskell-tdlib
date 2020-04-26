@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns a private HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels. The link will work only for members of the chat
+-- 
+-- __chat_id__ Identifier of the chat to which the message belongs
+-- 
+-- __message_id__ Identifier of the message
 data GetMessageLink = 
  GetMessageLink { message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

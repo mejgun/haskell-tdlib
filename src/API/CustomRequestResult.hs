@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains the result of a custom request 
+-- 
+-- __result__ A JSON-serialized result
 data CustomRequestResult = 
  CustomRequestResult { result :: Maybe String }  deriving (Show, Eq)
 

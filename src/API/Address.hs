@@ -7,6 +7,21 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes an address 
+-- 
+-- __country_code__ A two-letter ISO 3166-1 alpha-2 country code
+-- 
+-- __state__ State, if applicable
+-- 
+-- __city__ City
+-- 
+-- __street_line1__ First line of the address
+-- 
+-- __street_line2__ Second line of the address
+-- 
+-- __postal_code__ Address postal code
 data Address = 
  Address { postal_code :: Maybe String, street_line2 :: Maybe String, street_line1 :: Maybe String, city :: Maybe String, state :: Maybe String, country_code :: Maybe String }  deriving (Show, Eq)
 

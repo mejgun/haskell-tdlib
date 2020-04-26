@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatPermissions as ChatPermissions
 
+-- |
+-- 
+-- Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __permissions__ New non-administrator members permissions in the chat
 data SetChatPermissions = 
  SetChatPermissions { permissions :: Maybe ChatPermissions.ChatPermissions, chat_id :: Maybe Int }  deriving (Show, Eq)
 

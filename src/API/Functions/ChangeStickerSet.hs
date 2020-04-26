@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Installs/uninstalls or activates/archives a sticker set 
+-- 
+-- __set_id__ Identifier of the sticker set
+-- 
+-- __is_installed__ The new value of is_installed
+-- 
+-- __is_archived__ The new value of is_archived. A sticker set can't be installed and archived simultaneously
 data ChangeStickerSet = 
  ChangeStickerSet { is_archived :: Maybe Bool, is_installed :: Maybe Bool, set_id :: Maybe Int }  deriving (Show, Eq)
 

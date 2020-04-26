@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page 
+-- 
+-- __url__ The web page URL
+-- 
+-- __force_full__ If true, the full instant view for the web page will be returned
 data GetWebPageInstantView = 
  GetWebPageInstantView { force_full :: Maybe Bool, url :: Maybe String }  deriving (Show, Eq)
 

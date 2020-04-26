@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TestInt as TestInt
 
+-- |
+-- 
+-- A simple object containing a vector of objects that hold a number; for testing only 
+-- 
+-- __value__ Vector of objects
 data TestVectorIntObject = 
  TestVectorIntObject { value :: Maybe [TestInt.TestInt] }  deriving (Show, Eq)
 

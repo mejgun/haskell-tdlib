@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Toggles sender signatures messages sent in a channel; requires can_change_info rights 
+-- 
+-- __supergroup_id__ Identifier of the channel
+-- 
+-- __sign_messages__ New value of sign_messages
 data ToggleSupergroupSignMessages = 
  ToggleSupergroupSignMessages { sign_messages :: Maybe Bool, supergroup_id :: Maybe Int }  deriving (Show, Eq)
 

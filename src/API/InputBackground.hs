@@ -8,6 +8,9 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
+-- |
+-- 
+-- Contains information about background to set
 data InputBackground = 
  InputBackgroundLocal { background :: Maybe InputFile.InputFile }  
  | InputBackgroundRemote { background_id :: Maybe Int }  deriving (Show, Eq)

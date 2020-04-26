@@ -15,6 +15,9 @@ import {-# SOURCE #-} qualified API.Video as Video
 import {-# SOURCE #-} qualified API.VideoNote as VideoNote
 import {-# SOURCE #-} qualified API.VoiceNote as VoiceNote
 
+-- |
+-- 
+-- Contains content of a push message notification
 data PushMessageContent = 
  PushMessageContentHidden { is_pinned :: Maybe Bool }  
  | PushMessageContentAnimation { is_pinned :: Maybe Bool, caption :: Maybe String, animation :: Maybe Animation.Animation }  

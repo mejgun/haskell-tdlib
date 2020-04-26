@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
+-- |
+-- 
+-- Contains Telegram terms of service 
+-- 
+-- __text__ Text of the terms of service
+-- 
+-- __min_user_age__ The minimum age of a user to be able to accept the terms; 0 if any
+-- 
+-- __show_popup__ True, if a blocking popup with terms of service must be shown to the user
 data TermsOfService = 
  TermsOfService { show_popup :: Maybe Bool, min_user_age :: Maybe Int, text :: Maybe FormattedText.FormattedText }  deriving (Show, Eq)
 

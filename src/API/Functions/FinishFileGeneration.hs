@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Error as Error
 
+-- |
+-- 
+-- Finishes the file generation
+-- 
+-- __generation_id__ The identifier of the generation process
+-- 
+-- __error__ If set, means that file generation has failed and should be terminated
 data FinishFileGeneration = 
  FinishFileGeneration { _error :: Maybe Error.Error, generation_id :: Maybe Int }  deriving (Show, Eq)
 

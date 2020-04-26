@@ -9,8 +9,17 @@
 </span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.PhotoSize.html"><span class="hs-identifier">API.PhotoSize</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">PhotoSize</span></span><span>
 </span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.Minithumbnail.html"><span class="hs-identifier">API.Minithumbnail</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">Minithumbnail</span></span><span>
 </span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-keyword">data</span><span> </span><span id="Photo"><span class="annot"><a href="API.Photo.html#Photo"><span class="hs-identifier hs-var">Photo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-13"></span><span> </span><span id="Photo"><span class="annot"><a href="API.Photo.html#Photo"><span class="hs-identifier hs-var">Photo</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="sizes"><span class="annot"><span class="annottext">Photo -&gt; Maybe [PhotoSize]
+</span><span id="line-12"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- Describes a photo </span><span>
+</span><span id="line-15"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-16"></span><span class="hs-comment">-- __has_stickers__ True, if stickers were added to the photo</span><span>
+</span><span id="line-17"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-18"></span><span class="hs-comment">-- __minithumbnail__ Photo minithumbnail; may be null</span><span>
+</span><span id="line-19"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-20"></span><span class="hs-comment">-- __sizes__ Available variants of the photo, in different sizes</span><span>
+</span><span id="line-21"></span><span class="hs-keyword">data</span><span> </span><span id="Photo"><span class="annot"><a href="API.Photo.html#Photo"><span class="hs-identifier hs-var">Photo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-22"></span><span> </span><span id="Photo"><span class="annot"><a href="API.Photo.html#Photo"><span class="hs-identifier hs-var">Photo</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="sizes"><span class="annot"><span class="annottext">Photo -&gt; Maybe [PhotoSize]
 </span><a href="API.Photo.html#sizes"><span class="hs-identifier hs-var hs-var">sizes</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.PhotoSize.html#PhotoSize"><span class="hs-identifier hs-type">PhotoSize.PhotoSize</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="minithumbnail"><span class="annot"><span class="annottext">Photo -&gt; Maybe Minithumbnail
 </span><a href="API.Photo.html#minithumbnail"><span class="hs-identifier hs-var hs-var">minithumbnail</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.Minithumbnail.html#Minithumbnail"><span class="hs-identifier hs-type">Minithumbnail.Minithumbnail</span></a></span><span class="hs-special">,</span><span> </span><span id="has_stickers"><span class="annot"><span class="annottext">Photo -&gt; Maybe Bool
 </span><a href="API.Photo.html#has_stickers"><span class="hs-identifier hs-var hs-var">has_stickers</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679446301"><span id="local-6989586621679446303"><span id="local-6989586621679446305"><span class="annot"><span class="annottext">Int -&gt; Photo -&gt; ShowS
@@ -34,9 +43,9 @@ $c/= :: Photo -&gt; Photo -&gt; Bool
 == :: Photo -&gt; Photo -&gt; Bool
 $c== :: Photo -&gt; Photo -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446288"><span id="local-6989586621679446290"><span id="local-6989586621679446292"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Photo.html#Photo"><span class="hs-identifier hs-type">Photo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-16"></span><span> </span><span id="local-6989586621679446286"><span class="annot"><span class="annottext">toJSON :: Photo -&gt; Value
+</span><span id="line-23"></span><span>
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446288"><span id="local-6989586621679446290"><span id="local-6989586621679446292"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Photo.html#Photo"><span class="hs-identifier hs-type">Photo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span> </span><span id="local-6989586621679446286"><span class="annot"><span class="annottext">toJSON :: Photo -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Photo.html#Photo"><span class="hs-identifier hs-type">Photo</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sizes :: Photo -&gt; Maybe [PhotoSize]
 </span><a href="API.Photo.html#sizes"><span class="hs-identifier hs-var">sizes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446284"><span class="annot"><span class="annottext">Maybe [PhotoSize]
 </span><a href="#local-6989586621679446284"><span class="hs-identifier hs-var">sizes</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">minithumbnail :: Photo -&gt; Maybe Minithumbnail
@@ -44,7 +53,7 @@ $c== :: Photo -&gt; Photo -&gt; Bool
 </span><a href="#local-6989586621679446283"><span class="hs-identifier hs-var">minithumbnail</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">has_stickers :: Photo -&gt; Maybe Bool
 </span><a href="API.Photo.html#has_stickers"><span class="hs-identifier hs-var">has_stickers</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446282"><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679446282"><span class="hs-identifier hs-var">has_stickers</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-17"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-26"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
@@ -58,28 +67,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679446282"><span class="hs-identifier hs-var">has_stickers</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-18"></span><span>
-</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446276"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Photo.html#Photo"><span class="hs-identifier hs-type">Photo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-20"></span><span> </span><span id="local-6989586621679446274"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Photo
+</span><span id="line-27"></span><span>
+</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446276"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Photo.html#Photo"><span class="hs-identifier hs-type">Photo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span> </span><span id="local-6989586621679446274"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Photo
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679446272"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679446272"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679446270"><span class="annot"><span class="annottext">obj :: Object
 </span><a href="#local-6989586621679446270"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-21"></span><span>  </span><span id="local-6989586621679446269"><span class="annot"><span class="annottext">String
+</span><span id="line-30"></span><span>  </span><span id="local-6989586621679446269"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679446269"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679446270"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-22"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-31"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679446269"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-23"></span><span>   </span><span class="hs-string">&quot;photo&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser Photo
+</span><span id="line-32"></span><span>   </span><span class="hs-string">&quot;photo&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser Photo
 </span><a href="#local-6989586621679446267"><span class="hs-identifier hs-var">parsePhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679446272"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-24"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser Photo
+</span><span id="line-33"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser Photo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-25"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-26"></span><span>   </span><span class="annot"><a href="#local-6989586621679446267"><span class="hs-identifier hs-type">parsePhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Photo.html#Photo"><span class="hs-identifier hs-type">Photo</span></a></span><span>
-</span><span id="line-27"></span><span>   </span><span id="local-6989586621679446267"><span class="annot"><span class="annottext">parsePhoto :: Value -&gt; Parser Photo
+</span><span id="line-34"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-35"></span><span>   </span><span class="annot"><a href="#local-6989586621679446267"><span class="hs-identifier hs-type">parsePhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Photo.html#Photo"><span class="hs-identifier hs-type">Photo</span></a></span><span>
+</span><span id="line-36"></span><span>   </span><span id="local-6989586621679446267"><span class="annot"><span class="annottext">parsePhoto :: Value -&gt; Parser Photo
 </span><a href="#local-6989586621679446267"><span class="hs-identifier hs-var hs-var">parsePhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Photo) -&gt; Value -&gt; Parser Photo
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;Photo&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser Photo) -&gt; Value -&gt; Parser Photo)
@@ -87,22 +96,22 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679446265"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679446265"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-28"></span><span>    </span><span id="local-6989586621679446264"><span class="annot"><span class="annottext">Maybe [PhotoSize]
+</span><span id="line-37"></span><span>    </span><span id="local-6989586621679446264"><span class="annot"><span class="annottext">Maybe [PhotoSize]
 </span><a href="#local-6989586621679446264"><span class="hs-identifier hs-var">sizes</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679446265"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PhotoSize])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;sizes&quot;</span></span><span>
-</span><span id="line-29"></span><span>    </span><span id="local-6989586621679446262"><span class="annot"><span class="annottext">Maybe Minithumbnail
+</span><span id="line-38"></span><span>    </span><span id="local-6989586621679446262"><span class="annot"><span class="annottext">Maybe Minithumbnail
 </span><a href="#local-6989586621679446262"><span class="hs-identifier hs-var">minithumbnail</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679446265"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Minithumbnail)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;minithumbnail&quot;</span></span><span>
-</span><span id="line-30"></span><span>    </span><span id="local-6989586621679446261"><span class="annot"><span class="annottext">Maybe Bool
+</span><span id="line-39"></span><span>    </span><span id="local-6989586621679446261"><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679446261"><span class="hs-identifier hs-var">has_stickers</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679446265"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;has_stickers&quot;</span></span><span>
-</span><span id="line-31"></span><span>    </span><span class="annot"><span class="annottext">Photo -&gt; Parser Photo
+</span><span id="line-40"></span><span>    </span><span class="annot"><span class="annottext">Photo -&gt; Parser Photo
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(Photo -&gt; Parser Photo) -&gt; Photo -&gt; Parser Photo
 forall a b. (a -&gt; b) -&gt; a -&gt; b

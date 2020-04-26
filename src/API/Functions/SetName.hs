@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Changes the first and last name of the current user. If something changes, updateUser will be sent 
+-- 
+-- __first_name__ The new value of the first name for the user; 1-64 characters
+-- 
+-- __last_name__ The new value of the optional last name for the user; 0-64 characters
 data SetName = 
  SetName { last_name :: Maybe String, first_name :: Maybe String }  deriving (Show, Eq)
 

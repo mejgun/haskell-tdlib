@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Changes the username of a supergroup or channel, requires owner privileges in the supergroup or channel 
+-- 
+-- __supergroup_id__ Identifier of the supergroup or channel
+-- 
+-- __username__ New value of the username. Use an empty string to remove the username
 data SetSupergroupUsername = 
  SetSupergroupUsername { username :: Maybe String, supergroup_id :: Maybe Int }  deriving (Show, Eq)
 

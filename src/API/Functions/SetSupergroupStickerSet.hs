@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Changes the sticker set of a supergroup; requires can_change_info rights 
+-- 
+-- __supergroup_id__ Identifier of the supergroup
+-- 
+-- __sticker_set_id__ New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
 data SetSupergroupStickerSet = 
  SetSupergroupStickerSet { sticker_set_id :: Maybe Int, supergroup_id :: Maybe Int }  deriving (Show, Eq)
 

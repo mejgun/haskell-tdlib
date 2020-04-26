@@ -8,6 +8,17 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
 
+-- |
+-- 
+-- Describes a voice note. The voice note must be encoded with the Opus codec, and stored inside an OGG container. Voice notes can have only a single audio channel 
+-- 
+-- __duration__ Duration of the voice note, in seconds; as defined by the sender
+-- 
+-- __waveform__ A waveform representation of the voice note in 5-bit format
+-- 
+-- __mime_type__ MIME type of the file; as defined by the sender
+-- 
+-- __voice__ File containing the voice note
 data VoiceNote = 
  VoiceNote { voice :: Maybe File.File, mime_type :: Maybe String, waveform :: Maybe String, duration :: Maybe Int }  deriving (Show, Eq)
 

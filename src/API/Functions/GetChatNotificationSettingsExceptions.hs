@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.NotificationSettingsScope as NotificationSettingsScope
 
+-- |
+-- 
+-- Returns list of chats with non-default notification settings 
+-- 
+-- __scope__ If specified, only chats from the specified scope will be returned
+-- 
+-- __compare_sound__ If true, also chats with non-default sound will be returned
 data GetChatNotificationSettingsExceptions = 
  GetChatNotificationSettingsExceptions { compare_sound :: Maybe Bool, scope :: Maybe NotificationSettingsScope.NotificationSettingsScope }  deriving (Show, Eq)
 

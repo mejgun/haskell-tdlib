@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns information about messages. If a message is not found, returns null on the corresponding position of the result 
+-- 
+-- __chat_id__ Identifier of the chat the messages belong to
+-- 
+-- __message_ids__ Identifiers of the messages to get
 data GetMessages = 
  GetMessages { message_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Show, Eq)
 

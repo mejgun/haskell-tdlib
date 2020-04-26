@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Represents the categories of chats for which a list of frequently used chats can be retrieved
 data TopChatCategory = 
  TopChatCategoryUsers 
  | TopChatCategoryBots 

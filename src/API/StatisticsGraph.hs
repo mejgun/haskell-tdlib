@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes a statistics graph
 data StatisticsGraph = 
  StatisticsGraphData { zoom_token :: Maybe String, json_data :: Maybe String }  
  | StatisticsGraphAsync { token :: Maybe String }  

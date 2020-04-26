@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 
+-- |
+-- 
+-- Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements need to be used
+-- 
+-- __autorization_form_id__ Authorization form identifier
+-- 
+-- __types__ Types of Telegram Passport elements chosen by user to complete the authorization form
 data SendPassportAuthorizationForm = 
  SendPassportAuthorizationForm { types :: Maybe [PassportElementType.PassportElementType], autorization_form_id :: Maybe Int }  deriving (Show, Eq)
 

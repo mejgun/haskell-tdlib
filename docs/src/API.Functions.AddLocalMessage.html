@@ -8,8 +8,21 @@
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
 </span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.InputMessageContent.html"><span class="hs-identifier">API.InputMessageContent</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputMessageContent</span></span><span>
 </span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-keyword">data</span><span> </span><span id="AddLocalMessage"><span class="annot"><a href="API.Functions.AddLocalMessage.html#AddLocalMessage"><span class="hs-identifier hs-var">AddLocalMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-12"></span><span> </span><span id="AddLocalMessage"><span class="annot"><a href="API.Functions.AddLocalMessage.html#AddLocalMessage"><span class="hs-identifier hs-var">AddLocalMessage</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="input_message_content"><span class="annot"><span class="annottext">AddLocalMessage -&gt; Maybe InputMessageContent
+</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message </span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-15"></span><span class="hs-comment">-- __chat_id__ Target chat</span><span>
+</span><span id="line-16"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-17"></span><span class="hs-comment">-- __sender_user_id__ Identifier of the user who will be shown as the sender of the message; may be 0 for channel posts</span><span>
+</span><span id="line-18"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-19"></span><span class="hs-comment">-- __reply_to_message_id__ Identifier of the message to reply to or 0</span><span>
+</span><span id="line-20"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-21"></span><span class="hs-comment">-- __disable_notification__ Pass true to disable notification for the message</span><span>
+</span><span id="line-22"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-23"></span><span class="hs-comment">-- __input_message_content__ The content of the message to be added</span><span>
+</span><span id="line-24"></span><span class="hs-keyword">data</span><span> </span><span id="AddLocalMessage"><span class="annot"><a href="API.Functions.AddLocalMessage.html#AddLocalMessage"><span class="hs-identifier hs-var">AddLocalMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-25"></span><span> </span><span id="AddLocalMessage"><span class="annot"><a href="API.Functions.AddLocalMessage.html#AddLocalMessage"><span class="hs-identifier hs-var">AddLocalMessage</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="input_message_content"><span class="annot"><span class="annottext">AddLocalMessage -&gt; Maybe InputMessageContent
 </span><a href="API.Functions.AddLocalMessage.html#input_message_content"><span class="hs-identifier hs-var hs-var">input_message_content</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.InputMessageContent.html#InputMessageContent"><span class="hs-identifier hs-type">InputMessageContent.InputMessageContent</span></a></span><span class="hs-special">,</span><span> </span><span id="disable_notification"><span class="annot"><span class="annottext">AddLocalMessage -&gt; Maybe Bool
 </span><a href="API.Functions.AddLocalMessage.html#disable_notification"><span class="hs-identifier hs-var hs-var">disable_notification</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="reply_to_message_id"><span class="annot"><span class="annottext">AddLocalMessage -&gt; Maybe Int
 </span><a href="API.Functions.AddLocalMessage.html#reply_to_message_id"><span class="hs-identifier hs-var hs-var">reply_to_message_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="sender_user_id"><span class="annot"><span class="annottext">AddLocalMessage -&gt; Maybe Int
@@ -39,9 +52,9 @@ $c/= :: AddLocalMessage -&gt; AddLocalMessage -&gt; Bool
 == :: AddLocalMessage -&gt; AddLocalMessage -&gt; Bool
 $c== :: AddLocalMessage -&gt; AddLocalMessage -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-13"></span><span>
-</span><span id="line-14"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679437620"><span id="local-6989586621679437622"><span id="local-6989586621679437624"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AddLocalMessage.html#AddLocalMessage"><span class="hs-identifier hs-type">AddLocalMessage</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-15"></span><span> </span><span id="local-6989586621679437618"><span class="annot"><span class="annottext">toJSON :: AddLocalMessage -&gt; Value
+</span><span id="line-26"></span><span>
+</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679437620"><span id="local-6989586621679437622"><span id="local-6989586621679437624"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AddLocalMessage.html#AddLocalMessage"><span class="hs-identifier hs-type">AddLocalMessage</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-28"></span><span> </span><span id="local-6989586621679437618"><span class="annot"><span class="annottext">toJSON :: AddLocalMessage -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.AddLocalMessage.html#AddLocalMessage"><span class="hs-identifier hs-type">AddLocalMessage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">input_message_content :: AddLocalMessage -&gt; Maybe InputMessageContent
 </span><a href="API.Functions.AddLocalMessage.html#input_message_content"><span class="hs-identifier hs-var">input_message_content</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437616"><span class="annot"><span class="annottext">Maybe InputMessageContent
 </span><a href="#local-6989586621679437616"><span class="hs-identifier hs-var">input_message_content</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">disable_notification :: AddLocalMessage -&gt; Maybe Bool
@@ -53,7 +66,7 @@ $c== :: AddLocalMessage -&gt; AddLocalMessage -&gt; Bool
 </span><a href="#local-6989586621679437613"><span class="hs-identifier hs-var">sender_user_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: AddLocalMessage -&gt; Maybe Int
 </span><a href="API.Functions.AddLocalMessage.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437612"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679437612"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-16"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-29"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
@@ -73,28 +86,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679437612"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679437606"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AddLocalMessage.html#AddLocalMessage"><span class="hs-identifier hs-type">AddLocalMessage</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-19"></span><span> </span><span id="local-6989586621679437604"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AddLocalMessage
+</span><span id="line-30"></span><span>
+</span><span id="line-31"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679437606"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AddLocalMessage.html#AddLocalMessage"><span class="hs-identifier hs-type">AddLocalMessage</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-32"></span><span> </span><span id="local-6989586621679437604"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AddLocalMessage
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679437602"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679437602"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679437600"><span class="annot"><span class="annottext">obj :: Object
 </span><a href="#local-6989586621679437600"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-20"></span><span>  </span><span id="local-6989586621679437599"><span class="annot"><span class="annottext">String
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679437599"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679437599"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679437600"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-21"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-34"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679437599"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-22"></span><span>   </span><span class="hs-string">&quot;addLocalMessage&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AddLocalMessage
+</span><span id="line-35"></span><span>   </span><span class="hs-string">&quot;addLocalMessage&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AddLocalMessage
 </span><a href="#local-6989586621679437597"><span class="hs-identifier hs-var">parseAddLocalMessage</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679437602"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-23"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser AddLocalMessage
+</span><span id="line-36"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser AddLocalMessage
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-24"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span>   </span><span class="annot"><a href="#local-6989586621679437597"><span class="hs-identifier hs-type">parseAddLocalMessage</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.AddLocalMessage.html#AddLocalMessage"><span class="hs-identifier hs-type">AddLocalMessage</span></a></span><span>
-</span><span id="line-26"></span><span>   </span><span id="local-6989586621679437597"><span class="annot"><span class="annottext">parseAddLocalMessage :: Value -&gt; Parser AddLocalMessage
+</span><span id="line-37"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-38"></span><span>   </span><span class="annot"><a href="#local-6989586621679437597"><span class="hs-identifier hs-type">parseAddLocalMessage</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.AddLocalMessage.html#AddLocalMessage"><span class="hs-identifier hs-type">AddLocalMessage</span></a></span><span>
+</span><span id="line-39"></span><span>   </span><span id="local-6989586621679437597"><span class="annot"><span class="annottext">parseAddLocalMessage :: Value -&gt; Parser AddLocalMessage
 </span><a href="#local-6989586621679437597"><span class="hs-identifier hs-var hs-var">parseAddLocalMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AddLocalMessage)
 -&gt; Value
@@ -108,17 +121,17 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679437595"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679437595"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-27"></span><span>    </span><span id="local-6989586621679437594"><span class="annot"><span class="annottext">Maybe InputMessageContent
+</span><span id="line-40"></span><span>    </span><span id="local-6989586621679437594"><span class="annot"><span class="annottext">Maybe InputMessageContent
 </span><a href="#local-6989586621679437594"><span class="hs-identifier hs-var">input_message_content</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679437595"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe InputMessageContent)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;input_message_content&quot;</span></span><span>
-</span><span id="line-28"></span><span>    </span><span id="local-6989586621679437592"><span class="annot"><span class="annottext">Maybe Bool
+</span><span id="line-41"></span><span>    </span><span id="local-6989586621679437592"><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679437592"><span class="hs-identifier hs-var">disable_notification</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679437595"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;disable_notification&quot;</span></span><span>
-</span><span id="line-29"></span><span>    </span><span id="local-6989586621679437591"><span class="annot"><span class="annottext">Maybe Int
+</span><span id="line-42"></span><span>    </span><span id="local-6989586621679437591"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679437591"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
@@ -132,7 +145,7 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="#local-6989586621679437595"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;reply_to_message_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-30"></span><span>    </span><span id="local-6989586621679437589"><span class="annot"><span class="annottext">Maybe Int
+</span><span id="line-43"></span><span>    </span><span id="local-6989586621679437589"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679437589"><span class="hs-identifier hs-var">sender_user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
@@ -146,7 +159,7 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="#local-6989586621679437595"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;sender_user_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-31"></span><span>    </span><span id="local-6989586621679437588"><span class="annot"><span class="annottext">Maybe Int
+</span><span id="line-44"></span><span>    </span><span id="local-6989586621679437588"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679437588"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
@@ -160,7 +173,7 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="#local-6989586621679437595"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-32"></span><span>    </span><span class="annot"><span class="annottext">AddLocalMessage -&gt; Parser AddLocalMessage
+</span><span id="line-45"></span><span>    </span><span class="annot"><span class="annottext">AddLocalMessage -&gt; Parser AddLocalMessage
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(AddLocalMessage -&gt; Parser AddLocalMessage)
 -&gt; AddLocalMessage -&gt; Parser AddLocalMessage

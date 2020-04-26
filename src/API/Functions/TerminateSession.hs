@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Terminates a session of the current user 
+-- 
+-- __session_id__ Session identifier
 data TerminateSession = 
  TerminateSession { session_id :: Maybe Int }  deriving (Show, Eq)
 

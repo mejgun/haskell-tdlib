@@ -19,6 +19,9 @@ import {-# SOURCE #-} qualified API.RichText as RichText
 import {-# SOURCE #-} qualified API.PageBlockCaption as PageBlockCaption
 import {-# SOURCE #-} qualified API.Location as Location
 
+-- |
+-- 
+-- Describes a block of an instant view web page
 data PageBlock = 
  PageBlockTitle { _title :: Maybe RichText.RichText }  
  | PageBlockSubtitle { subtitle :: Maybe RichText.RichText }  

@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __user_id__ Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
+-- 
+-- __password__ The password of the current user
 data TransferChatOwnership = 
  TransferChatOwnership { password :: Maybe String, user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

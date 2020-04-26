@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Represents result of checking whether the current session can be used to transfer a chat ownership to another user
 data CanTransferOwnershipResult = 
  CanTransferOwnershipResultOk 
  | CanTransferOwnershipResultPasswordNeeded 

@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization 
+-- 
+-- __proxy_id__ Proxy identifier. Use 0 to ping a Telegram server without a proxy
 data PingProxy = 
  PingProxy { proxy_id :: Maybe Int }  deriving (Show, Eq)
 

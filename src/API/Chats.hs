@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Represents a list of chats 
+-- 
+-- __chat_ids__ List of chat identifiers
 data Chats = 
  Chats { chat_ids :: Maybe [Int] }  deriving (Show, Eq)
 

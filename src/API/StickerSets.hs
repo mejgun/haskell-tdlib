@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.StickerSetInfo as StickerSetInfo
 
+-- |
+-- 
+-- Represents a list of sticker sets 
+-- 
+-- __total_count__ Approximate total number of sticker sets found
+-- 
+-- __sets__ List of sticker sets
 data StickerSets = 
  StickerSets { sets :: Maybe [StickerSetInfo.StickerSetInfo], total_count :: Maybe Int }  deriving (Show, Eq)
 

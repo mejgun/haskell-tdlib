@@ -8,6 +8,21 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Location as Location
 
+-- |
+-- 
+-- Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded 
+-- 
+-- __location__ Location of the map center
+-- 
+-- __zoom__ Map zoom level; 13-20
+-- 
+-- __width__ Map width in pixels before applying scale; 16-1024
+-- 
+-- __height__ Map height in pixels before applying scale; 16-1024
+-- 
+-- __scale__ Map scale; 1-3
+-- 
+-- __chat_id__ Identifier of a chat, in which the thumbnail will be shown. Use 0 if unknown
 data GetMapThumbnailFile = 
  GetMapThumbnailFile { chat_id :: Maybe Int, scale :: Maybe Int, height :: Maybe Int, width :: Maybe Int, zoom :: Maybe Int, location :: Maybe Location.Location }  deriving (Show, Eq)
 

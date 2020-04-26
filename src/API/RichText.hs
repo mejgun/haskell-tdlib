@@ -8,6 +8,9 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Document as Document
 
+-- |
+-- 
+-- Describes a text object inside an instant-view web page
 data RichText = 
  RichTextPlain { _text :: Maybe String }  
  | RichTextBold { text :: Maybe RichText }  

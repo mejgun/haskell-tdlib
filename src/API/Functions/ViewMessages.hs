@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Informs TDLib that messages are being viewed by the user. Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels) 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __message_ids__ The identifiers of the messages being viewed
+-- 
+-- __force_read__ True, if messages in closed chats should be marked as read
 data ViewMessages = 
  ViewMessages { force_read :: Maybe Bool, message_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Show, Eq)
 

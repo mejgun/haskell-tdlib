@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
+-- |
+-- 
+-- Removes a sticker from the list of favorite stickers 
+-- 
+-- __sticker__ Sticker file to delete from the list
 data RemoveFavoriteSticker = 
  RemoveFavoriteSticker { sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 

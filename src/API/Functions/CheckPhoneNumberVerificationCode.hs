@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Checks the phone number verification code for Telegram Passport 
+-- 
+-- __code__ Verification code
 data CheckPhoneNumberVerificationCode = 
  CheckPhoneNumberVerificationCode { code :: Maybe String }  deriving (Show, Eq)
 

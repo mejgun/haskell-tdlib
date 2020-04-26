@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatList as ChatList
 
+-- |
+-- 
+-- Changes the order of pinned chats 
+-- 
+-- __chat_list__ Chat list in which to change the order of pinned chats
+-- 
+-- __chat_ids__ The new list of pinned chats
 data SetPinnedChats = 
  SetPinnedChats { chat_ids :: Maybe [Int], chat_list :: Maybe ChatList.ChatList }  deriving (Show, Eq)
 

@@ -8,6 +8,17 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatMembersFilter as ChatMembersFilter
 
+-- |
+-- 
+-- Searches for a specified query in the first name, last name and username of the members of a specified chat. Requires administrator rights in channels 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __query__ Query to search for
+-- 
+-- __limit__ The maximum number of users to be returned
+-- 
+-- __filter__ The type of users to return. By default, chatMembersFilterMembers
 data SearchChatMembers = 
  SearchChatMembers { _filter :: Maybe ChatMembersFilter.ChatMembersFilter, limit :: Maybe Int, query :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 

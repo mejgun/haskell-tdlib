@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Message as Message
 
+-- |
+-- 
+-- Contains a list of messages 
+-- 
+-- __total_count__ Approximate total count of messages found
+-- 
+-- __messages__ List of messages; messages may be null
 data Messages = 
  Messages { messages :: Maybe [Message.Message], total_count :: Maybe Int }  deriving (Show, Eq)
 

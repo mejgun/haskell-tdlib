@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user 
+-- 
+-- __notification_group_id__ Notification group identifier
+-- 
+-- __max_notification_id__ The maximum identifier of removed notifications
 data RemoveNotificationGroup = 
  RemoveNotificationGroup { max_notification_id :: Maybe Int, notification_group_id :: Maybe Int }  deriving (Show, Eq)
 

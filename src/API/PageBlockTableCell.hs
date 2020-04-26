@@ -10,6 +10,21 @@ import {-# SOURCE #-} qualified API.PageBlockVerticalAlignment as PageBlockVerti
 import {-# SOURCE #-} qualified API.PageBlockHorizontalAlignment as PageBlockHorizontalAlignment
 import {-# SOURCE #-} qualified API.RichText as RichText
 
+-- |
+-- 
+-- Represents a cell of a table 
+-- 
+-- __text__ Cell text; may be null. If the text is null, then the cell should be invisible
+-- 
+-- __is_header__ True, if it is a header cell
+-- 
+-- __colspan__ The number of columns the cell should span
+-- 
+-- __rowspan__ The number of rows the cell should span
+-- 
+-- __align__ Horizontal cell content alignment
+-- 
+-- __valign__ Vertical cell content alignment
 data PageBlockTableCell = 
  PageBlockTableCell { valign :: Maybe PageBlockVerticalAlignment.PageBlockVerticalAlignment, align :: Maybe PageBlockHorizontalAlignment.PageBlockHorizontalAlignment, rowspan :: Maybe Int, colspan :: Maybe Int, is_header :: Maybe Bool, text :: Maybe RichText.RichText }  deriving (Show, Eq)
 

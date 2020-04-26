@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.NetworkStatisticsEntry as NetworkStatisticsEntry
 
+-- |
+-- 
+-- Adds the specified data to data usage statistics. Can be called before authorization 
+-- 
+-- __entry__ The network statistics entry with the data to be added to statistics
 data AddNetworkStatistics = 
  AddNetworkStatistics { entry :: Maybe NetworkStatisticsEntry.NetworkStatisticsEntry }  deriving (Show, Eq)
 

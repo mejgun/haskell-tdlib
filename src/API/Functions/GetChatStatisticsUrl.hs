@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns an HTTP URL with the chat statistics. Currently this method of getting the statistics is disabled and can be deleted in the future 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __parameters__ Parameters from "tg://statsrefresh?params=******" link
+-- 
+-- __is_dark__ Pass true if a URL with the dark theme must be returned
 data GetChatStatisticsUrl = 
  GetChatStatisticsUrl { is_dark :: Maybe Bool, parameters :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 

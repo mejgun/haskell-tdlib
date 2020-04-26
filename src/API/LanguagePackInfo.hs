@@ -7,6 +7,35 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains information about a language pack 
+-- 
+-- __id__ Unique language pack identifier
+-- 
+-- __base_language_pack_id__ Identifier of a base language pack; may be empty. If a string is missed in the language pack, then it should be fetched from base language pack. Unsupported in custom language packs
+-- 
+-- __name__ Language name
+-- 
+-- __native_name__ Name of the language in that language
+-- 
+-- __plural_code__ A language code to be used to apply plural forms. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info
+-- 
+-- __is_official__ True, if the language pack is official
+-- 
+-- __is_rtl__ True, if the language pack strings are RTL
+-- 
+-- __is_beta__ True, if the language pack is a beta language pack
+-- 
+-- __is_installed__ True, if the language pack is installed by the current user
+-- 
+-- __total_string_count__ Total number of non-deleted strings from the language pack
+-- 
+-- __translated_string_count__ Total number of translated strings from the language pack
+-- 
+-- __local_string_count__ Total number of non-deleted strings from the language pack available locally
+-- 
+-- __translation_url__ Link to language translation interface; empty for custom local language packs
 data LanguagePackInfo = 
  LanguagePackInfo { translation_url :: Maybe String, local_string_count :: Maybe Int, translated_string_count :: Maybe Int, total_string_count :: Maybe Int, is_installed :: Maybe Bool, is_beta :: Maybe Bool, is_rtl :: Maybe Bool, is_official :: Maybe Bool, plural_code :: Maybe String, native_name :: Maybe String, name :: Maybe String, base_language_pack_id :: Maybe String, _id :: Maybe String }  deriving (Show, Eq)
 

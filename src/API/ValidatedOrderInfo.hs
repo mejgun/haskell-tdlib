@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ShippingOption as ShippingOption
 
+-- |
+-- 
+-- Contains a temporary identifier of validated order information, which is stored for one hour. Also contains the available shipping options 
+-- 
+-- __order_info_id__ Temporary identifier of the order information
+-- 
+-- __shipping_options__ Available shipping options
 data ValidatedOrderInfo = 
  ValidatedOrderInfo { shipping_options :: Maybe [ShippingOption.ShippingOption], order_info_id :: Maybe String }  deriving (Show, Eq)
 

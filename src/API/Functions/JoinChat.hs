@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Adds current user as a new member to a chat. Private and secret chats can't be joined using this method 
+-- 
+-- __chat_id__ Chat identifier
 data JoinChat = 
  JoinChat { chat_id :: Maybe Int }  deriving (Show, Eq)
 

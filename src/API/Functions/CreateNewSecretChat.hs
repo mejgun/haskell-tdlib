@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Creates a new secret chat. Returns the newly created chat 
+-- 
+-- __user_id__ Identifier of the target user
 data CreateNewSecretChat = 
  CreateNewSecretChat { user_id :: Maybe Int }  deriving (Show, Eq)
 

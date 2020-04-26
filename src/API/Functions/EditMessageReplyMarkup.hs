@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 
+-- |
+-- 
+-- Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
+-- 
+-- __chat_id__ The chat the message belongs to
+-- 
+-- __message_id__ Identifier of the message
+-- 
+-- __reply_markup__ The new message reply markup
 data EditMessageReplyMarkup = 
  EditMessageReplyMarkup { reply_markup :: Maybe ReplyMarkup.ReplyMarkup, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

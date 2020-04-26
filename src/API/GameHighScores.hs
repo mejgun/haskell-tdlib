@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.GameHighScore as GameHighScore
 
+-- |
+-- 
+-- Contains a list of game high scores 
+-- 
+-- __scores__ A list of game high scores
 data GameHighScores = 
  GameHighScores { scores :: Maybe [GameHighScore.GameHighScore] }  deriving (Show, Eq)
 

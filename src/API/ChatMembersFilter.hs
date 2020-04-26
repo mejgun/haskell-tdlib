@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Specifies the kind of chat members to return in searchChatMembers
 data ChatMembersFilter = 
  ChatMembersFilterContacts 
  | ChatMembersFilterAdministrators 

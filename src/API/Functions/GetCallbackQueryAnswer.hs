@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.CallbackQueryPayload as CallbackQueryPayload
 
+-- |
+-- 
+-- Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires 
+-- 
+-- __chat_id__ Identifier of the chat with the message
+-- 
+-- __message_id__ Identifier of the message from which the query originated
+-- 
+-- __payload__ Query payload
 data GetCallbackQueryAnswer = 
  GetCallbackQueryAnswer { payload :: Maybe CallbackQueryPayload.CallbackQueryPayload, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

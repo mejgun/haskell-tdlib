@@ -7,6 +7,19 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Specifies the supported call protocols
+-- 
+-- __udp_p2p__ True, if UDP peer-to-peer connections are supported
+-- 
+-- __udp_reflector__ True, if connection through UDP reflectors is supported
+-- 
+-- __min_layer__ The minimum supported API layer; use 65
+-- 
+-- __max_layer__ The maximum supported API layer; use 65
+-- 
+-- __library_versions__ List of supported libtgvoip versions
 data CallProtocol = 
  CallProtocol { library_versions :: Maybe [String], max_layer :: Maybe Int, min_layer :: Maybe Int, udp_reflector :: Maybe Bool, udp_p2p :: Maybe Bool }  deriving (Show, Eq)
 

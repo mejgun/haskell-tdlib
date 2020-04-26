@@ -8,6 +8,17 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.AuthenticationCodeType as AuthenticationCodeType
 
+-- |
+-- 
+-- Information about the authentication code that was sent 
+-- 
+-- __phone_number__ A phone number that is being authenticated
+-- 
+-- __type__ Describes the way the code was sent to the user
+-- 
+-- __next_type__ Describes the way the next code will be sent to the user; may be null
+-- 
+-- __timeout__ Timeout before the code should be re-sent, in seconds
 data AuthenticationCodeInfo = 
  AuthenticationCodeInfo { timeout :: Maybe Int, next_type :: Maybe AuthenticationCodeType.AuthenticationCodeType, _type :: Maybe AuthenticationCodeType.AuthenticationCodeType, phone_number :: Maybe String }  deriving (Show, Eq)
 

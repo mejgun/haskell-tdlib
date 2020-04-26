@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
+-- |
+-- 
+-- Replaces text entities with Markdown formatting in a human-friendly format. Entities that can't be represented in Markdown unambiguously are kept as is. This is an offline method. Can be called before authorization. Can be called synchronously 
+-- 
+-- __text__ The text
 data GetMarkdownText = 
  GetMarkdownText { text :: Maybe FormattedText.FormattedText }  deriving (Show, Eq)
 

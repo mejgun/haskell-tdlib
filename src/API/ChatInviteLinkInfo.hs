@@ -9,6 +9,23 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatPhoto as ChatPhoto
 import {-# SOURCE #-} qualified API.ChatType as ChatType
 
+-- |
+-- 
+-- Contains information about a chat invite link
+-- 
+-- __chat_id__ Chat identifier of the invite link; 0 if the user is not a member of this chat
+-- 
+-- __type__ Contains information about the type of the chat
+-- 
+-- __title__ Title of the chat
+-- 
+-- __photo__ Chat photo; may be null
+-- 
+-- __member_count__ Number of members in the chat
+-- 
+-- __member_user_ids__ User identifiers of some chat members that may be known to the current user
+-- 
+-- __is_public__ True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup
 data ChatInviteLinkInfo = 
  ChatInviteLinkInfo { is_public :: Maybe Bool, member_user_ids :: Maybe [Int], member_count :: Maybe Int, photo :: Maybe ChatPhoto.ChatPhoto, title :: Maybe String, _type :: Maybe ChatType.ChatType, chat_id :: Maybe Int }  deriving (Show, Eq)
 

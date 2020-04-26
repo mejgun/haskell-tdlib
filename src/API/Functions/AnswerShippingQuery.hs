@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ShippingOption as ShippingOption
 
+-- |
+-- 
+-- Sets the result of a shipping query; for bots only 
+-- 
+-- __shipping_query_id__ Identifier of the shipping query
+-- 
+-- __shipping_options__ Available shipping options
+-- 
+-- __error_message__ An error message, empty on success
 data AnswerShippingQuery = 
  AnswerShippingQuery { error_message :: Maybe String, shipping_options :: Maybe [ShippingOption.ShippingOption], shipping_query_id :: Maybe Int }  deriving (Show, Eq)
 

@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 
+-- |
+-- 
+-- Edits the reply markup of an inline message sent via a bot; for bots only 
+-- 
+-- __inline_message_id__ Inline message identifier
+-- 
+-- __reply_markup__ The new message reply markup
 data EditInlineMessageReplyMarkup = 
  EditInlineMessageReplyMarkup { reply_markup :: Maybe ReplyMarkup.ReplyMarkup, inline_message_id :: Maybe String }  deriving (Show, Eq)
 

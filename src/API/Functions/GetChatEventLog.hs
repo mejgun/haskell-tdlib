@@ -8,6 +8,21 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatEventLogFilters as ChatEventLogFilters
 
+-- |
+-- 
+-- Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i. e., in order of decreasing event_id)
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __query__ Search query by which to filter events
+-- 
+-- __from_event_id__ Identifier of an event from which to return results. Use 0 to get results from the latest events
+-- 
+-- __limit__ The maximum number of events to return; up to 100
+-- 
+-- __filters__ The types of events to return. By default, all types will be returned
+-- 
+-- __user_ids__ User identifiers by which to filter events. By default, events relating to all users will be returned
 data GetChatEventLog = 
  GetChatEventLog { user_ids :: Maybe [Int], filters :: Maybe ChatEventLogFilters.ChatEventLogFilters, limit :: Maybe Int, from_event_id :: Maybe Int, query :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 

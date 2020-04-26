@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.DeviceToken as DeviceToken
 
+-- |
+-- 
+-- Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription 
+-- 
+-- __device_token__ Device token
+-- 
+-- __other_user_ids__ List of user identifiers of other users currently using the client
 data RegisterDevice = 
  RegisterDevice { other_user_ids :: Maybe [Int], device_token :: Maybe DeviceToken.DeviceToken }  deriving (Show, Eq)
 

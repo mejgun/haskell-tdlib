@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Changes the current TTL setting (sets a new self-destruct timer) in a secret chat and sends the corresponding message 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __ttl__ New TTL value, in seconds
 data SendChatSetTtlMessage = 
  SendChatSetTtlMessage { ttl :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

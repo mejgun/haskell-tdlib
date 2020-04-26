@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PublicChatType as PublicChatType
 
+-- |
+-- 
+-- Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached 
+-- 
+-- __type__ Type of the public chats, for which to check the limit
 data CheckCreatedPublicChatsLimit = 
  CheckCreatedPublicChatsLimit { _type :: Maybe PublicChatType.PublicChatType }  deriving (Show, Eq)
 

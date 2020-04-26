@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns information about the availability of a temporary password, which can be used for payments 
+-- 
+-- __has_password__ True, if a temporary password is available
+-- 
+-- __valid_for__ Time left before the temporary password expires, in seconds
 data TemporaryPasswordState = 
  TemporaryPasswordState { valid_for :: Maybe Int, has_password :: Maybe Bool }  deriving (Show, Eq)
 

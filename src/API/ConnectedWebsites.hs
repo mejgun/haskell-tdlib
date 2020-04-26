@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ConnectedWebsite as ConnectedWebsite
 
+-- |
+-- 
+-- Contains a list of websites the current user is logged in with Telegram 
+-- 
+-- __websites__ List of connected websites
 data ConnectedWebsites = 
  ConnectedWebsites { websites :: Maybe [ConnectedWebsite.ConnectedWebsite] }  deriving (Show, Eq)
 

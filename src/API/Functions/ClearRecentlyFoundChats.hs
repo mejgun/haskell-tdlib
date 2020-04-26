@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Clears the list of recently found chats
 data ClearRecentlyFoundChats = 
  ClearRecentlyFoundChats deriving (Show, Eq)
 

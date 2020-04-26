@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns all scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id) 
+-- 
+-- __chat_id__ Chat identifier
 data GetChatScheduledMessages = 
  GetChatScheduledMessages { chat_id :: Maybe Int }  deriving (Show, Eq)
 

@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains a bot's answer to a callback query 
+-- 
+-- __text__ Text of the answer
+-- 
+-- __show_alert__ True, if an alert should be shown to the user instead of a toast notification
+-- 
+-- __url__ URL to be opened
 data CallbackQueryAnswer = 
  CallbackQueryAnswer { url :: Maybe String, show_alert :: Maybe Bool, text :: Maybe String }  deriving (Show, Eq)
 

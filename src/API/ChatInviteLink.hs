@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains a chat invite link 
+-- 
+-- __invite_link__ Chat invite link
 data ChatInviteLink = 
  ChatInviteLink { invite_link :: Maybe String }  deriving (Show, Eq)
 

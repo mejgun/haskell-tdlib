@@ -8,6 +8,17 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.MaskPoint as MaskPoint
 
+-- |
+-- 
+-- Position on a photo where a mask should be placed 
+-- 
+-- __point__ Part of the face, relative to which the mask should be placed
+-- 
+-- __x_shift__ Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. (For example, -1.0 will place the mask just to the left of the default mask position)
+-- 
+-- __y_shift__ Shift by Y-axis measured in heights of the mask scaled to the face size, from top to bottom. (For example, 1.0 will place the mask just below the default mask position)
+-- 
+-- __scale__ Mask scaling coefficient. (For example, 2.0 means a doubled size)
 data MaskPosition = 
  MaskPosition { scale :: Maybe Float, y_shift :: Maybe Float, x_shift :: Maybe Float, point :: Maybe MaskPoint.MaskPoint }  deriving (Show, Eq)
 

@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns the default text for invitation messages to be used as a placeholder when the current user invites friends to Telegram
 data GetInviteText = 
  GetInviteText deriving (Show, Eq)
 

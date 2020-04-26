@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Disconnects website from the current user's Telegram account 
+-- 
+-- __website_id__ Website identifier
 data DisconnectWebsite = 
  DisconnectWebsite { website_id :: Maybe Int }  deriving (Show, Eq)
 

@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.SearchMessagesFilter as SearchMessagesFilter
 
+-- |
+-- 
+-- Returns approximate number of messages of the specified type in the chat 
+-- 
+-- __chat_id__ Identifier of the chat in which to count messages
+-- 
+-- __filter__ Filter for message content; searchMessagesFilterEmpty is unsupported in this function
+-- 
+-- __return_local__ If true, returns count that is available locally without sending network requests, returning -1 if the number of messages is unknown
 data GetChatMessageCount = 
  GetChatMessageCount { return_local :: Maybe Bool, _filter :: Maybe SearchMessagesFilter.SearchMessagesFilter, chat_id :: Maybe Int }  deriving (Show, Eq)
 

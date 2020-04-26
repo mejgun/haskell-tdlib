@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Creates a new temporary password for processing payments 
+-- 
+-- __password__ Persistent user password
+-- 
+-- __valid_for__ Time during which the temporary password will be valid, in seconds; should be between 60 and 86400
 data CreateTemporaryPassword = 
  CreateTemporaryPassword { valid_for :: Maybe Int, password :: Maybe String }  deriving (Show, Eq)
 

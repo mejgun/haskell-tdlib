@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Searches for emojis by keywords. Supported only if the file database is enabled 
+-- 
+-- __text__ Text to search for
+-- 
+-- __exact_match__ True, if only emojis, which exactly match text needs to be returned
+-- 
+-- __input_language_codes__ List of possible IETF language tags of the user's input language; may be empty if unknown
 data SearchEmojis = 
  SearchEmojis { input_language_code :: Maybe String, exact_match :: Maybe Bool, text :: Maybe String }  deriving (Show, Eq)
 

@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes an action associated with a bank card number 
+-- 
+-- __text__ Action text
+-- 
+-- __url__ The URL to be opened
 data BankCardActionOpenUrl = 
  BankCardActionOpenUrl { url :: Maybe String, text :: Maybe String }  deriving (Show, Eq)
 

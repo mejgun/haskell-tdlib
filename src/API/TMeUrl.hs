@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TMeUrlType as TMeUrlType
 
+-- |
+-- 
+-- Represents a URL linking to an internal Telegram entity 
+-- 
+-- __url__ URL
+-- 
+-- __type__ Type of the URL
 data TMeUrl = 
  TMeUrl { _type :: Maybe TMeUrlType.TMeUrlType, url :: Maybe String }  deriving (Show, Eq)
 

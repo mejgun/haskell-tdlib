@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns information about a basic group by its identifier. This is an offline request if the current user is not a bot 
+-- 
+-- __basic_group_id__ Basic group identifier
 data GetBasicGroup = 
  GetBasicGroup { basic_group_id :: Maybe Int }  deriving (Show, Eq)
 

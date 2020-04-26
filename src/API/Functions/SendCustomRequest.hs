@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Sends a custom request; for bots only 
+-- 
+-- __method__ The method name
+-- 
+-- __parameters__ JSON-serialized method parameters
 data SendCustomRequest = 
  SendCustomRequest { parameters :: Maybe String, method :: Maybe String }  deriving (Show, Eq)
 

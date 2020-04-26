@@ -8,6 +8,17 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatEventAction as ChatEventAction
 
+-- |
+-- 
+-- Represents a chat event 
+-- 
+-- __id__ Chat event identifier
+-- 
+-- __date__ Point in time (Unix timestamp) when the event happened
+-- 
+-- __user_id__ Identifier of the user who performed the action that triggered the event
+-- 
+-- __action__ Action performed by the user
 data ChatEvent = 
  ChatEvent { action :: Maybe ChatEventAction.ChatEventAction, user_id :: Maybe Int, date :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 

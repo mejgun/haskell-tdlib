@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Deletes messages 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __message_ids__ Identifiers of the messages to be deleted
+-- 
+-- __revoke__ Pass true to try to delete messages for all chat members. Always true for supergroups, channels and secret chats
 data DeleteMessages = 
  DeleteMessages { revoke :: Maybe Bool, message_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Show, Eq)
 

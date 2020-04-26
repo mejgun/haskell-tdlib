@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains the description of an error in a Telegram Passport element; for bots only
 data InputPassportElementErrorSource = 
  InputPassportElementErrorSourceUnspecified { element_hash :: Maybe String }  
  | InputPassportElementErrorSourceDataField { data_hash :: Maybe String, field_name :: Maybe String }  

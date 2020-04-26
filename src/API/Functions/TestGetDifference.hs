@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Forces an updates.getDifference call to the Telegram servers; for testing only
 data TestGetDifference = 
  TestGetDifference deriving (Show, Eq)
 

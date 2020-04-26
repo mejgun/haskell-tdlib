@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info rights 
+-- 
+-- __chat_id__ Identifier of the chat
+-- 
+-- __param_description__ New chat description; 0-255 characters
 data SetChatDescription = 
  SetChatDescription { description :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 

@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes a chat located nearby 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __distance__ Distance to the chat location in meters
 data ChatNearby = 
  ChatNearby { distance :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

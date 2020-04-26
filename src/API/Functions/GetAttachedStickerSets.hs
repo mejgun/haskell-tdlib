@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns a list of sticker sets attached to a file. Currently only photos and videos can have attached sticker sets 
+-- 
+-- __file_id__ File identifier
 data GetAttachedStickerSets = 
  GetAttachedStickerSets { file_id :: Maybe Int }  deriving (Show, Eq)
 

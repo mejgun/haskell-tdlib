@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains a value representing a number of seconds 
+-- 
+-- __seconds__ Number of seconds
 data Seconds = 
  Seconds { seconds :: Maybe Float }  deriving (Show, Eq)
 

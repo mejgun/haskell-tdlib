@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Disables the currently enabled proxy. Can be called before authorization
 data DisableProxy = 
  DisableProxy deriving (Show, Eq)
 

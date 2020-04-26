@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Information about the email address authentication code that was sent 
+-- 
+-- __email_address_pattern__ Pattern of the email address to which an authentication code was sent
+-- 
+-- __length__ Length of the code; 0 if unknown
 data EmailAddressAuthenticationCodeInfo = 
  EmailAddressAuthenticationCodeInfo { _length :: Maybe Int, email_address_pattern :: Maybe String }  deriving (Show, Eq)
 

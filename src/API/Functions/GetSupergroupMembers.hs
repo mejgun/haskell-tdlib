@@ -8,6 +8,17 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.SupergroupMembersFilter as SupergroupMembersFilter
 
+-- |
+-- 
+-- Returns information about members or banned users in a supergroup or channel. Can be used only if SupergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters 
+-- 
+-- __supergroup_id__ Identifier of the supergroup or channel
+-- 
+-- __filter__ The type of users to return. By default, supergroupMembersRecent
+-- 
+-- __offset__ Number of users to skip
+-- 
+-- __limit__ The maximum number of users be returned; up to 200
 data GetSupergroupMembers = 
  GetSupergroupMembers { limit :: Maybe Int, offset :: Maybe Int, _filter :: Maybe SupergroupMembersFilter.SupergroupMembersFilter, supergroup_id :: Maybe Int }  deriving (Show, Eq)
 

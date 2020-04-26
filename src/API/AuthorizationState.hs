@@ -9,6 +9,9 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.AuthenticationCodeInfo as AuthenticationCodeInfo
 import {-# SOURCE #-} qualified API.TermsOfService as TermsOfService
 
+-- |
+-- 
+-- Represents the current authorization state of the client
 data AuthorizationState = 
  AuthorizationStateWaitTdlibParameters 
  | AuthorizationStateWaitEncryptionKey { is_encrypted :: Maybe Bool }  

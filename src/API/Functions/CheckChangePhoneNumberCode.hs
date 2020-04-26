@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Checks the authentication code sent to confirm a new phone number of the user 
+-- 
+-- __code__ Verification code received by SMS, phone call or flash call
 data CheckChangePhoneNumberCode = 
  CheckChangePhoneNumberCode { code :: Maybe String }  deriving (Show, Eq)
 

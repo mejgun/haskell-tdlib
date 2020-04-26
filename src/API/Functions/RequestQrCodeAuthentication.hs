@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber 
+-- 
+-- __other_user_ids__ List of user identifiers of other users currently using the client
 data RequestQrCodeAuthentication = 
  RequestQrCodeAuthentication { other_user_ids :: Maybe [Int] }  deriving (Show, Eq)
 

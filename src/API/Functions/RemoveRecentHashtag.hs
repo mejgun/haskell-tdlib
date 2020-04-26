@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Removes a hashtag from the list of recently used hashtags 
+-- 
+-- __hashtag__ Hashtag to delete
 data RemoveRecentHashtag = 
  RemoveRecentHashtag { hashtag :: Maybe String }  deriving (Show, Eq)
 

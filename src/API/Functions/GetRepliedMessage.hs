@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns information about a message that is replied by given message 
+-- 
+-- __chat_id__ Identifier of the chat the message belongs to
+-- 
+-- __message_id__ Identifier of the message reply to which get
 data GetRepliedMessage = 
  GetRepliedMessage { message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

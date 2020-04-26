@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains a TDLib internal log verbosity level 
+-- 
+-- __verbosity_level__ Log verbosity level
 data LogVerbosityLevel = 
  LogVerbosityLevel { verbosity_level :: Maybe Int }  deriving (Show, Eq)
 

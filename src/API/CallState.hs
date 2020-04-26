@@ -11,6 +11,9 @@ import {-# SOURCE #-} qualified API.CallProtocol as CallProtocol
 import {-# SOURCE #-} qualified API.CallDiscardReason as CallDiscardReason
 import {-# SOURCE #-} qualified API.Error as Error
 
+-- |
+-- 
+-- Describes the current call state
 data CallState = 
  CallStatePending { is_received :: Maybe Bool, is_created :: Maybe Bool }  
  | CallStateExchangingKeys 

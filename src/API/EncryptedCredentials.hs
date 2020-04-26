@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains encrypted Telegram Passport data credentials 
+-- 
+-- __data__ The encrypted credentials
+-- 
+-- __hash__ The decrypted data hash
+-- 
+-- __secret__ Secret for data decryption, encrypted with the service's public key
 data EncryptedCredentials = 
  EncryptedCredentials { secret :: Maybe String, hash :: Maybe String, _data :: Maybe String }  deriving (Show, Eq)
 

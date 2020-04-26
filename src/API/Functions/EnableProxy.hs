@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization 
+-- 
+-- __proxy_id__ Proxy identifier
 data EnableProxy = 
  EnableProxy { proxy_id :: Maybe Int }  deriving (Show, Eq)
 

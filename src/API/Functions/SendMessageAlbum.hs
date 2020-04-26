@@ -9,6 +9,17 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
 import {-# SOURCE #-} qualified API.SendMessageOptions as SendMessageOptions
 
+-- |
+-- 
+-- Sends messages grouped together into an album. Currently only photo and video messages can be grouped into an album. Returns sent messages
+-- 
+-- __chat_id__ Target chat
+-- 
+-- __reply_to_message_id__ Identifier of a message to reply to or 0
+-- 
+-- __options__ Options to be used to send the messages
+-- 
+-- __input_message_contents__ Contents of messages to be sent
 data SendMessageAlbum = 
  SendMessageAlbum { input_message_contents :: Maybe [InputMessageContent.InputMessageContent], options :: Maybe SendMessageOptions.SendMessageOptions, reply_to_message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PassportSuitableElement as PassportSuitableElement
 
+-- |
+-- 
+-- Contains a description of the required Telegram Passport element that was requested by a service 
+-- 
+-- __suitable_elements__ List of Telegram Passport elements any of which is enough to provide
 data PassportRequiredElement = 
  PassportRequiredElement { suitable_elements :: Maybe [PassportSuitableElement.PassportSuitableElement] }  deriving (Show, Eq)
 

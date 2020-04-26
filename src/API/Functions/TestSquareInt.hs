@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns the squared received number; for testing only. This is an offline method. Can be called before authorization 
+-- 
+-- __x__ Number to square
 data TestSquareInt = 
  TestSquareInt { x :: Maybe Int }  deriving (Show, Eq)
 

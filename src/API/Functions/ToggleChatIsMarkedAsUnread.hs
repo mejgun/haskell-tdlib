@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Changes the marked as unread state of a chat 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __is_marked_as_unread__ New value of is_marked_as_unread
 data ToggleChatIsMarkedAsUnread = 
  ToggleChatIsMarkedAsUnread { is_marked_as_unread :: Maybe Bool, chat_id :: Maybe Int }  deriving (Show, Eq)
 

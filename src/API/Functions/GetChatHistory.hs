@@ -7,6 +7,21 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id).
+-- 
+-- -For optimal performance the number of returned messages is chosen by the library. This is an offline request if only_local is true
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __from_message_id__ Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+-- 
+-- __offset__ Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
+-- 
+-- __limit__ The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater or equal to -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
+-- 
+-- __only_local__ If true, returns only messages that are available locally without sending network requests
 data GetChatHistory = 
  GetChatHistory { only_local :: Maybe Bool, limit :: Maybe Int, offset :: Maybe Int, from_message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

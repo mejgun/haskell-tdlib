@@ -8,6 +8,9 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.JsonObjectMember as JsonObjectMember
 
+-- |
+-- 
+-- Represents a JSON value
 data JsonValue = 
  JsonValueNull 
  | JsonValueBoolean { __value :: Maybe Bool }  

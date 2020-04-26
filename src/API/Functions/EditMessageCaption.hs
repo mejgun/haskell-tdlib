@@ -9,6 +9,17 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 
+-- |
+-- 
+-- Edits the message content caption. Returns the edited message after the edit is completed on the server side
+-- 
+-- __chat_id__ The chat the message belongs to
+-- 
+-- __message_id__ Identifier of the message
+-- 
+-- __reply_markup__ The new message reply markup; for bots only
+-- 
+-- __caption__ New message content caption; 0-GetOption("message_caption_length_max") characters
 data EditMessageCaption = 
  EditMessageCaption { caption :: Maybe FormattedText.FormattedText, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.KeyboardButtonType as KeyboardButtonType
 
+-- |
+-- 
+-- Represents a single button in a bot keyboard 
+-- 
+-- __text__ Text of the button
+-- 
+-- __type__ Type of the button
 data KeyboardButton = 
  KeyboardButton { _type :: Maybe KeyboardButtonType.KeyboardButtonType, text :: Maybe String }  deriving (Show, Eq)
 

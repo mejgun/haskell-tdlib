@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
+-- 
+-- __first_name__ The first name of the user; 1-64 characters
+-- 
+-- __last_name__ The last name of the user; 0-64 characters
 data RegisterUser = 
  RegisterUser { last_name :: Maybe String, first_name :: Maybe String }  deriving (Show, Eq)
 

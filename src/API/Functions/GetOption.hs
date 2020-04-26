@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization
+-- 
+-- __name__ The name of the option
 data GetOption = 
  GetOption { name :: Maybe String }  deriving (Show, Eq)
 

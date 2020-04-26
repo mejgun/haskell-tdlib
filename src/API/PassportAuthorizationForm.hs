@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PassportRequiredElement as PassportRequiredElement
 
+-- |
+-- 
+-- Contains information about a Telegram Passport authorization form that was requested 
+-- 
+-- __id__ Unique identifier of the authorization form
+-- 
+-- __required_elements__ Information about the Telegram Passport elements that need to be provided to complete the form
+-- 
+-- __privacy_policy_url__ URL for the privacy policy of the service; may be empty
 data PassportAuthorizationForm = 
  PassportAuthorizationForm { privacy_policy_url :: Maybe String, required_elements :: Maybe [PassportRequiredElement.PassportRequiredElement], _id :: Maybe Int }  deriving (Show, Eq)
 

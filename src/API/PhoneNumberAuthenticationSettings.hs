@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains settings for the authentication of the user's phone number
+-- 
+-- __allow_flash_call__ Pass true if the authentication code may be sent via flash call to the specified phone number
+-- 
+-- __is_current_phone_number__ Pass true if the authenticated phone number is used on the current device
+-- 
+-- __allow_sms_retriever_api__ For official applications only. True, if the app can use Android SMS Retriever API (requires Google Play Services >= 10.2) to automatically receive the authentication code from the SMS. See https://developers.google.com/identity/sms-retriever/ for more details
 data PhoneNumberAuthenticationSettings = 
  PhoneNumberAuthenticationSettings { allow_sms_retriever_api :: Maybe Bool, is_current_phone_number :: Maybe Bool, allow_flash_call :: Maybe Bool }  deriving (Show, Eq)
 

@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.CallProtocol as CallProtocol
 
+-- |
+-- 
+-- Creates a new call 
+-- 
+-- __user_id__ Identifier of the user to be called
+-- 
+-- __protocol__ Description of the call protocols supported by the client
 data CreateCall = 
  CreateCall { protocol :: Maybe CallProtocol.CallProtocol, user_id :: Maybe Int }  deriving (Show, Eq)
 

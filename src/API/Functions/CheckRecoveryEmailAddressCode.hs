@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Checks the 2-step verification recovery email address verification code 
+-- 
+-- __code__ Verification code
 data CheckRecoveryEmailAddressCode = 
  CheckRecoveryEmailAddressCode { code :: Maybe String }  deriving (Show, Eq)
 

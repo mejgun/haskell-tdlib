@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Adds a message to TDLib internal log. This is an offline method. Can be called before authorization. Can be called synchronously
+-- 
+-- __verbosity_level__ The minimum verbosity level needed for the message to be logged, 0-1023
+-- 
+-- __text__ Text of a message to log
 data AddLogMessage = 
  AddLogMessage { text :: Maybe String, verbosity_level :: Maybe Int }  deriving (Show, Eq)
 

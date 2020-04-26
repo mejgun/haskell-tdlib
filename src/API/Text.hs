@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains some text 
+-- 
+-- __text__ Text
 data Text = 
  Text { text :: Maybe String }  deriving (Show, Eq)
 

@@ -7,6 +7,17 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. This is an offline method. Can be called before authorization. Can be called synchronously
+-- 
+-- __language_pack_database_path__ Path to the language pack database in which strings are stored
+-- 
+-- __localization_target__ Localization target to which the language pack belongs
+-- 
+-- __language_pack_id__ Language pack identifier
+-- 
+-- __key__ Language pack key of the string to be returned
 data GetLanguagePackString = 
  GetLanguagePackString { key :: Maybe String, language_pack_id :: Maybe String, localization_target :: Maybe String, language_pack_database_path :: Maybe String }  deriving (Show, Eq)
 

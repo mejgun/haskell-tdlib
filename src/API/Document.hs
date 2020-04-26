@@ -10,6 +10,19 @@ import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 
+-- |
+-- 
+-- Describes a document of any type 
+-- 
+-- __file_name__ Original name of the file; as defined by the sender
+-- 
+-- __mime_type__ MIME type of the file; as defined by the sender
+-- 
+-- __minithumbnail__ Document minithumbnail; may be null
+-- 
+-- __thumbnail__ Document thumbnail in JPEG or PNG format (PNG will be used only for background patterns); as defined by the sender; may be null
+-- 
+-- __document__ File containing the document
 data Document = 
  Document { document :: Maybe File.File, thumbnail :: Maybe PhotoSize.PhotoSize, minithumbnail :: Maybe Minithumbnail.Minithumbnail, mime_type :: Maybe String, file_name :: Maybe String }  deriving (Show, Eq)
 

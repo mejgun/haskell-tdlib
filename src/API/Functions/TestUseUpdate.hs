@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Does nothing and ensures that the Update object is used; for testing only. This is an offline method. Can be called before authorization
 data TestUseUpdate = 
  TestUseUpdate deriving (Show, Eq)
 

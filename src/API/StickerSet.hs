@@ -10,6 +10,33 @@ import {-# SOURCE #-} qualified API.Emojis as Emojis
 import {-# SOURCE #-} qualified API.Sticker as Sticker
 import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 
+-- |
+-- 
+-- Represents a sticker set
+-- 
+-- __id__ Identifier of the sticker set
+-- 
+-- __title__ Title of the sticker set
+-- 
+-- __name__ Name of the sticker set
+-- 
+-- __thumbnail__ Sticker set thumbnail in WEBP format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed
+-- 
+-- __is_installed__ True, if the sticker set has been installed by the current user
+-- 
+-- __is_archived__ True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
+-- 
+-- __is_official__ True, if the sticker set is official
+-- 
+-- __is_animated__ True, is the stickers in the set are animated
+-- 
+-- __is_masks__ True, if the stickers in the set are masks
+-- 
+-- __is_viewed__ True for already viewed trending sticker sets
+-- 
+-- __stickers__ List of stickers in this set
+-- 
+-- __emojis__ A list of emoji corresponding to the stickers in the same order. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
 data StickerSet = 
  StickerSet { emojis :: Maybe [Emojis.Emojis], stickers :: Maybe [Sticker.Sticker], is_viewed :: Maybe Bool, is_masks :: Maybe Bool, is_animated :: Maybe Bool, is_official :: Maybe Bool, is_archived :: Maybe Bool, is_installed :: Maybe Bool, thumbnail :: Maybe PhotoSize.PhotoSize, name :: Maybe String, title :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 

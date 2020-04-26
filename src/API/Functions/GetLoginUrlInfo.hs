@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
+-- 
+-- __chat_id__ Chat identifier of the message with the button
+-- 
+-- __message_id__ Message identifier of the message with the button
+-- 
+-- __button_id__ Button identifier
 data GetLoginUrlInfo = 
  GetLoginUrlInfo { button_id :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

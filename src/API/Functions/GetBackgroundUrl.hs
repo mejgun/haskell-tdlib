@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BackgroundType as BackgroundType
 
+-- |
+-- 
+-- Constructs a persistent HTTP URL for a background 
+-- 
+-- __name__ Background name
+-- 
+-- __type__ Background type
 data GetBackgroundUrl = 
  GetBackgroundUrl { _type :: Maybe BackgroundType.BackgroundType, name :: Maybe String }  deriving (Show, Eq)
 

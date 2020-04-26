@@ -11,6 +11,39 @@ import {-# SOURCE #-} qualified API.StatisticsGraph as StatisticsGraph
 import {-# SOURCE #-} qualified API.StatisticsValue as StatisticsValue
 import {-# SOURCE #-} qualified API.DateRange as DateRange
 
+-- |
+-- 
+-- A detailed statistics about a chat
+-- 
+-- __period__ A period to which the statistics applies
+-- 
+-- __member_count__ Number of members in the chat
+-- 
+-- __mean_view_count__ Mean number of times the recently sent messages was viewed
+-- 
+-- __mean_share_count__ Mean number of times the recently sent messages was shared
+-- 
+-- __enabled_notifications_percentage__ A percentage of users with enabled notifications for the chat
+-- 
+-- __member_count_graph__ A graph containing number of members in the chat
+-- 
+-- __join_graph__ A graph containing number of members joined and left the chat
+-- 
+-- __mute_graph__ A graph containing number of members muted and unmuted the chat
+-- 
+-- __view_count_by_hour_graph__ A graph containing number of message views in a given hour in the last two weeks
+-- 
+-- __view_count_by_source_graph__ A graph containing number of message views per source
+-- 
+-- __join_by_source_graph__ A graph containing number of new member joins per source
+-- 
+-- __language_graph__ A graph containing number of users viewed chat messages per language
+-- 
+-- __message_interaction_graph__ A graph containing number of chat message views and shares
+-- 
+-- __instant_view_interaction_graph__ A graph containing number of views of associated with the chat instant views
+-- 
+-- __recent_message_interactions__ Detailed statistics about number of views and shares of recently sent messages
 data ChatStatistics = 
  ChatStatistics { recent_message_interactions :: Maybe [ChatStatisticsMessageInteractionCounters.ChatStatisticsMessageInteractionCounters], instant_view_interaction_graph :: Maybe StatisticsGraph.StatisticsGraph, message_interaction_graph :: Maybe StatisticsGraph.StatisticsGraph, language_graph :: Maybe StatisticsGraph.StatisticsGraph, join_by_source_graph :: Maybe StatisticsGraph.StatisticsGraph, view_count_by_source_graph :: Maybe StatisticsGraph.StatisticsGraph, view_count_by_hour_graph :: Maybe StatisticsGraph.StatisticsGraph, mute_graph :: Maybe StatisticsGraph.StatisticsGraph, join_graph :: Maybe StatisticsGraph.StatisticsGraph, member_count_graph :: Maybe StatisticsGraph.StatisticsGraph, enabled_notifications_percentage :: Maybe Float, mean_share_count :: Maybe StatisticsValue.StatisticsValue, mean_view_count :: Maybe StatisticsValue.StatisticsValue, member_count :: Maybe StatisticsValue.StatisticsValue, period :: Maybe DateRange.DateRange }  deriving (Show, Eq)
 

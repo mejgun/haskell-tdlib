@@ -14,9 +14,12 @@ apifuncs = "API/Functions"
 main :: IO ()
 main = do
   -- l <- getContents
-  l <- T.pack <$> readFile "work_api.tl"
+  l  <- T.pack <$> readFile "work_api.tl"
+  l1 <- T.pack <$> readFile "td_api.tl"
+  let comments     = parseComments l1
 
   let [dat, funcs] = T.splitOn "---functions---" l
+
 
   let a            = T.lines dat
   let m = renameWrongTypedField . parseParams . filterKeys $ toMap a
@@ -25,12 +28,12 @@ main = do
   let f = renameWrongTypedField . parseParams . filterKeys $ functionsToMap b
 
   let g            = uniq $ makeGeneralResult (b)
-  writeToFiles api      api             (Map.insert "GeneralResult" g m)
+  writeToFiles api      api             (Map.insert "GeneralResult" g m) comments
   --print f
-  writeToFiles apifuncs "API.Functions" f
+  writeToFiles apifuncs "API.Functions" f comments
 
-writeToFiles :: T.Text -> T.Text -> Map.Map T.Text [(T.Text, [(T.Text, T.Text)])] -> IO ()
-writeToFiles addr modName m =
+writeToFiles :: T.Text -> T.Text -> Map.Map T.Text [(T.Text, [(T.Text, T.Text)])] -> Map.Map T.Text [T.Text] -> IO ()
+writeToFiles addr modName m cmnts =
   mapM_
       (\(a, b) -> do
         writeFile (T.unpack (T.concat ["../src/", addr, "/", a, ".hs"]))      (wr a b)
@@ -136,6 +139,8 @@ writeToFiles addr modName m =
     , "import qualified Data.Aeson as A\n"
     , "import qualified Data.Aeson.Types as T\n"
     , (imports $ keys e)
+    , "\n"
+    , T.intercalate "\n-- \n" (Map.findWithDefault ["-- comments parse failed"] d cmnts)
     , "\ndata "
     , d
     , " = \n "
@@ -208,7 +213,7 @@ writeToFiles addr modName m =
                    , "\", readMaybe <$> (o A..: \""
                    , c
                    , "\" :: T.Parser String)] :: T.Parser (Maybe Int)"
-                   ] --         mconcat [o A..:? "media_album_id", readMaybe <$> (o A..: "media_album_id" :: T.Parser String)] :: T.Parser
+                   ]
                )
                b
           ++ [ T.concat
@@ -332,4 +337,41 @@ makeGeneralResult l = foldl
   (\acc x -> if length (x) > 1 then let n = myStrip (last x) in (n, [("", T.concat [n, ".", n])]) : acc else acc)
   []
   (map (T.splitOn "=") l)
+
+
+parseComments :: T.Text -> Map.Map T.Text [T.Text]
+parseComments l = do
+  let s  = tail $ T.splitOn "\n//@description " l
+  let s1 = map (\y -> filter (\x -> (x /= T.empty) && not (T.isPrefixOf (T.pack "@class ") x)) $ T.splitOn "\n//" y) s
+  let m  = Map.empty :: Map.Map T.Text [T.Text]
+  let m1 = foldl
+        (\acc t ->
+          let x = T.splitOn "\n" $ last t
+              a = head $ T.words $ head $ tail x
+          in  Map.insert (toTitle a) ((init t) ++ [head x]) acc
+        )
+        m
+        s1
+  let c  = tail $ T.splitOn "\n//@class" l
+  let c1 = map (T.strip . head . T.splitOn "\n") c
+  let m2 = foldl
+        (\acc t ->
+          let (n : ns) = T.words t
+              d        = T.unwords (filter (/= "@description") ns)
+          in  Map.insert (toTitle n) [d] acc
+        )
+        m1
+        c1
+  --Map.map (\t -> "-- |" : map (\t -> T.concat ["-- ", t]) t) m2
+  let m3 = Map.map (\t -> foldr (\x acc -> (filter (/= T.empty) (splitAtAt x)) ++ acc) [] t) m2
+  Map.map (\t -> "-- |" : map (\x -> T.concat ["-- ", x]) t) m3
+ where
+  toHyperlinkFirst :: T.Text -> T.Text
+  toHyperlinkFirst t =
+    let (x : xs) = T.words t
+        x1       = T.concat ["__", x, "__"]
+    in  T.unwords (x1 : xs)
+  splitAtAt :: T.Text -> [T.Text]
+  splitAtAt t = let (x : xs) = T.splitOn "@" t in if length xs > 0 then x : map toHyperlinkFirst xs else [t]
+
 

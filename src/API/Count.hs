@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains a counter 
+-- 
+-- __count__ Count
 data Count = 
  Count { count :: Maybe Int }  deriving (Show, Eq)
 

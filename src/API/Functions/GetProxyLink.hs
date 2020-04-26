@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization 
+-- 
+-- __proxy_id__ Proxy identifier
 data GetProxyLink = 
  GetProxyLink { proxy_id :: Maybe Int }  deriving (Show, Eq)
 

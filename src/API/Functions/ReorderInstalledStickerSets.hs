@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Changes the order of installed sticker sets 
+-- 
+-- __is_masks__ Pass true to change the order of mask sticker sets; pass false to change the order of ordinary sticker sets
+-- 
+-- __sticker_set_ids__ Identifiers of installed sticker sets in the new correct order
 data ReorderInstalledStickerSets = 
  ReorderInstalledStickerSets { sticker_set_ids :: Maybe [Int], is_masks :: Maybe Bool }  deriving (Show, Eq)
 

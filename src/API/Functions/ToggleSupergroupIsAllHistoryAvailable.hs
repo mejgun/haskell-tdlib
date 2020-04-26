@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Toggles whether the message history of a supergroup is available to new members; requires can_change_info rights 
+-- 
+-- __supergroup_id__ The identifier of the supergroup
+-- 
+-- __is_all_history_available__ The new value of is_all_history_available
 data ToggleSupergroupIsAllHistoryAvailable = 
  ToggleSupergroupIsAllHistoryAvailable { is_all_history_available :: Maybe Bool, supergroup_id :: Maybe Int }  deriving (Show, Eq)
 

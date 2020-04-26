@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns game high scores and some part of the high score table in the range of the specified user; for bots only 
+-- 
+-- __inline_message_id__ Inline message identifier
+-- 
+-- __user_id__ User identifier
 data GetInlineGameHighScores = 
  GetInlineGameHighScores { user_id :: Maybe Int, inline_message_id :: Maybe String }  deriving (Show, Eq)
 

@@ -11,6 +11,23 @@ import {-# SOURCE #-} qualified API.OrderInfo as OrderInfo
 import {-# SOURCE #-} qualified API.PaymentsProviderStripe as PaymentsProviderStripe
 import {-# SOURCE #-} qualified API.Invoice as Invoice
 
+-- |
+-- 
+-- Contains information about an invoice payment form 
+-- 
+-- __invoice__ Full information of the invoice
+-- 
+-- __url__ Payment form URL
+-- 
+-- __payments_provider__ Contains information about the payment provider, if available, to support it natively without the need for opening the URL; may be null
+-- 
+-- __saved_order_info__ Saved server-side order information; may be null
+-- 
+-- __saved_credentials__ Contains information about saved card credentials; may be null
+-- 
+-- __can_save_credentials__ True, if the user can choose to save credentials
+-- 
+-- __need_password__ True, if the user will be able to save credentials protected by a password they set up
 data PaymentForm = 
  PaymentForm { need_password :: Maybe Bool, can_save_credentials :: Maybe Bool, saved_credentials :: Maybe SavedCredentials.SavedCredentials, saved_order_info :: Maybe OrderInfo.OrderInfo, payments_provider :: Maybe PaymentsProviderStripe.PaymentsProviderStripe, url :: Maybe String, invoice :: Maybe Invoice.Invoice }  deriving (Show, Eq)
 

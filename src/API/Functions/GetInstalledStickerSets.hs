@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns a list of installed sticker sets 
+-- 
+-- __is_masks__ Pass true to return mask sticker sets; pass false to return ordinary sticker sets
 data GetInstalledStickerSets = 
  GetInstalledStickerSets { is_masks :: Maybe Bool }  deriving (Show, Eq)
 

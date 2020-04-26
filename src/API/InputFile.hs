@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Points to a file
 data InputFile = 
  InputFileId { __id :: Maybe Int }  
  | InputFileRemote { _id :: Maybe String }  

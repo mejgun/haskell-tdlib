@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LabeledPricePart as LabeledPricePart
 
+-- |
+-- 
+-- One shipping option 
+-- 
+-- __id__ Shipping option identifier
+-- 
+-- __title__ Option title
+-- 
+-- __price_parts__ A list of objects used to calculate the total shipping costs
 data ShippingOption = 
  ShippingOption { price_parts :: Maybe [LabeledPricePart.LabeledPricePart], title :: Maybe String, _id :: Maybe String }  deriving (Show, Eq)
 

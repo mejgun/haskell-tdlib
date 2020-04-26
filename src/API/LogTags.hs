@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains a list of available TDLib internal log tags 
+-- 
+-- __tags__ List of log tags
 data LogTags = 
  LogTags { tags :: Maybe [String] }  deriving (Show, Eq)
 

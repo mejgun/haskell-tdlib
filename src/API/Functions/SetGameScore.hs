@@ -7,6 +7,21 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Updates the game score of the specified user in the game; for bots only 
+-- 
+-- __chat_id__ The chat to which the message with the game belongs
+-- 
+-- __message_id__ Identifier of the message
+-- 
+-- __edit_message__ True, if the message should be edited
+-- 
+-- __user_id__ User identifier
+-- 
+-- __score__ The new score
+-- 
+-- __force__ Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
 data SetGameScore = 
  SetGameScore { force :: Maybe Bool, score :: Maybe Int, user_id :: Maybe Int, edit_message :: Maybe Bool, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

@@ -7,6 +7,17 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Stripe payment provider 
+-- 
+-- __publishable_key__ Stripe API publishable key
+-- 
+-- __need_country__ True, if the user country must be provided
+-- 
+-- __need_postal_code__ True, if the user ZIP/postal code must be provided
+-- 
+-- __need_cardholder_name__ True, if the cardholder name must be provided
 data PaymentsProviderStripe = 
  PaymentsProviderStripe { need_cardholder_name :: Maybe Bool, need_postal_code :: Maybe Bool, need_country :: Maybe Bool, publishable_key :: Maybe String }  deriving (Show, Eq)
 

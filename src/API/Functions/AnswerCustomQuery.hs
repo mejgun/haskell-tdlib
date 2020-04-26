@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Answers a custom query; for bots only 
+-- 
+-- __custom_query_id__ Identifier of a custom query
+-- 
+-- __data__ JSON-serialized answer to the query
 data AnswerCustomQuery = 
  AnswerCustomQuery { _data :: Maybe String, custom_query_id :: Maybe Int }  deriving (Show, Eq)
 

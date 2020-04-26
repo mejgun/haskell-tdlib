@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Represents a date range 
+-- 
+-- __start_date__ Point in time (Unix timestamp) at which the date range begins
+-- 
+-- __end_date__ Point in time (Unix timestamp) at which the date range ends
 data DateRange = 
  DateRange { end_date :: Maybe Int, start_date :: Maybe Int }  deriving (Show, Eq)
 

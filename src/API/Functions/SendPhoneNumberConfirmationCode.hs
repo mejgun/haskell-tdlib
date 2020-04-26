@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PhoneNumberAuthenticationSettings as PhoneNumberAuthenticationSettings
 
+-- |
+-- 
+-- Sends phone number confirmation code. Should be called when user presses "https://t.me/confirmphone?phone=*******&hash=**********" or "tg://confirmphone?phone=*******&hash=**********" link 
+-- 
+-- __hash__ Value of the "hash" parameter from the link
+-- 
+-- __phone_number__ Value of the "phone" parameter from the link
+-- 
+-- __settings__ Settings for the authentication of the user's phone number
 data SendPhoneNumberConfirmationCode = 
  SendPhoneNumberConfirmationCode { settings :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings, phone_number :: Maybe String, hash :: Maybe String }  deriving (Show, Eq)
 

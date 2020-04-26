@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl
 data LoginUrlInfo = 
  LoginUrlInfoOpen { skip_confirm :: Maybe Bool, url :: Maybe String }  
  | LoginUrlInfoRequestConfirmation { request_write_access :: Maybe Bool, bot_user_id :: Maybe Int, domain :: Maybe String, url :: Maybe String }  deriving (Show, Eq)

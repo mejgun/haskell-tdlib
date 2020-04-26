@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Removes background from the list of installed backgrounds 
+-- 
+-- __background_id__ The background identifier
 data RemoveBackground = 
  RemoveBackground { background_id :: Maybe Int }  deriving (Show, Eq)
 

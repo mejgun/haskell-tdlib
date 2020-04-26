@@ -8,6 +8,23 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.SendMessageOptions as SendMessageOptions
 
+-- |
+-- 
+-- Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
+-- 
+-- __chat_id__ Identifier of the chat to which to forward messages
+-- 
+-- __from_chat_id__ Identifier of the chat from which to forward messages
+-- 
+-- __message_ids__ Identifiers of the messages to forward
+-- 
+-- __options__ Options to be used to send the messages
+-- 
+-- __as_album__ True, if the messages should be grouped into an album after forwarding. For this to work, no more than 10 messages may be forwarded, and all of them must be photo or video messages
+-- 
+-- __send_copy__ True, if content of the messages needs to be copied without links to the original messages. Always true if the messages are forwarded to a secret chat
+-- 
+-- __remove_caption__ True, if media captions of message copies needs to be removed. Ignored if send_copy is false
 data ForwardMessages = 
  ForwardMessages { remove_caption :: Maybe Bool, send_copy :: Maybe Bool, as_album :: Maybe Bool, options :: Maybe SendMessageOptions.SendMessageOptions, message_ids :: Maybe [Int], from_chat_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

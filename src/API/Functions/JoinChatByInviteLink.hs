@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Uses an invite link to add the current user to the chat if possible. The new member will not be added until the chat state has been synchronized with the server
+-- 
+-- __invite_link__ Invite link to import; should begin with "https://t.me/joinchat/", "https://telegram.me/joinchat/", or "https://telegram.dog/joinchat/"
 data JoinChatByInviteLink = 
  JoinChatByInviteLink { invite_link :: Maybe String }  deriving (Show, Eq)
 

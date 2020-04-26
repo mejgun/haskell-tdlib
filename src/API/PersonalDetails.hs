@@ -8,6 +8,29 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Date as Date
 
+-- |
+-- 
+-- Contains the user's personal details
+-- 
+-- __first_name__ First name of the user written in English; 1-255 characters
+-- 
+-- __middle_name__ Middle name of the user written in English; 0-255 characters
+-- 
+-- __last_name__ Last name of the user written in English; 1-255 characters
+-- 
+-- __native_first_name__ Native first name of the user; 1-255 characters
+-- 
+-- __native_middle_name__ Native middle name of the user; 0-255 characters
+-- 
+-- __native_last_name__ Native last name of the user; 1-255 characters
+-- 
+-- __birthdate__ Birthdate of the user
+-- 
+-- __gender__ Gender of the user, "male" or "female"
+-- 
+-- __country_code__ A two-letter ISO 3166-1 alpha-2 country code of the user's country
+-- 
+-- __residence_country_code__ A two-letter ISO 3166-1 alpha-2 country code of the user's residence country
 data PersonalDetails = 
  PersonalDetails { residence_country_code :: Maybe String, country_code :: Maybe String, gender :: Maybe String, birthdate :: Maybe Date.Date, native_last_name :: Maybe String, native_middle_name :: Maybe String, native_first_name :: Maybe String, last_name :: Maybe String, middle_name :: Maybe String, first_name :: Maybe String }  deriving (Show, Eq)
 

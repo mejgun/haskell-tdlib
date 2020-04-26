@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BankCardActionOpenUrl as BankCardActionOpenUrl
 
+-- |
+-- 
+-- Information about a bank card 
+-- 
+-- __title__ Title of the bank card description
+-- 
+-- __actions__ Actions that can be done with the bank card number
 data BankCardInfo = 
  BankCardInfo { actions :: Maybe [BankCardActionOpenUrl.BankCardActionOpenUrl], title :: Maybe String }  deriving (Show, Eq)
 

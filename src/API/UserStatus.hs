@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes the last time the user was online
 data UserStatus = 
  UserStatusEmpty 
  | UserStatusOnline { expires :: Maybe Int }  

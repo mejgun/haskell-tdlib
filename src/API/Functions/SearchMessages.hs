@@ -8,6 +8,23 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatList as ChatList
 
+-- |
+-- 
+-- Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)).
+-- 
+-- -For optimal performance the number of returned messages is chosen by the library
+-- 
+-- __chat_list__ Chat list in which to search messages; pass null to search in all chats regardless of their chat list
+-- 
+-- __query__ Query to search for
+-- 
+-- __offset_date__ The date of the message starting from which the results should be fetched. Use 0 or any date in the future to get results from the last message
+-- 
+-- __offset_chat_id__ The chat identifier of the last found message, or 0 for the first request
+-- 
+-- __offset_message_id__ The message identifier of the last found message, or 0 for the first request
+-- 
+-- __limit__ The maximum number of messages to be returned, up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
 data SearchMessages = 
  SearchMessages { limit :: Maybe Int, offset_message_id :: Maybe Int, offset_chat_id :: Maybe Int, offset_date :: Maybe Int, query :: Maybe String, chat_list :: Maybe ChatList.ChatList }  deriving (Show, Eq)
 

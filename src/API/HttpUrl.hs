@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains an HTTP URL 
+-- 
+-- __url__ The URL
 data HttpUrl = 
  HttpUrl { url :: Maybe String }  deriving (Show, Eq)
 

@@ -8,6 +8,17 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Message as Message
 
+-- |
+-- 
+-- Contains information about a link to a message in a chat
+-- 
+-- __is_public__ True, if the link is a public link for a message in a chat
+-- 
+-- __chat_id__ If found, identifier of the chat to which the message belongs, 0 otherwise
+-- 
+-- __message__ If found, the linked message; may be null
+-- 
+-- __for_album__ True, if the whole media album to which the message belongs is linked
 data MessageLinkInfo = 
  MessageLinkInfo { for_album :: Maybe Bool, message :: Maybe Message.Message, chat_id :: Maybe Int, is_public :: Maybe Bool }  deriving (Show, Eq)
 

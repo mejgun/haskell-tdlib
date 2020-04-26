@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Invites a bot to a chat (if it is not yet a member) and sends it the /start command. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message
+-- 
+-- __bot_user_id__ Identifier of the bot
+-- 
+-- __chat_id__ Identifier of the target chat
+-- 
+-- __parameter__ A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)
 data SendBotStartMessage = 
  SendBotStartMessage { parameter :: Maybe String, chat_id :: Maybe Int, bot_user_id :: Maybe Int }  deriving (Show, Eq)
 

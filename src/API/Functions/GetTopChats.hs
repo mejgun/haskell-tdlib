@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TopChatCategory as TopChatCategory
 
+-- |
+-- 
+-- Returns a list of frequently used chats. Supported only if the chat info database is enabled 
+-- 
+-- __category__ Category of chats to be returned
+-- 
+-- __limit__ The maximum number of chats to be returned; up to 30
 data GetTopChats = 
  GetTopChats { limit :: Maybe Int, category :: Maybe TopChatCategory.TopChatCategory }  deriving (Show, Eq)
 

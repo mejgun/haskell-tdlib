@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LogStream as LogStream
 
+-- |
+-- 
+-- Sets new log stream for internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously 
+-- 
+-- __log_stream__ New log stream
 data SetLogStream = 
  SetLogStream { log_stream :: Maybe LogStream.LogStream }  deriving (Show, Eq)
 

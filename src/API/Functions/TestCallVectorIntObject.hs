@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TestInt as TestInt
 
+-- |
+-- 
+-- Returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization 
+-- 
+-- __x__ Vector of objects to return
 data TestCallVectorIntObject = 
  TestCallVectorIntObject { x :: Maybe [TestInt.TestInt] }  deriving (Show, Eq)
 

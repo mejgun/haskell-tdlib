@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns strings from a language pack in the current localization target by their keys. Can be called before authorization 
+-- 
+-- __language_pack_id__ Language pack identifier of the strings to be returned
+-- 
+-- __keys__ Language pack keys of the strings to be returned; leave empty to request all available strings
 data GetLanguagePackStrings = 
  GetLanguagePackStrings { keys :: Maybe [String], language_pack_id :: Maybe String }  deriving (Show, Eq)
 

@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
+-- |
+-- 
+-- A personal document to be saved to Telegram Passport 
+-- 
+-- __files__ List of files containing the pages of the document
+-- 
+-- __translation__ List of files containing a certified English translation of the document
 data InputPersonalDocument = 
  InputPersonalDocument { translation :: Maybe [InputFile.InputFile], files :: Maybe [InputFile.InputFile] }  deriving (Show, Eq)
 

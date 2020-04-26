@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Checks the authentication token of a bot; to log in as a bot. Works only when the current authorization state is authorizationStateWaitPhoneNumber. Can be used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in 
+-- 
+-- __token__ The bot token
 data CheckAuthenticationBotToken = 
  CheckAuthenticationBotToken { token :: Maybe String }  deriving (Show, Eq)
 

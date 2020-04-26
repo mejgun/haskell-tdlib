@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.AutoDownloadSettings as AutoDownloadSettings
 
+-- |
+-- 
+-- Contains auto-download settings presets for the user
+-- 
+-- __low__ Preset with lowest settings; supposed to be used by default when roaming
+-- 
+-- __medium__ Preset with medium settings; supposed to be used by default when using mobile data
+-- 
+-- __high__ Preset with highest settings; supposed to be used by default when connected on Wi-Fi
 data AutoDownloadSettingsPresets = 
  AutoDownloadSettingsPresets { high :: Maybe AutoDownloadSettings.AutoDownloadSettings, medium :: Maybe AutoDownloadSettings.AutoDownloadSettings, low :: Maybe AutoDownloadSettings.AutoDownloadSettings }  deriving (Show, Eq)
 

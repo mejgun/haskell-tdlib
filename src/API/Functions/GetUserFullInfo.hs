@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns full information about a user by their identifier 
+-- 
+-- __user_id__ User identifier
 data GetUserFullInfo = 
  GetUserFullInfo { user_id :: Maybe Int }  deriving (Show, Eq)
 

@@ -8,6 +8,21 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Location as Location
 
+-- |
+-- 
+-- Describes a venue 
+-- 
+-- __location__ Venue location; as defined by the sender
+-- 
+-- __title__ Venue name; as defined by the sender
+-- 
+-- __address__ Venue address; as defined by the sender
+-- 
+-- __provider__ Provider of the venue database; as defined by the sender. Currently only "foursquare" needs to be supported
+-- 
+-- __id__ Identifier of the venue in the provider database; as defined by the sender
+-- 
+-- __type__ Type of the venue in the provider database; as defined by the sender
 data Venue = 
  Venue { _type :: Maybe String, _id :: Maybe String, provider :: Maybe String, address :: Maybe String, title :: Maybe String, location :: Maybe Location.Location }  deriving (Show, Eq)
 

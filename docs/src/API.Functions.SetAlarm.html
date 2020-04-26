@@ -7,8 +7,13 @@
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
 </span><span id="line-9"></span><span>
-</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="SetAlarm"><span class="annot"><a href="API.Functions.SetAlarm.html#SetAlarm"><span class="hs-identifier hs-var">SetAlarm</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-11"></span><span> </span><span id="SetAlarm"><span class="annot"><a href="API.Functions.SetAlarm.html#SetAlarm"><span class="hs-identifier hs-var">SetAlarm</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="seconds"><span class="annot"><span class="annottext">SetAlarm -&gt; Maybe Float
+</span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- Succeeds after a specified amount of time has passed. Can be called before authorization. Can be called before initialization </span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- __seconds__ Number of seconds before the function returns</span><span>
+</span><span id="line-15"></span><span class="hs-keyword">data</span><span> </span><span id="SetAlarm"><span class="annot"><a href="API.Functions.SetAlarm.html#SetAlarm"><span class="hs-identifier hs-var">SetAlarm</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-16"></span><span> </span><span id="SetAlarm"><span class="annot"><a href="API.Functions.SetAlarm.html#SetAlarm"><span class="hs-identifier hs-var">SetAlarm</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="seconds"><span class="annot"><span class="annottext">SetAlarm -&gt; Maybe Float
 </span><a href="API.Functions.SetAlarm.html#seconds"><span class="hs-identifier hs-var hs-var">seconds</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679430827"><span id="local-6989586621679430829"><span id="local-6989586621679430831"><span class="annot"><span class="annottext">Int -&gt; SetAlarm -&gt; ShowS
 [SetAlarm] -&gt; ShowS
 SetAlarm -&gt; String
@@ -31,13 +36,13 @@ $c/= :: SetAlarm -&gt; SetAlarm -&gt; Bool
 == :: SetAlarm -&gt; SetAlarm -&gt; Bool
 $c== :: SetAlarm -&gt; SetAlarm -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430814"><span id="local-6989586621679430816"><span id="local-6989586621679430818"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetAlarm.html#SetAlarm"><span class="hs-identifier hs-type">SetAlarm</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679430812"><span class="annot"><span class="annottext">toJSON :: SetAlarm -&gt; Value
+</span><span id="line-17"></span><span>
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430814"><span id="local-6989586621679430816"><span id="local-6989586621679430818"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetAlarm.html#SetAlarm"><span class="hs-identifier hs-type">SetAlarm</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span> </span><span id="local-6989586621679430812"><span class="annot"><span class="annottext">toJSON :: SetAlarm -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.SetAlarm.html#SetAlarm"><span class="hs-identifier hs-type">SetAlarm</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">seconds :: SetAlarm -&gt; Maybe Float
 </span><a href="API.Functions.SetAlarm.html#seconds"><span class="hs-identifier hs-var">seconds</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430810"><span class="annot"><span class="annottext">Maybe Float
 </span><a href="#local-6989586621679430810"><span class="hs-identifier hs-var">seconds</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-20"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
@@ -45,28 +50,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Float
 </span><a href="#local-6989586621679430810"><span class="hs-identifier hs-var">seconds</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430804"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetAlarm.html#SetAlarm"><span class="hs-identifier hs-type">SetAlarm</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679430802"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetAlarm
+</span><span id="line-21"></span><span>
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430804"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetAlarm.html#SetAlarm"><span class="hs-identifier hs-type">SetAlarm</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span> </span><span id="local-6989586621679430802"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetAlarm
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679430800"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679430800"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679430798"><span class="annot"><span class="annottext">obj :: Object
 </span><a href="#local-6989586621679430798"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679430797"><span class="annot"><span class="annottext">String
+</span><span id="line-24"></span><span>  </span><span id="local-6989586621679430797"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679430797"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679430798"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-25"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679430797"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;setAlarm&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SetAlarm
+</span><span id="line-26"></span><span>   </span><span class="hs-string">&quot;setAlarm&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SetAlarm
 </span><a href="#local-6989586621679430795"><span class="hs-identifier hs-var">parseSetAlarm</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679430800"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SetAlarm
+</span><span id="line-27"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SetAlarm
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679430795"><span class="hs-identifier hs-type">parseSetAlarm</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetAlarm.html#SetAlarm"><span class="hs-identifier hs-type">SetAlarm</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span id="local-6989586621679430795"><span class="annot"><span class="annottext">parseSetAlarm :: Value -&gt; Parser SetAlarm
+</span><span id="line-28"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span>   </span><span class="annot"><a href="#local-6989586621679430795"><span class="hs-identifier hs-type">parseSetAlarm</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetAlarm.html#SetAlarm"><span class="hs-identifier hs-type">SetAlarm</span></a></span><span>
+</span><span id="line-30"></span><span>   </span><span id="local-6989586621679430795"><span class="annot"><span class="annottext">parseSetAlarm :: Value -&gt; Parser SetAlarm
 </span><a href="#local-6989586621679430795"><span class="hs-identifier hs-var hs-var">parseSetAlarm</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser SetAlarm) -&gt; Value -&gt; Parser SetAlarm
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;SetAlarm&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser SetAlarm) -&gt; Value -&gt; Parser SetAlarm)
@@ -74,12 +79,12 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679430793"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679430793"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>    </span><span id="local-6989586621679430792"><span class="annot"><span class="annottext">Maybe Float
+</span><span id="line-31"></span><span>    </span><span id="local-6989586621679430792"><span class="annot"><span class="annottext">Maybe Float
 </span><a href="#local-6989586621679430792"><span class="hs-identifier hs-var">seconds</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679430793"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Float)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;seconds&quot;</span></span><span>
-</span><span id="line-27"></span><span>    </span><span class="annot"><span class="annottext">SetAlarm -&gt; Parser SetAlarm
+</span><span id="line-32"></span><span>    </span><span class="annot"><span class="annottext">SetAlarm -&gt; Parser SetAlarm
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SetAlarm -&gt; Parser SetAlarm) -&gt; SetAlarm -&gt; Parser SetAlarm
 forall a b. (a -&gt; b) -&gt; a -&gt; b

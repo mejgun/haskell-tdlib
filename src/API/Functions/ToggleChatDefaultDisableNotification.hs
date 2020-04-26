@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Changes the value of the default disable_notification parameter, used when a message is sent to a chat 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __default_disable_notification__ New value of default_disable_notification
 data ToggleChatDefaultDisableNotification = 
  ToggleChatDefaultDisableNotification { default_disable_notification :: Maybe Bool, chat_id :: Maybe Int }  deriving (Show, Eq)
 

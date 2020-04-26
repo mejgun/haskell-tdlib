@@ -8,6 +8,17 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.CallState as CallState
 
+-- |
+-- 
+-- Describes a call 
+-- 
+-- __id__ Call identifier, not persistent
+-- 
+-- __user_id__ Peer user identifier
+-- 
+-- __is_outgoing__ True, if the call is outgoing
+-- 
+-- __state__ Call state
 data Call = 
  Call { state :: Maybe CallState.CallState, is_outgoing :: Maybe Bool, user_id :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 

@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Recovers the password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword 
+-- 
+-- __recovery_code__ Recovery code to check
 data RecoverAuthenticationPassword = 
  RecoverAuthenticationPassword { recovery_code :: Maybe String }  deriving (Show, Eq)
 

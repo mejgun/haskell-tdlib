@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
+-- |
+-- 
+-- Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object 
+-- 
+-- __sticker__ Sticker file identifier
 data GetStickerEmojis = 
  GetStickerEmojis { sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 

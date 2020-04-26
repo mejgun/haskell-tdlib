@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.AccountTtl as AccountTtl
 
+-- |
+-- 
+-- Changes the period of inactivity after which the account of the current user will automatically be deleted 
+-- 
+-- __ttl__ New account TTL
 data SetAccountTtl = 
  SetAccountTtl { ttl :: Maybe AccountTtl.AccountTtl }  deriving (Show, Eq)
 

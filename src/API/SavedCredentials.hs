@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains information about saved card credentials 
+-- 
+-- __id__ Unique identifier of the saved credentials
+-- 
+-- __title__ Title of the saved credentials
 data SavedCredentials = 
  SavedCredentials { title :: Maybe String, _id :: Maybe String }  deriving (Show, Eq)
 

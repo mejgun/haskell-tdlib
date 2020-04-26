@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Clears all imported contacts, contact list remains unchanged
 data ClearImportedContacts = 
  ClearImportedContacts deriving (Show, Eq)
 

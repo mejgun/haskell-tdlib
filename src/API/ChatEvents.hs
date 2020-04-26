@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatEvent as ChatEvent
 
+-- |
+-- 
+-- Contains a list of chat events 
+-- 
+-- __events__ List of events
 data ChatEvents = 
  ChatEvents { events :: Maybe [ChatEvent.ChatEvent] }  deriving (Show, Eq)
 

@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Location as Location
 
+-- |
+-- 
+-- Represents a location to which a chat is connected 
+-- 
+-- __location__ The location
+-- 
+-- __address__ Location address; 1-64 characters, as defined by the chat owner
 data ChatLocation = 
  ChatLocation { address :: Maybe String, location :: Maybe Location.Location }  deriving (Show, Eq)
 

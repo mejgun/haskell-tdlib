@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns an invoice payment form. This method should be called when the user presses inlineKeyboardButtonBuy 
+-- 
+-- __chat_id__ Chat identifier of the Invoice message
+-- 
+-- __message_id__ Message identifier
 data GetPaymentForm = 
  GetPaymentForm { message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

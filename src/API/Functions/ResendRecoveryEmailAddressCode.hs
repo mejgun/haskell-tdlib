@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Resends the 2-step verification recovery email address verification code
 data ResendRecoveryEmailAddressCode = 
  ResendRecoveryEmailAddressCode deriving (Show, Eq)
 

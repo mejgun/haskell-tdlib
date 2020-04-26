@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains statistics about interactions with a message
+-- 
+-- __message_id__ Message identifier
+-- 
+-- __view_count__ Number of times the message was viewed
+-- 
+-- __forward_count__ Number of times the message was forwarded
 data ChatStatisticsMessageInteractionCounters = 
  ChatStatisticsMessageInteractionCounters { forward_count :: Maybe Int, view_count :: Maybe Int, message_id :: Maybe Int }  deriving (Show, Eq)
 

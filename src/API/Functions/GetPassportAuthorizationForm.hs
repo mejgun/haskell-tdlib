@@ -7,6 +7,17 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns a Telegram Passport authorization form for sharing data with a service 
+-- 
+-- __bot_user_id__ User identifier of the service's bot
+-- 
+-- __scope__ Telegram Passport element types requested by the service
+-- 
+-- __public_key__ Service's public_key
+-- 
+-- __nonce__ Authorization form nonce provided by the service
 data GetPassportAuthorizationForm = 
  GetPassportAuthorizationForm { nonce :: Maybe String, public_key :: Maybe String, scope :: Maybe String, bot_user_id :: Maybe Int }  deriving (Show, Eq)
 

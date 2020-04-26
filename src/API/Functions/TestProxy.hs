@@ -8,6 +8,19 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ProxyType as ProxyType
 
+-- |
+-- 
+-- Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization 
+-- 
+-- __server__ Proxy server IP address
+-- 
+-- __port__ Proxy server port
+-- 
+-- __type__ Proxy type
+-- 
+-- __dc_id__ Identifier of a datacenter, with which to test connection
+-- 
+-- __timeout__ The maximum overall timeout for the request
 data TestProxy = 
  TestProxy { timeout :: Maybe Float, dc_id :: Maybe Int, _type :: Maybe ProxyType.ProxyType, port :: Maybe Int, server :: Maybe String }  deriving (Show, Eq)
 

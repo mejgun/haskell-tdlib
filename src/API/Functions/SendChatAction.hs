@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatAction as ChatAction
 
+-- |
+-- 
+-- Sends a notification about user activity in a chat 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __action__ The action description
 data SendChatAction = 
  SendChatAction { action :: Maybe ChatAction.ChatAction, chat_id :: Maybe Int }  deriving (Show, Eq)
 

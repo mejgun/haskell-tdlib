@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Generates a new invite link for a chat; the previously generated link is revoked. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right 
+-- 
+-- __chat_id__ Chat identifier
 data GenerateChatInviteLink = 
  GenerateChatInviteLink { chat_id :: Maybe Int }  deriving (Show, Eq)
 

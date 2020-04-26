@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains the call identifier 
+-- 
+-- __id__ Call identifier
 data CallId = 
  CallId { _id :: Maybe Int }  deriving (Show, Eq)
 

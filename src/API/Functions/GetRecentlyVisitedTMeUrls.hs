@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns t.me URLs recently visited by a newly registered user 
+-- 
+-- __referrer__ Google Play referrer to identify the user
 data GetRecentlyVisitedTMeUrls = 
  GetRecentlyVisitedTMeUrls { referrer :: Maybe String }  deriving (Show, Eq)
 

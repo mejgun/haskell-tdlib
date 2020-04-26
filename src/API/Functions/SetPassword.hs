@@ -7,6 +7,19 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Changes the password for the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
+-- 
+-- __old_password__ Previous password of the user
+-- 
+-- __new_password__ New password of the user; may be empty to remove the password
+-- 
+-- __new_hint__ New password hint; may be empty
+-- 
+-- __set_recovery_email_address__ Pass true if the recovery email address should be changed
+-- 
+-- __new_recovery_email_address__ New recovery email address; may be empty
 data SetPassword = 
  SetPassword { new_recovery_email_address :: Maybe String, set_recovery_email_address :: Maybe Bool, new_hint :: Maybe String, new_password :: Maybe String, old_password :: Maybe String }  deriving (Show, Eq)
 

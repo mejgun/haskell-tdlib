@@ -15,6 +15,61 @@ import {-# SOURCE #-} qualified API.ChatPhoto as ChatPhoto
 import {-# SOURCE #-} qualified API.ChatList as ChatList
 import {-# SOURCE #-} qualified API.ChatType as ChatType
 
+-- |
+-- 
+-- A chat. (Can be a private chat, basic group, supergroup, or secret chat)
+-- 
+-- __id__ Chat unique identifier
+-- 
+-- __type__ Type of the chat
+-- 
+-- __chat_list__ A chat list to which the chat belongs; may be null
+-- 
+-- __title__ Chat title
+-- 
+-- __photo__ Chat photo; may be null
+-- 
+-- __permissions__ Actions that non-administrator chat members are allowed to take in the chat
+-- 
+-- __last_message__ Last message in the chat; may be null
+-- 
+-- __order__ Descending parameter by which chats are sorted in the main chat list. If the order number of two chats is the same, they must be sorted in descending order by ID. If 0, the position of the chat in the list is undetermined
+-- 
+-- __is_pinned__ True, if the chat is pinned
+-- 
+-- __is_marked_as_unread__ True, if the chat is marked as unread
+-- 
+-- __is_sponsored__ True, if the chat is sponsored by the user's MTProxy server
+-- 
+-- __has_scheduled_messages__ True, if the chat has scheduled messages
+-- 
+-- __can_be_deleted_only_for_self__ True, if the chat messages can be deleted only for the current user while other users will continue to see the messages
+-- 
+-- __can_be_deleted_for_all_users__ True, if the chat messages can be deleted for all users
+-- 
+-- __can_be_reported__ True, if the chat can be reported to Telegram moderators through reportChat
+-- 
+-- __default_disable_notification__ Default value of the disable_notification parameter, used when a message is sent to the chat
+-- 
+-- __unread_count__ Number of unread messages in the chat
+-- 
+-- __last_read_inbox_message_id__ Identifier of the last read incoming message
+-- 
+-- __last_read_outbox_message_id__ Identifier of the last read outgoing message
+-- 
+-- __unread_mention_count__ Number of unread messages with a mention/reply in the chat
+-- 
+-- __notification_settings__ Notification settings for this chat
+-- 
+-- __action_bar__ Describes actions which should be possible to do through a chat action bar; may be null
+-- 
+-- __pinned_message_id__ Identifier of the pinned message in the chat; 0 if none
+-- 
+-- __reply_markup_message_id__ Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
+-- 
+-- __draft_message__ A draft of a message in the chat; may be null
+-- 
+-- __client_data__ Contains client-specific data associated with the chat. (For example, the chat position or local chat notification settings can be stored here.) Persistent if the message database is used
 data Chat = 
  Chat { client_data :: Maybe String, draft_message :: Maybe DraftMessage.DraftMessage, reply_markup_message_id :: Maybe Int, pinned_message_id :: Maybe Int, action_bar :: Maybe ChatActionBar.ChatActionBar, notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings, unread_mention_count :: Maybe Int, last_read_outbox_message_id :: Maybe Int, last_read_inbox_message_id :: Maybe Int, unread_count :: Maybe Int, default_disable_notification :: Maybe Bool, can_be_reported :: Maybe Bool, can_be_deleted_for_all_users :: Maybe Bool, can_be_deleted_only_for_self :: Maybe Bool, has_scheduled_messages :: Maybe Bool, is_sponsored :: Maybe Bool, is_marked_as_unread :: Maybe Bool, is_pinned :: Maybe Bool, order :: Maybe Int, last_message :: Maybe Message.Message, permissions :: Maybe ChatPermissions.ChatPermissions, photo :: Maybe ChatPhoto.ChatPhoto, title :: Maybe String, chat_list :: Maybe ChatList.ChatList, _type :: Maybe ChatType.ChatType, _id :: Maybe Int }  deriving (Show, Eq)
 

@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains a part of a file 
+-- 
+-- __data__ File bytes
 data FilePart = 
  FilePart { _data :: Maybe String }  deriving (Show, Eq)
 

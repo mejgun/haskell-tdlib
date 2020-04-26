@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Searches for recently used hashtags by their prefix 
+-- 
+-- __prefix__ Hashtag prefix to search for
+-- 
+-- __limit__ The maximum number of hashtags to be returned
 data SearchHashtags = 
  SearchHashtags { limit :: Maybe Int, prefix :: Maybe String }  deriving (Show, Eq)
 

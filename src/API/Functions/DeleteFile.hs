@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Deletes a file from the TDLib file cache 
+-- 
+-- __file_id__ Identifier of the file to delete
 data DeleteFile = 
  DeleteFile { file_id :: Maybe Int }  deriving (Show, Eq)
 

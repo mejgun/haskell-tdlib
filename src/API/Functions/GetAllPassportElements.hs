@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns all available Telegram Passport elements 
+-- 
+-- __password__ Password of the current user
 data GetAllPassportElements = 
  GetAllPassportElements { password :: Maybe String }  deriving (Show, Eq)
 

@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Checks phone number confirmation code 
+-- 
+-- __code__ The phone number confirmation code
 data CheckPhoneNumberConfirmationCode = 
  CheckPhoneNumberConfirmationCode { code :: Maybe String }  deriving (Show, Eq)
 

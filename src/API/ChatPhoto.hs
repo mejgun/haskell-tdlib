@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
 
+-- |
+-- 
+-- Describes the photo of a chat 
+-- 
+-- __small__ A small (160x160) chat photo. The file can be downloaded only before the photo is changed
+-- 
+-- __big__ A big (640x640) chat photo. The file can be downloaded only before the photo is changed
 data ChatPhoto = 
  ChatPhoto { big :: Maybe File.File, small :: Maybe File.File }  deriving (Show, Eq)
 

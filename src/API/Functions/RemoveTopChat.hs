@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TopChatCategory as TopChatCategory
 
+-- |
+-- 
+-- Removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled 
+-- 
+-- __category__ Category of frequently used chats
+-- 
+-- __chat_id__ Chat identifier
 data RemoveTopChat = 
  RemoveTopChat { chat_id :: Maybe Int, category :: Maybe TopChatCategory.TopChatCategory }  deriving (Show, Eq)
 

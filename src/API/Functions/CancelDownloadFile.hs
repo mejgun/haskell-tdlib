@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Stops the downloading of a file. If a file has already been downloaded, does nothing 
+-- 
+-- __file_id__ Identifier of a file to stop downloading
+-- 
+-- __only_if_pending__ Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server
 data CancelDownloadFile = 
  CancelDownloadFile { only_if_pending :: Maybe Bool, file_id :: Maybe Int }  deriving (Show, Eq)
 

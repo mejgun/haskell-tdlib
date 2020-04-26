@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TestString as TestString
 
+-- |
+-- 
+-- A simple object containing a vector of objects that hold a string; for testing only 
+-- 
+-- __value__ Vector of objects
 data TestVectorStringObject = 
  TestVectorStringObject { value :: Maybe [TestString.TestString] }  deriving (Show, Eq)
 

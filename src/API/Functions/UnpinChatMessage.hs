@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Removes the pinned message from a chat; requires can_pin_messages rights in the group or channel 
+-- 
+-- __chat_id__ Identifier of the chat
 data UnpinChatMessage = 
  UnpinChatMessage { chat_id :: Maybe Int }  deriving (Show, Eq)
 

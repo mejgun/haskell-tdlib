@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns network data usage statistics. Can be called before authorization 
+-- 
+-- __only_current__ If true, returns only data for the current library launch
 data GetNetworkStatistics = 
  GetNetworkStatistics { only_current :: Maybe Bool }  deriving (Show, Eq)
 

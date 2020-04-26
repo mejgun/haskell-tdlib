@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
+-- |
+-- 
+-- A thumbnail to be sent along with a file; should be in JPEG or WEBP format for stickers, and less than 200 KB in size 
+-- 
+-- __thumbnail__ Thumbnail file to send. Sending thumbnails by file_id is currently not supported
+-- 
+-- __width__ Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
+-- 
+-- __height__ Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
 data InputThumbnail = 
  InputThumbnail { height :: Maybe Int, width :: Maybe Int, thumbnail :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 

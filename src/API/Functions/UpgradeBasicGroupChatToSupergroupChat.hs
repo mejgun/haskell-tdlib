@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group 
+-- 
+-- __chat_id__ Identifier of the chat to upgrade
 data UpgradeBasicGroupChatToSupergroupChat = 
  UpgradeBasicGroupChatToSupergroupChat { chat_id :: Maybe Int }  deriving (Show, Eq)
 

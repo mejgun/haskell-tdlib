@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns favorite stickers
 data GetFavoriteStickers = 
  GetFavoriteStickers deriving (Show, Eq)
 

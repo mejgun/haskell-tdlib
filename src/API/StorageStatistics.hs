@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.StorageStatisticsByChat as StorageStatisticsByChat
 
+-- |
+-- 
+-- Contains the exact storage usage statistics split by chats and file type 
+-- 
+-- __size__ Total size of files
+-- 
+-- __count__ Total number of files
+-- 
+-- __by_chat__ Statistics split by chats
 data StorageStatistics = 
  StorageStatistics { by_chat :: Maybe [StorageStatisticsByChat.StorageStatisticsByChat], count :: Maybe Int, size :: Maybe Int }  deriving (Show, Eq)
 

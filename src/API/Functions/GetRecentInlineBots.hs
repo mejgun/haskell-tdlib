@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns up to 20 recently used inline bots in the order of their last usage
 data GetRecentInlineBots = 
  GetRecentInlineBots deriving (Show, Eq)
 

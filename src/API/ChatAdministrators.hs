@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatAdministrator as ChatAdministrator
 
+-- |
+-- 
+-- Represents a list of chat administrators 
+-- 
+-- __administrators__ A list of chat administrators
 data ChatAdministrators = 
  ChatAdministrators { administrators :: Maybe [ChatAdministrator.ChatAdministrator] }  deriving (Show, Eq)
 

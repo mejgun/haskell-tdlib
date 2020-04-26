@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns an HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements. The URL will be valid for 30 seconds after generation 
+-- 
+-- __language_code__ Language code for which the emoji replacements will be suggested
 data GetEmojiSuggestionsUrl = 
  GetEmojiSuggestionsUrl { language_code :: Maybe String }  deriving (Show, Eq)
 

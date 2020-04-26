@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns information about a secret chat by its identifier. This is an offline request 
+-- 
+-- __secret_chat_id__ Secret chat identifier
 data GetSecretChat = 
  GetSecretChat { secret_chat_id :: Maybe Int }  deriving (Show, Eq)
 

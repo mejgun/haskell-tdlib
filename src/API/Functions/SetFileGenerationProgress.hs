@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Informs TDLib on a file generation progress
+-- 
+-- __generation_id__ The identifier of the generation process
+-- 
+-- __expected_size__ Expected size of the generated file, in bytes; 0 if unknown
+-- 
+-- __local_prefix_size__ The number of bytes already generated
 data SetFileGenerationProgress = 
  SetFileGenerationProgress { local_prefix_size :: Maybe Int, expected_size :: Maybe Int, generation_id :: Maybe Int }  deriving (Show, Eq)
 

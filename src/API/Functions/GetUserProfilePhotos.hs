@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns the profile photos of a user. The result of this query may be outdated: some photos might have been deleted already 
+-- 
+-- __user_id__ User identifier
+-- 
+-- __offset__ The number of photos to skip; must be non-negative
+-- 
+-- __limit__ The maximum number of photos to be returned; up to 100
 data GetUserProfilePhotos = 
  GetUserProfilePhotos { limit :: Maybe Int, offset :: Maybe Int, user_id :: Maybe Int }  deriving (Show, Eq)
 

@@ -10,6 +10,21 @@ import {-# SOURCE #-} qualified API.ShippingOption as ShippingOption
 import {-# SOURCE #-} qualified API.OrderInfo as OrderInfo
 import {-# SOURCE #-} qualified API.Invoice as Invoice
 
+-- |
+-- 
+-- Contains information about a successful payment 
+-- 
+-- __date__ Point in time (Unix timestamp) when the payment was made
+-- 
+-- __payments_provider_user_id__ User identifier of the payment provider bot
+-- 
+-- __invoice__ Contains information about the invoice
+-- 
+-- __order_info__ Contains order information; may be null
+-- 
+-- __shipping_option__ Chosen shipping option; may be null
+-- 
+-- __credentials_title__ Title of the saved credentials
 data PaymentReceipt = 
  PaymentReceipt { credentials_title :: Maybe String, shipping_option :: Maybe ShippingOption.ShippingOption, order_info :: Maybe OrderInfo.OrderInfo, invoice :: Maybe Invoice.Invoice, payments_provider_user_id :: Maybe Int, date :: Maybe Int }  deriving (Show, Eq)
 

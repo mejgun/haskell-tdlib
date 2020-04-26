@@ -9,6 +9,9 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Message as Message
 import {-# SOURCE #-} qualified API.PushMessageContent as PushMessageContent
 
+-- |
+-- 
+-- Contains detailed information about a notification
 data NotificationType = 
  NotificationTypeNewMessage { message :: Maybe Message.Message }  
  | NotificationTypeNewSecretChat 

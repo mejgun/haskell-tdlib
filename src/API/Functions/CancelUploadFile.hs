@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Stops the uploading of a file. Supported only for files uploaded by using uploadFile. For other files the behavior is undefined 
+-- 
+-- __file_id__ Identifier of the file to stop uploading
 data CancelUploadFile = 
  CancelUploadFile { file_id :: Maybe Int }  deriving (Show, Eq)
 

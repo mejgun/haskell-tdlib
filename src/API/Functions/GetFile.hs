@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns information about a file; this is an offline request 
+-- 
+-- __file_id__ Identifier of the file to get
 data GetFile = 
  GetFile { file_id :: Maybe Int }  deriving (Show, Eq)
 

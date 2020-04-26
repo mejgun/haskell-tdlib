@@ -9,6 +9,17 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 
+-- |
+-- 
+-- Edits the content of a message with an animation, an audio, a document, a photo or a video. The media in the message can't be replaced if the message was set to self-destruct. Media can't be replaced by self-destructing media. Media in an album can be edited only to contain a photo or a video. Returns the edited message after the edit is completed on the server side
+-- 
+-- __chat_id__ The chat the message belongs to
+-- 
+-- __message_id__ Identifier of the message
+-- 
+-- __reply_markup__ The new message reply markup; for bots only
+-- 
+-- __input_message_content__ New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo
 data EditMessageMedia = 
  EditMessageMedia { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

@@ -10,6 +10,19 @@ import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 import {-# SOURCE #-} qualified API.SendMessageOptions as SendMessageOptions
 
+-- |
+-- 
+-- Sends a message. Returns the sent message
+-- 
+-- __chat_id__ Target chat
+-- 
+-- __reply_to_message_id__ Identifier of the message to reply to or 0
+-- 
+-- __options__ Options to be used to send the message
+-- 
+-- __reply_markup__ Markup for replying to the message; for bots only
+-- 
+-- __input_message_content__ The content of the message to be sent
 data SendMessage = 
  SendMessage { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, options :: Maybe SendMessageOptions.SendMessageOptions, reply_to_message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

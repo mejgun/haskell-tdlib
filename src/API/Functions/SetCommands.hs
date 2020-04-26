@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BotCommand as BotCommand
 
+-- |
+-- 
+-- Sets the list of commands supported by the bot; for bots only 
+-- 
+-- __commands__ List of the bot's commands
 data SetCommands = 
  SetCommands { commands :: Maybe [BotCommand.BotCommand] }  deriving (Show, Eq)
 

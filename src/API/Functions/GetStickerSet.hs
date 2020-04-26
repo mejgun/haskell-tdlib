@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns information about a sticker set by its identifier 
+-- 
+-- __set_id__ Identifier of the sticker set
 data GetStickerSet = 
  GetStickerSet { set_id :: Maybe Int }  deriving (Show, Eq)
 

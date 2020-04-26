@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- An object of this type can be returned on every function call, in case of an error
+-- 
+-- __code__ Error code; subject to future changes. If the error code is 406, the error message must not be processed in any way and must not be displayed to the user
+-- 
+-- __message__ Error message; subject to future changes
 data Error = 
  Error { message :: Maybe String, code :: Maybe Int }  deriving (Show, Eq)
 

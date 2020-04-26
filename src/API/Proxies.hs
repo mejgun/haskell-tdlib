@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Proxy as Proxy
 
+-- |
+-- 
+-- Represents a list of proxy servers 
+-- 
+-- __proxies__ List of proxy servers
 data Proxies = 
  Proxies { proxies :: Maybe [Proxy.Proxy] }  deriving (Show, Eq)
 

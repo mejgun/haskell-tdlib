@@ -10,6 +10,29 @@ import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 
+-- |
+-- 
+-- Describes a video file 
+-- 
+-- __duration__ Duration of the video, in seconds; as defined by the sender
+-- 
+-- __width__ Video width; as defined by the sender
+-- 
+-- __height__ Video height; as defined by the sender
+-- 
+-- __file_name__ Original name of the file; as defined by the sender
+-- 
+-- __mime_type__ MIME type of the file; as defined by the sender
+-- 
+-- __has_stickers__ True, if stickers were added to the video
+-- 
+-- __supports_streaming__ True, if the video should be tried to be streamed
+-- 
+-- __minithumbnail__ Video minithumbnail; may be null
+-- 
+-- __thumbnail__ Video thumbnail; as defined by the sender; may be null
+-- 
+-- __video__ File containing the video
 data Video = 
  Video { video :: Maybe File.File, thumbnail :: Maybe PhotoSize.PhotoSize, minithumbnail :: Maybe Minithumbnail.Minithumbnail, supports_streaming :: Maybe Bool, has_stickers :: Maybe Bool, mime_type :: Maybe String, file_name :: Maybe String, height :: Maybe Int, width :: Maybe Int, duration :: Maybe Int }  deriving (Show, Eq)
 

@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes a list of chats
 data ChatList = 
  ChatListMain 
  | ChatListArchive deriving (Show, Eq)

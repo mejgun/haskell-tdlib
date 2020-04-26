@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns information about a message, if it is available locally without sending network request. This is an offline request 
+-- 
+-- __chat_id__ Identifier of the chat the message belongs to
+-- 
+-- __message_id__ Identifier of the message to get
 data GetMessageLocally = 
  GetMessageLocally { message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

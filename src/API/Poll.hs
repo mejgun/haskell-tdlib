@@ -9,6 +9,29 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PollType as PollType
 import {-# SOURCE #-} qualified API.PollOption as PollOption
 
+-- |
+-- 
+-- Describes a poll 
+-- 
+-- __id__ Unique poll identifier
+-- 
+-- __question__ Poll question, 1-255 characters
+-- 
+-- __options__ List of poll answer options
+-- 
+-- __total_voter_count__ Total number of voters, participating in the poll
+-- 
+-- __recent_voter_user_ids__ User identifiers of recent voters, if the poll is non-anonymous
+-- 
+-- __is_anonymous__ True, if the poll is anonymous
+-- 
+-- __type__ Type of the poll
+-- 
+-- __open_period__ Amount of time the poll will be active after creation, in seconds
+-- 
+-- __close_date__ Point in time (Unix timestamp) when the poll will be automatically closed
+-- 
+-- __is_closed__ True, if the poll is closed
 data Poll = 
  Poll { is_closed :: Maybe Bool, _type :: Maybe PollType.PollType, is_anonymous :: Maybe Bool, recent_voter_user_ids :: Maybe [Int], total_voter_count :: Maybe Int, options :: Maybe [PollOption.PollOption], question :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 

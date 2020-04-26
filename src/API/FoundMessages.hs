@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Message as Message
 
+-- |
+-- 
+-- Contains a list of messages found by a search 
+-- 
+-- __messages__ List of messages
+-- 
+-- __next_from_search_id__ Value to pass as from_search_id to get more results
 data FoundMessages = 
  FoundMessages { next_from_search_id :: Maybe Int, messages :: Maybe [Message.Message] }  deriving (Show, Eq)
 

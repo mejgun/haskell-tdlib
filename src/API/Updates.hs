@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Update as Update
 
+-- |
+-- 
+-- Contains a list of updates 
+-- 
+-- __updates__ List of updates
 data Updates = 
  Updates { updates :: Maybe [Update.Update] }  deriving (Show, Eq)
 

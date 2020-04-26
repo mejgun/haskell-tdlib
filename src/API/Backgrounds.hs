@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Background as Background
 
+-- |
+-- 
+-- Contains a list of backgrounds 
+-- 
+-- __backgrounds__ A list of backgrounds
 data Backgrounds = 
  Backgrounds { backgrounds :: Maybe [Background.Background] }  deriving (Show, Eq)
 

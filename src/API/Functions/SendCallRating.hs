@@ -8,6 +8,17 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.CallProblem as CallProblem
 
+-- |
+-- 
+-- Sends a call rating 
+-- 
+-- __call_id__ Call identifier
+-- 
+-- __rating__ Call rating; 1-5
+-- 
+-- __comment__ An optional user comment if the rating is less than 5
+-- 
+-- __problems__ List of the exact types of problems with the call, specified by the user
 data SendCallRating = 
  SendCallRating { problems :: Maybe [CallProblem.CallProblem], comment :: Maybe String, rating :: Maybe Int, call_id :: Maybe Int }  deriving (Show, Eq)
 

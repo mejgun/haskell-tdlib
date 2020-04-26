@@ -11,6 +11,9 @@ import {-# SOURCE #-} qualified API.IdentityDocument as IdentityDocument
 import {-# SOURCE #-} qualified API.Address as Address
 import {-# SOURCE #-} qualified API.PersonalDocument as PersonalDocument
 
+-- |
+-- 
+-- Contains information about a Telegram Passport element
 data PassportElement = 
  PassportElementPersonalDetails { personal_details :: Maybe PersonalDetails.PersonalDetails }  
  | PassportElementPassport { passport :: Maybe IdentityDocument.IdentityDocument }  

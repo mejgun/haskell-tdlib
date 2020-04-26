@@ -9,6 +9,9 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.KeyboardButton as KeyboardButton
 import {-# SOURCE #-} qualified API.InlineKeyboardButton as InlineKeyboardButton
 
+-- |
+-- 
+-- Contains a description of a custom keyboard and actions that can be done with it to quickly reply to bots
 data ReplyMarkup = 
  ReplyMarkupRemoveKeyboard { is_personal :: Maybe Bool }  
  | ReplyMarkupForceReply { is_personal :: Maybe Bool }  

@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Informs TDLib that the chat is closed by the user. Many useful activities depend on the chat being opened or closed 
+-- 
+-- __chat_id__ Chat identifier
 data CloseChat = 
  CloseChat { chat_id :: Maybe Int }  deriving (Show, Eq)
 

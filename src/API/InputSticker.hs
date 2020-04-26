@@ -9,6 +9,9 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.MaskPosition as MaskPosition
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
+-- |
+-- 
+-- Describes a sticker that needs to be added to a sticker set
 data InputSticker = 
  InputStickerStatic { mask_position :: Maybe MaskPosition.MaskPosition, emojis :: Maybe String, sticker :: Maybe InputFile.InputFile }  
  | InputStickerAnimated { emojis :: Maybe String, sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)

@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputSticker as InputSticker
 
+-- |
+-- 
+-- Adds a new sticker to a set; for bots only. Returns the sticker set
+-- 
+-- __user_id__ Sticker set owner
+-- 
+-- __name__ Sticker set name
+-- 
+-- __sticker__ Sticker to add to the set
 data AddStickerToSet = 
  AddStickerToSet { sticker :: Maybe InputSticker.InputSticker, name :: Maybe String, user_id :: Maybe Int }  deriving (Show, Eq)
 

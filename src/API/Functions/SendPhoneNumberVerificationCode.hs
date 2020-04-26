@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PhoneNumberAuthenticationSettings as PhoneNumberAuthenticationSettings
 
+-- |
+-- 
+-- Sends a code to verify a phone number to be added to a user's Telegram Passport
+-- 
+-- __phone_number__ The phone number of the user, in international format
+-- 
+-- __settings__ Settings for the authentication of the user's phone number
 data SendPhoneNumberVerificationCode = 
  SendPhoneNumberVerificationCode { settings :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings, phone_number :: Maybe String }  deriving (Show, Eq)
 

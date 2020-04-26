@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains a list of hashtags 
+-- 
+-- __hashtags__ A list of hashtags
 data Hashtags = 
  Hashtags { hashtags :: Maybe [String] }  deriving (Show, Eq)
 

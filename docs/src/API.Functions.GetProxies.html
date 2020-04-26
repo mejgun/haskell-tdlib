@@ -7,8 +7,11 @@
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
 </span><span id="line-9"></span><span>
-</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="GetProxies"><span class="annot"><a href="API.Functions.GetProxies.html#GetProxies"><span class="hs-identifier hs-var">GetProxies</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-11"></span><span> </span><span id="GetProxies"><span class="annot"><a href="API.Functions.GetProxies.html#GetProxies"><span class="hs-identifier hs-var">GetProxies</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679423499"><span id="local-6989586621679423501"><span id="local-6989586621679423503"><span class="annot"><span class="annottext">Int -&gt; GetProxies -&gt; ShowS
+</span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- Returns list of proxies that are currently set up. Can be called before authorization</span><span>
+</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="GetProxies"><span class="annot"><a href="API.Functions.GetProxies.html#GetProxies"><span class="hs-identifier hs-var">GetProxies</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-14"></span><span> </span><span id="GetProxies"><span class="annot"><a href="API.Functions.GetProxies.html#GetProxies"><span class="hs-identifier hs-var">GetProxies</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679423499"><span id="local-6989586621679423501"><span id="local-6989586621679423503"><span class="annot"><span class="annottext">Int -&gt; GetProxies -&gt; ShowS
 [GetProxies] -&gt; ShowS
 GetProxies -&gt; String
 (Int -&gt; GetProxies -&gt; ShowS)
@@ -32,37 +35,37 @@ $c/= :: GetProxies -&gt; GetProxies -&gt; Bool
 == :: GetProxies -&gt; GetProxies -&gt; Bool
 $c== :: GetProxies -&gt; GetProxies -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-12"></span><span>
-</span><span id="line-13"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679423486"><span id="local-6989586621679423488"><span id="local-6989586621679423490"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetProxies.html#GetProxies"><span class="hs-identifier hs-type">GetProxies</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-14"></span><span> </span><span id="local-6989586621679423484"><span class="annot"><span class="annottext">toJSON :: GetProxies -&gt; Value
+</span><span id="line-15"></span><span>
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679423486"><span id="local-6989586621679423488"><span id="local-6989586621679423490"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetProxies.html#GetProxies"><span class="hs-identifier hs-type">GetProxies</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679423484"><span class="annot"><span class="annottext">toJSON :: GetProxies -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.GetProxies.html#GetProxies"><span class="hs-identifier hs-type">GetProxies</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-15"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-18"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;getProxies&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679423477"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetProxies.html#GetProxies"><span class="hs-identifier hs-type">GetProxies</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679423475"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetProxies
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679423477"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetProxies.html#GetProxies"><span class="hs-identifier hs-type">GetProxies</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span> </span><span id="local-6989586621679423475"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetProxies
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679423473"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679423473"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679423471"><span class="annot"><span class="annottext">obj :: Object
 </span><a href="#local-6989586621679423471"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-19"></span><span>  </span><span id="local-6989586621679423470"><span class="annot"><span class="annottext">String
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679423470"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679423470"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679423471"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-20"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-23"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679423470"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-21"></span><span>   </span><span class="hs-string">&quot;getProxies&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetProxies
+</span><span id="line-24"></span><span>   </span><span class="hs-string">&quot;getProxies&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetProxies
 </span><a href="#local-6989586621679423468"><span class="hs-identifier hs-var">parseGetProxies</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679423473"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-22"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetProxies
+</span><span id="line-25"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetProxies
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-23"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span>   </span><span class="annot"><a href="#local-6989586621679423468"><span class="hs-identifier hs-type">parseGetProxies</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetProxies.html#GetProxies"><span class="hs-identifier hs-type">GetProxies</span></a></span><span>
-</span><span id="line-25"></span><span>   </span><span id="local-6989586621679423468"><span class="annot"><span class="annottext">parseGetProxies :: Value -&gt; Parser GetProxies
+</span><span id="line-26"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-27"></span><span>   </span><span class="annot"><a href="#local-6989586621679423468"><span class="hs-identifier hs-type">parseGetProxies</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetProxies.html#GetProxies"><span class="hs-identifier hs-type">GetProxies</span></a></span><span>
+</span><span id="line-28"></span><span>   </span><span id="local-6989586621679423468"><span class="annot"><span class="annottext">parseGetProxies :: Value -&gt; Parser GetProxies
 </span><a href="#local-6989586621679423468"><span class="hs-identifier hs-var hs-var">parseGetProxies</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GetProxies) -&gt; Value -&gt; Parser GetProxies
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
@@ -71,7 +74,7 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679423466"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679423466"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>    </span><span class="annot"><span class="annottext">GetProxies -&gt; Parser GetProxies
+</span><span id="line-29"></span><span>    </span><span class="annot"><span class="annottext">GetProxies -&gt; Parser GetProxies
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(GetProxies -&gt; Parser GetProxies)
 -&gt; GetProxies -&gt; Parser GetProxies

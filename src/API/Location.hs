@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes a location on planet Earth 
+-- 
+-- __latitude__ Latitude of the location in degrees; as defined by the sender
+-- 
+-- __longitude__ Longitude of the location, in degrees; as defined by the sender
 data Location = 
  Location { longitude :: Maybe Float, latitude :: Maybe Float }  deriving (Show, Eq)
 

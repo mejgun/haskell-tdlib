@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PageBlock as PageBlock
 
+-- |
+-- 
+-- Describes an item of a list page block 
+-- 
+-- __label__ Item label
+-- 
+-- __page_blocks__ Item blocks
 data PageBlockListItem = 
  PageBlockListItem { page_blocks :: Maybe [PageBlock.PageBlock], label :: Maybe String }  deriving (Show, Eq)
 

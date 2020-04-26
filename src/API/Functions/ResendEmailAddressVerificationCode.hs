@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Re-sends the code to verify an email address to be added to a user's Telegram Passport
 data ResendEmailAddressVerificationCode = 
  ResendEmailAddressVerificationCode deriving (Show, Eq)
 

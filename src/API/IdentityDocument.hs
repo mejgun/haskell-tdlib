@@ -9,6 +9,21 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.DatedFile as DatedFile
 import {-# SOURCE #-} qualified API.Date as Date
 
+-- |
+-- 
+-- An identity document 
+-- 
+-- __number__ Document number; 1-24 characters
+-- 
+-- __expiry_date__ Document expiry date; may be null
+-- 
+-- __front_side__ Front side of the document
+-- 
+-- __reverse_side__ Reverse side of the document; only for driver license and identity card
+-- 
+-- __selfie__ Selfie with the document; may be null
+-- 
+-- __translation__ List of files containing a certified English translation of the document
 data IdentityDocument = 
  IdentityDocument { translation :: Maybe [DatedFile.DatedFile], selfie :: Maybe DatedFile.DatedFile, reverse_side :: Maybe DatedFile.DatedFile, front_side :: Maybe DatedFile.DatedFile, expiry_date :: Maybe Date.Date, number :: Maybe String }  deriving (Show, Eq)
 

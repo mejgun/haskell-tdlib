@@ -7,13 +7,16 @@
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
 </span><span id="line-9"></span><span>
-</span><span id="line-10"></span><span class="hs-keyword">data</span><span> </span><span id="OptionValue"><span class="annot"><a href="API.OptionValue.html#OptionValue"><span class="hs-identifier hs-var">OptionValue</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-11"></span><span> </span><span id="OptionValueBoolean"><span class="annot"><a href="API.OptionValue.html#OptionValueBoolean"><span class="hs-identifier hs-var">OptionValueBoolean</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="__value"><span class="annot"><span class="annottext">OptionValue -&gt; Maybe Bool
+</span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- Represents the value of an option</span><span>
+</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="OptionValue"><span class="annot"><a href="API.OptionValue.html#OptionValue"><span class="hs-identifier hs-var">OptionValue</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-14"></span><span> </span><span id="OptionValueBoolean"><span class="annot"><a href="API.OptionValue.html#OptionValueBoolean"><span class="hs-identifier hs-var">OptionValueBoolean</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="__value"><span class="annot"><span class="annottext">OptionValue -&gt; Maybe Bool
 </span><a href="API.OptionValue.html#__value"><span class="hs-identifier hs-var hs-var">__value</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
-</span><span id="line-12"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="OptionValueEmpty"><span class="annot"><a href="API.OptionValue.html#OptionValueEmpty"><span class="hs-identifier hs-var">OptionValueEmpty</span></a></span></span><span> </span><span>
-</span><span id="line-13"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="OptionValueInteger"><span class="annot"><a href="API.OptionValue.html#OptionValueInteger"><span class="hs-identifier hs-var">OptionValueInteger</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="_value"><span class="annot"><span class="annottext">OptionValue -&gt; Maybe Int
+</span><span id="line-15"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="OptionValueEmpty"><span class="annot"><a href="API.OptionValue.html#OptionValueEmpty"><span class="hs-identifier hs-var">OptionValueEmpty</span></a></span></span><span> </span><span>
+</span><span id="line-16"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="OptionValueInteger"><span class="annot"><a href="API.OptionValue.html#OptionValueInteger"><span class="hs-identifier hs-var">OptionValueInteger</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="_value"><span class="annot"><span class="annottext">OptionValue -&gt; Maybe Int
 </span><a href="API.OptionValue.html#_value"><span class="hs-identifier hs-var hs-var">_value</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
-</span><span id="line-14"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="OptionValueString"><span class="annot"><a href="API.OptionValue.html#OptionValueString"><span class="hs-identifier hs-var">OptionValueString</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="value"><span class="annot"><span class="annottext">OptionValue -&gt; Maybe String
+</span><span id="line-17"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="OptionValueString"><span class="annot"><a href="API.OptionValue.html#OptionValueString"><span class="hs-identifier hs-var">OptionValueString</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="value"><span class="annot"><span class="annottext">OptionValue -&gt; Maybe String
 </span><a href="API.OptionValue.html#value"><span class="hs-identifier hs-var hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679443108"><span id="local-6989586621679443110"><span id="local-6989586621679443112"><span class="annot"><span class="annottext">Int -&gt; OptionValue -&gt; ShowS
 [OptionValue] -&gt; ShowS
 OptionValue -&gt; String
@@ -38,13 +41,13 @@ $c/= :: OptionValue -&gt; OptionValue -&gt; Bool
 == :: OptionValue -&gt; OptionValue -&gt; Bool
 $c== :: OptionValue -&gt; OptionValue -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679443095"><span id="local-6989586621679443097"><span id="local-6989586621679443099"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.OptionValue.html#OptionValue"><span class="hs-identifier hs-type">OptionValue</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679443093"><span class="annot"><span class="annottext">toJSON :: OptionValue -&gt; Value
+</span><span id="line-18"></span><span>
+</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679443095"><span id="local-6989586621679443097"><span id="local-6989586621679443099"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.OptionValue.html#OptionValue"><span class="hs-identifier hs-type">OptionValue</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-20"></span><span> </span><span id="local-6989586621679443093"><span class="annot"><span class="annottext">toJSON :: OptionValue -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.OptionValue.html#OptionValueBoolean"><span class="hs-identifier hs-type">OptionValueBoolean</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">__value :: OptionValue -&gt; Maybe Bool
 </span><a href="API.OptionValue.html#__value"><span class="hs-identifier hs-var">__value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443091"><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679443091"><span class="hs-identifier hs-var">__value</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-18"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-21"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
@@ -52,18 +55,18 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679443091"><span class="hs-identifier hs-var">__value</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.OptionValue.html#OptionValueEmpty"><span class="hs-identifier hs-type">OptionValueEmpty</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-21"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-22"></span><span>
+</span><span id="line-23"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.OptionValue.html#OptionValueEmpty"><span class="hs-identifier hs-type">OptionValueEmpty</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-24"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;optionValueEmpty&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.OptionValue.html#OptionValueInteger"><span class="hs-identifier hs-type">OptionValueInteger</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_value :: OptionValue -&gt; Maybe Int
+</span><span id="line-25"></span><span>
+</span><span id="line-26"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.OptionValue.html#OptionValueInteger"><span class="hs-identifier hs-type">OptionValueInteger</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_value :: OptionValue -&gt; Maybe Int
 </span><a href="API.OptionValue.html#_value"><span class="hs-identifier hs-var">_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443087"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679443087"><span class="hs-identifier hs-var">_value</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-24"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-27"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
@@ -71,11 +74,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679443087"><span class="hs-identifier hs-var">_value</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-25"></span><span>
-</span><span id="line-26"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.OptionValue.html#OptionValueString"><span class="hs-identifier hs-type">OptionValueString</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">value :: OptionValue -&gt; Maybe String
+</span><span id="line-28"></span><span>
+</span><span id="line-29"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.OptionValue.html#OptionValueString"><span class="hs-identifier hs-type">OptionValueString</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">value :: OptionValue -&gt; Maybe String
 </span><a href="API.OptionValue.html#value"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443086"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679443086"><span class="hs-identifier hs-var">value</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-27"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-30"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
@@ -83,37 +86,37 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679443086"><span class="hs-identifier hs-var">value</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-28"></span><span>
-</span><span id="line-29"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679443083"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.OptionValue.html#OptionValue"><span class="hs-identifier hs-type">OptionValue</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-30"></span><span> </span><span id="local-6989586621679443081"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser OptionValue
+</span><span id="line-31"></span><span>
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679443083"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.OptionValue.html#OptionValue"><span class="hs-identifier hs-type">OptionValue</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span> </span><span id="local-6989586621679443081"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser OptionValue
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679443079"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679443079"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679443077"><span class="annot"><span class="annottext">obj :: Object
 </span><a href="#local-6989586621679443077"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-31"></span><span>  </span><span id="local-6989586621679443076"><span class="annot"><span class="annottext">String
+</span><span id="line-34"></span><span>  </span><span id="local-6989586621679443076"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679443076"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679443077"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-32"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-35"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679443076"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-33"></span><span>   </span><span class="hs-string">&quot;optionValueBoolean&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser OptionValue
+</span><span id="line-36"></span><span>   </span><span class="hs-string">&quot;optionValueBoolean&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser OptionValue
 </span><a href="#local-6989586621679443074"><span class="hs-identifier hs-var">parseOptionValueBoolean</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679443079"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-34"></span><span>   </span><span class="hs-string">&quot;optionValueEmpty&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser OptionValue
+</span><span id="line-37"></span><span>   </span><span class="hs-string">&quot;optionValueEmpty&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser OptionValue
 </span><a href="#local-6989586621679443073"><span class="hs-identifier hs-var">parseOptionValueEmpty</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679443079"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-35"></span><span>   </span><span class="hs-string">&quot;optionValueInteger&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser OptionValue
+</span><span id="line-38"></span><span>   </span><span class="hs-string">&quot;optionValueInteger&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser OptionValue
 </span><a href="#local-6989586621679443072"><span class="hs-identifier hs-var">parseOptionValueInteger</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679443079"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-36"></span><span>   </span><span class="hs-string">&quot;optionValueString&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser OptionValue
+</span><span id="line-39"></span><span>   </span><span class="hs-string">&quot;optionValueString&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser OptionValue
 </span><a href="#local-6989586621679443071"><span class="hs-identifier hs-var">parseOptionValueString</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679443079"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-37"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser OptionValue
+</span><span id="line-40"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser OptionValue
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-38"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-39"></span><span>   </span><span class="annot"><a href="#local-6989586621679443074"><span class="hs-identifier hs-type">parseOptionValueBoolean</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.OptionValue.html#OptionValue"><span class="hs-identifier hs-type">OptionValue</span></a></span><span>
-</span><span id="line-40"></span><span>   </span><span id="local-6989586621679443074"><span class="annot"><span class="annottext">parseOptionValueBoolean :: Value -&gt; Parser OptionValue
+</span><span id="line-41"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-42"></span><span>   </span><span class="annot"><a href="#local-6989586621679443074"><span class="hs-identifier hs-type">parseOptionValueBoolean</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.OptionValue.html#OptionValue"><span class="hs-identifier hs-type">OptionValue</span></a></span><span>
+</span><span id="line-43"></span><span>   </span><span id="local-6989586621679443074"><span class="annot"><span class="annottext">parseOptionValueBoolean :: Value -&gt; Parser OptionValue
 </span><a href="#local-6989586621679443074"><span class="hs-identifier hs-var hs-var">parseOptionValueBoolean</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser OptionValue) -&gt; Value -&gt; Parser OptionValue
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
@@ -122,12 +125,12 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679443069"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679443069"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-41"></span><span>    </span><span id="local-6989586621679443068"><span class="annot"><span class="annottext">Maybe Bool
+</span><span id="line-44"></span><span>    </span><span id="local-6989586621679443068"><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679443068"><span class="hs-identifier hs-var">__value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679443069"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;value&quot;</span></span><span>
-</span><span id="line-42"></span><span>    </span><span class="annot"><span class="annottext">OptionValue -&gt; Parser OptionValue
+</span><span id="line-45"></span><span>    </span><span class="annot"><span class="annottext">OptionValue -&gt; Parser OptionValue
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(OptionValue -&gt; Parser OptionValue)
 -&gt; OptionValue -&gt; Parser OptionValue
@@ -136,9 +139,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="API.OptionValue.html#OptionValueBoolean"><span class="hs-identifier hs-type hs-type">OptionValueBoolean</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">__value :: Maybe Bool
 </span><a href="API.OptionValue.html#__value"><span class="hs-identifier hs-var">__value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679443068"><span class="hs-identifier hs-var">__value</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-43"></span><span>
-</span><span id="line-44"></span><span>   </span><span class="annot"><a href="#local-6989586621679443073"><span class="hs-identifier hs-type">parseOptionValueEmpty</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.OptionValue.html#OptionValue"><span class="hs-identifier hs-type">OptionValue</span></a></span><span>
-</span><span id="line-45"></span><span>   </span><span id="local-6989586621679443073"><span class="annot"><span class="annottext">parseOptionValueEmpty :: Value -&gt; Parser OptionValue
+</span><span id="line-46"></span><span>
+</span><span id="line-47"></span><span>   </span><span class="annot"><a href="#local-6989586621679443073"><span class="hs-identifier hs-type">parseOptionValueEmpty</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.OptionValue.html#OptionValue"><span class="hs-identifier hs-type">OptionValue</span></a></span><span>
+</span><span id="line-48"></span><span>   </span><span id="local-6989586621679443073"><span class="annot"><span class="annottext">parseOptionValueEmpty :: Value -&gt; Parser OptionValue
 </span><a href="#local-6989586621679443073"><span class="hs-identifier hs-var hs-var">parseOptionValueEmpty</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser OptionValue) -&gt; Value -&gt; Parser OptionValue
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
@@ -147,16 +150,16 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679443065"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679443065"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-46"></span><span>    </span><span class="annot"><span class="annottext">OptionValue -&gt; Parser OptionValue
+</span><span id="line-49"></span><span>    </span><span class="annot"><span class="annottext">OptionValue -&gt; Parser OptionValue
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(OptionValue -&gt; Parser OptionValue)
 -&gt; OptionValue -&gt; Parser OptionValue
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">OptionValueEmpty :: OptionValue
 </span><a href="API.OptionValue.html#OptionValueEmpty"><span class="hs-identifier hs-type hs-type">OptionValueEmpty</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-47"></span><span>
-</span><span id="line-48"></span><span>   </span><span class="annot"><a href="#local-6989586621679443072"><span class="hs-identifier hs-type">parseOptionValueInteger</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.OptionValue.html#OptionValue"><span class="hs-identifier hs-type">OptionValue</span></a></span><span>
-</span><span id="line-49"></span><span>   </span><span id="local-6989586621679443072"><span class="annot"><span class="annottext">parseOptionValueInteger :: Value -&gt; Parser OptionValue
+</span><span id="line-50"></span><span>
+</span><span id="line-51"></span><span>   </span><span class="annot"><a href="#local-6989586621679443072"><span class="hs-identifier hs-type">parseOptionValueInteger</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.OptionValue.html#OptionValue"><span class="hs-identifier hs-type">OptionValue</span></a></span><span>
+</span><span id="line-52"></span><span>   </span><span id="local-6989586621679443072"><span class="annot"><span class="annottext">parseOptionValueInteger :: Value -&gt; Parser OptionValue
 </span><a href="#local-6989586621679443072"><span class="hs-identifier hs-var hs-var">parseOptionValueInteger</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser OptionValue) -&gt; Value -&gt; Parser OptionValue
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
@@ -165,7 +168,7 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679443063"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679443063"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-50"></span><span>    </span><span id="local-6989586621679443062"><span class="annot"><span class="annottext">Maybe Int
+</span><span id="line-53"></span><span>    </span><span id="local-6989586621679443062"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679443062"><span class="hs-identifier hs-var">_value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
@@ -179,7 +182,7 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="#local-6989586621679443063"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;_value&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-51"></span><span>    </span><span class="annot"><span class="annottext">OptionValue -&gt; Parser OptionValue
+</span><span id="line-54"></span><span>    </span><span class="annot"><span class="annottext">OptionValue -&gt; Parser OptionValue
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(OptionValue -&gt; Parser OptionValue)
 -&gt; OptionValue -&gt; Parser OptionValue
@@ -188,9 +191,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><a href="API.OptionValue.html#OptionValueInteger"><span class="hs-identifier hs-type hs-type">OptionValueInteger</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_value :: Maybe Int
 </span><a href="API.OptionValue.html#_value"><span class="hs-identifier hs-var">_value</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679443062"><span class="hs-identifier hs-var">_value</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-52"></span><span>
-</span><span id="line-53"></span><span>   </span><span class="annot"><a href="#local-6989586621679443071"><span class="hs-identifier hs-type">parseOptionValueString</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.OptionValue.html#OptionValue"><span class="hs-identifier hs-type">OptionValue</span></a></span><span>
-</span><span id="line-54"></span><span>   </span><span id="local-6989586621679443071"><span class="annot"><span class="annottext">parseOptionValueString :: Value -&gt; Parser OptionValue
+</span><span id="line-55"></span><span>
+</span><span id="line-56"></span><span>   </span><span class="annot"><a href="#local-6989586621679443071"><span class="hs-identifier hs-type">parseOptionValueString</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.OptionValue.html#OptionValue"><span class="hs-identifier hs-type">OptionValue</span></a></span><span>
+</span><span id="line-57"></span><span>   </span><span id="local-6989586621679443071"><span class="annot"><span class="annottext">parseOptionValueString :: Value -&gt; Parser OptionValue
 </span><a href="#local-6989586621679443071"><span class="hs-identifier hs-var hs-var">parseOptionValueString</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser OptionValue) -&gt; Value -&gt; Parser OptionValue
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
@@ -199,12 +202,12 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679443059"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679443059"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-55"></span><span>    </span><span id="local-6989586621679443058"><span class="annot"><span class="annottext">Maybe String
+</span><span id="line-58"></span><span>    </span><span id="local-6989586621679443058"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679443058"><span class="hs-identifier hs-var">value</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679443059"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;value&quot;</span></span><span>
-</span><span id="line-56"></span><span>    </span><span class="annot"><span class="annottext">OptionValue -&gt; Parser OptionValue
+</span><span id="line-59"></span><span>    </span><span class="annot"><span class="annottext">OptionValue -&gt; Parser OptionValue
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(OptionValue -&gt; Parser OptionValue)
 -&gt; OptionValue -&gt; Parser OptionValue

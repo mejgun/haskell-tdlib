@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Animation as Animation
 
+-- |
+-- 
+-- Represents a list of animations 
+-- 
+-- __animations__ List of animations
 data Animations = 
  Animations { animations :: Maybe [Animation.Animation] }  deriving (Show, Eq)
 

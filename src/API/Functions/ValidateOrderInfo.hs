@@ -8,6 +8,17 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.OrderInfo as OrderInfo
 
+-- |
+-- 
+-- Validates the order information provided by a user and returns the available shipping options for a flexible invoice 
+-- 
+-- __chat_id__ Chat identifier of the Invoice message
+-- 
+-- __message_id__ Message identifier
+-- 
+-- __order_info__ The order information, provided by the user
+-- 
+-- __allow_save__ True, if the order information can be saved
 data ValidateOrderInfo = 
  ValidateOrderInfo { allow_save :: Maybe Bool, order_info :: Maybe OrderInfo.OrderInfo, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

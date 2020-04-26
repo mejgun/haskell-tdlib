@@ -12,6 +12,9 @@ import {-# SOURCE #-} qualified API.ChatPermissions as ChatPermissions
 import {-# SOURCE #-} qualified API.Photo as Photo
 import {-# SOURCE #-} qualified API.ChatLocation as ChatLocation
 
+-- |
+-- 
+-- Represents a chat event
 data ChatEventAction = 
  ChatEventMessageEdited { new_message :: Maybe Message.Message, old_message :: Maybe Message.Message }  
  | ChatEventMessageDeleted { message :: Maybe Message.Message }  

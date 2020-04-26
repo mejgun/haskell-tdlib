@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns backgrounds installed by the user 
+-- 
+-- __for_dark_theme__ True, if the backgrounds needs to be ordered for dark theme
 data GetBackgrounds = 
  GetBackgrounds { for_dark_theme :: Maybe Bool }  deriving (Show, Eq)
 

@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
+-- |
+-- 
+-- Returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview 
+-- 
+-- __text__ Message text with formatting
 data GetWebPagePreview = 
  GetWebPagePreview { text :: Maybe FormattedText.FormattedText }  deriving (Show, Eq)
 

@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns a user that can be contacted to get support
 data GetSupportUser = 
  GetSupportUser deriving (Show, Eq)
 

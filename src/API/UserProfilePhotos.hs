@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.UserProfilePhoto as UserProfilePhoto
 
+-- |
+-- 
+-- Contains part of the list of user photos 
+-- 
+-- __total_count__ Total number of user profile photos
+-- 
+-- __photos__ A list of photos
 data UserProfilePhotos = 
  UserProfilePhotos { photos :: Maybe [UserProfilePhoto.UserProfilePhoto], total_count :: Maybe Int }  deriving (Show, Eq)
 

@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Checks the validity of an invite link for a chat and returns information about the corresponding chat 
+-- 
+-- __invite_link__ Invite link to be checked; should begin with "https://t.me/joinchat/", "https://telegram.me/joinchat/", or "https://telegram.dog/joinchat/"
 data CheckChatInviteLink = 
  CheckChatInviteLink { invite_link :: Maybe String }  deriving (Show, Eq)
 

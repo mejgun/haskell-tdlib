@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Sticker as Sticker
 
+-- |
+-- 
+-- Represents a list of stickers 
+-- 
+-- __stickers__ List of stickers
 data Stickers = 
  Stickers { stickers :: Maybe [Sticker.Sticker] }  deriving (Show, Eq)
 

@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.OptionValue as OptionValue
 
+-- |
+-- 
+-- Sets the value of an option. (Check the list of available options on https://core.telegram.org/tdlib/options.) Only writable options can be set. Can be called before authorization
+-- 
+-- __name__ The name of the option
+-- 
+-- __value__ The new value of the option
 data SetOption = 
  SetOption { value :: Maybe OptionValue.OptionValue, name :: Maybe String }  deriving (Show, Eq)
 

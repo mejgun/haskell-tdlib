@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Thumbnail image of a very poor quality and low resolution 
+-- 
+-- __width__ Thumbnail width, usually doesn't exceed 40
+-- 
+-- __height__ Thumbnail height, usually doesn't exceed 40
+-- 
+-- __data__ The thumbnail in JPEG format
 data Minithumbnail = 
  Minithumbnail { _data :: Maybe String, height :: Maybe Int, width :: Maybe Int }  deriving (Show, Eq)
 

@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Writes a part of a generated file. This method is intended to be used only if the client has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file
+-- 
+-- __generation_id__ The identifier of the generation process
+-- 
+-- __offset__ The offset from which to write the data to the file
+-- 
+-- __data__ The data to write
 data WriteGeneratedFilePart = 
  WriteGeneratedFilePart { _data :: Maybe String, offset :: Maybe Int, generation_id :: Maybe Int }  deriving (Show, Eq)
 

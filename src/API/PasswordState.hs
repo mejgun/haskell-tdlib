@@ -8,6 +8,19 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.EmailAddressAuthenticationCodeInfo as EmailAddressAuthenticationCodeInfo
 
+-- |
+-- 
+-- Represents the current state of 2-step verification 
+-- 
+-- __has_password__ True, if a 2-step verification password is set
+-- 
+-- __password_hint__ Hint for the password; may be empty
+-- 
+-- __has_recovery_email_address__ True, if a recovery email is set
+-- 
+-- __has_passport_data__ True, if some Telegram Passport elements were saved
+-- 
+-- __recovery_email_address_code_info__ Information about the recovery email address to which the confirmation email was sent; may be null
 data PasswordState = 
  PasswordState { recovery_email_address_code_info :: Maybe EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo, has_passport_data :: Maybe Bool, has_recovery_email_address :: Maybe Bool, password_hint :: Maybe String, has_password :: Maybe Bool }  deriving (Show, Eq)
 

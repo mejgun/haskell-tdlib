@@ -10,6 +10,23 @@ import {-# SOURCE #-} qualified API.Animation as Animation
 import {-# SOURCE #-} qualified API.Photo as Photo
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
+-- |
+-- 
+-- Describes a game 
+-- 
+-- __id__ Game ID
+-- 
+-- __short_name__ Game short name. To share a game use the URL https://t.me/{bot_username}?game={game_short_name}
+-- 
+-- __title__ Game title
+-- 
+-- __text__ Game text, usually containing scoreboards for a game
+-- 
+-- __param_description__ Game description
+-- 
+-- __photo__ Game photo
+-- 
+-- __animation__ Game animation; may be null
 data Game = 
  Game { animation :: Maybe Animation.Animation, photo :: Maybe Photo.Photo, description :: Maybe String, text :: Maybe FormattedText.FormattedText, title :: Maybe String, short_name :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 

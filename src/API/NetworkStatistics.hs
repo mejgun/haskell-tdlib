@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.NetworkStatisticsEntry as NetworkStatisticsEntry
 
+-- |
+-- 
+-- A full list of available network statistic entries 
+-- 
+-- __since_date__ Point in time (Unix timestamp) when the app began collecting statistics
+-- 
+-- __entries__ Network statistics entries
 data NetworkStatistics = 
  NetworkStatistics { entries :: Maybe [NetworkStatisticsEntry.NetworkStatisticsEntry], since_date :: Maybe Int }  deriving (Show, Eq)
 

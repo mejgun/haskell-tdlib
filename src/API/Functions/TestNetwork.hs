@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Sends a simple network request to the Telegram servers; for testing only. Can be called before authorization
 data TestNetwork = 
  TestNetwork deriving (Show, Eq)
 

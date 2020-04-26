@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
+-- |
+-- 
+-- Contains information about a tg:// deep link 
+-- 
+-- __text__ Text to be shown to the user
+-- 
+-- __need_update_application__ True, if user should be asked to update the application
 data DeepLinkInfo = 
  DeepLinkInfo { need_update_application :: Maybe Bool, text :: Maybe FormattedText.FormattedText }  deriving (Show, Eq)
 

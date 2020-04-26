@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Checks whether a username can be set for a chat 
+-- 
+-- __chat_id__ Chat identifier; should be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if chat is being created
+-- 
+-- __username__ Username to be checked
 data CheckChatUsername = 
  CheckChatUsername { username :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 

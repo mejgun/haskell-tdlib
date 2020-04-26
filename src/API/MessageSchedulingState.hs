@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains information about the time when a scheduled message will be sent
 data MessageSchedulingState = 
  MessageSchedulingStateSendAtDate { send_date :: Maybe Int }  
  | MessageSchedulingStateSendWhenOnline deriving (Show, Eq)

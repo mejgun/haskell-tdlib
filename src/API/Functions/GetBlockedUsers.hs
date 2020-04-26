@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns users that were blocked by the current user 
+-- 
+-- __offset__ Number of users to skip in the result; must be non-negative
+-- 
+-- __limit__ The maximum number of users to return; up to 100
 data GetBlockedUsers = 
  GetBlockedUsers { limit :: Maybe Int, offset :: Maybe Int }  deriving (Show, Eq)
 

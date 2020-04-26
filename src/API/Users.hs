@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Represents a list of users 
+-- 
+-- __total_count__ Approximate total count of users found
+-- 
+-- __user_ids__ A list of user identifiers
 data Users = 
  Users { user_ids :: Maybe [Int], total_count :: Maybe Int }  deriving (Show, Eq)
 

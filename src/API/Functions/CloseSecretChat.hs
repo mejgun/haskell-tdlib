@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Closes a secret chat, effectively transferring its state to secretChatStateClosed 
+-- 
+-- __secret_chat_id__ Secret chat identifier
 data CloseSecretChat = 
  CloseSecretChat { secret_chat_id :: Maybe Int }  deriving (Show, Eq)
 

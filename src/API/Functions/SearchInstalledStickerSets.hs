@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Searches for installed sticker sets by looking for specified query in their title and name 
+-- 
+-- __is_masks__ Pass true to return mask sticker sets; pass false to return ordinary sticker sets
+-- 
+-- __query__ Query to search for
+-- 
+-- __limit__ The maximum number of sticker sets to return
 data SearchInstalledStickerSets = 
  SearchInstalledStickerSets { limit :: Maybe Int, query :: Maybe String, is_masks :: Maybe Bool }  deriving (Show, Eq)
 

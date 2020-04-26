@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Converts a JSON-serialized string to corresponding JsonValue object. This is an offline method. Can be called before authorization. Can be called synchronously 
+-- 
+-- __json__ The JSON-serialized string
 data GetJsonValue = 
  GetJsonValue { json :: Maybe String }  deriving (Show, Eq)
 

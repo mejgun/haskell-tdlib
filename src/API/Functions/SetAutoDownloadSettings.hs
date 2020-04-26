@@ -9,6 +9,13 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.NetworkType as NetworkType
 import {-# SOURCE #-} qualified API.AutoDownloadSettings as AutoDownloadSettings
 
+-- |
+-- 
+-- Sets auto-download settings 
+-- 
+-- __settings__ New user auto-download settings
+-- 
+-- __type__ Type of the network for which the new settings are applied
 data SetAutoDownloadSettings = 
  SetAutoDownloadSettings { _type :: Maybe NetworkType.NetworkType, settings :: Maybe AutoDownloadSettings.AutoDownloadSettings }  deriving (Show, Eq)
 

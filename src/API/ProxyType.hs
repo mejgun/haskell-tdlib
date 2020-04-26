@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes the type of a proxy server
 data ProxyType = 
  ProxyTypeSocks5 { password :: Maybe String, username :: Maybe String }  
  | ProxyTypeHttp { http_only :: Maybe Bool, password :: Maybe String, username :: Maybe String }  

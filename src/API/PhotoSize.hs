@@ -8,6 +8,17 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
 
+-- |
+-- 
+-- Photo description 
+-- 
+-- __type__ Thumbnail type (see https://core.telegram.org/constructor/photoSize)
+-- 
+-- __photo__ Information about the photo file
+-- 
+-- __width__ Photo width
+-- 
+-- __height__ Photo height
 data PhotoSize = 
  PhotoSize { height :: Maybe Int, width :: Maybe Int, photo :: Maybe File.File, _type :: Maybe String }  deriving (Show, Eq)
 

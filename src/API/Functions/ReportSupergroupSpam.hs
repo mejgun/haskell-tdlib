@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Reports some messages from a user in a supergroup as spam; requires administrator rights in the supergroup 
+-- 
+-- __supergroup_id__ Supergroup identifier
+-- 
+-- __user_id__ User identifier
+-- 
+-- __message_ids__ Identifiers of messages sent in the supergroup by the user. This list must be non-empty
 data ReportSupergroupSpam = 
  ReportSupergroupSpam { message_ids :: Maybe [Int], user_id :: Maybe Int, supergroup_id :: Maybe Int }  deriving (Show, Eq)
 

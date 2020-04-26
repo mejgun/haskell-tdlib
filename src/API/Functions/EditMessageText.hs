@@ -9,6 +9,17 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 
+-- |
+-- 
+-- Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
+-- 
+-- __chat_id__ The chat the message belongs to
+-- 
+-- __message_id__ Identifier of the message
+-- 
+-- __reply_markup__ The new message reply markup; for bots only
+-- 
+-- __input_message_content__ New text content of the message. Should be of type InputMessageText
 data EditMessageText = 
  EditMessageText { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

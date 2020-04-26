@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Clears draft messages in all chats 
+-- 
+-- __exclude_secret_chats__ If true, local draft messages in secret chats will not be cleared
 data ClearAllDraftMessages = 
  ClearAllDraftMessages { exclude_secret_chats :: Maybe Bool }  deriving (Show, Eq)
 

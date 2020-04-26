@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BotCommand as BotCommand
 
+-- |
+-- 
+-- Provides information about a bot and its supported commands 
+-- 
+-- __param_description__ Long description shown on the user info page
+-- 
+-- __commands__ A list of commands supported by the bot
 data BotInfo = 
  BotInfo { commands :: Maybe [BotCommand.BotCommand], description :: Maybe String }  deriving (Show, Eq)
 

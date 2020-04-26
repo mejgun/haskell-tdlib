@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Represents a part of the text which must be formatted differently
 data TextEntityType = 
  TextEntityTypeMention 
  | TextEntityTypeHashtag 

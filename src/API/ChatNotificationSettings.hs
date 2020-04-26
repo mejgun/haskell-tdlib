@@ -7,6 +7,29 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains information about notification settings for a chat
+-- 
+-- __use_default_mute_for__ If true, mute_for is ignored and the value for the relevant type of chat is used instead
+-- 
+-- __mute_for__ Time left before notifications will be unmuted, in seconds
+-- 
+-- __use_default_sound__ If true, sound is ignored and the value for the relevant type of chat is used instead
+-- 
+-- __sound__ The name of an audio file to be used for notification sounds; only applies to iOS applications
+-- 
+-- __use_default_show_preview__ If true, show_preview is ignored and the value for the relevant type of chat is used instead
+-- 
+-- __show_preview__ True, if message content should be displayed in notifications
+-- 
+-- __use_default_disable_pinned_message_notifications__ If true, disable_pinned_message_notifications is ignored and the value for the relevant type of chat is used instead
+-- 
+-- __disable_pinned_message_notifications__ If true, notifications for incoming pinned messages will be created as for an ordinary unread message
+-- 
+-- __use_default_disable_mention_notifications__ If true, disable_mention_notifications is ignored and the value for the relevant type of chat is used instead
+-- 
+-- __disable_mention_notifications__ If true, notifications for messages with mentions will be created as for an ordinary unread message
 data ChatNotificationSettings = 
  ChatNotificationSettings { disable_mention_notifications :: Maybe Bool, use_default_disable_mention_notifications :: Maybe Bool, disable_pinned_message_notifications :: Maybe Bool, use_default_disable_pinned_message_notifications :: Maybe Bool, show_preview :: Maybe Bool, use_default_show_preview :: Maybe Bool, sound :: Maybe String, use_default_sound :: Maybe Bool, mute_for :: Maybe Int, use_default_mute_for :: Maybe Bool }  deriving (Show, Eq)
 

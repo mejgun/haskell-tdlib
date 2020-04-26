@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Resets all network data usage statistics to zero. Can be called before authorization
 data ResetNetworkStatistics = 
  ResetNetworkStatistics deriving (Show, Eq)
 

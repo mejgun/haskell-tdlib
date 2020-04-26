@@ -10,6 +10,25 @@ import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 
+-- |
+-- 
+-- Describes an animation file. The animation must be encoded in GIF or MPEG4 format 
+-- 
+-- __duration__ Duration of the animation, in seconds; as defined by the sender
+-- 
+-- __width__ Width of the animation
+-- 
+-- __height__ Height of the animation
+-- 
+-- __file_name__ Original name of the file; as defined by the sender
+-- 
+-- __mime_type__ MIME type of the file, usually "image/gif" or "video/mp4"
+-- 
+-- __minithumbnail__ Animation minithumbnail; may be null
+-- 
+-- __thumbnail__ Animation thumbnail; may be null
+-- 
+-- __animation__ File containing the animation
 data Animation = 
  Animation { animation :: Maybe File.File, thumbnail :: Maybe PhotoSize.PhotoSize, minithumbnail :: Maybe Minithumbnail.Minithumbnail, mime_type :: Maybe String, file_name :: Maybe String, height :: Maybe Int, width :: Maybe Int, duration :: Maybe Int }  deriving (Show, Eq)
 

@@ -7,6 +7,27 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains information about one website the current user is logged in with Telegram
+-- 
+-- __id__ Website identifier
+-- 
+-- __domain_name__ The domain name of the website
+-- 
+-- __bot_user_id__ User identifier of a bot linked with the website
+-- 
+-- __browser__ The version of a browser used to log in
+-- 
+-- __platform__ Operating system the browser is running on
+-- 
+-- __log_in_date__ Point in time (Unix timestamp) when the user was logged in
+-- 
+-- __last_active_date__ Point in time (Unix timestamp) when obtained authorization was last used
+-- 
+-- __ip__ IP address from which the user was logged in, in human-readable format
+-- 
+-- __location__ Human-readable description of a country and a region, from which the user was logged in, based on the IP address
 data ConnectedWebsite = 
  ConnectedWebsite { location :: Maybe String, ip :: Maybe String, last_active_date :: Maybe Int, log_in_date :: Maybe Int, platform :: Maybe String, browser :: Maybe String, bot_user_id :: Maybe Int, domain_name :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 

@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PublicChatType as PublicChatType
 
+-- |
+-- 
+-- Returns a list of public chats of the specified type, owned by the user 
+-- 
+-- __type__ Type of the public chats to return
 data GetCreatedPublicChats = 
  GetCreatedPublicChats { _type :: Maybe PublicChatType.PublicChatType }  deriving (Show, Eq)
 

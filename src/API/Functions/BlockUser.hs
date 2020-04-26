@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Adds a user to the blacklist 
+-- 
+-- __user_id__ User identifier
 data BlockUser = 
  BlockUser { user_id :: Maybe Int }  deriving (Show, Eq)
 

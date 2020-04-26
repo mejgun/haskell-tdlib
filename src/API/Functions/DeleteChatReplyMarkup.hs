@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a ForceReply reply markup has been used. UpdateChatReplyMarkup will be sent if the reply markup will be changed 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __message_id__ The message identifier of the used keyboard
 data DeleteChatReplyMarkup = 
  DeleteChatReplyMarkup { message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

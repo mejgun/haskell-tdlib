@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Deletes saved credentials for all payment provider bots
 data DeleteSavedCredentials = 
  DeleteSavedCredentials deriving (Show, Eq)
 

@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization 
+-- 
+-- __language_pack_id__ Identifier of a language pack to be added; may be different from a name that is used in an "https://t.me/setlanguage/" link
 data AddCustomServerLanguagePack = 
  AddCustomServerLanguagePack { language_pack_id :: Maybe String }  deriving (Show, Eq)
 

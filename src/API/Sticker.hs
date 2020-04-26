@@ -10,6 +10,27 @@ import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 import {-# SOURCE #-} qualified API.MaskPosition as MaskPosition
 
+-- |
+-- 
+-- Describes a sticker 
+-- 
+-- __set_id__ The identifier of the sticker set to which the sticker belongs; 0 if none
+-- 
+-- __width__ Sticker width; as defined by the sender
+-- 
+-- __height__ Sticker height; as defined by the sender
+-- 
+-- __emoji__ Emoji corresponding to the sticker
+-- 
+-- __is_animated__ True, if the sticker is an animated sticker in TGS format
+-- 
+-- __is_mask__ True, if the sticker is a mask
+-- 
+-- __mask_position__ Position where the mask should be placed; may be null
+-- 
+-- __thumbnail__ Sticker thumbnail in WEBP or JPEG format; may be null
+-- 
+-- __sticker__ File containing the sticker
 data Sticker = 
  Sticker { sticker :: Maybe File.File, thumbnail :: Maybe PhotoSize.PhotoSize, mask_position :: Maybe MaskPosition.MaskPosition, is_mask :: Maybe Bool, is_animated :: Maybe Bool, emoji :: Maybe String, height :: Maybe Int, width :: Maybe Int, set_id :: Maybe Int }  deriving (Show, Eq)
 

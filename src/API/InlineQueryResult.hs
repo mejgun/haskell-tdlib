@@ -19,6 +19,9 @@ import {-# SOURCE #-} qualified API.Sticker as Sticker
 import {-# SOURCE #-} qualified API.Video as Video
 import {-# SOURCE #-} qualified API.VoiceNote as VoiceNote
 
+-- |
+-- 
+-- Represents a single result of an inline query
 data InlineQueryResult = 
  InlineQueryResultArticle { thumbnail :: Maybe PhotoSize.PhotoSize, description :: Maybe String, title :: Maybe String, hide_url :: Maybe Bool, url :: Maybe String, _id :: Maybe String }  
  | InlineQueryResultContact { thumbnail :: Maybe PhotoSize.PhotoSize, contact :: Maybe Contact.Contact, _id :: Maybe String }  

@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method doesn't need to be called explicitly for the current used/base language packs. Can be called before authorization 
+-- 
+-- __language_pack_id__ Language pack identifier
 data SynchronizeLanguagePack = 
  SynchronizeLanguagePack { language_pack_id :: Maybe String }  deriving (Show, Eq)
 

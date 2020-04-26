@@ -8,6 +8,9 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatInviteLinkInfo as ChatInviteLinkInfo
 
+-- |
+-- 
+-- Describes the type of a URL linking to an internal Telegram entity
 data TMeUrlType = 
  TMeUrlTypeUser { user_id :: Maybe Int }  
  | TMeUrlTypeSupergroup { supergroup_id :: Maybe Int }  

@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Removes a chat from the list of recently found chats 
+-- 
+-- __chat_id__ Identifier of the chat to be removed
 data RemoveRecentlyFoundChat = 
  RemoveRecentlyFoundChat { chat_id :: Maybe Int }  deriving (Show, Eq)
 

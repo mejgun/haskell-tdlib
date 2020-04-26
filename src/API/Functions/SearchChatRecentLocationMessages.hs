@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __limit__ The maximum number of messages to be returned
 data SearchChatRecentLocationMessages = 
  SearchChatRecentLocationMessages { limit :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

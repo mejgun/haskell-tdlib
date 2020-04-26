@@ -7,6 +7,17 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Discards a call 
+-- 
+-- __call_id__ Call identifier
+-- 
+-- __is_disconnected__ True, if the user was disconnected
+-- 
+-- __duration__ The call duration, in seconds
+-- 
+-- __connection_id__ Identifier of the connection used during the call
 data DiscardCall = 
  DiscardCall { connection_id :: Maybe Int, duration :: Maybe Int, is_disconnected :: Maybe Bool, call_id :: Maybe Int }  deriving (Show, Eq)
 

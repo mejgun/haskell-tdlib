@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns stickers from the installed sticker sets that correspond to a given emoji. If the emoji is not empty, favorite and recently used stickers may also be returned 
+-- 
+-- __emoji__ String representation of emoji. If empty, returns all known installed stickers
+-- 
+-- __limit__ The maximum number of stickers to be returned
 data GetStickers = 
  GetStickers { limit :: Maybe Int, emoji :: Maybe String }  deriving (Show, Eq)
 

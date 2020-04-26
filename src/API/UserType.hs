@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Represents the type of a user. The following types are possible: regular users, deleted users and bots
 data UserType = 
  UserTypeRegular 
  | UserTypeDeleted 

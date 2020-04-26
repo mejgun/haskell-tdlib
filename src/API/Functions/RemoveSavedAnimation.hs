@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
+-- |
+-- 
+-- Removes an animation from the list of saved animations 
+-- 
+-- __animation__ Animation file to be removed
 data RemoveSavedAnimation = 
  RemoveSavedAnimation { animation :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 

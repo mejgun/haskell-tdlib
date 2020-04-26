@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Recovers the password using a recovery code sent to an email address that was previously set up 
+-- 
+-- __recovery_code__ Recovery code to check
 data RecoverPassword = 
  RecoverPassword { recovery_code :: Maybe String }  deriving (Show, Eq)
 

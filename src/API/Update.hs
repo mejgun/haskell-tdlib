@@ -48,6 +48,9 @@ import {-# SOURCE #-} qualified API.Address as Address
 import {-# SOURCE #-} qualified API.OrderInfo as OrderInfo
 import {-# SOURCE #-} qualified API.Poll as Poll
 
+-- |
+-- 
+-- Contains notifications about data changes
 data Update = 
  UpdateAuthorizationState { authorization_state :: Maybe AuthorizationState.AuthorizationState }  
  | UpdateNewMessage { message :: Maybe Message.Message }  

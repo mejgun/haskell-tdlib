@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Searches for a sticker set by its name 
+-- 
+-- __name__ Name of the sticker set
 data SearchStickerSet = 
  SearchStickerSet { name :: Maybe String }  deriving (Show, Eq)
 

@@ -8,6 +8,19 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PageBlock as PageBlock
 
+-- |
+-- 
+-- Describes an instant view page for a web page
+-- 
+-- __page_blocks__ Content of the web page
+-- 
+-- __view_count__ Number of the instant view views; 0 if unknown
+-- 
+-- __version__ Version of the instant view, currently can be 1 or 2
+-- 
+-- __is_rtl__ True, if the instant view must be shown from right to left
+-- 
+-- __is_full__ True, if the instant view contains the full page. A network request might be needed to get the full web page instant view
 data WebPageInstantView = 
  WebPageInstantView { is_full :: Maybe Bool, is_rtl :: Maybe Bool, version :: Maybe Int, view_count :: Maybe Int, page_blocks :: Maybe [PageBlock.PageBlock] }  deriving (Show, Eq)
 

@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Searches for stickers from public sticker sets that correspond to a given emoji 
+-- 
+-- __emoji__ String representation of emoji; must be non-empty
+-- 
+-- __limit__ The maximum number of stickers to be returned
 data SearchStickers = 
  SearchStickers { limit :: Maybe Int, emoji :: Maybe String }  deriving (Show, Eq)
 

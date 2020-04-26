@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- A statistics value 
+-- 
+-- __value__ The value
+-- 
+-- __previous_value__ The value for the previous day
+-- 
+-- __growth_rate_percentage__ The growth rate of the value, as a percentage
 data StatisticsValue = 
  StatisticsValue { growth_rate_percentage :: Maybe Float, previous_value :: Maybe Float, value :: Maybe Float }  deriving (Show, Eq)
 

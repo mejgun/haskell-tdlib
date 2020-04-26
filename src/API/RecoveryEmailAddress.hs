@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains information about the current recovery email address 
+-- 
+-- __recovery_email_address__ Recovery email address
 data RecoveryEmailAddress = 
  RecoveryEmailAddress { recovery_email_address :: Maybe String }  deriving (Show, Eq)
 

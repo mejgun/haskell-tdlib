@@ -27,6 +27,9 @@ import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 import {-# SOURCE #-} qualified API.EncryptedCredentials as EncryptedCredentials
 import {-# SOURCE #-} qualified API.EncryptedPassportElement as EncryptedPassportElement
 
+-- |
+-- 
+-- Contains the content of a message
 data MessageContent = 
  MessageText { web_page :: Maybe WebPage.WebPage, _text :: Maybe FormattedText.FormattedText }  
  | MessageAnimation { is_secret :: Maybe Bool, caption :: Maybe FormattedText.FormattedText, animation :: Maybe Animation.Animation }  

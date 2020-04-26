@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Represents a date according to the Gregorian calendar 
+-- 
+-- __day__ Day of the month, 1-31
+-- 
+-- __month__ Month, 1-12
+-- 
+-- __year__ Year, 1-9999
 data Date = 
  Date { year :: Maybe Int, month :: Maybe Int, day :: Maybe Int }  deriving (Show, Eq)
 

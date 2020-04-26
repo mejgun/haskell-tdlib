@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Disconnects all websites from the current user's Telegram account
 data DisconnectAllWebsites = 
  DisconnectAllWebsites deriving (Show, Eq)
 

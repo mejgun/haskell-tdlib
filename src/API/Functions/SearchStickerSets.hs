@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Searches for ordinary sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results 
+-- 
+-- __query__ Query to search for
 data SearchStickerSets = 
  SearchStickerSets { query :: Maybe String }  deriving (Show, Eq)
 

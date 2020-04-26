@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Contact as Contact
 
+-- |
+-- 
+-- Changes imported contacts using the list of current user contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled, deletes recently deleted contacts.
+-- 
+-- -Query result depends on the result of the previous query, so only one query is possible at the same time 
+-- 
+-- __contacts__ The new list of contacts, contact's vCard are ignored and are not imported
 data ChangeImportedContacts = 
  ChangeImportedContacts { contacts :: Maybe [Contact.Contact] }  deriving (Show, Eq)
 

@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TdlibParameters as TdlibParameters
 
+-- |
+-- 
+-- Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters 
+-- 
+-- __parameters__ Parameters
 data SetTdlibParameters = 
  SetTdlibParameters { parameters :: Maybe TdlibParameters.TdlibParameters }  deriving (Show, Eq)
 

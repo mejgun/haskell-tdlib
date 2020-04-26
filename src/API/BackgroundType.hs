@@ -8,6 +8,9 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BackgroundFill as BackgroundFill
 
+-- |
+-- 
+-- Describes the type of a background
 data BackgroundType = 
  BackgroundTypeWallpaper { is_moving :: Maybe Bool, is_blurred :: Maybe Bool }  
  | BackgroundTypePattern { is_moving :: Maybe Bool, intensity :: Maybe Int, fill :: Maybe BackgroundFill.BackgroundFill }  

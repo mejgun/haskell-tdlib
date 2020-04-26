@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Pins a message in a chat; requires can_pin_messages rights 
+-- 
+-- __chat_id__ Identifier of the chat
+-- 
+-- __message_id__ Identifier of the new pinned message
+-- 
+-- __disable_notification__ True, if there should be no notification about the pinned message
 data PinChatMessage = 
  PinChatMessage { disable_notification :: Maybe Bool, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

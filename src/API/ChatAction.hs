@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes the different types of activity in a chat
 data ChatAction = 
  ChatActionTyping 
  | ChatActionRecordingVideo 

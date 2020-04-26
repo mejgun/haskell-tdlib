@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- An object of this type is returned on a successful function call for certain functions
 data Ok = 
  Ok deriving (Show, Eq)
 

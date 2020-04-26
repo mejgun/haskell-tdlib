@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.JsonValue as JsonValue
 
+-- |
+-- 
+-- Represents one member of a JSON object 
+-- 
+-- __key__ Member's key
+-- 
+-- __value__ Member's value
 data JsonObjectMember = 
  JsonObjectMember { value :: Maybe JsonValue.JsonValue, key :: Maybe String }  deriving (Show, Eq)
 

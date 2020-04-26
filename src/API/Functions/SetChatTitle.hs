@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info rights. The title will not be changed until the request to the server has been completed
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __title__ New title of the chat; 1-128 characters
 data SetChatTitle = 
  SetChatTitle { title :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 

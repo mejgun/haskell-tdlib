@@ -9,6 +9,9 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FileType as FileType
 import {-# SOURCE #-} qualified API.NetworkType as NetworkType
 
+-- |
+-- 
+-- Contains statistics about network usage
 data NetworkStatisticsEntry = 
  NetworkStatisticsEntryFile { received_bytes :: Maybe Int, sent_bytes :: Maybe Int, network_type :: Maybe NetworkType.NetworkType, file_type :: Maybe FileType.FileType }  
  | NetworkStatisticsEntryCall { duration :: Maybe Float, received_bytes :: Maybe Int, sent_bytes :: Maybe Int, network_type :: Maybe NetworkType.NetworkType }  deriving (Show, Eq)

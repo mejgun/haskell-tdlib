@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
+-- |
+-- 
+-- Uploads a PNG image with a sticker; for bots only; returns the uploaded file
+-- 
+-- __user_id__ Sticker file owner
+-- 
+-- __png_sticker__ PNG image with the sticker; must be up to 512 KB in size and fit in 512x512 square
 data UploadStickerFile = 
  UploadStickerFile { png_sticker :: Maybe InputFile.InputFile, user_id :: Maybe Int }  deriving (Show, Eq)
 

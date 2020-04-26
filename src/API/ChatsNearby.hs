@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatNearby as ChatNearby
 
+-- |
+-- 
+-- Represents a list of chats located nearby 
+-- 
+-- __users_nearby__ List of users nearby
+-- 
+-- __supergroups_nearby__ List of location-based supergroups nearby
 data ChatsNearby = 
  ChatsNearby { supergroups_nearby :: Maybe [ChatNearby.ChatNearby], users_nearby :: Maybe [ChatNearby.ChatNearby] }  deriving (Show, Eq)
 

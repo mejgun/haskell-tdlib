@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Represents a list of emoji 
+-- 
+-- __emojis__ List of emojis
 data Emojis = 
  Emojis { emojis :: Maybe [String] }  deriving (Show, Eq)
 

@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes a type of public chats
 data PublicChatType = 
  PublicChatTypeHasUsername 
  | PublicChatTypeIsLocationBased deriving (Show, Eq)

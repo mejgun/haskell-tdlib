@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns an existing chat corresponding to a known supergroup or channel 
+-- 
+-- __supergroup_id__ Supergroup or channel identifier
+-- 
+-- __force__ If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
 data CreateSupergroupChat = 
  CreateSupergroupChat { force :: Maybe Bool, supergroup_id :: Maybe Int }  deriving (Show, Eq)
 

@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns information about a user by their identifier. This is an offline request if the current user is not a bot 
+-- 
+-- __user_id__ User identifier
 data GetUser = 
  GetUser { user_id :: Maybe Int }  deriving (Show, Eq)
 

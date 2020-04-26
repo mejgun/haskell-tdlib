@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LanguagePackInfo as LanguagePackInfo
 
+-- |
+-- 
+-- Contains information about the current localization target 
+-- 
+-- __language_packs__ List of available language packs for this application
 data LocalizationTargetInfo = 
  LocalizationTargetInfo { language_packs :: Maybe [LanguagePackInfo.LanguagePackInfo] }  deriving (Show, Eq)
 

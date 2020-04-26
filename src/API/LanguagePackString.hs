@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.LanguagePackStringValue as LanguagePackStringValue
 
+-- |
+-- 
+-- Represents one language pack string 
+-- 
+-- __key__ String key
+-- 
+-- __value__ String value
 data LanguagePackString = 
  LanguagePackString { value :: Maybe LanguagePackStringValue.LanguagePackStringValue, key :: Maybe String }  deriving (Show, Eq)
 

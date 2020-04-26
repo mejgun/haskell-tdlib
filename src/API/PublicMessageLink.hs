@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains a public HTTPS link to a message in a supergroup or channel with a username 
+-- 
+-- __link__ Message link
+-- 
+-- __html__ HTML-code for embedding the message
 data PublicMessageLink = 
  PublicMessageLink { html :: Maybe String, link :: Maybe String }  deriving (Show, Eq)
 

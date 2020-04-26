@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains the result of a payment request 
+-- 
+-- __success__ True, if the payment request was successful; otherwise the verification_url will be not empty
+-- 
+-- __verification_url__ URL for additional payment credentials verification
 data PaymentResult = 
  PaymentResult { verification_url :: Maybe String, success :: Maybe Bool }  deriving (Show, Eq)
 

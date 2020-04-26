@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns a list of archived sticker sets 
+-- 
+-- __is_masks__ Pass true to return mask stickers sets; pass false to return ordinary sticker sets
+-- 
+-- __offset_sticker_set_id__ Identifier of the sticker set from which to return the result
+-- 
+-- __limit__ The maximum number of sticker sets to return
 data GetArchivedStickerSets = 
  GetArchivedStickerSets { limit :: Maybe Int, offset_sticker_set_id :: Maybe Int, is_masks :: Maybe Bool }  deriving (Show, Eq)
 

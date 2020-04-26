@@ -8,6 +8,23 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputInlineQueryResult as InputInlineQueryResult
 
+-- |
+-- 
+-- Sets the result of an inline query; for bots only 
+-- 
+-- __inline_query_id__ Identifier of the inline query
+-- 
+-- __is_personal__ True, if the result of the query can be cached for the specified user
+-- 
+-- __results__ The results of the query
+-- 
+-- __cache_time__ Allowed time to cache the results of the query, in seconds
+-- 
+-- __next_offset__ Offset for the next inline query; pass an empty string if there are no more results
+-- 
+-- __switch_pm_text__ If non-empty, this text should be shown on the button that opens a private chat with the bot and sends a start message to the bot with the parameter switch_pm_parameter
+-- 
+-- __switch_pm_parameter__ The parameter for the bot start message
 data AnswerInlineQuery = 
  AnswerInlineQuery { switch_pm_parameter :: Maybe String, switch_pm_text :: Maybe String, next_offset :: Maybe String, cache_time :: Maybe Int, results :: Maybe [InputInlineQueryResult.InputInlineQueryResult], is_personal :: Maybe Bool, inline_query_id :: Maybe Int }  deriving (Show, Eq)
 

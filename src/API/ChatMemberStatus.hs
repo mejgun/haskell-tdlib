@@ -8,6 +8,9 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatPermissions as ChatPermissions
 
+-- |
+-- 
+-- Provides information about the status of a member in a chat
 data ChatMemberStatus = 
  ChatMemberStatusCreator { is_member :: Maybe Bool, custom_title :: Maybe String }  
  | ChatMemberStatusAdministrator { can_promote_members :: Maybe Bool, can_pin_messages :: Maybe Bool, can_restrict_members :: Maybe Bool, can_invite_users :: Maybe Bool, can_delete_messages :: Maybe Bool, can_edit_messages :: Maybe Bool, can_post_messages :: Maybe Bool, can_change_info :: Maybe Bool, can_be_edited :: Maybe Bool, custom_title :: Maybe String }  

@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed 
+-- 
+-- __chat_id__ Chat identifier of the message
+-- 
+-- __message_id__ Identifier of the message with the opened content
 data OpenMessageContent = 
  OpenMessageContent { message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

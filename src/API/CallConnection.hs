@@ -7,6 +7,19 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes the address of UDP reflectors 
+-- 
+-- __id__ Reflector identifier
+-- 
+-- __ip__ IPv4 reflector address
+-- 
+-- __ipv6__ IPv6 reflector address
+-- 
+-- __port__ Reflector port number
+-- 
+-- __peer_tag__ Connection peer tag
 data CallConnection = 
  CallConnection { peer_tag :: Maybe String, port :: Maybe Int, ipv6 :: Maybe String, ip :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 

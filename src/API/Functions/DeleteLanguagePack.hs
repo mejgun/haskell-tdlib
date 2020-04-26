@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted. Can be called before authorization 
+-- 
+-- __language_pack_id__ Identifier of the language pack to delete
 data DeleteLanguagePack = 
  DeleteLanguagePack { language_pack_id :: Maybe String }  deriving (Show, Eq)
 

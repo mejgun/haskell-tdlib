@@ -9,6 +9,27 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.DatedFile as DatedFile
 import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 
+-- |
+-- 
+-- Contains information about an encrypted Telegram Passport element; for bots only 
+-- 
+-- __type__ Type of Telegram Passport element
+-- 
+-- __data__ Encrypted JSON-encoded data about the user
+-- 
+-- __front_side__ The front side of an identity document
+-- 
+-- __reverse_side__ The reverse side of an identity document; may be null
+-- 
+-- __selfie__ Selfie with the document; may be null
+-- 
+-- __translation__ List of files containing a certified English translation of the document
+-- 
+-- __files__ List of attached files
+-- 
+-- __value__ Unencrypted data, phone number or email address
+-- 
+-- __hash__ Hash of the entire element
 data EncryptedPassportElement = 
  EncryptedPassportElement { hash :: Maybe String, value :: Maybe String, files :: Maybe [DatedFile.DatedFile], translation :: Maybe [DatedFile.DatedFile], selfie :: Maybe DatedFile.DatedFile, reverse_side :: Maybe DatedFile.DatedFile, front_side :: Maybe DatedFile.DatedFile, _data :: Maybe String, _type :: Maybe PassportElementType.PassportElementType }  deriving (Show, Eq)
 

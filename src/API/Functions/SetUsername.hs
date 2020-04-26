@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Changes the username of the current user. If something changes, updateUser will be sent 
+-- 
+-- __username__ The new value of the username. Use an empty string to remove the username
 data SetUsername = 
  SetUsername { username :: Maybe String }  deriving (Show, Eq)
 

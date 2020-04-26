@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns the last message sent in a chat no later than the specified date 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __date__ Point in time (Unix timestamp) relative to which to search for messages
 data GetChatMessageByDate = 
  GetChatMessageByDate { date :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

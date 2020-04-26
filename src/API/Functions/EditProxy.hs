@@ -8,6 +8,19 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ProxyType as ProxyType
 
+-- |
+-- 
+-- Edits an existing proxy server for network requests. Can be called before authorization 
+-- 
+-- __proxy_id__ Proxy identifier
+-- 
+-- __server__ Proxy server IP address
+-- 
+-- __port__ Proxy server port
+-- 
+-- __enable__ True, if the proxy should be enabled
+-- 
+-- __type__ Proxy type
 data EditProxy = 
  EditProxy { _type :: Maybe ProxyType.ProxyType, enable :: Maybe Bool, port :: Maybe Int, server :: Maybe String, proxy_id :: Maybe Int }  deriving (Show, Eq)
 

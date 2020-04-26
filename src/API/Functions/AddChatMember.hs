@@ -7,6 +7,15 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Adds a new member to a chat. Members can't be added to private or secret chats. Members will not be added until the chat state has been synchronized with the server
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __user_id__ Identifier of the user
+-- 
+-- __forward_limit__ The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels
 data AddChatMember = 
  AddChatMember { forward_limit :: Maybe Int, user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

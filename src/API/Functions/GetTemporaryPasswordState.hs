@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns information about the current temporary password
 data GetTemporaryPasswordState = 
  GetTemporaryPasswordState deriving (Show, Eq)
 

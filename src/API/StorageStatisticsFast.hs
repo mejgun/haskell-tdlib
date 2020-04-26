@@ -7,6 +7,19 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Contains approximate storage usage statistics, excluding files of unknown file type 
+-- 
+-- __files_size__ Approximate total size of files
+-- 
+-- __file_count__ Approximate number of files
+-- 
+-- __database_size__ Size of the database
+-- 
+-- __language_pack_database_size__ Size of the language pack database
+-- 
+-- __log_size__ Size of the TDLib internal log
 data StorageStatisticsFast = 
  StorageStatisticsFast { log_size :: Maybe Int, language_pack_database_size :: Maybe Int, database_size :: Maybe Int, file_count :: Maybe Int, files_size :: Maybe Int }  deriving (Show, Eq)
 

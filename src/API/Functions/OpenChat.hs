@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats) 
+-- 
+-- __chat_id__ Chat identifier
 data OpenChat = 
  OpenChat { chat_id :: Maybe Int }  deriving (Show, Eq)
 

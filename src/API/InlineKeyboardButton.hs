@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InlineKeyboardButtonType as InlineKeyboardButtonType
 
+-- |
+-- 
+-- Represents a single button in an inline keyboard 
+-- 
+-- __text__ Text of the button
+-- 
+-- __type__ Type of the button
 data InlineKeyboardButton = 
  InlineKeyboardButton { _type :: Maybe InlineKeyboardButtonType.InlineKeyboardButtonType, text :: Maybe String }  deriving (Show, Eq)
 

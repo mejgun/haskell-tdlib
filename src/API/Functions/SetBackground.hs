@@ -9,6 +9,15 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.BackgroundType as BackgroundType
 import {-# SOURCE #-} qualified API.InputBackground as InputBackground
 
+-- |
+-- 
+-- Changes the background selected by the user; adds background to the list of installed backgrounds
+-- 
+-- __background__ The input background to use, null for filled backgrounds
+-- 
+-- __type__ Background type; null for default background. The method will return error 404 if type is null
+-- 
+-- __for_dark_theme__ True, if the background is chosen for dark theme
 data SetBackground = 
  SetBackground { for_dark_theme :: Maybe Bool, _type :: Maybe BackgroundType.BackgroundType, background :: Maybe InputBackground.InputBackground }  deriving (Show, Eq)
 

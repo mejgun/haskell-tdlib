@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Represents a payload of a callback query
 data CallbackQueryPayload = 
  CallbackQueryPayloadData { _data :: Maybe String }  
  | CallbackQueryPayloadGame { game_short_name :: Maybe String }  deriving (Show, Eq)

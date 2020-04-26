@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes actions which should be possible to do through a chat action bar
 data ChatActionBar = 
  ChatActionBarReportSpam 
  | ChatActionBarReportUnrelatedLocation 

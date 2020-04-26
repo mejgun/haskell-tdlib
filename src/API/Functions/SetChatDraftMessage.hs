@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.DraftMessage as DraftMessage
 
+-- |
+-- 
+-- Changes the draft message in a chat 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __draft_message__ New draft message; may be null
 data SetChatDraftMessage = 
  SetChatDraftMessage { draft_message :: Maybe DraftMessage.DraftMessage, chat_id :: Maybe Int }  deriving (Show, Eq)
 

@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute 
+-- 
+-- __supergroup_id__ Supergroup or channel identifier
 data GetSupergroupFullInfo = 
  GetSupergroupFullInfo { supergroup_id :: Maybe Int }  deriving (Show, Eq)
 

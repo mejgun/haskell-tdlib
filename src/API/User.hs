@@ -10,6 +10,41 @@ import {-# SOURCE #-} qualified API.UserType as UserType
 import {-# SOURCE #-} qualified API.ProfilePhoto as ProfilePhoto
 import {-# SOURCE #-} qualified API.UserStatus as UserStatus
 
+-- |
+-- 
+-- Represents a user 
+-- 
+-- __id__ User identifier
+-- 
+-- __first_name__ First name of the user
+-- 
+-- __last_name__ Last name of the user
+-- 
+-- __username__ Username of the user
+-- 
+-- __phone_number__ Phone number of the user
+-- 
+-- __status__ Current online status of the user
+-- 
+-- __profile_photo__ Profile photo of the user; may be null
+-- 
+-- __is_contact__ The user is a contact of the current user
+-- 
+-- __is_mutual_contact__ The user is a contact of the current user and the current user is a contact of the user
+-- 
+-- __is_verified__ True, if the user is verified
+-- 
+-- __is_support__ True, if the user is Telegram support account
+-- 
+-- __restriction_reason__ If non-empty, it contains a human-readable description of the reason why access to this user must be restricted
+-- 
+-- __is_scam__ True, if many users reported this user as a scam
+-- 
+-- __have_access__ If false, the user is inaccessible, and the only information known about the user is inside this class. It can't be passed to any method except GetUser
+-- 
+-- __type__ Type of the user
+-- 
+-- __language_code__ IETF language tag of the user's language; only available to bots
 data User = 
  User { language_code :: Maybe String, _type :: Maybe UserType.UserType, have_access :: Maybe Bool, is_scam :: Maybe Bool, restriction_reason :: Maybe String, is_support :: Maybe Bool, is_verified :: Maybe Bool, is_mutual_contact :: Maybe Bool, is_contact :: Maybe Bool, profile_photo :: Maybe ProfilePhoto.ProfilePhoto, status :: Maybe UserStatus.UserStatus, phone_number :: Maybe String, username :: Maybe String, last_name :: Maybe String, first_name :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 

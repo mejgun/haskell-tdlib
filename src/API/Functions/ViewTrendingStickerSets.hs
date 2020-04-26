@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Informs the server that some trending sticker sets have been viewed by the user 
+-- 
+-- __sticker_set_ids__ Identifiers of viewed trending sticker sets
 data ViewTrendingStickerSets = 
  ViewTrendingStickerSets { sticker_set_ids :: Maybe [Int] }  deriving (Show, Eq)
 

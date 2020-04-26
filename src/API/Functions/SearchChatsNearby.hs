@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Location as Location
 
+-- |
+-- 
+-- Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby. The request should be sent again every 25 seconds with adjusted location to not miss new chats 
+-- 
+-- __location__ Current user location
 data SearchChatsNearby = 
  SearchChatsNearby { location :: Maybe Location.Location }  deriving (Show, Eq)
 

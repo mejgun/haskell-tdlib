@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Confirms QR code authentication on another device. Returns created session on success 
+-- 
+-- __link__ A link from a QR code. The link must be scanned by the in-app camera
 data ConfirmQrCodeAuthentication = 
  ConfirmQrCodeAuthentication { link :: Maybe String }  deriving (Show, Eq)
 

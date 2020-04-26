@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form 
+-- 
+-- __autorization_form_id__ Authorization form identifier
+-- 
+-- __password__ Password of the current user
 data GetPassportAuthorizationFormAvailableElements = 
  GetPassportAuthorizationFormAvailableElements { password :: Maybe String, autorization_form_id :: Maybe Int }  deriving (Show, Eq)
 

@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
+-- |
+-- 
+-- Uploads a new profile photo for the current user. If something changes, updateUser will be sent 
+-- 
+-- __photo__ Profile photo to set. inputFileId and inputFileRemote may still be unsupported
 data SetProfilePhoto = 
  SetProfilePhoto { photo :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 

@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns information about a pinned chat message 
+-- 
+-- __chat_id__ Identifier of the chat the message belongs to
 data GetChatPinnedMessage = 
  GetChatPinnedMessage { chat_id :: Maybe Int }  deriving (Show, Eq)
 

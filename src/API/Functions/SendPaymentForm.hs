@@ -8,6 +8,19 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputCredentials as InputCredentials
 
+-- |
+-- 
+-- Sends a filled-out payment form to the bot for final verification 
+-- 
+-- __chat_id__ Chat identifier of the Invoice message
+-- 
+-- __message_id__ Message identifier
+-- 
+-- __order_info_id__ Identifier returned by ValidateOrderInfo, or an empty string
+-- 
+-- __shipping_option_id__ Identifier of a chosen shipping option, if applicable
+-- 
+-- __credentials__ The credentials chosen by user for payment
 data SendPaymentForm = 
  SendPaymentForm { credentials :: Maybe InputCredentials.InputCredentials, shipping_option_id :: Maybe String, order_info_id :: Maybe String, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

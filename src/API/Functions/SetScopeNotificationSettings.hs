@@ -9,6 +9,13 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ScopeNotificationSettings as ScopeNotificationSettings
 import {-# SOURCE #-} qualified API.NotificationSettingsScope as NotificationSettingsScope
 
+-- |
+-- 
+-- Changes notification settings for chats of a given type 
+-- 
+-- __scope__ Types of chats for which to change the notification settings
+-- 
+-- __notification_settings__ The new notification settings for the given scope
 data SetScopeNotificationSettings = 
  SetScopeNotificationSettings { notification_settings :: Maybe ScopeNotificationSettings.ScopeNotificationSettings, scope :: Maybe NotificationSettingsScope.NotificationSettingsScope }  deriving (Show, Eq)
 

@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.NotificationSettingsScope as NotificationSettingsScope
 
+-- |
+-- 
+-- Returns the notification settings for chats of a given type 
+-- 
+-- __scope__ Types of chats for which to return the notification settings information
 data GetScopeNotificationSettings = 
  GetScopeNotificationSettings { scope :: Maybe NotificationSettingsScope.NotificationSettingsScope }  deriving (Show, Eq)
 

@@ -16,6 +16,51 @@ import {-# SOURCE #-} qualified API.Animation as Animation
 import {-# SOURCE #-} qualified API.Photo as Photo
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
+-- |
+-- 
+-- Describes a web page preview
+-- 
+-- __url__ Original URL of the link
+-- 
+-- __display_url__ URL to display
+-- 
+-- __type__ Type of the web page. Can be: article, photo, audio, video, document, profile, app, or something else
+-- 
+-- __site_name__ Short name of the site (e.g., Google Docs, App Store)
+-- 
+-- __title__ Title of the content
+-- 
+-- __param_description__ Description of the content
+-- 
+-- __photo__ Image representing the content; may be null
+-- 
+-- __embed_url__ URL to show in the embedded preview
+-- 
+-- __embed_type__ MIME type of the embedded preview, (e.g., text/html or video/mp4)
+-- 
+-- __embed_width__ Width of the embedded preview
+-- 
+-- __embed_height__ Height of the embedded preview
+-- 
+-- __duration__ Duration of the content, in seconds
+-- 
+-- __author__ Author of the content
+-- 
+-- __animation__ Preview of the content as an animation, if available; may be null
+-- 
+-- __audio__ Preview of the content as an audio file, if available; may be null
+-- 
+-- __document__ Preview of the content as a document, if available (currently only available for small PDF files and ZIP archives); may be null
+-- 
+-- __sticker__ Preview of the content as a sticker for small WEBP files, if available; may be null
+-- 
+-- __video__ Preview of the content as a video, if available; may be null
+-- 
+-- __video_note__ Preview of the content as a video note, if available; may be null
+-- 
+-- __voice_note__ Preview of the content as a voice note, if available; may be null
+-- 
+-- __instant_view_version__ Version of instant view, available for the web page (currently can be 1 or 2), 0 if none
 data WebPage = 
  WebPage { instant_view_version :: Maybe Int, voice_note :: Maybe VoiceNote.VoiceNote, video_note :: Maybe VideoNote.VideoNote, video :: Maybe Video.Video, sticker :: Maybe Sticker.Sticker, document :: Maybe Document.Document, audio :: Maybe Audio.Audio, animation :: Maybe Animation.Animation, author :: Maybe String, duration :: Maybe Int, embed_height :: Maybe Int, embed_width :: Maybe Int, embed_type :: Maybe String, embed_url :: Maybe String, photo :: Maybe Photo.Photo, description :: Maybe FormattedText.FormattedText, title :: Maybe String, site_name :: Maybe String, _type :: Maybe String, display_url :: Maybe String, url :: Maybe String }  deriving (Show, Eq)
 

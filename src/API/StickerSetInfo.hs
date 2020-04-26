@@ -9,6 +9,33 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Sticker as Sticker
 import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 
+-- |
+-- 
+-- Represents short information about a sticker set
+-- 
+-- __id__ Identifier of the sticker set
+-- 
+-- __title__ Title of the sticker set
+-- 
+-- __name__ Name of the sticker set
+-- 
+-- __thumbnail__ Sticker set thumbnail in WEBP format with width and height 100; may be null
+-- 
+-- __is_installed__ True, if the sticker set has been installed by current user
+-- 
+-- __is_archived__ True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
+-- 
+-- __is_official__ True, if the sticker set is official
+-- 
+-- __is_animated__ True, is the stickers in the set are animated
+-- 
+-- __is_masks__ True, if the stickers in the set are masks
+-- 
+-- __is_viewed__ True for already viewed trending sticker sets
+-- 
+-- __size__ Total number of stickers in the set
+-- 
+-- __covers__ Contains up to the first 5 stickers from the set, depending on the context. If the client needs more stickers the full set should be requested
 data StickerSetInfo = 
  StickerSetInfo { covers :: Maybe [Sticker.Sticker], size :: Maybe Int, is_viewed :: Maybe Bool, is_masks :: Maybe Bool, is_animated :: Maybe Bool, is_official :: Maybe Bool, is_archived :: Maybe Bool, is_installed :: Maybe Bool, thumbnail :: Maybe PhotoSize.PhotoSize, name :: Maybe String, title :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 

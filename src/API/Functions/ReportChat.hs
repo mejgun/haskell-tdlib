@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatReportReason as ChatReportReason
 
+-- |
+-- 
+-- Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if this is a private chats with a bot, a private chat with a user sharing their location, a supergroup, or a channel, since other chats can't be checked by moderators 
+-- 
+-- __chat_id__ Chat identifier
+-- 
+-- __reason__ The reason for reporting the chat
+-- 
+-- __message_ids__ Identifiers of reported messages, if any
 data ReportChat = 
  ReportChat { message_ids :: Maybe [Int], reason :: Maybe ChatReportReason.ChatReportReason, chat_id :: Maybe Int }  deriving (Show, Eq)
 

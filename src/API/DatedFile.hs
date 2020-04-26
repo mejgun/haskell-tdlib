@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
 
+-- |
+-- 
+-- File with the date it was uploaded 
+-- 
+-- __file__ The file
+-- 
+-- __date__ Point in time (Unix timestamp) when the file was uploaded
 data DatedFile = 
  DatedFile { date :: Maybe Int, file :: Maybe File.File }  deriving (Show, Eq)
 

@@ -8,6 +8,13 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ChatMember as ChatMember
 
+-- |
+-- 
+-- Contains a list of chat members 
+-- 
+-- __total_count__ Approximate total count of chat members found
+-- 
+-- __members__ A list of chat members
 data ChatMembers = 
  ChatMembers { members :: Maybe [ChatMember.ChatMember], total_count :: Maybe Int }  deriving (Show, Eq)
 

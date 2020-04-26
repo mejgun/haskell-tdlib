@@ -8,6 +8,19 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Location as Location
 
+-- |
+-- 
+-- Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires 
+-- 
+-- __bot_user_id__ The identifier of the target bot
+-- 
+-- __chat_id__ Identifier of the chat where the query was sent
+-- 
+-- __user_location__ Location of the user, only if needed
+-- 
+-- __query__ Text of the query
+-- 
+-- __offset__ Offset of the first entry to return
 data GetInlineQueryResults = 
  GetInlineQueryResults { offset :: Maybe String, query :: Maybe String, user_location :: Maybe Location.Location, chat_id :: Maybe Int, bot_user_id :: Maybe Int }  deriving (Show, Eq)
 

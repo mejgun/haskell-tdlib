@@ -9,6 +9,15 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 
+-- |
+-- 
+-- Describes a photo 
+-- 
+-- __has_stickers__ True, if stickers were added to the photo
+-- 
+-- __minithumbnail__ Photo minithumbnail; may be null
+-- 
+-- __sizes__ Available variants of the photo, in different sizes
 data Photo = 
  Photo { sizes :: Maybe [PhotoSize.PhotoSize], minithumbnail :: Maybe Minithumbnail.Minithumbnail, has_stickers :: Maybe Bool }  deriving (Show, Eq)
 

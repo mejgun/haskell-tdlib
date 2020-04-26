@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Sets the result of a pre-checkout query; for bots only 
+-- 
+-- __pre_checkout_query_id__ Identifier of the pre-checkout query
+-- 
+-- __error_message__ An error message, empty on success
 data AnswerPreCheckoutQuery = 
  AnswerPreCheckoutQuery { error_message :: Maybe String, pre_checkout_query_id :: Maybe Int }  deriving (Show, Eq)
 

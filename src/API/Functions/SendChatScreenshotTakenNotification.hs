@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Sends a notification about a screenshot taken in a chat. Supported only in private and secret chats 
+-- 
+-- __chat_id__ Chat identifier
 data SendChatScreenshotTakenNotification = 
  SendChatScreenshotTakenNotification { chat_id :: Maybe Int }  deriving (Show, Eq)
 

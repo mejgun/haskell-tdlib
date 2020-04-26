@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.FileType as FileType
 
+-- |
+-- 
+-- Contains the storage usage statistics for a specific file type 
+-- 
+-- __file_type__ File type
+-- 
+-- __size__ Total size of the files
+-- 
+-- __count__ Total number of files
 data StorageStatisticsByFileType = 
  StorageStatisticsByFileType { count :: Maybe Int, size :: Maybe Int, file_type :: Maybe FileType.FileType }  deriving (Show, Eq)
 

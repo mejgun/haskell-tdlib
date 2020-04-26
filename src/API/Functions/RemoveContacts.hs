@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Removes users from the contact list 
+-- 
+-- __user_ids__ Identifiers of users to be deleted
 data RemoveContacts = 
  RemoveContacts { user_ids :: Maybe [Int] }  deriving (Show, Eq)
 

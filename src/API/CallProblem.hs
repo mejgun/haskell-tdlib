@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes the exact type of a problem with a call
 data CallProblem = 
  CallProblemEcho 
  | CallProblemNoise 

@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Portion of the price of a product (e.g., "delivery cost", "tax amount") 
+-- 
+-- __label__ Label for this portion of the product price
+-- 
+-- __amount__ Currency amount in minimal quantity of the currency
 data LabeledPricePart = 
  LabeledPricePart { amount :: Maybe Int, label :: Maybe String }  deriving (Show, Eq)
 

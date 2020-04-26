@@ -8,6 +8,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.MessageSchedulingState as MessageSchedulingState
 
+-- |
+-- 
+-- Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed 
+-- 
+-- __chat_id__ The chat the message belongs to
+-- 
+-- __message_id__ Identifier of the message
+-- 
+-- __scheduling_state__ The new message scheduling state. Pass null to send the message immediately
 data EditMessageSchedulingState = 
  EditMessageSchedulingState { scheduling_state :: Maybe MessageSchedulingState.MessageSchedulingState, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 

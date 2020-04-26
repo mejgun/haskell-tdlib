@@ -8,6 +8,17 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.ProxyType as ProxyType
 
+-- |
+-- 
+-- Adds a proxy server for network requests. Can be called before authorization 
+-- 
+-- __server__ Proxy server IP address
+-- 
+-- __port__ Proxy server port
+-- 
+-- __enable__ True, if the proxy should be enabled
+-- 
+-- __type__ Proxy type
 data AddProxy = 
  AddProxy { _type :: Maybe ProxyType.ProxyType, enable :: Maybe Bool, port :: Maybe Int, server :: Maybe String }  deriving (Show, Eq)
 

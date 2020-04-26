@@ -8,6 +8,17 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.MessageForwardOrigin as MessageForwardOrigin
 
+-- |
+-- 
+-- Contains information about a forwarded message
+-- 
+-- __origin__ Origin of a forwarded message
+-- 
+-- __date__ Point in time (Unix timestamp) when the message was originally sent
+-- 
+-- __from_chat_id__ For messages forwarded to the chat with the current user (Saved Messages) or to the channel's discussion group, the identifier of the chat from which the message was forwarded last time; 0 if unknown
+-- 
+-- __from_message_id__ For messages forwarded to the chat with the current user (Saved Messages) or to the channel's discussion group, the identifier of the original message from which the new message was forwarded last time; 0 if unknown
 data MessageForwardInfo = 
  MessageForwardInfo { from_message_id :: Maybe Int, from_chat_id :: Maybe Int, date :: Maybe Int, origin :: Maybe MessageForwardOrigin.MessageForwardOrigin }  deriving (Show, Eq)
 

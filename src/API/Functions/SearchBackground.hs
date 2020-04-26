@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Searches for a background by its name 
+-- 
+-- __name__ The name of the background
 data SearchBackground = 
  SearchBackground { name :: Maybe String }  deriving (Show, Eq)
 

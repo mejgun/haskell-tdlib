@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Accepts Telegram terms of services 
+-- 
+-- __terms_of_service_id__ Terms of service identifier
 data AcceptTermsOfService = 
  AcceptTermsOfService { terms_of_service_id :: Maybe String }  deriving (Show, Eq)
 

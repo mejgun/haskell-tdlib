@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.TextEntity as TextEntity
 
+-- |
+-- 
+-- Contains a list of text entities 
+-- 
+-- __entities__ List of text entities
 data TextEntities = 
  TextEntities { entities :: Maybe [TextEntity.TextEntity] }  deriving (Show, Eq)
 

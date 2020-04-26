@@ -7,6 +7,9 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Describes the way the text should be parsed for TextEntities
 data TextParseMode = 
  TextParseModeMarkdown { version :: Maybe Int }  
  | TextParseModeHTML deriving (Show, Eq)

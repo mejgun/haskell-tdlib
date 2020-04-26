@@ -8,6 +8,17 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Address as Address
 
+-- |
+-- 
+-- Order information 
+-- 
+-- __name__ Name of the user
+-- 
+-- __phone_number__ Phone number of the user
+-- 
+-- __email_address__ Email address of the user
+-- 
+-- __shipping_address__ Shipping address for this order; may be null
 data OrderInfo = 
  OrderInfo { shipping_address :: Maybe Address.Address, email_address :: Maybe String, phone_number :: Maybe String, name :: Maybe String }  deriving (Show, Eq)
 

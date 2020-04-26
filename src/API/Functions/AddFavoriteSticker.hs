@@ -8,6 +8,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
+-- |
+-- 
+-- Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list
+-- 
+-- __sticker__ Sticker file to add
 data AddFavoriteSticker = 
  AddFavoriteSticker { sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 

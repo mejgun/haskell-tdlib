@@ -7,6 +7,13 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Returns file downloaded prefix size from a given offset 
+-- 
+-- __file_id__ Identifier of the file
+-- 
+-- __offset__ Offset from which downloaded prefix size should be calculated
 data GetFileDownloadedPrefixSize = 
  GetFileDownloadedPrefixSize { offset :: Maybe Int, file_id :: Maybe Int }  deriving (Show, Eq)
 

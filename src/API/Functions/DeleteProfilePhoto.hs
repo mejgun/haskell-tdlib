@@ -7,6 +7,11 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 
+-- |
+-- 
+-- Deletes a profile photo. If something changes, updateUser will be sent 
+-- 
+-- __profile_photo_id__ Identifier of the profile photo to delete
 data DeleteProfilePhoto = 
  DeleteProfilePhoto { profile_photo_id :: Maybe Int }  deriving (Show, Eq)
 

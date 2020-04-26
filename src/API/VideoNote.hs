@@ -10,6 +10,19 @@ import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 
+-- |
+-- 
+-- Describes a video note. The video must be equal in width and height, cropped to a circle, and stored in MPEG4 format 
+-- 
+-- __duration__ Duration of the video, in seconds; as defined by the sender
+-- 
+-- __length__ Video width and height; as defined by the sender
+-- 
+-- __minithumbnail__ Video minithumbnail; may be null
+-- 
+-- __thumbnail__ Video thumbnail; as defined by the sender; may be null
+-- 
+-- __video__ File containing the video
 data VideoNote = 
  VideoNote { video :: Maybe File.File, thumbnail :: Maybe PhotoSize.PhotoSize, minithumbnail :: Maybe Minithumbnail.Minithumbnail, _length :: Maybe Int, duration :: Maybe Int }  deriving (Show, Eq)
 
