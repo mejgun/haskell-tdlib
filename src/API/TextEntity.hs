@@ -34,6 +34,6 @@ instance T.FromJSON TextEntity where
    parseTextEntity :: A.Value -> T.Parser TextEntity
    parseTextEntity = A.withObject "TextEntity" $ \o -> do
     _type <- o A..:? "type"
-    _length <- mconcat [ o A..:? "_length", readMaybe <$> (o A..: "_length" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _length <- mconcat [ o A..:? "length", readMaybe <$> (o A..: "length" :: T.Parser String)] :: T.Parser (Maybe Int)
     offset <- mconcat [ o A..:? "offset", readMaybe <$> (o A..: "offset" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ TextEntity { _type = _type, _length = _length, offset = offset }

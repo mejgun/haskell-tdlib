@@ -49,5 +49,5 @@ instance T.FromJSON Game where
     text <- o A..:? "text"
     title <- o A..:? "title"
     short_name <- o A..:? "short_name"
-    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Game { animation = animation, photo = photo, description = description, text = text, title = title, short_name = short_name, _id = _id }

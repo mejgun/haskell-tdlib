@@ -41,7 +41,7 @@ instance T.FromJSON InputFile where
   where
    parseInputFileId :: A.Value -> T.Parser InputFile
    parseInputFileId = A.withObject "InputFileId" $ \o -> do
-    __id <- mconcat [ o A..:? "__id", readMaybe <$> (o A..: "__id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    __id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ InputFileId { __id = __id }
 
    parseInputFileRemote :: A.Value -> T.Parser InputFile

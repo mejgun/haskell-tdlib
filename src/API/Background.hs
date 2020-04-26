@@ -45,5 +45,5 @@ instance T.FromJSON Background where
     name <- o A..:? "name"
     is_dark <- o A..:? "is_dark"
     is_default <- o A..:? "is_default"
-    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Background { _type = _type, document = document, name = name, is_dark = is_dark, is_default = is_default, _id = _id }

@@ -35,5 +35,5 @@ instance T.FromJSON ProfilePhoto where
    parseProfilePhoto = A.withObject "ProfilePhoto" $ \o -> do
     big <- o A..:? "big"
     small <- o A..:? "small"
-    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ProfilePhoto { big = big, small = small, _id = _id }

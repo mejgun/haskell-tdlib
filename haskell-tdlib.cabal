@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5a5bab5712590f1c5387298e8e1ae4d8cf1378b8aed178989bdb03bee7798628
+-- hash: 5f67a0f53180f7f543d5a571e761d732fb6ab13d03070eb9607daa1da71d7cbe
 
 name:           haskell-tdlib
 version:        0.1.0.0
@@ -657,6 +657,7 @@ library
       aeson
     , base >=4.7 && <5
     , bytestring
+    , containers
     , text
     , time
     , unordered-containers
@@ -673,6 +674,7 @@ executable haskell-tdlib-exe
       aeson
     , base >=4.7 && <5
     , bytestring
+    , containers
     , haskell-tdlib
     , text
     , time
@@ -691,6 +693,7 @@ test-suite haskell-tdlib-test
       aeson
     , base >=4.7 && <5
     , bytestring
+    , containers
     , haskell-tdlib
     , text
     , time

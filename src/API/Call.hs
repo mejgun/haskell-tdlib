@@ -38,5 +38,5 @@ instance T.FromJSON Call where
     state <- o A..:? "state"
     is_outgoing <- o A..:? "is_outgoing"
     user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Call { state = state, is_outgoing = is_outgoing, user_id = user_id, _id = _id }

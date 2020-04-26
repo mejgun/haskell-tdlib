@@ -50,7 +50,7 @@ instance T.FromJSON OptionValue where
 
    parseOptionValueInteger :: A.Value -> T.Parser OptionValue
    parseOptionValueInteger = A.withObject "OptionValueInteger" $ \o -> do
-    _value <- mconcat [ o A..:? "_value", readMaybe <$> (o A..: "_value" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _value <- mconcat [ o A..:? "value", readMaybe <$> (o A..: "value" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ OptionValueInteger { _value = _value }
 
    parseOptionValueString :: A.Value -> T.Parser OptionValue

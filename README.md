@@ -12,14 +12,6 @@ This lib considers prebuilt dynamic `libtdjson.[so|dylib|dll]` in `lib` folder.
 ```
 stack ghci --ghci-options -ltdjson
 ```
-or
-```
-LD_LIBRARY_PATH=lib stack exec haskell-tdlib-exe
-```
-or
-```
-LD_LIBRARY_PATH=lib stack run
-```
 
 # Build
 

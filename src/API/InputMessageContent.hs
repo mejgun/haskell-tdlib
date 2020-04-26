@@ -180,7 +180,7 @@ instance T.FromJSON InputMessageContent where
 
    parseInputMessageVideoNote :: A.Value -> T.Parser InputMessageContent
    parseInputMessageVideoNote = A.withObject "InputMessageVideoNote" $ \o -> do
-    _length <- mconcat [ o A..:? "_length", readMaybe <$> (o A..: "_length" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _length <- mconcat [ o A..:? "length", readMaybe <$> (o A..: "length" :: T.Parser String)] :: T.Parser (Maybe Int)
     duration <- mconcat [ o A..:? "duration", readMaybe <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
     thumbnail <- o A..:? "thumbnail"
     video_note <- o A..:? "video_note"

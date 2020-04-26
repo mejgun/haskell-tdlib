@@ -44,5 +44,5 @@ instance T.FromJSON Proxy where
     last_used_date <- mconcat [ o A..:? "last_used_date", readMaybe <$> (o A..: "last_used_date" :: T.Parser String)] :: T.Parser (Maybe Int)
     port <- mconcat [ o A..:? "port", readMaybe <$> (o A..: "port" :: T.Parser String)] :: T.Parser (Maybe Int)
     server <- o A..:? "server"
-    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Proxy { _type = _type, is_enabled = is_enabled, last_used_date = last_used_date, port = port, server = server, _id = _id }

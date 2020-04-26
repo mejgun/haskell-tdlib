@@ -28,5 +28,5 @@ instance T.FromJSON CallId where
   where
    parseCallId :: A.Value -> T.Parser CallId
    parseCallId = A.withObject "CallId" $ \o -> do
-    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ CallId { _id = _id }

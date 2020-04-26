@@ -57,5 +57,5 @@ instance T.FromJSON Poll where
     total_voter_count <- mconcat [ o A..:? "total_voter_count", readMaybe <$> (o A..: "total_voter_count" :: T.Parser String)] :: T.Parser (Maybe Int)
     options <- o A..:? "options"
     question <- o A..:? "question"
-    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Poll { is_closed = is_closed, close_date = close_date, open_period = open_period, _type = _type, is_anonymous = is_anonymous, recent_voter_user_ids = recent_voter_user_ids, total_voter_count = total_voter_count, options = options, question = question, _id = _id }

@@ -216,9 +216,9 @@ writeToFiles addr modName m cmnts =
                    [ "    "
                    , c
                    , " <- mconcat [ o A..:? \""
-                   , c
+                   , T.dropAround (== '_') c
                    , "\", readMaybe <$> (o A..: \""
-                   , c
+                   , T.dropAround (== '_') c
                    , "\" :: T.Parser String)] :: T.Parser (Maybe Int)"
                    ]
                )

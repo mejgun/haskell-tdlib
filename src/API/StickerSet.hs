@@ -64,5 +64,5 @@ instance T.FromJSON StickerSet where
     thumbnail <- o A..:? "thumbnail"
     name <- o A..:? "name"
     title <- o A..:? "title"
-    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ StickerSet { emojis = emojis, stickers = stickers, is_viewed = is_viewed, is_masks = is_masks, is_animated = is_animated, is_official = is_official, is_archived = is_archived, is_installed = is_installed, thumbnail = thumbnail, name = name, title = title, _id = _id }

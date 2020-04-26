@@ -38,5 +38,5 @@ instance T.FromJSON Notification where
     _type <- o A..:? "type"
     is_silent <- o A..:? "is_silent"
     date <- mconcat [ o A..:? "date", readMaybe <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
-    _id <- mconcat [ o A..:? "_id", readMaybe <$> (o A..: "_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Notification { _type = _type, is_silent = is_silent, date = date, _id = _id }
