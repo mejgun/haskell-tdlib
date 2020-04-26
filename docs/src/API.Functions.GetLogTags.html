@@ -11,7 +11,7 @@
 </span><span id="line-11"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-12"></span><span class="hs-comment">-- Returns list of available TDLib internal log tags, for example, [&quot;actor&quot;, &quot;binlog&quot;, &quot;connections&quot;, &quot;notifications&quot;, &quot;proxy&quot;]. This is an offline method. Can be called before authorization. Can be called synchronously</span><span>
 </span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="GetLogTags"><span class="annot"><a href="API.Functions.GetLogTags.html#GetLogTags"><span class="hs-identifier hs-var">GetLogTags</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-14"></span><span> </span><span id="GetLogTags"><span class="annot"><a href="API.Functions.GetLogTags.html#GetLogTags"><span class="hs-identifier hs-var">GetLogTags</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679421946"><span id="local-6989586621679421948"><span id="local-6989586621679421950"><span class="annot"><span class="annottext">Int -&gt; GetLogTags -&gt; ShowS
+</span><span id="line-14"></span><span> </span><span id="GetLogTags"><span class="annot"><a href="API.Functions.GetLogTags.html#GetLogTags"><span class="hs-identifier hs-var">GetLogTags</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679423080"><span id="local-6989586621679423082"><span id="local-6989586621679423084"><span class="annot"><span class="annottext">Int -&gt; GetLogTags -&gt; ShowS
 [GetLogTags] -&gt; ShowS
 GetLogTags -&gt; String
 (Int -&gt; GetLogTags -&gt; ShowS)
@@ -26,7 +26,7 @@ show :: GetLogTags -&gt; String
 $cshow :: GetLogTags -&gt; String
 showsPrec :: Int -&gt; GetLogTags -&gt; ShowS
 $cshowsPrec :: Int -&gt; GetLogTags -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679421941"><span id="local-6989586621679421943"><span class="annot"><span class="annottext">GetLogTags -&gt; GetLogTags -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679423075"><span id="local-6989586621679423077"><span class="annot"><span class="annottext">GetLogTags -&gt; GetLogTags -&gt; Bool
 (GetLogTags -&gt; GetLogTags -&gt; Bool)
 -&gt; (GetLogTags -&gt; GetLogTags -&gt; Bool) -&gt; Eq GetLogTags
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -36,8 +36,8 @@ $c/= :: GetLogTags -&gt; GetLogTags -&gt; Bool
 $c== :: GetLogTags -&gt; GetLogTags -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679421933"><span id="local-6989586621679421935"><span id="local-6989586621679421937"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetLogTags.html#GetLogTags"><span class="hs-identifier hs-type">GetLogTags</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679421931"><span class="annot"><span class="annottext">toJSON :: GetLogTags -&gt; Value
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679423067"><span id="local-6989586621679423069"><span id="local-6989586621679423071"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetLogTags.html#GetLogTags"><span class="hs-identifier hs-type">GetLogTags</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679423065"><span class="annot"><span class="annottext">toJSON :: GetLogTags -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.GetLogTags.html#GetLogTags"><span class="hs-identifier hs-type">GetLogTags</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-18"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -45,35 +45,35 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;getLogTags&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679421924"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetLogTags.html#GetLogTags"><span class="hs-identifier hs-type">GetLogTags</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span> </span><span id="local-6989586621679421922"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetLogTags
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679421920"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679421920"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679421918"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679421918"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-22"></span><span>  </span><span id="local-6989586621679421917"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679421917"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679421918"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679423058"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetLogTags.html#GetLogTags"><span class="hs-identifier hs-type">GetLogTags</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span> </span><span id="local-6989586621679423056"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetLogTags
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679423054"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679423054"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679423052"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679423052"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679423051"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679423051"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679423052"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679421917"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679423051"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-24"></span><span>   </span><span class="hs-string">&quot;getLogTags&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetLogTags
-</span><a href="#local-6989586621679421915"><span class="hs-identifier hs-var">parseGetLogTags</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679421920"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679423049"><span class="hs-identifier hs-var">parseGetLogTags</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679423054"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-25"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetLogTags
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-26"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-27"></span><span>   </span><span class="annot"><a href="#local-6989586621679421915"><span class="hs-identifier hs-type">parseGetLogTags</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetLogTags.html#GetLogTags"><span class="hs-identifier hs-type">GetLogTags</span></a></span><span>
-</span><span id="line-28"></span><span>   </span><span id="local-6989586621679421915"><span class="annot"><span class="annottext">parseGetLogTags :: Value -&gt; Parser GetLogTags
-</span><a href="#local-6989586621679421915"><span class="hs-identifier hs-var hs-var">parseGetLogTags</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-27"></span><span>   </span><span class="annot"><a href="#local-6989586621679423049"><span class="hs-identifier hs-type">parseGetLogTags</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetLogTags.html#GetLogTags"><span class="hs-identifier hs-type">GetLogTags</span></a></span><span>
+</span><span id="line-28"></span><span>   </span><span id="local-6989586621679423049"><span class="annot"><span class="annottext">parseGetLogTags :: Value -&gt; Parser GetLogTags
+</span><a href="#local-6989586621679423049"><span class="hs-identifier hs-var hs-var">parseGetLogTags</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GetLogTags) -&gt; Value -&gt; Parser GetLogTags
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;GetLogTags&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser GetLogTags) -&gt; Value -&gt; Parser GetLogTags)
 -&gt; (Object -&gt; Parser GetLogTags) -&gt; Value -&gt; Parser GetLogTags
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679421913"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679421913"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679423047"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679423047"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-29"></span><span>    </span><span class="annot"><span class="annottext">GetLogTags -&gt; Parser GetLogTags
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(GetLogTags -&gt; Parser GetLogTags)

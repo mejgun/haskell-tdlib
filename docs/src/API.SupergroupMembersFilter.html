@@ -18,7 +18,7 @@
 </span><span id="line-17"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="SupergroupMembersFilterSearch"><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilterSearch"><span class="hs-identifier hs-var">SupergroupMembersFilterSearch</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="query"><span class="annot"><a href="API.SupergroupMembersFilter.html#query"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
 </span><span id="line-18"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="SupergroupMembersFilterRestricted"><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilterRestricted"><span class="hs-identifier hs-var">SupergroupMembersFilterRestricted</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="query"><span class="annot"><a href="API.SupergroupMembersFilter.html#query"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
 </span><span id="line-19"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="SupergroupMembersFilterBanned"><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilterBanned"><span class="hs-identifier hs-var">SupergroupMembersFilterBanned</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="query"><span class="annot"><a href="API.SupergroupMembersFilter.html#query"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
-</span><span id="line-20"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="SupergroupMembersFilterBots"><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilterBots"><span class="hs-identifier hs-var">SupergroupMembersFilterBots</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679453333"><span id="local-6989586621679453335"><span id="local-6989586621679453337"><span class="annot"><span class="annottext">Int -&gt; SupergroupMembersFilter -&gt; ShowS
+</span><span id="line-20"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="SupergroupMembersFilterBots"><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilterBots"><span class="hs-identifier hs-var">SupergroupMembersFilterBots</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679454490"><span id="local-6989586621679454492"><span id="local-6989586621679454494"><span class="annot"><span class="annottext">Int -&gt; SupergroupMembersFilter -&gt; ShowS
 [SupergroupMembersFilter] -&gt; ShowS
 SupergroupMembersFilter -&gt; String
 (Int -&gt; SupergroupMembersFilter -&gt; ShowS)
@@ -33,7 +33,7 @@ show :: SupergroupMembersFilter -&gt; String
 $cshow :: SupergroupMembersFilter -&gt; String
 showsPrec :: Int -&gt; SupergroupMembersFilter -&gt; ShowS
 $cshowsPrec :: Int -&gt; SupergroupMembersFilter -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679453328"><span id="local-6989586621679453330"><span class="annot"><span class="annottext">SupergroupMembersFilter -&gt; SupergroupMembersFilter -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679454485"><span id="local-6989586621679454487"><span class="annot"><span class="annottext">SupergroupMembersFilter -&gt; SupergroupMembersFilter -&gt; Bool
 (SupergroupMembersFilter -&gt; SupergroupMembersFilter -&gt; Bool)
 -&gt; (SupergroupMembersFilter -&gt; SupergroupMembersFilter -&gt; Bool)
 -&gt; Eq SupergroupMembersFilter
@@ -44,8 +44,8 @@ $c/= :: SupergroupMembersFilter -&gt; SupergroupMembersFilter -&gt; Bool
 $c== :: SupergroupMembersFilter -&gt; SupergroupMembersFilter -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679453320"><span id="local-6989586621679453322"><span id="local-6989586621679453324"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span> </span><span id="local-6989586621679453318"><span class="annot"><span class="annottext">toJSON :: SupergroupMembersFilter -&gt; Value
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679454477"><span id="local-6989586621679454479"><span id="local-6989586621679454481"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span> </span><span id="local-6989586621679454475"><span class="annot"><span class="annottext">toJSON :: SupergroupMembersFilter -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilterRecent"><span class="hs-identifier hs-type">SupergroupMembersFilterRecent</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-24"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -54,8 +54,8 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;supergroupMembersFilterRecent&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-25"></span><span>
 </span><span id="line-26"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilterContacts"><span class="hs-identifier hs-type">SupergroupMembersFilterContacts</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">query :: SupergroupMembersFilter -&gt; Maybe String
-</span><a href="API.SupergroupMembersFilter.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679453313"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679453313"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.SupergroupMembersFilter.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454470"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679454470"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-27"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -63,7 +63,7 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;supergroupMembersFilterContacts&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;query&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679453313"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679454470"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-28"></span><span>
 </span><span id="line-29"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilterAdministrators"><span class="hs-identifier hs-type">SupergroupMembersFilterAdministrators</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-30"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
@@ -73,8 +73,8 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;supergroupMembersFilterAdministrators&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-31"></span><span>
 </span><span id="line-32"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilterSearch"><span class="hs-identifier hs-type">SupergroupMembersFilterSearch</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">query :: SupergroupMembersFilter -&gt; Maybe String
-</span><a href="API.SupergroupMembersFilter.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679453312"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679453312"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.SupergroupMembersFilter.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454469"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679454469"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-33"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -82,11 +82,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;supergroupMembersFilterSearch&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;query&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679453312"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679454469"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-34"></span><span>
 </span><span id="line-35"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilterRestricted"><span class="hs-identifier hs-type">SupergroupMembersFilterRestricted</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">query :: SupergroupMembersFilter -&gt; Maybe String
-</span><a href="API.SupergroupMembersFilter.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679453311"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679453311"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.SupergroupMembersFilter.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454468"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679454468"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-36"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -94,11 +94,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;supergroupMembersFilterRestricted&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;query&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679453311"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679454468"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-37"></span><span>
 </span><span id="line-38"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilterBanned"><span class="hs-identifier hs-type">SupergroupMembersFilterBanned</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">query :: SupergroupMembersFilter -&gt; Maybe String
-</span><a href="API.SupergroupMembersFilter.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679453310"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679453310"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.SupergroupMembersFilter.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454467"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679454467"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-39"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -106,7 +106,7 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;supergroupMembersFilterBanned&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;query&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679453310"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679454467"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-40"></span><span>
 </span><span id="line-41"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilterBots"><span class="hs-identifier hs-type">SupergroupMembersFilterBots</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-42"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
@@ -115,46 +115,46 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;supergroupMembersFilterBots&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span><span>
-</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679453307"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-45"></span><span> </span><span id="local-6989586621679453305"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SupergroupMembersFilter
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679453303"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679453303"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679453301"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679453301"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-46"></span><span>  </span><span id="local-6989586621679453300"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679453300"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679453301"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679454464"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-45"></span><span> </span><span id="local-6989586621679454462"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SupergroupMembersFilter
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679454460"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679454460"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679454458"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679454458"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-46"></span><span>  </span><span id="local-6989586621679454457"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679454457"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679454458"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-47"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679453300"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679454457"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-48"></span><span>   </span><span class="hs-string">&quot;supergroupMembersFilterRecent&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SupergroupMembersFilter
-</span><a href="#local-6989586621679453298"><span class="hs-identifier hs-var">parseSupergroupMembersFilterRecent</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679453303"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679454455"><span class="hs-identifier hs-var">parseSupergroupMembersFilterRecent</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679454460"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-49"></span><span>   </span><span class="hs-string">&quot;supergroupMembersFilterContacts&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SupergroupMembersFilter
-</span><a href="#local-6989586621679453297"><span class="hs-identifier hs-var">parseSupergroupMembersFilterContacts</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679453303"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679454454"><span class="hs-identifier hs-var">parseSupergroupMembersFilterContacts</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679454460"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-50"></span><span>   </span><span class="hs-string">&quot;supergroupMembersFilterAdministrators&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SupergroupMembersFilter
-</span><a href="#local-6989586621679453296"><span class="hs-identifier hs-var">parseSupergroupMembersFilterAdministrators</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679453303"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679454453"><span class="hs-identifier hs-var">parseSupergroupMembersFilterAdministrators</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679454460"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-51"></span><span>   </span><span class="hs-string">&quot;supergroupMembersFilterSearch&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SupergroupMembersFilter
-</span><a href="#local-6989586621679453295"><span class="hs-identifier hs-var">parseSupergroupMembersFilterSearch</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679453303"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679454452"><span class="hs-identifier hs-var">parseSupergroupMembersFilterSearch</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679454460"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-52"></span><span>   </span><span class="hs-string">&quot;supergroupMembersFilterRestricted&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SupergroupMembersFilter
-</span><a href="#local-6989586621679453294"><span class="hs-identifier hs-var">parseSupergroupMembersFilterRestricted</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679453303"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679454451"><span class="hs-identifier hs-var">parseSupergroupMembersFilterRestricted</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679454460"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-53"></span><span>   </span><span class="hs-string">&quot;supergroupMembersFilterBanned&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SupergroupMembersFilter
-</span><a href="#local-6989586621679453293"><span class="hs-identifier hs-var">parseSupergroupMembersFilterBanned</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679453303"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679454450"><span class="hs-identifier hs-var">parseSupergroupMembersFilterBanned</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679454460"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-54"></span><span>   </span><span class="hs-string">&quot;supergroupMembersFilterBots&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SupergroupMembersFilter
-</span><a href="#local-6989586621679453292"><span class="hs-identifier hs-var">parseSupergroupMembersFilterBots</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679453303"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679454449"><span class="hs-identifier hs-var">parseSupergroupMembersFilterBots</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679454460"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-55"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SupergroupMembersFilter
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-56"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-57"></span><span>   </span><span class="annot"><a href="#local-6989586621679453298"><span class="hs-identifier hs-type">parseSupergroupMembersFilterRecent</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter</span></a></span><span>
-</span><span id="line-58"></span><span>   </span><span id="local-6989586621679453298"><span class="annot"><span class="annottext">parseSupergroupMembersFilterRecent :: Value -&gt; Parser SupergroupMembersFilter
-</span><a href="#local-6989586621679453298"><span class="hs-identifier hs-var hs-var">parseSupergroupMembersFilterRecent</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-57"></span><span>   </span><span class="annot"><a href="#local-6989586621679454455"><span class="hs-identifier hs-type">parseSupergroupMembersFilterRecent</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter</span></a></span><span>
+</span><span id="line-58"></span><span>   </span><span id="local-6989586621679454455"><span class="annot"><span class="annottext">parseSupergroupMembersFilterRecent :: Value -&gt; Parser SupergroupMembersFilter
+</span><a href="#local-6989586621679454455"><span class="hs-identifier hs-var hs-var">parseSupergroupMembersFilterRecent</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SupergroupMembersFilter)
 -&gt; Value
 -&gt; Parser SupergroupMembersFilter
@@ -165,8 +165,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SupergroupMembersFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679453290"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679453290"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679454447"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679454447"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-59"></span><span>    </span><span class="annot"><span class="annottext">SupergroupMembersFilter -&gt; Parser SupergroupMembersFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SupergroupMembersFilter -&gt; Parser SupergroupMembersFilter)
@@ -175,9 +175,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SupergroupMembersFilterRecent :: SupergroupMembersFilter
 </span><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilterRecent"><span class="hs-identifier hs-type hs-type">SupergroupMembersFilterRecent</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-60"></span><span>
-</span><span id="line-61"></span><span>   </span><span class="annot"><a href="#local-6989586621679453297"><span class="hs-identifier hs-type">parseSupergroupMembersFilterContacts</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter</span></a></span><span>
-</span><span id="line-62"></span><span>   </span><span id="local-6989586621679453297"><span class="annot"><span class="annottext">parseSupergroupMembersFilterContacts :: Value -&gt; Parser SupergroupMembersFilter
-</span><a href="#local-6989586621679453297"><span class="hs-identifier hs-var hs-var">parseSupergroupMembersFilterContacts</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-61"></span><span>   </span><span class="annot"><a href="#local-6989586621679454454"><span class="hs-identifier hs-type">parseSupergroupMembersFilterContacts</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter</span></a></span><span>
+</span><span id="line-62"></span><span>   </span><span id="local-6989586621679454454"><span class="annot"><span class="annottext">parseSupergroupMembersFilterContacts :: Value -&gt; Parser SupergroupMembersFilter
+</span><a href="#local-6989586621679454454"><span class="hs-identifier hs-var hs-var">parseSupergroupMembersFilterContacts</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SupergroupMembersFilter)
 -&gt; Value
 -&gt; Parser SupergroupMembersFilter
@@ -188,11 +188,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SupergroupMembersFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679453288"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679453288"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-63"></span><span>    </span><span id="local-6989586621679453287"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679453287"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679453288"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679454445"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679454445"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-63"></span><span>    </span><span id="local-6989586621679454444"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679454444"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679454445"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;query&quot;</span></span><span>
 </span><span id="line-64"></span><span>    </span><span class="annot"><span class="annottext">SupergroupMembersFilter -&gt; Parser SupergroupMembersFilter
@@ -203,11 +203,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SupergroupMembersFilterContacts :: Maybe String -&gt; SupergroupMembersFilter
 </span><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilterContacts"><span class="hs-identifier hs-type hs-type">SupergroupMembersFilterContacts</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">query :: Maybe String
 </span><a href="API.SupergroupMembersFilter.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679453287"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679454444"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-65"></span><span>
-</span><span id="line-66"></span><span>   </span><span class="annot"><a href="#local-6989586621679453296"><span class="hs-identifier hs-type">parseSupergroupMembersFilterAdministrators</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter</span></a></span><span>
-</span><span id="line-67"></span><span>   </span><span id="local-6989586621679453296"><span class="annot"><span class="annottext">parseSupergroupMembersFilterAdministrators :: Value -&gt; Parser SupergroupMembersFilter
-</span><a href="#local-6989586621679453296"><span class="hs-identifier hs-var hs-var">parseSupergroupMembersFilterAdministrators</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-66"></span><span>   </span><span class="annot"><a href="#local-6989586621679454453"><span class="hs-identifier hs-type">parseSupergroupMembersFilterAdministrators</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter</span></a></span><span>
+</span><span id="line-67"></span><span>   </span><span id="local-6989586621679454453"><span class="annot"><span class="annottext">parseSupergroupMembersFilterAdministrators :: Value -&gt; Parser SupergroupMembersFilter
+</span><a href="#local-6989586621679454453"><span class="hs-identifier hs-var hs-var">parseSupergroupMembersFilterAdministrators</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SupergroupMembersFilter)
 -&gt; Value
 -&gt; Parser SupergroupMembersFilter
@@ -218,8 +218,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SupergroupMembersFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679453284"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679453284"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679454441"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679454441"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-68"></span><span>    </span><span class="annot"><span class="annottext">SupergroupMembersFilter -&gt; Parser SupergroupMembersFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SupergroupMembersFilter -&gt; Parser SupergroupMembersFilter)
@@ -228,9 +228,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SupergroupMembersFilterAdministrators :: SupergroupMembersFilter
 </span><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilterAdministrators"><span class="hs-identifier hs-type hs-type">SupergroupMembersFilterAdministrators</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-69"></span><span>
-</span><span id="line-70"></span><span>   </span><span class="annot"><a href="#local-6989586621679453295"><span class="hs-identifier hs-type">parseSupergroupMembersFilterSearch</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter</span></a></span><span>
-</span><span id="line-71"></span><span>   </span><span id="local-6989586621679453295"><span class="annot"><span class="annottext">parseSupergroupMembersFilterSearch :: Value -&gt; Parser SupergroupMembersFilter
-</span><a href="#local-6989586621679453295"><span class="hs-identifier hs-var hs-var">parseSupergroupMembersFilterSearch</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-70"></span><span>   </span><span class="annot"><a href="#local-6989586621679454452"><span class="hs-identifier hs-type">parseSupergroupMembersFilterSearch</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter</span></a></span><span>
+</span><span id="line-71"></span><span>   </span><span id="local-6989586621679454452"><span class="annot"><span class="annottext">parseSupergroupMembersFilterSearch :: Value -&gt; Parser SupergroupMembersFilter
+</span><a href="#local-6989586621679454452"><span class="hs-identifier hs-var hs-var">parseSupergroupMembersFilterSearch</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SupergroupMembersFilter)
 -&gt; Value
 -&gt; Parser SupergroupMembersFilter
@@ -241,11 +241,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SupergroupMembersFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679453282"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679453282"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-72"></span><span>    </span><span id="local-6989586621679453281"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679453281"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679453282"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679454439"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679454439"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-72"></span><span>    </span><span id="local-6989586621679454438"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679454438"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679454439"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;query&quot;</span></span><span>
 </span><span id="line-73"></span><span>    </span><span class="annot"><span class="annottext">SupergroupMembersFilter -&gt; Parser SupergroupMembersFilter
@@ -256,11 +256,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SupergroupMembersFilterSearch :: Maybe String -&gt; SupergroupMembersFilter
 </span><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilterSearch"><span class="hs-identifier hs-type hs-type">SupergroupMembersFilterSearch</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">query :: Maybe String
 </span><a href="API.SupergroupMembersFilter.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679453281"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679454438"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-74"></span><span>
-</span><span id="line-75"></span><span>   </span><span class="annot"><a href="#local-6989586621679453294"><span class="hs-identifier hs-type">parseSupergroupMembersFilterRestricted</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter</span></a></span><span>
-</span><span id="line-76"></span><span>   </span><span id="local-6989586621679453294"><span class="annot"><span class="annottext">parseSupergroupMembersFilterRestricted :: Value -&gt; Parser SupergroupMembersFilter
-</span><a href="#local-6989586621679453294"><span class="hs-identifier hs-var hs-var">parseSupergroupMembersFilterRestricted</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-75"></span><span>   </span><span class="annot"><a href="#local-6989586621679454451"><span class="hs-identifier hs-type">parseSupergroupMembersFilterRestricted</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter</span></a></span><span>
+</span><span id="line-76"></span><span>   </span><span id="local-6989586621679454451"><span class="annot"><span class="annottext">parseSupergroupMembersFilterRestricted :: Value -&gt; Parser SupergroupMembersFilter
+</span><a href="#local-6989586621679454451"><span class="hs-identifier hs-var hs-var">parseSupergroupMembersFilterRestricted</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SupergroupMembersFilter)
 -&gt; Value
 -&gt; Parser SupergroupMembersFilter
@@ -271,11 +271,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SupergroupMembersFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679453279"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679453279"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-77"></span><span>    </span><span id="local-6989586621679453278"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679453278"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679453279"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679454436"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679454436"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-77"></span><span>    </span><span id="local-6989586621679454435"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679454435"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679454436"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;query&quot;</span></span><span>
 </span><span id="line-78"></span><span>    </span><span class="annot"><span class="annottext">SupergroupMembersFilter -&gt; Parser SupergroupMembersFilter
@@ -286,11 +286,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SupergroupMembersFilterRestricted :: Maybe String -&gt; SupergroupMembersFilter
 </span><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilterRestricted"><span class="hs-identifier hs-type hs-type">SupergroupMembersFilterRestricted</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">query :: Maybe String
 </span><a href="API.SupergroupMembersFilter.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679453278"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679454435"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-79"></span><span>
-</span><span id="line-80"></span><span>   </span><span class="annot"><a href="#local-6989586621679453293"><span class="hs-identifier hs-type">parseSupergroupMembersFilterBanned</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter</span></a></span><span>
-</span><span id="line-81"></span><span>   </span><span id="local-6989586621679453293"><span class="annot"><span class="annottext">parseSupergroupMembersFilterBanned :: Value -&gt; Parser SupergroupMembersFilter
-</span><a href="#local-6989586621679453293"><span class="hs-identifier hs-var hs-var">parseSupergroupMembersFilterBanned</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-80"></span><span>   </span><span class="annot"><a href="#local-6989586621679454450"><span class="hs-identifier hs-type">parseSupergroupMembersFilterBanned</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter</span></a></span><span>
+</span><span id="line-81"></span><span>   </span><span id="local-6989586621679454450"><span class="annot"><span class="annottext">parseSupergroupMembersFilterBanned :: Value -&gt; Parser SupergroupMembersFilter
+</span><a href="#local-6989586621679454450"><span class="hs-identifier hs-var hs-var">parseSupergroupMembersFilterBanned</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SupergroupMembersFilter)
 -&gt; Value
 -&gt; Parser SupergroupMembersFilter
@@ -301,11 +301,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SupergroupMembersFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679453276"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679453276"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-82"></span><span>    </span><span id="local-6989586621679453275"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679453275"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679453276"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679454433"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679454433"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-82"></span><span>    </span><span id="local-6989586621679454432"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679454432"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679454433"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;query&quot;</span></span><span>
 </span><span id="line-83"></span><span>    </span><span class="annot"><span class="annottext">SupergroupMembersFilter -&gt; Parser SupergroupMembersFilter
@@ -316,11 +316,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SupergroupMembersFilterBanned :: Maybe String -&gt; SupergroupMembersFilter
 </span><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilterBanned"><span class="hs-identifier hs-type hs-type">SupergroupMembersFilterBanned</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">query :: Maybe String
 </span><a href="API.SupergroupMembersFilter.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679453275"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679454432"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-84"></span><span>
-</span><span id="line-85"></span><span>   </span><span class="annot"><a href="#local-6989586621679453292"><span class="hs-identifier hs-type">parseSupergroupMembersFilterBots</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter</span></a></span><span>
-</span><span id="line-86"></span><span>   </span><span id="local-6989586621679453292"><span class="annot"><span class="annottext">parseSupergroupMembersFilterBots :: Value -&gt; Parser SupergroupMembersFilter
-</span><a href="#local-6989586621679453292"><span class="hs-identifier hs-var hs-var">parseSupergroupMembersFilterBots</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-85"></span><span>   </span><span class="annot"><a href="#local-6989586621679454449"><span class="hs-identifier hs-type">parseSupergroupMembersFilterBots</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SupergroupMembersFilter.html#SupergroupMembersFilter"><span class="hs-identifier hs-type">SupergroupMembersFilter</span></a></span><span>
+</span><span id="line-86"></span><span>   </span><span id="local-6989586621679454449"><span class="annot"><span class="annottext">parseSupergroupMembersFilterBots :: Value -&gt; Parser SupergroupMembersFilter
+</span><a href="#local-6989586621679454449"><span class="hs-identifier hs-var hs-var">parseSupergroupMembersFilterBots</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SupergroupMembersFilter)
 -&gt; Value
 -&gt; Parser SupergroupMembersFilter
@@ -331,8 +331,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SupergroupMembersFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679453273"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679453273"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679454430"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679454430"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-87"></span><span>    </span><span class="annot"><span class="annottext">SupergroupMembersFilter -&gt; Parser SupergroupMembersFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SupergroupMembersFilter -&gt; Parser SupergroupMembersFilter)

@@ -17,11 +17,11 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __input_language_codes__ List of possible IETF language tags of the user's input language; may be empty if unknown
 data SearchEmojis = 
- SearchEmojis { input_language_code :: Maybe String, exact_match :: Maybe Bool, text :: Maybe String }  deriving (Show, Eq)
+ SearchEmojis { input_language_codes :: Maybe [String], exact_match :: Maybe Bool, text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SearchEmojis where
- toJSON (SearchEmojis { input_language_code = input_language_code, exact_match = exact_match, text = text }) =
-  A.object [ "@type" A..= T.String "searchEmojis", "input_language_code" A..= input_language_code, "exact_match" A..= exact_match, "text" A..= text ]
+ toJSON (SearchEmojis { input_language_codes = input_language_codes, exact_match = exact_match, text = text }) =
+  A.object [ "@type" A..= T.String "searchEmojis", "input_language_codes" A..= input_language_codes, "exact_match" A..= exact_match, "text" A..= text ]
 
 instance T.FromJSON SearchEmojis where
  parseJSON v@(T.Object obj) = do
@@ -32,7 +32,7 @@ instance T.FromJSON SearchEmojis where
   where
    parseSearchEmojis :: A.Value -> T.Parser SearchEmojis
    parseSearchEmojis = A.withObject "SearchEmojis" $ \o -> do
-    input_language_code <- o A..:? "input_language_code"
+    input_language_codes <- o A..:? "input_language_codes"
     exact_match <- o A..:? "exact_match"
     text <- o A..:? "text"
-    return $ SearchEmojis { input_language_code = input_language_code, exact_match = exact_match, text = text }
+    return $ SearchEmojis { input_language_codes = input_language_codes, exact_match = exact_match, text = text }

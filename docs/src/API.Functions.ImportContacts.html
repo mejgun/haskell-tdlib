@@ -15,7 +15,7 @@
 </span><span id="line-15"></span><span class="hs-comment">-- __contacts__ The list of contacts to import or edit; contacts' vCard are ignored and are not imported</span><span>
 </span><span id="line-16"></span><span class="hs-keyword">data</span><span> </span><span id="ImportContacts"><span class="annot"><a href="API.Functions.ImportContacts.html#ImportContacts"><span class="hs-identifier hs-var">ImportContacts</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-17"></span><span> </span><span id="ImportContacts"><span class="annot"><a href="API.Functions.ImportContacts.html#ImportContacts"><span class="hs-identifier hs-var">ImportContacts</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="contacts"><span class="annot"><span class="annottext">ImportContacts -&gt; Maybe [Contact]
-</span><a href="API.Functions.ImportContacts.html#contacts"><span class="hs-identifier hs-var hs-var">contacts</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.Contact.html#Contact"><span class="hs-identifier hs-type">Contact.Contact</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679425660"><span id="local-6989586621679425662"><span id="local-6989586621679425664"><span class="annot"><span class="annottext">Int -&gt; ImportContacts -&gt; ShowS
+</span><a href="API.Functions.ImportContacts.html#contacts"><span class="hs-identifier hs-var hs-var">contacts</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.Contact.html#Contact"><span class="hs-identifier hs-type">Contact.Contact</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679426807"><span id="local-6989586621679426809"><span id="local-6989586621679426811"><span class="annot"><span class="annottext">Int -&gt; ImportContacts -&gt; ShowS
 [ImportContacts] -&gt; ShowS
 ImportContacts -&gt; String
 (Int -&gt; ImportContacts -&gt; ShowS)
@@ -30,7 +30,7 @@ show :: ImportContacts -&gt; String
 $cshow :: ImportContacts -&gt; String
 showsPrec :: Int -&gt; ImportContacts -&gt; ShowS
 $cshowsPrec :: Int -&gt; ImportContacts -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679425655"><span id="local-6989586621679425657"><span class="annot"><span class="annottext">ImportContacts -&gt; ImportContacts -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679426802"><span id="local-6989586621679426804"><span class="annot"><span class="annottext">ImportContacts -&gt; ImportContacts -&gt; Bool
 (ImportContacts -&gt; ImportContacts -&gt; Bool)
 -&gt; (ImportContacts -&gt; ImportContacts -&gt; Bool) -&gt; Eq ImportContacts
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -40,11 +40,11 @@ $c/= :: ImportContacts -&gt; ImportContacts -&gt; Bool
 $c== :: ImportContacts -&gt; ImportContacts -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-18"></span><span>
-</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679425647"><span id="local-6989586621679425649"><span id="local-6989586621679425651"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ImportContacts.html#ImportContacts"><span class="hs-identifier hs-type">ImportContacts</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-20"></span><span> </span><span id="local-6989586621679425645"><span class="annot"><span class="annottext">toJSON :: ImportContacts -&gt; Value
+</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679426794"><span id="local-6989586621679426796"><span id="local-6989586621679426798"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ImportContacts.html#ImportContacts"><span class="hs-identifier hs-type">ImportContacts</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-20"></span><span> </span><span id="local-6989586621679426792"><span class="annot"><span class="annottext">toJSON :: ImportContacts -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.ImportContacts.html#ImportContacts"><span class="hs-identifier hs-type">ImportContacts</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">contacts :: ImportContacts -&gt; Maybe [Contact]
-</span><a href="API.Functions.ImportContacts.html#contacts"><span class="hs-identifier hs-var">contacts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679425643"><span class="annot"><span class="annottext">Maybe [Contact]
-</span><a href="#local-6989586621679425643"><span class="hs-identifier hs-var">contacts</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.ImportContacts.html#contacts"><span class="hs-identifier hs-var">contacts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679426790"><span class="annot"><span class="annottext">Maybe [Contact]
+</span><a href="#local-6989586621679426790"><span class="hs-identifier hs-var">contacts</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-21"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -52,30 +52,30 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;importContacts&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;contacts&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [Contact] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Contact]
-</span><a href="#local-6989586621679425643"><span class="hs-identifier hs-var">contacts</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679426790"><span class="hs-identifier hs-var">contacts</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679425637"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ImportContacts.html#ImportContacts"><span class="hs-identifier hs-type">ImportContacts</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span> </span><span id="local-6989586621679425635"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ImportContacts
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679425633"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679425633"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679425631"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679425631"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>  </span><span id="local-6989586621679425630"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679425630"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425631"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679426784"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ImportContacts.html#ImportContacts"><span class="hs-identifier hs-type">ImportContacts</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span> </span><span id="local-6989586621679426782"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ImportContacts
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679426780"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679426780"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679426778"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679426778"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>  </span><span id="local-6989586621679426777"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679426777"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679426778"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-26"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679425630"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679426777"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-27"></span><span>   </span><span class="hs-string">&quot;importContacts&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ImportContacts
-</span><a href="#local-6989586621679425628"><span class="hs-identifier hs-var">parseImportContacts</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679425633"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679426775"><span class="hs-identifier hs-var">parseImportContacts</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679426780"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-28"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ImportContacts
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-29"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-30"></span><span>   </span><span class="annot"><a href="#local-6989586621679425628"><span class="hs-identifier hs-type">parseImportContacts</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ImportContacts.html#ImportContacts"><span class="hs-identifier hs-type">ImportContacts</span></a></span><span>
-</span><span id="line-31"></span><span>   </span><span id="local-6989586621679425628"><span class="annot"><span class="annottext">parseImportContacts :: Value -&gt; Parser ImportContacts
-</span><a href="#local-6989586621679425628"><span class="hs-identifier hs-var hs-var">parseImportContacts</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-30"></span><span>   </span><span class="annot"><a href="#local-6989586621679426775"><span class="hs-identifier hs-type">parseImportContacts</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ImportContacts.html#ImportContacts"><span class="hs-identifier hs-type">ImportContacts</span></a></span><span>
+</span><span id="line-31"></span><span>   </span><span id="local-6989586621679426775"><span class="annot"><span class="annottext">parseImportContacts :: Value -&gt; Parser ImportContacts
+</span><a href="#local-6989586621679426775"><span class="hs-identifier hs-var hs-var">parseImportContacts</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ImportContacts)
 -&gt; Value
 -&gt; Parser ImportContacts
@@ -86,11 +86,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ImportContacts
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679425626"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679425626"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-32"></span><span>    </span><span id="local-6989586621679425625"><span class="annot"><span class="annottext">Maybe [Contact]
-</span><a href="#local-6989586621679425625"><span class="hs-identifier hs-var">contacts</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425626"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Contact])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679426773"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679426773"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-32"></span><span>    </span><span id="local-6989586621679426772"><span class="annot"><span class="annottext">Maybe [Contact]
+</span><a href="#local-6989586621679426772"><span class="hs-identifier hs-var">contacts</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679426773"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Contact])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;contacts&quot;</span></span><span>
 </span><span id="line-33"></span><span>    </span><span class="annot"><span class="annottext">ImportContacts -&gt; Parser ImportContacts
@@ -101,4 +101,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ImportContacts :: Maybe [Contact] -&gt; ImportContacts
 </span><a href="API.Functions.ImportContacts.html#ImportContacts"><span class="hs-identifier hs-type hs-type">ImportContacts</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">contacts :: Maybe [Contact]
 </span><a href="API.Functions.ImportContacts.html#contacts"><span class="hs-identifier hs-var">contacts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [Contact]
-</span><a href="#local-6989586621679425625"><span class="hs-identifier hs-var">contacts</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679426772"><span class="hs-identifier hs-var">contacts</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

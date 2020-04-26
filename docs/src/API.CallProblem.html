@@ -17,7 +17,7 @@
 </span><span id="line-17"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="CallProblemDistortedSpeech"><span class="annot"><a href="API.CallProblem.html#CallProblemDistortedSpeech"><span class="hs-identifier hs-var">CallProblemDistortedSpeech</span></a></span></span><span> </span><span>
 </span><span id="line-18"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="CallProblemSilentLocal"><span class="annot"><a href="API.CallProblem.html#CallProblemSilentLocal"><span class="hs-identifier hs-var">CallProblemSilentLocal</span></a></span></span><span> </span><span>
 </span><span id="line-19"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="CallProblemSilentRemote"><span class="annot"><a href="API.CallProblem.html#CallProblemSilentRemote"><span class="hs-identifier hs-var">CallProblemSilentRemote</span></a></span></span><span> </span><span>
-</span><span id="line-20"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="CallProblemDropped"><span class="annot"><a href="API.CallProblem.html#CallProblemDropped"><span class="hs-identifier hs-var">CallProblemDropped</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679408153"><span id="local-6989586621679408155"><span id="local-6989586621679408157"><span class="annot"><span class="annottext">Int -&gt; CallProblem -&gt; ShowS
+</span><span id="line-20"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="CallProblemDropped"><span class="annot"><a href="API.CallProblem.html#CallProblemDropped"><span class="hs-identifier hs-var">CallProblemDropped</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679409287"><span id="local-6989586621679409289"><span id="local-6989586621679409291"><span class="annot"><span class="annottext">Int -&gt; CallProblem -&gt; ShowS
 [CallProblem] -&gt; ShowS
 CallProblem -&gt; String
 (Int -&gt; CallProblem -&gt; ShowS)
@@ -32,7 +32,7 @@ show :: CallProblem -&gt; String
 $cshow :: CallProblem -&gt; String
 showsPrec :: Int -&gt; CallProblem -&gt; ShowS
 $cshowsPrec :: Int -&gt; CallProblem -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679408148"><span id="local-6989586621679408150"><span class="annot"><span class="annottext">CallProblem -&gt; CallProblem -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679409282"><span id="local-6989586621679409284"><span class="annot"><span class="annottext">CallProblem -&gt; CallProblem -&gt; Bool
 (CallProblem -&gt; CallProblem -&gt; Bool)
 -&gt; (CallProblem -&gt; CallProblem -&gt; Bool) -&gt; Eq CallProblem
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -42,8 +42,8 @@ $c/= :: CallProblem -&gt; CallProblem -&gt; Bool
 $c== :: CallProblem -&gt; CallProblem -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408140"><span id="local-6989586621679408142"><span id="local-6989586621679408144"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.CallProblem.html#CallProblem"><span class="hs-identifier hs-type">CallProblem</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span> </span><span id="local-6989586621679408138"><span class="annot"><span class="annottext">toJSON :: CallProblem -&gt; Value
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409274"><span id="local-6989586621679409276"><span id="local-6989586621679409278"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.CallProblem.html#CallProblem"><span class="hs-identifier hs-type">CallProblem</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span> </span><span id="local-6989586621679409272"><span class="annot"><span class="annottext">toJSON :: CallProblem -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.CallProblem.html#CallProblemEcho"><span class="hs-identifier hs-type">CallProblemEcho</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-24"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -93,53 +93,53 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;callProblemDropped&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span><span>
-</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679408131"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.CallProblem.html#CallProblem"><span class="hs-identifier hs-type">CallProblem</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-45"></span><span> </span><span id="local-6989586621679408129"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CallProblem
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679408127"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679408127"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679408125"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679408125"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-46"></span><span>  </span><span id="local-6989586621679408124"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679408124"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679408125"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679409265"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.CallProblem.html#CallProblem"><span class="hs-identifier hs-type">CallProblem</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-45"></span><span> </span><span id="local-6989586621679409263"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CallProblem
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679409261"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679409261"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679409259"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679409259"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-46"></span><span>  </span><span id="local-6989586621679409258"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679409258"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679409259"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-47"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679408124"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679409258"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-48"></span><span>   </span><span class="hs-string">&quot;callProblemEcho&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallProblem
-</span><a href="#local-6989586621679408122"><span class="hs-identifier hs-var">parseCallProblemEcho</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408127"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679409256"><span class="hs-identifier hs-var">parseCallProblemEcho</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679409261"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-49"></span><span>   </span><span class="hs-string">&quot;callProblemNoise&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallProblem
-</span><a href="#local-6989586621679408121"><span class="hs-identifier hs-var">parseCallProblemNoise</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408127"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679409255"><span class="hs-identifier hs-var">parseCallProblemNoise</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679409261"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-50"></span><span>   </span><span class="hs-string">&quot;callProblemInterruptions&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallProblem
-</span><a href="#local-6989586621679408120"><span class="hs-identifier hs-var">parseCallProblemInterruptions</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408127"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679409254"><span class="hs-identifier hs-var">parseCallProblemInterruptions</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679409261"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-51"></span><span>   </span><span class="hs-string">&quot;callProblemDistortedSpeech&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallProblem
-</span><a href="#local-6989586621679408119"><span class="hs-identifier hs-var">parseCallProblemDistortedSpeech</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408127"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679409253"><span class="hs-identifier hs-var">parseCallProblemDistortedSpeech</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679409261"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-52"></span><span>   </span><span class="hs-string">&quot;callProblemSilentLocal&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallProblem
-</span><a href="#local-6989586621679408118"><span class="hs-identifier hs-var">parseCallProblemSilentLocal</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408127"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679409252"><span class="hs-identifier hs-var">parseCallProblemSilentLocal</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679409261"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-53"></span><span>   </span><span class="hs-string">&quot;callProblemSilentRemote&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallProblem
-</span><a href="#local-6989586621679408117"><span class="hs-identifier hs-var">parseCallProblemSilentRemote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408127"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679409251"><span class="hs-identifier hs-var">parseCallProblemSilentRemote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679409261"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-54"></span><span>   </span><span class="hs-string">&quot;callProblemDropped&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallProblem
-</span><a href="#local-6989586621679408116"><span class="hs-identifier hs-var">parseCallProblemDropped</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679408127"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679409250"><span class="hs-identifier hs-var">parseCallProblemDropped</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679409261"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-55"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CallProblem
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-56"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-57"></span><span>   </span><span class="annot"><a href="#local-6989586621679408122"><span class="hs-identifier hs-type">parseCallProblemEcho</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallProblem.html#CallProblem"><span class="hs-identifier hs-type">CallProblem</span></a></span><span>
-</span><span id="line-58"></span><span>   </span><span id="local-6989586621679408122"><span class="annot"><span class="annottext">parseCallProblemEcho :: Value -&gt; Parser CallProblem
-</span><a href="#local-6989586621679408122"><span class="hs-identifier hs-var hs-var">parseCallProblemEcho</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-57"></span><span>   </span><span class="annot"><a href="#local-6989586621679409256"><span class="hs-identifier hs-type">parseCallProblemEcho</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallProblem.html#CallProblem"><span class="hs-identifier hs-type">CallProblem</span></a></span><span>
+</span><span id="line-58"></span><span>   </span><span id="local-6989586621679409256"><span class="annot"><span class="annottext">parseCallProblemEcho :: Value -&gt; Parser CallProblem
+</span><a href="#local-6989586621679409256"><span class="hs-identifier hs-var hs-var">parseCallProblemEcho</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;CallProblemEcho&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem)
 -&gt; (Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408114"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408114"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679409248"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679409248"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-59"></span><span>    </span><span class="annot"><span class="annottext">CallProblem -&gt; Parser CallProblem
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CallProblem -&gt; Parser CallProblem)
@@ -148,16 +148,16 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallProblemEcho :: CallProblem
 </span><a href="API.CallProblem.html#CallProblemEcho"><span class="hs-identifier hs-type hs-type">CallProblemEcho</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-60"></span><span>
-</span><span id="line-61"></span><span>   </span><span class="annot"><a href="#local-6989586621679408121"><span class="hs-identifier hs-type">parseCallProblemNoise</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallProblem.html#CallProblem"><span class="hs-identifier hs-type">CallProblem</span></a></span><span>
-</span><span id="line-62"></span><span>   </span><span id="local-6989586621679408121"><span class="annot"><span class="annottext">parseCallProblemNoise :: Value -&gt; Parser CallProblem
-</span><a href="#local-6989586621679408121"><span class="hs-identifier hs-var hs-var">parseCallProblemNoise</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-61"></span><span>   </span><span class="annot"><a href="#local-6989586621679409255"><span class="hs-identifier hs-type">parseCallProblemNoise</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallProblem.html#CallProblem"><span class="hs-identifier hs-type">CallProblem</span></a></span><span>
+</span><span id="line-62"></span><span>   </span><span id="local-6989586621679409255"><span class="annot"><span class="annottext">parseCallProblemNoise :: Value -&gt; Parser CallProblem
+</span><a href="#local-6989586621679409255"><span class="hs-identifier hs-var hs-var">parseCallProblemNoise</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;CallProblemNoise&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem)
 -&gt; (Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408112"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408112"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679409246"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679409246"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-63"></span><span>    </span><span class="annot"><span class="annottext">CallProblem -&gt; Parser CallProblem
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CallProblem -&gt; Parser CallProblem)
@@ -166,16 +166,16 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallProblemNoise :: CallProblem
 </span><a href="API.CallProblem.html#CallProblemNoise"><span class="hs-identifier hs-type hs-type">CallProblemNoise</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-64"></span><span>
-</span><span id="line-65"></span><span>   </span><span class="annot"><a href="#local-6989586621679408120"><span class="hs-identifier hs-type">parseCallProblemInterruptions</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallProblem.html#CallProblem"><span class="hs-identifier hs-type">CallProblem</span></a></span><span>
-</span><span id="line-66"></span><span>   </span><span id="local-6989586621679408120"><span class="annot"><span class="annottext">parseCallProblemInterruptions :: Value -&gt; Parser CallProblem
-</span><a href="#local-6989586621679408120"><span class="hs-identifier hs-var hs-var">parseCallProblemInterruptions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-65"></span><span>   </span><span class="annot"><a href="#local-6989586621679409254"><span class="hs-identifier hs-type">parseCallProblemInterruptions</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallProblem.html#CallProblem"><span class="hs-identifier hs-type">CallProblem</span></a></span><span>
+</span><span id="line-66"></span><span>   </span><span id="local-6989586621679409254"><span class="annot"><span class="annottext">parseCallProblemInterruptions :: Value -&gt; Parser CallProblem
+</span><a href="#local-6989586621679409254"><span class="hs-identifier hs-var hs-var">parseCallProblemInterruptions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;CallProblemInterruptions&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem)
 -&gt; (Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408110"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408110"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679409244"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679409244"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-67"></span><span>    </span><span class="annot"><span class="annottext">CallProblem -&gt; Parser CallProblem
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CallProblem -&gt; Parser CallProblem)
@@ -184,16 +184,16 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallProblemInterruptions :: CallProblem
 </span><a href="API.CallProblem.html#CallProblemInterruptions"><span class="hs-identifier hs-type hs-type">CallProblemInterruptions</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-68"></span><span>
-</span><span id="line-69"></span><span>   </span><span class="annot"><a href="#local-6989586621679408119"><span class="hs-identifier hs-type">parseCallProblemDistortedSpeech</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallProblem.html#CallProblem"><span class="hs-identifier hs-type">CallProblem</span></a></span><span>
-</span><span id="line-70"></span><span>   </span><span id="local-6989586621679408119"><span class="annot"><span class="annottext">parseCallProblemDistortedSpeech :: Value -&gt; Parser CallProblem
-</span><a href="#local-6989586621679408119"><span class="hs-identifier hs-var hs-var">parseCallProblemDistortedSpeech</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-69"></span><span>   </span><span class="annot"><a href="#local-6989586621679409253"><span class="hs-identifier hs-type">parseCallProblemDistortedSpeech</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallProblem.html#CallProblem"><span class="hs-identifier hs-type">CallProblem</span></a></span><span>
+</span><span id="line-70"></span><span>   </span><span id="local-6989586621679409253"><span class="annot"><span class="annottext">parseCallProblemDistortedSpeech :: Value -&gt; Parser CallProblem
+</span><a href="#local-6989586621679409253"><span class="hs-identifier hs-var hs-var">parseCallProblemDistortedSpeech</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;CallProblemDistortedSpeech&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem)
 -&gt; (Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408108"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408108"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679409242"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679409242"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-71"></span><span>    </span><span class="annot"><span class="annottext">CallProblem -&gt; Parser CallProblem
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CallProblem -&gt; Parser CallProblem)
@@ -202,16 +202,16 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallProblemDistortedSpeech :: CallProblem
 </span><a href="API.CallProblem.html#CallProblemDistortedSpeech"><span class="hs-identifier hs-type hs-type">CallProblemDistortedSpeech</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-72"></span><span>
-</span><span id="line-73"></span><span>   </span><span class="annot"><a href="#local-6989586621679408118"><span class="hs-identifier hs-type">parseCallProblemSilentLocal</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallProblem.html#CallProblem"><span class="hs-identifier hs-type">CallProblem</span></a></span><span>
-</span><span id="line-74"></span><span>   </span><span id="local-6989586621679408118"><span class="annot"><span class="annottext">parseCallProblemSilentLocal :: Value -&gt; Parser CallProblem
-</span><a href="#local-6989586621679408118"><span class="hs-identifier hs-var hs-var">parseCallProblemSilentLocal</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-73"></span><span>   </span><span class="annot"><a href="#local-6989586621679409252"><span class="hs-identifier hs-type">parseCallProblemSilentLocal</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallProblem.html#CallProblem"><span class="hs-identifier hs-type">CallProblem</span></a></span><span>
+</span><span id="line-74"></span><span>   </span><span id="local-6989586621679409252"><span class="annot"><span class="annottext">parseCallProblemSilentLocal :: Value -&gt; Parser CallProblem
+</span><a href="#local-6989586621679409252"><span class="hs-identifier hs-var hs-var">parseCallProblemSilentLocal</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;CallProblemSilentLocal&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem)
 -&gt; (Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408106"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408106"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679409240"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679409240"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-75"></span><span>    </span><span class="annot"><span class="annottext">CallProblem -&gt; Parser CallProblem
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CallProblem -&gt; Parser CallProblem)
@@ -220,16 +220,16 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallProblemSilentLocal :: CallProblem
 </span><a href="API.CallProblem.html#CallProblemSilentLocal"><span class="hs-identifier hs-type hs-type">CallProblemSilentLocal</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-76"></span><span>
-</span><span id="line-77"></span><span>   </span><span class="annot"><a href="#local-6989586621679408117"><span class="hs-identifier hs-type">parseCallProblemSilentRemote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallProblem.html#CallProblem"><span class="hs-identifier hs-type">CallProblem</span></a></span><span>
-</span><span id="line-78"></span><span>   </span><span id="local-6989586621679408117"><span class="annot"><span class="annottext">parseCallProblemSilentRemote :: Value -&gt; Parser CallProblem
-</span><a href="#local-6989586621679408117"><span class="hs-identifier hs-var hs-var">parseCallProblemSilentRemote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-77"></span><span>   </span><span class="annot"><a href="#local-6989586621679409251"><span class="hs-identifier hs-type">parseCallProblemSilentRemote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallProblem.html#CallProblem"><span class="hs-identifier hs-type">CallProblem</span></a></span><span>
+</span><span id="line-78"></span><span>   </span><span id="local-6989586621679409251"><span class="annot"><span class="annottext">parseCallProblemSilentRemote :: Value -&gt; Parser CallProblem
+</span><a href="#local-6989586621679409251"><span class="hs-identifier hs-var hs-var">parseCallProblemSilentRemote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;CallProblemSilentRemote&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem)
 -&gt; (Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408104"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408104"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679409238"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679409238"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-79"></span><span>    </span><span class="annot"><span class="annottext">CallProblem -&gt; Parser CallProblem
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CallProblem -&gt; Parser CallProblem)
@@ -238,16 +238,16 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallProblemSilentRemote :: CallProblem
 </span><a href="API.CallProblem.html#CallProblemSilentRemote"><span class="hs-identifier hs-type hs-type">CallProblemSilentRemote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-80"></span><span>
-</span><span id="line-81"></span><span>   </span><span class="annot"><a href="#local-6989586621679408116"><span class="hs-identifier hs-type">parseCallProblemDropped</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallProblem.html#CallProblem"><span class="hs-identifier hs-type">CallProblem</span></a></span><span>
-</span><span id="line-82"></span><span>   </span><span id="local-6989586621679408116"><span class="annot"><span class="annottext">parseCallProblemDropped :: Value -&gt; Parser CallProblem
-</span><a href="#local-6989586621679408116"><span class="hs-identifier hs-var hs-var">parseCallProblemDropped</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-81"></span><span>   </span><span class="annot"><a href="#local-6989586621679409250"><span class="hs-identifier hs-type">parseCallProblemDropped</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallProblem.html#CallProblem"><span class="hs-identifier hs-type">CallProblem</span></a></span><span>
+</span><span id="line-82"></span><span>   </span><span id="local-6989586621679409250"><span class="annot"><span class="annottext">parseCallProblemDropped :: Value -&gt; Parser CallProblem
+</span><a href="#local-6989586621679409250"><span class="hs-identifier hs-var hs-var">parseCallProblemDropped</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;CallProblemDropped&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem)
 -&gt; (Object -&gt; Parser CallProblem) -&gt; Value -&gt; Parser CallProblem
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679408102"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679408102"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679409236"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679409236"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-83"></span><span>    </span><span class="annot"><span class="annottext">CallProblem -&gt; Parser CallProblem
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CallProblem -&gt; Parser CallProblem)

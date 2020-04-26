@@ -14,7 +14,7 @@
 </span><span id="line-14"></span><span class="hs-comment">-- __seconds__ Number of seconds</span><span>
 </span><span id="line-15"></span><span class="hs-keyword">data</span><span> </span><span id="Seconds"><span class="annot"><a href="API.Seconds.html#Seconds"><span class="hs-identifier hs-var">Seconds</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-16"></span><span> </span><span id="Seconds"><span class="annot"><a href="API.Seconds.html#Seconds"><span class="hs-identifier hs-var">Seconds</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="seconds"><span class="annot"><span class="annottext">Seconds -&gt; Maybe Float
-</span><a href="API.Seconds.html#seconds"><span class="hs-identifier hs-var hs-var">seconds</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679450695"><span id="local-6989586621679450697"><span id="local-6989586621679450699"><span class="annot"><span class="annottext">Int -&gt; Seconds -&gt; ShowS
+</span><a href="API.Seconds.html#seconds"><span class="hs-identifier hs-var hs-var">seconds</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Float</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679451852"><span id="local-6989586621679451854"><span id="local-6989586621679451856"><span class="annot"><span class="annottext">Int -&gt; Seconds -&gt; ShowS
 [Seconds] -&gt; ShowS
 Seconds -&gt; String
 (Int -&gt; Seconds -&gt; ShowS)
@@ -27,7 +27,7 @@ show :: Seconds -&gt; String
 $cshow :: Seconds -&gt; String
 showsPrec :: Int -&gt; Seconds -&gt; ShowS
 $cshowsPrec :: Int -&gt; Seconds -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679450690"><span id="local-6989586621679450692"><span class="annot"><span class="annottext">Seconds -&gt; Seconds -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679451847"><span id="local-6989586621679451849"><span class="annot"><span class="annottext">Seconds -&gt; Seconds -&gt; Bool
 (Seconds -&gt; Seconds -&gt; Bool)
 -&gt; (Seconds -&gt; Seconds -&gt; Bool) -&gt; Eq Seconds
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -37,11 +37,11 @@ $c/= :: Seconds -&gt; Seconds -&gt; Bool
 $c== :: Seconds -&gt; Seconds -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679450682"><span id="local-6989586621679450684"><span id="local-6989586621679450686"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Seconds.html#Seconds"><span class="hs-identifier hs-type">Seconds</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-19"></span><span> </span><span id="local-6989586621679450680"><span class="annot"><span class="annottext">toJSON :: Seconds -&gt; Value
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679451839"><span id="local-6989586621679451841"><span id="local-6989586621679451843"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Seconds.html#Seconds"><span class="hs-identifier hs-type">Seconds</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span> </span><span id="local-6989586621679451837"><span class="annot"><span class="annottext">toJSON :: Seconds -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Seconds.html#Seconds"><span class="hs-identifier hs-type">Seconds</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">seconds :: Seconds -&gt; Maybe Float
-</span><a href="API.Seconds.html#seconds"><span class="hs-identifier hs-var">seconds</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679450678"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679450678"><span class="hs-identifier hs-var">seconds</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Seconds.html#seconds"><span class="hs-identifier hs-var">seconds</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679451835"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679451835"><span class="hs-identifier hs-var">seconds</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-20"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -49,39 +49,39 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;seconds&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;seconds&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Float -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679450678"><span class="hs-identifier hs-var">seconds</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679451835"><span class="hs-identifier hs-var">seconds</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679450672"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Seconds.html#Seconds"><span class="hs-identifier hs-type">Seconds</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span> </span><span id="local-6989586621679450670"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Seconds
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679450668"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679450668"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679450666"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679450666"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-24"></span><span>  </span><span id="local-6989586621679450665"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679450665"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679450666"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679451829"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Seconds.html#Seconds"><span class="hs-identifier hs-type">Seconds</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span> </span><span id="local-6989586621679451827"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Seconds
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679451825"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679451825"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679451823"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679451823"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-24"></span><span>  </span><span id="local-6989586621679451822"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679451822"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679451823"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-25"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679450665"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679451822"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-26"></span><span>   </span><span class="hs-string">&quot;seconds&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser Seconds
-</span><a href="#local-6989586621679450663"><span class="hs-identifier hs-var">parseSeconds</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679450668"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679451820"><span class="hs-identifier hs-var">parseSeconds</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679451825"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-27"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser Seconds
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-28"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span>   </span><span class="annot"><a href="#local-6989586621679450663"><span class="hs-identifier hs-type">parseSeconds</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Seconds.html#Seconds"><span class="hs-identifier hs-type">Seconds</span></a></span><span>
-</span><span id="line-30"></span><span>   </span><span id="local-6989586621679450663"><span class="annot"><span class="annottext">parseSeconds :: Value -&gt; Parser Seconds
-</span><a href="#local-6989586621679450663"><span class="hs-identifier hs-var hs-var">parseSeconds</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Seconds) -&gt; Value -&gt; Parser Seconds
+</span><span id="line-29"></span><span>   </span><span class="annot"><a href="#local-6989586621679451820"><span class="hs-identifier hs-type">parseSeconds</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Seconds.html#Seconds"><span class="hs-identifier hs-type">Seconds</span></a></span><span>
+</span><span id="line-30"></span><span>   </span><span id="local-6989586621679451820"><span class="annot"><span class="annottext">parseSeconds :: Value -&gt; Parser Seconds
+</span><a href="#local-6989586621679451820"><span class="hs-identifier hs-var hs-var">parseSeconds</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Seconds) -&gt; Value -&gt; Parser Seconds
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;Seconds&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser Seconds) -&gt; Value -&gt; Parser Seconds)
 -&gt; (Object -&gt; Parser Seconds) -&gt; Value -&gt; Parser Seconds
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679450661"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679450661"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-31"></span><span>    </span><span id="local-6989586621679450660"><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679450660"><span class="hs-identifier hs-var">seconds</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679450661"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Float)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679451818"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679451818"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-31"></span><span>    </span><span id="local-6989586621679451817"><span class="annot"><span class="annottext">Maybe Float
+</span><a href="#local-6989586621679451817"><span class="hs-identifier hs-var">seconds</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679451818"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Float)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;seconds&quot;</span></span><span>
 </span><span id="line-32"></span><span>    </span><span class="annot"><span class="annottext">Seconds -&gt; Parser Seconds
@@ -91,4 +91,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Seconds :: Maybe Float -&gt; Seconds
 </span><a href="API.Seconds.html#Seconds"><span class="hs-identifier hs-type hs-type">Seconds</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">seconds :: Maybe Float
 </span><a href="API.Seconds.html#seconds"><span class="hs-identifier hs-var">seconds</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Float
-</span><a href="#local-6989586621679450660"><span class="hs-identifier hs-var">seconds</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679451817"><span class="hs-identifier hs-var">seconds</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

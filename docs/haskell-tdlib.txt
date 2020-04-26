@@ -4048,7 +4048,9 @@ module API.Functions.GetTrendingStickerSets
 --   be non-negative. Fewer sticker sets may be returned than specified by
 --   the limit, even if the end of the list has not been reached
 data GetTrendingStickerSets
-GetTrendingStickerSets :: GetTrendingStickerSets
+GetTrendingStickerSets :: Maybe Int -> Maybe Int -> GetTrendingStickerSets
+[limit] :: GetTrendingStickerSets -> Maybe Int
+[offset] :: GetTrendingStickerSets -> Maybe Int
 instance GHC.Classes.Eq API.Functions.GetTrendingStickerSets.GetTrendingStickerSets
 instance GHC.Show.Show API.Functions.GetTrendingStickerSets.GetTrendingStickerSets
 instance Data.Aeson.Types.ToJSON.ToJSON API.Functions.GetTrendingStickerSets.GetTrendingStickerSets
@@ -4958,8 +4960,8 @@ module API.Functions.SearchEmojis
 --   <b>input_language_codes</b> List of possible IETF language tags of the
 --   user's input language; may be empty if unknown
 data SearchEmojis
-SearchEmojis :: Maybe String -> Maybe Bool -> Maybe String -> SearchEmojis
-[input_language_code] :: SearchEmojis -> Maybe String
+SearchEmojis :: Maybe [String] -> Maybe Bool -> Maybe String -> SearchEmojis
+[input_language_codes] :: SearchEmojis -> Maybe [String]
 [exact_match] :: SearchEmojis -> Maybe Bool
 [text] :: SearchEmojis -> Maybe String
 instance GHC.Classes.Eq API.Functions.SearchEmojis.SearchEmojis
@@ -9189,8 +9191,10 @@ module API.Poll
 --   
 --   <b>is_closed</b> True, if the poll is closed
 data Poll
-Poll :: Maybe Bool -> Maybe PollType -> Maybe Bool -> Maybe [Int] -> Maybe Int -> Maybe [PollOption] -> Maybe String -> Maybe Int -> Poll
+Poll :: Maybe Bool -> Maybe Int -> Maybe Int -> Maybe PollType -> Maybe Bool -> Maybe [Int] -> Maybe Int -> Maybe [PollOption] -> Maybe String -> Maybe Int -> Poll
 [is_closed] :: Poll -> Maybe Bool
+[close_date] :: Poll -> Maybe Int
+[open_period] :: Poll -> Maybe Int
 [_type] :: Poll -> Maybe PollType
 [is_anonymous] :: Poll -> Maybe Bool
 [recent_voter_user_ids] :: Poll -> Maybe [Int]
@@ -9209,7 +9213,8 @@ module API.PollType
 data PollType
 PollTypeRegular :: Maybe Bool -> PollType
 [allow_multiple_answers] :: PollType -> Maybe Bool
-PollTypeQuiz :: Maybe Int -> PollType
+PollTypeQuiz :: Maybe FormattedText -> Maybe Int -> PollType
+[explanation] :: PollType -> Maybe FormattedText
 [correct_option_id] :: PollType -> Maybe Int
 instance GHC.Classes.Eq API.PollType.PollType
 instance GHC.Show.Show API.PollType.PollType
@@ -12044,6 +12049,8 @@ UpdateUnreadChatCount :: Maybe Int -> Maybe Int -> Maybe Int -> Maybe Int -> May
 UpdateOption :: Maybe OptionValue -> Maybe String -> Update
 [value] :: Update -> Maybe OptionValue
 [name] :: Update -> Maybe String
+UpdateStickerSet :: Maybe StickerSet -> Update
+[sticker_set] :: Update -> Maybe StickerSet
 UpdateInstalledStickerSets :: Maybe [Int] -> Maybe Bool -> Update
 [sticker_set_ids] :: Update -> Maybe [Int]
 [is_masks] :: Update -> Maybe Bool
@@ -12070,6 +12077,8 @@ UpdateTermsOfService :: Maybe TermsOfService -> Maybe String -> Update
 [terms_of_service_id] :: Update -> Maybe String
 UpdateUsersNearby :: Maybe [ChatNearby] -> Update
 [users_nearby] :: Update -> Maybe [ChatNearby]
+UpdateDiceEmojis :: Maybe [String] -> Update
+[emojis] :: Update -> Maybe [String]
 UpdateNewInlineQuery :: Maybe String -> Maybe String -> Maybe Location -> Maybe Int -> Maybe Int -> Update
 [offset] :: Update -> Maybe String
 [query] :: Update -> Maybe String
@@ -12323,7 +12332,9 @@ InputMessageVenue :: Maybe Venue -> InputMessageContent
 [venue] :: InputMessageContent -> Maybe Venue
 InputMessageContact :: Maybe Contact -> InputMessageContent
 [contact] :: InputMessageContent -> Maybe Contact
-InputMessageDice :: InputMessageContent
+InputMessageDice :: Maybe Bool -> Maybe String -> InputMessageContent
+[clear_draft] :: InputMessageContent -> Maybe Bool
+[emoji] :: InputMessageContent -> Maybe String
 InputMessageGame :: Maybe String -> Maybe Int -> InputMessageContent
 [game_short_name] :: InputMessageContent -> Maybe String
 [bot_user_id] :: InputMessageContent -> Maybe Int
@@ -12339,8 +12350,10 @@ InputMessageInvoice :: Maybe String -> Maybe String -> Maybe String -> Maybe Str
 [description] :: InputMessageContent -> Maybe String
 [title] :: InputMessageContent -> Maybe String
 [invoice] :: InputMessageContent -> Maybe Invoice
-InputMessagePoll :: Maybe Bool -> Maybe PollType -> Maybe Bool -> Maybe [String] -> Maybe String -> InputMessageContent
+InputMessagePoll :: Maybe Bool -> Maybe Int -> Maybe Int -> Maybe PollType -> Maybe Bool -> Maybe [String] -> Maybe String -> InputMessageContent
 [is_closed] :: InputMessageContent -> Maybe Bool
+[close_date] :: InputMessageContent -> Maybe Int
+[open_period] :: InputMessageContent -> Maybe Int
 [_type] :: InputMessageContent -> Maybe PollType
 [is_anonymous] :: InputMessageContent -> Maybe Bool
 [options] :: InputMessageContent -> Maybe [String]
@@ -12906,8 +12919,12 @@ MessageVenue :: Maybe Venue -> MessageContent
 [venue] :: MessageContent -> Maybe Venue
 MessageContact :: Maybe Contact -> MessageContent
 [contact] :: MessageContent -> Maybe Contact
-MessageDice :: Maybe Int -> MessageContent
+MessageDice :: Maybe Int -> Maybe Int -> Maybe String -> Maybe Sticker -> Maybe Sticker -> MessageContent
+[success_animation_frame_number] :: MessageContent -> Maybe Int
 [value] :: MessageContent -> Maybe Int
+[emoji] :: MessageContent -> Maybe String
+[final_state_sticker] :: MessageContent -> Maybe Sticker
+[initial_state_sticker] :: MessageContent -> Maybe Sticker
 MessageGame :: Maybe Game -> MessageContent
 [game] :: MessageContent -> Maybe Game
 MessagePoll :: Maybe Poll -> MessageContent

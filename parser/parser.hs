@@ -1,3 +1,5 @@
+-- you do not need to read or use this script, unless you are going to contribute to the lib
+
 {-# LANGUAGE OverloadedStrings #-}
 
 import qualified Data.Text                     as T
@@ -13,13 +15,11 @@ apifuncs = "API/Functions"
 
 main :: IO ()
 main = do
-  -- l <- getContents
-  l  <- T.pack <$> readFile "work_api.tl"
-  l1 <- T.pack <$> readFile "td_api.tl"
-  let comments     = parseComments l1
+  l <- T.pack <$> readFile "td_api.tl"
+  let comments     = parseComments l
+  let l1           = removeUnnecessary l
 
-  let [dat, funcs] = T.splitOn "---functions---" l
-
+  let [dat, funcs] = T.splitOn "---functions---" l1
 
   let a            = T.lines dat
   let m = renameWrongTypedField . parseParams . filterKeys $ toMap a
@@ -29,8 +29,11 @@ main = do
 
   let g            = uniq $ makeGeneralResult (b)
   writeToFiles api      api             (Map.insert "GeneralResult" g m) comments
-  --print f
   writeToFiles apifuncs "API.Functions" f comments
+ where
+  removeUnnecessary :: T.Text -> T.Text
+  removeUnnecessary t =
+    T.unlines $ filter (\x -> let s = T.strip x in s /= T.empty && not (T.isPrefixOf "//" s)) $ T.lines t
 
 writeToFiles :: T.Text -> T.Text -> Map.Map T.Text [(T.Text, [(T.Text, T.Text)])] -> Map.Map T.Text [T.Text] -> IO ()
 writeToFiles addr modName m cmnts =
@@ -45,6 +48,7 @@ writeToFiles addr modName m cmnts =
   moduleName d = T.concat ["module ", modName, ".", d, " where\n\n"]
   wr a b = if a == "GeneralResult" then wgr a b else w a b
   whr a = if a == "GeneralResult" then wgrhb a else whb a
+  -- write GeneralResult.hs-boot file
   wgrhb d = T.unpack $ T.concat
     [ generated
     , moduleName d
@@ -61,6 +65,7 @@ writeToFiles addr modName m cmnts =
     , "\n\ninstance FromJSON ResultWithExtra"
     , "\n\ninstance Show ResultWithExtra"
     ]
+  -- write GeneralResult.hs file
   wgr d e = T.unpack $ T.concat
     [ generated
     , "{-# LANGUAGE OverloadedStrings #-}\n"
@@ -115,6 +120,7 @@ writeToFiles addr modName m cmnts =
    where
     ww = map (\(a, b) -> T.concat [toTitle a, " ", (www b)]) e
     www l = T.intercalate " " (map (\(_, b) -> b) l)
+  -- write other .hs-boot files
   whb d = T.unpack $ T.concat
     [ generated
     , moduleName d
@@ -131,6 +137,7 @@ writeToFiles addr modName m cmnts =
     , d
     , "\n\n"
     ]
+  -- write other .hs files
   w d e = T.unpack $ T.concat
     [ generated
     , "{-# LANGUAGE OverloadedStrings #-}\n"
@@ -229,9 +236,6 @@ writeToFiles addr modName m cmnts =
         e
       ]
     ]
-
-
-
   myAdd :: T.Text -> [T.Text] -> [T.Text]
   myAdd x xs = do
     let n@(n1 : n2) = T.split (== '.') x

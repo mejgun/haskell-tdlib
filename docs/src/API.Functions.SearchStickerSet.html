@@ -14,7 +14,7 @@
 </span><span id="line-14"></span><span class="hs-comment">-- __name__ Name of the sticker set</span><span>
 </span><span id="line-15"></span><span class="hs-keyword">data</span><span> </span><span id="SearchStickerSet"><span class="annot"><a href="API.Functions.SearchStickerSet.html#SearchStickerSet"><span class="hs-identifier hs-var">SearchStickerSet</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-16"></span><span> </span><span id="SearchStickerSet"><span class="annot"><a href="API.Functions.SearchStickerSet.html#SearchStickerSet"><span class="hs-identifier hs-var">SearchStickerSet</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="name"><span class="annot"><span class="annottext">SearchStickerSet -&gt; Maybe String
-</span><a href="API.Functions.SearchStickerSet.html#name"><span class="hs-identifier hs-var hs-var">name</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679429883"><span id="local-6989586621679429885"><span id="local-6989586621679429887"><span class="annot"><span class="annottext">Int -&gt; SearchStickerSet -&gt; ShowS
+</span><a href="API.Functions.SearchStickerSet.html#name"><span class="hs-identifier hs-var hs-var">name</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679431030"><span id="local-6989586621679431032"><span id="local-6989586621679431034"><span class="annot"><span class="annottext">Int -&gt; SearchStickerSet -&gt; ShowS
 [SearchStickerSet] -&gt; ShowS
 SearchStickerSet -&gt; String
 (Int -&gt; SearchStickerSet -&gt; ShowS)
@@ -29,7 +29,7 @@ show :: SearchStickerSet -&gt; String
 $cshow :: SearchStickerSet -&gt; String
 showsPrec :: Int -&gt; SearchStickerSet -&gt; ShowS
 $cshowsPrec :: Int -&gt; SearchStickerSet -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679429878"><span id="local-6989586621679429880"><span class="annot"><span class="annottext">SearchStickerSet -&gt; SearchStickerSet -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679431025"><span id="local-6989586621679431027"><span class="annot"><span class="annottext">SearchStickerSet -&gt; SearchStickerSet -&gt; Bool
 (SearchStickerSet -&gt; SearchStickerSet -&gt; Bool)
 -&gt; (SearchStickerSet -&gt; SearchStickerSet -&gt; Bool)
 -&gt; Eq SearchStickerSet
@@ -40,11 +40,11 @@ $c/= :: SearchStickerSet -&gt; SearchStickerSet -&gt; Bool
 $c== :: SearchStickerSet -&gt; SearchStickerSet -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679429870"><span id="local-6989586621679429872"><span id="local-6989586621679429874"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SearchStickerSet.html#SearchStickerSet"><span class="hs-identifier hs-type">SearchStickerSet</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-19"></span><span> </span><span id="local-6989586621679429868"><span class="annot"><span class="annottext">toJSON :: SearchStickerSet -&gt; Value
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679431017"><span id="local-6989586621679431019"><span id="local-6989586621679431021"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SearchStickerSet.html#SearchStickerSet"><span class="hs-identifier hs-type">SearchStickerSet</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span> </span><span id="local-6989586621679431015"><span class="annot"><span class="annottext">toJSON :: SearchStickerSet -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.SearchStickerSet.html#SearchStickerSet"><span class="hs-identifier hs-type">SearchStickerSet</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">name :: SearchStickerSet -&gt; Maybe String
-</span><a href="API.Functions.SearchStickerSet.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679429866"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679429866"><span class="hs-identifier hs-var">name</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.SearchStickerSet.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679431013"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679431013"><span class="hs-identifier hs-var">name</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-20"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -52,30 +52,30 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;searchStickerSet&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679429866"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679431013"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679429860"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SearchStickerSet.html#SearchStickerSet"><span class="hs-identifier hs-type">SearchStickerSet</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span> </span><span id="local-6989586621679429858"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SearchStickerSet
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679429856"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679429856"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679429854"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679429854"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-24"></span><span>  </span><span id="local-6989586621679429853"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679429853"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679429854"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679431007"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SearchStickerSet.html#SearchStickerSet"><span class="hs-identifier hs-type">SearchStickerSet</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span> </span><span id="local-6989586621679431005"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SearchStickerSet
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679431003"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679431003"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679431001"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679431001"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-24"></span><span>  </span><span id="local-6989586621679431000"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679431000"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679431001"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-25"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679429853"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679431000"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-26"></span><span>   </span><span class="hs-string">&quot;searchStickerSet&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchStickerSet
-</span><a href="#local-6989586621679429851"><span class="hs-identifier hs-var">parseSearchStickerSet</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679429856"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679430998"><span class="hs-identifier hs-var">parseSearchStickerSet</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679431003"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-27"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SearchStickerSet
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-28"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span>   </span><span class="annot"><a href="#local-6989586621679429851"><span class="hs-identifier hs-type">parseSearchStickerSet</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SearchStickerSet.html#SearchStickerSet"><span class="hs-identifier hs-type">SearchStickerSet</span></a></span><span>
-</span><span id="line-30"></span><span>   </span><span id="local-6989586621679429851"><span class="annot"><span class="annottext">parseSearchStickerSet :: Value -&gt; Parser SearchStickerSet
-</span><a href="#local-6989586621679429851"><span class="hs-identifier hs-var hs-var">parseSearchStickerSet</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-29"></span><span>   </span><span class="annot"><a href="#local-6989586621679430998"><span class="hs-identifier hs-type">parseSearchStickerSet</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SearchStickerSet.html#SearchStickerSet"><span class="hs-identifier hs-type">SearchStickerSet</span></a></span><span>
+</span><span id="line-30"></span><span>   </span><span id="local-6989586621679430998"><span class="annot"><span class="annottext">parseSearchStickerSet :: Value -&gt; Parser SearchStickerSet
+</span><a href="#local-6989586621679430998"><span class="hs-identifier hs-var hs-var">parseSearchStickerSet</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchStickerSet)
 -&gt; Value
 -&gt; Parser SearchStickerSet
@@ -86,11 +86,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchStickerSet
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679429849"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679429849"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-31"></span><span>    </span><span id="local-6989586621679429848"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679429848"><span class="hs-identifier hs-var">name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679429849"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679430996"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679430996"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-31"></span><span>    </span><span id="local-6989586621679430995"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679430995"><span class="hs-identifier hs-var">name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679430996"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;name&quot;</span></span><span>
 </span><span id="line-32"></span><span>    </span><span class="annot"><span class="annottext">SearchStickerSet -&gt; Parser SearchStickerSet
@@ -101,4 +101,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchStickerSet :: Maybe String -&gt; SearchStickerSet
 </span><a href="API.Functions.SearchStickerSet.html#SearchStickerSet"><span class="hs-identifier hs-type hs-type">SearchStickerSet</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">name :: Maybe String
 </span><a href="API.Functions.SearchStickerSet.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679429848"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679430995"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

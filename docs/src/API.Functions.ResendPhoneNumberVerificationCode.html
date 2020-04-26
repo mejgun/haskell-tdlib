@@ -11,7 +11,7 @@
 </span><span id="line-11"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-12"></span><span class="hs-comment">-- Re-sends the code to verify a phone number to be added to a user's Telegram Passport</span><span>
 </span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="ResendPhoneNumberVerificationCode"><span class="annot"><a href="API.Functions.ResendPhoneNumberVerificationCode.html#ResendPhoneNumberVerificationCode"><span class="hs-identifier hs-var">ResendPhoneNumberVerificationCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-14"></span><span> </span><span id="ResendPhoneNumberVerificationCode"><span class="annot"><a href="API.Functions.ResendPhoneNumberVerificationCode.html#ResendPhoneNumberVerificationCode"><span class="hs-identifier hs-var">ResendPhoneNumberVerificationCode</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679428487"><span id="local-6989586621679428489"><span id="local-6989586621679428491"><span class="annot"><span class="annottext">Int -&gt; ResendPhoneNumberVerificationCode -&gt; ShowS
+</span><span id="line-14"></span><span> </span><span id="ResendPhoneNumberVerificationCode"><span class="annot"><a href="API.Functions.ResendPhoneNumberVerificationCode.html#ResendPhoneNumberVerificationCode"><span class="hs-identifier hs-var">ResendPhoneNumberVerificationCode</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679429634"><span id="local-6989586621679429636"><span id="local-6989586621679429638"><span class="annot"><span class="annottext">Int -&gt; ResendPhoneNumberVerificationCode -&gt; ShowS
 [ResendPhoneNumberVerificationCode] -&gt; ShowS
 ResendPhoneNumberVerificationCode -&gt; String
 (Int -&gt; ResendPhoneNumberVerificationCode -&gt; ShowS)
@@ -26,7 +26,7 @@ show :: ResendPhoneNumberVerificationCode -&gt; String
 $cshow :: ResendPhoneNumberVerificationCode -&gt; String
 showsPrec :: Int -&gt; ResendPhoneNumberVerificationCode -&gt; ShowS
 $cshowsPrec :: Int -&gt; ResendPhoneNumberVerificationCode -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679428482"><span id="local-6989586621679428484"><span class="annot"><span class="annottext">ResendPhoneNumberVerificationCode
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679429629"><span id="local-6989586621679429631"><span class="annot"><span class="annottext">ResendPhoneNumberVerificationCode
 -&gt; ResendPhoneNumberVerificationCode -&gt; Bool
 (ResendPhoneNumberVerificationCode
  -&gt; ResendPhoneNumberVerificationCode -&gt; Bool)
@@ -44,8 +44,8 @@ $c== :: ResendPhoneNumberVerificationCode
 -&gt; ResendPhoneNumberVerificationCode -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428474"><span id="local-6989586621679428476"><span id="local-6989586621679428478"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ResendPhoneNumberVerificationCode.html#ResendPhoneNumberVerificationCode"><span class="hs-identifier hs-type">ResendPhoneNumberVerificationCode</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679428472"><span class="annot"><span class="annottext">toJSON :: ResendPhoneNumberVerificationCode -&gt; Value
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679429621"><span id="local-6989586621679429623"><span id="local-6989586621679429625"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ResendPhoneNumberVerificationCode.html#ResendPhoneNumberVerificationCode"><span class="hs-identifier hs-type">ResendPhoneNumberVerificationCode</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679429619"><span class="annot"><span class="annottext">toJSON :: ResendPhoneNumberVerificationCode -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.ResendPhoneNumberVerificationCode.html#ResendPhoneNumberVerificationCode"><span class="hs-identifier hs-type">ResendPhoneNumberVerificationCode</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-18"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -53,28 +53,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;resendPhoneNumberVerificationCode&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428465"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ResendPhoneNumberVerificationCode.html#ResendPhoneNumberVerificationCode"><span class="hs-identifier hs-type">ResendPhoneNumberVerificationCode</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span> </span><span id="local-6989586621679428463"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ResendPhoneNumberVerificationCode
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679428461"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679428461"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679428459"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679428459"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-22"></span><span>  </span><span id="local-6989586621679428458"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679428458"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679428459"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679429612"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ResendPhoneNumberVerificationCode.html#ResendPhoneNumberVerificationCode"><span class="hs-identifier hs-type">ResendPhoneNumberVerificationCode</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span> </span><span id="local-6989586621679429610"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ResendPhoneNumberVerificationCode
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679429608"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679429608"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679429606"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679429606"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679429605"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679429605"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679429606"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679428458"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679429605"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-24"></span><span>   </span><span class="hs-string">&quot;resendPhoneNumberVerificationCode&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ResendPhoneNumberVerificationCode
-</span><a href="#local-6989586621679428456"><span class="hs-identifier hs-var">parseResendPhoneNumberVerificationCode</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679428461"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679429603"><span class="hs-identifier hs-var">parseResendPhoneNumberVerificationCode</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679429608"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-25"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ResendPhoneNumberVerificationCode
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-26"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-27"></span><span>   </span><span class="annot"><a href="#local-6989586621679428456"><span class="hs-identifier hs-type">parseResendPhoneNumberVerificationCode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ResendPhoneNumberVerificationCode.html#ResendPhoneNumberVerificationCode"><span class="hs-identifier hs-type">ResendPhoneNumberVerificationCode</span></a></span><span>
-</span><span id="line-28"></span><span>   </span><span id="local-6989586621679428456"><span class="annot"><span class="annottext">parseResendPhoneNumberVerificationCode :: Value -&gt; Parser ResendPhoneNumberVerificationCode
-</span><a href="#local-6989586621679428456"><span class="hs-identifier hs-var hs-var">parseResendPhoneNumberVerificationCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-27"></span><span>   </span><span class="annot"><a href="#local-6989586621679429603"><span class="hs-identifier hs-type">parseResendPhoneNumberVerificationCode</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ResendPhoneNumberVerificationCode.html#ResendPhoneNumberVerificationCode"><span class="hs-identifier hs-type">ResendPhoneNumberVerificationCode</span></a></span><span>
+</span><span id="line-28"></span><span>   </span><span id="local-6989586621679429603"><span class="annot"><span class="annottext">parseResendPhoneNumberVerificationCode :: Value -&gt; Parser ResendPhoneNumberVerificationCode
+</span><a href="#local-6989586621679429603"><span class="hs-identifier hs-var hs-var">parseResendPhoneNumberVerificationCode</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ResendPhoneNumberVerificationCode)
 -&gt; Value
 -&gt; Parser ResendPhoneNumberVerificationCode
@@ -85,8 +85,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ResendPhoneNumberVerificationCode
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679428454"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679428454"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679429601"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679429601"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-29"></span><span>    </span><span class="annot"><span class="annottext">ResendPhoneNumberVerificationCode
 -&gt; Parser ResendPhoneNumberVerificationCode
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a

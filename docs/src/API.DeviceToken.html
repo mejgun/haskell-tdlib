@@ -31,7 +31,7 @@
 </span><span id="line-22"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="DeviceTokenUbuntuPush"><span class="annot"><a href="API.DeviceToken.html#DeviceTokenUbuntuPush"><span class="hs-identifier hs-var">DeviceTokenUbuntuPush</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="token"><span class="annot"><a href="API.DeviceToken.html#token"><span class="hs-identifier hs-var">token</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
 </span><span id="line-23"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="DeviceTokenBlackBerryPush"><span class="annot"><a href="API.DeviceToken.html#DeviceTokenBlackBerryPush"><span class="hs-identifier hs-var">DeviceTokenBlackBerryPush</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="token"><span class="annot"><a href="API.DeviceToken.html#token"><span class="hs-identifier hs-var">token</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span>
 </span><span id="line-24"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="DeviceTokenTizenPush"><span class="annot"><a href="API.DeviceToken.html#DeviceTokenTizenPush"><span class="hs-identifier hs-var">DeviceTokenTizenPush</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="reg_id"><span class="annot"><span class="annottext">DeviceToken -&gt; Maybe String
-</span><a href="API.DeviceToken.html#reg_id"><span class="hs-identifier hs-var hs-var">reg_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679411723"><span id="local-6989586621679411725"><span id="local-6989586621679411727"><span class="annot"><span class="annottext">Int -&gt; DeviceToken -&gt; ShowS
+</span><a href="API.DeviceToken.html#reg_id"><span class="hs-identifier hs-var hs-var">reg_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679412857"><span id="local-6989586621679412859"><span id="local-6989586621679412861"><span class="annot"><span class="annottext">Int -&gt; DeviceToken -&gt; ShowS
 [DeviceToken] -&gt; ShowS
 DeviceToken -&gt; String
 (Int -&gt; DeviceToken -&gt; ShowS)
@@ -46,7 +46,7 @@ show :: DeviceToken -&gt; String
 $cshow :: DeviceToken -&gt; String
 showsPrec :: Int -&gt; DeviceToken -&gt; ShowS
 $cshowsPrec :: Int -&gt; DeviceToken -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679411718"><span id="local-6989586621679411720"><span class="annot"><span class="annottext">DeviceToken -&gt; DeviceToken -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679412852"><span id="local-6989586621679412854"><span class="annot"><span class="annottext">DeviceToken -&gt; DeviceToken -&gt; Bool
 (DeviceToken -&gt; DeviceToken -&gt; Bool)
 -&gt; (DeviceToken -&gt; DeviceToken -&gt; Bool) -&gt; Eq DeviceToken
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -56,13 +56,13 @@ $c/= :: DeviceToken -&gt; DeviceToken -&gt; Bool
 $c== :: DeviceToken -&gt; DeviceToken -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-25"></span><span>
-</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679411710"><span id="local-6989586621679411712"><span id="local-6989586621679411714"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-27"></span><span> </span><span id="local-6989586621679411708"><span class="annot"><span class="annottext">toJSON :: DeviceToken -&gt; Value
+</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412844"><span id="local-6989586621679412846"><span id="local-6989586621679412848"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-27"></span><span> </span><span id="local-6989586621679412842"><span class="annot"><span class="annottext">toJSON :: DeviceToken -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.DeviceToken.html#DeviceTokenFirebaseCloudMessaging"><span class="hs-identifier hs-type">DeviceTokenFirebaseCloudMessaging</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">encrypt :: DeviceToken -&gt; Maybe Bool
-</span><a href="API.DeviceToken.html#encrypt"><span class="hs-identifier hs-var">encrypt</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411706"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679411706"><span class="hs-identifier hs-var">encrypt</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">token :: DeviceToken -&gt; Maybe String
-</span><a href="API.DeviceToken.html#token"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411705"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411705"><span class="hs-identifier hs-var">token</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.DeviceToken.html#encrypt"><span class="hs-identifier hs-var">encrypt</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412840"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412840"><span class="hs-identifier hs-var">encrypt</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">token :: DeviceToken -&gt; Maybe String
+</span><a href="API.DeviceToken.html#token"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412839"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412839"><span class="hs-identifier hs-var">token</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-28"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -70,16 +70,16 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;deviceTokenFirebaseCloudMessaging&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;encrypt&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679411706"><span class="hs-identifier hs-var">encrypt</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;token&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679412840"><span class="hs-identifier hs-var">encrypt</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;token&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411705"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679412839"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-29"></span><span>
 </span><span id="line-30"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.DeviceToken.html#DeviceTokenApplePush"><span class="hs-identifier hs-type">DeviceTokenApplePush</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_app_sandbox :: DeviceToken -&gt; Maybe Bool
-</span><a href="API.DeviceToken.html#is_app_sandbox"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411701"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679411701"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_token :: DeviceToken -&gt; Maybe String
-</span><a href="API.DeviceToken.html#device_token"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411700"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411700"><span class="hs-identifier hs-var">device_token</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.DeviceToken.html#is_app_sandbox"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412835"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412835"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_token :: DeviceToken -&gt; Maybe String
+</span><a href="API.DeviceToken.html#device_token"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412834"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412834"><span class="hs-identifier hs-var">device_token</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-31"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -87,18 +87,18 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;deviceTokenApplePush&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_app_sandbox&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679411701"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;device_token&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679412835"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;device_token&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411700"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679412834"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-32"></span><span>
 </span><span id="line-33"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.DeviceToken.html#DeviceTokenApplePushVoIP"><span class="hs-identifier hs-type">DeviceTokenApplePushVoIP</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">encrypt :: DeviceToken -&gt; Maybe Bool
-</span><a href="API.DeviceToken.html#encrypt"><span class="hs-identifier hs-var">encrypt</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411699"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679411699"><span class="hs-identifier hs-var">encrypt</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_app_sandbox :: DeviceToken -&gt; Maybe Bool
-</span><a href="API.DeviceToken.html#is_app_sandbox"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411698"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679411698"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_token :: DeviceToken -&gt; Maybe String
-</span><a href="API.DeviceToken.html#device_token"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411697"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411697"><span class="hs-identifier hs-var">device_token</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.DeviceToken.html#encrypt"><span class="hs-identifier hs-var">encrypt</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412833"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412833"><span class="hs-identifier hs-var">encrypt</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_app_sandbox :: DeviceToken -&gt; Maybe Bool
+</span><a href="API.DeviceToken.html#is_app_sandbox"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412832"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412832"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_token :: DeviceToken -&gt; Maybe String
+</span><a href="API.DeviceToken.html#device_token"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412831"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412831"><span class="hs-identifier hs-var">device_token</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-34"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -106,17 +106,17 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;deviceTokenApplePushVoIP&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;encrypt&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679411699"><span class="hs-identifier hs-var">encrypt</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_app_sandbox&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679412833"><span class="hs-identifier hs-var">encrypt</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_app_sandbox&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679411698"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;device_token&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679412832"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;device_token&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411697"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679412831"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-35"></span><span>
 </span><span id="line-36"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.DeviceToken.html#DeviceTokenWindowsPush"><span class="hs-identifier hs-type">DeviceTokenWindowsPush</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">access_token :: DeviceToken -&gt; Maybe String
-</span><a href="API.DeviceToken.html#access_token"><span class="hs-identifier hs-var">access_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411696"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411696"><span class="hs-identifier hs-var">access_token</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.DeviceToken.html#access_token"><span class="hs-identifier hs-var">access_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412830"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412830"><span class="hs-identifier hs-var">access_token</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-37"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -124,11 +124,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;deviceTokenWindowsPush&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;access_token&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411696"><span class="hs-identifier hs-var">access_token</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679412830"><span class="hs-identifier hs-var">access_token</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-38"></span><span>
 </span><span id="line-39"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.DeviceToken.html#DeviceTokenMicrosoftPush"><span class="hs-identifier hs-type">DeviceTokenMicrosoftPush</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">channel_uri :: DeviceToken -&gt; Maybe String
-</span><a href="API.DeviceToken.html#channel_uri"><span class="hs-identifier hs-var">channel_uri</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411695"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411695"><span class="hs-identifier hs-var">channel_uri</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.DeviceToken.html#channel_uri"><span class="hs-identifier hs-var">channel_uri</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412829"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412829"><span class="hs-identifier hs-var">channel_uri</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-40"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -136,11 +136,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;deviceTokenMicrosoftPush&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;channel_uri&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411695"><span class="hs-identifier hs-var">channel_uri</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679412829"><span class="hs-identifier hs-var">channel_uri</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-41"></span><span>
 </span><span id="line-42"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.DeviceToken.html#DeviceTokenMicrosoftPushVoIP"><span class="hs-identifier hs-type">DeviceTokenMicrosoftPushVoIP</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">channel_uri :: DeviceToken -&gt; Maybe String
-</span><a href="API.DeviceToken.html#channel_uri"><span class="hs-identifier hs-var">channel_uri</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411694"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411694"><span class="hs-identifier hs-var">channel_uri</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.DeviceToken.html#channel_uri"><span class="hs-identifier hs-var">channel_uri</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412828"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412828"><span class="hs-identifier hs-var">channel_uri</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-43"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -148,15 +148,15 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;deviceTokenMicrosoftPushVoIP&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;channel_uri&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411694"><span class="hs-identifier hs-var">channel_uri</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679412828"><span class="hs-identifier hs-var">channel_uri</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-44"></span><span>
 </span><span id="line-45"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.DeviceToken.html#DeviceTokenWebPush"><span class="hs-identifier hs-type">DeviceTokenWebPush</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">auth_base64url :: DeviceToken -&gt; Maybe String
-</span><a href="API.DeviceToken.html#auth_base64url"><span class="hs-identifier hs-var">auth_base64url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411693"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411693"><span class="hs-identifier hs-var">auth_base64url</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">p256dh_base64url :: DeviceToken -&gt; Maybe String
-</span><a href="API.DeviceToken.html#p256dh_base64url"><span class="hs-identifier hs-var">p256dh_base64url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411692"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411692"><span class="hs-identifier hs-var">p256dh_base64url</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">endpoint :: DeviceToken -&gt; Maybe String
-</span><a href="API.DeviceToken.html#endpoint"><span class="hs-identifier hs-var">endpoint</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411691"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411691"><span class="hs-identifier hs-var">endpoint</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.DeviceToken.html#auth_base64url"><span class="hs-identifier hs-var">auth_base64url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412827"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412827"><span class="hs-identifier hs-var">auth_base64url</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">p256dh_base64url :: DeviceToken -&gt; Maybe String
+</span><a href="API.DeviceToken.html#p256dh_base64url"><span class="hs-identifier hs-var">p256dh_base64url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412826"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412826"><span class="hs-identifier hs-var">p256dh_base64url</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">endpoint :: DeviceToken -&gt; Maybe String
+</span><a href="API.DeviceToken.html#endpoint"><span class="hs-identifier hs-var">endpoint</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412825"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412825"><span class="hs-identifier hs-var">endpoint</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-46"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -164,17 +164,17 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;deviceTokenWebPush&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;auth_base64url&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411693"><span class="hs-identifier hs-var">auth_base64url</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;p256dh_base64url&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679412827"><span class="hs-identifier hs-var">auth_base64url</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;p256dh_base64url&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411692"><span class="hs-identifier hs-var">p256dh_base64url</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;endpoint&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679412826"><span class="hs-identifier hs-var">p256dh_base64url</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;endpoint&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411691"><span class="hs-identifier hs-var">endpoint</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679412825"><span class="hs-identifier hs-var">endpoint</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-47"></span><span>
 </span><span id="line-48"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.DeviceToken.html#DeviceTokenSimplePush"><span class="hs-identifier hs-type">DeviceTokenSimplePush</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">endpoint :: DeviceToken -&gt; Maybe String
-</span><a href="API.DeviceToken.html#endpoint"><span class="hs-identifier hs-var">endpoint</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411690"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411690"><span class="hs-identifier hs-var">endpoint</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.DeviceToken.html#endpoint"><span class="hs-identifier hs-var">endpoint</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412824"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412824"><span class="hs-identifier hs-var">endpoint</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-49"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -182,11 +182,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;deviceTokenSimplePush&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;endpoint&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411690"><span class="hs-identifier hs-var">endpoint</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679412824"><span class="hs-identifier hs-var">endpoint</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-50"></span><span>
 </span><span id="line-51"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.DeviceToken.html#DeviceTokenUbuntuPush"><span class="hs-identifier hs-type">DeviceTokenUbuntuPush</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">token :: DeviceToken -&gt; Maybe String
-</span><a href="API.DeviceToken.html#token"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411689"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411689"><span class="hs-identifier hs-var">token</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.DeviceToken.html#token"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412823"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412823"><span class="hs-identifier hs-var">token</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-52"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -194,11 +194,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;deviceTokenUbuntuPush&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;token&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411689"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679412823"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-53"></span><span>
 </span><span id="line-54"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.DeviceToken.html#DeviceTokenBlackBerryPush"><span class="hs-identifier hs-type">DeviceTokenBlackBerryPush</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">token :: DeviceToken -&gt; Maybe String
-</span><a href="API.DeviceToken.html#token"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411688"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411688"><span class="hs-identifier hs-var">token</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.DeviceToken.html#token"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412822"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412822"><span class="hs-identifier hs-var">token</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-55"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -206,11 +206,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;deviceTokenBlackBerryPush&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;token&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411688"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679412822"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-56"></span><span>
 </span><span id="line-57"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.DeviceToken.html#DeviceTokenTizenPush"><span class="hs-identifier hs-type">DeviceTokenTizenPush</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">reg_id :: DeviceToken -&gt; Maybe String
-</span><a href="API.DeviceToken.html#reg_id"><span class="hs-identifier hs-var">reg_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411687"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411687"><span class="hs-identifier hs-var">reg_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.DeviceToken.html#reg_id"><span class="hs-identifier hs-var">reg_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679412821"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412821"><span class="hs-identifier hs-var">reg_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-58"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -218,75 +218,75 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;deviceTokenTizenPush&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;reg_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411687"><span class="hs-identifier hs-var">reg_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679412821"><span class="hs-identifier hs-var">reg_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-59"></span><span>
-</span><span id="line-60"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679411684"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-61"></span><span> </span><span id="local-6989586621679411682"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser DeviceToken
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679411680"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679411680"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679411678"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679411678"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-62"></span><span>  </span><span id="local-6989586621679411677"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679411677"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411678"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-60"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679412818"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-61"></span><span> </span><span id="local-6989586621679412816"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser DeviceToken
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679412814"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679412814"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679412812"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679412812"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-62"></span><span>  </span><span id="local-6989586621679412811"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679412811"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412812"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-63"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679411677"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679412811"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-64"></span><span>   </span><span class="hs-string">&quot;deviceTokenFirebaseCloudMessaging&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411675"><span class="hs-identifier hs-var">parseDeviceTokenFirebaseCloudMessaging</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679411680"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679412809"><span class="hs-identifier hs-var">parseDeviceTokenFirebaseCloudMessaging</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412814"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-65"></span><span>   </span><span class="hs-string">&quot;deviceTokenApplePush&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411674"><span class="hs-identifier hs-var">parseDeviceTokenApplePush</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679411680"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679412808"><span class="hs-identifier hs-var">parseDeviceTokenApplePush</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412814"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-66"></span><span>   </span><span class="hs-string">&quot;deviceTokenApplePushVoIP&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411673"><span class="hs-identifier hs-var">parseDeviceTokenApplePushVoIP</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679411680"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679412807"><span class="hs-identifier hs-var">parseDeviceTokenApplePushVoIP</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412814"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-67"></span><span>   </span><span class="hs-string">&quot;deviceTokenWindowsPush&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411672"><span class="hs-identifier hs-var">parseDeviceTokenWindowsPush</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679411680"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679412806"><span class="hs-identifier hs-var">parseDeviceTokenWindowsPush</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412814"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-68"></span><span>   </span><span class="hs-string">&quot;deviceTokenMicrosoftPush&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411671"><span class="hs-identifier hs-var">parseDeviceTokenMicrosoftPush</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679411680"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679412805"><span class="hs-identifier hs-var">parseDeviceTokenMicrosoftPush</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412814"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-69"></span><span>   </span><span class="hs-string">&quot;deviceTokenMicrosoftPushVoIP&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411670"><span class="hs-identifier hs-var">parseDeviceTokenMicrosoftPushVoIP</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679411680"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679412804"><span class="hs-identifier hs-var">parseDeviceTokenMicrosoftPushVoIP</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412814"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-70"></span><span>   </span><span class="hs-string">&quot;deviceTokenWebPush&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411669"><span class="hs-identifier hs-var">parseDeviceTokenWebPush</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679411680"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679412803"><span class="hs-identifier hs-var">parseDeviceTokenWebPush</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412814"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-71"></span><span>   </span><span class="hs-string">&quot;deviceTokenSimplePush&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411668"><span class="hs-identifier hs-var">parseDeviceTokenSimplePush</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679411680"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679412802"><span class="hs-identifier hs-var">parseDeviceTokenSimplePush</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412814"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-72"></span><span>   </span><span class="hs-string">&quot;deviceTokenUbuntuPush&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411667"><span class="hs-identifier hs-var">parseDeviceTokenUbuntuPush</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679411680"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679412801"><span class="hs-identifier hs-var">parseDeviceTokenUbuntuPush</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412814"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-73"></span><span>   </span><span class="hs-string">&quot;deviceTokenBlackBerryPush&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411666"><span class="hs-identifier hs-var">parseDeviceTokenBlackBerryPush</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679411680"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679412800"><span class="hs-identifier hs-var">parseDeviceTokenBlackBerryPush</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412814"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-74"></span><span>   </span><span class="hs-string">&quot;deviceTokenTizenPush&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411665"><span class="hs-identifier hs-var">parseDeviceTokenTizenPush</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679411680"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679412799"><span class="hs-identifier hs-var">parseDeviceTokenTizenPush</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679412814"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-75"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser DeviceToken
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-76"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-77"></span><span>   </span><span class="annot"><a href="#local-6989586621679411675"><span class="hs-identifier hs-type">parseDeviceTokenFirebaseCloudMessaging</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
-</span><span id="line-78"></span><span>   </span><span id="local-6989586621679411675"><span class="annot"><span class="annottext">parseDeviceTokenFirebaseCloudMessaging :: Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411675"><span class="hs-identifier hs-var hs-var">parseDeviceTokenFirebaseCloudMessaging</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-77"></span><span>   </span><span class="annot"><a href="#local-6989586621679412809"><span class="hs-identifier hs-type">parseDeviceTokenFirebaseCloudMessaging</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
+</span><span id="line-78"></span><span>   </span><span id="local-6989586621679412809"><span class="annot"><span class="annottext">parseDeviceTokenFirebaseCloudMessaging :: Value -&gt; Parser DeviceToken
+</span><a href="#local-6989586621679412809"><span class="hs-identifier hs-var hs-var">parseDeviceTokenFirebaseCloudMessaging</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;DeviceTokenFirebaseCloudMessaging&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken)
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679411663"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679411663"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-79"></span><span>    </span><span id="local-6989586621679411662"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679411662"><span class="hs-identifier hs-var">encrypt</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411663"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412797"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412797"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-79"></span><span>    </span><span id="local-6989586621679412796"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412796"><span class="hs-identifier hs-var">encrypt</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412797"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;encrypt&quot;</span></span><span>
-</span><span id="line-80"></span><span>    </span><span id="local-6989586621679411660"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411660"><span class="hs-identifier hs-var">token</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411663"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-80"></span><span>    </span><span id="local-6989586621679412794"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412794"><span class="hs-identifier hs-var">token</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412797"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;token&quot;</span></span><span>
 </span><span id="line-81"></span><span>    </span><span class="annot"><span class="annottext">DeviceToken -&gt; Parser DeviceToken
@@ -297,28 +297,28 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">DeviceTokenFirebaseCloudMessaging :: Maybe Bool -&gt; Maybe String -&gt; DeviceToken
 </span><a href="API.DeviceToken.html#DeviceTokenFirebaseCloudMessaging"><span class="hs-identifier hs-type hs-type">DeviceTokenFirebaseCloudMessaging</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">encrypt :: Maybe Bool
 </span><a href="API.DeviceToken.html#encrypt"><span class="hs-identifier hs-var">encrypt</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679411662"><span class="hs-identifier hs-var">encrypt</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">token :: Maybe String
+</span><a href="#local-6989586621679412796"><span class="hs-identifier hs-var">encrypt</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">token :: Maybe String
 </span><a href="API.DeviceToken.html#token"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411660"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679412794"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-82"></span><span>
-</span><span id="line-83"></span><span>   </span><span class="annot"><a href="#local-6989586621679411674"><span class="hs-identifier hs-type">parseDeviceTokenApplePush</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
-</span><span id="line-84"></span><span>   </span><span id="local-6989586621679411674"><span class="annot"><span class="annottext">parseDeviceTokenApplePush :: Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411674"><span class="hs-identifier hs-var hs-var">parseDeviceTokenApplePush</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-83"></span><span>   </span><span class="annot"><a href="#local-6989586621679412808"><span class="hs-identifier hs-type">parseDeviceTokenApplePush</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
+</span><span id="line-84"></span><span>   </span><span id="local-6989586621679412808"><span class="annot"><span class="annottext">parseDeviceTokenApplePush :: Value -&gt; Parser DeviceToken
+</span><a href="#local-6989586621679412808"><span class="hs-identifier hs-var hs-var">parseDeviceTokenApplePush</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;DeviceTokenApplePush&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken)
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679411658"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679411658"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-85"></span><span>    </span><span id="local-6989586621679411657"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679411657"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411658"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412792"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412792"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-85"></span><span>    </span><span id="local-6989586621679412791"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412791"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412792"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_app_sandbox&quot;</span></span><span>
-</span><span id="line-86"></span><span>    </span><span id="local-6989586621679411656"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411656"><span class="hs-identifier hs-var">device_token</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411658"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-86"></span><span>    </span><span id="local-6989586621679412790"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412790"><span class="hs-identifier hs-var">device_token</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412792"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;device_token&quot;</span></span><span>
 </span><span id="line-87"></span><span>    </span><span class="annot"><span class="annottext">DeviceToken -&gt; Parser DeviceToken
@@ -329,33 +329,33 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">DeviceTokenApplePush :: Maybe Bool -&gt; Maybe String -&gt; DeviceToken
 </span><a href="API.DeviceToken.html#DeviceTokenApplePush"><span class="hs-identifier hs-type hs-type">DeviceTokenApplePush</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_app_sandbox :: Maybe Bool
 </span><a href="API.DeviceToken.html#is_app_sandbox"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679411657"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_token :: Maybe String
+</span><a href="#local-6989586621679412791"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_token :: Maybe String
 </span><a href="API.DeviceToken.html#device_token"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411656"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679412790"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-88"></span><span>
-</span><span id="line-89"></span><span>   </span><span class="annot"><a href="#local-6989586621679411673"><span class="hs-identifier hs-type">parseDeviceTokenApplePushVoIP</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
-</span><span id="line-90"></span><span>   </span><span id="local-6989586621679411673"><span class="annot"><span class="annottext">parseDeviceTokenApplePushVoIP :: Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411673"><span class="hs-identifier hs-var hs-var">parseDeviceTokenApplePushVoIP</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-89"></span><span>   </span><span class="annot"><a href="#local-6989586621679412807"><span class="hs-identifier hs-type">parseDeviceTokenApplePushVoIP</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
+</span><span id="line-90"></span><span>   </span><span id="local-6989586621679412807"><span class="annot"><span class="annottext">parseDeviceTokenApplePushVoIP :: Value -&gt; Parser DeviceToken
+</span><a href="#local-6989586621679412807"><span class="hs-identifier hs-var hs-var">parseDeviceTokenApplePushVoIP</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;DeviceTokenApplePushVoIP&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken)
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679411654"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679411654"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-91"></span><span>    </span><span id="local-6989586621679411653"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679411653"><span class="hs-identifier hs-var">encrypt</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411654"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412788"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412788"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-91"></span><span>    </span><span id="local-6989586621679412787"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412787"><span class="hs-identifier hs-var">encrypt</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412788"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;encrypt&quot;</span></span><span>
-</span><span id="line-92"></span><span>    </span><span id="local-6989586621679411652"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679411652"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411654"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-92"></span><span>    </span><span id="local-6989586621679412786"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679412786"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412788"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_app_sandbox&quot;</span></span><span>
-</span><span id="line-93"></span><span>    </span><span id="local-6989586621679411651"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411651"><span class="hs-identifier hs-var">device_token</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411654"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-93"></span><span>    </span><span id="local-6989586621679412785"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412785"><span class="hs-identifier hs-var">device_token</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412788"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;device_token&quot;</span></span><span>
 </span><span id="line-94"></span><span>    </span><span class="annot"><span class="annottext">DeviceToken -&gt; Parser DeviceToken
@@ -366,25 +366,25 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">DeviceTokenApplePushVoIP :: Maybe Bool -&gt; Maybe Bool -&gt; Maybe String -&gt; DeviceToken
 </span><a href="API.DeviceToken.html#DeviceTokenApplePushVoIP"><span class="hs-identifier hs-type hs-type">DeviceTokenApplePushVoIP</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">encrypt :: Maybe Bool
 </span><a href="API.DeviceToken.html#encrypt"><span class="hs-identifier hs-var">encrypt</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679411653"><span class="hs-identifier hs-var">encrypt</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_app_sandbox :: Maybe Bool
+</span><a href="#local-6989586621679412787"><span class="hs-identifier hs-var">encrypt</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_app_sandbox :: Maybe Bool
 </span><a href="API.DeviceToken.html#is_app_sandbox"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679411652"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_token :: Maybe String
+</span><a href="#local-6989586621679412786"><span class="hs-identifier hs-var">is_app_sandbox</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_token :: Maybe String
 </span><a href="API.DeviceToken.html#device_token"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411651"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679412785"><span class="hs-identifier hs-var">device_token</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-95"></span><span>
-</span><span id="line-96"></span><span>   </span><span class="annot"><a href="#local-6989586621679411672"><span class="hs-identifier hs-type">parseDeviceTokenWindowsPush</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
-</span><span id="line-97"></span><span>   </span><span id="local-6989586621679411672"><span class="annot"><span class="annottext">parseDeviceTokenWindowsPush :: Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411672"><span class="hs-identifier hs-var hs-var">parseDeviceTokenWindowsPush</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-96"></span><span>   </span><span class="annot"><a href="#local-6989586621679412806"><span class="hs-identifier hs-type">parseDeviceTokenWindowsPush</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
+</span><span id="line-97"></span><span>   </span><span id="local-6989586621679412806"><span class="annot"><span class="annottext">parseDeviceTokenWindowsPush :: Value -&gt; Parser DeviceToken
+</span><a href="#local-6989586621679412806"><span class="hs-identifier hs-var hs-var">parseDeviceTokenWindowsPush</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;DeviceTokenWindowsPush&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken)
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679411649"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679411649"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-98"></span><span>    </span><span id="local-6989586621679411648"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411648"><span class="hs-identifier hs-var">access_token</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411649"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412783"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412783"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-98"></span><span>    </span><span id="local-6989586621679412782"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412782"><span class="hs-identifier hs-var">access_token</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412783"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;access_token&quot;</span></span><span>
 </span><span id="line-99"></span><span>    </span><span class="annot"><span class="annottext">DeviceToken -&gt; Parser DeviceToken
@@ -395,21 +395,21 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">DeviceTokenWindowsPush :: Maybe String -&gt; DeviceToken
 </span><a href="API.DeviceToken.html#DeviceTokenWindowsPush"><span class="hs-identifier hs-type hs-type">DeviceTokenWindowsPush</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">access_token :: Maybe String
 </span><a href="API.DeviceToken.html#access_token"><span class="hs-identifier hs-var">access_token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411648"><span class="hs-identifier hs-var">access_token</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679412782"><span class="hs-identifier hs-var">access_token</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-100"></span><span>
-</span><span id="line-101"></span><span>   </span><span class="annot"><a href="#local-6989586621679411671"><span class="hs-identifier hs-type">parseDeviceTokenMicrosoftPush</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
-</span><span id="line-102"></span><span>   </span><span id="local-6989586621679411671"><span class="annot"><span class="annottext">parseDeviceTokenMicrosoftPush :: Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411671"><span class="hs-identifier hs-var hs-var">parseDeviceTokenMicrosoftPush</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-101"></span><span>   </span><span class="annot"><a href="#local-6989586621679412805"><span class="hs-identifier hs-type">parseDeviceTokenMicrosoftPush</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
+</span><span id="line-102"></span><span>   </span><span id="local-6989586621679412805"><span class="annot"><span class="annottext">parseDeviceTokenMicrosoftPush :: Value -&gt; Parser DeviceToken
+</span><a href="#local-6989586621679412805"><span class="hs-identifier hs-var hs-var">parseDeviceTokenMicrosoftPush</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;DeviceTokenMicrosoftPush&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken)
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679411646"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679411646"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-103"></span><span>    </span><span id="local-6989586621679411645"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411645"><span class="hs-identifier hs-var">channel_uri</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411646"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412780"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412780"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-103"></span><span>    </span><span id="local-6989586621679412779"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412779"><span class="hs-identifier hs-var">channel_uri</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412780"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;channel_uri&quot;</span></span><span>
 </span><span id="line-104"></span><span>    </span><span class="annot"><span class="annottext">DeviceToken -&gt; Parser DeviceToken
@@ -420,21 +420,21 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">DeviceTokenMicrosoftPush :: Maybe String -&gt; DeviceToken
 </span><a href="API.DeviceToken.html#DeviceTokenMicrosoftPush"><span class="hs-identifier hs-type hs-type">DeviceTokenMicrosoftPush</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">channel_uri :: Maybe String
 </span><a href="API.DeviceToken.html#channel_uri"><span class="hs-identifier hs-var">channel_uri</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411645"><span class="hs-identifier hs-var">channel_uri</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679412779"><span class="hs-identifier hs-var">channel_uri</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-105"></span><span>
-</span><span id="line-106"></span><span>   </span><span class="annot"><a href="#local-6989586621679411670"><span class="hs-identifier hs-type">parseDeviceTokenMicrosoftPushVoIP</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
-</span><span id="line-107"></span><span>   </span><span id="local-6989586621679411670"><span class="annot"><span class="annottext">parseDeviceTokenMicrosoftPushVoIP :: Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411670"><span class="hs-identifier hs-var hs-var">parseDeviceTokenMicrosoftPushVoIP</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-106"></span><span>   </span><span class="annot"><a href="#local-6989586621679412804"><span class="hs-identifier hs-type">parseDeviceTokenMicrosoftPushVoIP</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
+</span><span id="line-107"></span><span>   </span><span id="local-6989586621679412804"><span class="annot"><span class="annottext">parseDeviceTokenMicrosoftPushVoIP :: Value -&gt; Parser DeviceToken
+</span><a href="#local-6989586621679412804"><span class="hs-identifier hs-var hs-var">parseDeviceTokenMicrosoftPushVoIP</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;DeviceTokenMicrosoftPushVoIP&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken)
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679411643"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679411643"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-108"></span><span>    </span><span id="local-6989586621679411642"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411642"><span class="hs-identifier hs-var">channel_uri</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411643"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412777"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412777"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-108"></span><span>    </span><span id="local-6989586621679412776"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412776"><span class="hs-identifier hs-var">channel_uri</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412777"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;channel_uri&quot;</span></span><span>
 </span><span id="line-109"></span><span>    </span><span class="annot"><span class="annottext">DeviceToken -&gt; Parser DeviceToken
@@ -445,31 +445,31 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">DeviceTokenMicrosoftPushVoIP :: Maybe String -&gt; DeviceToken
 </span><a href="API.DeviceToken.html#DeviceTokenMicrosoftPushVoIP"><span class="hs-identifier hs-type hs-type">DeviceTokenMicrosoftPushVoIP</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">channel_uri :: Maybe String
 </span><a href="API.DeviceToken.html#channel_uri"><span class="hs-identifier hs-var">channel_uri</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411642"><span class="hs-identifier hs-var">channel_uri</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679412776"><span class="hs-identifier hs-var">channel_uri</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-110"></span><span>
-</span><span id="line-111"></span><span>   </span><span class="annot"><a href="#local-6989586621679411669"><span class="hs-identifier hs-type">parseDeviceTokenWebPush</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
-</span><span id="line-112"></span><span>   </span><span id="local-6989586621679411669"><span class="annot"><span class="annottext">parseDeviceTokenWebPush :: Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411669"><span class="hs-identifier hs-var hs-var">parseDeviceTokenWebPush</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-111"></span><span>   </span><span class="annot"><a href="#local-6989586621679412803"><span class="hs-identifier hs-type">parseDeviceTokenWebPush</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
+</span><span id="line-112"></span><span>   </span><span id="local-6989586621679412803"><span class="annot"><span class="annottext">parseDeviceTokenWebPush :: Value -&gt; Parser DeviceToken
+</span><a href="#local-6989586621679412803"><span class="hs-identifier hs-var hs-var">parseDeviceTokenWebPush</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;DeviceTokenWebPush&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken)
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679411640"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679411640"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-113"></span><span>    </span><span id="local-6989586621679411639"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411639"><span class="hs-identifier hs-var">auth_base64url</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411640"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412774"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412774"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-113"></span><span>    </span><span id="local-6989586621679412773"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412773"><span class="hs-identifier hs-var">auth_base64url</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412774"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;auth_base64url&quot;</span></span><span>
-</span><span id="line-114"></span><span>    </span><span id="local-6989586621679411638"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411638"><span class="hs-identifier hs-var">p256dh_base64url</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411640"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-114"></span><span>    </span><span id="local-6989586621679412772"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412772"><span class="hs-identifier hs-var">p256dh_base64url</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412774"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;p256dh_base64url&quot;</span></span><span>
-</span><span id="line-115"></span><span>    </span><span id="local-6989586621679411637"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411637"><span class="hs-identifier hs-var">endpoint</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411640"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-115"></span><span>    </span><span id="local-6989586621679412771"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412771"><span class="hs-identifier hs-var">endpoint</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412774"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;endpoint&quot;</span></span><span>
 </span><span id="line-116"></span><span>    </span><span class="annot"><span class="annottext">DeviceToken -&gt; Parser DeviceToken
@@ -480,25 +480,25 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">DeviceTokenWebPush :: Maybe String -&gt; Maybe String -&gt; Maybe String -&gt; DeviceToken
 </span><a href="API.DeviceToken.html#DeviceTokenWebPush"><span class="hs-identifier hs-type hs-type">DeviceTokenWebPush</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">auth_base64url :: Maybe String
 </span><a href="API.DeviceToken.html#auth_base64url"><span class="hs-identifier hs-var">auth_base64url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411639"><span class="hs-identifier hs-var">auth_base64url</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">p256dh_base64url :: Maybe String
+</span><a href="#local-6989586621679412773"><span class="hs-identifier hs-var">auth_base64url</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">p256dh_base64url :: Maybe String
 </span><a href="API.DeviceToken.html#p256dh_base64url"><span class="hs-identifier hs-var">p256dh_base64url</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411638"><span class="hs-identifier hs-var">p256dh_base64url</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">endpoint :: Maybe String
+</span><a href="#local-6989586621679412772"><span class="hs-identifier hs-var">p256dh_base64url</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">endpoint :: Maybe String
 </span><a href="API.DeviceToken.html#endpoint"><span class="hs-identifier hs-var">endpoint</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411637"><span class="hs-identifier hs-var">endpoint</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679412771"><span class="hs-identifier hs-var">endpoint</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-117"></span><span>
-</span><span id="line-118"></span><span>   </span><span class="annot"><a href="#local-6989586621679411668"><span class="hs-identifier hs-type">parseDeviceTokenSimplePush</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
-</span><span id="line-119"></span><span>   </span><span id="local-6989586621679411668"><span class="annot"><span class="annottext">parseDeviceTokenSimplePush :: Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411668"><span class="hs-identifier hs-var hs-var">parseDeviceTokenSimplePush</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-118"></span><span>   </span><span class="annot"><a href="#local-6989586621679412802"><span class="hs-identifier hs-type">parseDeviceTokenSimplePush</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
+</span><span id="line-119"></span><span>   </span><span id="local-6989586621679412802"><span class="annot"><span class="annottext">parseDeviceTokenSimplePush :: Value -&gt; Parser DeviceToken
+</span><a href="#local-6989586621679412802"><span class="hs-identifier hs-var hs-var">parseDeviceTokenSimplePush</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;DeviceTokenSimplePush&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken)
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679411635"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679411635"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-120"></span><span>    </span><span id="local-6989586621679411634"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411634"><span class="hs-identifier hs-var">endpoint</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411635"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412769"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412769"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-120"></span><span>    </span><span id="local-6989586621679412768"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412768"><span class="hs-identifier hs-var">endpoint</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412769"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;endpoint&quot;</span></span><span>
 </span><span id="line-121"></span><span>    </span><span class="annot"><span class="annottext">DeviceToken -&gt; Parser DeviceToken
@@ -509,21 +509,21 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">DeviceTokenSimplePush :: Maybe String -&gt; DeviceToken
 </span><a href="API.DeviceToken.html#DeviceTokenSimplePush"><span class="hs-identifier hs-type hs-type">DeviceTokenSimplePush</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">endpoint :: Maybe String
 </span><a href="API.DeviceToken.html#endpoint"><span class="hs-identifier hs-var">endpoint</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411634"><span class="hs-identifier hs-var">endpoint</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679412768"><span class="hs-identifier hs-var">endpoint</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-122"></span><span>
-</span><span id="line-123"></span><span>   </span><span class="annot"><a href="#local-6989586621679411667"><span class="hs-identifier hs-type">parseDeviceTokenUbuntuPush</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
-</span><span id="line-124"></span><span>   </span><span id="local-6989586621679411667"><span class="annot"><span class="annottext">parseDeviceTokenUbuntuPush :: Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411667"><span class="hs-identifier hs-var hs-var">parseDeviceTokenUbuntuPush</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-123"></span><span>   </span><span class="annot"><a href="#local-6989586621679412801"><span class="hs-identifier hs-type">parseDeviceTokenUbuntuPush</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
+</span><span id="line-124"></span><span>   </span><span id="local-6989586621679412801"><span class="annot"><span class="annottext">parseDeviceTokenUbuntuPush :: Value -&gt; Parser DeviceToken
+</span><a href="#local-6989586621679412801"><span class="hs-identifier hs-var hs-var">parseDeviceTokenUbuntuPush</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;DeviceTokenUbuntuPush&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken)
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679411632"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679411632"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-125"></span><span>    </span><span id="local-6989586621679411631"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411631"><span class="hs-identifier hs-var">token</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411632"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412766"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412766"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-125"></span><span>    </span><span id="local-6989586621679412765"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412765"><span class="hs-identifier hs-var">token</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412766"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;token&quot;</span></span><span>
 </span><span id="line-126"></span><span>    </span><span class="annot"><span class="annottext">DeviceToken -&gt; Parser DeviceToken
@@ -534,21 +534,21 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">DeviceTokenUbuntuPush :: Maybe String -&gt; DeviceToken
 </span><a href="API.DeviceToken.html#DeviceTokenUbuntuPush"><span class="hs-identifier hs-type hs-type">DeviceTokenUbuntuPush</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">token :: Maybe String
 </span><a href="API.DeviceToken.html#token"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411631"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679412765"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-127"></span><span>
-</span><span id="line-128"></span><span>   </span><span class="annot"><a href="#local-6989586621679411666"><span class="hs-identifier hs-type">parseDeviceTokenBlackBerryPush</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
-</span><span id="line-129"></span><span>   </span><span id="local-6989586621679411666"><span class="annot"><span class="annottext">parseDeviceTokenBlackBerryPush :: Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411666"><span class="hs-identifier hs-var hs-var">parseDeviceTokenBlackBerryPush</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-128"></span><span>   </span><span class="annot"><a href="#local-6989586621679412800"><span class="hs-identifier hs-type">parseDeviceTokenBlackBerryPush</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
+</span><span id="line-129"></span><span>   </span><span id="local-6989586621679412800"><span class="annot"><span class="annottext">parseDeviceTokenBlackBerryPush :: Value -&gt; Parser DeviceToken
+</span><a href="#local-6989586621679412800"><span class="hs-identifier hs-var hs-var">parseDeviceTokenBlackBerryPush</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;DeviceTokenBlackBerryPush&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken)
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679411629"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679411629"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-130"></span><span>    </span><span id="local-6989586621679411628"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411628"><span class="hs-identifier hs-var">token</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411629"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412763"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412763"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-130"></span><span>    </span><span id="local-6989586621679412762"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412762"><span class="hs-identifier hs-var">token</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412763"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;token&quot;</span></span><span>
 </span><span id="line-131"></span><span>    </span><span class="annot"><span class="annottext">DeviceToken -&gt; Parser DeviceToken
@@ -559,21 +559,21 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">DeviceTokenBlackBerryPush :: Maybe String -&gt; DeviceToken
 </span><a href="API.DeviceToken.html#DeviceTokenBlackBerryPush"><span class="hs-identifier hs-type hs-type">DeviceTokenBlackBerryPush</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">token :: Maybe String
 </span><a href="API.DeviceToken.html#token"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411628"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679412762"><span class="hs-identifier hs-var">token</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-132"></span><span>
-</span><span id="line-133"></span><span>   </span><span class="annot"><a href="#local-6989586621679411665"><span class="hs-identifier hs-type">parseDeviceTokenTizenPush</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
-</span><span id="line-134"></span><span>   </span><span id="local-6989586621679411665"><span class="annot"><span class="annottext">parseDeviceTokenTizenPush :: Value -&gt; Parser DeviceToken
-</span><a href="#local-6989586621679411665"><span class="hs-identifier hs-var hs-var">parseDeviceTokenTizenPush</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-133"></span><span>   </span><span class="annot"><a href="#local-6989586621679412799"><span class="hs-identifier hs-type">parseDeviceTokenTizenPush</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DeviceToken.html#DeviceToken"><span class="hs-identifier hs-type">DeviceToken</span></a></span><span>
+</span><span id="line-134"></span><span>   </span><span id="local-6989586621679412799"><span class="annot"><span class="annottext">parseDeviceTokenTizenPush :: Value -&gt; Parser DeviceToken
+</span><a href="#local-6989586621679412799"><span class="hs-identifier hs-var hs-var">parseDeviceTokenTizenPush</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;DeviceTokenTizenPush&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken)
 -&gt; (Object -&gt; Parser DeviceToken) -&gt; Value -&gt; Parser DeviceToken
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679411626"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679411626"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-135"></span><span>    </span><span id="local-6989586621679411625"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411625"><span class="hs-identifier hs-var">reg_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679411626"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679412760"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679412760"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-135"></span><span>    </span><span id="local-6989586621679412759"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679412759"><span class="hs-identifier hs-var">reg_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679412760"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;reg_id&quot;</span></span><span>
 </span><span id="line-136"></span><span>    </span><span class="annot"><span class="annottext">DeviceToken -&gt; Parser DeviceToken
@@ -584,4 +584,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">DeviceTokenTizenPush :: Maybe String -&gt; DeviceToken
 </span><a href="API.DeviceToken.html#DeviceTokenTizenPush"><span class="hs-identifier hs-type hs-type">DeviceTokenTizenPush</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">reg_id :: Maybe String
 </span><a href="API.DeviceToken.html#reg_id"><span class="hs-identifier hs-var">reg_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679411625"><span class="hs-identifier hs-var">reg_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679412759"><span class="hs-identifier hs-var">reg_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

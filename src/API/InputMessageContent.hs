@@ -31,10 +31,10 @@ data InputMessageContent =
  | InputMessageLocation { live_period :: Maybe Int, location :: Maybe Location.Location }  
  | InputMessageVenue { venue :: Maybe Venue.Venue }  
  | InputMessageContact { contact :: Maybe Contact.Contact }  
- | InputMessageDice 
+ | InputMessageDice { clear_draft :: Maybe Bool, emoji :: Maybe String }  
  | InputMessageGame { game_short_name :: Maybe String, bot_user_id :: Maybe Int }  
  | InputMessageInvoice { start_parameter :: Maybe String, provider_data :: Maybe String, provider_token :: Maybe String, payload :: Maybe String, photo_height :: Maybe Int, photo_width :: Maybe Int, photo_size :: Maybe Int, photo_url :: Maybe String, description :: Maybe String, title :: Maybe String, invoice :: Maybe Invoice.Invoice }  
- | InputMessagePoll { is_closed :: Maybe Bool, _type :: Maybe PollType.PollType, is_anonymous :: Maybe Bool, options :: Maybe [String], question :: Maybe String }  
+ | InputMessagePoll { is_closed :: Maybe Bool, close_date :: Maybe Int, open_period :: Maybe Int, _type :: Maybe PollType.PollType, is_anonymous :: Maybe Bool, options :: Maybe [String], question :: Maybe String }  
  | InputMessageForwarded { remove_caption :: Maybe Bool, send_copy :: Maybe Bool, in_game_share :: Maybe Bool, message_id :: Maybe Int, from_chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON InputMessageContent where
@@ -74,8 +74,8 @@ instance T.ToJSON InputMessageContent where
  toJSON (InputMessageContact { contact = contact }) =
   A.object [ "@type" A..= T.String "inputMessageContact", "contact" A..= contact ]
 
- toJSON (InputMessageDice {  }) =
-  A.object [ "@type" A..= T.String "inputMessageDice" ]
+ toJSON (InputMessageDice { clear_draft = clear_draft, emoji = emoji }) =
+  A.object [ "@type" A..= T.String "inputMessageDice", "clear_draft" A..= clear_draft, "emoji" A..= emoji ]
 
  toJSON (InputMessageGame { game_short_name = game_short_name, bot_user_id = bot_user_id }) =
   A.object [ "@type" A..= T.String "inputMessageGame", "game_short_name" A..= game_short_name, "bot_user_id" A..= bot_user_id ]
@@ -83,8 +83,8 @@ instance T.ToJSON InputMessageContent where
  toJSON (InputMessageInvoice { start_parameter = start_parameter, provider_data = provider_data, provider_token = provider_token, payload = payload, photo_height = photo_height, photo_width = photo_width, photo_size = photo_size, photo_url = photo_url, description = description, title = title, invoice = invoice }) =
   A.object [ "@type" A..= T.String "inputMessageInvoice", "start_parameter" A..= start_parameter, "provider_data" A..= provider_data, "provider_token" A..= provider_token, "payload" A..= payload, "photo_height" A..= photo_height, "photo_width" A..= photo_width, "photo_size" A..= photo_size, "photo_url" A..= photo_url, "description" A..= description, "title" A..= title, "invoice" A..= invoice ]
 
- toJSON (InputMessagePoll { is_closed = is_closed, _type = _type, is_anonymous = is_anonymous, options = options, question = question }) =
-  A.object [ "@type" A..= T.String "inputMessagePoll", "is_closed" A..= is_closed, "type" A..= _type, "is_anonymous" A..= is_anonymous, "options" A..= options, "question" A..= question ]
+ toJSON (InputMessagePoll { is_closed = is_closed, close_date = close_date, open_period = open_period, _type = _type, is_anonymous = is_anonymous, options = options, question = question }) =
+  A.object [ "@type" A..= T.String "inputMessagePoll", "is_closed" A..= is_closed, "close_date" A..= close_date, "open_period" A..= open_period, "type" A..= _type, "is_anonymous" A..= is_anonymous, "options" A..= options, "question" A..= question ]
 
  toJSON (InputMessageForwarded { remove_caption = remove_caption, send_copy = send_copy, in_game_share = in_game_share, message_id = message_id, from_chat_id = from_chat_id }) =
   A.object [ "@type" A..= T.String "inputMessageForwarded", "remove_caption" A..= remove_caption, "send_copy" A..= send_copy, "in_game_share" A..= in_game_share, "message_id" A..= message_id, "from_chat_id" A..= from_chat_id ]
@@ -212,7 +212,9 @@ instance T.FromJSON InputMessageContent where
 
    parseInputMessageDice :: A.Value -> T.Parser InputMessageContent
    parseInputMessageDice = A.withObject "InputMessageDice" $ \o -> do
-    return $ InputMessageDice {  }
+    clear_draft <- o A..:? "clear_draft"
+    emoji <- o A..:? "emoji"
+    return $ InputMessageDice { clear_draft = clear_draft, emoji = emoji }
 
    parseInputMessageGame :: A.Value -> T.Parser InputMessageContent
    parseInputMessageGame = A.withObject "InputMessageGame" $ \o -> do
@@ -238,11 +240,13 @@ instance T.FromJSON InputMessageContent where
    parseInputMessagePoll :: A.Value -> T.Parser InputMessageContent
    parseInputMessagePoll = A.withObject "InputMessagePoll" $ \o -> do
     is_closed <- o A..:? "is_closed"
+    close_date <- mconcat [ o A..:? "close_date", readMaybe <$> (o A..: "close_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    open_period <- mconcat [ o A..:? "open_period", readMaybe <$> (o A..: "open_period" :: T.Parser String)] :: T.Parser (Maybe Int)
     _type <- o A..:? "type"
     is_anonymous <- o A..:? "is_anonymous"
     options <- o A..:? "options"
     question <- o A..:? "question"
-    return $ InputMessagePoll { is_closed = is_closed, _type = _type, is_anonymous = is_anonymous, options = options, question = question }
+    return $ InputMessagePoll { is_closed = is_closed, close_date = close_date, open_period = open_period, _type = _type, is_anonymous = is_anonymous, options = options, question = question }
 
    parseInputMessageForwarded :: A.Value -> T.Parser InputMessageContent
    parseInputMessageForwarded = A.withObject "InputMessageForwarded" $ \o -> do

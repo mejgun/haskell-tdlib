@@ -16,7 +16,7 @@
 </span><span id="line-16"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="KeyboardButtonTypeRequestLocation"><span class="annot"><a href="API.KeyboardButtonType.html#KeyboardButtonTypeRequestLocation"><span class="hs-identifier hs-var">KeyboardButtonTypeRequestLocation</span></a></span></span><span> </span><span>
 </span><span id="line-17"></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="KeyboardButtonTypeRequestPoll"><span class="annot"><a href="API.KeyboardButtonType.html#KeyboardButtonTypeRequestPoll"><span class="hs-identifier hs-var">KeyboardButtonTypeRequestPoll</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="force_quiz"><span class="annot"><span class="annottext">KeyboardButtonType -&gt; Maybe Bool
 </span><a href="API.KeyboardButtonType.html#force_quiz"><span class="hs-identifier hs-var hs-var">force_quiz</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="force_regular"><span class="annot"><span class="annottext">KeyboardButtonType -&gt; Maybe Bool
-</span><a href="API.KeyboardButtonType.html#force_regular"><span class="hs-identifier hs-var hs-var">force_regular</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679438854"><span id="local-6989586621679438856"><span id="local-6989586621679438858"><span class="annot"><span class="annottext">Int -&gt; KeyboardButtonType -&gt; ShowS
+</span><a href="API.KeyboardButtonType.html#force_regular"><span class="hs-identifier hs-var hs-var">force_regular</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679440001"><span id="local-6989586621679440003"><span id="local-6989586621679440005"><span class="annot"><span class="annottext">Int -&gt; KeyboardButtonType -&gt; ShowS
 [KeyboardButtonType] -&gt; ShowS
 KeyboardButtonType -&gt; String
 (Int -&gt; KeyboardButtonType -&gt; ShowS)
@@ -31,7 +31,7 @@ show :: KeyboardButtonType -&gt; String
 $cshow :: KeyboardButtonType -&gt; String
 showsPrec :: Int -&gt; KeyboardButtonType -&gt; ShowS
 $cshowsPrec :: Int -&gt; KeyboardButtonType -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679438849"><span id="local-6989586621679438851"><span class="annot"><span class="annottext">KeyboardButtonType -&gt; KeyboardButtonType -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679439996"><span id="local-6989586621679439998"><span class="annot"><span class="annottext">KeyboardButtonType -&gt; KeyboardButtonType -&gt; Bool
 (KeyboardButtonType -&gt; KeyboardButtonType -&gt; Bool)
 -&gt; (KeyboardButtonType -&gt; KeyboardButtonType -&gt; Bool)
 -&gt; Eq KeyboardButtonType
@@ -42,8 +42,8 @@ $c/= :: KeyboardButtonType -&gt; KeyboardButtonType -&gt; Bool
 $c== :: KeyboardButtonType -&gt; KeyboardButtonType -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-18"></span><span>
-</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679438841"><span id="local-6989586621679438843"><span id="local-6989586621679438845"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.KeyboardButtonType.html#KeyboardButtonType"><span class="hs-identifier hs-type">KeyboardButtonType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-20"></span><span> </span><span id="local-6989586621679438839"><span class="annot"><span class="annottext">toJSON :: KeyboardButtonType -&gt; Value
+</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679439988"><span id="local-6989586621679439990"><span id="local-6989586621679439992"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.KeyboardButtonType.html#KeyboardButtonType"><span class="hs-identifier hs-type">KeyboardButtonType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-20"></span><span> </span><span id="local-6989586621679439986"><span class="annot"><span class="annottext">toJSON :: KeyboardButtonType -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.KeyboardButtonType.html#KeyboardButtonTypeText"><span class="hs-identifier hs-type">KeyboardButtonTypeText</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-21"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -66,10 +66,10 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;keyboardButtonTypeRequestLocation&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-28"></span><span>
 </span><span id="line-29"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.KeyboardButtonType.html#KeyboardButtonTypeRequestPoll"><span class="hs-identifier hs-type">KeyboardButtonTypeRequestPoll</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">force_quiz :: KeyboardButtonType -&gt; Maybe Bool
-</span><a href="API.KeyboardButtonType.html#force_quiz"><span class="hs-identifier hs-var">force_quiz</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438834"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679438834"><span class="hs-identifier hs-var">force_quiz</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">force_regular :: KeyboardButtonType -&gt; Maybe Bool
-</span><a href="API.KeyboardButtonType.html#force_regular"><span class="hs-identifier hs-var">force_regular</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438833"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679438833"><span class="hs-identifier hs-var">force_regular</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.KeyboardButtonType.html#force_quiz"><span class="hs-identifier hs-var">force_quiz</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679439981"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679439981"><span class="hs-identifier hs-var">force_quiz</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">force_regular :: KeyboardButtonType -&gt; Maybe Bool
+</span><a href="API.KeyboardButtonType.html#force_regular"><span class="hs-identifier hs-var">force_regular</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679439980"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679439980"><span class="hs-identifier hs-var">force_regular</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-30"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -77,42 +77,42 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;keyboardButtonTypeRequestPoll&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;force_quiz&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679438834"><span class="hs-identifier hs-var">force_quiz</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;force_regular&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679439981"><span class="hs-identifier hs-var">force_quiz</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;force_regular&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679438833"><span class="hs-identifier hs-var">force_regular</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679439980"><span class="hs-identifier hs-var">force_regular</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679438830"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.KeyboardButtonType.html#KeyboardButtonType"><span class="hs-identifier hs-type">KeyboardButtonType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span> </span><span id="local-6989586621679438828"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser KeyboardButtonType
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679438826"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679438826"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679438824"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679438824"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-34"></span><span>  </span><span id="local-6989586621679438823"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679438823"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438824"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679439977"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.KeyboardButtonType.html#KeyboardButtonType"><span class="hs-identifier hs-type">KeyboardButtonType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span> </span><span id="local-6989586621679439975"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser KeyboardButtonType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679439973"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679439973"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679439971"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679439971"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-34"></span><span>  </span><span id="local-6989586621679439970"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679439970"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679439971"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-35"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679438823"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679439970"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-36"></span><span>   </span><span class="hs-string">&quot;keyboardButtonTypeText&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser KeyboardButtonType
-</span><a href="#local-6989586621679438821"><span class="hs-identifier hs-var">parseKeyboardButtonTypeText</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679438826"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679439968"><span class="hs-identifier hs-var">parseKeyboardButtonTypeText</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679439973"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-37"></span><span>   </span><span class="hs-string">&quot;keyboardButtonTypeRequestPhoneNumber&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser KeyboardButtonType
-</span><a href="#local-6989586621679438820"><span class="hs-identifier hs-var">parseKeyboardButtonTypeRequestPhoneNumber</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679438826"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679439967"><span class="hs-identifier hs-var">parseKeyboardButtonTypeRequestPhoneNumber</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679439973"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-38"></span><span>   </span><span class="hs-string">&quot;keyboardButtonTypeRequestLocation&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser KeyboardButtonType
-</span><a href="#local-6989586621679438819"><span class="hs-identifier hs-var">parseKeyboardButtonTypeRequestLocation</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679438826"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679439966"><span class="hs-identifier hs-var">parseKeyboardButtonTypeRequestLocation</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679439973"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-39"></span><span>   </span><span class="hs-string">&quot;keyboardButtonTypeRequestPoll&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser KeyboardButtonType
-</span><a href="#local-6989586621679438818"><span class="hs-identifier hs-var">parseKeyboardButtonTypeRequestPoll</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679438826"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679439965"><span class="hs-identifier hs-var">parseKeyboardButtonTypeRequestPoll</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679439973"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-40"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser KeyboardButtonType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-41"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-42"></span><span>   </span><span class="annot"><a href="#local-6989586621679438821"><span class="hs-identifier hs-type">parseKeyboardButtonTypeText</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.KeyboardButtonType.html#KeyboardButtonType"><span class="hs-identifier hs-type">KeyboardButtonType</span></a></span><span>
-</span><span id="line-43"></span><span>   </span><span id="local-6989586621679438821"><span class="annot"><span class="annottext">parseKeyboardButtonTypeText :: Value -&gt; Parser KeyboardButtonType
-</span><a href="#local-6989586621679438821"><span class="hs-identifier hs-var hs-var">parseKeyboardButtonTypeText</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-42"></span><span>   </span><span class="annot"><a href="#local-6989586621679439968"><span class="hs-identifier hs-type">parseKeyboardButtonTypeText</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.KeyboardButtonType.html#KeyboardButtonType"><span class="hs-identifier hs-type">KeyboardButtonType</span></a></span><span>
+</span><span id="line-43"></span><span>   </span><span id="local-6989586621679439968"><span class="annot"><span class="annottext">parseKeyboardButtonTypeText :: Value -&gt; Parser KeyboardButtonType
+</span><a href="#local-6989586621679439968"><span class="hs-identifier hs-var hs-var">parseKeyboardButtonTypeText</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser KeyboardButtonType)
 -&gt; Value
 -&gt; Parser KeyboardButtonType
@@ -123,8 +123,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser KeyboardButtonType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679438816"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679438816"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679439963"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679439963"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-44"></span><span>    </span><span class="annot"><span class="annottext">KeyboardButtonType -&gt; Parser KeyboardButtonType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(KeyboardButtonType -&gt; Parser KeyboardButtonType)
@@ -133,9 +133,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">KeyboardButtonTypeText :: KeyboardButtonType
 </span><a href="API.KeyboardButtonType.html#KeyboardButtonTypeText"><span class="hs-identifier hs-type hs-type">KeyboardButtonTypeText</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-45"></span><span>
-</span><span id="line-46"></span><span>   </span><span class="annot"><a href="#local-6989586621679438820"><span class="hs-identifier hs-type">parseKeyboardButtonTypeRequestPhoneNumber</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.KeyboardButtonType.html#KeyboardButtonType"><span class="hs-identifier hs-type">KeyboardButtonType</span></a></span><span>
-</span><span id="line-47"></span><span>   </span><span id="local-6989586621679438820"><span class="annot"><span class="annottext">parseKeyboardButtonTypeRequestPhoneNumber :: Value -&gt; Parser KeyboardButtonType
-</span><a href="#local-6989586621679438820"><span class="hs-identifier hs-var hs-var">parseKeyboardButtonTypeRequestPhoneNumber</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-46"></span><span>   </span><span class="annot"><a href="#local-6989586621679439967"><span class="hs-identifier hs-type">parseKeyboardButtonTypeRequestPhoneNumber</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.KeyboardButtonType.html#KeyboardButtonType"><span class="hs-identifier hs-type">KeyboardButtonType</span></a></span><span>
+</span><span id="line-47"></span><span>   </span><span id="local-6989586621679439967"><span class="annot"><span class="annottext">parseKeyboardButtonTypeRequestPhoneNumber :: Value -&gt; Parser KeyboardButtonType
+</span><a href="#local-6989586621679439967"><span class="hs-identifier hs-var hs-var">parseKeyboardButtonTypeRequestPhoneNumber</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser KeyboardButtonType)
 -&gt; Value
 -&gt; Parser KeyboardButtonType
@@ -146,8 +146,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser KeyboardButtonType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679438814"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679438814"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679439961"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679439961"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-48"></span><span>    </span><span class="annot"><span class="annottext">KeyboardButtonType -&gt; Parser KeyboardButtonType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(KeyboardButtonType -&gt; Parser KeyboardButtonType)
@@ -156,9 +156,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">KeyboardButtonTypeRequestPhoneNumber :: KeyboardButtonType
 </span><a href="API.KeyboardButtonType.html#KeyboardButtonTypeRequestPhoneNumber"><span class="hs-identifier hs-type hs-type">KeyboardButtonTypeRequestPhoneNumber</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-49"></span><span>
-</span><span id="line-50"></span><span>   </span><span class="annot"><a href="#local-6989586621679438819"><span class="hs-identifier hs-type">parseKeyboardButtonTypeRequestLocation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.KeyboardButtonType.html#KeyboardButtonType"><span class="hs-identifier hs-type">KeyboardButtonType</span></a></span><span>
-</span><span id="line-51"></span><span>   </span><span id="local-6989586621679438819"><span class="annot"><span class="annottext">parseKeyboardButtonTypeRequestLocation :: Value -&gt; Parser KeyboardButtonType
-</span><a href="#local-6989586621679438819"><span class="hs-identifier hs-var hs-var">parseKeyboardButtonTypeRequestLocation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-50"></span><span>   </span><span class="annot"><a href="#local-6989586621679439966"><span class="hs-identifier hs-type">parseKeyboardButtonTypeRequestLocation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.KeyboardButtonType.html#KeyboardButtonType"><span class="hs-identifier hs-type">KeyboardButtonType</span></a></span><span>
+</span><span id="line-51"></span><span>   </span><span id="local-6989586621679439966"><span class="annot"><span class="annottext">parseKeyboardButtonTypeRequestLocation :: Value -&gt; Parser KeyboardButtonType
+</span><a href="#local-6989586621679439966"><span class="hs-identifier hs-var hs-var">parseKeyboardButtonTypeRequestLocation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser KeyboardButtonType)
 -&gt; Value
 -&gt; Parser KeyboardButtonType
@@ -169,8 +169,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser KeyboardButtonType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679438812"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679438812"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679439959"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679439959"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-52"></span><span>    </span><span class="annot"><span class="annottext">KeyboardButtonType -&gt; Parser KeyboardButtonType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(KeyboardButtonType -&gt; Parser KeyboardButtonType)
@@ -179,9 +179,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">KeyboardButtonTypeRequestLocation :: KeyboardButtonType
 </span><a href="API.KeyboardButtonType.html#KeyboardButtonTypeRequestLocation"><span class="hs-identifier hs-type hs-type">KeyboardButtonTypeRequestLocation</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-53"></span><span>
-</span><span id="line-54"></span><span>   </span><span class="annot"><a href="#local-6989586621679438818"><span class="hs-identifier hs-type">parseKeyboardButtonTypeRequestPoll</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.KeyboardButtonType.html#KeyboardButtonType"><span class="hs-identifier hs-type">KeyboardButtonType</span></a></span><span>
-</span><span id="line-55"></span><span>   </span><span id="local-6989586621679438818"><span class="annot"><span class="annottext">parseKeyboardButtonTypeRequestPoll :: Value -&gt; Parser KeyboardButtonType
-</span><a href="#local-6989586621679438818"><span class="hs-identifier hs-var hs-var">parseKeyboardButtonTypeRequestPoll</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-54"></span><span>   </span><span class="annot"><a href="#local-6989586621679439965"><span class="hs-identifier hs-type">parseKeyboardButtonTypeRequestPoll</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.KeyboardButtonType.html#KeyboardButtonType"><span class="hs-identifier hs-type">KeyboardButtonType</span></a></span><span>
+</span><span id="line-55"></span><span>   </span><span id="local-6989586621679439965"><span class="annot"><span class="annottext">parseKeyboardButtonTypeRequestPoll :: Value -&gt; Parser KeyboardButtonType
+</span><a href="#local-6989586621679439965"><span class="hs-identifier hs-var hs-var">parseKeyboardButtonTypeRequestPoll</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser KeyboardButtonType)
 -&gt; Value
 -&gt; Parser KeyboardButtonType
@@ -192,16 +192,16 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser KeyboardButtonType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679438810"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679438810"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-56"></span><span>    </span><span id="local-6989586621679438809"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679438809"><span class="hs-identifier hs-var">force_quiz</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438810"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679439957"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679439957"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-56"></span><span>    </span><span id="local-6989586621679439956"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679439956"><span class="hs-identifier hs-var">force_quiz</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679439957"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;force_quiz&quot;</span></span><span>
-</span><span id="line-57"></span><span>    </span><span id="local-6989586621679438807"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679438807"><span class="hs-identifier hs-var">force_regular</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438810"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span id="line-57"></span><span>    </span><span id="local-6989586621679439954"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679439954"><span class="hs-identifier hs-var">force_regular</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679439957"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;force_regular&quot;</span></span><span>
 </span><span id="line-58"></span><span>    </span><span class="annot"><span class="annottext">KeyboardButtonType -&gt; Parser KeyboardButtonType
@@ -212,6 +212,6 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">KeyboardButtonTypeRequestPoll :: Maybe Bool -&gt; Maybe Bool -&gt; KeyboardButtonType
 </span><a href="API.KeyboardButtonType.html#KeyboardButtonTypeRequestPoll"><span class="hs-identifier hs-type hs-type">KeyboardButtonTypeRequestPoll</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">force_quiz :: Maybe Bool
 </span><a href="API.KeyboardButtonType.html#force_quiz"><span class="hs-identifier hs-var">force_quiz</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679438809"><span class="hs-identifier hs-var">force_quiz</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">force_regular :: Maybe Bool
+</span><a href="#local-6989586621679439956"><span class="hs-identifier hs-var">force_quiz</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">force_regular :: Maybe Bool
 </span><a href="API.KeyboardButtonType.html#force_regular"><span class="hs-identifier hs-var">force_regular</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679438807"><span class="hs-identifier hs-var">force_regular</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679439954"><span class="hs-identifier hs-var">force_regular</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

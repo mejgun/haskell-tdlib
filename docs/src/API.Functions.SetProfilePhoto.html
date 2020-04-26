@@ -15,7 +15,7 @@
 </span><span id="line-15"></span><span class="hs-comment">-- __photo__ Profile photo to set. inputFileId and inputFileRemote may still be unsupported</span><span>
 </span><span id="line-16"></span><span class="hs-keyword">data</span><span> </span><span id="SetProfilePhoto"><span class="annot"><a href="API.Functions.SetProfilePhoto.html#SetProfilePhoto"><span class="hs-identifier hs-var">SetProfilePhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-17"></span><span> </span><span id="SetProfilePhoto"><span class="annot"><a href="API.Functions.SetProfilePhoto.html#SetProfilePhoto"><span class="hs-identifier hs-var">SetProfilePhoto</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="photo"><span class="annot"><span class="annottext">SetProfilePhoto -&gt; Maybe InputFile
-</span><a href="API.Functions.SetProfilePhoto.html#photo"><span class="hs-identifier hs-var hs-var">photo</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.InputFile.html#InputFile"><span class="hs-identifier hs-type">InputFile.InputFile</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679436578"><span id="local-6989586621679436580"><span id="local-6989586621679436582"><span class="annot"><span class="annottext">Int -&gt; SetProfilePhoto -&gt; ShowS
+</span><a href="API.Functions.SetProfilePhoto.html#photo"><span class="hs-identifier hs-var hs-var">photo</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.InputFile.html#InputFile"><span class="hs-identifier hs-type">InputFile.InputFile</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679437725"><span id="local-6989586621679437727"><span id="local-6989586621679437729"><span class="annot"><span class="annottext">Int -&gt; SetProfilePhoto -&gt; ShowS
 [SetProfilePhoto] -&gt; ShowS
 SetProfilePhoto -&gt; String
 (Int -&gt; SetProfilePhoto -&gt; ShowS)
@@ -30,7 +30,7 @@ show :: SetProfilePhoto -&gt; String
 $cshow :: SetProfilePhoto -&gt; String
 showsPrec :: Int -&gt; SetProfilePhoto -&gt; ShowS
 $cshowsPrec :: Int -&gt; SetProfilePhoto -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679436573"><span id="local-6989586621679436575"><span class="annot"><span class="annottext">SetProfilePhoto -&gt; SetProfilePhoto -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679437720"><span id="local-6989586621679437722"><span class="annot"><span class="annottext">SetProfilePhoto -&gt; SetProfilePhoto -&gt; Bool
 (SetProfilePhoto -&gt; SetProfilePhoto -&gt; Bool)
 -&gt; (SetProfilePhoto -&gt; SetProfilePhoto -&gt; Bool)
 -&gt; Eq SetProfilePhoto
@@ -41,11 +41,11 @@ $c/= :: SetProfilePhoto -&gt; SetProfilePhoto -&gt; Bool
 $c== :: SetProfilePhoto -&gt; SetProfilePhoto -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-18"></span><span>
-</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679436565"><span id="local-6989586621679436567"><span id="local-6989586621679436569"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetProfilePhoto.html#SetProfilePhoto"><span class="hs-identifier hs-type">SetProfilePhoto</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-20"></span><span> </span><span id="local-6989586621679436563"><span class="annot"><span class="annottext">toJSON :: SetProfilePhoto -&gt; Value
+</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679437712"><span id="local-6989586621679437714"><span id="local-6989586621679437716"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetProfilePhoto.html#SetProfilePhoto"><span class="hs-identifier hs-type">SetProfilePhoto</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-20"></span><span> </span><span id="local-6989586621679437710"><span class="annot"><span class="annottext">toJSON :: SetProfilePhoto -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.SetProfilePhoto.html#SetProfilePhoto"><span class="hs-identifier hs-type">SetProfilePhoto</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">photo :: SetProfilePhoto -&gt; Maybe InputFile
-</span><a href="API.Functions.SetProfilePhoto.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679436561"><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679436561"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.SetProfilePhoto.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437708"><span class="annot"><span class="annottext">Maybe InputFile
+</span><a href="#local-6989586621679437708"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-21"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -53,30 +53,30 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;setProfilePhoto&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;photo&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe InputFile -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679436561"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679437708"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679436555"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetProfilePhoto.html#SetProfilePhoto"><span class="hs-identifier hs-type">SetProfilePhoto</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span> </span><span id="local-6989586621679436553"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetProfilePhoto
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679436551"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679436551"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679436549"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679436549"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>  </span><span id="local-6989586621679436548"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679436548"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679436549"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679437702"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetProfilePhoto.html#SetProfilePhoto"><span class="hs-identifier hs-type">SetProfilePhoto</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span> </span><span id="local-6989586621679437700"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetProfilePhoto
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679437698"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679437698"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679437696"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679437696"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>  </span><span id="local-6989586621679437695"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679437695"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679437696"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-26"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679436548"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679437695"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-27"></span><span>   </span><span class="hs-string">&quot;setProfilePhoto&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SetProfilePhoto
-</span><a href="#local-6989586621679436546"><span class="hs-identifier hs-var">parseSetProfilePhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679436551"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679437693"><span class="hs-identifier hs-var">parseSetProfilePhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679437698"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-28"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SetProfilePhoto
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-29"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-30"></span><span>   </span><span class="annot"><a href="#local-6989586621679436546"><span class="hs-identifier hs-type">parseSetProfilePhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetProfilePhoto.html#SetProfilePhoto"><span class="hs-identifier hs-type">SetProfilePhoto</span></a></span><span>
-</span><span id="line-31"></span><span>   </span><span id="local-6989586621679436546"><span class="annot"><span class="annottext">parseSetProfilePhoto :: Value -&gt; Parser SetProfilePhoto
-</span><a href="#local-6989586621679436546"><span class="hs-identifier hs-var hs-var">parseSetProfilePhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-30"></span><span>   </span><span class="annot"><a href="#local-6989586621679437693"><span class="hs-identifier hs-type">parseSetProfilePhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetProfilePhoto.html#SetProfilePhoto"><span class="hs-identifier hs-type">SetProfilePhoto</span></a></span><span>
+</span><span id="line-31"></span><span>   </span><span id="local-6989586621679437693"><span class="annot"><span class="annottext">parseSetProfilePhoto :: Value -&gt; Parser SetProfilePhoto
+</span><a href="#local-6989586621679437693"><span class="hs-identifier hs-var hs-var">parseSetProfilePhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SetProfilePhoto)
 -&gt; Value
 -&gt; Parser SetProfilePhoto
@@ -87,11 +87,11 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SetProfilePhoto
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679436544"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679436544"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-32"></span><span>    </span><span id="local-6989586621679436543"><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679436543"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679436544"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe InputFile)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679437691"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679437691"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-32"></span><span>    </span><span id="local-6989586621679437690"><span class="annot"><span class="annottext">Maybe InputFile
+</span><a href="#local-6989586621679437690"><span class="hs-identifier hs-var">photo</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679437691"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe InputFile)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;photo&quot;</span></span><span>
 </span><span id="line-33"></span><span>    </span><span class="annot"><span class="annottext">SetProfilePhoto -&gt; Parser SetProfilePhoto
@@ -102,4 +102,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SetProfilePhoto :: Maybe InputFile -&gt; SetProfilePhoto
 </span><a href="API.Functions.SetProfilePhoto.html#SetProfilePhoto"><span class="hs-identifier hs-type hs-type">SetProfilePhoto</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">photo :: Maybe InputFile
 </span><a href="API.Functions.SetProfilePhoto.html#photo"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe InputFile
-</span><a href="#local-6989586621679436543"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679437690"><span class="hs-identifier hs-var">photo</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

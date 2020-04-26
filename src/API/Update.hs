@@ -36,6 +36,7 @@ import {-# SOURCE #-} qualified API.UserPrivacySettingRules as UserPrivacySettin
 import {-# SOURCE #-} qualified API.UserPrivacySetting as UserPrivacySetting
 import {-# SOURCE #-} qualified API.ChatList as ChatList
 import {-# SOURCE #-} qualified API.OptionValue as OptionValue
+import {-# SOURCE #-} qualified API.StickerSet as StickerSet
 import {-# SOURCE #-} qualified API.StickerSets as StickerSets
 import {-# SOURCE #-} qualified API.Background as Background
 import {-# SOURCE #-} qualified API.LanguagePackString as LanguagePackString
@@ -108,6 +109,7 @@ data Update =
  | UpdateUnreadMessageCount { unread_unmuted_count :: Maybe Int, unread_count :: Maybe Int, chat_list :: Maybe ChatList.ChatList }  
  | UpdateUnreadChatCount { marked_as_unread_unmuted_count :: Maybe Int, marked_as_unread_count :: Maybe Int, unread_unmuted_count :: Maybe Int, unread_count :: Maybe Int, total_count :: Maybe Int, chat_list :: Maybe ChatList.ChatList }  
  | UpdateOption { value :: Maybe OptionValue.OptionValue, name :: Maybe String }  
+ | UpdateStickerSet { sticker_set :: Maybe StickerSet.StickerSet }  
  | UpdateInstalledStickerSets { sticker_set_ids :: Maybe [Int], is_masks :: Maybe Bool }  
  | UpdateTrendingStickerSets { sticker_sets :: Maybe StickerSets.StickerSets }  
  | UpdateRecentStickers { sticker_ids :: Maybe [Int], is_attached :: Maybe Bool }  
@@ -118,6 +120,7 @@ data Update =
  | UpdateConnectionState { state :: Maybe ConnectionState.ConnectionState }  
  | UpdateTermsOfService { terms_of_service :: Maybe TermsOfService.TermsOfService, terms_of_service_id :: Maybe String }  
  | UpdateUsersNearby { users_nearby :: Maybe [ChatNearby.ChatNearby] }  
+ | UpdateDiceEmojis { emojis :: Maybe [String] }  
  | UpdateNewInlineQuery { offset :: Maybe String, query :: Maybe String, user_location :: Maybe Location.Location, sender_user_id :: Maybe Int, _id :: Maybe Int }  
  | UpdateNewChosenInlineResult { inline_message_id :: Maybe String, result_id :: Maybe String, query :: Maybe String, user_location :: Maybe Location.Location, sender_user_id :: Maybe Int }  
  | UpdateNewCallbackQuery { payload :: Maybe CallbackQueryPayload.CallbackQueryPayload, chat_instance :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int, sender_user_id :: Maybe Int, _id :: Maybe Int }  
@@ -298,6 +301,9 @@ instance T.ToJSON Update where
  toJSON (UpdateOption { value = value, name = name }) =
   A.object [ "@type" A..= T.String "updateOption", "value" A..= value, "name" A..= name ]
 
+ toJSON (UpdateStickerSet { sticker_set = sticker_set }) =
+  A.object [ "@type" A..= T.String "updateStickerSet", "sticker_set" A..= sticker_set ]
+
  toJSON (UpdateInstalledStickerSets { sticker_set_ids = sticker_set_ids, is_masks = is_masks }) =
   A.object [ "@type" A..= T.String "updateInstalledStickerSets", "sticker_set_ids" A..= sticker_set_ids, "is_masks" A..= is_masks ]
 
@@ -327,6 +333,9 @@ instance T.ToJSON Update where
 
  toJSON (UpdateUsersNearby { users_nearby = users_nearby }) =
   A.object [ "@type" A..= T.String "updateUsersNearby", "users_nearby" A..= users_nearby ]
+
+ toJSON (UpdateDiceEmojis { emojis = emojis }) =
+  A.object [ "@type" A..= T.String "updateDiceEmojis", "emojis" A..= emojis ]
 
  toJSON (UpdateNewInlineQuery { offset = offset, query = query, user_location = user_location, sender_user_id = sender_user_id, _id = _id }) =
   A.object [ "@type" A..= T.String "updateNewInlineQuery", "offset" A..= offset, "query" A..= query, "user_location" A..= user_location, "sender_user_id" A..= sender_user_id, "id" A..= _id ]
@@ -418,6 +427,7 @@ instance T.FromJSON Update where
    "updateUnreadMessageCount" -> parseUpdateUnreadMessageCount v
    "updateUnreadChatCount" -> parseUpdateUnreadChatCount v
    "updateOption" -> parseUpdateOption v
+   "updateStickerSet" -> parseUpdateStickerSet v
    "updateInstalledStickerSets" -> parseUpdateInstalledStickerSets v
    "updateTrendingStickerSets" -> parseUpdateTrendingStickerSets v
    "updateRecentStickers" -> parseUpdateRecentStickers v
@@ -428,6 +438,7 @@ instance T.FromJSON Update where
    "updateConnectionState" -> parseUpdateConnectionState v
    "updateTermsOfService" -> parseUpdateTermsOfService v
    "updateUsersNearby" -> parseUpdateUsersNearby v
+   "updateDiceEmojis" -> parseUpdateDiceEmojis v
    "updateNewInlineQuery" -> parseUpdateNewInlineQuery v
    "updateNewChosenInlineResult" -> parseUpdateNewChosenInlineResult v
    "updateNewCallbackQuery" -> parseUpdateNewCallbackQuery v
@@ -793,6 +804,11 @@ instance T.FromJSON Update where
     name <- o A..:? "name"
     return $ UpdateOption { value = value, name = name }
 
+   parseUpdateStickerSet :: A.Value -> T.Parser Update
+   parseUpdateStickerSet = A.withObject "UpdateStickerSet" $ \o -> do
+    sticker_set <- o A..:? "sticker_set"
+    return $ UpdateStickerSet { sticker_set = sticker_set }
+
    parseUpdateInstalledStickerSets :: A.Value -> T.Parser Update
    parseUpdateInstalledStickerSets = A.withObject "UpdateInstalledStickerSets" $ \o -> do
     sticker_set_ids <- o A..:? "sticker_set_ids"
@@ -848,6 +864,11 @@ instance T.FromJSON Update where
    parseUpdateUsersNearby = A.withObject "UpdateUsersNearby" $ \o -> do
     users_nearby <- o A..:? "users_nearby"
     return $ UpdateUsersNearby { users_nearby = users_nearby }
+
+   parseUpdateDiceEmojis :: A.Value -> T.Parser Update
+   parseUpdateDiceEmojis = A.withObject "UpdateDiceEmojis" $ \o -> do
+    emojis <- o A..:? "emojis"
+    return $ UpdateDiceEmojis { emojis = emojis }
 
    parseUpdateNewInlineQuery :: A.Value -> T.Parser Update
    parseUpdateNewInlineQuery = A.withObject "UpdateNewInlineQuery" $ \o -> do

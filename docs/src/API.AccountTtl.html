@@ -14,7 +14,7 @@
 </span><span id="line-14"></span><span class="hs-comment">-- __days__ Number of days of inactivity before the account will be flagged for deletion; should range from 30-366 days</span><span>
 </span><span id="line-15"></span><span class="hs-keyword">data</span><span> </span><span id="AccountTtl"><span class="annot"><a href="API.AccountTtl.html#AccountTtl"><span class="hs-identifier hs-var">AccountTtl</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-16"></span><span> </span><span id="AccountTtl"><span class="annot"><a href="API.AccountTtl.html#AccountTtl"><span class="hs-identifier hs-var">AccountTtl</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="days"><span class="annot"><span class="annottext">AccountTtl -&gt; Maybe Int
-</span><a href="API.AccountTtl.html#days"><span class="hs-identifier hs-var hs-var">days</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679406712"><span id="local-6989586621679406714"><span id="local-6989586621679406716"><span class="annot"><span class="annottext">Int -&gt; AccountTtl -&gt; ShowS
+</span><a href="API.AccountTtl.html#days"><span class="hs-identifier hs-var hs-var">days</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679407846"><span id="local-6989586621679407848"><span id="local-6989586621679407850"><span class="annot"><span class="annottext">Int -&gt; AccountTtl -&gt; ShowS
 [AccountTtl] -&gt; ShowS
 AccountTtl -&gt; String
 (Int -&gt; AccountTtl -&gt; ShowS)
@@ -29,7 +29,7 @@ show :: AccountTtl -&gt; String
 $cshow :: AccountTtl -&gt; String
 showsPrec :: Int -&gt; AccountTtl -&gt; ShowS
 $cshowsPrec :: Int -&gt; AccountTtl -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679406707"><span id="local-6989586621679406709"><span class="annot"><span class="annottext">AccountTtl -&gt; AccountTtl -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679407841"><span id="local-6989586621679407843"><span class="annot"><span class="annottext">AccountTtl -&gt; AccountTtl -&gt; Bool
 (AccountTtl -&gt; AccountTtl -&gt; Bool)
 -&gt; (AccountTtl -&gt; AccountTtl -&gt; Bool) -&gt; Eq AccountTtl
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -39,11 +39,11 @@ $c/= :: AccountTtl -&gt; AccountTtl -&gt; Bool
 $c== :: AccountTtl -&gt; AccountTtl -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679406699"><span id="local-6989586621679406701"><span id="local-6989586621679406703"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.AccountTtl.html#AccountTtl"><span class="hs-identifier hs-type">AccountTtl</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-19"></span><span> </span><span id="local-6989586621679406697"><span class="annot"><span class="annottext">toJSON :: AccountTtl -&gt; Value
+</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679407833"><span id="local-6989586621679407835"><span id="local-6989586621679407837"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.AccountTtl.html#AccountTtl"><span class="hs-identifier hs-type">AccountTtl</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-19"></span><span> </span><span id="local-6989586621679407831"><span class="annot"><span class="annottext">toJSON :: AccountTtl -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.AccountTtl.html#AccountTtl"><span class="hs-identifier hs-type">AccountTtl</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">days :: AccountTtl -&gt; Maybe Int
-</span><a href="API.AccountTtl.html#days"><span class="hs-identifier hs-var">days</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679406695"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679406695"><span class="hs-identifier hs-var">days</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.AccountTtl.html#days"><span class="hs-identifier hs-var">days</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679407829"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679407829"><span class="hs-identifier hs-var">days</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-20"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -51,49 +51,49 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;accountTtl&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;days&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679406695"><span class="hs-identifier hs-var">days</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679407829"><span class="hs-identifier hs-var">days</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679406689"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.AccountTtl.html#AccountTtl"><span class="hs-identifier hs-type">AccountTtl</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span> </span><span id="local-6989586621679406687"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AccountTtl
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679406685"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679406685"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679406683"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679406683"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-24"></span><span>  </span><span id="local-6989586621679406682"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679406682"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679406683"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679407823"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.AccountTtl.html#AccountTtl"><span class="hs-identifier hs-type">AccountTtl</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span> </span><span id="local-6989586621679407821"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AccountTtl
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679407819"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679407819"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679407817"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679407817"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-24"></span><span>  </span><span id="local-6989586621679407816"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679407816"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679407817"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-25"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679406682"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679407816"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-26"></span><span>   </span><span class="hs-string">&quot;accountTtl&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AccountTtl
-</span><a href="#local-6989586621679406680"><span class="hs-identifier hs-var">parseAccountTtl</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679406685"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679407814"><span class="hs-identifier hs-var">parseAccountTtl</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679407819"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-27"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser AccountTtl
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-28"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span>   </span><span class="annot"><a href="#local-6989586621679406680"><span class="hs-identifier hs-type">parseAccountTtl</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AccountTtl.html#AccountTtl"><span class="hs-identifier hs-type">AccountTtl</span></a></span><span>
-</span><span id="line-30"></span><span>   </span><span id="local-6989586621679406680"><span class="annot"><span class="annottext">parseAccountTtl :: Value -&gt; Parser AccountTtl
-</span><a href="#local-6989586621679406680"><span class="hs-identifier hs-var hs-var">parseAccountTtl</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-29"></span><span>   </span><span class="annot"><a href="#local-6989586621679407814"><span class="hs-identifier hs-type">parseAccountTtl</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.AccountTtl.html#AccountTtl"><span class="hs-identifier hs-type">AccountTtl</span></a></span><span>
+</span><span id="line-30"></span><span>   </span><span id="local-6989586621679407814"><span class="annot"><span class="annottext">parseAccountTtl :: Value -&gt; Parser AccountTtl
+</span><a href="#local-6989586621679407814"><span class="hs-identifier hs-var hs-var">parseAccountTtl</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AccountTtl) -&gt; Value -&gt; Parser AccountTtl
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;AccountTtl&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser AccountTtl) -&gt; Value -&gt; Parser AccountTtl)
 -&gt; (Object -&gt; Parser AccountTtl) -&gt; Value -&gt; Parser AccountTtl
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679406678"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679406678"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-31"></span><span>    </span><span id="local-6989586621679406677"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679406677"><span class="hs-identifier hs-var">days</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679407812"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679407812"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-31"></span><span>    </span><span id="local-6989586621679407811"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679407811"><span class="hs-identifier hs-var">days</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679406678"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679407812"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;days&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
 forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679406678"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679407812"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;days&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
 </span><span id="line-32"></span><span>    </span><span class="annot"><span class="annottext">AccountTtl -&gt; Parser AccountTtl
@@ -104,4 +104,4 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AccountTtl :: Maybe Int -&gt; AccountTtl
 </span><a href="API.AccountTtl.html#AccountTtl"><span class="hs-identifier hs-type hs-type">AccountTtl</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">days :: Maybe Int
 </span><a href="API.AccountTtl.html#days"><span class="hs-identifier hs-var">days</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679406677"><span class="hs-identifier hs-var">days</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679407811"><span class="hs-identifier hs-var">days</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>

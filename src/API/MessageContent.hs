@@ -10,7 +10,6 @@ import {-# SOURCE #-} qualified API.WebPage as WebPage
 import {-# SOURCE #-} qualified API.Animation as Animation
 import {-# SOURCE #-} qualified API.Audio as Audio
 import {-# SOURCE #-} qualified API.Document as Document
-import {-# SOURCE #-} qualified API.Sticker as Sticker
 import {-# SOURCE #-} qualified API.Video as Video
 import {-# SOURCE #-} qualified API.VideoNote as VideoNote
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
@@ -18,6 +17,7 @@ import {-# SOURCE #-} qualified API.VoiceNote as VoiceNote
 import {-# SOURCE #-} qualified API.Location as Location
 import {-# SOURCE #-} qualified API.Venue as Venue
 import {-# SOURCE #-} qualified API.Contact as Contact
+import {-# SOURCE #-} qualified API.Sticker as Sticker
 import {-# SOURCE #-} qualified API.Game as Game
 import {-# SOURCE #-} qualified API.Poll as Poll
 import {-# SOURCE #-} qualified API.CallDiscardReason as CallDiscardReason
@@ -45,7 +45,7 @@ data MessageContent =
  | MessageLocation { expires_in :: Maybe Int, live_period :: Maybe Int, location :: Maybe Location.Location }  
  | MessageVenue { venue :: Maybe Venue.Venue }  
  | MessageContact { contact :: Maybe Contact.Contact }  
- | MessageDice { value :: Maybe Int }  
+ | MessageDice { success_animation_frame_number :: Maybe Int, value :: Maybe Int, emoji :: Maybe String, final_state_sticker :: Maybe Sticker.Sticker, initial_state_sticker :: Maybe Sticker.Sticker }  
  | MessageGame { game :: Maybe Game.Game }  
  | MessagePoll { poll :: Maybe Poll.Poll }  
  | MessageInvoice { receipt_message_id :: Maybe Int, need_shipping_address :: Maybe Bool, is_test :: Maybe Bool, start_parameter :: Maybe String, total_amount :: Maybe Int, currency :: Maybe String, photo :: Maybe Photo.Photo, description :: Maybe String, title :: Maybe String }  
@@ -116,8 +116,8 @@ instance T.ToJSON MessageContent where
  toJSON (MessageContact { contact = contact }) =
   A.object [ "@type" A..= T.String "messageContact", "contact" A..= contact ]
 
- toJSON (MessageDice { value = value }) =
-  A.object [ "@type" A..= T.String "messageDice", "value" A..= value ]
+ toJSON (MessageDice { success_animation_frame_number = success_animation_frame_number, value = value, emoji = emoji, final_state_sticker = final_state_sticker, initial_state_sticker = initial_state_sticker }) =
+  A.object [ "@type" A..= T.String "messageDice", "success_animation_frame_number" A..= success_animation_frame_number, "value" A..= value, "emoji" A..= emoji, "final_state_sticker" A..= final_state_sticker, "initial_state_sticker" A..= initial_state_sticker ]
 
  toJSON (MessageGame { game = game }) =
   A.object [ "@type" A..= T.String "messageGame", "game" A..= game ]
@@ -329,8 +329,12 @@ instance T.FromJSON MessageContent where
 
    parseMessageDice :: A.Value -> T.Parser MessageContent
    parseMessageDice = A.withObject "MessageDice" $ \o -> do
+    success_animation_frame_number <- mconcat [ o A..:? "success_animation_frame_number", readMaybe <$> (o A..: "success_animation_frame_number" :: T.Parser String)] :: T.Parser (Maybe Int)
     value <- mconcat [ o A..:? "value", readMaybe <$> (o A..: "value" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ MessageDice { value = value }
+    emoji <- o A..:? "emoji"
+    final_state_sticker <- o A..:? "final_state_sticker"
+    initial_state_sticker <- o A..:? "initial_state_sticker"
+    return $ MessageDice { success_animation_frame_number = success_animation_frame_number, value = value, emoji = emoji, final_state_sticker = final_state_sticker, initial_state_sticker = initial_state_sticker }
 
    parseMessageGame :: A.Value -> T.Parser MessageContent
    parseMessageGame = A.withObject "MessageGame" $ \o -> do

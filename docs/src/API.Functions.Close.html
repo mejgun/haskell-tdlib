@@ -11,7 +11,7 @@
 </span><span id="line-11"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-12"></span><span class="hs-comment">-- Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent</span><span>
 </span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="Close"><span class="annot"><a href="API.Functions.Close.html#Close"><span class="hs-identifier hs-var">Close</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-14"></span><span> </span><span id="Close"><span class="annot"><a href="API.Functions.Close.html#Close"><span class="hs-identifier hs-var">Close</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679415299"><span id="local-6989586621679415301"><span id="local-6989586621679415303"><span class="annot"><span class="annottext">Int -&gt; Close -&gt; ShowS
+</span><span id="line-14"></span><span> </span><span id="Close"><span class="annot"><a href="API.Functions.Close.html#Close"><span class="hs-identifier hs-var">Close</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679416433"><span id="local-6989586621679416435"><span id="local-6989586621679416437"><span class="annot"><span class="annottext">Int -&gt; Close -&gt; ShowS
 [Close] -&gt; ShowS
 Close -&gt; String
 (Int -&gt; Close -&gt; ShowS)
@@ -24,7 +24,7 @@ show :: Close -&gt; String
 $cshow :: Close -&gt; String
 showsPrec :: Int -&gt; Close -&gt; ShowS
 $cshowsPrec :: Int -&gt; Close -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679415294"><span id="local-6989586621679415296"><span class="annot"><span class="annottext">Close -&gt; Close -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679416428"><span id="local-6989586621679416430"><span class="annot"><span class="annottext">Close -&gt; Close -&gt; Bool
 (Close -&gt; Close -&gt; Bool) -&gt; (Close -&gt; Close -&gt; Bool) -&gt; Eq Close
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 /= :: Close -&gt; Close -&gt; Bool
@@ -33,8 +33,8 @@ $c/= :: Close -&gt; Close -&gt; Bool
 $c== :: Close -&gt; Close -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679415286"><span id="local-6989586621679415288"><span id="local-6989586621679415290"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.Close.html#Close"><span class="hs-identifier hs-type">Close</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679415284"><span class="annot"><span class="annottext">toJSON :: Close -&gt; Value
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679416420"><span id="local-6989586621679416422"><span id="local-6989586621679416424"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.Close.html#Close"><span class="hs-identifier hs-type">Close</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679416418"><span class="annot"><span class="annottext">toJSON :: Close -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.Close.html#Close"><span class="hs-identifier hs-type">Close</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-18"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -42,34 +42,34 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;close&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679415277"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.Close.html#Close"><span class="hs-identifier hs-type">Close</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span> </span><span id="local-6989586621679415275"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Close
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679415273"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679415273"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679415271"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679415271"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-22"></span><span>  </span><span id="local-6989586621679415270"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679415270"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679415271"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679416411"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.Close.html#Close"><span class="hs-identifier hs-type">Close</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span> </span><span id="local-6989586621679416409"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Close
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679416407"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679416407"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679416405"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679416405"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679416404"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679416404"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679416405"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679415270"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679416404"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-24"></span><span>   </span><span class="hs-string">&quot;close&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser Close
-</span><a href="#local-6989586621679415268"><span class="hs-identifier hs-var">parseClose</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679415273"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679416402"><span class="hs-identifier hs-var">parseClose</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679416407"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-25"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser Close
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-26"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-27"></span><span>   </span><span class="annot"><a href="#local-6989586621679415268"><span class="hs-identifier hs-type">parseClose</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.Close.html#Close"><span class="hs-identifier hs-type">Close</span></a></span><span>
-</span><span id="line-28"></span><span>   </span><span id="local-6989586621679415268"><span class="annot"><span class="annottext">parseClose :: Value -&gt; Parser Close
-</span><a href="#local-6989586621679415268"><span class="hs-identifier hs-var hs-var">parseClose</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Close) -&gt; Value -&gt; Parser Close
+</span><span id="line-27"></span><span>   </span><span class="annot"><a href="#local-6989586621679416402"><span class="hs-identifier hs-type">parseClose</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.Close.html#Close"><span class="hs-identifier hs-type">Close</span></a></span><span>
+</span><span id="line-28"></span><span>   </span><span id="local-6989586621679416402"><span class="annot"><span class="annottext">parseClose :: Value -&gt; Parser Close
+</span><a href="#local-6989586621679416402"><span class="hs-identifier hs-var hs-var">parseClose</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Close) -&gt; Value -&gt; Parser Close
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;Close&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser Close) -&gt; Value -&gt; Parser Close)
 -&gt; (Object -&gt; Parser Close) -&gt; Value -&gt; Parser Close
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679415266"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679415266"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679416400"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679416400"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-29"></span><span>    </span><span class="annot"><span class="annottext">Close -&gt; Parser Close
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(Close -&gt; Parser Close) -&gt; Close -&gt; Parser Close

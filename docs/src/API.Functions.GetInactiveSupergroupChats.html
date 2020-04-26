@@ -11,7 +11,7 @@
 </span><span id="line-11"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-12"></span><span class="hs-comment">-- Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error</span><span>
 </span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="GetInactiveSupergroupChats"><span class="annot"><a href="API.Functions.GetInactiveSupergroupChats.html#GetInactiveSupergroupChats"><span class="hs-identifier hs-var">GetInactiveSupergroupChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-14"></span><span> </span><span id="GetInactiveSupergroupChats"><span class="annot"><a href="API.Functions.GetInactiveSupergroupChats.html#GetInactiveSupergroupChats"><span class="hs-identifier hs-var">GetInactiveSupergroupChats</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679421138"><span id="local-6989586621679421140"><span id="local-6989586621679421142"><span class="annot"><span class="annottext">Int -&gt; GetInactiveSupergroupChats -&gt; ShowS
+</span><span id="line-14"></span><span> </span><span id="GetInactiveSupergroupChats"><span class="annot"><a href="API.Functions.GetInactiveSupergroupChats.html#GetInactiveSupergroupChats"><span class="hs-identifier hs-var">GetInactiveSupergroupChats</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679422272"><span id="local-6989586621679422274"><span id="local-6989586621679422276"><span class="annot"><span class="annottext">Int -&gt; GetInactiveSupergroupChats -&gt; ShowS
 [GetInactiveSupergroupChats] -&gt; ShowS
 GetInactiveSupergroupChats -&gt; String
 (Int -&gt; GetInactiveSupergroupChats -&gt; ShowS)
@@ -26,7 +26,7 @@ show :: GetInactiveSupergroupChats -&gt; String
 $cshow :: GetInactiveSupergroupChats -&gt; String
 showsPrec :: Int -&gt; GetInactiveSupergroupChats -&gt; ShowS
 $cshowsPrec :: Int -&gt; GetInactiveSupergroupChats -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679421133"><span id="local-6989586621679421135"><span class="annot"><span class="annottext">GetInactiveSupergroupChats -&gt; GetInactiveSupergroupChats -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679422267"><span id="local-6989586621679422269"><span class="annot"><span class="annottext">GetInactiveSupergroupChats -&gt; GetInactiveSupergroupChats -&gt; Bool
 (GetInactiveSupergroupChats -&gt; GetInactiveSupergroupChats -&gt; Bool)
 -&gt; (GetInactiveSupergroupChats
     -&gt; GetInactiveSupergroupChats -&gt; Bool)
@@ -38,8 +38,8 @@ $c/= :: GetInactiveSupergroupChats -&gt; GetInactiveSupergroupChats -&gt; Bool
 $c== :: GetInactiveSupergroupChats -&gt; GetInactiveSupergroupChats -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-15"></span><span>
-</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679421125"><span id="local-6989586621679421127"><span id="local-6989586621679421129"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetInactiveSupergroupChats.html#GetInactiveSupergroupChats"><span class="hs-identifier hs-type">GetInactiveSupergroupChats</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-17"></span><span> </span><span id="local-6989586621679421123"><span class="annot"><span class="annottext">toJSON :: GetInactiveSupergroupChats -&gt; Value
+</span><span id="line-16"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679422259"><span id="local-6989586621679422261"><span id="local-6989586621679422263"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetInactiveSupergroupChats.html#GetInactiveSupergroupChats"><span class="hs-identifier hs-type">GetInactiveSupergroupChats</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span> </span><span id="local-6989586621679422257"><span class="annot"><span class="annottext">toJSON :: GetInactiveSupergroupChats -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.GetInactiveSupergroupChats.html#GetInactiveSupergroupChats"><span class="hs-identifier hs-type">GetInactiveSupergroupChats</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-18"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -47,28 +47,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;getInactiveSupergroupChats&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679421116"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetInactiveSupergroupChats.html#GetInactiveSupergroupChats"><span class="hs-identifier hs-type">GetInactiveSupergroupChats</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span> </span><span id="local-6989586621679421114"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetInactiveSupergroupChats
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679421112"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679421112"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679421110"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679421110"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-22"></span><span>  </span><span id="local-6989586621679421109"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679421109"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679421110"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679422250"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetInactiveSupergroupChats.html#GetInactiveSupergroupChats"><span class="hs-identifier hs-type">GetInactiveSupergroupChats</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span> </span><span id="local-6989586621679422248"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetInactiveSupergroupChats
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679422246"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679422246"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679422244"><span class="annot"><span class="annottext">obj :: Object
+</span><a href="#local-6989586621679422244"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-22"></span><span>  </span><span id="local-6989586621679422243"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679422243"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679422244"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-23"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679421109"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679422243"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-24"></span><span>   </span><span class="hs-string">&quot;getInactiveSupergroupChats&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetInactiveSupergroupChats
-</span><a href="#local-6989586621679421107"><span class="hs-identifier hs-var">parseGetInactiveSupergroupChats</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679421112"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679422241"><span class="hs-identifier hs-var">parseGetInactiveSupergroupChats</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679422246"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-25"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetInactiveSupergroupChats
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-26"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-27"></span><span>   </span><span class="annot"><a href="#local-6989586621679421107"><span class="hs-identifier hs-type">parseGetInactiveSupergroupChats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetInactiveSupergroupChats.html#GetInactiveSupergroupChats"><span class="hs-identifier hs-type">GetInactiveSupergroupChats</span></a></span><span>
-</span><span id="line-28"></span><span>   </span><span id="local-6989586621679421107"><span class="annot"><span class="annottext">parseGetInactiveSupergroupChats :: Value -&gt; Parser GetInactiveSupergroupChats
-</span><a href="#local-6989586621679421107"><span class="hs-identifier hs-var hs-var">parseGetInactiveSupergroupChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-27"></span><span>   </span><span class="annot"><a href="#local-6989586621679422241"><span class="hs-identifier hs-type">parseGetInactiveSupergroupChats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetInactiveSupergroupChats.html#GetInactiveSupergroupChats"><span class="hs-identifier hs-type">GetInactiveSupergroupChats</span></a></span><span>
+</span><span id="line-28"></span><span>   </span><span id="local-6989586621679422241"><span class="annot"><span class="annottext">parseGetInactiveSupergroupChats :: Value -&gt; Parser GetInactiveSupergroupChats
+</span><a href="#local-6989586621679422241"><span class="hs-identifier hs-var hs-var">parseGetInactiveSupergroupChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GetInactiveSupergroupChats)
 -&gt; Value
 -&gt; Parser GetInactiveSupergroupChats
@@ -79,8 +79,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser GetInactiveSupergroupChats
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679421105"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679421105"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679422239"><span class="annot"><span class="annottext">o :: Object
+</span><a href="#local-6989586621679422239"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-29"></span><span>    </span><span class="annot"><span class="annottext">GetInactiveSupergroupChats -&gt; Parser GetInactiveSupergroupChats
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(GetInactiveSupergroupChats -&gt; Parser GetInactiveSupergroupChats)
