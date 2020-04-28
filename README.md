@@ -26,10 +26,10 @@ Clone the repo and open `docs/index.html`
 A: Because of [recursive imports](https://wiki.haskell.org/Mutually_recursive_modules). 
 
 * Q: Why Int decoding so strange? \
-A: Int64 are sent as [strings](https://github.com/tdlib/td/issues/179) and other are not.
+A: Int64 are sent as [strings](https://github.com/tdlib/td/issues/179) and others are not.
 
 * Q: Why you did X instead of Y? \
-A: I'm new to haskell, most likely I don’t know about it yet.
+A: I'm new to Haskell, most likely I don’t know about it yet.
 
 * Q: Why there are underlines in some record fields? \
 A: Some record fields have different types in the same data type.
