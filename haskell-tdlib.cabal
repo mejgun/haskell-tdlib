@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5f67a0f53180f7f543d5a571e761d732fb6ab13d03070eb9607daa1da71d7cbe
+-- hash: 36809055358ec9373f11214bfabf5fae0f95c76fb5f27796119b8f134767e0d9
 
 name:           haskell-tdlib
 version:        0.1.0.0
@@ -653,6 +653,8 @@ library
       Paths_haskell_tdlib
   hs-source-dirs:
       src
+  extra-libraries:
+      tdjson
   build-depends:
       aeson
     , base >=4.7 && <5
