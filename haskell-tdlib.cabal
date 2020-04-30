@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 36809055358ec9373f11214bfabf5fae0f95c76fb5f27796119b8f134767e0d9
+-- hash: b2c4e709c3e55581f580ea52857a8e1c7bc94a247dbcd5cbcd98cbb18d414301
 
 name:           haskell-tdlib
 version:        0.1.0.0
@@ -673,14 +673,8 @@ executable haskell-tdlib-exe
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      aeson
-    , base >=4.7 && <5
-    , bytestring
-    , containers
+      base >=4.7 && <5
     , haskell-tdlib
-    , text
-    , time
-    , unordered-containers
   default-language: Haskell2010
 
 test-suite haskell-tdlib-test
@@ -692,12 +686,6 @@ test-suite haskell-tdlib-test
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      aeson
-    , base >=4.7 && <5
-    , bytestring
-    , containers
+      base >=4.7 && <5
     , haskell-tdlib
-    , text
-    , time
-    , unordered-containers
   default-language: Haskell2010
