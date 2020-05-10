@@ -11,9 +11,30 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes the type of a proxy server
 data ProxyType = 
- ProxyTypeSocks5 { password :: Maybe String, username :: Maybe String }  
- | ProxyTypeHttp { http_only :: Maybe Bool, password :: Maybe String, username :: Maybe String }  
- | ProxyTypeMtproto { secret :: Maybe String }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- A SOCKS5 proxy server 
+ -- 
+ -- __username__ Username for logging in; may be empty
+ -- 
+ -- __password__ Password for logging in; may be empty
+ ProxyTypeSocks5 { password :: Maybe String, username :: Maybe String }  |
+ -- |
+ -- 
+ -- A HTTP transparent proxy server 
+ -- 
+ -- __username__ Username for logging in; may be empty
+ -- 
+ -- __password__ Password for logging in; may be empty
+ -- 
+ -- __http_only__ Pass true if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method
+ ProxyTypeHttp { http_only :: Maybe Bool, password :: Maybe String, username :: Maybe String }  |
+ -- |
+ -- 
+ -- An MTProto proxy server 
+ -- 
+ -- __secret__ The proxy's secret in hexadecimal encoding
+ ProxyTypeMtproto { secret :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON ProxyType where
  toJSON (ProxyTypeSocks5 { password = password, username = username }) =

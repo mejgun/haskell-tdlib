@@ -31,6 +31,7 @@ import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 -- 
 -- __hash__ Hash of the entire element
 data EncryptedPassportElement = 
+
  EncryptedPassportElement { hash :: Maybe String, value :: Maybe String, files :: Maybe [DatedFile.DatedFile], translation :: Maybe [DatedFile.DatedFile], selfie :: Maybe DatedFile.DatedFile, reverse_side :: Maybe DatedFile.DatedFile, front_side :: Maybe DatedFile.DatedFile, _data :: Maybe String, _type :: Maybe PassportElementType.PassportElementType }  deriving (Show, Eq)
 
 instance T.ToJSON EncryptedPassportElement where

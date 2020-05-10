@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.NotificationSettingsScope as NotificationSet
 -- 
 -- __scope__ Types of chats for which to return the notification settings information
 data GetScopeNotificationSettings = 
+
  GetScopeNotificationSettings { scope :: Maybe NotificationSettingsScope.NotificationSettingsScope }  deriving (Show, Eq)
 
 instance T.ToJSON GetScopeNotificationSettings where

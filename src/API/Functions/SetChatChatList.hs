@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.ChatList as ChatList
 -- 
 -- __chat_list__ New chat list of the chat. The chat with the current user (Saved Messages) and the chat 777000 (Telegram) can't be moved to the Archive chat list
 data SetChatChatList = 
+
  SetChatChatList { chat_list :: Maybe ChatList.ChatList, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatChatList where

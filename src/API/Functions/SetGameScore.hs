@@ -23,6 +23,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __force__ Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
 data SetGameScore = 
+
  SetGameScore { force :: Maybe Bool, score :: Maybe Int, user_id :: Maybe Int, edit_message :: Maybe Bool, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetGameScore where

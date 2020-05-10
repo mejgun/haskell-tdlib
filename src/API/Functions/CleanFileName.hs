@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __file_name__ File name or path to the file
 data CleanFileName = 
+
  CleanFileName { file_name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CleanFileName where

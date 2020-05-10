@@ -22,6 +22,7 @@ import {-# SOURCE #-} qualified API.ProxyType as ProxyType
 -- 
 -- __timeout__ The maximum overall timeout for the request
 data TestProxy = 
+
  TestProxy { timeout :: Maybe Float, dc_id :: Maybe Int, _type :: Maybe ProxyType.ProxyType, port :: Maybe Int, server :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON TestProxy where

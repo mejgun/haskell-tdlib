@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __limit__ The maximum number of stickers to be returned
 data SearchStickers = 
+
  SearchStickers { limit :: Maybe Int, emoji :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SearchStickers where

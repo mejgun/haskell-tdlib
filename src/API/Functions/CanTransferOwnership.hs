@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Checks whether the current session can be used to transfer a chat ownership to another user
 data CanTransferOwnership = 
+
  CanTransferOwnership deriving (Show, Eq)
 
 instance T.ToJSON CanTransferOwnership where

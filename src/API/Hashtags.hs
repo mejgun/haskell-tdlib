@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __hashtags__ A list of hashtags
 data Hashtags = 
+
  Hashtags { hashtags :: Maybe [String] }  deriving (Show, Eq)
 
 instance T.ToJSON Hashtags where

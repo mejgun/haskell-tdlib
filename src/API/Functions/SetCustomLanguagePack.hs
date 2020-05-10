@@ -17,6 +17,7 @@ import {-# SOURCE #-} qualified API.LanguagePackInfo as LanguagePackInfo
 -- 
 -- __strings__ Strings of the new language pack
 data SetCustomLanguagePack = 
+
  SetCustomLanguagePack { strings :: Maybe [LanguagePackString.LanguagePackString], info :: Maybe LanguagePackInfo.LanguagePackInfo }  deriving (Show, Eq)
 
 instance T.ToJSON SetCustomLanguagePack where

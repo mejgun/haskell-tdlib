@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __ttl__ New TTL value, in seconds
 data SendChatSetTtlMessage = 
+
  SendChatSetTtlMessage { ttl :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendChatSetTtlMessage where

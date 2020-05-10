@@ -11,14 +11,46 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Represents a single rule for managing privacy settings
 data UserPrivacySettingRule = 
- UserPrivacySettingRuleAllowAll 
- | UserPrivacySettingRuleAllowContacts 
- | UserPrivacySettingRuleAllowUsers { user_ids :: Maybe [Int] }  
- | UserPrivacySettingRuleAllowChatMembers { chat_ids :: Maybe [Int] }  
- | UserPrivacySettingRuleRestrictAll 
- | UserPrivacySettingRuleRestrictContacts 
- | UserPrivacySettingRuleRestrictUsers { user_ids :: Maybe [Int] }  
- | UserPrivacySettingRuleRestrictChatMembers { chat_ids :: Maybe [Int] }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- A rule to allow all users to do something
+ UserPrivacySettingRuleAllowAll |
+ -- |
+ -- 
+ -- A rule to allow all of a user's contacts to do something
+ UserPrivacySettingRuleAllowContacts |
+ -- |
+ -- 
+ -- A rule to allow certain specified users to do something 
+ -- 
+ -- __user_ids__ The user identifiers, total number of users in all rules must not exceed 1000
+ UserPrivacySettingRuleAllowUsers { user_ids :: Maybe [Int] }  |
+ -- |
+ -- 
+ -- A rule to allow all members of certain specified basic groups and supergroups to doing something 
+ -- 
+ -- __chat_ids__ The chat identifiers, total number of chats in all rules must not exceed 20
+ UserPrivacySettingRuleAllowChatMembers { chat_ids :: Maybe [Int] }  |
+ -- |
+ -- 
+ -- A rule to restrict all users from doing something
+ UserPrivacySettingRuleRestrictAll |
+ -- |
+ -- 
+ -- A rule to restrict all contacts of a user from doing something
+ UserPrivacySettingRuleRestrictContacts |
+ -- |
+ -- 
+ -- A rule to restrict all specified users from doing something 
+ -- 
+ -- __user_ids__ The user identifiers, total number of users in all rules must not exceed 1000
+ UserPrivacySettingRuleRestrictUsers { user_ids :: Maybe [Int] }  |
+ -- |
+ -- 
+ -- A rule to restrict all members of specified basic groups and supergroups from doing something 
+ -- 
+ -- __chat_ids__ The chat identifiers, total number of chats in all rules must not exceed 20
+ UserPrivacySettingRuleRestrictChatMembers { chat_ids :: Maybe [Int] }  deriving (Show, Eq)
 
 instance T.ToJSON UserPrivacySettingRule where
  toJSON (UserPrivacySettingRuleAllowAll {  }) =

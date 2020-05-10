@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __message_ids__ Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
 data ResendMessages = 
+
  ResendMessages { message_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ResendMessages where

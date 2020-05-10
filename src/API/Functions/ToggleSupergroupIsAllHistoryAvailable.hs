@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __is_all_history_available__ The new value of is_all_history_available
 data ToggleSupergroupIsAllHistoryAvailable = 
+
  ToggleSupergroupIsAllHistoryAvailable { is_all_history_available :: Maybe Bool, supergroup_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ToggleSupergroupIsAllHistoryAvailable where

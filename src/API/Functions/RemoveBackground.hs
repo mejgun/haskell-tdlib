@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __background_id__ The background identifier
 data RemoveBackground = 
+
  RemoveBackground { background_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveBackground where

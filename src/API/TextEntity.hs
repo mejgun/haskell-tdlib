@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.TextEntityType as TextEntityType
 -- 
 -- __type__ Type of the entity
 data TextEntity = 
+
  TextEntity { _type :: Maybe TextEntityType.TextEntityType, _length :: Maybe Int, offset :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON TextEntity where

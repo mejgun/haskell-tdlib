@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.OptionValue as OptionValue
 -- 
 -- __value__ The new value of the option
 data SetOption = 
+
  SetOption { value :: Maybe OptionValue.OptionValue, name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SetOption where

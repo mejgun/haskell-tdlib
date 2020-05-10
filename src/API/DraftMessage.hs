@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
 -- 
 -- __input_message_text__ Content of the message draft; this should always be of type inputMessageText
 data DraftMessage = 
+
  DraftMessage { input_message_text :: Maybe InputMessageContent.InputMessageContent, date :: Maybe Int, reply_to_message_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON DraftMessage where

@@ -11,10 +11,28 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Represents the value of an option
 data OptionValue = 
- OptionValueBoolean { __value :: Maybe Bool }  
- | OptionValueEmpty 
- | OptionValueInteger { _value :: Maybe Int }  
- | OptionValueString { value :: Maybe String }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- Represents a boolean option 
+ -- 
+ -- __value__ The value of the option
+ OptionValueBoolean { __value :: Maybe Bool }  |
+ -- |
+ -- 
+ -- Represents an unknown option or an option which has a default value
+ OptionValueEmpty |
+ -- |
+ -- 
+ -- Represents an integer option 
+ -- 
+ -- __value__ The value of the option
+ OptionValueInteger { _value :: Maybe Int }  |
+ -- |
+ -- 
+ -- Represents a string option 
+ -- 
+ -- __value__ The value of the option
+ OptionValueString { value :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON OptionValue where
  toJSON (OptionValueBoolean { __value = __value }) =

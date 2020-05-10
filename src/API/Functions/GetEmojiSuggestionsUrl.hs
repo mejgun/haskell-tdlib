@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __language_code__ Language code for which the emoji replacements will be suggested
 data GetEmojiSuggestionsUrl = 
+
  GetEmojiSuggestionsUrl { language_code :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetEmojiSuggestionsUrl where

@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __supergroup_id__ Supergroup or channel identifier
 data GetSupergroup = 
+
  GetSupergroup { supergroup_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetSupergroup where

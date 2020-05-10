@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.ChatMemberStatus as ChatMemberStatus
 -- 
 -- __status__ The new status of the member in the chat
 data SetChatMemberStatus = 
+
  SetChatMemberStatus { status :: Maybe ChatMemberStatus.ChatMemberStatus, user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatMemberStatus where

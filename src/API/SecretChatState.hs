@@ -11,9 +11,18 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes the current secret chat state
 data SecretChatState = 
- SecretChatStatePending 
- | SecretChatStateReady 
- | SecretChatStateClosed deriving (Show, Eq)
+ -- |
+ -- 
+ -- The secret chat is not yet created; waiting for the other user to get online
+ SecretChatStatePending |
+ -- |
+ -- 
+ -- The secret chat is ready to use
+ SecretChatStateReady |
+ -- |
+ -- 
+ -- The secret chat is closed
+ SecretChatStateClosed deriving (Show, Eq)
 
 instance T.ToJSON SecretChatState where
  toJSON (SecretChatStatePending {  }) =

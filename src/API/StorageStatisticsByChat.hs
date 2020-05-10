@@ -20,6 +20,7 @@ import {-# SOURCE #-} qualified API.StorageStatisticsByFileType as StorageStatis
 -- 
 -- __by_file_type__ Statistics split by file types
 data StorageStatisticsByChat = 
+
  StorageStatisticsByChat { by_file_type :: Maybe [StorageStatisticsByFileType.StorageStatisticsByFileType], count :: Maybe Int, size :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON StorageStatisticsByChat where

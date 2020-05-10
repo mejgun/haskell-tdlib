@@ -12,12 +12,62 @@ import {-# SOURCE #-} qualified API.ChatPermissions as ChatPermissions
 -- 
 -- Provides information about the status of a member in a chat
 data ChatMemberStatus = 
- ChatMemberStatusCreator { is_member :: Maybe Bool, custom_title :: Maybe String }  
- | ChatMemberStatusAdministrator { can_promote_members :: Maybe Bool, can_pin_messages :: Maybe Bool, can_restrict_members :: Maybe Bool, can_invite_users :: Maybe Bool, can_delete_messages :: Maybe Bool, can_edit_messages :: Maybe Bool, can_post_messages :: Maybe Bool, can_change_info :: Maybe Bool, can_be_edited :: Maybe Bool, custom_title :: Maybe String }  
- | ChatMemberStatusMember 
- | ChatMemberStatusRestricted { permissions :: Maybe ChatPermissions.ChatPermissions, restricted_until_date :: Maybe Int, is_member :: Maybe Bool }  
- | ChatMemberStatusLeft 
- | ChatMemberStatusBanned { banned_until_date :: Maybe Int }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- The user is the owner of a chat and has all the administrator privileges
+ -- 
+ -- __custom_title__ A custom title of the owner; 0-16 characters without emojis; applicable to supergroups only
+ -- 
+ -- __is_member__ True, if the user is a member of the chat
+ ChatMemberStatusCreator { is_member :: Maybe Bool, custom_title :: Maybe String }  |
+ -- |
+ -- 
+ -- The user is a member of a chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new members, and ban unprivileged members. In supergroups and channels, there are more detailed options for administrator privileges
+ -- 
+ -- __custom_title__ A custom title of the administrator; 0-16 characters without emojis; applicable to supergroups only
+ -- 
+ -- __can_be_edited__ True, if the current user can edit the administrator privileges for the called user
+ -- 
+ -- __can_change_info__ True, if the administrator can change the chat title, photo, and other settings
+ -- 
+ -- __can_post_messages__ True, if the administrator can create channel posts; applicable to channels only
+ -- 
+ -- __can_edit_messages__ True, if the administrator can edit messages of other users and pin messages; applicable to channels only
+ -- 
+ -- __can_delete_messages__ True, if the administrator can delete messages of other users
+ -- 
+ -- __can_invite_users__ True, if the administrator can invite new users to the chat
+ -- 
+ -- __can_restrict_members__ True, if the administrator can restrict, ban, or unban chat members
+ -- 
+ -- __can_pin_messages__ True, if the administrator can pin messages; applicable to groups only
+ -- 
+ -- __can_promote_members__ True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by them
+ ChatMemberStatusAdministrator { can_promote_members :: Maybe Bool, can_pin_messages :: Maybe Bool, can_restrict_members :: Maybe Bool, can_invite_users :: Maybe Bool, can_delete_messages :: Maybe Bool, can_edit_messages :: Maybe Bool, can_post_messages :: Maybe Bool, can_change_info :: Maybe Bool, can_be_edited :: Maybe Bool, custom_title :: Maybe String }  |
+ -- |
+ -- 
+ -- The user is a member of a chat, without any additional privileges or restrictions
+ ChatMemberStatusMember |
+ -- |
+ -- 
+ -- The user is under certain restrictions in the chat. Not supported in basic groups and channels
+ -- 
+ -- __is_member__ True, if the user is a member of the chat
+ -- 
+ -- __restricted_until_date__ Point in time (Unix timestamp) when restrictions will be lifted from the user; 0 if never. If the user is restricted for more than 366 days or for less than 30 seconds from the current time, the user is considered to be restricted forever
+ -- 
+ -- __permissions__ User permissions in the chat
+ ChatMemberStatusRestricted { permissions :: Maybe ChatPermissions.ChatPermissions, restricted_until_date :: Maybe Int, is_member :: Maybe Bool }  |
+ -- |
+ -- 
+ -- The user is not a chat member
+ ChatMemberStatusLeft |
+ -- |
+ -- 
+ -- The user was banned (and hence is not a member of the chat). Implies the user can't return to the chat or view messages
+ -- 
+ -- __banned_until_date__ Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever
+ ChatMemberStatusBanned { banned_until_date :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ChatMemberStatus where
  toJSON (ChatMemberStatusCreator { is_member = is_member, custom_title = custom_title }) =

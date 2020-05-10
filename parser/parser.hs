@@ -162,7 +162,7 @@ writeToFiles addr modName mp cmnts =
                     (Map.findWithDefault ["-- comments parse failed"] d cmnts)
     , "\ndata "
     , d
-    , " = \n "
+    , " = \n"
     , ww e
     , " deriving (Show, Eq)"
     , toJsonString d e
@@ -181,8 +181,22 @@ writeToFiles addr modName mp cmnts =
     []
     e
   ww :: [(T.Text, [(T.Text, T.Text)])] -> T.Text
-  ww e =
-    T.intercalate " \n | " $ map (\(a, b) -> T.concat [toTitle a, www b]) e
+  ww e = T.intercalate " |\n" $ map
+    (\(a, b) -> T.concat
+      [ if length e > 1 -- if more than 1 contructor in data type
+        then T.intercalate
+          "\n -- \n"
+          (map
+            (T.append " ")
+            (Map.findWithDefault ["-- comments parse failed"] (toTitle a) cmnts)
+          )
+        else ""
+      , "\n "
+      , toTitle a
+      , www b
+      ]
+    )
+    e
   www e =
     case T.intercalate ", " (map (\(a, b) -> T.concat [a, " :: ", b]) e) of
       "" -> ""

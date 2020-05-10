@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __code__ Verification code received by SMS, phone call or flash call
 data CheckChangePhoneNumberCode = 
+
  CheckChangePhoneNumberCode { code :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CheckChangePhoneNumberCode where

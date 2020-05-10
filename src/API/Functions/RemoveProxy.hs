@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __proxy_id__ Proxy identifier
 data RemoveProxy = 
+
  RemoveProxy { proxy_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveProxy where

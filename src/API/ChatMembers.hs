@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.ChatMember as ChatMember
 -- 
 -- __members__ A list of chat members
 data ChatMembers = 
+
  ChatMembers { members :: Maybe [ChatMember.ChatMember], total_count :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ChatMembers where

@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __length__ Length of the code; 0 if unknown
 data EmailAddressAuthenticationCodeInfo = 
+
  EmailAddressAuthenticationCodeInfo { _length :: Maybe Int, email_address_pattern :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON EmailAddressAuthenticationCodeInfo where

@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Returns all user contacts
 data GetContacts = 
+
  GetContacts deriving (Show, Eq)
 
 instance T.ToJSON GetContacts where

@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- 
 -- __sticker__ Sticker file identifier
 data GetStickerEmojis = 
+
  GetStickerEmojis { sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON GetStickerEmojis where

@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.ChatNearby as ChatNearby
 -- 
 -- __supergroups_nearby__ List of location-based supergroups nearby
 data ChatsNearby = 
+
  ChatsNearby { supergroups_nearby :: Maybe [ChatNearby.ChatNearby], users_nearby :: Maybe [ChatNearby.ChatNearby] }  deriving (Show, Eq)
 
 instance T.ToJSON ChatsNearby where

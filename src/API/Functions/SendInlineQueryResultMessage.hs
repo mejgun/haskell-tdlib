@@ -24,6 +24,7 @@ import {-# SOURCE #-} qualified API.SendMessageOptions as SendMessageOptions
 -- 
 -- __hide_via_bot__ If true, there will be no mention of a bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username") and GetOption("venue_search_bot_username")
 data SendInlineQueryResultMessage = 
+
  SendInlineQueryResultMessage { hide_via_bot :: Maybe Bool, result_id :: Maybe String, query_id :: Maybe Int, options :: Maybe SendMessageOptions.SendMessageOptions, reply_to_message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendInlineQueryResultMessage where

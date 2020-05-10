@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.TdlibParameters as TdlibParameters
 -- 
 -- __parameters__ Parameters
 data SetTdlibParameters = 
+
  SetTdlibParameters { parameters :: Maybe TdlibParameters.TdlibParameters }  deriving (Show, Eq)
 
 instance T.ToJSON SetTdlibParameters where

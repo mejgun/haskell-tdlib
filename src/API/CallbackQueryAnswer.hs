@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __url__ URL to be opened
 data CallbackQueryAnswer = 
+
  CallbackQueryAnswer { url :: Maybe String, show_alert :: Maybe Bool, text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CallbackQueryAnswer where

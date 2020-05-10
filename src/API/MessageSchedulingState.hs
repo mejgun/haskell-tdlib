@@ -11,8 +11,16 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Contains information about the time when a scheduled message will be sent
 data MessageSchedulingState = 
- MessageSchedulingStateSendAtDate { send_date :: Maybe Int }  
- | MessageSchedulingStateSendWhenOnline deriving (Show, Eq)
+ -- |
+ -- 
+ -- The message will be sent at the specified date 
+ -- 
+ -- __send_date__ Date the message will be sent. The date must be within 367 days in the future
+ MessageSchedulingStateSendAtDate { send_date :: Maybe Int }  |
+ -- |
+ -- 
+ -- The message will be sent when the peer will be online. Applicable to private chats only and when the exact online status of the peer is known
+ MessageSchedulingStateSendWhenOnline deriving (Show, Eq)
 
 instance T.ToJSON MessageSchedulingState where
  toJSON (MessageSchedulingStateSendAtDate { send_date = send_date }) =

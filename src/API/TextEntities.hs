@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.TextEntity as TextEntity
 -- 
 -- __entities__ List of text entities
 data TextEntities = 
+
  TextEntities { entities :: Maybe [TextEntity.TextEntity] }  deriving (Show, Eq)
 
 instance T.ToJSON TextEntities where

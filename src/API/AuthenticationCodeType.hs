@@ -11,10 +11,30 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Provides information about the method by which an authentication code is delivered to the user
 data AuthenticationCodeType = 
- AuthenticationCodeTypeTelegramMessage { _length :: Maybe Int }  
- | AuthenticationCodeTypeSms { _length :: Maybe Int }  
- | AuthenticationCodeTypeCall { _length :: Maybe Int }  
- | AuthenticationCodeTypeFlashCall { pattern :: Maybe String }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- An authentication code is delivered via a private Telegram message, which can be viewed in another client 
+ -- 
+ -- __length__ Length of the code
+ AuthenticationCodeTypeTelegramMessage { _length :: Maybe Int }  |
+ -- |
+ -- 
+ -- An authentication code is delivered via an SMS message to the specified phone number 
+ -- 
+ -- __length__ Length of the code
+ AuthenticationCodeTypeSms { _length :: Maybe Int }  |
+ -- |
+ -- 
+ -- An authentication code is delivered via a phone call to the specified phone number 
+ -- 
+ -- __length__ Length of the code
+ AuthenticationCodeTypeCall { _length :: Maybe Int }  |
+ -- |
+ -- 
+ -- An authentication code is delivered by an immediately cancelled call to the specified phone number. The number from which the call was made is the code 
+ -- 
+ -- __pattern__ Pattern of the phone number from which the call will be made
+ AuthenticationCodeTypeFlashCall { pattern :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON AuthenticationCodeType where
  toJSON (AuthenticationCodeTypeTelegramMessage { _length = _length }) =

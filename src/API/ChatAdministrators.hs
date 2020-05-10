@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.ChatAdministrator as ChatAdministrator
 -- 
 -- __administrators__ A list of chat administrators
 data ChatAdministrators = 
+
  ChatAdministrators { administrators :: Maybe [ChatAdministrator.ChatAdministrator] }  deriving (Show, Eq)
 
 instance T.ToJSON ChatAdministrators where

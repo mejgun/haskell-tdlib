@@ -22,6 +22,7 @@ import {-# SOURCE #-} qualified API.InputCredentials as InputCredentials
 -- 
 -- __credentials__ The credentials chosen by user for payment
 data SendPaymentForm = 
+
  SendPaymentForm { credentials :: Maybe InputCredentials.InputCredentials, shipping_option_id :: Maybe String, order_info_id :: Maybe String, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendPaymentForm where

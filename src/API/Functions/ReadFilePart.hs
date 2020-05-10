@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __count__ Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position
 data ReadFilePart = 
+
  ReadFilePart { count :: Maybe Int, offset :: Maybe Int, file_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ReadFilePart where

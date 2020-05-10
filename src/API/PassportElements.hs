@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.PassportElement as PassportElement
 -- 
 -- __elements__ Telegram Passport elements
 data PassportElements = 
+
  PassportElements { elements :: Maybe [PassportElement.PassportElement] }  deriving (Show, Eq)
 
 instance T.ToJSON PassportElements where

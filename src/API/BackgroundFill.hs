@@ -11,8 +11,22 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes a fill of a background
 data BackgroundFill = 
- BackgroundFillSolid { color :: Maybe Int }  
- | BackgroundFillGradient { rotation_angle :: Maybe Int, bottom_color :: Maybe Int, top_color :: Maybe Int }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- Describes a solid fill of a background 
+ -- 
+ -- __color__ A color of the background in the RGB24 format
+ BackgroundFillSolid { color :: Maybe Int }  |
+ -- |
+ -- 
+ -- Describes a gradient fill of a background 
+ -- 
+ -- __top_color__ A top color of the background in the RGB24 format
+ -- 
+ -- __bottom_color__ A bottom color of the background in the RGB24 format
+ -- 
+ -- __rotation_angle__ Clockwise rotation angle of the gradient, in degrees; 0-359. Should be always divisible by 45
+ BackgroundFillGradient { rotation_angle :: Maybe Int, bottom_color :: Maybe Int, top_color :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON BackgroundFill where
  toJSON (BackgroundFillSolid { color = color }) =

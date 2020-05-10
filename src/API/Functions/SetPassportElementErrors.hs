@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.InputPassportElementError as InputPassportEl
 -- 
 -- __errors__ The errors
 data SetPassportElementErrors = 
+
  SetPassportElementErrors { errors :: Maybe [InputPassportElementError.InputPassportElementError], user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetPassportElementErrors where

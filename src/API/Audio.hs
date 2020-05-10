@@ -30,6 +30,7 @@ import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 -- 
 -- __audio__ File containing the audio
 data Audio = 
+
  Audio { audio :: Maybe File.File, album_cover_thumbnail :: Maybe PhotoSize.PhotoSize, album_cover_minithumbnail :: Maybe Minithumbnail.Minithumbnail, mime_type :: Maybe String, file_name :: Maybe String, performer :: Maybe String, title :: Maybe String, duration :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Audio where

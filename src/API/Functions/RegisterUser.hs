@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __last_name__ The last name of the user; 0-64 characters
 data RegisterUser = 
+
  RegisterUser { last_name :: Maybe String, first_name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON RegisterUser where

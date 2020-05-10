@@ -21,6 +21,7 @@ import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 -- 
 -- __location__ New location content of the message; may be null. Pass null to stop sharing the live location
 data EditMessageLiveLocation = 
+
  EditMessageLiveLocation { location :: Maybe Location.Location, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON EditMessageLiveLocation where

@@ -11,9 +11,22 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes a stream to which TDLib internal log is written
 data LogStream = 
- LogStreamDefault 
- | LogStreamFile { max_file_size :: Maybe Int, path :: Maybe String }  
- | LogStreamEmpty deriving (Show, Eq)
+ -- |
+ -- 
+ -- The log is written to stderr or an OS specific log
+ LogStreamDefault |
+ -- |
+ -- 
+ -- The log is written to a file 
+ -- 
+ -- __path__ Path to the file to where the internal TDLib log will be written
+ -- 
+ -- __max_file_size__ The maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated
+ LogStreamFile { max_file_size :: Maybe Int, path :: Maybe String }  |
+ -- |
+ -- 
+ -- The log is written nowhere
+ LogStreamEmpty deriving (Show, Eq)
 
 instance T.ToJSON LogStream where
  toJSON (LogStreamDefault {  }) =

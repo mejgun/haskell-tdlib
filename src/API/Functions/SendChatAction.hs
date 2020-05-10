@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.ChatAction as ChatAction
 -- 
 -- __action__ The action description
 data SendChatAction = 
+
  SendChatAction { action :: Maybe ChatAction.ChatAction, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendChatAction where

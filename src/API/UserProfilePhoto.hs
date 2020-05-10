@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 -- 
 -- __sizes__ Available variants of the user photo, in different sizes
 data UserProfilePhoto = 
+
  UserProfilePhoto { sizes :: Maybe [PhotoSize.PhotoSize], added_date :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON UserProfilePhoto where

@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.TestInt as TestInt
 -- 
 -- __value__ Vector of objects
 data TestVectorIntObject = 
+
  TestVectorIntObject { value :: Maybe [TestInt.TestInt] }  deriving (Show, Eq)
 
 instance T.ToJSON TestVectorIntObject where

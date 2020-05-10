@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 -- 
 -- __reply_markup__ The new message reply markup
 data EditInlineMessageReplyMarkup = 
+
  EditInlineMessageReplyMarkup { reply_markup :: Maybe ReplyMarkup.ReplyMarkup, inline_message_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON EditInlineMessageReplyMarkup where

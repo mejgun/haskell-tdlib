@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __date__ Point in time (Unix timestamp) relative to which to search for messages
 data GetChatMessageByDate = 
+
  GetChatMessageByDate { date :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetChatMessageByDate where

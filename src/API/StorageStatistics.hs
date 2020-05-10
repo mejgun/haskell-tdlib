@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.StorageStatisticsByChat as StorageStatistics
 -- 
 -- __by_chat__ Statistics split by chats
 data StorageStatistics = 
+
  StorageStatistics { by_chat :: Maybe [StorageStatisticsByChat.StorageStatisticsByChat], count :: Maybe Int, size :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON StorageStatistics where

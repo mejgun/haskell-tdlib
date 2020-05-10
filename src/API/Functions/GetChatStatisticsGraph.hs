@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __x__ X-value for zoomed in graph or 0 otherwise
 data GetChatStatisticsGraph = 
+
  GetChatStatisticsGraph { x :: Maybe Int, token :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetChatStatisticsGraph where

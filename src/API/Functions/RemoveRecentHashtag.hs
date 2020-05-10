@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __hashtag__ Hashtag to delete
 data RemoveRecentHashtag = 
+
  RemoveRecentHashtag { hashtag :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveRecentHashtag where

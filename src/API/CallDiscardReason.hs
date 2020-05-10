@@ -11,11 +11,26 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes the reason why a call was discarded
 data CallDiscardReason = 
- CallDiscardReasonEmpty 
- | CallDiscardReasonMissed 
- | CallDiscardReasonDeclined 
- | CallDiscardReasonDisconnected 
- | CallDiscardReasonHungUp deriving (Show, Eq)
+ -- |
+ -- 
+ -- The call wasn't discarded, or the reason is unknown
+ CallDiscardReasonEmpty |
+ -- |
+ -- 
+ -- The call was ended before the conversation started. It was cancelled by the caller or missed by the other party
+ CallDiscardReasonMissed |
+ -- |
+ -- 
+ -- The call was ended before the conversation started. It was declined by the other party
+ CallDiscardReasonDeclined |
+ -- |
+ -- 
+ -- The call was ended during the conversation because the users were disconnected
+ CallDiscardReasonDisconnected |
+ -- |
+ -- 
+ -- The call was ended because one of the parties hung up
+ CallDiscardReasonHungUp deriving (Show, Eq)
 
 instance T.ToJSON CallDiscardReason where
  toJSON (CallDiscardReasonEmpty {  }) =

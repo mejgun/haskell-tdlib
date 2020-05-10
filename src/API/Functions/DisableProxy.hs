@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Disables the currently enabled proxy. Can be called before authorization
 data DisableProxy = 
+
  DisableProxy deriving (Show, Eq)
 
 instance T.ToJSON DisableProxy where

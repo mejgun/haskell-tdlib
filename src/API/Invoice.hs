@@ -32,6 +32,7 @@ import {-# SOURCE #-} qualified API.LabeledPricePart as LabeledPricePart
 -- 
 -- __is_flexible__ True, if the total price depends on the shipping method
 data Invoice = 
+
  Invoice { is_flexible :: Maybe Bool, send_email_address_to_provider :: Maybe Bool, send_phone_number_to_provider :: Maybe Bool, need_shipping_address :: Maybe Bool, need_email_address :: Maybe Bool, need_phone_number :: Maybe Bool, need_name :: Maybe Bool, is_test :: Maybe Bool, price_parts :: Maybe [LabeledPricePart.LabeledPricePart], currency :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON Invoice where

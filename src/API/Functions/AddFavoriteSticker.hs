@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- 
 -- __sticker__ Sticker file to add
 data AddFavoriteSticker = 
+
  AddFavoriteSticker { sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON AddFavoriteSticker where

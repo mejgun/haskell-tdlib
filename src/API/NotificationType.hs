@@ -13,10 +13,36 @@ import {-# SOURCE #-} qualified API.PushMessageContent as PushMessageContent
 -- 
 -- Contains detailed information about a notification
 data NotificationType = 
- NotificationTypeNewMessage { message :: Maybe Message.Message }  
- | NotificationTypeNewSecretChat 
- | NotificationTypeNewCall { call_id :: Maybe Int }  
- | NotificationTypeNewPushMessage { content :: Maybe PushMessageContent.PushMessageContent, is_outgoing :: Maybe Bool, sender_name :: Maybe String, sender_user_id :: Maybe Int, message_id :: Maybe Int }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- New message was received 
+ -- 
+ -- __message__ The message
+ NotificationTypeNewMessage { message :: Maybe Message.Message }  |
+ -- |
+ -- 
+ -- New secret chat was created
+ NotificationTypeNewSecretChat |
+ -- |
+ -- 
+ -- New call was received 
+ -- 
+ -- __call_id__ Call identifier
+ NotificationTypeNewCall { call_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- New message was received through a push notification
+ -- 
+ -- __message_id__ The message identifier. The message will not be available in the chat history, but the ID can be used in viewMessages and as reply_to_message_id
+ -- 
+ -- __sender_user_id__ Sender of the message; 0 if unknown. Corresponding user may be inaccessible
+ -- 
+ -- __sender_name__ Name of the sender; can be different from the name of the sender user
+ -- 
+ -- __is_outgoing__ True, if the message is outgoing
+ -- 
+ -- __content__ Push message content
+ NotificationTypeNewPushMessage { content :: Maybe PushMessageContent.PushMessageContent, is_outgoing :: Maybe Bool, sender_name :: Maybe String, sender_user_id :: Maybe Int, message_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON NotificationType where
  toJSON (NotificationTypeNewMessage { message = message }) =

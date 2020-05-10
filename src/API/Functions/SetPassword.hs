@@ -21,6 +21,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __new_recovery_email_address__ New recovery email address; may be empty
 data SetPassword = 
+
  SetPassword { new_recovery_email_address :: Maybe String, set_recovery_email_address :: Maybe Bool, new_hint :: Maybe String, new_password :: Maybe String, old_password :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SetPassword where

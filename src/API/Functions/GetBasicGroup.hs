@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __basic_group_id__ Basic group identifier
 data GetBasicGroup = 
+
  GetBasicGroup { basic_group_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetBasicGroup where

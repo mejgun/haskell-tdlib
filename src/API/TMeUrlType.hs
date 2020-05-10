@@ -12,10 +12,30 @@ import {-# SOURCE #-} qualified API.ChatInviteLinkInfo as ChatInviteLinkInfo
 -- 
 -- Describes the type of a URL linking to an internal Telegram entity
 data TMeUrlType = 
- TMeUrlTypeUser { user_id :: Maybe Int }  
- | TMeUrlTypeSupergroup { supergroup_id :: Maybe Int }  
- | TMeUrlTypeChatInvite { info :: Maybe ChatInviteLinkInfo.ChatInviteLinkInfo }  
- | TMeUrlTypeStickerSet { sticker_set_id :: Maybe Int }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- A URL linking to a user 
+ -- 
+ -- __user_id__ Identifier of the user
+ TMeUrlTypeUser { user_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A URL linking to a public supergroup or channel 
+ -- 
+ -- __supergroup_id__ Identifier of the supergroup or channel
+ TMeUrlTypeSupergroup { supergroup_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A chat invite link 
+ -- 
+ -- __info__ Chat invite link info
+ TMeUrlTypeChatInvite { info :: Maybe ChatInviteLinkInfo.ChatInviteLinkInfo }  |
+ -- |
+ -- 
+ -- A URL linking to a sticker set 
+ -- 
+ -- __sticker_set_id__ Identifier of the sticker set
+ TMeUrlTypeStickerSet { sticker_set_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON TMeUrlType where
  toJSON (TMeUrlTypeUser { user_id = user_id }) =

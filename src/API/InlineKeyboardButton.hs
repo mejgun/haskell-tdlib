@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.InlineKeyboardButtonType as InlineKeyboardBu
 -- 
 -- __type__ Type of the button
 data InlineKeyboardButton = 
+
  InlineKeyboardButton { _type :: Maybe InlineKeyboardButtonType.InlineKeyboardButtonType, text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON InlineKeyboardButton where

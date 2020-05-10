@@ -20,6 +20,7 @@ import {-# SOURCE #-} qualified API.MaskPoint as MaskPoint
 -- 
 -- __scale__ Mask scaling coefficient. (For example, 2.0 means a doubled size)
 data MaskPosition = 
+
  MaskPosition { scale :: Maybe Float, y_shift :: Maybe Float, x_shift :: Maybe Float, point :: Maybe MaskPoint.MaskPoint }  deriving (Show, Eq)
 
 instance T.ToJSON MaskPosition where

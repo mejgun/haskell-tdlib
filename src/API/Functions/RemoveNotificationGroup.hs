@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __max_notification_id__ The maximum identifier of removed notifications
 data RemoveNotificationGroup = 
+
  RemoveNotificationGroup { max_notification_id :: Maybe Int, notification_group_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveNotificationGroup where

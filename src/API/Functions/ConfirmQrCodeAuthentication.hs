@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __link__ A link from a QR code. The link must be scanned by the in-app camera
 data ConfirmQrCodeAuthentication = 
+
  ConfirmQrCodeAuthentication { link :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON ConfirmQrCodeAuthentication where

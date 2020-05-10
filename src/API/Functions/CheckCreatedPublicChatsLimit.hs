@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.PublicChatType as PublicChatType
 -- 
 -- __type__ Type of the public chats, for which to check the limit
 data CheckCreatedPublicChatsLimit = 
+
  CheckCreatedPublicChatsLimit { _type :: Maybe PublicChatType.PublicChatType }  deriving (Show, Eq)
 
 instance T.ToJSON CheckCreatedPublicChatsLimit where

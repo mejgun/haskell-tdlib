@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __button_id__ Button identifier
 data GetLoginUrlInfo = 
+
  GetLoginUrlInfo { button_id :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetLoginUrlInfo where

@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __message_id__ Identifier of the message reply to which get
 data GetRepliedMessage = 
+
  GetRepliedMessage { message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetRepliedMessage where

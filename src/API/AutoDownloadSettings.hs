@@ -27,6 +27,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __use_less_data_for_calls__ True, if "use less data for calls" option needs to be enabled
 data AutoDownloadSettings = 
+
  AutoDownloadSettings { use_less_data_for_calls :: Maybe Bool, preload_next_audio :: Maybe Bool, preload_large_videos :: Maybe Bool, video_upload_bitrate :: Maybe Int, max_other_file_size :: Maybe Int, max_video_file_size :: Maybe Int, max_photo_file_size :: Maybe Int, is_auto_download_enabled :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON AutoDownloadSettings where

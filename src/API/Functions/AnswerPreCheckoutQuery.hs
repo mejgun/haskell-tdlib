@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __error_message__ An error message, empty on success
 data AnswerPreCheckoutQuery = 
+
  AnswerPreCheckoutQuery { error_message :: Maybe String, pre_checkout_query_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON AnswerPreCheckoutQuery where

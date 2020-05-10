@@ -22,6 +22,7 @@ import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
 -- 
 -- __input_message_content__ The content of the message to be added
 data AddLocalMessage = 
+
  AddLocalMessage { input_message_content :: Maybe InputMessageContent.InputMessageContent, disable_notification :: Maybe Bool, reply_to_message_id :: Maybe Int, sender_user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON AddLocalMessage where

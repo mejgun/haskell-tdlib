@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __distance__ Distance to the chat location in meters
 data ChatNearby = 
+
  ChatNearby { distance :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ChatNearby where

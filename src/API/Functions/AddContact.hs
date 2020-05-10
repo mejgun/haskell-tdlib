@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.Contact as Contact
 -- 
 -- __share_phone_number__ True, if the new contact needs to be allowed to see current user's phone number. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field UserFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
 data AddContact = 
+
  AddContact { share_phone_number :: Maybe Bool, contact :: Maybe Contact.Contact }  deriving (Show, Eq)
 
 instance T.ToJSON AddContact where

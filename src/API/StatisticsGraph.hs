@@ -11,9 +11,26 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes a statistics graph
 data StatisticsGraph = 
- StatisticsGraphData { zoom_token :: Maybe String, json_data :: Maybe String }  
- | StatisticsGraphAsync { token :: Maybe String }  
- | StatisticsGraphError { error_message :: Maybe String }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- A graph data 
+ -- 
+ -- __json_data__ Graph data in JSON format
+ -- 
+ -- __zoom_token__ If non-empty, a token which can be used to receive a zoomed in graph
+ StatisticsGraphData { zoom_token :: Maybe String, json_data :: Maybe String }  |
+ -- |
+ -- 
+ -- The graph data to be asynchronously loaded through getChatStatisticsGraph 
+ -- 
+ -- __token__ The token to use for data loading
+ StatisticsGraphAsync { token :: Maybe String }  |
+ -- |
+ -- 
+ -- An error message to be shown to the user instead of the graph 
+ -- 
+ -- __error_message__ The error message
+ StatisticsGraphError { error_message :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON StatisticsGraph where
  toJSON (StatisticsGraphData { zoom_token = zoom_token, json_data = json_data }) =

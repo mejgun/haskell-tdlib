@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.PageBlock as PageBlock
 -- 
 -- __page_blocks__ Item blocks
 data PageBlockListItem = 
+
  PageBlockListItem { page_blocks :: Maybe [PageBlock.PageBlock], label :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON PageBlockListItem where

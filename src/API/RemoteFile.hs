@@ -25,6 +25,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __uploaded_size__ Size of the remote available part of the file; 0 if unknown
 data RemoteFile = 
+
  RemoteFile { uploaded_size :: Maybe Int, is_uploading_completed :: Maybe Bool, is_uploading_active :: Maybe Bool, unique_id :: Maybe String, _id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON RemoteFile where

@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.Error as Error
 -- 
 -- __error__ If set, means that file generation has failed and should be terminated
 data FinishFileGeneration = 
+
  FinishFileGeneration { _error :: Maybe Error.Error, generation_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON FinishFileGeneration where

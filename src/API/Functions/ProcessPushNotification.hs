@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __payload__ JSON-encoded push notification payload with all fields sent by the server, and "google.sent_time" and "google.notification.sound" fields added
 data ProcessPushNotification = 
+
  ProcessPushNotification { payload :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON ProcessPushNotification where

@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __only_current__ If true, returns only data for the current library launch
 data GetNetworkStatistics = 
+
  GetNetworkStatistics { only_current :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON GetNetworkStatistics where

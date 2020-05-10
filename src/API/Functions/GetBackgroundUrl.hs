@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.BackgroundType as BackgroundType
 -- 
 -- __type__ Background type
 data GetBackgroundUrl = 
+
  GetBackgroundUrl { _type :: Maybe BackgroundType.BackgroundType, name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetBackgroundUrl where

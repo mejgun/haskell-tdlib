@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __is_dark__ Pass true if a URL with the dark theme must be returned
 data GetChatStatisticsUrl = 
+
  GetChatStatisticsUrl { is_dark :: Maybe Bool, parameters :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetChatStatisticsUrl where

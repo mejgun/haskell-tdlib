@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __year__ Year, 1-9999
 data Date = 
+
  Date { year :: Maybe Int, month :: Maybe Int, day :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Date where

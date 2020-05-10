@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __chat_ids__ List of chat identifiers
 data Chats = 
+
  Chats { chat_ids :: Maybe [Int] }  deriving (Show, Eq)
 
 instance T.ToJSON Chats where

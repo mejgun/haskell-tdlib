@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __revoke__ Pass true to try to delete messages for all chat members. Always true for supergroups, channels and secret chats
 data DeleteMessages = 
+
  DeleteMessages { revoke :: Maybe Bool, message_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON DeleteMessages where

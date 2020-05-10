@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.UserPrivacySetting as UserPrivacySetting
 -- 
 -- __setting__ The privacy setting
 data GetUserPrivacySettingRules = 
+
  GetUserPrivacySettingRules { setting :: Maybe UserPrivacySetting.UserPrivacySetting }  deriving (Show, Eq)
 
 instance T.ToJSON GetUserPrivacySettingRules where

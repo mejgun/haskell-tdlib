@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __username__ Username to be resolved
 data SearchPublicChat = 
+
  SearchPublicChat { username :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SearchPublicChat where

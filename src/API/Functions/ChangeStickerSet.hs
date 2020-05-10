@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __is_archived__ The new value of is_archived. A sticker set can't be installed and archived simultaneously
 data ChangeStickerSet = 
+
  ChangeStickerSet { is_archived :: Maybe Bool, is_installed :: Maybe Bool, set_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ChangeStickerSet where

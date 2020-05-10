@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.NetworkStatisticsEntry as NetworkStatisticsE
 -- 
 -- __entries__ Network statistics entries
 data NetworkStatistics = 
+
  NetworkStatistics { entries :: Maybe [NetworkStatisticsEntry.NetworkStatisticsEntry], since_date :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON NetworkStatistics where

@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __sticker_set_ids__ Identifiers of viewed trending sticker sets
 data ViewTrendingStickerSets = 
+
  ViewTrendingStickerSets { sticker_set_ids :: Maybe [Int] }  deriving (Show, Eq)
 
 instance T.ToJSON ViewTrendingStickerSets where

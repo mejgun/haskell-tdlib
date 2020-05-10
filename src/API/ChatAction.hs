@@ -11,19 +11,68 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes the different types of activity in a chat
 data ChatAction = 
- ChatActionTyping 
- | ChatActionRecordingVideo 
- | ChatActionUploadingVideo { progress :: Maybe Int }  
- | ChatActionRecordingVoiceNote 
- | ChatActionUploadingVoiceNote { progress :: Maybe Int }  
- | ChatActionUploadingPhoto { progress :: Maybe Int }  
- | ChatActionUploadingDocument { progress :: Maybe Int }  
- | ChatActionChoosingLocation 
- | ChatActionChoosingContact 
- | ChatActionStartPlayingGame 
- | ChatActionRecordingVideoNote 
- | ChatActionUploadingVideoNote { progress :: Maybe Int }  
- | ChatActionCancel deriving (Show, Eq)
+ -- |
+ -- 
+ -- The user is typing a message
+ ChatActionTyping |
+ -- |
+ -- 
+ -- The user is recording a video
+ ChatActionRecordingVideo |
+ -- |
+ -- 
+ -- The user is uploading a video 
+ -- 
+ -- __progress__ Upload progress, as a percentage
+ ChatActionUploadingVideo { progress :: Maybe Int }  |
+ -- |
+ -- 
+ -- The user is recording a voice note
+ ChatActionRecordingVoiceNote |
+ -- |
+ -- 
+ -- The user is uploading a voice note 
+ -- 
+ -- __progress__ Upload progress, as a percentage
+ ChatActionUploadingVoiceNote { progress :: Maybe Int }  |
+ -- |
+ -- 
+ -- The user is uploading a photo 
+ -- 
+ -- __progress__ Upload progress, as a percentage
+ ChatActionUploadingPhoto { progress :: Maybe Int }  |
+ -- |
+ -- 
+ -- The user is uploading a document 
+ -- 
+ -- __progress__ Upload progress, as a percentage
+ ChatActionUploadingDocument { progress :: Maybe Int }  |
+ -- |
+ -- 
+ -- The user is picking a location or venue to send
+ ChatActionChoosingLocation |
+ -- |
+ -- 
+ -- The user is picking a contact to send
+ ChatActionChoosingContact |
+ -- |
+ -- 
+ -- The user has started to play a game
+ ChatActionStartPlayingGame |
+ -- |
+ -- 
+ -- The user is recording a video note
+ ChatActionRecordingVideoNote |
+ -- |
+ -- 
+ -- The user is uploading a video note 
+ -- 
+ -- __progress__ Upload progress, as a percentage
+ ChatActionUploadingVideoNote { progress :: Maybe Int }  |
+ -- |
+ -- 
+ -- The user has cancelled the previous action
+ ChatActionCancel deriving (Show, Eq)
 
 instance T.ToJSON ChatAction where
  toJSON (ChatActionTyping {  }) =

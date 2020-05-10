@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __only_local__ If true, returns only locally available information without sending network requests
 data GetLocalizationTargetInfo = 
+
  GetLocalizationTargetInfo { only_local :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON GetLocalizationTargetInfo where

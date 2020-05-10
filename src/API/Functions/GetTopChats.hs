@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.TopChatCategory as TopChatCategory
 -- 
 -- __limit__ The maximum number of chats to be returned; up to 30
 data GetTopChats = 
+
  GetTopChats { limit :: Maybe Int, category :: Maybe TopChatCategory.TopChatCategory }  deriving (Show, Eq)
 
 instance T.ToJSON GetTopChats where

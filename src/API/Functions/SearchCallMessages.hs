@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __only_missed__ If true, returns only messages with missed calls
 data SearchCallMessages = 
+
  SearchCallMessages { only_missed :: Maybe Bool, limit :: Maybe Int, from_message_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SearchCallMessages where

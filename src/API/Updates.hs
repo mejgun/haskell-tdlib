@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.Update as Update
 -- 
 -- __updates__ List of updates
 data Updates = 
+
  Updates { updates :: Maybe [Update.Update] }  deriving (Show, Eq)
 
 instance T.ToJSON Updates where

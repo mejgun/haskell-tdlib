@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Returns all website where the current user used Telegram to log in
 data GetConnectedWebsites = 
+
  GetConnectedWebsites deriving (Show, Eq)
 
 instance T.ToJSON GetConnectedWebsites where

@@ -31,6 +31,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __disable_mention_notifications__ If true, notifications for messages with mentions will be created as for an ordinary unread message
 data ChatNotificationSettings = 
+
  ChatNotificationSettings { disable_mention_notifications :: Maybe Bool, use_default_disable_mention_notifications :: Maybe Bool, disable_pinned_message_notifications :: Maybe Bool, use_default_disable_pinned_message_notifications :: Maybe Bool, show_preview :: Maybe Bool, use_default_show_preview :: Maybe Bool, sound :: Maybe String, use_default_sound :: Maybe Bool, mute_for :: Maybe Int, use_default_mute_for :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON ChatNotificationSettings where

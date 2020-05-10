@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __param_description__ Description of the bot command
 data BotCommand = 
+
  BotCommand { description :: Maybe String, command :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON BotCommand where

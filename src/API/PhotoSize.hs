@@ -20,6 +20,7 @@ import {-# SOURCE #-} qualified API.File as File
 -- 
 -- __height__ Photo height
 data PhotoSize = 
+
  PhotoSize { height :: Maybe Int, width :: Maybe Int, photo :: Maybe File.File, _type :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON PhotoSize where

@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Resets all network data usage statistics to zero. Can be called before authorization
 data ResetNetworkStatistics = 
+
  ResetNetworkStatistics deriving (Show, Eq)
 
 instance T.ToJSON ResetNetworkStatistics where

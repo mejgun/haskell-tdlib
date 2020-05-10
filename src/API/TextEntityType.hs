@@ -11,23 +11,80 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Represents a part of the text which must be formatted differently
 data TextEntityType = 
- TextEntityTypeMention 
- | TextEntityTypeHashtag 
- | TextEntityTypeCashtag 
- | TextEntityTypeBotCommand 
- | TextEntityTypeUrl 
- | TextEntityTypeEmailAddress 
- | TextEntityTypePhoneNumber 
- | TextEntityTypeBankCardNumber 
- | TextEntityTypeBold 
- | TextEntityTypeItalic 
- | TextEntityTypeUnderline 
- | TextEntityTypeStrikethrough 
- | TextEntityTypeCode 
- | TextEntityTypePre 
- | TextEntityTypePreCode { language :: Maybe String }  
- | TextEntityTypeTextUrl { url :: Maybe String }  
- | TextEntityTypeMentionName { user_id :: Maybe Int }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- A mention of a user by their username
+ TextEntityTypeMention |
+ -- |
+ -- 
+ -- A hashtag text, beginning with "#"
+ TextEntityTypeHashtag |
+ -- |
+ -- 
+ -- A cashtag text, beginning with "$" and consisting of capital english letters (i.e. "$USD")
+ TextEntityTypeCashtag |
+ -- |
+ -- 
+ -- A bot command, beginning with "/". This shouldn't be highlighted if there are no bots in the chat
+ TextEntityTypeBotCommand |
+ -- |
+ -- 
+ -- An HTTP URL
+ TextEntityTypeUrl |
+ -- |
+ -- 
+ -- An email address
+ TextEntityTypeEmailAddress |
+ -- |
+ -- 
+ -- A phone number
+ TextEntityTypePhoneNumber |
+ -- |
+ -- 
+ -- A bank card number. The getBankCardInfo method can be used to get information about the bank card
+ TextEntityTypeBankCardNumber |
+ -- |
+ -- 
+ -- A bold text
+ TextEntityTypeBold |
+ -- |
+ -- 
+ -- An italic text
+ TextEntityTypeItalic |
+ -- |
+ -- 
+ -- An underlined text
+ TextEntityTypeUnderline |
+ -- |
+ -- 
+ -- A strikethrough text
+ TextEntityTypeStrikethrough |
+ -- |
+ -- 
+ -- Text that must be formatted as if inside a code HTML tag
+ TextEntityTypeCode |
+ -- |
+ -- 
+ -- Text that must be formatted as if inside a pre HTML tag
+ TextEntityTypePre |
+ -- |
+ -- 
+ -- Text that must be formatted as if inside pre, and code HTML tags 
+ -- 
+ -- __language__ Programming language of the code; as defined by the sender
+ TextEntityTypePreCode { language :: Maybe String }  |
+ -- |
+ -- 
+ -- A text description shown instead of a raw URL 
+ -- 
+ -- __url__ HTTP or tg:// URL to be opened when the link is clicked
+ TextEntityTypeTextUrl { url :: Maybe String }  |
+ -- |
+ -- 
+ -- A text shows instead of a raw mention of the user (e.g., when the user has no username) 
+ -- 
+ -- __user_id__ Identifier of the mentioned user
+ TextEntityTypeMentionName { user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON TextEntityType where
  toJSON (TextEntityTypeMention {  }) =

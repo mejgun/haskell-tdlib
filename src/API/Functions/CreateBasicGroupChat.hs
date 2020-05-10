@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __force__ If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
 data CreateBasicGroupChat = 
+
  CreateBasicGroupChat { force :: Maybe Bool, basic_group_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CreateBasicGroupChat where

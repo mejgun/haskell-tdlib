@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.ShippingOption as ShippingOption
 -- 
 -- __error_message__ An error message, empty on success
 data AnswerShippingQuery = 
+
  AnswerShippingQuery { error_message :: Maybe String, shipping_options :: Maybe [ShippingOption.ShippingOption], shipping_query_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON AnswerShippingQuery where

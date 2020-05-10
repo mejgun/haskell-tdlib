@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __new_verbosity_level__ New verbosity level; 1-1024
 data SetLogTagVerbosityLevel = 
+
  SetLogTagVerbosityLevel { new_verbosity_level :: Maybe Int, tag :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SetLogTagVerbosityLevel where

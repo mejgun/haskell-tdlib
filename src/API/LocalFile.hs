@@ -27,6 +27,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __downloaded_size__ Total downloaded file bytes. Should be used only for calculating download progress. The actual file size may be bigger, and some parts of it may contain garbage
 data LocalFile = 
+
  LocalFile { downloaded_size :: Maybe Int, downloaded_prefix_size :: Maybe Int, download_offset :: Maybe Int, is_downloading_completed :: Maybe Bool, is_downloading_active :: Maybe Bool, can_be_deleted :: Maybe Bool, can_be_downloaded :: Maybe Bool, path :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON LocalFile where

@@ -20,6 +20,7 @@ import {-# SOURCE #-} qualified API.Message as Message
 -- 
 -- __for_album__ True, if the whole media album to which the message belongs is linked
 data MessageLinkInfo = 
+
  MessageLinkInfo { for_album :: Maybe Bool, message :: Maybe Message.Message, chat_id :: Maybe Int, is_public :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON MessageLinkInfo where

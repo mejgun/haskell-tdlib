@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __user_id__ Identifier of the user with whom to share the phone number. The user must be a mutual contact
 data SharePhoneNumber = 
+
  SharePhoneNumber { user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SharePhoneNumber where

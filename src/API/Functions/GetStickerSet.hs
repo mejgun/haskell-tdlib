@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __set_id__ Identifier of the sticker set
 data GetStickerSet = 
+
  GetStickerSet { set_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetStickerSet where

@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __days__ Number of days of inactivity before the account will be flagged for deletion; should range from 30-366 days
 data AccountTtl = 
+
  AccountTtl { days :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON AccountTtl where

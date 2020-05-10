@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Returns all active live locations that should be updated by the client. The list is persistent across application restarts only if the message database is used
 data GetActiveLiveLocationMessages = 
+
  GetActiveLiveLocationMessages deriving (Show, Eq)
 
 instance T.ToJSON GetActiveLiveLocationMessages where

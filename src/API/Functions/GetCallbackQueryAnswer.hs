@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.CallbackQueryPayload as CallbackQueryPayload
 -- 
 -- __payload__ Query payload
 data GetCallbackQueryAnswer = 
+
  GetCallbackQueryAnswer { payload :: Maybe CallbackQueryPayload.CallbackQueryPayload, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetCallbackQueryAnswer where

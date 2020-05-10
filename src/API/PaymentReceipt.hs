@@ -26,6 +26,7 @@ import {-# SOURCE #-} qualified API.Invoice as Invoice
 -- 
 -- __credentials_title__ Title of the saved credentials
 data PaymentReceipt = 
+
  PaymentReceipt { credentials_title :: Maybe String, shipping_option :: Maybe ShippingOption.ShippingOption, order_info :: Maybe OrderInfo.OrderInfo, invoice :: Maybe Invoice.Invoice, payments_provider_user_id :: Maybe Int, date :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON PaymentReceipt where

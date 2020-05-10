@@ -11,8 +11,14 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes a type of public chats
 data PublicChatType = 
- PublicChatTypeHasUsername 
- | PublicChatTypeIsLocationBased deriving (Show, Eq)
+ -- |
+ -- 
+ -- The chat is public, because it has username
+ PublicChatTypeHasUsername |
+ -- |
+ -- 
+ -- The chat is public, because it is a location-based supergroup
+ PublicChatTypeIsLocationBased deriving (Show, Eq)
 
 instance T.ToJSON PublicChatType where
  toJSON (PublicChatTypeHasUsername {  }) =

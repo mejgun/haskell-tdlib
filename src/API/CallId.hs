@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __id__ Call identifier
 data CallId = 
+
  CallId { _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CallId where

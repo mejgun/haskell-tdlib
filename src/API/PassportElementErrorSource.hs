@@ -11,15 +11,48 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Contains the description of an error in a Telegram Passport element
 data PassportElementErrorSource = 
- PassportElementErrorSourceUnspecified 
- | PassportElementErrorSourceDataField { field_name :: Maybe String }  
- | PassportElementErrorSourceFrontSide 
- | PassportElementErrorSourceReverseSide 
- | PassportElementErrorSourceSelfie 
- | PassportElementErrorSourceTranslationFile { file_index :: Maybe Int }  
- | PassportElementErrorSourceTranslationFiles 
- | PassportElementErrorSourceFile { file_index :: Maybe Int }  
- | PassportElementErrorSourceFiles deriving (Show, Eq)
+ -- |
+ -- 
+ -- The element contains an error in an unspecified place. The error will be considered resolved when new data is added
+ PassportElementErrorSourceUnspecified |
+ -- |
+ -- 
+ -- One of the data fields contains an error. The error will be considered resolved when the value of the field changes 
+ -- 
+ -- __field_name__ Field name
+ PassportElementErrorSourceDataField { field_name :: Maybe String }  |
+ -- |
+ -- 
+ -- The front side of the document contains an error. The error will be considered resolved when the file with the front side changes
+ PassportElementErrorSourceFrontSide |
+ -- |
+ -- 
+ -- The reverse side of the document contains an error. The error will be considered resolved when the file with the reverse side changes
+ PassportElementErrorSourceReverseSide |
+ -- |
+ -- 
+ -- The selfie with the document contains an error. The error will be considered resolved when the file with the selfie changes
+ PassportElementErrorSourceSelfie |
+ -- |
+ -- 
+ -- One of files with the translation of the document contains an error. The error will be considered resolved when the file changes 
+ -- 
+ -- __file_index__ Index of a file with the error
+ PassportElementErrorSourceTranslationFile { file_index :: Maybe Int }  |
+ -- |
+ -- 
+ -- The translation of the document contains an error. The error will be considered resolved when the list of translation files changes
+ PassportElementErrorSourceTranslationFiles |
+ -- |
+ -- 
+ -- The file contains an error. The error will be considered resolved when the file changes 
+ -- 
+ -- __file_index__ Index of a file with the error
+ PassportElementErrorSourceFile { file_index :: Maybe Int }  |
+ -- |
+ -- 
+ -- The list of attached files contains an error. The error will be considered resolved when the list of files changes
+ PassportElementErrorSourceFiles deriving (Show, Eq)
 
 instance T.ToJSON PassportElementErrorSource where
  toJSON (PassportElementErrorSourceUnspecified {  }) =

@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __default_disable_notification__ New value of default_disable_notification
 data ToggleChatDefaultDisableNotification = 
+
  ToggleChatDefaultDisableNotification { default_disable_notification :: Maybe Bool, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ToggleChatDefaultDisableNotification where

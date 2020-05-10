@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __chat_id__ Identifier of the chat to upgrade
 data UpgradeBasicGroupChatToSupergroupChat = 
+
  UpgradeBasicGroupChatToSupergroupChat { chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON UpgradeBasicGroupChatToSupergroupChat where

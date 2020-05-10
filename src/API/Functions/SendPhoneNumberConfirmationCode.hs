@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.PhoneNumberAuthenticationSettings as PhoneNu
 -- 
 -- __settings__ Settings for the authentication of the user's phone number
 data SendPhoneNumberConfirmationCode = 
+
  SendPhoneNumberConfirmationCode { settings :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings, phone_number :: Maybe String, hash :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SendPhoneNumberConfirmationCode where

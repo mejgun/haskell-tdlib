@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Does nothing; for testing only. This is an offline method. Can be called before authorization
 data TestCallEmpty = 
+
  TestCallEmpty deriving (Show, Eq)
 
 instance T.ToJSON TestCallEmpty where

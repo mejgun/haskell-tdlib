@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Returns the current user
 data GetMe = 
+
  GetMe deriving (Show, Eq)
 
 instance T.ToJSON GetMe where

@@ -31,6 +31,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __setting_changes__ True, if changes in chat settings should be returned
 data ChatEventLogFilters = 
+
  ChatEventLogFilters { setting_changes :: Maybe Bool, info_changes :: Maybe Bool, member_restrictions :: Maybe Bool, member_promotions :: Maybe Bool, member_invites :: Maybe Bool, member_leaves :: Maybe Bool, member_joins :: Maybe Bool, message_pins :: Maybe Bool, message_deletions :: Maybe Bool, message_edits :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON ChatEventLogFilters where

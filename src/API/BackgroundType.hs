@@ -12,9 +12,30 @@ import {-# SOURCE #-} qualified API.BackgroundFill as BackgroundFill
 -- 
 -- Describes the type of a background
 data BackgroundType = 
- BackgroundTypeWallpaper { is_moving :: Maybe Bool, is_blurred :: Maybe Bool }  
- | BackgroundTypePattern { is_moving :: Maybe Bool, intensity :: Maybe Int, fill :: Maybe BackgroundFill.BackgroundFill }  
- | BackgroundTypeFill { fill :: Maybe BackgroundFill.BackgroundFill }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- A wallpaper in JPEG format
+ -- 
+ -- __is_blurred__ True, if the wallpaper must be downscaled to fit in 450x450 square and then box-blurred with radius 12
+ -- 
+ -- __is_moving__ True, if the background needs to be slightly moved when device is tilted
+ BackgroundTypeWallpaper { is_moving :: Maybe Bool, is_blurred :: Maybe Bool }  |
+ -- |
+ -- 
+ -- A PNG or TGV (gzipped subset of SVG with MIME type "application/x-tgwallpattern") pattern to be combined with the background fill chosen by the user
+ -- 
+ -- __fill__ Description of the background fill
+ -- 
+ -- __intensity__ Intensity of the pattern when it is shown above the filled background, 0-100
+ -- 
+ -- __is_moving__ True, if the background needs to be slightly moved when device is tilted
+ BackgroundTypePattern { is_moving :: Maybe Bool, intensity :: Maybe Int, fill :: Maybe BackgroundFill.BackgroundFill }  |
+ -- |
+ -- 
+ -- A filled background 
+ -- 
+ -- __fill__ Description of the background fill
+ BackgroundTypeFill { fill :: Maybe BackgroundFill.BackgroundFill }  deriving (Show, Eq)
 
 instance T.ToJSON BackgroundType where
  toJSON (BackgroundTypeWallpaper { is_moving = is_moving, is_blurred = is_blurred }) =

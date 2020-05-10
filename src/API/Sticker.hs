@@ -32,6 +32,7 @@ import {-# SOURCE #-} qualified API.MaskPosition as MaskPosition
 -- 
 -- __sticker__ File containing the sticker
 data Sticker = 
+
  Sticker { sticker :: Maybe File.File, thumbnail :: Maybe PhotoSize.PhotoSize, mask_position :: Maybe MaskPosition.MaskPosition, is_mask :: Maybe Bool, is_animated :: Maybe Bool, emoji :: Maybe String, height :: Maybe Int, width :: Maybe Int, set_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Sticker where

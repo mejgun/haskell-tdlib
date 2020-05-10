@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.ChatLocation as ChatLocation
 -- 
 -- __location__ New location for the chat; must be valid and not null
 data SetChatLocation = 
+
  SetChatLocation { location :: Maybe ChatLocation.ChatLocation, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatLocation where

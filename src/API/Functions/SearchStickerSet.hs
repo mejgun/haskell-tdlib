@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __name__ Name of the sticker set
 data SearchStickerSet = 
+
  SearchStickerSet { name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SearchStickerSet where

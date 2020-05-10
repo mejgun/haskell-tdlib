@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __option_ids__ 0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only is the poll allows multiple answers
 data SetPollAnswer = 
+
  SetPollAnswer { option_ids :: Maybe [Int], message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetPollAnswer where

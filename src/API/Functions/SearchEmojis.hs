@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __input_language_codes__ List of possible IETF language tags of the user's input language; may be empty if unknown
 data SearchEmojis = 
+
  SearchEmojis { input_language_codes :: Maybe [String], exact_match :: Maybe Bool, text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SearchEmojis where

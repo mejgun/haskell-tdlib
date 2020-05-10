@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __chat_id__ Chat identifier
 data OpenChat = 
+
  OpenChat { chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON OpenChat where

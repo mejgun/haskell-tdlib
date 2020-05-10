@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __terms_of_service_id__ Terms of service identifier
 data AcceptTermsOfService = 
+
  AcceptTermsOfService { terms_of_service_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON AcceptTermsOfService where

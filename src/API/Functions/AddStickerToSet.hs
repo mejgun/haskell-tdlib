@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.InputSticker as InputSticker
 -- 
 -- __sticker__ Sticker to add to the set
 data AddStickerToSet = 
+
  AddStickerToSet { sticker :: Maybe InputSticker.InputSticker, name :: Maybe String, user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON AddStickerToSet where

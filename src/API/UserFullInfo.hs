@@ -28,6 +28,7 @@ import {-# SOURCE #-} qualified API.BotInfo as BotInfo
 -- 
 -- __bot_info__ If the user is a bot, information about the bot; may be null
 data UserFullInfo = 
+
  UserFullInfo { bot_info :: Maybe BotInfo.BotInfo, group_in_common_count :: Maybe Int, share_text :: Maybe String, bio :: Maybe String, need_phone_number_privacy_exception :: Maybe Bool, has_private_calls :: Maybe Bool, can_be_called :: Maybe Bool, is_blocked :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON UserFullInfo where

@@ -20,6 +20,7 @@ import {-# SOURCE #-} qualified API.OrderInfo as OrderInfo
 -- 
 -- __allow_save__ True, if the order information can be saved
 data ValidateOrderInfo = 
+
  ValidateOrderInfo { allow_save :: Maybe Bool, order_info :: Maybe OrderInfo.OrderInfo, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ValidateOrderInfo where

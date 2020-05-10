@@ -24,6 +24,7 @@ import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 -- 
 -- __document__ File containing the document
 data Document = 
+
  Document { document :: Maybe File.File, thumbnail :: Maybe PhotoSize.PhotoSize, minithumbnail :: Maybe Minithumbnail.Minithumbnail, mime_type :: Maybe String, file_name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON Document where

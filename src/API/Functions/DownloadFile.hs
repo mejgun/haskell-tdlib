@@ -23,6 +23,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- -the download has succeeded, has failed, has been cancelled or a new downloadFile request with different offset/limit parameters was sent
 data DownloadFile = 
+
  DownloadFile { synchronous :: Maybe Bool, limit :: Maybe Int, offset :: Maybe Int, priority :: Maybe Int, file_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON DownloadFile where

@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- 
 -- __animation__ The animation file to be added. Only animations known to the server (i.e. successfully sent via a message) can be added to the list
 data AddSavedAnimation = 
+
  AddSavedAnimation { animation :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON AddSavedAnimation where

@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- 
 -- __png_sticker__ PNG image with the sticker; must be up to 512 KB in size and fit in 512x512 square
 data UploadStickerFile = 
+
  UploadStickerFile { png_sticker :: Maybe InputFile.InputFile, user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON UploadStickerFile where

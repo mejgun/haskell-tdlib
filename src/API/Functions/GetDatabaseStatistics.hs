@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Returns database statistics
 data GetDatabaseStatistics = 
+
  GetDatabaseStatistics deriving (Show, Eq)
 
 instance T.ToJSON GetDatabaseStatistics where

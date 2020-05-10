@@ -24,6 +24,7 @@ import {-# SOURCE #-} qualified API.ProxyType as ProxyType
 -- 
 -- __type__ Type of the proxy
 data Proxy = 
+
  Proxy { _type :: Maybe ProxyType.ProxyType, is_enabled :: Maybe Bool, last_used_date :: Maybe Int, port :: Maybe Int, server :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Proxy where

@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.BankCardActionOpenUrl as BankCardActionOpenU
 -- 
 -- __actions__ Actions that can be done with the bank card number
 data BankCardInfo = 
+
  BankCardInfo { actions :: Maybe [BankCardActionOpenUrl.BankCardActionOpenUrl], title :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON BankCardInfo where

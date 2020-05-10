@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __debug_information__ Debug information in application-specific format
 data SendCallDebugInformation = 
+
  SendCallDebugInformation { debug_information :: Maybe String, call_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendCallDebugInformation where

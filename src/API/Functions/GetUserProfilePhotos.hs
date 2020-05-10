@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __limit__ The maximum number of photos to be returned; up to 100
 data GetUserProfilePhotos = 
+
  GetUserProfilePhotos { limit :: Maybe Int, offset :: Maybe Int, user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetUserProfilePhotos where

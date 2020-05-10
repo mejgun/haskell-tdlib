@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.TMeUrl as TMeUrl
 -- 
 -- __urls__ List of URLs
 data TMeUrls = 
+
  TMeUrls { urls :: Maybe [TMeUrl.TMeUrl] }  deriving (Show, Eq)
 
 instance T.ToJSON TMeUrls where

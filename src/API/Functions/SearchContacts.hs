@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __limit__ The maximum number of users to be returned
 data SearchContacts = 
+
  SearchContacts { limit :: Maybe Int, query :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SearchContacts where

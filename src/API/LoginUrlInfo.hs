@@ -11,8 +11,26 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl
 data LoginUrlInfo = 
- LoginUrlInfoOpen { skip_confirm :: Maybe Bool, url :: Maybe String }  
- | LoginUrlInfoRequestConfirmation { request_write_access :: Maybe Bool, bot_user_id :: Maybe Int, domain :: Maybe String, url :: Maybe String }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- An HTTP url needs to be open 
+ -- 
+ -- __url__ The URL to open
+ -- 
+ -- __skip_confirm__ True, if there is no need to show an ordinary open URL confirm
+ LoginUrlInfoOpen { skip_confirm :: Maybe Bool, url :: Maybe String }  |
+ -- |
+ -- 
+ -- An authorization confirmation dialog needs to be shown to the user 
+ -- 
+ -- __url__ An HTTP URL to be opened
+ -- 
+ -- __domain__ A domain of the URL
+ -- 
+ -- __bot_user_id__ User identifier of a bot linked with the website
+ -- 
+ -- __request_write_access__ True, if the user needs to be requested to give the permission to the bot to send them messages
+ LoginUrlInfoRequestConfirmation { request_write_access :: Maybe Bool, bot_user_id :: Maybe Int, domain :: Maybe String, url :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON LoginUrlInfo where
  toJSON (LoginUrlInfoOpen { skip_confirm = skip_confirm, url = url }) =

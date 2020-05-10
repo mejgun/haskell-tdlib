@@ -11,13 +11,42 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Specifies the kind of chat members to return in getSupergroupMembers
 data SupergroupMembersFilter = 
- SupergroupMembersFilterRecent 
- | SupergroupMembersFilterContacts { query :: Maybe String }  
- | SupergroupMembersFilterAdministrators 
- | SupergroupMembersFilterSearch { query :: Maybe String }  
- | SupergroupMembersFilterRestricted { query :: Maybe String }  
- | SupergroupMembersFilterBanned { query :: Maybe String }  
- | SupergroupMembersFilterBots deriving (Show, Eq)
+ -- |
+ -- 
+ -- Returns recently active users in reverse chronological order
+ SupergroupMembersFilterRecent |
+ -- |
+ -- 
+ -- Returns contacts of the user, which are members of the supergroup or channel 
+ -- 
+ -- __query__ Query to search for
+ SupergroupMembersFilterContacts { query :: Maybe String }  |
+ -- |
+ -- 
+ -- Returns the owner and administrators
+ SupergroupMembersFilterAdministrators |
+ -- |
+ -- 
+ -- Used to search for supergroup or channel members via a (string) query 
+ -- 
+ -- __query__ Query to search for
+ SupergroupMembersFilterSearch { query :: Maybe String }  |
+ -- |
+ -- 
+ -- Returns restricted supergroup members; can be used only by administrators 
+ -- 
+ -- __query__ Query to search for
+ SupergroupMembersFilterRestricted { query :: Maybe String }  |
+ -- |
+ -- 
+ -- Returns users banned from the supergroup or channel; can be used only by administrators 
+ -- 
+ -- __query__ Query to search for
+ SupergroupMembersFilterBanned { query :: Maybe String }  |
+ -- |
+ -- 
+ -- Returns bot members of the supergroup or channel
+ SupergroupMembersFilterBots deriving (Show, Eq)
 
 instance T.ToJSON SupergroupMembersFilter where
  toJSON (SupergroupMembersFilterRecent {  }) =

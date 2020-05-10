@@ -11,12 +11,44 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes the type of an inline keyboard button
 data InlineKeyboardButtonType = 
- InlineKeyboardButtonTypeUrl { url :: Maybe String }  
- | InlineKeyboardButtonTypeLoginUrl { forward_text :: Maybe String, _id :: Maybe Int, url :: Maybe String }  
- | InlineKeyboardButtonTypeCallback { _data :: Maybe String }  
- | InlineKeyboardButtonTypeCallbackGame 
- | InlineKeyboardButtonTypeSwitchInline { in_current_chat :: Maybe Bool, query :: Maybe String }  
- | InlineKeyboardButtonTypeBuy deriving (Show, Eq)
+ -- |
+ -- 
+ -- A button that opens a specified URL 
+ -- 
+ -- __url__ HTTP or tg:// URL to open
+ InlineKeyboardButtonTypeUrl { url :: Maybe String }  |
+ -- |
+ -- 
+ -- A button that opens a specified URL and automatically logs in in current user if they allowed to do that 
+ -- 
+ -- __url__ An HTTP URL to open
+ -- 
+ -- __id__ Unique button identifier
+ -- 
+ -- __forward_text__ If non-empty, new text of the button in forwarded messages
+ InlineKeyboardButtonTypeLoginUrl { forward_text :: Maybe String, _id :: Maybe Int, url :: Maybe String }  |
+ -- |
+ -- 
+ -- A button that sends a special callback query to a bot 
+ -- 
+ -- __data__ Data to be sent to the bot via a callback query
+ InlineKeyboardButtonTypeCallback { _data :: Maybe String }  |
+ -- |
+ -- 
+ -- A button with a game that sends a special callback query to a bot. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type messageGame
+ InlineKeyboardButtonTypeCallbackGame |
+ -- |
+ -- 
+ -- A button that forces an inline query to the bot to be inserted in the input field 
+ -- 
+ -- __query__ Inline query to be sent to the bot
+ -- 
+ -- __in_current_chat__ True, if the inline query should be sent from the current chat
+ InlineKeyboardButtonTypeSwitchInline { in_current_chat :: Maybe Bool, query :: Maybe String }  |
+ -- |
+ -- 
+ -- A button to buy something. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type messageInvoice
+ InlineKeyboardButtonTypeBuy deriving (Show, Eq)
 
 instance T.ToJSON InlineKeyboardButtonType where
  toJSON (InlineKeyboardButtonTypeUrl { url = url }) =

@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Returns the period of inactivity after which the account of the current user will automatically be deleted
 data GetAccountTtl = 
+
  GetAccountTtl deriving (Show, Eq)
 
 instance T.ToJSON GetAccountTtl where

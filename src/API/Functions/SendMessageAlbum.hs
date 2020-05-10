@@ -21,6 +21,7 @@ import {-# SOURCE #-} qualified API.SendMessageOptions as SendMessageOptions
 -- 
 -- __input_message_contents__ Contents of messages to be sent
 data SendMessageAlbum = 
+
  SendMessageAlbum { input_message_contents :: Maybe [InputMessageContent.InputMessageContent], options :: Maybe SendMessageOptions.SendMessageOptions, reply_to_message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendMessageAlbum where

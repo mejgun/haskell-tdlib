@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __chat_id__ Identifier of the chat to be removed
 data RemoveRecentlyFoundChat = 
+
  RemoveRecentlyFoundChat { chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveRecentlyFoundChat where

@@ -16,7 +16,8 @@
 </span><span id="line-16"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-17"></span><span class="hs-comment">-- __supergroups_nearby__ List of location-based supergroups nearby</span><span>
 </span><span id="line-18"></span><span class="hs-keyword">data</span><span> </span><span id="ChatsNearby"><span class="annot"><a href="API.ChatsNearby.html#ChatsNearby"><span class="hs-identifier hs-var">ChatsNearby</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-19"></span><span> </span><span id="ChatsNearby"><span class="annot"><a href="API.ChatsNearby.html#ChatsNearby"><span class="hs-identifier hs-var">ChatsNearby</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="supergroups_nearby"><span class="annot"><span class="annottext">ChatsNearby -&gt; Maybe [ChatNearby]
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span> </span><span id="ChatsNearby"><span class="annot"><a href="API.ChatsNearby.html#ChatsNearby"><span class="hs-identifier hs-var">ChatsNearby</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="supergroups_nearby"><span class="annot"><span class="annottext">ChatsNearby -&gt; Maybe [ChatNearby]
 </span><a href="API.ChatsNearby.html#supergroups_nearby"><span class="hs-identifier hs-var hs-var">supergroups_nearby</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.ChatNearby.html#ChatNearby"><span class="hs-identifier hs-type">ChatNearby.ChatNearby</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="users_nearby"><span class="annot"><span class="annottext">ChatsNearby -&gt; Maybe [ChatNearby]
 </span><a href="API.ChatsNearby.html#users_nearby"><span class="hs-identifier hs-var hs-var">users_nearby</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.ChatNearby.html#ChatNearby"><span class="hs-identifier hs-type">ChatNearby.ChatNearby</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679411897"><span id="local-6989586621679411899"><span id="local-6989586621679411901"><span class="annot"><span class="annottext">Int -&gt; ChatsNearby -&gt; ShowS
 [ChatsNearby] -&gt; ShowS
@@ -42,15 +43,15 @@ $c/= :: ChatsNearby -&gt; ChatsNearby -&gt; Bool
 == :: ChatsNearby -&gt; ChatsNearby -&gt; Bool
 $c== :: ChatsNearby -&gt; ChatsNearby -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679411884"><span id="local-6989586621679411886"><span id="local-6989586621679411888"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ChatsNearby.html#ChatsNearby"><span class="hs-identifier hs-type">ChatsNearby</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span> </span><span id="local-6989586621679411882"><span class="annot"><span class="annottext">toJSON :: ChatsNearby -&gt; Value
+</span><span id="line-21"></span><span>
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679411884"><span id="local-6989586621679411886"><span id="local-6989586621679411888"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ChatsNearby.html#ChatsNearby"><span class="hs-identifier hs-type">ChatsNearby</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span> </span><span id="local-6989586621679411882"><span class="annot"><span class="annottext">toJSON :: ChatsNearby -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.ChatsNearby.html#ChatsNearby"><span class="hs-identifier hs-type">ChatsNearby</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">supergroups_nearby :: ChatsNearby -&gt; Maybe [ChatNearby]
 </span><a href="API.ChatsNearby.html#supergroups_nearby"><span class="hs-identifier hs-var">supergroups_nearby</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411880"><span class="annot"><span class="annottext">Maybe [ChatNearby]
 </span><a href="#local-6989586621679411880"><span class="hs-identifier hs-var">supergroups_nearby</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">users_nearby :: ChatsNearby -&gt; Maybe [ChatNearby]
 </span><a href="API.ChatsNearby.html#users_nearby"><span class="hs-identifier hs-var">users_nearby</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679411879"><span class="annot"><span class="annottext">Maybe [ChatNearby]
 </span><a href="#local-6989586621679411879"><span class="hs-identifier hs-var">users_nearby</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-23"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-24"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
@@ -61,28 +62,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [ChatNearby]
 </span><a href="#local-6989586621679411879"><span class="hs-identifier hs-var">users_nearby</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679411873"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ChatsNearby.html#ChatsNearby"><span class="hs-identifier hs-type">ChatsNearby</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-26"></span><span> </span><span id="local-6989586621679411871"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatsNearby
+</span><span id="line-25"></span><span>
+</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679411873"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ChatsNearby.html#ChatsNearby"><span class="hs-identifier hs-type">ChatsNearby</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-27"></span><span> </span><span id="local-6989586621679411871"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatsNearby
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679411869"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679411869"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679411867"><span class="annot"><span class="annottext">obj :: Object
 </span><a href="#local-6989586621679411867"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-27"></span><span>  </span><span id="local-6989586621679411866"><span class="annot"><span class="annottext">String
+</span><span id="line-28"></span><span>  </span><span id="local-6989586621679411866"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679411866"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679411867"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-28"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-29"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679411866"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-29"></span><span>   </span><span class="hs-string">&quot;chatsNearby&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatsNearby
+</span><span id="line-30"></span><span>   </span><span class="hs-string">&quot;chatsNearby&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatsNearby
 </span><a href="#local-6989586621679411864"><span class="hs-identifier hs-var">parseChatsNearby</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679411869"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-30"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ChatsNearby
+</span><span id="line-31"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ChatsNearby
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-31"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-32"></span><span>   </span><span class="annot"><a href="#local-6989586621679411864"><span class="hs-identifier hs-type">parseChatsNearby</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatsNearby.html#ChatsNearby"><span class="hs-identifier hs-type">ChatsNearby</span></a></span><span>
-</span><span id="line-33"></span><span>   </span><span id="local-6989586621679411864"><span class="annot"><span class="annottext">parseChatsNearby :: Value -&gt; Parser ChatsNearby
+</span><span id="line-32"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span>   </span><span class="annot"><a href="#local-6989586621679411864"><span class="hs-identifier hs-type">parseChatsNearby</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatsNearby.html#ChatsNearby"><span class="hs-identifier hs-type">ChatsNearby</span></a></span><span>
+</span><span id="line-34"></span><span>   </span><span id="local-6989586621679411864"><span class="annot"><span class="annottext">parseChatsNearby :: Value -&gt; Parser ChatsNearby
 </span><a href="#local-6989586621679411864"><span class="hs-identifier hs-var hs-var">parseChatsNearby</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatsNearby) -&gt; Value -&gt; Parser ChatsNearby
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
@@ -91,17 +92,17 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679411862"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679411862"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-34"></span><span>    </span><span id="local-6989586621679411861"><span class="annot"><span class="annottext">Maybe [ChatNearby]
+</span><span id="line-35"></span><span>    </span><span id="local-6989586621679411861"><span class="annot"><span class="annottext">Maybe [ChatNearby]
 </span><a href="#local-6989586621679411861"><span class="hs-identifier hs-var">supergroups_nearby</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679411862"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [ChatNearby])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;supergroups_nearby&quot;</span></span><span>
-</span><span id="line-35"></span><span>    </span><span id="local-6989586621679411859"><span class="annot"><span class="annottext">Maybe [ChatNearby]
+</span><span id="line-36"></span><span>    </span><span id="local-6989586621679411859"><span class="annot"><span class="annottext">Maybe [ChatNearby]
 </span><a href="#local-6989586621679411859"><span class="hs-identifier hs-var">users_nearby</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679411862"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [ChatNearby])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;users_nearby&quot;</span></span><span>
-</span><span id="line-36"></span><span>    </span><span class="annot"><span class="annottext">ChatsNearby -&gt; Parser ChatsNearby
+</span><span id="line-37"></span><span>    </span><span class="annot"><span class="annottext">ChatsNearby -&gt; Parser ChatsNearby
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ChatsNearby -&gt; Parser ChatsNearby)
 -&gt; ChatsNearby -&gt; Parser ChatsNearby

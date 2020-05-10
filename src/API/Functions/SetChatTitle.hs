@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __title__ New title of the chat; 1-128 characters
 data SetChatTitle = 
+
  SetChatTitle { title :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatTitle where

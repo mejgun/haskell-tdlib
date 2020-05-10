@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.RichText as RichText
 -- 
 -- __credit__ Block credit (like HTML tag <cite>)
 data PageBlockCaption = 
+
  PageBlockCaption { credit :: Maybe RichText.RichText, text :: Maybe RichText.RichText }  deriving (Show, Eq)
 
 instance T.ToJSON PageBlockCaption where

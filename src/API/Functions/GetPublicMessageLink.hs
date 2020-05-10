@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __for_album__ Pass true if a link for a whole media album should be returned
 data GetPublicMessageLink = 
+
  GetPublicMessageLink { for_album :: Maybe Bool, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetPublicMessageLink where

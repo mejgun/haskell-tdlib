@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __session_id__ Session identifier
 data TerminateSession = 
+
  TerminateSession { session_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON TerminateSession where

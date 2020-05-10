@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.InputPassportElement as InputPassportElement
 -- 
 -- __password__ Password of the current user
 data SetPassportElement = 
+
  SetPassportElement { password :: Maybe String, element :: Maybe InputPassportElement.InputPassportElement }  deriving (Show, Eq)
 
 instance T.ToJSON SetPassportElement where

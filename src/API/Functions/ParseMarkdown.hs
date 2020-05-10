@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 -- 
 -- __text__ The text to parse. For example, "__italic__ ~~strikethrough~~ **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold italic__bold**"
 data ParseMarkdown = 
+
  ParseMarkdown { text :: Maybe FormattedText.FormattedText }  deriving (Show, Eq)
 
 instance T.ToJSON ParseMarkdown where

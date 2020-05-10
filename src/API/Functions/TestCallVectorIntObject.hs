@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.TestInt as TestInt
 -- 
 -- __x__ Vector of objects to return
 data TestCallVectorIntObject = 
+
  TestCallVectorIntObject { x :: Maybe [TestInt.TestInt] }  deriving (Show, Eq)
 
 instance T.ToJSON TestCallVectorIntObject where

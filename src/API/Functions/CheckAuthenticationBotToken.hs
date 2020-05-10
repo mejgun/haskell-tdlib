@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __token__ The bot token
 data CheckAuthenticationBotToken = 
+
  CheckAuthenticationBotToken { token :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CheckAuthenticationBotToken where

@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __limit__ The maximum number of messages to be returned
 data SearchChatRecentLocationMessages = 
+
  SearchChatRecentLocationMessages { limit :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SearchChatRecentLocationMessages where

@@ -22,6 +22,7 @@ import {-# SOURCE #-} qualified API.SearchMessagesFilter as SearchMessagesFilter
 -- 
 -- __filter__ A filter for the content of messages in the search results
 data SearchSecretMessages = 
+
  SearchSecretMessages { _filter :: Maybe SearchMessagesFilter.SearchMessagesFilter, limit :: Maybe Int, from_search_id :: Maybe Int, query :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SearchSecretMessages where

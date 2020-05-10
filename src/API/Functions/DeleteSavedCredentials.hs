@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Deletes saved credentials for all payment provider bots
 data DeleteSavedCredentials = 
+
  DeleteSavedCredentials deriving (Show, Eq)
 
 instance T.ToJSON DeleteSavedCredentials where

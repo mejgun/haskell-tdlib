@@ -23,6 +23,7 @@ import {-# SOURCE #-} qualified API.ChatMemberStatus as ChatMemberStatus
 -- 
 -- __bot_info__ If the user is a bot, information about the bot; may be null. Can be null even for a bot if the bot is not a chat member
 data ChatMember = 
+
  ChatMember { bot_info :: Maybe BotInfo.BotInfo, status :: Maybe ChatMemberStatus.ChatMemberStatus, joined_chat_date :: Maybe Int, inviter_user_id :: Maybe Int, user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ChatMember where

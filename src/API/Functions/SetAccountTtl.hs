@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.AccountTtl as AccountTtl
 -- 
 -- __ttl__ New account TTL
 data SetAccountTtl = 
+
  SetAccountTtl { ttl :: Maybe AccountTtl.AccountTtl }  deriving (Show, Eq)
 
 instance T.ToJSON SetAccountTtl where

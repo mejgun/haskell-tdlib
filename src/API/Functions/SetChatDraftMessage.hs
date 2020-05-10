@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.DraftMessage as DraftMessage
 -- 
 -- __draft_message__ New draft message; may be null
 data SetChatDraftMessage = 
+
  SetChatDraftMessage { draft_message :: Maybe DraftMessage.DraftMessage, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatDraftMessage where

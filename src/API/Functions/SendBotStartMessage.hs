@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __parameter__ A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)
 data SendBotStartMessage = 
+
  SendBotStartMessage { parameter :: Maybe String, chat_id :: Maybe Int, bot_user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendBotStartMessage where

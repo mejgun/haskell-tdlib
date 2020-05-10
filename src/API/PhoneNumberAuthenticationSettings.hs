@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __allow_sms_retriever_api__ For official applications only. True, if the app can use Android SMS Retriever API (requires Google Play Services >= 10.2) to automatically receive the authentication code from the SMS. See https://developers.google.com/identity/sms-retriever/ for more details
 data PhoneNumberAuthenticationSettings = 
+
  PhoneNumberAuthenticationSettings { allow_sms_retriever_api :: Maybe Bool, is_current_phone_number :: Maybe Bool, allow_flash_call :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON PhoneNumberAuthenticationSettings where

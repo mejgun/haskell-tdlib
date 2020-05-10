@@ -13,8 +13,24 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- 
 -- Describes a sticker that needs to be added to a sticker set
 data InputSticker = 
- InputStickerStatic { mask_position :: Maybe MaskPosition.MaskPosition, emojis :: Maybe String, sticker :: Maybe InputFile.InputFile }  
- | InputStickerAnimated { emojis :: Maybe String, sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- A static sticker in PNG format, which will be converted to WEBP server-side
+ -- 
+ -- __sticker__ PNG image with the sticker; must be up to 512 KB in size and fit in a 512x512 square
+ -- 
+ -- __emojis__ Emojis corresponding to the sticker
+ -- 
+ -- __mask_position__ For masks, position where the mask should be placed; may be null
+ InputStickerStatic { mask_position :: Maybe MaskPosition.MaskPosition, emojis :: Maybe String, sticker :: Maybe InputFile.InputFile }  |
+ -- |
+ -- 
+ -- An animated sticker in TGS format
+ -- 
+ -- __sticker__ File with the animated sticker. Only local or uploaded within a week files are supported. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
+ -- 
+ -- __emojis__ Emojis corresponding to the sticker
+ InputStickerAnimated { emojis :: Maybe String, sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON InputSticker where
  toJSON (InputStickerStatic { mask_position = mask_position, emojis = emojis, sticker = sticker }) =

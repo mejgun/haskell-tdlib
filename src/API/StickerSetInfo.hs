@@ -37,6 +37,7 @@ import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 -- 
 -- __covers__ Contains up to the first 5 stickers from the set, depending on the context. If the client needs more stickers the full set should be requested
 data StickerSetInfo = 
+
  StickerSetInfo { covers :: Maybe [Sticker.Sticker], size :: Maybe Int, is_viewed :: Maybe Bool, is_masks :: Maybe Bool, is_animated :: Maybe Bool, is_official :: Maybe Bool, is_archived :: Maybe Bool, is_installed :: Maybe Bool, thumbnail :: Maybe PhotoSize.PhotoSize, name :: Maybe String, title :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON StickerSetInfo where

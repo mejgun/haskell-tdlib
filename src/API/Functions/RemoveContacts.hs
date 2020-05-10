@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __user_ids__ Identifiers of users to be deleted
 data RemoveContacts = 
+
  RemoveContacts { user_ids :: Maybe [Int] }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveContacts where

@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.Message as Message
 -- 
 -- __messages__ List of messages; messages may be null
 data Messages = 
+
  Messages { messages :: Maybe [Message.Message], total_count :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Messages where

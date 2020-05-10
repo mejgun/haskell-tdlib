@@ -20,6 +20,7 @@ import {-# SOURCE #-} qualified API.NotificationType as NotificationType
 -- 
 -- __type__ Notification type
 data Notification = 
+
  Notification { _type :: Maybe NotificationType.NotificationType, is_silent :: Maybe Bool, date :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Notification where

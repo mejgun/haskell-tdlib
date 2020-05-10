@@ -22,6 +22,7 @@ import {-# SOURCE #-} qualified API.InlineQueryResult as InlineQueryResult
 -- 
 -- __switch_pm_parameter__ Parameter for the bot start message
 data InlineQueryResults = 
+
  InlineQueryResults { switch_pm_parameter :: Maybe String, switch_pm_text :: Maybe String, results :: Maybe [InlineQueryResult.InlineQueryResult], next_offset :: Maybe String, inline_query_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON InlineQueryResults where

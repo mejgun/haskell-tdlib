@@ -41,6 +41,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __ignore_file_names__ If set to true, original file names will be ignored. Otherwise, downloaded files will be saved under names as close as possible to the original name
 data TdlibParameters = 
+
  TdlibParameters { ignore_file_names :: Maybe Bool, enable_storage_optimizer :: Maybe Bool, application_version :: Maybe String, system_version :: Maybe String, device_model :: Maybe String, system_language_code :: Maybe String, api_hash :: Maybe String, api_id :: Maybe Int, use_secret_chats :: Maybe Bool, use_message_database :: Maybe Bool, use_chat_info_database :: Maybe Bool, use_file_database :: Maybe Bool, files_directory :: Maybe String, database_directory :: Maybe String, use_test_dc :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON TdlibParameters where

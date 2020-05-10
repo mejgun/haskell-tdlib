@@ -21,6 +21,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __is_being_chosen__ True, if the option is being chosen by a pending setPollAnswer request
 data PollOption = 
+
  PollOption { is_being_chosen :: Maybe Bool, is_chosen :: Maybe Bool, vote_percentage :: Maybe Int, voter_count :: Maybe Int, text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON PollOption where

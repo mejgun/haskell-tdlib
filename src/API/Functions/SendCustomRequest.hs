@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __parameters__ JSON-serialized method parameters
 data SendCustomRequest = 
+
  SendCustomRequest { parameters :: Maybe String, method :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SendCustomRequest where

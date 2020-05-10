@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __language_pack_id__ Identifier of the language pack to delete
 data DeleteLanguagePack = 
+
  DeleteLanguagePack { language_pack_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON DeleteLanguagePack where

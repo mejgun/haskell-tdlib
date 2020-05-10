@@ -11,19 +11,58 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Contains the type of a Telegram Passport element
 data PassportElementType = 
- PassportElementTypePersonalDetails 
- | PassportElementTypePassport 
- | PassportElementTypeDriverLicense 
- | PassportElementTypeIdentityCard 
- | PassportElementTypeInternalPassport 
- | PassportElementTypeAddress 
- | PassportElementTypeUtilityBill 
- | PassportElementTypeBankStatement 
- | PassportElementTypeRentalAgreement 
- | PassportElementTypePassportRegistration 
- | PassportElementTypeTemporaryRegistration 
- | PassportElementTypePhoneNumber 
- | PassportElementTypeEmailAddress deriving (Show, Eq)
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's personal details
+ PassportElementTypePersonalDetails |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's passport
+ PassportElementTypePassport |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's driver license
+ PassportElementTypeDriverLicense |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's identity card
+ PassportElementTypeIdentityCard |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's internal passport
+ PassportElementTypeInternalPassport |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's address
+ PassportElementTypeAddress |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's utility bill
+ PassportElementTypeUtilityBill |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's bank statement
+ PassportElementTypeBankStatement |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's rental agreement
+ PassportElementTypeRentalAgreement |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the registration page of the user's passport
+ PassportElementTypePassportRegistration |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's temporary registration
+ PassportElementTypeTemporaryRegistration |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's phone number
+ PassportElementTypePhoneNumber |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's email address
+ PassportElementTypeEmailAddress deriving (Show, Eq)
 
 instance T.ToJSON PassportElementType where
  toJSON (PassportElementTypePersonalDetails {  }) =

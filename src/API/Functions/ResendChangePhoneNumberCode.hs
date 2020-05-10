@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Re-sends the authentication code sent to confirm a new phone number for the user. Works only if the previously received authenticationCodeInfo next_code_type was not null
 data ResendChangePhoneNumberCode = 
+
  ResendChangePhoneNumberCode deriving (Show, Eq)
 
 instance T.ToJSON ResendChangePhoneNumberCode where

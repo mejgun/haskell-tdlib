@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.Error as Error
 -- 
 -- __error__ The error to be returned
 data TestReturnError = 
+
  TestReturnError { _error :: Maybe Error.Error }  deriving (Show, Eq)
 
 instance T.ToJSON TestReturnError where

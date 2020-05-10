@@ -20,6 +20,7 @@ import {-# SOURCE #-} qualified API.ChatMembersFilter as ChatMembersFilter
 -- 
 -- __filter__ The type of users to return. By default, chatMembersFilterMembers
 data SearchChatMembers = 
+
  SearchChatMembers { _filter :: Maybe ChatMembersFilter.ChatMembersFilter, limit :: Maybe Int, query :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SearchChatMembers where

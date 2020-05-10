@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __html__ HTML-code for embedding the message
 data PublicMessageLink = 
+
  PublicMessageLink { html :: Maybe String, link :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON PublicMessageLink where

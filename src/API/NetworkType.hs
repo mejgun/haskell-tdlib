@@ -11,11 +11,26 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Represents the type of a network
 data NetworkType = 
- NetworkTypeNone 
- | NetworkTypeMobile 
- | NetworkTypeMobileRoaming 
- | NetworkTypeWiFi 
- | NetworkTypeOther deriving (Show, Eq)
+ -- |
+ -- 
+ -- The network is not available
+ NetworkTypeNone |
+ -- |
+ -- 
+ -- A mobile network
+ NetworkTypeMobile |
+ -- |
+ -- 
+ -- A mobile roaming network
+ NetworkTypeMobileRoaming |
+ -- |
+ -- 
+ -- A Wi-Fi network
+ NetworkTypeWiFi |
+ -- |
+ -- 
+ -- A different network type (e.g., Ethernet network)
+ NetworkTypeOther deriving (Show, Eq)
 
 instance T.ToJSON NetworkType where
  toJSON (NetworkTypeNone {  }) =

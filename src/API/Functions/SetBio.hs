@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __bio__ The new value of the user bio; 0-70 characters without line feeds
 data SetBio = 
+
  SetBio { bio :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SetBio where

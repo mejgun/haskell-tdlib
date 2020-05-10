@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.ChatNotificationSettings as ChatNotification
 -- 
 -- __notification_settings__ New notification settings for the chat. If the chat is muted for more than 1 week, it is considered to be muted forever
 data SetChatNotificationSettings = 
+
  SetChatNotificationSettings { notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatNotificationSettings where

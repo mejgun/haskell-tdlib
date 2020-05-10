@@ -11,10 +11,34 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes the type of a chat
 data ChatType = 
- ChatTypePrivate { user_id :: Maybe Int }  
- | ChatTypeBasicGroup { basic_group_id :: Maybe Int }  
- | ChatTypeSupergroup { is_channel :: Maybe Bool, supergroup_id :: Maybe Int }  
- | ChatTypeSecret { user_id :: Maybe Int, secret_chat_id :: Maybe Int }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- An ordinary chat with a user 
+ -- 
+ -- __user_id__ User identifier
+ ChatTypePrivate { user_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A basic group (i.e., a chat with 0-200 other users) 
+ -- 
+ -- __basic_group_id__ Basic group identifier
+ ChatTypeBasicGroup { basic_group_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A supergroup (i.e. a chat with up to GetOption("supergroup_max_size") other users), or channel (with unlimited members) 
+ -- 
+ -- __supergroup_id__ Supergroup or channel identifier
+ -- 
+ -- __is_channel__ True, if the supergroup is a channel
+ ChatTypeSupergroup { is_channel :: Maybe Bool, supergroup_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A secret chat with a user 
+ -- 
+ -- __secret_chat_id__ Secret chat identifier
+ -- 
+ -- __user_id__ User identifier of the secret chat peer
+ ChatTypeSecret { user_id :: Maybe Int, secret_chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ChatType where
  toJSON (ChatTypePrivate { user_id = user_id }) =

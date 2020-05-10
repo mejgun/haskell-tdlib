@@ -19,6 +19,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __connection_id__ Identifier of the connection used during the call
 data DiscardCall = 
+
  DiscardCall { connection_id :: Maybe Int, duration :: Maybe Int, is_disconnected :: Maybe Bool, call_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON DiscardCall where

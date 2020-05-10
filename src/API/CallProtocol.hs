@@ -21,6 +21,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __library_versions__ List of supported libtgvoip versions
 data CallProtocol = 
+
  CallProtocol { library_versions :: Maybe [String], max_layer :: Maybe Int, min_layer :: Maybe Int, udp_reflector :: Maybe Bool, udp_p2p :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON CallProtocol where

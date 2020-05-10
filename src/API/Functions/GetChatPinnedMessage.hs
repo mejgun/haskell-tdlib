@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __chat_id__ Identifier of the chat the message belongs to
 data GetChatPinnedMessage = 
+
  GetChatPinnedMessage { chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetChatPinnedMessage where

@@ -32,6 +32,7 @@ import {-# SOURCE #-} qualified API.Date as Date
 -- 
 -- __residence_country_code__ A two-letter ISO 3166-1 alpha-2 country code of the user's residence country
 data PersonalDetails = 
+
  PersonalDetails { residence_country_code :: Maybe String, country_code :: Maybe String, gender :: Maybe String, birthdate :: Maybe Date.Date, native_last_name :: Maybe String, native_middle_name :: Maybe String, native_first_name :: Maybe String, last_name :: Maybe String, middle_name :: Maybe String, first_name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON PersonalDetails where

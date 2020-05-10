@@ -38,6 +38,7 @@ import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 -- 
 -- __emojis__ A list of emoji corresponding to the stickers in the same order. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
 data StickerSet = 
+
  StickerSet { emojis :: Maybe [Emojis.Emojis], stickers :: Maybe [Sticker.Sticker], is_viewed :: Maybe Bool, is_masks :: Maybe Bool, is_animated :: Maybe Bool, is_official :: Maybe Bool, is_archived :: Maybe Bool, is_installed :: Maybe Bool, thumbnail :: Maybe PhotoSize.PhotoSize, name :: Maybe String, title :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON StickerSet where

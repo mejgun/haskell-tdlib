@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- 
 -- __photo__ Profile photo to set. inputFileId and inputFileRemote may still be unsupported
 data SetProfilePhoto = 
+
  SetProfilePhoto { photo :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON SetProfilePhoto where

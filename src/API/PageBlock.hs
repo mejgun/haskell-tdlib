@@ -23,35 +23,256 @@ import {-# SOURCE #-} qualified API.Location as Location
 -- 
 -- Describes a block of an instant view web page
 data PageBlock = 
- PageBlockTitle { _title :: Maybe RichText.RichText }  
- | PageBlockSubtitle { subtitle :: Maybe RichText.RichText }  
- | PageBlockAuthorDate { publish_date :: Maybe Int, _author :: Maybe RichText.RichText }  
- | PageBlockHeader { header :: Maybe RichText.RichText }  
- | PageBlockSubheader { subheader :: Maybe RichText.RichText }  
- | PageBlockKicker { kicker :: Maybe RichText.RichText }  
- | PageBlockParagraph { text :: Maybe RichText.RichText }  
- | PageBlockPreformatted { language :: Maybe String, text :: Maybe RichText.RichText }  
- | PageBlockFooter { footer :: Maybe RichText.RichText }  
- | PageBlockDivider 
- | PageBlockAnchor { name :: Maybe String }  
- | PageBlockList { items :: Maybe [PageBlockListItem.PageBlockListItem] }  
- | PageBlockBlockQuote { credit :: Maybe RichText.RichText, text :: Maybe RichText.RichText }  
- | PageBlockPullQuote { credit :: Maybe RichText.RichText, text :: Maybe RichText.RichText }  
- | PageBlockAnimation { need_autoplay :: Maybe Bool, caption :: Maybe PageBlockCaption.PageBlockCaption, animation :: Maybe Animation.Animation }  
- | PageBlockAudio { caption :: Maybe PageBlockCaption.PageBlockCaption, audio :: Maybe Audio.Audio }  
- | PageBlockPhoto { url :: Maybe String, caption :: Maybe PageBlockCaption.PageBlockCaption, _photo :: Maybe Photo.Photo }  
- | PageBlockVideo { is_looped :: Maybe Bool, need_autoplay :: Maybe Bool, caption :: Maybe PageBlockCaption.PageBlockCaption, video :: Maybe Video.Video }  
- | PageBlockVoiceNote { caption :: Maybe PageBlockCaption.PageBlockCaption, voice_note :: Maybe VoiceNote.VoiceNote }  
- | PageBlockCover { cover :: Maybe PageBlock }  
- | PageBlockEmbedded { allow_scrolling :: Maybe Bool, is_full_width :: Maybe Bool, caption :: Maybe PageBlockCaption.PageBlockCaption, height :: Maybe Int, width :: Maybe Int, poster_photo :: Maybe Photo.Photo, html :: Maybe String, url :: Maybe String }  
- | PageBlockEmbeddedPost { caption :: Maybe PageBlockCaption.PageBlockCaption, page_blocks :: Maybe [PageBlock], date :: Maybe Int, author_photo :: Maybe Photo.Photo, author :: Maybe String, url :: Maybe String }  
- | PageBlockCollage { caption :: Maybe PageBlockCaption.PageBlockCaption, page_blocks :: Maybe [PageBlock] }  
- | PageBlockSlideshow { caption :: Maybe PageBlockCaption.PageBlockCaption, page_blocks :: Maybe [PageBlock] }  
- | PageBlockChatLink { username :: Maybe String, photo :: Maybe ChatPhoto.ChatPhoto, title :: Maybe String }  
- | PageBlockTable { is_striped :: Maybe Bool, is_bordered :: Maybe Bool, cells :: Maybe [PageBlockTableCell.PageBlockTableCell], _caption :: Maybe RichText.RichText }  
- | PageBlockDetails { is_open :: Maybe Bool, page_blocks :: Maybe [PageBlock], header :: Maybe RichText.RichText }  
- | PageBlockRelatedArticles { articles :: Maybe [PageBlockRelatedArticle.PageBlockRelatedArticle], header :: Maybe RichText.RichText }  
- | PageBlockMap { caption :: Maybe PageBlockCaption.PageBlockCaption, height :: Maybe Int, width :: Maybe Int, zoom :: Maybe Int, location :: Maybe Location.Location }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- The title of a page 
+ -- 
+ -- __title__ Title
+ PageBlockTitle { _title :: Maybe RichText.RichText }  |
+ -- |
+ -- 
+ -- The subtitle of a page 
+ -- 
+ -- __subtitle__ Subtitle
+ PageBlockSubtitle { subtitle :: Maybe RichText.RichText }  |
+ -- |
+ -- 
+ -- The author and publishing date of a page 
+ -- 
+ -- __author__ Author
+ -- 
+ -- __publish_date__ Point in time (Unix timestamp) when the article was published; 0 if unknown
+ PageBlockAuthorDate { publish_date :: Maybe Int, _author :: Maybe RichText.RichText }  |
+ -- |
+ -- 
+ -- A header 
+ -- 
+ -- __header__ Header
+ PageBlockHeader { header :: Maybe RichText.RichText }  |
+ -- |
+ -- 
+ -- A subheader 
+ -- 
+ -- __subheader__ Subheader
+ PageBlockSubheader { subheader :: Maybe RichText.RichText }  |
+ -- |
+ -- 
+ -- A kicker 
+ -- 
+ -- __kicker__ Kicker
+ PageBlockKicker { kicker :: Maybe RichText.RichText }  |
+ -- |
+ -- 
+ -- A text paragraph 
+ -- 
+ -- __text__ Paragraph text
+ PageBlockParagraph { text :: Maybe RichText.RichText }  |
+ -- |
+ -- 
+ -- A preformatted text paragraph 
+ -- 
+ -- __text__ Paragraph text
+ -- 
+ -- __language__ Programming language for which the text should be formatted
+ PageBlockPreformatted { language :: Maybe String, text :: Maybe RichText.RichText }  |
+ -- |
+ -- 
+ -- The footer of a page 
+ -- 
+ -- __footer__ Footer
+ PageBlockFooter { footer :: Maybe RichText.RichText }  |
+ -- |
+ -- 
+ -- An empty block separating a page
+ PageBlockDivider |
+ -- |
+ -- 
+ -- An invisible anchor on a page, which can be used in a URL to open the page from the specified anchor 
+ -- 
+ -- __name__ Name of the anchor
+ PageBlockAnchor { name :: Maybe String }  |
+ -- |
+ -- 
+ -- A list of data blocks 
+ -- 
+ -- __items__ The items of the list
+ PageBlockList { items :: Maybe [PageBlockListItem.PageBlockListItem] }  |
+ -- |
+ -- 
+ -- A block quote 
+ -- 
+ -- __text__ Quote text
+ -- 
+ -- __credit__ Quote credit
+ PageBlockBlockQuote { credit :: Maybe RichText.RichText, text :: Maybe RichText.RichText }  |
+ -- |
+ -- 
+ -- A pull quote 
+ -- 
+ -- __text__ Quote text
+ -- 
+ -- __credit__ Quote credit
+ PageBlockPullQuote { credit :: Maybe RichText.RichText, text :: Maybe RichText.RichText }  |
+ -- |
+ -- 
+ -- An animation 
+ -- 
+ -- __animation__ Animation file; may be null
+ -- 
+ -- __caption__ Animation caption
+ -- 
+ -- __need_autoplay__ True, if the animation should be played automatically
+ PageBlockAnimation { need_autoplay :: Maybe Bool, caption :: Maybe PageBlockCaption.PageBlockCaption, animation :: Maybe Animation.Animation }  |
+ -- |
+ -- 
+ -- An audio file 
+ -- 
+ -- __audio__ Audio file; may be null
+ -- 
+ -- __caption__ Audio file caption
+ PageBlockAudio { caption :: Maybe PageBlockCaption.PageBlockCaption, audio :: Maybe Audio.Audio }  |
+ -- |
+ -- 
+ -- A photo 
+ -- 
+ -- __photo__ Photo file; may be null
+ -- 
+ -- __caption__ Photo caption
+ -- 
+ -- __url__ URL that needs to be opened when the photo is clicked
+ PageBlockPhoto { url :: Maybe String, caption :: Maybe PageBlockCaption.PageBlockCaption, _photo :: Maybe Photo.Photo }  |
+ -- |
+ -- 
+ -- A video 
+ -- 
+ -- __video__ Video file; may be null
+ -- 
+ -- __caption__ Video caption
+ -- 
+ -- __need_autoplay__ True, if the video should be played automatically
+ -- 
+ -- __is_looped__ True, if the video should be looped
+ PageBlockVideo { is_looped :: Maybe Bool, need_autoplay :: Maybe Bool, caption :: Maybe PageBlockCaption.PageBlockCaption, video :: Maybe Video.Video }  |
+ -- |
+ -- 
+ -- A voice note 
+ -- 
+ -- __voice_note__ Voice note; may be null
+ -- 
+ -- __caption__ Voice note caption
+ PageBlockVoiceNote { caption :: Maybe PageBlockCaption.PageBlockCaption, voice_note :: Maybe VoiceNote.VoiceNote }  |
+ -- |
+ -- 
+ -- A page cover 
+ -- 
+ -- __cover__ Cover
+ PageBlockCover { cover :: Maybe PageBlock }  |
+ -- |
+ -- 
+ -- An embedded web page 
+ -- 
+ -- __url__ Web page URL, if available
+ -- 
+ -- __html__ HTML-markup of the embedded page
+ -- 
+ -- __poster_photo__ Poster photo, if available; may be null
+ -- 
+ -- __width__ Block width; 0 if unknown
+ -- 
+ -- __height__ Block height; 0 if unknown
+ -- 
+ -- __caption__ Block caption
+ -- 
+ -- __is_full_width__ True, if the block should be full width
+ -- 
+ -- __allow_scrolling__ True, if scrolling should be allowed
+ PageBlockEmbedded { allow_scrolling :: Maybe Bool, is_full_width :: Maybe Bool, caption :: Maybe PageBlockCaption.PageBlockCaption, height :: Maybe Int, width :: Maybe Int, poster_photo :: Maybe Photo.Photo, html :: Maybe String, url :: Maybe String }  |
+ -- |
+ -- 
+ -- An embedded post 
+ -- 
+ -- __url__ Web page URL
+ -- 
+ -- __author__ Post author
+ -- 
+ -- __author_photo__ Post author photo; may be null
+ -- 
+ -- __date__ Point in time (Unix timestamp) when the post was created; 0 if unknown
+ -- 
+ -- __page_blocks__ Post content
+ -- 
+ -- __caption__ Post caption
+ PageBlockEmbeddedPost { caption :: Maybe PageBlockCaption.PageBlockCaption, page_blocks :: Maybe [PageBlock], date :: Maybe Int, author_photo :: Maybe Photo.Photo, author :: Maybe String, url :: Maybe String }  |
+ -- |
+ -- 
+ -- A collage 
+ -- 
+ -- __page_blocks__ Collage item contents
+ -- 
+ -- __caption__ Block caption
+ PageBlockCollage { caption :: Maybe PageBlockCaption.PageBlockCaption, page_blocks :: Maybe [PageBlock] }  |
+ -- |
+ -- 
+ -- A slideshow 
+ -- 
+ -- __page_blocks__ Slideshow item contents
+ -- 
+ -- __caption__ Block caption
+ PageBlockSlideshow { caption :: Maybe PageBlockCaption.PageBlockCaption, page_blocks :: Maybe [PageBlock] }  |
+ -- |
+ -- 
+ -- A link to a chat 
+ -- 
+ -- __title__ Chat title
+ -- 
+ -- __photo__ Chat photo; may be null
+ -- 
+ -- __username__ Chat username, by which all other information about the chat should be resolved
+ PageBlockChatLink { username :: Maybe String, photo :: Maybe ChatPhoto.ChatPhoto, title :: Maybe String }  |
+ -- |
+ -- 
+ -- A table 
+ -- 
+ -- __caption__ Table caption
+ -- 
+ -- __cells__ Table cells
+ -- 
+ -- __is_bordered__ True, if the table is bordered
+ -- 
+ -- __is_striped__ True, if the table is striped
+ PageBlockTable { is_striped :: Maybe Bool, is_bordered :: Maybe Bool, cells :: Maybe [PageBlockTableCell.PageBlockTableCell], _caption :: Maybe RichText.RichText }  |
+ -- |
+ -- 
+ -- A collapsible block 
+ -- 
+ -- __header__ Always visible heading for the block
+ -- 
+ -- __page_blocks__ Block contents
+ -- 
+ -- __is_open__ True, if the block is open by default
+ PageBlockDetails { is_open :: Maybe Bool, page_blocks :: Maybe [PageBlock], header :: Maybe RichText.RichText }  |
+ -- |
+ -- 
+ -- Related articles 
+ -- 
+ -- __header__ Block header
+ -- 
+ -- __articles__ List of related articles
+ PageBlockRelatedArticles { articles :: Maybe [PageBlockRelatedArticle.PageBlockRelatedArticle], header :: Maybe RichText.RichText }  |
+ -- |
+ -- 
+ -- A map 
+ -- 
+ -- __location__ Location of the map center
+ -- 
+ -- __zoom__ Map zoom level
+ -- 
+ -- __width__ Map width
+ -- 
+ -- __height__ Map height
+ -- 
+ -- __caption__ Block caption
+ PageBlockMap { caption :: Maybe PageBlockCaption.PageBlockCaption, height :: Maybe Int, width :: Maybe Int, zoom :: Maybe Int, location :: Maybe Location.Location }  deriving (Show, Eq)
 
 instance T.ToJSON PageBlock where
  toJSON (PageBlockTitle { _title = _title }) =

@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __json__ The JSON-serialized string
 data GetJsonValue = 
+
  GetJsonValue { json :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetJsonValue where

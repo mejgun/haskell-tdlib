@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.NotificationSettingsScope as NotificationSet
 -- 
 -- __compare_sound__ If true, also chats with non-default sound will be returned
 data GetChatNotificationSettingsExceptions = 
+
  GetChatNotificationSettingsExceptions { compare_sound :: Maybe Bool, scope :: Maybe NotificationSettingsScope.NotificationSettingsScope }  deriving (Show, Eq)
 
 instance T.ToJSON GetChatNotificationSettingsExceptions where

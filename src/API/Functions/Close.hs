@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent
 data Close = 
+
  Close deriving (Show, Eq)
 
 instance T.ToJSON Close where

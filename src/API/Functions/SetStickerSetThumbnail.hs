@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- 
 -- __thumbnail__ Thumbnail to set in PNG or TGS format. Animated thumbnail must be set for animated sticker sets and only for them. You can use a zero InputFileId to delete the thumbnail
 data SetStickerSetThumbnail = 
+
  SetStickerSetThumbnail { thumbnail :: Maybe InputFile.InputFile, name :: Maybe String, user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetStickerSetThumbnail where

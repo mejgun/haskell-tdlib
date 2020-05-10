@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 -- 
 -- __show_popup__ True, if a blocking popup with terms of service must be shown to the user
 data TermsOfService = 
+
  TermsOfService { show_popup :: Maybe Bool, min_user_age :: Maybe Int, text :: Maybe FormattedText.FormattedText }  deriving (Show, Eq)
 
 instance T.ToJSON TermsOfService where

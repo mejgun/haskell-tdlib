@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __invite_link__ Chat invite link
 data ChatInviteLink = 
+
  ChatInviteLink { invite_link :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON ChatInviteLink where

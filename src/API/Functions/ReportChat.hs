@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.ChatReportReason as ChatReportReason
 -- 
 -- __message_ids__ Identifiers of reported messages, if any
 data ReportChat = 
+
  ReportChat { message_ids :: Maybe [Int], reason :: Maybe ChatReportReason.ChatReportReason, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ReportChat where

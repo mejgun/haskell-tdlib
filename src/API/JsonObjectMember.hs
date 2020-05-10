@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.JsonValue as JsonValue
 -- 
 -- __value__ Member's value
 data JsonObjectMember = 
+
  JsonObjectMember { value :: Maybe JsonValue.JsonValue, key :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON JsonObjectMember where

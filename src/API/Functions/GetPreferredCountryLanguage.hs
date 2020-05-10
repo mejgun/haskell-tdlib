@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __country_code__ A two-letter ISO 3166-1 alpha-2 country code
 data GetPreferredCountryLanguage = 
+
  GetPreferredCountryLanguage { country_code :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetPreferredCountryLanguage where

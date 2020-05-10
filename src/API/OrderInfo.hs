@@ -20,6 +20,7 @@ import {-# SOURCE #-} qualified API.Address as Address
 -- 
 -- __shipping_address__ Shipping address for this order; may be null
 data OrderInfo = 
+
  OrderInfo { shipping_address :: Maybe Address.Address, email_address :: Maybe String, phone_number :: Maybe String, name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON OrderInfo where

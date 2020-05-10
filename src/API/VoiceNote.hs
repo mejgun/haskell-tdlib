@@ -20,6 +20,7 @@ import {-# SOURCE #-} qualified API.File as File
 -- 
 -- __voice__ File containing the voice note
 data VoiceNote = 
+
  VoiceNote { voice :: Maybe File.File, mime_type :: Maybe String, waveform :: Maybe String, duration :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON VoiceNote where

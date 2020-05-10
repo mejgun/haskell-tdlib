@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __language_pack_id__ Language pack identifier
 data SynchronizeLanguagePack = 
+
  SynchronizeLanguagePack { language_pack_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SynchronizeLanguagePack where

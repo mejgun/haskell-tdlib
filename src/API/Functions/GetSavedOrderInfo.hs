@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Returns saved order info, if any
 data GetSavedOrderInfo = 
+
  GetSavedOrderInfo deriving (Show, Eq)
 
 instance T.ToJSON GetSavedOrderInfo where

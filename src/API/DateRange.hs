@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __end_date__ Point in time (Unix timestamp) at which the date range ends
 data DateRange = 
+
  DateRange { end_date :: Maybe Int, start_date :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON DateRange where

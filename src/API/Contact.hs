@@ -21,6 +21,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __user_id__ Identifier of the user, if known; otherwise 0
 data Contact = 
+
  Contact { user_id :: Maybe Int, vcard :: Maybe String, last_name :: Maybe String, first_name :: Maybe String, phone_number :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON Contact where

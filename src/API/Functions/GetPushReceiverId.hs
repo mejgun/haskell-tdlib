@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __payload__ JSON-encoded push notification payload
 data GetPushReceiverId = 
+
  GetPushReceiverId { payload :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetPushReceiverId where

@@ -28,6 +28,7 @@ import {-# SOURCE #-} qualified API.SecretChatState as SecretChatState
 -- 
 -- __layer__ Secret chat layer; determines features supported by the other client. Video notes are supported if the layer >= 66; nested text entities and underline and strikethrough entities are supported if the layer >= 101
 data SecretChat = 
+
  SecretChat { layer :: Maybe Int, key_hash :: Maybe String, ttl :: Maybe Int, is_outbound :: Maybe Bool, state :: Maybe SecretChatState.SecretChatState, user_id :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SecretChat where

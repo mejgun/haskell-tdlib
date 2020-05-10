@@ -24,6 +24,7 @@ import {-# SOURCE #-} qualified API.Location as Location
 -- 
 -- __type__ Type of the venue in the provider database; as defined by the sender
 data Venue = 
+
  Venue { _type :: Maybe String, _id :: Maybe String, provider :: Maybe String, address :: Maybe String, title :: Maybe String, location :: Maybe Location.Location }  deriving (Show, Eq)
 
 instance T.ToJSON Venue where

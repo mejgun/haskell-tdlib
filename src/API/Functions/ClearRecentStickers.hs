@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __is_attached__ Pass true to clear the list of stickers recently attached to photo or video files; pass false to clear the list of recently sent stickers
 data ClearRecentStickers = 
+
  ClearRecentStickers { is_attached :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON ClearRecentStickers where

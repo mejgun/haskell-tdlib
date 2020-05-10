@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.PassportSuitableElement as PassportSuitableE
 -- 
 -- __suitable_elements__ List of Telegram Passport elements any of which is enough to provide
 data PassportRequiredElement = 
+
  PassportRequiredElement { suitable_elements :: Maybe [PassportSuitableElement.PassportSuitableElement] }  deriving (Show, Eq)
 
 instance T.ToJSON PassportRequiredElement where

@@ -37,6 +37,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __translation_url__ Link to language translation interface; empty for custom local language packs
 data LanguagePackInfo = 
+
  LanguagePackInfo { translation_url :: Maybe String, local_string_count :: Maybe Int, translated_string_count :: Maybe Int, total_string_count :: Maybe Int, is_installed :: Maybe Bool, is_beta :: Maybe Bool, is_rtl :: Maybe Bool, is_official :: Maybe Bool, plural_code :: Maybe String, native_name :: Maybe String, name :: Maybe String, base_language_pack_id :: Maybe String, _id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON LanguagePackInfo where

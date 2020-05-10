@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __data__ JSON-serialized answer to the query
 data AnswerCustomQuery = 
+
  AnswerCustomQuery { _data :: Maybe String, custom_query_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON AnswerCustomQuery where

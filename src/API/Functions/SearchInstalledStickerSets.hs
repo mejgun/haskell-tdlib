@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __limit__ The maximum number of sticker sets to return
 data SearchInstalledStickerSets = 
+
  SearchInstalledStickerSets { limit :: Maybe Int, query :: Maybe String, is_masks :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON SearchInstalledStickerSets where

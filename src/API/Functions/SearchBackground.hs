@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __name__ The name of the background
 data SearchBackground = 
+
  SearchBackground { name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SearchBackground where

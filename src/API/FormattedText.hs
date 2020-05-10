@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.TextEntity as TextEntity
 -- 
 -- -Pre, Code and PreCode entities can't contain other entities. Bold, Italic, Underline and Strikethrough entities can contain and to be contained in all other entities. All other entities can't contain each other
 data FormattedText = 
+
  FormattedText { entities :: Maybe [TextEntity.TextEntity], text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON FormattedText where

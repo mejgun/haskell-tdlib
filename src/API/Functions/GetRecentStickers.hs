@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __is_attached__ Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers
 data GetRecentStickers = 
+
  GetRecentStickers { is_attached :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON GetRecentStickers where

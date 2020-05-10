@@ -26,6 +26,7 @@ import {-# SOURCE #-} qualified API.ChatList as ChatList
 -- 
 -- __limit__ The maximum number of messages to be returned, up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
 data SearchMessages = 
+
  SearchMessages { limit :: Maybe Int, offset_message_id :: Maybe Int, offset_chat_id :: Maybe Int, offset_date :: Maybe Int, query :: Maybe String, chat_list :: Maybe ChatList.ChatList }  deriving (Show, Eq)
 
 instance T.ToJSON SearchMessages where

@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.ChatList as ChatList
 -- 
 -- __chat_ids__ The new list of pinned chats
 data SetPinnedChats = 
+
  SetPinnedChats { chat_ids :: Maybe [Int], chat_list :: Maybe ChatList.ChatList }  deriving (Show, Eq)
 
 instance T.ToJSON SetPinnedChats where

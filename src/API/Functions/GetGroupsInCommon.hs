@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __limit__ The maximum number of chats to be returned; up to 100
 data GetGroupsInCommon = 
+
  GetGroupsInCommon { limit :: Maybe Int, offset_chat_id :: Maybe Int, user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetGroupsInCommon where

@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- -Use the method getSuitableDiscussionChats to find all suitable groups. Basic group chats needs to be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable needs to be used first to change that
 data SetChatDiscussionGroup = 
+
  SetChatDiscussionGroup { discussion_chat_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatDiscussionGroup where

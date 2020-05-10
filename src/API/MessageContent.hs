@@ -31,47 +31,322 @@ import {-# SOURCE #-} qualified API.EncryptedPassportElement as EncryptedPasspor
 -- 
 -- Contains the content of a message
 data MessageContent = 
- MessageText { web_page :: Maybe WebPage.WebPage, _text :: Maybe FormattedText.FormattedText }  
- | MessageAnimation { is_secret :: Maybe Bool, caption :: Maybe FormattedText.FormattedText, animation :: Maybe Animation.Animation }  
- | MessageAudio { caption :: Maybe FormattedText.FormattedText, audio :: Maybe Audio.Audio }  
- | MessageDocument { caption :: Maybe FormattedText.FormattedText, document :: Maybe Document.Document }  
- | MessagePhoto { is_secret :: Maybe Bool, caption :: Maybe FormattedText.FormattedText, photo :: Maybe Photo.Photo }  
- | MessageExpiredPhoto 
- | MessageSticker { sticker :: Maybe Sticker.Sticker }  
- | MessageVideo { is_secret :: Maybe Bool, caption :: Maybe FormattedText.FormattedText, video :: Maybe Video.Video }  
- | MessageExpiredVideo 
- | MessageVideoNote { is_secret :: Maybe Bool, is_viewed :: Maybe Bool, video_note :: Maybe VideoNote.VideoNote }  
- | MessageVoiceNote { is_listened :: Maybe Bool, caption :: Maybe FormattedText.FormattedText, voice_note :: Maybe VoiceNote.VoiceNote }  
- | MessageLocation { expires_in :: Maybe Int, live_period :: Maybe Int, location :: Maybe Location.Location }  
- | MessageVenue { venue :: Maybe Venue.Venue }  
- | MessageContact { contact :: Maybe Contact.Contact }  
- | MessageDice { success_animation_frame_number :: Maybe Int, value :: Maybe Int, emoji :: Maybe String, final_state_sticker :: Maybe Sticker.Sticker, initial_state_sticker :: Maybe Sticker.Sticker }  
- | MessageGame { game :: Maybe Game.Game }  
- | MessagePoll { poll :: Maybe Poll.Poll }  
- | MessageInvoice { receipt_message_id :: Maybe Int, need_shipping_address :: Maybe Bool, is_test :: Maybe Bool, start_parameter :: Maybe String, total_amount :: Maybe Int, currency :: Maybe String, photo :: Maybe Photo.Photo, description :: Maybe String, title :: Maybe String }  
- | MessageCall { duration :: Maybe Int, discard_reason :: Maybe CallDiscardReason.CallDiscardReason }  
- | MessageBasicGroupChatCreate { member_user_ids :: Maybe [Int], title :: Maybe String }  
- | MessageSupergroupChatCreate { title :: Maybe String }  
- | MessageChatChangeTitle { title :: Maybe String }  
- | MessageChatChangePhoto { photo :: Maybe Photo.Photo }  
- | MessageChatDeletePhoto 
- | MessageChatAddMembers { member_user_ids :: Maybe [Int] }  
- | MessageChatJoinByLink 
- | MessageChatDeleteMember { user_id :: Maybe Int }  
- | MessageChatUpgradeTo { supergroup_id :: Maybe Int }  
- | MessageChatUpgradeFrom { basic_group_id :: Maybe Int, title :: Maybe String }  
- | MessagePinMessage { message_id :: Maybe Int }  
- | MessageScreenshotTaken 
- | MessageChatSetTtl { ttl :: Maybe Int }  
- | MessageCustomServiceAction { text :: Maybe String }  
- | MessageGameScore { score :: Maybe Int, game_id :: Maybe Int, game_message_id :: Maybe Int }  
- | MessagePaymentSuccessful { total_amount :: Maybe Int, currency :: Maybe String, invoice_message_id :: Maybe Int }  
- | MessagePaymentSuccessfulBot { provider_payment_charge_id :: Maybe String, telegram_payment_charge_id :: Maybe String, order_info :: Maybe OrderInfo.OrderInfo, shipping_option_id :: Maybe String, invoice_payload :: Maybe String, total_amount :: Maybe Int, currency :: Maybe String, invoice_message_id :: Maybe Int }  
- | MessageContactRegistered 
- | MessageWebsiteConnected { domain_name :: Maybe String }  
- | MessagePassportDataSent { types :: Maybe [PassportElementType.PassportElementType] }  
- | MessagePassportDataReceived { credentials :: Maybe EncryptedCredentials.EncryptedCredentials, elements :: Maybe [EncryptedPassportElement.EncryptedPassportElement] }  
- | MessageUnsupported deriving (Show, Eq)
+ -- |
+ -- 
+ -- A text message 
+ -- 
+ -- __text__ Text of the message
+ -- 
+ -- __web_page__ A preview of the web page that's mentioned in the text; may be null
+ MessageText { web_page :: Maybe WebPage.WebPage, _text :: Maybe FormattedText.FormattedText }  |
+ -- |
+ -- 
+ -- An animation message (GIF-style). 
+ -- 
+ -- __animation__ The animation description
+ -- 
+ -- __caption__ Animation caption
+ -- 
+ -- __is_secret__ True, if the animation thumbnail must be blurred and the animation must be shown only while tapped
+ MessageAnimation { is_secret :: Maybe Bool, caption :: Maybe FormattedText.FormattedText, animation :: Maybe Animation.Animation }  |
+ -- |
+ -- 
+ -- An audio message 
+ -- 
+ -- __audio__ The audio description
+ -- 
+ -- __caption__ Audio caption
+ MessageAudio { caption :: Maybe FormattedText.FormattedText, audio :: Maybe Audio.Audio }  |
+ -- |
+ -- 
+ -- A document message (general file) 
+ -- 
+ -- __document__ The document description
+ -- 
+ -- __caption__ Document caption
+ MessageDocument { caption :: Maybe FormattedText.FormattedText, document :: Maybe Document.Document }  |
+ -- |
+ -- 
+ -- A photo message 
+ -- 
+ -- __photo__ The photo description
+ -- 
+ -- __caption__ Photo caption
+ -- 
+ -- __is_secret__ True, if the photo must be blurred and must be shown only while tapped
+ MessagePhoto { is_secret :: Maybe Bool, caption :: Maybe FormattedText.FormattedText, photo :: Maybe Photo.Photo }  |
+ -- |
+ -- 
+ -- An expired photo message (self-destructed after TTL has elapsed)
+ MessageExpiredPhoto |
+ -- |
+ -- 
+ -- A sticker message 
+ -- 
+ -- __sticker__ The sticker description
+ MessageSticker { sticker :: Maybe Sticker.Sticker }  |
+ -- |
+ -- 
+ -- A video message 
+ -- 
+ -- __video__ The video description
+ -- 
+ -- __caption__ Video caption
+ -- 
+ -- __is_secret__ True, if the video thumbnail must be blurred and the video must be shown only while tapped
+ MessageVideo { is_secret :: Maybe Bool, caption :: Maybe FormattedText.FormattedText, video :: Maybe Video.Video }  |
+ -- |
+ -- 
+ -- An expired video message (self-destructed after TTL has elapsed)
+ MessageExpiredVideo |
+ -- |
+ -- 
+ -- A video note message 
+ -- 
+ -- __video_note__ The video note description
+ -- 
+ -- __is_viewed__ True, if at least one of the recipients has viewed the video note
+ -- 
+ -- __is_secret__ True, if the video note thumbnail must be blurred and the video note must be shown only while tapped
+ MessageVideoNote { is_secret :: Maybe Bool, is_viewed :: Maybe Bool, video_note :: Maybe VideoNote.VideoNote }  |
+ -- |
+ -- 
+ -- A voice note message 
+ -- 
+ -- __voice_note__ The voice note description
+ -- 
+ -- __caption__ Voice note caption
+ -- 
+ -- __is_listened__ True, if at least one of the recipients has listened to the voice note
+ MessageVoiceNote { is_listened :: Maybe Bool, caption :: Maybe FormattedText.FormattedText, voice_note :: Maybe VoiceNote.VoiceNote }  |
+ -- |
+ -- 
+ -- A message with a location 
+ -- 
+ -- __location__ The location description
+ -- 
+ -- __live_period__ Time relative to the message sent date until which the location can be updated, in seconds
+ -- 
+ -- __expires_in__ Left time for which the location can be updated, in seconds. updateMessageContent is not sent when this field changes
+ MessageLocation { expires_in :: Maybe Int, live_period :: Maybe Int, location :: Maybe Location.Location }  |
+ -- |
+ -- 
+ -- A message with information about a venue 
+ -- 
+ -- __venue__ The venue description
+ MessageVenue { venue :: Maybe Venue.Venue }  |
+ -- |
+ -- 
+ -- A message with a user contact 
+ -- 
+ -- __contact__ The contact description
+ MessageContact { contact :: Maybe Contact.Contact }  |
+ -- |
+ -- 
+ -- A dice message. The dice value is randomly generated by the server
+ -- 
+ -- __initial_state_sticker__ The animated sticker with the initial dice animation; may be null if unknown. updateMessageContent will be sent when the sticker became known
+ -- 
+ -- __final_state_sticker__ The animated sticker with the final dice animation; may be null if unknown. updateMessageContent will be sent when the sticker became known
+ -- 
+ -- __emoji__ Emoji on which the dice throw animation is based
+ -- 
+ -- __value__ The dice value. If the value is 0, the dice don't have final state yet
+ -- 
+ -- __success_animation_frame_number__ Number of frame after which a success animation like a shower of confetti needs to be shown on updateMessageSendSucceeded
+ MessageDice { success_animation_frame_number :: Maybe Int, value :: Maybe Int, emoji :: Maybe String, final_state_sticker :: Maybe Sticker.Sticker, initial_state_sticker :: Maybe Sticker.Sticker }  |
+ -- |
+ -- 
+ -- A message with a game 
+ -- 
+ -- __game__ The game description
+ MessageGame { game :: Maybe Game.Game }  |
+ -- |
+ -- 
+ -- A message with a poll 
+ -- 
+ -- __poll__ The poll description
+ MessagePoll { poll :: Maybe Poll.Poll }  |
+ -- |
+ -- 
+ -- A message with an invoice from a bot 
+ -- 
+ -- __title__ Product title
+ -- 
+ -- __param_description__ Product description
+ -- 
+ -- __photo__ Product photo; may be null
+ -- 
+ -- __currency__ Currency for the product price
+ -- 
+ -- __total_amount__ Product total price in the minimal quantity of the currency
+ -- 
+ -- __start_parameter__ Unique invoice bot start_parameter. To share an invoice use the URL https://t.me/{bot_username}?start={start_parameter}
+ -- 
+ -- __is_test__ True, if the invoice is a test invoice
+ -- 
+ -- __need_shipping_address__ True, if the shipping address should be specified
+ -- 
+ -- __receipt_message_id__ The identifier of the message with the receipt, after the product has been purchased
+ MessageInvoice { receipt_message_id :: Maybe Int, need_shipping_address :: Maybe Bool, is_test :: Maybe Bool, start_parameter :: Maybe String, total_amount :: Maybe Int, currency :: Maybe String, photo :: Maybe Photo.Photo, description :: Maybe String, title :: Maybe String }  |
+ -- |
+ -- 
+ -- A message with information about an ended call 
+ -- 
+ -- __discard_reason__ Reason why the call was discarded
+ -- 
+ -- __duration__ Call duration, in seconds
+ MessageCall { duration :: Maybe Int, discard_reason :: Maybe CallDiscardReason.CallDiscardReason }  |
+ -- |
+ -- 
+ -- A newly created basic group 
+ -- 
+ -- __title__ Title of the basic group
+ -- 
+ -- __member_user_ids__ User identifiers of members in the basic group
+ MessageBasicGroupChatCreate { member_user_ids :: Maybe [Int], title :: Maybe String }  |
+ -- |
+ -- 
+ -- A newly created supergroup or channel 
+ -- 
+ -- __title__ Title of the supergroup or channel
+ MessageSupergroupChatCreate { title :: Maybe String }  |
+ -- |
+ -- 
+ -- An updated chat title 
+ -- 
+ -- __title__ New chat title
+ MessageChatChangeTitle { title :: Maybe String }  |
+ -- |
+ -- 
+ -- An updated chat photo 
+ -- 
+ -- __photo__ New chat photo
+ MessageChatChangePhoto { photo :: Maybe Photo.Photo }  |
+ -- |
+ -- 
+ -- A deleted chat photo
+ MessageChatDeletePhoto |
+ -- |
+ -- 
+ -- New chat members were added 
+ -- 
+ -- __member_user_ids__ User identifiers of the new members
+ MessageChatAddMembers { member_user_ids :: Maybe [Int] }  |
+ -- |
+ -- 
+ -- A new member joined the chat by invite link
+ MessageChatJoinByLink |
+ -- |
+ -- 
+ -- A chat member was deleted 
+ -- 
+ -- __user_id__ User identifier of the deleted chat member
+ MessageChatDeleteMember { user_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A basic group was upgraded to a supergroup and was deactivated as the result 
+ -- 
+ -- __supergroup_id__ Identifier of the supergroup to which the basic group was upgraded
+ MessageChatUpgradeTo { supergroup_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A supergroup has been created from a basic group 
+ -- 
+ -- __title__ Title of the newly created supergroup
+ -- 
+ -- __basic_group_id__ The identifier of the original basic group
+ MessageChatUpgradeFrom { basic_group_id :: Maybe Int, title :: Maybe String }  |
+ -- |
+ -- 
+ -- A message has been pinned 
+ -- 
+ -- __message_id__ Identifier of the pinned message, can be an identifier of a deleted message or 0
+ MessagePinMessage { message_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A screenshot of a message in the chat has been taken
+ MessageScreenshotTaken |
+ -- |
+ -- 
+ -- The TTL (Time To Live) setting messages in a secret chat has been changed 
+ -- 
+ -- __ttl__ New TTL
+ MessageChatSetTtl { ttl :: Maybe Int }  |
+ -- |
+ -- 
+ -- A non-standard action has happened in the chat 
+ -- 
+ -- __text__ Message text to be shown in the chat
+ MessageCustomServiceAction { text :: Maybe String }  |
+ -- |
+ -- 
+ -- A new high score was achieved in a game 
+ -- 
+ -- __game_message_id__ Identifier of the message with the game, can be an identifier of a deleted message
+ -- 
+ -- __game_id__ Identifier of the game; may be different from the games presented in the message with the game
+ -- 
+ -- __score__ New score
+ MessageGameScore { score :: Maybe Int, game_id :: Maybe Int, game_message_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A payment has been completed 
+ -- 
+ -- __invoice_message_id__ Identifier of the message with the corresponding invoice; can be an identifier of a deleted message
+ -- 
+ -- __currency__ Currency for the price of the product
+ -- 
+ -- __total_amount__ Total price for the product, in the minimal quantity of the currency
+ MessagePaymentSuccessful { total_amount :: Maybe Int, currency :: Maybe String, invoice_message_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A payment has been completed; for bots only 
+ -- 
+ -- __invoice_message_id__ Identifier of the message with the corresponding invoice; can be an identifier of a deleted message
+ -- 
+ -- __currency__ Currency for price of the product
+ -- 
+ -- __total_amount__ Total price for the product, in the minimal quantity of the currency
+ -- 
+ -- __invoice_payload__ Invoice payload
+ -- 
+ -- __shipping_option_id__ Identifier of the shipping option chosen by the user; may be empty if not applicable
+ -- 
+ -- __order_info__ Information about the order; may be null
+ -- 
+ -- __telegram_payment_charge_id__ Telegram payment identifier
+ -- 
+ -- __provider_payment_charge_id__ Provider payment identifier
+ MessagePaymentSuccessfulBot { provider_payment_charge_id :: Maybe String, telegram_payment_charge_id :: Maybe String, order_info :: Maybe OrderInfo.OrderInfo, shipping_option_id :: Maybe String, invoice_payload :: Maybe String, total_amount :: Maybe Int, currency :: Maybe String, invoice_message_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A contact has registered with Telegram
+ MessageContactRegistered |
+ -- |
+ -- 
+ -- The current user has connected a website by logging in using Telegram Login Widget on it 
+ -- 
+ -- __domain_name__ Domain name of the connected website
+ MessageWebsiteConnected { domain_name :: Maybe String }  |
+ -- |
+ -- 
+ -- Telegram Passport data has been sent 
+ -- 
+ -- __types__ List of Telegram Passport element types sent
+ MessagePassportDataSent { types :: Maybe [PassportElementType.PassportElementType] }  |
+ -- |
+ -- 
+ -- Telegram Passport data has been received; for bots only 
+ -- 
+ -- __elements__ List of received Telegram Passport elements
+ -- 
+ -- __credentials__ Encrypted data credentials
+ MessagePassportDataReceived { credentials :: Maybe EncryptedCredentials.EncryptedCredentials, elements :: Maybe [EncryptedPassportElement.EncryptedPassportElement] }  |
+ -- |
+ -- 
+ -- Message content that is not supported by the client
+ MessageUnsupported deriving (Show, Eq)
 
 instance T.ToJSON MessageContent where
  toJSON (MessageText { web_page = web_page, _text = _text }) =

@@ -16,28 +16,162 @@ import {-# SOURCE #-} qualified API.ChatLocation as ChatLocation
 -- 
 -- Represents a chat event
 data ChatEventAction = 
- ChatEventMessageEdited { new_message :: Maybe Message.Message, old_message :: Maybe Message.Message }  
- | ChatEventMessageDeleted { message :: Maybe Message.Message }  
- | ChatEventPollStopped { message :: Maybe Message.Message }  
- | ChatEventMessagePinned { message :: Maybe Message.Message }  
- | ChatEventMessageUnpinned 
- | ChatEventMemberJoined 
- | ChatEventMemberLeft 
- | ChatEventMemberInvited { status :: Maybe ChatMemberStatus.ChatMemberStatus, user_id :: Maybe Int }  
- | ChatEventMemberPromoted { new_status :: Maybe ChatMemberStatus.ChatMemberStatus, old_status :: Maybe ChatMemberStatus.ChatMemberStatus, user_id :: Maybe Int }  
- | ChatEventMemberRestricted { new_status :: Maybe ChatMemberStatus.ChatMemberStatus, old_status :: Maybe ChatMemberStatus.ChatMemberStatus, user_id :: Maybe Int }  
- | ChatEventTitleChanged { new_title :: Maybe String, old_title :: Maybe String }  
- | ChatEventPermissionsChanged { new_permissions :: Maybe ChatPermissions.ChatPermissions, old_permissions :: Maybe ChatPermissions.ChatPermissions }  
- | ChatEventDescriptionChanged { new_description :: Maybe String, old_description :: Maybe String }  
- | ChatEventUsernameChanged { new_username :: Maybe String, old_username :: Maybe String }  
- | ChatEventPhotoChanged { new_photo :: Maybe Photo.Photo, old_photo :: Maybe Photo.Photo }  
- | ChatEventInvitesToggled { can_invite_users :: Maybe Bool }  
- | ChatEventLinkedChatChanged { new_linked_chat_id :: Maybe Int, old_linked_chat_id :: Maybe Int }  
- | ChatEventSlowModeDelayChanged { new_slow_mode_delay :: Maybe Int, old_slow_mode_delay :: Maybe Int }  
- | ChatEventSignMessagesToggled { sign_messages :: Maybe Bool }  
- | ChatEventStickerSetChanged { new_sticker_set_id :: Maybe Int, old_sticker_set_id :: Maybe Int }  
- | ChatEventLocationChanged { new_location :: Maybe ChatLocation.ChatLocation, old_location :: Maybe ChatLocation.ChatLocation }  
- | ChatEventIsAllHistoryAvailableToggled { is_all_history_available :: Maybe Bool }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- A message was edited 
+ -- 
+ -- __old_message__ The original message before the edit
+ -- 
+ -- __new_message__ The message after it was edited
+ ChatEventMessageEdited { new_message :: Maybe Message.Message, old_message :: Maybe Message.Message }  |
+ -- |
+ -- 
+ -- A message was deleted 
+ -- 
+ -- __message__ Deleted message
+ ChatEventMessageDeleted { message :: Maybe Message.Message }  |
+ -- |
+ -- 
+ -- A poll in a message was stopped 
+ -- 
+ -- __message__ The message with the poll
+ ChatEventPollStopped { message :: Maybe Message.Message }  |
+ -- |
+ -- 
+ -- A message was pinned 
+ -- 
+ -- __message__ Pinned message
+ ChatEventMessagePinned { message :: Maybe Message.Message }  |
+ -- |
+ -- 
+ -- A message was unpinned
+ ChatEventMessageUnpinned |
+ -- |
+ -- 
+ -- A new member joined the chat
+ ChatEventMemberJoined |
+ -- |
+ -- 
+ -- A member left the chat
+ ChatEventMemberLeft |
+ -- |
+ -- 
+ -- A new chat member was invited 
+ -- 
+ -- __user_id__ New member user identifier
+ -- 
+ -- __status__ New member status
+ ChatEventMemberInvited { status :: Maybe ChatMemberStatus.ChatMemberStatus, user_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A chat member has gained/lost administrator status, or the list of their administrator privileges has changed 
+ -- 
+ -- __user_id__ Chat member user identifier
+ -- 
+ -- __old_status__ Previous status of the chat member
+ -- 
+ -- __new_status__ New status of the chat member
+ ChatEventMemberPromoted { new_status :: Maybe ChatMemberStatus.ChatMemberStatus, old_status :: Maybe ChatMemberStatus.ChatMemberStatus, user_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A chat member was restricted/unrestricted or banned/unbanned, or the list of their restrictions has changed 
+ -- 
+ -- __user_id__ Chat member user identifier
+ -- 
+ -- __old_status__ Previous status of the chat member
+ -- 
+ -- __new_status__ New status of the chat member
+ ChatEventMemberRestricted { new_status :: Maybe ChatMemberStatus.ChatMemberStatus, old_status :: Maybe ChatMemberStatus.ChatMemberStatus, user_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The chat title was changed 
+ -- 
+ -- __old_title__ Previous chat title
+ -- 
+ -- __new_title__ New chat title
+ ChatEventTitleChanged { new_title :: Maybe String, old_title :: Maybe String }  |
+ -- |
+ -- 
+ -- The chat permissions was changed 
+ -- 
+ -- __old_permissions__ Previous chat permissions
+ -- 
+ -- __new_permissions__ New chat permissions
+ ChatEventPermissionsChanged { new_permissions :: Maybe ChatPermissions.ChatPermissions, old_permissions :: Maybe ChatPermissions.ChatPermissions }  |
+ -- |
+ -- 
+ -- The chat description was changed 
+ -- 
+ -- __old_description__ Previous chat description
+ -- 
+ -- __new_description__ New chat description
+ ChatEventDescriptionChanged { new_description :: Maybe String, old_description :: Maybe String }  |
+ -- |
+ -- 
+ -- The chat username was changed 
+ -- 
+ -- __old_username__ Previous chat username
+ -- 
+ -- __new_username__ New chat username
+ ChatEventUsernameChanged { new_username :: Maybe String, old_username :: Maybe String }  |
+ -- |
+ -- 
+ -- The chat photo was changed 
+ -- 
+ -- __old_photo__ Previous chat photo value; may be null
+ -- 
+ -- __new_photo__ New chat photo value; may be null
+ ChatEventPhotoChanged { new_photo :: Maybe Photo.Photo, old_photo :: Maybe Photo.Photo }  |
+ -- |
+ -- 
+ -- The can_invite_users permission of a supergroup chat was toggled 
+ -- 
+ -- __can_invite_users__ New value of can_invite_users permission
+ ChatEventInvitesToggled { can_invite_users :: Maybe Bool }  |
+ -- |
+ -- 
+ -- The linked chat of a supergroup was changed 
+ -- 
+ -- __old_linked_chat_id__ Previous supergroup linked chat identifier
+ -- 
+ -- __new_linked_chat_id__ New supergroup linked chat identifier
+ ChatEventLinkedChatChanged { new_linked_chat_id :: Maybe Int, old_linked_chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The slow_mode_delay setting of a supergroup was changed 
+ -- 
+ -- __old_slow_mode_delay__ Previous value of slow_mode_delay
+ -- 
+ -- __new_slow_mode_delay__ New value of slow_mode_delay
+ ChatEventSlowModeDelayChanged { new_slow_mode_delay :: Maybe Int, old_slow_mode_delay :: Maybe Int }  |
+ -- |
+ -- 
+ -- The sign_messages setting of a channel was toggled 
+ -- 
+ -- __sign_messages__ New value of sign_messages
+ ChatEventSignMessagesToggled { sign_messages :: Maybe Bool }  |
+ -- |
+ -- 
+ -- The supergroup sticker set was changed 
+ -- 
+ -- __old_sticker_set_id__ Previous identifier of the chat sticker set; 0 if none
+ -- 
+ -- __new_sticker_set_id__ New identifier of the chat sticker set; 0 if none
+ ChatEventStickerSetChanged { new_sticker_set_id :: Maybe Int, old_sticker_set_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The supergroup location was changed 
+ -- 
+ -- __old_location__ Previous location; may be null
+ -- 
+ -- __new_location__ New location; may be null
+ ChatEventLocationChanged { new_location :: Maybe ChatLocation.ChatLocation, old_location :: Maybe ChatLocation.ChatLocation }  |
+ -- |
+ -- 
+ -- The is_all_history_available setting of a supergroup was toggled 
+ -- 
+ -- __is_all_history_available__ New value of is_all_history_available
+ ChatEventIsAllHistoryAvailableToggled { is_all_history_available :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON ChatEventAction where
  toJSON (ChatEventMessageEdited { new_message = new_message, old_message = old_message }) =

@@ -11,8 +11,18 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Represents a payload of a callback query
 data CallbackQueryPayload = 
- CallbackQueryPayloadData { _data :: Maybe String }  
- | CallbackQueryPayloadGame { game_short_name :: Maybe String }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- The payload from a general callback button 
+ -- 
+ -- __data__ Data that was attached to the callback button
+ CallbackQueryPayloadData { _data :: Maybe String }  |
+ -- |
+ -- 
+ -- The payload from a game callback button 
+ -- 
+ -- __game_short_name__ A short name of the game that was attached to the callback button
+ CallbackQueryPayloadGame { game_short_name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CallbackQueryPayload where
  toJSON (CallbackQueryPayloadData { _data = _data }) =

@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.GameHighScore as GameHighScore
 -- 
 -- __scores__ A list of game high scores
 data GameHighScores = 
+
  GameHighScores { scores :: Maybe [GameHighScore.GameHighScore] }  deriving (Show, Eq)
 
 instance T.ToJSON GameHighScores where

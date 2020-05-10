@@ -11,11 +11,26 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes actions which should be possible to do through a chat action bar
 data ChatActionBar = 
- ChatActionBarReportSpam 
- | ChatActionBarReportUnrelatedLocation 
- | ChatActionBarReportAddBlock 
- | ChatActionBarAddContact 
- | ChatActionBarSharePhoneNumber deriving (Show, Eq)
+ -- |
+ -- 
+ -- The chat can be reported as spam using the method reportChat with the reason chatReportReasonSpam
+ ChatActionBarReportSpam |
+ -- |
+ -- 
+ -- The chat is a location-based supergroup, which can be reported as having unrelated location using the method reportChat with the reason chatReportReasonUnrelatedLocation
+ ChatActionBarReportUnrelatedLocation |
+ -- |
+ -- 
+ -- The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be added to the contact list using the method addContact, or the other user can be blocked using the method blockUser
+ ChatActionBarReportAddBlock |
+ -- |
+ -- 
+ -- The chat is a private or secret chat and the other user can be added to the contact list using the method addContact
+ ChatActionBarAddContact |
+ -- |
+ -- 
+ -- The chat is a private or secret chat with a mutual contact and the user's phone number can be shared with the other user using the method sharePhoneNumber
+ ChatActionBarSharePhoneNumber deriving (Show, Eq)
 
 instance T.ToJSON ChatActionBar where
  toJSON (ChatActionBarReportSpam {  }) =

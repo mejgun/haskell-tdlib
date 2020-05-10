@@ -29,6 +29,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __location__ Human-readable description of a country and a region, from which the user was logged in, based on the IP address
 data ConnectedWebsite = 
+
  ConnectedWebsite { location :: Maybe String, ip :: Maybe String, last_active_date :: Maybe Int, log_in_date :: Maybe Int, platform :: Maybe String, browser :: Maybe String, bot_user_id :: Maybe Int, domain_name :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ConnectedWebsite where

@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Deletes saved order info
 data DeleteSavedOrderInfo = 
+
  DeleteSavedOrderInfo deriving (Show, Eq)
 
 instance T.ToJSON DeleteSavedOrderInfo where

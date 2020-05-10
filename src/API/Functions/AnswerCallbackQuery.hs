@@ -21,6 +21,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __cache_time__ Time during which the result of the query can be cached, in seconds
 data AnswerCallbackQuery = 
+
  AnswerCallbackQuery { cache_time :: Maybe Int, url :: Maybe String, show_alert :: Maybe Bool, text :: Maybe String, callback_query_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON AnswerCallbackQuery where

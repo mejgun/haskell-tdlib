@@ -26,6 +26,7 @@ import {-# SOURCE #-} qualified API.SendMessageOptions as SendMessageOptions
 -- 
 -- __remove_caption__ True, if media captions of message copies needs to be removed. Ignored if send_copy is false
 data ForwardMessages = 
+
  ForwardMessages { remove_caption :: Maybe Bool, send_copy :: Maybe Bool, as_album :: Maybe Bool, options :: Maybe SendMessageOptions.SendMessageOptions, message_ids :: Maybe [Int], from_chat_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ForwardMessages where

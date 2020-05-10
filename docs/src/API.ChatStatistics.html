@@ -45,7 +45,8 @@
 </span><span id="line-45"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-46"></span><span class="hs-comment">-- __recent_message_interactions__ Detailed statistics about number of views and shares of recently sent messages</span><span>
 </span><span id="line-47"></span><span class="hs-keyword">data</span><span> </span><span id="ChatStatistics"><span class="annot"><a href="API.ChatStatistics.html#ChatStatistics"><span class="hs-identifier hs-var">ChatStatistics</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-48"></span><span> </span><span id="ChatStatistics"><span class="annot"><a href="API.ChatStatistics.html#ChatStatistics"><span class="hs-identifier hs-var">ChatStatistics</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="recent_message_interactions"><span class="annot"><span class="annottext">ChatStatistics -&gt; Maybe [ChatStatisticsMessageInteractionCounters]
+</span><span id="line-48"></span><span>
+</span><span id="line-49"></span><span> </span><span id="ChatStatistics"><span class="annot"><a href="API.ChatStatistics.html#ChatStatistics"><span class="hs-identifier hs-var">ChatStatistics</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="recent_message_interactions"><span class="annot"><span class="annottext">ChatStatistics -&gt; Maybe [ChatStatisticsMessageInteractionCounters]
 </span><a href="API.ChatStatistics.html#recent_message_interactions"><span class="hs-identifier hs-var hs-var">recent_message_interactions</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.ChatStatisticsMessageInteractionCounters.html#ChatStatisticsMessageInteractionCounters"><span class="hs-identifier hs-type">ChatStatisticsMessageInteractionCounters.ChatStatisticsMessageInteractionCounters</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="instant_view_interaction_graph"><span class="annot"><span class="annottext">ChatStatistics -&gt; Maybe StatisticsGraph
 </span><a href="API.ChatStatistics.html#instant_view_interaction_graph"><span class="hs-identifier hs-var hs-var">instant_view_interaction_graph</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.StatisticsGraph.html#StatisticsGraph"><span class="hs-identifier hs-type">StatisticsGraph.StatisticsGraph</span></a></span><span class="hs-special">,</span><span> </span><span id="message_interaction_graph"><span class="annot"><span class="annottext">ChatStatistics -&gt; Maybe StatisticsGraph
 </span><a href="API.ChatStatistics.html#message_interaction_graph"><span class="hs-identifier hs-var hs-var">message_interaction_graph</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.StatisticsGraph.html#StatisticsGraph"><span class="hs-identifier hs-type">StatisticsGraph.StatisticsGraph</span></a></span><span class="hs-special">,</span><span> </span><span id="language_graph"><span class="annot"><span class="annottext">ChatStatistics -&gt; Maybe StatisticsGraph
@@ -84,9 +85,9 @@ $c/= :: ChatStatistics -&gt; ChatStatistics -&gt; Bool
 == :: ChatStatistics -&gt; ChatStatistics -&gt; Bool
 $c== :: ChatStatistics -&gt; ChatStatistics -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-49"></span><span>
-</span><span id="line-50"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679453111"><span id="local-6989586621679453113"><span id="local-6989586621679453115"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ChatStatistics.html#ChatStatistics"><span class="hs-identifier hs-type">ChatStatistics</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-51"></span><span> </span><span id="local-6989586621679453109"><span class="annot"><span class="annottext">toJSON :: ChatStatistics -&gt; Value
+</span><span id="line-50"></span><span>
+</span><span id="line-51"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679453111"><span id="local-6989586621679453113"><span id="local-6989586621679453115"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ChatStatistics.html#ChatStatistics"><span class="hs-identifier hs-type">ChatStatistics</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-52"></span><span> </span><span id="local-6989586621679453109"><span class="annot"><span class="annottext">toJSON :: ChatStatistics -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.ChatStatistics.html#ChatStatistics"><span class="hs-identifier hs-type">ChatStatistics</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">recent_message_interactions :: ChatStatistics -&gt; Maybe [ChatStatisticsMessageInteractionCounters]
 </span><a href="API.ChatStatistics.html#recent_message_interactions"><span class="hs-identifier hs-var">recent_message_interactions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679453107"><span class="annot"><span class="annottext">Maybe [ChatStatisticsMessageInteractionCounters]
 </span><a href="#local-6989586621679453107"><span class="hs-identifier hs-var">recent_message_interactions</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">instant_view_interaction_graph :: ChatStatistics -&gt; Maybe StatisticsGraph
@@ -118,7 +119,7 @@ $c== :: ChatStatistics -&gt; ChatStatistics -&gt; Bool
 </span><a href="#local-6989586621679453094"><span class="hs-identifier hs-var">member_count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">period :: ChatStatistics -&gt; Maybe DateRange
 </span><a href="API.ChatStatistics.html#period"><span class="hs-identifier hs-var">period</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679453093"><span class="annot"><span class="annottext">Maybe DateRange
 </span><a href="#local-6989586621679453093"><span class="hs-identifier hs-var">period</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-52"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-53"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
@@ -168,28 +169,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe DateRange
 </span><a href="#local-6989586621679453093"><span class="hs-identifier hs-var">period</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-53"></span><span>
-</span><span id="line-54"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679453087"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ChatStatistics.html#ChatStatistics"><span class="hs-identifier hs-type">ChatStatistics</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-55"></span><span> </span><span id="local-6989586621679453085"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatStatistics
+</span><span id="line-54"></span><span>
+</span><span id="line-55"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679453087"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ChatStatistics.html#ChatStatistics"><span class="hs-identifier hs-type">ChatStatistics</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-56"></span><span> </span><span id="local-6989586621679453085"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatStatistics
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679453083"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679453083"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679453081"><span class="annot"><span class="annottext">obj :: Object
 </span><a href="#local-6989586621679453081"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-56"></span><span>  </span><span id="local-6989586621679453080"><span class="annot"><span class="annottext">String
+</span><span id="line-57"></span><span>  </span><span id="local-6989586621679453080"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679453080"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679453081"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-57"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-58"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679453080"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-58"></span><span>   </span><span class="hs-string">&quot;chatStatistics&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatStatistics
+</span><span id="line-59"></span><span>   </span><span class="hs-string">&quot;chatStatistics&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatStatistics
 </span><a href="#local-6989586621679453078"><span class="hs-identifier hs-var">parseChatStatistics</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679453083"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-59"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ChatStatistics
+</span><span id="line-60"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ChatStatistics
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-60"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-61"></span><span>   </span><span class="annot"><a href="#local-6989586621679453078"><span class="hs-identifier hs-type">parseChatStatistics</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatStatistics.html#ChatStatistics"><span class="hs-identifier hs-type">ChatStatistics</span></a></span><span>
-</span><span id="line-62"></span><span>   </span><span id="local-6989586621679453078"><span class="annot"><span class="annottext">parseChatStatistics :: Value -&gt; Parser ChatStatistics
+</span><span id="line-61"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-62"></span><span>   </span><span class="annot"><a href="#local-6989586621679453078"><span class="hs-identifier hs-type">parseChatStatistics</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatStatistics.html#ChatStatistics"><span class="hs-identifier hs-type">ChatStatistics</span></a></span><span>
+</span><span id="line-63"></span><span>   </span><span id="local-6989586621679453078"><span class="annot"><span class="annottext">parseChatStatistics :: Value -&gt; Parser ChatStatistics
 </span><a href="#local-6989586621679453078"><span class="hs-identifier hs-var hs-var">parseChatStatistics</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatStatistics)
 -&gt; Value
@@ -203,84 +204,84 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679453076"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679453076"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-63"></span><span>    </span><span id="local-6989586621679453075"><span class="annot"><span class="annottext">Maybe [ChatStatisticsMessageInteractionCounters]
+</span><span id="line-64"></span><span>    </span><span id="local-6989586621679453075"><span class="annot"><span class="annottext">Maybe [ChatStatisticsMessageInteractionCounters]
 </span><a href="#local-6989586621679453075"><span class="hs-identifier hs-var">recent_message_interactions</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679453076"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object
 -&gt; Text
 -&gt; Parser (Maybe [ChatStatisticsMessageInteractionCounters])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;recent_message_interactions&quot;</span></span><span>
-</span><span id="line-64"></span><span>    </span><span id="local-6989586621679453073"><span class="annot"><span class="annottext">Maybe StatisticsGraph
+</span><span id="line-65"></span><span>    </span><span id="local-6989586621679453073"><span class="annot"><span class="annottext">Maybe StatisticsGraph
 </span><a href="#local-6989586621679453073"><span class="hs-identifier hs-var">instant_view_interaction_graph</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679453076"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe StatisticsGraph)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;instant_view_interaction_graph&quot;</span></span><span>
-</span><span id="line-65"></span><span>    </span><span id="local-6989586621679453072"><span class="annot"><span class="annottext">Maybe StatisticsGraph
+</span><span id="line-66"></span><span>    </span><span id="local-6989586621679453072"><span class="annot"><span class="annottext">Maybe StatisticsGraph
 </span><a href="#local-6989586621679453072"><span class="hs-identifier hs-var">message_interaction_graph</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679453076"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe StatisticsGraph)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;message_interaction_graph&quot;</span></span><span>
-</span><span id="line-66"></span><span>    </span><span id="local-6989586621679453071"><span class="annot"><span class="annottext">Maybe StatisticsGraph
+</span><span id="line-67"></span><span>    </span><span id="local-6989586621679453071"><span class="annot"><span class="annottext">Maybe StatisticsGraph
 </span><a href="#local-6989586621679453071"><span class="hs-identifier hs-var">language_graph</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679453076"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe StatisticsGraph)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;language_graph&quot;</span></span><span>
-</span><span id="line-67"></span><span>    </span><span id="local-6989586621679453070"><span class="annot"><span class="annottext">Maybe StatisticsGraph
+</span><span id="line-68"></span><span>    </span><span id="local-6989586621679453070"><span class="annot"><span class="annottext">Maybe StatisticsGraph
 </span><a href="#local-6989586621679453070"><span class="hs-identifier hs-var">join_by_source_graph</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679453076"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe StatisticsGraph)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;join_by_source_graph&quot;</span></span><span>
-</span><span id="line-68"></span><span>    </span><span id="local-6989586621679453069"><span class="annot"><span class="annottext">Maybe StatisticsGraph
+</span><span id="line-69"></span><span>    </span><span id="local-6989586621679453069"><span class="annot"><span class="annottext">Maybe StatisticsGraph
 </span><a href="#local-6989586621679453069"><span class="hs-identifier hs-var">view_count_by_source_graph</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679453076"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe StatisticsGraph)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;view_count_by_source_graph&quot;</span></span><span>
-</span><span id="line-69"></span><span>    </span><span id="local-6989586621679453068"><span class="annot"><span class="annottext">Maybe StatisticsGraph
+</span><span id="line-70"></span><span>    </span><span id="local-6989586621679453068"><span class="annot"><span class="annottext">Maybe StatisticsGraph
 </span><a href="#local-6989586621679453068"><span class="hs-identifier hs-var">view_count_by_hour_graph</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679453076"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe StatisticsGraph)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;view_count_by_hour_graph&quot;</span></span><span>
-</span><span id="line-70"></span><span>    </span><span id="local-6989586621679453067"><span class="annot"><span class="annottext">Maybe StatisticsGraph
+</span><span id="line-71"></span><span>    </span><span id="local-6989586621679453067"><span class="annot"><span class="annottext">Maybe StatisticsGraph
 </span><a href="#local-6989586621679453067"><span class="hs-identifier hs-var">mute_graph</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679453076"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe StatisticsGraph)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;mute_graph&quot;</span></span><span>
-</span><span id="line-71"></span><span>    </span><span id="local-6989586621679453066"><span class="annot"><span class="annottext">Maybe StatisticsGraph
+</span><span id="line-72"></span><span>    </span><span id="local-6989586621679453066"><span class="annot"><span class="annottext">Maybe StatisticsGraph
 </span><a href="#local-6989586621679453066"><span class="hs-identifier hs-var">join_graph</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679453076"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe StatisticsGraph)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;join_graph&quot;</span></span><span>
-</span><span id="line-72"></span><span>    </span><span id="local-6989586621679453065"><span class="annot"><span class="annottext">Maybe StatisticsGraph
+</span><span id="line-73"></span><span>    </span><span id="local-6989586621679453065"><span class="annot"><span class="annottext">Maybe StatisticsGraph
 </span><a href="#local-6989586621679453065"><span class="hs-identifier hs-var">member_count_graph</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679453076"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe StatisticsGraph)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;member_count_graph&quot;</span></span><span>
-</span><span id="line-73"></span><span>    </span><span id="local-6989586621679453064"><span class="annot"><span class="annottext">Maybe Float
+</span><span id="line-74"></span><span>    </span><span id="local-6989586621679453064"><span class="annot"><span class="annottext">Maybe Float
 </span><a href="#local-6989586621679453064"><span class="hs-identifier hs-var">enabled_notifications_percentage</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679453076"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Float)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;enabled_notifications_percentage&quot;</span></span><span>
-</span><span id="line-74"></span><span>    </span><span id="local-6989586621679453063"><span class="annot"><span class="annottext">Maybe StatisticsValue
+</span><span id="line-75"></span><span>    </span><span id="local-6989586621679453063"><span class="annot"><span class="annottext">Maybe StatisticsValue
 </span><a href="#local-6989586621679453063"><span class="hs-identifier hs-var">mean_share_count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679453076"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe StatisticsValue)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;mean_share_count&quot;</span></span><span>
-</span><span id="line-75"></span><span>    </span><span id="local-6989586621679453062"><span class="annot"><span class="annottext">Maybe StatisticsValue
+</span><span id="line-76"></span><span>    </span><span id="local-6989586621679453062"><span class="annot"><span class="annottext">Maybe StatisticsValue
 </span><a href="#local-6989586621679453062"><span class="hs-identifier hs-var">mean_view_count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679453076"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe StatisticsValue)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;mean_view_count&quot;</span></span><span>
-</span><span id="line-76"></span><span>    </span><span id="local-6989586621679453061"><span class="annot"><span class="annottext">Maybe StatisticsValue
+</span><span id="line-77"></span><span>    </span><span id="local-6989586621679453061"><span class="annot"><span class="annottext">Maybe StatisticsValue
 </span><a href="#local-6989586621679453061"><span class="hs-identifier hs-var">member_count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679453076"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe StatisticsValue)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;member_count&quot;</span></span><span>
-</span><span id="line-77"></span><span>    </span><span id="local-6989586621679453060"><span class="annot"><span class="annottext">Maybe DateRange
+</span><span id="line-78"></span><span>    </span><span id="local-6989586621679453060"><span class="annot"><span class="annottext">Maybe DateRange
 </span><a href="#local-6989586621679453060"><span class="hs-identifier hs-var">period</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679453076"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe DateRange)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;period&quot;</span></span><span>
-</span><span id="line-78"></span><span>    </span><span class="annot"><span class="annottext">ChatStatistics -&gt; Parser ChatStatistics
+</span><span id="line-79"></span><span>    </span><span class="annot"><span class="annottext">ChatStatistics -&gt; Parser ChatStatistics
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ChatStatistics -&gt; Parser ChatStatistics)
 -&gt; ChatStatistics -&gt; Parser ChatStatistics

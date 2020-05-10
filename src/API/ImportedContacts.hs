@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __importer_count__ The number of users that imported the corresponding contact; 0 for already registered users or if unavailable
 data ImportedContacts = 
+
  ImportedContacts { importer_count :: Maybe [Int], user_ids :: Maybe [Int] }  deriving (Show, Eq)
 
 instance T.ToJSON ImportedContacts where

@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __sticker_set_ids__ Identifiers of installed sticker sets in the new correct order
 data ReorderInstalledStickerSets = 
+
  ReorderInstalledStickerSets { sticker_set_ids :: Maybe [Int], is_masks :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON ReorderInstalledStickerSets where

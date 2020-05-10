@@ -19,7 +19,8 @@
 </span><span id="line-19"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-20"></span><span class="hs-comment">-- __priority__ Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which uploadFile was called will be uploaded first</span><span>
 </span><span id="line-21"></span><span class="hs-keyword">data</span><span> </span><span id="UploadFile"><span class="annot"><a href="API.Functions.UploadFile.html#UploadFile"><span class="hs-identifier hs-var">UploadFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-22"></span><span> </span><span id="UploadFile"><span class="annot"><a href="API.Functions.UploadFile.html#UploadFile"><span class="hs-identifier hs-var">UploadFile</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="priority"><span class="annot"><span class="annottext">UploadFile -&gt; Maybe Int
+</span><span id="line-22"></span><span>
+</span><span id="line-23"></span><span> </span><span id="UploadFile"><span class="annot"><a href="API.Functions.UploadFile.html#UploadFile"><span class="hs-identifier hs-var">UploadFile</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="priority"><span class="annot"><span class="annottext">UploadFile -&gt; Maybe Int
 </span><a href="API.Functions.UploadFile.html#priority"><span class="hs-identifier hs-var hs-var">priority</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="file_type"><span class="annot"><span class="annottext">UploadFile -&gt; Maybe FileType
 </span><a href="API.Functions.UploadFile.html#file_type"><span class="hs-identifier hs-var hs-var">file_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.FileType.html#FileType"><span class="hs-identifier hs-type">FileType.FileType</span></a></span><span class="hs-special">,</span><span> </span><span id="file"><span class="annot"><span class="annottext">UploadFile -&gt; Maybe InputFile
 </span><a href="API.Functions.UploadFile.html#file"><span class="hs-identifier hs-var hs-var">file</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.InputFile.html#InputFile"><span class="hs-identifier hs-type">InputFile.InputFile</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679437477"><span id="local-6989586621679437479"><span id="local-6989586621679437481"><span class="annot"><span class="annottext">Int -&gt; UploadFile -&gt; ShowS
@@ -46,9 +47,9 @@ $c/= :: UploadFile -&gt; UploadFile -&gt; Bool
 == :: UploadFile -&gt; UploadFile -&gt; Bool
 $c== :: UploadFile -&gt; UploadFile -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679437464"><span id="local-6989586621679437466"><span id="local-6989586621679437468"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.UploadFile.html#UploadFile"><span class="hs-identifier hs-type">UploadFile</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span> </span><span id="local-6989586621679437462"><span class="annot"><span class="annottext">toJSON :: UploadFile -&gt; Value
+</span><span id="line-24"></span><span>
+</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679437464"><span id="local-6989586621679437466"><span id="local-6989586621679437468"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.UploadFile.html#UploadFile"><span class="hs-identifier hs-type">UploadFile</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span> </span><span id="local-6989586621679437462"><span class="annot"><span class="annottext">toJSON :: UploadFile -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.UploadFile.html#UploadFile"><span class="hs-identifier hs-type">UploadFile</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">priority :: UploadFile -&gt; Maybe Int
 </span><a href="API.Functions.UploadFile.html#priority"><span class="hs-identifier hs-var">priority</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437460"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679437460"><span class="hs-identifier hs-var">priority</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">file_type :: UploadFile -&gt; Maybe FileType
@@ -56,7 +57,7 @@ $c== :: UploadFile -&gt; UploadFile -&gt; Bool
 </span><a href="#local-6989586621679437459"><span class="hs-identifier hs-var">file_type</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">file :: UploadFile -&gt; Maybe InputFile
 </span><a href="API.Functions.UploadFile.html#file"><span class="hs-identifier hs-var">file</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679437458"><span class="annot"><span class="annottext">Maybe InputFile
 </span><a href="#local-6989586621679437458"><span class="hs-identifier hs-var">file</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-26"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-27"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
@@ -70,28 +71,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputFile
 </span><a href="#local-6989586621679437458"><span class="hs-identifier hs-var">file</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679437452"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.UploadFile.html#UploadFile"><span class="hs-identifier hs-type">UploadFile</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span> </span><span id="local-6989586621679437450"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser UploadFile
+</span><span id="line-28"></span><span>
+</span><span id="line-29"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679437452"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.UploadFile.html#UploadFile"><span class="hs-identifier hs-type">UploadFile</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-30"></span><span> </span><span id="local-6989586621679437450"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser UploadFile
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679437448"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679437448"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679437446"><span class="annot"><span class="annottext">obj :: Object
 </span><a href="#local-6989586621679437446"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-30"></span><span>  </span><span id="local-6989586621679437445"><span class="annot"><span class="annottext">String
+</span><span id="line-31"></span><span>  </span><span id="local-6989586621679437445"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679437445"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679437446"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-31"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-32"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679437445"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-32"></span><span>   </span><span class="hs-string">&quot;uploadFile&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UploadFile
+</span><span id="line-33"></span><span>   </span><span class="hs-string">&quot;uploadFile&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UploadFile
 </span><a href="#local-6989586621679437443"><span class="hs-identifier hs-var">parseUploadFile</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679437448"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-33"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser UploadFile
+</span><span id="line-34"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser UploadFile
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-34"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-35"></span><span>   </span><span class="annot"><a href="#local-6989586621679437443"><span class="hs-identifier hs-type">parseUploadFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.UploadFile.html#UploadFile"><span class="hs-identifier hs-type">UploadFile</span></a></span><span>
-</span><span id="line-36"></span><span>   </span><span id="local-6989586621679437443"><span class="annot"><span class="annottext">parseUploadFile :: Value -&gt; Parser UploadFile
+</span><span id="line-35"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-36"></span><span>   </span><span class="annot"><a href="#local-6989586621679437443"><span class="hs-identifier hs-type">parseUploadFile</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.UploadFile.html#UploadFile"><span class="hs-identifier hs-type">UploadFile</span></a></span><span>
+</span><span id="line-37"></span><span>   </span><span id="local-6989586621679437443"><span class="annot"><span class="annottext">parseUploadFile :: Value -&gt; Parser UploadFile
 </span><a href="#local-6989586621679437443"><span class="hs-identifier hs-var hs-var">parseUploadFile</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser UploadFile) -&gt; Value -&gt; Parser UploadFile
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
@@ -100,7 +101,7 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679437441"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679437441"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-37"></span><span>    </span><span id="local-6989586621679437440"><span class="annot"><span class="annottext">Maybe Int
+</span><span id="line-38"></span><span>    </span><span id="local-6989586621679437440"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679437440"><span class="hs-identifier hs-var">priority</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
@@ -114,17 +115,17 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="#local-6989586621679437441"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;priority&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-38"></span><span>    </span><span id="local-6989586621679437437"><span class="annot"><span class="annottext">Maybe FileType
+</span><span id="line-39"></span><span>    </span><span id="local-6989586621679437437"><span class="annot"><span class="annottext">Maybe FileType
 </span><a href="#local-6989586621679437437"><span class="hs-identifier hs-var">file_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679437441"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe FileType)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;file_type&quot;</span></span><span>
-</span><span id="line-39"></span><span>    </span><span id="local-6989586621679437436"><span class="annot"><span class="annottext">Maybe InputFile
+</span><span id="line-40"></span><span>    </span><span id="local-6989586621679437436"><span class="annot"><span class="annottext">Maybe InputFile
 </span><a href="#local-6989586621679437436"><span class="hs-identifier hs-var">file</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679437441"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe InputFile)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;file&quot;</span></span><span>
-</span><span id="line-40"></span><span>    </span><span class="annot"><span class="annottext">UploadFile -&gt; Parser UploadFile
+</span><span id="line-41"></span><span>    </span><span class="annot"><span class="annottext">UploadFile -&gt; Parser UploadFile
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(UploadFile -&gt; Parser UploadFile)
 -&gt; UploadFile -&gt; Parser UploadFile

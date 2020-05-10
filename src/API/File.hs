@@ -23,6 +23,7 @@ import {-# SOURCE #-} qualified API.LocalFile as LocalFile
 -- 
 -- __remote__ Information about the remote copy of the file
 data File = 
+
  File { remote :: Maybe RemoteFile.RemoteFile, local :: Maybe LocalFile.LocalFile, expected_size :: Maybe Int, size :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON File where

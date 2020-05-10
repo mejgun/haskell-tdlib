@@ -11,15 +11,62 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Contains the description of an error in a Telegram Passport element; for bots only
 data InputPassportElementErrorSource = 
- InputPassportElementErrorSourceUnspecified { element_hash :: Maybe String }  
- | InputPassportElementErrorSourceDataField { data_hash :: Maybe String, field_name :: Maybe String }  
- | InputPassportElementErrorSourceFrontSide { file_hash :: Maybe String }  
- | InputPassportElementErrorSourceReverseSide { file_hash :: Maybe String }  
- | InputPassportElementErrorSourceSelfie { file_hash :: Maybe String }  
- | InputPassportElementErrorSourceTranslationFile { file_hash :: Maybe String }  
- | InputPassportElementErrorSourceTranslationFiles { file_hashes :: Maybe [String] }  
- | InputPassportElementErrorSourceFile { file_hash :: Maybe String }  
- | InputPassportElementErrorSourceFiles { file_hashes :: Maybe [String] }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- The element contains an error in an unspecified place. The error will be considered resolved when new data is added 
+ -- 
+ -- __element_hash__ Current hash of the entire element
+ InputPassportElementErrorSourceUnspecified { element_hash :: Maybe String }  |
+ -- |
+ -- 
+ -- A data field contains an error. The error is considered resolved when the field's value changes 
+ -- 
+ -- __field_name__ Field name
+ -- 
+ -- __data_hash__ Current data hash
+ InputPassportElementErrorSourceDataField { data_hash :: Maybe String, field_name :: Maybe String }  |
+ -- |
+ -- 
+ -- The front side of the document contains an error. The error is considered resolved when the file with the front side of the document changes 
+ -- 
+ -- __file_hash__ Current hash of the file containing the front side
+ InputPassportElementErrorSourceFrontSide { file_hash :: Maybe String }  |
+ -- |
+ -- 
+ -- The reverse side of the document contains an error. The error is considered resolved when the file with the reverse side of the document changes 
+ -- 
+ -- __file_hash__ Current hash of the file containing the reverse side
+ InputPassportElementErrorSourceReverseSide { file_hash :: Maybe String }  |
+ -- |
+ -- 
+ -- The selfie contains an error. The error is considered resolved when the file with the selfie changes 
+ -- 
+ -- __file_hash__ Current hash of the file containing the selfie
+ InputPassportElementErrorSourceSelfie { file_hash :: Maybe String }  |
+ -- |
+ -- 
+ -- One of the files containing the translation of the document contains an error. The error is considered resolved when the file with the translation changes 
+ -- 
+ -- __file_hash__ Current hash of the file containing the translation
+ InputPassportElementErrorSourceTranslationFile { file_hash :: Maybe String }  |
+ -- |
+ -- 
+ -- The translation of the document contains an error. The error is considered resolved when the list of files changes 
+ -- 
+ -- __file_hashes__ Current hashes of all files with the translation
+ InputPassportElementErrorSourceTranslationFiles { file_hashes :: Maybe [String] }  |
+ -- |
+ -- 
+ -- The file contains an error. The error is considered resolved when the file changes 
+ -- 
+ -- __file_hash__ Current hash of the file which has the error
+ InputPassportElementErrorSourceFile { file_hash :: Maybe String }  |
+ -- |
+ -- 
+ -- The list of attached files contains an error. The error is considered resolved when the file list changes 
+ -- 
+ -- __file_hashes__ Current hashes of all attached files
+ InputPassportElementErrorSourceFiles { file_hashes :: Maybe [String] }  deriving (Show, Eq)
 
 instance T.ToJSON InputPassportElementErrorSource where
  toJSON (InputPassportElementErrorSourceUnspecified { element_hash = element_hash }) =

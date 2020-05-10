@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __x__ String to return
 data TestCallString = 
+
  TestCallString { x :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON TestCallString where

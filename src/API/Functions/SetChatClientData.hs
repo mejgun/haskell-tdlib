@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __client_data__ New value of client_data
 data SetChatClientData = 
+
  SetChatClientData { client_data :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatClientData where

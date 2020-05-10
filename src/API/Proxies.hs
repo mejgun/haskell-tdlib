@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.Proxy as Proxy
 -- 
 -- __proxies__ List of proxy servers
 data Proxies = 
+
  Proxies { proxies :: Maybe [Proxy.Proxy] }  deriving (Show, Eq)
 
 instance T.ToJSON Proxies where

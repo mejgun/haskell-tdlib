@@ -24,6 +24,7 @@ import {-# SOURCE #-} qualified API.Photo as Photo
 -- 
 -- __publish_date__ Point in time (Unix timestamp) when the article was published; 0 if unknown
 data PageBlockRelatedArticle = 
+
  PageBlockRelatedArticle { publish_date :: Maybe Int, author :: Maybe String, photo :: Maybe Photo.Photo, description :: Maybe String, title :: Maybe String, url :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON PageBlockRelatedArticle where

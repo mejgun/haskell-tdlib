@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __other_user_ids__ List of user identifiers of other users currently using the client
 data RequestQrCodeAuthentication = 
+
  RequestQrCodeAuthentication { other_user_ids :: Maybe [Int] }  deriving (Show, Eq)
 
 instance T.ToJSON RequestQrCodeAuthentication where

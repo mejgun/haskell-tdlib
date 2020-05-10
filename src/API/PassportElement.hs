@@ -15,19 +15,84 @@ import {-# SOURCE #-} qualified API.PersonalDocument as PersonalDocument
 -- 
 -- Contains information about a Telegram Passport element
 data PassportElement = 
- PassportElementPersonalDetails { personal_details :: Maybe PersonalDetails.PersonalDetails }  
- | PassportElementPassport { passport :: Maybe IdentityDocument.IdentityDocument }  
- | PassportElementDriverLicense { driver_license :: Maybe IdentityDocument.IdentityDocument }  
- | PassportElementIdentityCard { identity_card :: Maybe IdentityDocument.IdentityDocument }  
- | PassportElementInternalPassport { internal_passport :: Maybe IdentityDocument.IdentityDocument }  
- | PassportElementAddress { address :: Maybe Address.Address }  
- | PassportElementUtilityBill { utility_bill :: Maybe PersonalDocument.PersonalDocument }  
- | PassportElementBankStatement { bank_statement :: Maybe PersonalDocument.PersonalDocument }  
- | PassportElementRentalAgreement { rental_agreement :: Maybe PersonalDocument.PersonalDocument }  
- | PassportElementPassportRegistration { passport_registration :: Maybe PersonalDocument.PersonalDocument }  
- | PassportElementTemporaryRegistration { temporary_registration :: Maybe PersonalDocument.PersonalDocument }  
- | PassportElementPhoneNumber { phone_number :: Maybe String }  
- | PassportElementEmailAddress { email_address :: Maybe String }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's personal details 
+ -- 
+ -- __personal_details__ Personal details of the user
+ PassportElementPersonalDetails { personal_details :: Maybe PersonalDetails.PersonalDetails }  |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's passport 
+ -- 
+ -- __passport__ Passport
+ PassportElementPassport { passport :: Maybe IdentityDocument.IdentityDocument }  |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's driver license 
+ -- 
+ -- __driver_license__ Driver license
+ PassportElementDriverLicense { driver_license :: Maybe IdentityDocument.IdentityDocument }  |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's identity card 
+ -- 
+ -- __identity_card__ Identity card
+ PassportElementIdentityCard { identity_card :: Maybe IdentityDocument.IdentityDocument }  |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's internal passport 
+ -- 
+ -- __internal_passport__ Internal passport
+ PassportElementInternalPassport { internal_passport :: Maybe IdentityDocument.IdentityDocument }  |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's address 
+ -- 
+ -- __address__ Address
+ PassportElementAddress { address :: Maybe Address.Address }  |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's utility bill 
+ -- 
+ -- __utility_bill__ Utility bill
+ PassportElementUtilityBill { utility_bill :: Maybe PersonalDocument.PersonalDocument }  |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's bank statement 
+ -- 
+ -- __bank_statement__ Bank statement
+ PassportElementBankStatement { bank_statement :: Maybe PersonalDocument.PersonalDocument }  |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's rental agreement 
+ -- 
+ -- __rental_agreement__ Rental agreement
+ PassportElementRentalAgreement { rental_agreement :: Maybe PersonalDocument.PersonalDocument }  |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's passport registration pages 
+ -- 
+ -- __passport_registration__ Passport registration pages
+ PassportElementPassportRegistration { passport_registration :: Maybe PersonalDocument.PersonalDocument }  |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's temporary registration 
+ -- 
+ -- __temporary_registration__ Temporary registration
+ PassportElementTemporaryRegistration { temporary_registration :: Maybe PersonalDocument.PersonalDocument }  |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's phone number 
+ -- 
+ -- __phone_number__ Phone number
+ PassportElementPhoneNumber { phone_number :: Maybe String }  |
+ -- |
+ -- 
+ -- A Telegram Passport element containing the user's email address 
+ -- 
+ -- __email_address__ Email address
+ PassportElementEmailAddress { email_address :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON PassportElement where
  toJSON (PassportElementPersonalDetails { personal_details = personal_details }) =

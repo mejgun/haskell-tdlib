@@ -50,6 +50,7 @@ import {-# SOURCE #-} qualified API.ChatLocation as ChatLocation
 -- 
 -- __upgraded_from_max_message_id__ Identifier of the last message in the basic group from which supergroup was upgraded; 0 if none
 data SupergroupFullInfo = 
+
  SupergroupFullInfo { upgraded_from_max_message_id :: Maybe Int, upgraded_from_basic_group_id :: Maybe Int, invite_link :: Maybe String, location :: Maybe ChatLocation.ChatLocation, sticker_set_id :: Maybe Int, is_all_history_available :: Maybe Bool, can_view_statistics :: Maybe Bool, can_set_location :: Maybe Bool, can_set_sticker_set :: Maybe Bool, can_set_username :: Maybe Bool, can_get_members :: Maybe Bool, slow_mode_delay_expires_in :: Maybe Float, slow_mode_delay :: Maybe Int, linked_chat_id :: Maybe Int, banned_count :: Maybe Int, restricted_count :: Maybe Int, administrator_count :: Maybe Int, member_count :: Maybe Int, description :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SupergroupFullInfo where

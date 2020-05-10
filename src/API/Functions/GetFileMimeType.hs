@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __file_name__ The name of the file or path to the file
 data GetFileMimeType = 
+
  GetFileMimeType { file_name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetFileMimeType where

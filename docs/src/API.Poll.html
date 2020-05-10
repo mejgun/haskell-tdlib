@@ -33,7 +33,8 @@
 </span><span id="line-33"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-34"></span><span class="hs-comment">-- __is_closed__ True, if the poll is closed</span><span>
 </span><span id="line-35"></span><span class="hs-keyword">data</span><span> </span><span id="Poll"><span class="annot"><a href="API.Poll.html#Poll"><span class="hs-identifier hs-var">Poll</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-36"></span><span> </span><span id="Poll"><span class="annot"><a href="API.Poll.html#Poll"><span class="hs-identifier hs-var">Poll</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="is_closed"><span class="annot"><span class="annottext">Poll -&gt; Maybe Bool
+</span><span id="line-36"></span><span>
+</span><span id="line-37"></span><span> </span><span id="Poll"><span class="annot"><a href="API.Poll.html#Poll"><span class="hs-identifier hs-var">Poll</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="is_closed"><span class="annot"><span class="annottext">Poll -&gt; Maybe Bool
 </span><a href="API.Poll.html#is_closed"><span class="hs-identifier hs-var hs-var">is_closed</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="close_date"><span class="annot"><span class="annottext">Poll -&gt; Maybe Int
 </span><a href="API.Poll.html#close_date"><span class="hs-identifier hs-var hs-var">close_date</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="open_period"><span class="annot"><span class="annottext">Poll -&gt; Maybe Int
 </span><a href="API.Poll.html#open_period"><span class="hs-identifier hs-var hs-var">open_period</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="_type"><span class="annot"><span class="annottext">Poll -&gt; Maybe PollType
@@ -64,9 +65,9 @@ $c/= :: Poll -&gt; Poll -&gt; Bool
 == :: Poll -&gt; Poll -&gt; Bool
 $c== :: Poll -&gt; Poll -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-37"></span><span>
-</span><span id="line-38"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679448001"><span id="local-6989586621679448003"><span id="local-6989586621679448005"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Poll.html#Poll"><span class="hs-identifier hs-type">Poll</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-39"></span><span> </span><span id="local-6989586621679447999"><span class="annot"><span class="annottext">toJSON :: Poll -&gt; Value
+</span><span id="line-38"></span><span>
+</span><span id="line-39"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679448001"><span id="local-6989586621679448003"><span id="local-6989586621679448005"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Poll.html#Poll"><span class="hs-identifier hs-type">Poll</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-40"></span><span> </span><span id="local-6989586621679447999"><span class="annot"><span class="annottext">toJSON :: Poll -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Poll.html#Poll"><span class="hs-identifier hs-type">Poll</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_closed :: Poll -&gt; Maybe Bool
 </span><a href="API.Poll.html#is_closed"><span class="hs-identifier hs-var">is_closed</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679447997"><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679447997"><span class="hs-identifier hs-var">is_closed</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">close_date :: Poll -&gt; Maybe Int
@@ -88,7 +89,7 @@ $c== :: Poll -&gt; Poll -&gt; Bool
 </span><a href="#local-6989586621679447989"><span class="hs-identifier hs-var">question</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Poll -&gt; Maybe Int
 </span><a href="API.Poll.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679447988"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679447988"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-40"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-41"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
@@ -123,28 +124,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679447988"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-41"></span><span>
-</span><span id="line-42"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679447982"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Poll.html#Poll"><span class="hs-identifier hs-type">Poll</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-43"></span><span> </span><span id="local-6989586621679447980"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Poll
+</span><span id="line-42"></span><span>
+</span><span id="line-43"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679447982"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Poll.html#Poll"><span class="hs-identifier hs-type">Poll</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-44"></span><span> </span><span id="local-6989586621679447980"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Poll
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679447978"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679447978"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679447976"><span class="annot"><span class="annottext">obj :: Object
 </span><a href="#local-6989586621679447976"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-44"></span><span>  </span><span id="local-6989586621679447975"><span class="annot"><span class="annottext">String
+</span><span id="line-45"></span><span>  </span><span id="local-6989586621679447975"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679447975"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679447976"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-45"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-46"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679447975"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-46"></span><span>   </span><span class="hs-string">&quot;poll&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser Poll
+</span><span id="line-47"></span><span>   </span><span class="hs-string">&quot;poll&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser Poll
 </span><a href="#local-6989586621679447973"><span class="hs-identifier hs-var">parsePoll</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679447978"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-47"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser Poll
+</span><span id="line-48"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser Poll
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-48"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-49"></span><span>   </span><span class="annot"><a href="#local-6989586621679447973"><span class="hs-identifier hs-type">parsePoll</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Poll.html#Poll"><span class="hs-identifier hs-type">Poll</span></a></span><span>
-</span><span id="line-50"></span><span>   </span><span id="local-6989586621679447973"><span class="annot"><span class="annottext">parsePoll :: Value -&gt; Parser Poll
+</span><span id="line-49"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-50"></span><span>   </span><span class="annot"><a href="#local-6989586621679447973"><span class="hs-identifier hs-type">parsePoll</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Poll.html#Poll"><span class="hs-identifier hs-type">Poll</span></a></span><span>
+</span><span id="line-51"></span><span>   </span><span id="local-6989586621679447973"><span class="annot"><span class="annottext">parsePoll :: Value -&gt; Parser Poll
 </span><a href="#local-6989586621679447973"><span class="hs-identifier hs-var hs-var">parsePoll</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Poll) -&gt; Value -&gt; Parser Poll
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;Poll&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser Poll) -&gt; Value -&gt; Parser Poll)
@@ -152,12 +153,12 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679447971"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679447971"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-51"></span><span>    </span><span id="local-6989586621679447970"><span class="annot"><span class="annottext">Maybe Bool
+</span><span id="line-52"></span><span>    </span><span id="local-6989586621679447970"><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679447970"><span class="hs-identifier hs-var">is_closed</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679447971"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_closed&quot;</span></span><span>
-</span><span id="line-52"></span><span>    </span><span id="local-6989586621679447968"><span class="annot"><span class="annottext">Maybe Int
+</span><span id="line-53"></span><span>    </span><span id="local-6989586621679447968"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679447968"><span class="hs-identifier hs-var">close_date</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
@@ -171,7 +172,7 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="#local-6989586621679447971"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;close_date&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-53"></span><span>    </span><span id="local-6989586621679447966"><span class="annot"><span class="annottext">Maybe Int
+</span><span id="line-54"></span><span>    </span><span id="local-6989586621679447966"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679447966"><span class="hs-identifier hs-var">open_period</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
@@ -185,22 +186,22 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="#local-6989586621679447971"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;open_period&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-54"></span><span>    </span><span id="local-6989586621679447965"><span class="annot"><span class="annottext">Maybe PollType
+</span><span id="line-55"></span><span>    </span><span id="local-6989586621679447965"><span class="annot"><span class="annottext">Maybe PollType
 </span><a href="#local-6989586621679447965"><span class="hs-identifier hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679447971"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe PollType)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;type&quot;</span></span><span>
-</span><span id="line-55"></span><span>    </span><span id="local-6989586621679447964"><span class="annot"><span class="annottext">Maybe Bool
+</span><span id="line-56"></span><span>    </span><span id="local-6989586621679447964"><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679447964"><span class="hs-identifier hs-var">is_anonymous</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679447971"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_anonymous&quot;</span></span><span>
-</span><span id="line-56"></span><span>    </span><span id="local-6989586621679447963"><span class="annot"><span class="annottext">Maybe [Int]
+</span><span id="line-57"></span><span>    </span><span id="local-6989586621679447963"><span class="annot"><span class="annottext">Maybe [Int]
 </span><a href="#local-6989586621679447963"><span class="hs-identifier hs-var">recent_voter_user_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679447971"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Int])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;recent_voter_user_ids&quot;</span></span><span>
-</span><span id="line-57"></span><span>    </span><span id="local-6989586621679447962"><span class="annot"><span class="annottext">Maybe Int
+</span><span id="line-58"></span><span>    </span><span id="local-6989586621679447962"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679447962"><span class="hs-identifier hs-var">total_voter_count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
@@ -214,17 +215,17 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="#local-6989586621679447971"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;total_voter_count&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-58"></span><span>    </span><span id="local-6989586621679447961"><span class="annot"><span class="annottext">Maybe [PollOption]
+</span><span id="line-59"></span><span>    </span><span id="local-6989586621679447961"><span class="annot"><span class="annottext">Maybe [PollOption]
 </span><a href="#local-6989586621679447961"><span class="hs-identifier hs-var">options</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679447971"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PollOption])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;options&quot;</span></span><span>
-</span><span id="line-59"></span><span>    </span><span id="local-6989586621679447960"><span class="annot"><span class="annottext">Maybe String
+</span><span id="line-60"></span><span>    </span><span id="local-6989586621679447960"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679447960"><span class="hs-identifier hs-var">question</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679447971"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;question&quot;</span></span><span>
-</span><span id="line-60"></span><span>    </span><span id="local-6989586621679447959"><span class="annot"><span class="annottext">Maybe Int
+</span><span id="line-61"></span><span>    </span><span id="local-6989586621679447959"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679447959"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
@@ -238,7 +239,7 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="#local-6989586621679447971"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-61"></span><span>    </span><span class="annot"><span class="annottext">Poll -&gt; Parser Poll
+</span><span id="line-62"></span><span>    </span><span class="annot"><span class="annottext">Poll -&gt; Parser Poll
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(Poll -&gt; Parser Poll) -&gt; Poll -&gt; Parser Poll
 forall a b. (a -&gt; b) -&gt; a -&gt; b

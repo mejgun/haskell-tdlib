@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __reason__ The reason why the account was deleted; optional
 data DeleteAccount = 
+
  DeleteAccount { reason :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON DeleteAccount where

@@ -17,6 +17,7 @@ import {-# SOURCE #-} qualified API.PassportElement as PassportElement
 -- 
 -- __errors__ Errors in the elements that are already available
 data PassportElementsWithErrors = 
+
  PassportElementsWithErrors { errors :: Maybe [PassportElementError.PassportElementError], elements :: Maybe [PassportElement.PassportElement] }  deriving (Show, Eq)
 
 instance T.ToJSON PassportElementsWithErrors where

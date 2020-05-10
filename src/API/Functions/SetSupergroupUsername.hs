@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __username__ New value of the username. Use an empty string to remove the username
 data SetSupergroupUsername = 
+
  SetSupergroupUsername { username :: Maybe String, supergroup_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetSupergroupUsername where

@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __statistics__ Database statistics in an unspecified human-readable format
 data DatabaseStatistics = 
+
  DatabaseStatistics { statistics :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON DatabaseStatistics where

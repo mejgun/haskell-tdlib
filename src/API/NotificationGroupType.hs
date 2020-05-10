@@ -11,10 +11,22 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes the type of notifications in a notification group
 data NotificationGroupType = 
- NotificationGroupTypeMessages 
- | NotificationGroupTypeMentions 
- | NotificationGroupTypeSecretChat 
- | NotificationGroupTypeCalls deriving (Show, Eq)
+ -- |
+ -- 
+ -- A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with ordinary unread messages
+ NotificationGroupTypeMessages |
+ -- |
+ -- 
+ -- A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with unread mentions of the current user, replies to their messages, or a pinned message
+ NotificationGroupTypeMentions |
+ -- |
+ -- 
+ -- A group containing a notification of type notificationTypeNewSecretChat
+ NotificationGroupTypeSecretChat |
+ -- |
+ -- 
+ -- A group containing notifications of type notificationTypeNewCall
+ NotificationGroupTypeCalls deriving (Show, Eq)
 
 instance T.ToJSON NotificationGroupType where
  toJSON (NotificationGroupTypeMessages {  }) =

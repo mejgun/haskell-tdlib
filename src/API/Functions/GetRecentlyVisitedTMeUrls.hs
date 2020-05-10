@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __referrer__ Google Play referrer to identify the user
 data GetRecentlyVisitedTMeUrls = 
+
  GetRecentlyVisitedTMeUrls { referrer :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetRecentlyVisitedTMeUrls where

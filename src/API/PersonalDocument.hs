@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.DatedFile as DatedFile
 -- 
 -- __translation__ List of files containing a certified English translation of the document
 data PersonalDocument = 
+
  PersonalDocument { translation :: Maybe [DatedFile.DatedFile], files :: Maybe [DatedFile.DatedFile] }  deriving (Show, Eq)
 
 instance T.ToJSON PersonalDocument where

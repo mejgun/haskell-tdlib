@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.LogStream as LogStream
 -- 
 -- __log_stream__ New log stream
 data SetLogStream = 
+
  SetLogStream { log_stream :: Maybe LogStream.LogStream }  deriving (Show, Eq)
 
 instance T.ToJSON SetLogStream where

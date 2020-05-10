@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.File as File
 -- 
 -- __big__ A big (640x640) user profile photo. The file can be downloaded only before the photo is changed
 data ProfilePhoto = 
+
  ProfilePhoto { big :: Maybe File.File, small :: Maybe File.File, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ProfilePhoto where

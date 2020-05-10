@@ -23,18 +23,134 @@ import {-# SOURCE #-} qualified API.VoiceNote as VoiceNote
 -- 
 -- Represents a single result of an inline query
 data InlineQueryResult = 
- InlineQueryResultArticle { thumbnail :: Maybe PhotoSize.PhotoSize, description :: Maybe String, title :: Maybe String, hide_url :: Maybe Bool, url :: Maybe String, _id :: Maybe String }  
- | InlineQueryResultContact { thumbnail :: Maybe PhotoSize.PhotoSize, contact :: Maybe Contact.Contact, _id :: Maybe String }  
- | InlineQueryResultLocation { thumbnail :: Maybe PhotoSize.PhotoSize, title :: Maybe String, location :: Maybe Location.Location, _id :: Maybe String }  
- | InlineQueryResultVenue { thumbnail :: Maybe PhotoSize.PhotoSize, venue :: Maybe Venue.Venue, _id :: Maybe String }  
- | InlineQueryResultGame { game :: Maybe Game.Game, _id :: Maybe String }  
- | InlineQueryResultAnimation { title :: Maybe String, animation :: Maybe Animation.Animation, _id :: Maybe String }  
- | InlineQueryResultAudio { audio :: Maybe Audio.Audio, _id :: Maybe String }  
- | InlineQueryResultDocument { description :: Maybe String, title :: Maybe String, document :: Maybe Document.Document, _id :: Maybe String }  
- | InlineQueryResultPhoto { description :: Maybe String, title :: Maybe String, photo :: Maybe Photo.Photo, _id :: Maybe String }  
- | InlineQueryResultSticker { sticker :: Maybe Sticker.Sticker, _id :: Maybe String }  
- | InlineQueryResultVideo { description :: Maybe String, title :: Maybe String, video :: Maybe Video.Video, _id :: Maybe String }  
- | InlineQueryResultVoiceNote { title :: Maybe String, voice_note :: Maybe VoiceNote.VoiceNote, _id :: Maybe String }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- Represents a link to an article or web page 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __url__ URL of the result, if it exists
+ -- 
+ -- __hide_url__ True, if the URL must be not shown
+ -- 
+ -- __title__ Title of the result
+ -- 
+ -- __param_description__ A short description of the result
+ -- 
+ -- __thumbnail__ Result thumbnail; may be null
+ InlineQueryResultArticle { thumbnail :: Maybe PhotoSize.PhotoSize, description :: Maybe String, title :: Maybe String, hide_url :: Maybe Bool, url :: Maybe String, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents a user contact 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __contact__ A user contact
+ -- 
+ -- __thumbnail__ Result thumbnail; may be null
+ InlineQueryResultContact { thumbnail :: Maybe PhotoSize.PhotoSize, contact :: Maybe Contact.Contact, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents a point on the map 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __location__ Location result
+ -- 
+ -- __title__ Title of the result
+ -- 
+ -- __thumbnail__ Result thumbnail; may be null
+ InlineQueryResultLocation { thumbnail :: Maybe PhotoSize.PhotoSize, title :: Maybe String, location :: Maybe Location.Location, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents information about a venue 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __venue__ Venue result
+ -- 
+ -- __thumbnail__ Result thumbnail; may be null
+ InlineQueryResultVenue { thumbnail :: Maybe PhotoSize.PhotoSize, venue :: Maybe Venue.Venue, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents information about a game 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __game__ Game result
+ InlineQueryResultGame { game :: Maybe Game.Game, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents an animation file 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __animation__ Animation file
+ -- 
+ -- __title__ Animation title
+ InlineQueryResultAnimation { title :: Maybe String, animation :: Maybe Animation.Animation, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents an audio file 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __audio__ Audio file
+ InlineQueryResultAudio { audio :: Maybe Audio.Audio, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents a document 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __document__ Document
+ -- 
+ -- __title__ Document title
+ -- 
+ -- __param_description__ Document description
+ InlineQueryResultDocument { description :: Maybe String, title :: Maybe String, document :: Maybe Document.Document, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents a photo 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __photo__ Photo
+ -- 
+ -- __title__ Title of the result, if known
+ -- 
+ -- __param_description__ A short description of the result, if known
+ InlineQueryResultPhoto { description :: Maybe String, title :: Maybe String, photo :: Maybe Photo.Photo, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents a sticker 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __sticker__ Sticker
+ InlineQueryResultSticker { sticker :: Maybe Sticker.Sticker, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents a video 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __video__ Video
+ -- 
+ -- __title__ Title of the video
+ -- 
+ -- __param_description__ Description of the video
+ InlineQueryResultVideo { description :: Maybe String, title :: Maybe String, video :: Maybe Video.Video, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents a voice note 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __voice_note__ Voice note
+ -- 
+ -- __title__ Title of the voice note
+ InlineQueryResultVoiceNote { title :: Maybe String, voice_note :: Maybe VoiceNote.VoiceNote, _id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON InlineQueryResult where
  toJSON (InlineQueryResultArticle { thumbnail = thumbnail, description = description, title = title, hide_url = hide_url, url = url, _id = _id }) =

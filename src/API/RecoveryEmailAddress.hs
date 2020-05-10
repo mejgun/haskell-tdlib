@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __recovery_email_address__ Recovery email address
 data RecoveryEmailAddress = 
+
  RecoveryEmailAddress { recovery_email_address :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON RecoveryEmailAddress where

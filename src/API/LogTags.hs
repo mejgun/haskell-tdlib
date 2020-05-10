@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __tags__ List of log tags
 data LogTags = 
+
  LogTags { tags :: Maybe [String] }  deriving (Show, Eq)
 
 instance T.ToJSON LogTags where

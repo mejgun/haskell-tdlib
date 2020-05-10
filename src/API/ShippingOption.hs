@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.LabeledPricePart as LabeledPricePart
 -- 
 -- __price_parts__ A list of objects used to calculate the total shipping costs
 data ShippingOption = 
+
  ShippingOption { price_parts :: Maybe [LabeledPricePart.LabeledPricePart], title :: Maybe String, _id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON ShippingOption where

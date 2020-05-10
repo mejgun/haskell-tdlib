@@ -24,6 +24,7 @@ import {-# SOURCE #-} qualified API.SendMessageOptions as SendMessageOptions
 -- 
 -- __input_message_content__ The content of the message to be sent
 data SendMessage = 
+
  SendMessage { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, options :: Maybe SendMessageOptions.SendMessageOptions, reply_to_message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendMessage where

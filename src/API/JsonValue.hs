@@ -12,12 +12,40 @@ import {-# SOURCE #-} qualified API.JsonObjectMember as JsonObjectMember
 -- 
 -- Represents a JSON value
 data JsonValue = 
- JsonValueNull 
- | JsonValueBoolean { __value :: Maybe Bool }  
- | JsonValueNumber { _value :: Maybe Float }  
- | JsonValueString { value :: Maybe String }  
- | JsonValueArray { values :: Maybe [JsonValue] }  
- | JsonValueObject { members :: Maybe [JsonObjectMember.JsonObjectMember] }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- Represents a null JSON value
+ JsonValueNull |
+ -- |
+ -- 
+ -- Represents a boolean JSON value 
+ -- 
+ -- __value__ The value
+ JsonValueBoolean { __value :: Maybe Bool }  |
+ -- |
+ -- 
+ -- Represents a numeric JSON value 
+ -- 
+ -- __value__ The value
+ JsonValueNumber { _value :: Maybe Float }  |
+ -- |
+ -- 
+ -- Represents a string JSON value 
+ -- 
+ -- __value__ The value
+ JsonValueString { value :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents a JSON array 
+ -- 
+ -- __values__ The list of array elements
+ JsonValueArray { values :: Maybe [JsonValue] }  |
+ -- |
+ -- 
+ -- Represents a JSON object 
+ -- 
+ -- __members__ The list of object members
+ JsonValueObject { members :: Maybe [JsonObjectMember.JsonObjectMember] }  deriving (Show, Eq)
 
 instance T.ToJSON JsonValue where
  toJSON (JsonValueNull {  }) =

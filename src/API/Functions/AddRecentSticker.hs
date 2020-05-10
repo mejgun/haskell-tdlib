@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- 
 -- __sticker__ Sticker file to add
 data AddRecentSticker = 
+
  AddRecentSticker { sticker :: Maybe InputFile.InputFile, is_attached :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON AddRecentSticker where

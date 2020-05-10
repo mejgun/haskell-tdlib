@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __text__ The text in which to look for entites
 data GetTextEntities = 
+
  GetTextEntities { text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetTextEntities where

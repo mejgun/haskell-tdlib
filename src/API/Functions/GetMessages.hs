@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __message_ids__ Identifiers of the messages to get
 data GetMessages = 
+
  GetMessages { message_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetMessages where

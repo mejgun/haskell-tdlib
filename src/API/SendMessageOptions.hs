@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.MessageSchedulingState as MessageSchedulingS
 -- 
 -- __scheduling_state__ Message scheduling state. Messages sent to a secret chat, live location messages and self-destructing messages can't be scheduled
 data SendMessageOptions = 
+
  SendMessageOptions { scheduling_state :: Maybe MessageSchedulingState.MessageSchedulingState, from_background :: Maybe Bool, disable_notification :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON SendMessageOptions where

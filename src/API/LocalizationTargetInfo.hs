@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.LanguagePackInfo as LanguagePackInfo
 -- 
 -- __language_packs__ List of available language packs for this application
 data LocalizationTargetInfo = 
+
  LocalizationTargetInfo { language_packs :: Maybe [LanguagePackInfo.LanguagePackInfo] }  deriving (Show, Eq)
 
 instance T.ToJSON LocalizationTargetInfo where

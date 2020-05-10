@@ -11,8 +11,22 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Contains information about the sending state of the message
 data MessageSendingState = 
- MessageSendingStatePending 
- | MessageSendingStateFailed { retry_after :: Maybe Float, can_retry :: Maybe Bool, error_message :: Maybe String, error_code :: Maybe Int }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- The message is being sent now, but has not yet been delivered to the server
+ MessageSendingStatePending |
+ -- |
+ -- 
+ -- The message failed to be sent 
+ -- 
+ -- __error_code__ An error code; 0 if unknown
+ -- 
+ -- __error_message__ Error message
+ -- 
+ -- __can_retry__ True, if the message can be re-sent
+ -- 
+ -- __retry_after__ Time left before the message can be re-sent, in seconds. No update is sent when this field changes
+ MessageSendingStateFailed { retry_after :: Maybe Float, can_retry :: Maybe Bool, error_message :: Maybe String, error_code :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON MessageSendingState where
  toJSON (MessageSendingStatePending {  }) =

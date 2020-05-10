@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Returns information about currently used log stream for internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously
 data GetLogStream = 
+
  GetLogStream deriving (Show, Eq)
 
 instance T.ToJSON GetLogStream where

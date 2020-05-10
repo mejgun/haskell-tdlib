@@ -22,6 +22,7 @@ import {-# SOURCE #-} qualified API.EmailAddressAuthenticationCodeInfo as EmailA
 -- 
 -- __recovery_email_address_code_info__ Information about the recovery email address to which the confirmation email was sent; may be null
 data PasswordState = 
+
  PasswordState { recovery_email_address_code_info :: Maybe EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo, has_passport_data :: Maybe Bool, has_recovery_email_address :: Maybe Bool, password_hint :: Maybe String, has_password :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON PasswordState where

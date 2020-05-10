@@ -28,6 +28,7 @@ import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 -- 
 -- __animation__ Game animation; may be null
 data Game = 
+
  Game { animation :: Maybe Animation.Animation, photo :: Maybe Photo.Photo, description :: Maybe String, text :: Maybe FormattedText.FormattedText, title :: Maybe String, short_name :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Game where

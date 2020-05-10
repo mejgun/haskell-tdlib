@@ -23,6 +23,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __only_local__ If true, returns only messages that are available locally without sending network requests
 data GetChatHistory = 
+
  GetChatHistory { only_local :: Maybe Bool, limit :: Maybe Int, offset :: Maybe Int, from_message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetChatHistory where

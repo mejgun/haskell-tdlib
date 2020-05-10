@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.Contact as Contact
 -- 
 -- __contacts__ The list of contacts to import or edit; contacts' vCard are ignored and are not imported
 data ImportContacts = 
+
  ImportContacts { contacts :: Maybe [Contact.Contact] }  deriving (Show, Eq)
 
 instance T.ToJSON ImportContacts where

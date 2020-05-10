@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __seconds__ Number of seconds before the function returns
 data SetAlarm = 
+
  SetAlarm { seconds :: Maybe Float }  deriving (Show, Eq)
 
 instance T.ToJSON SetAlarm where

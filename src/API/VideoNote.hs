@@ -24,6 +24,7 @@ import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 -- 
 -- __video__ File containing the video
 data VideoNote = 
+
  VideoNote { video :: Maybe File.File, thumbnail :: Maybe PhotoSize.PhotoSize, minithumbnail :: Maybe Minithumbnail.Minithumbnail, _length :: Maybe Int, duration :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON VideoNote where

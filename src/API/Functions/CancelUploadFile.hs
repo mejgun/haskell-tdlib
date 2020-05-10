@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __file_id__ Identifier of the file to stop uploading
 data CancelUploadFile = 
+
  CancelUploadFile { file_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CancelUploadFile where

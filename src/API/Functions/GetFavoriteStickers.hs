@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Returns favorite stickers
 data GetFavoriteStickers = 
+
  GetFavoriteStickers deriving (Show, Eq)
 
 instance T.ToJSON GetFavoriteStickers where

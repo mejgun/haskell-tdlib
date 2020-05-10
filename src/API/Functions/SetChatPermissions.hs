@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.ChatPermissions as ChatPermissions
 -- 
 -- __permissions__ New non-administrator members permissions in the chat
 data SetChatPermissions = 
+
  SetChatPermissions { permissions :: Maybe ChatPermissions.ChatPermissions, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatPermissions where

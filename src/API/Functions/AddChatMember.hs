@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __forward_limit__ The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels
 data AddChatMember = 
+
  AddChatMember { forward_limit :: Maybe Int, user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON AddChatMember where

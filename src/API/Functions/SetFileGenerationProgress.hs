@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __local_prefix_size__ The number of bytes already generated
 data SetFileGenerationProgress = 
+
  SetFileGenerationProgress { local_prefix_size :: Maybe Int, expected_size :: Maybe Int, generation_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetFileGenerationProgress where

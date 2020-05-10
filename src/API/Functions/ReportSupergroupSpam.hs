@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __message_ids__ Identifiers of messages sent in the supergroup by the user. This list must be non-empty
 data ReportSupergroupSpam = 
+
  ReportSupergroupSpam { message_ids :: Maybe [Int], user_id :: Maybe Int, supergroup_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ReportSupergroupSpam where

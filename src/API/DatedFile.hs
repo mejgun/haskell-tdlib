@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.File as File
 -- 
 -- __date__ Point in time (Unix timestamp) when the file was uploaded
 data DatedFile = 
+
  DatedFile { date :: Maybe Int, file :: Maybe File.File }  deriving (Show, Eq)
 
 instance T.ToJSON DatedFile where

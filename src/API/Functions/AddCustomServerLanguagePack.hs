@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __language_pack_id__ Identifier of a language pack to be added; may be different from a name that is used in an "https://t.me/setlanguage/" link
 data AddCustomServerLanguagePack = 
+
  AddCustomServerLanguagePack { language_pack_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON AddCustomServerLanguagePack where

@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __valid_for__ Time left before the temporary password expires, in seconds
 data TemporaryPasswordState = 
+
  TemporaryPasswordState { valid_for :: Maybe Int, has_password :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON TemporaryPasswordState where

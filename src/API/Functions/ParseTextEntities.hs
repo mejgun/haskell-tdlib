@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.TextParseMode as TextParseMode
 -- 
 -- __parse_mode__ Text parse mode
 data ParseTextEntities = 
+
  ParseTextEntities { parse_mode :: Maybe TextParseMode.TextParseMode, text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON ParseTextEntities where

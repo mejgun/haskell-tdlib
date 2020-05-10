@@ -11,9 +11,18 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes a horizontal alignment of a table cell content
 data PageBlockHorizontalAlignment = 
- PageBlockHorizontalAlignmentLeft 
- | PageBlockHorizontalAlignmentCenter 
- | PageBlockHorizontalAlignmentRight deriving (Show, Eq)
+ -- |
+ -- 
+ -- The content should be left-aligned
+ PageBlockHorizontalAlignmentLeft |
+ -- |
+ -- 
+ -- The content should be center-aligned
+ PageBlockHorizontalAlignmentCenter |
+ -- |
+ -- 
+ -- The content should be right-aligned
+ PageBlockHorizontalAlignmentRight deriving (Show, Eq)
 
 instance T.ToJSON PageBlockHorizontalAlignment where
  toJSON (PageBlockHorizontalAlignmentLeft {  }) =

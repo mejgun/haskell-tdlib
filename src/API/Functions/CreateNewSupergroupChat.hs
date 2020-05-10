@@ -20,6 +20,7 @@ import {-# SOURCE #-} qualified API.ChatLocation as ChatLocation
 -- 
 -- __location__ Chat location if a location-based supergroup is being created
 data CreateNewSupergroupChat = 
+
  CreateNewSupergroupChat { location :: Maybe ChatLocation.ChatLocation, description :: Maybe String, is_channel :: Maybe Bool, title :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CreateNewSupergroupChat where

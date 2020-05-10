@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.Session as Session
 -- 
 -- __sessions__ List of sessions
 data Sessions = 
+
  Sessions { sessions :: Maybe [Session.Session] }  deriving (Show, Eq)
 
 instance T.ToJSON Sessions where

@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 -- 
 -- __reply_markup__ The new message reply markup; for bots only
 data StopPoll = 
+
  StopPoll { reply_markup :: Maybe ReplyMarkup.ReplyMarkup, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON StopPoll where

@@ -13,17 +13,66 @@ import {-# SOURCE #-} qualified API.TermsOfService as TermsOfService
 -- 
 -- Represents the current authorization state of the client
 data AuthorizationState = 
- AuthorizationStateWaitTdlibParameters 
- | AuthorizationStateWaitEncryptionKey { is_encrypted :: Maybe Bool }  
- | AuthorizationStateWaitPhoneNumber 
- | AuthorizationStateWaitCode { code_info :: Maybe AuthenticationCodeInfo.AuthenticationCodeInfo }  
- | AuthorizationStateWaitOtherDeviceConfirmation { link :: Maybe String }  
- | AuthorizationStateWaitRegistration { terms_of_service :: Maybe TermsOfService.TermsOfService }  
- | AuthorizationStateWaitPassword { recovery_email_address_pattern :: Maybe String, has_recovery_email_address :: Maybe Bool, password_hint :: Maybe String }  
- | AuthorizationStateReady 
- | AuthorizationStateLoggingOut 
- | AuthorizationStateClosing 
- | AuthorizationStateClosed deriving (Show, Eq)
+ -- |
+ -- 
+ -- TDLib needs TdlibParameters for initialization
+ AuthorizationStateWaitTdlibParameters |
+ -- |
+ -- 
+ -- TDLib needs an encryption key to decrypt the local database 
+ -- 
+ -- __is_encrypted__ True, if the database is currently encrypted
+ AuthorizationStateWaitEncryptionKey { is_encrypted :: Maybe Bool }  |
+ -- |
+ -- 
+ -- TDLib needs the user's phone number to authorize. Call `setAuthenticationPhoneNumber` to provide the phone number, or use `requestQrCodeAuthentication`, or `checkAuthenticationBotToken` for other authentication options
+ AuthorizationStateWaitPhoneNumber |
+ -- |
+ -- 
+ -- TDLib needs the user's authentication code to authorize 
+ -- 
+ -- __code_info__ Information about the authorization code that was sent
+ AuthorizationStateWaitCode { code_info :: Maybe AuthenticationCodeInfo.AuthenticationCodeInfo }  |
+ -- |
+ -- 
+ -- The user needs to confirm authorization on another logged in device by scanning a QR code with the provided link 
+ -- 
+ -- __link__ A tg:// URL for the QR code. The link will be updated frequently
+ AuthorizationStateWaitOtherDeviceConfirmation { link :: Maybe String }  |
+ -- |
+ -- 
+ -- The user is unregistered and need to accept terms of service and enter their first name and last name to finish registration 
+ -- 
+ -- __terms_of_service__ Telegram terms of service
+ AuthorizationStateWaitRegistration { terms_of_service :: Maybe TermsOfService.TermsOfService }  |
+ -- |
+ -- 
+ -- The user has been authorized, but needs to enter a password to start using the application 
+ -- 
+ -- __password_hint__ Hint for the password; may be empty
+ -- 
+ -- __has_recovery_email_address__ True, if a recovery email address has been set up
+ -- 
+ -- __recovery_email_address_pattern__ Pattern of the email address to which the recovery email was sent; empty until a recovery email has been sent
+ AuthorizationStateWaitPassword { recovery_email_address_pattern :: Maybe String, has_recovery_email_address :: Maybe Bool, password_hint :: Maybe String }  |
+ -- |
+ -- 
+ -- The user has been successfully authorized. TDLib is now ready to answer queries
+ AuthorizationStateReady |
+ -- |
+ -- 
+ -- The user is currently logging out
+ AuthorizationStateLoggingOut |
+ -- |
+ -- 
+ -- TDLib is closing, all subsequent queries will be answered with the error 500. Note that closing TDLib can take a while. All resources will be freed only after authorizationStateClosed has been received
+ AuthorizationStateClosing |
+ -- |
+ -- 
+ -- TDLib client is in its final state. All databases are closed and all resources are released. No other updates will be received after this. All queries will be responded to
+ -- 
+ -- -with error code 500. To continue working, one should create a new instance of the TDLib client
+ AuthorizationStateClosed deriving (Show, Eq)
 
 instance T.ToJSON AuthorizationState where
  toJSON (AuthorizationStateWaitTdlibParameters {  }) =

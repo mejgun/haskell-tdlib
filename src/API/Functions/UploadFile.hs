@@ -19,6 +19,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- 
 -- __priority__ Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which uploadFile was called will be uploaded first
 data UploadFile = 
+
  UploadFile { priority :: Maybe Int, file_type :: Maybe FileType.FileType, file :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON UploadFile where

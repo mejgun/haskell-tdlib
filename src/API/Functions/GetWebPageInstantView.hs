@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __force_full__ If true, the full instant view for the web page will be returned
 data GetWebPageInstantView = 
+
  GetWebPageInstantView { force_full :: Maybe Bool, url :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetWebPageInstantView where

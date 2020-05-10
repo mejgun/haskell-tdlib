@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __keys__ Language pack keys of the strings to be returned; leave empty to request all available strings
 data GetLanguagePackStrings = 
+
  GetLanguagePackStrings { keys :: Maybe [String], language_pack_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetLanguagePackStrings where

@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __title__ Title of the new basic group; 1-128 characters
 data CreateNewBasicGroupChat = 
+
  CreateNewBasicGroupChat { title :: Maybe String, user_ids :: Maybe [Int] }  deriving (Show, Eq)
 
 instance T.ToJSON CreateNewBasicGroupChat where

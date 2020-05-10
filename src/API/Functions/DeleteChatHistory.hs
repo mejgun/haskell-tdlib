@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __revoke__ Pass true to try to delete chat history for all users
 data DeleteChatHistory = 
+
  DeleteChatHistory { revoke :: Maybe Bool, remove_from_chat_list :: Maybe Bool, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON DeleteChatHistory where

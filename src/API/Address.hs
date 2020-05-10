@@ -23,6 +23,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __postal_code__ Address postal code
 data Address = 
+
  Address { postal_code :: Maybe String, street_line2 :: Maybe String, street_line1 :: Maybe String, city :: Maybe String, state :: Maybe String, country_code :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON Address where

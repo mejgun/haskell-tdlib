@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.StickerSetInfo as StickerSetInfo
 -- 
 -- __sets__ List of sticker sets
 data StickerSets = 
+
  StickerSets { sets :: Maybe [StickerSetInfo.StickerSetInfo], total_count :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON StickerSets where

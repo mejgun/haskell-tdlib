@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __code__ The phone number confirmation code
 data CheckPhoneNumberConfirmationCode = 
+
  CheckPhoneNumberConfirmationCode { code :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CheckPhoneNumberConfirmationCode where

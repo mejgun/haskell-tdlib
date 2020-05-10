@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __error_message__ The last error message
 data SetBotUpdatesStatus = 
+
  SetBotUpdatesStatus { error_message :: Maybe String, pending_update_count :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetBotUpdatesStatus where

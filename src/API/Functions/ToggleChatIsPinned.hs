@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __is_pinned__ New value of is_pinned
 data ToggleChatIsPinned = 
+
  ToggleChatIsPinned { is_pinned :: Maybe Bool, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ToggleChatIsPinned where

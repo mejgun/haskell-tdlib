@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.PublicChatType as PublicChatType
 -- 
 -- __type__ Type of the public chats to return
 data GetCreatedPublicChats = 
+
  GetCreatedPublicChats { _type :: Maybe PublicChatType.PublicChatType }  deriving (Show, Eq)
 
 instance T.ToJSON GetCreatedPublicChats where

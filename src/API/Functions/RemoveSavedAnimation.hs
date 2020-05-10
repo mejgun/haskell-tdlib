@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- 
 -- __animation__ Animation file to be removed
 data RemoveSavedAnimation = 
+
  RemoveSavedAnimation { animation :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveSavedAnimation where

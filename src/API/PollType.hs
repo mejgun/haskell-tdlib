@@ -12,8 +12,20 @@ import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 -- 
 -- Describes the type of a poll
 data PollType = 
- PollTypeRegular { allow_multiple_answers :: Maybe Bool }  
- | PollTypeQuiz { explanation :: Maybe FormattedText.FormattedText, correct_option_id :: Maybe Int }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- A regular poll 
+ -- 
+ -- __allow_multiple_answers__ True, if multiple answer options can be chosen simultaneously
+ PollTypeRegular { allow_multiple_answers :: Maybe Bool }  |
+ -- |
+ -- 
+ -- A poll in quiz mode, which has exactly one correct answer option and can be answered only once
+ -- 
+ -- __correct_option_id__ 0-based identifier of the correct answer option; -1 for a yet unanswered poll
+ -- 
+ -- __explanation__ Text that is shown when the user chooses an incorrect answer or taps on the lamp icon, 0-200 characters with at most 2 line feeds; empty for a yet unanswered poll
+ PollTypeQuiz { explanation :: Maybe FormattedText.FormattedText, correct_option_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON PollType where
  toJSON (PollTypeRegular { allow_multiple_answers = allow_multiple_answers }) =

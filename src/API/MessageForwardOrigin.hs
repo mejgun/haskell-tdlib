@@ -11,9 +11,28 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Contains information about the origin of a forwarded message
 data MessageForwardOrigin = 
- MessageForwardOriginUser { sender_user_id :: Maybe Int }  
- | MessageForwardOriginHiddenUser { sender_name :: Maybe String }  
- | MessageForwardOriginChannel { author_signature :: Maybe String, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- The message was originally written by a known user 
+ -- 
+ -- __sender_user_id__ Identifier of the user that originally sent the message
+ MessageForwardOriginUser { sender_user_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The message was originally written by a user, which is hidden by their privacy settings 
+ -- 
+ -- __sender_name__ Name of the sender
+ MessageForwardOriginHiddenUser { sender_name :: Maybe String }  |
+ -- |
+ -- 
+ -- The message was originally a post in a channel
+ -- 
+ -- __chat_id__ Identifier of the chat from which the message was originally forwarded
+ -- 
+ -- __message_id__ Message identifier of the original message; 0 if unknown
+ -- 
+ -- __author_signature__ Original post author signature
+ MessageForwardOriginChannel { author_signature :: Maybe String, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON MessageForwardOrigin where
  toJSON (MessageForwardOriginUser { sender_user_id = sender_user_id }) =

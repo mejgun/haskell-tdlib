@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __message_id__ Message identifier
 data GetPaymentForm = 
+
  GetPaymentForm { message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetPaymentForm where

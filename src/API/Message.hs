@@ -66,6 +66,7 @@ import {-# SOURCE #-} qualified API.MessageSendingState as MessageSendingState
 -- 
 -- __reply_markup__ Reply markup for the message; may be null
 data Message = 
+
  Message { reply_markup :: Maybe ReplyMarkup.ReplyMarkup, content :: Maybe MessageContent.MessageContent, restriction_reason :: Maybe String, media_album_id :: Maybe Int, views :: Maybe Int, author_signature :: Maybe String, via_bot_user_id :: Maybe Int, ttl_expires_in :: Maybe Float, ttl :: Maybe Int, reply_to_message_id :: Maybe Int, forward_info :: Maybe MessageForwardInfo.MessageForwardInfo, edit_date :: Maybe Int, date :: Maybe Int, contains_unread_mention :: Maybe Bool, is_channel_post :: Maybe Bool, can_be_deleted_for_all_users :: Maybe Bool, can_be_deleted_only_for_self :: Maybe Bool, can_be_forwarded :: Maybe Bool, can_be_edited :: Maybe Bool, is_outgoing :: Maybe Bool, scheduling_state :: Maybe MessageSchedulingState.MessageSchedulingState, sending_state :: Maybe MessageSendingState.MessageSendingState, chat_id :: Maybe Int, sender_user_id :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Message where

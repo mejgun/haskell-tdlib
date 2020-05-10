@@ -20,6 +20,7 @@ import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 -- 
 -- __is_native_name_required__ True, if personal details must include the user's name in the language of their country of residence
 data PassportSuitableElement = 
+
  PassportSuitableElement { is_native_name_required :: Maybe Bool, is_translation_required :: Maybe Bool, is_selfie_required :: Maybe Bool, _type :: Maybe PassportElementType.PassportElementType }  deriving (Show, Eq)
 
 instance T.ToJSON PassportSuitableElement where

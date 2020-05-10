@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.AutoDownloadSettings as AutoDownloadSettings
 -- 
 -- __high__ Preset with highest settings; supposed to be used by default when connected on Wi-Fi
 data AutoDownloadSettingsPresets = 
+
  AutoDownloadSettingsPresets { high :: Maybe AutoDownloadSettings.AutoDownloadSettings, medium :: Maybe AutoDownloadSettings.AutoDownloadSettings, low :: Maybe AutoDownloadSettings.AutoDownloadSettings }  deriving (Show, Eq)
 
 instance T.ToJSON AutoDownloadSettingsPresets where

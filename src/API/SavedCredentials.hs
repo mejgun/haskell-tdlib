@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __title__ Title of the saved credentials
 data SavedCredentials = 
+
  SavedCredentials { title :: Maybe String, _id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SavedCredentials where

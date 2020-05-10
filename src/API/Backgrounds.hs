@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.Background as Background
 -- 
 -- __backgrounds__ A list of backgrounds
 data Backgrounds = 
+
  Backgrounds { backgrounds :: Maybe [Background.Background] }  deriving (Show, Eq)
 
 instance T.ToJSON Backgrounds where

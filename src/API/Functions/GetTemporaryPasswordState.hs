@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Returns information about the current temporary password
 data GetTemporaryPasswordState = 
+
  GetTemporaryPasswordState deriving (Show, Eq)
 
 instance T.ToJSON GetTemporaryPasswordState where

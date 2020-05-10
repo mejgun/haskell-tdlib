@@ -13,8 +13,30 @@ import {-# SOURCE #-} qualified API.NetworkType as NetworkType
 -- 
 -- Contains statistics about network usage
 data NetworkStatisticsEntry = 
- NetworkStatisticsEntryFile { received_bytes :: Maybe Int, sent_bytes :: Maybe Int, network_type :: Maybe NetworkType.NetworkType, file_type :: Maybe FileType.FileType }  
- | NetworkStatisticsEntryCall { duration :: Maybe Float, received_bytes :: Maybe Int, sent_bytes :: Maybe Int, network_type :: Maybe NetworkType.NetworkType }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- Contains information about the total amount of data that was used to send and receive files 
+ -- 
+ -- __file_type__ Type of the file the data is part of
+ -- 
+ -- __network_type__ Type of the network the data was sent through. Call setNetworkType to maintain the actual network type
+ -- 
+ -- __sent_bytes__ Total number of bytes sent
+ -- 
+ -- __received_bytes__ Total number of bytes received
+ NetworkStatisticsEntryFile { received_bytes :: Maybe Int, sent_bytes :: Maybe Int, network_type :: Maybe NetworkType.NetworkType, file_type :: Maybe FileType.FileType }  |
+ -- |
+ -- 
+ -- Contains information about the total amount of data that was used for calls 
+ -- 
+ -- __network_type__ Type of the network the data was sent through. Call setNetworkType to maintain the actual network type
+ -- 
+ -- __sent_bytes__ Total number of bytes sent
+ -- 
+ -- __received_bytes__ Total number of bytes received
+ -- 
+ -- __duration__ Total call duration, in seconds
+ NetworkStatisticsEntryCall { duration :: Maybe Float, received_bytes :: Maybe Int, sent_bytes :: Maybe Int, network_type :: Maybe NetworkType.NetworkType }  deriving (Show, Eq)
 
 instance T.ToJSON NetworkStatisticsEntry where
  toJSON (NetworkStatisticsEntryFile { received_bytes = received_bytes, sent_bytes = sent_bytes, network_type = network_type, file_type = file_type }) =

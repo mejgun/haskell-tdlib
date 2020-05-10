@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __supergroup_id__ Identifier of the supergroup or channel
 data DeleteSupergroup = 
+
  DeleteSupergroup { supergroup_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON DeleteSupergroup where

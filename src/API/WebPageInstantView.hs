@@ -22,6 +22,7 @@ import {-# SOURCE #-} qualified API.PageBlock as PageBlock
 -- 
 -- __is_full__ True, if the instant view contains the full page. A network request might be needed to get the full web page instant view
 data WebPageInstantView = 
+
  WebPageInstantView { is_full :: Maybe Bool, is_rtl :: Maybe Bool, version :: Maybe Int, view_count :: Maybe Int, page_blocks :: Maybe [PageBlock.PageBlock] }  deriving (Show, Eq)
 
 instance T.ToJSON WebPageInstantView where

@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.Location as Location
 -- 
 -- __location__ The new location of the user
 data SetLocation = 
+
  SetLocation { location :: Maybe Location.Location }  deriving (Show, Eq)
 
 instance T.ToJSON SetLocation where

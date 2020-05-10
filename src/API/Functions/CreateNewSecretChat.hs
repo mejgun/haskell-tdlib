@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __user_id__ Identifier of the target user
 data CreateNewSecretChat = 
+
  CreateNewSecretChat { user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CreateNewSecretChat where

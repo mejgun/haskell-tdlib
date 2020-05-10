@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __growth_rate_percentage__ The growth rate of the value, as a percentage
 data StatisticsValue = 
+
  StatisticsValue { growth_rate_percentage :: Maybe Float, previous_value :: Maybe Float, value :: Maybe Float }  deriving (Show, Eq)
 
 instance T.ToJSON StatisticsValue where

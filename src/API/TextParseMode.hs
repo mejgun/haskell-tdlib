@@ -11,8 +11,16 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes the way the text should be parsed for TextEntities
 data TextParseMode = 
- TextParseModeMarkdown { version :: Maybe Int }  
- | TextParseModeHTML deriving (Show, Eq)
+ -- |
+ -- 
+ -- The text uses Markdown-style formatting
+ -- 
+ -- __version__ Version of the parser: 0 or 1 - Telegram Bot API "Markdown" parse mode, 2 - Telegram Bot API "MarkdownV2" parse mode
+ TextParseModeMarkdown { version :: Maybe Int }  |
+ -- |
+ -- 
+ -- The text uses HTML-style formatting. The same as Telegram Bot API "HTML" parse mode
+ TextParseModeHTML deriving (Show, Eq)
 
 instance T.ToJSON TextParseMode where
  toJSON (TextParseModeMarkdown { version = version }) =

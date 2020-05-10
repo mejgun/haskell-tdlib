@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 -- 
 -- __types__ Types of Telegram Passport elements chosen by user to complete the authorization form
 data SendPassportAuthorizationForm = 
+
  SendPassportAuthorizationForm { types :: Maybe [PassportElementType.PassportElementType], autorization_form_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendPassportAuthorizationForm where

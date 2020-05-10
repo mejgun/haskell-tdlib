@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.ShippingOption as ShippingOption
 -- 
 -- __shipping_options__ Available shipping options
 data ValidatedOrderInfo = 
+
  ValidatedOrderInfo { shipping_options :: Maybe [ShippingOption.ShippingOption], order_info_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON ValidatedOrderInfo where

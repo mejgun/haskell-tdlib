@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __valid_for__ Time during which the temporary password will be valid, in seconds; should be between 60 and 86400
 data CreateTemporaryPassword = 
+
  CreateTemporaryPassword { valid_for :: Maybe Int, password :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CreateTemporaryPassword where

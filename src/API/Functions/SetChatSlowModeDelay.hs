@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __slow_mode_delay__ New slow mode delay for the chat; must be one of 0, 10, 30, 60, 300, 900, 3600
 data SetChatSlowModeDelay = 
+
  SetChatSlowModeDelay { slow_mode_delay :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatSlowModeDelay where

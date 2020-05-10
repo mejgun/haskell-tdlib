@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __profile_photo_id__ Identifier of the profile photo to delete
 data DeleteProfilePhoto = 
+
  DeleteProfilePhoto { profile_photo_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON DeleteProfilePhoto where

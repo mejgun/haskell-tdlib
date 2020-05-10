@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.UserProfilePhoto as UserProfilePhoto
 -- 
 -- __photos__ A list of photos
 data UserProfilePhotos = 
+
  UserProfilePhotos { photos :: Maybe [UserProfilePhoto.UserProfilePhoto], total_count :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON UserProfilePhotos where

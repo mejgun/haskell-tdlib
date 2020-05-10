@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Terminates all other sessions of the current user
 data TerminateAllOtherSessions = 
+
  TerminateAllOtherSessions deriving (Show, Eq)
 
 instance T.ToJSON TerminateAllOtherSessions where

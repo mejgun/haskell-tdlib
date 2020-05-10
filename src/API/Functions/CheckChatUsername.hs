@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __username__ Username to be checked
 data CheckChatUsername = 
+
  CheckChatUsername { username :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CheckChatUsername where

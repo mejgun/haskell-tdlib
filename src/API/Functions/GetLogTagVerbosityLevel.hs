@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __tag__ Logging tag to change verbosity level
 data GetLogTagVerbosityLevel = 
+
  GetLogTagVerbosityLevel { tag :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetLogTagVerbosityLevel where

@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __offset__ Offset from which downloaded prefix size should be calculated
 data GetFileDownloadedPrefixSize = 
+
  GetFileDownloadedPrefixSize { offset :: Maybe Int, file_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetFileDownloadedPrefixSize where

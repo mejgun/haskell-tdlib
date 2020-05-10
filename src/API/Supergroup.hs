@@ -38,6 +38,7 @@ import {-# SOURCE #-} qualified API.ChatMemberStatus as ChatMemberStatus
 -- 
 -- __is_scam__ True, if many users reported this supergroup as a scam
 data Supergroup = 
+
  Supergroup { is_scam :: Maybe Bool, restriction_reason :: Maybe String, is_verified :: Maybe Bool, is_channel :: Maybe Bool, is_slow_mode_enabled :: Maybe Bool, sign_messages :: Maybe Bool, has_location :: Maybe Bool, has_linked_chat :: Maybe Bool, member_count :: Maybe Int, status :: Maybe ChatMemberStatus.ChatMemberStatus, date :: Maybe Int, username :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Supergroup where

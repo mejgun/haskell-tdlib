@@ -46,6 +46,7 @@ import {-# SOURCE #-} qualified API.UserStatus as UserStatus
 -- 
 -- __language_code__ IETF language tag of the user's language; only available to bots
 data User = 
+
  User { language_code :: Maybe String, _type :: Maybe UserType.UserType, have_access :: Maybe Bool, is_scam :: Maybe Bool, restriction_reason :: Maybe String, is_support :: Maybe Bool, is_verified :: Maybe Bool, is_mutual_contact :: Maybe Bool, is_contact :: Maybe Bool, profile_photo :: Maybe ProfilePhoto.ProfilePhoto, status :: Maybe UserStatus.UserStatus, phone_number :: Maybe String, username :: Maybe String, last_name :: Maybe String, first_name :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON User where

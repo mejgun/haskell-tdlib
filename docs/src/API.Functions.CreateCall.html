@@ -16,7 +16,8 @@
 </span><span id="line-16"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-17"></span><span class="hs-comment">-- __protocol__ Description of the call protocols supported by the client</span><span>
 </span><span id="line-18"></span><span class="hs-keyword">data</span><span> </span><span id="CreateCall"><span class="annot"><a href="API.Functions.CreateCall.html#CreateCall"><span class="hs-identifier hs-var">CreateCall</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-19"></span><span> </span><span id="CreateCall"><span class="annot"><a href="API.Functions.CreateCall.html#CreateCall"><span class="hs-identifier hs-var">CreateCall</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="protocol"><span class="annot"><span class="annottext">CreateCall -&gt; Maybe CallProtocol
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span> </span><span id="CreateCall"><span class="annot"><a href="API.Functions.CreateCall.html#CreateCall"><span class="hs-identifier hs-var">CreateCall</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="protocol"><span class="annot"><span class="annottext">CreateCall -&gt; Maybe CallProtocol
 </span><a href="API.Functions.CreateCall.html#protocol"><span class="hs-identifier hs-var hs-var">protocol</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.CallProtocol.html#CallProtocol"><span class="hs-identifier hs-type">CallProtocol.CallProtocol</span></a></span><span class="hs-special">,</span><span> </span><span id="user_id"><span class="annot"><span class="annottext">CreateCall -&gt; Maybe Int
 </span><a href="API.Functions.CreateCall.html#user_id"><span class="hs-identifier hs-var hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679416817"><span id="local-6989586621679416819"><span id="local-6989586621679416821"><span class="annot"><span class="annottext">Int -&gt; CreateCall -&gt; ShowS
 [CreateCall] -&gt; ShowS
@@ -42,15 +43,15 @@ $c/= :: CreateCall -&gt; CreateCall -&gt; Bool
 == :: CreateCall -&gt; CreateCall -&gt; Bool
 $c== :: CreateCall -&gt; CreateCall -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679416804"><span id="local-6989586621679416806"><span id="local-6989586621679416808"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CreateCall.html#CreateCall"><span class="hs-identifier hs-type">CreateCall</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span> </span><span id="local-6989586621679416802"><span class="annot"><span class="annottext">toJSON :: CreateCall -&gt; Value
+</span><span id="line-21"></span><span>
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679416804"><span id="local-6989586621679416806"><span id="local-6989586621679416808"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CreateCall.html#CreateCall"><span class="hs-identifier hs-type">CreateCall</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span> </span><span id="local-6989586621679416802"><span class="annot"><span class="annottext">toJSON :: CreateCall -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.CreateCall.html#CreateCall"><span class="hs-identifier hs-type">CreateCall</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">protocol :: CreateCall -&gt; Maybe CallProtocol
 </span><a href="API.Functions.CreateCall.html#protocol"><span class="hs-identifier hs-var">protocol</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679416800"><span class="annot"><span class="annottext">Maybe CallProtocol
 </span><a href="#local-6989586621679416800"><span class="hs-identifier hs-var">protocol</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">user_id :: CreateCall -&gt; Maybe Int
 </span><a href="API.Functions.CreateCall.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679416799"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679416799"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-23"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-24"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
@@ -61,28 +62,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679416799"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679416793"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CreateCall.html#CreateCall"><span class="hs-identifier hs-type">CreateCall</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-26"></span><span> </span><span id="local-6989586621679416791"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CreateCall
+</span><span id="line-25"></span><span>
+</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679416793"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CreateCall.html#CreateCall"><span class="hs-identifier hs-type">CreateCall</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-27"></span><span> </span><span id="local-6989586621679416791"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CreateCall
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679416789"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679416789"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679416787"><span class="annot"><span class="annottext">obj :: Object
 </span><a href="#local-6989586621679416787"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-27"></span><span>  </span><span id="local-6989586621679416786"><span class="annot"><span class="annottext">String
+</span><span id="line-28"></span><span>  </span><span id="local-6989586621679416786"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679416786"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679416787"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-28"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-29"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679416786"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-29"></span><span>   </span><span class="hs-string">&quot;createCall&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CreateCall
+</span><span id="line-30"></span><span>   </span><span class="hs-string">&quot;createCall&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CreateCall
 </span><a href="#local-6989586621679416784"><span class="hs-identifier hs-var">parseCreateCall</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679416789"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-30"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CreateCall
+</span><span id="line-31"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CreateCall
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-31"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-32"></span><span>   </span><span class="annot"><a href="#local-6989586621679416784"><span class="hs-identifier hs-type">parseCreateCall</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.CreateCall.html#CreateCall"><span class="hs-identifier hs-type">CreateCall</span></a></span><span>
-</span><span id="line-33"></span><span>   </span><span id="local-6989586621679416784"><span class="annot"><span class="annottext">parseCreateCall :: Value -&gt; Parser CreateCall
+</span><span id="line-32"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span>   </span><span class="annot"><a href="#local-6989586621679416784"><span class="hs-identifier hs-type">parseCreateCall</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.CreateCall.html#CreateCall"><span class="hs-identifier hs-type">CreateCall</span></a></span><span>
+</span><span id="line-34"></span><span>   </span><span id="local-6989586621679416784"><span class="annot"><span class="annottext">parseCreateCall :: Value -&gt; Parser CreateCall
 </span><a href="#local-6989586621679416784"><span class="hs-identifier hs-var hs-var">parseCreateCall</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CreateCall) -&gt; Value -&gt; Parser CreateCall
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
@@ -91,12 +92,12 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679416782"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679416782"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-34"></span><span>    </span><span id="local-6989586621679416781"><span class="annot"><span class="annottext">Maybe CallProtocol
+</span><span id="line-35"></span><span>    </span><span id="local-6989586621679416781"><span class="annot"><span class="annottext">Maybe CallProtocol
 </span><a href="#local-6989586621679416781"><span class="hs-identifier hs-var">protocol</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679416782"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe CallProtocol)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;protocol&quot;</span></span><span>
-</span><span id="line-35"></span><span>    </span><span id="local-6989586621679416779"><span class="annot"><span class="annottext">Maybe Int
+</span><span id="line-36"></span><span>    </span><span id="local-6989586621679416779"><span class="annot"><span class="annottext">Maybe Int
 </span><a href="#local-6989586621679416779"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
@@ -110,7 +111,7 @@ forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><a href="#local-6989586621679416782"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-36"></span><span>    </span><span class="annot"><span class="annottext">CreateCall -&gt; Parser CreateCall
+</span><span id="line-37"></span><span>    </span><span class="annot"><span class="annottext">CreateCall -&gt; Parser CreateCall
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CreateCall -&gt; Parser CreateCall)
 -&gt; CreateCall -&gt; Parser CreateCall

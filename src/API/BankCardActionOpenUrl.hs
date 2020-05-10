@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __url__ The URL to be opened
 data BankCardActionOpenUrl = 
+
  BankCardActionOpenUrl { url :: Maybe String, text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON BankCardActionOpenUrl where

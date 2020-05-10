@@ -19,6 +19,7 @@ import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 -- 
 -- __source__ Error source
 data InputPassportElementError = 
+
  InputPassportElementError { source :: Maybe InputPassportElementErrorSource.InputPassportElementErrorSource, message :: Maybe String, _type :: Maybe PassportElementType.PassportElementType }  deriving (Show, Eq)
 
 instance T.ToJSON InputPassportElementError where

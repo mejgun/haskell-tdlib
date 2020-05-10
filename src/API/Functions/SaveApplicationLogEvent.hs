@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.JsonValue as JsonValue
 -- 
 -- __data__ The log event data
 data SaveApplicationLogEvent = 
+
  SaveApplicationLogEvent { _data :: Maybe JsonValue.JsonValue, chat_id :: Maybe Int, _type :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SaveApplicationLogEvent where

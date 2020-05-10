@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __result__ A JSON-serialized result
 data CustomRequestResult = 
+
  CustomRequestResult { result :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CustomRequestResult where

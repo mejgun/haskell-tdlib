@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- 
 -- __height__ Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
 data InputThumbnail = 
+
  InputThumbnail { height :: Maybe Int, width :: Maybe Int, thumbnail :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON InputThumbnail where

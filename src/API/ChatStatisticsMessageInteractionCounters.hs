@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __forward_count__ Number of times the message was forwarded
 data ChatStatisticsMessageInteractionCounters = 
+
  ChatStatisticsMessageInteractionCounters { forward_count :: Maybe Int, view_count :: Maybe Int, message_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ChatStatisticsMessageInteractionCounters where

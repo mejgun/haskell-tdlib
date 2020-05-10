@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __text__ Text
 data Text = 
+
  Text { text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON Text where

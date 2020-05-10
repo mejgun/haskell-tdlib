@@ -24,6 +24,7 @@ import {-# SOURCE #-} qualified API.ChatEventLogFilters as ChatEventLogFilters
 -- 
 -- __user_ids__ User identifiers by which to filter events. By default, events relating to all users will be returned
 data GetChatEventLog = 
+
  GetChatEventLog { user_ids :: Maybe [Int], filters :: Maybe ChatEventLogFilters.ChatEventLogFilters, limit :: Maybe Int, from_event_id :: Maybe Int, query :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetChatEventLog where

@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __data__ File bytes
 data FilePart = 
+
  FilePart { _data :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON FilePart where

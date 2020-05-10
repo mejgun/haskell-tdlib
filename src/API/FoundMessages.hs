@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.Message as Message
 -- 
 -- __next_from_search_id__ Value to pass as from_search_id to get more results
 data FoundMessages = 
+
  FoundMessages { next_from_search_id :: Maybe Int, messages :: Maybe [Message.Message] }  deriving (Show, Eq)
 
 instance T.ToJSON FoundMessages where

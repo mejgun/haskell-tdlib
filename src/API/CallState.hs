@@ -15,12 +15,54 @@ import {-# SOURCE #-} qualified API.Error as Error
 -- 
 -- Describes the current call state
 data CallState = 
- CallStatePending { is_received :: Maybe Bool, is_created :: Maybe Bool }  
- | CallStateExchangingKeys 
- | CallStateReady { allow_p2p :: Maybe Bool, emojis :: Maybe [String], encryption_key :: Maybe String, config :: Maybe String, connections :: Maybe [CallConnection.CallConnection], protocol :: Maybe CallProtocol.CallProtocol }  
- | CallStateHangingUp 
- | CallStateDiscarded { need_debug_information :: Maybe Bool, need_rating :: Maybe Bool, reason :: Maybe CallDiscardReason.CallDiscardReason }  
- | CallStateError { _error :: Maybe Error.Error }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- The call is pending, waiting to be accepted by a user 
+ -- 
+ -- __is_created__ True, if the call has already been created by the server
+ -- 
+ -- __is_received__ True, if the call has already been received by the other party
+ CallStatePending { is_received :: Maybe Bool, is_created :: Maybe Bool }  |
+ -- |
+ -- 
+ -- The call has been answered and encryption keys are being exchanged
+ CallStateExchangingKeys |
+ -- |
+ -- 
+ -- The call is ready to use 
+ -- 
+ -- __protocol__ Call protocols supported by the peer
+ -- 
+ -- __connections__ Available UDP reflectors
+ -- 
+ -- __config__ A JSON-encoded call config
+ -- 
+ -- __encryption_key__ Call encryption key
+ -- 
+ -- __emojis__ Encryption key emojis fingerprint
+ -- 
+ -- __allow_p2p__ True, if peer-to-peer connection is allowed by users privacy settings
+ CallStateReady { allow_p2p :: Maybe Bool, emojis :: Maybe [String], encryption_key :: Maybe String, config :: Maybe String, connections :: Maybe [CallConnection.CallConnection], protocol :: Maybe CallProtocol.CallProtocol }  |
+ -- |
+ -- 
+ -- The call is hanging up after discardCall has been called
+ CallStateHangingUp |
+ -- |
+ -- 
+ -- The call has ended successfully 
+ -- 
+ -- __reason__ The reason, why the call has ended
+ -- 
+ -- __need_rating__ True, if the call rating should be sent to the server
+ -- 
+ -- __need_debug_information__ True, if the call debug information should be sent to the server
+ CallStateDiscarded { need_debug_information :: Maybe Bool, need_rating :: Maybe Bool, reason :: Maybe CallDiscardReason.CallDiscardReason }  |
+ -- |
+ -- 
+ -- The call has ended with an error 
+ -- 
+ -- __error__ Error. An error with the code 4005000 will be returned if an outgoing call is missed because of an expired timeout
+ CallStateError { _error :: Maybe Error.Error }  deriving (Show, Eq)
 
 instance T.ToJSON CallState where
  toJSON (CallStatePending { is_received = is_received, is_created = is_created }) =

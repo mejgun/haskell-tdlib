@@ -11,9 +11,18 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes a Vertical alignment of a table cell content
 data PageBlockVerticalAlignment = 
- PageBlockVerticalAlignmentTop 
- | PageBlockVerticalAlignmentMiddle 
- | PageBlockVerticalAlignmentBottom deriving (Show, Eq)
+ -- |
+ -- 
+ -- The content should be top-aligned
+ PageBlockVerticalAlignmentTop |
+ -- |
+ -- 
+ -- The content should be middle-aligned
+ PageBlockVerticalAlignmentMiddle |
+ -- |
+ -- 
+ -- The content should be bottom-aligned
+ PageBlockVerticalAlignmentBottom deriving (Show, Eq)
 
 instance T.ToJSON PageBlockVerticalAlignment where
  toJSON (PageBlockVerticalAlignmentTop {  }) =

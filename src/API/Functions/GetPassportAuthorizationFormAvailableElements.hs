@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __password__ Password of the current user
 data GetPassportAuthorizationFormAvailableElements = 
+
  GetPassportAuthorizationFormAvailableElements { password :: Maybe String, autorization_form_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetPassportAuthorizationFormAvailableElements where

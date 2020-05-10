@@ -11,10 +11,26 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes a keyboard button type
 data KeyboardButtonType = 
- KeyboardButtonTypeText 
- | KeyboardButtonTypeRequestPhoneNumber 
- | KeyboardButtonTypeRequestLocation 
- | KeyboardButtonTypeRequestPoll { force_quiz :: Maybe Bool, force_regular :: Maybe Bool }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- A simple button, with text that should be sent when the button is pressed
+ KeyboardButtonTypeText |
+ -- |
+ -- 
+ -- A button that sends the user's phone number when pressed; available only in private chats
+ KeyboardButtonTypeRequestPhoneNumber |
+ -- |
+ -- 
+ -- A button that sends the user's location when pressed; available only in private chats
+ KeyboardButtonTypeRequestLocation |
+ -- |
+ -- 
+ -- A button that allows the user to create and send a poll when pressed; available only in private chats 
+ -- 
+ -- __force_regular__ If true, only regular polls must be allowed to create
+ -- 
+ -- __force_quiz__ If true, only polls in quiz mode must be allowed to create
+ KeyboardButtonTypeRequestPoll { force_quiz :: Maybe Bool, force_regular :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON KeyboardButtonType where
  toJSON (KeyboardButtonTypeText {  }) =

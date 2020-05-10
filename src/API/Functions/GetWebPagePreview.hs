@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 -- 
 -- __text__ Message text with formatting
 data GetWebPagePreview = 
+
  GetWebPagePreview { text :: Maybe FormattedText.FormattedText }  deriving (Show, Eq)
 
 instance T.ToJSON GetWebPagePreview where

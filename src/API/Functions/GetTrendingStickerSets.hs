@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __limit__ The maximum number of sticker sets to be returned; must be non-negative. Fewer sticker sets may be returned than specified by the limit, even if the end of the list has not been reached
 data GetTrendingStickerSets = 
+
  GetTrendingStickerSets { limit :: Maybe Int, offset :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetTrendingStickerSets where

@@ -53,84 +53,692 @@ import {-# SOURCE #-} qualified API.Poll as Poll
 -- 
 -- Contains notifications about data changes
 data Update = 
- UpdateAuthorizationState { authorization_state :: Maybe AuthorizationState.AuthorizationState }  
- | UpdateNewMessage { message :: Maybe Message.Message }  
- | UpdateMessageSendAcknowledged { message_id :: Maybe Int, chat_id :: Maybe Int }  
- | UpdateMessageSendSucceeded { old_message_id :: Maybe Int, message :: Maybe Message.Message }  
- | UpdateMessageSendFailed { error_message :: Maybe String, error_code :: Maybe Int, old_message_id :: Maybe Int, message :: Maybe Message.Message }  
- | UpdateMessageContent { new_content :: Maybe MessageContent.MessageContent, message_id :: Maybe Int, chat_id :: Maybe Int }  
- | UpdateMessageEdited { reply_markup :: Maybe ReplyMarkup.ReplyMarkup, edit_date :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int }  
- | UpdateMessageViews { views :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int }  
- | UpdateMessageContentOpened { message_id :: Maybe Int, chat_id :: Maybe Int }  
- | UpdateMessageMentionRead { unread_mention_count :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int }  
- | UpdateMessageLiveLocationViewed { message_id :: Maybe Int, chat_id :: Maybe Int }  
- | UpdateNewChat { chat :: Maybe Chat.Chat }  
- | UpdateChatChatList { chat_list :: Maybe ChatList.ChatList, chat_id :: Maybe Int }  
- | UpdateChatTitle { title :: Maybe String, chat_id :: Maybe Int }  
- | UpdateChatPhoto { photo :: Maybe ChatPhoto.ChatPhoto, chat_id :: Maybe Int }  
- | UpdateChatPermissions { permissions :: Maybe ChatPermissions.ChatPermissions, chat_id :: Maybe Int }  
- | UpdateChatLastMessage { order :: Maybe Int, last_message :: Maybe Message.Message, chat_id :: Maybe Int }  
- | UpdateChatOrder { order :: Maybe Int, chat_id :: Maybe Int }  
- | UpdateChatIsPinned { order :: Maybe Int, is_pinned :: Maybe Bool, chat_id :: Maybe Int }  
- | UpdateChatIsMarkedAsUnread { is_marked_as_unread :: Maybe Bool, chat_id :: Maybe Int }  
- | UpdateChatIsSponsored { order :: Maybe Int, is_sponsored :: Maybe Bool, chat_id :: Maybe Int }  
- | UpdateChatHasScheduledMessages { has_scheduled_messages :: Maybe Bool, chat_id :: Maybe Int }  
- | UpdateChatDefaultDisableNotification { default_disable_notification :: Maybe Bool, chat_id :: Maybe Int }  
- | UpdateChatReadInbox { unread_count :: Maybe Int, last_read_inbox_message_id :: Maybe Int, chat_id :: Maybe Int }  
- | UpdateChatReadOutbox { last_read_outbox_message_id :: Maybe Int, chat_id :: Maybe Int }  
- | UpdateChatUnreadMentionCount { unread_mention_count :: Maybe Int, chat_id :: Maybe Int }  
- | UpdateChatNotificationSettings { _notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings, chat_id :: Maybe Int }  
- | UpdateScopeNotificationSettings { notification_settings :: Maybe ScopeNotificationSettings.ScopeNotificationSettings, scope :: Maybe NotificationSettingsScope.NotificationSettingsScope }  
- | UpdateChatActionBar { action_bar :: Maybe ChatActionBar.ChatActionBar, chat_id :: Maybe Int }  
- | UpdateChatPinnedMessage { pinned_message_id :: Maybe Int, chat_id :: Maybe Int }  
- | UpdateChatReplyMarkup { reply_markup_message_id :: Maybe Int, chat_id :: Maybe Int }  
- | UpdateChatDraftMessage { order :: Maybe Int, draft_message :: Maybe DraftMessage.DraftMessage, chat_id :: Maybe Int }  
- | UpdateChatOnlineMemberCount { online_member_count :: Maybe Int, chat_id :: Maybe Int }  
- | UpdateNotification { notification :: Maybe Notification.Notification, notification_group_id :: Maybe Int }  
- | UpdateNotificationGroup { removed_notification_ids :: Maybe [Int], added_notifications :: Maybe [Notification.Notification], total_count :: Maybe Int, is_silent :: Maybe Bool, notification_settings_chat_id :: Maybe Int, chat_id :: Maybe Int, __type :: Maybe NotificationGroupType.NotificationGroupType, notification_group_id :: Maybe Int }  
- | UpdateActiveNotifications { groups :: Maybe [NotificationGroup.NotificationGroup] }  
- | UpdateHavePendingNotifications { have_unreceived_notifications :: Maybe Bool, have_delayed_notifications :: Maybe Bool }  
- | UpdateDeleteMessages { from_cache :: Maybe Bool, is_permanent :: Maybe Bool, message_ids :: Maybe [Int], chat_id :: Maybe Int }  
- | UpdateUserChatAction { action :: Maybe ChatAction.ChatAction, user_id :: Maybe Int, chat_id :: Maybe Int }  
- | UpdateUserStatus { status :: Maybe UserStatus.UserStatus, user_id :: Maybe Int }  
- | UpdateUser { user :: Maybe User.User }  
- | UpdateBasicGroup { basic_group :: Maybe BasicGroup.BasicGroup }  
- | UpdateSupergroup { supergroup :: Maybe Supergroup.Supergroup }  
- | UpdateSecretChat { secret_chat :: Maybe SecretChat.SecretChat }  
- | UpdateUserFullInfo { user_full_info :: Maybe UserFullInfo.UserFullInfo, user_id :: Maybe Int }  
- | UpdateBasicGroupFullInfo { basic_group_full_info :: Maybe BasicGroupFullInfo.BasicGroupFullInfo, basic_group_id :: Maybe Int }  
- | UpdateSupergroupFullInfo { supergroup_full_info :: Maybe SupergroupFullInfo.SupergroupFullInfo, supergroup_id :: Maybe Int }  
- | UpdateServiceNotification { content :: Maybe MessageContent.MessageContent, _type :: Maybe String }  
- | UpdateFile { file :: Maybe File.File }  
- | UpdateFileGenerationStart { conversion :: Maybe String, destination_path :: Maybe String, original_path :: Maybe String, generation_id :: Maybe Int }  
- | UpdateFileGenerationStop { generation_id :: Maybe Int }  
- | UpdateCall { call :: Maybe Call.Call }  
- | UpdateUserPrivacySettingRules { rules :: Maybe UserPrivacySettingRules.UserPrivacySettingRules, setting :: Maybe UserPrivacySetting.UserPrivacySetting }  
- | UpdateUnreadMessageCount { unread_unmuted_count :: Maybe Int, unread_count :: Maybe Int, chat_list :: Maybe ChatList.ChatList }  
- | UpdateUnreadChatCount { marked_as_unread_unmuted_count :: Maybe Int, marked_as_unread_count :: Maybe Int, unread_unmuted_count :: Maybe Int, unread_count :: Maybe Int, total_count :: Maybe Int, chat_list :: Maybe ChatList.ChatList }  
- | UpdateOption { value :: Maybe OptionValue.OptionValue, name :: Maybe String }  
- | UpdateStickerSet { sticker_set :: Maybe StickerSet.StickerSet }  
- | UpdateInstalledStickerSets { sticker_set_ids :: Maybe [Int], is_masks :: Maybe Bool }  
- | UpdateTrendingStickerSets { sticker_sets :: Maybe StickerSets.StickerSets }  
- | UpdateRecentStickers { sticker_ids :: Maybe [Int], is_attached :: Maybe Bool }  
- | UpdateFavoriteStickers { sticker_ids :: Maybe [Int] }  
- | UpdateSavedAnimations { animation_ids :: Maybe [Int] }  
- | UpdateSelectedBackground { background :: Maybe Background.Background, for_dark_theme :: Maybe Bool }  
- | UpdateLanguagePackStrings { strings :: Maybe [LanguagePackString.LanguagePackString], language_pack_id :: Maybe String, localization_target :: Maybe String }  
- | UpdateConnectionState { state :: Maybe ConnectionState.ConnectionState }  
- | UpdateTermsOfService { terms_of_service :: Maybe TermsOfService.TermsOfService, terms_of_service_id :: Maybe String }  
- | UpdateUsersNearby { users_nearby :: Maybe [ChatNearby.ChatNearby] }  
- | UpdateDiceEmojis { emojis :: Maybe [String] }  
- | UpdateNewInlineQuery { offset :: Maybe String, query :: Maybe String, user_location :: Maybe Location.Location, sender_user_id :: Maybe Int, _id :: Maybe Int }  
- | UpdateNewChosenInlineResult { inline_message_id :: Maybe String, result_id :: Maybe String, query :: Maybe String, user_location :: Maybe Location.Location, sender_user_id :: Maybe Int }  
- | UpdateNewCallbackQuery { payload :: Maybe CallbackQueryPayload.CallbackQueryPayload, chat_instance :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int, sender_user_id :: Maybe Int, _id :: Maybe Int }  
- | UpdateNewInlineCallbackQuery { payload :: Maybe CallbackQueryPayload.CallbackQueryPayload, chat_instance :: Maybe Int, inline_message_id :: Maybe String, sender_user_id :: Maybe Int, _id :: Maybe Int }  
- | UpdateNewShippingQuery { shipping_address :: Maybe Address.Address, invoice_payload :: Maybe String, sender_user_id :: Maybe Int, _id :: Maybe Int }  
- | UpdateNewPreCheckoutQuery { order_info :: Maybe OrderInfo.OrderInfo, shipping_option_id :: Maybe String, invoice_payload :: Maybe String, total_amount :: Maybe Int, currency :: Maybe String, sender_user_id :: Maybe Int, _id :: Maybe Int }  
- | UpdateNewCustomEvent { event :: Maybe String }  
- | UpdateNewCustomQuery { timeout :: Maybe Int, _data :: Maybe String, _id :: Maybe Int }  
- | UpdatePoll { poll :: Maybe Poll.Poll }  
- | UpdatePollAnswer { option_ids :: Maybe [Int], user_id :: Maybe Int, poll_id :: Maybe Int }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- The user authorization state has changed 
+ -- 
+ -- __authorization_state__ New authorization state
+ UpdateAuthorizationState { authorization_state :: Maybe AuthorizationState.AuthorizationState }  |
+ -- |
+ -- 
+ -- A new message was received; can also be an outgoing message 
+ -- 
+ -- __message__ The new message
+ UpdateNewMessage { message :: Maybe Message.Message }  |
+ -- |
+ -- 
+ -- A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully or even that the send message request will be processed. This update will be sent only if the option "use_quick_ack" is set to true. This update may be sent multiple times for the same message
+ -- 
+ -- __chat_id__ The chat identifier of the sent message
+ -- 
+ -- __message_id__ A temporary message identifier
+ UpdateMessageSendAcknowledged { message_id :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A message has been successfully sent 
+ -- 
+ -- __message__ Information about the sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change
+ -- 
+ -- __old_message_id__ The previous temporary message identifier
+ UpdateMessageSendSucceeded { old_message_id :: Maybe Int, message :: Maybe Message.Message }  |
+ -- |
+ -- 
+ -- A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead of this update
+ -- 
+ -- __message__ Contains information about the message which failed to send
+ -- 
+ -- __old_message_id__ The previous temporary message identifier
+ -- 
+ -- __error_code__ An error code
+ -- 
+ -- __error_message__ Error message
+ UpdateMessageSendFailed { error_message :: Maybe String, error_code :: Maybe Int, old_message_id :: Maybe Int, message :: Maybe Message.Message }  |
+ -- |
+ -- 
+ -- The message content has changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __message_id__ Message identifier
+ -- 
+ -- __new_content__ New message content
+ UpdateMessageContent { new_content :: Maybe MessageContent.MessageContent, message_id :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A message was edited. Changes in the message content will come in a separate updateMessageContent 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __message_id__ Message identifier
+ -- 
+ -- __edit_date__ Point in time (Unix timestamp) when the message was edited
+ -- 
+ -- __reply_markup__ New message reply markup; may be null
+ UpdateMessageEdited { reply_markup :: Maybe ReplyMarkup.ReplyMarkup, edit_date :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The view count of the message has changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __message_id__ Message identifier
+ -- 
+ -- __views__ New value of the view count
+ UpdateMessageViews { views :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the TTL timer for self-destructing messages 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __message_id__ Message identifier
+ UpdateMessageContentOpened { message_id :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A message with an unread mention was read 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __message_id__ Message identifier
+ -- 
+ -- __unread_mention_count__ The new number of unread mention messages left in the chat
+ UpdateMessageMentionRead { unread_mention_count :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A message with a live location was viewed. When the update is received, the client is supposed to update the live location
+ -- 
+ -- __chat_id__ Identifier of the chat with the live location message
+ -- 
+ -- __message_id__ Identifier of the message with live location
+ UpdateMessageLiveLocationViewed { message_id :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the client. The chat field changes will be reported through separate updates 
+ -- 
+ -- __chat__ The chat
+ UpdateNewChat { chat :: Maybe Chat.Chat }  |
+ -- |
+ -- 
+ -- The list to which the chat belongs was changed. This update is guaranteed to be sent only when chat.order == 0 and the current or the new chat list is null 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __chat_list__ The new chat's chat list; may be null
+ UpdateChatChatList { chat_list :: Maybe ChatList.ChatList, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The title of a chat was changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __title__ The new chat title
+ UpdateChatTitle { title :: Maybe String, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A chat photo was changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __photo__ The new chat photo; may be null
+ UpdateChatPhoto { photo :: Maybe ChatPhoto.ChatPhoto, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- Chat permissions was changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __permissions__ The new chat permissions
+ UpdateChatPermissions { permissions :: Maybe ChatPermissions.ChatPermissions, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The last message of a chat was changed. If last_message is null, then the last message in the chat became unknown. Some new unknown messages might be added to the chat in this case 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __last_message__ The new last message in the chat; may be null
+ -- 
+ -- __order__ New value of the chat order
+ UpdateChatLastMessage { order :: Maybe Int, last_message :: Maybe Message.Message, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The order of the chat in the chat list has changed. Instead of this update updateChatLastMessage, updateChatIsPinned, updateChatDraftMessage, or updateChatIsSponsored might be sent 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __order__ New value of the order
+ UpdateChatOrder { order :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A chat was pinned or unpinned 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __is_pinned__ New value of is_pinned
+ -- 
+ -- __order__ New value of the chat order
+ UpdateChatIsPinned { order :: Maybe Int, is_pinned :: Maybe Bool, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A chat was marked as unread or was read 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __is_marked_as_unread__ New value of is_marked_as_unread
+ UpdateChatIsMarkedAsUnread { is_marked_as_unread :: Maybe Bool, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A chat's is_sponsored field has changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __is_sponsored__ New value of is_sponsored
+ -- 
+ -- __order__ New value of chat order
+ UpdateChatIsSponsored { order :: Maybe Int, is_sponsored :: Maybe Bool, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A chat's has_scheduled_messages field has changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __has_scheduled_messages__ New value of has_scheduled_messages
+ UpdateChatHasScheduledMessages { has_scheduled_messages :: Maybe Bool, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The value of the default disable_notification parameter, used when a message is sent to the chat, was changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __default_disable_notification__ The new default_disable_notification value
+ UpdateChatDefaultDisableNotification { default_disable_notification :: Maybe Bool, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- Incoming messages were read or number of unread messages has been changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __last_read_inbox_message_id__ Identifier of the last read incoming message
+ -- 
+ -- __unread_count__ The number of unread messages left in the chat
+ UpdateChatReadInbox { unread_count :: Maybe Int, last_read_inbox_message_id :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- Outgoing messages were read 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __last_read_outbox_message_id__ Identifier of last read outgoing message
+ UpdateChatReadOutbox { last_read_outbox_message_id :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The chat unread_mention_count has changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __unread_mention_count__ The number of unread mention messages left in the chat
+ UpdateChatUnreadMentionCount { unread_mention_count :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- Notification settings for a chat were changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __notification_settings__ The new notification settings
+ UpdateChatNotificationSettings { _notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- Notification settings for some type of chats were updated 
+ -- 
+ -- __scope__ Types of chats for which notification settings were updated
+ -- 
+ -- __notification_settings__ The new notification settings
+ UpdateScopeNotificationSettings { notification_settings :: Maybe ScopeNotificationSettings.ScopeNotificationSettings, scope :: Maybe NotificationSettingsScope.NotificationSettingsScope }  |
+ -- |
+ -- 
+ -- The chat action bar was changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __action_bar__ The new value of the action bar; may be null
+ UpdateChatActionBar { action_bar :: Maybe ChatActionBar.ChatActionBar, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The chat pinned message was changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __pinned_message_id__ The new identifier of the pinned message; 0 if there is no pinned message in the chat
+ UpdateChatPinnedMessage { pinned_message_id :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __reply_markup_message_id__ Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
+ UpdateChatReplyMarkup { reply_markup_message_id :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update shouldn't be applied 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __draft_message__ The new draft message; may be null
+ -- 
+ -- __order__ New value of the chat order
+ UpdateChatDraftMessage { order :: Maybe Int, draft_message :: Maybe DraftMessage.DraftMessage, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The number of online group members has changed. This update with non-zero count is sent only for currently opened chats. There is no guarantee that it will be sent just after the count has changed 
+ -- 
+ -- __chat_id__ Identifier of the chat
+ -- 
+ -- __online_member_count__ New number of online members in the chat, or 0 if unknown
+ UpdateChatOnlineMemberCount { online_member_count :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A notification was changed 
+ -- 
+ -- __notification_group_id__ Unique notification group identifier
+ -- 
+ -- __notification__ Changed notification
+ UpdateNotification { notification :: Maybe Notification.Notification, notification_group_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A list of active notifications in a notification group has changed
+ -- 
+ -- __notification_group_id__ Unique notification group identifier
+ -- 
+ -- __type__ New type of the notification group
+ -- 
+ -- __chat_id__ Identifier of a chat to which all notifications in the group belong
+ -- 
+ -- __notification_settings_chat_id__ Chat identifier, which notification settings must be applied to the added notifications
+ -- 
+ -- __is_silent__ True, if the notifications should be shown without sound
+ -- 
+ -- __total_count__ Total number of unread notifications in the group, can be bigger than number of active notifications
+ -- 
+ -- __added_notifications__ List of added group notifications, sorted by notification ID
+ -- 
+ -- __removed_notification_ids__ Identifiers of removed group notifications, sorted by notification ID
+ UpdateNotificationGroup { removed_notification_ids :: Maybe [Int], added_notifications :: Maybe [Notification.Notification], total_count :: Maybe Int, is_silent :: Maybe Bool, notification_settings_chat_id :: Maybe Int, chat_id :: Maybe Int, __type :: Maybe NotificationGroupType.NotificationGroupType, notification_group_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- Contains active notifications that was shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update 
+ -- 
+ -- __groups__ Lists of active notification groups
+ UpdateActiveNotifications { groups :: Maybe [NotificationGroup.NotificationGroup] }  |
+ -- |
+ -- 
+ -- Describes whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications
+ -- 
+ -- __have_delayed_notifications__ True, if there are some delayed notification updates, which will be sent soon
+ -- 
+ -- __have_unreceived_notifications__ True, if there can be some yet unreceived notifications, which are being fetched from the server
+ UpdateHavePendingNotifications { have_unreceived_notifications :: Maybe Bool, have_delayed_notifications :: Maybe Bool }  |
+ -- |
+ -- 
+ -- Some messages were deleted 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __message_ids__ Identifiers of the deleted messages
+ -- 
+ -- __is_permanent__ True, if the messages are permanently deleted by a user (as opposed to just becoming inaccessible)
+ -- 
+ -- __from_cache__ True, if the messages are deleted only from the cache and can possibly be retrieved again in the future
+ UpdateDeleteMessages { from_cache :: Maybe Bool, is_permanent :: Maybe Bool, message_ids :: Maybe [Int], chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- User activity in the chat has changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __user_id__ Identifier of a user performing an action
+ -- 
+ -- __action__ The action description
+ UpdateUserChatAction { action :: Maybe ChatAction.ChatAction, user_id :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The user went online or offline 
+ -- 
+ -- __user_id__ User identifier
+ -- 
+ -- __status__ New status of the user
+ UpdateUserStatus { status :: Maybe UserStatus.UserStatus, user_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- Some data of a user has changed. This update is guaranteed to come before the user identifier is returned to the client 
+ -- 
+ -- __user__ New data about the user
+ UpdateUser { user :: Maybe User.User }  |
+ -- |
+ -- 
+ -- Some data of a basic group has changed. This update is guaranteed to come before the basic group identifier is returned to the client 
+ -- 
+ -- __basic_group__ New data about the group
+ UpdateBasicGroup { basic_group :: Maybe BasicGroup.BasicGroup }  |
+ -- |
+ -- 
+ -- Some data of a supergroup or a channel has changed. This update is guaranteed to come before the supergroup identifier is returned to the client 
+ -- 
+ -- __supergroup__ New data about the supergroup
+ UpdateSupergroup { supergroup :: Maybe Supergroup.Supergroup }  |
+ -- |
+ -- 
+ -- Some data of a secret chat has changed. This update is guaranteed to come before the secret chat identifier is returned to the client 
+ -- 
+ -- __secret_chat__ New data about the secret chat
+ UpdateSecretChat { secret_chat :: Maybe SecretChat.SecretChat }  |
+ -- |
+ -- 
+ -- Some data from userFullInfo has been changed 
+ -- 
+ -- __user_id__ User identifier
+ -- 
+ -- __user_full_info__ New full information about the user
+ UpdateUserFullInfo { user_full_info :: Maybe UserFullInfo.UserFullInfo, user_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- Some data from basicGroupFullInfo has been changed 
+ -- 
+ -- __basic_group_id__ Identifier of a basic group
+ -- 
+ -- __basic_group_full_info__ New full information about the group
+ UpdateBasicGroupFullInfo { basic_group_full_info :: Maybe BasicGroupFullInfo.BasicGroupFullInfo, basic_group_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- Some data from supergroupFullInfo has been changed 
+ -- 
+ -- __supergroup_id__ Identifier of the supergroup or channel
+ -- 
+ -- __supergroup_full_info__ New full information about the supergroup
+ UpdateSupergroupFullInfo { supergroup_full_info :: Maybe SupergroupFullInfo.SupergroupFullInfo, supergroup_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- Service notification from the server. Upon receiving this the client must show a popup with the content of the notification
+ -- 
+ -- __type__ Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" should be shown under notification; if user presses the second, all local data should be destroyed using Destroy method
+ -- 
+ -- __content__ Notification content
+ UpdateServiceNotification { content :: Maybe MessageContent.MessageContent, _type :: Maybe String }  |
+ -- |
+ -- 
+ -- Information about a file was updated 
+ -- 
+ -- __file__ New data about the file
+ UpdateFile { file :: Maybe File.File }  |
+ -- |
+ -- 
+ -- The file generation process needs to be started by the client
+ -- 
+ -- __generation_id__ Unique identifier for the generation process
+ -- 
+ -- __original_path__ The path to a file from which a new file is generated; may be empty
+ -- 
+ -- __destination_path__ The path to a file that should be created and where the new file should be generated
+ -- 
+ -- __conversion__ String specifying the conversion applied to the original file. If conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file, which should be downloaded by the client
+ UpdateFileGenerationStart { conversion :: Maybe String, destination_path :: Maybe String, original_path :: Maybe String, generation_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- File generation is no longer needed 
+ -- 
+ -- __generation_id__ Unique identifier for the generation process
+ UpdateFileGenerationStop { generation_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- New call was created or information about a call was updated 
+ -- 
+ -- __call__ New data about a call
+ UpdateCall { call :: Maybe Call.Call }  |
+ -- |
+ -- 
+ -- Some privacy setting rules have been changed 
+ -- 
+ -- __setting__ The privacy setting
+ -- 
+ -- __rules__ New privacy rules
+ UpdateUserPrivacySettingRules { rules :: Maybe UserPrivacySettingRules.UserPrivacySettingRules, setting :: Maybe UserPrivacySetting.UserPrivacySetting }  |
+ -- |
+ -- 
+ -- Number of unread messages in a chat list has changed. This update is sent only if the message database is used 
+ -- 
+ -- __chat_list__ The chat list with changed number of unread messages
+ -- 
+ -- __unread_count__ Total number of unread messages
+ -- 
+ -- __unread_unmuted_count__ Total number of unread messages in unmuted chats
+ UpdateUnreadMessageCount { unread_unmuted_count :: Maybe Int, unread_count :: Maybe Int, chat_list :: Maybe ChatList.ChatList }  |
+ -- |
+ -- 
+ -- Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if the message database is used
+ -- 
+ -- __chat_list__ The chat list with changed number of unread messages
+ -- 
+ -- __total_count__ Approximate total number of chats in the chat list
+ -- 
+ -- __unread_count__ Total number of unread chats
+ -- 
+ -- __unread_unmuted_count__ Total number of unread unmuted chats
+ -- 
+ -- __marked_as_unread_count__ Total number of chats marked as unread
+ -- 
+ -- __marked_as_unread_unmuted_count__ Total number of unmuted chats marked as unread
+ UpdateUnreadChatCount { marked_as_unread_unmuted_count :: Maybe Int, marked_as_unread_count :: Maybe Int, unread_unmuted_count :: Maybe Int, unread_count :: Maybe Int, total_count :: Maybe Int, chat_list :: Maybe ChatList.ChatList }  |
+ -- |
+ -- 
+ -- An option changed its value 
+ -- 
+ -- __name__ The option name
+ -- 
+ -- __value__ The new option value
+ UpdateOption { value :: Maybe OptionValue.OptionValue, name :: Maybe String }  |
+ -- |
+ -- 
+ -- A sticker set has changed 
+ -- 
+ -- __sticker_set__ The sticker set
+ UpdateStickerSet { sticker_set :: Maybe StickerSet.StickerSet }  |
+ -- |
+ -- 
+ -- The list of installed sticker sets was updated 
+ -- 
+ -- __is_masks__ True, if the list of installed mask sticker sets was updated
+ -- 
+ -- __sticker_set_ids__ The new list of installed ordinary sticker sets
+ UpdateInstalledStickerSets { sticker_set_ids :: Maybe [Int], is_masks :: Maybe Bool }  |
+ -- |
+ -- 
+ -- The list of trending sticker sets was updated or some of them were viewed 
+ -- 
+ -- __sticker_sets__ The prefix of the list of trending sticker sets with the newest trending sticker sets
+ UpdateTrendingStickerSets { sticker_sets :: Maybe StickerSets.StickerSets }  |
+ -- |
+ -- 
+ -- The list of recently used stickers was updated 
+ -- 
+ -- __is_attached__ True, if the list of stickers attached to photo or video files was updated, otherwise the list of sent stickers is updated
+ -- 
+ -- __sticker_ids__ The new list of file identifiers of recently used stickers
+ UpdateRecentStickers { sticker_ids :: Maybe [Int], is_attached :: Maybe Bool }  |
+ -- |
+ -- 
+ -- The list of favorite stickers was updated 
+ -- 
+ -- __sticker_ids__ The new list of file identifiers of favorite stickers
+ UpdateFavoriteStickers { sticker_ids :: Maybe [Int] }  |
+ -- |
+ -- 
+ -- The list of saved animations was updated 
+ -- 
+ -- __animation_ids__ The new list of file identifiers of saved animations
+ UpdateSavedAnimations { animation_ids :: Maybe [Int] }  |
+ -- |
+ -- 
+ -- The selected background has changed 
+ -- 
+ -- __for_dark_theme__ True, if background for dark theme has changed
+ -- 
+ -- __background__ The new selected background; may be null
+ UpdateSelectedBackground { background :: Maybe Background.Background, for_dark_theme :: Maybe Bool }  |
+ -- |
+ -- 
+ -- Some language pack strings have been updated 
+ -- 
+ -- __localization_target__ Localization target to which the language pack belongs
+ -- 
+ -- __language_pack_id__ Identifier of the updated language pack
+ -- 
+ -- __strings__ List of changed language pack strings
+ UpdateLanguagePackStrings { strings :: Maybe [LanguagePackString.LanguagePackString], language_pack_id :: Maybe String, localization_target :: Maybe String }  |
+ -- |
+ -- 
+ -- The connection state has changed 
+ -- 
+ -- __state__ The new connection state
+ UpdateConnectionState { state :: Maybe ConnectionState.ConnectionState }  |
+ -- |
+ -- 
+ -- New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method should be called with the reason "Decline ToS update" 
+ -- 
+ -- __terms_of_service_id__ Identifier of the terms of service
+ -- 
+ -- __terms_of_service__ The new terms of service
+ UpdateTermsOfService { terms_of_service :: Maybe TermsOfService.TermsOfService, terms_of_service_id :: Maybe String }  |
+ -- |
+ -- 
+ -- The list of users nearby has changed. The update is sent only 60 seconds after a successful searchChatsNearby request 
+ -- 
+ -- __users_nearby__ The new list of users nearby
+ UpdateUsersNearby { users_nearby :: Maybe [ChatNearby.ChatNearby] }  |
+ -- |
+ -- 
+ -- The list of supported dice emojis has changed 
+ -- 
+ -- __emojis__ The new list of supported dice emojis
+ UpdateDiceEmojis { emojis :: Maybe [String] }  |
+ -- |
+ -- 
+ -- A new incoming inline query; for bots only 
+ -- 
+ -- __id__ Unique query identifier
+ -- 
+ -- __sender_user_id__ Identifier of the user who sent the query
+ -- 
+ -- __user_location__ User location, provided by the client; may be null
+ -- 
+ -- __query__ Text of the query
+ -- 
+ -- __offset__ Offset of the first entry to return
+ UpdateNewInlineQuery { offset :: Maybe String, query :: Maybe String, user_location :: Maybe Location.Location, sender_user_id :: Maybe Int, _id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The user has chosen a result of an inline query; for bots only 
+ -- 
+ -- __sender_user_id__ Identifier of the user who sent the query
+ -- 
+ -- __user_location__ User location, provided by the client; may be null
+ -- 
+ -- __query__ Text of the query
+ -- 
+ -- __result_id__ Identifier of the chosen result
+ -- 
+ -- __inline_message_id__ Identifier of the sent inline message, if known
+ UpdateNewChosenInlineResult { inline_message_id :: Maybe String, result_id :: Maybe String, query :: Maybe String, user_location :: Maybe Location.Location, sender_user_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A new incoming callback query; for bots only 
+ -- 
+ -- __id__ Unique query identifier
+ -- 
+ -- __sender_user_id__ Identifier of the user who sent the query
+ -- 
+ -- __chat_id__ Identifier of the chat where the query was sent
+ -- 
+ -- __message_id__ Identifier of the message, from which the query originated
+ -- 
+ -- __chat_instance__ Identifier that uniquely corresponds to the chat to which the message was sent
+ -- 
+ -- __payload__ Query payload
+ UpdateNewCallbackQuery { payload :: Maybe CallbackQueryPayload.CallbackQueryPayload, chat_instance :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int, sender_user_id :: Maybe Int, _id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A new incoming callback query from a message sent via a bot; for bots only 
+ -- 
+ -- __id__ Unique query identifier
+ -- 
+ -- __sender_user_id__ Identifier of the user who sent the query
+ -- 
+ -- __inline_message_id__ Identifier of the inline message, from which the query originated
+ -- 
+ -- __chat_instance__ An identifier uniquely corresponding to the chat a message was sent to
+ -- 
+ -- __payload__ Query payload
+ UpdateNewInlineCallbackQuery { payload :: Maybe CallbackQueryPayload.CallbackQueryPayload, chat_instance :: Maybe Int, inline_message_id :: Maybe String, sender_user_id :: Maybe Int, _id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A new incoming shipping query; for bots only. Only for invoices with flexible price 
+ -- 
+ -- __id__ Unique query identifier
+ -- 
+ -- __sender_user_id__ Identifier of the user who sent the query
+ -- 
+ -- __invoice_payload__ Invoice payload
+ -- 
+ -- __shipping_address__ User shipping address
+ UpdateNewShippingQuery { shipping_address :: Maybe Address.Address, invoice_payload :: Maybe String, sender_user_id :: Maybe Int, _id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A new incoming pre-checkout query; for bots only. Contains full information about a checkout 
+ -- 
+ -- __id__ Unique query identifier
+ -- 
+ -- __sender_user_id__ Identifier of the user who sent the query
+ -- 
+ -- __currency__ Currency for the product price
+ -- 
+ -- __total_amount__ Total price for the product, in the minimal quantity of the currency
+ -- 
+ -- __invoice_payload__ Invoice payload
+ -- 
+ -- __shipping_option_id__ Identifier of a shipping option chosen by the user; may be empty if not applicable
+ -- 
+ -- __order_info__ Information about the order; may be null
+ UpdateNewPreCheckoutQuery { order_info :: Maybe OrderInfo.OrderInfo, shipping_option_id :: Maybe String, invoice_payload :: Maybe String, total_amount :: Maybe Int, currency :: Maybe String, sender_user_id :: Maybe Int, _id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A new incoming event; for bots only 
+ -- 
+ -- __event__ A JSON-serialized event
+ UpdateNewCustomEvent { event :: Maybe String }  |
+ -- |
+ -- 
+ -- A new incoming query; for bots only 
+ -- 
+ -- __id__ The query identifier
+ -- 
+ -- __data__ JSON-serialized query data
+ -- 
+ -- __timeout__ Query timeout
+ UpdateNewCustomQuery { timeout :: Maybe Int, _data :: Maybe String, _id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A poll was updated; for bots only 
+ -- 
+ -- __poll__ New data about the poll
+ UpdatePoll { poll :: Maybe Poll.Poll }  |
+ -- |
+ -- 
+ -- A user changed the answer to a poll; for bots only 
+ -- 
+ -- __poll_id__ Unique poll identifier
+ -- 
+ -- __user_id__ The user, who changed the answer to the poll
+ -- 
+ -- __option_ids__ 0-based identifiers of answer options, chosen by the user
+ UpdatePollAnswer { option_ids :: Maybe [Int], user_id :: Maybe Int, poll_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Update where
  toJSON (UpdateAuthorizationState { authorization_state = authorization_state }) =

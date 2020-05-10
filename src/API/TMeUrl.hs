@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.TMeUrlType as TMeUrlType
 -- 
 -- __type__ Type of the URL
 data TMeUrl = 
+
  TMeUrl { _type :: Maybe TMeUrlType.TMeUrlType, url :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON TMeUrl where

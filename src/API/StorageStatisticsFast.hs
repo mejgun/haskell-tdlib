@@ -21,6 +21,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __log_size__ Size of the TDLib internal log
 data StorageStatisticsFast = 
+
  StorageStatisticsFast { log_size :: Maybe Int, language_pack_database_size :: Maybe Int, database_size :: Maybe Int, file_count :: Maybe Int, files_size :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON StorageStatisticsFast where

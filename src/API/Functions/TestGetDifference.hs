@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Forces an updates.getDifference call to the Telegram servers; for testing only
 data TestGetDifference = 
+
  TestGetDifference deriving (Show, Eq)
 
 instance T.ToJSON TestGetDifference where

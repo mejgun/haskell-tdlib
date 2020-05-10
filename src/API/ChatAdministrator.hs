@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __is_owner__ True, if the user is the owner of the chat
 data ChatAdministrator = 
+
  ChatAdministrator { is_owner :: Maybe Bool, custom_title :: Maybe String, user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ChatAdministrator where

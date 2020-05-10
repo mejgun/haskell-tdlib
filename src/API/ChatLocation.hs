@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.Location as Location
 -- 
 -- __address__ Location address; 1-64 characters, as defined by the chat owner
 data ChatLocation = 
+
  ChatLocation { address :: Maybe String, location :: Maybe Location.Location }  deriving (Show, Eq)
 
 instance T.ToJSON ChatLocation where

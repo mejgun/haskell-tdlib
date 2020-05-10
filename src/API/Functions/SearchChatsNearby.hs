@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.Location as Location
 -- 
 -- __location__ Current user location
 data SearchChatsNearby = 
+
  SearchChatsNearby { location :: Maybe Location.Location }  deriving (Show, Eq)
 
 instance T.ToJSON SearchChatsNearby where

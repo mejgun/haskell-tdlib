@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.File as File
 -- 
 -- __big__ A big (640x640) chat photo. The file can be downloaded only before the photo is changed
 data ChatPhoto = 
+
  ChatPhoto { big :: Maybe File.File, small :: Maybe File.File }  deriving (Show, Eq)
 
 instance T.ToJSON ChatPhoto where

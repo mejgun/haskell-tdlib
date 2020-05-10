@@ -20,6 +20,7 @@ import {-# SOURCE #-} qualified API.CallProblem as CallProblem
 -- 
 -- __problems__ List of the exact types of problems with the call, specified by the user
 data SendCallRating = 
+
  SendCallRating { problems :: Maybe [CallProblem.CallProblem], comment :: Maybe String, rating :: Maybe Int, call_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendCallRating where

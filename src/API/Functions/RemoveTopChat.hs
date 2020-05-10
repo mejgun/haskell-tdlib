@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.TopChatCategory as TopChatCategory
 -- 
 -- __chat_id__ Chat identifier
 data RemoveTopChat = 
+
  RemoveTopChat { chat_id :: Maybe Int, category :: Maybe TopChatCategory.TopChatCategory }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveTopChat where

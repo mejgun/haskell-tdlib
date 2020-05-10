@@ -20,7 +20,8 @@
 </span><span id="line-20"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-21"></span><span class="hs-comment">-- __location__ Chat location if a location-based supergroup is being created</span><span>
 </span><span id="line-22"></span><span class="hs-keyword">data</span><span> </span><span id="CreateNewSupergroupChat"><span class="annot"><a href="API.Functions.CreateNewSupergroupChat.html#CreateNewSupergroupChat"><span class="hs-identifier hs-var">CreateNewSupergroupChat</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-23"></span><span> </span><span id="CreateNewSupergroupChat"><span class="annot"><a href="API.Functions.CreateNewSupergroupChat.html#CreateNewSupergroupChat"><span class="hs-identifier hs-var">CreateNewSupergroupChat</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="location"><span class="annot"><span class="annottext">CreateNewSupergroupChat -&gt; Maybe ChatLocation
+</span><span id="line-23"></span><span>
+</span><span id="line-24"></span><span> </span><span id="CreateNewSupergroupChat"><span class="annot"><a href="API.Functions.CreateNewSupergroupChat.html#CreateNewSupergroupChat"><span class="hs-identifier hs-var">CreateNewSupergroupChat</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="location"><span class="annot"><span class="annottext">CreateNewSupergroupChat -&gt; Maybe ChatLocation
 </span><a href="API.Functions.CreateNewSupergroupChat.html#location"><span class="hs-identifier hs-var hs-var">location</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.ChatLocation.html#ChatLocation"><span class="hs-identifier hs-type">ChatLocation.ChatLocation</span></a></span><span class="hs-special">,</span><span> </span><span id="description"><span class="annot"><span class="annottext">CreateNewSupergroupChat -&gt; Maybe String
 </span><a href="API.Functions.CreateNewSupergroupChat.html#description"><span class="hs-identifier hs-var hs-var">description</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="is_channel"><span class="annot"><span class="annottext">CreateNewSupergroupChat -&gt; Maybe Bool
 </span><a href="API.Functions.CreateNewSupergroupChat.html#is_channel"><span class="hs-identifier hs-var hs-var">is_channel</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="title"><span class="annot"><span class="annottext">CreateNewSupergroupChat -&gt; Maybe String
@@ -49,9 +50,9 @@ $c/= :: CreateNewSupergroupChat -&gt; CreateNewSupergroupChat -&gt; Bool
 == :: CreateNewSupergroupChat -&gt; CreateNewSupergroupChat -&gt; Bool
 $c== :: CreateNewSupergroupChat -&gt; CreateNewSupergroupChat -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417043"><span id="local-6989586621679417045"><span id="local-6989586621679417047"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CreateNewSupergroupChat.html#CreateNewSupergroupChat"><span class="hs-identifier hs-type">CreateNewSupergroupChat</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-26"></span><span> </span><span id="local-6989586621679417041"><span class="annot"><span class="annottext">toJSON :: CreateNewSupergroupChat -&gt; Value
+</span><span id="line-25"></span><span>
+</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417043"><span id="local-6989586621679417045"><span id="local-6989586621679417047"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CreateNewSupergroupChat.html#CreateNewSupergroupChat"><span class="hs-identifier hs-type">CreateNewSupergroupChat</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-27"></span><span> </span><span id="local-6989586621679417041"><span class="annot"><span class="annottext">toJSON :: CreateNewSupergroupChat -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.CreateNewSupergroupChat.html#CreateNewSupergroupChat"><span class="hs-identifier hs-type">CreateNewSupergroupChat</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">location :: CreateNewSupergroupChat -&gt; Maybe ChatLocation
 </span><a href="API.Functions.CreateNewSupergroupChat.html#location"><span class="hs-identifier hs-var">location</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417039"><span class="annot"><span class="annottext">Maybe ChatLocation
 </span><a href="#local-6989586621679417039"><span class="hs-identifier hs-var">location</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">description :: CreateNewSupergroupChat -&gt; Maybe String
@@ -61,7 +62,7 @@ $c== :: CreateNewSupergroupChat -&gt; CreateNewSupergroupChat -&gt; Bool
 </span><a href="#local-6989586621679417037"><span class="hs-identifier hs-var">is_channel</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">title :: CreateNewSupergroupChat -&gt; Maybe String
 </span><a href="API.Functions.CreateNewSupergroupChat.html#title"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679417036"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679417036"><span class="hs-identifier hs-var">title</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-27"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-28"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
@@ -78,28 +79,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679417036"><span class="hs-identifier hs-var">title</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-28"></span><span>
-</span><span id="line-29"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417030"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CreateNewSupergroupChat.html#CreateNewSupergroupChat"><span class="hs-identifier hs-type">CreateNewSupergroupChat</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-30"></span><span> </span><span id="local-6989586621679417028"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CreateNewSupergroupChat
+</span><span id="line-29"></span><span>
+</span><span id="line-30"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679417030"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CreateNewSupergroupChat.html#CreateNewSupergroupChat"><span class="hs-identifier hs-type">CreateNewSupergroupChat</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-31"></span><span> </span><span id="local-6989586621679417028"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CreateNewSupergroupChat
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679417026"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679417026"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679417024"><span class="annot"><span class="annottext">obj :: Object
 </span><a href="#local-6989586621679417024"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-31"></span><span>  </span><span id="local-6989586621679417023"><span class="annot"><span class="annottext">String
+</span><span id="line-32"></span><span>  </span><span id="local-6989586621679417023"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679417023"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679417024"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-32"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-33"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679417023"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-33"></span><span>   </span><span class="hs-string">&quot;createNewSupergroupChat&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CreateNewSupergroupChat
+</span><span id="line-34"></span><span>   </span><span class="hs-string">&quot;createNewSupergroupChat&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CreateNewSupergroupChat
 </span><a href="#local-6989586621679417021"><span class="hs-identifier hs-var">parseCreateNewSupergroupChat</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679417026"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-34"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CreateNewSupergroupChat
+</span><span id="line-35"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CreateNewSupergroupChat
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-35"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-36"></span><span>   </span><span class="annot"><a href="#local-6989586621679417021"><span class="hs-identifier hs-type">parseCreateNewSupergroupChat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.CreateNewSupergroupChat.html#CreateNewSupergroupChat"><span class="hs-identifier hs-type">CreateNewSupergroupChat</span></a></span><span>
-</span><span id="line-37"></span><span>   </span><span id="local-6989586621679417021"><span class="annot"><span class="annottext">parseCreateNewSupergroupChat :: Value -&gt; Parser CreateNewSupergroupChat
+</span><span id="line-36"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-37"></span><span>   </span><span class="annot"><a href="#local-6989586621679417021"><span class="hs-identifier hs-type">parseCreateNewSupergroupChat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.CreateNewSupergroupChat.html#CreateNewSupergroupChat"><span class="hs-identifier hs-type">CreateNewSupergroupChat</span></a></span><span>
+</span><span id="line-38"></span><span>   </span><span id="local-6989586621679417021"><span class="annot"><span class="annottext">parseCreateNewSupergroupChat :: Value -&gt; Parser CreateNewSupergroupChat
 </span><a href="#local-6989586621679417021"><span class="hs-identifier hs-var hs-var">parseCreateNewSupergroupChat</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CreateNewSupergroupChat)
 -&gt; Value
@@ -113,27 +114,27 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679417019"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679417019"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-38"></span><span>    </span><span id="local-6989586621679417018"><span class="annot"><span class="annottext">Maybe ChatLocation
+</span><span id="line-39"></span><span>    </span><span id="local-6989586621679417018"><span class="annot"><span class="annottext">Maybe ChatLocation
 </span><a href="#local-6989586621679417018"><span class="hs-identifier hs-var">location</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679417019"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe ChatLocation)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;location&quot;</span></span><span>
-</span><span id="line-39"></span><span>    </span><span id="local-6989586621679417016"><span class="annot"><span class="annottext">Maybe String
+</span><span id="line-40"></span><span>    </span><span id="local-6989586621679417016"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679417016"><span class="hs-identifier hs-var">description</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679417019"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;description&quot;</span></span><span>
-</span><span id="line-40"></span><span>    </span><span id="local-6989586621679417015"><span class="annot"><span class="annottext">Maybe Bool
+</span><span id="line-41"></span><span>    </span><span id="local-6989586621679417015"><span class="annot"><span class="annottext">Maybe Bool
 </span><a href="#local-6989586621679417015"><span class="hs-identifier hs-var">is_channel</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679417019"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_channel&quot;</span></span><span>
-</span><span id="line-41"></span><span>    </span><span id="local-6989586621679417014"><span class="annot"><span class="annottext">Maybe String
+</span><span id="line-42"></span><span>    </span><span id="local-6989586621679417014"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679417014"><span class="hs-identifier hs-var">title</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679417019"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;title&quot;</span></span><span>
-</span><span id="line-42"></span><span>    </span><span class="annot"><span class="annottext">CreateNewSupergroupChat -&gt; Parser CreateNewSupergroupChat
+</span><span id="line-43"></span><span>    </span><span class="annot"><span class="annottext">CreateNewSupergroupChat -&gt; Parser CreateNewSupergroupChat
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CreateNewSupergroupChat -&gt; Parser CreateNewSupergroupChat)
 -&gt; CreateNewSupergroupChat -&gt; Parser CreateNewSupergroupChat

@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __score__ User score
 data GameHighScore = 
+
  GameHighScore { score :: Maybe Int, user_id :: Maybe Int, position :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GameHighScore where

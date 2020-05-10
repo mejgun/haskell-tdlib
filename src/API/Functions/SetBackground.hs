@@ -19,6 +19,7 @@ import {-# SOURCE #-} qualified API.InputBackground as InputBackground
 -- 
 -- __for_dark_theme__ True, if the background is chosen for dark theme
 data SetBackground = 
+
  SetBackground { for_dark_theme :: Maybe Bool, _type :: Maybe BackgroundType.BackgroundType, background :: Maybe InputBackground.InputBackground }  deriving (Show, Eq)
 
 instance T.ToJSON SetBackground where

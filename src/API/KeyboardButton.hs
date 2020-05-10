@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.KeyboardButtonType as KeyboardButtonType
 -- 
 -- __type__ Type of the button
 data KeyboardButton = 
+
  KeyboardButton { _type :: Maybe KeyboardButtonType.KeyboardButtonType, text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON KeyboardButton where

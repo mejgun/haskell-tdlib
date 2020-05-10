@@ -11,13 +11,34 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Represents the categories of chats for which a list of frequently used chats can be retrieved
 data TopChatCategory = 
- TopChatCategoryUsers 
- | TopChatCategoryBots 
- | TopChatCategoryGroups 
- | TopChatCategoryChannels 
- | TopChatCategoryInlineBots 
- | TopChatCategoryCalls 
- | TopChatCategoryForwardChats deriving (Show, Eq)
+ -- |
+ -- 
+ -- A category containing frequently used private chats with non-bot users
+ TopChatCategoryUsers |
+ -- |
+ -- 
+ -- A category containing frequently used private chats with bot users
+ TopChatCategoryBots |
+ -- |
+ -- 
+ -- A category containing frequently used basic groups and supergroups
+ TopChatCategoryGroups |
+ -- |
+ -- 
+ -- A category containing frequently used channels
+ TopChatCategoryChannels |
+ -- |
+ -- 
+ -- A category containing frequently used chats with inline bots sorted by their usage in inline mode
+ TopChatCategoryInlineBots |
+ -- |
+ -- 
+ -- A category containing frequently used chats used for calls
+ TopChatCategoryCalls |
+ -- |
+ -- 
+ -- A category containing frequently used chats used to forward messages
+ TopChatCategoryForwardChats deriving (Show, Eq)
 
 instance T.ToJSON TopChatCategory where
  toJSON (TopChatCategoryUsers {  }) =

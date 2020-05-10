@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __text__ Text of a message to log
 data AddLogMessage = 
+
  AddLogMessage { text :: Maybe String, verbosity_level :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON AddLogMessage where

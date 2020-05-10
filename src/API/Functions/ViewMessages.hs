@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __force_read__ True, if messages in closed chats should be marked as read
 data ViewMessages = 
+
  ViewMessages { force_read :: Maybe Bool, message_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ViewMessages where

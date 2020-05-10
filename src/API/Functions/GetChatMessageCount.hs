@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.SearchMessagesFilter as SearchMessagesFilter
 -- 
 -- __return_local__ If true, returns count that is available locally without sending network requests, returning -1 if the number of messages is unknown
 data GetChatMessageCount = 
+
  GetChatMessageCount { return_local :: Maybe Bool, _filter :: Maybe SearchMessagesFilter.SearchMessagesFilter, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetChatMessageCount where

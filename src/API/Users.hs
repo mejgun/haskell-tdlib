@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __user_ids__ A list of user identifiers
 data Users = 
+
  Users { user_ids :: Maybe [Int], total_count :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Users where

@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __amount__ Currency amount in minimal quantity of the currency
 data LabeledPricePart = 
+
  LabeledPricePart { amount :: Maybe Int, label :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON LabeledPricePart where

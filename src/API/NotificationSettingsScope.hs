@@ -11,9 +11,18 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes the types of chats to which notification settings are applied
 data NotificationSettingsScope = 
- NotificationSettingsScopePrivateChats 
- | NotificationSettingsScopeGroupChats 
- | NotificationSettingsScopeChannelChats deriving (Show, Eq)
+ -- |
+ -- 
+ -- Notification settings applied to all private and secret chats when the corresponding chat setting has a default value
+ NotificationSettingsScopePrivateChats |
+ -- |
+ -- 
+ -- Notification settings applied to all basic groups and supergroups when the corresponding chat setting has a default value
+ NotificationSettingsScopeGroupChats |
+ -- |
+ -- 
+ -- Notification settings applied to all channels when the corresponding chat setting has a default value
+ NotificationSettingsScopeChannelChats deriving (Show, Eq)
 
 instance T.ToJSON NotificationSettingsScope where
  toJSON (NotificationSettingsScopePrivateChats {  }) =

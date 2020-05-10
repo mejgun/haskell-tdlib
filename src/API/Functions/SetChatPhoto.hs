@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- 
 -- __photo__ New chat photo. You can use a zero InputFileId to delete the chat photo. Files that are accessible only by HTTP URL are not acceptable
 data SetChatPhoto = 
+
  SetChatPhoto { photo :: Maybe InputFile.InputFile, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatPhoto where

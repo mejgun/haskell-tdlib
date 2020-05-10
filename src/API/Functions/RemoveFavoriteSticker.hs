@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- 
 -- __sticker__ Sticker file to delete from the list
 data RemoveFavoriteSticker = 
+
  RemoveFavoriteSticker { sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveFavoriteSticker where

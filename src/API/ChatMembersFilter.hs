@@ -11,12 +11,30 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Specifies the kind of chat members to return in searchChatMembers
 data ChatMembersFilter = 
- ChatMembersFilterContacts 
- | ChatMembersFilterAdministrators 
- | ChatMembersFilterMembers 
- | ChatMembersFilterRestricted 
- | ChatMembersFilterBanned 
- | ChatMembersFilterBots deriving (Show, Eq)
+ -- |
+ -- 
+ -- Returns contacts of the user
+ ChatMembersFilterContacts |
+ -- |
+ -- 
+ -- Returns the owner and administrators
+ ChatMembersFilterAdministrators |
+ -- |
+ -- 
+ -- Returns all chat members, including restricted chat members
+ ChatMembersFilterMembers |
+ -- |
+ -- 
+ -- Returns users under certain restrictions in the chat; can be used only by administrators in a supergroup
+ ChatMembersFilterRestricted |
+ -- |
+ -- 
+ -- Returns users banned from the chat; can be used only by administrators in a supergroup or in a channel
+ ChatMembersFilterBanned |
+ -- |
+ -- 
+ -- Returns bot members of the chat
+ ChatMembersFilterBots deriving (Show, Eq)
 
 instance T.ToJSON ChatMembersFilter where
  toJSON (ChatMembersFilterContacts {  }) =

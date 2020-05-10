@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.FileType as FileType
 -- 
 -- __file_type__ File type, if known
 data GetRemoteFile = 
+
  GetRemoteFile { file_type :: Maybe FileType.FileType, remote_file_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetRemoteFile where

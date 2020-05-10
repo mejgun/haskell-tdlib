@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __emojis__ List of emojis
 data Emojis = 
+
  Emojis { emojis :: Maybe [String] }  deriving (Show, Eq)
 
 instance T.ToJSON Emojis where

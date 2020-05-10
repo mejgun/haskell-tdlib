@@ -19,6 +19,7 @@ import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 -- 
 -- __sizes__ Available variants of the photo, in different sizes
 data Photo = 
+
  Photo { sizes :: Maybe [PhotoSize.PhotoSize], minithumbnail :: Maybe Minithumbnail.Minithumbnail, has_stickers :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON Photo where

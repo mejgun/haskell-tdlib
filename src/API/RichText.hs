@@ -12,23 +12,128 @@ import {-# SOURCE #-} qualified API.Document as Document
 -- 
 -- Describes a text object inside an instant-view web page
 data RichText = 
- RichTextPlain { _text :: Maybe String }  
- | RichTextBold { text :: Maybe RichText }  
- | RichTextItalic { text :: Maybe RichText }  
- | RichTextUnderline { text :: Maybe RichText }  
- | RichTextStrikethrough { text :: Maybe RichText }  
- | RichTextFixed { text :: Maybe RichText }  
- | RichTextUrl { is_cached :: Maybe Bool, url :: Maybe String, text :: Maybe RichText }  
- | RichTextEmailAddress { email_address :: Maybe String, text :: Maybe RichText }  
- | RichTextSubscript { text :: Maybe RichText }  
- | RichTextSuperscript { text :: Maybe RichText }  
- | RichTextMarked { text :: Maybe RichText }  
- | RichTextPhoneNumber { phone_number :: Maybe String, text :: Maybe RichText }  
- | RichTextIcon { height :: Maybe Int, width :: Maybe Int, document :: Maybe Document.Document }  
- | RichTextReference { url :: Maybe String, reference_text :: Maybe RichText, text :: Maybe RichText }  
- | RichTextAnchor { name :: Maybe String }  
- | RichTextAnchorLink { url :: Maybe String, name :: Maybe String, text :: Maybe RichText }  
- | RichTexts { texts :: Maybe [RichText] }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- A plain text 
+ -- 
+ -- __text__ Text
+ RichTextPlain { _text :: Maybe String }  |
+ -- |
+ -- 
+ -- A bold rich text 
+ -- 
+ -- __text__ Text
+ RichTextBold { text :: Maybe RichText }  |
+ -- |
+ -- 
+ -- An italicized rich text 
+ -- 
+ -- __text__ Text
+ RichTextItalic { text :: Maybe RichText }  |
+ -- |
+ -- 
+ -- An underlined rich text 
+ -- 
+ -- __text__ Text
+ RichTextUnderline { text :: Maybe RichText }  |
+ -- |
+ -- 
+ -- A strikethrough rich text 
+ -- 
+ -- __text__ Text
+ RichTextStrikethrough { text :: Maybe RichText }  |
+ -- |
+ -- 
+ -- A fixed-width rich text 
+ -- 
+ -- __text__ Text
+ RichTextFixed { text :: Maybe RichText }  |
+ -- |
+ -- 
+ -- A rich text URL link 
+ -- 
+ -- __text__ Text
+ -- 
+ -- __url__ URL
+ -- 
+ -- __is_cached__ True, if the URL has cached instant view server-side
+ RichTextUrl { is_cached :: Maybe Bool, url :: Maybe String, text :: Maybe RichText }  |
+ -- |
+ -- 
+ -- A rich text email link 
+ -- 
+ -- __text__ Text
+ -- 
+ -- __email_address__ Email address
+ RichTextEmailAddress { email_address :: Maybe String, text :: Maybe RichText }  |
+ -- |
+ -- 
+ -- A subscript rich text 
+ -- 
+ -- __text__ Text
+ RichTextSubscript { text :: Maybe RichText }  |
+ -- |
+ -- 
+ -- A superscript rich text 
+ -- 
+ -- __text__ Text
+ RichTextSuperscript { text :: Maybe RichText }  |
+ -- |
+ -- 
+ -- A marked rich text 
+ -- 
+ -- __text__ Text
+ RichTextMarked { text :: Maybe RichText }  |
+ -- |
+ -- 
+ -- A rich text phone number 
+ -- 
+ -- __text__ Text
+ -- 
+ -- __phone_number__ Phone number
+ RichTextPhoneNumber { phone_number :: Maybe String, text :: Maybe RichText }  |
+ -- |
+ -- 
+ -- A small image inside the text 
+ -- 
+ -- __document__ The image represented as a document. The image can be in GIF, JPEG or PNG format
+ -- 
+ -- __width__ Width of a bounding box in which the image should be shown; 0 if unknown
+ -- 
+ -- __height__ Height of a bounding box in which the image should be shown; 0 if unknown
+ RichTextIcon { height :: Maybe Int, width :: Maybe Int, document :: Maybe Document.Document }  |
+ -- |
+ -- 
+ -- A rich text reference of a text on the same web page 
+ -- 
+ -- __text__ The text
+ -- 
+ -- __reference_text__ The text to show on click
+ -- 
+ -- __url__ An HTTP URL, opening the reference
+ RichTextReference { url :: Maybe String, reference_text :: Maybe RichText, text :: Maybe RichText }  |
+ -- |
+ -- 
+ -- An anchor 
+ -- 
+ -- __name__ Anchor name
+ RichTextAnchor { name :: Maybe String }  |
+ -- |
+ -- 
+ -- A link to an anchor on the same web page 
+ -- 
+ -- __text__ The link text
+ -- 
+ -- __name__ The anchor name. If the name is empty, the link should bring back to top
+ -- 
+ -- __url__ An HTTP URL, opening the anchor
+ RichTextAnchorLink { url :: Maybe String, name :: Maybe String, text :: Maybe RichText }  |
+ -- |
+ -- 
+ -- A concatenation of rich texts 
+ -- 
+ -- __texts__ Texts
+ RichTexts { texts :: Maybe [RichText] }  deriving (Show, Eq)
 
 instance T.ToJSON RichText where
  toJSON (RichTextPlain { _text = _text }) =

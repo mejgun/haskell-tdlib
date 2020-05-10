@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __query__ Query to search for
 data SearchStickerSets = 
+
  SearchStickerSets { query :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SearchStickerSets where

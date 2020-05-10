@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 -- 
 -- __type__ Element type
 data DeletePassportElement = 
+
  DeletePassportElement { _type :: Maybe PassportElementType.PassportElementType }  deriving (Show, Eq)
 
 instance T.ToJSON DeletePassportElement where

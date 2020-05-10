@@ -19,6 +19,7 @@ import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 -- 
 -- __caption__ New message content caption; 0-GetOption("message_caption_length_max") characters
 data EditInlineMessageCaption = 
+
  EditInlineMessageCaption { caption :: Maybe FormattedText.FormattedText, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, inline_message_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON EditInlineMessageCaption where

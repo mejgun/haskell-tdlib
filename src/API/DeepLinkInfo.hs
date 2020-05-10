@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 -- 
 -- __need_update_application__ True, if user should be asked to update the application
 data DeepLinkInfo = 
+
  DeepLinkInfo { need_update_application :: Maybe Bool, text :: Maybe FormattedText.FormattedText }  deriving (Show, Eq)
 
 instance T.ToJSON DeepLinkInfo where

@@ -19,6 +19,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __nonce__ Authorization form nonce provided by the service
 data GetPassportAuthorizationForm = 
+
  GetPassportAuthorizationForm { nonce :: Maybe String, public_key :: Maybe String, scope :: Maybe String, bot_user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetPassportAuthorizationForm where

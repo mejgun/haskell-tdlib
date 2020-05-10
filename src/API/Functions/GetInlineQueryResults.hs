@@ -22,6 +22,7 @@ import {-# SOURCE #-} qualified API.Location as Location
 -- 
 -- __offset__ Offset of the first entry to return
 data GetInlineQueryResults = 
+
  GetInlineQueryResults { offset :: Maybe String, query :: Maybe String, user_location :: Maybe Location.Location, chat_id :: Maybe Int, bot_user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetInlineQueryResults where

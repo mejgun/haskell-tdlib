@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Clears all imported contacts, contact list remains unchanged
 data ClearImportedContacts = 
+
  ClearImportedContacts deriving (Show, Eq)
 
 instance T.ToJSON ClearImportedContacts where

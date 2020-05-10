@@ -17,6 +17,7 @@ import {-# SOURCE #-} qualified API.NotificationSettingsScope as NotificationSet
 -- 
 -- __notification_settings__ The new notification settings for the given scope
 data SetScopeNotificationSettings = 
+
  SetScopeNotificationSettings { notification_settings :: Maybe ScopeNotificationSettings.ScopeNotificationSettings, scope :: Maybe NotificationSettingsScope.NotificationSettingsScope }  deriving (Show, Eq)
 
 instance T.ToJSON SetScopeNotificationSettings where

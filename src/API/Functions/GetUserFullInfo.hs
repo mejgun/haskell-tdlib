@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __user_id__ User identifier
 data GetUserFullInfo = 
+
  GetUserFullInfo { user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetUserFullInfo where

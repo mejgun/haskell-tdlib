@@ -62,6 +62,7 @@ import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 -- 
 -- __instant_view_version__ Version of instant view, available for the web page (currently can be 1 or 2), 0 if none
 data WebPage = 
+
  WebPage { instant_view_version :: Maybe Int, voice_note :: Maybe VoiceNote.VoiceNote, video_note :: Maybe VideoNote.VideoNote, video :: Maybe Video.Video, sticker :: Maybe Sticker.Sticker, document :: Maybe Document.Document, audio :: Maybe Audio.Audio, animation :: Maybe Animation.Animation, author :: Maybe String, duration :: Maybe Int, embed_height :: Maybe Int, embed_width :: Maybe Int, embed_type :: Maybe String, embed_url :: Maybe String, photo :: Maybe Photo.Photo, description :: Maybe FormattedText.FormattedText, title :: Maybe String, site_name :: Maybe String, _type :: Maybe String, display_url :: Maybe String, url :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON WebPage where

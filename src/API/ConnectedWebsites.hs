@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.ConnectedWebsite as ConnectedWebsite
 -- 
 -- __websites__ List of connected websites
 data ConnectedWebsites = 
+
  ConnectedWebsites { websites :: Maybe [ConnectedWebsite.ConnectedWebsite] }  deriving (Show, Eq)
 
 instance T.ToJSON ConnectedWebsites where

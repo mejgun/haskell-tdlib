@@ -22,6 +22,7 @@ import {-# SOURCE #-} qualified API.ChatList as ChatList
 -- 
 -- __limit__ The maximum number of chats to be returned. It is possible that fewer chats than the limit are returned even if the end of the list is not reached
 data GetChats = 
+
  GetChats { limit :: Maybe Int, offset_chat_id :: Maybe Int, offset_order :: Maybe Int, chat_list :: Maybe ChatList.ChatList }  deriving (Show, Eq)
 
 instance T.ToJSON GetChats where

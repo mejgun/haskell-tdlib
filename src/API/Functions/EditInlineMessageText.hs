@@ -19,6 +19,7 @@ import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 -- 
 -- __input_message_content__ New text content of the message. Should be of type InputMessageText
 data EditInlineMessageText = 
+
  EditInlineMessageText { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, inline_message_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON EditInlineMessageText where

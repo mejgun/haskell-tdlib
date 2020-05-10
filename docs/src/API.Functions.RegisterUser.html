@@ -15,7 +15,8 @@
 </span><span id="line-15"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-16"></span><span class="hs-comment">-- __last_name__ The last name of the user; 0-64 characters</span><span>
 </span><span id="line-17"></span><span class="hs-keyword">data</span><span> </span><span id="RegisterUser"><span class="annot"><a href="API.Functions.RegisterUser.html#RegisterUser"><span class="hs-identifier hs-var">RegisterUser</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-18"></span><span> </span><span id="RegisterUser"><span class="annot"><a href="API.Functions.RegisterUser.html#RegisterUser"><span class="hs-identifier hs-var">RegisterUser</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="last_name"><span class="annot"><span class="annottext">RegisterUser -&gt; Maybe String
+</span><span id="line-18"></span><span>
+</span><span id="line-19"></span><span> </span><span id="RegisterUser"><span class="annot"><a href="API.Functions.RegisterUser.html#RegisterUser"><span class="hs-identifier hs-var">RegisterUser</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="last_name"><span class="annot"><span class="annottext">RegisterUser -&gt; Maybe String
 </span><a href="API.Functions.RegisterUser.html#last_name"><span class="hs-identifier hs-var hs-var">last_name</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="first_name"><span class="annot"><span class="annottext">RegisterUser -&gt; Maybe String
 </span><a href="API.Functions.RegisterUser.html#first_name"><span class="hs-identifier hs-var hs-var">first_name</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679428136"><span id="local-6989586621679428138"><span id="local-6989586621679428140"><span class="annot"><span class="annottext">Int -&gt; RegisterUser -&gt; ShowS
 [RegisterUser] -&gt; ShowS
@@ -41,15 +42,15 @@ $c/= :: RegisterUser -&gt; RegisterUser -&gt; Bool
 == :: RegisterUser -&gt; RegisterUser -&gt; Bool
 $c== :: RegisterUser -&gt; RegisterUser -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428123"><span id="local-6989586621679428125"><span id="local-6989586621679428127"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.RegisterUser.html#RegisterUser"><span class="hs-identifier hs-type">RegisterUser</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span> </span><span id="local-6989586621679428121"><span class="annot"><span class="annottext">toJSON :: RegisterUser -&gt; Value
+</span><span id="line-20"></span><span>
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428123"><span id="local-6989586621679428125"><span id="local-6989586621679428127"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.RegisterUser.html#RegisterUser"><span class="hs-identifier hs-type">RegisterUser</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span> </span><span id="local-6989586621679428121"><span class="annot"><span class="annottext">toJSON :: RegisterUser -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.RegisterUser.html#RegisterUser"><span class="hs-identifier hs-type">RegisterUser</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">last_name :: RegisterUser -&gt; Maybe String
 </span><a href="API.Functions.RegisterUser.html#last_name"><span class="hs-identifier hs-var">last_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428119"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679428119"><span class="hs-identifier hs-var">last_name</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">first_name :: RegisterUser -&gt; Maybe String
 </span><a href="API.Functions.RegisterUser.html#first_name"><span class="hs-identifier hs-var">first_name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428118"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679428118"><span class="hs-identifier hs-var">first_name</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-22"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-23"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
@@ -60,28 +61,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679428118"><span class="hs-identifier hs-var">first_name</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428112"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.RegisterUser.html#RegisterUser"><span class="hs-identifier hs-type">RegisterUser</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span> </span><span id="local-6989586621679428110"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser RegisterUser
+</span><span id="line-24"></span><span>
+</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428112"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.RegisterUser.html#RegisterUser"><span class="hs-identifier hs-type">RegisterUser</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span> </span><span id="local-6989586621679428110"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser RegisterUser
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679428108"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679428108"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679428106"><span class="annot"><span class="annottext">obj :: Object
 </span><a href="#local-6989586621679428106"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>  </span><span id="local-6989586621679428105"><span class="annot"><span class="annottext">String
+</span><span id="line-27"></span><span>  </span><span id="local-6989586621679428105"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679428105"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679428106"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-27"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-28"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679428105"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-28"></span><span>   </span><span class="hs-string">&quot;registerUser&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser RegisterUser
+</span><span id="line-29"></span><span>   </span><span class="hs-string">&quot;registerUser&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser RegisterUser
 </span><a href="#local-6989586621679428103"><span class="hs-identifier hs-var">parseRegisterUser</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679428108"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-29"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser RegisterUser
+</span><span id="line-30"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser RegisterUser
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-30"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-31"></span><span>   </span><span class="annot"><a href="#local-6989586621679428103"><span class="hs-identifier hs-type">parseRegisterUser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.RegisterUser.html#RegisterUser"><span class="hs-identifier hs-type">RegisterUser</span></a></span><span>
-</span><span id="line-32"></span><span>   </span><span id="local-6989586621679428103"><span class="annot"><span class="annottext">parseRegisterUser :: Value -&gt; Parser RegisterUser
+</span><span id="line-31"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-32"></span><span>   </span><span class="annot"><a href="#local-6989586621679428103"><span class="hs-identifier hs-type">parseRegisterUser</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.RegisterUser.html#RegisterUser"><span class="hs-identifier hs-type">RegisterUser</span></a></span><span>
+</span><span id="line-33"></span><span>   </span><span id="local-6989586621679428103"><span class="annot"><span class="annottext">parseRegisterUser :: Value -&gt; Parser RegisterUser
 </span><a href="#local-6989586621679428103"><span class="hs-identifier hs-var hs-var">parseRegisterUser</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser RegisterUser) -&gt; Value -&gt; Parser RegisterUser
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
@@ -90,17 +91,17 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679428101"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679428101"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-33"></span><span>    </span><span id="local-6989586621679428100"><span class="annot"><span class="annottext">Maybe String
+</span><span id="line-34"></span><span>    </span><span id="local-6989586621679428100"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679428100"><span class="hs-identifier hs-var">last_name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679428101"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;last_name&quot;</span></span><span>
-</span><span id="line-34"></span><span>    </span><span id="local-6989586621679428098"><span class="annot"><span class="annottext">Maybe String
+</span><span id="line-35"></span><span>    </span><span id="local-6989586621679428098"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679428098"><span class="hs-identifier hs-var">first_name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679428101"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;first_name&quot;</span></span><span>
-</span><span id="line-35"></span><span>    </span><span class="annot"><span class="annottext">RegisterUser -&gt; Parser RegisterUser
+</span><span id="line-36"></span><span>    </span><span class="annot"><span class="annottext">RegisterUser -&gt; Parser RegisterUser
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(RegisterUser -&gt; Parser RegisterUser)
 -&gt; RegisterUser -&gt; Parser RegisterUser

@@ -11,12 +11,34 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes the last time the user was online
 data UserStatus = 
- UserStatusEmpty 
- | UserStatusOnline { expires :: Maybe Int }  
- | UserStatusOffline { was_online :: Maybe Int }  
- | UserStatusRecently 
- | UserStatusLastWeek 
- | UserStatusLastMonth deriving (Show, Eq)
+ -- |
+ -- 
+ -- The user status was never changed
+ UserStatusEmpty |
+ -- |
+ -- 
+ -- The user is online 
+ -- 
+ -- __expires__ Point in time (Unix timestamp) when the user's online status will expire
+ UserStatusOnline { expires :: Maybe Int }  |
+ -- |
+ -- 
+ -- The user is offline 
+ -- 
+ -- __was_online__ Point in time (Unix timestamp) when the user was last online
+ UserStatusOffline { was_online :: Maybe Int }  |
+ -- |
+ -- 
+ -- The user was online recently
+ UserStatusRecently |
+ -- |
+ -- 
+ -- The user is offline, but was online last week
+ UserStatusLastWeek |
+ -- |
+ -- 
+ -- The user is offline, but was online last month
+ UserStatusLastMonth deriving (Show, Eq)
 
 instance T.ToJSON UserStatus where
  toJSON (UserStatusEmpty {  }) =

@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __for_dark_theme__ True, if the backgrounds needs to be ordered for dark theme
 data GetBackgrounds = 
+
  GetBackgrounds { for_dark_theme :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON GetBackgrounds where

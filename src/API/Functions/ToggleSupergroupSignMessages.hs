@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __sign_messages__ New value of sign_messages
 data ToggleSupergroupSignMessages = 
+
  ToggleSupergroupSignMessages { sign_messages :: Maybe Bool, supergroup_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ToggleSupergroupSignMessages where

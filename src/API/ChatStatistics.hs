@@ -45,6 +45,7 @@ import {-# SOURCE #-} qualified API.DateRange as DateRange
 -- 
 -- __recent_message_interactions__ Detailed statistics about number of views and shares of recently sent messages
 data ChatStatistics = 
+
  ChatStatistics { recent_message_interactions :: Maybe [ChatStatisticsMessageInteractionCounters.ChatStatisticsMessageInteractionCounters], instant_view_interaction_graph :: Maybe StatisticsGraph.StatisticsGraph, message_interaction_graph :: Maybe StatisticsGraph.StatisticsGraph, language_graph :: Maybe StatisticsGraph.StatisticsGraph, join_by_source_graph :: Maybe StatisticsGraph.StatisticsGraph, view_count_by_source_graph :: Maybe StatisticsGraph.StatisticsGraph, view_count_by_hour_graph :: Maybe StatisticsGraph.StatisticsGraph, mute_graph :: Maybe StatisticsGraph.StatisticsGraph, join_graph :: Maybe StatisticsGraph.StatisticsGraph, member_count_graph :: Maybe StatisticsGraph.StatisticsGraph, enabled_notifications_percentage :: Maybe Float, mean_share_count :: Maybe StatisticsValue.StatisticsValue, mean_view_count :: Maybe StatisticsValue.StatisticsValue, member_count :: Maybe StatisticsValue.StatisticsValue, period :: Maybe DateRange.DateRange }  deriving (Show, Eq)
 
 instance T.ToJSON ChatStatistics where

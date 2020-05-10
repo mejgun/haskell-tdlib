@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __seconds__ Number of seconds
 data Seconds = 
+
  Seconds { seconds :: Maybe Float }  deriving (Show, Eq)
 
 instance T.ToJSON Seconds where

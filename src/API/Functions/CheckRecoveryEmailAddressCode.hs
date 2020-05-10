@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __code__ Verification code
 data CheckRecoveryEmailAddressCode = 
+
  CheckRecoveryEmailAddressCode { code :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CheckRecoveryEmailAddressCode where

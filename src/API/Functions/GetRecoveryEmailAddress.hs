@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __password__ The password for the current user
 data GetRecoveryEmailAddress = 
+
  GetRecoveryEmailAddress { password :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetRecoveryEmailAddress where

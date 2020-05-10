@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __verification_url__ URL for additional payment credentials verification
 data PaymentResult = 
+
  PaymentResult { verification_url :: Maybe String, success :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON PaymentResult where

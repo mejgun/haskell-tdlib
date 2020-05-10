@@ -27,6 +27,7 @@ import {-# SOURCE #-} qualified API.ChatType as ChatType
 -- 
 -- __is_public__ True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup
 data ChatInviteLinkInfo = 
+
  ChatInviteLinkInfo { is_public :: Maybe Bool, member_user_ids :: Maybe [Int], member_count :: Maybe Int, photo :: Maybe ChatPhoto.ChatPhoto, title :: Maybe String, _type :: Maybe ChatType.ChatType, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ChatInviteLinkInfo where

@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __x__ Vector of strings to return
 data TestCallVectorString = 
+
  TestCallVectorString { x :: Maybe [String] }  deriving (Show, Eq)
 
 instance T.ToJSON TestCallVectorString where

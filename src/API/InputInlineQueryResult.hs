@@ -16,19 +16,266 @@ import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 -- 
 -- Represents a single result of an inline query; for bots only
 data InputInlineQueryResult = 
- InputInlineQueryResultAnimatedGif { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, gif_height :: Maybe Int, gif_width :: Maybe Int, gif_duration :: Maybe Int, gif_url :: Maybe String, thumbnail_url :: Maybe String, title :: Maybe String, _id :: Maybe String }  
- | InputInlineQueryResultAnimatedMpeg4 { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, mpeg4_height :: Maybe Int, mpeg4_width :: Maybe Int, mpeg4_duration :: Maybe Int, mpeg4_url :: Maybe String, thumbnail_url :: Maybe String, title :: Maybe String, _id :: Maybe String }  
- | InputInlineQueryResultArticle { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, thumbnail_height :: Maybe Int, thumbnail_width :: Maybe Int, thumbnail_url :: Maybe String, description :: Maybe String, title :: Maybe String, hide_url :: Maybe Bool, url :: Maybe String, _id :: Maybe String }  
- | InputInlineQueryResultAudio { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, audio_duration :: Maybe Int, audio_url :: Maybe String, performer :: Maybe String, title :: Maybe String, _id :: Maybe String }  
- | InputInlineQueryResultContact { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, thumbnail_height :: Maybe Int, thumbnail_width :: Maybe Int, thumbnail_url :: Maybe String, contact :: Maybe Contact.Contact, _id :: Maybe String }  
- | InputInlineQueryResultDocument { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, thumbnail_height :: Maybe Int, thumbnail_width :: Maybe Int, thumbnail_url :: Maybe String, mime_type :: Maybe String, document_url :: Maybe String, description :: Maybe String, title :: Maybe String, _id :: Maybe String }  
- | InputInlineQueryResultGame { reply_markup :: Maybe ReplyMarkup.ReplyMarkup, game_short_name :: Maybe String, _id :: Maybe String }  
- | InputInlineQueryResultLocation { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, thumbnail_height :: Maybe Int, thumbnail_width :: Maybe Int, thumbnail_url :: Maybe String, title :: Maybe String, live_period :: Maybe Int, location :: Maybe Location.Location, _id :: Maybe String }  
- | InputInlineQueryResultPhoto { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, photo_height :: Maybe Int, photo_width :: Maybe Int, photo_url :: Maybe String, thumbnail_url :: Maybe String, description :: Maybe String, title :: Maybe String, _id :: Maybe String }  
- | InputInlineQueryResultSticker { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, sticker_height :: Maybe Int, sticker_width :: Maybe Int, sticker_url :: Maybe String, thumbnail_url :: Maybe String, _id :: Maybe String }  
- | InputInlineQueryResultVenue { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, thumbnail_height :: Maybe Int, thumbnail_width :: Maybe Int, thumbnail_url :: Maybe String, venue :: Maybe Venue.Venue, _id :: Maybe String }  
- | InputInlineQueryResultVideo { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, video_duration :: Maybe Int, video_height :: Maybe Int, video_width :: Maybe Int, mime_type :: Maybe String, video_url :: Maybe String, thumbnail_url :: Maybe String, description :: Maybe String, title :: Maybe String, _id :: Maybe String }  
- | InputInlineQueryResultVoiceNote { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, voice_note_duration :: Maybe Int, voice_note_url :: Maybe String, title :: Maybe String, _id :: Maybe String }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- Represents a link to an animated GIF 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __title__ Title of the query result
+ -- 
+ -- __thumbnail_url__ URL of the static result thumbnail (JPEG or GIF), if it exists
+ -- 
+ -- __gif_url__ The URL of the GIF-file (file size must not exceed 1MB)
+ -- 
+ -- __gif_duration__ Duration of the GIF, in seconds
+ -- 
+ -- __gif_width__ Width of the GIF
+ -- 
+ -- __gif_height__ Height of the GIF
+ -- 
+ -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- 
+ -- __input_message_content__ The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageAnimation, InputMessageLocation, InputMessageVenue or InputMessageContact
+ InputInlineQueryResultAnimatedGif { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, gif_height :: Maybe Int, gif_width :: Maybe Int, gif_duration :: Maybe Int, gif_url :: Maybe String, thumbnail_url :: Maybe String, title :: Maybe String, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents a link to an animated (i.e. without sound) H.264/MPEG-4 AVC video 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __title__ Title of the result
+ -- 
+ -- __thumbnail_url__ URL of the static result thumbnail (JPEG or GIF), if it exists
+ -- 
+ -- __mpeg4_url__ The URL of the MPEG4-file (file size must not exceed 1MB)
+ -- 
+ -- __mpeg4_duration__ Duration of the video, in seconds
+ -- 
+ -- __mpeg4_width__ Width of the video
+ -- 
+ -- __mpeg4_height__ Height of the video
+ -- 
+ -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- 
+ -- __input_message_content__ The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageAnimation, InputMessageLocation, InputMessageVenue or InputMessageContact
+ InputInlineQueryResultAnimatedMpeg4 { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, mpeg4_height :: Maybe Int, mpeg4_width :: Maybe Int, mpeg4_duration :: Maybe Int, mpeg4_url :: Maybe String, thumbnail_url :: Maybe String, title :: Maybe String, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents a link to an article or web page 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __url__ URL of the result, if it exists
+ -- 
+ -- __hide_url__ True, if the URL must be not shown
+ -- 
+ -- __title__ Title of the result
+ -- 
+ -- __param_description__ A short description of the result
+ -- 
+ -- __thumbnail_url__ URL of the result thumbnail, if it exists
+ -- 
+ -- __thumbnail_width__ Thumbnail width, if known
+ -- 
+ -- __thumbnail_height__ Thumbnail height, if known
+ -- 
+ -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- 
+ -- __input_message_content__ The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
+ InputInlineQueryResultArticle { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, thumbnail_height :: Maybe Int, thumbnail_width :: Maybe Int, thumbnail_url :: Maybe String, description :: Maybe String, title :: Maybe String, hide_url :: Maybe Bool, url :: Maybe String, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents a link to an MP3 audio file 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __title__ Title of the audio file
+ -- 
+ -- __performer__ Performer of the audio file
+ -- 
+ -- __audio_url__ The URL of the audio file
+ -- 
+ -- __audio_duration__ Audio file duration, in seconds
+ -- 
+ -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- 
+ -- __input_message_content__ The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageAudio, InputMessageLocation, InputMessageVenue or InputMessageContact
+ InputInlineQueryResultAudio { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, audio_duration :: Maybe Int, audio_url :: Maybe String, performer :: Maybe String, title :: Maybe String, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents a user contact 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __contact__ User contact
+ -- 
+ -- __thumbnail_url__ URL of the result thumbnail, if it exists
+ -- 
+ -- __thumbnail_width__ Thumbnail width, if known
+ -- 
+ -- __thumbnail_height__ Thumbnail height, if known
+ -- 
+ -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- 
+ -- __input_message_content__ The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
+ InputInlineQueryResultContact { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, thumbnail_height :: Maybe Int, thumbnail_width :: Maybe Int, thumbnail_url :: Maybe String, contact :: Maybe Contact.Contact, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents a link to a file 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __title__ Title of the resulting file
+ -- 
+ -- __param_description__ Short description of the result, if known
+ -- 
+ -- __document_url__ URL of the file
+ -- 
+ -- __mime_type__ MIME type of the file content; only "application/pdf" and "application/zip" are currently allowed
+ -- 
+ -- __thumbnail_url__ The URL of the file thumbnail, if it exists
+ -- 
+ -- __thumbnail_width__ Width of the thumbnail
+ -- 
+ -- __thumbnail_height__ Height of the thumbnail
+ -- 
+ -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- 
+ -- __input_message_content__ The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageDocument, InputMessageLocation, InputMessageVenue or InputMessageContact
+ InputInlineQueryResultDocument { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, thumbnail_height :: Maybe Int, thumbnail_width :: Maybe Int, thumbnail_url :: Maybe String, mime_type :: Maybe String, document_url :: Maybe String, description :: Maybe String, title :: Maybe String, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents a game 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __game_short_name__ Short name of the game
+ -- 
+ -- __reply_markup__ Message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ InputInlineQueryResultGame { reply_markup :: Maybe ReplyMarkup.ReplyMarkup, game_short_name :: Maybe String, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents a point on the map 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __location__ Location result
+ -- 
+ -- __live_period__ Amount of time relative to the message sent time until the location can be updated, in seconds
+ -- 
+ -- __title__ Title of the result
+ -- 
+ -- __thumbnail_url__ URL of the result thumbnail, if it exists
+ -- 
+ -- __thumbnail_width__ Thumbnail width, if known
+ -- 
+ -- __thumbnail_height__ Thumbnail height, if known
+ -- 
+ -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- 
+ -- __input_message_content__ The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
+ InputInlineQueryResultLocation { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, thumbnail_height :: Maybe Int, thumbnail_width :: Maybe Int, thumbnail_url :: Maybe String, title :: Maybe String, live_period :: Maybe Int, location :: Maybe Location.Location, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents link to a JPEG image 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __title__ Title of the result, if known
+ -- 
+ -- __param_description__ A short description of the result, if known
+ -- 
+ -- __thumbnail_url__ URL of the photo thumbnail, if it exists
+ -- 
+ -- __photo_url__ The URL of the JPEG photo (photo size must not exceed 5MB)
+ -- 
+ -- __photo_width__ Width of the photo
+ -- 
+ -- __photo_height__ Height of the photo
+ -- 
+ -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- 
+ -- __input_message_content__ The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessagePhoto, InputMessageLocation, InputMessageVenue or InputMessageContact
+ InputInlineQueryResultPhoto { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, photo_height :: Maybe Int, photo_width :: Maybe Int, photo_url :: Maybe String, thumbnail_url :: Maybe String, description :: Maybe String, title :: Maybe String, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents a link to a WEBP or TGS sticker 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __thumbnail_url__ URL of the sticker thumbnail, if it exists
+ -- 
+ -- __sticker_url__ The URL of the WEBP or TGS sticker (sticker file size must not exceed 5MB)
+ -- 
+ -- __sticker_width__ Width of the sticker
+ -- 
+ -- __sticker_height__ Height of the sticker
+ -- 
+ -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- 
+ -- __input_message_content__ The content of the message to be sent. Must be one of the following types: InputMessageText, inputMessageSticker, InputMessageLocation, InputMessageVenue or InputMessageContact
+ InputInlineQueryResultSticker { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, sticker_height :: Maybe Int, sticker_width :: Maybe Int, sticker_url :: Maybe String, thumbnail_url :: Maybe String, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents information about a venue 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __venue__ Venue result
+ -- 
+ -- __thumbnail_url__ URL of the result thumbnail, if it exists
+ -- 
+ -- __thumbnail_width__ Thumbnail width, if known
+ -- 
+ -- __thumbnail_height__ Thumbnail height, if known
+ -- 
+ -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- 
+ -- __input_message_content__ The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
+ InputInlineQueryResultVenue { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, thumbnail_height :: Maybe Int, thumbnail_width :: Maybe Int, thumbnail_url :: Maybe String, venue :: Maybe Venue.Venue, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents a link to a page containing an embedded video player or a video file 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __title__ Title of the result
+ -- 
+ -- __param_description__ A short description of the result, if known
+ -- 
+ -- __thumbnail_url__ The URL of the video thumbnail (JPEG), if it exists
+ -- 
+ -- __video_url__ URL of the embedded video player or video file
+ -- 
+ -- __mime_type__ MIME type of the content of the video URL, only "text/html" or "video/mp4" are currently supported
+ -- 
+ -- __video_width__ Width of the video
+ -- 
+ -- __video_height__ Height of the video
+ -- 
+ -- __video_duration__ Video duration, in seconds
+ -- 
+ -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- 
+ -- __input_message_content__ The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageVideo, InputMessageLocation, InputMessageVenue or InputMessageContact
+ InputInlineQueryResultVideo { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, video_duration :: Maybe Int, video_height :: Maybe Int, video_width :: Maybe Int, mime_type :: Maybe String, video_url :: Maybe String, thumbnail_url :: Maybe String, description :: Maybe String, title :: Maybe String, _id :: Maybe String }  |
+ -- |
+ -- 
+ -- Represents a link to an opus-encoded audio file within an OGG container, single channel audio 
+ -- 
+ -- __id__ Unique identifier of the query result
+ -- 
+ -- __title__ Title of the voice note
+ -- 
+ -- __voice_note_url__ The URL of the voice note file
+ -- 
+ -- __voice_note_duration__ Duration of the voice note, in seconds
+ -- 
+ -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- 
+ -- __input_message_content__ The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageVoiceNote, InputMessageLocation, InputMessageVenue or InputMessageContact
+ InputInlineQueryResultVoiceNote { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, voice_note_duration :: Maybe Int, voice_note_url :: Maybe String, title :: Maybe String, _id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON InputInlineQueryResult where
  toJSON (InputInlineQueryResultAnimatedGif { input_message_content = input_message_content, reply_markup = reply_markup, gif_height = gif_height, gif_width = gif_width, gif_duration = gif_duration, gif_url = gif_url, thumbnail_url = thumbnail_url, title = title, _id = _id }) =

@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __username__ The new value of the username. Use an empty string to remove the username
 data SetUsername = 
+
  SetUsername { username :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SetUsername where

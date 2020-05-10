@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __password__ The password of the current user
 data TransferChatOwnership = 
+
  TransferChatOwnership { password :: Maybe String, user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON TransferChatOwnership where

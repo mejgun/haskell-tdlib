@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __id__ The globally unique identifier of push notification subscription
 data PushReceiverId = 
+
  PushReceiverId { _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON PushReceiverId where

@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __limit__ The maximum number of users to return; up to 100
 data GetBlockedUsers = 
+
  GetBlockedUsers { limit :: Maybe Int, offset :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetBlockedUsers where

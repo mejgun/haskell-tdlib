@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.JsonValue as JsonValue
 -- 
 -- __json_value__ The JsonValue object
 data GetJsonString = 
+
  GetJsonString { json_value :: Maybe JsonValue.JsonValue }  deriving (Show, Eq)
 
 instance T.ToJSON GetJsonString where

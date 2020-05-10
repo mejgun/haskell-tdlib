@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.Sticker as Sticker
 -- 
 -- __stickers__ List of stickers
 data Stickers = 
+
  Stickers { stickers :: Maybe [Sticker.Sticker] }  deriving (Show, Eq)
 
 instance T.ToJSON Stickers where

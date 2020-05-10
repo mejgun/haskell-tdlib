@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.LanguagePackString as LanguagePackString
 -- 
 -- __strings__ A list of language pack strings
 data LanguagePackStrings = 
+
  LanguagePackStrings { strings :: Maybe [LanguagePackString.LanguagePackString] }  deriving (Show, Eq)
 
 instance T.ToJSON LanguagePackStrings where

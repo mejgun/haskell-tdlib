@@ -11,22 +11,70 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Represents a filter for message search results
 data SearchMessagesFilter = 
- SearchMessagesFilterEmpty 
- | SearchMessagesFilterAnimation 
- | SearchMessagesFilterAudio 
- | SearchMessagesFilterDocument 
- | SearchMessagesFilterPhoto 
- | SearchMessagesFilterVideo 
- | SearchMessagesFilterVoiceNote 
- | SearchMessagesFilterPhotoAndVideo 
- | SearchMessagesFilterUrl 
- | SearchMessagesFilterChatPhoto 
- | SearchMessagesFilterCall 
- | SearchMessagesFilterMissedCall 
- | SearchMessagesFilterVideoNote 
- | SearchMessagesFilterVoiceAndVideoNote 
- | SearchMessagesFilterMention 
- | SearchMessagesFilterUnreadMention deriving (Show, Eq)
+ -- |
+ -- 
+ -- Returns all found messages, no filter is applied
+ SearchMessagesFilterEmpty |
+ -- |
+ -- 
+ -- Returns only animation messages
+ SearchMessagesFilterAnimation |
+ -- |
+ -- 
+ -- Returns only audio messages
+ SearchMessagesFilterAudio |
+ -- |
+ -- 
+ -- Returns only document messages
+ SearchMessagesFilterDocument |
+ -- |
+ -- 
+ -- Returns only photo messages
+ SearchMessagesFilterPhoto |
+ -- |
+ -- 
+ -- Returns only video messages
+ SearchMessagesFilterVideo |
+ -- |
+ -- 
+ -- Returns only voice note messages
+ SearchMessagesFilterVoiceNote |
+ -- |
+ -- 
+ -- Returns only photo and video messages
+ SearchMessagesFilterPhotoAndVideo |
+ -- |
+ -- 
+ -- Returns only messages containing URLs
+ SearchMessagesFilterUrl |
+ -- |
+ -- 
+ -- Returns only messages containing chat photos
+ SearchMessagesFilterChatPhoto |
+ -- |
+ -- 
+ -- Returns only call messages
+ SearchMessagesFilterCall |
+ -- |
+ -- 
+ -- Returns only incoming call messages with missed/declined discard reasons
+ SearchMessagesFilterMissedCall |
+ -- |
+ -- 
+ -- Returns only video note messages
+ SearchMessagesFilterVideoNote |
+ -- |
+ -- 
+ -- Returns only voice and video note messages
+ SearchMessagesFilterVoiceAndVideoNote |
+ -- |
+ -- 
+ -- Returns only messages with mentions of the current user, or messages that are replies to their messages
+ SearchMessagesFilterMention |
+ -- |
+ -- 
+ -- Returns only messages with unread mentions of the current user, or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query or by the sending user
+ SearchMessagesFilterUnreadMention deriving (Show, Eq)
 
 instance T.ToJSON SearchMessagesFilter where
  toJSON (SearchMessagesFilterEmpty {  }) =

@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.MessageSchedulingState as MessageSchedulingS
 -- 
 -- __scheduling_state__ The new message scheduling state. Pass null to send the message immediately
 data EditMessageSchedulingState = 
+
  EditMessageSchedulingState { scheduling_state :: Maybe MessageSchedulingState.MessageSchedulingState, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON EditMessageSchedulingState where

@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Basic group chats need to be first upgraded to supergroups before they can be set as a discussion group
 data GetSuitableDiscussionChats = 
+
  GetSuitableDiscussionChats deriving (Show, Eq)
 
 instance T.ToJSON GetSuitableDiscussionChats where

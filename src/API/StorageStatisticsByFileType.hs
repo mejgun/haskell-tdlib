@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.FileType as FileType
 -- 
 -- __count__ Total number of files
 data StorageStatisticsByFileType = 
+
  StorageStatisticsByFileType { count :: Maybe Int, size :: Maybe Int, file_type :: Maybe FileType.FileType }  deriving (Show, Eq)
 
 instance T.ToJSON StorageStatisticsByFileType where

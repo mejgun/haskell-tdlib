@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __recovery_code__ Recovery code to check
 data RecoverPassword = 
+
  RecoverPassword { recovery_code :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON RecoverPassword where

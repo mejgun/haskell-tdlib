@@ -33,6 +33,7 @@ import {-# SOURCE #-} qualified API.PollOption as PollOption
 -- 
 -- __is_closed__ True, if the poll is closed
 data Poll = 
+
  Poll { is_closed :: Maybe Bool, close_date :: Maybe Int, open_period :: Maybe Int, _type :: Maybe PollType.PollType, is_anonymous :: Maybe Bool, recent_voter_user_ids :: Maybe [Int], total_voter_count :: Maybe Int, options :: Maybe [PollOption.PollOption], question :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Poll where

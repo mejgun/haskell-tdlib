@@ -11,13 +11,36 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes the reason why a chat is reported
 data ChatReportReason = 
- ChatReportReasonSpam 
- | ChatReportReasonViolence 
- | ChatReportReasonPornography 
- | ChatReportReasonChildAbuse 
- | ChatReportReasonCopyright 
- | ChatReportReasonUnrelatedLocation 
- | ChatReportReasonCustom { text :: Maybe String }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- The chat contains spam messages
+ ChatReportReasonSpam |
+ -- |
+ -- 
+ -- The chat promotes violence
+ ChatReportReasonViolence |
+ -- |
+ -- 
+ -- The chat contains pornographic messages
+ ChatReportReasonPornography |
+ -- |
+ -- 
+ -- The chat has child abuse related content
+ ChatReportReasonChildAbuse |
+ -- |
+ -- 
+ -- The chat contains copyrighted content
+ ChatReportReasonCopyright |
+ -- |
+ -- 
+ -- The location-based chat is unrelated to its stated location
+ ChatReportReasonUnrelatedLocation |
+ -- |
+ -- 
+ -- A custom reason provided by the user 
+ -- 
+ -- __text__ Report text
+ ChatReportReasonCustom { text :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON ChatReportReason where
  toJSON (ChatReportReasonSpam {  }) =

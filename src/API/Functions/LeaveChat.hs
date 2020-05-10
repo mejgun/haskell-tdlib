@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __chat_id__ Chat identifier
 data LeaveChat = 
+
  LeaveChat { chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON LeaveChat where

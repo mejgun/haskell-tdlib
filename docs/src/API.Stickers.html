@@ -14,7 +14,8 @@
 </span><span id="line-14"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-15"></span><span class="hs-comment">-- __stickers__ List of stickers</span><span>
 </span><span id="line-16"></span><span class="hs-keyword">data</span><span> </span><span id="Stickers"><span class="annot"><a href="API.Stickers.html#Stickers"><span class="hs-identifier hs-var">Stickers</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-17"></span><span> </span><span id="Stickers"><span class="annot"><a href="API.Stickers.html#Stickers"><span class="hs-identifier hs-var">Stickers</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="stickers"><span class="annot"><span class="annottext">Stickers -&gt; Maybe [Sticker]
+</span><span id="line-17"></span><span>
+</span><span id="line-18"></span><span> </span><span id="Stickers"><span class="annot"><a href="API.Stickers.html#Stickers"><span class="hs-identifier hs-var">Stickers</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="stickers"><span class="annot"><span class="annottext">Stickers -&gt; Maybe [Sticker]
 </span><a href="API.Stickers.html#stickers"><span class="hs-identifier hs-var hs-var">stickers</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.Sticker.html#Sticker"><span class="hs-identifier hs-type">Sticker.Sticker</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679453708"><span id="local-6989586621679453710"><span id="local-6989586621679453712"><span class="annot"><span class="annottext">Int -&gt; Stickers -&gt; ShowS
 [Stickers] -&gt; ShowS
 Stickers -&gt; String
@@ -37,13 +38,13 @@ $c/= :: Stickers -&gt; Stickers -&gt; Bool
 == :: Stickers -&gt; Stickers -&gt; Bool
 $c== :: Stickers -&gt; Stickers -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-18"></span><span>
-</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679453695"><span id="local-6989586621679453697"><span id="local-6989586621679453699"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Stickers.html#Stickers"><span class="hs-identifier hs-type">Stickers</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-20"></span><span> </span><span id="local-6989586621679453693"><span class="annot"><span class="annottext">toJSON :: Stickers -&gt; Value
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679453695"><span id="local-6989586621679453697"><span id="local-6989586621679453699"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Stickers.html#Stickers"><span class="hs-identifier hs-type">Stickers</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span> </span><span id="local-6989586621679453693"><span class="annot"><span class="annottext">toJSON :: Stickers -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Stickers.html#Stickers"><span class="hs-identifier hs-type">Stickers</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">stickers :: Stickers -&gt; Maybe [Sticker]
 </span><a href="API.Stickers.html#stickers"><span class="hs-identifier hs-var">stickers</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679453691"><span class="annot"><span class="annottext">Maybe [Sticker]
 </span><a href="#local-6989586621679453691"><span class="hs-identifier hs-var">stickers</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-21"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-22"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
@@ -51,28 +52,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Sticker]
 </span><a href="#local-6989586621679453691"><span class="hs-identifier hs-var">stickers</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679453685"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Stickers.html#Stickers"><span class="hs-identifier hs-type">Stickers</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span> </span><span id="local-6989586621679453683"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Stickers
+</span><span id="line-23"></span><span>
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679453685"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Stickers.html#Stickers"><span class="hs-identifier hs-type">Stickers</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span> </span><span id="local-6989586621679453683"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser Stickers
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679453681"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679453681"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679453679"><span class="annot"><span class="annottext">obj :: Object
 </span><a href="#local-6989586621679453679"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>  </span><span id="local-6989586621679453678"><span class="annot"><span class="annottext">String
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679453678"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679453678"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679453679"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-26"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-27"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679453678"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-27"></span><span>   </span><span class="hs-string">&quot;stickers&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser Stickers
+</span><span id="line-28"></span><span>   </span><span class="hs-string">&quot;stickers&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser Stickers
 </span><a href="#local-6989586621679453676"><span class="hs-identifier hs-var">parseStickers</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679453681"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-28"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser Stickers
+</span><span id="line-29"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser Stickers
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-29"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-30"></span><span>   </span><span class="annot"><a href="#local-6989586621679453676"><span class="hs-identifier hs-type">parseStickers</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Stickers.html#Stickers"><span class="hs-identifier hs-type">Stickers</span></a></span><span>
-</span><span id="line-31"></span><span>   </span><span id="local-6989586621679453676"><span class="annot"><span class="annottext">parseStickers :: Value -&gt; Parser Stickers
+</span><span id="line-30"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-31"></span><span>   </span><span class="annot"><a href="#local-6989586621679453676"><span class="hs-identifier hs-type">parseStickers</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Stickers.html#Stickers"><span class="hs-identifier hs-type">Stickers</span></a></span><span>
+</span><span id="line-32"></span><span>   </span><span id="local-6989586621679453676"><span class="annot"><span class="annottext">parseStickers :: Value -&gt; Parser Stickers
 </span><a href="#local-6989586621679453676"><span class="hs-identifier hs-var hs-var">parseStickers</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String -&gt; (Object -&gt; Parser Stickers) -&gt; Value -&gt; Parser Stickers
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;Stickers&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser Stickers) -&gt; Value -&gt; Parser Stickers)
@@ -80,12 +81,12 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679453674"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679453674"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-32"></span><span>    </span><span id="local-6989586621679453673"><span class="annot"><span class="annottext">Maybe [Sticker]
+</span><span id="line-33"></span><span>    </span><span id="local-6989586621679453673"><span class="annot"><span class="annottext">Maybe [Sticker]
 </span><a href="#local-6989586621679453673"><span class="hs-identifier hs-var">stickers</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679453674"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Sticker])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;stickers&quot;</span></span><span>
-</span><span id="line-33"></span><span>    </span><span class="annot"><span class="annottext">Stickers -&gt; Parser Stickers
+</span><span id="line-34"></span><span>    </span><span class="annot"><span class="annottext">Stickers -&gt; Parser Stickers
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(Stickers -&gt; Parser Stickers) -&gt; Stickers -&gt; Parser Stickers
 forall a b. (a -&gt; b) -&gt; a -&gt; b

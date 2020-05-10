@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.ChatEvent as ChatEvent
 -- 
 -- __events__ List of events
 data ChatEvents = 
+
  ChatEvents { events :: Maybe [ChatEvent.ChatEvent] }  deriving (Show, Eq)
 
 instance T.ToJSON ChatEvents where

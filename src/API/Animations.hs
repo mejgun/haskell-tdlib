@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.Animation as Animation
 -- 
 -- __animations__ List of animations
 data Animations = 
+
  Animations { animations :: Maybe [Animation.Animation] }  deriving (Show, Eq)
 
 instance T.ToJSON Animations where

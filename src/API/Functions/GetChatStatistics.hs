@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __is_dark__ Pass true if a dark theme is used by the app
 data GetChatStatistics = 
+
  GetChatStatistics { is_dark :: Maybe Bool, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetChatStatistics where

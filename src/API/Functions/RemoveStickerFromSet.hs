@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- 
 -- __sticker__ Sticker
 data RemoveStickerFromSet = 
+
  RemoveStickerFromSet { sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON RemoveStickerFromSet where

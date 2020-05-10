@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __longitude__ Longitude of the location, in degrees; as defined by the sender
 data Location = 
+
  Location { longitude :: Maybe Float, latitude :: Maybe Float }  deriving (Show, Eq)
 
 instance T.ToJSON Location where

@@ -25,6 +25,7 @@ import {-# SOURCE #-} qualified API.Date as Date
 -- 
 -- __translation__ List of files containing a certified English translation of the document
 data InputIdentityDocument = 
+
  InputIdentityDocument { translation :: Maybe [InputFile.InputFile], selfie :: Maybe InputFile.InputFile, reverse_side :: Maybe InputFile.InputFile, front_side :: Maybe InputFile.InputFile, expiry_date :: Maybe Date.Date, number :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON InputIdentityDocument where

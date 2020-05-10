@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Quickly returns approximate storage usage statistics. Can be called before authorization
 data GetStorageStatisticsFast = 
+
  GetStorageStatisticsFast deriving (Show, Eq)
 
 instance T.ToJSON GetStorageStatisticsFast where

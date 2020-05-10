@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 -- 
 -- __text__ The text
 data GetMarkdownText = 
+
  GetMarkdownText { text :: Maybe FormattedText.FormattedText }  deriving (Show, Eq)
 
 instance T.ToJSON GetMarkdownText where

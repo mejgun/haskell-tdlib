@@ -23,6 +23,7 @@ import {-# SOURCE #-} qualified API.NotificationGroupType as NotificationGroupTy
 -- 
 -- __notifications__ The list of active notifications
 data NotificationGroup = 
+
  NotificationGroup { notifications :: Maybe [Notification.Notification], total_count :: Maybe Int, chat_id :: Maybe Int, _type :: Maybe NotificationGroupType.NotificationGroupType, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON NotificationGroup where

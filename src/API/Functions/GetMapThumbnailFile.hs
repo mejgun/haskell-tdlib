@@ -24,6 +24,7 @@ import {-# SOURCE #-} qualified API.Location as Location
 -- 
 -- __chat_id__ Identifier of a chat, in which the thumbnail will be shown. Use 0 if unknown
 data GetMapThumbnailFile = 
+
  GetMapThumbnailFile { chat_id :: Maybe Int, scale :: Maybe Int, height :: Maybe Int, width :: Maybe Int, zoom :: Maybe Int, location :: Maybe Location.Location }  deriving (Show, Eq)
 
 instance T.ToJSON GetMapThumbnailFile where

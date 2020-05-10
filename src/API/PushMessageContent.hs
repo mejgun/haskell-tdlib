@@ -19,32 +19,210 @@ import {-# SOURCE #-} qualified API.VoiceNote as VoiceNote
 -- 
 -- Contains content of a push message notification
 data PushMessageContent = 
- PushMessageContentHidden { is_pinned :: Maybe Bool }  
- | PushMessageContentAnimation { is_pinned :: Maybe Bool, caption :: Maybe String, animation :: Maybe Animation.Animation }  
- | PushMessageContentAudio { is_pinned :: Maybe Bool, audio :: Maybe Audio.Audio }  
- | PushMessageContentContact { is_pinned :: Maybe Bool, name :: Maybe String }  
- | PushMessageContentContactRegistered 
- | PushMessageContentDocument { is_pinned :: Maybe Bool, document :: Maybe Document.Document }  
- | PushMessageContentGame { is_pinned :: Maybe Bool, title :: Maybe String }  
- | PushMessageContentGameScore { is_pinned :: Maybe Bool, score :: Maybe Int, title :: Maybe String }  
- | PushMessageContentInvoice { is_pinned :: Maybe Bool, price :: Maybe String }  
- | PushMessageContentLocation { is_pinned :: Maybe Bool, is_live :: Maybe Bool }  
- | PushMessageContentPhoto { is_pinned :: Maybe Bool, is_secret :: Maybe Bool, caption :: Maybe String, photo :: Maybe Photo.Photo }  
- | PushMessageContentPoll { is_pinned :: Maybe Bool, is_regular :: Maybe Bool, question :: Maybe String }  
- | PushMessageContentScreenshotTaken 
- | PushMessageContentSticker { is_pinned :: Maybe Bool, emoji :: Maybe String, sticker :: Maybe Sticker.Sticker }  
- | PushMessageContentText { is_pinned :: Maybe Bool, text :: Maybe String }  
- | PushMessageContentVideo { is_pinned :: Maybe Bool, is_secret :: Maybe Bool, caption :: Maybe String, video :: Maybe Video.Video }  
- | PushMessageContentVideoNote { is_pinned :: Maybe Bool, video_note :: Maybe VideoNote.VideoNote }  
- | PushMessageContentVoiceNote { is_pinned :: Maybe Bool, voice_note :: Maybe VoiceNote.VoiceNote }  
- | PushMessageContentBasicGroupChatCreate 
- | PushMessageContentChatAddMembers { is_returned :: Maybe Bool, is_current_user :: Maybe Bool, member_name :: Maybe String }  
- | PushMessageContentChatChangePhoto 
- | PushMessageContentChatChangeTitle { title :: Maybe String }  
- | PushMessageContentChatDeleteMember { is_left :: Maybe Bool, is_current_user :: Maybe Bool, member_name :: Maybe String }  
- | PushMessageContentChatJoinByLink 
- | PushMessageContentMessageForwards { total_count :: Maybe Int }  
- | PushMessageContentMediaAlbum { has_videos :: Maybe Bool, has_photos :: Maybe Bool, total_count :: Maybe Int }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- A general message with hidden content 
+ -- 
+ -- __is_pinned__ True, if the message is a pinned message with the specified content
+ PushMessageContentHidden { is_pinned :: Maybe Bool }  |
+ -- |
+ -- 
+ -- An animation message (GIF-style). 
+ -- 
+ -- __animation__ Message content; may be null
+ -- 
+ -- __caption__ Animation caption
+ -- 
+ -- __is_pinned__ True, if the message is a pinned message with the specified content
+ PushMessageContentAnimation { is_pinned :: Maybe Bool, caption :: Maybe String, animation :: Maybe Animation.Animation }  |
+ -- |
+ -- 
+ -- An audio message 
+ -- 
+ -- __audio__ Message content; may be null
+ -- 
+ -- __is_pinned__ True, if the message is a pinned message with the specified content
+ PushMessageContentAudio { is_pinned :: Maybe Bool, audio :: Maybe Audio.Audio }  |
+ -- |
+ -- 
+ -- A message with a user contact 
+ -- 
+ -- __name__ Contact's name
+ -- 
+ -- __is_pinned__ True, if the message is a pinned message with the specified content
+ PushMessageContentContact { is_pinned :: Maybe Bool, name :: Maybe String }  |
+ -- |
+ -- 
+ -- A contact has registered with Telegram
+ PushMessageContentContactRegistered |
+ -- |
+ -- 
+ -- A document message (a general file) 
+ -- 
+ -- __document__ Message content; may be null
+ -- 
+ -- __is_pinned__ True, if the message is a pinned message with the specified content
+ PushMessageContentDocument { is_pinned :: Maybe Bool, document :: Maybe Document.Document }  |
+ -- |
+ -- 
+ -- A message with a game 
+ -- 
+ -- __title__ Game title, empty for pinned game message
+ -- 
+ -- __is_pinned__ True, if the message is a pinned message with the specified content
+ PushMessageContentGame { is_pinned :: Maybe Bool, title :: Maybe String }  |
+ -- |
+ -- 
+ -- A new high score was achieved in a game 
+ -- 
+ -- __title__ Game title, empty for pinned message
+ -- 
+ -- __score__ New score, 0 for pinned message
+ -- 
+ -- __is_pinned__ True, if the message is a pinned message with the specified content
+ PushMessageContentGameScore { is_pinned :: Maybe Bool, score :: Maybe Int, title :: Maybe String }  |
+ -- |
+ -- 
+ -- A message with an invoice from a bot 
+ -- 
+ -- __price__ Product price
+ -- 
+ -- __is_pinned__ True, if the message is a pinned message with the specified content
+ PushMessageContentInvoice { is_pinned :: Maybe Bool, price :: Maybe String }  |
+ -- |
+ -- 
+ -- A message with a location 
+ -- 
+ -- __is_live__ True, if the location is live
+ -- 
+ -- __is_pinned__ True, if the message is a pinned message with the specified content
+ PushMessageContentLocation { is_pinned :: Maybe Bool, is_live :: Maybe Bool }  |
+ -- |
+ -- 
+ -- A photo message 
+ -- 
+ -- __photo__ Message content; may be null
+ -- 
+ -- __caption__ Photo caption
+ -- 
+ -- __is_secret__ True, if the photo is secret
+ -- 
+ -- __is_pinned__ True, if the message is a pinned message with the specified content
+ PushMessageContentPhoto { is_pinned :: Maybe Bool, is_secret :: Maybe Bool, caption :: Maybe String, photo :: Maybe Photo.Photo }  |
+ -- |
+ -- 
+ -- A message with a poll 
+ -- 
+ -- __question__ Poll question
+ -- 
+ -- __is_regular__ True, if the poll is regular and not in quiz mode
+ -- 
+ -- __is_pinned__ True, if the message is a pinned message with the specified content
+ PushMessageContentPoll { is_pinned :: Maybe Bool, is_regular :: Maybe Bool, question :: Maybe String }  |
+ -- |
+ -- 
+ -- A screenshot of a message in the chat has been taken
+ PushMessageContentScreenshotTaken |
+ -- |
+ -- 
+ -- A message with a sticker 
+ -- 
+ -- __sticker__ Message content; may be null
+ -- 
+ -- __emoji__ Emoji corresponding to the sticker; may be empty
+ -- 
+ -- __is_pinned__ True, if the message is a pinned message with the specified content
+ PushMessageContentSticker { is_pinned :: Maybe Bool, emoji :: Maybe String, sticker :: Maybe Sticker.Sticker }  |
+ -- |
+ -- 
+ -- A text message 
+ -- 
+ -- __text__ Message text
+ -- 
+ -- __is_pinned__ True, if the message is a pinned message with the specified content
+ PushMessageContentText { is_pinned :: Maybe Bool, text :: Maybe String }  |
+ -- |
+ -- 
+ -- A video message 
+ -- 
+ -- __video__ Message content; may be null
+ -- 
+ -- __caption__ Video caption
+ -- 
+ -- __is_secret__ True, if the video is secret
+ -- 
+ -- __is_pinned__ True, if the message is a pinned message with the specified content
+ PushMessageContentVideo { is_pinned :: Maybe Bool, is_secret :: Maybe Bool, caption :: Maybe String, video :: Maybe Video.Video }  |
+ -- |
+ -- 
+ -- A video note message 
+ -- 
+ -- __video_note__ Message content; may be null
+ -- 
+ -- __is_pinned__ True, if the message is a pinned message with the specified content
+ PushMessageContentVideoNote { is_pinned :: Maybe Bool, video_note :: Maybe VideoNote.VideoNote }  |
+ -- |
+ -- 
+ -- A voice note message 
+ -- 
+ -- __voice_note__ Message content; may be null
+ -- 
+ -- __is_pinned__ True, if the message is a pinned message with the specified content
+ PushMessageContentVoiceNote { is_pinned :: Maybe Bool, voice_note :: Maybe VoiceNote.VoiceNote }  |
+ -- |
+ -- 
+ -- A newly created basic group
+ PushMessageContentBasicGroupChatCreate |
+ -- |
+ -- 
+ -- New chat members were invited to a group 
+ -- 
+ -- __member_name__ Name of the added member
+ -- 
+ -- __is_current_user__ True, if the current user was added to the group
+ -- 
+ -- __is_returned__ True, if the user has returned to the group themself
+ PushMessageContentChatAddMembers { is_returned :: Maybe Bool, is_current_user :: Maybe Bool, member_name :: Maybe String }  |
+ -- |
+ -- 
+ -- A chat photo was edited
+ PushMessageContentChatChangePhoto |
+ -- |
+ -- 
+ -- A chat title was edited 
+ -- 
+ -- __title__ New chat title
+ PushMessageContentChatChangeTitle { title :: Maybe String }  |
+ -- |
+ -- 
+ -- A chat member was deleted 
+ -- 
+ -- __member_name__ Name of the deleted member
+ -- 
+ -- __is_current_user__ True, if the current user was deleted from the group
+ -- 
+ -- __is_left__ True, if the user has left the group themself
+ PushMessageContentChatDeleteMember { is_left :: Maybe Bool, is_current_user :: Maybe Bool, member_name :: Maybe String }  |
+ -- |
+ -- 
+ -- A new member joined the chat by invite link
+ PushMessageContentChatJoinByLink |
+ -- |
+ -- 
+ -- A forwarded messages 
+ -- 
+ -- __total_count__ Number of forwarded messages
+ PushMessageContentMessageForwards { total_count :: Maybe Int }  |
+ -- |
+ -- 
+ -- A media album 
+ -- 
+ -- __total_count__ Number of messages in the album
+ -- 
+ -- __has_photos__ True, if the album has at least one photo
+ -- 
+ -- __has_videos__ True, if the album has at least one video
+ PushMessageContentMediaAlbum { has_videos :: Maybe Bool, has_photos :: Maybe Bool, total_count :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON PushMessageContent where
  toJSON (PushMessageContentHidden { is_pinned = is_pinned }) =

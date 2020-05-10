@@ -22,6 +22,7 @@ import {-# SOURCE #-} qualified API.ChatMemberStatus as ChatMemberStatus
 -- 
 -- __upgraded_to_supergroup_id__ Identifier of the supergroup to which this group was upgraded; 0 if none
 data BasicGroup = 
+
  BasicGroup { upgraded_to_supergroup_id :: Maybe Int, is_active :: Maybe Bool, status :: Maybe ChatMemberStatus.ChatMemberStatus, member_count :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON BasicGroup where

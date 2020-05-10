@@ -21,6 +21,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __disable_mention_notifications__ True, if notifications for messages with mentions will be created as for an ordinary unread message
 data ScopeNotificationSettings = 
+
  ScopeNotificationSettings { disable_mention_notifications :: Maybe Bool, disable_pinned_message_notifications :: Maybe Bool, show_preview :: Maybe Bool, sound :: Maybe String, mute_for :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ScopeNotificationSettings where

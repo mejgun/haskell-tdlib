@@ -17,6 +17,7 @@ import {-# SOURCE #-} qualified API.AutoDownloadSettings as AutoDownloadSettings
 -- 
 -- __type__ Type of the network for which the new settings are applied
 data SetAutoDownloadSettings = 
+
  SetAutoDownloadSettings { _type :: Maybe NetworkType.NetworkType, settings :: Maybe AutoDownloadSettings.AutoDownloadSettings }  deriving (Show, Eq)
 
 instance T.ToJSON SetAutoDownloadSettings where

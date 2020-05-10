@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __encryption_key__ Encryption key to check or set up
 data CheckDatabaseEncryptionKey = 
+
  CheckDatabaseEncryptionKey { encryption_key :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON CheckDatabaseEncryptionKey where

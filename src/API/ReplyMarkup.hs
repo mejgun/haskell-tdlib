@@ -13,10 +13,36 @@ import {-# SOURCE #-} qualified API.InlineKeyboardButton as InlineKeyboardButton
 -- 
 -- Contains a description of a custom keyboard and actions that can be done with it to quickly reply to bots
 data ReplyMarkup = 
- ReplyMarkupRemoveKeyboard { is_personal :: Maybe Bool }  
- | ReplyMarkupForceReply { is_personal :: Maybe Bool }  
- | ReplyMarkupShowKeyboard { is_personal :: Maybe Bool, one_time :: Maybe Bool, resize_keyboard :: Maybe Bool, _rows :: Maybe [KeyboardButton.KeyboardButton] }  
- | ReplyMarkupInlineKeyboard { rows :: Maybe [InlineKeyboardButton.InlineKeyboardButton] }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- Instructs clients to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, UpdateChatReplyMarkup with message_id == 0 will be sent
+ -- 
+ -- __is_personal__ True, if the keyboard is removed only for the mentioned users or the target user of a reply
+ ReplyMarkupRemoveKeyboard { is_personal :: Maybe Bool }  |
+ -- |
+ -- 
+ -- Instructs clients to force a reply to this message
+ -- 
+ -- __is_personal__ True, if a forced reply must automatically be shown to the current user. For outgoing messages, specify true to show the forced reply only for the mentioned users and for the target user of a reply
+ ReplyMarkupForceReply { is_personal :: Maybe Bool }  |
+ -- |
+ -- 
+ -- Contains a custom keyboard layout to quickly reply to bots
+ -- 
+ -- __rows__ A list of rows of bot keyboard buttons
+ -- 
+ -- __resize_keyboard__ True, if the client needs to resize the keyboard vertically
+ -- 
+ -- __one_time__ True, if the client needs to hide the keyboard after use
+ -- 
+ -- __is_personal__ True, if the keyboard must automatically be shown to the current user. For outgoing messages, specify true to show the keyboard only for the mentioned users and for the target user of a reply
+ ReplyMarkupShowKeyboard { is_personal :: Maybe Bool, one_time :: Maybe Bool, resize_keyboard :: Maybe Bool, _rows :: Maybe [KeyboardButton.KeyboardButton] }  |
+ -- |
+ -- 
+ -- Contains an inline keyboard layout
+ -- 
+ -- __rows__ A list of rows of inline keyboard buttons
+ ReplyMarkupInlineKeyboard { rows :: Maybe [InlineKeyboardButton.InlineKeyboardButton] }  deriving (Show, Eq)
 
 instance T.ToJSON ReplyMarkup where
  toJSON (ReplyMarkupRemoveKeyboard { is_personal = is_personal }) =

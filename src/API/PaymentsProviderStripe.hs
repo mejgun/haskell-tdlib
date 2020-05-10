@@ -19,6 +19,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __need_cardholder_name__ True, if the cardholder name must be provided
 data PaymentsProviderStripe = 
+
  PaymentsProviderStripe { need_cardholder_name :: Maybe Bool, need_postal_code :: Maybe Bool, need_country :: Maybe Bool, publishable_key :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON PaymentsProviderStripe where

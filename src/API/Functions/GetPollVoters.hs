@@ -21,6 +21,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __limit__ The maximum number of users to be returned; must be positive and can't be greater than 50. Fewer users may be returned than specified by the limit, even if the end of the voter list has not been reached
 data GetPollVoters = 
+
  GetPollVoters { limit :: Maybe Int, offset :: Maybe Int, option_id :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetPollVoters where

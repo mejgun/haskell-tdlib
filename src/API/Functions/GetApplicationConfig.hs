@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Returns application config, provided by the server. Can be called before authorization
 data GetApplicationConfig = 
+
  GetApplicationConfig deriving (Show, Eq)
 
 instance T.ToJSON GetApplicationConfig where

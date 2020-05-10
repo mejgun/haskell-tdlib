@@ -11,22 +11,70 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Represents the type of a file
 data FileType = 
- FileTypeNone 
- | FileTypeAnimation 
- | FileTypeAudio 
- | FileTypeDocument 
- | FileTypePhoto 
- | FileTypeProfilePhoto 
- | FileTypeSecret 
- | FileTypeSecretThumbnail 
- | FileTypeSecure 
- | FileTypeSticker 
- | FileTypeThumbnail 
- | FileTypeUnknown 
- | FileTypeVideo 
- | FileTypeVideoNote 
- | FileTypeVoiceNote 
- | FileTypeWallpaper deriving (Show, Eq)
+ -- |
+ -- 
+ -- The data is not a file
+ FileTypeNone |
+ -- |
+ -- 
+ -- The file is an animation
+ FileTypeAnimation |
+ -- |
+ -- 
+ -- The file is an audio file
+ FileTypeAudio |
+ -- |
+ -- 
+ -- The file is a document
+ FileTypeDocument |
+ -- |
+ -- 
+ -- The file is a photo
+ FileTypePhoto |
+ -- |
+ -- 
+ -- The file is a profile photo
+ FileTypeProfilePhoto |
+ -- |
+ -- 
+ -- The file was sent to a secret chat (the file type is not known to the server)
+ FileTypeSecret |
+ -- |
+ -- 
+ -- The file is a thumbnail of a file from a secret chat
+ FileTypeSecretThumbnail |
+ -- |
+ -- 
+ -- The file is a file from Secure storage used for storing Telegram Passport files
+ FileTypeSecure |
+ -- |
+ -- 
+ -- The file is a sticker
+ FileTypeSticker |
+ -- |
+ -- 
+ -- The file is a thumbnail of another file
+ FileTypeThumbnail |
+ -- |
+ -- 
+ -- The file type is not yet known
+ FileTypeUnknown |
+ -- |
+ -- 
+ -- The file is a video
+ FileTypeVideo |
+ -- |
+ -- 
+ -- The file is a video note
+ FileTypeVideoNote |
+ -- |
+ -- 
+ -- The file is a voice note
+ FileTypeVoiceNote |
+ -- |
+ -- 
+ -- The file is a wallpaper or a background pattern
+ FileTypeWallpaper deriving (Show, Eq)
 
 instance T.ToJSON FileType where
  toJSON (FileTypeNone {  }) =

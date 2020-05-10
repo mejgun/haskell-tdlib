@@ -26,6 +26,7 @@ import {-# SOURCE #-} qualified API.RichText as RichText
 -- 
 -- __valign__ Vertical cell content alignment
 data PageBlockTableCell = 
+
  PageBlockTableCell { valign :: Maybe PageBlockVerticalAlignment.PageBlockVerticalAlignment, align :: Maybe PageBlockHorizontalAlignment.PageBlockHorizontalAlignment, rowspan :: Maybe Int, colspan :: Maybe Int, is_header :: Maybe Bool, text :: Maybe RichText.RichText }  deriving (Show, Eq)
 
 instance T.ToJSON PageBlockTableCell where

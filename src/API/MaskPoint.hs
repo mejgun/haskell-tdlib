@@ -11,10 +11,22 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Part of the face, relative to which a mask should be placed
 data MaskPoint = 
- MaskPointForehead 
- | MaskPointEyes 
- | MaskPointMouth 
- | MaskPointChin deriving (Show, Eq)
+ -- |
+ -- 
+ -- A mask should be placed relatively to the forehead
+ MaskPointForehead |
+ -- |
+ -- 
+ -- A mask should be placed relatively to the eyes
+ MaskPointEyes |
+ -- |
+ -- 
+ -- A mask should be placed relatively to the mouth
+ MaskPointMouth |
+ -- |
+ -- 
+ -- A mask should be placed relatively to the chin
+ MaskPointChin deriving (Show, Eq)
 
 instance T.ToJSON MaskPoint where
  toJSON (MaskPointForehead {  }) =

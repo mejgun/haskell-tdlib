@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __last_name__ The new value of the optional last name for the user; 0-64 characters
 data SetName = 
+
  SetName { last_name :: Maybe String, first_name :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON SetName where

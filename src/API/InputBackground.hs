@@ -12,8 +12,18 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- 
 -- Contains information about background to set
 data InputBackground = 
- InputBackgroundLocal { background :: Maybe InputFile.InputFile }  
- | InputBackgroundRemote { background_id :: Maybe Int }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- A background from a local file
+ -- 
+ -- __background__ Background file to use. Only inputFileLocal and inputFileGenerated are supported. The file must be in JPEG format for wallpapers and in PNG format for patterns
+ InputBackgroundLocal { background :: Maybe InputFile.InputFile }  |
+ -- |
+ -- 
+ -- A background from the server 
+ -- 
+ -- __background_id__ The background identifier
+ InputBackgroundRemote { background_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON InputBackground where
  toJSON (InputBackgroundLocal { background = background }) =

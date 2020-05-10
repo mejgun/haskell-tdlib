@@ -11,9 +11,32 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Represents the value of a string in a language pack
 data LanguagePackStringValue = 
- LanguagePackStringValueOrdinary { value :: Maybe String }  
- | LanguagePackStringValuePluralized { other_value :: Maybe String, many_value :: Maybe String, few_value :: Maybe String, two_value :: Maybe String, one_value :: Maybe String, zero_value :: Maybe String }  
- | LanguagePackStringValueDeleted deriving (Show, Eq)
+ -- |
+ -- 
+ -- An ordinary language pack string 
+ -- 
+ -- __value__ String value
+ LanguagePackStringValueOrdinary { value :: Maybe String }  |
+ -- |
+ -- 
+ -- A language pack string which has different forms based on the number of some object it mentions. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info
+ -- 
+ -- __zero_value__ Value for zero objects
+ -- 
+ -- __one_value__ Value for one object
+ -- 
+ -- __two_value__ Value for two objects
+ -- 
+ -- __few_value__ Value for few objects
+ -- 
+ -- __many_value__ Value for many objects
+ -- 
+ -- __other_value__ Default value
+ LanguagePackStringValuePluralized { other_value :: Maybe String, many_value :: Maybe String, few_value :: Maybe String, two_value :: Maybe String, one_value :: Maybe String, zero_value :: Maybe String }  |
+ -- |
+ -- 
+ -- A deleted language pack string, the value should be taken from the built-in english language pack
+ LanguagePackStringValueDeleted deriving (Show, Eq)
 
 instance T.ToJSON LanguagePackStringValue where
  toJSON (LanguagePackStringValueOrdinary { value = value }) =

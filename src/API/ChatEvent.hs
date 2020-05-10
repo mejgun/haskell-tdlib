@@ -20,6 +20,7 @@ import {-# SOURCE #-} qualified API.ChatEventAction as ChatEventAction
 -- 
 -- __action__ Action performed by the user
 data ChatEvent = 
+
  ChatEvent { action :: Maybe ChatEventAction.ChatEventAction, user_id :: Maybe Int, date :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ChatEvent where

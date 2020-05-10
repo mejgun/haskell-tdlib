@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __exclude_secret_chats__ If true, local draft messages in secret chats will not be cleared
 data ClearAllDraftMessages = 
+
  ClearAllDraftMessages { exclude_secret_chats :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON ClearAllDraftMessages where

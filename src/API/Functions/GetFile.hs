@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __file_id__ Identifier of the file to get
 data GetFile = 
+
  GetFile { file_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetFile where

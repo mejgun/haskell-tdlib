@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __param_description__ New chat description; 0-255 characters
 data SetChatDescription = 
+
  SetChatDescription { description :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatDescription where

@@ -22,6 +22,7 @@ import {-# SOURCE #-} qualified API.InputSticker as InputSticker
 -- 
 -- __stickers__ List of stickers to be added to the set; must be non-empty. All stickers must be of the same type
 data CreateNewStickerSet = 
+
  CreateNewStickerSet { stickers :: Maybe [InputSticker.InputSticker], is_masks :: Maybe Bool, name :: Maybe String, title :: Maybe String, user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CreateNewStickerSet where

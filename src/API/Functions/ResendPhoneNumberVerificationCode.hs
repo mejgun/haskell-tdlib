@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Re-sends the code to verify a phone number to be added to a user's Telegram Passport
 data ResendPhoneNumberVerificationCode = 
+
  ResendPhoneNumberVerificationCode deriving (Show, Eq)
 
 instance T.ToJSON ResendPhoneNumberVerificationCode where

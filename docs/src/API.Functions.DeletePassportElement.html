@@ -14,7 +14,8 @@
 </span><span id="line-14"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-15"></span><span class="hs-comment">-- __type__ Element type</span><span>
 </span><span id="line-16"></span><span class="hs-keyword">data</span><span> </span><span id="DeletePassportElement"><span class="annot"><a href="API.Functions.DeletePassportElement.html#DeletePassportElement"><span class="hs-identifier hs-var">DeletePassportElement</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-17"></span><span> </span><span id="DeletePassportElement"><span class="annot"><a href="API.Functions.DeletePassportElement.html#DeletePassportElement"><span class="hs-identifier hs-var">DeletePassportElement</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="_type"><span class="annot"><span class="annottext">DeletePassportElement -&gt; Maybe PassportElementType
+</span><span id="line-17"></span><span>
+</span><span id="line-18"></span><span> </span><span id="DeletePassportElement"><span class="annot"><a href="API.Functions.DeletePassportElement.html#DeletePassportElement"><span class="hs-identifier hs-var">DeletePassportElement</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="_type"><span class="annot"><span class="annottext">DeletePassportElement -&gt; Maybe PassportElementType
 </span><a href="API.Functions.DeletePassportElement.html#_type"><span class="hs-identifier hs-var hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.PassportElementType.html#PassportElementType"><span class="hs-identifier hs-type">PassportElementType.PassportElementType</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679445173"><span id="local-6989586621679445175"><span id="local-6989586621679445177"><span class="annot"><span class="annottext">Int -&gt; DeletePassportElement -&gt; ShowS
 [DeletePassportElement] -&gt; ShowS
 DeletePassportElement -&gt; String
@@ -40,13 +41,13 @@ $c/= :: DeletePassportElement -&gt; DeletePassportElement -&gt; Bool
 == :: DeletePassportElement -&gt; DeletePassportElement -&gt; Bool
 $c== :: DeletePassportElement -&gt; DeletePassportElement -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-18"></span><span>
-</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679445160"><span id="local-6989586621679445162"><span id="local-6989586621679445164"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DeletePassportElement.html#DeletePassportElement"><span class="hs-identifier hs-type">DeletePassportElement</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-20"></span><span> </span><span id="local-6989586621679445158"><span class="annot"><span class="annottext">toJSON :: DeletePassportElement -&gt; Value
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679445160"><span id="local-6989586621679445162"><span id="local-6989586621679445164"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DeletePassportElement.html#DeletePassportElement"><span class="hs-identifier hs-type">DeletePassportElement</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span> </span><span id="local-6989586621679445158"><span class="annot"><span class="annottext">toJSON :: DeletePassportElement -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.DeletePassportElement.html#DeletePassportElement"><span class="hs-identifier hs-type">DeletePassportElement</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_type :: DeletePassportElement -&gt; Maybe PassportElementType
 </span><a href="API.Functions.DeletePassportElement.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679445156"><span class="annot"><span class="annottext">Maybe PassportElementType
 </span><a href="#local-6989586621679445156"><span class="hs-identifier hs-var">_type</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-21"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-22"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
@@ -54,28 +55,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe PassportElementType
 </span><a href="#local-6989586621679445156"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679445150"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DeletePassportElement.html#DeletePassportElement"><span class="hs-identifier hs-type">DeletePassportElement</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span> </span><span id="local-6989586621679445148"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser DeletePassportElement
+</span><span id="line-23"></span><span>
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679445150"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.DeletePassportElement.html#DeletePassportElement"><span class="hs-identifier hs-type">DeletePassportElement</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span> </span><span id="local-6989586621679445148"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser DeletePassportElement
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679445146"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679445146"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679445144"><span class="annot"><span class="annottext">obj :: Object
 </span><a href="#local-6989586621679445144"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>  </span><span id="local-6989586621679445143"><span class="annot"><span class="annottext">String
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679445143"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679445143"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679445144"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-26"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-27"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679445143"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-27"></span><span>   </span><span class="hs-string">&quot;deletePassportElement&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DeletePassportElement
+</span><span id="line-28"></span><span>   </span><span class="hs-string">&quot;deletePassportElement&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DeletePassportElement
 </span><a href="#local-6989586621679445141"><span class="hs-identifier hs-var">parseDeletePassportElement</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679445146"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-28"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser DeletePassportElement
+</span><span id="line-29"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser DeletePassportElement
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-29"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-30"></span><span>   </span><span class="annot"><a href="#local-6989586621679445141"><span class="hs-identifier hs-type">parseDeletePassportElement</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.DeletePassportElement.html#DeletePassportElement"><span class="hs-identifier hs-type">DeletePassportElement</span></a></span><span>
-</span><span id="line-31"></span><span>   </span><span id="local-6989586621679445141"><span class="annot"><span class="annottext">parseDeletePassportElement :: Value -&gt; Parser DeletePassportElement
+</span><span id="line-30"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-31"></span><span>   </span><span class="annot"><a href="#local-6989586621679445141"><span class="hs-identifier hs-type">parseDeletePassportElement</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.DeletePassportElement.html#DeletePassportElement"><span class="hs-identifier hs-type">DeletePassportElement</span></a></span><span>
+</span><span id="line-32"></span><span>   </span><span id="local-6989586621679445141"><span class="annot"><span class="annottext">parseDeletePassportElement :: Value -&gt; Parser DeletePassportElement
 </span><a href="#local-6989586621679445141"><span class="hs-identifier hs-var hs-var">parseDeletePassportElement</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DeletePassportElement)
 -&gt; Value
@@ -89,12 +90,12 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679445139"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679445139"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-32"></span><span>    </span><span id="local-6989586621679445138"><span class="annot"><span class="annottext">Maybe PassportElementType
+</span><span id="line-33"></span><span>    </span><span id="local-6989586621679445138"><span class="annot"><span class="annottext">Maybe PassportElementType
 </span><a href="#local-6989586621679445138"><span class="hs-identifier hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679445139"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe PassportElementType)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;type&quot;</span></span><span>
-</span><span id="line-33"></span><span>    </span><span class="annot"><span class="annottext">DeletePassportElement -&gt; Parser DeletePassportElement
+</span><span id="line-34"></span><span>    </span><span class="annot"><span class="annottext">DeletePassportElement -&gt; Parser DeletePassportElement
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(DeletePassportElement -&gt; Parser DeletePassportElement)
 -&gt; DeletePassportElement -&gt; Parser DeletePassportElement

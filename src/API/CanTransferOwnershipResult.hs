@@ -11,10 +11,26 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Represents result of checking whether the current session can be used to transfer a chat ownership to another user
 data CanTransferOwnershipResult = 
- CanTransferOwnershipResultOk 
- | CanTransferOwnershipResultPasswordNeeded 
- | CanTransferOwnershipResultPasswordTooFresh { retry_after :: Maybe Int }  
- | CanTransferOwnershipResultSessionTooFresh { retry_after :: Maybe Int }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- The session can be used
+ CanTransferOwnershipResultOk |
+ -- |
+ -- 
+ -- The 2-step verification needs to be enabled first
+ CanTransferOwnershipResultPasswordNeeded |
+ -- |
+ -- 
+ -- The 2-step verification was enabled recently, user needs to wait 
+ -- 
+ -- __retry_after__ Time left before the session can be used to transfer ownership of a chat, in seconds
+ CanTransferOwnershipResultPasswordTooFresh { retry_after :: Maybe Int }  |
+ -- |
+ -- 
+ -- The session was created recently, user needs to wait 
+ -- 
+ -- __retry_after__ Time left before the session can be used to transfer ownership of a chat, in seconds
+ CanTransferOwnershipResultSessionTooFresh { retry_after :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CanTransferOwnershipResult where
  toJSON (CanTransferOwnershipResultOk {  }) =

@@ -20,6 +20,7 @@ import {-# SOURCE #-} qualified API.SupergroupMembersFilter as SupergroupMembers
 -- 
 -- __limit__ The maximum number of users be returned; up to 200
 data GetSupergroupMembers = 
+
  GetSupergroupMembers { limit :: Maybe Int, offset :: Maybe Int, _filter :: Maybe SupergroupMembersFilter.SupergroupMembersFilter, supergroup_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetSupergroupMembers where

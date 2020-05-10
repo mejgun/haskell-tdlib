@@ -11,17 +11,84 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Represents a data needed to subscribe for push notifications through registerDevice method. To use specific push notification service, you must specify the correct application platform and upload valid server authentication data at https://my.telegram.org
 data DeviceToken = 
- DeviceTokenFirebaseCloudMessaging { encrypt :: Maybe Bool, token :: Maybe String }  
- | DeviceTokenApplePush { is_app_sandbox :: Maybe Bool, device_token :: Maybe String }  
- | DeviceTokenApplePushVoIP { encrypt :: Maybe Bool, is_app_sandbox :: Maybe Bool, device_token :: Maybe String }  
- | DeviceTokenWindowsPush { access_token :: Maybe String }  
- | DeviceTokenMicrosoftPush { channel_uri :: Maybe String }  
- | DeviceTokenMicrosoftPushVoIP { channel_uri :: Maybe String }  
- | DeviceTokenWebPush { auth_base64url :: Maybe String, p256dh_base64url :: Maybe String, endpoint :: Maybe String }  
- | DeviceTokenSimplePush { endpoint :: Maybe String }  
- | DeviceTokenUbuntuPush { token :: Maybe String }  
- | DeviceTokenBlackBerryPush { token :: Maybe String }  
- | DeviceTokenTizenPush { reg_id :: Maybe String }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- A token for Firebase Cloud Messaging 
+ -- 
+ -- __token__ Device registration token; may be empty to de-register a device
+ -- 
+ -- __encrypt__ True, if push notifications should be additionally encrypted
+ DeviceTokenFirebaseCloudMessaging { encrypt :: Maybe Bool, token :: Maybe String }  |
+ -- |
+ -- 
+ -- A token for Apple Push Notification service 
+ -- 
+ -- __device_token__ Device token; may be empty to de-register a device
+ -- 
+ -- __is_app_sandbox__ True, if App Sandbox is enabled
+ DeviceTokenApplePush { is_app_sandbox :: Maybe Bool, device_token :: Maybe String }  |
+ -- |
+ -- 
+ -- A token for Apple Push Notification service VoIP notifications 
+ -- 
+ -- __device_token__ Device token; may be empty to de-register a device
+ -- 
+ -- __is_app_sandbox__ True, if App Sandbox is enabled
+ -- 
+ -- __encrypt__ True, if push notifications should be additionally encrypted
+ DeviceTokenApplePushVoIP { encrypt :: Maybe Bool, is_app_sandbox :: Maybe Bool, device_token :: Maybe String }  |
+ -- |
+ -- 
+ -- A token for Windows Push Notification Services 
+ -- 
+ -- __access_token__ The access token that will be used to send notifications; may be empty to de-register a device
+ DeviceTokenWindowsPush { access_token :: Maybe String }  |
+ -- |
+ -- 
+ -- A token for Microsoft Push Notification Service 
+ -- 
+ -- __channel_uri__ Push notification channel URI; may be empty to de-register a device
+ DeviceTokenMicrosoftPush { channel_uri :: Maybe String }  |
+ -- |
+ -- 
+ -- A token for Microsoft Push Notification Service VoIP channel 
+ -- 
+ -- __channel_uri__ Push notification channel URI; may be empty to de-register a device
+ DeviceTokenMicrosoftPushVoIP { channel_uri :: Maybe String }  |
+ -- |
+ -- 
+ -- A token for web Push API 
+ -- 
+ -- __endpoint__ Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device
+ -- 
+ -- __p256dh_base64url__ Base64url-encoded P-256 elliptic curve Diffie-Hellman public key
+ -- 
+ -- __auth_base64url__ Base64url-encoded authentication secret
+ DeviceTokenWebPush { auth_base64url :: Maybe String, p256dh_base64url :: Maybe String, endpoint :: Maybe String }  |
+ -- |
+ -- 
+ -- A token for Simple Push API for Firefox OS 
+ -- 
+ -- __endpoint__ Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device
+ DeviceTokenSimplePush { endpoint :: Maybe String }  |
+ -- |
+ -- 
+ -- A token for Ubuntu Push Client service 
+ -- 
+ -- __token__ Token; may be empty to de-register a device
+ DeviceTokenUbuntuPush { token :: Maybe String }  |
+ -- |
+ -- 
+ -- A token for BlackBerry Push Service 
+ -- 
+ -- __token__ Token; may be empty to de-register a device
+ DeviceTokenBlackBerryPush { token :: Maybe String }  |
+ -- |
+ -- 
+ -- A token for Tizen Push Service 
+ -- 
+ -- __reg_id__ Push service registration identifier; may be empty to de-register a device
+ DeviceTokenTizenPush { reg_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON DeviceToken where
  toJSON (DeviceTokenFirebaseCloudMessaging { encrypt = encrypt, token = token }) =

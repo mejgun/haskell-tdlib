@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.BotCommand as BotCommand
 -- 
 -- __commands__ List of the bot's commands
 data SetCommands = 
+
  SetCommands { commands :: Maybe [BotCommand.BotCommand] }  deriving (Show, Eq)
 
 instance T.ToJSON SetCommands where

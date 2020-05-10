@@ -25,6 +25,7 @@ import {-# SOURCE #-} qualified API.Document as Document
 -- 
 -- __type__ Type of the background
 data Background = 
+
  Background { _type :: Maybe BackgroundType.BackgroundType, document :: Maybe Document.Document, name :: Maybe String, is_dark :: Maybe Bool, is_default :: Maybe Bool, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Background where

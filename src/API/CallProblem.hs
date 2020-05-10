@@ -11,13 +11,34 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes the exact type of a problem with a call
 data CallProblem = 
- CallProblemEcho 
- | CallProblemNoise 
- | CallProblemInterruptions 
- | CallProblemDistortedSpeech 
- | CallProblemSilentLocal 
- | CallProblemSilentRemote 
- | CallProblemDropped deriving (Show, Eq)
+ -- |
+ -- 
+ -- The user heard their own voice
+ CallProblemEcho |
+ -- |
+ -- 
+ -- The user heard background noise
+ CallProblemNoise |
+ -- |
+ -- 
+ -- The other side kept disappearing
+ CallProblemInterruptions |
+ -- |
+ -- 
+ -- The speech was distorted
+ CallProblemDistortedSpeech |
+ -- |
+ -- 
+ -- The user couldn't hear the other side
+ CallProblemSilentLocal |
+ -- |
+ -- 
+ -- The other side couldn't hear the user
+ CallProblemSilentRemote |
+ -- |
+ -- 
+ -- The call ended unexpectedly
+ CallProblemDropped deriving (Show, Eq)
 
 instance T.ToJSON CallProblem where
  toJSON (CallProblemEcho {  }) =

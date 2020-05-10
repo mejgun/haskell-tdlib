@@ -20,6 +20,7 @@ import {-# SOURCE #-} qualified API.AuthenticationCodeType as AuthenticationCode
 -- 
 -- __timeout__ Timeout before the code should be re-sent, in seconds
 data AuthenticationCodeInfo = 
+
  AuthenticationCodeInfo { timeout :: Maybe Int, next_type :: Maybe AuthenticationCodeType.AuthenticationCodeType, _type :: Maybe AuthenticationCodeType.AuthenticationCodeType, phone_number :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON AuthenticationCodeInfo where

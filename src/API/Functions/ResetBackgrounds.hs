@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Resets list of installed backgrounds to its default value
 data ResetBackgrounds = 
+
  ResetBackgrounds deriving (Show, Eq)
 
 instance T.ToJSON ResetBackgrounds where

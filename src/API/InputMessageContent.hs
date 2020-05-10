@@ -19,23 +19,228 @@ import {-# SOURCE #-} qualified API.PollType as PollType
 -- 
 -- The content of a message to send
 data InputMessageContent = 
- InputMessageText { clear_draft :: Maybe Bool, disable_web_page_preview :: Maybe Bool, text :: Maybe FormattedText.FormattedText }  
- | InputMessageAnimation { caption :: Maybe FormattedText.FormattedText, height :: Maybe Int, width :: Maybe Int, duration :: Maybe Int, thumbnail :: Maybe InputThumbnail.InputThumbnail, animation :: Maybe InputFile.InputFile }  
- | InputMessageAudio { caption :: Maybe FormattedText.FormattedText, performer :: Maybe String, title :: Maybe String, duration :: Maybe Int, album_cover_thumbnail :: Maybe InputThumbnail.InputThumbnail, audio :: Maybe InputFile.InputFile }  
- | InputMessageDocument { caption :: Maybe FormattedText.FormattedText, thumbnail :: Maybe InputThumbnail.InputThumbnail, document :: Maybe InputFile.InputFile }  
- | InputMessagePhoto { ttl :: Maybe Int, caption :: Maybe FormattedText.FormattedText, height :: Maybe Int, width :: Maybe Int, added_sticker_file_ids :: Maybe [Int], thumbnail :: Maybe InputThumbnail.InputThumbnail, photo :: Maybe InputFile.InputFile }  
- | InputMessageSticker { height :: Maybe Int, width :: Maybe Int, thumbnail :: Maybe InputThumbnail.InputThumbnail, sticker :: Maybe InputFile.InputFile }  
- | InputMessageVideo { ttl :: Maybe Int, caption :: Maybe FormattedText.FormattedText, supports_streaming :: Maybe Bool, height :: Maybe Int, width :: Maybe Int, duration :: Maybe Int, added_sticker_file_ids :: Maybe [Int], thumbnail :: Maybe InputThumbnail.InputThumbnail, video :: Maybe InputFile.InputFile }  
- | InputMessageVideoNote { _length :: Maybe Int, duration :: Maybe Int, thumbnail :: Maybe InputThumbnail.InputThumbnail, video_note :: Maybe InputFile.InputFile }  
- | InputMessageVoiceNote { caption :: Maybe FormattedText.FormattedText, waveform :: Maybe String, duration :: Maybe Int, voice_note :: Maybe InputFile.InputFile }  
- | InputMessageLocation { live_period :: Maybe Int, location :: Maybe Location.Location }  
- | InputMessageVenue { venue :: Maybe Venue.Venue }  
- | InputMessageContact { contact :: Maybe Contact.Contact }  
- | InputMessageDice { clear_draft :: Maybe Bool, emoji :: Maybe String }  
- | InputMessageGame { game_short_name :: Maybe String, bot_user_id :: Maybe Int }  
- | InputMessageInvoice { start_parameter :: Maybe String, provider_data :: Maybe String, provider_token :: Maybe String, payload :: Maybe String, photo_height :: Maybe Int, photo_width :: Maybe Int, photo_size :: Maybe Int, photo_url :: Maybe String, description :: Maybe String, title :: Maybe String, invoice :: Maybe Invoice.Invoice }  
- | InputMessagePoll { is_closed :: Maybe Bool, close_date :: Maybe Int, open_period :: Maybe Int, _type :: Maybe PollType.PollType, is_anonymous :: Maybe Bool, options :: Maybe [String], question :: Maybe String }  
- | InputMessageForwarded { remove_caption :: Maybe Bool, send_copy :: Maybe Bool, in_game_share :: Maybe Bool, message_id :: Maybe Int, from_chat_id :: Maybe Int }  deriving (Show, Eq)
+ -- |
+ -- 
+ -- A text message 
+ -- 
+ -- __text__ Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
+ -- 
+ -- __disable_web_page_preview__ True, if rich web page previews for URLs in the message text should be disabled
+ -- 
+ -- __clear_draft__ True, if a chat message draft should be deleted
+ InputMessageText { clear_draft :: Maybe Bool, disable_web_page_preview :: Maybe Bool, text :: Maybe FormattedText.FormattedText }  |
+ -- |
+ -- 
+ -- An animation message (GIF-style). 
+ -- 
+ -- __animation__ Animation file to be sent
+ -- 
+ -- __thumbnail__ Animation thumbnail, if available
+ -- 
+ -- __duration__ Duration of the animation, in seconds
+ -- 
+ -- __width__ Width of the animation; may be replaced by the server
+ -- 
+ -- __height__ Height of the animation; may be replaced by the server
+ -- 
+ -- __caption__ Animation caption; 0-GetOption("message_caption_length_max") characters
+ InputMessageAnimation { caption :: Maybe FormattedText.FormattedText, height :: Maybe Int, width :: Maybe Int, duration :: Maybe Int, thumbnail :: Maybe InputThumbnail.InputThumbnail, animation :: Maybe InputFile.InputFile }  |
+ -- |
+ -- 
+ -- An audio message 
+ -- 
+ -- __audio__ Audio file to be sent
+ -- 
+ -- __album_cover_thumbnail__ Thumbnail of the cover for the album, if available
+ -- 
+ -- __duration__ Duration of the audio, in seconds; may be replaced by the server
+ -- 
+ -- __title__ Title of the audio; 0-64 characters; may be replaced by the server
+ -- 
+ -- __performer__ Performer of the audio; 0-64 characters, may be replaced by the server
+ -- 
+ -- __caption__ Audio caption; 0-GetOption("message_caption_length_max") characters
+ InputMessageAudio { caption :: Maybe FormattedText.FormattedText, performer :: Maybe String, title :: Maybe String, duration :: Maybe Int, album_cover_thumbnail :: Maybe InputThumbnail.InputThumbnail, audio :: Maybe InputFile.InputFile }  |
+ -- |
+ -- 
+ -- A document message (general file) 
+ -- 
+ -- __document__ Document to be sent
+ -- 
+ -- __thumbnail__ Document thumbnail, if available
+ -- 
+ -- __caption__ Document caption; 0-GetOption("message_caption_length_max") characters
+ InputMessageDocument { caption :: Maybe FormattedText.FormattedText, thumbnail :: Maybe InputThumbnail.InputThumbnail, document :: Maybe InputFile.InputFile }  |
+ -- |
+ -- 
+ -- A photo message 
+ -- 
+ -- __photo__ Photo to send
+ -- 
+ -- __thumbnail__ Photo thumbnail to be sent, this is sent to the other party in secret chats only
+ -- 
+ -- __added_sticker_file_ids__ File identifiers of the stickers added to the photo, if applicable
+ -- 
+ -- __width__ Photo width
+ -- 
+ -- __height__ Photo height
+ -- 
+ -- __caption__ Photo caption; 0-GetOption("message_caption_length_max") characters
+ -- 
+ -- __ttl__ Photo TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
+ InputMessagePhoto { ttl :: Maybe Int, caption :: Maybe FormattedText.FormattedText, height :: Maybe Int, width :: Maybe Int, added_sticker_file_ids :: Maybe [Int], thumbnail :: Maybe InputThumbnail.InputThumbnail, photo :: Maybe InputFile.InputFile }  |
+ -- |
+ -- 
+ -- A sticker message 
+ -- 
+ -- __sticker__ Sticker to be sent
+ -- 
+ -- __thumbnail__ Sticker thumbnail, if available
+ -- 
+ -- __width__ Sticker width
+ -- 
+ -- __height__ Sticker height
+ InputMessageSticker { height :: Maybe Int, width :: Maybe Int, thumbnail :: Maybe InputThumbnail.InputThumbnail, sticker :: Maybe InputFile.InputFile }  |
+ -- |
+ -- 
+ -- A video message 
+ -- 
+ -- __video__ Video to be sent
+ -- 
+ -- __thumbnail__ Video thumbnail, if available
+ -- 
+ -- __added_sticker_file_ids__ File identifiers of the stickers added to the video, if applicable
+ -- 
+ -- __duration__ Duration of the video, in seconds
+ -- 
+ -- __width__ Video width
+ -- 
+ -- __height__ Video height
+ -- 
+ -- __supports_streaming__ True, if the video should be tried to be streamed
+ -- 
+ -- __caption__ Video caption; 0-GetOption("message_caption_length_max") characters
+ -- 
+ -- __ttl__ Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
+ InputMessageVideo { ttl :: Maybe Int, caption :: Maybe FormattedText.FormattedText, supports_streaming :: Maybe Bool, height :: Maybe Int, width :: Maybe Int, duration :: Maybe Int, added_sticker_file_ids :: Maybe [Int], thumbnail :: Maybe InputThumbnail.InputThumbnail, video :: Maybe InputFile.InputFile }  |
+ -- |
+ -- 
+ -- A video note message 
+ -- 
+ -- __video_note__ Video note to be sent
+ -- 
+ -- __thumbnail__ Video thumbnail, if available
+ -- 
+ -- __duration__ Duration of the video, in seconds
+ -- 
+ -- __length__ Video width and height; must be positive and not greater than 640
+ InputMessageVideoNote { _length :: Maybe Int, duration :: Maybe Int, thumbnail :: Maybe InputThumbnail.InputThumbnail, video_note :: Maybe InputFile.InputFile }  |
+ -- |
+ -- 
+ -- A voice note message 
+ -- 
+ -- __voice_note__ Voice note to be sent
+ -- 
+ -- __duration__ Duration of the voice note, in seconds
+ -- 
+ -- __waveform__ Waveform representation of the voice note, in 5-bit format
+ -- 
+ -- __caption__ Voice note caption; 0-GetOption("message_caption_length_max") characters
+ InputMessageVoiceNote { caption :: Maybe FormattedText.FormattedText, waveform :: Maybe String, duration :: Maybe Int, voice_note :: Maybe InputFile.InputFile }  |
+ -- |
+ -- 
+ -- A message with a location 
+ -- 
+ -- __location__ Location to be sent
+ -- 
+ -- __live_period__ Period for which the location can be updated, in seconds; should be between 60 and 86400 for a live location and 0 otherwise
+ InputMessageLocation { live_period :: Maybe Int, location :: Maybe Location.Location }  |
+ -- |
+ -- 
+ -- A message with information about a venue 
+ -- 
+ -- __venue__ Venue to send
+ InputMessageVenue { venue :: Maybe Venue.Venue }  |
+ -- |
+ -- 
+ -- A message containing a user contact 
+ -- 
+ -- __contact__ Contact to send
+ InputMessageContact { contact :: Maybe Contact.Contact }  |
+ -- |
+ -- 
+ -- A dice message 
+ -- 
+ -- __emoji__ Emoji on which the dice throw animation is based
+ -- 
+ -- __clear_draft__ True, if a chat message draft should be deleted
+ InputMessageDice { clear_draft :: Maybe Bool, emoji :: Maybe String }  |
+ -- |
+ -- 
+ -- A message with a game; not supported for channels or secret chats 
+ -- 
+ -- __bot_user_id__ User identifier of the bot that owns the game
+ -- 
+ -- __game_short_name__ Short name of the game
+ InputMessageGame { game_short_name :: Maybe String, bot_user_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A message with an invoice; can be used only by bots and only in private chats 
+ -- 
+ -- __invoice__ Invoice
+ -- 
+ -- __title__ Product title; 1-32 characters
+ -- 
+ -- __param_description__ Product description; 0-255 characters
+ -- 
+ -- __photo_url__ Product photo URL; optional
+ -- 
+ -- __photo_size__ Product photo size
+ -- 
+ -- __photo_width__ Product photo width
+ -- 
+ -- __photo_height__ Product photo height
+ -- 
+ -- __payload__ The invoice payload
+ -- 
+ -- __provider_token__ Payment provider token
+ -- 
+ -- __provider_data__ JSON-encoded data about the invoice, which will be shared with the payment provider
+ -- 
+ -- __start_parameter__ Unique invoice bot start_parameter for the generation of this invoice
+ InputMessageInvoice { start_parameter :: Maybe String, provider_data :: Maybe String, provider_token :: Maybe String, payload :: Maybe String, photo_height :: Maybe Int, photo_width :: Maybe Int, photo_size :: Maybe Int, photo_url :: Maybe String, description :: Maybe String, title :: Maybe String, invoice :: Maybe Invoice.Invoice }  |
+ -- |
+ -- 
+ -- A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot 
+ -- 
+ -- __question__ Poll question, 1-255 characters
+ -- 
+ -- __options__ List of poll answer options, 2-10 strings 1-100 characters each
+ -- 
+ -- __is_anonymous__ True, if the poll voters are anonymous. Non-anonymous polls can't be sent or forwarded to channels
+ -- 
+ -- __type__ Type of the poll
+ -- 
+ -- __open_period__ Amount of time the poll will be active after creation, in seconds; for bots only
+ -- 
+ -- __close_date__ Point in time (Unix timestamp) when the poll will be automatically closed; for bots only
+ -- 
+ -- __is_closed__ True, if the poll needs to be sent already closed; for bots only
+ InputMessagePoll { is_closed :: Maybe Bool, close_date :: Maybe Int, open_period :: Maybe Int, _type :: Maybe PollType.PollType, is_anonymous :: Maybe Bool, options :: Maybe [String], question :: Maybe String }  |
+ -- |
+ -- 
+ -- A forwarded message 
+ -- 
+ -- __from_chat_id__ Identifier for the chat this forwarded message came from
+ -- 
+ -- __message_id__ Identifier of the message to forward
+ -- 
+ -- __in_game_share__ True, if a game message should be shared within a launched game; applies only to game messages
+ -- 
+ -- __send_copy__ True, if content of the message needs to be copied without a link to the original message. Always true if the message is forwarded to a secret chat
+ -- 
+ -- __remove_caption__ True, if media caption of the message copy needs to be removed. Ignored if send_copy is false
+ InputMessageForwarded { remove_caption :: Maybe Bool, send_copy :: Maybe Bool, in_game_share :: Maybe Bool, message_id :: Maybe Int, from_chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON InputMessageContent where
  toJSON (InputMessageText { clear_draft = clear_draft, disable_web_page_preview = disable_web_page_preview, text = text }) =

@@ -71,6 +71,7 @@ import {-# SOURCE #-} qualified API.ChatType as ChatType
 -- 
 -- __client_data__ Contains client-specific data associated with the chat. (For example, the chat position or local chat notification settings can be stored here.) Persistent if the message database is used
 data Chat = 
+
  Chat { client_data :: Maybe String, draft_message :: Maybe DraftMessage.DraftMessage, reply_markup_message_id :: Maybe Int, pinned_message_id :: Maybe Int, action_bar :: Maybe ChatActionBar.ChatActionBar, notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings, unread_mention_count :: Maybe Int, last_read_outbox_message_id :: Maybe Int, last_read_inbox_message_id :: Maybe Int, unread_count :: Maybe Int, default_disable_notification :: Maybe Bool, can_be_reported :: Maybe Bool, can_be_deleted_for_all_users :: Maybe Bool, can_be_deleted_only_for_self :: Maybe Bool, has_scheduled_messages :: Maybe Bool, is_sponsored :: Maybe Bool, is_marked_as_unread :: Maybe Bool, is_pinned :: Maybe Bool, order :: Maybe Int, last_message :: Maybe Message.Message, permissions :: Maybe ChatPermissions.ChatPermissions, photo :: Maybe ChatPhoto.ChatPhoto, title :: Maybe String, chat_list :: Maybe ChatList.ChatList, _type :: Maybe ChatType.ChatType, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Chat where

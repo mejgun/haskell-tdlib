@@ -20,6 +20,7 @@ import {-# SOURCE #-} qualified API.ChatMember as ChatMember
 -- 
 -- __invite_link__ Invite link for this group; available only after it has been generated at least once and only for the group creator
 data BasicGroupFullInfo = 
+
  BasicGroupFullInfo { invite_link :: Maybe String, members :: Maybe [ChatMember.ChatMember], creator_user_id :: Maybe Int, description :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON BasicGroupFullInfo where

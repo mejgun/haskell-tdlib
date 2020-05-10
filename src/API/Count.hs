@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __count__ Count
 data Count = 
+
  Count { count :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Count where

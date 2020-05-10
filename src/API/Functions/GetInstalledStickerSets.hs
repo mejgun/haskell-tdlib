@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __is_masks__ Pass true to return mask sticker sets; pass false to return ordinary sticker sets
 data GetInstalledStickerSets = 
+
  GetInstalledStickerSets { is_masks :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON GetInstalledStickerSets where

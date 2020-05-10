@@ -11,11 +11,26 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Represents result of checking whether a username can be set for a chat
 data CheckChatUsernameResult = 
- CheckChatUsernameResultOk 
- | CheckChatUsernameResultUsernameInvalid 
- | CheckChatUsernameResultUsernameOccupied 
- | CheckChatUsernameResultPublicChatsTooMuch 
- | CheckChatUsernameResultPublicGroupsUnavailable deriving (Show, Eq)
+ -- |
+ -- 
+ -- The username can be set
+ CheckChatUsernameResultOk |
+ -- |
+ -- 
+ -- The username is invalid
+ CheckChatUsernameResultUsernameInvalid |
+ -- |
+ -- 
+ -- The username is occupied
+ CheckChatUsernameResultUsernameOccupied |
+ -- |
+ -- 
+ -- The user has too much chats with username, one of them should be made private first
+ CheckChatUsernameResultPublicChatsTooMuch |
+ -- |
+ -- 
+ -- The user can't be a member of a public supergroup
+ CheckChatUsernameResultPublicGroupsUnavailable deriving (Show, Eq)
 
 instance T.ToJSON CheckChatUsernameResult where
  toJSON (CheckChatUsernameResultOk {  }) =

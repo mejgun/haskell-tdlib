@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Returns the total number of imported contacts
 data GetImportedContactCount = 
+
  GetImportedContactCount deriving (Show, Eq)
 
 instance T.ToJSON GetImportedContactCount where

@@ -41,6 +41,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __region__ Region code from which the session was created, based on the IP address
 data Session = 
+
  Session { region :: Maybe String, country :: Maybe String, ip :: Maybe String, last_active_date :: Maybe Int, log_in_date :: Maybe Int, system_version :: Maybe String, platform :: Maybe String, device_model :: Maybe String, is_official_application :: Maybe Bool, application_version :: Maybe String, application_name :: Maybe String, api_id :: Maybe Int, is_password_pending :: Maybe Bool, is_current :: Maybe Bool, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Session where

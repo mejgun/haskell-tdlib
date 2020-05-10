@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.CallProtocol as CallProtocol
 -- 
 -- __protocol__ Description of the call protocols supported by the client
 data AcceptCall = 
+
  AcceptCall { protocol :: Maybe CallProtocol.CallProtocol, call_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON AcceptCall where

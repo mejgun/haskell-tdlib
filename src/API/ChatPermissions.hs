@@ -27,6 +27,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __can_pin_messages__ True, if the user can pin messages
 data ChatPermissions = 
+
  ChatPermissions { can_pin_messages :: Maybe Bool, can_invite_users :: Maybe Bool, can_change_info :: Maybe Bool, can_add_web_page_previews :: Maybe Bool, can_send_other_messages :: Maybe Bool, can_send_polls :: Maybe Bool, can_send_media_messages :: Maybe Bool, can_send_messages :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON ChatPermissions where

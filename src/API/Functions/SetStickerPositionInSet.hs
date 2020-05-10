@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- 
 -- __position__ New position of the sticker in the set, zero-based
 data SetStickerPositionInSet = 
+
  SetStickerPositionInSet { position :: Maybe Int, sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
 
 instance T.ToJSON SetStickerPositionInSet where

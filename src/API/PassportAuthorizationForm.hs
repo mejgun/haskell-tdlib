@@ -18,6 +18,7 @@ import {-# SOURCE #-} qualified API.PassportRequiredElement as PassportRequiredE
 -- 
 -- __privacy_policy_url__ URL for the privacy policy of the service; may be empty
 data PassportAuthorizationForm = 
+
  PassportAuthorizationForm { privacy_policy_url :: Maybe String, required_elements :: Maybe [PassportRequiredElement.PassportRequiredElement], _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON PassportAuthorizationForm where

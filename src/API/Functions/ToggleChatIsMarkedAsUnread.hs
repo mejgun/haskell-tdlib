@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __is_marked_as_unread__ New value of is_marked_as_unread
 data ToggleChatIsMarkedAsUnread = 
+
  ToggleChatIsMarkedAsUnread { is_marked_as_unread :: Maybe Bool, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ToggleChatIsMarkedAsUnread where

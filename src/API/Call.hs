@@ -20,6 +20,7 @@ import {-# SOURCE #-} qualified API.CallState as CallState
 -- 
 -- __state__ Call state
 data Call = 
+
  Call { state :: Maybe CallState.CallState, is_outgoing :: Maybe Bool, user_id :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Call where

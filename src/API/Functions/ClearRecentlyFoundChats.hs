@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Clears the list of recently found chats
 data ClearRecentlyFoundChats = 
+
  ClearRecentlyFoundChats deriving (Show, Eq)
 
 instance T.ToJSON ClearRecentlyFoundChats where

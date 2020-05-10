@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __user_ids__ Identifiers of the users to be added to the chat
 data AddChatMembers = 
+
  AddChatMembers { user_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON AddChatMembers where

@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Returns the current state of 2-step verification
 data GetPasswordState = 
+
  GetPasswordState deriving (Show, Eq)
 
 instance T.ToJSON GetPasswordState where

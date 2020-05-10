@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- 
 -- __translation__ List of files containing a certified English translation of the document
 data InputPersonalDocument = 
+
  InputPersonalDocument { translation :: Maybe [InputFile.InputFile], files :: Maybe [InputFile.InputFile] }  deriving (Show, Eq)
 
 instance T.ToJSON InputPersonalDocument where

@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __only_if_pending__ Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server
 data CancelDownloadFile = 
+
  CancelDownloadFile { only_if_pending :: Maybe Bool, file_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CancelDownloadFile where

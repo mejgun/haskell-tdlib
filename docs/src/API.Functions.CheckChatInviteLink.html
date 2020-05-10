@@ -13,7 +13,8 @@
 </span><span id="line-13"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-14"></span><span class="hs-comment">-- __invite_link__ Invite link to be checked; should begin with &quot;https://t.me/joinchat/&quot;, &quot;https://telegram.me/joinchat/&quot;, or &quot;https://telegram.dog/joinchat/&quot;</span><span>
 </span><span id="line-15"></span><span class="hs-keyword">data</span><span> </span><span id="CheckChatInviteLink"><span class="annot"><a href="API.Functions.CheckChatInviteLink.html#CheckChatInviteLink"><span class="hs-identifier hs-var">CheckChatInviteLink</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-16"></span><span> </span><span id="CheckChatInviteLink"><span class="annot"><a href="API.Functions.CheckChatInviteLink.html#CheckChatInviteLink"><span class="hs-identifier hs-var">CheckChatInviteLink</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="invite_link"><span class="annot"><span class="annottext">CheckChatInviteLink -&gt; Maybe String
+</span><span id="line-16"></span><span>
+</span><span id="line-17"></span><span> </span><span id="CheckChatInviteLink"><span class="annot"><a href="API.Functions.CheckChatInviteLink.html#CheckChatInviteLink"><span class="hs-identifier hs-var">CheckChatInviteLink</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="invite_link"><span class="annot"><span class="annottext">CheckChatInviteLink -&gt; Maybe String
 </span><a href="API.Functions.CheckChatInviteLink.html#invite_link"><span class="hs-identifier hs-var hs-var">invite_link</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679415562"><span id="local-6989586621679415564"><span id="local-6989586621679415566"><span class="annot"><span class="annottext">Int -&gt; CheckChatInviteLink -&gt; ShowS
 [CheckChatInviteLink] -&gt; ShowS
 CheckChatInviteLink -&gt; String
@@ -39,13 +40,13 @@ $c/= :: CheckChatInviteLink -&gt; CheckChatInviteLink -&gt; Bool
 == :: CheckChatInviteLink -&gt; CheckChatInviteLink -&gt; Bool
 $c== :: CheckChatInviteLink -&gt; CheckChatInviteLink -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679415549"><span id="local-6989586621679415551"><span id="local-6989586621679415553"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CheckChatInviteLink.html#CheckChatInviteLink"><span class="hs-identifier hs-type">CheckChatInviteLink</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-19"></span><span> </span><span id="local-6989586621679415547"><span class="annot"><span class="annottext">toJSON :: CheckChatInviteLink -&gt; Value
+</span><span id="line-18"></span><span>
+</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679415549"><span id="local-6989586621679415551"><span id="local-6989586621679415553"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CheckChatInviteLink.html#CheckChatInviteLink"><span class="hs-identifier hs-type">CheckChatInviteLink</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-20"></span><span> </span><span id="local-6989586621679415547"><span class="annot"><span class="annottext">toJSON :: CheckChatInviteLink -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.CheckChatInviteLink.html#CheckChatInviteLink"><span class="hs-identifier hs-type">CheckChatInviteLink</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">invite_link :: CheckChatInviteLink -&gt; Maybe String
 </span><a href="API.Functions.CheckChatInviteLink.html#invite_link"><span class="hs-identifier hs-var">invite_link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679415545"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679415545"><span class="hs-identifier hs-var">invite_link</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-20"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-21"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
@@ -53,28 +54,28 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679415545"><span class="hs-identifier hs-var">invite_link</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679415539"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CheckChatInviteLink.html#CheckChatInviteLink"><span class="hs-identifier hs-type">CheckChatInviteLink</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span> </span><span id="local-6989586621679415537"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CheckChatInviteLink
+</span><span id="line-22"></span><span>
+</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679415539"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.CheckChatInviteLink.html#CheckChatInviteLink"><span class="hs-identifier hs-type">CheckChatInviteLink</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span> </span><span id="local-6989586621679415537"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CheckChatInviteLink
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679415535"><span class="annot"><span class="annottext">v :: Value
 </span><a href="#local-6989586621679415535"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679415533"><span class="annot"><span class="annottext">obj :: Object
 </span><a href="#local-6989586621679415533"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-24"></span><span>  </span><span id="local-6989586621679415532"><span class="annot"><span class="annottext">String
+</span><span id="line-25"></span><span>  </span><span id="local-6989586621679415532"><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679415532"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679415533"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-25"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-26"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
 </span><a href="#local-6989586621679415532"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-26"></span><span>   </span><span class="hs-string">&quot;checkChatInviteLink&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CheckChatInviteLink
+</span><span id="line-27"></span><span>   </span><span class="hs-string">&quot;checkChatInviteLink&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CheckChatInviteLink
 </span><a href="#local-6989586621679415530"><span class="hs-identifier hs-var">parseCheckChatInviteLink</span></a></span><span> </span><span class="annot"><span class="annottext">Value
 </span><a href="#local-6989586621679415535"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-27"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CheckChatInviteLink
+</span><span id="line-28"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CheckChatInviteLink
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-28"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span>   </span><span class="annot"><a href="#local-6989586621679415530"><span class="hs-identifier hs-type">parseCheckChatInviteLink</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.CheckChatInviteLink.html#CheckChatInviteLink"><span class="hs-identifier hs-type">CheckChatInviteLink</span></a></span><span>
-</span><span id="line-30"></span><span>   </span><span id="local-6989586621679415530"><span class="annot"><span class="annottext">parseCheckChatInviteLink :: Value -&gt; Parser CheckChatInviteLink
+</span><span id="line-29"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-30"></span><span>   </span><span class="annot"><a href="#local-6989586621679415530"><span class="hs-identifier hs-type">parseCheckChatInviteLink</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.CheckChatInviteLink.html#CheckChatInviteLink"><span class="hs-identifier hs-type">CheckChatInviteLink</span></a></span><span>
+</span><span id="line-31"></span><span>   </span><span id="local-6989586621679415530"><span class="annot"><span class="annottext">parseCheckChatInviteLink :: Value -&gt; Parser CheckChatInviteLink
 </span><a href="#local-6989586621679415530"><span class="hs-identifier hs-var hs-var">parseCheckChatInviteLink</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CheckChatInviteLink)
 -&gt; Value
@@ -88,12 +89,12 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679415528"><span class="annot"><span class="annottext">o :: Object
 </span><a href="#local-6989586621679415528"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-31"></span><span>    </span><span id="local-6989586621679415527"><span class="annot"><span class="annottext">Maybe String
+</span><span id="line-32"></span><span>    </span><span id="local-6989586621679415527"><span class="annot"><span class="annottext">Maybe String
 </span><a href="#local-6989586621679415527"><span class="hs-identifier hs-var">invite_link</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
 </span><a href="#local-6989586621679415528"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;invite_link&quot;</span></span><span>
-</span><span id="line-32"></span><span>    </span><span class="annot"><span class="annottext">CheckChatInviteLink -&gt; Parser CheckChatInviteLink
+</span><span id="line-33"></span><span>    </span><span class="annot"><span class="annottext">CheckChatInviteLink -&gt; Parser CheckChatInviteLink
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CheckChatInviteLink -&gt; Parser CheckChatInviteLink)
 -&gt; CheckChatInviteLink -&gt; Parser CheckChatInviteLink

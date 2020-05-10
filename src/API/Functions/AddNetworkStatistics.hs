@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.NetworkStatisticsEntry as NetworkStatisticsE
 -- 
 -- __entry__ The network statistics entry with the data to be added to statistics
 data AddNetworkStatistics = 
+
  AddNetworkStatistics { entry :: Maybe NetworkStatisticsEntry.NetworkStatisticsEntry }  deriving (Show, Eq)
 
 instance T.ToJSON AddNetworkStatistics where

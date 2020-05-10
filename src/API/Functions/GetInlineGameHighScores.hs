@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __user_id__ User identifier
 data GetInlineGameHighScores = 
+
  GetInlineGameHighScores { user_id :: Maybe Int, inline_message_id :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON GetInlineGameHighScores where

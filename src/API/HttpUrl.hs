@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __url__ The URL
 data HttpUrl = 
+
  HttpUrl { url :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON HttpUrl where

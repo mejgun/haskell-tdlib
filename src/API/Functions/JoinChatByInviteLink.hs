@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __invite_link__ Invite link to import; should begin with "https://t.me/joinchat/", "https://telegram.me/joinchat/", or "https://telegram.dog/joinchat/"
 data JoinChatByInviteLink = 
+
  JoinChatByInviteLink { invite_link :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON JoinChatByInviteLink where

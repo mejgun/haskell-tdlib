@@ -17,6 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __secret__ Secret for data decryption, encrypted with the service's public key
 data EncryptedCredentials = 
+
  EncryptedCredentials { secret :: Maybe String, hash :: Maybe String, _data :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON EncryptedCredentials where

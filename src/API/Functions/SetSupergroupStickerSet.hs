@@ -15,6 +15,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __sticker_set_id__ New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
 data SetSupergroupStickerSet = 
+
  SetSupergroupStickerSet { sticker_set_id :: Maybe Int, supergroup_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetSupergroupStickerSet where

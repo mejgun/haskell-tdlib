@@ -21,6 +21,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __allow_write_access__ True, if the user allowed the bot to send them messages
 data GetLoginUrl = 
+
  GetLoginUrl { allow_write_access :: Maybe Bool, button_id :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetLoginUrl where

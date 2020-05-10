@@ -11,6 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- An object of this type is returned on a successful function call for certain functions
 data Ok = 
+
  Ok deriving (Show, Eq)
 
 instance T.ToJSON Ok where

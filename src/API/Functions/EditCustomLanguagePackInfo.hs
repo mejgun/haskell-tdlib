@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.LanguagePackInfo as LanguagePackInfo
 -- 
 -- __info__ New information about the custom local language pack
 data EditCustomLanguagePackInfo = 
+
  EditCustomLanguagePackInfo { info :: Maybe LanguagePackInfo.LanguagePackInfo }  deriving (Show, Eq)
 
 instance T.ToJSON EditCustomLanguagePackInfo where

@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __file_id__ File identifier
 data GetAttachedStickerSets = 
+
  GetAttachedStickerSets { file_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetAttachedStickerSets where

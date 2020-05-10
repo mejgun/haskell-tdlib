@@ -21,6 +21,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __peer_tag__ Connection peer tag
 data CallConnection = 
+
  CallConnection { peer_tag :: Maybe String, port :: Maybe Int, ipv6 :: Maybe String, ip :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CallConnection where

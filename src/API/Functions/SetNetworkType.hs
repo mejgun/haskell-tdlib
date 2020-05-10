@@ -16,6 +16,7 @@ import {-# SOURCE #-} qualified API.NetworkType as NetworkType
 -- 
 -- __type__ The new network type. By default, networkTypeOther
 data SetNetworkType = 
+
  SetNetworkType { _type :: Maybe NetworkType.NetworkType }  deriving (Show, Eq)
 
 instance T.ToJSON SetNetworkType where

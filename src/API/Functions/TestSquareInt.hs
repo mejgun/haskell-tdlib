@@ -13,6 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __x__ Number to square
 data TestSquareInt = 
+
  TestSquareInt { x :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON TestSquareInt where
