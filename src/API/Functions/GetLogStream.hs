@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Returns information about currently used log stream for internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously
+-- Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
 data GetLogStream = 
 
  GetLogStream deriving (Show, Eq)

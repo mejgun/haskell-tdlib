@@ -26,7 +26,13 @@ data BackgroundFill =
  -- __bottom_color__ A bottom color of the background in the RGB24 format
  -- 
  -- __rotation_angle__ Clockwise rotation angle of the gradient, in degrees; 0-359. Should be always divisible by 45
- BackgroundFillGradient { rotation_angle :: Maybe Int, bottom_color :: Maybe Int, top_color :: Maybe Int }  deriving (Show, Eq)
+ BackgroundFillGradient { rotation_angle :: Maybe Int, bottom_color :: Maybe Int, top_color :: Maybe Int }  |
+ -- |
+ -- 
+ -- Describes a freeform gradient fill of a background 
+ -- 
+ -- __colors__ A list of 3 or 4 colors of the freeform gradients in the RGB24 format
+ BackgroundFillFreeformGradient { colors :: Maybe [Int] }  deriving (Show, Eq)
 
 instance T.ToJSON BackgroundFill where
  toJSON (BackgroundFillSolid { color = color }) =
@@ -35,12 +41,16 @@ instance T.ToJSON BackgroundFill where
  toJSON (BackgroundFillGradient { rotation_angle = rotation_angle, bottom_color = bottom_color, top_color = top_color }) =
   A.object [ "@type" A..= T.String "backgroundFillGradient", "rotation_angle" A..= rotation_angle, "bottom_color" A..= bottom_color, "top_color" A..= top_color ]
 
+ toJSON (BackgroundFillFreeformGradient { colors = colors }) =
+  A.object [ "@type" A..= T.String "backgroundFillFreeformGradient", "colors" A..= colors ]
+
 instance T.FromJSON BackgroundFill where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "backgroundFillSolid" -> parseBackgroundFillSolid v
    "backgroundFillGradient" -> parseBackgroundFillGradient v
+   "backgroundFillFreeformGradient" -> parseBackgroundFillFreeformGradient v
    _ -> mempty
   where
    parseBackgroundFillSolid :: A.Value -> T.Parser BackgroundFill
@@ -54,3 +64,8 @@ instance T.FromJSON BackgroundFill where
     bottom_color <- mconcat [ o A..:? "bottom_color", readMaybe <$> (o A..: "bottom_color" :: T.Parser String)] :: T.Parser (Maybe Int)
     top_color <- mconcat [ o A..:? "top_color", readMaybe <$> (o A..: "top_color" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ BackgroundFillGradient { rotation_angle = rotation_angle, bottom_color = bottom_color, top_color = top_color }
+
+   parseBackgroundFillFreeformGradient :: A.Value -> T.Parser BackgroundFill
+   parseBackgroundFillFreeformGradient = A.withObject "BackgroundFillFreeformGradient" $ \o -> do
+    colors <- o A..:? "colors"
+    return $ BackgroundFillFreeformGradient { colors = colors }

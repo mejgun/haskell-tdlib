@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Deletes a profile photo. If something changes, updateUser will be sent 
+-- Deletes a profile photo 
 -- 
 -- __profile_photo_id__ Identifier of the profile photo to delete
 data DeleteProfilePhoto = 

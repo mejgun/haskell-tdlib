@@ -6,16 +6,16 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import {-# SOURCE #-} qualified API.InputFile as InputFile
+import {-# SOURCE #-} qualified API.InputChatPhoto as InputChatPhoto
 
 -- |
 -- 
--- Uploads a new profile photo for the current user. If something changes, updateUser will be sent 
+-- Changes a profile photo for the current user 
 -- 
--- __photo__ Profile photo to set. inputFileId and inputFileRemote may still be unsupported
+-- __photo__ Profile photo to set
 data SetProfilePhoto = 
 
- SetProfilePhoto { photo :: Maybe InputFile.InputFile }  deriving (Show, Eq)
+ SetProfilePhoto { photo :: Maybe InputChatPhoto.InputChatPhoto }  deriving (Show, Eq)
 
 instance T.ToJSON SetProfilePhoto where
  toJSON (SetProfilePhoto { photo = photo }) =

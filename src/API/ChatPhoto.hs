@@ -6,22 +6,30 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import {-# SOURCE #-} qualified API.File as File
+import {-# SOURCE #-} qualified API.AnimatedChatPhoto as AnimatedChatPhoto
+import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
+import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 
 -- |
 -- 
--- Describes the photo of a chat 
+-- Describes a chat or user profile photo
 -- 
--- __small__ A small (160x160) chat photo. The file can be downloaded only before the photo is changed
+-- __id__ Unique photo identifier
 -- 
--- __big__ A big (640x640) chat photo. The file can be downloaded only before the photo is changed
+-- __added_date__ Point in time (Unix timestamp) when the photo has been added
+-- 
+-- __minithumbnail__ Photo minithumbnail; may be null
+-- 
+-- __sizes__ Available variants of the photo in JPEG format, in different size
+-- 
+-- __animation__ Animated variant of the photo in MPEG4 format; may be null
 data ChatPhoto = 
 
- ChatPhoto { big :: Maybe File.File, small :: Maybe File.File }  deriving (Show, Eq)
+ ChatPhoto { animation :: Maybe AnimatedChatPhoto.AnimatedChatPhoto, sizes :: Maybe [PhotoSize.PhotoSize], minithumbnail :: Maybe Minithumbnail.Minithumbnail, added_date :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ChatPhoto where
- toJSON (ChatPhoto { big = big, small = small }) =
-  A.object [ "@type" A..= T.String "chatPhoto", "big" A..= big, "small" A..= small ]
+ toJSON (ChatPhoto { animation = animation, sizes = sizes, minithumbnail = minithumbnail, added_date = added_date, _id = _id }) =
+  A.object [ "@type" A..= T.String "chatPhoto", "animation" A..= animation, "sizes" A..= sizes, "minithumbnail" A..= minithumbnail, "added_date" A..= added_date, "id" A..= _id ]
 
 instance T.FromJSON ChatPhoto where
  parseJSON v@(T.Object obj) = do
@@ -32,6 +40,9 @@ instance T.FromJSON ChatPhoto where
   where
    parseChatPhoto :: A.Value -> T.Parser ChatPhoto
    parseChatPhoto = A.withObject "ChatPhoto" $ \o -> do
-    big <- o A..:? "big"
-    small <- o A..:? "small"
-    return $ ChatPhoto { big = big, small = small }
+    animation <- o A..:? "animation"
+    sizes <- o A..:? "sizes"
+    minithumbnail <- o A..:? "minithumbnail"
+    added_date <- mconcat [ o A..:? "added_date", readMaybe <$> (o A..: "added_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ ChatPhoto { animation = animation, sizes = sizes, minithumbnail = minithumbnail, added_date = added_date, _id = _id }

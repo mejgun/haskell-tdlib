@@ -11,11 +11,11 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Describes one answer option of a poll 
 -- 
--- __text__ Option text, 1-100 characters
+-- __text__ Option text; 1-100 characters
 -- 
 -- __voter_count__ Number of voters for this option, available only for closed or voted polls
 -- 
--- __vote_percentage__ The percentage of votes for this option, 0-100
+-- __vote_percentage__ The percentage of votes for this option; 0-100
 -- 
 -- __is_chosen__ True, if the option was chosen by the user
 -- 

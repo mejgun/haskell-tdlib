@@ -9,16 +9,18 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Removes the pinned message from a chat; requires can_pin_messages rights in the group or channel 
+-- Removes a pinned message from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel 
 -- 
 -- __chat_id__ Identifier of the chat
+-- 
+-- __message_id__ Identifier of the removed pinned message
 data UnpinChatMessage = 
 
- UnpinChatMessage { chat_id :: Maybe Int }  deriving (Show, Eq)
+ UnpinChatMessage { message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON UnpinChatMessage where
- toJSON (UnpinChatMessage { chat_id = chat_id }) =
-  A.object [ "@type" A..= T.String "unpinChatMessage", "chat_id" A..= chat_id ]
+ toJSON (UnpinChatMessage { message_id = message_id, chat_id = chat_id }) =
+  A.object [ "@type" A..= T.String "unpinChatMessage", "message_id" A..= message_id, "chat_id" A..= chat_id ]
 
 instance T.FromJSON UnpinChatMessage where
  parseJSON v@(T.Object obj) = do
@@ -29,5 +31,6 @@ instance T.FromJSON UnpinChatMessage where
   where
    parseUnpinChatMessage :: A.Value -> T.Parser UnpinChatMessage
    parseUnpinChatMessage = A.withObject "UnpinChatMessage" $ \o -> do
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ UnpinChatMessage { chat_id = chat_id }
+    return $ UnpinChatMessage { message_id = message_id, chat_id = chat_id }

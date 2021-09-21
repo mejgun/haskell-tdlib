@@ -13,7 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __label__ Label for this portion of the product price
 -- 
--- __amount__ Currency amount in minimal quantity of the currency
+-- __amount__ Currency amount in the smallest units of the currency
 data LabeledPricePart = 
 
  LabeledPricePart { amount :: Maybe Int, label :: Maybe String }  deriving (Show, Eq)

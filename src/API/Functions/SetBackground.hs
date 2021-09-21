@@ -13,9 +13,9 @@ import {-# SOURCE #-} qualified API.InputBackground as InputBackground
 -- 
 -- Changes the background selected by the user; adds background to the list of installed backgrounds
 -- 
--- __background__ The input background to use, null for filled backgrounds
+-- __background__ The input background to use. Pass null to create a new filled backgrounds. Pass null to remove the current background
 -- 
--- __type__ Background type; null for default background. The method will return error 404 if type is null
+-- __type__ Background type. Pass null to use default type of the remote background. Pass null to remove the current background
 -- 
 -- __for_dark_theme__ True, if the background is chosen for dark theme
 data SetBackground = 

@@ -9,6 +9,7 @@ import {-# SOURCE #-} qualified API.Session as Session
 import {-# SOURCE #-} qualified API.Updates as Updates
 import {-# SOURCE #-} qualified API.RecoveryEmailAddress as RecoveryEmailAddress
 import {-# SOURCE #-} qualified API.PasswordState as PasswordState
+import {-# SOURCE #-} qualified API.ResetPasswordResult as ResetPasswordResult
 import {-# SOURCE #-} qualified API.TemporaryPasswordState as TemporaryPasswordState
 import {-# SOURCE #-} qualified API.UserFullInfo as UserFullInfo
 import {-# SOURCE #-} qualified API.BasicGroup as BasicGroup
@@ -16,33 +17,48 @@ import {-# SOURCE #-} qualified API.BasicGroupFullInfo as BasicGroupFullInfo
 import {-# SOURCE #-} qualified API.Supergroup as Supergroup
 import {-# SOURCE #-} qualified API.SupergroupFullInfo as SupergroupFullInfo
 import {-# SOURCE #-} qualified API.SecretChat as SecretChat
+import {-# SOURCE #-} qualified API.MessageThreadInfo as MessageThreadInfo
 import {-# SOURCE #-} qualified API.ChatsNearby as ChatsNearby
 import {-# SOURCE #-} qualified API.CheckChatUsernameResult as CheckChatUsernameResult
 import {-# SOURCE #-} qualified API.FoundMessages as FoundMessages
-import {-# SOURCE #-} qualified API.PublicMessageLink as PublicMessageLink
+import {-# SOURCE #-} qualified API.SponsoredMessages as SponsoredMessages
+import {-# SOURCE #-} qualified API.MessageLink as MessageLink
 import {-# SOURCE #-} qualified API.MessageLinkInfo as MessageLinkInfo
 import {-# SOURCE #-} qualified API.Messages as Messages
 import {-# SOURCE #-} qualified API.TextEntities as TextEntities
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 import {-# SOURCE #-} qualified API.LanguagePackStringValue as LanguagePackStringValue
-import {-# SOURCE #-} qualified API.LoginUrlInfo as LoginUrlInfo
 import {-# SOURCE #-} qualified API.InlineQueryResults as InlineQueryResults
 import {-# SOURCE #-} qualified API.CallbackQueryAnswer as CallbackQueryAnswer
 import {-# SOURCE #-} qualified API.Message as Message
 import {-# SOURCE #-} qualified API.GameHighScores as GameHighScores
+import {-# SOURCE #-} qualified API.Sticker as Sticker
+import {-# SOURCE #-} qualified API.InternalLinkType as InternalLinkType
+import {-# SOURCE #-} qualified API.LoginUrlInfo as LoginUrlInfo
+import {-# SOURCE #-} qualified API.ChatLists as ChatLists
+import {-# SOURCE #-} qualified API.ChatFilter as ChatFilter
+import {-# SOURCE #-} qualified API.ChatFilterInfo as ChatFilterInfo
+import {-# SOURCE #-} qualified API.RecommendedChatFilters as RecommendedChatFilters
 import {-# SOURCE #-} qualified API.CanTransferOwnershipResult as CanTransferOwnershipResult
 import {-# SOURCE #-} qualified API.ChatMember as ChatMember
 import {-# SOURCE #-} qualified API.ChatAdministrators as ChatAdministrators
 import {-# SOURCE #-} qualified API.Chats as Chats
 import {-# SOURCE #-} qualified API.ScopeNotificationSettings as ScopeNotificationSettings
-import {-# SOURCE #-} qualified API.FilePart as FilePart
+import {-# SOURCE #-} qualified API.MessageFileType as MessageFileType
 import {-# SOURCE #-} qualified API.ChatInviteLink as ChatInviteLink
+import {-# SOURCE #-} qualified API.ChatInviteLinkCounts as ChatInviteLinkCounts
+import {-# SOURCE #-} qualified API.ChatInviteLinkMembers as ChatInviteLinkMembers
+import {-# SOURCE #-} qualified API.ChatInviteLinks as ChatInviteLinks
 import {-# SOURCE #-} qualified API.ChatInviteLinkInfo as ChatInviteLinkInfo
 import {-# SOURCE #-} qualified API.Chat as Chat
 import {-# SOURCE #-} qualified API.CallId as CallId
+import {-# SOURCE #-} qualified API.GroupCallId as GroupCallId
+import {-# SOURCE #-} qualified API.GroupCall as GroupCall
+import {-# SOURCE #-} qualified API.FilePart as FilePart
+import {-# SOURCE #-} qualified API.MessageSenders as MessageSenders
 import {-# SOURCE #-} qualified API.Count as Count
 import {-# SOURCE #-} qualified API.ImportedContacts as ImportedContacts
-import {-# SOURCE #-} qualified API.UserProfilePhotos as UserProfilePhotos
+import {-# SOURCE #-} qualified API.ChatPhotos as ChatPhotos
 import {-# SOURCE #-} qualified API.StickerSets as StickerSets
 import {-# SOURCE #-} qualified API.Stickers as Stickers
 import {-# SOURCE #-} qualified API.Emojis as Emojis
@@ -51,6 +67,7 @@ import {-# SOURCE #-} qualified API.Users as Users
 import {-# SOURCE #-} qualified API.Hashtags as Hashtags
 import {-# SOURCE #-} qualified API.WebPage as WebPage
 import {-# SOURCE #-} qualified API.WebPageInstantView as WebPageInstantView
+import {-# SOURCE #-} qualified API.BotCommands as BotCommands
 import {-# SOURCE #-} qualified API.Sessions as Sessions
 import {-# SOURCE #-} qualified API.ConnectedWebsites as ConnectedWebsites
 import {-# SOURCE #-} qualified API.ChatMembers as ChatMembers
@@ -71,9 +88,9 @@ import {-# SOURCE #-} qualified API.TMeUrls as TMeUrls
 import {-# SOURCE #-} qualified API.UserPrivacySettingRules as UserPrivacySettingRules
 import {-# SOURCE #-} qualified API.OptionValue as OptionValue
 import {-# SOURCE #-} qualified API.AccountTtl as AccountTtl
-import {-# SOURCE #-} qualified API.HttpUrl as HttpUrl
 import {-# SOURCE #-} qualified API.ChatStatistics as ChatStatistics
-import {-# SOURCE #-} qualified API.StatisticsGraph as StatisticsGraph
+import {-# SOURCE #-} qualified API.MessageStatistics as MessageStatistics
+import {-# SOURCE #-} qualified API.StatisticalGraph as StatisticalGraph
 import {-# SOURCE #-} qualified API.StorageStatisticsFast as StorageStatisticsFast
 import {-# SOURCE #-} qualified API.DatabaseStatistics as DatabaseStatistics
 import {-# SOURCE #-} qualified API.StorageStatistics as StorageStatistics
@@ -86,14 +103,18 @@ import {-# SOURCE #-} qualified API.EmailAddressAuthenticationCodeInfo as EmailA
 import {-# SOURCE #-} qualified API.PassportAuthorizationForm as PassportAuthorizationForm
 import {-# SOURCE #-} qualified API.PassportElementsWithErrors as PassportElementsWithErrors
 import {-# SOURCE #-} qualified API.AuthenticationCodeInfo as AuthenticationCodeInfo
+import {-# SOURCE #-} qualified API.CheckStickerSetNameResult as CheckStickerSetNameResult
 import {-# SOURCE #-} qualified API.StickerSet as StickerSet
 import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.CustomRequestResult as CustomRequestResult
+import {-# SOURCE #-} qualified API.Countries as Countries
+import {-# SOURCE #-} qualified API.Text as Text
+import {-# SOURCE #-} qualified API.PhoneNumberInfo as PhoneNumberInfo
 import {-# SOURCE #-} qualified API.DeepLinkInfo as DeepLinkInfo
 import {-# SOURCE #-} qualified API.JsonValue as JsonValue
 import {-# SOURCE #-} qualified API.Proxy as Proxy
 import {-# SOURCE #-} qualified API.Proxies as Proxies
-import {-# SOURCE #-} qualified API.Text as Text
+import {-# SOURCE #-} qualified API.HttpUrl as HttpUrl
 import {-# SOURCE #-} qualified API.Seconds as Seconds
 import {-# SOURCE #-} qualified API.LogStream as LogStream
 import {-# SOURCE #-} qualified API.LogTags as LogTags
@@ -115,6 +136,7 @@ data GeneralResult =
  | Updates Updates.Updates 
  | RecoveryEmailAddress RecoveryEmailAddress.RecoveryEmailAddress 
  | PasswordState PasswordState.PasswordState 
+ | ResetPasswordResult ResetPasswordResult.ResetPasswordResult 
  | TemporaryPasswordState TemporaryPasswordState.TemporaryPasswordState 
  | UserFullInfo UserFullInfo.UserFullInfo 
  | BasicGroup BasicGroup.BasicGroup 
@@ -122,33 +144,48 @@ data GeneralResult =
  | Supergroup Supergroup.Supergroup 
  | SupergroupFullInfo SupergroupFullInfo.SupergroupFullInfo 
  | SecretChat SecretChat.SecretChat 
+ | MessageThreadInfo MessageThreadInfo.MessageThreadInfo 
  | ChatsNearby ChatsNearby.ChatsNearby 
  | CheckChatUsernameResult CheckChatUsernameResult.CheckChatUsernameResult 
  | FoundMessages FoundMessages.FoundMessages 
- | PublicMessageLink PublicMessageLink.PublicMessageLink 
+ | SponsoredMessages SponsoredMessages.SponsoredMessages 
+ | MessageLink MessageLink.MessageLink 
  | MessageLinkInfo MessageLinkInfo.MessageLinkInfo 
  | Messages Messages.Messages 
  | TextEntities TextEntities.TextEntities 
  | FormattedText FormattedText.FormattedText 
  | LanguagePackStringValue LanguagePackStringValue.LanguagePackStringValue 
- | LoginUrlInfo LoginUrlInfo.LoginUrlInfo 
  | InlineQueryResults InlineQueryResults.InlineQueryResults 
  | CallbackQueryAnswer CallbackQueryAnswer.CallbackQueryAnswer 
  | Message Message.Message 
  | GameHighScores GameHighScores.GameHighScores 
+ | Sticker Sticker.Sticker 
+ | InternalLinkType InternalLinkType.InternalLinkType 
+ | LoginUrlInfo LoginUrlInfo.LoginUrlInfo 
+ | ChatLists ChatLists.ChatLists 
+ | ChatFilter ChatFilter.ChatFilter 
+ | ChatFilterInfo ChatFilterInfo.ChatFilterInfo 
+ | RecommendedChatFilters RecommendedChatFilters.RecommendedChatFilters 
  | CanTransferOwnershipResult CanTransferOwnershipResult.CanTransferOwnershipResult 
  | ChatMember ChatMember.ChatMember 
  | ChatAdministrators ChatAdministrators.ChatAdministrators 
  | Chats Chats.Chats 
  | ScopeNotificationSettings ScopeNotificationSettings.ScopeNotificationSettings 
- | FilePart FilePart.FilePart 
+ | MessageFileType MessageFileType.MessageFileType 
  | ChatInviteLink ChatInviteLink.ChatInviteLink 
+ | ChatInviteLinkCounts ChatInviteLinkCounts.ChatInviteLinkCounts 
+ | ChatInviteLinkMembers ChatInviteLinkMembers.ChatInviteLinkMembers 
+ | ChatInviteLinks ChatInviteLinks.ChatInviteLinks 
  | ChatInviteLinkInfo ChatInviteLinkInfo.ChatInviteLinkInfo 
  | Chat Chat.Chat 
  | CallId CallId.CallId 
+ | GroupCallId GroupCallId.GroupCallId 
+ | GroupCall GroupCall.GroupCall 
+ | FilePart FilePart.FilePart 
+ | MessageSenders MessageSenders.MessageSenders 
  | Count Count.Count 
  | ImportedContacts ImportedContacts.ImportedContacts 
- | UserProfilePhotos UserProfilePhotos.UserProfilePhotos 
+ | ChatPhotos ChatPhotos.ChatPhotos 
  | StickerSets StickerSets.StickerSets 
  | Stickers Stickers.Stickers 
  | Emojis Emojis.Emojis 
@@ -157,6 +194,7 @@ data GeneralResult =
  | Hashtags Hashtags.Hashtags 
  | WebPage WebPage.WebPage 
  | WebPageInstantView WebPageInstantView.WebPageInstantView 
+ | BotCommands BotCommands.BotCommands 
  | Sessions Sessions.Sessions 
  | ConnectedWebsites ConnectedWebsites.ConnectedWebsites 
  | ChatMembers ChatMembers.ChatMembers 
@@ -177,9 +215,9 @@ data GeneralResult =
  | UserPrivacySettingRules UserPrivacySettingRules.UserPrivacySettingRules 
  | OptionValue OptionValue.OptionValue 
  | AccountTtl AccountTtl.AccountTtl 
- | HttpUrl HttpUrl.HttpUrl 
  | ChatStatistics ChatStatistics.ChatStatistics 
- | StatisticsGraph StatisticsGraph.StatisticsGraph 
+ | MessageStatistics MessageStatistics.MessageStatistics 
+ | StatisticalGraph StatisticalGraph.StatisticalGraph 
  | StorageStatisticsFast StorageStatisticsFast.StorageStatisticsFast 
  | DatabaseStatistics DatabaseStatistics.DatabaseStatistics 
  | StorageStatistics StorageStatistics.StorageStatistics 
@@ -192,14 +230,18 @@ data GeneralResult =
  | PassportAuthorizationForm PassportAuthorizationForm.PassportAuthorizationForm 
  | PassportElementsWithErrors PassportElementsWithErrors.PassportElementsWithErrors 
  | AuthenticationCodeInfo AuthenticationCodeInfo.AuthenticationCodeInfo 
+ | CheckStickerSetNameResult CheckStickerSetNameResult.CheckStickerSetNameResult 
  | StickerSet StickerSet.StickerSet 
  | File File.File 
  | CustomRequestResult CustomRequestResult.CustomRequestResult 
+ | Countries Countries.Countries 
+ | Text Text.Text 
+ | PhoneNumberInfo PhoneNumberInfo.PhoneNumberInfo 
  | DeepLinkInfo DeepLinkInfo.DeepLinkInfo 
  | JsonValue JsonValue.JsonValue 
  | Proxy Proxy.Proxy 
  | Proxies Proxies.Proxies 
- | Text Text.Text 
+ | HttpUrl HttpUrl.HttpUrl 
  | Seconds Seconds.Seconds 
  | LogStream LogStream.LogStream 
  | LogTags LogTags.LogTags 
@@ -250,6 +292,9 @@ instance T.FromJSON GeneralResult where
       case (T.fromJSON v :: T.Result PasswordState.PasswordState) of
        T.Success a -> return $ PasswordState a
        _ -> mempty,
+      case (T.fromJSON v :: T.Result ResetPasswordResult.ResetPasswordResult) of
+       T.Success a -> return $ ResetPasswordResult a
+       _ -> mempty,
       case (T.fromJSON v :: T.Result TemporaryPasswordState.TemporaryPasswordState) of
        T.Success a -> return $ TemporaryPasswordState a
        _ -> mempty,
@@ -271,6 +316,9 @@ instance T.FromJSON GeneralResult where
       case (T.fromJSON v :: T.Result SecretChat.SecretChat) of
        T.Success a -> return $ SecretChat a
        _ -> mempty,
+      case (T.fromJSON v :: T.Result MessageThreadInfo.MessageThreadInfo) of
+       T.Success a -> return $ MessageThreadInfo a
+       _ -> mempty,
       case (T.fromJSON v :: T.Result ChatsNearby.ChatsNearby) of
        T.Success a -> return $ ChatsNearby a
        _ -> mempty,
@@ -280,8 +328,11 @@ instance T.FromJSON GeneralResult where
       case (T.fromJSON v :: T.Result FoundMessages.FoundMessages) of
        T.Success a -> return $ FoundMessages a
        _ -> mempty,
-      case (T.fromJSON v :: T.Result PublicMessageLink.PublicMessageLink) of
-       T.Success a -> return $ PublicMessageLink a
+      case (T.fromJSON v :: T.Result SponsoredMessages.SponsoredMessages) of
+       T.Success a -> return $ SponsoredMessages a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result MessageLink.MessageLink) of
+       T.Success a -> return $ MessageLink a
        _ -> mempty,
       case (T.fromJSON v :: T.Result MessageLinkInfo.MessageLinkInfo) of
        T.Success a -> return $ MessageLinkInfo a
@@ -298,9 +349,6 @@ instance T.FromJSON GeneralResult where
       case (T.fromJSON v :: T.Result LanguagePackStringValue.LanguagePackStringValue) of
        T.Success a -> return $ LanguagePackStringValue a
        _ -> mempty,
-      case (T.fromJSON v :: T.Result LoginUrlInfo.LoginUrlInfo) of
-       T.Success a -> return $ LoginUrlInfo a
-       _ -> mempty,
       case (T.fromJSON v :: T.Result InlineQueryResults.InlineQueryResults) of
        T.Success a -> return $ InlineQueryResults a
        _ -> mempty,
@@ -312,6 +360,27 @@ instance T.FromJSON GeneralResult where
        _ -> mempty,
       case (T.fromJSON v :: T.Result GameHighScores.GameHighScores) of
        T.Success a -> return $ GameHighScores a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result Sticker.Sticker) of
+       T.Success a -> return $ Sticker a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result InternalLinkType.InternalLinkType) of
+       T.Success a -> return $ InternalLinkType a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result LoginUrlInfo.LoginUrlInfo) of
+       T.Success a -> return $ LoginUrlInfo a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result ChatLists.ChatLists) of
+       T.Success a -> return $ ChatLists a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result ChatFilter.ChatFilter) of
+       T.Success a -> return $ ChatFilter a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result ChatFilterInfo.ChatFilterInfo) of
+       T.Success a -> return $ ChatFilterInfo a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result RecommendedChatFilters.RecommendedChatFilters) of
+       T.Success a -> return $ RecommendedChatFilters a
        _ -> mempty,
       case (T.fromJSON v :: T.Result CanTransferOwnershipResult.CanTransferOwnershipResult) of
        T.Success a -> return $ CanTransferOwnershipResult a
@@ -328,11 +397,20 @@ instance T.FromJSON GeneralResult where
       case (T.fromJSON v :: T.Result ScopeNotificationSettings.ScopeNotificationSettings) of
        T.Success a -> return $ ScopeNotificationSettings a
        _ -> mempty,
-      case (T.fromJSON v :: T.Result FilePart.FilePart) of
-       T.Success a -> return $ FilePart a
+      case (T.fromJSON v :: T.Result MessageFileType.MessageFileType) of
+       T.Success a -> return $ MessageFileType a
        _ -> mempty,
       case (T.fromJSON v :: T.Result ChatInviteLink.ChatInviteLink) of
        T.Success a -> return $ ChatInviteLink a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result ChatInviteLinkCounts.ChatInviteLinkCounts) of
+       T.Success a -> return $ ChatInviteLinkCounts a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result ChatInviteLinkMembers.ChatInviteLinkMembers) of
+       T.Success a -> return $ ChatInviteLinkMembers a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result ChatInviteLinks.ChatInviteLinks) of
+       T.Success a -> return $ ChatInviteLinks a
        _ -> mempty,
       case (T.fromJSON v :: T.Result ChatInviteLinkInfo.ChatInviteLinkInfo) of
        T.Success a -> return $ ChatInviteLinkInfo a
@@ -343,14 +421,26 @@ instance T.FromJSON GeneralResult where
       case (T.fromJSON v :: T.Result CallId.CallId) of
        T.Success a -> return $ CallId a
        _ -> mempty,
+      case (T.fromJSON v :: T.Result GroupCallId.GroupCallId) of
+       T.Success a -> return $ GroupCallId a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result GroupCall.GroupCall) of
+       T.Success a -> return $ GroupCall a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result FilePart.FilePart) of
+       T.Success a -> return $ FilePart a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result MessageSenders.MessageSenders) of
+       T.Success a -> return $ MessageSenders a
+       _ -> mempty,
       case (T.fromJSON v :: T.Result Count.Count) of
        T.Success a -> return $ Count a
        _ -> mempty,
       case (T.fromJSON v :: T.Result ImportedContacts.ImportedContacts) of
        T.Success a -> return $ ImportedContacts a
        _ -> mempty,
-      case (T.fromJSON v :: T.Result UserProfilePhotos.UserProfilePhotos) of
-       T.Success a -> return $ UserProfilePhotos a
+      case (T.fromJSON v :: T.Result ChatPhotos.ChatPhotos) of
+       T.Success a -> return $ ChatPhotos a
        _ -> mempty,
       case (T.fromJSON v :: T.Result StickerSets.StickerSets) of
        T.Success a -> return $ StickerSets a
@@ -375,6 +465,9 @@ instance T.FromJSON GeneralResult where
        _ -> mempty,
       case (T.fromJSON v :: T.Result WebPageInstantView.WebPageInstantView) of
        T.Success a -> return $ WebPageInstantView a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result BotCommands.BotCommands) of
+       T.Success a -> return $ BotCommands a
        _ -> mempty,
       case (T.fromJSON v :: T.Result Sessions.Sessions) of
        T.Success a -> return $ Sessions a
@@ -436,14 +529,14 @@ instance T.FromJSON GeneralResult where
       case (T.fromJSON v :: T.Result AccountTtl.AccountTtl) of
        T.Success a -> return $ AccountTtl a
        _ -> mempty,
-      case (T.fromJSON v :: T.Result HttpUrl.HttpUrl) of
-       T.Success a -> return $ HttpUrl a
-       _ -> mempty,
       case (T.fromJSON v :: T.Result ChatStatistics.ChatStatistics) of
        T.Success a -> return $ ChatStatistics a
        _ -> mempty,
-      case (T.fromJSON v :: T.Result StatisticsGraph.StatisticsGraph) of
-       T.Success a -> return $ StatisticsGraph a
+      case (T.fromJSON v :: T.Result MessageStatistics.MessageStatistics) of
+       T.Success a -> return $ MessageStatistics a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result StatisticalGraph.StatisticalGraph) of
+       T.Success a -> return $ StatisticalGraph a
        _ -> mempty,
       case (T.fromJSON v :: T.Result StorageStatisticsFast.StorageStatisticsFast) of
        T.Success a -> return $ StorageStatisticsFast a
@@ -481,6 +574,9 @@ instance T.FromJSON GeneralResult where
       case (T.fromJSON v :: T.Result AuthenticationCodeInfo.AuthenticationCodeInfo) of
        T.Success a -> return $ AuthenticationCodeInfo a
        _ -> mempty,
+      case (T.fromJSON v :: T.Result CheckStickerSetNameResult.CheckStickerSetNameResult) of
+       T.Success a -> return $ CheckStickerSetNameResult a
+       _ -> mempty,
       case (T.fromJSON v :: T.Result StickerSet.StickerSet) of
        T.Success a -> return $ StickerSet a
        _ -> mempty,
@@ -489,6 +585,15 @@ instance T.FromJSON GeneralResult where
        _ -> mempty,
       case (T.fromJSON v :: T.Result CustomRequestResult.CustomRequestResult) of
        T.Success a -> return $ CustomRequestResult a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result Countries.Countries) of
+       T.Success a -> return $ Countries a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result Text.Text) of
+       T.Success a -> return $ Text a
+       _ -> mempty,
+      case (T.fromJSON v :: T.Result PhoneNumberInfo.PhoneNumberInfo) of
+       T.Success a -> return $ PhoneNumberInfo a
        _ -> mempty,
       case (T.fromJSON v :: T.Result DeepLinkInfo.DeepLinkInfo) of
        T.Success a -> return $ DeepLinkInfo a
@@ -502,8 +607,8 @@ instance T.FromJSON GeneralResult where
       case (T.fromJSON v :: T.Result Proxies.Proxies) of
        T.Success a -> return $ Proxies a
        _ -> mempty,
-      case (T.fromJSON v :: T.Result Text.Text) of
-       T.Success a -> return $ Text a
+      case (T.fromJSON v :: T.Result HttpUrl.HttpUrl) of
+       T.Success a -> return $ HttpUrl a
        _ -> mempty,
       case (T.fromJSON v :: T.Result Seconds.Seconds) of
        T.Success a -> return $ Seconds a

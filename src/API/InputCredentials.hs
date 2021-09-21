@@ -27,16 +27,16 @@ data InputCredentials =
  InputCredentialsNew { allow_save :: Maybe Bool, _data :: Maybe String }  |
  -- |
  -- 
- -- Applies if a user enters new credentials using Android Pay 
- -- 
- -- __data__ JSON-encoded data with the credential identifier
- InputCredentialsAndroidPay { _data :: Maybe String }  |
- -- |
- -- 
  -- Applies if a user enters new credentials using Apple Pay 
  -- 
  -- __data__ JSON-encoded data with the credential identifier
- InputCredentialsApplePay { _data :: Maybe String }  deriving (Show, Eq)
+ InputCredentialsApplePay { _data :: Maybe String }  |
+ -- |
+ -- 
+ -- Applies if a user enters new credentials using Google Pay 
+ -- 
+ -- __data__ JSON-encoded data with the credential identifier
+ InputCredentialsGooglePay { _data :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON InputCredentials where
  toJSON (InputCredentialsSaved { saved_credentials_id = saved_credentials_id }) =
@@ -45,11 +45,11 @@ instance T.ToJSON InputCredentials where
  toJSON (InputCredentialsNew { allow_save = allow_save, _data = _data }) =
   A.object [ "@type" A..= T.String "inputCredentialsNew", "allow_save" A..= allow_save, "data" A..= _data ]
 
- toJSON (InputCredentialsAndroidPay { _data = _data }) =
-  A.object [ "@type" A..= T.String "inputCredentialsAndroidPay", "data" A..= _data ]
-
  toJSON (InputCredentialsApplePay { _data = _data }) =
   A.object [ "@type" A..= T.String "inputCredentialsApplePay", "data" A..= _data ]
+
+ toJSON (InputCredentialsGooglePay { _data = _data }) =
+  A.object [ "@type" A..= T.String "inputCredentialsGooglePay", "data" A..= _data ]
 
 instance T.FromJSON InputCredentials where
  parseJSON v@(T.Object obj) = do
@@ -57,8 +57,8 @@ instance T.FromJSON InputCredentials where
   case t of
    "inputCredentialsSaved" -> parseInputCredentialsSaved v
    "inputCredentialsNew" -> parseInputCredentialsNew v
-   "inputCredentialsAndroidPay" -> parseInputCredentialsAndroidPay v
    "inputCredentialsApplePay" -> parseInputCredentialsApplePay v
+   "inputCredentialsGooglePay" -> parseInputCredentialsGooglePay v
    _ -> mempty
   where
    parseInputCredentialsSaved :: A.Value -> T.Parser InputCredentials
@@ -72,12 +72,12 @@ instance T.FromJSON InputCredentials where
     _data <- o A..:? "data"
     return $ InputCredentialsNew { allow_save = allow_save, _data = _data }
 
-   parseInputCredentialsAndroidPay :: A.Value -> T.Parser InputCredentials
-   parseInputCredentialsAndroidPay = A.withObject "InputCredentialsAndroidPay" $ \o -> do
-    _data <- o A..:? "data"
-    return $ InputCredentialsAndroidPay { _data = _data }
-
    parseInputCredentialsApplePay :: A.Value -> T.Parser InputCredentials
    parseInputCredentialsApplePay = A.withObject "InputCredentialsApplePay" $ \o -> do
     _data <- o A..:? "data"
     return $ InputCredentialsApplePay { _data = _data }
+
+   parseInputCredentialsGooglePay :: A.Value -> T.Parser InputCredentials
+   parseInputCredentialsGooglePay = A.withObject "InputCredentialsGooglePay" $ \o -> do
+    _data <- o A..:? "data"
+    return $ InputCredentialsGooglePay { _data = _data }

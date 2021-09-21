@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Succeeds after a specified amount of time has passed. Can be called before authorization. Can be called before initialization 
+-- Succeeds after a specified amount of time has passed. Can be called before initialization 
 -- 
 -- __seconds__ Number of seconds before the function returns
 data SetAlarm = 

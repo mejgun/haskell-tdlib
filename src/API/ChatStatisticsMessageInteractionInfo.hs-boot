@@ -1,0 +1,15 @@
+-- GENERATED
+module API.ChatStatisticsMessageInteractionInfo where
+
+import Data.Aeson.Types
+
+data ChatStatisticsMessageInteractionInfo
+
+instance Eq ChatStatisticsMessageInteractionInfo
+
+instance ToJSON ChatStatisticsMessageInteractionInfo
+
+instance FromJSON ChatStatisticsMessageInteractionInfo
+
+instance Show ChatStatisticsMessageInteractionInfo
+

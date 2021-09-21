@@ -19,7 +19,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __max_layer__ The maximum supported API layer; use 65
 -- 
--- __library_versions__ List of supported libtgvoip versions
+-- __library_versions__ List of supported tgcalls versions
 data CallProtocol = 
 
  CallProtocol { library_versions :: Maybe [String], max_layer :: Maybe Int, min_layer :: Maybe Int, udp_reflector :: Maybe Bool, udp_p2p :: Maybe Bool }  deriving (Show, Eq)

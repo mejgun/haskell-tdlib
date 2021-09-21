@@ -49,6 +49,10 @@ data ChatAction =
  ChatActionUploadingDocument { progress :: Maybe Int }  |
  -- |
  -- 
+ -- The user is picking a sticker to send
+ ChatActionChoosingSticker |
+ -- |
+ -- 
  -- The user is picking a location or venue to send
  ChatActionChoosingLocation |
  -- |
@@ -71,7 +75,13 @@ data ChatAction =
  ChatActionUploadingVideoNote { progress :: Maybe Int }  |
  -- |
  -- 
- -- The user has cancelled the previous action
+ -- The user is watching animations sent by the other party by clicking on an animated emoji 
+ -- 
+ -- __emoji__ The animated emoji
+ ChatActionWatchingAnimations { emoji :: Maybe String }  |
+ -- |
+ -- 
+ -- The user has canceled the previous action
  ChatActionCancel deriving (Show, Eq)
 
 instance T.ToJSON ChatAction where
@@ -96,6 +106,9 @@ instance T.ToJSON ChatAction where
  toJSON (ChatActionUploadingDocument { progress = progress }) =
   A.object [ "@type" A..= T.String "chatActionUploadingDocument", "progress" A..= progress ]
 
+ toJSON (ChatActionChoosingSticker {  }) =
+  A.object [ "@type" A..= T.String "chatActionChoosingSticker" ]
+
  toJSON (ChatActionChoosingLocation {  }) =
   A.object [ "@type" A..= T.String "chatActionChoosingLocation" ]
 
@@ -111,6 +124,9 @@ instance T.ToJSON ChatAction where
  toJSON (ChatActionUploadingVideoNote { progress = progress }) =
   A.object [ "@type" A..= T.String "chatActionUploadingVideoNote", "progress" A..= progress ]
 
+ toJSON (ChatActionWatchingAnimations { emoji = emoji }) =
+  A.object [ "@type" A..= T.String "chatActionWatchingAnimations", "emoji" A..= emoji ]
+
  toJSON (ChatActionCancel {  }) =
   A.object [ "@type" A..= T.String "chatActionCancel" ]
 
@@ -125,11 +141,13 @@ instance T.FromJSON ChatAction where
    "chatActionUploadingVoiceNote" -> parseChatActionUploadingVoiceNote v
    "chatActionUploadingPhoto" -> parseChatActionUploadingPhoto v
    "chatActionUploadingDocument" -> parseChatActionUploadingDocument v
+   "chatActionChoosingSticker" -> parseChatActionChoosingSticker v
    "chatActionChoosingLocation" -> parseChatActionChoosingLocation v
    "chatActionChoosingContact" -> parseChatActionChoosingContact v
    "chatActionStartPlayingGame" -> parseChatActionStartPlayingGame v
    "chatActionRecordingVideoNote" -> parseChatActionRecordingVideoNote v
    "chatActionUploadingVideoNote" -> parseChatActionUploadingVideoNote v
+   "chatActionWatchingAnimations" -> parseChatActionWatchingAnimations v
    "chatActionCancel" -> parseChatActionCancel v
    _ -> mempty
   where
@@ -165,6 +183,10 @@ instance T.FromJSON ChatAction where
     progress <- mconcat [ o A..:? "progress", readMaybe <$> (o A..: "progress" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatActionUploadingDocument { progress = progress }
 
+   parseChatActionChoosingSticker :: A.Value -> T.Parser ChatAction
+   parseChatActionChoosingSticker = A.withObject "ChatActionChoosingSticker" $ \o -> do
+    return $ ChatActionChoosingSticker {  }
+
    parseChatActionChoosingLocation :: A.Value -> T.Parser ChatAction
    parseChatActionChoosingLocation = A.withObject "ChatActionChoosingLocation" $ \o -> do
     return $ ChatActionChoosingLocation {  }
@@ -185,6 +207,11 @@ instance T.FromJSON ChatAction where
    parseChatActionUploadingVideoNote = A.withObject "ChatActionUploadingVideoNote" $ \o -> do
     progress <- mconcat [ o A..:? "progress", readMaybe <$> (o A..: "progress" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatActionUploadingVideoNote { progress = progress }
+
+   parseChatActionWatchingAnimations :: A.Value -> T.Parser ChatAction
+   parseChatActionWatchingAnimations = A.withObject "ChatActionWatchingAnimations" $ \o -> do
+    emoji <- o A..:? "emoji"
+    return $ ChatActionWatchingAnimations { emoji = emoji }
 
    parseChatActionCancel :: A.Value -> T.Parser ChatAction
    parseChatActionCancel = A.withObject "ChatActionCancel" $ \o -> do

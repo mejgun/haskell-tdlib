@@ -181,7 +181,7 @@ data PushMessageContent =
  -- 
  -- __is_current_user__ True, if the current user was added to the group
  -- 
- -- __is_returned__ True, if the user has returned to the group themself
+ -- __is_returned__ True, if the user has returned to the group themselves
  PushMessageContentChatAddMembers { is_returned :: Maybe Bool, is_current_user :: Maybe Bool, member_name :: Maybe String }  |
  -- |
  -- 
@@ -195,13 +195,19 @@ data PushMessageContent =
  PushMessageContentChatChangeTitle { title :: Maybe String }  |
  -- |
  -- 
+ -- A chat theme was edited 
+ -- 
+ -- __theme_name__ If non-empty, name of a new theme, set for the chat. Otherwise chat theme was reset to the default one
+ PushMessageContentChatChangeTheme { theme_name :: Maybe String }  |
+ -- |
+ -- 
  -- A chat member was deleted 
  -- 
  -- __member_name__ Name of the deleted member
  -- 
  -- __is_current_user__ True, if the current user was deleted from the group
  -- 
- -- __is_left__ True, if the user has left the group themself
+ -- __is_left__ True, if the user has left the group themselves
  PushMessageContentChatDeleteMember { is_left :: Maybe Bool, is_current_user :: Maybe Bool, member_name :: Maybe String }  |
  -- |
  -- 
@@ -222,7 +228,11 @@ data PushMessageContent =
  -- __has_photos__ True, if the album has at least one photo
  -- 
  -- __has_videos__ True, if the album has at least one video
- PushMessageContentMediaAlbum { has_videos :: Maybe Bool, has_photos :: Maybe Bool, total_count :: Maybe Int }  deriving (Show, Eq)
+ -- 
+ -- __has_audios__ True, if the album has at least one audio file
+ -- 
+ -- __has_documents__ True, if the album has at least one document
+ PushMessageContentMediaAlbum { has_documents :: Maybe Bool, has_audios :: Maybe Bool, has_videos :: Maybe Bool, has_photos :: Maybe Bool, total_count :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON PushMessageContent where
  toJSON (PushMessageContentHidden { is_pinned = is_pinned }) =
@@ -291,6 +301,9 @@ instance T.ToJSON PushMessageContent where
  toJSON (PushMessageContentChatChangeTitle { title = title }) =
   A.object [ "@type" A..= T.String "pushMessageContentChatChangeTitle", "title" A..= title ]
 
+ toJSON (PushMessageContentChatChangeTheme { theme_name = theme_name }) =
+  A.object [ "@type" A..= T.String "pushMessageContentChatChangeTheme", "theme_name" A..= theme_name ]
+
  toJSON (PushMessageContentChatDeleteMember { is_left = is_left, is_current_user = is_current_user, member_name = member_name }) =
   A.object [ "@type" A..= T.String "pushMessageContentChatDeleteMember", "is_left" A..= is_left, "is_current_user" A..= is_current_user, "member_name" A..= member_name ]
 
@@ -300,8 +313,8 @@ instance T.ToJSON PushMessageContent where
  toJSON (PushMessageContentMessageForwards { total_count = total_count }) =
   A.object [ "@type" A..= T.String "pushMessageContentMessageForwards", "total_count" A..= total_count ]
 
- toJSON (PushMessageContentMediaAlbum { has_videos = has_videos, has_photos = has_photos, total_count = total_count }) =
-  A.object [ "@type" A..= T.String "pushMessageContentMediaAlbum", "has_videos" A..= has_videos, "has_photos" A..= has_photos, "total_count" A..= total_count ]
+ toJSON (PushMessageContentMediaAlbum { has_documents = has_documents, has_audios = has_audios, has_videos = has_videos, has_photos = has_photos, total_count = total_count }) =
+  A.object [ "@type" A..= T.String "pushMessageContentMediaAlbum", "has_documents" A..= has_documents, "has_audios" A..= has_audios, "has_videos" A..= has_videos, "has_photos" A..= has_photos, "total_count" A..= total_count ]
 
 instance T.FromJSON PushMessageContent where
  parseJSON v@(T.Object obj) = do
@@ -329,6 +342,7 @@ instance T.FromJSON PushMessageContent where
    "pushMessageContentChatAddMembers" -> parsePushMessageContentChatAddMembers v
    "pushMessageContentChatChangePhoto" -> parsePushMessageContentChatChangePhoto v
    "pushMessageContentChatChangeTitle" -> parsePushMessageContentChatChangeTitle v
+   "pushMessageContentChatChangeTheme" -> parsePushMessageContentChatChangeTheme v
    "pushMessageContentChatDeleteMember" -> parsePushMessageContentChatDeleteMember v
    "pushMessageContentChatJoinByLink" -> parsePushMessageContentChatJoinByLink v
    "pushMessageContentMessageForwards" -> parsePushMessageContentMessageForwards v
@@ -466,6 +480,11 @@ instance T.FromJSON PushMessageContent where
     title <- o A..:? "title"
     return $ PushMessageContentChatChangeTitle { title = title }
 
+   parsePushMessageContentChatChangeTheme :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentChatChangeTheme = A.withObject "PushMessageContentChatChangeTheme" $ \o -> do
+    theme_name <- o A..:? "theme_name"
+    return $ PushMessageContentChatChangeTheme { theme_name = theme_name }
+
    parsePushMessageContentChatDeleteMember :: A.Value -> T.Parser PushMessageContent
    parsePushMessageContentChatDeleteMember = A.withObject "PushMessageContentChatDeleteMember" $ \o -> do
     is_left <- o A..:? "is_left"
@@ -484,7 +503,9 @@ instance T.FromJSON PushMessageContent where
 
    parsePushMessageContentMediaAlbum :: A.Value -> T.Parser PushMessageContent
    parsePushMessageContentMediaAlbum = A.withObject "PushMessageContentMediaAlbum" $ \o -> do
+    has_documents <- o A..:? "has_documents"
+    has_audios <- o A..:? "has_audios"
     has_videos <- o A..:? "has_videos"
     has_photos <- o A..:? "has_photos"
     total_count <- mconcat [ o A..:? "total_count", readMaybe <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ PushMessageContentMediaAlbum { has_videos = has_videos, has_photos = has_photos, total_count = total_count }
+    return $ PushMessageContentMediaAlbum { has_documents = has_documents, has_audios = has_audios, has_videos = has_videos, has_photos = has_photos, total_count = total_count }

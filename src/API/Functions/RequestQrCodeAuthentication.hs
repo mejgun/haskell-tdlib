@@ -9,9 +9,11 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber 
+-- Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber,
 -- 
--- __other_user_ids__ List of user identifiers of other users currently using the client
+-- -or if there is no pending authentication query and the current authorization state is authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
+-- 
+-- __other_user_ids__ List of user identifiers of other users currently using the application
 data RequestQrCodeAuthentication = 
 
  RequestQrCodeAuthentication { other_user_ids :: Maybe [Int] }  deriving (Show, Eq)

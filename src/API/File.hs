@@ -15,9 +15,9 @@ import {-# SOURCE #-} qualified API.LocalFile as LocalFile
 -- 
 -- __id__ Unique file identifier
 -- 
--- __size__ File size; 0 if unknown
+-- __size__ File size, in bytes; 0 if unknown
 -- 
--- __expected_size__ Expected file size in case the exact file size is unknown, but an approximate size is known. Can be used to show download/upload progress
+-- __expected_size__ Approximate file size in bytes in case the exact file size is unknown. Can be used to show download/upload progress
 -- 
 -- __local__ Information about the local copy of the file
 -- 

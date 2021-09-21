@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Returns file downloaded prefix size from a given offset 
+-- Returns file downloaded prefix size from a given offset, in bytes 
 -- 
 -- __file_id__ Identifier of the file
 -- 

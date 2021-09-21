@@ -1,0 +1,15 @@
+-- GENERATED
+module API.Functions.ToggleGroupCallParticipantIsHandRaised where
+
+import Data.Aeson.Types
+
+data ToggleGroupCallParticipantIsHandRaised
+
+instance Eq ToggleGroupCallParticipantIsHandRaised
+
+instance ToJSON ToggleGroupCallParticipantIsHandRaised
+
+instance FromJSON ToggleGroupCallParticipantIsHandRaised
+
+instance Show ToggleGroupCallParticipantIsHandRaised
+

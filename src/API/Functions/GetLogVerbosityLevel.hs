@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Returns current verbosity level of the internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously
+-- Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
 data GetLogVerbosityLevel = 
 
  GetLogVerbosityLevel deriving (Show, Eq)

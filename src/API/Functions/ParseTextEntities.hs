@@ -10,7 +10,7 @@ import {-# SOURCE #-} qualified API.TextParseMode as TextParseMode
 
 -- |
 -- 
--- Parses Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName entities contained in the text. This is an offline method. Can be called before authorization. Can be called synchronously 
+-- Parses Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName entities contained in the text. Can be called synchronously 
 -- 
 -- __text__ The text to parse
 -- 

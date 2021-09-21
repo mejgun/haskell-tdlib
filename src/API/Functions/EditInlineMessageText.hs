@@ -17,7 +17,7 @@ import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 -- 
 -- __reply_markup__ The new message reply markup
 -- 
--- __input_message_content__ New text content of the message. Should be of type InputMessageText
+-- __input_message_content__ New text content of the message. Should be of type inputMessageText
 data EditInlineMessageText = 
 
  EditInlineMessageText { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, inline_message_id :: Maybe String }  deriving (Show, Eq)

@@ -25,7 +25,7 @@ data ConnectionState =
  ConnectionStateConnecting |
  -- |
  -- 
- -- Downloading data received while the client was offline
+ -- Downloading data received while the application was offline
  ConnectionStateUpdating |
  -- |
  -- 

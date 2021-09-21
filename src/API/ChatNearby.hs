@@ -13,7 +13,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __chat_id__ Chat identifier
 -- 
--- __distance__ Distance to the chat location in meters
+-- __distance__ Distance to the chat location, in meters
 data ChatNearby = 
 
  ChatNearby { distance :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)

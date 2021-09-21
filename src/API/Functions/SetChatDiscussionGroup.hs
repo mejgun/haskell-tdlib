@@ -9,13 +9,13 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Changes the discussion group of a channel chat; requires can_change_info rights in the channel if it is specified 
+-- Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified 
 -- 
 -- __chat_id__ Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages rights in the supergroup)
 -- 
 -- __discussion_chat_id__ Identifier of a new channel's discussion group. Use 0 to remove the discussion group.
 -- 
--- -Use the method getSuitableDiscussionChats to find all suitable groups. Basic group chats needs to be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable needs to be used first to change that
+-- -Use the method getSuitableDiscussionChats to find all suitable groups. Basic group chats must be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable must be used first to change that
 data SetChatDiscussionGroup = 
 
  SetChatDiscussionGroup { discussion_chat_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)

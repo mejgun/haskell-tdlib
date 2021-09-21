@@ -14,6 +14,7 @@ import {-# SOURCE #-} qualified API.Venue as Venue
 import {-# SOURCE #-} qualified API.Contact as Contact
 import {-# SOURCE #-} qualified API.Invoice as Invoice
 import {-# SOURCE #-} qualified API.PollType as PollType
+import {-# SOURCE #-} qualified API.MessageCopyOptions as MessageCopyOptions
 
 -- |
 -- 
@@ -37,6 +38,8 @@ data InputMessageContent =
  -- 
  -- __thumbnail__ Animation thumbnail, if available
  -- 
+ -- __added_sticker_file_ids__ File identifiers of the stickers added to the animation, if applicable
+ -- 
  -- __duration__ Duration of the animation, in seconds
  -- 
  -- __width__ Width of the animation; may be replaced by the server
@@ -44,7 +47,7 @@ data InputMessageContent =
  -- __height__ Height of the animation; may be replaced by the server
  -- 
  -- __caption__ Animation caption; 0-GetOption("message_caption_length_max") characters
- InputMessageAnimation { caption :: Maybe FormattedText.FormattedText, height :: Maybe Int, width :: Maybe Int, duration :: Maybe Int, thumbnail :: Maybe InputThumbnail.InputThumbnail, animation :: Maybe InputFile.InputFile }  |
+ InputMessageAnimation { caption :: Maybe FormattedText.FormattedText, height :: Maybe Int, width :: Maybe Int, duration :: Maybe Int, added_sticker_file_ids :: Maybe [Int], thumbnail :: Maybe InputThumbnail.InputThumbnail, animation :: Maybe InputFile.InputFile }  |
  -- |
  -- 
  -- An audio message 
@@ -69,8 +72,10 @@ data InputMessageContent =
  -- 
  -- __thumbnail__ Document thumbnail, if available
  -- 
+ -- __disable_content_type_detection__ If true, automatic file type detection will be disabled and the document will be always sent as file. Always true for files sent to secret chats
+ -- 
  -- __caption__ Document caption; 0-GetOption("message_caption_length_max") characters
- InputMessageDocument { caption :: Maybe FormattedText.FormattedText, thumbnail :: Maybe InputThumbnail.InputThumbnail, document :: Maybe InputFile.InputFile }  |
+ InputMessageDocument { caption :: Maybe FormattedText.FormattedText, disable_content_type_detection :: Maybe Bool, thumbnail :: Maybe InputThumbnail.InputThumbnail, document :: Maybe InputFile.InputFile }  |
  -- |
  -- 
  -- A photo message 
@@ -100,7 +105,9 @@ data InputMessageContent =
  -- __width__ Sticker width
  -- 
  -- __height__ Sticker height
- InputMessageSticker { height :: Maybe Int, width :: Maybe Int, thumbnail :: Maybe InputThumbnail.InputThumbnail, sticker :: Maybe InputFile.InputFile }  |
+ -- 
+ -- __emoji__ Emoji used to choose the sticker
+ InputMessageSticker { emoji :: Maybe String, height :: Maybe Int, width :: Maybe Int, thumbnail :: Maybe InputThumbnail.InputThumbnail, sticker :: Maybe InputFile.InputFile }  |
  -- |
  -- 
  -- A video message 
@@ -154,7 +161,11 @@ data InputMessageContent =
  -- __location__ Location to be sent
  -- 
  -- __live_period__ Period for which the location can be updated, in seconds; should be between 60 and 86400 for a live location and 0 otherwise
- InputMessageLocation { live_period :: Maybe Int, location :: Maybe Location.Location }  |
+ -- 
+ -- __heading__ For live locations, a direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
+ -- 
+ -- __proximity_alert_radius__ For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled. Can't be enabled in channels and Saved Messages
+ InputMessageLocation { proximity_alert_radius :: Maybe Int, heading :: Maybe Int, live_period :: Maybe Int, location :: Maybe Location.Location }  |
  -- |
  -- 
  -- A message with information about a venue 
@@ -185,7 +196,7 @@ data InputMessageContent =
  InputMessageGame { game_short_name :: Maybe String, bot_user_id :: Maybe Int }  |
  -- |
  -- 
- -- A message with an invoice; can be used only by bots and only in private chats 
+ -- A message with an invoice; can be used only by bots 
  -- 
  -- __invoice__ Invoice
  -- 
@@ -207,13 +218,13 @@ data InputMessageContent =
  -- 
  -- __provider_data__ JSON-encoded data about the invoice, which will be shared with the payment provider
  -- 
- -- __start_parameter__ Unique invoice bot start_parameter for the generation of this invoice
+ -- __start_parameter__ Unique invoice bot deep link parameter for the generation of this invoice. If empty, it would be possible to pay directly from forwards of the invoice message
  InputMessageInvoice { start_parameter :: Maybe String, provider_data :: Maybe String, provider_token :: Maybe String, payload :: Maybe String, photo_height :: Maybe Int, photo_width :: Maybe Int, photo_size :: Maybe Int, photo_url :: Maybe String, description :: Maybe String, title :: Maybe String, invoice :: Maybe Invoice.Invoice }  |
  -- |
  -- 
  -- A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot 
  -- 
- -- __question__ Poll question, 1-255 characters
+ -- __question__ Poll question; 1-255 characters (up to 300 characters for bots)
  -- 
  -- __options__ List of poll answer options, 2-10 strings 1-100 characters each
  -- 
@@ -237,29 +248,27 @@ data InputMessageContent =
  -- 
  -- __in_game_share__ True, if a game message should be shared within a launched game; applies only to game messages
  -- 
- -- __send_copy__ True, if content of the message needs to be copied without a link to the original message. Always true if the message is forwarded to a secret chat
- -- 
- -- __remove_caption__ True, if media caption of the message copy needs to be removed. Ignored if send_copy is false
- InputMessageForwarded { remove_caption :: Maybe Bool, send_copy :: Maybe Bool, in_game_share :: Maybe Bool, message_id :: Maybe Int, from_chat_id :: Maybe Int }  deriving (Show, Eq)
+ -- __copy_options__ Options to be used to copy content of the message without a link to the original message
+ InputMessageForwarded { copy_options :: Maybe MessageCopyOptions.MessageCopyOptions, in_game_share :: Maybe Bool, message_id :: Maybe Int, from_chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON InputMessageContent where
  toJSON (InputMessageText { clear_draft = clear_draft, disable_web_page_preview = disable_web_page_preview, text = text }) =
   A.object [ "@type" A..= T.String "inputMessageText", "clear_draft" A..= clear_draft, "disable_web_page_preview" A..= disable_web_page_preview, "text" A..= text ]
 
- toJSON (InputMessageAnimation { caption = caption, height = height, width = width, duration = duration, thumbnail = thumbnail, animation = animation }) =
-  A.object [ "@type" A..= T.String "inputMessageAnimation", "caption" A..= caption, "height" A..= height, "width" A..= width, "duration" A..= duration, "thumbnail" A..= thumbnail, "animation" A..= animation ]
+ toJSON (InputMessageAnimation { caption = caption, height = height, width = width, duration = duration, added_sticker_file_ids = added_sticker_file_ids, thumbnail = thumbnail, animation = animation }) =
+  A.object [ "@type" A..= T.String "inputMessageAnimation", "caption" A..= caption, "height" A..= height, "width" A..= width, "duration" A..= duration, "added_sticker_file_ids" A..= added_sticker_file_ids, "thumbnail" A..= thumbnail, "animation" A..= animation ]
 
  toJSON (InputMessageAudio { caption = caption, performer = performer, title = title, duration = duration, album_cover_thumbnail = album_cover_thumbnail, audio = audio }) =
   A.object [ "@type" A..= T.String "inputMessageAudio", "caption" A..= caption, "performer" A..= performer, "title" A..= title, "duration" A..= duration, "album_cover_thumbnail" A..= album_cover_thumbnail, "audio" A..= audio ]
 
- toJSON (InputMessageDocument { caption = caption, thumbnail = thumbnail, document = document }) =
-  A.object [ "@type" A..= T.String "inputMessageDocument", "caption" A..= caption, "thumbnail" A..= thumbnail, "document" A..= document ]
+ toJSON (InputMessageDocument { caption = caption, disable_content_type_detection = disable_content_type_detection, thumbnail = thumbnail, document = document }) =
+  A.object [ "@type" A..= T.String "inputMessageDocument", "caption" A..= caption, "disable_content_type_detection" A..= disable_content_type_detection, "thumbnail" A..= thumbnail, "document" A..= document ]
 
  toJSON (InputMessagePhoto { ttl = ttl, caption = caption, height = height, width = width, added_sticker_file_ids = added_sticker_file_ids, thumbnail = thumbnail, photo = photo }) =
   A.object [ "@type" A..= T.String "inputMessagePhoto", "ttl" A..= ttl, "caption" A..= caption, "height" A..= height, "width" A..= width, "added_sticker_file_ids" A..= added_sticker_file_ids, "thumbnail" A..= thumbnail, "photo" A..= photo ]
 
- toJSON (InputMessageSticker { height = height, width = width, thumbnail = thumbnail, sticker = sticker }) =
-  A.object [ "@type" A..= T.String "inputMessageSticker", "height" A..= height, "width" A..= width, "thumbnail" A..= thumbnail, "sticker" A..= sticker ]
+ toJSON (InputMessageSticker { emoji = emoji, height = height, width = width, thumbnail = thumbnail, sticker = sticker }) =
+  A.object [ "@type" A..= T.String "inputMessageSticker", "emoji" A..= emoji, "height" A..= height, "width" A..= width, "thumbnail" A..= thumbnail, "sticker" A..= sticker ]
 
  toJSON (InputMessageVideo { ttl = ttl, caption = caption, supports_streaming = supports_streaming, height = height, width = width, duration = duration, added_sticker_file_ids = added_sticker_file_ids, thumbnail = thumbnail, video = video }) =
   A.object [ "@type" A..= T.String "inputMessageVideo", "ttl" A..= ttl, "caption" A..= caption, "supports_streaming" A..= supports_streaming, "height" A..= height, "width" A..= width, "duration" A..= duration, "added_sticker_file_ids" A..= added_sticker_file_ids, "thumbnail" A..= thumbnail, "video" A..= video ]
@@ -270,8 +279,8 @@ instance T.ToJSON InputMessageContent where
  toJSON (InputMessageVoiceNote { caption = caption, waveform = waveform, duration = duration, voice_note = voice_note }) =
   A.object [ "@type" A..= T.String "inputMessageVoiceNote", "caption" A..= caption, "waveform" A..= waveform, "duration" A..= duration, "voice_note" A..= voice_note ]
 
- toJSON (InputMessageLocation { live_period = live_period, location = location }) =
-  A.object [ "@type" A..= T.String "inputMessageLocation", "live_period" A..= live_period, "location" A..= location ]
+ toJSON (InputMessageLocation { proximity_alert_radius = proximity_alert_radius, heading = heading, live_period = live_period, location = location }) =
+  A.object [ "@type" A..= T.String "inputMessageLocation", "proximity_alert_radius" A..= proximity_alert_radius, "heading" A..= heading, "live_period" A..= live_period, "location" A..= location ]
 
  toJSON (InputMessageVenue { venue = venue }) =
   A.object [ "@type" A..= T.String "inputMessageVenue", "venue" A..= venue ]
@@ -291,8 +300,8 @@ instance T.ToJSON InputMessageContent where
  toJSON (InputMessagePoll { is_closed = is_closed, close_date = close_date, open_period = open_period, _type = _type, is_anonymous = is_anonymous, options = options, question = question }) =
   A.object [ "@type" A..= T.String "inputMessagePoll", "is_closed" A..= is_closed, "close_date" A..= close_date, "open_period" A..= open_period, "type" A..= _type, "is_anonymous" A..= is_anonymous, "options" A..= options, "question" A..= question ]
 
- toJSON (InputMessageForwarded { remove_caption = remove_caption, send_copy = send_copy, in_game_share = in_game_share, message_id = message_id, from_chat_id = from_chat_id }) =
-  A.object [ "@type" A..= T.String "inputMessageForwarded", "remove_caption" A..= remove_caption, "send_copy" A..= send_copy, "in_game_share" A..= in_game_share, "message_id" A..= message_id, "from_chat_id" A..= from_chat_id ]
+ toJSON (InputMessageForwarded { copy_options = copy_options, in_game_share = in_game_share, message_id = message_id, from_chat_id = from_chat_id }) =
+  A.object [ "@type" A..= T.String "inputMessageForwarded", "copy_options" A..= copy_options, "in_game_share" A..= in_game_share, "message_id" A..= message_id, "from_chat_id" A..= from_chat_id ]
 
 instance T.FromJSON InputMessageContent where
  parseJSON v@(T.Object obj) = do
@@ -330,9 +339,10 @@ instance T.FromJSON InputMessageContent where
     height <- mconcat [ o A..:? "height", readMaybe <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
     width <- mconcat [ o A..:? "width", readMaybe <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
     duration <- mconcat [ o A..:? "duration", readMaybe <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
+    added_sticker_file_ids <- o A..:? "added_sticker_file_ids"
     thumbnail <- o A..:? "thumbnail"
     animation <- o A..:? "animation"
-    return $ InputMessageAnimation { caption = caption, height = height, width = width, duration = duration, thumbnail = thumbnail, animation = animation }
+    return $ InputMessageAnimation { caption = caption, height = height, width = width, duration = duration, added_sticker_file_ids = added_sticker_file_ids, thumbnail = thumbnail, animation = animation }
 
    parseInputMessageAudio :: A.Value -> T.Parser InputMessageContent
    parseInputMessageAudio = A.withObject "InputMessageAudio" $ \o -> do
@@ -347,9 +357,10 @@ instance T.FromJSON InputMessageContent where
    parseInputMessageDocument :: A.Value -> T.Parser InputMessageContent
    parseInputMessageDocument = A.withObject "InputMessageDocument" $ \o -> do
     caption <- o A..:? "caption"
+    disable_content_type_detection <- o A..:? "disable_content_type_detection"
     thumbnail <- o A..:? "thumbnail"
     document <- o A..:? "document"
-    return $ InputMessageDocument { caption = caption, thumbnail = thumbnail, document = document }
+    return $ InputMessageDocument { caption = caption, disable_content_type_detection = disable_content_type_detection, thumbnail = thumbnail, document = document }
 
    parseInputMessagePhoto :: A.Value -> T.Parser InputMessageContent
    parseInputMessagePhoto = A.withObject "InputMessagePhoto" $ \o -> do
@@ -364,11 +375,12 @@ instance T.FromJSON InputMessageContent where
 
    parseInputMessageSticker :: A.Value -> T.Parser InputMessageContent
    parseInputMessageSticker = A.withObject "InputMessageSticker" $ \o -> do
+    emoji <- o A..:? "emoji"
     height <- mconcat [ o A..:? "height", readMaybe <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
     width <- mconcat [ o A..:? "width", readMaybe <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
     thumbnail <- o A..:? "thumbnail"
     sticker <- o A..:? "sticker"
-    return $ InputMessageSticker { height = height, width = width, thumbnail = thumbnail, sticker = sticker }
+    return $ InputMessageSticker { emoji = emoji, height = height, width = width, thumbnail = thumbnail, sticker = sticker }
 
    parseInputMessageVideo :: A.Value -> T.Parser InputMessageContent
    parseInputMessageVideo = A.withObject "InputMessageVideo" $ \o -> do
@@ -401,9 +413,11 @@ instance T.FromJSON InputMessageContent where
 
    parseInputMessageLocation :: A.Value -> T.Parser InputMessageContent
    parseInputMessageLocation = A.withObject "InputMessageLocation" $ \o -> do
+    proximity_alert_radius <- mconcat [ o A..:? "proximity_alert_radius", readMaybe <$> (o A..: "proximity_alert_radius" :: T.Parser String)] :: T.Parser (Maybe Int)
+    heading <- mconcat [ o A..:? "heading", readMaybe <$> (o A..: "heading" :: T.Parser String)] :: T.Parser (Maybe Int)
     live_period <- mconcat [ o A..:? "live_period", readMaybe <$> (o A..: "live_period" :: T.Parser String)] :: T.Parser (Maybe Int)
     location <- o A..:? "location"
-    return $ InputMessageLocation { live_period = live_period, location = location }
+    return $ InputMessageLocation { proximity_alert_radius = proximity_alert_radius, heading = heading, live_period = live_period, location = location }
 
    parseInputMessageVenue :: A.Value -> T.Parser InputMessageContent
    parseInputMessageVenue = A.withObject "InputMessageVenue" $ \o -> do
@@ -455,9 +469,8 @@ instance T.FromJSON InputMessageContent where
 
    parseInputMessageForwarded :: A.Value -> T.Parser InputMessageContent
    parseInputMessageForwarded = A.withObject "InputMessageForwarded" $ \o -> do
-    remove_caption <- o A..:? "remove_caption"
-    send_copy <- o A..:? "send_copy"
+    copy_options <- o A..:? "copy_options"
     in_game_share <- o A..:? "in_game_share"
     message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     from_chat_id <- mconcat [ o A..:? "from_chat_id", readMaybe <$> (o A..: "from_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ InputMessageForwarded { remove_caption = remove_caption, send_copy = send_copy, in_game_share = in_game_share, message_id = message_id, from_chat_id = from_chat_id }
+    return $ InputMessageForwarded { copy_options = copy_options, in_game_share = in_game_share, message_id = message_id, from_chat_id = from_chat_id }

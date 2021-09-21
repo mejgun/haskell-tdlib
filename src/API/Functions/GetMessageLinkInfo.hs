@@ -9,9 +9,9 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Returns information about a public or private message link 
+-- Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage 
 -- 
--- __url__ The message link in the format "https://t.me/c/...", or "tg://privatepost?...", or "https://t.me/username/...", or "tg://resolve?..."
+-- __url__ The message link
 data GetMessageLinkInfo = 
 
  GetMessageLinkInfo { url :: Maybe String }  deriving (Show, Eq)

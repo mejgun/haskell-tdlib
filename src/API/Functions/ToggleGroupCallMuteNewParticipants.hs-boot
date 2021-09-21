@@ -1,0 +1,15 @@
+-- GENERATED
+module API.Functions.ToggleGroupCallMuteNewParticipants where
+
+import Data.Aeson.Types
+
+data ToggleGroupCallMuteNewParticipants
+
+instance Eq ToggleGroupCallMuteNewParticipants
+
+instance ToJSON ToggleGroupCallMuteNewParticipants
+
+instance FromJSON ToggleGroupCallMuteNewParticipants
+
+instance Show ToggleGroupCallMuteNewParticipants
+

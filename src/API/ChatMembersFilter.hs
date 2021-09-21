@@ -25,6 +25,12 @@ data ChatMembersFilter =
  ChatMembersFilterMembers |
  -- |
  -- 
+ -- Returns users which can be mentioned in the chat 
+ -- 
+ -- __message_thread_id__ If non-zero, the identifier of the current message thread
+ ChatMembersFilterMention { message_thread_id :: Maybe Int }  |
+ -- |
+ -- 
  -- Returns users under certain restrictions in the chat; can be used only by administrators in a supergroup
  ChatMembersFilterRestricted |
  -- |
@@ -46,6 +52,9 @@ instance T.ToJSON ChatMembersFilter where
  toJSON (ChatMembersFilterMembers {  }) =
   A.object [ "@type" A..= T.String "chatMembersFilterMembers" ]
 
+ toJSON (ChatMembersFilterMention { message_thread_id = message_thread_id }) =
+  A.object [ "@type" A..= T.String "chatMembersFilterMention", "message_thread_id" A..= message_thread_id ]
+
  toJSON (ChatMembersFilterRestricted {  }) =
   A.object [ "@type" A..= T.String "chatMembersFilterRestricted" ]
 
@@ -62,6 +71,7 @@ instance T.FromJSON ChatMembersFilter where
    "chatMembersFilterContacts" -> parseChatMembersFilterContacts v
    "chatMembersFilterAdministrators" -> parseChatMembersFilterAdministrators v
    "chatMembersFilterMembers" -> parseChatMembersFilterMembers v
+   "chatMembersFilterMention" -> parseChatMembersFilterMention v
    "chatMembersFilterRestricted" -> parseChatMembersFilterRestricted v
    "chatMembersFilterBanned" -> parseChatMembersFilterBanned v
    "chatMembersFilterBots" -> parseChatMembersFilterBots v
@@ -78,6 +88,11 @@ instance T.FromJSON ChatMembersFilter where
    parseChatMembersFilterMembers :: A.Value -> T.Parser ChatMembersFilter
    parseChatMembersFilterMembers = A.withObject "ChatMembersFilterMembers" $ \o -> do
     return $ ChatMembersFilterMembers {  }
+
+   parseChatMembersFilterMention :: A.Value -> T.Parser ChatMembersFilter
+   parseChatMembersFilterMention = A.withObject "ChatMembersFilterMention" $ \o -> do
+    message_thread_id <- mconcat [ o A..:? "message_thread_id", readMaybe <$> (o A..: "message_thread_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ ChatMembersFilterMention { message_thread_id = message_thread_id }
 
    parseChatMembersFilterRestricted :: A.Value -> T.Parser ChatMembersFilter
    parseChatMembersFilterRestricted = A.withObject "ChatMembersFilterRestricted" $ \o -> do

@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info rights 
+-- Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right 
 -- 
 -- __chat_id__ Identifier of the chat
 -- 

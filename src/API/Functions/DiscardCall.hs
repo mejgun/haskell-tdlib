@@ -17,14 +17,16 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __duration__ The call duration, in seconds
 -- 
+-- __is_video__ True, if the call was a video call
+-- 
 -- __connection_id__ Identifier of the connection used during the call
 data DiscardCall = 
 
- DiscardCall { connection_id :: Maybe Int, duration :: Maybe Int, is_disconnected :: Maybe Bool, call_id :: Maybe Int }  deriving (Show, Eq)
+ DiscardCall { connection_id :: Maybe Int, is_video :: Maybe Bool, duration :: Maybe Int, is_disconnected :: Maybe Bool, call_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON DiscardCall where
- toJSON (DiscardCall { connection_id = connection_id, duration = duration, is_disconnected = is_disconnected, call_id = call_id }) =
-  A.object [ "@type" A..= T.String "discardCall", "connection_id" A..= connection_id, "duration" A..= duration, "is_disconnected" A..= is_disconnected, "call_id" A..= call_id ]
+ toJSON (DiscardCall { connection_id = connection_id, is_video = is_video, duration = duration, is_disconnected = is_disconnected, call_id = call_id }) =
+  A.object [ "@type" A..= T.String "discardCall", "connection_id" A..= connection_id, "is_video" A..= is_video, "duration" A..= duration, "is_disconnected" A..= is_disconnected, "call_id" A..= call_id ]
 
 instance T.FromJSON DiscardCall where
  parseJSON v@(T.Object obj) = do
@@ -36,7 +38,8 @@ instance T.FromJSON DiscardCall where
    parseDiscardCall :: A.Value -> T.Parser DiscardCall
    parseDiscardCall = A.withObject "DiscardCall" $ \o -> do
     connection_id <- mconcat [ o A..:? "connection_id", readMaybe <$> (o A..: "connection_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    is_video <- o A..:? "is_video"
     duration <- mconcat [ o A..:? "duration", readMaybe <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
     is_disconnected <- o A..:? "is_disconnected"
     call_id <- mconcat [ o A..:? "call_id", readMaybe <$> (o A..: "call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ DiscardCall { connection_id = connection_id, duration = duration, is_disconnected = is_disconnected, call_id = call_id }
+    return $ DiscardCall { connection_id = connection_id, is_video = is_video, duration = duration, is_disconnected = is_disconnected, call_id = call_id }

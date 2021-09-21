@@ -1,0 +1,15 @@
+-- GENERATED
+module API.ChatStatisticsAdministratorActionsInfo where
+
+import Data.Aeson.Types
+
+data ChatStatisticsAdministratorActionsInfo
+
+instance Eq ChatStatisticsAdministratorActionsInfo
+
+instance ToJSON ChatStatisticsAdministratorActionsInfo
+
+instance FromJSON ChatStatisticsAdministratorActionsInfo
+
+instance Show ChatStatisticsAdministratorActionsInfo
+

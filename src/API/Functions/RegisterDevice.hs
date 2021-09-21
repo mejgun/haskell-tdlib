@@ -14,7 +14,7 @@ import {-# SOURCE #-} qualified API.DeviceToken as DeviceToken
 -- 
 -- __device_token__ Device token
 -- 
--- __other_user_ids__ List of user identifiers of other users currently using the client
+-- __other_user_ids__ List of user identifiers of other users currently using the application
 data RegisterDevice = 
 
  RegisterDevice { other_user_ids :: Maybe [Int], device_token :: Maybe DeviceToken.DeviceToken }  deriving (Show, Eq)

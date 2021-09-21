@@ -7,7 +7,7 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
-import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
+import {-# SOURCE #-} qualified API.Thumbnail as Thumbnail
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 
 -- |
@@ -20,12 +20,12 @@ import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 -- 
 -- __minithumbnail__ Video minithumbnail; may be null
 -- 
--- __thumbnail__ Video thumbnail; as defined by the sender; may be null
+-- __thumbnail__ Video thumbnail in JPEG format; as defined by the sender; may be null
 -- 
 -- __video__ File containing the video
 data VideoNote = 
 
- VideoNote { video :: Maybe File.File, thumbnail :: Maybe PhotoSize.PhotoSize, minithumbnail :: Maybe Minithumbnail.Minithumbnail, _length :: Maybe Int, duration :: Maybe Int }  deriving (Show, Eq)
+ VideoNote { video :: Maybe File.File, thumbnail :: Maybe Thumbnail.Thumbnail, minithumbnail :: Maybe Minithumbnail.Minithumbnail, _length :: Maybe Int, duration :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON VideoNote where
  toJSON (VideoNote { video = video, thumbnail = thumbnail, minithumbnail = minithumbnail, _length = _length, duration = duration }) =

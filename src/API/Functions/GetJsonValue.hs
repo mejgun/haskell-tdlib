@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Converts a JSON-serialized string to corresponding JsonValue object. This is an offline method. Can be called before authorization. Can be called synchronously 
+-- Converts a JSON-serialized string to corresponding JsonValue object. Can be called synchronously 
 -- 
 -- __json__ The JSON-serialized string
 data GetJsonValue = 

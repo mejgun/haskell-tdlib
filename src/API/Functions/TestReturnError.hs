@@ -10,7 +10,7 @@ import {-# SOURCE #-} qualified API.Error as Error
 
 -- |
 -- 
--- Returns the specified error and ensures that the Error object is used; for testing only. This is an offline method. Can be called before authorization. Can be called synchronously 
+-- Returns the specified error and ensures that the Error object is used; for testing only. Can be called synchronously 
 -- 
 -- __error__ The error to be returned
 data TestReturnError = 

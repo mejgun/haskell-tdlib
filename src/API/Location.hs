@@ -14,13 +14,15 @@ import qualified Data.Aeson.Types as T
 -- __latitude__ Latitude of the location in degrees; as defined by the sender
 -- 
 -- __longitude__ Longitude of the location, in degrees; as defined by the sender
+-- 
+-- __horizontal_accuracy__ The estimated horizontal accuracy of the location, in meters; as defined by the sender. 0 if unknown
 data Location = 
 
- Location { longitude :: Maybe Float, latitude :: Maybe Float }  deriving (Show, Eq)
+ Location { horizontal_accuracy :: Maybe Float, longitude :: Maybe Float, latitude :: Maybe Float }  deriving (Show, Eq)
 
 instance T.ToJSON Location where
- toJSON (Location { longitude = longitude, latitude = latitude }) =
-  A.object [ "@type" A..= T.String "location", "longitude" A..= longitude, "latitude" A..= latitude ]
+ toJSON (Location { horizontal_accuracy = horizontal_accuracy, longitude = longitude, latitude = latitude }) =
+  A.object [ "@type" A..= T.String "location", "horizontal_accuracy" A..= horizontal_accuracy, "longitude" A..= longitude, "latitude" A..= latitude ]
 
 instance T.FromJSON Location where
  parseJSON v@(T.Object obj) = do
@@ -31,6 +33,7 @@ instance T.FromJSON Location where
   where
    parseLocation :: A.Value -> T.Parser Location
    parseLocation = A.withObject "Location" $ \o -> do
+    horizontal_accuracy <- o A..:? "horizontal_accuracy"
     longitude <- o A..:? "longitude"
     latitude <- o A..:? "latitude"
-    return $ Location { longitude = longitude, latitude = latitude }
+    return $ Location { horizontal_accuracy = horizontal_accuracy, longitude = longitude, latitude = latitude }

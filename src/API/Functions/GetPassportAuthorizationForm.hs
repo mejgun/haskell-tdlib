@@ -15,9 +15,9 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __scope__ Telegram Passport element types requested by the service
 -- 
--- __public_key__ Service's public_key
+-- __public_key__ Service's public key
 -- 
--- __nonce__ Authorization form nonce provided by the service
+-- __nonce__ Unique request identifier provided by the service
 data GetPassportAuthorizationForm = 
 
  GetPassportAuthorizationForm { nonce :: Maybe String, public_key :: Maybe String, scope :: Maybe String, bot_user_id :: Maybe Int }  deriving (Show, Eq)

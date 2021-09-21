@@ -33,7 +33,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __device_model__ Model of the device the application is being run on; must be non-empty
 -- 
--- __system_version__ Version of the operating system the application is being run on; must be non-empty
+-- __system_version__ Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
 -- 
 -- __application_version__ Application version; must be non-empty
 -- 

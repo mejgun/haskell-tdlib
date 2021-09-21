@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Returns users voted for the specified option in a non-anonymous polls. For the optimal performance the number of returned users is chosen by the library
+-- Returns users voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
 -- 
 -- __chat_id__ Identifier of the chat to which the poll belongs
 -- 
@@ -19,7 +19,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __offset__ Number of users to skip in the result; must be non-negative
 -- 
--- __limit__ The maximum number of users to be returned; must be positive and can't be greater than 50. Fewer users may be returned than specified by the limit, even if the end of the voter list has not been reached
+-- __limit__ The maximum number of users to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned users is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
 data GetPollVoters = 
 
  GetPollVoters { limit :: Maybe Int, offset :: Maybe Int, option_id :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)

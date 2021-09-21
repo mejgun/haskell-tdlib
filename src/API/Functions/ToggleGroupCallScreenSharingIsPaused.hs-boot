@@ -1,0 +1,15 @@
+-- GENERATED
+module API.Functions.ToggleGroupCallScreenSharingIsPaused where
+
+import Data.Aeson.Types
+
+data ToggleGroupCallScreenSharingIsPaused
+
+instance Eq ToggleGroupCallScreenSharingIsPaused
+
+instance ToJSON ToggleGroupCallScreenSharingIsPaused
+
+instance FromJSON ToggleGroupCallScreenSharingIsPaused
+
+instance Show ToggleGroupCallScreenSharingIsPaused
+

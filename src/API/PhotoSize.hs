@@ -10,22 +10,24 @@ import {-# SOURCE #-} qualified API.File as File
 
 -- |
 -- 
--- Photo description 
+-- Describes an image in JPEG format 
 -- 
--- __type__ Thumbnail type (see https://core.telegram.org/constructor/photoSize)
+-- __type__ Image type (see https://core.telegram.org/constructor/photoSize)
 -- 
--- __photo__ Information about the photo file
+-- __photo__ Information about the image file
 -- 
--- __width__ Photo width
+-- __width__ Image width
 -- 
--- __height__ Photo height
+-- __height__ Image height
+-- 
+-- __progressive_sizes__ Sizes of progressive JPEG file prefixes, which can be used to preliminarily show the image; in bytes
 data PhotoSize = 
 
- PhotoSize { height :: Maybe Int, width :: Maybe Int, photo :: Maybe File.File, _type :: Maybe String }  deriving (Show, Eq)
+ PhotoSize { progressive_sizes :: Maybe [Int], height :: Maybe Int, width :: Maybe Int, photo :: Maybe File.File, _type :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON PhotoSize where
- toJSON (PhotoSize { height = height, width = width, photo = photo, _type = _type }) =
-  A.object [ "@type" A..= T.String "photoSize", "height" A..= height, "width" A..= width, "photo" A..= photo, "type" A..= _type ]
+ toJSON (PhotoSize { progressive_sizes = progressive_sizes, height = height, width = width, photo = photo, _type = _type }) =
+  A.object [ "@type" A..= T.String "photoSize", "progressive_sizes" A..= progressive_sizes, "height" A..= height, "width" A..= width, "photo" A..= photo, "type" A..= _type ]
 
 instance T.FromJSON PhotoSize where
  parseJSON v@(T.Object obj) = do
@@ -36,8 +38,9 @@ instance T.FromJSON PhotoSize where
   where
    parsePhotoSize :: A.Value -> T.Parser PhotoSize
    parsePhotoSize = A.withObject "PhotoSize" $ \o -> do
+    progressive_sizes <- o A..:? "progressive_sizes"
     height <- mconcat [ o A..:? "height", readMaybe <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
     width <- mconcat [ o A..:? "width", readMaybe <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
     photo <- o A..:? "photo"
     _type <- o A..:? "type"
-    return $ PhotoSize { height = height, width = width, photo = photo, _type = _type }
+    return $ PhotoSize { progressive_sizes = progressive_sizes, height = height, width = width, photo = photo, _type = _type }

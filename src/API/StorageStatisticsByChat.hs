@@ -14,7 +14,7 @@ import {-# SOURCE #-} qualified API.StorageStatisticsByFileType as StorageStatis
 -- 
 -- __chat_id__ Chat identifier; 0 if none
 -- 
--- __size__ Total size of the files in the chat
+-- __size__ Total size of the files in the chat, in bytes
 -- 
 -- __count__ Total number of files in the chat
 -- 

@@ -13,15 +13,15 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __is_auto_download_enabled__ True, if the auto-download is enabled
 -- 
--- __max_photo_file_size__ The maximum size of a photo file to be auto-downloaded
+-- __max_photo_file_size__ The maximum size of a photo file to be auto-downloaded, in bytes
 -- 
--- __max_video_file_size__ The maximum size of a video file to be auto-downloaded
+-- __max_video_file_size__ The maximum size of a video file to be auto-downloaded, in bytes
 -- 
--- __max_other_file_size__ The maximum size of other file types to be auto-downloaded
+-- __max_other_file_size__ The maximum size of other file types to be auto-downloaded, in bytes
 -- 
--- __video_upload_bitrate__ The maximum suggested bitrate for uploaded videos
+-- __video_upload_bitrate__ The maximum suggested bitrate for uploaded videos, in kbit/s
 -- 
--- __preload_large_videos__ True, if the beginning of videos needs to be preloaded for instant playback
+-- __preload_large_videos__ True, if the beginning of video files needs to be preloaded for instant playback
 -- 
 -- __preload_next_audio__ True, if the next audio track needs to be preloaded while the user is listening to an audio file
 -- 

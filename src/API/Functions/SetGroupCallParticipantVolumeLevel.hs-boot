@@ -1,0 +1,15 @@
+-- GENERATED
+module API.Functions.SetGroupCallParticipantVolumeLevel where
+
+import Data.Aeson.Types
+
+data SetGroupCallParticipantVolumeLevel
+
+instance Eq SetGroupCallParticipantVolumeLevel
+
+instance ToJSON SetGroupCallParticipantVolumeLevel
+
+instance FromJSON SetGroupCallParticipantVolumeLevel
+
+instance Show SetGroupCallParticipantVolumeLevel
+

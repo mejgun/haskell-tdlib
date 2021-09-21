@@ -17,7 +17,7 @@ import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 -- 
 -- __reply_markup__ The new message reply markup; for bots only
 -- 
--- __input_message_content__ New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo
+-- __input_message_content__ New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
 data EditInlineMessageMedia = 
 
  EditInlineMessageMedia { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, inline_message_id :: Maybe String }  deriving (Show, Eq)

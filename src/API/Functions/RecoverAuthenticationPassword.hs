@@ -9,16 +9,20 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Recovers the password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword 
+-- Recovers the password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
 -- 
 -- __recovery_code__ Recovery code to check
+-- 
+-- __new_password__ New password of the user; may be empty to remove the password
+-- 
+-- __new_hint__ New password hint; may be empty
 data RecoverAuthenticationPassword = 
 
- RecoverAuthenticationPassword { recovery_code :: Maybe String }  deriving (Show, Eq)
+ RecoverAuthenticationPassword { new_hint :: Maybe String, new_password :: Maybe String, recovery_code :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON RecoverAuthenticationPassword where
- toJSON (RecoverAuthenticationPassword { recovery_code = recovery_code }) =
-  A.object [ "@type" A..= T.String "recoverAuthenticationPassword", "recovery_code" A..= recovery_code ]
+ toJSON (RecoverAuthenticationPassword { new_hint = new_hint, new_password = new_password, recovery_code = recovery_code }) =
+  A.object [ "@type" A..= T.String "recoverAuthenticationPassword", "new_hint" A..= new_hint, "new_password" A..= new_password, "recovery_code" A..= recovery_code ]
 
 instance T.FromJSON RecoverAuthenticationPassword where
  parseJSON v@(T.Object obj) = do
@@ -29,5 +33,7 @@ instance T.FromJSON RecoverAuthenticationPassword where
   where
    parseRecoverAuthenticationPassword :: A.Value -> T.Parser RecoverAuthenticationPassword
    parseRecoverAuthenticationPassword = A.withObject "RecoverAuthenticationPassword" $ \o -> do
+    new_hint <- o A..:? "new_hint"
+    new_password <- o A..:? "new_password"
     recovery_code <- o A..:? "recovery_code"
-    return $ RecoverAuthenticationPassword { recovery_code = recovery_code }
+    return $ RecoverAuthenticationPassword { new_hint = new_hint, new_password = new_password, recovery_code = recovery_code }

@@ -14,14 +14,16 @@ import {-# SOURCE #-} qualified API.DraftMessage as DraftMessage
 -- 
 -- __chat_id__ Chat identifier
 -- 
+-- __message_thread_id__ If not 0, a message thread identifier in which the draft was changed
+-- 
 -- __draft_message__ New draft message; may be null
 data SetChatDraftMessage = 
 
- SetChatDraftMessage { draft_message :: Maybe DraftMessage.DraftMessage, chat_id :: Maybe Int }  deriving (Show, Eq)
+ SetChatDraftMessage { draft_message :: Maybe DraftMessage.DraftMessage, message_thread_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatDraftMessage where
- toJSON (SetChatDraftMessage { draft_message = draft_message, chat_id = chat_id }) =
-  A.object [ "@type" A..= T.String "setChatDraftMessage", "draft_message" A..= draft_message, "chat_id" A..= chat_id ]
+ toJSON (SetChatDraftMessage { draft_message = draft_message, message_thread_id = message_thread_id, chat_id = chat_id }) =
+  A.object [ "@type" A..= T.String "setChatDraftMessage", "draft_message" A..= draft_message, "message_thread_id" A..= message_thread_id, "chat_id" A..= chat_id ]
 
 instance T.FromJSON SetChatDraftMessage where
  parseJSON v@(T.Object obj) = do
@@ -33,5 +35,6 @@ instance T.FromJSON SetChatDraftMessage where
    parseSetChatDraftMessage :: A.Value -> T.Parser SetChatDraftMessage
    parseSetChatDraftMessage = A.withObject "SetChatDraftMessage" $ \o -> do
     draft_message <- o A..:? "draft_message"
+    message_thread_id <- mconcat [ o A..:? "message_thread_id", readMaybe <$> (o A..: "message_thread_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ SetChatDraftMessage { draft_message = draft_message, chat_id = chat_id }
+    return $ SetChatDraftMessage { draft_message = draft_message, message_thread_id = message_thread_id, chat_id = chat_id }

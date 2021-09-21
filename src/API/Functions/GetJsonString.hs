@@ -10,7 +10,7 @@ import {-# SOURCE #-} qualified API.JsonValue as JsonValue
 
 -- |
 -- 
--- Converts a JsonValue object to corresponding JSON-serialized string. This is an offline method. Can be called before authorization. Can be called synchronously 
+-- Converts a JsonValue object to corresponding JSON-serialized string. Can be called synchronously 
 -- 
 -- __json_value__ The JsonValue object
 data GetJsonString = 

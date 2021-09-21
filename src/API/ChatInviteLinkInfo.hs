@@ -6,14 +6,16 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import {-# SOURCE #-} qualified API.ChatPhoto as ChatPhoto
+import {-# SOURCE #-} qualified API.ChatPhotoInfo as ChatPhotoInfo
 import {-# SOURCE #-} qualified API.ChatType as ChatType
 
 -- |
 -- 
 -- Contains information about a chat invite link
 -- 
--- __chat_id__ Chat identifier of the invite link; 0 if the user is not a member of this chat
+-- __chat_id__ Chat identifier of the invite link; 0 if the user has no access to the chat before joining
+-- 
+-- __accessible_for__ If non-zero, the amount of time for which read access to the chat will remain available, in seconds
 -- 
 -- __type__ Contains information about the type of the chat
 -- 
@@ -28,11 +30,11 @@ import {-# SOURCE #-} qualified API.ChatType as ChatType
 -- __is_public__ True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup
 data ChatInviteLinkInfo = 
 
- ChatInviteLinkInfo { is_public :: Maybe Bool, member_user_ids :: Maybe [Int], member_count :: Maybe Int, photo :: Maybe ChatPhoto.ChatPhoto, title :: Maybe String, _type :: Maybe ChatType.ChatType, chat_id :: Maybe Int }  deriving (Show, Eq)
+ ChatInviteLinkInfo { is_public :: Maybe Bool, member_user_ids :: Maybe [Int], member_count :: Maybe Int, photo :: Maybe ChatPhotoInfo.ChatPhotoInfo, title :: Maybe String, _type :: Maybe ChatType.ChatType, accessible_for :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON ChatInviteLinkInfo where
- toJSON (ChatInviteLinkInfo { is_public = is_public, member_user_ids = member_user_ids, member_count = member_count, photo = photo, title = title, _type = _type, chat_id = chat_id }) =
-  A.object [ "@type" A..= T.String "chatInviteLinkInfo", "is_public" A..= is_public, "member_user_ids" A..= member_user_ids, "member_count" A..= member_count, "photo" A..= photo, "title" A..= title, "type" A..= _type, "chat_id" A..= chat_id ]
+ toJSON (ChatInviteLinkInfo { is_public = is_public, member_user_ids = member_user_ids, member_count = member_count, photo = photo, title = title, _type = _type, accessible_for = accessible_for, chat_id = chat_id }) =
+  A.object [ "@type" A..= T.String "chatInviteLinkInfo", "is_public" A..= is_public, "member_user_ids" A..= member_user_ids, "member_count" A..= member_count, "photo" A..= photo, "title" A..= title, "type" A..= _type, "accessible_for" A..= accessible_for, "chat_id" A..= chat_id ]
 
 instance T.FromJSON ChatInviteLinkInfo where
  parseJSON v@(T.Object obj) = do
@@ -49,5 +51,6 @@ instance T.FromJSON ChatInviteLinkInfo where
     photo <- o A..:? "photo"
     title <- o A..:? "title"
     _type <- o A..:? "type"
+    accessible_for <- mconcat [ o A..:? "accessible_for", readMaybe <$> (o A..: "accessible_for" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ ChatInviteLinkInfo { is_public = is_public, member_user_ids = member_user_ids, member_count = member_count, photo = photo, title = title, _type = _type, chat_id = chat_id }
+    return $ ChatInviteLinkInfo { is_public = is_public, member_user_ids = member_user_ids, member_count = member_count, photo = photo, title = title, _type = _type, accessible_for = accessible_for, chat_id = chat_id }

@@ -10,7 +10,7 @@ import {-# SOURCE #-} qualified API.AutoDownloadSettings as AutoDownloadSettings
 
 -- |
 -- 
--- Contains auto-download settings presets for the user
+-- Contains auto-download settings presets for the current user
 -- 
 -- __low__ Preset with lowest settings; supposed to be used by default when roaming
 -- 

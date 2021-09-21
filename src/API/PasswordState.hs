@@ -21,13 +21,15 @@ import {-# SOURCE #-} qualified API.EmailAddressAuthenticationCodeInfo as EmailA
 -- __has_passport_data__ True, if some Telegram Passport elements were saved
 -- 
 -- __recovery_email_address_code_info__ Information about the recovery email address to which the confirmation email was sent; may be null
+-- 
+-- __pending_reset_date__ If not 0, point in time (Unix timestamp) after which the password can be reset immediately using resetPassword
 data PasswordState = 
 
- PasswordState { recovery_email_address_code_info :: Maybe EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo, has_passport_data :: Maybe Bool, has_recovery_email_address :: Maybe Bool, password_hint :: Maybe String, has_password :: Maybe Bool }  deriving (Show, Eq)
+ PasswordState { pending_reset_date :: Maybe Int, recovery_email_address_code_info :: Maybe EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo, has_passport_data :: Maybe Bool, has_recovery_email_address :: Maybe Bool, password_hint :: Maybe String, has_password :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON PasswordState where
- toJSON (PasswordState { recovery_email_address_code_info = recovery_email_address_code_info, has_passport_data = has_passport_data, has_recovery_email_address = has_recovery_email_address, password_hint = password_hint, has_password = has_password }) =
-  A.object [ "@type" A..= T.String "passwordState", "recovery_email_address_code_info" A..= recovery_email_address_code_info, "has_passport_data" A..= has_passport_data, "has_recovery_email_address" A..= has_recovery_email_address, "password_hint" A..= password_hint, "has_password" A..= has_password ]
+ toJSON (PasswordState { pending_reset_date = pending_reset_date, recovery_email_address_code_info = recovery_email_address_code_info, has_passport_data = has_passport_data, has_recovery_email_address = has_recovery_email_address, password_hint = password_hint, has_password = has_password }) =
+  A.object [ "@type" A..= T.String "passwordState", "pending_reset_date" A..= pending_reset_date, "recovery_email_address_code_info" A..= recovery_email_address_code_info, "has_passport_data" A..= has_passport_data, "has_recovery_email_address" A..= has_recovery_email_address, "password_hint" A..= password_hint, "has_password" A..= has_password ]
 
 instance T.FromJSON PasswordState where
  parseJSON v@(T.Object obj) = do
@@ -38,9 +40,10 @@ instance T.FromJSON PasswordState where
   where
    parsePasswordState :: A.Value -> T.Parser PasswordState
    parsePasswordState = A.withObject "PasswordState" $ \o -> do
+    pending_reset_date <- mconcat [ o A..:? "pending_reset_date", readMaybe <$> (o A..: "pending_reset_date" :: T.Parser String)] :: T.Parser (Maybe Int)
     recovery_email_address_code_info <- o A..:? "recovery_email_address_code_info"
     has_passport_data <- o A..:? "has_passport_data"
     has_recovery_email_address <- o A..:? "has_recovery_email_address"
     password_hint <- o A..:? "password_hint"
     has_password <- o A..:? "has_password"
-    return $ PasswordState { recovery_email_address_code_info = recovery_email_address_code_info, has_passport_data = has_passport_data, has_recovery_email_address = has_recovery_email_address, password_hint = password_hint, has_password = has_password }
+    return $ PasswordState { pending_reset_date = pending_reset_date, recovery_email_address_code_info = recovery_email_address_code_info, has_passport_data = has_passport_data, has_recovery_email_address = has_recovery_email_address, password_hint = password_hint, has_password = has_password }

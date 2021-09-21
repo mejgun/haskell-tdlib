@@ -6,21 +6,24 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import {-# SOURCE #-} qualified API.ChatList as ChatList
 
 -- |
 -- 
--- Changes the pinned state of a chat. You can pin up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") non-secret chats and the same number of secret chats in the main/archive chat list 
+-- Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/arhive chat list
+-- 
+-- __chat_list__ Chat list in which to change the pinned state of the chat
 -- 
 -- __chat_id__ Chat identifier
 -- 
--- __is_pinned__ New value of is_pinned
+-- __is_pinned__ True, if the chat is pinned
 data ToggleChatIsPinned = 
 
- ToggleChatIsPinned { is_pinned :: Maybe Bool, chat_id :: Maybe Int }  deriving (Show, Eq)
+ ToggleChatIsPinned { is_pinned :: Maybe Bool, chat_id :: Maybe Int, chat_list :: Maybe ChatList.ChatList }  deriving (Show, Eq)
 
 instance T.ToJSON ToggleChatIsPinned where
- toJSON (ToggleChatIsPinned { is_pinned = is_pinned, chat_id = chat_id }) =
-  A.object [ "@type" A..= T.String "toggleChatIsPinned", "is_pinned" A..= is_pinned, "chat_id" A..= chat_id ]
+ toJSON (ToggleChatIsPinned { is_pinned = is_pinned, chat_id = chat_id, chat_list = chat_list }) =
+  A.object [ "@type" A..= T.String "toggleChatIsPinned", "is_pinned" A..= is_pinned, "chat_id" A..= chat_id, "chat_list" A..= chat_list ]
 
 instance T.FromJSON ToggleChatIsPinned where
  parseJSON v@(T.Object obj) = do
@@ -33,4 +36,5 @@ instance T.FromJSON ToggleChatIsPinned where
    parseToggleChatIsPinned = A.withObject "ToggleChatIsPinned" $ \o -> do
     is_pinned <- o A..:? "is_pinned"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ ToggleChatIsPinned { is_pinned = is_pinned, chat_id = chat_id }
+    chat_list <- o A..:? "chat_list"
+    return $ ToggleChatIsPinned { is_pinned = is_pinned, chat_id = chat_id, chat_list = chat_list }

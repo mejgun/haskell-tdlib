@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Returns auto-download settings presets for the currently logged in user
+-- Returns auto-download settings presets for the current user
 data GetAutoDownloadSettingsPresets = 
 
  GetAutoDownloadSettingsPresets deriving (Show, Eq)

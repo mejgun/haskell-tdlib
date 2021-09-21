@@ -12,7 +12,7 @@ import {-# SOURCE #-} qualified API.Audio as Audio
 import {-# SOURCE #-} qualified API.Video as Video
 import {-# SOURCE #-} qualified API.VoiceNote as VoiceNote
 import {-# SOURCE #-} qualified API.Photo as Photo
-import {-# SOURCE #-} qualified API.ChatPhoto as ChatPhoto
+import {-# SOURCE #-} qualified API.ChatPhotoInfo as ChatPhotoInfo
 import {-# SOURCE #-} qualified API.PageBlockTableCell as PageBlockTableCell
 import {-# SOURCE #-} qualified API.PageBlockRelatedArticle as PageBlockRelatedArticle
 import {-# SOURCE #-} qualified API.RichText as RichText
@@ -228,7 +228,7 @@ data PageBlock =
  -- __photo__ Chat photo; may be null
  -- 
  -- __username__ Chat username, by which all other information about the chat should be resolved
- PageBlockChatLink { username :: Maybe String, photo :: Maybe ChatPhoto.ChatPhoto, title :: Maybe String }  |
+ PageBlockChatLink { username :: Maybe String, photo :: Maybe ChatPhotoInfo.ChatPhotoInfo, title :: Maybe String }  |
  -- |
  -- 
  -- A table 

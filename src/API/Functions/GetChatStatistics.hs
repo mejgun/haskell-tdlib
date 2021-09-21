@@ -9,11 +9,11 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Returns detailed statistics about a chat. Currently this method can be used only for channels. Requires administrator rights in the channel 
+-- Returns detailed statistics about a chat. Currently this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true 
 -- 
 -- __chat_id__ Chat identifier
 -- 
--- __is_dark__ Pass true if a dark theme is used by the app
+-- __is_dark__ Pass true if a dark theme is used by the application
 data GetChatStatistics = 
 
  GetChatStatistics { is_dark :: Maybe Bool, chat_id :: Maybe Int }  deriving (Show, Eq)

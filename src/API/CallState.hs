@@ -6,7 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import {-# SOURCE #-} qualified API.CallConnection as CallConnection
+import {-# SOURCE #-} qualified API.CallServer as CallServer
 import {-# SOURCE #-} qualified API.CallProtocol as CallProtocol
 import {-# SOURCE #-} qualified API.CallDiscardReason as CallDiscardReason
 import {-# SOURCE #-} qualified API.Error as Error
@@ -33,7 +33,7 @@ data CallState =
  -- 
  -- __protocol__ Call protocols supported by the peer
  -- 
- -- __connections__ Available UDP reflectors
+ -- __servers__ List of available call servers
  -- 
  -- __config__ A JSON-encoded call config
  -- 
@@ -42,7 +42,7 @@ data CallState =
  -- __emojis__ Encryption key emojis fingerprint
  -- 
  -- __allow_p2p__ True, if peer-to-peer connection is allowed by users privacy settings
- CallStateReady { allow_p2p :: Maybe Bool, emojis :: Maybe [String], encryption_key :: Maybe String, config :: Maybe String, connections :: Maybe [CallConnection.CallConnection], protocol :: Maybe CallProtocol.CallProtocol }  |
+ CallStateReady { allow_p2p :: Maybe Bool, emojis :: Maybe [String], encryption_key :: Maybe String, config :: Maybe String, servers :: Maybe [CallServer.CallServer], protocol :: Maybe CallProtocol.CallProtocol }  |
  -- |
  -- 
  -- The call is hanging up after discardCall has been called
@@ -71,8 +71,8 @@ instance T.ToJSON CallState where
  toJSON (CallStateExchangingKeys {  }) =
   A.object [ "@type" A..= T.String "callStateExchangingKeys" ]
 
- toJSON (CallStateReady { allow_p2p = allow_p2p, emojis = emojis, encryption_key = encryption_key, config = config, connections = connections, protocol = protocol }) =
-  A.object [ "@type" A..= T.String "callStateReady", "allow_p2p" A..= allow_p2p, "emojis" A..= emojis, "encryption_key" A..= encryption_key, "config" A..= config, "connections" A..= connections, "protocol" A..= protocol ]
+ toJSON (CallStateReady { allow_p2p = allow_p2p, emojis = emojis, encryption_key = encryption_key, config = config, servers = servers, protocol = protocol }) =
+  A.object [ "@type" A..= T.String "callStateReady", "allow_p2p" A..= allow_p2p, "emojis" A..= emojis, "encryption_key" A..= encryption_key, "config" A..= config, "servers" A..= servers, "protocol" A..= protocol ]
 
  toJSON (CallStateHangingUp {  }) =
   A.object [ "@type" A..= T.String "callStateHangingUp" ]
@@ -111,9 +111,9 @@ instance T.FromJSON CallState where
     emojis <- o A..:? "emojis"
     encryption_key <- o A..:? "encryption_key"
     config <- o A..:? "config"
-    connections <- o A..:? "connections"
+    servers <- o A..:? "servers"
     protocol <- o A..:? "protocol"
-    return $ CallStateReady { allow_p2p = allow_p2p, emojis = emojis, encryption_key = encryption_key, config = config, connections = connections, protocol = protocol }
+    return $ CallStateReady { allow_p2p = allow_p2p, emojis = emojis, encryption_key = encryption_key, config = config, servers = servers, protocol = protocol }
 
    parseCallStateHangingUp :: A.Value -> T.Parser CallState
    parseCallStateHangingUp = A.withObject "CallStateHangingUp" $ \o -> do

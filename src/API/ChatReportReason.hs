@@ -37,10 +37,12 @@ data ChatReportReason =
  ChatReportReasonUnrelatedLocation |
  -- |
  -- 
- -- A custom reason provided by the user 
+ -- The chat represents a fake account
+ ChatReportReasonFake |
+ -- |
  -- 
- -- __text__ Report text
- ChatReportReasonCustom { text :: Maybe String }  deriving (Show, Eq)
+ -- A custom reason provided by the user
+ ChatReportReasonCustom deriving (Show, Eq)
 
 instance T.ToJSON ChatReportReason where
  toJSON (ChatReportReasonSpam {  }) =
@@ -61,8 +63,11 @@ instance T.ToJSON ChatReportReason where
  toJSON (ChatReportReasonUnrelatedLocation {  }) =
   A.object [ "@type" A..= T.String "chatReportReasonUnrelatedLocation" ]
 
- toJSON (ChatReportReasonCustom { text = text }) =
-  A.object [ "@type" A..= T.String "chatReportReasonCustom", "text" A..= text ]
+ toJSON (ChatReportReasonFake {  }) =
+  A.object [ "@type" A..= T.String "chatReportReasonFake" ]
+
+ toJSON (ChatReportReasonCustom {  }) =
+  A.object [ "@type" A..= T.String "chatReportReasonCustom" ]
 
 instance T.FromJSON ChatReportReason where
  parseJSON v@(T.Object obj) = do
@@ -74,6 +79,7 @@ instance T.FromJSON ChatReportReason where
    "chatReportReasonChildAbuse" -> parseChatReportReasonChildAbuse v
    "chatReportReasonCopyright" -> parseChatReportReasonCopyright v
    "chatReportReasonUnrelatedLocation" -> parseChatReportReasonUnrelatedLocation v
+   "chatReportReasonFake" -> parseChatReportReasonFake v
    "chatReportReasonCustom" -> parseChatReportReasonCustom v
    _ -> mempty
   where
@@ -101,7 +107,10 @@ instance T.FromJSON ChatReportReason where
    parseChatReportReasonUnrelatedLocation = A.withObject "ChatReportReasonUnrelatedLocation" $ \o -> do
     return $ ChatReportReasonUnrelatedLocation {  }
 
+   parseChatReportReasonFake :: A.Value -> T.Parser ChatReportReason
+   parseChatReportReasonFake = A.withObject "ChatReportReasonFake" $ \o -> do
+    return $ ChatReportReasonFake {  }
+
    parseChatReportReasonCustom :: A.Value -> T.Parser ChatReportReason
    parseChatReportReasonCustom = A.withObject "ChatReportReasonCustom" $ \o -> do
-    text <- o A..:? "text"
-    return $ ChatReportReasonCustom { text = text }
+    return $ ChatReportReasonCustom {  }

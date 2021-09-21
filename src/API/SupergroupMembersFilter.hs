@@ -45,6 +45,14 @@ data SupergroupMembersFilter =
  SupergroupMembersFilterBanned { query :: Maybe String }  |
  -- |
  -- 
+ -- Returns users which can be mentioned in the supergroup 
+ -- 
+ -- __query__ Query to search for
+ -- 
+ -- __message_thread_id__ If non-zero, the identifier of the current message thread
+ SupergroupMembersFilterMention { message_thread_id :: Maybe Int, query :: Maybe String }  |
+ -- |
+ -- 
  -- Returns bot members of the supergroup or channel
  SupergroupMembersFilterBots deriving (Show, Eq)
 
@@ -67,6 +75,9 @@ instance T.ToJSON SupergroupMembersFilter where
  toJSON (SupergroupMembersFilterBanned { query = query }) =
   A.object [ "@type" A..= T.String "supergroupMembersFilterBanned", "query" A..= query ]
 
+ toJSON (SupergroupMembersFilterMention { message_thread_id = message_thread_id, query = query }) =
+  A.object [ "@type" A..= T.String "supergroupMembersFilterMention", "message_thread_id" A..= message_thread_id, "query" A..= query ]
+
  toJSON (SupergroupMembersFilterBots {  }) =
   A.object [ "@type" A..= T.String "supergroupMembersFilterBots" ]
 
@@ -80,6 +91,7 @@ instance T.FromJSON SupergroupMembersFilter where
    "supergroupMembersFilterSearch" -> parseSupergroupMembersFilterSearch v
    "supergroupMembersFilterRestricted" -> parseSupergroupMembersFilterRestricted v
    "supergroupMembersFilterBanned" -> parseSupergroupMembersFilterBanned v
+   "supergroupMembersFilterMention" -> parseSupergroupMembersFilterMention v
    "supergroupMembersFilterBots" -> parseSupergroupMembersFilterBots v
    _ -> mempty
   where
@@ -110,6 +122,12 @@ instance T.FromJSON SupergroupMembersFilter where
    parseSupergroupMembersFilterBanned = A.withObject "SupergroupMembersFilterBanned" $ \o -> do
     query <- o A..:? "query"
     return $ SupergroupMembersFilterBanned { query = query }
+
+   parseSupergroupMembersFilterMention :: A.Value -> T.Parser SupergroupMembersFilter
+   parseSupergroupMembersFilterMention = A.withObject "SupergroupMembersFilterMention" $ \o -> do
+    message_thread_id <- mconcat [ o A..:? "message_thread_id", readMaybe <$> (o A..: "message_thread_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    query <- o A..:? "query"
+    return $ SupergroupMembersFilterMention { message_thread_id = message_thread_id, query = query }
 
    parseSupergroupMembersFilterBots :: A.Value -> T.Parser SupergroupMembersFilter
    parseSupergroupMembersFilterBots = A.withObject "SupergroupMembersFilterBots" $ \o -> do

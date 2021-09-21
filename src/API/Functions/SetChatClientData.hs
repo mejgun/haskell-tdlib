@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Changes client data associated with a chat 
+-- Changes application-specific data associated with a chat 
 -- 
 -- __chat_id__ Chat identifier
 -- 

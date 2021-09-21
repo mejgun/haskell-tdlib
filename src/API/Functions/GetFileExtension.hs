@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. This is an offline method. Can be called before authorization. Can be called synchronously 
+-- Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. Can be called synchronously 
 -- 
 -- __mime_type__ The MIME type of the file
 data GetFileExtension = 

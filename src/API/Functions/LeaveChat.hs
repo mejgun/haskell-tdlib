@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Removes current user from chat members. Private and secret chats can't be left using this method 
+-- Removes the current user from chat members. Private and secret chats can't be left using this method 
 -- 
 -- __chat_id__ Chat identifier
 data LeaveChat = 

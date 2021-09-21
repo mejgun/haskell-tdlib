@@ -18,7 +18,7 @@ import {-# SOURCE #-} qualified API.AuthenticationCodeType as AuthenticationCode
 -- 
 -- __next_type__ Describes the way the next code will be sent to the user; may be null
 -- 
--- __timeout__ Timeout before the code should be re-sent, in seconds
+-- __timeout__ Timeout before the code can be re-sent, in seconds
 data AuthenticationCodeInfo = 
 
  AuthenticationCodeInfo { timeout :: Maybe Int, next_type :: Maybe AuthenticationCodeType.AuthenticationCodeType, _type :: Maybe AuthenticationCodeType.AuthenticationCodeType, phone_number :: Maybe String }  deriving (Show, Eq)

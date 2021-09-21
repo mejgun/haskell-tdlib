@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Toggles whether the message history of a supergroup is available to new members; requires can_change_info rights 
+-- Toggles whether the message history of a supergroup is available to new members; requires can_change_info administrator right 
 -- 
 -- __supergroup_id__ The identifier of the supergroup
 -- 

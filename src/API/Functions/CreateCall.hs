@@ -14,14 +14,16 @@ import {-# SOURCE #-} qualified API.CallProtocol as CallProtocol
 -- 
 -- __user_id__ Identifier of the user to be called
 -- 
--- __protocol__ Description of the call protocols supported by the client
+-- __protocol__ Description of the call protocols supported by the application
+-- 
+-- __is_video__ True, if a video call needs to be created
 data CreateCall = 
 
- CreateCall { protocol :: Maybe CallProtocol.CallProtocol, user_id :: Maybe Int }  deriving (Show, Eq)
+ CreateCall { is_video :: Maybe Bool, protocol :: Maybe CallProtocol.CallProtocol, user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON CreateCall where
- toJSON (CreateCall { protocol = protocol, user_id = user_id }) =
-  A.object [ "@type" A..= T.String "createCall", "protocol" A..= protocol, "user_id" A..= user_id ]
+ toJSON (CreateCall { is_video = is_video, protocol = protocol, user_id = user_id }) =
+  A.object [ "@type" A..= T.String "createCall", "is_video" A..= is_video, "protocol" A..= protocol, "user_id" A..= user_id ]
 
 instance T.FromJSON CreateCall where
  parseJSON v@(T.Object obj) = do
@@ -32,6 +34,7 @@ instance T.FromJSON CreateCall where
   where
    parseCreateCall :: A.Value -> T.Parser CreateCall
    parseCreateCall = A.withObject "CreateCall" $ \o -> do
+    is_video <- o A..:? "is_video"
     protocol <- o A..:? "protocol"
     user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ CreateCall { protocol = protocol, user_id = user_id }
+    return $ CreateCall { is_video = is_video, protocol = protocol, user_id = user_id }

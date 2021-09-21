@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Toggles sender signatures messages sent in a channel; requires can_change_info rights 
+-- Toggles sender signatures messages sent in a channel; requires can_change_info administrator right 
 -- 
 -- __supergroup_id__ Identifier of the channel
 -- 

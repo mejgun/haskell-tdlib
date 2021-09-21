@@ -9,8 +9,10 @@ import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Message as Message
 import {-# SOURCE #-} qualified API.ChatMemberStatus as ChatMemberStatus
 import {-# SOURCE #-} qualified API.ChatPermissions as ChatPermissions
-import {-# SOURCE #-} qualified API.Photo as Photo
+import {-# SOURCE #-} qualified API.ChatPhoto as ChatPhoto
 import {-# SOURCE #-} qualified API.ChatLocation as ChatLocation
+import {-# SOURCE #-} qualified API.ChatInviteLink as ChatInviteLink
+import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
 -- |
 -- 
@@ -44,12 +46,20 @@ data ChatEventAction =
  ChatEventMessagePinned { message :: Maybe Message.Message }  |
  -- |
  -- 
- -- A message was unpinned
- ChatEventMessageUnpinned |
+ -- A message was unpinned 
+ -- 
+ -- __message__ Unpinned message
+ ChatEventMessageUnpinned { message :: Maybe Message.Message }  |
  -- |
  -- 
  -- A new member joined the chat
  ChatEventMemberJoined |
+ -- |
+ -- 
+ -- A new member joined the chat by an invite link 
+ -- 
+ -- __invite_link__ Invite link used to join the chat
+ ChatEventMemberJoinedByInviteLink { invite_link :: Maybe ChatInviteLink.ChatInviteLink }  |
  -- |
  -- 
  -- A member left the chat
@@ -66,7 +76,7 @@ data ChatEventAction =
  -- 
  -- A chat member has gained/lost administrator status, or the list of their administrator privileges has changed 
  -- 
- -- __user_id__ Chat member user identifier
+ -- __user_id__ Affected chat member user identifier
  -- 
  -- __old_status__ Previous status of the chat member
  -- 
@@ -76,12 +86,12 @@ data ChatEventAction =
  -- 
  -- A chat member was restricted/unrestricted or banned/unbanned, or the list of their restrictions has changed 
  -- 
- -- __user_id__ Chat member user identifier
+ -- __member_id__ Affected chat member identifier
  -- 
  -- __old_status__ Previous status of the chat member
  -- 
  -- __new_status__ New status of the chat member
- ChatEventMemberRestricted { new_status :: Maybe ChatMemberStatus.ChatMemberStatus, old_status :: Maybe ChatMemberStatus.ChatMemberStatus, user_id :: Maybe Int }  |
+ ChatEventMemberRestricted { new_status :: Maybe ChatMemberStatus.ChatMemberStatus, old_status :: Maybe ChatMemberStatus.ChatMemberStatus, member_id :: Maybe MessageSender.MessageSender }  |
  -- |
  -- 
  -- The chat title was changed 
@@ -121,7 +131,7 @@ data ChatEventAction =
  -- __old_photo__ Previous chat photo value; may be null
  -- 
  -- __new_photo__ New chat photo value; may be null
- ChatEventPhotoChanged { new_photo :: Maybe Photo.Photo, old_photo :: Maybe Photo.Photo }  |
+ ChatEventPhotoChanged { new_photo :: Maybe ChatPhoto.ChatPhoto, old_photo :: Maybe ChatPhoto.ChatPhoto }  |
  -- |
  -- 
  -- The can_invite_users permission of a supergroup chat was toggled 
@@ -144,6 +154,14 @@ data ChatEventAction =
  -- 
  -- __new_slow_mode_delay__ New value of slow_mode_delay
  ChatEventSlowModeDelayChanged { new_slow_mode_delay :: Maybe Int, old_slow_mode_delay :: Maybe Int }  |
+ -- |
+ -- 
+ -- The message TTL setting was changed 
+ -- 
+ -- __old_message_ttl_setting__ Previous value of message_ttl_setting
+ -- 
+ -- __new_message_ttl_setting__ New value of message_ttl_setting
+ ChatEventMessageTtlSettingChanged { new_message_ttl_setting :: Maybe Int, old_message_ttl_setting :: Maybe Int }  |
  -- |
  -- 
  -- The sign_messages setting of a channel was toggled 
@@ -171,7 +189,61 @@ data ChatEventAction =
  -- The is_all_history_available setting of a supergroup was toggled 
  -- 
  -- __is_all_history_available__ New value of is_all_history_available
- ChatEventIsAllHistoryAvailableToggled { is_all_history_available :: Maybe Bool }  deriving (Show, Eq)
+ ChatEventIsAllHistoryAvailableToggled { is_all_history_available :: Maybe Bool }  |
+ -- |
+ -- 
+ -- A chat invite link was edited 
+ -- 
+ -- __old_invite_link__ Previous information about the invite link
+ -- 
+ -- __new_invite_link__ New information about the invite link
+ ChatEventInviteLinkEdited { new_invite_link :: Maybe ChatInviteLink.ChatInviteLink, old_invite_link :: Maybe ChatInviteLink.ChatInviteLink }  |
+ -- |
+ -- 
+ -- A chat invite link was revoked 
+ -- 
+ -- __invite_link__ The invite link
+ ChatEventInviteLinkRevoked { invite_link :: Maybe ChatInviteLink.ChatInviteLink }  |
+ -- |
+ -- 
+ -- A revoked chat invite link was deleted 
+ -- 
+ -- __invite_link__ The invite link
+ ChatEventInviteLinkDeleted { invite_link :: Maybe ChatInviteLink.ChatInviteLink }  |
+ -- |
+ -- 
+ -- A voice chat was created 
+ -- 
+ -- __group_call_id__ Identifier of the voice chat. The voice chat can be received through the method getGroupCall
+ ChatEventVoiceChatCreated { group_call_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A voice chat was discarded 
+ -- 
+ -- __group_call_id__ Identifier of the voice chat. The voice chat can be received through the method getGroupCall
+ ChatEventVoiceChatDiscarded { group_call_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A voice chat participant was muted or unmuted 
+ -- 
+ -- __participant_id__ Identifier of the affected group call participant
+ -- 
+ -- __is_muted__ New value of is_muted
+ ChatEventVoiceChatParticipantIsMutedToggled { is_muted :: Maybe Bool, participant_id :: Maybe MessageSender.MessageSender }  |
+ -- |
+ -- 
+ -- A voice chat participant volume level was changed 
+ -- 
+ -- __participant_id__ Identifier of the affected group call participant
+ -- 
+ -- __volume_level__ New value of volume_level; 1-20000 in hundreds of percents
+ ChatEventVoiceChatParticipantVolumeLevelChanged { volume_level :: Maybe Int, participant_id :: Maybe MessageSender.MessageSender }  |
+ -- |
+ -- 
+ -- The mute_new_participants setting of a voice chat was toggled 
+ -- 
+ -- __mute_new_participants__ New value of the mute_new_participants setting
+ ChatEventVoiceChatMuteNewParticipantsToggled { mute_new_participants :: Maybe Bool }  deriving (Show, Eq)
 
 instance T.ToJSON ChatEventAction where
  toJSON (ChatEventMessageEdited { new_message = new_message, old_message = old_message }) =
@@ -186,11 +258,14 @@ instance T.ToJSON ChatEventAction where
  toJSON (ChatEventMessagePinned { message = message }) =
   A.object [ "@type" A..= T.String "chatEventMessagePinned", "message" A..= message ]
 
- toJSON (ChatEventMessageUnpinned {  }) =
-  A.object [ "@type" A..= T.String "chatEventMessageUnpinned" ]
+ toJSON (ChatEventMessageUnpinned { message = message }) =
+  A.object [ "@type" A..= T.String "chatEventMessageUnpinned", "message" A..= message ]
 
  toJSON (ChatEventMemberJoined {  }) =
   A.object [ "@type" A..= T.String "chatEventMemberJoined" ]
+
+ toJSON (ChatEventMemberJoinedByInviteLink { invite_link = invite_link }) =
+  A.object [ "@type" A..= T.String "chatEventMemberJoinedByInviteLink", "invite_link" A..= invite_link ]
 
  toJSON (ChatEventMemberLeft {  }) =
   A.object [ "@type" A..= T.String "chatEventMemberLeft" ]
@@ -201,8 +276,8 @@ instance T.ToJSON ChatEventAction where
  toJSON (ChatEventMemberPromoted { new_status = new_status, old_status = old_status, user_id = user_id }) =
   A.object [ "@type" A..= T.String "chatEventMemberPromoted", "new_status" A..= new_status, "old_status" A..= old_status, "user_id" A..= user_id ]
 
- toJSON (ChatEventMemberRestricted { new_status = new_status, old_status = old_status, user_id = user_id }) =
-  A.object [ "@type" A..= T.String "chatEventMemberRestricted", "new_status" A..= new_status, "old_status" A..= old_status, "user_id" A..= user_id ]
+ toJSON (ChatEventMemberRestricted { new_status = new_status, old_status = old_status, member_id = member_id }) =
+  A.object [ "@type" A..= T.String "chatEventMemberRestricted", "new_status" A..= new_status, "old_status" A..= old_status, "member_id" A..= member_id ]
 
  toJSON (ChatEventTitleChanged { new_title = new_title, old_title = old_title }) =
   A.object [ "@type" A..= T.String "chatEventTitleChanged", "new_title" A..= new_title, "old_title" A..= old_title ]
@@ -228,6 +303,9 @@ instance T.ToJSON ChatEventAction where
  toJSON (ChatEventSlowModeDelayChanged { new_slow_mode_delay = new_slow_mode_delay, old_slow_mode_delay = old_slow_mode_delay }) =
   A.object [ "@type" A..= T.String "chatEventSlowModeDelayChanged", "new_slow_mode_delay" A..= new_slow_mode_delay, "old_slow_mode_delay" A..= old_slow_mode_delay ]
 
+ toJSON (ChatEventMessageTtlSettingChanged { new_message_ttl_setting = new_message_ttl_setting, old_message_ttl_setting = old_message_ttl_setting }) =
+  A.object [ "@type" A..= T.String "chatEventMessageTtlSettingChanged", "new_message_ttl_setting" A..= new_message_ttl_setting, "old_message_ttl_setting" A..= old_message_ttl_setting ]
+
  toJSON (ChatEventSignMessagesToggled { sign_messages = sign_messages }) =
   A.object [ "@type" A..= T.String "chatEventSignMessagesToggled", "sign_messages" A..= sign_messages ]
 
@@ -240,6 +318,30 @@ instance T.ToJSON ChatEventAction where
  toJSON (ChatEventIsAllHistoryAvailableToggled { is_all_history_available = is_all_history_available }) =
   A.object [ "@type" A..= T.String "chatEventIsAllHistoryAvailableToggled", "is_all_history_available" A..= is_all_history_available ]
 
+ toJSON (ChatEventInviteLinkEdited { new_invite_link = new_invite_link, old_invite_link = old_invite_link }) =
+  A.object [ "@type" A..= T.String "chatEventInviteLinkEdited", "new_invite_link" A..= new_invite_link, "old_invite_link" A..= old_invite_link ]
+
+ toJSON (ChatEventInviteLinkRevoked { invite_link = invite_link }) =
+  A.object [ "@type" A..= T.String "chatEventInviteLinkRevoked", "invite_link" A..= invite_link ]
+
+ toJSON (ChatEventInviteLinkDeleted { invite_link = invite_link }) =
+  A.object [ "@type" A..= T.String "chatEventInviteLinkDeleted", "invite_link" A..= invite_link ]
+
+ toJSON (ChatEventVoiceChatCreated { group_call_id = group_call_id }) =
+  A.object [ "@type" A..= T.String "chatEventVoiceChatCreated", "group_call_id" A..= group_call_id ]
+
+ toJSON (ChatEventVoiceChatDiscarded { group_call_id = group_call_id }) =
+  A.object [ "@type" A..= T.String "chatEventVoiceChatDiscarded", "group_call_id" A..= group_call_id ]
+
+ toJSON (ChatEventVoiceChatParticipantIsMutedToggled { is_muted = is_muted, participant_id = participant_id }) =
+  A.object [ "@type" A..= T.String "chatEventVoiceChatParticipantIsMutedToggled", "is_muted" A..= is_muted, "participant_id" A..= participant_id ]
+
+ toJSON (ChatEventVoiceChatParticipantVolumeLevelChanged { volume_level = volume_level, participant_id = participant_id }) =
+  A.object [ "@type" A..= T.String "chatEventVoiceChatParticipantVolumeLevelChanged", "volume_level" A..= volume_level, "participant_id" A..= participant_id ]
+
+ toJSON (ChatEventVoiceChatMuteNewParticipantsToggled { mute_new_participants = mute_new_participants }) =
+  A.object [ "@type" A..= T.String "chatEventVoiceChatMuteNewParticipantsToggled", "mute_new_participants" A..= mute_new_participants ]
+
 instance T.FromJSON ChatEventAction where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -250,6 +352,7 @@ instance T.FromJSON ChatEventAction where
    "chatEventMessagePinned" -> parseChatEventMessagePinned v
    "chatEventMessageUnpinned" -> parseChatEventMessageUnpinned v
    "chatEventMemberJoined" -> parseChatEventMemberJoined v
+   "chatEventMemberJoinedByInviteLink" -> parseChatEventMemberJoinedByInviteLink v
    "chatEventMemberLeft" -> parseChatEventMemberLeft v
    "chatEventMemberInvited" -> parseChatEventMemberInvited v
    "chatEventMemberPromoted" -> parseChatEventMemberPromoted v
@@ -262,10 +365,19 @@ instance T.FromJSON ChatEventAction where
    "chatEventInvitesToggled" -> parseChatEventInvitesToggled v
    "chatEventLinkedChatChanged" -> parseChatEventLinkedChatChanged v
    "chatEventSlowModeDelayChanged" -> parseChatEventSlowModeDelayChanged v
+   "chatEventMessageTtlSettingChanged" -> parseChatEventMessageTtlSettingChanged v
    "chatEventSignMessagesToggled" -> parseChatEventSignMessagesToggled v
    "chatEventStickerSetChanged" -> parseChatEventStickerSetChanged v
    "chatEventLocationChanged" -> parseChatEventLocationChanged v
    "chatEventIsAllHistoryAvailableToggled" -> parseChatEventIsAllHistoryAvailableToggled v
+   "chatEventInviteLinkEdited" -> parseChatEventInviteLinkEdited v
+   "chatEventInviteLinkRevoked" -> parseChatEventInviteLinkRevoked v
+   "chatEventInviteLinkDeleted" -> parseChatEventInviteLinkDeleted v
+   "chatEventVoiceChatCreated" -> parseChatEventVoiceChatCreated v
+   "chatEventVoiceChatDiscarded" -> parseChatEventVoiceChatDiscarded v
+   "chatEventVoiceChatParticipantIsMutedToggled" -> parseChatEventVoiceChatParticipantIsMutedToggled v
+   "chatEventVoiceChatParticipantVolumeLevelChanged" -> parseChatEventVoiceChatParticipantVolumeLevelChanged v
+   "chatEventVoiceChatMuteNewParticipantsToggled" -> parseChatEventVoiceChatMuteNewParticipantsToggled v
    _ -> mempty
   where
    parseChatEventMessageEdited :: A.Value -> T.Parser ChatEventAction
@@ -291,11 +403,17 @@ instance T.FromJSON ChatEventAction where
 
    parseChatEventMessageUnpinned :: A.Value -> T.Parser ChatEventAction
    parseChatEventMessageUnpinned = A.withObject "ChatEventMessageUnpinned" $ \o -> do
-    return $ ChatEventMessageUnpinned {  }
+    message <- o A..:? "message"
+    return $ ChatEventMessageUnpinned { message = message }
 
    parseChatEventMemberJoined :: A.Value -> T.Parser ChatEventAction
    parseChatEventMemberJoined = A.withObject "ChatEventMemberJoined" $ \o -> do
     return $ ChatEventMemberJoined {  }
+
+   parseChatEventMemberJoinedByInviteLink :: A.Value -> T.Parser ChatEventAction
+   parseChatEventMemberJoinedByInviteLink = A.withObject "ChatEventMemberJoinedByInviteLink" $ \o -> do
+    invite_link <- o A..:? "invite_link"
+    return $ ChatEventMemberJoinedByInviteLink { invite_link = invite_link }
 
    parseChatEventMemberLeft :: A.Value -> T.Parser ChatEventAction
    parseChatEventMemberLeft = A.withObject "ChatEventMemberLeft" $ \o -> do
@@ -318,8 +436,8 @@ instance T.FromJSON ChatEventAction where
    parseChatEventMemberRestricted = A.withObject "ChatEventMemberRestricted" $ \o -> do
     new_status <- o A..:? "new_status"
     old_status <- o A..:? "old_status"
-    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ ChatEventMemberRestricted { new_status = new_status, old_status = old_status, user_id = user_id }
+    member_id <- o A..:? "member_id"
+    return $ ChatEventMemberRestricted { new_status = new_status, old_status = old_status, member_id = member_id }
 
    parseChatEventTitleChanged :: A.Value -> T.Parser ChatEventAction
    parseChatEventTitleChanged = A.withObject "ChatEventTitleChanged" $ \o -> do
@@ -368,6 +486,12 @@ instance T.FromJSON ChatEventAction where
     old_slow_mode_delay <- mconcat [ o A..:? "old_slow_mode_delay", readMaybe <$> (o A..: "old_slow_mode_delay" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatEventSlowModeDelayChanged { new_slow_mode_delay = new_slow_mode_delay, old_slow_mode_delay = old_slow_mode_delay }
 
+   parseChatEventMessageTtlSettingChanged :: A.Value -> T.Parser ChatEventAction
+   parseChatEventMessageTtlSettingChanged = A.withObject "ChatEventMessageTtlSettingChanged" $ \o -> do
+    new_message_ttl_setting <- mconcat [ o A..:? "new_message_ttl_setting", readMaybe <$> (o A..: "new_message_ttl_setting" :: T.Parser String)] :: T.Parser (Maybe Int)
+    old_message_ttl_setting <- mconcat [ o A..:? "old_message_ttl_setting", readMaybe <$> (o A..: "old_message_ttl_setting" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ ChatEventMessageTtlSettingChanged { new_message_ttl_setting = new_message_ttl_setting, old_message_ttl_setting = old_message_ttl_setting }
+
    parseChatEventSignMessagesToggled :: A.Value -> T.Parser ChatEventAction
    parseChatEventSignMessagesToggled = A.withObject "ChatEventSignMessagesToggled" $ \o -> do
     sign_messages <- o A..:? "sign_messages"
@@ -389,3 +513,46 @@ instance T.FromJSON ChatEventAction where
    parseChatEventIsAllHistoryAvailableToggled = A.withObject "ChatEventIsAllHistoryAvailableToggled" $ \o -> do
     is_all_history_available <- o A..:? "is_all_history_available"
     return $ ChatEventIsAllHistoryAvailableToggled { is_all_history_available = is_all_history_available }
+
+   parseChatEventInviteLinkEdited :: A.Value -> T.Parser ChatEventAction
+   parseChatEventInviteLinkEdited = A.withObject "ChatEventInviteLinkEdited" $ \o -> do
+    new_invite_link <- o A..:? "new_invite_link"
+    old_invite_link <- o A..:? "old_invite_link"
+    return $ ChatEventInviteLinkEdited { new_invite_link = new_invite_link, old_invite_link = old_invite_link }
+
+   parseChatEventInviteLinkRevoked :: A.Value -> T.Parser ChatEventAction
+   parseChatEventInviteLinkRevoked = A.withObject "ChatEventInviteLinkRevoked" $ \o -> do
+    invite_link <- o A..:? "invite_link"
+    return $ ChatEventInviteLinkRevoked { invite_link = invite_link }
+
+   parseChatEventInviteLinkDeleted :: A.Value -> T.Parser ChatEventAction
+   parseChatEventInviteLinkDeleted = A.withObject "ChatEventInviteLinkDeleted" $ \o -> do
+    invite_link <- o A..:? "invite_link"
+    return $ ChatEventInviteLinkDeleted { invite_link = invite_link }
+
+   parseChatEventVoiceChatCreated :: A.Value -> T.Parser ChatEventAction
+   parseChatEventVoiceChatCreated = A.withObject "ChatEventVoiceChatCreated" $ \o -> do
+    group_call_id <- mconcat [ o A..:? "group_call_id", readMaybe <$> (o A..: "group_call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ ChatEventVoiceChatCreated { group_call_id = group_call_id }
+
+   parseChatEventVoiceChatDiscarded :: A.Value -> T.Parser ChatEventAction
+   parseChatEventVoiceChatDiscarded = A.withObject "ChatEventVoiceChatDiscarded" $ \o -> do
+    group_call_id <- mconcat [ o A..:? "group_call_id", readMaybe <$> (o A..: "group_call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ ChatEventVoiceChatDiscarded { group_call_id = group_call_id }
+
+   parseChatEventVoiceChatParticipantIsMutedToggled :: A.Value -> T.Parser ChatEventAction
+   parseChatEventVoiceChatParticipantIsMutedToggled = A.withObject "ChatEventVoiceChatParticipantIsMutedToggled" $ \o -> do
+    is_muted <- o A..:? "is_muted"
+    participant_id <- o A..:? "participant_id"
+    return $ ChatEventVoiceChatParticipantIsMutedToggled { is_muted = is_muted, participant_id = participant_id }
+
+   parseChatEventVoiceChatParticipantVolumeLevelChanged :: A.Value -> T.Parser ChatEventAction
+   parseChatEventVoiceChatParticipantVolumeLevelChanged = A.withObject "ChatEventVoiceChatParticipantVolumeLevelChanged" $ \o -> do
+    volume_level <- mconcat [ o A..:? "volume_level", readMaybe <$> (o A..: "volume_level" :: T.Parser String)] :: T.Parser (Maybe Int)
+    participant_id <- o A..:? "participant_id"
+    return $ ChatEventVoiceChatParticipantVolumeLevelChanged { volume_level = volume_level, participant_id = participant_id }
+
+   parseChatEventVoiceChatMuteNewParticipantsToggled :: A.Value -> T.Parser ChatEventAction
+   parseChatEventVoiceChatMuteNewParticipantsToggled = A.withObject "ChatEventVoiceChatMuteNewParticipantsToggled" $ \o -> do
+    mute_new_participants <- o A..:? "mute_new_participants"
+    return $ ChatEventVoiceChatMuteNewParticipantsToggled { mute_new_participants = mute_new_participants }

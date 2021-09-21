@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Changes the sticker set of a supergroup; requires can_change_info rights 
+-- Changes the sticker set of a supergroup; requires can_change_info administrator right 
 -- 
 -- __supergroup_id__ Identifier of the supergroup
 -- 

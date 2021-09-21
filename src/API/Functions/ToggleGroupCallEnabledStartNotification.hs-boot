@@ -1,0 +1,15 @@
+-- GENERATED
+module API.Functions.ToggleGroupCallEnabledStartNotification where
+
+import Data.Aeson.Types
+
+data ToggleGroupCallEnabledStartNotification
+
+instance Eq ToggleGroupCallEnabledStartNotification
+
+instance ToJSON ToggleGroupCallEnabledStartNotification
+
+instance FromJSON ToggleGroupCallEnabledStartNotification
+
+instance Show ToggleGroupCallEnabledStartNotification
+

@@ -14,7 +14,7 @@ import {-# SOURCE #-} qualified API.FileType as FileType
 -- 
 -- __file_type__ File type
 -- 
--- __size__ Total size of the files
+-- __size__ Total size of the files, in bytes
 -- 
 -- __count__ Total number of files
 data StorageStatisticsByFileType = 

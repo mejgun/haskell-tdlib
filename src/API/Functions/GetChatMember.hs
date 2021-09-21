@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
 -- |
 -- 
@@ -13,14 +14,14 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __chat_id__ Chat identifier
 -- 
--- __user_id__ User identifier
+-- __member_id__ Member identifier
 data GetChatMember = 
 
- GetChatMember { user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
+ GetChatMember { member_id :: Maybe MessageSender.MessageSender, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON GetChatMember where
- toJSON (GetChatMember { user_id = user_id, chat_id = chat_id }) =
-  A.object [ "@type" A..= T.String "getChatMember", "user_id" A..= user_id, "chat_id" A..= chat_id ]
+ toJSON (GetChatMember { member_id = member_id, chat_id = chat_id }) =
+  A.object [ "@type" A..= T.String "getChatMember", "member_id" A..= member_id, "chat_id" A..= chat_id ]
 
 instance T.FromJSON GetChatMember where
  parseJSON v@(T.Object obj) = do
@@ -31,6 +32,6 @@ instance T.FromJSON GetChatMember where
   where
    parseGetChatMember :: A.Value -> T.Parser GetChatMember
    parseGetChatMember = A.withObject "GetChatMember" $ \o -> do
-    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    member_id <- o A..:? "member_id"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ GetChatMember { user_id = user_id, chat_id = chat_id }
+    return $ GetChatMember { member_id = member_id, chat_id = chat_id }

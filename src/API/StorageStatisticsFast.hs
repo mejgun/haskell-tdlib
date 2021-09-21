@@ -11,7 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Contains approximate storage usage statistics, excluding files of unknown file type 
 -- 
--- __files_size__ Approximate total size of files
+-- __files_size__ Approximate total size of files, in bytes
 -- 
 -- __file_count__ Approximate number of files
 -- 

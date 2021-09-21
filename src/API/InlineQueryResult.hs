@@ -8,7 +8,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.Contact as Contact
 import {-# SOURCE #-} qualified API.Location as Location
-import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
+import {-# SOURCE #-} qualified API.Thumbnail as Thumbnail
 import {-# SOURCE #-} qualified API.Venue as Venue
 import {-# SOURCE #-} qualified API.Game as Game
 import {-# SOURCE #-} qualified API.Animation as Animation
@@ -37,8 +37,8 @@ data InlineQueryResult =
  -- 
  -- __param_description__ A short description of the result
  -- 
- -- __thumbnail__ Result thumbnail; may be null
- InlineQueryResultArticle { thumbnail :: Maybe PhotoSize.PhotoSize, description :: Maybe String, title :: Maybe String, hide_url :: Maybe Bool, url :: Maybe String, _id :: Maybe String }  |
+ -- __thumbnail__ Result thumbnail in JPEG format; may be null
+ InlineQueryResultArticle { thumbnail :: Maybe Thumbnail.Thumbnail, description :: Maybe String, title :: Maybe String, hide_url :: Maybe Bool, url :: Maybe String, _id :: Maybe String }  |
  -- |
  -- 
  -- Represents a user contact 
@@ -47,8 +47,8 @@ data InlineQueryResult =
  -- 
  -- __contact__ A user contact
  -- 
- -- __thumbnail__ Result thumbnail; may be null
- InlineQueryResultContact { thumbnail :: Maybe PhotoSize.PhotoSize, contact :: Maybe Contact.Contact, _id :: Maybe String }  |
+ -- __thumbnail__ Result thumbnail in JPEG format; may be null
+ InlineQueryResultContact { thumbnail :: Maybe Thumbnail.Thumbnail, contact :: Maybe Contact.Contact, _id :: Maybe String }  |
  -- |
  -- 
  -- Represents a point on the map 
@@ -59,8 +59,8 @@ data InlineQueryResult =
  -- 
  -- __title__ Title of the result
  -- 
- -- __thumbnail__ Result thumbnail; may be null
- InlineQueryResultLocation { thumbnail :: Maybe PhotoSize.PhotoSize, title :: Maybe String, location :: Maybe Location.Location, _id :: Maybe String }  |
+ -- __thumbnail__ Result thumbnail in JPEG format; may be null
+ InlineQueryResultLocation { thumbnail :: Maybe Thumbnail.Thumbnail, title :: Maybe String, location :: Maybe Location.Location, _id :: Maybe String }  |
  -- |
  -- 
  -- Represents information about a venue 
@@ -69,8 +69,8 @@ data InlineQueryResult =
  -- 
  -- __venue__ Venue result
  -- 
- -- __thumbnail__ Result thumbnail; may be null
- InlineQueryResultVenue { thumbnail :: Maybe PhotoSize.PhotoSize, venue :: Maybe Venue.Venue, _id :: Maybe String }  |
+ -- __thumbnail__ Result thumbnail in JPEG format; may be null
+ InlineQueryResultVenue { thumbnail :: Maybe Thumbnail.Thumbnail, venue :: Maybe Venue.Venue, _id :: Maybe String }  |
  -- |
  -- 
  -- Represents information about a game 

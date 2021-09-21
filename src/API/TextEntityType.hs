@@ -21,11 +21,11 @@ data TextEntityType =
  TextEntityTypeHashtag |
  -- |
  -- 
- -- A cashtag text, beginning with "$" and consisting of capital english letters (i.e. "$USD")
+ -- A cashtag text, beginning with "$" and consisting of capital english letters (e.g., "$USD")
  TextEntityTypeCashtag |
  -- |
  -- 
- -- A bot command, beginning with "/". This shouldn't be highlighted if there are no bots in the chat
+ -- A bot command, beginning with "/"
  TextEntityTypeBotCommand |
  -- |
  -- 
@@ -84,7 +84,13 @@ data TextEntityType =
  -- A text shows instead of a raw mention of the user (e.g., when the user has no username) 
  -- 
  -- __user_id__ Identifier of the mentioned user
- TextEntityTypeMentionName { user_id :: Maybe Int }  deriving (Show, Eq)
+ TextEntityTypeMentionName { user_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A media timestamp 
+ -- 
+ -- __media_timestamp__ Timestamp from which a video/audio/video note/voice note playing should start, in seconds. The media can be in the content or the web page preview of the current message, or in the same places in the replied message
+ TextEntityTypeMediaTimestamp { media_timestamp :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON TextEntityType where
  toJSON (TextEntityTypeMention {  }) =
@@ -138,6 +144,9 @@ instance T.ToJSON TextEntityType where
  toJSON (TextEntityTypeMentionName { user_id = user_id }) =
   A.object [ "@type" A..= T.String "textEntityTypeMentionName", "user_id" A..= user_id ]
 
+ toJSON (TextEntityTypeMediaTimestamp { media_timestamp = media_timestamp }) =
+  A.object [ "@type" A..= T.String "textEntityTypeMediaTimestamp", "media_timestamp" A..= media_timestamp ]
+
 instance T.FromJSON TextEntityType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -159,6 +168,7 @@ instance T.FromJSON TextEntityType where
    "textEntityTypePreCode" -> parseTextEntityTypePreCode v
    "textEntityTypeTextUrl" -> parseTextEntityTypeTextUrl v
    "textEntityTypeMentionName" -> parseTextEntityTypeMentionName v
+   "textEntityTypeMediaTimestamp" -> parseTextEntityTypeMediaTimestamp v
    _ -> mempty
   where
    parseTextEntityTypeMention :: A.Value -> T.Parser TextEntityType
@@ -231,3 +241,8 @@ instance T.FromJSON TextEntityType where
    parseTextEntityTypeMentionName = A.withObject "TextEntityTypeMentionName" $ \o -> do
     user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ TextEntityTypeMentionName { user_id = user_id }
+
+   parseTextEntityTypeMediaTimestamp :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypeMediaTimestamp = A.withObject "TextEntityTypeMediaTimestamp" $ \o -> do
+    media_timestamp <- mconcat [ o A..:? "media_timestamp", readMaybe <$> (o A..: "media_timestamp" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ TextEntityTypeMediaTimestamp { media_timestamp = media_timestamp }

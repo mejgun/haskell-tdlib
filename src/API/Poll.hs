@@ -15,7 +15,7 @@ import {-# SOURCE #-} qualified API.PollOption as PollOption
 -- 
 -- __id__ Unique poll identifier
 -- 
--- __question__ Poll question, 1-255 characters
+-- __question__ Poll question; 1-300 characters
 -- 
 -- __options__ List of poll answer options
 -- 

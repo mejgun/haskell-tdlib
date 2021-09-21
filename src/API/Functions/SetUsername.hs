@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Changes the username of the current user. If something changes, updateUser will be sent 
+-- Changes the username of the current user 
 -- 
 -- __username__ The new value of the username. Use an empty string to remove the username
 data SetUsername = 

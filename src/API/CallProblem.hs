@@ -38,7 +38,15 @@ data CallProblem =
  -- |
  -- 
  -- The call ended unexpectedly
- CallProblemDropped deriving (Show, Eq)
+ CallProblemDropped |
+ -- |
+ -- 
+ -- The video was distorted
+ CallProblemDistortedVideo |
+ -- |
+ -- 
+ -- The video was pixelated
+ CallProblemPixelatedVideo deriving (Show, Eq)
 
 instance T.ToJSON CallProblem where
  toJSON (CallProblemEcho {  }) =
@@ -62,6 +70,12 @@ instance T.ToJSON CallProblem where
  toJSON (CallProblemDropped {  }) =
   A.object [ "@type" A..= T.String "callProblemDropped" ]
 
+ toJSON (CallProblemDistortedVideo {  }) =
+  A.object [ "@type" A..= T.String "callProblemDistortedVideo" ]
+
+ toJSON (CallProblemPixelatedVideo {  }) =
+  A.object [ "@type" A..= T.String "callProblemPixelatedVideo" ]
+
 instance T.FromJSON CallProblem where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -73,6 +87,8 @@ instance T.FromJSON CallProblem where
    "callProblemSilentLocal" -> parseCallProblemSilentLocal v
    "callProblemSilentRemote" -> parseCallProblemSilentRemote v
    "callProblemDropped" -> parseCallProblemDropped v
+   "callProblemDistortedVideo" -> parseCallProblemDistortedVideo v
+   "callProblemPixelatedVideo" -> parseCallProblemPixelatedVideo v
    _ -> mempty
   where
    parseCallProblemEcho :: A.Value -> T.Parser CallProblem
@@ -102,3 +118,11 @@ instance T.FromJSON CallProblem where
    parseCallProblemDropped :: A.Value -> T.Parser CallProblem
    parseCallProblemDropped = A.withObject "CallProblemDropped" $ \o -> do
     return $ CallProblemDropped {  }
+
+   parseCallProblemDistortedVideo :: A.Value -> T.Parser CallProblem
+   parseCallProblemDistortedVideo = A.withObject "CallProblemDistortedVideo" $ \o -> do
+    return $ CallProblemDistortedVideo {  }
+
+   parseCallProblemPixelatedVideo :: A.Value -> T.Parser CallProblem
+   parseCallProblemPixelatedVideo = A.withObject "CallProblemPixelatedVideo" $ \o -> do
+    return $ CallProblemPixelatedVideo {  }

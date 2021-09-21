@@ -6,22 +6,22 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import {-# SOURCE #-} qualified API.InputFile as InputFile
+import {-# SOURCE #-} qualified API.InputSticker as InputSticker
 
 -- |
 -- 
--- Uploads a PNG image with a sticker; for bots only; returns the uploaded file
+-- Uploads a PNG image with a sticker; returns the uploaded file 
 -- 
--- __user_id__ Sticker file owner
+-- __user_id__ Sticker file owner; ignored for regular users
 -- 
--- __png_sticker__ PNG image with the sticker; must be up to 512 KB in size and fit in 512x512 square
+-- __sticker__ Sticker file to upload
 data UploadStickerFile = 
 
- UploadStickerFile { png_sticker :: Maybe InputFile.InputFile, user_id :: Maybe Int }  deriving (Show, Eq)
+ UploadStickerFile { sticker :: Maybe InputSticker.InputSticker, user_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON UploadStickerFile where
- toJSON (UploadStickerFile { png_sticker = png_sticker, user_id = user_id }) =
-  A.object [ "@type" A..= T.String "uploadStickerFile", "png_sticker" A..= png_sticker, "user_id" A..= user_id ]
+ toJSON (UploadStickerFile { sticker = sticker, user_id = user_id }) =
+  A.object [ "@type" A..= T.String "uploadStickerFile", "sticker" A..= sticker, "user_id" A..= user_id ]
 
 instance T.FromJSON UploadStickerFile where
  parseJSON v@(T.Object obj) = do
@@ -32,6 +32,6 @@ instance T.FromJSON UploadStickerFile where
   where
    parseUploadStickerFile :: A.Value -> T.Parser UploadStickerFile
    parseUploadStickerFile = A.withObject "UploadStickerFile" $ \o -> do
-    png_sticker <- o A..:? "png_sticker"
+    sticker <- o A..:? "sticker"
     user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ UploadStickerFile { png_sticker = png_sticker, user_id = user_id }
+    return $ UploadStickerFile { sticker = sticker, user_id = user_id }

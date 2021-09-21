@@ -26,10 +26,12 @@ data BackgroundType =
  -- 
  -- __fill__ Description of the background fill
  -- 
- -- __intensity__ Intensity of the pattern when it is shown above the filled background, 0-100
+ -- __intensity__ Intensity of the pattern when it is shown above the filled background; 0-100.
+ -- 
+ -- __is_inverted__ True, if the background fill must be applied only to the pattern itself. All other pixels are black in this case. For dark themes only
  -- 
  -- __is_moving__ True, if the background needs to be slightly moved when device is tilted
- BackgroundTypePattern { is_moving :: Maybe Bool, intensity :: Maybe Int, fill :: Maybe BackgroundFill.BackgroundFill }  |
+ BackgroundTypePattern { is_moving :: Maybe Bool, is_inverted :: Maybe Bool, intensity :: Maybe Int, fill :: Maybe BackgroundFill.BackgroundFill }  |
  -- |
  -- 
  -- A filled background 
@@ -41,8 +43,8 @@ instance T.ToJSON BackgroundType where
  toJSON (BackgroundTypeWallpaper { is_moving = is_moving, is_blurred = is_blurred }) =
   A.object [ "@type" A..= T.String "backgroundTypeWallpaper", "is_moving" A..= is_moving, "is_blurred" A..= is_blurred ]
 
- toJSON (BackgroundTypePattern { is_moving = is_moving, intensity = intensity, fill = fill }) =
-  A.object [ "@type" A..= T.String "backgroundTypePattern", "is_moving" A..= is_moving, "intensity" A..= intensity, "fill" A..= fill ]
+ toJSON (BackgroundTypePattern { is_moving = is_moving, is_inverted = is_inverted, intensity = intensity, fill = fill }) =
+  A.object [ "@type" A..= T.String "backgroundTypePattern", "is_moving" A..= is_moving, "is_inverted" A..= is_inverted, "intensity" A..= intensity, "fill" A..= fill ]
 
  toJSON (BackgroundTypeFill { fill = fill }) =
   A.object [ "@type" A..= T.String "backgroundTypeFill", "fill" A..= fill ]
@@ -65,9 +67,10 @@ instance T.FromJSON BackgroundType where
    parseBackgroundTypePattern :: A.Value -> T.Parser BackgroundType
    parseBackgroundTypePattern = A.withObject "BackgroundTypePattern" $ \o -> do
     is_moving <- o A..:? "is_moving"
+    is_inverted <- o A..:? "is_inverted"
     intensity <- mconcat [ o A..:? "intensity", readMaybe <$> (o A..: "intensity" :: T.Parser String)] :: T.Parser (Maybe Int)
     fill <- o A..:? "fill"
-    return $ BackgroundTypePattern { is_moving = is_moving, intensity = intensity, fill = fill }
+    return $ BackgroundTypePattern { is_moving = is_moving, is_inverted = is_inverted, intensity = intensity, fill = fill }
 
    parseBackgroundTypeFill :: A.Value -> T.Parser BackgroundType
    parseBackgroundTypeFill = A.withObject "BackgroundTypeFill" $ \o -> do

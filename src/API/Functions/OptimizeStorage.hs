@@ -12,7 +12,7 @@ import {-# SOURCE #-} qualified API.FileType as FileType
 -- 
 -- Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted
 -- 
--- __size__ Limit on the total size of files after deletion. Pass -1 to use the default limit
+-- __size__ Limit on the total size of files after deletion, in bytes. Pass -1 to use the default limit
 -- 
 -- __ttl__ Limit on the time that has passed since the last time a file was accessed (or creation time for some filesystems). Pass -1 to use the default limit
 -- 
@@ -26,7 +26,7 @@ import {-# SOURCE #-} qualified API.FileType as FileType
 -- 
 -- __exclude_chat_ids__ If not empty, files from the given chats are excluded. Use 0 as chat identifier to exclude all files not belonging to any chat (e.g., profile photos)
 -- 
--- __return_deleted_file_statistics__ Pass true if deleted file statistics needs to be returned instead of the whole storage usage statistics. Affects only returned statistics
+-- __return_deleted_file_statistics__ Pass true if statistics about the files that were deleted must be returned instead of the whole storage usage statistics. Affects only returned statistics
 -- 
 -- __chat_limit__ Same as in getStorageStatistics. Affects only returned statistics
 data OptimizeStorage = 

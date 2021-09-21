@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. This is an offline method. Can be called before authorization. Can be called synchronously 
+-- Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously 
 -- 
 -- __payload__ JSON-encoded push notification payload
 data GetPushReceiverId = 

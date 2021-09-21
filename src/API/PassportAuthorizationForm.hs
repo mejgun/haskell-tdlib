@@ -14,7 +14,7 @@ import {-# SOURCE #-} qualified API.PassportRequiredElement as PassportRequiredE
 -- 
 -- __id__ Unique identifier of the authorization form
 -- 
--- __required_elements__ Information about the Telegram Passport elements that need to be provided to complete the form
+-- __required_elements__ Information about the Telegram Passport elements that must be provided to complete the form
 -- 
 -- __privacy_policy_url__ URL for the privacy policy of the service; may be empty
 data PassportAuthorizationForm = 

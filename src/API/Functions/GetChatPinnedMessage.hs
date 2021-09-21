@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Returns information about a pinned chat message 
+-- Returns information about a newest pinned message in the chat 
 -- 
 -- __chat_id__ Identifier of the chat the message belongs to
 data GetChatPinnedMessage = 

@@ -6,18 +6,18 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
-import {-# SOURCE #-} qualified API.InputFile as InputFile
+import {-# SOURCE #-} qualified API.InputChatPhoto as InputChatPhoto
 
 -- |
 -- 
--- Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info rights. The photo will not be changed before request to the server has been completed
+-- Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
 -- 
 -- __chat_id__ Chat identifier
 -- 
--- __photo__ New chat photo. You can use a zero InputFileId to delete the chat photo. Files that are accessible only by HTTP URL are not acceptable
+-- __photo__ New chat photo. Pass null to delete the chat photo
 data SetChatPhoto = 
 
- SetChatPhoto { photo :: Maybe InputFile.InputFile, chat_id :: Maybe Int }  deriving (Show, Eq)
+ SetChatPhoto { photo :: Maybe InputChatPhoto.InputChatPhoto, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SetChatPhoto where
  toJSON (SetChatPhoto { photo = photo, chat_id = chat_id }) =

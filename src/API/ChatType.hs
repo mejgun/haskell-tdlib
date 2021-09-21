@@ -19,13 +19,13 @@ data ChatType =
  ChatTypePrivate { user_id :: Maybe Int }  |
  -- |
  -- 
- -- A basic group (i.e., a chat with 0-200 other users) 
+ -- A basic group (a chat with 0-200 other users) 
  -- 
  -- __basic_group_id__ Basic group identifier
  ChatTypeBasicGroup { basic_group_id :: Maybe Int }  |
  -- |
  -- 
- -- A supergroup (i.e. a chat with up to GetOption("supergroup_max_size") other users), or channel (with unlimited members) 
+ -- A supergroup or channel (with unlimited members) 
  -- 
  -- __supergroup_id__ Supergroup or channel identifier
  -- 

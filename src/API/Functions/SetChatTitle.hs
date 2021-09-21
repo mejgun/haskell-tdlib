@@ -9,7 +9,7 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info rights. The title will not be changed until the request to the server has been completed
+-- Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
 -- 
 -- __chat_id__ Chat identifier
 -- 

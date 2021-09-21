@@ -17,7 +17,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __can_send_polls__ True, if the user can send polls. Implies can_send_messages permissions
 -- 
--- __can_send_other_messages__ True, if the user can send animations, games, and stickers and use inline bots. Implies can_send_messages permissions
+-- __can_send_other_messages__ True, if the user can send animations, games, stickers, and dice and use inline bots. Implies can_send_messages permissions
 -- 
 -- __can_add_web_page_previews__ True, if the user may add a web page preview to their messages. Implies can_send_messages permissions
 -- 

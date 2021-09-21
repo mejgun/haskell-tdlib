@@ -19,7 +19,7 @@ import {-# SOURCE #-} qualified API.Date as Date
 -- 
 -- __front_side__ Front side of the document
 -- 
--- __reverse_side__ Reverse side of the document; only for driver license and identity card
+-- __reverse_side__ Reverse side of the document; only for driver license and identity card; may be null
 -- 
 -- __selfie__ Selfie with the document; may be null
 -- 

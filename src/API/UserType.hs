@@ -29,7 +29,7 @@ data UserType =
  -- 
  -- __is_inline__ True, if the bot supports inline queries
  -- 
- -- __inline_query_placeholder__ Placeholder for inline queries (displayed on the client input field)
+ -- __inline_query_placeholder__ Placeholder for inline queries (displayed on the application input field)
  -- 
  -- __need_location__ True, if the location of the user should be sent with every inline query to this bot
  UserTypeBot { need_location :: Maybe Bool, inline_query_placeholder :: Maybe String, is_inline :: Maybe Bool, can_read_all_group_messages :: Maybe Bool, can_join_groups :: Maybe Bool }  |

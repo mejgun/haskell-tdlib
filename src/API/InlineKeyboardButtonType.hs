@@ -19,7 +19,7 @@ data InlineKeyboardButtonType =
  InlineKeyboardButtonTypeUrl { url :: Maybe String }  |
  -- |
  -- 
- -- A button that opens a specified URL and automatically logs in in current user if they allowed to do that 
+ -- A button that opens a specified URL and automatically authorize the current user if allowed to do so 
  -- 
  -- __url__ An HTTP URL to open
  -- 
@@ -29,13 +29,19 @@ data InlineKeyboardButtonType =
  InlineKeyboardButtonTypeLoginUrl { forward_text :: Maybe String, _id :: Maybe Int, url :: Maybe String }  |
  -- |
  -- 
- -- A button that sends a special callback query to a bot 
+ -- A button that sends a callback query to a bot 
  -- 
  -- __data__ Data to be sent to the bot via a callback query
  InlineKeyboardButtonTypeCallback { _data :: Maybe String }  |
  -- |
  -- 
- -- A button with a game that sends a special callback query to a bot. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type messageGame
+ -- A button that asks for password of the current user and then sends a callback query to a bot 
+ -- 
+ -- __data__ Data to be sent to the bot via a callback query
+ InlineKeyboardButtonTypeCallbackWithPassword { _data :: Maybe String }  |
+ -- |
+ -- 
+ -- A button with a game that sends a callback query to a bot. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type messageGame
  InlineKeyboardButtonTypeCallbackGame |
  -- |
  -- 
@@ -60,6 +66,9 @@ instance T.ToJSON InlineKeyboardButtonType where
  toJSON (InlineKeyboardButtonTypeCallback { _data = _data }) =
   A.object [ "@type" A..= T.String "inlineKeyboardButtonTypeCallback", "data" A..= _data ]
 
+ toJSON (InlineKeyboardButtonTypeCallbackWithPassword { _data = _data }) =
+  A.object [ "@type" A..= T.String "inlineKeyboardButtonTypeCallbackWithPassword", "data" A..= _data ]
+
  toJSON (InlineKeyboardButtonTypeCallbackGame {  }) =
   A.object [ "@type" A..= T.String "inlineKeyboardButtonTypeCallbackGame" ]
 
@@ -76,6 +85,7 @@ instance T.FromJSON InlineKeyboardButtonType where
    "inlineKeyboardButtonTypeUrl" -> parseInlineKeyboardButtonTypeUrl v
    "inlineKeyboardButtonTypeLoginUrl" -> parseInlineKeyboardButtonTypeLoginUrl v
    "inlineKeyboardButtonTypeCallback" -> parseInlineKeyboardButtonTypeCallback v
+   "inlineKeyboardButtonTypeCallbackWithPassword" -> parseInlineKeyboardButtonTypeCallbackWithPassword v
    "inlineKeyboardButtonTypeCallbackGame" -> parseInlineKeyboardButtonTypeCallbackGame v
    "inlineKeyboardButtonTypeSwitchInline" -> parseInlineKeyboardButtonTypeSwitchInline v
    "inlineKeyboardButtonTypeBuy" -> parseInlineKeyboardButtonTypeBuy v
@@ -97,6 +107,11 @@ instance T.FromJSON InlineKeyboardButtonType where
    parseInlineKeyboardButtonTypeCallback = A.withObject "InlineKeyboardButtonTypeCallback" $ \o -> do
     _data <- o A..:? "data"
     return $ InlineKeyboardButtonTypeCallback { _data = _data }
+
+   parseInlineKeyboardButtonTypeCallbackWithPassword :: A.Value -> T.Parser InlineKeyboardButtonType
+   parseInlineKeyboardButtonTypeCallbackWithPassword = A.withObject "InlineKeyboardButtonTypeCallbackWithPassword" $ \o -> do
+    _data <- o A..:? "data"
+    return $ InlineKeyboardButtonTypeCallbackWithPassword { _data = _data }
 
    parseInlineKeyboardButtonTypeCallbackGame :: A.Value -> T.Parser InlineKeyboardButtonType
    parseInlineKeyboardButtonTypeCallbackGame = A.withObject "InlineKeyboardButtonTypeCallbackGame" $ \o -> do

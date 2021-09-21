@@ -11,7 +11,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- Contains the result of a payment request 
 -- 
--- __success__ True, if the payment request was successful; otherwise the verification_url will be not empty
+-- __success__ True, if the payment request was successful; otherwise the verification_url will be non-empty
 -- 
 -- __verification_url__ URL for additional payment credentials verification
 data PaymentResult = 

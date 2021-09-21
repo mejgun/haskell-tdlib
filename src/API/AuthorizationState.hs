@@ -11,7 +11,7 @@ import {-# SOURCE #-} qualified API.TermsOfService as TermsOfService
 
 -- |
 -- 
--- Represents the current authorization state of the client
+-- Represents the current authorization state of the TDLib client
 data AuthorizationState = 
  -- |
  -- 

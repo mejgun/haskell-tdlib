@@ -9,11 +9,11 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Returns information about a message that is replied by given message 
+-- Returns information about a message that is replied by a given message. Also returns the pinned message, the game message, and the invoice message for messages of the types messagePinMessage, messageGameScore, and messagePaymentSuccessful respectively
 -- 
 -- __chat_id__ Identifier of the chat the message belongs to
 -- 
--- __message_id__ Identifier of the message reply to which get
+-- __message_id__ Identifier of the message reply to which to get
 data GetRepliedMessage = 
 
  GetRepliedMessage { message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)

@@ -16,6 +16,10 @@ import {-# SOURCE #-} qualified API.LabeledPricePart as LabeledPricePart
 -- 
 -- __price_parts__ A list of objects used to calculate the total price of the product
 -- 
+-- __max_tip_amount__ The maximum allowed amount of tip in the smallest units of the currency
+-- 
+-- __suggested_tip_amounts__ Suggested amounts of tip in the smallest units of the currency
+-- 
 -- __is_test__ True, if the payment is a test payment
 -- 
 -- __need_name__ True, if the user's name is needed for payment
@@ -33,11 +37,11 @@ import {-# SOURCE #-} qualified API.LabeledPricePart as LabeledPricePart
 -- __is_flexible__ True, if the total price depends on the shipping method
 data Invoice = 
 
- Invoice { is_flexible :: Maybe Bool, send_email_address_to_provider :: Maybe Bool, send_phone_number_to_provider :: Maybe Bool, need_shipping_address :: Maybe Bool, need_email_address :: Maybe Bool, need_phone_number :: Maybe Bool, need_name :: Maybe Bool, is_test :: Maybe Bool, price_parts :: Maybe [LabeledPricePart.LabeledPricePart], currency :: Maybe String }  deriving (Show, Eq)
+ Invoice { is_flexible :: Maybe Bool, send_email_address_to_provider :: Maybe Bool, send_phone_number_to_provider :: Maybe Bool, need_shipping_address :: Maybe Bool, need_email_address :: Maybe Bool, need_phone_number :: Maybe Bool, need_name :: Maybe Bool, is_test :: Maybe Bool, suggested_tip_amounts :: Maybe [Int], max_tip_amount :: Maybe Int, price_parts :: Maybe [LabeledPricePart.LabeledPricePart], currency :: Maybe String }  deriving (Show, Eq)
 
 instance T.ToJSON Invoice where
- toJSON (Invoice { is_flexible = is_flexible, send_email_address_to_provider = send_email_address_to_provider, send_phone_number_to_provider = send_phone_number_to_provider, need_shipping_address = need_shipping_address, need_email_address = need_email_address, need_phone_number = need_phone_number, need_name = need_name, is_test = is_test, price_parts = price_parts, currency = currency }) =
-  A.object [ "@type" A..= T.String "invoice", "is_flexible" A..= is_flexible, "send_email_address_to_provider" A..= send_email_address_to_provider, "send_phone_number_to_provider" A..= send_phone_number_to_provider, "need_shipping_address" A..= need_shipping_address, "need_email_address" A..= need_email_address, "need_phone_number" A..= need_phone_number, "need_name" A..= need_name, "is_test" A..= is_test, "price_parts" A..= price_parts, "currency" A..= currency ]
+ toJSON (Invoice { is_flexible = is_flexible, send_email_address_to_provider = send_email_address_to_provider, send_phone_number_to_provider = send_phone_number_to_provider, need_shipping_address = need_shipping_address, need_email_address = need_email_address, need_phone_number = need_phone_number, need_name = need_name, is_test = is_test, suggested_tip_amounts = suggested_tip_amounts, max_tip_amount = max_tip_amount, price_parts = price_parts, currency = currency }) =
+  A.object [ "@type" A..= T.String "invoice", "is_flexible" A..= is_flexible, "send_email_address_to_provider" A..= send_email_address_to_provider, "send_phone_number_to_provider" A..= send_phone_number_to_provider, "need_shipping_address" A..= need_shipping_address, "need_email_address" A..= need_email_address, "need_phone_number" A..= need_phone_number, "need_name" A..= need_name, "is_test" A..= is_test, "suggested_tip_amounts" A..= suggested_tip_amounts, "max_tip_amount" A..= max_tip_amount, "price_parts" A..= price_parts, "currency" A..= currency ]
 
 instance T.FromJSON Invoice where
  parseJSON v@(T.Object obj) = do
@@ -56,6 +60,8 @@ instance T.FromJSON Invoice where
     need_phone_number <- o A..:? "need_phone_number"
     need_name <- o A..:? "need_name"
     is_test <- o A..:? "is_test"
+    suggested_tip_amounts <- o A..:? "suggested_tip_amounts"
+    max_tip_amount <- mconcat [ o A..:? "max_tip_amount", readMaybe <$> (o A..: "max_tip_amount" :: T.Parser String)] :: T.Parser (Maybe Int)
     price_parts <- o A..:? "price_parts"
     currency <- o A..:? "currency"
-    return $ Invoice { is_flexible = is_flexible, send_email_address_to_provider = send_email_address_to_provider, send_phone_number_to_provider = send_phone_number_to_provider, need_shipping_address = need_shipping_address, need_email_address = need_email_address, need_phone_number = need_phone_number, need_name = need_name, is_test = is_test, price_parts = price_parts, currency = currency }
+    return $ Invoice { is_flexible = is_flexible, send_email_address_to_provider = send_email_address_to_provider, send_phone_number_to_provider = send_phone_number_to_provider, need_shipping_address = need_shipping_address, need_email_address = need_email_address, need_phone_number = need_phone_number, need_name = need_name, is_test = is_test, suggested_tip_amounts = suggested_tip_amounts, max_tip_amount = max_tip_amount, price_parts = price_parts, currency = currency }

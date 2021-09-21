@@ -13,7 +13,7 @@ import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 -- 
 -- Describes a photo 
 -- 
--- __has_stickers__ True, if stickers were added to the photo
+-- __has_stickers__ True, if stickers were added to the photo. The list of corresponding sticker sets can be received using getAttachedStickerSets
 -- 
 -- __minithumbnail__ Photo minithumbnail; may be null
 -- 

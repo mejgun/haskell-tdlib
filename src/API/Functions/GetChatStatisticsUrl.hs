@@ -9,11 +9,11 @@ import qualified Data.Aeson.Types as T
 
 -- |
 -- 
--- Returns an HTTP URL with the chat statistics. Currently this method of getting the statistics is disabled and can be deleted in the future 
+-- Returns an HTTP URL with the chat statistics. Currently this method of getting the statistics are disabled and can be deleted in the future 
 -- 
 -- __chat_id__ Chat identifier
 -- 
--- __parameters__ Parameters from "tg://statsrefresh?params=******" link
+-- __parameters__ Parameters for the request
 -- 
 -- __is_dark__ Pass true if a URL with the dark theme must be returned
 data GetChatStatisticsUrl = 

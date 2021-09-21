@@ -73,8 +73,16 @@ data SearchMessagesFilter =
  SearchMessagesFilterMention |
  -- |
  -- 
- -- Returns only messages with unread mentions of the current user, or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query or by the sending user
- SearchMessagesFilterUnreadMention deriving (Show, Eq)
+ -- Returns only messages with unread mentions of the current user, or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query, a message thread or by the sending user
+ SearchMessagesFilterUnreadMention |
+ -- |
+ -- 
+ -- Returns only failed to send messages. This filter can be used only if the message database is used
+ SearchMessagesFilterFailedToSend |
+ -- |
+ -- 
+ -- Returns only pinned messages
+ SearchMessagesFilterPinned deriving (Show, Eq)
 
 instance T.ToJSON SearchMessagesFilter where
  toJSON (SearchMessagesFilterEmpty {  }) =
@@ -125,6 +133,12 @@ instance T.ToJSON SearchMessagesFilter where
  toJSON (SearchMessagesFilterUnreadMention {  }) =
   A.object [ "@type" A..= T.String "searchMessagesFilterUnreadMention" ]
 
+ toJSON (SearchMessagesFilterFailedToSend {  }) =
+  A.object [ "@type" A..= T.String "searchMessagesFilterFailedToSend" ]
+
+ toJSON (SearchMessagesFilterPinned {  }) =
+  A.object [ "@type" A..= T.String "searchMessagesFilterPinned" ]
+
 instance T.FromJSON SearchMessagesFilter where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -145,6 +159,8 @@ instance T.FromJSON SearchMessagesFilter where
    "searchMessagesFilterVoiceAndVideoNote" -> parseSearchMessagesFilterVoiceAndVideoNote v
    "searchMessagesFilterMention" -> parseSearchMessagesFilterMention v
    "searchMessagesFilterUnreadMention" -> parseSearchMessagesFilterUnreadMention v
+   "searchMessagesFilterFailedToSend" -> parseSearchMessagesFilterFailedToSend v
+   "searchMessagesFilterPinned" -> parseSearchMessagesFilterPinned v
    _ -> mempty
   where
    parseSearchMessagesFilterEmpty :: A.Value -> T.Parser SearchMessagesFilter
@@ -210,3 +226,11 @@ instance T.FromJSON SearchMessagesFilter where
    parseSearchMessagesFilterUnreadMention :: A.Value -> T.Parser SearchMessagesFilter
    parseSearchMessagesFilterUnreadMention = A.withObject "SearchMessagesFilterUnreadMention" $ \o -> do
     return $ SearchMessagesFilterUnreadMention {  }
+
+   parseSearchMessagesFilterFailedToSend :: A.Value -> T.Parser SearchMessagesFilter
+   parseSearchMessagesFilterFailedToSend = A.withObject "SearchMessagesFilterFailedToSend" $ \o -> do
+    return $ SearchMessagesFilterFailedToSend {  }
+
+   parseSearchMessagesFilterPinned :: A.Value -> T.Parser SearchMessagesFilter
+   parseSearchMessagesFilterPinned = A.withObject "SearchMessagesFilterPinned" $ \o -> do
+    return $ SearchMessagesFilterPinned {  }

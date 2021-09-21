@@ -12,7 +12,7 @@ import {-# SOURCE #-} qualified API.StorageStatisticsByChat as StorageStatistics
 -- 
 -- Contains the exact storage usage statistics split by chats and file type 
 -- 
--- __size__ Total size of files
+-- __size__ Total size of files, in bytes
 -- 
 -- __count__ Total number of files
 -- 

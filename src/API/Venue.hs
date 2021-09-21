@@ -18,7 +18,7 @@ import {-# SOURCE #-} qualified API.Location as Location
 -- 
 -- __address__ Venue address; as defined by the sender
 -- 
--- __provider__ Provider of the venue database; as defined by the sender. Currently only "foursquare" needs to be supported
+-- __provider__ Provider of the venue database; as defined by the sender. Currently only "foursquare" and "gplaces" (Google Places) need to be supported
 -- 
 -- __id__ Identifier of the venue in the provider database; as defined by the sender
 -- 

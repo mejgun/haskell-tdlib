@@ -12,7 +12,7 @@ import {-# SOURCE #-} qualified API.TextEntityType as TextEntityType
 -- 
 -- Represents a part of the text that needs to be formatted in some unusual way 
 -- 
--- __offset__ Offset of the entity in UTF-16 code units
+-- __offset__ Offset of the entity, in UTF-16 code units
 -- 
 -- __length__ Length of the entity, in UTF-16 code units
 -- 

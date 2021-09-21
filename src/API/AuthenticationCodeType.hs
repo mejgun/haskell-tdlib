@@ -13,7 +13,7 @@ import qualified Data.Aeson.Types as T
 data AuthenticationCodeType = 
  -- |
  -- 
- -- An authentication code is delivered via a private Telegram message, which can be viewed in another client 
+ -- An authentication code is delivered via a private Telegram message, which can be viewed from another active session 
  -- 
  -- __length__ Length of the code
  AuthenticationCodeTypeTelegramMessage { _length :: Maybe Int }  |
@@ -31,7 +31,7 @@ data AuthenticationCodeType =
  AuthenticationCodeTypeCall { _length :: Maybe Int }  |
  -- |
  -- 
- -- An authentication code is delivered by an immediately cancelled call to the specified phone number. The number from which the call was made is the code 
+ -- An authentication code is delivered by an immediately canceled call to the specified phone number. The number from which the call was made is the code 
  -- 
  -- __pattern__ Pattern of the phone number from which the call will be made
  AuthenticationCodeTypeFlashCall { pattern :: Maybe String }  deriving (Show, Eq)

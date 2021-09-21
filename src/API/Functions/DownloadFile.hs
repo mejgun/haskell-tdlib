@@ -17,11 +17,11 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __offset__ The starting position from which the file should be downloaded
 -- 
--- __limit__ Number of bytes which should be downloaded starting from the "offset" position before the download will be automatically cancelled; use 0 to download without a limit
+-- __limit__ Number of bytes which should be downloaded starting from the "offset" position before the download will be automatically canceled; use 0 to download without a limit
 -- 
 -- __synchronous__ If false, this request returns file state just after the download has been started. If true, this request returns file state only after
 -- 
--- -the download has succeeded, has failed, has been cancelled or a new downloadFile request with different offset/limit parameters was sent
+-- -the download has succeeded, has failed, has been canceled or a new downloadFile request with different offset/limit parameters was sent
 data DownloadFile = 
 
  DownloadFile { synchronous :: Maybe Bool, limit :: Maybe Int, offset :: Maybe Int, priority :: Maybe Int, file_id :: Maybe Int }  deriving (Show, Eq)

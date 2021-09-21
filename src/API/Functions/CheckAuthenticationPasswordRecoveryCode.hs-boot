@@ -1,0 +1,15 @@
+-- GENERATED
+module API.Functions.CheckAuthenticationPasswordRecoveryCode where
+
+import Data.Aeson.Types
+
+data CheckAuthenticationPasswordRecoveryCode
+
+instance Eq CheckAuthenticationPasswordRecoveryCode
+
+instance ToJSON CheckAuthenticationPasswordRecoveryCode
+
+instance FromJSON CheckAuthenticationPasswordRecoveryCode
+
+instance Show CheckAuthenticationPasswordRecoveryCode
+

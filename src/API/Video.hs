@@ -7,7 +7,7 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import {-# SOURCE #-} qualified API.File as File
-import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
+import {-# SOURCE #-} qualified API.Thumbnail as Thumbnail
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 
 -- |
@@ -24,18 +24,18 @@ import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 -- 
 -- __mime_type__ MIME type of the file; as defined by the sender
 -- 
--- __has_stickers__ True, if stickers were added to the video
+-- __has_stickers__ True, if stickers were added to the video. The list of corresponding sticker sets can be received using getAttachedStickerSets
 -- 
 -- __supports_streaming__ True, if the video should be tried to be streamed
 -- 
 -- __minithumbnail__ Video minithumbnail; may be null
 -- 
--- __thumbnail__ Video thumbnail; as defined by the sender; may be null
+-- __thumbnail__ Video thumbnail in JPEG or MPEG4 format; as defined by the sender; may be null
 -- 
 -- __video__ File containing the video
 data Video = 
 
- Video { video :: Maybe File.File, thumbnail :: Maybe PhotoSize.PhotoSize, minithumbnail :: Maybe Minithumbnail.Minithumbnail, supports_streaming :: Maybe Bool, has_stickers :: Maybe Bool, mime_type :: Maybe String, file_name :: Maybe String, height :: Maybe Int, width :: Maybe Int, duration :: Maybe Int }  deriving (Show, Eq)
+ Video { video :: Maybe File.File, thumbnail :: Maybe Thumbnail.Thumbnail, minithumbnail :: Maybe Minithumbnail.Minithumbnail, supports_streaming :: Maybe Bool, has_stickers :: Maybe Bool, mime_type :: Maybe String, file_name :: Maybe String, height :: Maybe Int, width :: Maybe Int, duration :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON Video where
  toJSON (Video { video = video, thumbnail = thumbnail, minithumbnail = minithumbnail, supports_streaming = supports_streaming, has_stickers = has_stickers, mime_type = mime_type, file_name = file_name, height = height, width = width, duration = duration }) =

@@ -10,7 +10,7 @@ import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
 -- |
 -- 
--- Contains information about a tg:// deep link 
+-- Contains information about a tg: deep link 
 -- 
 -- __text__ Text to be shown to the user
 -- 

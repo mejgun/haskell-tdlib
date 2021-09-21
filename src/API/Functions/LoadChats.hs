@@ -1,0 +1,37 @@
+-- GENERATED
+{-# LANGUAGE OverloadedStrings #-}
+module API.Functions.LoadChats where
+
+import Text.Read (readMaybe)
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as T
+import {-# SOURCE #-} qualified API.ChatList as ChatList
+
+-- |
+-- 
+-- Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats has been loaded
+-- 
+-- __chat_list__ The chat list in which to load chats
+-- 
+-- __limit__ The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
+data LoadChats = 
+
+ LoadChats { limit :: Maybe Int, chat_list :: Maybe ChatList.ChatList }  deriving (Show, Eq)
+
+instance T.ToJSON LoadChats where
+ toJSON (LoadChats { limit = limit, chat_list = chat_list }) =
+  A.object [ "@type" A..= T.String "loadChats", "limit" A..= limit, "chat_list" A..= chat_list ]
+
+instance T.FromJSON LoadChats where
+ parseJSON v@(T.Object obj) = do
+  t <- obj A..: "@type" :: T.Parser String
+  case t of
+   "loadChats" -> parseLoadChats v
+   _ -> mempty
+  where
+   parseLoadChats :: A.Value -> T.Parser LoadChats
+   parseLoadChats = A.withObject "LoadChats" $ \o -> do
+    limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_list <- o A..:? "chat_list"
+    return $ LoadChats { limit = limit, chat_list = chat_list }

@@ -10,11 +10,11 @@ import {-# SOURCE #-} qualified API.PhoneNumberAuthenticationSettings as PhoneNu
 
 -- |
 -- 
--- Sends phone number confirmation code. Should be called when user presses "https://t.me/confirmphone?phone=*******&hash=**********" or "tg://confirmphone?phone=*******&hash=**********" link 
+-- Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation 
 -- 
--- __hash__ Value of the "hash" parameter from the link
+-- __hash__ Hash value from the link
 -- 
--- __phone_number__ Value of the "phone" parameter from the link
+-- __phone_number__ Phone number value from the link
 -- 
 -- __settings__ Settings for the authentication of the user's phone number
 data SendPhoneNumberConfirmationCode = 

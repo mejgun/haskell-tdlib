@@ -12,7 +12,7 @@ import {-# SOURCE #-} qualified API.NetworkStatisticsEntry as NetworkStatisticsE
 -- 
 -- A full list of available network statistic entries 
 -- 
--- __since_date__ Point in time (Unix timestamp) when the app began collecting statistics
+-- __since_date__ Point in time (Unix timestamp) from which the statistics are collected
 -- 
 -- __entries__ Network statistics entries
 data NetworkStatistics = 

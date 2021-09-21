@@ -10,7 +10,7 @@ import {-# SOURCE #-} qualified API.LogStream as LogStream
 
 -- |
 -- 
--- Sets new log stream for internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously 
+-- Sets new log stream for internal logging of TDLib. Can be called synchronously 
 -- 
 -- __log_stream__ New log stream
 data SetLogStream = 

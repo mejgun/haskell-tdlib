@@ -104,14 +104,14 @@ data RichText =
  RichTextIcon { height :: Maybe Int, width :: Maybe Int, document :: Maybe Document.Document }  |
  -- |
  -- 
- -- A rich text reference of a text on the same web page 
+ -- A reference to a richTexts object on the same web page 
  -- 
  -- __text__ The text
  -- 
- -- __reference_text__ The text to show on click
+ -- __anchor_name__ The name of a richTextAnchor object, which is the first element of the target richTexts object
  -- 
  -- __url__ An HTTP URL, opening the reference
- RichTextReference { url :: Maybe String, reference_text :: Maybe RichText, text :: Maybe RichText }  |
+ RichTextReference { url :: Maybe String, anchor_name :: Maybe String, text :: Maybe RichText }  |
  -- |
  -- 
  -- An anchor 
@@ -124,10 +124,10 @@ data RichText =
  -- 
  -- __text__ The link text
  -- 
- -- __name__ The anchor name. If the name is empty, the link should bring back to top
+ -- __anchor_name__ The anchor name. If the name is empty, the link should bring back to top
  -- 
  -- __url__ An HTTP URL, opening the anchor
- RichTextAnchorLink { url :: Maybe String, name :: Maybe String, text :: Maybe RichText }  |
+ RichTextAnchorLink { url :: Maybe String, anchor_name :: Maybe String, text :: Maybe RichText }  |
  -- |
  -- 
  -- A concatenation of rich texts 
@@ -175,14 +175,14 @@ instance T.ToJSON RichText where
  toJSON (RichTextIcon { height = height, width = width, document = document }) =
   A.object [ "@type" A..= T.String "richTextIcon", "height" A..= height, "width" A..= width, "document" A..= document ]
 
- toJSON (RichTextReference { url = url, reference_text = reference_text, text = text }) =
-  A.object [ "@type" A..= T.String "richTextReference", "url" A..= url, "reference_text" A..= reference_text, "text" A..= text ]
+ toJSON (RichTextReference { url = url, anchor_name = anchor_name, text = text }) =
+  A.object [ "@type" A..= T.String "richTextReference", "url" A..= url, "anchor_name" A..= anchor_name, "text" A..= text ]
 
  toJSON (RichTextAnchor { name = name }) =
   A.object [ "@type" A..= T.String "richTextAnchor", "name" A..= name ]
 
- toJSON (RichTextAnchorLink { url = url, name = name, text = text }) =
-  A.object [ "@type" A..= T.String "richTextAnchorLink", "url" A..= url, "name" A..= name, "text" A..= text ]
+ toJSON (RichTextAnchorLink { url = url, anchor_name = anchor_name, text = text }) =
+  A.object [ "@type" A..= T.String "richTextAnchorLink", "url" A..= url, "anchor_name" A..= anchor_name, "text" A..= text ]
 
  toJSON (RichTexts { texts = texts }) =
   A.object [ "@type" A..= T.String "richTexts", "texts" A..= texts ]
@@ -284,9 +284,9 @@ instance T.FromJSON RichText where
    parseRichTextReference :: A.Value -> T.Parser RichText
    parseRichTextReference = A.withObject "RichTextReference" $ \o -> do
     url <- o A..:? "url"
-    reference_text <- o A..:? "reference_text"
+    anchor_name <- o A..:? "anchor_name"
     text <- o A..:? "text"
-    return $ RichTextReference { url = url, reference_text = reference_text, text = text }
+    return $ RichTextReference { url = url, anchor_name = anchor_name, text = text }
 
    parseRichTextAnchor :: A.Value -> T.Parser RichText
    parseRichTextAnchor = A.withObject "RichTextAnchor" $ \o -> do
@@ -296,9 +296,9 @@ instance T.FromJSON RichText where
    parseRichTextAnchorLink :: A.Value -> T.Parser RichText
    parseRichTextAnchorLink = A.withObject "RichTextAnchorLink" $ \o -> do
     url <- o A..:? "url"
-    name <- o A..:? "name"
+    anchor_name <- o A..:? "anchor_name"
     text <- o A..:? "text"
-    return $ RichTextAnchorLink { url = url, name = name, text = text }
+    return $ RichTextAnchorLink { url = url, anchor_name = anchor_name, text = text }
 
    parseRichTexts :: A.Value -> T.Parser RichText
    parseRichTexts = A.withObject "RichTexts" $ \o -> do

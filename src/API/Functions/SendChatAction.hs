@@ -14,14 +14,16 @@ import {-# SOURCE #-} qualified API.ChatAction as ChatAction
 -- 
 -- __chat_id__ Chat identifier
 -- 
+-- __message_thread_id__ If not 0, a message thread identifier in which the action was performed
+-- 
 -- __action__ The action description
 data SendChatAction = 
 
- SendChatAction { action :: Maybe ChatAction.ChatAction, chat_id :: Maybe Int }  deriving (Show, Eq)
+ SendChatAction { action :: Maybe ChatAction.ChatAction, message_thread_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
 
 instance T.ToJSON SendChatAction where
- toJSON (SendChatAction { action = action, chat_id = chat_id }) =
-  A.object [ "@type" A..= T.String "sendChatAction", "action" A..= action, "chat_id" A..= chat_id ]
+ toJSON (SendChatAction { action = action, message_thread_id = message_thread_id, chat_id = chat_id }) =
+  A.object [ "@type" A..= T.String "sendChatAction", "action" A..= action, "message_thread_id" A..= message_thread_id, "chat_id" A..= chat_id ]
 
 instance T.FromJSON SendChatAction where
  parseJSON v@(T.Object obj) = do
@@ -33,5 +35,6 @@ instance T.FromJSON SendChatAction where
    parseSendChatAction :: A.Value -> T.Parser SendChatAction
    parseSendChatAction = A.withObject "SendChatAction" $ \o -> do
     action <- o A..:? "action"
+    message_thread_id <- mconcat [ o A..:? "message_thread_id", readMaybe <$> (o A..: "message_thread_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ SendChatAction { action = action, chat_id = chat_id }
+    return $ SendChatAction { action = action, message_thread_id = message_thread_id, chat_id = chat_id }

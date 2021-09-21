@@ -10,11 +10,11 @@ import {-# SOURCE #-} qualified API.SupergroupMembersFilter as SupergroupMembers
 
 -- |
 -- 
--- Returns information about members or banned users in a supergroup or channel. Can be used only if SupergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters 
+-- Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters 
 -- 
 -- __supergroup_id__ Identifier of the supergroup or channel
 -- 
--- __filter__ The type of users to return. By default, supergroupMembersRecent
+-- __filter__ The type of users to return. By default, supergroupMembersFilterRecent
 -- 
 -- __offset__ Number of users to skip
 -- 

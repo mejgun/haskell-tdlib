@@ -11,7 +11,9 @@ import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 
 -- |
 -- 
--- Edits the content of a message with an animation, an audio, a document, a photo or a video. The media in the message can't be replaced if the message was set to self-destruct. Media can't be replaced by self-destructing media. Media in an album can be edited only to contain a photo or a video. Returns the edited message after the edit is completed on the server side
+-- Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead.
+-- 
+-- -The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
 -- 
 -- __chat_id__ The chat the message belongs to
 -- 
@@ -19,7 +21,7 @@ import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 -- 
 -- __reply_markup__ The new message reply markup; for bots only
 -- 
--- __input_message_content__ New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo
+-- __input_message_content__ New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
 data EditMessageMedia = 
 
  EditMessageMedia { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
