@@ -6,24 +6,38 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.FileType as FileType
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 -- |
 -- 
--- Asynchronously uploads a file to the cloud without sending it in a message. updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message 
+-- Asynchronously uploads a file to the cloud without sending it in a message. updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message
 -- 
 -- __file__ File to upload
 -- 
--- __file_type__ File type
+-- __file_type__ File type; pass null if unknown
 -- 
 -- __priority__ Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which uploadFile was called will be uploaded first
 data UploadFile = 
 
- UploadFile { priority :: Maybe Int, file_type :: Maybe FileType.FileType, file :: Maybe InputFile.InputFile }  deriving (Show, Eq)
+ UploadFile { priority :: Maybe Int, file_type :: Maybe FileType.FileType, file :: Maybe InputFile.InputFile }  deriving (Eq)
+
+instance Show UploadFile where
+ show UploadFile { priority=priority, file_type=file_type, file=file } =
+  "UploadFile" ++ cc [p "priority" priority, p "file_type" file_type, p "file" file ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON UploadFile where
- toJSON (UploadFile { priority = priority, file_type = file_type, file = file }) =
+ toJSON UploadFile { priority = priority, file_type = file_type, file = file } =
   A.object [ "@type" A..= T.String "uploadFile", "priority" A..= priority, "file_type" A..= file_type, "file" A..= file ]
 
 instance T.FromJSON UploadFile where
@@ -39,3 +53,4 @@ instance T.FromJSON UploadFile where
     file_type <- o A..:? "file_type"
     file <- o A..:? "file"
     return $ UploadFile { priority = priority, file_type = file_type, file = file }
+ parseJSON _ = mempty

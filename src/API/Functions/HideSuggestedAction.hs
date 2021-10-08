@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.SuggestedAction as SuggestedAction
 
 -- |
@@ -15,10 +16,23 @@ import {-# SOURCE #-} qualified API.SuggestedAction as SuggestedAction
 -- __action__ Suggested action to hide
 data HideSuggestedAction = 
 
- HideSuggestedAction { action :: Maybe SuggestedAction.SuggestedAction }  deriving (Show, Eq)
+ HideSuggestedAction { action :: Maybe SuggestedAction.SuggestedAction }  deriving (Eq)
+
+instance Show HideSuggestedAction where
+ show HideSuggestedAction { action=action } =
+  "HideSuggestedAction" ++ cc [p "action" action ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON HideSuggestedAction where
- toJSON (HideSuggestedAction { action = action }) =
+ toJSON HideSuggestedAction { action = action } =
   A.object [ "@type" A..= T.String "hideSuggestedAction", "action" A..= action ]
 
 instance T.FromJSON HideSuggestedAction where
@@ -32,3 +46,4 @@ instance T.FromJSON HideSuggestedAction where
    parseHideSuggestedAction = A.withObject "HideSuggestedAction" $ \o -> do
     action <- o A..:? "action"
     return $ HideSuggestedAction { action = action }
+ parseJSON _ = mempty

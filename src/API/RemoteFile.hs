@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -15,7 +16,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- -If the ID starts with "http://" or "https://", it represents the HTTP URL of the file. TDLib is currently unable to download files if only their URL is known.
 -- 
--- -If downloadFile is called on such a file or if it is sent to a secret chat, TDLib starts a file generation process by sending updateFileGenerationStart to the application with the HTTP URL in the original_path and "#url#" as the conversion string. Application should generate the file by downloading it to the specified location
+-- -If downloadFile is called on such a file or if it is sent to a secret chat, TDLib starts a file generation process by sending updateFileGenerationStart to the application with the HTTP URL in the original_path and "#url#" as the conversion string. Application must generate the file by downloading it to the specified location
 -- 
 -- __unique_id__ Unique file identifier; may be empty if unknown. The unique file identifier which is the same for the same file even for different users and is persistent over time
 -- 
@@ -26,10 +27,23 @@ import qualified Data.Aeson.Types as T
 -- __uploaded_size__ Size of the remote available part of the file, in bytes; 0 if unknown
 data RemoteFile = 
 
- RemoteFile { uploaded_size :: Maybe Int, is_uploading_completed :: Maybe Bool, is_uploading_active :: Maybe Bool, unique_id :: Maybe String, _id :: Maybe String }  deriving (Show, Eq)
+ RemoteFile { uploaded_size :: Maybe Int, is_uploading_completed :: Maybe Bool, is_uploading_active :: Maybe Bool, unique_id :: Maybe String, _id :: Maybe String }  deriving (Eq)
+
+instance Show RemoteFile where
+ show RemoteFile { uploaded_size=uploaded_size, is_uploading_completed=is_uploading_completed, is_uploading_active=is_uploading_active, unique_id=unique_id, _id=_id } =
+  "RemoteFile" ++ cc [p "uploaded_size" uploaded_size, p "is_uploading_completed" is_uploading_completed, p "is_uploading_active" is_uploading_active, p "unique_id" unique_id, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON RemoteFile where
- toJSON (RemoteFile { uploaded_size = uploaded_size, is_uploading_completed = is_uploading_completed, is_uploading_active = is_uploading_active, unique_id = unique_id, _id = _id }) =
+ toJSON RemoteFile { uploaded_size = uploaded_size, is_uploading_completed = is_uploading_completed, is_uploading_active = is_uploading_active, unique_id = unique_id, _id = _id } =
   A.object [ "@type" A..= T.String "remoteFile", "uploaded_size" A..= uploaded_size, "is_uploading_completed" A..= is_uploading_completed, "is_uploading_active" A..= is_uploading_active, "unique_id" A..= unique_id, "id" A..= _id ]
 
 instance T.FromJSON RemoteFile where
@@ -47,3 +61,4 @@ instance T.FromJSON RemoteFile where
     unique_id <- o A..:? "unique_id"
     _id <- o A..:? "id"
     return $ RemoteFile { uploaded_size = uploaded_size, is_uploading_completed = is_uploading_completed, is_uploading_active = is_uploading_active, unique_id = unique_id, _id = _id }
+ parseJSON _ = mempty

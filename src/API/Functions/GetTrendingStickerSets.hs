@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __limit__ The maximum number of sticker sets to be returned; must be non-negative. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
 data GetTrendingStickerSets = 
 
- GetTrendingStickerSets { limit :: Maybe Int, offset :: Maybe Int }  deriving (Show, Eq)
+ GetTrendingStickerSets { limit :: Maybe Int, offset :: Maybe Int }  deriving (Eq)
+
+instance Show GetTrendingStickerSets where
+ show GetTrendingStickerSets { limit=limit, offset=offset } =
+  "GetTrendingStickerSets" ++ cc [p "limit" limit, p "offset" offset ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetTrendingStickerSets where
- toJSON (GetTrendingStickerSets { limit = limit, offset = offset }) =
+ toJSON GetTrendingStickerSets { limit = limit, offset = offset } =
   A.object [ "@type" A..= T.String "getTrendingStickerSets", "limit" A..= limit, "offset" A..= offset ]
 
 instance T.FromJSON GetTrendingStickerSets where
@@ -34,3 +48,4 @@ instance T.FromJSON GetTrendingStickerSets where
     limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
     offset <- mconcat [ o A..:? "offset", readMaybe <$> (o A..: "offset" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetTrendingStickerSets { limit = limit, offset = offset }
+ parseJSON _ = mempty

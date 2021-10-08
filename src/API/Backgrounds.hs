@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Background as Background
 
 -- |
@@ -15,10 +16,23 @@ import {-# SOURCE #-} qualified API.Background as Background
 -- __backgrounds__ A list of backgrounds
 data Backgrounds = 
 
- Backgrounds { backgrounds :: Maybe [Background.Background] }  deriving (Show, Eq)
+ Backgrounds { backgrounds :: Maybe [Background.Background] }  deriving (Eq)
+
+instance Show Backgrounds where
+ show Backgrounds { backgrounds=backgrounds } =
+  "Backgrounds" ++ cc [p "backgrounds" backgrounds ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Backgrounds where
- toJSON (Backgrounds { backgrounds = backgrounds }) =
+ toJSON Backgrounds { backgrounds = backgrounds } =
   A.object [ "@type" A..= T.String "backgrounds", "backgrounds" A..= backgrounds ]
 
 instance T.FromJSON Backgrounds where
@@ -32,3 +46,4 @@ instance T.FromJSON Backgrounds where
    parseBackgrounds = A.withObject "Backgrounds" $ \o -> do
     backgrounds <- o A..:? "backgrounds"
     return $ Backgrounds { backgrounds = backgrounds }
+ parseJSON _ = mempty

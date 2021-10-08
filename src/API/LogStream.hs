@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -28,16 +29,35 @@ data LogStream =
  -- |
  -- 
  -- The log is written nowhere
- LogStreamEmpty deriving (Show, Eq)
+ LogStreamEmpty deriving (Eq)
+
+instance Show LogStream where
+ show LogStreamDefault {  } =
+  "LogStreamDefault" ++ cc [ ]
+
+ show LogStreamFile { redirect_stderr=redirect_stderr, max_file_size=max_file_size, path=path } =
+  "LogStreamFile" ++ cc [p "redirect_stderr" redirect_stderr, p "max_file_size" max_file_size, p "path" path ]
+
+ show LogStreamEmpty {  } =
+  "LogStreamEmpty" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON LogStream where
- toJSON (LogStreamDefault {  }) =
+ toJSON LogStreamDefault {  } =
   A.object [ "@type" A..= T.String "logStreamDefault" ]
 
- toJSON (LogStreamFile { redirect_stderr = redirect_stderr, max_file_size = max_file_size, path = path }) =
+ toJSON LogStreamFile { redirect_stderr = redirect_stderr, max_file_size = max_file_size, path = path } =
   A.object [ "@type" A..= T.String "logStreamFile", "redirect_stderr" A..= redirect_stderr, "max_file_size" A..= max_file_size, "path" A..= path ]
 
- toJSON (LogStreamEmpty {  }) =
+ toJSON LogStreamEmpty {  } =
   A.object [ "@type" A..= T.String "logStreamEmpty" ]
 
 instance T.FromJSON LogStream where
@@ -63,3 +83,4 @@ instance T.FromJSON LogStream where
    parseLogStreamEmpty :: A.Value -> T.Parser LogStream
    parseLogStreamEmpty = A.withObject "LogStreamEmpty" $ \o -> do
     return $ LogStreamEmpty {  }
+ parseJSON _ = mempty

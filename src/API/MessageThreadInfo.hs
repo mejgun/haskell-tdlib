@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.DraftMessage as DraftMessage
 import {-# SOURCE #-} qualified API.Message as Message
 import {-# SOURCE #-} qualified API.MessageReplyInfo as MessageReplyInfo
@@ -27,10 +28,23 @@ import {-# SOURCE #-} qualified API.MessageReplyInfo as MessageReplyInfo
 -- __draft_message__ A draft of a message in the message thread; may be null
 data MessageThreadInfo = 
 
- MessageThreadInfo { draft_message :: Maybe DraftMessage.DraftMessage, messages :: Maybe [Message.Message], unread_message_count :: Maybe Int, reply_info :: Maybe MessageReplyInfo.MessageReplyInfo, message_thread_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
+ MessageThreadInfo { draft_message :: Maybe DraftMessage.DraftMessage, messages :: Maybe [Message.Message], unread_message_count :: Maybe Int, reply_info :: Maybe MessageReplyInfo.MessageReplyInfo, message_thread_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show MessageThreadInfo where
+ show MessageThreadInfo { draft_message=draft_message, messages=messages, unread_message_count=unread_message_count, reply_info=reply_info, message_thread_id=message_thread_id, chat_id=chat_id } =
+  "MessageThreadInfo" ++ cc [p "draft_message" draft_message, p "messages" messages, p "unread_message_count" unread_message_count, p "reply_info" reply_info, p "message_thread_id" message_thread_id, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON MessageThreadInfo where
- toJSON (MessageThreadInfo { draft_message = draft_message, messages = messages, unread_message_count = unread_message_count, reply_info = reply_info, message_thread_id = message_thread_id, chat_id = chat_id }) =
+ toJSON MessageThreadInfo { draft_message = draft_message, messages = messages, unread_message_count = unread_message_count, reply_info = reply_info, message_thread_id = message_thread_id, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "messageThreadInfo", "draft_message" A..= draft_message, "messages" A..= messages, "unread_message_count" A..= unread_message_count, "reply_info" A..= reply_info, "message_thread_id" A..= message_thread_id, "chat_id" A..= chat_id ]
 
 instance T.FromJSON MessageThreadInfo where
@@ -49,3 +63,4 @@ instance T.FromJSON MessageThreadInfo where
     message_thread_id <- mconcat [ o A..:? "message_thread_id", readMaybe <$> (o A..: "message_thread_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ MessageThreadInfo { draft_message = draft_message, messages = messages, unread_message_count = unread_message_count, reply_info = reply_info, message_thread_id = message_thread_id, chat_id = chat_id }
+ parseJSON _ = mempty

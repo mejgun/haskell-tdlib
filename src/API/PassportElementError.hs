@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.PassportElementErrorSource as PassportElementErrorSource
 import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 
@@ -20,10 +21,23 @@ import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 -- __source__ Error source
 data PassportElementError = 
 
- PassportElementError { source :: Maybe PassportElementErrorSource.PassportElementErrorSource, message :: Maybe String, _type :: Maybe PassportElementType.PassportElementType }  deriving (Show, Eq)
+ PassportElementError { source :: Maybe PassportElementErrorSource.PassportElementErrorSource, message :: Maybe String, _type :: Maybe PassportElementType.PassportElementType }  deriving (Eq)
+
+instance Show PassportElementError where
+ show PassportElementError { source=source, message=message, _type=_type } =
+  "PassportElementError" ++ cc [p "source" source, p "message" message, p "_type" _type ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON PassportElementError where
- toJSON (PassportElementError { source = source, message = message, _type = _type }) =
+ toJSON PassportElementError { source = source, message = message, _type = _type } =
   A.object [ "@type" A..= T.String "passportElementError", "source" A..= source, "message" A..= message, "type" A..= _type ]
 
 instance T.FromJSON PassportElementError where
@@ -39,3 +53,4 @@ instance T.FromJSON PassportElementError where
     message <- o A..:? "message"
     _type <- o A..:? "type"
     return $ PassportElementError { source = source, message = message, _type = _type }
+ parseJSON _ = mempty

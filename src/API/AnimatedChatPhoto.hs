@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.File as File
 
 -- |
@@ -19,10 +20,23 @@ import {-# SOURCE #-} qualified API.File as File
 -- __main_frame_timestamp__ Timestamp of the frame, used as a static chat photo
 data AnimatedChatPhoto = 
 
- AnimatedChatPhoto { main_frame_timestamp :: Maybe Float, file :: Maybe File.File, _length :: Maybe Int }  deriving (Show, Eq)
+ AnimatedChatPhoto { main_frame_timestamp :: Maybe Float, file :: Maybe File.File, _length :: Maybe Int }  deriving (Eq)
+
+instance Show AnimatedChatPhoto where
+ show AnimatedChatPhoto { main_frame_timestamp=main_frame_timestamp, file=file, _length=_length } =
+  "AnimatedChatPhoto" ++ cc [p "main_frame_timestamp" main_frame_timestamp, p "file" file, p "_length" _length ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON AnimatedChatPhoto where
- toJSON (AnimatedChatPhoto { main_frame_timestamp = main_frame_timestamp, file = file, _length = _length }) =
+ toJSON AnimatedChatPhoto { main_frame_timestamp = main_frame_timestamp, file = file, _length = _length } =
   A.object [ "@type" A..= T.String "animatedChatPhoto", "main_frame_timestamp" A..= main_frame_timestamp, "file" A..= file, "length" A..= _length ]
 
 instance T.FromJSON AnimatedChatPhoto where
@@ -38,3 +52,4 @@ instance T.FromJSON AnimatedChatPhoto where
     file <- o A..:? "file"
     _length <- mconcat [ o A..:? "length", readMaybe <$> (o A..: "length" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ AnimatedChatPhoto { main_frame_timestamp = main_frame_timestamp, file = file, _length = _length }
+ parseJSON _ = mempty

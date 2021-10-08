@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __url__ The message link
 data GetMessageLinkInfo = 
 
- GetMessageLinkInfo { url :: Maybe String }  deriving (Show, Eq)
+ GetMessageLinkInfo { url :: Maybe String }  deriving (Eq)
+
+instance Show GetMessageLinkInfo where
+ show GetMessageLinkInfo { url=url } =
+  "GetMessageLinkInfo" ++ cc [p "url" url ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetMessageLinkInfo where
- toJSON (GetMessageLinkInfo { url = url }) =
+ toJSON GetMessageLinkInfo { url = url } =
   A.object [ "@type" A..= T.String "getMessageLinkInfo", "url" A..= url ]
 
 instance T.FromJSON GetMessageLinkInfo where
@@ -31,3 +45,4 @@ instance T.FromJSON GetMessageLinkInfo where
    parseGetMessageLinkInfo = A.withObject "GetMessageLinkInfo" $ \o -> do
     url <- o A..:? "url"
     return $ GetMessageLinkInfo { url = url }
+ parseJSON _ = mempty

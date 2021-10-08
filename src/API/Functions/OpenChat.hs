@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __chat_id__ Chat identifier
 data OpenChat = 
 
- OpenChat { chat_id :: Maybe Int }  deriving (Show, Eq)
+ OpenChat { chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show OpenChat where
+ show OpenChat { chat_id=chat_id } =
+  "OpenChat" ++ cc [p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON OpenChat where
- toJSON (OpenChat { chat_id = chat_id }) =
+ toJSON OpenChat { chat_id = chat_id } =
   A.object [ "@type" A..= T.String "openChat", "chat_id" A..= chat_id ]
 
 instance T.FromJSON OpenChat where
@@ -31,3 +45,4 @@ instance T.FromJSON OpenChat where
    parseOpenChat = A.withObject "OpenChat" $ \o -> do
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ OpenChat { chat_id = chat_id }
+ parseJSON _ = mempty

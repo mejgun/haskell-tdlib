@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.LanguagePackString as LanguagePackString
 import {-# SOURCE #-} qualified API.LanguagePackInfo as LanguagePackInfo
 
@@ -18,10 +19,23 @@ import {-# SOURCE #-} qualified API.LanguagePackInfo as LanguagePackInfo
 -- __strings__ Strings of the new language pack
 data SetCustomLanguagePack = 
 
- SetCustomLanguagePack { strings :: Maybe [LanguagePackString.LanguagePackString], info :: Maybe LanguagePackInfo.LanguagePackInfo }  deriving (Show, Eq)
+ SetCustomLanguagePack { strings :: Maybe [LanguagePackString.LanguagePackString], info :: Maybe LanguagePackInfo.LanguagePackInfo }  deriving (Eq)
+
+instance Show SetCustomLanguagePack where
+ show SetCustomLanguagePack { strings=strings, info=info } =
+  "SetCustomLanguagePack" ++ cc [p "strings" strings, p "info" info ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SetCustomLanguagePack where
- toJSON (SetCustomLanguagePack { strings = strings, info = info }) =
+ toJSON SetCustomLanguagePack { strings = strings, info = info } =
   A.object [ "@type" A..= T.String "setCustomLanguagePack", "strings" A..= strings, "info" A..= info ]
 
 instance T.FromJSON SetCustomLanguagePack where
@@ -36,3 +50,4 @@ instance T.FromJSON SetCustomLanguagePack where
     strings <- o A..:? "strings"
     info <- o A..:? "info"
     return $ SetCustomLanguagePack { strings = strings, info = info }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __link__ The link
 data GetExternalLinkInfo = 
 
- GetExternalLinkInfo { link :: Maybe String }  deriving (Show, Eq)
+ GetExternalLinkInfo { link :: Maybe String }  deriving (Eq)
+
+instance Show GetExternalLinkInfo where
+ show GetExternalLinkInfo { link=link } =
+  "GetExternalLinkInfo" ++ cc [p "link" link ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetExternalLinkInfo where
- toJSON (GetExternalLinkInfo { link = link }) =
+ toJSON GetExternalLinkInfo { link = link } =
   A.object [ "@type" A..= T.String "getExternalLinkInfo", "link" A..= link ]
 
 instance T.FromJSON GetExternalLinkInfo where
@@ -31,3 +45,4 @@ instance T.FromJSON GetExternalLinkInfo where
    parseGetExternalLinkInfo = A.withObject "GetExternalLinkInfo" $ \o -> do
     link <- o A..:? "link"
     return $ GetExternalLinkInfo { link = link }
+ parseJSON _ = mempty

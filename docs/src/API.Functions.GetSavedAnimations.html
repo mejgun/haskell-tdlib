@@ -12,7 +12,7 @@
 </span><span id="line-12"></span><span class="hs-comment">-- Returns saved animations</span><span>
 </span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="GetSavedAnimations"><span class="annot"><a href="API.Functions.GetSavedAnimations.html#GetSavedAnimations"><span class="hs-identifier hs-var">GetSavedAnimations</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span> </span><span id="GetSavedAnimations"><span class="annot"><a href="API.Functions.GetSavedAnimations.html#GetSavedAnimations"><span class="hs-identifier hs-var">GetSavedAnimations</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679425381"><span id="local-6989586621679425383"><span id="local-6989586621679425385"><span class="annot"><span class="annottext">Int -&gt; GetSavedAnimations -&gt; ShowS
+</span><span id="line-15"></span><span> </span><span id="GetSavedAnimations"><span class="annot"><a href="API.Functions.GetSavedAnimations.html#GetSavedAnimations"><span class="hs-identifier hs-var">GetSavedAnimations</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679454288"><span id="local-6989586621679454290"><span id="local-6989586621679454292"><span class="annot"><span class="annottext">Int -&gt; GetSavedAnimations -&gt; ShowS
 [GetSavedAnimations] -&gt; ShowS
 GetSavedAnimations -&gt; String
 (Int -&gt; GetSavedAnimations -&gt; ShowS)
@@ -27,7 +27,7 @@ show :: GetSavedAnimations -&gt; String
 $cshow :: GetSavedAnimations -&gt; String
 showsPrec :: Int -&gt; GetSavedAnimations -&gt; ShowS
 $cshowsPrec :: Int -&gt; GetSavedAnimations -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679425376"><span id="local-6989586621679425378"><span class="annot"><span class="annottext">GetSavedAnimations -&gt; GetSavedAnimations -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679454283"><span id="local-6989586621679454285"><span class="annot"><span class="annottext">GetSavedAnimations -&gt; GetSavedAnimations -&gt; Bool
 (GetSavedAnimations -&gt; GetSavedAnimations -&gt; Bool)
 -&gt; (GetSavedAnimations -&gt; GetSavedAnimations -&gt; Bool)
 -&gt; Eq GetSavedAnimations
@@ -38,53 +38,64 @@ $c/= :: GetSavedAnimations -&gt; GetSavedAnimations -&gt; Bool
 $c== :: GetSavedAnimations -&gt; GetSavedAnimations -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679425368"><span id="local-6989586621679425370"><span id="local-6989586621679425372"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetSavedAnimations.html#GetSavedAnimations"><span class="hs-identifier hs-type">GetSavedAnimations</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679425366"><span class="annot"><span class="annottext">toJSON :: GetSavedAnimations -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.GetSavedAnimations.html#GetSavedAnimations"><span class="hs-identifier hs-type">GetSavedAnimations</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679454275"><span id="local-6989586621679454277"><span id="local-6989586621679454279"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetSavedAnimations.html#GetSavedAnimations"><span class="hs-identifier hs-type">GetSavedAnimations</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679454273"><span class="annot"><span class="annottext">toJSON :: GetSavedAnimations -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.GetSavedAnimations.html#GetSavedAnimations"><span class="hs-identifier hs-type">GetSavedAnimations</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-19"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;getSavedAnimations&quot;</span></span><span> </span><span class="hs-special">]</span><span>
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;getSavedAnimations&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679425359"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetSavedAnimations.html#GetSavedAnimations"><span class="hs-identifier hs-type">GetSavedAnimations</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span> </span><span id="local-6989586621679425357"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetSavedAnimations
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679425355"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679425355"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679425353"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679425353"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-23"></span><span>  </span><span id="local-6989586621679425352"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679425352"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425353"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679454266"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetSavedAnimations.html#GetSavedAnimations"><span class="hs-identifier hs-type">GetSavedAnimations</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span> </span><span id="local-6989586621679454264"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetSavedAnimations
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679454262"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679454262"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679454260"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679454260"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-23"></span><span>  </span><span id="local-6989586621679454259"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679454259"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679454260"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-24"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679425352"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-25"></span><span>   </span><span class="hs-string">&quot;getSavedAnimations&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetSavedAnimations
-</span><a href="#local-6989586621679425350"><span class="hs-identifier hs-var">parseGetSavedAnimations</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679425355"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-26"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetSavedAnimations
+</span><a href="#local-6989586621679454259"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-25"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;getSavedAnimations&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetSavedAnimations
+</span><a href="#local-6989586621679454257"><span class="hs-identifier hs-var">parseGetSavedAnimations</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679454262"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-26"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetSavedAnimations
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-27"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-28"></span><span>   </span><span class="annot"><a href="#local-6989586621679425350"><span class="hs-identifier hs-type">parseGetSavedAnimations</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetSavedAnimations.html#GetSavedAnimations"><span class="hs-identifier hs-type">GetSavedAnimations</span></a></span><span>
-</span><span id="line-29"></span><span>   </span><span id="local-6989586621679425350"><span class="annot"><span class="annottext">parseGetSavedAnimations :: Value -&gt; Parser GetSavedAnimations
-</span><a href="#local-6989586621679425350"><span class="hs-identifier hs-var hs-var">parseGetSavedAnimations</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-28"></span><span>   </span><span class="annot"><a href="#local-6989586621679454257"><span class="hs-identifier hs-type">parseGetSavedAnimations</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetSavedAnimations.html#GetSavedAnimations"><span class="hs-identifier hs-type">GetSavedAnimations</span></a></span><span>
+</span><span id="line-29"></span><span>   </span><span id="local-6989586621679454257"><span class="annot"><span class="annottext">parseGetSavedAnimations :: Value -&gt; Parser GetSavedAnimations
+</span><a href="#local-6989586621679454257"><span class="hs-identifier hs-var hs-var">parseGetSavedAnimations</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GetSavedAnimations)
 -&gt; Value
 -&gt; Parser GetSavedAnimations
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;GetSavedAnimations&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser GetSavedAnimations)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;GetSavedAnimations&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser GetSavedAnimations)
  -&gt; Value -&gt; Parser GetSavedAnimations)
 -&gt; (Object -&gt; Parser GetSavedAnimations)
 -&gt; Value
 -&gt; Parser GetSavedAnimations
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679425348"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679425348"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679454255"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679454255"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-30"></span><span>    </span><span class="annot"><span class="annottext">GetSavedAnimations -&gt; Parser GetSavedAnimations
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(GetSavedAnimations -&gt; Parser GetSavedAnimations)
 -&gt; GetSavedAnimations -&gt; Parser GetSavedAnimations
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">GetSavedAnimations :: GetSavedAnimations
-</span><a href="API.Functions.GetSavedAnimations.html#GetSavedAnimations"><span class="hs-identifier hs-type hs-type">GetSavedAnimations</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="API.Functions.GetSavedAnimations.html#GetSavedAnimations"><span class="hs-identifier hs-type">GetSavedAnimations</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-31"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser GetSavedAnimations
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-32"></span></pre></body></html>

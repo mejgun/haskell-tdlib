@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __data__ The data
 data SendCallSignalingData = 
 
- SendCallSignalingData { _data :: Maybe String, call_id :: Maybe Int }  deriving (Show, Eq)
+ SendCallSignalingData { _data :: Maybe String, call_id :: Maybe Int }  deriving (Eq)
+
+instance Show SendCallSignalingData where
+ show SendCallSignalingData { _data=_data, call_id=call_id } =
+  "SendCallSignalingData" ++ cc [p "_data" _data, p "call_id" call_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SendCallSignalingData where
- toJSON (SendCallSignalingData { _data = _data, call_id = call_id }) =
+ toJSON SendCallSignalingData { _data = _data, call_id = call_id } =
   A.object [ "@type" A..= T.String "sendCallSignalingData", "data" A..= _data, "call_id" A..= call_id ]
 
 instance T.FromJSON SendCallSignalingData where
@@ -34,3 +48,4 @@ instance T.FromJSON SendCallSignalingData where
     _data <- o A..:? "data"
     call_id <- mconcat [ o A..:? "call_id", readMaybe <$> (o A..: "call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SendCallSignalingData { _data = _data, call_id = call_id }
+ parseJSON _ = mempty

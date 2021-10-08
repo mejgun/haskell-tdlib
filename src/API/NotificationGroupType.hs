@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -26,19 +27,41 @@ data NotificationGroupType =
  -- |
  -- 
  -- A group containing notifications of type notificationTypeNewCall
- NotificationGroupTypeCalls deriving (Show, Eq)
+ NotificationGroupTypeCalls deriving (Eq)
+
+instance Show NotificationGroupType where
+ show NotificationGroupTypeMessages {  } =
+  "NotificationGroupTypeMessages" ++ cc [ ]
+
+ show NotificationGroupTypeMentions {  } =
+  "NotificationGroupTypeMentions" ++ cc [ ]
+
+ show NotificationGroupTypeSecretChat {  } =
+  "NotificationGroupTypeSecretChat" ++ cc [ ]
+
+ show NotificationGroupTypeCalls {  } =
+  "NotificationGroupTypeCalls" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON NotificationGroupType where
- toJSON (NotificationGroupTypeMessages {  }) =
+ toJSON NotificationGroupTypeMessages {  } =
   A.object [ "@type" A..= T.String "notificationGroupTypeMessages" ]
 
- toJSON (NotificationGroupTypeMentions {  }) =
+ toJSON NotificationGroupTypeMentions {  } =
   A.object [ "@type" A..= T.String "notificationGroupTypeMentions" ]
 
- toJSON (NotificationGroupTypeSecretChat {  }) =
+ toJSON NotificationGroupTypeSecretChat {  } =
   A.object [ "@type" A..= T.String "notificationGroupTypeSecretChat" ]
 
- toJSON (NotificationGroupTypeCalls {  }) =
+ toJSON NotificationGroupTypeCalls {  } =
   A.object [ "@type" A..= T.String "notificationGroupTypeCalls" ]
 
 instance T.FromJSON NotificationGroupType where
@@ -66,3 +89,4 @@ instance T.FromJSON NotificationGroupType where
    parseNotificationGroupTypeCalls :: A.Value -> T.Parser NotificationGroupType
    parseNotificationGroupTypeCalls = A.withObject "NotificationGroupTypeCalls" $ \o -> do
     return $ NotificationGroupTypeCalls {  }
+ parseJSON _ = mempty

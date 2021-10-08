@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -13,7 +14,7 @@ import qualified Data.Aeson.Types as T
 data KeyboardButtonType = 
  -- |
  -- 
- -- A simple button, with text that should be sent when the button is pressed
+ -- A simple button, with text that must be sent when the button is pressed
  KeyboardButtonTypeText |
  -- |
  -- 
@@ -30,19 +31,41 @@ data KeyboardButtonType =
  -- __force_regular__ If true, only regular polls must be allowed to create
  -- 
  -- __force_quiz__ If true, only polls in quiz mode must be allowed to create
- KeyboardButtonTypeRequestPoll { force_quiz :: Maybe Bool, force_regular :: Maybe Bool }  deriving (Show, Eq)
+ KeyboardButtonTypeRequestPoll { force_quiz :: Maybe Bool, force_regular :: Maybe Bool }  deriving (Eq)
+
+instance Show KeyboardButtonType where
+ show KeyboardButtonTypeText {  } =
+  "KeyboardButtonTypeText" ++ cc [ ]
+
+ show KeyboardButtonTypeRequestPhoneNumber {  } =
+  "KeyboardButtonTypeRequestPhoneNumber" ++ cc [ ]
+
+ show KeyboardButtonTypeRequestLocation {  } =
+  "KeyboardButtonTypeRequestLocation" ++ cc [ ]
+
+ show KeyboardButtonTypeRequestPoll { force_quiz=force_quiz, force_regular=force_regular } =
+  "KeyboardButtonTypeRequestPoll" ++ cc [p "force_quiz" force_quiz, p "force_regular" force_regular ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON KeyboardButtonType where
- toJSON (KeyboardButtonTypeText {  }) =
+ toJSON KeyboardButtonTypeText {  } =
   A.object [ "@type" A..= T.String "keyboardButtonTypeText" ]
 
- toJSON (KeyboardButtonTypeRequestPhoneNumber {  }) =
+ toJSON KeyboardButtonTypeRequestPhoneNumber {  } =
   A.object [ "@type" A..= T.String "keyboardButtonTypeRequestPhoneNumber" ]
 
- toJSON (KeyboardButtonTypeRequestLocation {  }) =
+ toJSON KeyboardButtonTypeRequestLocation {  } =
   A.object [ "@type" A..= T.String "keyboardButtonTypeRequestLocation" ]
 
- toJSON (KeyboardButtonTypeRequestPoll { force_quiz = force_quiz, force_regular = force_regular }) =
+ toJSON KeyboardButtonTypeRequestPoll { force_quiz = force_quiz, force_regular = force_regular } =
   A.object [ "@type" A..= T.String "keyboardButtonTypeRequestPoll", "force_quiz" A..= force_quiz, "force_regular" A..= force_regular ]
 
 instance T.FromJSON KeyboardButtonType where
@@ -72,3 +95,4 @@ instance T.FromJSON KeyboardButtonType where
     force_quiz <- o A..:? "force_quiz"
     force_regular <- o A..:? "force_regular"
     return $ KeyboardButtonTypeRequestPoll { force_quiz = force_quiz, force_regular = force_regular }
+ parseJSON _ = mempty

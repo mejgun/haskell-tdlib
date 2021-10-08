@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __length__ Length of the code; 0 if unknown
 data EmailAddressAuthenticationCodeInfo = 
 
- EmailAddressAuthenticationCodeInfo { _length :: Maybe Int, email_address_pattern :: Maybe String }  deriving (Show, Eq)
+ EmailAddressAuthenticationCodeInfo { _length :: Maybe Int, email_address_pattern :: Maybe String }  deriving (Eq)
+
+instance Show EmailAddressAuthenticationCodeInfo where
+ show EmailAddressAuthenticationCodeInfo { _length=_length, email_address_pattern=email_address_pattern } =
+  "EmailAddressAuthenticationCodeInfo" ++ cc [p "_length" _length, p "email_address_pattern" email_address_pattern ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON EmailAddressAuthenticationCodeInfo where
- toJSON (EmailAddressAuthenticationCodeInfo { _length = _length, email_address_pattern = email_address_pattern }) =
+ toJSON EmailAddressAuthenticationCodeInfo { _length = _length, email_address_pattern = email_address_pattern } =
   A.object [ "@type" A..= T.String "emailAddressAuthenticationCodeInfo", "length" A..= _length, "email_address_pattern" A..= email_address_pattern ]
 
 instance T.FromJSON EmailAddressAuthenticationCodeInfo where
@@ -34,3 +48,4 @@ instance T.FromJSON EmailAddressAuthenticationCodeInfo where
     _length <- mconcat [ o A..:? "length", readMaybe <$> (o A..: "length" :: T.Parser String)] :: T.Parser (Maybe Int)
     email_address_pattern <- o A..:? "email_address_pattern"
     return $ EmailAddressAuthenticationCodeInfo { _length = _length, email_address_pattern = email_address_pattern }
+ parseJSON _ = mempty

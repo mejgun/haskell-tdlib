@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -13,25 +14,44 @@ import qualified Data.Aeson.Types as T
 data PageBlockVerticalAlignment = 
  -- |
  -- 
- -- The content should be top-aligned
+ -- The content must be top-aligned
  PageBlockVerticalAlignmentTop |
  -- |
  -- 
- -- The content should be middle-aligned
+ -- The content must be middle-aligned
  PageBlockVerticalAlignmentMiddle |
  -- |
  -- 
- -- The content should be bottom-aligned
- PageBlockVerticalAlignmentBottom deriving (Show, Eq)
+ -- The content must be bottom-aligned
+ PageBlockVerticalAlignmentBottom deriving (Eq)
+
+instance Show PageBlockVerticalAlignment where
+ show PageBlockVerticalAlignmentTop {  } =
+  "PageBlockVerticalAlignmentTop" ++ cc [ ]
+
+ show PageBlockVerticalAlignmentMiddle {  } =
+  "PageBlockVerticalAlignmentMiddle" ++ cc [ ]
+
+ show PageBlockVerticalAlignmentBottom {  } =
+  "PageBlockVerticalAlignmentBottom" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON PageBlockVerticalAlignment where
- toJSON (PageBlockVerticalAlignmentTop {  }) =
+ toJSON PageBlockVerticalAlignmentTop {  } =
   A.object [ "@type" A..= T.String "pageBlockVerticalAlignmentTop" ]
 
- toJSON (PageBlockVerticalAlignmentMiddle {  }) =
+ toJSON PageBlockVerticalAlignmentMiddle {  } =
   A.object [ "@type" A..= T.String "pageBlockVerticalAlignmentMiddle" ]
 
- toJSON (PageBlockVerticalAlignmentBottom {  }) =
+ toJSON PageBlockVerticalAlignmentBottom {  } =
   A.object [ "@type" A..= T.String "pageBlockVerticalAlignmentBottom" ]
 
 instance T.FromJSON PageBlockVerticalAlignment where
@@ -54,3 +74,4 @@ instance T.FromJSON PageBlockVerticalAlignment where
    parsePageBlockVerticalAlignmentBottom :: A.Value -> T.Parser PageBlockVerticalAlignment
    parsePageBlockVerticalAlignmentBottom = A.withObject "PageBlockVerticalAlignmentBottom" $ \o -> do
     return $ PageBlockVerticalAlignmentBottom {  }
+ parseJSON _ = mempty

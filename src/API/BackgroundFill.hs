@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -25,23 +26,42 @@ data BackgroundFill =
  -- 
  -- __bottom_color__ A bottom color of the background in the RGB24 format
  -- 
- -- __rotation_angle__ Clockwise rotation angle of the gradient, in degrees; 0-359. Should be always divisible by 45
+ -- __rotation_angle__ Clockwise rotation angle of the gradient, in degrees; 0-359. Must be always divisible by 45
  BackgroundFillGradient { rotation_angle :: Maybe Int, bottom_color :: Maybe Int, top_color :: Maybe Int }  |
  -- |
  -- 
  -- Describes a freeform gradient fill of a background 
  -- 
  -- __colors__ A list of 3 or 4 colors of the freeform gradients in the RGB24 format
- BackgroundFillFreeformGradient { colors :: Maybe [Int] }  deriving (Show, Eq)
+ BackgroundFillFreeformGradient { colors :: Maybe [Int] }  deriving (Eq)
+
+instance Show BackgroundFill where
+ show BackgroundFillSolid { color=color } =
+  "BackgroundFillSolid" ++ cc [p "color" color ]
+
+ show BackgroundFillGradient { rotation_angle=rotation_angle, bottom_color=bottom_color, top_color=top_color } =
+  "BackgroundFillGradient" ++ cc [p "rotation_angle" rotation_angle, p "bottom_color" bottom_color, p "top_color" top_color ]
+
+ show BackgroundFillFreeformGradient { colors=colors } =
+  "BackgroundFillFreeformGradient" ++ cc [p "colors" colors ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON BackgroundFill where
- toJSON (BackgroundFillSolid { color = color }) =
+ toJSON BackgroundFillSolid { color = color } =
   A.object [ "@type" A..= T.String "backgroundFillSolid", "color" A..= color ]
 
- toJSON (BackgroundFillGradient { rotation_angle = rotation_angle, bottom_color = bottom_color, top_color = top_color }) =
+ toJSON BackgroundFillGradient { rotation_angle = rotation_angle, bottom_color = bottom_color, top_color = top_color } =
   A.object [ "@type" A..= T.String "backgroundFillGradient", "rotation_angle" A..= rotation_angle, "bottom_color" A..= bottom_color, "top_color" A..= top_color ]
 
- toJSON (BackgroundFillFreeformGradient { colors = colors }) =
+ toJSON BackgroundFillFreeformGradient { colors = colors } =
   A.object [ "@type" A..= T.String "backgroundFillFreeformGradient", "colors" A..= colors ]
 
 instance T.FromJSON BackgroundFill where
@@ -69,3 +89,4 @@ instance T.FromJSON BackgroundFill where
    parseBackgroundFillFreeformGradient = A.withObject "BackgroundFillFreeformGradient" $ \o -> do
     colors <- o A..:? "colors"
     return $ BackgroundFillFreeformGradient { colors = colors }
+ parseJSON _ = mempty

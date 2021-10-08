@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.BackgroundType as BackgroundType
 
 -- |
@@ -17,10 +18,23 @@ import {-# SOURCE #-} qualified API.BackgroundType as BackgroundType
 -- __type__ Background type
 data GetBackgroundUrl = 
 
- GetBackgroundUrl { _type :: Maybe BackgroundType.BackgroundType, name :: Maybe String }  deriving (Show, Eq)
+ GetBackgroundUrl { _type :: Maybe BackgroundType.BackgroundType, name :: Maybe String }  deriving (Eq)
+
+instance Show GetBackgroundUrl where
+ show GetBackgroundUrl { _type=_type, name=name } =
+  "GetBackgroundUrl" ++ cc [p "_type" _type, p "name" name ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetBackgroundUrl where
- toJSON (GetBackgroundUrl { _type = _type, name = name }) =
+ toJSON GetBackgroundUrl { _type = _type, name = name } =
   A.object [ "@type" A..= T.String "getBackgroundUrl", "type" A..= _type, "name" A..= name ]
 
 instance T.FromJSON GetBackgroundUrl where
@@ -35,3 +49,4 @@ instance T.FromJSON GetBackgroundUrl where
     _type <- o A..:? "type"
     name <- o A..:? "name"
     return $ GetBackgroundUrl { _type = _type, name = name }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.ChatList as ChatList
 
 -- |
@@ -19,10 +20,23 @@ import {-# SOURCE #-} qualified API.ChatList as ChatList
 -- __is_pinned__ True, if the chat is pinned
 data ToggleChatIsPinned = 
 
- ToggleChatIsPinned { is_pinned :: Maybe Bool, chat_id :: Maybe Int, chat_list :: Maybe ChatList.ChatList }  deriving (Show, Eq)
+ ToggleChatIsPinned { is_pinned :: Maybe Bool, chat_id :: Maybe Int, chat_list :: Maybe ChatList.ChatList }  deriving (Eq)
+
+instance Show ToggleChatIsPinned where
+ show ToggleChatIsPinned { is_pinned=is_pinned, chat_id=chat_id, chat_list=chat_list } =
+  "ToggleChatIsPinned" ++ cc [p "is_pinned" is_pinned, p "chat_id" chat_id, p "chat_list" chat_list ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ToggleChatIsPinned where
- toJSON (ToggleChatIsPinned { is_pinned = is_pinned, chat_id = chat_id, chat_list = chat_list }) =
+ toJSON ToggleChatIsPinned { is_pinned = is_pinned, chat_id = chat_id, chat_list = chat_list } =
   A.object [ "@type" A..= T.String "toggleChatIsPinned", "is_pinned" A..= is_pinned, "chat_id" A..= chat_id, "chat_list" A..= chat_list ]
 
 instance T.FromJSON ToggleChatIsPinned where
@@ -38,3 +52,4 @@ instance T.FromJSON ToggleChatIsPinned where
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_list <- o A..:? "chat_list"
     return $ ToggleChatIsPinned { is_pinned = is_pinned, chat_id = chat_id, chat_list = chat_list }
+ parseJSON _ = mempty

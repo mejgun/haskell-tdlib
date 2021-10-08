@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.PollType as PollType
 import {-# SOURCE #-} qualified API.PollOption as PollOption
 
@@ -34,10 +35,23 @@ import {-# SOURCE #-} qualified API.PollOption as PollOption
 -- __is_closed__ True, if the poll is closed
 data Poll = 
 
- Poll { is_closed :: Maybe Bool, close_date :: Maybe Int, open_period :: Maybe Int, _type :: Maybe PollType.PollType, is_anonymous :: Maybe Bool, recent_voter_user_ids :: Maybe [Int], total_voter_count :: Maybe Int, options :: Maybe [PollOption.PollOption], question :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
+ Poll { is_closed :: Maybe Bool, close_date :: Maybe Int, open_period :: Maybe Int, _type :: Maybe PollType.PollType, is_anonymous :: Maybe Bool, recent_voter_user_ids :: Maybe [Int], total_voter_count :: Maybe Int, options :: Maybe [PollOption.PollOption], question :: Maybe String, _id :: Maybe Int }  deriving (Eq)
+
+instance Show Poll where
+ show Poll { is_closed=is_closed, close_date=close_date, open_period=open_period, _type=_type, is_anonymous=is_anonymous, recent_voter_user_ids=recent_voter_user_ids, total_voter_count=total_voter_count, options=options, question=question, _id=_id } =
+  "Poll" ++ cc [p "is_closed" is_closed, p "close_date" close_date, p "open_period" open_period, p "_type" _type, p "is_anonymous" is_anonymous, p "recent_voter_user_ids" recent_voter_user_ids, p "total_voter_count" total_voter_count, p "options" options, p "question" question, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Poll where
- toJSON (Poll { is_closed = is_closed, close_date = close_date, open_period = open_period, _type = _type, is_anonymous = is_anonymous, recent_voter_user_ids = recent_voter_user_ids, total_voter_count = total_voter_count, options = options, question = question, _id = _id }) =
+ toJSON Poll { is_closed = is_closed, close_date = close_date, open_period = open_period, _type = _type, is_anonymous = is_anonymous, recent_voter_user_ids = recent_voter_user_ids, total_voter_count = total_voter_count, options = options, question = question, _id = _id } =
   A.object [ "@type" A..= T.String "poll", "is_closed" A..= is_closed, "close_date" A..= close_date, "open_period" A..= open_period, "type" A..= _type, "is_anonymous" A..= is_anonymous, "recent_voter_user_ids" A..= recent_voter_user_ids, "total_voter_count" A..= total_voter_count, "options" A..= options, "question" A..= question, "id" A..= _id ]
 
 instance T.FromJSON Poll where
@@ -60,3 +74,4 @@ instance T.FromJSON Poll where
     question <- o A..:? "question"
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Poll { is_closed = is_closed, close_date = close_date, open_period = open_period, _type = _type, is_anonymous = is_anonymous, recent_voter_user_ids = recent_voter_user_ids, total_voter_count = total_voter_count, options = options, question = question, _id = _id }
+ parseJSON _ = mempty

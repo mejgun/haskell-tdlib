@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -28,13 +29,29 @@ data CallServerType =
  -- __supports_turn__ True, if the server supports TURN
  -- 
  -- __supports_stun__ True, if the server supports STUN
- CallServerTypeWebrtc { supports_stun :: Maybe Bool, supports_turn :: Maybe Bool, password :: Maybe String, username :: Maybe String }  deriving (Show, Eq)
+ CallServerTypeWebrtc { supports_stun :: Maybe Bool, supports_turn :: Maybe Bool, password :: Maybe String, username :: Maybe String }  deriving (Eq)
+
+instance Show CallServerType where
+ show CallServerTypeTelegramReflector { peer_tag=peer_tag } =
+  "CallServerTypeTelegramReflector" ++ cc [p "peer_tag" peer_tag ]
+
+ show CallServerTypeWebrtc { supports_stun=supports_stun, supports_turn=supports_turn, password=password, username=username } =
+  "CallServerTypeWebrtc" ++ cc [p "supports_stun" supports_stun, p "supports_turn" supports_turn, p "password" password, p "username" username ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON CallServerType where
- toJSON (CallServerTypeTelegramReflector { peer_tag = peer_tag }) =
+ toJSON CallServerTypeTelegramReflector { peer_tag = peer_tag } =
   A.object [ "@type" A..= T.String "callServerTypeTelegramReflector", "peer_tag" A..= peer_tag ]
 
- toJSON (CallServerTypeWebrtc { supports_stun = supports_stun, supports_turn = supports_turn, password = password, username = username }) =
+ toJSON CallServerTypeWebrtc { supports_stun = supports_stun, supports_turn = supports_turn, password = password, username = username } =
   A.object [ "@type" A..= T.String "callServerTypeWebrtc", "supports_stun" A..= supports_stun, "supports_turn" A..= supports_turn, "password" A..= password, "username" A..= username ]
 
 instance T.FromJSON CallServerType where
@@ -57,3 +74,4 @@ instance T.FromJSON CallServerType where
     password <- o A..:? "password"
     username <- o A..:? "username"
     return $ CallServerTypeWebrtc { supports_stun = supports_stun, supports_turn = supports_turn, password = password, username = username }
+ parseJSON _ = mempty

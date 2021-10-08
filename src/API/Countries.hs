@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.CountryInfo as CountryInfo
 
 -- |
@@ -15,10 +16,23 @@ import {-# SOURCE #-} qualified API.CountryInfo as CountryInfo
 -- __countries__ The list of countries
 data Countries = 
 
- Countries { countries :: Maybe [CountryInfo.CountryInfo] }  deriving (Show, Eq)
+ Countries { countries :: Maybe [CountryInfo.CountryInfo] }  deriving (Eq)
+
+instance Show Countries where
+ show Countries { countries=countries } =
+  "Countries" ++ cc [p "countries" countries ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Countries where
- toJSON (Countries { countries = countries }) =
+ toJSON Countries { countries = countries } =
   A.object [ "@type" A..= T.String "countries", "countries" A..= countries ]
 
 instance T.FromJSON Countries where
@@ -32,3 +46,4 @@ instance T.FromJSON Countries where
    parseCountries = A.withObject "Countries" $ \o -> do
     countries <- o A..:? "countries"
     return $ Countries { countries = countries }
+ parseJSON _ = mempty

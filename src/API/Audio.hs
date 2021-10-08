@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.Thumbnail as Thumbnail
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
@@ -26,15 +27,28 @@ import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 -- 
 -- __album_cover_minithumbnail__ The minithumbnail of the album cover; may be null
 -- 
--- __album_cover_thumbnail__ The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail should be extracted from the downloaded file; may be null
+-- __album_cover_thumbnail__ The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail is supposed to be extracted from the downloaded file; may be null
 -- 
 -- __audio__ File containing the audio
 data Audio = 
 
- Audio { audio :: Maybe File.File, album_cover_thumbnail :: Maybe Thumbnail.Thumbnail, album_cover_minithumbnail :: Maybe Minithumbnail.Minithumbnail, mime_type :: Maybe String, file_name :: Maybe String, performer :: Maybe String, title :: Maybe String, duration :: Maybe Int }  deriving (Show, Eq)
+ Audio { audio :: Maybe File.File, album_cover_thumbnail :: Maybe Thumbnail.Thumbnail, album_cover_minithumbnail :: Maybe Minithumbnail.Minithumbnail, mime_type :: Maybe String, file_name :: Maybe String, performer :: Maybe String, title :: Maybe String, duration :: Maybe Int }  deriving (Eq)
+
+instance Show Audio where
+ show Audio { audio=audio, album_cover_thumbnail=album_cover_thumbnail, album_cover_minithumbnail=album_cover_minithumbnail, mime_type=mime_type, file_name=file_name, performer=performer, title=title, duration=duration } =
+  "Audio" ++ cc [p "audio" audio, p "album_cover_thumbnail" album_cover_thumbnail, p "album_cover_minithumbnail" album_cover_minithumbnail, p "mime_type" mime_type, p "file_name" file_name, p "performer" performer, p "title" title, p "duration" duration ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Audio where
- toJSON (Audio { audio = audio, album_cover_thumbnail = album_cover_thumbnail, album_cover_minithumbnail = album_cover_minithumbnail, mime_type = mime_type, file_name = file_name, performer = performer, title = title, duration = duration }) =
+ toJSON Audio { audio = audio, album_cover_thumbnail = album_cover_thumbnail, album_cover_minithumbnail = album_cover_minithumbnail, mime_type = mime_type, file_name = file_name, performer = performer, title = title, duration = duration } =
   A.object [ "@type" A..= T.String "audio", "audio" A..= audio, "album_cover_thumbnail" A..= album_cover_thumbnail, "album_cover_minithumbnail" A..= album_cover_minithumbnail, "mime_type" A..= mime_type, "file_name" A..= file_name, "performer" A..= performer, "title" A..= title, "duration" A..= duration ]
 
 instance T.FromJSON Audio where
@@ -55,3 +69,4 @@ instance T.FromJSON Audio where
     title <- o A..:? "title"
     duration <- mconcat [ o A..:? "duration", readMaybe <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Audio { audio = audio, album_cover_thumbnail = album_cover_thumbnail, album_cover_minithumbnail = album_cover_minithumbnail, mime_type = mime_type, file_name = file_name, performer = performer, title = title, duration = duration }
+ parseJSON _ = mempty

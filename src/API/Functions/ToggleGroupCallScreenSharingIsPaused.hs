@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __is_paused__ True if screen sharing is paused
 data ToggleGroupCallScreenSharingIsPaused = 
 
- ToggleGroupCallScreenSharingIsPaused { is_paused :: Maybe Bool, group_call_id :: Maybe Int }  deriving (Show, Eq)
+ ToggleGroupCallScreenSharingIsPaused { is_paused :: Maybe Bool, group_call_id :: Maybe Int }  deriving (Eq)
+
+instance Show ToggleGroupCallScreenSharingIsPaused where
+ show ToggleGroupCallScreenSharingIsPaused { is_paused=is_paused, group_call_id=group_call_id } =
+  "ToggleGroupCallScreenSharingIsPaused" ++ cc [p "is_paused" is_paused, p "group_call_id" group_call_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ToggleGroupCallScreenSharingIsPaused where
- toJSON (ToggleGroupCallScreenSharingIsPaused { is_paused = is_paused, group_call_id = group_call_id }) =
+ toJSON ToggleGroupCallScreenSharingIsPaused { is_paused = is_paused, group_call_id = group_call_id } =
   A.object [ "@type" A..= T.String "toggleGroupCallScreenSharingIsPaused", "is_paused" A..= is_paused, "group_call_id" A..= group_call_id ]
 
 instance T.FromJSON ToggleGroupCallScreenSharingIsPaused where
@@ -34,3 +48,4 @@ instance T.FromJSON ToggleGroupCallScreenSharingIsPaused where
     is_paused <- o A..:? "is_paused"
     group_call_id <- mconcat [ o A..:? "group_call_id", readMaybe <$> (o A..: "group_call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ToggleGroupCallScreenSharingIsPaused { is_paused = is_paused, group_call_id = group_call_id }
+ parseJSON _ = mempty

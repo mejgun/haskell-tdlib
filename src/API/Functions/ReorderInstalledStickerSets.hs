@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __sticker_set_ids__ Identifiers of installed sticker sets in the new correct order
 data ReorderInstalledStickerSets = 
 
- ReorderInstalledStickerSets { sticker_set_ids :: Maybe [Int], is_masks :: Maybe Bool }  deriving (Show, Eq)
+ ReorderInstalledStickerSets { sticker_set_ids :: Maybe [Int], is_masks :: Maybe Bool }  deriving (Eq)
+
+instance Show ReorderInstalledStickerSets where
+ show ReorderInstalledStickerSets { sticker_set_ids=sticker_set_ids, is_masks=is_masks } =
+  "ReorderInstalledStickerSets" ++ cc [p "sticker_set_ids" sticker_set_ids, p "is_masks" is_masks ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ReorderInstalledStickerSets where
- toJSON (ReorderInstalledStickerSets { sticker_set_ids = sticker_set_ids, is_masks = is_masks }) =
+ toJSON ReorderInstalledStickerSets { sticker_set_ids = sticker_set_ids, is_masks = is_masks } =
   A.object [ "@type" A..= T.String "reorderInstalledStickerSets", "sticker_set_ids" A..= sticker_set_ids, "is_masks" A..= is_masks ]
 
 instance T.FromJSON ReorderInstalledStickerSets where
@@ -34,3 +48,4 @@ instance T.FromJSON ReorderInstalledStickerSets where
     sticker_set_ids <- o A..:? "sticker_set_ids"
     is_masks <- o A..:? "is_masks"
     return $ ReorderInstalledStickerSets { sticker_set_ids = sticker_set_ids, is_masks = is_masks }
+ parseJSON _ = mempty

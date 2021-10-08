@@ -26,7 +26,7 @@
 </span><span id="line-26"></span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-27"></span><span> </span><span class="hs-comment">-- </span><span>
 </span><span id="line-28"></span><span> </span><span class="hs-comment">-- A group containing notifications of type notificationTypeNewCall</span><span>
-</span><span id="line-29"></span><span> </span><span id="NotificationGroupTypeCalls"><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupTypeCalls"><span class="hs-identifier hs-var">NotificationGroupTypeCalls</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679443707"><span id="local-6989586621679443709"><span id="local-6989586621679443711"><span class="annot"><span class="annottext">Int -&gt; NotificationGroupType -&gt; ShowS
+</span><span id="line-29"></span><span> </span><span id="NotificationGroupTypeCalls"><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupTypeCalls"><span class="hs-identifier hs-var">NotificationGroupTypeCalls</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679477412"><span id="local-6989586621679477414"><span id="local-6989586621679477416"><span class="annot"><span class="annottext">Int -&gt; NotificationGroupType -&gt; ShowS
 [NotificationGroupType] -&gt; ShowS
 NotificationGroupType -&gt; String
 (Int -&gt; NotificationGroupType -&gt; ShowS)
@@ -41,7 +41,7 @@ show :: NotificationGroupType -&gt; String
 $cshow :: NotificationGroupType -&gt; String
 showsPrec :: Int -&gt; NotificationGroupType -&gt; ShowS
 $cshowsPrec :: Int -&gt; NotificationGroupType -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679443702"><span id="local-6989586621679443704"><span class="annot"><span class="annottext">NotificationGroupType -&gt; NotificationGroupType -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679477407"><span id="local-6989586621679477409"><span class="annot"><span class="annottext">NotificationGroupType -&gt; NotificationGroupType -&gt; Bool
 (NotificationGroupType -&gt; NotificationGroupType -&gt; Bool)
 -&gt; (NotificationGroupType -&gt; NotificationGroupType -&gt; Bool)
 -&gt; Eq NotificationGroupType
@@ -52,152 +52,175 @@ $c/= :: NotificationGroupType -&gt; NotificationGroupType -&gt; Bool
 $c== :: NotificationGroupType -&gt; NotificationGroupType -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-30"></span><span>
-</span><span id="line-31"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679443694"><span id="local-6989586621679443696"><span id="local-6989586621679443698"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-32"></span><span> </span><span id="local-6989586621679443692"><span class="annot"><span class="annottext">toJSON :: NotificationGroupType -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupTypeMessages"><span class="hs-identifier hs-type">NotificationGroupTypeMessages</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-31"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679477399"><span id="local-6989586621679477401"><span id="local-6989586621679477403"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-32"></span><span> </span><span id="local-6989586621679477397"><span class="annot"><span class="annottext">toJSON :: NotificationGroupType -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupTypeMessages"><span class="hs-identifier hs-type">NotificationGroupTypeMessages</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-33"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;notificationGroupTypeMessages&quot;</span></span><span> </span><span class="hs-special">]</span><span>
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;notificationGroupTypeMessages&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-34"></span><span>
-</span><span id="line-35"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupTypeMentions"><span class="hs-identifier hs-type">NotificationGroupTypeMentions</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-35"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupTypeMentions"><span class="hs-identifier hs-type">NotificationGroupTypeMentions</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-36"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;notificationGroupTypeMentions&quot;</span></span><span> </span><span class="hs-special">]</span><span>
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;notificationGroupTypeMentions&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-37"></span><span>
-</span><span id="line-38"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupTypeSecretChat"><span class="hs-identifier hs-type">NotificationGroupTypeSecretChat</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-38"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupTypeSecretChat"><span class="hs-identifier hs-type">NotificationGroupTypeSecretChat</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-39"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;notificationGroupTypeSecretChat&quot;</span></span><span> </span><span class="hs-special">]</span><span>
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;notificationGroupTypeSecretChat&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-40"></span><span>
-</span><span id="line-41"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupTypeCalls"><span class="hs-identifier hs-type">NotificationGroupTypeCalls</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-41"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupTypeCalls"><span class="hs-identifier hs-type">NotificationGroupTypeCalls</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-42"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;notificationGroupTypeCalls&quot;</span></span><span> </span><span class="hs-special">]</span><span>
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;notificationGroupTypeCalls&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-43"></span><span>
-</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679443685"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-45"></span><span> </span><span id="local-6989586621679443683"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser NotificationGroupType
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679443681"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679443681"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679443679"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679443679"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-46"></span><span>  </span><span id="local-6989586621679443678"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679443678"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443679"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679477390"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-45"></span><span> </span><span id="local-6989586621679477388"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser NotificationGroupType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679477386"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679477386"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679477384"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679477384"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-46"></span><span>  </span><span id="local-6989586621679477383"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679477383"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679477384"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-47"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679443678"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-48"></span><span>   </span><span class="hs-string">&quot;notificationGroupTypeMessages&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NotificationGroupType
-</span><a href="#local-6989586621679443676"><span class="hs-identifier hs-var">parseNotificationGroupTypeMessages</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679443681"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-49"></span><span>   </span><span class="hs-string">&quot;notificationGroupTypeMentions&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NotificationGroupType
-</span><a href="#local-6989586621679443675"><span class="hs-identifier hs-var">parseNotificationGroupTypeMentions</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679443681"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-50"></span><span>   </span><span class="hs-string">&quot;notificationGroupTypeSecretChat&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NotificationGroupType
-</span><a href="#local-6989586621679443674"><span class="hs-identifier hs-var">parseNotificationGroupTypeSecretChat</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679443681"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-51"></span><span>   </span><span class="hs-string">&quot;notificationGroupTypeCalls&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NotificationGroupType
-</span><a href="#local-6989586621679443673"><span class="hs-identifier hs-var">parseNotificationGroupTypeCalls</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679443681"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-52"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser NotificationGroupType
+</span><a href="#local-6989586621679477383"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-48"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;notificationGroupTypeMessages&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NotificationGroupType
+</span><a href="#local-6989586621679477381"><span class="hs-identifier hs-var">parseNotificationGroupTypeMessages</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679477386"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-49"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;notificationGroupTypeMentions&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NotificationGroupType
+</span><a href="#local-6989586621679477380"><span class="hs-identifier hs-var">parseNotificationGroupTypeMentions</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679477386"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-50"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;notificationGroupTypeSecretChat&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NotificationGroupType
+</span><a href="#local-6989586621679477379"><span class="hs-identifier hs-var">parseNotificationGroupTypeSecretChat</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679477386"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-51"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;notificationGroupTypeCalls&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser NotificationGroupType
+</span><a href="#local-6989586621679477378"><span class="hs-identifier hs-var">parseNotificationGroupTypeCalls</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679477386"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-52"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser NotificationGroupType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-53"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-54"></span><span>   </span><span class="annot"><a href="#local-6989586621679443676"><span class="hs-identifier hs-type">parseNotificationGroupTypeMessages</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span><span>
-</span><span id="line-55"></span><span>   </span><span id="local-6989586621679443676"><span class="annot"><span class="annottext">parseNotificationGroupTypeMessages :: Value -&gt; Parser NotificationGroupType
-</span><a href="#local-6989586621679443676"><span class="hs-identifier hs-var hs-var">parseNotificationGroupTypeMessages</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-54"></span><span>   </span><span class="annot"><a href="#local-6989586621679477381"><span class="hs-identifier hs-type">parseNotificationGroupTypeMessages</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span><span>
+</span><span id="line-55"></span><span>   </span><span id="local-6989586621679477381"><span class="annot"><span class="annottext">parseNotificationGroupTypeMessages :: Value -&gt; Parser NotificationGroupType
+</span><a href="#local-6989586621679477381"><span class="hs-identifier hs-var hs-var">parseNotificationGroupTypeMessages</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser NotificationGroupType)
 -&gt; Value
 -&gt; Parser NotificationGroupType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;NotificationGroupTypeMessages&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser NotificationGroupType)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;NotificationGroupTypeMessages&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser NotificationGroupType)
  -&gt; Value -&gt; Parser NotificationGroupType)
 -&gt; (Object -&gt; Parser NotificationGroupType)
 -&gt; Value
 -&gt; Parser NotificationGroupType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679443671"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679443671"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679477376"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679477376"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-56"></span><span>    </span><span class="annot"><span class="annottext">NotificationGroupType -&gt; Parser NotificationGroupType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(NotificationGroupType -&gt; Parser NotificationGroupType)
 -&gt; NotificationGroupType -&gt; Parser NotificationGroupType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">NotificationGroupTypeMessages :: NotificationGroupType
-</span><a href="API.NotificationGroupType.html#NotificationGroupTypeMessages"><span class="hs-identifier hs-type hs-type">NotificationGroupTypeMessages</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
+</span><a href="API.NotificationGroupType.html#NotificationGroupTypeMessages"><span class="hs-identifier hs-type">NotificationGroupTypeMessages</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-57"></span><span>
-</span><span id="line-58"></span><span>   </span><span class="annot"><a href="#local-6989586621679443675"><span class="hs-identifier hs-type">parseNotificationGroupTypeMentions</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span><span>
-</span><span id="line-59"></span><span>   </span><span id="local-6989586621679443675"><span class="annot"><span class="annottext">parseNotificationGroupTypeMentions :: Value -&gt; Parser NotificationGroupType
-</span><a href="#local-6989586621679443675"><span class="hs-identifier hs-var hs-var">parseNotificationGroupTypeMentions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-58"></span><span>   </span><span class="annot"><a href="#local-6989586621679477380"><span class="hs-identifier hs-type">parseNotificationGroupTypeMentions</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span><span>
+</span><span id="line-59"></span><span>   </span><span id="local-6989586621679477380"><span class="annot"><span class="annottext">parseNotificationGroupTypeMentions :: Value -&gt; Parser NotificationGroupType
+</span><a href="#local-6989586621679477380"><span class="hs-identifier hs-var hs-var">parseNotificationGroupTypeMentions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser NotificationGroupType)
 -&gt; Value
 -&gt; Parser NotificationGroupType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;NotificationGroupTypeMentions&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser NotificationGroupType)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;NotificationGroupTypeMentions&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser NotificationGroupType)
  -&gt; Value -&gt; Parser NotificationGroupType)
 -&gt; (Object -&gt; Parser NotificationGroupType)
 -&gt; Value
 -&gt; Parser NotificationGroupType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679443669"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679443669"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679477375"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679477375"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-60"></span><span>    </span><span class="annot"><span class="annottext">NotificationGroupType -&gt; Parser NotificationGroupType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(NotificationGroupType -&gt; Parser NotificationGroupType)
 -&gt; NotificationGroupType -&gt; Parser NotificationGroupType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">NotificationGroupTypeMentions :: NotificationGroupType
-</span><a href="API.NotificationGroupType.html#NotificationGroupTypeMentions"><span class="hs-identifier hs-type hs-type">NotificationGroupTypeMentions</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
+</span><a href="API.NotificationGroupType.html#NotificationGroupTypeMentions"><span class="hs-identifier hs-type">NotificationGroupTypeMentions</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-61"></span><span>
-</span><span id="line-62"></span><span>   </span><span class="annot"><a href="#local-6989586621679443674"><span class="hs-identifier hs-type">parseNotificationGroupTypeSecretChat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span><span>
-</span><span id="line-63"></span><span>   </span><span id="local-6989586621679443674"><span class="annot"><span class="annottext">parseNotificationGroupTypeSecretChat :: Value -&gt; Parser NotificationGroupType
-</span><a href="#local-6989586621679443674"><span class="hs-identifier hs-var hs-var">parseNotificationGroupTypeSecretChat</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-62"></span><span>   </span><span class="annot"><a href="#local-6989586621679477379"><span class="hs-identifier hs-type">parseNotificationGroupTypeSecretChat</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span><span>
+</span><span id="line-63"></span><span>   </span><span id="local-6989586621679477379"><span class="annot"><span class="annottext">parseNotificationGroupTypeSecretChat :: Value -&gt; Parser NotificationGroupType
+</span><a href="#local-6989586621679477379"><span class="hs-identifier hs-var hs-var">parseNotificationGroupTypeSecretChat</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser NotificationGroupType)
 -&gt; Value
 -&gt; Parser NotificationGroupType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;NotificationGroupTypeSecretChat&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser NotificationGroupType)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;NotificationGroupTypeSecretChat&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser NotificationGroupType)
  -&gt; Value -&gt; Parser NotificationGroupType)
 -&gt; (Object -&gt; Parser NotificationGroupType)
 -&gt; Value
 -&gt; Parser NotificationGroupType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679443667"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679443667"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679477374"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679477374"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-64"></span><span>    </span><span class="annot"><span class="annottext">NotificationGroupType -&gt; Parser NotificationGroupType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(NotificationGroupType -&gt; Parser NotificationGroupType)
 -&gt; NotificationGroupType -&gt; Parser NotificationGroupType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">NotificationGroupTypeSecretChat :: NotificationGroupType
-</span><a href="API.NotificationGroupType.html#NotificationGroupTypeSecretChat"><span class="hs-identifier hs-type hs-type">NotificationGroupTypeSecretChat</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
+</span><a href="API.NotificationGroupType.html#NotificationGroupTypeSecretChat"><span class="hs-identifier hs-type">NotificationGroupTypeSecretChat</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-65"></span><span>
-</span><span id="line-66"></span><span>   </span><span class="annot"><a href="#local-6989586621679443673"><span class="hs-identifier hs-type">parseNotificationGroupTypeCalls</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span><span>
-</span><span id="line-67"></span><span>   </span><span id="local-6989586621679443673"><span class="annot"><span class="annottext">parseNotificationGroupTypeCalls :: Value -&gt; Parser NotificationGroupType
-</span><a href="#local-6989586621679443673"><span class="hs-identifier hs-var hs-var">parseNotificationGroupTypeCalls</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-66"></span><span>   </span><span class="annot"><a href="#local-6989586621679477378"><span class="hs-identifier hs-type">parseNotificationGroupTypeCalls</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.NotificationGroupType.html#NotificationGroupType"><span class="hs-identifier hs-type">NotificationGroupType</span></a></span><span>
+</span><span id="line-67"></span><span>   </span><span id="local-6989586621679477378"><span class="annot"><span class="annottext">parseNotificationGroupTypeCalls :: Value -&gt; Parser NotificationGroupType
+</span><a href="#local-6989586621679477378"><span class="hs-identifier hs-var hs-var">parseNotificationGroupTypeCalls</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser NotificationGroupType)
 -&gt; Value
 -&gt; Parser NotificationGroupType
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;NotificationGroupTypeCalls&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser NotificationGroupType)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;NotificationGroupTypeCalls&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser NotificationGroupType)
  -&gt; Value -&gt; Parser NotificationGroupType)
 -&gt; (Object -&gt; Parser NotificationGroupType)
 -&gt; Value
 -&gt; Parser NotificationGroupType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679443665"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679443665"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679477373"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679477373"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-68"></span><span>    </span><span class="annot"><span class="annottext">NotificationGroupType -&gt; Parser NotificationGroupType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(NotificationGroupType -&gt; Parser NotificationGroupType)
 -&gt; NotificationGroupType -&gt; Parser NotificationGroupType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">NotificationGroupTypeCalls :: NotificationGroupType
-</span><a href="API.NotificationGroupType.html#NotificationGroupTypeCalls"><span class="hs-identifier hs-type hs-type">NotificationGroupTypeCalls</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="API.NotificationGroupType.html#NotificationGroupTypeCalls"><span class="hs-identifier hs-type">NotificationGroupTypeCalls</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-69"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser NotificationGroupType
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-70"></span></pre></body></html>

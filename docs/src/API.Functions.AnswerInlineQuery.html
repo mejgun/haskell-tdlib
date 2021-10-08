@@ -34,7 +34,7 @@
 </span><a href="API.Functions.AnswerInlineQuery.html#cache_time"><span class="hs-identifier hs-var hs-var">cache_time</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="results"><span class="annot"><span class="annottext">AnswerInlineQuery -&gt; Maybe [InputInlineQueryResult]
 </span><a href="API.Functions.AnswerInlineQuery.html#results"><span class="hs-identifier hs-var hs-var">results</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.InputInlineQueryResult.html#InputInlineQueryResult"><span class="hs-identifier hs-type">InputInlineQueryResult.InputInlineQueryResult</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="is_personal"><span class="annot"><span class="annottext">AnswerInlineQuery -&gt; Maybe Bool
 </span><a href="API.Functions.AnswerInlineQuery.html#is_personal"><span class="hs-identifier hs-var hs-var">is_personal</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="inline_query_id"><span class="annot"><span class="annottext">AnswerInlineQuery -&gt; Maybe Int
-</span><a href="API.Functions.AnswerInlineQuery.html#inline_query_id"><span class="hs-identifier hs-var hs-var">inline_query_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679438687"><span id="local-6989586621679438689"><span id="local-6989586621679438691"><span class="annot"><span class="annottext">Int -&gt; AnswerInlineQuery -&gt; ShowS
+</span><a href="API.Functions.AnswerInlineQuery.html#inline_query_id"><span class="hs-identifier hs-var hs-var">inline_query_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679470044"><span id="local-6989586621679470046"><span id="local-6989586621679470048"><span class="annot"><span class="annottext">Int -&gt; AnswerInlineQuery -&gt; ShowS
 [AnswerInlineQuery] -&gt; ShowS
 AnswerInlineQuery -&gt; String
 (Int -&gt; AnswerInlineQuery -&gt; ShowS)
@@ -49,7 +49,7 @@ show :: AnswerInlineQuery -&gt; String
 $cshow :: AnswerInlineQuery -&gt; String
 showsPrec :: Int -&gt; AnswerInlineQuery -&gt; ShowS
 $cshowsPrec :: Int -&gt; AnswerInlineQuery -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679438682"><span id="local-6989586621679438684"><span class="annot"><span class="annottext">AnswerInlineQuery -&gt; AnswerInlineQuery -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679470039"><span id="local-6989586621679470041"><span class="annot"><span class="annottext">AnswerInlineQuery -&gt; AnswerInlineQuery -&gt; Bool
 (AnswerInlineQuery -&gt; AnswerInlineQuery -&gt; Bool)
 -&gt; (AnswerInlineQuery -&gt; AnswerInlineQuery -&gt; Bool)
 -&gt; Eq AnswerInlineQuery
@@ -60,137 +60,159 @@ $c/= :: AnswerInlineQuery -&gt; AnswerInlineQuery -&gt; Bool
 $c== :: AnswerInlineQuery -&gt; AnswerInlineQuery -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-31"></span><span>
-</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679438674"><span id="local-6989586621679438676"><span id="local-6989586621679438678"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AnswerInlineQuery.html#AnswerInlineQuery"><span class="hs-identifier hs-type">AnswerInlineQuery</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span> </span><span id="local-6989586621679438672"><span class="annot"><span class="annottext">toJSON :: AnswerInlineQuery -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.AnswerInlineQuery.html#AnswerInlineQuery"><span class="hs-identifier hs-type">AnswerInlineQuery</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">switch_pm_parameter :: AnswerInlineQuery -&gt; Maybe String
-</span><a href="API.Functions.AnswerInlineQuery.html#switch_pm_parameter"><span class="hs-identifier hs-var">switch_pm_parameter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438670"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438670"><span class="hs-identifier hs-var">switch_pm_parameter</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">switch_pm_text :: AnswerInlineQuery -&gt; Maybe String
-</span><a href="API.Functions.AnswerInlineQuery.html#switch_pm_text"><span class="hs-identifier hs-var">switch_pm_text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438669"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438669"><span class="hs-identifier hs-var">switch_pm_text</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">next_offset :: AnswerInlineQuery -&gt; Maybe String
-</span><a href="API.Functions.AnswerInlineQuery.html#next_offset"><span class="hs-identifier hs-var">next_offset</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438668"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438668"><span class="hs-identifier hs-var">next_offset</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">cache_time :: AnswerInlineQuery -&gt; Maybe Int
-</span><a href="API.Functions.AnswerInlineQuery.html#cache_time"><span class="hs-identifier hs-var">cache_time</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438667"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438667"><span class="hs-identifier hs-var">cache_time</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">results :: AnswerInlineQuery -&gt; Maybe [InputInlineQueryResult]
-</span><a href="API.Functions.AnswerInlineQuery.html#results"><span class="hs-identifier hs-var">results</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438666"><span class="annot"><span class="annottext">Maybe [InputInlineQueryResult]
-</span><a href="#local-6989586621679438666"><span class="hs-identifier hs-var">results</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_personal :: AnswerInlineQuery -&gt; Maybe Bool
-</span><a href="API.Functions.AnswerInlineQuery.html#is_personal"><span class="hs-identifier hs-var">is_personal</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438665"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679438665"><span class="hs-identifier hs-var">is_personal</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">inline_query_id :: AnswerInlineQuery -&gt; Maybe Int
-</span><a href="API.Functions.AnswerInlineQuery.html#inline_query_id"><span class="hs-identifier hs-var">inline_query_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679438664"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438664"><span class="hs-identifier hs-var">inline_query_id</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-32"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679470031"><span id="local-6989586621679470033"><span id="local-6989586621679470035"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AnswerInlineQuery.html#AnswerInlineQuery"><span class="hs-identifier hs-type">AnswerInlineQuery</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-33"></span><span> </span><span id="local-6989586621679470029"><span class="annot"><span class="annottext">toJSON :: AnswerInlineQuery -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.AnswerInlineQuery.html#AnswerInlineQuery"><span class="hs-identifier hs-type">AnswerInlineQuery</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">switch_pm_parameter :: AnswerInlineQuery -&gt; Maybe String
+</span><a href="API.Functions.AnswerInlineQuery.html#switch_pm_parameter"><span class="hs-identifier hs-var">switch_pm_parameter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679470027"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679470027"><span class="hs-identifier hs-var">switch_pm_parameter</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">switch_pm_text :: AnswerInlineQuery -&gt; Maybe String
+</span><a href="API.Functions.AnswerInlineQuery.html#switch_pm_text"><span class="hs-identifier hs-var">switch_pm_text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679470026"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679470026"><span class="hs-identifier hs-var">switch_pm_text</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">next_offset :: AnswerInlineQuery -&gt; Maybe String
+</span><a href="API.Functions.AnswerInlineQuery.html#next_offset"><span class="hs-identifier hs-var">next_offset</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679470025"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679470025"><span class="hs-identifier hs-var">next_offset</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">cache_time :: AnswerInlineQuery -&gt; Maybe Int
+</span><a href="API.Functions.AnswerInlineQuery.html#cache_time"><span class="hs-identifier hs-var">cache_time</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679470024"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679470024"><span class="hs-identifier hs-var">cache_time</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">results :: AnswerInlineQuery -&gt; Maybe [InputInlineQueryResult]
+</span><a href="API.Functions.AnswerInlineQuery.html#results"><span class="hs-identifier hs-var">results</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679470023"><span class="annot"><span class="annottext">Maybe [InputInlineQueryResult]
+</span><a href="#local-6989586621679470023"><span class="hs-identifier hs-var">results</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_personal :: AnswerInlineQuery -&gt; Maybe Bool
+</span><a href="API.Functions.AnswerInlineQuery.html#is_personal"><span class="hs-identifier hs-var">is_personal</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679470022"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679470022"><span class="hs-identifier hs-var">is_personal</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">inline_query_id :: AnswerInlineQuery -&gt; Maybe Int
+</span><a href="API.Functions.AnswerInlineQuery.html#inline_query_id"><span class="hs-identifier hs-var">inline_query_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679470021"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679470021"><span class="hs-identifier hs-var">inline_query_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-34"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;answerInlineQuery&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;switch_pm_parameter&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;answerInlineQuery&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;switch_pm_parameter&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438670"><span class="hs-identifier hs-var">switch_pm_parameter</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;switch_pm_text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679470027"><span class="hs-identifier hs-var">switch_pm_parameter</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;switch_pm_text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438669"><span class="hs-identifier hs-var">switch_pm_text</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;next_offset&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679470026"><span class="hs-identifier hs-var">switch_pm_text</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;next_offset&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438668"><span class="hs-identifier hs-var">next_offset</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;cache_time&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679470025"><span class="hs-identifier hs-var">next_offset</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;cache_time&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438667"><span class="hs-identifier hs-var">cache_time</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;results&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [InputInlineQueryResult] -&gt; Pair
+</span><a href="#local-6989586621679470024"><span class="hs-identifier hs-var">cache_time</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;results&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [InputInlineQueryResult] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [InputInlineQueryResult]
-</span><a href="#local-6989586621679438666"><span class="hs-identifier hs-var">results</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_personal&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679470023"><span class="hs-identifier hs-var">results</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;is_personal&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679438665"><span class="hs-identifier hs-var">is_personal</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;inline_query_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679470022"><span class="hs-identifier hs-var">is_personal</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;inline_query_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438664"><span class="hs-identifier hs-var">inline_query_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679470021"><span class="hs-identifier hs-var">inline_query_id</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-35"></span><span>
-</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679438658"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AnswerInlineQuery.html#AnswerInlineQuery"><span class="hs-identifier hs-type">AnswerInlineQuery</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-37"></span><span> </span><span id="local-6989586621679438656"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AnswerInlineQuery
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679438654"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679438654"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679438652"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679438652"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-38"></span><span>  </span><span id="local-6989586621679438651"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679438651"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438652"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679470015"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AnswerInlineQuery.html#AnswerInlineQuery"><span class="hs-identifier hs-type">AnswerInlineQuery</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-37"></span><span> </span><span id="local-6989586621679470013"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AnswerInlineQuery
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679470011"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679470011"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679470009"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679470009"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-38"></span><span>  </span><span id="local-6989586621679470008"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679470008"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679470009"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-39"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679438651"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-40"></span><span>   </span><span class="hs-string">&quot;answerInlineQuery&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AnswerInlineQuery
-</span><a href="#local-6989586621679438649"><span class="hs-identifier hs-var">parseAnswerInlineQuery</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679438654"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-41"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser AnswerInlineQuery
+</span><a href="#local-6989586621679470008"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-40"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;answerInlineQuery&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AnswerInlineQuery
+</span><a href="#local-6989586621679470006"><span class="hs-identifier hs-var">parseAnswerInlineQuery</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679470011"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-41"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser AnswerInlineQuery
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-42"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-43"></span><span>   </span><span class="annot"><a href="#local-6989586621679438649"><span class="hs-identifier hs-type">parseAnswerInlineQuery</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.AnswerInlineQuery.html#AnswerInlineQuery"><span class="hs-identifier hs-type">AnswerInlineQuery</span></a></span><span>
-</span><span id="line-44"></span><span>   </span><span id="local-6989586621679438649"><span class="annot"><span class="annottext">parseAnswerInlineQuery :: Value -&gt; Parser AnswerInlineQuery
-</span><a href="#local-6989586621679438649"><span class="hs-identifier hs-var hs-var">parseAnswerInlineQuery</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-43"></span><span>   </span><span class="annot"><a href="#local-6989586621679470006"><span class="hs-identifier hs-type">parseAnswerInlineQuery</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.AnswerInlineQuery.html#AnswerInlineQuery"><span class="hs-identifier hs-type">AnswerInlineQuery</span></a></span><span>
+</span><span id="line-44"></span><span>   </span><span id="local-6989586621679470006"><span class="annot"><span class="annottext">parseAnswerInlineQuery :: Value -&gt; Parser AnswerInlineQuery
+</span><a href="#local-6989586621679470006"><span class="hs-identifier hs-var hs-var">parseAnswerInlineQuery</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AnswerInlineQuery)
 -&gt; Value
 -&gt; Parser AnswerInlineQuery
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;AnswerInlineQuery&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser AnswerInlineQuery)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;AnswerInlineQuery&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser AnswerInlineQuery)
  -&gt; Value -&gt; Parser AnswerInlineQuery)
 -&gt; (Object -&gt; Parser AnswerInlineQuery)
 -&gt; Value
 -&gt; Parser AnswerInlineQuery
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679438647"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679438647"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-45"></span><span>    </span><span id="local-6989586621679438646"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438646"><span class="hs-identifier hs-var">switch_pm_parameter</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438647"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679470004"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679470004"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-45"></span><span>    </span><span id="local-6989586621679470003"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679470003"><span class="hs-identifier hs-var">switch_pm_parameter</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679470004"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;switch_pm_parameter&quot;</span></span><span>
-</span><span id="line-46"></span><span>    </span><span id="local-6989586621679438644"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438644"><span class="hs-identifier hs-var">switch_pm_text</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438647"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;switch_pm_parameter&quot;</span></span><span>
+</span><span id="line-46"></span><span>    </span><span id="local-6989586621679470001"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679470001"><span class="hs-identifier hs-var">switch_pm_text</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679470004"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;switch_pm_text&quot;</span></span><span>
-</span><span id="line-47"></span><span>    </span><span id="local-6989586621679438643"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438643"><span class="hs-identifier hs-var">next_offset</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438647"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;switch_pm_text&quot;</span></span><span>
+</span><span id="line-47"></span><span>    </span><span id="local-6989586621679470000"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679470000"><span class="hs-identifier hs-var">next_offset</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679470004"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;next_offset&quot;</span></span><span>
-</span><span id="line-48"></span><span>    </span><span id="local-6989586621679438642"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438642"><span class="hs-identifier hs-var">cache_time</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;next_offset&quot;</span></span><span>
+</span><span id="line-48"></span><span>    </span><span id="local-6989586621679469999"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679469999"><span class="hs-identifier hs-var">cache_time</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438647"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679470004"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;cache_time&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;cache_time&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
 forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438647"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679470004"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;cache_time&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-49"></span><span>    </span><span id="local-6989586621679438640"><span class="annot"><span class="annottext">Maybe [InputInlineQueryResult]
-</span><a href="#local-6989586621679438640"><span class="hs-identifier hs-var">results</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438647"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [InputInlineQueryResult])
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;cache_time&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-49"></span><span>    </span><span id="local-6989586621679469997"><span class="annot"><span class="annottext">Maybe [InputInlineQueryResult]
+</span><a href="#local-6989586621679469997"><span class="hs-identifier hs-var">results</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679470004"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [InputInlineQueryResult])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;results&quot;</span></span><span>
-</span><span id="line-50"></span><span>    </span><span id="local-6989586621679438639"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679438639"><span class="hs-identifier hs-var">is_personal</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438647"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;results&quot;</span></span><span>
+</span><span id="line-50"></span><span>    </span><span id="local-6989586621679469996"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679469996"><span class="hs-identifier hs-var">is_personal</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679470004"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_personal&quot;</span></span><span>
-</span><span id="line-51"></span><span>    </span><span id="local-6989586621679438638"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438638"><span class="hs-identifier hs-var">inline_query_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;is_personal&quot;</span></span><span>
+</span><span id="line-51"></span><span>    </span><span id="local-6989586621679469995"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679469995"><span class="hs-identifier hs-var">inline_query_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438647"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679470004"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;inline_query_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;inline_query_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
 forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679438647"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679470004"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;inline_query_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;inline_query_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
 </span><span id="line-52"></span><span>    </span><span class="annot"><span class="annottext">AnswerInlineQuery -&gt; Parser AnswerInlineQuery
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(AnswerInlineQuery -&gt; Parser AnswerInlineQuery)
@@ -204,18 +226,23 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; Maybe Bool
 -&gt; Maybe Int
 -&gt; AnswerInlineQuery
-</span><a href="API.Functions.AnswerInlineQuery.html#AnswerInlineQuery"><span class="hs-identifier hs-type hs-type">AnswerInlineQuery</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">switch_pm_parameter :: Maybe String
+</span><a href="API.Functions.AnswerInlineQuery.html#AnswerInlineQuery"><span class="hs-identifier hs-type">AnswerInlineQuery</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">switch_pm_parameter :: Maybe String
 </span><a href="API.Functions.AnswerInlineQuery.html#switch_pm_parameter"><span class="hs-identifier hs-var">switch_pm_parameter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438646"><span class="hs-identifier hs-var">switch_pm_parameter</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">switch_pm_text :: Maybe String
+</span><a href="#local-6989586621679470003"><span class="hs-identifier hs-var">switch_pm_parameter</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">switch_pm_text :: Maybe String
 </span><a href="API.Functions.AnswerInlineQuery.html#switch_pm_text"><span class="hs-identifier hs-var">switch_pm_text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438644"><span class="hs-identifier hs-var">switch_pm_text</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">next_offset :: Maybe String
+</span><a href="#local-6989586621679470001"><span class="hs-identifier hs-var">switch_pm_text</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">next_offset :: Maybe String
 </span><a href="API.Functions.AnswerInlineQuery.html#next_offset"><span class="hs-identifier hs-var">next_offset</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679438643"><span class="hs-identifier hs-var">next_offset</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">cache_time :: Maybe Int
+</span><a href="#local-6989586621679470000"><span class="hs-identifier hs-var">next_offset</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">cache_time :: Maybe Int
 </span><a href="API.Functions.AnswerInlineQuery.html#cache_time"><span class="hs-identifier hs-var">cache_time</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438642"><span class="hs-identifier hs-var">cache_time</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">results :: Maybe [InputInlineQueryResult]
+</span><a href="#local-6989586621679469999"><span class="hs-identifier hs-var">cache_time</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">results :: Maybe [InputInlineQueryResult]
 </span><a href="API.Functions.AnswerInlineQuery.html#results"><span class="hs-identifier hs-var">results</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [InputInlineQueryResult]
-</span><a href="#local-6989586621679438640"><span class="hs-identifier hs-var">results</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_personal :: Maybe Bool
+</span><a href="#local-6989586621679469997"><span class="hs-identifier hs-var">results</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_personal :: Maybe Bool
 </span><a href="API.Functions.AnswerInlineQuery.html#is_personal"><span class="hs-identifier hs-var">is_personal</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679438639"><span class="hs-identifier hs-var">is_personal</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">inline_query_id :: Maybe Int
+</span><a href="#local-6989586621679469996"><span class="hs-identifier hs-var">is_personal</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">inline_query_id :: Maybe Int
 </span><a href="API.Functions.AnswerInlineQuery.html#inline_query_id"><span class="hs-identifier hs-var">inline_query_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679438638"><span class="hs-identifier hs-var">inline_query_id</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679469995"><span class="hs-identifier hs-var">inline_query_id</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-53"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser AnswerInlineQuery
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-54"></span></pre></body></html>

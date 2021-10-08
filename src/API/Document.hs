@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.Thumbnail as Thumbnail
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
@@ -25,10 +26,23 @@ import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 -- __document__ File containing the document
 data Document = 
 
- Document { document :: Maybe File.File, thumbnail :: Maybe Thumbnail.Thumbnail, minithumbnail :: Maybe Minithumbnail.Minithumbnail, mime_type :: Maybe String, file_name :: Maybe String }  deriving (Show, Eq)
+ Document { document :: Maybe File.File, thumbnail :: Maybe Thumbnail.Thumbnail, minithumbnail :: Maybe Minithumbnail.Minithumbnail, mime_type :: Maybe String, file_name :: Maybe String }  deriving (Eq)
+
+instance Show Document where
+ show Document { document=document, thumbnail=thumbnail, minithumbnail=minithumbnail, mime_type=mime_type, file_name=file_name } =
+  "Document" ++ cc [p "document" document, p "thumbnail" thumbnail, p "minithumbnail" minithumbnail, p "mime_type" mime_type, p "file_name" file_name ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Document where
- toJSON (Document { document = document, thumbnail = thumbnail, minithumbnail = minithumbnail, mime_type = mime_type, file_name = file_name }) =
+ toJSON Document { document = document, thumbnail = thumbnail, minithumbnail = minithumbnail, mime_type = mime_type, file_name = file_name } =
   A.object [ "@type" A..= T.String "document", "document" A..= document, "thumbnail" A..= thumbnail, "minithumbnail" A..= minithumbnail, "mime_type" A..= mime_type, "file_name" A..= file_name ]
 
 instance T.FromJSON Document where
@@ -46,3 +60,4 @@ instance T.FromJSON Document where
     mime_type <- o A..:? "mime_type"
     file_name <- o A..:? "file_name"
     return $ Document { document = document, thumbnail = thumbnail, minithumbnail = minithumbnail, mime_type = mime_type, file_name = file_name }
+ parseJSON _ = mempty

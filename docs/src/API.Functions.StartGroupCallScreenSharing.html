@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Functions.StartGroupCallScreenSharing</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- Starts screen sharing in a joined group call. Returns join response payload for tgcalls</span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- __group_call_id__ Group call identifier</span><span>
+</span><span id="line-15"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-16"></span><span class="hs-comment">-- __audio_source_id__ Screen sharing audio channel synchronization source identifier; received from tgcalls</span><span>
+</span><span id="line-17"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-18"></span><span class="hs-comment">-- __payload__ Group call join payload; received from tgcalls</span><span>
+</span><span id="line-19"></span><span class="hs-keyword">data</span><span> </span><span id="StartGroupCallScreenSharing"><span class="annot"><a href="API.Functions.StartGroupCallScreenSharing.html#StartGroupCallScreenSharing"><span class="hs-identifier hs-var">StartGroupCallScreenSharing</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-20"></span><span>
+</span><span id="line-21"></span><span> </span><span id="StartGroupCallScreenSharing"><span class="annot"><a href="API.Functions.StartGroupCallScreenSharing.html#StartGroupCallScreenSharing"><span class="hs-identifier hs-var">StartGroupCallScreenSharing</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="payload"><span class="annot"><span class="annottext">StartGroupCallScreenSharing -&gt; Maybe String
+</span><a href="API.Functions.StartGroupCallScreenSharing.html#payload"><span class="hs-identifier hs-var hs-var">payload</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="audio_source_id"><span class="annot"><span class="annottext">StartGroupCallScreenSharing -&gt; Maybe Int
+</span><a href="API.Functions.StartGroupCallScreenSharing.html#audio_source_id"><span class="hs-identifier hs-var hs-var">audio_source_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="group_call_id"><span class="annot"><span class="annottext">StartGroupCallScreenSharing -&gt; Maybe Int
+</span><a href="API.Functions.StartGroupCallScreenSharing.html#group_call_id"><span class="hs-identifier hs-var hs-var">group_call_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679464453"><span id="local-6989586621679464455"><span id="local-6989586621679464457"><span class="annot"><span class="annottext">Int -&gt; StartGroupCallScreenSharing -&gt; ShowS
+[StartGroupCallScreenSharing] -&gt; ShowS
+StartGroupCallScreenSharing -&gt; String
+(Int -&gt; StartGroupCallScreenSharing -&gt; ShowS)
+-&gt; (StartGroupCallScreenSharing -&gt; String)
+-&gt; ([StartGroupCallScreenSharing] -&gt; ShowS)
+-&gt; Show StartGroupCallScreenSharing
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [StartGroupCallScreenSharing] -&gt; ShowS
+$cshowList :: [StartGroupCallScreenSharing] -&gt; ShowS
+show :: StartGroupCallScreenSharing -&gt; String
+$cshow :: StartGroupCallScreenSharing -&gt; String
+showsPrec :: Int -&gt; StartGroupCallScreenSharing -&gt; ShowS
+$cshowsPrec :: Int -&gt; StartGroupCallScreenSharing -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679464448"><span id="local-6989586621679464450"><span class="annot"><span class="annottext">StartGroupCallScreenSharing -&gt; StartGroupCallScreenSharing -&gt; Bool
+(StartGroupCallScreenSharing
+ -&gt; StartGroupCallScreenSharing -&gt; Bool)
+-&gt; (StartGroupCallScreenSharing
+    -&gt; StartGroupCallScreenSharing -&gt; Bool)
+-&gt; Eq StartGroupCallScreenSharing
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: StartGroupCallScreenSharing -&gt; StartGroupCallScreenSharing -&gt; Bool
+$c/= :: StartGroupCallScreenSharing -&gt; StartGroupCallScreenSharing -&gt; Bool
+== :: StartGroupCallScreenSharing -&gt; StartGroupCallScreenSharing -&gt; Bool
+$c== :: StartGroupCallScreenSharing -&gt; StartGroupCallScreenSharing -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-22"></span><span>
+</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679464440"><span id="local-6989586621679464442"><span id="local-6989586621679464444"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.StartGroupCallScreenSharing.html#StartGroupCallScreenSharing"><span class="hs-identifier hs-type">StartGroupCallScreenSharing</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span> </span><span id="local-6989586621679464438"><span class="annot"><span class="annottext">toJSON :: StartGroupCallScreenSharing -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.StartGroupCallScreenSharing.html#StartGroupCallScreenSharing"><span class="hs-identifier hs-type">StartGroupCallScreenSharing</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">payload :: StartGroupCallScreenSharing -&gt; Maybe String
+</span><a href="API.Functions.StartGroupCallScreenSharing.html#payload"><span class="hs-identifier hs-var">payload</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679464436"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679464436"><span class="hs-identifier hs-var">payload</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">audio_source_id :: StartGroupCallScreenSharing -&gt; Maybe Int
+</span><a href="API.Functions.StartGroupCallScreenSharing.html#audio_source_id"><span class="hs-identifier hs-var">audio_source_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679464435"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679464435"><span class="hs-identifier hs-var">audio_source_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">group_call_id :: StartGroupCallScreenSharing -&gt; Maybe Int
+</span><a href="API.Functions.StartGroupCallScreenSharing.html#group_call_id"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679464434"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679464434"><span class="hs-identifier hs-var">group_call_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-25"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;startGroupCallScreenSharing&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;payload&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679464436"><span class="hs-identifier hs-var">payload</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;audio_source_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679464435"><span class="hs-identifier hs-var">audio_source_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;group_call_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679464434"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-26"></span><span>
+</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679464428"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.StartGroupCallScreenSharing.html#StartGroupCallScreenSharing"><span class="hs-identifier hs-type">StartGroupCallScreenSharing</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-28"></span><span> </span><span id="local-6989586621679464426"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser StartGroupCallScreenSharing
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679464424"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679464424"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679464422"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679464422"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-29"></span><span>  </span><span id="local-6989586621679464421"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679464421"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679464422"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-30"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679464421"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-31"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;startGroupCallScreenSharing&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser StartGroupCallScreenSharing
+</span><a href="#local-6989586621679464419"><span class="hs-identifier hs-var">parseStartGroupCallScreenSharing</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679464424"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-32"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser StartGroupCallScreenSharing
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-33"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span>   </span><span class="annot"><a href="#local-6989586621679464419"><span class="hs-identifier hs-type">parseStartGroupCallScreenSharing</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.StartGroupCallScreenSharing.html#StartGroupCallScreenSharing"><span class="hs-identifier hs-type">StartGroupCallScreenSharing</span></a></span><span>
+</span><span id="line-35"></span><span>   </span><span id="local-6989586621679464419"><span class="annot"><span class="annottext">parseStartGroupCallScreenSharing :: Value -&gt; Parser StartGroupCallScreenSharing
+</span><a href="#local-6989586621679464419"><span class="hs-identifier hs-var hs-var">parseStartGroupCallScreenSharing</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser StartGroupCallScreenSharing)
+-&gt; Value
+-&gt; Parser StartGroupCallScreenSharing
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;StartGroupCallScreenSharing&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser StartGroupCallScreenSharing)
+ -&gt; Value -&gt; Parser StartGroupCallScreenSharing)
+-&gt; (Object -&gt; Parser StartGroupCallScreenSharing)
+-&gt; Value
+-&gt; Parser StartGroupCallScreenSharing
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679464417"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679464417"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-36"></span><span>    </span><span id="local-6989586621679464416"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679464416"><span class="hs-identifier hs-var">payload</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679464417"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;payload&quot;</span></span><span>
+</span><span id="line-37"></span><span>    </span><span id="local-6989586621679464414"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679464414"><span class="hs-identifier hs-var">audio_source_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+forall a. Monoid a =&gt; [a] -&gt; a
+</span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679464417"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;audio_source_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679464417"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;audio_source_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-38"></span><span>    </span><span id="local-6989586621679464412"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679464412"><span class="hs-identifier hs-var">group_call_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+forall a. Monoid a =&gt; [a] -&gt; a
+</span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679464417"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;group_call_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679464417"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;group_call_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-39"></span><span>    </span><span class="annot"><span class="annottext">StartGroupCallScreenSharing -&gt; Parser StartGroupCallScreenSharing
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(StartGroupCallScreenSharing -&gt; Parser StartGroupCallScreenSharing)
+-&gt; StartGroupCallScreenSharing
+-&gt; Parser StartGroupCallScreenSharing
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">StartGroupCallScreenSharing :: Maybe String
+-&gt; Maybe Int -&gt; Maybe Int -&gt; StartGroupCallScreenSharing
+</span><a href="API.Functions.StartGroupCallScreenSharing.html#StartGroupCallScreenSharing"><span class="hs-identifier hs-type">StartGroupCallScreenSharing</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">payload :: Maybe String
+</span><a href="API.Functions.StartGroupCallScreenSharing.html#payload"><span class="hs-identifier hs-var">payload</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679464416"><span class="hs-identifier hs-var">payload</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">audio_source_id :: Maybe Int
+</span><a href="API.Functions.StartGroupCallScreenSharing.html#audio_source_id"><span class="hs-identifier hs-var">audio_source_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679464414"><span class="hs-identifier hs-var">audio_source_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">group_call_id :: Maybe Int
+</span><a href="API.Functions.StartGroupCallScreenSharing.html#group_call_id"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679464412"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-40"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser StartGroupCallScreenSharing
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-41"></span></pre></body></html>

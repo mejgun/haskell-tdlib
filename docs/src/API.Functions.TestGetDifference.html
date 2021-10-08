@@ -12,7 +12,7 @@
 </span><span id="line-12"></span><span class="hs-comment">-- Forces an updates.getDifference call to the Telegram servers; for testing only</span><span>
 </span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="TestGetDifference"><span class="annot"><a href="API.Functions.TestGetDifference.html#TestGetDifference"><span class="hs-identifier hs-var">TestGetDifference</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span> </span><span id="TestGetDifference"><span class="annot"><a href="API.Functions.TestGetDifference.html#TestGetDifference"><span class="hs-identifier hs-var">TestGetDifference</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679434961"><span id="local-6989586621679434963"><span id="local-6989586621679434965"><span class="annot"><span class="annottext">Int -&gt; TestGetDifference -&gt; ShowS
+</span><span id="line-15"></span><span> </span><span id="TestGetDifference"><span class="annot"><a href="API.Functions.TestGetDifference.html#TestGetDifference"><span class="hs-identifier hs-var">TestGetDifference</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679465176"><span id="local-6989586621679465178"><span id="local-6989586621679465180"><span class="annot"><span class="annottext">Int -&gt; TestGetDifference -&gt; ShowS
 [TestGetDifference] -&gt; ShowS
 TestGetDifference -&gt; String
 (Int -&gt; TestGetDifference -&gt; ShowS)
@@ -27,7 +27,7 @@ show :: TestGetDifference -&gt; String
 $cshow :: TestGetDifference -&gt; String
 showsPrec :: Int -&gt; TestGetDifference -&gt; ShowS
 $cshowsPrec :: Int -&gt; TestGetDifference -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679434956"><span id="local-6989586621679434958"><span class="annot"><span class="annottext">TestGetDifference -&gt; TestGetDifference -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679465171"><span id="local-6989586621679465173"><span class="annot"><span class="annottext">TestGetDifference -&gt; TestGetDifference -&gt; Bool
 (TestGetDifference -&gt; TestGetDifference -&gt; Bool)
 -&gt; (TestGetDifference -&gt; TestGetDifference -&gt; Bool)
 -&gt; Eq TestGetDifference
@@ -38,53 +38,64 @@ $c/= :: TestGetDifference -&gt; TestGetDifference -&gt; Bool
 $c== :: TestGetDifference -&gt; TestGetDifference -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434948"><span id="local-6989586621679434950"><span id="local-6989586621679434952"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestGetDifference.html#TestGetDifference"><span class="hs-identifier hs-type">TestGetDifference</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679434946"><span class="annot"><span class="annottext">toJSON :: TestGetDifference -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.TestGetDifference.html#TestGetDifference"><span class="hs-identifier hs-type">TestGetDifference</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679465163"><span id="local-6989586621679465165"><span id="local-6989586621679465167"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestGetDifference.html#TestGetDifference"><span class="hs-identifier hs-type">TestGetDifference</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679465161"><span class="annot"><span class="annottext">toJSON :: TestGetDifference -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.TestGetDifference.html#TestGetDifference"><span class="hs-identifier hs-type">TestGetDifference</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-19"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;testGetDifference&quot;</span></span><span> </span><span class="hs-special">]</span><span>
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;testGetDifference&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679434939"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestGetDifference.html#TestGetDifference"><span class="hs-identifier hs-type">TestGetDifference</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span> </span><span id="local-6989586621679434937"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TestGetDifference
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679434935"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679434935"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679434933"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679434933"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-23"></span><span>  </span><span id="local-6989586621679434932"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679434932"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679434933"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679465154"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestGetDifference.html#TestGetDifference"><span class="hs-identifier hs-type">TestGetDifference</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span> </span><span id="local-6989586621679465152"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TestGetDifference
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679465150"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679465150"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679465148"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679465148"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-23"></span><span>  </span><span id="local-6989586621679465147"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679465147"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679465148"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-24"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679434932"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-25"></span><span>   </span><span class="hs-string">&quot;testGetDifference&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TestGetDifference
-</span><a href="#local-6989586621679434930"><span class="hs-identifier hs-var">parseTestGetDifference</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679434935"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-26"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TestGetDifference
+</span><a href="#local-6989586621679465147"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-25"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;testGetDifference&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TestGetDifference
+</span><a href="#local-6989586621679465145"><span class="hs-identifier hs-var">parseTestGetDifference</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465150"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-26"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TestGetDifference
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-27"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-28"></span><span>   </span><span class="annot"><a href="#local-6989586621679434930"><span class="hs-identifier hs-type">parseTestGetDifference</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.TestGetDifference.html#TestGetDifference"><span class="hs-identifier hs-type">TestGetDifference</span></a></span><span>
-</span><span id="line-29"></span><span>   </span><span id="local-6989586621679434930"><span class="annot"><span class="annottext">parseTestGetDifference :: Value -&gt; Parser TestGetDifference
-</span><a href="#local-6989586621679434930"><span class="hs-identifier hs-var hs-var">parseTestGetDifference</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-28"></span><span>   </span><span class="annot"><a href="#local-6989586621679465145"><span class="hs-identifier hs-type">parseTestGetDifference</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.TestGetDifference.html#TestGetDifference"><span class="hs-identifier hs-type">TestGetDifference</span></a></span><span>
+</span><span id="line-29"></span><span>   </span><span id="local-6989586621679465145"><span class="annot"><span class="annottext">parseTestGetDifference :: Value -&gt; Parser TestGetDifference
+</span><a href="#local-6989586621679465145"><span class="hs-identifier hs-var hs-var">parseTestGetDifference</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TestGetDifference)
 -&gt; Value
 -&gt; Parser TestGetDifference
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;TestGetDifference&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser TestGetDifference)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;TestGetDifference&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser TestGetDifference)
  -&gt; Value -&gt; Parser TestGetDifference)
 -&gt; (Object -&gt; Parser TestGetDifference)
 -&gt; Value
 -&gt; Parser TestGetDifference
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679434928"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679434928"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679465143"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679465143"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-30"></span><span>    </span><span class="annot"><span class="annottext">TestGetDifference -&gt; Parser TestGetDifference
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TestGetDifference -&gt; Parser TestGetDifference)
 -&gt; TestGetDifference -&gt; Parser TestGetDifference
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TestGetDifference :: TestGetDifference
-</span><a href="API.Functions.TestGetDifference.html#TestGetDifference"><span class="hs-identifier hs-type hs-type">TestGetDifference</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="API.Functions.TestGetDifference.html#TestGetDifference"><span class="hs-identifier hs-type">TestGetDifference</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-31"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser TestGetDifference
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-32"></span></pre></body></html>

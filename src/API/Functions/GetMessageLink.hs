@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -15,17 +16,30 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __message_id__ Identifier of the message
 -- 
--- __media_timestamp__ If not 0, timestamp from which the video/audio/video note/voice note playing should start, in seconds. The media can be in the message content or in its web page preview
+-- __media_timestamp__ If not 0, timestamp from which the video/audio/video note/voice note playing must start, in seconds. The media can be in the message content or in its web page preview
 -- 
 -- __for_album__ Pass true to create a link for the whole media album
 -- 
 -- __for_comment__ Pass true to create a link to the message as a channel post comment, or from a message thread
 data GetMessageLink = 
 
- GetMessageLink { for_comment :: Maybe Bool, for_album :: Maybe Bool, media_timestamp :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
+ GetMessageLink { for_comment :: Maybe Bool, for_album :: Maybe Bool, media_timestamp :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show GetMessageLink where
+ show GetMessageLink { for_comment=for_comment, for_album=for_album, media_timestamp=media_timestamp, message_id=message_id, chat_id=chat_id } =
+  "GetMessageLink" ++ cc [p "for_comment" for_comment, p "for_album" for_album, p "media_timestamp" media_timestamp, p "message_id" message_id, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetMessageLink where
- toJSON (GetMessageLink { for_comment = for_comment, for_album = for_album, media_timestamp = media_timestamp, message_id = message_id, chat_id = chat_id }) =
+ toJSON GetMessageLink { for_comment = for_comment, for_album = for_album, media_timestamp = media_timestamp, message_id = message_id, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "getMessageLink", "for_comment" A..= for_comment, "for_album" A..= for_album, "media_timestamp" A..= media_timestamp, "message_id" A..= message_id, "chat_id" A..= chat_id ]
 
 instance T.FromJSON GetMessageLink where
@@ -43,3 +57,4 @@ instance T.FromJSON GetMessageLink where
     message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetMessageLink { for_comment = for_comment, for_album = for_album, media_timestamp = media_timestamp, message_id = message_id, chat_id = chat_id }
+ parseJSON _ = mempty

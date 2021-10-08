@@ -15,7 +15,7 @@
 </span><span id="line-15"></span><span class="hs-keyword">data</span><span> </span><span id="SearchPublicChats"><span class="annot"><a href="API.Functions.SearchPublicChats.html#SearchPublicChats"><span class="hs-identifier hs-var">SearchPublicChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-16"></span><span>
 </span><span id="line-17"></span><span> </span><span id="SearchPublicChats"><span class="annot"><a href="API.Functions.SearchPublicChats.html#SearchPublicChats"><span class="hs-identifier hs-var">SearchPublicChats</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="query"><span class="annot"><span class="annottext">SearchPublicChats -&gt; Maybe String
-</span><a href="API.Functions.SearchPublicChats.html#query"><span class="hs-identifier hs-var hs-var">query</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679430957"><span id="local-6989586621679430959"><span id="local-6989586621679430961"><span class="annot"><span class="annottext">Int -&gt; SearchPublicChats -&gt; ShowS
+</span><a href="API.Functions.SearchPublicChats.html#query"><span class="hs-identifier hs-var hs-var">query</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679460806"><span id="local-6989586621679460808"><span id="local-6989586621679460810"><span class="annot"><span class="annottext">Int -&gt; SearchPublicChats -&gt; ShowS
 [SearchPublicChats] -&gt; ShowS
 SearchPublicChats -&gt; String
 (Int -&gt; SearchPublicChats -&gt; ShowS)
@@ -30,7 +30,7 @@ show :: SearchPublicChats -&gt; String
 $cshow :: SearchPublicChats -&gt; String
 showsPrec :: Int -&gt; SearchPublicChats -&gt; ShowS
 $cshowsPrec :: Int -&gt; SearchPublicChats -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679430952"><span id="local-6989586621679430954"><span class="annot"><span class="annottext">SearchPublicChats -&gt; SearchPublicChats -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679460801"><span id="local-6989586621679460803"><span class="annot"><span class="annottext">SearchPublicChats -&gt; SearchPublicChats -&gt; Bool
 (SearchPublicChats -&gt; SearchPublicChats -&gt; Bool)
 -&gt; (SearchPublicChats -&gt; SearchPublicChats -&gt; Bool)
 -&gt; Eq SearchPublicChats
@@ -41,65 +41,78 @@ $c/= :: SearchPublicChats -&gt; SearchPublicChats -&gt; Bool
 $c== :: SearchPublicChats -&gt; SearchPublicChats -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-18"></span><span>
-</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430944"><span id="local-6989586621679430946"><span id="local-6989586621679430948"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SearchPublicChats.html#SearchPublicChats"><span class="hs-identifier hs-type">SearchPublicChats</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-20"></span><span> </span><span id="local-6989586621679430942"><span class="annot"><span class="annottext">toJSON :: SearchPublicChats -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.SearchPublicChats.html#SearchPublicChats"><span class="hs-identifier hs-type">SearchPublicChats</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">query :: SearchPublicChats -&gt; Maybe String
-</span><a href="API.Functions.SearchPublicChats.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679430940"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679430940"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679460793"><span id="local-6989586621679460795"><span id="local-6989586621679460797"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SearchPublicChats.html#SearchPublicChats"><span class="hs-identifier hs-type">SearchPublicChats</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-20"></span><span> </span><span id="local-6989586621679460791"><span class="annot"><span class="annottext">toJSON :: SearchPublicChats -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.SearchPublicChats.html#SearchPublicChats"><span class="hs-identifier hs-type">SearchPublicChats</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">query :: SearchPublicChats -&gt; Maybe String
+</span><a href="API.Functions.SearchPublicChats.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679460789"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679460789"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-21"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;searchPublicChats&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;query&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;searchPublicChats&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;query&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679430940"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679460789"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679430934"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SearchPublicChats.html#SearchPublicChats"><span class="hs-identifier hs-type">SearchPublicChats</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span> </span><span id="local-6989586621679430932"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SearchPublicChats
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679430930"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679430930"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679430928"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679430928"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>  </span><span id="local-6989586621679430927"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679430927"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679430928"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679460783"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SearchPublicChats.html#SearchPublicChats"><span class="hs-identifier hs-type">SearchPublicChats</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span> </span><span id="local-6989586621679460781"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SearchPublicChats
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679460779"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679460779"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679460777"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679460777"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-25"></span><span>  </span><span id="local-6989586621679460776"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679460776"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679460777"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-26"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679430927"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-27"></span><span>   </span><span class="hs-string">&quot;searchPublicChats&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchPublicChats
-</span><a href="#local-6989586621679430925"><span class="hs-identifier hs-var">parseSearchPublicChats</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679430930"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-28"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SearchPublicChats
+</span><a href="#local-6989586621679460776"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-27"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;searchPublicChats&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchPublicChats
+</span><a href="#local-6989586621679460774"><span class="hs-identifier hs-var">parseSearchPublicChats</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679460779"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-28"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SearchPublicChats
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-29"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-30"></span><span>   </span><span class="annot"><a href="#local-6989586621679430925"><span class="hs-identifier hs-type">parseSearchPublicChats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SearchPublicChats.html#SearchPublicChats"><span class="hs-identifier hs-type">SearchPublicChats</span></a></span><span>
-</span><span id="line-31"></span><span>   </span><span id="local-6989586621679430925"><span class="annot"><span class="annottext">parseSearchPublicChats :: Value -&gt; Parser SearchPublicChats
-</span><a href="#local-6989586621679430925"><span class="hs-identifier hs-var hs-var">parseSearchPublicChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-30"></span><span>   </span><span class="annot"><a href="#local-6989586621679460774"><span class="hs-identifier hs-type">parseSearchPublicChats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SearchPublicChats.html#SearchPublicChats"><span class="hs-identifier hs-type">SearchPublicChats</span></a></span><span>
+</span><span id="line-31"></span><span>   </span><span id="local-6989586621679460774"><span class="annot"><span class="annottext">parseSearchPublicChats :: Value -&gt; Parser SearchPublicChats
+</span><a href="#local-6989586621679460774"><span class="hs-identifier hs-var hs-var">parseSearchPublicChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchPublicChats)
 -&gt; Value
 -&gt; Parser SearchPublicChats
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;SearchPublicChats&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser SearchPublicChats)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchPublicChats&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser SearchPublicChats)
  -&gt; Value -&gt; Parser SearchPublicChats)
 -&gt; (Object -&gt; Parser SearchPublicChats)
 -&gt; Value
 -&gt; Parser SearchPublicChats
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679430923"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679430923"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-32"></span><span>    </span><span id="local-6989586621679430922"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679430922"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679430923"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679460772"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679460772"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-32"></span><span>    </span><span id="local-6989586621679460771"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679460771"><span class="hs-identifier hs-var">query</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679460772"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;query&quot;</span></span><span>
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;query&quot;</span></span><span>
 </span><span id="line-33"></span><span>    </span><span class="annot"><span class="annottext">SearchPublicChats -&gt; Parser SearchPublicChats
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchPublicChats -&gt; Parser SearchPublicChats)
 -&gt; SearchPublicChats -&gt; Parser SearchPublicChats
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchPublicChats :: Maybe String -&gt; SearchPublicChats
-</span><a href="API.Functions.SearchPublicChats.html#SearchPublicChats"><span class="hs-identifier hs-type hs-type">SearchPublicChats</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">query :: Maybe String
+</span><a href="API.Functions.SearchPublicChats.html#SearchPublicChats"><span class="hs-identifier hs-type">SearchPublicChats</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">query :: Maybe String
 </span><a href="API.Functions.SearchPublicChats.html#query"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679430922"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679460771"><span class="hs-identifier hs-var">query</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-34"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser SearchPublicChats
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-35"></span></pre></body></html>

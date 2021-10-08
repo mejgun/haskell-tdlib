@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -42,31 +43,65 @@ data ChatReportReason =
  -- |
  -- 
  -- A custom reason provided by the user
- ChatReportReasonCustom deriving (Show, Eq)
+ ChatReportReasonCustom deriving (Eq)
+
+instance Show ChatReportReason where
+ show ChatReportReasonSpam {  } =
+  "ChatReportReasonSpam" ++ cc [ ]
+
+ show ChatReportReasonViolence {  } =
+  "ChatReportReasonViolence" ++ cc [ ]
+
+ show ChatReportReasonPornography {  } =
+  "ChatReportReasonPornography" ++ cc [ ]
+
+ show ChatReportReasonChildAbuse {  } =
+  "ChatReportReasonChildAbuse" ++ cc [ ]
+
+ show ChatReportReasonCopyright {  } =
+  "ChatReportReasonCopyright" ++ cc [ ]
+
+ show ChatReportReasonUnrelatedLocation {  } =
+  "ChatReportReasonUnrelatedLocation" ++ cc [ ]
+
+ show ChatReportReasonFake {  } =
+  "ChatReportReasonFake" ++ cc [ ]
+
+ show ChatReportReasonCustom {  } =
+  "ChatReportReasonCustom" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatReportReason where
- toJSON (ChatReportReasonSpam {  }) =
+ toJSON ChatReportReasonSpam {  } =
   A.object [ "@type" A..= T.String "chatReportReasonSpam" ]
 
- toJSON (ChatReportReasonViolence {  }) =
+ toJSON ChatReportReasonViolence {  } =
   A.object [ "@type" A..= T.String "chatReportReasonViolence" ]
 
- toJSON (ChatReportReasonPornography {  }) =
+ toJSON ChatReportReasonPornography {  } =
   A.object [ "@type" A..= T.String "chatReportReasonPornography" ]
 
- toJSON (ChatReportReasonChildAbuse {  }) =
+ toJSON ChatReportReasonChildAbuse {  } =
   A.object [ "@type" A..= T.String "chatReportReasonChildAbuse" ]
 
- toJSON (ChatReportReasonCopyright {  }) =
+ toJSON ChatReportReasonCopyright {  } =
   A.object [ "@type" A..= T.String "chatReportReasonCopyright" ]
 
- toJSON (ChatReportReasonUnrelatedLocation {  }) =
+ toJSON ChatReportReasonUnrelatedLocation {  } =
   A.object [ "@type" A..= T.String "chatReportReasonUnrelatedLocation" ]
 
- toJSON (ChatReportReasonFake {  }) =
+ toJSON ChatReportReasonFake {  } =
   A.object [ "@type" A..= T.String "chatReportReasonFake" ]
 
- toJSON (ChatReportReasonCustom {  }) =
+ toJSON ChatReportReasonCustom {  } =
   A.object [ "@type" A..= T.String "chatReportReasonCustom" ]
 
 instance T.FromJSON ChatReportReason where
@@ -114,3 +149,4 @@ instance T.FromJSON ChatReportReason where
    parseChatReportReasonCustom :: A.Value -> T.Parser ChatReportReason
    parseChatReportReasonCustom = A.withObject "ChatReportReasonCustom" $ \o -> do
     return $ ChatReportReasonCustom {  }
+ parseJSON _ = mempty

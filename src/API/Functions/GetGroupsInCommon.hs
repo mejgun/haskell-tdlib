@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -18,10 +19,23 @@ import qualified Data.Aeson.Types as T
 -- __limit__ The maximum number of chats to be returned; up to 100
 data GetGroupsInCommon = 
 
- GetGroupsInCommon { limit :: Maybe Int, offset_chat_id :: Maybe Int, user_id :: Maybe Int }  deriving (Show, Eq)
+ GetGroupsInCommon { limit :: Maybe Int, offset_chat_id :: Maybe Int, user_id :: Maybe Int }  deriving (Eq)
+
+instance Show GetGroupsInCommon where
+ show GetGroupsInCommon { limit=limit, offset_chat_id=offset_chat_id, user_id=user_id } =
+  "GetGroupsInCommon" ++ cc [p "limit" limit, p "offset_chat_id" offset_chat_id, p "user_id" user_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetGroupsInCommon where
- toJSON (GetGroupsInCommon { limit = limit, offset_chat_id = offset_chat_id, user_id = user_id }) =
+ toJSON GetGroupsInCommon { limit = limit, offset_chat_id = offset_chat_id, user_id = user_id } =
   A.object [ "@type" A..= T.String "getGroupsInCommon", "limit" A..= limit, "offset_chat_id" A..= offset_chat_id, "user_id" A..= user_id ]
 
 instance T.FromJSON GetGroupsInCommon where
@@ -37,3 +51,4 @@ instance T.FromJSON GetGroupsInCommon where
     offset_chat_id <- mconcat [ o A..:? "offset_chat_id", readMaybe <$> (o A..: "offset_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetGroupsInCommon { limit = limit, offset_chat_id = offset_chat_id, user_id = user_id }
+ parseJSON _ = mempty

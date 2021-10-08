@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.NetworkType as NetworkType
 import {-# SOURCE #-} qualified API.AutoDownloadSettings as AutoDownloadSettings
 
@@ -18,10 +19,23 @@ import {-# SOURCE #-} qualified API.AutoDownloadSettings as AutoDownloadSettings
 -- __type__ Type of the network for which the new settings are relevant
 data SetAutoDownloadSettings = 
 
- SetAutoDownloadSettings { _type :: Maybe NetworkType.NetworkType, settings :: Maybe AutoDownloadSettings.AutoDownloadSettings }  deriving (Show, Eq)
+ SetAutoDownloadSettings { _type :: Maybe NetworkType.NetworkType, settings :: Maybe AutoDownloadSettings.AutoDownloadSettings }  deriving (Eq)
+
+instance Show SetAutoDownloadSettings where
+ show SetAutoDownloadSettings { _type=_type, settings=settings } =
+  "SetAutoDownloadSettings" ++ cc [p "_type" _type, p "settings" settings ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SetAutoDownloadSettings where
- toJSON (SetAutoDownloadSettings { _type = _type, settings = settings }) =
+ toJSON SetAutoDownloadSettings { _type = _type, settings = settings } =
   A.object [ "@type" A..= T.String "setAutoDownloadSettings", "type" A..= _type, "settings" A..= settings ]
 
 instance T.FromJSON SetAutoDownloadSettings where
@@ -36,3 +50,4 @@ instance T.FromJSON SetAutoDownloadSettings where
     _type <- o A..:? "type"
     settings <- o A..:? "settings"
     return $ SetAutoDownloadSettings { _type = _type, settings = settings }
+ parseJSON _ = mempty

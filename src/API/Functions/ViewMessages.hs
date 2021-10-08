@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -17,13 +18,26 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __message_ids__ The identifiers of the messages being viewed
 -- 
--- __force_read__ True, if messages in closed chats should be marked as read by the request
+-- __force_read__ True, if messages in closed chats must be marked as read by the request
 data ViewMessages = 
 
- ViewMessages { force_read :: Maybe Bool, message_ids :: Maybe [Int], message_thread_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
+ ViewMessages { force_read :: Maybe Bool, message_ids :: Maybe [Int], message_thread_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show ViewMessages where
+ show ViewMessages { force_read=force_read, message_ids=message_ids, message_thread_id=message_thread_id, chat_id=chat_id } =
+  "ViewMessages" ++ cc [p "force_read" force_read, p "message_ids" message_ids, p "message_thread_id" message_thread_id, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ViewMessages where
- toJSON (ViewMessages { force_read = force_read, message_ids = message_ids, message_thread_id = message_thread_id, chat_id = chat_id }) =
+ toJSON ViewMessages { force_read = force_read, message_ids = message_ids, message_thread_id = message_thread_id, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "viewMessages", "force_read" A..= force_read, "message_ids" A..= message_ids, "message_thread_id" A..= message_thread_id, "chat_id" A..= chat_id ]
 
 instance T.FromJSON ViewMessages where
@@ -40,3 +54,4 @@ instance T.FromJSON ViewMessages where
     message_thread_id <- mconcat [ o A..:? "message_thread_id", readMaybe <$> (o A..: "message_thread_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ViewMessages { force_read = force_read, message_ids = message_ids, message_thread_id = message_thread_id, chat_id = chat_id }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -13,13 +14,26 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __file_id__ Identifier of the file
 -- 
--- __offset__ Offset from which downloaded prefix size should be calculated
+-- __offset__ Offset from which downloaded prefix size needs to be calculated
 data GetFileDownloadedPrefixSize = 
 
- GetFileDownloadedPrefixSize { offset :: Maybe Int, file_id :: Maybe Int }  deriving (Show, Eq)
+ GetFileDownloadedPrefixSize { offset :: Maybe Int, file_id :: Maybe Int }  deriving (Eq)
+
+instance Show GetFileDownloadedPrefixSize where
+ show GetFileDownloadedPrefixSize { offset=offset, file_id=file_id } =
+  "GetFileDownloadedPrefixSize" ++ cc [p "offset" offset, p "file_id" file_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetFileDownloadedPrefixSize where
- toJSON (GetFileDownloadedPrefixSize { offset = offset, file_id = file_id }) =
+ toJSON GetFileDownloadedPrefixSize { offset = offset, file_id = file_id } =
   A.object [ "@type" A..= T.String "getFileDownloadedPrefixSize", "offset" A..= offset, "file_id" A..= file_id ]
 
 instance T.FromJSON GetFileDownloadedPrefixSize where
@@ -34,3 +48,4 @@ instance T.FromJSON GetFileDownloadedPrefixSize where
     offset <- mconcat [ o A..:? "offset", readMaybe <$> (o A..: "offset" :: T.Parser String)] :: T.Parser (Maybe Int)
     file_id <- mconcat [ o A..:? "file_id", readMaybe <$> (o A..: "file_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetFileDownloadedPrefixSize { offset = offset, file_id = file_id }
+ parseJSON _ = mempty

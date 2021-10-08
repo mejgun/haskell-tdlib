@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.ChatInviteLinkCounts</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.ChatInviteLinkCount.html"><span class="hs-identifier">API.ChatInviteLinkCount</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">ChatInviteLinkCount</span></span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- Contains a list of chat invite link counts </span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-15"></span><span class="hs-comment">-- __invite_link_counts__ List of invite linkcounts</span><span>
+</span><span id="line-16"></span><span class="hs-keyword">data</span><span> </span><span id="ChatInviteLinkCounts"><span class="annot"><a href="API.ChatInviteLinkCounts.html#ChatInviteLinkCounts"><span class="hs-identifier hs-var">ChatInviteLinkCounts</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-17"></span><span>
+</span><span id="line-18"></span><span> </span><span id="ChatInviteLinkCounts"><span class="annot"><a href="API.ChatInviteLinkCounts.html#ChatInviteLinkCounts"><span class="hs-identifier hs-var">ChatInviteLinkCounts</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="invite_link_counts"><span class="annot"><span class="annottext">ChatInviteLinkCounts -&gt; Maybe [ChatInviteLinkCount]
+</span><a href="API.ChatInviteLinkCounts.html#invite_link_counts"><span class="hs-identifier hs-var hs-var">invite_link_counts</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.ChatInviteLinkCount.html#ChatInviteLinkCount"><span class="hs-identifier hs-type">ChatInviteLinkCount.ChatInviteLinkCount</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679435304"><span id="local-6989586621679435306"><span id="local-6989586621679435308"><span class="annot"><span class="annottext">Int -&gt; ChatInviteLinkCounts -&gt; ShowS
+[ChatInviteLinkCounts] -&gt; ShowS
+ChatInviteLinkCounts -&gt; String
+(Int -&gt; ChatInviteLinkCounts -&gt; ShowS)
+-&gt; (ChatInviteLinkCounts -&gt; String)
+-&gt; ([ChatInviteLinkCounts] -&gt; ShowS)
+-&gt; Show ChatInviteLinkCounts
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [ChatInviteLinkCounts] -&gt; ShowS
+$cshowList :: [ChatInviteLinkCounts] -&gt; ShowS
+show :: ChatInviteLinkCounts -&gt; String
+$cshow :: ChatInviteLinkCounts -&gt; String
+showsPrec :: Int -&gt; ChatInviteLinkCounts -&gt; ShowS
+$cshowsPrec :: Int -&gt; ChatInviteLinkCounts -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679435299"><span id="local-6989586621679435301"><span class="annot"><span class="annottext">ChatInviteLinkCounts -&gt; ChatInviteLinkCounts -&gt; Bool
+(ChatInviteLinkCounts -&gt; ChatInviteLinkCounts -&gt; Bool)
+-&gt; (ChatInviteLinkCounts -&gt; ChatInviteLinkCounts -&gt; Bool)
+-&gt; Eq ChatInviteLinkCounts
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: ChatInviteLinkCounts -&gt; ChatInviteLinkCounts -&gt; Bool
+$c/= :: ChatInviteLinkCounts -&gt; ChatInviteLinkCounts -&gt; Bool
+== :: ChatInviteLinkCounts -&gt; ChatInviteLinkCounts -&gt; Bool
+$c== :: ChatInviteLinkCounts -&gt; ChatInviteLinkCounts -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679435291"><span id="local-6989586621679435293"><span id="local-6989586621679435295"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ChatInviteLinkCounts.html#ChatInviteLinkCounts"><span class="hs-identifier hs-type">ChatInviteLinkCounts</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span> </span><span id="local-6989586621679435289"><span class="annot"><span class="annottext">toJSON :: ChatInviteLinkCounts -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.ChatInviteLinkCounts.html#ChatInviteLinkCounts"><span class="hs-identifier hs-type">ChatInviteLinkCounts</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">invite_link_counts :: ChatInviteLinkCounts -&gt; Maybe [ChatInviteLinkCount]
+</span><a href="API.ChatInviteLinkCounts.html#invite_link_counts"><span class="hs-identifier hs-var">invite_link_counts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679435287"><span class="annot"><span class="annottext">Maybe [ChatInviteLinkCount]
+</span><a href="#local-6989586621679435287"><span class="hs-identifier hs-var">invite_link_counts</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-22"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;chatInviteLinkCounts&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;invite_link_counts&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [ChatInviteLinkCount] -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [ChatInviteLinkCount]
+</span><a href="#local-6989586621679435287"><span class="hs-identifier hs-var">invite_link_counts</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-23"></span><span>
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679435281"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ChatInviteLinkCounts.html#ChatInviteLinkCounts"><span class="hs-identifier hs-type">ChatInviteLinkCounts</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span> </span><span id="local-6989586621679435279"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatInviteLinkCounts
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679435277"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679435277"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679435275"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679435275"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679435274"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679435274"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679435275"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-27"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679435274"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-28"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;chatInviteLinkCounts&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatInviteLinkCounts
+</span><a href="#local-6989586621679435272"><span class="hs-identifier hs-var">parseChatInviteLinkCounts</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679435277"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-29"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ChatInviteLinkCounts
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-30"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-31"></span><span>   </span><span class="annot"><a href="#local-6989586621679435272"><span class="hs-identifier hs-type">parseChatInviteLinkCounts</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatInviteLinkCounts.html#ChatInviteLinkCounts"><span class="hs-identifier hs-type">ChatInviteLinkCounts</span></a></span><span>
+</span><span id="line-32"></span><span>   </span><span id="local-6989586621679435272"><span class="annot"><span class="annottext">parseChatInviteLinkCounts :: Value -&gt; Parser ChatInviteLinkCounts
+</span><a href="#local-6989586621679435272"><span class="hs-identifier hs-var hs-var">parseChatInviteLinkCounts</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser ChatInviteLinkCounts)
+-&gt; Value
+-&gt; Parser ChatInviteLinkCounts
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;ChatInviteLinkCounts&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser ChatInviteLinkCounts)
+ -&gt; Value -&gt; Parser ChatInviteLinkCounts)
+-&gt; (Object -&gt; Parser ChatInviteLinkCounts)
+-&gt; Value
+-&gt; Parser ChatInviteLinkCounts
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679435270"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679435270"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-33"></span><span>    </span><span id="local-6989586621679435269"><span class="annot"><span class="annottext">Maybe [ChatInviteLinkCount]
+</span><a href="#local-6989586621679435269"><span class="hs-identifier hs-var">invite_link_counts</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679435270"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [ChatInviteLinkCount])
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;invite_link_counts&quot;</span></span><span>
+</span><span id="line-34"></span><span>    </span><span class="annot"><span class="annottext">ChatInviteLinkCounts -&gt; Parser ChatInviteLinkCounts
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ChatInviteLinkCounts -&gt; Parser ChatInviteLinkCounts)
+-&gt; ChatInviteLinkCounts -&gt; Parser ChatInviteLinkCounts
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ChatInviteLinkCounts :: Maybe [ChatInviteLinkCount] -&gt; ChatInviteLinkCounts
+</span><a href="API.ChatInviteLinkCounts.html#ChatInviteLinkCounts"><span class="hs-identifier hs-type">ChatInviteLinkCounts</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">invite_link_counts :: Maybe [ChatInviteLinkCount]
+</span><a href="API.ChatInviteLinkCounts.html#invite_link_counts"><span class="hs-identifier hs-var">invite_link_counts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [ChatInviteLinkCount]
+</span><a href="#local-6989586621679435269"><span class="hs-identifier hs-var">invite_link_counts</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-35"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser ChatInviteLinkCounts
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-36"></span></pre></body></html>

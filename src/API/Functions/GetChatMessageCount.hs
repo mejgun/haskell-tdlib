@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.SearchMessagesFilter as SearchMessagesFilter
 
 -- |
@@ -19,10 +20,23 @@ import {-# SOURCE #-} qualified API.SearchMessagesFilter as SearchMessagesFilter
 -- __return_local__ If true, returns count that is available locally without sending network requests, returning -1 if the number of messages is unknown
 data GetChatMessageCount = 
 
- GetChatMessageCount { return_local :: Maybe Bool, _filter :: Maybe SearchMessagesFilter.SearchMessagesFilter, chat_id :: Maybe Int }  deriving (Show, Eq)
+ GetChatMessageCount { return_local :: Maybe Bool, _filter :: Maybe SearchMessagesFilter.SearchMessagesFilter, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show GetChatMessageCount where
+ show GetChatMessageCount { return_local=return_local, _filter=_filter, chat_id=chat_id } =
+  "GetChatMessageCount" ++ cc [p "return_local" return_local, p "_filter" _filter, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetChatMessageCount where
- toJSON (GetChatMessageCount { return_local = return_local, _filter = _filter, chat_id = chat_id }) =
+ toJSON GetChatMessageCount { return_local = return_local, _filter = _filter, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "getChatMessageCount", "return_local" A..= return_local, "filter" A..= _filter, "chat_id" A..= chat_id ]
 
 instance T.FromJSON GetChatMessageCount where
@@ -38,3 +52,4 @@ instance T.FromJSON GetChatMessageCount where
     _filter <- o A..:? "filter"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetChatMessageCount { return_local = return_local, _filter = _filter, chat_id = chat_id }
+ parseJSON _ = mempty

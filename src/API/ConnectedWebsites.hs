@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.ConnectedWebsite as ConnectedWebsite
 
 -- |
@@ -15,10 +16,23 @@ import {-# SOURCE #-} qualified API.ConnectedWebsite as ConnectedWebsite
 -- __websites__ List of connected websites
 data ConnectedWebsites = 
 
- ConnectedWebsites { websites :: Maybe [ConnectedWebsite.ConnectedWebsite] }  deriving (Show, Eq)
+ ConnectedWebsites { websites :: Maybe [ConnectedWebsite.ConnectedWebsite] }  deriving (Eq)
+
+instance Show ConnectedWebsites where
+ show ConnectedWebsites { websites=websites } =
+  "ConnectedWebsites" ++ cc [p "websites" websites ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ConnectedWebsites where
- toJSON (ConnectedWebsites { websites = websites }) =
+ toJSON ConnectedWebsites { websites = websites } =
   A.object [ "@type" A..= T.String "connectedWebsites", "websites" A..= websites ]
 
 instance T.FromJSON ConnectedWebsites where
@@ -32,3 +46,4 @@ instance T.FromJSON ConnectedWebsites where
    parseConnectedWebsites = A.withObject "ConnectedWebsites" $ \o -> do
     websites <- o A..:? "websites"
     return $ ConnectedWebsites { websites = websites }
+ parseJSON _ = mempty

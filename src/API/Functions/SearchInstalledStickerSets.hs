@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -18,10 +19,23 @@ import qualified Data.Aeson.Types as T
 -- __limit__ The maximum number of sticker sets to return
 data SearchInstalledStickerSets = 
 
- SearchInstalledStickerSets { limit :: Maybe Int, query :: Maybe String, is_masks :: Maybe Bool }  deriving (Show, Eq)
+ SearchInstalledStickerSets { limit :: Maybe Int, query :: Maybe String, is_masks :: Maybe Bool }  deriving (Eq)
+
+instance Show SearchInstalledStickerSets where
+ show SearchInstalledStickerSets { limit=limit, query=query, is_masks=is_masks } =
+  "SearchInstalledStickerSets" ++ cc [p "limit" limit, p "query" query, p "is_masks" is_masks ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SearchInstalledStickerSets where
- toJSON (SearchInstalledStickerSets { limit = limit, query = query, is_masks = is_masks }) =
+ toJSON SearchInstalledStickerSets { limit = limit, query = query, is_masks = is_masks } =
   A.object [ "@type" A..= T.String "searchInstalledStickerSets", "limit" A..= limit, "query" A..= query, "is_masks" A..= is_masks ]
 
 instance T.FromJSON SearchInstalledStickerSets where
@@ -37,3 +51,4 @@ instance T.FromJSON SearchInstalledStickerSets where
     query <- o A..:? "query"
     is_masks <- o A..:? "is_masks"
     return $ SearchInstalledStickerSets { limit = limit, query = query, is_masks = is_masks }
+ parseJSON _ = mempty

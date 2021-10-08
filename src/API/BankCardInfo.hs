@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.BankCardActionOpenUrl as BankCardActionOpenUrl
 
 -- |
@@ -17,10 +18,23 @@ import {-# SOURCE #-} qualified API.BankCardActionOpenUrl as BankCardActionOpenU
 -- __actions__ Actions that can be done with the bank card number
 data BankCardInfo = 
 
- BankCardInfo { actions :: Maybe [BankCardActionOpenUrl.BankCardActionOpenUrl], title :: Maybe String }  deriving (Show, Eq)
+ BankCardInfo { actions :: Maybe [BankCardActionOpenUrl.BankCardActionOpenUrl], title :: Maybe String }  deriving (Eq)
+
+instance Show BankCardInfo where
+ show BankCardInfo { actions=actions, title=title } =
+  "BankCardInfo" ++ cc [p "actions" actions, p "title" title ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON BankCardInfo where
- toJSON (BankCardInfo { actions = actions, title = title }) =
+ toJSON BankCardInfo { actions = actions, title = title } =
   A.object [ "@type" A..= T.String "bankCardInfo", "actions" A..= actions, "title" A..= title ]
 
 instance T.FromJSON BankCardInfo where
@@ -35,3 +49,4 @@ instance T.FromJSON BankCardInfo where
     actions <- o A..:? "actions"
     title <- o A..:? "title"
     return $ BankCardInfo { actions = actions, title = title }
+ parseJSON _ = mempty

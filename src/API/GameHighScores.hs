@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.GameHighScore as GameHighScore
 
 -- |
@@ -15,10 +16,23 @@ import {-# SOURCE #-} qualified API.GameHighScore as GameHighScore
 -- __scores__ A list of game high scores
 data GameHighScores = 
 
- GameHighScores { scores :: Maybe [GameHighScore.GameHighScore] }  deriving (Show, Eq)
+ GameHighScores { scores :: Maybe [GameHighScore.GameHighScore] }  deriving (Eq)
+
+instance Show GameHighScores where
+ show GameHighScores { scores=scores } =
+  "GameHighScores" ++ cc [p "scores" scores ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GameHighScores where
- toJSON (GameHighScores { scores = scores }) =
+ toJSON GameHighScores { scores = scores } =
   A.object [ "@type" A..= T.String "gameHighScores", "scores" A..= scores ]
 
 instance T.FromJSON GameHighScores where
@@ -32,3 +46,4 @@ instance T.FromJSON GameHighScores where
    parseGameHighScores = A.withObject "GameHighScores" $ \o -> do
     scores <- o A..:? "scores"
     return $ GameHighScores { scores = scores }
+ parseJSON _ = mempty

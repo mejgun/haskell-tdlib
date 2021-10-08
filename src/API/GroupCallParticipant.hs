@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.GroupCallParticipantVideoInfo as GroupCallParticipantVideoInfo
 import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
@@ -50,10 +51,23 @@ import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 -- __order__ User's order in the group call participant list. Orders must be compared lexicographically. The bigger is order, the higher is user in the list. If order is empty, the user must be removed from the participant list
 data GroupCallParticipant = 
 
- GroupCallParticipant { order :: Maybe String, volume_level :: Maybe Int, can_unmute_self :: Maybe Bool, is_muted_for_current_user :: Maybe Bool, is_muted_for_all_users :: Maybe Bool, can_be_unmuted_for_current_user :: Maybe Bool, can_be_muted_for_current_user :: Maybe Bool, can_be_unmuted_for_all_users :: Maybe Bool, can_be_muted_for_all_users :: Maybe Bool, is_hand_raised :: Maybe Bool, is_speaking :: Maybe Bool, is_current_user :: Maybe Bool, bio :: Maybe String, screen_sharing_video_info :: Maybe GroupCallParticipantVideoInfo.GroupCallParticipantVideoInfo, video_info :: Maybe GroupCallParticipantVideoInfo.GroupCallParticipantVideoInfo, screen_sharing_audio_source_id :: Maybe Int, audio_source_id :: Maybe Int, participant_id :: Maybe MessageSender.MessageSender }  deriving (Show, Eq)
+ GroupCallParticipant { order :: Maybe String, volume_level :: Maybe Int, can_unmute_self :: Maybe Bool, is_muted_for_current_user :: Maybe Bool, is_muted_for_all_users :: Maybe Bool, can_be_unmuted_for_current_user :: Maybe Bool, can_be_muted_for_current_user :: Maybe Bool, can_be_unmuted_for_all_users :: Maybe Bool, can_be_muted_for_all_users :: Maybe Bool, is_hand_raised :: Maybe Bool, is_speaking :: Maybe Bool, is_current_user :: Maybe Bool, bio :: Maybe String, screen_sharing_video_info :: Maybe GroupCallParticipantVideoInfo.GroupCallParticipantVideoInfo, video_info :: Maybe GroupCallParticipantVideoInfo.GroupCallParticipantVideoInfo, screen_sharing_audio_source_id :: Maybe Int, audio_source_id :: Maybe Int, participant_id :: Maybe MessageSender.MessageSender }  deriving (Eq)
+
+instance Show GroupCallParticipant where
+ show GroupCallParticipant { order=order, volume_level=volume_level, can_unmute_self=can_unmute_self, is_muted_for_current_user=is_muted_for_current_user, is_muted_for_all_users=is_muted_for_all_users, can_be_unmuted_for_current_user=can_be_unmuted_for_current_user, can_be_muted_for_current_user=can_be_muted_for_current_user, can_be_unmuted_for_all_users=can_be_unmuted_for_all_users, can_be_muted_for_all_users=can_be_muted_for_all_users, is_hand_raised=is_hand_raised, is_speaking=is_speaking, is_current_user=is_current_user, bio=bio, screen_sharing_video_info=screen_sharing_video_info, video_info=video_info, screen_sharing_audio_source_id=screen_sharing_audio_source_id, audio_source_id=audio_source_id, participant_id=participant_id } =
+  "GroupCallParticipant" ++ cc [p "order" order, p "volume_level" volume_level, p "can_unmute_self" can_unmute_self, p "is_muted_for_current_user" is_muted_for_current_user, p "is_muted_for_all_users" is_muted_for_all_users, p "can_be_unmuted_for_current_user" can_be_unmuted_for_current_user, p "can_be_muted_for_current_user" can_be_muted_for_current_user, p "can_be_unmuted_for_all_users" can_be_unmuted_for_all_users, p "can_be_muted_for_all_users" can_be_muted_for_all_users, p "is_hand_raised" is_hand_raised, p "is_speaking" is_speaking, p "is_current_user" is_current_user, p "bio" bio, p "screen_sharing_video_info" screen_sharing_video_info, p "video_info" video_info, p "screen_sharing_audio_source_id" screen_sharing_audio_source_id, p "audio_source_id" audio_source_id, p "participant_id" participant_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GroupCallParticipant where
- toJSON (GroupCallParticipant { order = order, volume_level = volume_level, can_unmute_self = can_unmute_self, is_muted_for_current_user = is_muted_for_current_user, is_muted_for_all_users = is_muted_for_all_users, can_be_unmuted_for_current_user = can_be_unmuted_for_current_user, can_be_muted_for_current_user = can_be_muted_for_current_user, can_be_unmuted_for_all_users = can_be_unmuted_for_all_users, can_be_muted_for_all_users = can_be_muted_for_all_users, is_hand_raised = is_hand_raised, is_speaking = is_speaking, is_current_user = is_current_user, bio = bio, screen_sharing_video_info = screen_sharing_video_info, video_info = video_info, screen_sharing_audio_source_id = screen_sharing_audio_source_id, audio_source_id = audio_source_id, participant_id = participant_id }) =
+ toJSON GroupCallParticipant { order = order, volume_level = volume_level, can_unmute_self = can_unmute_self, is_muted_for_current_user = is_muted_for_current_user, is_muted_for_all_users = is_muted_for_all_users, can_be_unmuted_for_current_user = can_be_unmuted_for_current_user, can_be_muted_for_current_user = can_be_muted_for_current_user, can_be_unmuted_for_all_users = can_be_unmuted_for_all_users, can_be_muted_for_all_users = can_be_muted_for_all_users, is_hand_raised = is_hand_raised, is_speaking = is_speaking, is_current_user = is_current_user, bio = bio, screen_sharing_video_info = screen_sharing_video_info, video_info = video_info, screen_sharing_audio_source_id = screen_sharing_audio_source_id, audio_source_id = audio_source_id, participant_id = participant_id } =
   A.object [ "@type" A..= T.String "groupCallParticipant", "order" A..= order, "volume_level" A..= volume_level, "can_unmute_self" A..= can_unmute_self, "is_muted_for_current_user" A..= is_muted_for_current_user, "is_muted_for_all_users" A..= is_muted_for_all_users, "can_be_unmuted_for_current_user" A..= can_be_unmuted_for_current_user, "can_be_muted_for_current_user" A..= can_be_muted_for_current_user, "can_be_unmuted_for_all_users" A..= can_be_unmuted_for_all_users, "can_be_muted_for_all_users" A..= can_be_muted_for_all_users, "is_hand_raised" A..= is_hand_raised, "is_speaking" A..= is_speaking, "is_current_user" A..= is_current_user, "bio" A..= bio, "screen_sharing_video_info" A..= screen_sharing_video_info, "video_info" A..= video_info, "screen_sharing_audio_source_id" A..= screen_sharing_audio_source_id, "audio_source_id" A..= audio_source_id, "participant_id" A..= participant_id ]
 
 instance T.FromJSON GroupCallParticipant where
@@ -84,3 +98,4 @@ instance T.FromJSON GroupCallParticipant where
     audio_source_id <- mconcat [ o A..:? "audio_source_id", readMaybe <$> (o A..: "audio_source_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     participant_id <- o A..:? "participant_id"
     return $ GroupCallParticipant { order = order, volume_level = volume_level, can_unmute_self = can_unmute_self, is_muted_for_current_user = is_muted_for_current_user, is_muted_for_all_users = is_muted_for_all_users, can_be_unmuted_for_current_user = can_be_unmuted_for_current_user, can_be_muted_for_current_user = can_be_muted_for_current_user, can_be_unmuted_for_all_users = can_be_unmuted_for_all_users, can_be_muted_for_all_users = can_be_muted_for_all_users, is_hand_raised = is_hand_raised, is_speaking = is_speaking, is_current_user = is_current_user, bio = bio, screen_sharing_video_info = screen_sharing_video_info, video_info = video_info, screen_sharing_audio_source_id = screen_sharing_audio_source_id, audio_source_id = audio_source_id, participant_id = participant_id }
+ parseJSON _ = mempty

@@ -6,16 +6,30 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
 -- Returns the current user
 data GetMe = 
 
- GetMe deriving (Show, Eq)
+ GetMe deriving (Eq)
+
+instance Show GetMe where
+ show GetMe {  } =
+  "GetMe" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetMe where
- toJSON (GetMe {  }) =
+ toJSON GetMe {  } =
   A.object [ "@type" A..= T.String "getMe" ]
 
 instance T.FromJSON GetMe where
@@ -28,3 +42,4 @@ instance T.FromJSON GetMe where
    parseGetMe :: A.Value -> T.Parser GetMe
    parseGetMe = A.withObject "GetMe" $ \o -> do
     return $ GetMe {  }
+ parseJSON _ = mempty

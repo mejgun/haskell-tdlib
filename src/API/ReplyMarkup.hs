@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.KeyboardButton as KeyboardButton
 import {-# SOURCE #-} qualified API.InlineKeyboardButton as InlineKeyboardButton
 
@@ -46,19 +47,41 @@ data ReplyMarkup =
  -- Contains an inline keyboard layout
  -- 
  -- __rows__ A list of rows of inline keyboard buttons
- ReplyMarkupInlineKeyboard { rows :: Maybe [InlineKeyboardButton.InlineKeyboardButton] }  deriving (Show, Eq)
+ ReplyMarkupInlineKeyboard { rows :: Maybe [InlineKeyboardButton.InlineKeyboardButton] }  deriving (Eq)
+
+instance Show ReplyMarkup where
+ show ReplyMarkupRemoveKeyboard { is_personal=is_personal } =
+  "ReplyMarkupRemoveKeyboard" ++ cc [p "is_personal" is_personal ]
+
+ show ReplyMarkupForceReply { input_field_placeholder=input_field_placeholder, is_personal=is_personal } =
+  "ReplyMarkupForceReply" ++ cc [p "input_field_placeholder" input_field_placeholder, p "is_personal" is_personal ]
+
+ show ReplyMarkupShowKeyboard { input_field_placeholder=input_field_placeholder, is_personal=is_personal, one_time=one_time, resize_keyboard=resize_keyboard, _rows=_rows } =
+  "ReplyMarkupShowKeyboard" ++ cc [p "input_field_placeholder" input_field_placeholder, p "is_personal" is_personal, p "one_time" one_time, p "resize_keyboard" resize_keyboard, p "_rows" _rows ]
+
+ show ReplyMarkupInlineKeyboard { rows=rows } =
+  "ReplyMarkupInlineKeyboard" ++ cc [p "rows" rows ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ReplyMarkup where
- toJSON (ReplyMarkupRemoveKeyboard { is_personal = is_personal }) =
+ toJSON ReplyMarkupRemoveKeyboard { is_personal = is_personal } =
   A.object [ "@type" A..= T.String "replyMarkupRemoveKeyboard", "is_personal" A..= is_personal ]
 
- toJSON (ReplyMarkupForceReply { input_field_placeholder = input_field_placeholder, is_personal = is_personal }) =
+ toJSON ReplyMarkupForceReply { input_field_placeholder = input_field_placeholder, is_personal = is_personal } =
   A.object [ "@type" A..= T.String "replyMarkupForceReply", "input_field_placeholder" A..= input_field_placeholder, "is_personal" A..= is_personal ]
 
- toJSON (ReplyMarkupShowKeyboard { input_field_placeholder = input_field_placeholder, is_personal = is_personal, one_time = one_time, resize_keyboard = resize_keyboard, _rows = _rows }) =
+ toJSON ReplyMarkupShowKeyboard { input_field_placeholder = input_field_placeholder, is_personal = is_personal, one_time = one_time, resize_keyboard = resize_keyboard, _rows = _rows } =
   A.object [ "@type" A..= T.String "replyMarkupShowKeyboard", "input_field_placeholder" A..= input_field_placeholder, "is_personal" A..= is_personal, "one_time" A..= one_time, "resize_keyboard" A..= resize_keyboard, "rows" A..= _rows ]
 
- toJSON (ReplyMarkupInlineKeyboard { rows = rows }) =
+ toJSON ReplyMarkupInlineKeyboard { rows = rows } =
   A.object [ "@type" A..= T.String "replyMarkupInlineKeyboard", "rows" A..= rows ]
 
 instance T.FromJSON ReplyMarkup where
@@ -95,3 +118,4 @@ instance T.FromJSON ReplyMarkup where
    parseReplyMarkupInlineKeyboard = A.withObject "ReplyMarkupInlineKeyboard" $ \o -> do
     rows <- o A..:? "rows"
     return $ ReplyMarkupInlineKeyboard { rows = rows }
+ parseJSON _ = mempty

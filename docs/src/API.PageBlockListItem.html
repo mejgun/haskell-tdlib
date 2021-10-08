@@ -19,7 +19,7 @@
 </span><span id="line-19"></span><span>
 </span><span id="line-20"></span><span> </span><span id="PageBlockListItem"><span class="annot"><a href="API.PageBlockListItem.html#PageBlockListItem"><span class="hs-identifier hs-var">PageBlockListItem</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="page_blocks"><span class="annot"><span class="annottext">PageBlockListItem -&gt; Maybe [PageBlock]
 </span><a href="API.PageBlockListItem.html#page_blocks"><span class="hs-identifier hs-var hs-var">page_blocks</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.PageBlock.html#PageBlock"><span class="hs-identifier hs-type">PageBlock.PageBlock</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="label"><span class="annot"><span class="annottext">PageBlockListItem -&gt; Maybe String
-</span><a href="API.PageBlockListItem.html#label"><span class="hs-keyword hs-var hs-var">label</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679444586"><span id="local-6989586621679444588"><span id="local-6989586621679444590"><span class="annot"><span class="annottext">Int -&gt; PageBlockListItem -&gt; ShowS
+</span><a href="API.PageBlockListItem.html#label"><span class="hs-keyword hs-var hs-var">label</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679478273"><span id="local-6989586621679478275"><span id="local-6989586621679478277"><span class="annot"><span class="annottext">Int -&gt; PageBlockListItem -&gt; ShowS
 [PageBlockListItem] -&gt; ShowS
 PageBlockListItem -&gt; String
 (Int -&gt; PageBlockListItem -&gt; ShowS)
@@ -34,7 +34,7 @@ show :: PageBlockListItem -&gt; String
 $cshow :: PageBlockListItem -&gt; String
 showsPrec :: Int -&gt; PageBlockListItem -&gt; ShowS
 $cshowsPrec :: Int -&gt; PageBlockListItem -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679444581"><span id="local-6989586621679444583"><span class="annot"><span class="annottext">PageBlockListItem -&gt; PageBlockListItem -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679478268"><span id="local-6989586621679478270"><span class="annot"><span class="annottext">PageBlockListItem -&gt; PageBlockListItem -&gt; Bool
 (PageBlockListItem -&gt; PageBlockListItem -&gt; Bool)
 -&gt; (PageBlockListItem -&gt; PageBlockListItem -&gt; Bool)
 -&gt; Eq PageBlockListItem
@@ -45,77 +45,92 @@ $c/= :: PageBlockListItem -&gt; PageBlockListItem -&gt; Bool
 $c== :: PageBlockListItem -&gt; PageBlockListItem -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679444573"><span id="local-6989586621679444575"><span id="local-6989586621679444577"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.PageBlockListItem.html#PageBlockListItem"><span class="hs-identifier hs-type">PageBlockListItem</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span> </span><span id="local-6989586621679444571"><span class="annot"><span class="annottext">toJSON :: PageBlockListItem -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.PageBlockListItem.html#PageBlockListItem"><span class="hs-identifier hs-type">PageBlockListItem</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">page_blocks :: PageBlockListItem -&gt; Maybe [PageBlock]
-</span><a href="API.PageBlockListItem.html#page_blocks"><span class="hs-identifier hs-var">page_blocks</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679444569"><span class="annot"><span class="annottext">Maybe [PageBlock]
-</span><a href="#local-6989586621679444569"><span class="hs-identifier hs-var">page_blocks</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">label :: PageBlockListItem -&gt; Maybe String
-</span><a href="API.PageBlockListItem.html#label"><span class="hs-keyword hs-var">label</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679444568"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679444568"><span class="hs-keyword hs-var">label</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679478260"><span id="local-6989586621679478262"><span id="local-6989586621679478264"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.PageBlockListItem.html#PageBlockListItem"><span class="hs-identifier hs-type">PageBlockListItem</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span> </span><span id="local-6989586621679478258"><span class="annot"><span class="annottext">toJSON :: PageBlockListItem -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.PageBlockListItem.html#PageBlockListItem"><span class="hs-identifier hs-type">PageBlockListItem</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">page_blocks :: PageBlockListItem -&gt; Maybe [PageBlock]
+</span><a href="API.PageBlockListItem.html#page_blocks"><span class="hs-identifier hs-var">page_blocks</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679478256"><span class="annot"><span class="annottext">Maybe [PageBlock]
+</span><a href="#local-6989586621679478256"><span class="hs-identifier hs-var">page_blocks</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">label :: PageBlockListItem -&gt; Maybe String
+</span><a href="API.PageBlockListItem.html#label"><span class="hs-keyword hs-var">label</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679478255"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679478255"><span class="hs-keyword hs-var">label</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-24"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;pageBlockListItem&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;page_blocks&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [PageBlock] -&gt; Pair
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;pageBlockListItem&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;page_blocks&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [PageBlock] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [PageBlock]
-</span><a href="#local-6989586621679444569"><span class="hs-identifier hs-var">page_blocks</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;label&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679478256"><span class="hs-identifier hs-var">page_blocks</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;label&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679444568"><span class="hs-keyword hs-var">label</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679478255"><span class="hs-keyword hs-var">label</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-25"></span><span>
-</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679444562"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.PageBlockListItem.html#PageBlockListItem"><span class="hs-identifier hs-type">PageBlockListItem</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-27"></span><span> </span><span id="local-6989586621679444560"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PageBlockListItem
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679444558"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679444558"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679444556"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679444556"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-28"></span><span>  </span><span id="local-6989586621679444555"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679444555"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679444556"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679478249"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.PageBlockListItem.html#PageBlockListItem"><span class="hs-identifier hs-type">PageBlockListItem</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-27"></span><span> </span><span id="local-6989586621679478247"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PageBlockListItem
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679478245"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679478245"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679478243"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679478243"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-28"></span><span>  </span><span id="local-6989586621679478242"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679478242"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679478243"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-29"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679444555"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-30"></span><span>   </span><span class="hs-string">&quot;pageBlockListItem&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PageBlockListItem
-</span><a href="#local-6989586621679444553"><span class="hs-identifier hs-var">parsePageBlockListItem</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679444558"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-31"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PageBlockListItem
+</span><a href="#local-6989586621679478242"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-30"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;pageBlockListItem&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PageBlockListItem
+</span><a href="#local-6989586621679478240"><span class="hs-identifier hs-var">parsePageBlockListItem</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679478245"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-31"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PageBlockListItem
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-32"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>   </span><span class="annot"><a href="#local-6989586621679444553"><span class="hs-identifier hs-type">parsePageBlockListItem</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PageBlockListItem.html#PageBlockListItem"><span class="hs-identifier hs-type">PageBlockListItem</span></a></span><span>
-</span><span id="line-34"></span><span>   </span><span id="local-6989586621679444553"><span class="annot"><span class="annottext">parsePageBlockListItem :: Value -&gt; Parser PageBlockListItem
-</span><a href="#local-6989586621679444553"><span class="hs-identifier hs-var hs-var">parsePageBlockListItem</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-33"></span><span>   </span><span class="annot"><a href="#local-6989586621679478240"><span class="hs-identifier hs-type">parsePageBlockListItem</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PageBlockListItem.html#PageBlockListItem"><span class="hs-identifier hs-type">PageBlockListItem</span></a></span><span>
+</span><span id="line-34"></span><span>   </span><span id="local-6989586621679478240"><span class="annot"><span class="annottext">parsePageBlockListItem :: Value -&gt; Parser PageBlockListItem
+</span><a href="#local-6989586621679478240"><span class="hs-identifier hs-var hs-var">parsePageBlockListItem</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser PageBlockListItem)
 -&gt; Value
 -&gt; Parser PageBlockListItem
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;PageBlockListItem&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser PageBlockListItem)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;PageBlockListItem&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser PageBlockListItem)
  -&gt; Value -&gt; Parser PageBlockListItem)
 -&gt; (Object -&gt; Parser PageBlockListItem)
 -&gt; Value
 -&gt; Parser PageBlockListItem
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679444551"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679444551"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-35"></span><span>    </span><span id="local-6989586621679444550"><span class="annot"><span class="annottext">Maybe [PageBlock]
-</span><a href="#local-6989586621679444550"><span class="hs-identifier hs-var">page_blocks</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679444551"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PageBlock])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679478238"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679478238"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-35"></span><span>    </span><span id="local-6989586621679478237"><span class="annot"><span class="annottext">Maybe [PageBlock]
+</span><a href="#local-6989586621679478237"><span class="hs-identifier hs-var">page_blocks</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679478238"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PageBlock])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;page_blocks&quot;</span></span><span>
-</span><span id="line-36"></span><span>    </span><span id="local-6989586621679444548"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679444548"><span class="hs-keyword hs-var">label</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679444551"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;page_blocks&quot;</span></span><span>
+</span><span id="line-36"></span><span>    </span><span id="local-6989586621679478235"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679478235"><span class="hs-keyword hs-var">label</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679478238"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;label&quot;</span></span><span>
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;label&quot;</span></span><span>
 </span><span id="line-37"></span><span>    </span><span class="annot"><span class="annottext">PageBlockListItem -&gt; Parser PageBlockListItem
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(PageBlockListItem -&gt; Parser PageBlockListItem)
 -&gt; PageBlockListItem -&gt; Parser PageBlockListItem
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">PageBlockListItem :: Maybe [PageBlock] -&gt; Maybe String -&gt; PageBlockListItem
-</span><a href="API.PageBlockListItem.html#PageBlockListItem"><span class="hs-identifier hs-type hs-type">PageBlockListItem</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">page_blocks :: Maybe [PageBlock]
+</span><a href="API.PageBlockListItem.html#PageBlockListItem"><span class="hs-identifier hs-type">PageBlockListItem</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">page_blocks :: Maybe [PageBlock]
 </span><a href="API.PageBlockListItem.html#page_blocks"><span class="hs-identifier hs-var">page_blocks</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [PageBlock]
-</span><a href="#local-6989586621679444550"><span class="hs-identifier hs-var">page_blocks</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">label :: Maybe String
+</span><a href="#local-6989586621679478237"><span class="hs-identifier hs-var">page_blocks</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">label :: Maybe String
 </span><a href="API.PageBlockListItem.html#label"><span class="hs-keyword hs-var">label</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679444548"><span class="hs-keyword hs-var">label</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679478235"><span class="hs-keyword hs-var">label</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-38"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser PageBlockListItem
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-39"></span></pre></body></html>

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __new_encryption_key__ New encryption key
 data SetDatabaseEncryptionKey = 
 
- SetDatabaseEncryptionKey { new_encryption_key :: Maybe String }  deriving (Show, Eq)
+ SetDatabaseEncryptionKey { new_encryption_key :: Maybe String }  deriving (Eq)
+
+instance Show SetDatabaseEncryptionKey where
+ show SetDatabaseEncryptionKey { new_encryption_key=new_encryption_key } =
+  "SetDatabaseEncryptionKey" ++ cc [p "new_encryption_key" new_encryption_key ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SetDatabaseEncryptionKey where
- toJSON (SetDatabaseEncryptionKey { new_encryption_key = new_encryption_key }) =
+ toJSON SetDatabaseEncryptionKey { new_encryption_key = new_encryption_key } =
   A.object [ "@type" A..= T.String "setDatabaseEncryptionKey", "new_encryption_key" A..= new_encryption_key ]
 
 instance T.FromJSON SetDatabaseEncryptionKey where
@@ -31,3 +45,4 @@ instance T.FromJSON SetDatabaseEncryptionKey where
    parseSetDatabaseEncryptionKey = A.withObject "SetDatabaseEncryptionKey" $ \o -> do
     new_encryption_key <- o A..:? "new_encryption_key"
     return $ SetDatabaseEncryptionKey { new_encryption_key = new_encryption_key }
+ parseJSON _ = mempty

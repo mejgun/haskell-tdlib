@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -26,13 +27,29 @@ data MessageSendingState =
  -- __can_retry__ True, if the message can be re-sent
  -- 
  -- __retry_after__ Time left before the message can be re-sent, in seconds. No update is sent when this field changes
- MessageSendingStateFailed { retry_after :: Maybe Float, can_retry :: Maybe Bool, error_message :: Maybe String, error_code :: Maybe Int }  deriving (Show, Eq)
+ MessageSendingStateFailed { retry_after :: Maybe Float, can_retry :: Maybe Bool, error_message :: Maybe String, error_code :: Maybe Int }  deriving (Eq)
+
+instance Show MessageSendingState where
+ show MessageSendingStatePending {  } =
+  "MessageSendingStatePending" ++ cc [ ]
+
+ show MessageSendingStateFailed { retry_after=retry_after, can_retry=can_retry, error_message=error_message, error_code=error_code } =
+  "MessageSendingStateFailed" ++ cc [p "retry_after" retry_after, p "can_retry" can_retry, p "error_message" error_message, p "error_code" error_code ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON MessageSendingState where
- toJSON (MessageSendingStatePending {  }) =
+ toJSON MessageSendingStatePending {  } =
   A.object [ "@type" A..= T.String "messageSendingStatePending" ]
 
- toJSON (MessageSendingStateFailed { retry_after = retry_after, can_retry = can_retry, error_message = error_message, error_code = error_code }) =
+ toJSON MessageSendingStateFailed { retry_after = retry_after, can_retry = can_retry, error_message = error_message, error_code = error_code } =
   A.object [ "@type" A..= T.String "messageSendingStateFailed", "retry_after" A..= retry_after, "can_retry" A..= can_retry, "error_message" A..= error_message, "error_code" A..= error_code ]
 
 instance T.FromJSON MessageSendingState where
@@ -54,3 +71,4 @@ instance T.FromJSON MessageSendingState where
     error_message <- o A..:? "error_message"
     error_code <- mconcat [ o A..:? "error_code", readMaybe <$> (o A..: "error_code" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ MessageSendingStateFailed { retry_after = retry_after, can_retry = can_retry, error_message = error_message, error_code = error_code }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -18,10 +19,23 @@ import qualified Data.Aeson.Types as T
 -- __message_ids__ Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
 data ResendMessages = 
 
- ResendMessages { message_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Show, Eq)
+ ResendMessages { message_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show ResendMessages where
+ show ResendMessages { message_ids=message_ids, chat_id=chat_id } =
+  "ResendMessages" ++ cc [p "message_ids" message_ids, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ResendMessages where
- toJSON (ResendMessages { message_ids = message_ids, chat_id = chat_id }) =
+ toJSON ResendMessages { message_ids = message_ids, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "resendMessages", "message_ids" A..= message_ids, "chat_id" A..= chat_id ]
 
 instance T.FromJSON ResendMessages where
@@ -36,3 +50,4 @@ instance T.FromJSON ResendMessages where
     message_ids <- o A..:? "message_ids"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ResendMessages { message_ids = message_ids, chat_id = chat_id }
+ parseJSON _ = mempty

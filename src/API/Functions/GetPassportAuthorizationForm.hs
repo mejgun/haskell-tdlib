@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -20,10 +21,23 @@ import qualified Data.Aeson.Types as T
 -- __nonce__ Unique request identifier provided by the service
 data GetPassportAuthorizationForm = 
 
- GetPassportAuthorizationForm { nonce :: Maybe String, public_key :: Maybe String, scope :: Maybe String, bot_user_id :: Maybe Int }  deriving (Show, Eq)
+ GetPassportAuthorizationForm { nonce :: Maybe String, public_key :: Maybe String, scope :: Maybe String, bot_user_id :: Maybe Int }  deriving (Eq)
+
+instance Show GetPassportAuthorizationForm where
+ show GetPassportAuthorizationForm { nonce=nonce, public_key=public_key, scope=scope, bot_user_id=bot_user_id } =
+  "GetPassportAuthorizationForm" ++ cc [p "nonce" nonce, p "public_key" public_key, p "scope" scope, p "bot_user_id" bot_user_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetPassportAuthorizationForm where
- toJSON (GetPassportAuthorizationForm { nonce = nonce, public_key = public_key, scope = scope, bot_user_id = bot_user_id }) =
+ toJSON GetPassportAuthorizationForm { nonce = nonce, public_key = public_key, scope = scope, bot_user_id = bot_user_id } =
   A.object [ "@type" A..= T.String "getPassportAuthorizationForm", "nonce" A..= nonce, "public_key" A..= public_key, "scope" A..= scope, "bot_user_id" A..= bot_user_id ]
 
 instance T.FromJSON GetPassportAuthorizationForm where
@@ -40,3 +54,4 @@ instance T.FromJSON GetPassportAuthorizationForm where
     scope <- o A..:? "scope"
     bot_user_id <- mconcat [ o A..:? "bot_user_id", readMaybe <$> (o A..: "bot_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetPassportAuthorizationForm { nonce = nonce, public_key = public_key, scope = scope, bot_user_id = bot_user_id }
+ parseJSON _ = mempty

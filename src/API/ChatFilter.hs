@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -40,10 +41,23 @@ import qualified Data.Aeson.Types as T
 -- __include_channels__ True, if channels need to be included
 data ChatFilter = 
 
- ChatFilter { include_channels :: Maybe Bool, include_groups :: Maybe Bool, include_bots :: Maybe Bool, include_non_contacts :: Maybe Bool, include_contacts :: Maybe Bool, exclude_archived :: Maybe Bool, exclude_read :: Maybe Bool, exclude_muted :: Maybe Bool, excluded_chat_ids :: Maybe [Int], included_chat_ids :: Maybe [Int], pinned_chat_ids :: Maybe [Int], icon_name :: Maybe String, title :: Maybe String }  deriving (Show, Eq)
+ ChatFilter { include_channels :: Maybe Bool, include_groups :: Maybe Bool, include_bots :: Maybe Bool, include_non_contacts :: Maybe Bool, include_contacts :: Maybe Bool, exclude_archived :: Maybe Bool, exclude_read :: Maybe Bool, exclude_muted :: Maybe Bool, excluded_chat_ids :: Maybe [Int], included_chat_ids :: Maybe [Int], pinned_chat_ids :: Maybe [Int], icon_name :: Maybe String, title :: Maybe String }  deriving (Eq)
+
+instance Show ChatFilter where
+ show ChatFilter { include_channels=include_channels, include_groups=include_groups, include_bots=include_bots, include_non_contacts=include_non_contacts, include_contacts=include_contacts, exclude_archived=exclude_archived, exclude_read=exclude_read, exclude_muted=exclude_muted, excluded_chat_ids=excluded_chat_ids, included_chat_ids=included_chat_ids, pinned_chat_ids=pinned_chat_ids, icon_name=icon_name, title=title } =
+  "ChatFilter" ++ cc [p "include_channels" include_channels, p "include_groups" include_groups, p "include_bots" include_bots, p "include_non_contacts" include_non_contacts, p "include_contacts" include_contacts, p "exclude_archived" exclude_archived, p "exclude_read" exclude_read, p "exclude_muted" exclude_muted, p "excluded_chat_ids" excluded_chat_ids, p "included_chat_ids" included_chat_ids, p "pinned_chat_ids" pinned_chat_ids, p "icon_name" icon_name, p "title" title ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatFilter where
- toJSON (ChatFilter { include_channels = include_channels, include_groups = include_groups, include_bots = include_bots, include_non_contacts = include_non_contacts, include_contacts = include_contacts, exclude_archived = exclude_archived, exclude_read = exclude_read, exclude_muted = exclude_muted, excluded_chat_ids = excluded_chat_ids, included_chat_ids = included_chat_ids, pinned_chat_ids = pinned_chat_ids, icon_name = icon_name, title = title }) =
+ toJSON ChatFilter { include_channels = include_channels, include_groups = include_groups, include_bots = include_bots, include_non_contacts = include_non_contacts, include_contacts = include_contacts, exclude_archived = exclude_archived, exclude_read = exclude_read, exclude_muted = exclude_muted, excluded_chat_ids = excluded_chat_ids, included_chat_ids = included_chat_ids, pinned_chat_ids = pinned_chat_ids, icon_name = icon_name, title = title } =
   A.object [ "@type" A..= T.String "chatFilter", "include_channels" A..= include_channels, "include_groups" A..= include_groups, "include_bots" A..= include_bots, "include_non_contacts" A..= include_non_contacts, "include_contacts" A..= include_contacts, "exclude_archived" A..= exclude_archived, "exclude_read" A..= exclude_read, "exclude_muted" A..= exclude_muted, "excluded_chat_ids" A..= excluded_chat_ids, "included_chat_ids" A..= included_chat_ids, "pinned_chat_ids" A..= pinned_chat_ids, "icon_name" A..= icon_name, "title" A..= title ]
 
 instance T.FromJSON ChatFilter where
@@ -69,3 +83,4 @@ instance T.FromJSON ChatFilter where
     icon_name <- o A..:? "icon_name"
     title <- o A..:? "title"
     return $ ChatFilter { include_channels = include_channels, include_groups = include_groups, include_bots = include_bots, include_non_contacts = include_non_contacts, include_contacts = include_contacts, exclude_archived = exclude_archived, exclude_read = exclude_read, exclude_muted = exclude_muted, excluded_chat_ids = excluded_chat_ids, included_chat_ids = included_chat_ids, pinned_chat_ids = pinned_chat_ids, icon_name = icon_name, title = title }
+ parseJSON _ = mempty

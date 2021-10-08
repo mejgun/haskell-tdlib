@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -22,16 +23,35 @@ data SecretChatState =
  -- |
  -- 
  -- The secret chat is closed
- SecretChatStateClosed deriving (Show, Eq)
+ SecretChatStateClosed deriving (Eq)
+
+instance Show SecretChatState where
+ show SecretChatStatePending {  } =
+  "SecretChatStatePending" ++ cc [ ]
+
+ show SecretChatStateReady {  } =
+  "SecretChatStateReady" ++ cc [ ]
+
+ show SecretChatStateClosed {  } =
+  "SecretChatStateClosed" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SecretChatState where
- toJSON (SecretChatStatePending {  }) =
+ toJSON SecretChatStatePending {  } =
   A.object [ "@type" A..= T.String "secretChatStatePending" ]
 
- toJSON (SecretChatStateReady {  }) =
+ toJSON SecretChatStateReady {  } =
   A.object [ "@type" A..= T.String "secretChatStateReady" ]
 
- toJSON (SecretChatStateClosed {  }) =
+ toJSON SecretChatStateClosed {  } =
   A.object [ "@type" A..= T.String "secretChatStateClosed" ]
 
 instance T.FromJSON SecretChatState where
@@ -54,3 +74,4 @@ instance T.FromJSON SecretChatState where
    parseSecretChatStateClosed :: A.Value -> T.Parser SecretChatState
    parseSecretChatStateClosed = A.withObject "SecretChatStateClosed" $ \o -> do
     return $ SecretChatStateClosed {  }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __title__ Title of the saved credentials
 data SavedCredentials = 
 
- SavedCredentials { title :: Maybe String, _id :: Maybe String }  deriving (Show, Eq)
+ SavedCredentials { title :: Maybe String, _id :: Maybe String }  deriving (Eq)
+
+instance Show SavedCredentials where
+ show SavedCredentials { title=title, _id=_id } =
+  "SavedCredentials" ++ cc [p "title" title, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SavedCredentials where
- toJSON (SavedCredentials { title = title, _id = _id }) =
+ toJSON SavedCredentials { title = title, _id = _id } =
   A.object [ "@type" A..= T.String "savedCredentials", "title" A..= title, "id" A..= _id ]
 
 instance T.FromJSON SavedCredentials where
@@ -34,3 +48,4 @@ instance T.FromJSON SavedCredentials where
     title <- o A..:? "title"
     _id <- o A..:? "id"
     return $ SavedCredentials { title = title, _id = _id }
+ parseJSON _ = mempty

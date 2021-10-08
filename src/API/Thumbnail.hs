@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.ThumbnailFormat as ThumbnailFormat
 
@@ -22,10 +23,23 @@ import {-# SOURCE #-} qualified API.ThumbnailFormat as ThumbnailFormat
 -- __file__ The thumbnail
 data Thumbnail = 
 
- Thumbnail { file :: Maybe File.File, height :: Maybe Int, width :: Maybe Int, format :: Maybe ThumbnailFormat.ThumbnailFormat }  deriving (Show, Eq)
+ Thumbnail { file :: Maybe File.File, height :: Maybe Int, width :: Maybe Int, format :: Maybe ThumbnailFormat.ThumbnailFormat }  deriving (Eq)
+
+instance Show Thumbnail where
+ show Thumbnail { file=file, height=height, width=width, format=format } =
+  "Thumbnail" ++ cc [p "file" file, p "height" height, p "width" width, p "format" format ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Thumbnail where
- toJSON (Thumbnail { file = file, height = height, width = width, format = format }) =
+ toJSON Thumbnail { file = file, height = height, width = width, format = format } =
   A.object [ "@type" A..= T.String "thumbnail", "file" A..= file, "height" A..= height, "width" A..= width, "format" A..= format ]
 
 instance T.FromJSON Thumbnail where
@@ -42,3 +56,4 @@ instance T.FromJSON Thumbnail where
     width <- mconcat [ o A..:? "width", readMaybe <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
     format <- o A..:? "format"
     return $ Thumbnail { file = file, height = height, width = width, format = format }
+ parseJSON _ = mempty

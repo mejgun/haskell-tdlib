@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __sign_messages__ New value of sign_messages
 data ToggleSupergroupSignMessages = 
 
- ToggleSupergroupSignMessages { sign_messages :: Maybe Bool, supergroup_id :: Maybe Int }  deriving (Show, Eq)
+ ToggleSupergroupSignMessages { sign_messages :: Maybe Bool, supergroup_id :: Maybe Int }  deriving (Eq)
+
+instance Show ToggleSupergroupSignMessages where
+ show ToggleSupergroupSignMessages { sign_messages=sign_messages, supergroup_id=supergroup_id } =
+  "ToggleSupergroupSignMessages" ++ cc [p "sign_messages" sign_messages, p "supergroup_id" supergroup_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ToggleSupergroupSignMessages where
- toJSON (ToggleSupergroupSignMessages { sign_messages = sign_messages, supergroup_id = supergroup_id }) =
+ toJSON ToggleSupergroupSignMessages { sign_messages = sign_messages, supergroup_id = supergroup_id } =
   A.object [ "@type" A..= T.String "toggleSupergroupSignMessages", "sign_messages" A..= sign_messages, "supergroup_id" A..= supergroup_id ]
 
 instance T.FromJSON ToggleSupergroupSignMessages where
@@ -34,3 +48,4 @@ instance T.FromJSON ToggleSupergroupSignMessages where
     sign_messages <- o A..:? "sign_messages"
     supergroup_id <- mconcat [ o A..:? "supergroup_id", readMaybe <$> (o A..: "supergroup_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ToggleSupergroupSignMessages { sign_messages = sign_messages, supergroup_id = supergroup_id }
+ parseJSON _ = mempty

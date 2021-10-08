@@ -6,16 +6,30 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
 -- Returns all user contacts
 data GetContacts = 
 
- GetContacts deriving (Show, Eq)
+ GetContacts deriving (Eq)
+
+instance Show GetContacts where
+ show GetContacts {  } =
+  "GetContacts" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetContacts where
- toJSON (GetContacts {  }) =
+ toJSON GetContacts {  } =
   A.object [ "@type" A..= T.String "getContacts" ]
 
 instance T.FromJSON GetContacts where
@@ -28,3 +42,4 @@ instance T.FromJSON GetContacts where
    parseGetContacts :: A.Value -> T.Parser GetContacts
    parseGetContacts = A.withObject "GetContacts" $ \o -> do
     return $ GetContacts {  }
+ parseJSON _ = mempty

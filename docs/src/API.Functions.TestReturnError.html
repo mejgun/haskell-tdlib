@@ -10,13 +10,13 @@
 </span><span id="line-10"></span><span>
 </span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
 </span><span id="line-12"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-13"></span><span class="hs-comment">-- Returns the specified error and ensures that the Error object is used; for testing only. This is an offline method. Can be called before authorization. Can be called synchronously </span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- Returns the specified error and ensures that the Error object is used; for testing only. Can be called synchronously </span><span>
 </span><span id="line-14"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-15"></span><span class="hs-comment">-- __error__ The error to be returned</span><span>
 </span><span id="line-16"></span><span class="hs-keyword">data</span><span> </span><span id="TestReturnError"><span class="annot"><a href="API.Functions.TestReturnError.html#TestReturnError"><span class="hs-identifier hs-var">TestReturnError</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-17"></span><span>
 </span><span id="line-18"></span><span> </span><span id="TestReturnError"><span class="annot"><a href="API.Functions.TestReturnError.html#TestReturnError"><span class="hs-identifier hs-var">TestReturnError</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="_error"><span class="annot"><span class="annottext">TestReturnError -&gt; Maybe Error
-</span><a href="API.Functions.TestReturnError.html#_error"><span class="hs-identifier hs-var hs-var">_error</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.Error.html#Error"><span class="hs-identifier hs-type">Error.Error</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679435100"><span id="local-6989586621679435102"><span id="local-6989586621679435104"><span class="annot"><span class="annottext">Int -&gt; TestReturnError -&gt; ShowS
+</span><a href="API.Functions.TestReturnError.html#_error"><span class="hs-identifier hs-var hs-var">_error</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.Error.html#Error"><span class="hs-identifier hs-type">Error.Error</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679465313"><span id="local-6989586621679465315"><span id="local-6989586621679465317"><span class="annot"><span class="annottext">Int -&gt; TestReturnError -&gt; ShowS
 [TestReturnError] -&gt; ShowS
 TestReturnError -&gt; String
 (Int -&gt; TestReturnError -&gt; ShowS)
@@ -31,7 +31,7 @@ show :: TestReturnError -&gt; String
 $cshow :: TestReturnError -&gt; String
 showsPrec :: Int -&gt; TestReturnError -&gt; ShowS
 $cshowsPrec :: Int -&gt; TestReturnError -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679435095"><span id="local-6989586621679435097"><span class="annot"><span class="annottext">TestReturnError -&gt; TestReturnError -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679465308"><span id="local-6989586621679465310"><span class="annot"><span class="annottext">TestReturnError -&gt; TestReturnError -&gt; Bool
 (TestReturnError -&gt; TestReturnError -&gt; Bool)
 -&gt; (TestReturnError -&gt; TestReturnError -&gt; Bool)
 -&gt; Eq TestReturnError
@@ -42,65 +42,78 @@ $c/= :: TestReturnError -&gt; TestReturnError -&gt; Bool
 $c== :: TestReturnError -&gt; TestReturnError -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679435087"><span id="local-6989586621679435089"><span id="local-6989586621679435091"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestReturnError.html#TestReturnError"><span class="hs-identifier hs-type">TestReturnError</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span> </span><span id="local-6989586621679435085"><span class="annot"><span class="annottext">toJSON :: TestReturnError -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.TestReturnError.html#TestReturnError"><span class="hs-identifier hs-type">TestReturnError</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_error :: TestReturnError -&gt; Maybe Error
-</span><a href="API.Functions.TestReturnError.html#_error"><span class="hs-identifier hs-var">_error</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679435083"><span class="annot"><span class="annottext">Maybe Error
-</span><a href="#local-6989586621679435083"><span class="hs-identifier hs-var">_error</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679465300"><span id="local-6989586621679465302"><span id="local-6989586621679465304"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestReturnError.html#TestReturnError"><span class="hs-identifier hs-type">TestReturnError</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span> </span><span id="local-6989586621679465298"><span class="annot"><span class="annottext">toJSON :: TestReturnError -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.TestReturnError.html#TestReturnError"><span class="hs-identifier hs-type">TestReturnError</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_error :: TestReturnError -&gt; Maybe Error
+</span><a href="API.Functions.TestReturnError.html#_error"><span class="hs-identifier hs-var">_error</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679465296"><span class="annot"><span class="annottext">Maybe Error
+</span><a href="#local-6989586621679465296"><span class="hs-identifier hs-var">_error</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-22"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;testReturnError&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;error&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Error -&gt; Pair
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;testReturnError&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;error&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Error -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Error
-</span><a href="#local-6989586621679435083"><span class="hs-identifier hs-var">_error</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679465296"><span class="hs-identifier hs-var">_error</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679435077"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestReturnError.html#TestReturnError"><span class="hs-identifier hs-type">TestReturnError</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span> </span><span id="local-6989586621679435075"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TestReturnError
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679435073"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679435073"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679435071"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679435071"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>  </span><span id="local-6989586621679435070"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679435070"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679435071"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679465290"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestReturnError.html#TestReturnError"><span class="hs-identifier hs-type">TestReturnError</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span> </span><span id="local-6989586621679465288"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TestReturnError
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679465286"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679465286"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679465284"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679465284"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679465283"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679465283"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679465284"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-27"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679435070"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-28"></span><span>   </span><span class="hs-string">&quot;testReturnError&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TestReturnError
-</span><a href="#local-6989586621679435068"><span class="hs-identifier hs-var">parseTestReturnError</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679435073"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-29"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TestReturnError
+</span><a href="#local-6989586621679465283"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-28"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;testReturnError&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TestReturnError
+</span><a href="#local-6989586621679465281"><span class="hs-identifier hs-var">parseTestReturnError</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465286"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-29"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TestReturnError
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-30"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-31"></span><span>   </span><span class="annot"><a href="#local-6989586621679435068"><span class="hs-identifier hs-type">parseTestReturnError</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.TestReturnError.html#TestReturnError"><span class="hs-identifier hs-type">TestReturnError</span></a></span><span>
-</span><span id="line-32"></span><span>   </span><span id="local-6989586621679435068"><span class="annot"><span class="annottext">parseTestReturnError :: Value -&gt; Parser TestReturnError
-</span><a href="#local-6989586621679435068"><span class="hs-identifier hs-var hs-var">parseTestReturnError</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-31"></span><span>   </span><span class="annot"><a href="#local-6989586621679465281"><span class="hs-identifier hs-type">parseTestReturnError</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.TestReturnError.html#TestReturnError"><span class="hs-identifier hs-type">TestReturnError</span></a></span><span>
+</span><span id="line-32"></span><span>   </span><span id="local-6989586621679465281"><span class="annot"><span class="annottext">parseTestReturnError :: Value -&gt; Parser TestReturnError
+</span><a href="#local-6989586621679465281"><span class="hs-identifier hs-var hs-var">parseTestReturnError</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TestReturnError)
 -&gt; Value
 -&gt; Parser TestReturnError
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;TestReturnError&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser TestReturnError)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;TestReturnError&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser TestReturnError)
  -&gt; Value -&gt; Parser TestReturnError)
 -&gt; (Object -&gt; Parser TestReturnError)
 -&gt; Value
 -&gt; Parser TestReturnError
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679435066"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679435066"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-33"></span><span>    </span><span id="local-6989586621679435065"><span class="annot"><span class="annottext">Maybe Error
-</span><a href="#local-6989586621679435065"><span class="hs-identifier hs-var">_error</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679435066"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Error)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679465279"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679465279"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-33"></span><span>    </span><span id="local-6989586621679465278"><span class="annot"><span class="annottext">Maybe Error
+</span><a href="#local-6989586621679465278"><span class="hs-identifier hs-var">_error</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679465279"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Error)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;error&quot;</span></span><span>
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;error&quot;</span></span><span>
 </span><span id="line-34"></span><span>    </span><span class="annot"><span class="annottext">TestReturnError -&gt; Parser TestReturnError
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TestReturnError -&gt; Parser TestReturnError)
 -&gt; TestReturnError -&gt; Parser TestReturnError
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TestReturnError :: Maybe Error -&gt; TestReturnError
-</span><a href="API.Functions.TestReturnError.html#TestReturnError"><span class="hs-identifier hs-type hs-type">TestReturnError</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_error :: Maybe Error
+</span><a href="API.Functions.TestReturnError.html#TestReturnError"><span class="hs-identifier hs-type">TestReturnError</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_error :: Maybe Error
 </span><a href="API.Functions.TestReturnError.html#_error"><span class="hs-identifier hs-var">_error</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Error
-</span><a href="#local-6989586621679435065"><span class="hs-identifier hs-var">_error</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679465278"><span class="hs-identifier hs-var">_error</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-35"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser TestReturnError
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-36"></span></pre></body></html>

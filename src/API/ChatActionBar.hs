@@ -6,10 +6,11 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
--- Describes actions which should be possible to do through a chat action bar
+-- Describes actions which must be possible to do through a chat action bar
 data ChatActionBar = 
  -- |
  -- 
@@ -40,25 +41,53 @@ data ChatActionBar =
  -- |
  -- 
  -- The chat is a private or secret chat with a mutual contact and the user's phone number can be shared with the other user using the method sharePhoneNumber
- ChatActionBarSharePhoneNumber deriving (Show, Eq)
+ ChatActionBarSharePhoneNumber deriving (Eq)
+
+instance Show ChatActionBar where
+ show ChatActionBarReportSpam { can_unarchive=can_unarchive } =
+  "ChatActionBarReportSpam" ++ cc [p "can_unarchive" can_unarchive ]
+
+ show ChatActionBarReportUnrelatedLocation {  } =
+  "ChatActionBarReportUnrelatedLocation" ++ cc [ ]
+
+ show ChatActionBarInviteMembers {  } =
+  "ChatActionBarInviteMembers" ++ cc [ ]
+
+ show ChatActionBarReportAddBlock { distance=distance, can_unarchive=can_unarchive } =
+  "ChatActionBarReportAddBlock" ++ cc [p "distance" distance, p "can_unarchive" can_unarchive ]
+
+ show ChatActionBarAddContact {  } =
+  "ChatActionBarAddContact" ++ cc [ ]
+
+ show ChatActionBarSharePhoneNumber {  } =
+  "ChatActionBarSharePhoneNumber" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatActionBar where
- toJSON (ChatActionBarReportSpam { can_unarchive = can_unarchive }) =
+ toJSON ChatActionBarReportSpam { can_unarchive = can_unarchive } =
   A.object [ "@type" A..= T.String "chatActionBarReportSpam", "can_unarchive" A..= can_unarchive ]
 
- toJSON (ChatActionBarReportUnrelatedLocation {  }) =
+ toJSON ChatActionBarReportUnrelatedLocation {  } =
   A.object [ "@type" A..= T.String "chatActionBarReportUnrelatedLocation" ]
 
- toJSON (ChatActionBarInviteMembers {  }) =
+ toJSON ChatActionBarInviteMembers {  } =
   A.object [ "@type" A..= T.String "chatActionBarInviteMembers" ]
 
- toJSON (ChatActionBarReportAddBlock { distance = distance, can_unarchive = can_unarchive }) =
+ toJSON ChatActionBarReportAddBlock { distance = distance, can_unarchive = can_unarchive } =
   A.object [ "@type" A..= T.String "chatActionBarReportAddBlock", "distance" A..= distance, "can_unarchive" A..= can_unarchive ]
 
- toJSON (ChatActionBarAddContact {  }) =
+ toJSON ChatActionBarAddContact {  } =
   A.object [ "@type" A..= T.String "chatActionBarAddContact" ]
 
- toJSON (ChatActionBarSharePhoneNumber {  }) =
+ toJSON ChatActionBarSharePhoneNumber {  } =
   A.object [ "@type" A..= T.String "chatActionBarSharePhoneNumber" ]
 
 instance T.FromJSON ChatActionBar where
@@ -99,3 +128,4 @@ instance T.FromJSON ChatActionBar where
    parseChatActionBarSharePhoneNumber :: A.Value -> T.Parser ChatActionBar
    parseChatActionBarSharePhoneNumber = A.withObject "ChatActionBarSharePhoneNumber" $ \o -> do
     return $ ChatActionBarSharePhoneNumber {  }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.GroupCallRecentSpeaker as GroupCallRecentSpeaker
 
 -- |
@@ -42,7 +43,7 @@ import {-# SOURCE #-} qualified API.GroupCallRecentSpeaker as GroupCallRecentSpe
 -- 
 -- __mute_new_participants__ True, if only group call administrators can unmute new participants
 -- 
--- __can_change_mute_new_participants__ True, if the current user can enable or disable mute_new_participants setting
+-- __can_toggle_mute_new_participants__ True, if the current user can enable or disable mute_new_participants setting
 -- 
 -- __record_duration__ Duration of the ongoing group call recording, in seconds; 0 if none. An updateGroupCall update is not triggered when value of this field changes, but the same recording goes on
 -- 
@@ -51,11 +52,24 @@ import {-# SOURCE #-} qualified API.GroupCallRecentSpeaker as GroupCallRecentSpe
 -- __duration__ Call duration, in seconds; for ended calls only
 data GroupCall = 
 
- GroupCall { duration :: Maybe Int, is_video_recorded :: Maybe Bool, record_duration :: Maybe Int, can_change_mute_new_participants :: Maybe Bool, mute_new_participants :: Maybe Bool, can_enable_video :: Maybe Bool, is_my_video_paused :: Maybe Bool, is_my_video_enabled :: Maybe Bool, recent_speakers :: Maybe [GroupCallRecentSpeaker.GroupCallRecentSpeaker], loaded_all_participants :: Maybe Bool, participant_count :: Maybe Int, can_be_managed :: Maybe Bool, need_rejoin :: Maybe Bool, is_joined :: Maybe Bool, is_active :: Maybe Bool, enabled_start_notification :: Maybe Bool, scheduled_start_date :: Maybe Int, title :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
+ GroupCall { duration :: Maybe Int, is_video_recorded :: Maybe Bool, record_duration :: Maybe Int, can_toggle_mute_new_participants :: Maybe Bool, mute_new_participants :: Maybe Bool, can_enable_video :: Maybe Bool, is_my_video_paused :: Maybe Bool, is_my_video_enabled :: Maybe Bool, recent_speakers :: Maybe [GroupCallRecentSpeaker.GroupCallRecentSpeaker], loaded_all_participants :: Maybe Bool, participant_count :: Maybe Int, can_be_managed :: Maybe Bool, need_rejoin :: Maybe Bool, is_joined :: Maybe Bool, is_active :: Maybe Bool, enabled_start_notification :: Maybe Bool, scheduled_start_date :: Maybe Int, title :: Maybe String, _id :: Maybe Int }  deriving (Eq)
+
+instance Show GroupCall where
+ show GroupCall { duration=duration, is_video_recorded=is_video_recorded, record_duration=record_duration, can_toggle_mute_new_participants=can_toggle_mute_new_participants, mute_new_participants=mute_new_participants, can_enable_video=can_enable_video, is_my_video_paused=is_my_video_paused, is_my_video_enabled=is_my_video_enabled, recent_speakers=recent_speakers, loaded_all_participants=loaded_all_participants, participant_count=participant_count, can_be_managed=can_be_managed, need_rejoin=need_rejoin, is_joined=is_joined, is_active=is_active, enabled_start_notification=enabled_start_notification, scheduled_start_date=scheduled_start_date, title=title, _id=_id } =
+  "GroupCall" ++ cc [p "duration" duration, p "is_video_recorded" is_video_recorded, p "record_duration" record_duration, p "can_toggle_mute_new_participants" can_toggle_mute_new_participants, p "mute_new_participants" mute_new_participants, p "can_enable_video" can_enable_video, p "is_my_video_paused" is_my_video_paused, p "is_my_video_enabled" is_my_video_enabled, p "recent_speakers" recent_speakers, p "loaded_all_participants" loaded_all_participants, p "participant_count" participant_count, p "can_be_managed" can_be_managed, p "need_rejoin" need_rejoin, p "is_joined" is_joined, p "is_active" is_active, p "enabled_start_notification" enabled_start_notification, p "scheduled_start_date" scheduled_start_date, p "title" title, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GroupCall where
- toJSON (GroupCall { duration = duration, is_video_recorded = is_video_recorded, record_duration = record_duration, can_change_mute_new_participants = can_change_mute_new_participants, mute_new_participants = mute_new_participants, can_enable_video = can_enable_video, is_my_video_paused = is_my_video_paused, is_my_video_enabled = is_my_video_enabled, recent_speakers = recent_speakers, loaded_all_participants = loaded_all_participants, participant_count = participant_count, can_be_managed = can_be_managed, need_rejoin = need_rejoin, is_joined = is_joined, is_active = is_active, enabled_start_notification = enabled_start_notification, scheduled_start_date = scheduled_start_date, title = title, _id = _id }) =
-  A.object [ "@type" A..= T.String "groupCall", "duration" A..= duration, "is_video_recorded" A..= is_video_recorded, "record_duration" A..= record_duration, "can_change_mute_new_participants" A..= can_change_mute_new_participants, "mute_new_participants" A..= mute_new_participants, "can_enable_video" A..= can_enable_video, "is_my_video_paused" A..= is_my_video_paused, "is_my_video_enabled" A..= is_my_video_enabled, "recent_speakers" A..= recent_speakers, "loaded_all_participants" A..= loaded_all_participants, "participant_count" A..= participant_count, "can_be_managed" A..= can_be_managed, "need_rejoin" A..= need_rejoin, "is_joined" A..= is_joined, "is_active" A..= is_active, "enabled_start_notification" A..= enabled_start_notification, "scheduled_start_date" A..= scheduled_start_date, "title" A..= title, "id" A..= _id ]
+ toJSON GroupCall { duration = duration, is_video_recorded = is_video_recorded, record_duration = record_duration, can_toggle_mute_new_participants = can_toggle_mute_new_participants, mute_new_participants = mute_new_participants, can_enable_video = can_enable_video, is_my_video_paused = is_my_video_paused, is_my_video_enabled = is_my_video_enabled, recent_speakers = recent_speakers, loaded_all_participants = loaded_all_participants, participant_count = participant_count, can_be_managed = can_be_managed, need_rejoin = need_rejoin, is_joined = is_joined, is_active = is_active, enabled_start_notification = enabled_start_notification, scheduled_start_date = scheduled_start_date, title = title, _id = _id } =
+  A.object [ "@type" A..= T.String "groupCall", "duration" A..= duration, "is_video_recorded" A..= is_video_recorded, "record_duration" A..= record_duration, "can_toggle_mute_new_participants" A..= can_toggle_mute_new_participants, "mute_new_participants" A..= mute_new_participants, "can_enable_video" A..= can_enable_video, "is_my_video_paused" A..= is_my_video_paused, "is_my_video_enabled" A..= is_my_video_enabled, "recent_speakers" A..= recent_speakers, "loaded_all_participants" A..= loaded_all_participants, "participant_count" A..= participant_count, "can_be_managed" A..= can_be_managed, "need_rejoin" A..= need_rejoin, "is_joined" A..= is_joined, "is_active" A..= is_active, "enabled_start_notification" A..= enabled_start_notification, "scheduled_start_date" A..= scheduled_start_date, "title" A..= title, "id" A..= _id ]
 
 instance T.FromJSON GroupCall where
  parseJSON v@(T.Object obj) = do
@@ -69,7 +83,7 @@ instance T.FromJSON GroupCall where
     duration <- mconcat [ o A..:? "duration", readMaybe <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
     is_video_recorded <- o A..:? "is_video_recorded"
     record_duration <- mconcat [ o A..:? "record_duration", readMaybe <$> (o A..: "record_duration" :: T.Parser String)] :: T.Parser (Maybe Int)
-    can_change_mute_new_participants <- o A..:? "can_change_mute_new_participants"
+    can_toggle_mute_new_participants <- o A..:? "can_toggle_mute_new_participants"
     mute_new_participants <- o A..:? "mute_new_participants"
     can_enable_video <- o A..:? "can_enable_video"
     is_my_video_paused <- o A..:? "is_my_video_paused"
@@ -85,4 +99,5 @@ instance T.FromJSON GroupCall where
     scheduled_start_date <- mconcat [ o A..:? "scheduled_start_date", readMaybe <$> (o A..: "scheduled_start_date" :: T.Parser String)] :: T.Parser (Maybe Int)
     title <- o A..:? "title"
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ GroupCall { duration = duration, is_video_recorded = is_video_recorded, record_duration = record_duration, can_change_mute_new_participants = can_change_mute_new_participants, mute_new_participants = mute_new_participants, can_enable_video = can_enable_video, is_my_video_paused = is_my_video_paused, is_my_video_enabled = is_my_video_enabled, recent_speakers = recent_speakers, loaded_all_participants = loaded_all_participants, participant_count = participant_count, can_be_managed = can_be_managed, need_rejoin = need_rejoin, is_joined = is_joined, is_active = is_active, enabled_start_notification = enabled_start_notification, scheduled_start_date = scheduled_start_date, title = title, _id = _id }
+    return $ GroupCall { duration = duration, is_video_recorded = is_video_recorded, record_duration = record_duration, can_toggle_mute_new_participants = can_toggle_mute_new_participants, mute_new_participants = mute_new_participants, can_enable_video = can_enable_video, is_my_video_paused = is_my_video_paused, is_my_video_enabled = is_my_video_enabled, recent_speakers = recent_speakers, loaded_all_participants = loaded_all_participants, participant_count = participant_count, can_be_managed = can_be_managed, need_rejoin = need_rejoin, is_joined = is_joined, is_active = is_active, enabled_start_notification = enabled_start_notification, scheduled_start_date = scheduled_start_date, title = title, _id = _id }
+ parseJSON _ = mempty

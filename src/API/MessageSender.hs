@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -22,13 +23,29 @@ data MessageSender =
  -- The message was sent on behalf of a chat 
  -- 
  -- __chat_id__ Identifier of the chat that sent the message
- MessageSenderChat { chat_id :: Maybe Int }  deriving (Show, Eq)
+ MessageSenderChat { chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show MessageSender where
+ show MessageSenderUser { user_id=user_id } =
+  "MessageSenderUser" ++ cc [p "user_id" user_id ]
+
+ show MessageSenderChat { chat_id=chat_id } =
+  "MessageSenderChat" ++ cc [p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON MessageSender where
- toJSON (MessageSenderUser { user_id = user_id }) =
+ toJSON MessageSenderUser { user_id = user_id } =
   A.object [ "@type" A..= T.String "messageSenderUser", "user_id" A..= user_id ]
 
- toJSON (MessageSenderChat { chat_id = chat_id }) =
+ toJSON MessageSenderChat { chat_id = chat_id } =
   A.object [ "@type" A..= T.String "messageSenderChat", "chat_id" A..= chat_id ]
 
 instance T.FromJSON MessageSender where
@@ -48,3 +65,4 @@ instance T.FromJSON MessageSender where
    parseMessageSenderChat = A.withObject "MessageSenderChat" $ \o -> do
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ MessageSenderChat { chat_id = chat_id }
+ parseJSON _ = mempty

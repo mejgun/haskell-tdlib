@@ -19,7 +19,7 @@
 </span><span id="line-19"></span><span>
 </span><span id="line-20"></span><span> </span><span id="GetBackgroundUrl"><span class="annot"><a href="API.Functions.GetBackgroundUrl.html#GetBackgroundUrl"><span class="hs-identifier hs-var">GetBackgroundUrl</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="_type"><span class="annot"><span class="annottext">GetBackgroundUrl -&gt; Maybe BackgroundType
 </span><a href="API.Functions.GetBackgroundUrl.html#_type"><span class="hs-identifier hs-var hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.BackgroundType.html#BackgroundType"><span class="hs-identifier hs-type">BackgroundType.BackgroundType</span></a></span><span class="hs-special">,</span><span> </span><span id="name"><span class="annot"><span class="annottext">GetBackgroundUrl -&gt; Maybe String
-</span><a href="API.Functions.GetBackgroundUrl.html#name"><span class="hs-identifier hs-var hs-var">name</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679419642"><span id="local-6989586621679419644"><span id="local-6989586621679419646"><span class="annot"><span class="annottext">Int -&gt; GetBackgroundUrl -&gt; ShowS
+</span><a href="API.Functions.GetBackgroundUrl.html#name"><span class="hs-identifier hs-var hs-var">name</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679446831"><span id="local-6989586621679446833"><span id="local-6989586621679446835"><span class="annot"><span class="annottext">Int -&gt; GetBackgroundUrl -&gt; ShowS
 [GetBackgroundUrl] -&gt; ShowS
 GetBackgroundUrl -&gt; String
 (Int -&gt; GetBackgroundUrl -&gt; ShowS)
@@ -34,7 +34,7 @@ show :: GetBackgroundUrl -&gt; String
 $cshow :: GetBackgroundUrl -&gt; String
 showsPrec :: Int -&gt; GetBackgroundUrl -&gt; ShowS
 $cshowsPrec :: Int -&gt; GetBackgroundUrl -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679419637"><span id="local-6989586621679419639"><span class="annot"><span class="annottext">GetBackgroundUrl -&gt; GetBackgroundUrl -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679446826"><span id="local-6989586621679446828"><span class="annot"><span class="annottext">GetBackgroundUrl -&gt; GetBackgroundUrl -&gt; Bool
 (GetBackgroundUrl -&gt; GetBackgroundUrl -&gt; Bool)
 -&gt; (GetBackgroundUrl -&gt; GetBackgroundUrl -&gt; Bool)
 -&gt; Eq GetBackgroundUrl
@@ -45,77 +45,92 @@ $c/= :: GetBackgroundUrl -&gt; GetBackgroundUrl -&gt; Bool
 $c== :: GetBackgroundUrl -&gt; GetBackgroundUrl -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419629"><span id="local-6989586621679419631"><span id="local-6989586621679419633"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetBackgroundUrl.html#GetBackgroundUrl"><span class="hs-identifier hs-type">GetBackgroundUrl</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span> </span><span id="local-6989586621679419627"><span class="annot"><span class="annottext">toJSON :: GetBackgroundUrl -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.GetBackgroundUrl.html#GetBackgroundUrl"><span class="hs-identifier hs-type">GetBackgroundUrl</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_type :: GetBackgroundUrl -&gt; Maybe BackgroundType
-</span><a href="API.Functions.GetBackgroundUrl.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419625"><span class="annot"><span class="annottext">Maybe BackgroundType
-</span><a href="#local-6989586621679419625"><span class="hs-identifier hs-var">_type</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">name :: GetBackgroundUrl -&gt; Maybe String
-</span><a href="API.Functions.GetBackgroundUrl.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679419624"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419624"><span class="hs-identifier hs-var">name</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446818"><span id="local-6989586621679446820"><span id="local-6989586621679446822"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetBackgroundUrl.html#GetBackgroundUrl"><span class="hs-identifier hs-type">GetBackgroundUrl</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span> </span><span id="local-6989586621679446816"><span class="annot"><span class="annottext">toJSON :: GetBackgroundUrl -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.GetBackgroundUrl.html#GetBackgroundUrl"><span class="hs-identifier hs-type">GetBackgroundUrl</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_type :: GetBackgroundUrl -&gt; Maybe BackgroundType
+</span><a href="API.Functions.GetBackgroundUrl.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446814"><span class="annot"><span class="annottext">Maybe BackgroundType
+</span><a href="#local-6989586621679446814"><span class="hs-identifier hs-var">_type</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">name :: GetBackgroundUrl -&gt; Maybe String
+</span><a href="API.Functions.GetBackgroundUrl.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446813"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679446813"><span class="hs-identifier hs-var">name</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-24"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;getBackgroundUrl&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe BackgroundType -&gt; Pair
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;getBackgroundUrl&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe BackgroundType -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe BackgroundType
-</span><a href="#local-6989586621679419625"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679446814"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;name&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419624"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679446813"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-25"></span><span>
-</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679419618"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetBackgroundUrl.html#GetBackgroundUrl"><span class="hs-identifier hs-type">GetBackgroundUrl</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-27"></span><span> </span><span id="local-6989586621679419616"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetBackgroundUrl
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679419614"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679419614"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679419612"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679419612"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-28"></span><span>  </span><span id="local-6989586621679419611"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679419611"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419612"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446807"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetBackgroundUrl.html#GetBackgroundUrl"><span class="hs-identifier hs-type">GetBackgroundUrl</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-27"></span><span> </span><span id="local-6989586621679446805"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetBackgroundUrl
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679446803"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679446803"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679446801"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446801"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-28"></span><span>  </span><span id="local-6989586621679446800"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679446800"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446801"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-29"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679419611"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-30"></span><span>   </span><span class="hs-string">&quot;getBackgroundUrl&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetBackgroundUrl
-</span><a href="#local-6989586621679419609"><span class="hs-identifier hs-var">parseGetBackgroundUrl</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679419614"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-31"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetBackgroundUrl
+</span><a href="#local-6989586621679446800"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-30"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;getBackgroundUrl&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetBackgroundUrl
+</span><a href="#local-6989586621679446798"><span class="hs-identifier hs-var">parseGetBackgroundUrl</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679446803"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-31"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetBackgroundUrl
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-32"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>   </span><span class="annot"><a href="#local-6989586621679419609"><span class="hs-identifier hs-type">parseGetBackgroundUrl</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetBackgroundUrl.html#GetBackgroundUrl"><span class="hs-identifier hs-type">GetBackgroundUrl</span></a></span><span>
-</span><span id="line-34"></span><span>   </span><span id="local-6989586621679419609"><span class="annot"><span class="annottext">parseGetBackgroundUrl :: Value -&gt; Parser GetBackgroundUrl
-</span><a href="#local-6989586621679419609"><span class="hs-identifier hs-var hs-var">parseGetBackgroundUrl</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-33"></span><span>   </span><span class="annot"><a href="#local-6989586621679446798"><span class="hs-identifier hs-type">parseGetBackgroundUrl</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetBackgroundUrl.html#GetBackgroundUrl"><span class="hs-identifier hs-type">GetBackgroundUrl</span></a></span><span>
+</span><span id="line-34"></span><span>   </span><span id="local-6989586621679446798"><span class="annot"><span class="annottext">parseGetBackgroundUrl :: Value -&gt; Parser GetBackgroundUrl
+</span><a href="#local-6989586621679446798"><span class="hs-identifier hs-var hs-var">parseGetBackgroundUrl</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GetBackgroundUrl)
 -&gt; Value
 -&gt; Parser GetBackgroundUrl
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;GetBackgroundUrl&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser GetBackgroundUrl)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;GetBackgroundUrl&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser GetBackgroundUrl)
  -&gt; Value -&gt; Parser GetBackgroundUrl)
 -&gt; (Object -&gt; Parser GetBackgroundUrl)
 -&gt; Value
 -&gt; Parser GetBackgroundUrl
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679419607"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679419607"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-35"></span><span>    </span><span id="local-6989586621679419606"><span class="annot"><span class="annottext">Maybe BackgroundType
-</span><a href="#local-6989586621679419606"><span class="hs-identifier hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419607"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe BackgroundType)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679446796"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446796"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-35"></span><span>    </span><span id="local-6989586621679446795"><span class="annot"><span class="annottext">Maybe BackgroundType
+</span><a href="#local-6989586621679446795"><span class="hs-identifier hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446796"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe BackgroundType)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;type&quot;</span></span><span>
-</span><span id="line-36"></span><span>    </span><span id="local-6989586621679419604"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419604"><span class="hs-identifier hs-var">name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679419607"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;type&quot;</span></span><span>
+</span><span id="line-36"></span><span>    </span><span id="local-6989586621679446793"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679446793"><span class="hs-identifier hs-var">name</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679446796"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;name&quot;</span></span><span>
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;name&quot;</span></span><span>
 </span><span id="line-37"></span><span>    </span><span class="annot"><span class="annottext">GetBackgroundUrl -&gt; Parser GetBackgroundUrl
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(GetBackgroundUrl -&gt; Parser GetBackgroundUrl)
 -&gt; GetBackgroundUrl -&gt; Parser GetBackgroundUrl
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">GetBackgroundUrl :: Maybe BackgroundType -&gt; Maybe String -&gt; GetBackgroundUrl
-</span><a href="API.Functions.GetBackgroundUrl.html#GetBackgroundUrl"><span class="hs-identifier hs-type hs-type">GetBackgroundUrl</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_type :: Maybe BackgroundType
+</span><a href="API.Functions.GetBackgroundUrl.html#GetBackgroundUrl"><span class="hs-identifier hs-type">GetBackgroundUrl</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_type :: Maybe BackgroundType
 </span><a href="API.Functions.GetBackgroundUrl.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe BackgroundType
-</span><a href="#local-6989586621679419606"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">name :: Maybe String
+</span><a href="#local-6989586621679446795"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">name :: Maybe String
 </span><a href="API.Functions.GetBackgroundUrl.html#name"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679419604"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679446793"><span class="hs-identifier hs-var">name</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-38"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser GetBackgroundUrl
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-39"></span></pre></body></html>

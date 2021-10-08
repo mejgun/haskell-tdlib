@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __value__ Bytes
 data TestBytes = 
 
- TestBytes { value :: Maybe String }  deriving (Show, Eq)
+ TestBytes { value :: Maybe String }  deriving (Eq)
+
+instance Show TestBytes where
+ show TestBytes { value=value } =
+  "TestBytes" ++ cc [p "value" value ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON TestBytes where
- toJSON (TestBytes { value = value }) =
+ toJSON TestBytes { value = value } =
   A.object [ "@type" A..= T.String "testBytes", "value" A..= value ]
 
 instance T.FromJSON TestBytes where
@@ -31,3 +45,4 @@ instance T.FromJSON TestBytes where
    parseTestBytes = A.withObject "TestBytes" $ \o -> do
     value <- o A..:? "value"
     return $ TestBytes { value = value }
+ parseJSON _ = mempty

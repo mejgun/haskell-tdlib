@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
 -- |
@@ -14,13 +15,26 @@ import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 -- 
 -- __text__ Text to be shown to the user
 -- 
--- __need_update_application__ True, if user should be asked to update the application
+-- __need_update_application__ True, if the user must be asked to update the application
 data DeepLinkInfo = 
 
- DeepLinkInfo { need_update_application :: Maybe Bool, text :: Maybe FormattedText.FormattedText }  deriving (Show, Eq)
+ DeepLinkInfo { need_update_application :: Maybe Bool, text :: Maybe FormattedText.FormattedText }  deriving (Eq)
+
+instance Show DeepLinkInfo where
+ show DeepLinkInfo { need_update_application=need_update_application, text=text } =
+  "DeepLinkInfo" ++ cc [p "need_update_application" need_update_application, p "text" text ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON DeepLinkInfo where
- toJSON (DeepLinkInfo { need_update_application = need_update_application, text = text }) =
+ toJSON DeepLinkInfo { need_update_application = need_update_application, text = text } =
   A.object [ "@type" A..= T.String "deepLinkInfo", "need_update_application" A..= need_update_application, "text" A..= text ]
 
 instance T.FromJSON DeepLinkInfo where
@@ -35,3 +49,4 @@ instance T.FromJSON DeepLinkInfo where
     need_update_application <- o A..:? "need_update_application"
     text <- o A..:? "text"
     return $ DeepLinkInfo { need_update_application = need_update_application, text = text }
+ parseJSON _ = mempty

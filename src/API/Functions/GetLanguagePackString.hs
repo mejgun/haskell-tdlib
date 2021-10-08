@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -20,10 +21,23 @@ import qualified Data.Aeson.Types as T
 -- __key__ Language pack key of the string to be returned
 data GetLanguagePackString = 
 
- GetLanguagePackString { key :: Maybe String, language_pack_id :: Maybe String, localization_target :: Maybe String, language_pack_database_path :: Maybe String }  deriving (Show, Eq)
+ GetLanguagePackString { key :: Maybe String, language_pack_id :: Maybe String, localization_target :: Maybe String, language_pack_database_path :: Maybe String }  deriving (Eq)
+
+instance Show GetLanguagePackString where
+ show GetLanguagePackString { key=key, language_pack_id=language_pack_id, localization_target=localization_target, language_pack_database_path=language_pack_database_path } =
+  "GetLanguagePackString" ++ cc [p "key" key, p "language_pack_id" language_pack_id, p "localization_target" localization_target, p "language_pack_database_path" language_pack_database_path ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetLanguagePackString where
- toJSON (GetLanguagePackString { key = key, language_pack_id = language_pack_id, localization_target = localization_target, language_pack_database_path = language_pack_database_path }) =
+ toJSON GetLanguagePackString { key = key, language_pack_id = language_pack_id, localization_target = localization_target, language_pack_database_path = language_pack_database_path } =
   A.object [ "@type" A..= T.String "getLanguagePackString", "key" A..= key, "language_pack_id" A..= language_pack_id, "localization_target" A..= localization_target, "language_pack_database_path" A..= language_pack_database_path ]
 
 instance T.FromJSON GetLanguagePackString where
@@ -40,3 +54,4 @@ instance T.FromJSON GetLanguagePackString where
     localization_target <- o A..:? "localization_target"
     language_pack_database_path <- o A..:? "language_pack_database_path"
     return $ GetLanguagePackString { key = key, language_pack_id = language_pack_id, localization_target = localization_target, language_pack_database_path = language_pack_database_path }
+ parseJSON _ = mempty

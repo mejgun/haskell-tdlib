@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -30,22 +31,47 @@ data NetworkType =
  -- |
  -- 
  -- A different network type (e.g., Ethernet network)
- NetworkTypeOther deriving (Show, Eq)
+ NetworkTypeOther deriving (Eq)
+
+instance Show NetworkType where
+ show NetworkTypeNone {  } =
+  "NetworkTypeNone" ++ cc [ ]
+
+ show NetworkTypeMobile {  } =
+  "NetworkTypeMobile" ++ cc [ ]
+
+ show NetworkTypeMobileRoaming {  } =
+  "NetworkTypeMobileRoaming" ++ cc [ ]
+
+ show NetworkTypeWiFi {  } =
+  "NetworkTypeWiFi" ++ cc [ ]
+
+ show NetworkTypeOther {  } =
+  "NetworkTypeOther" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON NetworkType where
- toJSON (NetworkTypeNone {  }) =
+ toJSON NetworkTypeNone {  } =
   A.object [ "@type" A..= T.String "networkTypeNone" ]
 
- toJSON (NetworkTypeMobile {  }) =
+ toJSON NetworkTypeMobile {  } =
   A.object [ "@type" A..= T.String "networkTypeMobile" ]
 
- toJSON (NetworkTypeMobileRoaming {  }) =
+ toJSON NetworkTypeMobileRoaming {  } =
   A.object [ "@type" A..= T.String "networkTypeMobileRoaming" ]
 
- toJSON (NetworkTypeWiFi {  }) =
+ toJSON NetworkTypeWiFi {  } =
   A.object [ "@type" A..= T.String "networkTypeWiFi" ]
 
- toJSON (NetworkTypeOther {  }) =
+ toJSON NetworkTypeOther {  } =
   A.object [ "@type" A..= T.String "networkTypeOther" ]
 
 instance T.FromJSON NetworkType where
@@ -78,3 +104,4 @@ instance T.FromJSON NetworkType where
    parseNetworkTypeOther :: A.Value -> T.Parser NetworkType
    parseNetworkTypeOther = A.withObject "NetworkTypeOther" $ \o -> do
     return $ NetworkTypeOther {  }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __payload__ JSON-encoded push notification payload with all fields sent by the server, and "google.sent_time" and "google.notification.sound" fields added
 data ProcessPushNotification = 
 
- ProcessPushNotification { payload :: Maybe String }  deriving (Show, Eq)
+ ProcessPushNotification { payload :: Maybe String }  deriving (Eq)
+
+instance Show ProcessPushNotification where
+ show ProcessPushNotification { payload=payload } =
+  "ProcessPushNotification" ++ cc [p "payload" payload ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ProcessPushNotification where
- toJSON (ProcessPushNotification { payload = payload }) =
+ toJSON ProcessPushNotification { payload = payload } =
   A.object [ "@type" A..= T.String "processPushNotification", "payload" A..= payload ]
 
 instance T.FromJSON ProcessPushNotification where
@@ -31,3 +45,4 @@ instance T.FromJSON ProcessPushNotification where
    parseProcessPushNotification = A.withObject "ProcessPushNotification" $ \o -> do
     payload <- o A..:? "payload"
     return $ ProcessPushNotification { payload = payload }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.FileType as FileType
 
 -- |
@@ -19,10 +20,23 @@ import {-# SOURCE #-} qualified API.FileType as FileType
 -- __count__ Total number of files
 data StorageStatisticsByFileType = 
 
- StorageStatisticsByFileType { count :: Maybe Int, size :: Maybe Int, file_type :: Maybe FileType.FileType }  deriving (Show, Eq)
+ StorageStatisticsByFileType { count :: Maybe Int, size :: Maybe Int, file_type :: Maybe FileType.FileType }  deriving (Eq)
+
+instance Show StorageStatisticsByFileType where
+ show StorageStatisticsByFileType { count=count, size=size, file_type=file_type } =
+  "StorageStatisticsByFileType" ++ cc [p "count" count, p "size" size, p "file_type" file_type ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON StorageStatisticsByFileType where
- toJSON (StorageStatisticsByFileType { count = count, size = size, file_type = file_type }) =
+ toJSON StorageStatisticsByFileType { count = count, size = size, file_type = file_type } =
   A.object [ "@type" A..= T.String "storageStatisticsByFileType", "count" A..= count, "size" A..= size, "file_type" A..= file_type ]
 
 instance T.FromJSON StorageStatisticsByFileType where
@@ -38,3 +52,4 @@ instance T.FromJSON StorageStatisticsByFileType where
     size <- mconcat [ o A..:? "size", readMaybe <$> (o A..: "size" :: T.Parser String)] :: T.Parser (Maybe Int)
     file_type <- o A..:? "file_type"
     return $ StorageStatisticsByFileType { count = count, size = size, file_type = file_type }
+ parseJSON _ = mempty

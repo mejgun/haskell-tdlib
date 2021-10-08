@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -46,22 +47,47 @@ data MessageForwardOrigin =
  -- The message was imported from an exported message history 
  -- 
  -- __sender_name__ Name of the sender
- MessageForwardOriginMessageImport { sender_name :: Maybe String }  deriving (Show, Eq)
+ MessageForwardOriginMessageImport { sender_name :: Maybe String }  deriving (Eq)
+
+instance Show MessageForwardOrigin where
+ show MessageForwardOriginUser { sender_user_id=sender_user_id } =
+  "MessageForwardOriginUser" ++ cc [p "sender_user_id" sender_user_id ]
+
+ show MessageForwardOriginChat { author_signature=author_signature, sender_chat_id=sender_chat_id } =
+  "MessageForwardOriginChat" ++ cc [p "author_signature" author_signature, p "sender_chat_id" sender_chat_id ]
+
+ show MessageForwardOriginHiddenUser { sender_name=sender_name } =
+  "MessageForwardOriginHiddenUser" ++ cc [p "sender_name" sender_name ]
+
+ show MessageForwardOriginChannel { author_signature=author_signature, message_id=message_id, chat_id=chat_id } =
+  "MessageForwardOriginChannel" ++ cc [p "author_signature" author_signature, p "message_id" message_id, p "chat_id" chat_id ]
+
+ show MessageForwardOriginMessageImport { sender_name=sender_name } =
+  "MessageForwardOriginMessageImport" ++ cc [p "sender_name" sender_name ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON MessageForwardOrigin where
- toJSON (MessageForwardOriginUser { sender_user_id = sender_user_id }) =
+ toJSON MessageForwardOriginUser { sender_user_id = sender_user_id } =
   A.object [ "@type" A..= T.String "messageForwardOriginUser", "sender_user_id" A..= sender_user_id ]
 
- toJSON (MessageForwardOriginChat { author_signature = author_signature, sender_chat_id = sender_chat_id }) =
+ toJSON MessageForwardOriginChat { author_signature = author_signature, sender_chat_id = sender_chat_id } =
   A.object [ "@type" A..= T.String "messageForwardOriginChat", "author_signature" A..= author_signature, "sender_chat_id" A..= sender_chat_id ]
 
- toJSON (MessageForwardOriginHiddenUser { sender_name = sender_name }) =
+ toJSON MessageForwardOriginHiddenUser { sender_name = sender_name } =
   A.object [ "@type" A..= T.String "messageForwardOriginHiddenUser", "sender_name" A..= sender_name ]
 
- toJSON (MessageForwardOriginChannel { author_signature = author_signature, message_id = message_id, chat_id = chat_id }) =
+ toJSON MessageForwardOriginChannel { author_signature = author_signature, message_id = message_id, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "messageForwardOriginChannel", "author_signature" A..= author_signature, "message_id" A..= message_id, "chat_id" A..= chat_id ]
 
- toJSON (MessageForwardOriginMessageImport { sender_name = sender_name }) =
+ toJSON MessageForwardOriginMessageImport { sender_name = sender_name } =
   A.object [ "@type" A..= T.String "messageForwardOriginMessageImport", "sender_name" A..= sender_name ]
 
 instance T.FromJSON MessageForwardOrigin where
@@ -102,3 +128,4 @@ instance T.FromJSON MessageForwardOrigin where
    parseMessageForwardOriginMessageImport = A.withObject "MessageForwardOriginMessageImport" $ \o -> do
     sender_name <- o A..:? "sender_name"
     return $ MessageForwardOriginMessageImport { sender_name = sender_name }
+ parseJSON _ = mempty

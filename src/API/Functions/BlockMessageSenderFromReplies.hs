@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -20,10 +21,23 @@ import qualified Data.Aeson.Types as T
 -- __report_spam__ Pass true if the sender must be reported to the Telegram moderators
 data BlockMessageSenderFromReplies = 
 
- BlockMessageSenderFromReplies { report_spam :: Maybe Bool, delete_all_messages :: Maybe Bool, delete_message :: Maybe Bool, message_id :: Maybe Int }  deriving (Show, Eq)
+ BlockMessageSenderFromReplies { report_spam :: Maybe Bool, delete_all_messages :: Maybe Bool, delete_message :: Maybe Bool, message_id :: Maybe Int }  deriving (Eq)
+
+instance Show BlockMessageSenderFromReplies where
+ show BlockMessageSenderFromReplies { report_spam=report_spam, delete_all_messages=delete_all_messages, delete_message=delete_message, message_id=message_id } =
+  "BlockMessageSenderFromReplies" ++ cc [p "report_spam" report_spam, p "delete_all_messages" delete_all_messages, p "delete_message" delete_message, p "message_id" message_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON BlockMessageSenderFromReplies where
- toJSON (BlockMessageSenderFromReplies { report_spam = report_spam, delete_all_messages = delete_all_messages, delete_message = delete_message, message_id = message_id }) =
+ toJSON BlockMessageSenderFromReplies { report_spam = report_spam, delete_all_messages = delete_all_messages, delete_message = delete_message, message_id = message_id } =
   A.object [ "@type" A..= T.String "blockMessageSenderFromReplies", "report_spam" A..= report_spam, "delete_all_messages" A..= delete_all_messages, "delete_message" A..= delete_message, "message_id" A..= message_id ]
 
 instance T.FromJSON BlockMessageSenderFromReplies where
@@ -40,3 +54,4 @@ instance T.FromJSON BlockMessageSenderFromReplies where
     delete_message <- o A..:? "delete_message"
     message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ BlockMessageSenderFromReplies { report_spam = report_spam, delete_all_messages = delete_all_messages, delete_message = delete_message, message_id = message_id }
+ parseJSON _ = mempty

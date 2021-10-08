@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -17,7 +18,7 @@ data DeviceToken =
  -- 
  -- __token__ Device registration token; may be empty to de-register a device
  -- 
- -- __encrypt__ True, if push notifications should be additionally encrypted
+ -- __encrypt__ True, if push notifications must be additionally encrypted
  DeviceTokenFirebaseCloudMessaging { encrypt :: Maybe Bool, token :: Maybe String }  |
  -- |
  -- 
@@ -35,7 +36,7 @@ data DeviceToken =
  -- 
  -- __is_app_sandbox__ True, if App Sandbox is enabled
  -- 
- -- __encrypt__ True, if push notifications should be additionally encrypted
+ -- __encrypt__ True, if push notifications must be additionally encrypted
  DeviceTokenApplePushVoIP { encrypt :: Maybe Bool, is_app_sandbox :: Maybe Bool, device_token :: Maybe String }  |
  -- |
  -- 
@@ -88,40 +89,83 @@ data DeviceToken =
  -- A token for Tizen Push Service 
  -- 
  -- __reg_id__ Push service registration identifier; may be empty to de-register a device
- DeviceTokenTizenPush { reg_id :: Maybe String }  deriving (Show, Eq)
+ DeviceTokenTizenPush { reg_id :: Maybe String }  deriving (Eq)
+
+instance Show DeviceToken where
+ show DeviceTokenFirebaseCloudMessaging { encrypt=encrypt, token=token } =
+  "DeviceTokenFirebaseCloudMessaging" ++ cc [p "encrypt" encrypt, p "token" token ]
+
+ show DeviceTokenApplePush { is_app_sandbox=is_app_sandbox, device_token=device_token } =
+  "DeviceTokenApplePush" ++ cc [p "is_app_sandbox" is_app_sandbox, p "device_token" device_token ]
+
+ show DeviceTokenApplePushVoIP { encrypt=encrypt, is_app_sandbox=is_app_sandbox, device_token=device_token } =
+  "DeviceTokenApplePushVoIP" ++ cc [p "encrypt" encrypt, p "is_app_sandbox" is_app_sandbox, p "device_token" device_token ]
+
+ show DeviceTokenWindowsPush { access_token=access_token } =
+  "DeviceTokenWindowsPush" ++ cc [p "access_token" access_token ]
+
+ show DeviceTokenMicrosoftPush { channel_uri=channel_uri } =
+  "DeviceTokenMicrosoftPush" ++ cc [p "channel_uri" channel_uri ]
+
+ show DeviceTokenMicrosoftPushVoIP { channel_uri=channel_uri } =
+  "DeviceTokenMicrosoftPushVoIP" ++ cc [p "channel_uri" channel_uri ]
+
+ show DeviceTokenWebPush { auth_base64url=auth_base64url, p256dh_base64url=p256dh_base64url, endpoint=endpoint } =
+  "DeviceTokenWebPush" ++ cc [p "auth_base64url" auth_base64url, p "p256dh_base64url" p256dh_base64url, p "endpoint" endpoint ]
+
+ show DeviceTokenSimplePush { endpoint=endpoint } =
+  "DeviceTokenSimplePush" ++ cc [p "endpoint" endpoint ]
+
+ show DeviceTokenUbuntuPush { token=token } =
+  "DeviceTokenUbuntuPush" ++ cc [p "token" token ]
+
+ show DeviceTokenBlackBerryPush { token=token } =
+  "DeviceTokenBlackBerryPush" ++ cc [p "token" token ]
+
+ show DeviceTokenTizenPush { reg_id=reg_id } =
+  "DeviceTokenTizenPush" ++ cc [p "reg_id" reg_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON DeviceToken where
- toJSON (DeviceTokenFirebaseCloudMessaging { encrypt = encrypt, token = token }) =
+ toJSON DeviceTokenFirebaseCloudMessaging { encrypt = encrypt, token = token } =
   A.object [ "@type" A..= T.String "deviceTokenFirebaseCloudMessaging", "encrypt" A..= encrypt, "token" A..= token ]
 
- toJSON (DeviceTokenApplePush { is_app_sandbox = is_app_sandbox, device_token = device_token }) =
+ toJSON DeviceTokenApplePush { is_app_sandbox = is_app_sandbox, device_token = device_token } =
   A.object [ "@type" A..= T.String "deviceTokenApplePush", "is_app_sandbox" A..= is_app_sandbox, "device_token" A..= device_token ]
 
- toJSON (DeviceTokenApplePushVoIP { encrypt = encrypt, is_app_sandbox = is_app_sandbox, device_token = device_token }) =
+ toJSON DeviceTokenApplePushVoIP { encrypt = encrypt, is_app_sandbox = is_app_sandbox, device_token = device_token } =
   A.object [ "@type" A..= T.String "deviceTokenApplePushVoIP", "encrypt" A..= encrypt, "is_app_sandbox" A..= is_app_sandbox, "device_token" A..= device_token ]
 
- toJSON (DeviceTokenWindowsPush { access_token = access_token }) =
+ toJSON DeviceTokenWindowsPush { access_token = access_token } =
   A.object [ "@type" A..= T.String "deviceTokenWindowsPush", "access_token" A..= access_token ]
 
- toJSON (DeviceTokenMicrosoftPush { channel_uri = channel_uri }) =
+ toJSON DeviceTokenMicrosoftPush { channel_uri = channel_uri } =
   A.object [ "@type" A..= T.String "deviceTokenMicrosoftPush", "channel_uri" A..= channel_uri ]
 
- toJSON (DeviceTokenMicrosoftPushVoIP { channel_uri = channel_uri }) =
+ toJSON DeviceTokenMicrosoftPushVoIP { channel_uri = channel_uri } =
   A.object [ "@type" A..= T.String "deviceTokenMicrosoftPushVoIP", "channel_uri" A..= channel_uri ]
 
- toJSON (DeviceTokenWebPush { auth_base64url = auth_base64url, p256dh_base64url = p256dh_base64url, endpoint = endpoint }) =
+ toJSON DeviceTokenWebPush { auth_base64url = auth_base64url, p256dh_base64url = p256dh_base64url, endpoint = endpoint } =
   A.object [ "@type" A..= T.String "deviceTokenWebPush", "auth_base64url" A..= auth_base64url, "p256dh_base64url" A..= p256dh_base64url, "endpoint" A..= endpoint ]
 
- toJSON (DeviceTokenSimplePush { endpoint = endpoint }) =
+ toJSON DeviceTokenSimplePush { endpoint = endpoint } =
   A.object [ "@type" A..= T.String "deviceTokenSimplePush", "endpoint" A..= endpoint ]
 
- toJSON (DeviceTokenUbuntuPush { token = token }) =
+ toJSON DeviceTokenUbuntuPush { token = token } =
   A.object [ "@type" A..= T.String "deviceTokenUbuntuPush", "token" A..= token ]
 
- toJSON (DeviceTokenBlackBerryPush { token = token }) =
+ toJSON DeviceTokenBlackBerryPush { token = token } =
   A.object [ "@type" A..= T.String "deviceTokenBlackBerryPush", "token" A..= token ]
 
- toJSON (DeviceTokenTizenPush { reg_id = reg_id }) =
+ toJSON DeviceTokenTizenPush { reg_id = reg_id } =
   A.object [ "@type" A..= T.String "deviceTokenTizenPush", "reg_id" A..= reg_id ]
 
 instance T.FromJSON DeviceToken where
@@ -201,3 +245,4 @@ instance T.FromJSON DeviceToken where
    parseDeviceTokenTizenPush = A.withObject "DeviceTokenTizenPush" $ \o -> do
     reg_id <- o A..:? "reg_id"
     return $ DeviceTokenTizenPush { reg_id = reg_id }
+ parseJSON _ = mempty

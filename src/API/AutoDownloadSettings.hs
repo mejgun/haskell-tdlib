@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -28,10 +29,23 @@ import qualified Data.Aeson.Types as T
 -- __use_less_data_for_calls__ True, if "use less data for calls" option needs to be enabled
 data AutoDownloadSettings = 
 
- AutoDownloadSettings { use_less_data_for_calls :: Maybe Bool, preload_next_audio :: Maybe Bool, preload_large_videos :: Maybe Bool, video_upload_bitrate :: Maybe Int, max_other_file_size :: Maybe Int, max_video_file_size :: Maybe Int, max_photo_file_size :: Maybe Int, is_auto_download_enabled :: Maybe Bool }  deriving (Show, Eq)
+ AutoDownloadSettings { use_less_data_for_calls :: Maybe Bool, preload_next_audio :: Maybe Bool, preload_large_videos :: Maybe Bool, video_upload_bitrate :: Maybe Int, max_other_file_size :: Maybe Int, max_video_file_size :: Maybe Int, max_photo_file_size :: Maybe Int, is_auto_download_enabled :: Maybe Bool }  deriving (Eq)
+
+instance Show AutoDownloadSettings where
+ show AutoDownloadSettings { use_less_data_for_calls=use_less_data_for_calls, preload_next_audio=preload_next_audio, preload_large_videos=preload_large_videos, video_upload_bitrate=video_upload_bitrate, max_other_file_size=max_other_file_size, max_video_file_size=max_video_file_size, max_photo_file_size=max_photo_file_size, is_auto_download_enabled=is_auto_download_enabled } =
+  "AutoDownloadSettings" ++ cc [p "use_less_data_for_calls" use_less_data_for_calls, p "preload_next_audio" preload_next_audio, p "preload_large_videos" preload_large_videos, p "video_upload_bitrate" video_upload_bitrate, p "max_other_file_size" max_other_file_size, p "max_video_file_size" max_video_file_size, p "max_photo_file_size" max_photo_file_size, p "is_auto_download_enabled" is_auto_download_enabled ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON AutoDownloadSettings where
- toJSON (AutoDownloadSettings { use_less_data_for_calls = use_less_data_for_calls, preload_next_audio = preload_next_audio, preload_large_videos = preload_large_videos, video_upload_bitrate = video_upload_bitrate, max_other_file_size = max_other_file_size, max_video_file_size = max_video_file_size, max_photo_file_size = max_photo_file_size, is_auto_download_enabled = is_auto_download_enabled }) =
+ toJSON AutoDownloadSettings { use_less_data_for_calls = use_less_data_for_calls, preload_next_audio = preload_next_audio, preload_large_videos = preload_large_videos, video_upload_bitrate = video_upload_bitrate, max_other_file_size = max_other_file_size, max_video_file_size = max_video_file_size, max_photo_file_size = max_photo_file_size, is_auto_download_enabled = is_auto_download_enabled } =
   A.object [ "@type" A..= T.String "autoDownloadSettings", "use_less_data_for_calls" A..= use_less_data_for_calls, "preload_next_audio" A..= preload_next_audio, "preload_large_videos" A..= preload_large_videos, "video_upload_bitrate" A..= video_upload_bitrate, "max_other_file_size" A..= max_other_file_size, "max_video_file_size" A..= max_video_file_size, "max_photo_file_size" A..= max_photo_file_size, "is_auto_download_enabled" A..= is_auto_download_enabled ]
 
 instance T.FromJSON AutoDownloadSettings where
@@ -52,3 +66,4 @@ instance T.FromJSON AutoDownloadSettings where
     max_photo_file_size <- mconcat [ o A..:? "max_photo_file_size", readMaybe <$> (o A..: "max_photo_file_size" :: T.Parser String)] :: T.Parser (Maybe Int)
     is_auto_download_enabled <- o A..:? "is_auto_download_enabled"
     return $ AutoDownloadSettings { use_less_data_for_calls = use_less_data_for_calls, preload_next_audio = preload_next_audio, preload_large_videos = preload_large_videos, video_upload_bitrate = video_upload_bitrate, max_other_file_size = max_other_file_size, max_video_file_size = max_video_file_size, max_photo_file_size = max_photo_file_size, is_auto_download_enabled = is_auto_download_enabled }
+ parseJSON _ = mempty

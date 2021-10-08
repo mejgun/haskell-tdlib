@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.MessageCopyOptions</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.FormattedText.html"><span class="hs-identifier">API.FormattedText</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">FormattedText</span></span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- Options to be used when a message content is copied without a link to the original message. Service messages and messageInvoice can't be copied</span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-15"></span><span class="hs-comment">-- __send_copy__ True, if content of the message needs to be copied without a link to the original message. Always true if the message is forwarded to a secret chat</span><span>
+</span><span id="line-16"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-17"></span><span class="hs-comment">-- __replace_caption__ True, if media caption of the message copy needs to be replaced. Ignored if send_copy is false</span><span>
+</span><span id="line-18"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-19"></span><span class="hs-comment">-- __new_caption__ New message caption. Ignored if replace_caption is false</span><span>
+</span><span id="line-20"></span><span class="hs-keyword">data</span><span> </span><span id="MessageCopyOptions"><span class="annot"><a href="API.MessageCopyOptions.html#MessageCopyOptions"><span class="hs-identifier hs-var">MessageCopyOptions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-21"></span><span>
+</span><span id="line-22"></span><span> </span><span id="MessageCopyOptions"><span class="annot"><a href="API.MessageCopyOptions.html#MessageCopyOptions"><span class="hs-identifier hs-var">MessageCopyOptions</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="new_caption"><span class="annot"><span class="annottext">MessageCopyOptions -&gt; Maybe FormattedText
+</span><a href="API.MessageCopyOptions.html#new_caption"><span class="hs-identifier hs-var hs-var">new_caption</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.FormattedText.html#FormattedText"><span class="hs-identifier hs-type">FormattedText.FormattedText</span></a></span><span class="hs-special">,</span><span> </span><span id="replace_caption"><span class="annot"><span class="annottext">MessageCopyOptions -&gt; Maybe Bool
+</span><a href="API.MessageCopyOptions.html#replace_caption"><span class="hs-identifier hs-var hs-var">replace_caption</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="send_copy"><span class="annot"><span class="annottext">MessageCopyOptions -&gt; Maybe Bool
+</span><a href="API.MessageCopyOptions.html#send_copy"><span class="hs-identifier hs-var hs-var">send_copy</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679473564"><span id="local-6989586621679473566"><span id="local-6989586621679473568"><span class="annot"><span class="annottext">Int -&gt; MessageCopyOptions -&gt; ShowS
+[MessageCopyOptions] -&gt; ShowS
+MessageCopyOptions -&gt; String
+(Int -&gt; MessageCopyOptions -&gt; ShowS)
+-&gt; (MessageCopyOptions -&gt; String)
+-&gt; ([MessageCopyOptions] -&gt; ShowS)
+-&gt; Show MessageCopyOptions
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [MessageCopyOptions] -&gt; ShowS
+$cshowList :: [MessageCopyOptions] -&gt; ShowS
+show :: MessageCopyOptions -&gt; String
+$cshow :: MessageCopyOptions -&gt; String
+showsPrec :: Int -&gt; MessageCopyOptions -&gt; ShowS
+$cshowsPrec :: Int -&gt; MessageCopyOptions -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679473559"><span id="local-6989586621679473561"><span class="annot"><span class="annottext">MessageCopyOptions -&gt; MessageCopyOptions -&gt; Bool
+(MessageCopyOptions -&gt; MessageCopyOptions -&gt; Bool)
+-&gt; (MessageCopyOptions -&gt; MessageCopyOptions -&gt; Bool)
+-&gt; Eq MessageCopyOptions
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: MessageCopyOptions -&gt; MessageCopyOptions -&gt; Bool
+$c/= :: MessageCopyOptions -&gt; MessageCopyOptions -&gt; Bool
+== :: MessageCopyOptions -&gt; MessageCopyOptions -&gt; Bool
+$c== :: MessageCopyOptions -&gt; MessageCopyOptions -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-23"></span><span>
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679473551"><span id="local-6989586621679473553"><span id="local-6989586621679473555"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.MessageCopyOptions.html#MessageCopyOptions"><span class="hs-identifier hs-type">MessageCopyOptions</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span> </span><span id="local-6989586621679473549"><span class="annot"><span class="annottext">toJSON :: MessageCopyOptions -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.MessageCopyOptions.html#MessageCopyOptions"><span class="hs-identifier hs-type">MessageCopyOptions</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">new_caption :: MessageCopyOptions -&gt; Maybe FormattedText
+</span><a href="API.MessageCopyOptions.html#new_caption"><span class="hs-identifier hs-var">new_caption</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473547"><span class="annot"><span class="annottext">Maybe FormattedText
+</span><a href="#local-6989586621679473547"><span class="hs-identifier hs-var">new_caption</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">replace_caption :: MessageCopyOptions -&gt; Maybe Bool
+</span><a href="API.MessageCopyOptions.html#replace_caption"><span class="hs-identifier hs-var">replace_caption</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473546"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679473546"><span class="hs-identifier hs-var">replace_caption</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">send_copy :: MessageCopyOptions -&gt; Maybe Bool
+</span><a href="API.MessageCopyOptions.html#send_copy"><span class="hs-identifier hs-var">send_copy</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679473545"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679473545"><span class="hs-identifier hs-var">send_copy</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-26"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;messageCopyOptions&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;new_caption&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe FormattedText -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
+</span><a href="#local-6989586621679473547"><span class="hs-identifier hs-var">new_caption</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;replace_caption&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679473546"><span class="hs-identifier hs-var">replace_caption</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;send_copy&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679473545"><span class="hs-identifier hs-var">send_copy</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-27"></span><span>
+</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679473539"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.MessageCopyOptions.html#MessageCopyOptions"><span class="hs-identifier hs-type">MessageCopyOptions</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span> </span><span id="local-6989586621679473537"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser MessageCopyOptions
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679473535"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679473535"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679473533"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679473533"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-30"></span><span>  </span><span id="local-6989586621679473532"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679473532"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679473533"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-31"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679473532"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-32"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;messageCopyOptions&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser MessageCopyOptions
+</span><a href="#local-6989586621679473530"><span class="hs-identifier hs-var">parseMessageCopyOptions</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679473535"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-33"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser MessageCopyOptions
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-34"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-35"></span><span>   </span><span class="annot"><a href="#local-6989586621679473530"><span class="hs-identifier hs-type">parseMessageCopyOptions</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.MessageCopyOptions.html#MessageCopyOptions"><span class="hs-identifier hs-type">MessageCopyOptions</span></a></span><span>
+</span><span id="line-36"></span><span>   </span><span id="local-6989586621679473530"><span class="annot"><span class="annottext">parseMessageCopyOptions :: Value -&gt; Parser MessageCopyOptions
+</span><a href="#local-6989586621679473530"><span class="hs-identifier hs-var hs-var">parseMessageCopyOptions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser MessageCopyOptions)
+-&gt; Value
+-&gt; Parser MessageCopyOptions
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;MessageCopyOptions&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser MessageCopyOptions)
+ -&gt; Value -&gt; Parser MessageCopyOptions)
+-&gt; (Object -&gt; Parser MessageCopyOptions)
+-&gt; Value
+-&gt; Parser MessageCopyOptions
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679473528"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679473528"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-37"></span><span>    </span><span id="local-6989586621679473527"><span class="annot"><span class="annottext">Maybe FormattedText
+</span><a href="#local-6989586621679473527"><span class="hs-identifier hs-var">new_caption</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679473528"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe FormattedText)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;new_caption&quot;</span></span><span>
+</span><span id="line-38"></span><span>    </span><span id="local-6989586621679473525"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679473525"><span class="hs-identifier hs-var">replace_caption</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679473528"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;replace_caption&quot;</span></span><span>
+</span><span id="line-39"></span><span>    </span><span id="local-6989586621679473524"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679473524"><span class="hs-identifier hs-var">send_copy</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679473528"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;send_copy&quot;</span></span><span>
+</span><span id="line-40"></span><span>    </span><span class="annot"><span class="annottext">MessageCopyOptions -&gt; Parser MessageCopyOptions
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(MessageCopyOptions -&gt; Parser MessageCopyOptions)
+-&gt; MessageCopyOptions -&gt; Parser MessageCopyOptions
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">MessageCopyOptions :: Maybe FormattedText
+-&gt; Maybe Bool -&gt; Maybe Bool -&gt; MessageCopyOptions
+</span><a href="API.MessageCopyOptions.html#MessageCopyOptions"><span class="hs-identifier hs-type">MessageCopyOptions</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">new_caption :: Maybe FormattedText
+</span><a href="API.MessageCopyOptions.html#new_caption"><span class="hs-identifier hs-var">new_caption</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe FormattedText
+</span><a href="#local-6989586621679473527"><span class="hs-identifier hs-var">new_caption</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">replace_caption :: Maybe Bool
+</span><a href="API.MessageCopyOptions.html#replace_caption"><span class="hs-identifier hs-var">replace_caption</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679473525"><span class="hs-identifier hs-var">replace_caption</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">send_copy :: Maybe Bool
+</span><a href="API.MessageCopyOptions.html#send_copy"><span class="hs-identifier hs-var">send_copy</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679473524"><span class="hs-identifier hs-var">send_copy</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-41"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser MessageCopyOptions
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-42"></span></pre></body></html>

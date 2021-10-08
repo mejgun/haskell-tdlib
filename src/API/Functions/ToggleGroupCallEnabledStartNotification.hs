@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __enabled_start_notification__ New value of the enabled_start_notification setting
 data ToggleGroupCallEnabledStartNotification = 
 
- ToggleGroupCallEnabledStartNotification { enabled_start_notification :: Maybe Bool, group_call_id :: Maybe Int }  deriving (Show, Eq)
+ ToggleGroupCallEnabledStartNotification { enabled_start_notification :: Maybe Bool, group_call_id :: Maybe Int }  deriving (Eq)
+
+instance Show ToggleGroupCallEnabledStartNotification where
+ show ToggleGroupCallEnabledStartNotification { enabled_start_notification=enabled_start_notification, group_call_id=group_call_id } =
+  "ToggleGroupCallEnabledStartNotification" ++ cc [p "enabled_start_notification" enabled_start_notification, p "group_call_id" group_call_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ToggleGroupCallEnabledStartNotification where
- toJSON (ToggleGroupCallEnabledStartNotification { enabled_start_notification = enabled_start_notification, group_call_id = group_call_id }) =
+ toJSON ToggleGroupCallEnabledStartNotification { enabled_start_notification = enabled_start_notification, group_call_id = group_call_id } =
   A.object [ "@type" A..= T.String "toggleGroupCallEnabledStartNotification", "enabled_start_notification" A..= enabled_start_notification, "group_call_id" A..= group_call_id ]
 
 instance T.FromJSON ToggleGroupCallEnabledStartNotification where
@@ -34,3 +48,4 @@ instance T.FromJSON ToggleGroupCallEnabledStartNotification where
     enabled_start_notification <- o A..:? "enabled_start_notification"
     group_call_id <- mconcat [ o A..:? "group_call_id", readMaybe <$> (o A..: "group_call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ToggleGroupCallEnabledStartNotification { enabled_start_notification = enabled_start_notification, group_call_id = group_call_id }
+ parseJSON _ = mempty

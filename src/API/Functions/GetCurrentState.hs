@@ -6,16 +6,30 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
 -- Returns all updates needed to restore current TDLib state, i.e. all actual UpdateAuthorizationState/UpdateUser/UpdateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
 data GetCurrentState = 
 
- GetCurrentState deriving (Show, Eq)
+ GetCurrentState deriving (Eq)
+
+instance Show GetCurrentState where
+ show GetCurrentState {  } =
+  "GetCurrentState" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetCurrentState where
- toJSON (GetCurrentState {  }) =
+ toJSON GetCurrentState {  } =
   A.object [ "@type" A..= T.String "getCurrentState" ]
 
 instance T.FromJSON GetCurrentState where
@@ -28,3 +42,4 @@ instance T.FromJSON GetCurrentState where
    parseGetCurrentState :: A.Value -> T.Parser GetCurrentState
    parseGetCurrentState = A.withObject "GetCurrentState" $ \o -> do
     return $ GetCurrentState {  }
+ parseJSON _ = mempty

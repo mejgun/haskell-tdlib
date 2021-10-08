@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 -- |
@@ -15,10 +16,23 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- __sticker__ Sticker file to add
 data AddFavoriteSticker = 
 
- AddFavoriteSticker { sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
+ AddFavoriteSticker { sticker :: Maybe InputFile.InputFile }  deriving (Eq)
+
+instance Show AddFavoriteSticker where
+ show AddFavoriteSticker { sticker=sticker } =
+  "AddFavoriteSticker" ++ cc [p "sticker" sticker ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON AddFavoriteSticker where
- toJSON (AddFavoriteSticker { sticker = sticker }) =
+ toJSON AddFavoriteSticker { sticker = sticker } =
   A.object [ "@type" A..= T.String "addFavoriteSticker", "sticker" A..= sticker ]
 
 instance T.FromJSON AddFavoriteSticker where
@@ -32,3 +46,4 @@ instance T.FromJSON AddFavoriteSticker where
    parseAddFavoriteSticker = A.withObject "AddFavoriteSticker" $ \o -> do
     sticker <- o A..:? "sticker"
     return $ AddFavoriteSticker { sticker = sticker }
+ parseJSON _ = mempty

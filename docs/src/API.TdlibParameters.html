@@ -33,7 +33,7 @@
 </span><span id="line-33"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-34"></span><span class="hs-comment">-- __device_model__ Model of the device the application is being run on; must be non-empty</span><span>
 </span><span id="line-35"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-36"></span><span class="hs-comment">-- __system_version__ Version of the operating system the application is being run on; must be non-empty</span><span>
+</span><span id="line-36"></span><span class="hs-comment">-- __system_version__ Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib</span><span>
 </span><span id="line-37"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-38"></span><span class="hs-comment">-- __application_version__ Application version; must be non-empty</span><span>
 </span><span id="line-39"></span><span class="hs-comment">-- </span><span>
@@ -57,7 +57,7 @@
 </span><a href="API.TdlibParameters.html#use_file_database"><span class="hs-identifier hs-var hs-var">use_file_database</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="files_directory"><span class="annot"><span class="annottext">TdlibParameters -&gt; Maybe String
 </span><a href="API.TdlibParameters.html#files_directory"><span class="hs-identifier hs-var hs-var">files_directory</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="database_directory"><span class="annot"><span class="annottext">TdlibParameters -&gt; Maybe String
 </span><a href="API.TdlibParameters.html#database_directory"><span class="hs-identifier hs-var hs-var">database_directory</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="use_test_dc"><span class="annot"><span class="annottext">TdlibParameters -&gt; Maybe Bool
-</span><a href="API.TdlibParameters.html#use_test_dc"><span class="hs-identifier hs-var hs-var">use_test_dc</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679454923"><span id="local-6989586621679454925"><span id="local-6989586621679454927"><span class="annot"><span class="annottext">Int -&gt; TdlibParameters -&gt; ShowS
+</span><a href="API.TdlibParameters.html#use_test_dc"><span class="hs-identifier hs-var hs-var">use_test_dc</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679488748"><span id="local-6989586621679488750"><span id="local-6989586621679488752"><span class="annot"><span class="annottext">Int -&gt; TdlibParameters -&gt; ShowS
 [TdlibParameters] -&gt; ShowS
 TdlibParameters -&gt; String
 (Int -&gt; TdlibParameters -&gt; ShowS)
@@ -72,7 +72,7 @@ show :: TdlibParameters -&gt; String
 $cshow :: TdlibParameters -&gt; String
 showsPrec :: Int -&gt; TdlibParameters -&gt; ShowS
 $cshowsPrec :: Int -&gt; TdlibParameters -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679454918"><span id="local-6989586621679454920"><span class="annot"><span class="annottext">TdlibParameters -&gt; TdlibParameters -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679488743"><span id="local-6989586621679488745"><span class="annot"><span class="annottext">TdlibParameters -&gt; TdlibParameters -&gt; Bool
 (TdlibParameters -&gt; TdlibParameters -&gt; Bool)
 -&gt; (TdlibParameters -&gt; TdlibParameters -&gt; Bool)
 -&gt; Eq TdlibParameters
@@ -83,208 +83,245 @@ $c/= :: TdlibParameters -&gt; TdlibParameters -&gt; Bool
 $c== :: TdlibParameters -&gt; TdlibParameters -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-46"></span><span>
-</span><span id="line-47"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679454910"><span id="local-6989586621679454912"><span id="local-6989586621679454914"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.TdlibParameters.html#TdlibParameters"><span class="hs-identifier hs-type">TdlibParameters</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-48"></span><span> </span><span id="local-6989586621679454908"><span class="annot"><span class="annottext">toJSON :: TdlibParameters -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.TdlibParameters.html#TdlibParameters"><span class="hs-identifier hs-type">TdlibParameters</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ignore_file_names :: TdlibParameters -&gt; Maybe Bool
-</span><a href="API.TdlibParameters.html#ignore_file_names"><span class="hs-identifier hs-var">ignore_file_names</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454906"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454906"><span class="hs-identifier hs-var">ignore_file_names</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">enable_storage_optimizer :: TdlibParameters -&gt; Maybe Bool
-</span><a href="API.TdlibParameters.html#enable_storage_optimizer"><span class="hs-identifier hs-var">enable_storage_optimizer</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454905"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454905"><span class="hs-identifier hs-var">enable_storage_optimizer</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">application_version :: TdlibParameters -&gt; Maybe String
-</span><a href="API.TdlibParameters.html#application_version"><span class="hs-identifier hs-var">application_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454904"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454904"><span class="hs-identifier hs-var">application_version</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">system_version :: TdlibParameters -&gt; Maybe String
-</span><a href="API.TdlibParameters.html#system_version"><span class="hs-identifier hs-var">system_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454903"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454903"><span class="hs-identifier hs-var">system_version</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_model :: TdlibParameters -&gt; Maybe String
-</span><a href="API.TdlibParameters.html#device_model"><span class="hs-identifier hs-var">device_model</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454902"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454902"><span class="hs-identifier hs-var">device_model</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">system_language_code :: TdlibParameters -&gt; Maybe String
-</span><a href="API.TdlibParameters.html#system_language_code"><span class="hs-identifier hs-var">system_language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454901"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454901"><span class="hs-identifier hs-var">system_language_code</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">api_hash :: TdlibParameters -&gt; Maybe String
-</span><a href="API.TdlibParameters.html#api_hash"><span class="hs-identifier hs-var">api_hash</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454900"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454900"><span class="hs-identifier hs-var">api_hash</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">api_id :: TdlibParameters -&gt; Maybe Int
-</span><a href="API.TdlibParameters.html#api_id"><span class="hs-identifier hs-var">api_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454899"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679454899"><span class="hs-identifier hs-var">api_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_secret_chats :: TdlibParameters -&gt; Maybe Bool
-</span><a href="API.TdlibParameters.html#use_secret_chats"><span class="hs-identifier hs-var">use_secret_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454898"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454898"><span class="hs-identifier hs-var">use_secret_chats</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_message_database :: TdlibParameters -&gt; Maybe Bool
-</span><a href="API.TdlibParameters.html#use_message_database"><span class="hs-identifier hs-var">use_message_database</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454897"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454897"><span class="hs-identifier hs-var">use_message_database</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_chat_info_database :: TdlibParameters -&gt; Maybe Bool
-</span><a href="API.TdlibParameters.html#use_chat_info_database"><span class="hs-identifier hs-var">use_chat_info_database</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454896"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454896"><span class="hs-identifier hs-var">use_chat_info_database</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_file_database :: TdlibParameters -&gt; Maybe Bool
-</span><a href="API.TdlibParameters.html#use_file_database"><span class="hs-identifier hs-var">use_file_database</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454895"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454895"><span class="hs-identifier hs-var">use_file_database</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">files_directory :: TdlibParameters -&gt; Maybe String
-</span><a href="API.TdlibParameters.html#files_directory"><span class="hs-identifier hs-var">files_directory</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454894"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454894"><span class="hs-identifier hs-var">files_directory</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">database_directory :: TdlibParameters -&gt; Maybe String
-</span><a href="API.TdlibParameters.html#database_directory"><span class="hs-identifier hs-var">database_directory</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454893"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454893"><span class="hs-identifier hs-var">database_directory</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_test_dc :: TdlibParameters -&gt; Maybe Bool
-</span><a href="API.TdlibParameters.html#use_test_dc"><span class="hs-identifier hs-var">use_test_dc</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679454892"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454892"><span class="hs-identifier hs-var">use_test_dc</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-47"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679488735"><span id="local-6989586621679488737"><span id="local-6989586621679488739"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.TdlibParameters.html#TdlibParameters"><span class="hs-identifier hs-type">TdlibParameters</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-48"></span><span> </span><span id="local-6989586621679488733"><span class="annot"><span class="annottext">toJSON :: TdlibParameters -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.TdlibParameters.html#TdlibParameters"><span class="hs-identifier hs-type">TdlibParameters</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ignore_file_names :: TdlibParameters -&gt; Maybe Bool
+</span><a href="API.TdlibParameters.html#ignore_file_names"><span class="hs-identifier hs-var">ignore_file_names</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488731"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679488731"><span class="hs-identifier hs-var">ignore_file_names</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">enable_storage_optimizer :: TdlibParameters -&gt; Maybe Bool
+</span><a href="API.TdlibParameters.html#enable_storage_optimizer"><span class="hs-identifier hs-var">enable_storage_optimizer</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488730"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679488730"><span class="hs-identifier hs-var">enable_storage_optimizer</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">application_version :: TdlibParameters -&gt; Maybe String
+</span><a href="API.TdlibParameters.html#application_version"><span class="hs-identifier hs-var">application_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488729"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679488729"><span class="hs-identifier hs-var">application_version</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">system_version :: TdlibParameters -&gt; Maybe String
+</span><a href="API.TdlibParameters.html#system_version"><span class="hs-identifier hs-var">system_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488728"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679488728"><span class="hs-identifier hs-var">system_version</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_model :: TdlibParameters -&gt; Maybe String
+</span><a href="API.TdlibParameters.html#device_model"><span class="hs-identifier hs-var">device_model</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488727"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679488727"><span class="hs-identifier hs-var">device_model</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">system_language_code :: TdlibParameters -&gt; Maybe String
+</span><a href="API.TdlibParameters.html#system_language_code"><span class="hs-identifier hs-var">system_language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488726"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679488726"><span class="hs-identifier hs-var">system_language_code</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">api_hash :: TdlibParameters -&gt; Maybe String
+</span><a href="API.TdlibParameters.html#api_hash"><span class="hs-identifier hs-var">api_hash</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488725"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679488725"><span class="hs-identifier hs-var">api_hash</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">api_id :: TdlibParameters -&gt; Maybe Int
+</span><a href="API.TdlibParameters.html#api_id"><span class="hs-identifier hs-var">api_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488724"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679488724"><span class="hs-identifier hs-var">api_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_secret_chats :: TdlibParameters -&gt; Maybe Bool
+</span><a href="API.TdlibParameters.html#use_secret_chats"><span class="hs-identifier hs-var">use_secret_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488723"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679488723"><span class="hs-identifier hs-var">use_secret_chats</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_message_database :: TdlibParameters -&gt; Maybe Bool
+</span><a href="API.TdlibParameters.html#use_message_database"><span class="hs-identifier hs-var">use_message_database</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488722"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679488722"><span class="hs-identifier hs-var">use_message_database</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_chat_info_database :: TdlibParameters -&gt; Maybe Bool
+</span><a href="API.TdlibParameters.html#use_chat_info_database"><span class="hs-identifier hs-var">use_chat_info_database</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488721"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679488721"><span class="hs-identifier hs-var">use_chat_info_database</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_file_database :: TdlibParameters -&gt; Maybe Bool
+</span><a href="API.TdlibParameters.html#use_file_database"><span class="hs-identifier hs-var">use_file_database</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488720"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679488720"><span class="hs-identifier hs-var">use_file_database</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">files_directory :: TdlibParameters -&gt; Maybe String
+</span><a href="API.TdlibParameters.html#files_directory"><span class="hs-identifier hs-var">files_directory</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488719"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679488719"><span class="hs-identifier hs-var">files_directory</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">database_directory :: TdlibParameters -&gt; Maybe String
+</span><a href="API.TdlibParameters.html#database_directory"><span class="hs-identifier hs-var">database_directory</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488718"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679488718"><span class="hs-identifier hs-var">database_directory</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_test_dc :: TdlibParameters -&gt; Maybe Bool
+</span><a href="API.TdlibParameters.html#use_test_dc"><span class="hs-identifier hs-var">use_test_dc</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679488717"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679488717"><span class="hs-identifier hs-var">use_test_dc</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-49"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;tdlibParameters&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;ignore_file_names&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;tdlibParameters&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;ignore_file_names&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454906"><span class="hs-identifier hs-var">ignore_file_names</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;enable_storage_optimizer&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679488731"><span class="hs-identifier hs-var">ignore_file_names</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;enable_storage_optimizer&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454905"><span class="hs-identifier hs-var">enable_storage_optimizer</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;application_version&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679488730"><span class="hs-identifier hs-var">enable_storage_optimizer</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;application_version&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454904"><span class="hs-identifier hs-var">application_version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;system_version&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679488729"><span class="hs-identifier hs-var">application_version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;system_version&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454903"><span class="hs-identifier hs-var">system_version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;device_model&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679488728"><span class="hs-identifier hs-var">system_version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;device_model&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454902"><span class="hs-identifier hs-var">device_model</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;system_language_code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679488727"><span class="hs-identifier hs-var">device_model</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;system_language_code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454901"><span class="hs-identifier hs-var">system_language_code</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;api_hash&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679488726"><span class="hs-identifier hs-var">system_language_code</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;api_hash&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454900"><span class="hs-identifier hs-var">api_hash</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;api_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679488725"><span class="hs-identifier hs-var">api_hash</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;api_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679454899"><span class="hs-identifier hs-var">api_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;use_secret_chats&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679488724"><span class="hs-identifier hs-var">api_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;use_secret_chats&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454898"><span class="hs-identifier hs-var">use_secret_chats</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;use_message_database&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679488723"><span class="hs-identifier hs-var">use_secret_chats</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;use_message_database&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454897"><span class="hs-identifier hs-var">use_message_database</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;use_chat_info_database&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679488722"><span class="hs-identifier hs-var">use_message_database</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;use_chat_info_database&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454896"><span class="hs-identifier hs-var">use_chat_info_database</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;use_file_database&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679488721"><span class="hs-identifier hs-var">use_chat_info_database</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;use_file_database&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454895"><span class="hs-identifier hs-var">use_file_database</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;files_directory&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679488720"><span class="hs-identifier hs-var">use_file_database</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;files_directory&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454894"><span class="hs-identifier hs-var">files_directory</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;database_directory&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679488719"><span class="hs-identifier hs-var">files_directory</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;database_directory&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454893"><span class="hs-identifier hs-var">database_directory</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;use_test_dc&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679488718"><span class="hs-identifier hs-var">database_directory</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;use_test_dc&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454892"><span class="hs-identifier hs-var">use_test_dc</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679488717"><span class="hs-identifier hs-var">use_test_dc</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-50"></span><span>
-</span><span id="line-51"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679454886"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.TdlibParameters.html#TdlibParameters"><span class="hs-identifier hs-type">TdlibParameters</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-52"></span><span> </span><span id="local-6989586621679454884"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TdlibParameters
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679454882"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679454882"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679454880"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679454880"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-53"></span><span>  </span><span id="local-6989586621679454879"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679454879"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679454880"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-51"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679488711"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.TdlibParameters.html#TdlibParameters"><span class="hs-identifier hs-type">TdlibParameters</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-52"></span><span> </span><span id="local-6989586621679488709"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TdlibParameters
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679488707"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679488707"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679488705"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488705"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-53"></span><span>  </span><span id="local-6989586621679488704"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679488704"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488705"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-54"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679454879"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-55"></span><span>   </span><span class="hs-string">&quot;tdlibParameters&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TdlibParameters
-</span><a href="#local-6989586621679454877"><span class="hs-identifier hs-var">parseTdlibParameters</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679454882"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-56"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TdlibParameters
+</span><a href="#local-6989586621679488704"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-55"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;tdlibParameters&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TdlibParameters
+</span><a href="#local-6989586621679488702"><span class="hs-identifier hs-var">parseTdlibParameters</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679488707"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-56"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TdlibParameters
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-57"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-58"></span><span>   </span><span class="annot"><a href="#local-6989586621679454877"><span class="hs-identifier hs-type">parseTdlibParameters</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TdlibParameters.html#TdlibParameters"><span class="hs-identifier hs-type">TdlibParameters</span></a></span><span>
-</span><span id="line-59"></span><span>   </span><span id="local-6989586621679454877"><span class="annot"><span class="annottext">parseTdlibParameters :: Value -&gt; Parser TdlibParameters
-</span><a href="#local-6989586621679454877"><span class="hs-identifier hs-var hs-var">parseTdlibParameters</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-58"></span><span>   </span><span class="annot"><a href="#local-6989586621679488702"><span class="hs-identifier hs-type">parseTdlibParameters</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.TdlibParameters.html#TdlibParameters"><span class="hs-identifier hs-type">TdlibParameters</span></a></span><span>
+</span><span id="line-59"></span><span>   </span><span id="local-6989586621679488702"><span class="annot"><span class="annottext">parseTdlibParameters :: Value -&gt; Parser TdlibParameters
+</span><a href="#local-6989586621679488702"><span class="hs-identifier hs-var hs-var">parseTdlibParameters</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TdlibParameters)
 -&gt; Value
 -&gt; Parser TdlibParameters
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;TdlibParameters&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser TdlibParameters)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;TdlibParameters&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser TdlibParameters)
  -&gt; Value -&gt; Parser TdlibParameters)
 -&gt; (Object -&gt; Parser TdlibParameters)
 -&gt; Value
 -&gt; Parser TdlibParameters
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679454875"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679454875"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-60"></span><span>    </span><span id="local-6989586621679454874"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454874"><span class="hs-identifier hs-var">ignore_file_names</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679454875"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679488700"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488700"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-60"></span><span>    </span><span id="local-6989586621679488699"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679488699"><span class="hs-identifier hs-var">ignore_file_names</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488700"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;ignore_file_names&quot;</span></span><span>
-</span><span id="line-61"></span><span>    </span><span id="local-6989586621679454872"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454872"><span class="hs-identifier hs-var">enable_storage_optimizer</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679454875"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;ignore_file_names&quot;</span></span><span>
+</span><span id="line-61"></span><span>    </span><span id="local-6989586621679488697"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679488697"><span class="hs-identifier hs-var">enable_storage_optimizer</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488700"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;enable_storage_optimizer&quot;</span></span><span>
-</span><span id="line-62"></span><span>    </span><span id="local-6989586621679454871"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454871"><span class="hs-identifier hs-var">application_version</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679454875"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;enable_storage_optimizer&quot;</span></span><span>
+</span><span id="line-62"></span><span>    </span><span id="local-6989586621679488696"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679488696"><span class="hs-identifier hs-var">application_version</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488700"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;application_version&quot;</span></span><span>
-</span><span id="line-63"></span><span>    </span><span id="local-6989586621679454870"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454870"><span class="hs-identifier hs-var">system_version</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679454875"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;application_version&quot;</span></span><span>
+</span><span id="line-63"></span><span>    </span><span id="local-6989586621679488695"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679488695"><span class="hs-identifier hs-var">system_version</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488700"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;system_version&quot;</span></span><span>
-</span><span id="line-64"></span><span>    </span><span id="local-6989586621679454869"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454869"><span class="hs-identifier hs-var">device_model</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679454875"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;system_version&quot;</span></span><span>
+</span><span id="line-64"></span><span>    </span><span id="local-6989586621679488694"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679488694"><span class="hs-identifier hs-var">device_model</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488700"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;device_model&quot;</span></span><span>
-</span><span id="line-65"></span><span>    </span><span id="local-6989586621679454868"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454868"><span class="hs-identifier hs-var">system_language_code</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679454875"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;device_model&quot;</span></span><span>
+</span><span id="line-65"></span><span>    </span><span id="local-6989586621679488693"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679488693"><span class="hs-identifier hs-var">system_language_code</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488700"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;system_language_code&quot;</span></span><span>
-</span><span id="line-66"></span><span>    </span><span id="local-6989586621679454867"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454867"><span class="hs-identifier hs-var">api_hash</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679454875"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;system_language_code&quot;</span></span><span>
+</span><span id="line-66"></span><span>    </span><span id="local-6989586621679488692"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679488692"><span class="hs-identifier hs-var">api_hash</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488700"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;api_hash&quot;</span></span><span>
-</span><span id="line-67"></span><span>    </span><span id="local-6989586621679454866"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679454866"><span class="hs-identifier hs-var">api_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;api_hash&quot;</span></span><span>
+</span><span id="line-67"></span><span>    </span><span id="local-6989586621679488691"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679488691"><span class="hs-identifier hs-var">api_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679454875"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679488700"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;api_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;api_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
 forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679454875"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679488700"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;api_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-68"></span><span>    </span><span id="local-6989586621679454864"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454864"><span class="hs-identifier hs-var">use_secret_chats</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679454875"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;api_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-68"></span><span>    </span><span id="local-6989586621679488689"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679488689"><span class="hs-identifier hs-var">use_secret_chats</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488700"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;use_secret_chats&quot;</span></span><span>
-</span><span id="line-69"></span><span>    </span><span id="local-6989586621679454863"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454863"><span class="hs-identifier hs-var">use_message_database</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679454875"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;use_secret_chats&quot;</span></span><span>
+</span><span id="line-69"></span><span>    </span><span id="local-6989586621679488688"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679488688"><span class="hs-identifier hs-var">use_message_database</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488700"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;use_message_database&quot;</span></span><span>
-</span><span id="line-70"></span><span>    </span><span id="local-6989586621679454862"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454862"><span class="hs-identifier hs-var">use_chat_info_database</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679454875"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;use_message_database&quot;</span></span><span>
+</span><span id="line-70"></span><span>    </span><span id="local-6989586621679488687"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679488687"><span class="hs-identifier hs-var">use_chat_info_database</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488700"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;use_chat_info_database&quot;</span></span><span>
-</span><span id="line-71"></span><span>    </span><span id="local-6989586621679454861"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454861"><span class="hs-identifier hs-var">use_file_database</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679454875"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;use_chat_info_database&quot;</span></span><span>
+</span><span id="line-71"></span><span>    </span><span id="local-6989586621679488686"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679488686"><span class="hs-identifier hs-var">use_file_database</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488700"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;use_file_database&quot;</span></span><span>
-</span><span id="line-72"></span><span>    </span><span id="local-6989586621679454860"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454860"><span class="hs-identifier hs-var">files_directory</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679454875"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;use_file_database&quot;</span></span><span>
+</span><span id="line-72"></span><span>    </span><span id="local-6989586621679488685"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679488685"><span class="hs-identifier hs-var">files_directory</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488700"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;files_directory&quot;</span></span><span>
-</span><span id="line-73"></span><span>    </span><span id="local-6989586621679454859"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454859"><span class="hs-identifier hs-var">database_directory</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679454875"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;files_directory&quot;</span></span><span>
+</span><span id="line-73"></span><span>    </span><span id="local-6989586621679488684"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679488684"><span class="hs-identifier hs-var">database_directory</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488700"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;database_directory&quot;</span></span><span>
-</span><span id="line-74"></span><span>    </span><span id="local-6989586621679454858"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454858"><span class="hs-identifier hs-var">use_test_dc</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679454875"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;database_directory&quot;</span></span><span>
+</span><span id="line-74"></span><span>    </span><span id="local-6989586621679488683"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679488683"><span class="hs-identifier hs-var">use_test_dc</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679488700"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;use_test_dc&quot;</span></span><span>
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;use_test_dc&quot;</span></span><span>
 </span><span id="line-75"></span><span>    </span><span class="annot"><span class="annottext">TdlibParameters -&gt; Parser TdlibParameters
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TdlibParameters -&gt; Parser TdlibParameters)
@@ -306,34 +343,39 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; Maybe String
 -&gt; Maybe Bool
 -&gt; TdlibParameters
-</span><a href="API.TdlibParameters.html#TdlibParameters"><span class="hs-identifier hs-type hs-type">TdlibParameters</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ignore_file_names :: Maybe Bool
+</span><a href="API.TdlibParameters.html#TdlibParameters"><span class="hs-identifier hs-type">TdlibParameters</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">ignore_file_names :: Maybe Bool
 </span><a href="API.TdlibParameters.html#ignore_file_names"><span class="hs-identifier hs-var">ignore_file_names</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454874"><span class="hs-identifier hs-var">ignore_file_names</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">enable_storage_optimizer :: Maybe Bool
+</span><a href="#local-6989586621679488699"><span class="hs-identifier hs-var">ignore_file_names</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">enable_storage_optimizer :: Maybe Bool
 </span><a href="API.TdlibParameters.html#enable_storage_optimizer"><span class="hs-identifier hs-var">enable_storage_optimizer</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454872"><span class="hs-identifier hs-var">enable_storage_optimizer</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">application_version :: Maybe String
+</span><a href="#local-6989586621679488697"><span class="hs-identifier hs-var">enable_storage_optimizer</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">application_version :: Maybe String
 </span><a href="API.TdlibParameters.html#application_version"><span class="hs-identifier hs-var">application_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454871"><span class="hs-identifier hs-var">application_version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">system_version :: Maybe String
+</span><a href="#local-6989586621679488696"><span class="hs-identifier hs-var">application_version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">system_version :: Maybe String
 </span><a href="API.TdlibParameters.html#system_version"><span class="hs-identifier hs-var">system_version</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454870"><span class="hs-identifier hs-var">system_version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_model :: Maybe String
+</span><a href="#local-6989586621679488695"><span class="hs-identifier hs-var">system_version</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">device_model :: Maybe String
 </span><a href="API.TdlibParameters.html#device_model"><span class="hs-identifier hs-var">device_model</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454869"><span class="hs-identifier hs-var">device_model</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">system_language_code :: Maybe String
+</span><a href="#local-6989586621679488694"><span class="hs-identifier hs-var">device_model</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">system_language_code :: Maybe String
 </span><a href="API.TdlibParameters.html#system_language_code"><span class="hs-identifier hs-var">system_language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454868"><span class="hs-identifier hs-var">system_language_code</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">api_hash :: Maybe String
+</span><a href="#local-6989586621679488693"><span class="hs-identifier hs-var">system_language_code</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">api_hash :: Maybe String
 </span><a href="API.TdlibParameters.html#api_hash"><span class="hs-identifier hs-var">api_hash</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454867"><span class="hs-identifier hs-var">api_hash</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">api_id :: Maybe Int
+</span><a href="#local-6989586621679488692"><span class="hs-identifier hs-var">api_hash</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">api_id :: Maybe Int
 </span><a href="API.TdlibParameters.html#api_id"><span class="hs-identifier hs-var">api_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679454866"><span class="hs-identifier hs-var">api_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_secret_chats :: Maybe Bool
+</span><a href="#local-6989586621679488691"><span class="hs-identifier hs-var">api_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_secret_chats :: Maybe Bool
 </span><a href="API.TdlibParameters.html#use_secret_chats"><span class="hs-identifier hs-var">use_secret_chats</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454864"><span class="hs-identifier hs-var">use_secret_chats</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_message_database :: Maybe Bool
+</span><a href="#local-6989586621679488689"><span class="hs-identifier hs-var">use_secret_chats</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_message_database :: Maybe Bool
 </span><a href="API.TdlibParameters.html#use_message_database"><span class="hs-identifier hs-var">use_message_database</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454863"><span class="hs-identifier hs-var">use_message_database</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_chat_info_database :: Maybe Bool
+</span><a href="#local-6989586621679488688"><span class="hs-identifier hs-var">use_message_database</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_chat_info_database :: Maybe Bool
 </span><a href="API.TdlibParameters.html#use_chat_info_database"><span class="hs-identifier hs-var">use_chat_info_database</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454862"><span class="hs-identifier hs-var">use_chat_info_database</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_file_database :: Maybe Bool
+</span><a href="#local-6989586621679488687"><span class="hs-identifier hs-var">use_chat_info_database</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_file_database :: Maybe Bool
 </span><a href="API.TdlibParameters.html#use_file_database"><span class="hs-identifier hs-var">use_file_database</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454861"><span class="hs-identifier hs-var">use_file_database</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">files_directory :: Maybe String
+</span><a href="#local-6989586621679488686"><span class="hs-identifier hs-var">use_file_database</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">files_directory :: Maybe String
 </span><a href="API.TdlibParameters.html#files_directory"><span class="hs-identifier hs-var">files_directory</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454860"><span class="hs-identifier hs-var">files_directory</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">database_directory :: Maybe String
+</span><a href="#local-6989586621679488685"><span class="hs-identifier hs-var">files_directory</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">database_directory :: Maybe String
 </span><a href="API.TdlibParameters.html#database_directory"><span class="hs-identifier hs-var">database_directory</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679454859"><span class="hs-identifier hs-var">database_directory</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_test_dc :: Maybe Bool
+</span><a href="#local-6989586621679488684"><span class="hs-identifier hs-var">database_directory</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">use_test_dc :: Maybe Bool
 </span><a href="API.TdlibParameters.html#use_test_dc"><span class="hs-identifier hs-var">use_test_dc</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679454858"><span class="hs-identifier hs-var">use_test_dc</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679488683"><span class="hs-identifier hs-var">use_test_dc</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-76"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser TdlibParameters
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-77"></span></pre></body></html>

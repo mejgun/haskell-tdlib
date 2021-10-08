@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -18,10 +19,23 @@ import qualified Data.Aeson.Types as T
 -- __ttl__ New TTL value, in seconds; must be one of 0, 86400, 7 * 86400, or 31 * 86400 unless the chat is secret
 data SetChatMessageTtlSetting = 
 
- SetChatMessageTtlSetting { ttl :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
+ SetChatMessageTtlSetting { ttl :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show SetChatMessageTtlSetting where
+ show SetChatMessageTtlSetting { ttl=ttl, chat_id=chat_id } =
+  "SetChatMessageTtlSetting" ++ cc [p "ttl" ttl, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SetChatMessageTtlSetting where
- toJSON (SetChatMessageTtlSetting { ttl = ttl, chat_id = chat_id }) =
+ toJSON SetChatMessageTtlSetting { ttl = ttl, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "setChatMessageTtlSetting", "ttl" A..= ttl, "chat_id" A..= chat_id ]
 
 instance T.FromJSON SetChatMessageTtlSetting where
@@ -36,3 +50,4 @@ instance T.FromJSON SetChatMessageTtlSetting where
     ttl <- mconcat [ o A..:? "ttl", readMaybe <$> (o A..: "ttl" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SetChatMessageTtlSetting { ttl = ttl, chat_id = chat_id }
+ parseJSON _ = mempty

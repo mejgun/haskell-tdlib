@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -30,16 +31,35 @@ data StatisticalGraph =
  -- An error message to be shown to the user instead of the graph 
  -- 
  -- __error_message__ The error message
- StatisticalGraphError { error_message :: Maybe String }  deriving (Show, Eq)
+ StatisticalGraphError { error_message :: Maybe String }  deriving (Eq)
+
+instance Show StatisticalGraph where
+ show StatisticalGraphData { zoom_token=zoom_token, json_data=json_data } =
+  "StatisticalGraphData" ++ cc [p "zoom_token" zoom_token, p "json_data" json_data ]
+
+ show StatisticalGraphAsync { token=token } =
+  "StatisticalGraphAsync" ++ cc [p "token" token ]
+
+ show StatisticalGraphError { error_message=error_message } =
+  "StatisticalGraphError" ++ cc [p "error_message" error_message ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON StatisticalGraph where
- toJSON (StatisticalGraphData { zoom_token = zoom_token, json_data = json_data }) =
+ toJSON StatisticalGraphData { zoom_token = zoom_token, json_data = json_data } =
   A.object [ "@type" A..= T.String "statisticalGraphData", "zoom_token" A..= zoom_token, "json_data" A..= json_data ]
 
- toJSON (StatisticalGraphAsync { token = token }) =
+ toJSON StatisticalGraphAsync { token = token } =
   A.object [ "@type" A..= T.String "statisticalGraphAsync", "token" A..= token ]
 
- toJSON (StatisticalGraphError { error_message = error_message }) =
+ toJSON StatisticalGraphError { error_message = error_message } =
   A.object [ "@type" A..= T.String "statisticalGraphError", "error_message" A..= error_message ]
 
 instance T.FromJSON StatisticalGraph where
@@ -66,3 +86,4 @@ instance T.FromJSON StatisticalGraph where
    parseStatisticalGraphError = A.withObject "StatisticalGraphError" $ \o -> do
     error_message <- o A..:? "error_message"
     return $ StatisticalGraphError { error_message = error_message }
+ parseJSON _ = mempty

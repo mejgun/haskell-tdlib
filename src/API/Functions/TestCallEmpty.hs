@@ -6,16 +6,30 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
 -- Does nothing; for testing only. This is an offline method. Can be called before authorization
 data TestCallEmpty = 
 
- TestCallEmpty deriving (Show, Eq)
+ TestCallEmpty deriving (Eq)
+
+instance Show TestCallEmpty where
+ show TestCallEmpty {  } =
+  "TestCallEmpty" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON TestCallEmpty where
- toJSON (TestCallEmpty {  }) =
+ toJSON TestCallEmpty {  } =
   A.object [ "@type" A..= T.String "testCallEmpty" ]
 
 instance T.FromJSON TestCallEmpty where
@@ -28,3 +42,4 @@ instance T.FromJSON TestCallEmpty where
    parseTestCallEmpty :: A.Value -> T.Parser TestCallEmpty
    parseTestCallEmpty = A.withObject "TestCallEmpty" $ \o -> do
     return $ TestCallEmpty {  }
+ parseJSON _ = mempty

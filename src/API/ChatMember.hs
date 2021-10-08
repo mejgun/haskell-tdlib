@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.ChatMemberStatus as ChatMemberStatus
 import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
@@ -22,10 +23,23 @@ import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 -- __status__ Status of the member in the chat
 data ChatMember = 
 
- ChatMember { status :: Maybe ChatMemberStatus.ChatMemberStatus, joined_chat_date :: Maybe Int, inviter_user_id :: Maybe Int, member_id :: Maybe MessageSender.MessageSender }  deriving (Show, Eq)
+ ChatMember { status :: Maybe ChatMemberStatus.ChatMemberStatus, joined_chat_date :: Maybe Int, inviter_user_id :: Maybe Int, member_id :: Maybe MessageSender.MessageSender }  deriving (Eq)
+
+instance Show ChatMember where
+ show ChatMember { status=status, joined_chat_date=joined_chat_date, inviter_user_id=inviter_user_id, member_id=member_id } =
+  "ChatMember" ++ cc [p "status" status, p "joined_chat_date" joined_chat_date, p "inviter_user_id" inviter_user_id, p "member_id" member_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatMember where
- toJSON (ChatMember { status = status, joined_chat_date = joined_chat_date, inviter_user_id = inviter_user_id, member_id = member_id }) =
+ toJSON ChatMember { status = status, joined_chat_date = joined_chat_date, inviter_user_id = inviter_user_id, member_id = member_id } =
   A.object [ "@type" A..= T.String "chatMember", "status" A..= status, "joined_chat_date" A..= joined_chat_date, "inviter_user_id" A..= inviter_user_id, "member_id" A..= member_id ]
 
 instance T.FromJSON ChatMember where
@@ -42,3 +56,4 @@ instance T.FromJSON ChatMember where
     inviter_user_id <- mconcat [ o A..:? "inviter_user_id", readMaybe <$> (o A..: "inviter_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     member_id <- o A..:? "member_id"
     return $ ChatMember { status = status, joined_chat_date = joined_chat_date, inviter_user_id = inviter_user_id, member_id = member_id }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.CountryInfo as CountryInfo
 
 -- |
@@ -19,10 +20,23 @@ import {-# SOURCE #-} qualified API.CountryInfo as CountryInfo
 -- __formatted_phone_number__ The phone number without country calling code formatted accordingly to local rules. Expected digits are returned as '-', but even more digits might be entered by the user
 data PhoneNumberInfo = 
 
- PhoneNumberInfo { formatted_phone_number :: Maybe String, country_calling_code :: Maybe String, country :: Maybe CountryInfo.CountryInfo }  deriving (Show, Eq)
+ PhoneNumberInfo { formatted_phone_number :: Maybe String, country_calling_code :: Maybe String, country :: Maybe CountryInfo.CountryInfo }  deriving (Eq)
+
+instance Show PhoneNumberInfo where
+ show PhoneNumberInfo { formatted_phone_number=formatted_phone_number, country_calling_code=country_calling_code, country=country } =
+  "PhoneNumberInfo" ++ cc [p "formatted_phone_number" formatted_phone_number, p "country_calling_code" country_calling_code, p "country" country ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON PhoneNumberInfo where
- toJSON (PhoneNumberInfo { formatted_phone_number = formatted_phone_number, country_calling_code = country_calling_code, country = country }) =
+ toJSON PhoneNumberInfo { formatted_phone_number = formatted_phone_number, country_calling_code = country_calling_code, country = country } =
   A.object [ "@type" A..= T.String "phoneNumberInfo", "formatted_phone_number" A..= formatted_phone_number, "country_calling_code" A..= country_calling_code, "country" A..= country ]
 
 instance T.FromJSON PhoneNumberInfo where
@@ -38,3 +52,4 @@ instance T.FromJSON PhoneNumberInfo where
     country_calling_code <- o A..:? "country_calling_code"
     country <- o A..:? "country"
     return $ PhoneNumberInfo { formatted_phone_number = formatted_phone_number, country_calling_code = country_calling_code, country = country }
+ parseJSON _ = mempty

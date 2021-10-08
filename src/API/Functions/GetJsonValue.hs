@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __json__ The JSON-serialized string
 data GetJsonValue = 
 
- GetJsonValue { json :: Maybe String }  deriving (Show, Eq)
+ GetJsonValue { json :: Maybe String }  deriving (Eq)
+
+instance Show GetJsonValue where
+ show GetJsonValue { json=json } =
+  "GetJsonValue" ++ cc [p "json" json ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetJsonValue where
- toJSON (GetJsonValue { json = json }) =
+ toJSON GetJsonValue { json = json } =
   A.object [ "@type" A..= T.String "getJsonValue", "json" A..= json ]
 
 instance T.FromJSON GetJsonValue where
@@ -31,3 +45,4 @@ instance T.FromJSON GetJsonValue where
    parseGetJsonValue = A.withObject "GetJsonValue" $ \o -> do
     json <- o A..:? "json"
     return $ GetJsonValue { json = json }
+ parseJSON _ = mempty

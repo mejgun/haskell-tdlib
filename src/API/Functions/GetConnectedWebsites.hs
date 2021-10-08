@@ -6,16 +6,30 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
 -- Returns all website where the current user used Telegram to log in
 data GetConnectedWebsites = 
 
- GetConnectedWebsites deriving (Show, Eq)
+ GetConnectedWebsites deriving (Eq)
+
+instance Show GetConnectedWebsites where
+ show GetConnectedWebsites {  } =
+  "GetConnectedWebsites" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetConnectedWebsites where
- toJSON (GetConnectedWebsites {  }) =
+ toJSON GetConnectedWebsites {  } =
   A.object [ "@type" A..= T.String "getConnectedWebsites" ]
 
 instance T.FromJSON GetConnectedWebsites where
@@ -28,3 +42,4 @@ instance T.FromJSON GetConnectedWebsites where
    parseGetConnectedWebsites :: A.Value -> T.Parser GetConnectedWebsites
    parseGetConnectedWebsites = A.withObject "GetConnectedWebsites" $ \o -> do
     return $ GetConnectedWebsites {  }
+ parseJSON _ = mempty

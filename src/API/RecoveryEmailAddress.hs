@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __recovery_email_address__ Recovery email address
 data RecoveryEmailAddress = 
 
- RecoveryEmailAddress { recovery_email_address :: Maybe String }  deriving (Show, Eq)
+ RecoveryEmailAddress { recovery_email_address :: Maybe String }  deriving (Eq)
+
+instance Show RecoveryEmailAddress where
+ show RecoveryEmailAddress { recovery_email_address=recovery_email_address } =
+  "RecoveryEmailAddress" ++ cc [p "recovery_email_address" recovery_email_address ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON RecoveryEmailAddress where
- toJSON (RecoveryEmailAddress { recovery_email_address = recovery_email_address }) =
+ toJSON RecoveryEmailAddress { recovery_email_address = recovery_email_address } =
   A.object [ "@type" A..= T.String "recoveryEmailAddress", "recovery_email_address" A..= recovery_email_address ]
 
 instance T.FromJSON RecoveryEmailAddress where
@@ -31,3 +45,4 @@ instance T.FromJSON RecoveryEmailAddress where
    parseRecoveryEmailAddress = A.withObject "RecoveryEmailAddress" $ \o -> do
     recovery_email_address <- o A..:? "recovery_email_address"
     return $ RecoveryEmailAddress { recovery_email_address = recovery_email_address }
+ parseJSON _ = mempty

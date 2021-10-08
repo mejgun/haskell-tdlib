@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.GroupCallVideoSourceGroup</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- Describes a group of video synchronization source identifiers </span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- __semantics__ The semantics of sources, one of &quot;SIM&quot; or &quot;FID&quot;</span><span>
+</span><span id="line-15"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-16"></span><span class="hs-comment">-- __source_ids__ The list of synchronization source identifiers</span><span>
+</span><span id="line-17"></span><span class="hs-keyword">data</span><span> </span><span id="GroupCallVideoSourceGroup"><span class="annot"><a href="API.GroupCallVideoSourceGroup.html#GroupCallVideoSourceGroup"><span class="hs-identifier hs-var">GroupCallVideoSourceGroup</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-18"></span><span>
+</span><span id="line-19"></span><span> </span><span id="GroupCallVideoSourceGroup"><span class="annot"><a href="API.GroupCallVideoSourceGroup.html#GroupCallVideoSourceGroup"><span class="hs-identifier hs-var">GroupCallVideoSourceGroup</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="source_ids"><span class="annot"><span class="annottext">GroupCallVideoSourceGroup -&gt; Maybe [Int]
+</span><a href="API.GroupCallVideoSourceGroup.html#source_ids"><span class="hs-identifier hs-var hs-var">source_ids</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="semantics"><span class="annot"><span class="annottext">GroupCallVideoSourceGroup -&gt; Maybe String
+</span><a href="API.GroupCallVideoSourceGroup.html#semantics"><span class="hs-identifier hs-var hs-var">semantics</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679467658"><span id="local-6989586621679467660"><span id="local-6989586621679467662"><span class="annot"><span class="annottext">Int -&gt; GroupCallVideoSourceGroup -&gt; ShowS
+[GroupCallVideoSourceGroup] -&gt; ShowS
+GroupCallVideoSourceGroup -&gt; String
+(Int -&gt; GroupCallVideoSourceGroup -&gt; ShowS)
+-&gt; (GroupCallVideoSourceGroup -&gt; String)
+-&gt; ([GroupCallVideoSourceGroup] -&gt; ShowS)
+-&gt; Show GroupCallVideoSourceGroup
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [GroupCallVideoSourceGroup] -&gt; ShowS
+$cshowList :: [GroupCallVideoSourceGroup] -&gt; ShowS
+show :: GroupCallVideoSourceGroup -&gt; String
+$cshow :: GroupCallVideoSourceGroup -&gt; String
+showsPrec :: Int -&gt; GroupCallVideoSourceGroup -&gt; ShowS
+$cshowsPrec :: Int -&gt; GroupCallVideoSourceGroup -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679467653"><span id="local-6989586621679467655"><span class="annot"><span class="annottext">GroupCallVideoSourceGroup -&gt; GroupCallVideoSourceGroup -&gt; Bool
+(GroupCallVideoSourceGroup -&gt; GroupCallVideoSourceGroup -&gt; Bool)
+-&gt; (GroupCallVideoSourceGroup -&gt; GroupCallVideoSourceGroup -&gt; Bool)
+-&gt; Eq GroupCallVideoSourceGroup
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: GroupCallVideoSourceGroup -&gt; GroupCallVideoSourceGroup -&gt; Bool
+$c/= :: GroupCallVideoSourceGroup -&gt; GroupCallVideoSourceGroup -&gt; Bool
+== :: GroupCallVideoSourceGroup -&gt; GroupCallVideoSourceGroup -&gt; Bool
+$c== :: GroupCallVideoSourceGroup -&gt; GroupCallVideoSourceGroup -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-20"></span><span>
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679467645"><span id="local-6989586621679467647"><span id="local-6989586621679467649"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.GroupCallVideoSourceGroup.html#GroupCallVideoSourceGroup"><span class="hs-identifier hs-type">GroupCallVideoSourceGroup</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span> </span><span id="local-6989586621679467643"><span class="annot"><span class="annottext">toJSON :: GroupCallVideoSourceGroup -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.GroupCallVideoSourceGroup.html#GroupCallVideoSourceGroup"><span class="hs-identifier hs-type">GroupCallVideoSourceGroup</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">source_ids :: GroupCallVideoSourceGroup -&gt; Maybe [Int]
+</span><a href="API.GroupCallVideoSourceGroup.html#source_ids"><span class="hs-identifier hs-var">source_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679467641"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679467641"><span class="hs-identifier hs-var">source_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">semantics :: GroupCallVideoSourceGroup -&gt; Maybe String
+</span><a href="API.GroupCallVideoSourceGroup.html#semantics"><span class="hs-identifier hs-var">semantics</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679467640"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679467640"><span class="hs-identifier hs-var">semantics</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-23"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;groupCallVideoSourceGroup&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;source_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [Int] -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679467641"><span class="hs-identifier hs-var">source_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;semantics&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679467640"><span class="hs-identifier hs-var">semantics</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-24"></span><span>
+</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679467634"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.GroupCallVideoSourceGroup.html#GroupCallVideoSourceGroup"><span class="hs-identifier hs-type">GroupCallVideoSourceGroup</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span> </span><span id="local-6989586621679467632"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GroupCallVideoSourceGroup
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679467630"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679467630"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679467628"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679467628"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-27"></span><span>  </span><span id="local-6989586621679467627"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679467627"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679467628"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-28"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679467627"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-29"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;groupCallVideoSourceGroup&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GroupCallVideoSourceGroup
+</span><a href="#local-6989586621679467625"><span class="hs-identifier hs-var">parseGroupCallVideoSourceGroup</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679467630"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-30"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GroupCallVideoSourceGroup
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-31"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-32"></span><span>   </span><span class="annot"><a href="#local-6989586621679467625"><span class="hs-identifier hs-type">parseGroupCallVideoSourceGroup</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.GroupCallVideoSourceGroup.html#GroupCallVideoSourceGroup"><span class="hs-identifier hs-type">GroupCallVideoSourceGroup</span></a></span><span>
+</span><span id="line-33"></span><span>   </span><span id="local-6989586621679467625"><span class="annot"><span class="annottext">parseGroupCallVideoSourceGroup :: Value -&gt; Parser GroupCallVideoSourceGroup
+</span><a href="#local-6989586621679467625"><span class="hs-identifier hs-var hs-var">parseGroupCallVideoSourceGroup</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser GroupCallVideoSourceGroup)
+-&gt; Value
+-&gt; Parser GroupCallVideoSourceGroup
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;GroupCallVideoSourceGroup&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser GroupCallVideoSourceGroup)
+ -&gt; Value -&gt; Parser GroupCallVideoSourceGroup)
+-&gt; (Object -&gt; Parser GroupCallVideoSourceGroup)
+-&gt; Value
+-&gt; Parser GroupCallVideoSourceGroup
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679467623"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679467623"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-34"></span><span>    </span><span id="local-6989586621679467622"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679467622"><span class="hs-identifier hs-var">source_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679467623"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Int])
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;source_ids&quot;</span></span><span>
+</span><span id="line-35"></span><span>    </span><span id="local-6989586621679467620"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679467620"><span class="hs-identifier hs-var">semantics</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679467623"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;semantics&quot;</span></span><span>
+</span><span id="line-36"></span><span>    </span><span class="annot"><span class="annottext">GroupCallVideoSourceGroup -&gt; Parser GroupCallVideoSourceGroup
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(GroupCallVideoSourceGroup -&gt; Parser GroupCallVideoSourceGroup)
+-&gt; GroupCallVideoSourceGroup -&gt; Parser GroupCallVideoSourceGroup
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">GroupCallVideoSourceGroup :: Maybe [Int] -&gt; Maybe String -&gt; GroupCallVideoSourceGroup
+</span><a href="API.GroupCallVideoSourceGroup.html#GroupCallVideoSourceGroup"><span class="hs-identifier hs-type">GroupCallVideoSourceGroup</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">source_ids :: Maybe [Int]
+</span><a href="API.GroupCallVideoSourceGroup.html#source_ids"><span class="hs-identifier hs-var">source_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679467622"><span class="hs-identifier hs-var">source_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">semantics :: Maybe String
+</span><a href="API.GroupCallVideoSourceGroup.html#semantics"><span class="hs-identifier hs-var">semantics</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679467620"><span class="hs-identifier hs-var">semantics</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-37"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser GroupCallVideoSourceGroup
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-38"></span></pre></body></html>

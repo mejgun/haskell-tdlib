@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __name__ The name of the option
 data GetOption = 
 
- GetOption { name :: Maybe String }  deriving (Show, Eq)
+ GetOption { name :: Maybe String }  deriving (Eq)
+
+instance Show GetOption where
+ show GetOption { name=name } =
+  "GetOption" ++ cc [p "name" name ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetOption where
- toJSON (GetOption { name = name }) =
+ toJSON GetOption { name = name } =
   A.object [ "@type" A..= T.String "getOption", "name" A..= name ]
 
 instance T.FromJSON GetOption where
@@ -31,3 +45,4 @@ instance T.FromJSON GetOption where
    parseGetOption = A.withObject "GetOption" $ \o -> do
     name <- o A..:? "name"
     return $ GetOption { name = name }
+ parseJSON _ = mempty

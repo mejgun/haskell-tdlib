@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __is_attached__ Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers
 data GetRecentStickers = 
 
- GetRecentStickers { is_attached :: Maybe Bool }  deriving (Show, Eq)
+ GetRecentStickers { is_attached :: Maybe Bool }  deriving (Eq)
+
+instance Show GetRecentStickers where
+ show GetRecentStickers { is_attached=is_attached } =
+  "GetRecentStickers" ++ cc [p "is_attached" is_attached ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetRecentStickers where
- toJSON (GetRecentStickers { is_attached = is_attached }) =
+ toJSON GetRecentStickers { is_attached = is_attached } =
   A.object [ "@type" A..= T.String "getRecentStickers", "is_attached" A..= is_attached ]
 
 instance T.FromJSON GetRecentStickers where
@@ -31,3 +45,4 @@ instance T.FromJSON GetRecentStickers where
    parseGetRecentStickers = A.withObject "GetRecentStickers" $ \o -> do
     is_attached <- o A..:? "is_attached"
     return $ GetRecentStickers { is_attached = is_attached }
+ parseJSON _ = mempty

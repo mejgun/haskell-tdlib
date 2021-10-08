@@ -6,16 +6,30 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
 -- Terminates all other sessions of the current user
 data TerminateAllOtherSessions = 
 
- TerminateAllOtherSessions deriving (Show, Eq)
+ TerminateAllOtherSessions deriving (Eq)
+
+instance Show TerminateAllOtherSessions where
+ show TerminateAllOtherSessions {  } =
+  "TerminateAllOtherSessions" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON TerminateAllOtherSessions where
- toJSON (TerminateAllOtherSessions {  }) =
+ toJSON TerminateAllOtherSessions {  } =
   A.object [ "@type" A..= T.String "terminateAllOtherSessions" ]
 
 instance T.FromJSON TerminateAllOtherSessions where
@@ -28,3 +42,4 @@ instance T.FromJSON TerminateAllOtherSessions where
    parseTerminateAllOtherSessions :: A.Value -> T.Parser TerminateAllOtherSessions
    parseTerminateAllOtherSessions = A.withObject "TerminateAllOtherSessions" $ \o -> do
     return $ TerminateAllOtherSessions {  }
+ parseJSON _ = mempty

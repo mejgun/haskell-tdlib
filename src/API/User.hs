@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.UserType as UserType
 import {-# SOURCE #-} qualified API.ProfilePhoto as ProfilePhoto
 import {-# SOURCE #-} qualified API.UserStatus as UserStatus
@@ -49,10 +50,23 @@ import {-# SOURCE #-} qualified API.UserStatus as UserStatus
 -- __language_code__ IETF language tag of the user's language; only available to bots
 data User = 
 
- User { language_code :: Maybe String, _type :: Maybe UserType.UserType, have_access :: Maybe Bool, is_fake :: Maybe Bool, is_scam :: Maybe Bool, restriction_reason :: Maybe String, is_support :: Maybe Bool, is_verified :: Maybe Bool, is_mutual_contact :: Maybe Bool, is_contact :: Maybe Bool, profile_photo :: Maybe ProfilePhoto.ProfilePhoto, status :: Maybe UserStatus.UserStatus, phone_number :: Maybe String, username :: Maybe String, last_name :: Maybe String, first_name :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
+ User { language_code :: Maybe String, _type :: Maybe UserType.UserType, have_access :: Maybe Bool, is_fake :: Maybe Bool, is_scam :: Maybe Bool, restriction_reason :: Maybe String, is_support :: Maybe Bool, is_verified :: Maybe Bool, is_mutual_contact :: Maybe Bool, is_contact :: Maybe Bool, profile_photo :: Maybe ProfilePhoto.ProfilePhoto, status :: Maybe UserStatus.UserStatus, phone_number :: Maybe String, username :: Maybe String, last_name :: Maybe String, first_name :: Maybe String, _id :: Maybe Int }  deriving (Eq)
+
+instance Show User where
+ show User { language_code=language_code, _type=_type, have_access=have_access, is_fake=is_fake, is_scam=is_scam, restriction_reason=restriction_reason, is_support=is_support, is_verified=is_verified, is_mutual_contact=is_mutual_contact, is_contact=is_contact, profile_photo=profile_photo, status=status, phone_number=phone_number, username=username, last_name=last_name, first_name=first_name, _id=_id } =
+  "User" ++ cc [p "language_code" language_code, p "_type" _type, p "have_access" have_access, p "is_fake" is_fake, p "is_scam" is_scam, p "restriction_reason" restriction_reason, p "is_support" is_support, p "is_verified" is_verified, p "is_mutual_contact" is_mutual_contact, p "is_contact" is_contact, p "profile_photo" profile_photo, p "status" status, p "phone_number" phone_number, p "username" username, p "last_name" last_name, p "first_name" first_name, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON User where
- toJSON (User { language_code = language_code, _type = _type, have_access = have_access, is_fake = is_fake, is_scam = is_scam, restriction_reason = restriction_reason, is_support = is_support, is_verified = is_verified, is_mutual_contact = is_mutual_contact, is_contact = is_contact, profile_photo = profile_photo, status = status, phone_number = phone_number, username = username, last_name = last_name, first_name = first_name, _id = _id }) =
+ toJSON User { language_code = language_code, _type = _type, have_access = have_access, is_fake = is_fake, is_scam = is_scam, restriction_reason = restriction_reason, is_support = is_support, is_verified = is_verified, is_mutual_contact = is_mutual_contact, is_contact = is_contact, profile_photo = profile_photo, status = status, phone_number = phone_number, username = username, last_name = last_name, first_name = first_name, _id = _id } =
   A.object [ "@type" A..= T.String "user", "language_code" A..= language_code, "type" A..= _type, "have_access" A..= have_access, "is_fake" A..= is_fake, "is_scam" A..= is_scam, "restriction_reason" A..= restriction_reason, "is_support" A..= is_support, "is_verified" A..= is_verified, "is_mutual_contact" A..= is_mutual_contact, "is_contact" A..= is_contact, "profile_photo" A..= profile_photo, "status" A..= status, "phone_number" A..= phone_number, "username" A..= username, "last_name" A..= last_name, "first_name" A..= first_name, "id" A..= _id ]
 
 instance T.FromJSON User where
@@ -82,3 +96,4 @@ instance T.FromJSON User where
     first_name <- o A..:? "first_name"
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ User { language_code = language_code, _type = _type, have_access = have_access, is_fake = is_fake, is_scam = is_scam, restriction_reason = restriction_reason, is_support = is_support, is_verified = is_verified, is_mutual_contact = is_mutual_contact, is_contact = is_contact, profile_photo = profile_photo, status = status, phone_number = phone_number, username = username, last_name = last_name, first_name = first_name, _id = _id }
+ parseJSON _ = mempty

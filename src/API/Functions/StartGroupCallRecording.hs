@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -20,10 +21,23 @@ import qualified Data.Aeson.Types as T
 -- __use_portrait_orientation__ Pass true to use portrait orientation for video instead of landscape one
 data StartGroupCallRecording = 
 
- StartGroupCallRecording { use_portrait_orientation :: Maybe Bool, record_video :: Maybe Bool, title :: Maybe String, group_call_id :: Maybe Int }  deriving (Show, Eq)
+ StartGroupCallRecording { use_portrait_orientation :: Maybe Bool, record_video :: Maybe Bool, title :: Maybe String, group_call_id :: Maybe Int }  deriving (Eq)
+
+instance Show StartGroupCallRecording where
+ show StartGroupCallRecording { use_portrait_orientation=use_portrait_orientation, record_video=record_video, title=title, group_call_id=group_call_id } =
+  "StartGroupCallRecording" ++ cc [p "use_portrait_orientation" use_portrait_orientation, p "record_video" record_video, p "title" title, p "group_call_id" group_call_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON StartGroupCallRecording where
- toJSON (StartGroupCallRecording { use_portrait_orientation = use_portrait_orientation, record_video = record_video, title = title, group_call_id = group_call_id }) =
+ toJSON StartGroupCallRecording { use_portrait_orientation = use_portrait_orientation, record_video = record_video, title = title, group_call_id = group_call_id } =
   A.object [ "@type" A..= T.String "startGroupCallRecording", "use_portrait_orientation" A..= use_portrait_orientation, "record_video" A..= record_video, "title" A..= title, "group_call_id" A..= group_call_id ]
 
 instance T.FromJSON StartGroupCallRecording where
@@ -40,3 +54,4 @@ instance T.FromJSON StartGroupCallRecording where
     title <- o A..:? "title"
     group_call_id <- mconcat [ o A..:? "group_call_id", readMaybe <$> (o A..: "group_call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ StartGroupCallRecording { use_portrait_orientation = use_portrait_orientation, record_video = record_video, title = title, group_call_id = group_call_id }
+ parseJSON _ = mempty

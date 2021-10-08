@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
 -- |
@@ -19,10 +20,23 @@ import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 -- __show_popup__ True, if a blocking popup with terms of service must be shown to the user
 data TermsOfService = 
 
- TermsOfService { show_popup :: Maybe Bool, min_user_age :: Maybe Int, text :: Maybe FormattedText.FormattedText }  deriving (Show, Eq)
+ TermsOfService { show_popup :: Maybe Bool, min_user_age :: Maybe Int, text :: Maybe FormattedText.FormattedText }  deriving (Eq)
+
+instance Show TermsOfService where
+ show TermsOfService { show_popup=show_popup, min_user_age=min_user_age, text=text } =
+  "TermsOfService" ++ cc [p "show_popup" show_popup, p "min_user_age" min_user_age, p "text" text ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON TermsOfService where
- toJSON (TermsOfService { show_popup = show_popup, min_user_age = min_user_age, text = text }) =
+ toJSON TermsOfService { show_popup = show_popup, min_user_age = min_user_age, text = text } =
   A.object [ "@type" A..= T.String "termsOfService", "show_popup" A..= show_popup, "min_user_age" A..= min_user_age, "text" A..= text ]
 
 instance T.FromJSON TermsOfService where
@@ -38,3 +52,4 @@ instance T.FromJSON TermsOfService where
     min_user_age <- mconcat [ o A..:? "min_user_age", readMaybe <$> (o A..: "min_user_age" :: T.Parser String)] :: T.Parser (Maybe Int)
     text <- o A..:? "text"
     return $ TermsOfService { show_popup = show_popup, min_user_age = min_user_age, text = text }
+ parseJSON _ = mempty

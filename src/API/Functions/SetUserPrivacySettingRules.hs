@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.UserPrivacySettingRules as UserPrivacySettingRules
 import {-# SOURCE #-} qualified API.UserPrivacySetting as UserPrivacySetting
 
@@ -18,10 +19,23 @@ import {-# SOURCE #-} qualified API.UserPrivacySetting as UserPrivacySetting
 -- __rules__ The new privacy rules
 data SetUserPrivacySettingRules = 
 
- SetUserPrivacySettingRules { rules :: Maybe UserPrivacySettingRules.UserPrivacySettingRules, setting :: Maybe UserPrivacySetting.UserPrivacySetting }  deriving (Show, Eq)
+ SetUserPrivacySettingRules { rules :: Maybe UserPrivacySettingRules.UserPrivacySettingRules, setting :: Maybe UserPrivacySetting.UserPrivacySetting }  deriving (Eq)
+
+instance Show SetUserPrivacySettingRules where
+ show SetUserPrivacySettingRules { rules=rules, setting=setting } =
+  "SetUserPrivacySettingRules" ++ cc [p "rules" rules, p "setting" setting ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SetUserPrivacySettingRules where
- toJSON (SetUserPrivacySettingRules { rules = rules, setting = setting }) =
+ toJSON SetUserPrivacySettingRules { rules = rules, setting = setting } =
   A.object [ "@type" A..= T.String "setUserPrivacySettingRules", "rules" A..= rules, "setting" A..= setting ]
 
 instance T.FromJSON SetUserPrivacySettingRules where
@@ -36,3 +50,4 @@ instance T.FromJSON SetUserPrivacySettingRules where
     rules <- o A..:? "rules"
     setting <- o A..:? "setting"
     return $ SetUserPrivacySettingRules { rules = rules, setting = setting }
+ parseJSON _ = mempty

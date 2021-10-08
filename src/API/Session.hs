@@ -6,10 +6,11 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
--- Contains information about one session in a Telegram application used by the current user. Sessions should be shown to the user in the returned order
+-- Contains information about one session in a Telegram application used by the current user. Sessions must be shown to the user in the returned order
 -- 
 -- __id__ Session identifier
 -- 
@@ -42,10 +43,23 @@ import qualified Data.Aeson.Types as T
 -- __region__ Region code from which the session was created, based on the IP address
 data Session = 
 
- Session { region :: Maybe String, country :: Maybe String, ip :: Maybe String, last_active_date :: Maybe Int, log_in_date :: Maybe Int, system_version :: Maybe String, platform :: Maybe String, device_model :: Maybe String, is_official_application :: Maybe Bool, application_version :: Maybe String, application_name :: Maybe String, api_id :: Maybe Int, is_password_pending :: Maybe Bool, is_current :: Maybe Bool, _id :: Maybe Int }  deriving (Show, Eq)
+ Session { region :: Maybe String, country :: Maybe String, ip :: Maybe String, last_active_date :: Maybe Int, log_in_date :: Maybe Int, system_version :: Maybe String, platform :: Maybe String, device_model :: Maybe String, is_official_application :: Maybe Bool, application_version :: Maybe String, application_name :: Maybe String, api_id :: Maybe Int, is_password_pending :: Maybe Bool, is_current :: Maybe Bool, _id :: Maybe Int }  deriving (Eq)
+
+instance Show Session where
+ show Session { region=region, country=country, ip=ip, last_active_date=last_active_date, log_in_date=log_in_date, system_version=system_version, platform=platform, device_model=device_model, is_official_application=is_official_application, application_version=application_version, application_name=application_name, api_id=api_id, is_password_pending=is_password_pending, is_current=is_current, _id=_id } =
+  "Session" ++ cc [p "region" region, p "country" country, p "ip" ip, p "last_active_date" last_active_date, p "log_in_date" log_in_date, p "system_version" system_version, p "platform" platform, p "device_model" device_model, p "is_official_application" is_official_application, p "application_version" application_version, p "application_name" application_name, p "api_id" api_id, p "is_password_pending" is_password_pending, p "is_current" is_current, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Session where
- toJSON (Session { region = region, country = country, ip = ip, last_active_date = last_active_date, log_in_date = log_in_date, system_version = system_version, platform = platform, device_model = device_model, is_official_application = is_official_application, application_version = application_version, application_name = application_name, api_id = api_id, is_password_pending = is_password_pending, is_current = is_current, _id = _id }) =
+ toJSON Session { region = region, country = country, ip = ip, last_active_date = last_active_date, log_in_date = log_in_date, system_version = system_version, platform = platform, device_model = device_model, is_official_application = is_official_application, application_version = application_version, application_name = application_name, api_id = api_id, is_password_pending = is_password_pending, is_current = is_current, _id = _id } =
   A.object [ "@type" A..= T.String "session", "region" A..= region, "country" A..= country, "ip" A..= ip, "last_active_date" A..= last_active_date, "log_in_date" A..= log_in_date, "system_version" A..= system_version, "platform" A..= platform, "device_model" A..= device_model, "is_official_application" A..= is_official_application, "application_version" A..= application_version, "application_name" A..= application_name, "api_id" A..= api_id, "is_password_pending" A..= is_password_pending, "is_current" A..= is_current, "id" A..= _id ]
 
 instance T.FromJSON Session where
@@ -73,3 +87,4 @@ instance T.FromJSON Session where
     is_current <- o A..:? "is_current"
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Session { region = region, country = country, ip = ip, last_active_date = last_active_date, log_in_date = log_in_date, system_version = system_version, platform = platform, device_model = device_model, is_official_application = is_official_application, application_version = application_version, application_name = application_name, api_id = api_id, is_password_pending = is_password_pending, is_current = is_current, _id = _id }
+ parseJSON _ = mempty

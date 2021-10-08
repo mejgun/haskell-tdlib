@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.InternalLinkType as InternalLinkType
 import {-# SOURCE #-} qualified API.PageBlock as PageBlock
 
@@ -26,10 +27,23 @@ import {-# SOURCE #-} qualified API.PageBlock as PageBlock
 -- __feedback_link__ An internal link to be opened to leave feedback about the instant view
 data WebPageInstantView = 
 
- WebPageInstantView { feedback_link :: Maybe InternalLinkType.InternalLinkType, is_full :: Maybe Bool, is_rtl :: Maybe Bool, version :: Maybe Int, view_count :: Maybe Int, page_blocks :: Maybe [PageBlock.PageBlock] }  deriving (Show, Eq)
+ WebPageInstantView { feedback_link :: Maybe InternalLinkType.InternalLinkType, is_full :: Maybe Bool, is_rtl :: Maybe Bool, version :: Maybe Int, view_count :: Maybe Int, page_blocks :: Maybe [PageBlock.PageBlock] }  deriving (Eq)
+
+instance Show WebPageInstantView where
+ show WebPageInstantView { feedback_link=feedback_link, is_full=is_full, is_rtl=is_rtl, version=version, view_count=view_count, page_blocks=page_blocks } =
+  "WebPageInstantView" ++ cc [p "feedback_link" feedback_link, p "is_full" is_full, p "is_rtl" is_rtl, p "version" version, p "view_count" view_count, p "page_blocks" page_blocks ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON WebPageInstantView where
- toJSON (WebPageInstantView { feedback_link = feedback_link, is_full = is_full, is_rtl = is_rtl, version = version, view_count = view_count, page_blocks = page_blocks }) =
+ toJSON WebPageInstantView { feedback_link = feedback_link, is_full = is_full, is_rtl = is_rtl, version = version, view_count = view_count, page_blocks = page_blocks } =
   A.object [ "@type" A..= T.String "webPageInstantView", "feedback_link" A..= feedback_link, "is_full" A..= is_full, "is_rtl" A..= is_rtl, "version" A..= version, "view_count" A..= view_count, "page_blocks" A..= page_blocks ]
 
 instance T.FromJSON WebPageInstantView where
@@ -48,3 +62,4 @@ instance T.FromJSON WebPageInstantView where
     view_count <- mconcat [ o A..:? "view_count", readMaybe <$> (o A..: "view_count" :: T.Parser String)] :: T.Parser (Maybe Int)
     page_blocks <- o A..:? "page_blocks"
     return $ WebPageInstantView { feedback_link = feedback_link, is_full = is_full, is_rtl = is_rtl, version = version, view_count = view_count, page_blocks = page_blocks }
+ parseJSON _ = mempty

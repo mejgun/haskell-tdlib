@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.SecretChatState as SecretChatState
 
 -- |
@@ -27,10 +28,23 @@ import {-# SOURCE #-} qualified API.SecretChatState as SecretChatState
 -- __layer__ Secret chat layer; determines features supported by the chat partner's application. Nested text entities and underline and strikethrough entities are supported if the layer >= 101
 data SecretChat = 
 
- SecretChat { layer :: Maybe Int, key_hash :: Maybe String, is_outbound :: Maybe Bool, state :: Maybe SecretChatState.SecretChatState, user_id :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
+ SecretChat { layer :: Maybe Int, key_hash :: Maybe String, is_outbound :: Maybe Bool, state :: Maybe SecretChatState.SecretChatState, user_id :: Maybe Int, _id :: Maybe Int }  deriving (Eq)
+
+instance Show SecretChat where
+ show SecretChat { layer=layer, key_hash=key_hash, is_outbound=is_outbound, state=state, user_id=user_id, _id=_id } =
+  "SecretChat" ++ cc [p "layer" layer, p "key_hash" key_hash, p "is_outbound" is_outbound, p "state" state, p "user_id" user_id, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SecretChat where
- toJSON (SecretChat { layer = layer, key_hash = key_hash, is_outbound = is_outbound, state = state, user_id = user_id, _id = _id }) =
+ toJSON SecretChat { layer = layer, key_hash = key_hash, is_outbound = is_outbound, state = state, user_id = user_id, _id = _id } =
   A.object [ "@type" A..= T.String "secretChat", "layer" A..= layer, "key_hash" A..= key_hash, "is_outbound" A..= is_outbound, "state" A..= state, "user_id" A..= user_id, "id" A..= _id ]
 
 instance T.FromJSON SecretChat where
@@ -49,3 +63,4 @@ instance T.FromJSON SecretChat where
     user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SecretChat { layer = layer, key_hash = key_hash, is_outbound = is_outbound, state = state, user_id = user_id, _id = _id }
+ parseJSON _ = mempty

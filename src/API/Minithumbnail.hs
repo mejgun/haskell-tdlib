@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -18,10 +19,23 @@ import qualified Data.Aeson.Types as T
 -- __data__ The thumbnail in JPEG format
 data Minithumbnail = 
 
- Minithumbnail { _data :: Maybe String, height :: Maybe Int, width :: Maybe Int }  deriving (Show, Eq)
+ Minithumbnail { _data :: Maybe String, height :: Maybe Int, width :: Maybe Int }  deriving (Eq)
+
+instance Show Minithumbnail where
+ show Minithumbnail { _data=_data, height=height, width=width } =
+  "Minithumbnail" ++ cc [p "_data" _data, p "height" height, p "width" width ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Minithumbnail where
- toJSON (Minithumbnail { _data = _data, height = height, width = width }) =
+ toJSON Minithumbnail { _data = _data, height = height, width = width } =
   A.object [ "@type" A..= T.String "minithumbnail", "data" A..= _data, "height" A..= height, "width" A..= width ]
 
 instance T.FromJSON Minithumbnail where
@@ -37,3 +51,4 @@ instance T.FromJSON Minithumbnail where
     height <- mconcat [ o A..:? "height", readMaybe <$> (o A..: "height" :: T.Parser String)] :: T.Parser (Maybe Int)
     width <- mconcat [ o A..:? "width", readMaybe <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Minithumbnail { _data = _data, height = height, width = width }
+ parseJSON _ = mempty

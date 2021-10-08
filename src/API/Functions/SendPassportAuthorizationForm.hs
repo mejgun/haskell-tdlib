@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 
 -- |
@@ -17,10 +18,23 @@ import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 -- __types__ Types of Telegram Passport elements chosen by user to complete the authorization form
 data SendPassportAuthorizationForm = 
 
- SendPassportAuthorizationForm { types :: Maybe [PassportElementType.PassportElementType], autorization_form_id :: Maybe Int }  deriving (Show, Eq)
+ SendPassportAuthorizationForm { types :: Maybe [PassportElementType.PassportElementType], autorization_form_id :: Maybe Int }  deriving (Eq)
+
+instance Show SendPassportAuthorizationForm where
+ show SendPassportAuthorizationForm { types=types, autorization_form_id=autorization_form_id } =
+  "SendPassportAuthorizationForm" ++ cc [p "types" types, p "autorization_form_id" autorization_form_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SendPassportAuthorizationForm where
- toJSON (SendPassportAuthorizationForm { types = types, autorization_form_id = autorization_form_id }) =
+ toJSON SendPassportAuthorizationForm { types = types, autorization_form_id = autorization_form_id } =
   A.object [ "@type" A..= T.String "sendPassportAuthorizationForm", "types" A..= types, "autorization_form_id" A..= autorization_form_id ]
 
 instance T.FromJSON SendPassportAuthorizationForm where
@@ -35,3 +49,4 @@ instance T.FromJSON SendPassportAuthorizationForm where
     types <- o A..:? "types"
     autorization_form_id <- mconcat [ o A..:? "autorization_form_id", readMaybe <$> (o A..: "autorization_form_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SendPassportAuthorizationForm { types = types, autorization_form_id = autorization_form_id }
+ parseJSON _ = mempty

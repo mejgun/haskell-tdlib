@@ -18,7 +18,7 @@
 </span><span id="line-18"></span><span>
 </span><span id="line-19"></span><span> </span><span id="ReorderInstalledStickerSets"><span class="annot"><a href="API.Functions.ReorderInstalledStickerSets.html#ReorderInstalledStickerSets"><span class="hs-identifier hs-var">ReorderInstalledStickerSets</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="sticker_set_ids"><span class="annot"><span class="annottext">ReorderInstalledStickerSets -&gt; Maybe [Int]
 </span><a href="API.Functions.ReorderInstalledStickerSets.html#sticker_set_ids"><span class="hs-identifier hs-var hs-var">sticker_set_ids</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="is_masks"><span class="annot"><span class="annottext">ReorderInstalledStickerSets -&gt; Maybe Bool
-</span><a href="API.Functions.ReorderInstalledStickerSets.html#is_masks"><span class="hs-identifier hs-var hs-var">is_masks</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679428832"><span id="local-6989586621679428834"><span id="local-6989586621679428836"><span class="annot"><span class="annottext">Int -&gt; ReorderInstalledStickerSets -&gt; ShowS
+</span><a href="API.Functions.ReorderInstalledStickerSets.html#is_masks"><span class="hs-identifier hs-var hs-var">is_masks</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679458411"><span id="local-6989586621679458413"><span id="local-6989586621679458415"><span class="annot"><span class="annottext">Int -&gt; ReorderInstalledStickerSets -&gt; ShowS
 [ReorderInstalledStickerSets] -&gt; ShowS
 ReorderInstalledStickerSets -&gt; String
 (Int -&gt; ReorderInstalledStickerSets -&gt; ShowS)
@@ -33,7 +33,7 @@ show :: ReorderInstalledStickerSets -&gt; String
 $cshow :: ReorderInstalledStickerSets -&gt; String
 showsPrec :: Int -&gt; ReorderInstalledStickerSets -&gt; ShowS
 $cshowsPrec :: Int -&gt; ReorderInstalledStickerSets -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679428827"><span id="local-6989586621679428829"><span class="annot"><span class="annottext">ReorderInstalledStickerSets -&gt; ReorderInstalledStickerSets -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679458406"><span id="local-6989586621679458408"><span class="annot"><span class="annottext">ReorderInstalledStickerSets -&gt; ReorderInstalledStickerSets -&gt; Bool
 (ReorderInstalledStickerSets
  -&gt; ReorderInstalledStickerSets -&gt; Bool)
 -&gt; (ReorderInstalledStickerSets
@@ -46,69 +46,79 @@ $c/= :: ReorderInstalledStickerSets -&gt; ReorderInstalledStickerSets -&gt; Bool
 $c== :: ReorderInstalledStickerSets -&gt; ReorderInstalledStickerSets -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428819"><span id="local-6989586621679428821"><span id="local-6989586621679428823"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ReorderInstalledStickerSets.html#ReorderInstalledStickerSets"><span class="hs-identifier hs-type">ReorderInstalledStickerSets</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span> </span><span id="local-6989586621679428817"><span class="annot"><span class="annottext">toJSON :: ReorderInstalledStickerSets -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.ReorderInstalledStickerSets.html#ReorderInstalledStickerSets"><span class="hs-identifier hs-type">ReorderInstalledStickerSets</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sticker_set_ids :: ReorderInstalledStickerSets -&gt; Maybe [Int]
-</span><a href="API.Functions.ReorderInstalledStickerSets.html#sticker_set_ids"><span class="hs-identifier hs-var">sticker_set_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428815"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679428815"><span class="hs-identifier hs-var">sticker_set_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_masks :: ReorderInstalledStickerSets -&gt; Maybe Bool
-</span><a href="API.Functions.ReorderInstalledStickerSets.html#is_masks"><span class="hs-identifier hs-var">is_masks</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679428814"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679428814"><span class="hs-identifier hs-var">is_masks</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679458398"><span id="local-6989586621679458400"><span id="local-6989586621679458402"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ReorderInstalledStickerSets.html#ReorderInstalledStickerSets"><span class="hs-identifier hs-type">ReorderInstalledStickerSets</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span> </span><span id="local-6989586621679458396"><span class="annot"><span class="annottext">toJSON :: ReorderInstalledStickerSets -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.ReorderInstalledStickerSets.html#ReorderInstalledStickerSets"><span class="hs-identifier hs-type">ReorderInstalledStickerSets</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sticker_set_ids :: ReorderInstalledStickerSets -&gt; Maybe [Int]
+</span><a href="API.Functions.ReorderInstalledStickerSets.html#sticker_set_ids"><span class="hs-identifier hs-var">sticker_set_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679458394"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679458394"><span class="hs-identifier hs-var">sticker_set_ids</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_masks :: ReorderInstalledStickerSets -&gt; Maybe Bool
+</span><a href="API.Functions.ReorderInstalledStickerSets.html#is_masks"><span class="hs-identifier hs-var">is_masks</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679458393"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679458393"><span class="hs-identifier hs-var">is_masks</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-23"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;reorderInstalledStickerSets&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;sticker_set_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [Int] -&gt; Pair
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;reorderInstalledStickerSets&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;sticker_set_ids&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [Int] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679428815"><span class="hs-identifier hs-var">sticker_set_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;is_masks&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><a href="#local-6989586621679458394"><span class="hs-identifier hs-var">sticker_set_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;is_masks&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679428814"><span class="hs-identifier hs-var">is_masks</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679458393"><span class="hs-identifier hs-var">is_masks</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679428808"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ReorderInstalledStickerSets.html#ReorderInstalledStickerSets"><span class="hs-identifier hs-type">ReorderInstalledStickerSets</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-26"></span><span> </span><span id="local-6989586621679428806"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ReorderInstalledStickerSets
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679428804"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679428804"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679428802"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679428802"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-27"></span><span>  </span><span id="local-6989586621679428801"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679428801"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679428802"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679458387"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ReorderInstalledStickerSets.html#ReorderInstalledStickerSets"><span class="hs-identifier hs-type">ReorderInstalledStickerSets</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span> </span><span id="local-6989586621679458385"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ReorderInstalledStickerSets
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679458383"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679458383"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679458381"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679458381"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-27"></span><span>  </span><span id="local-6989586621679458380"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679458380"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679458381"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-28"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679428801"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-29"></span><span>   </span><span class="hs-string">&quot;reorderInstalledStickerSets&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ReorderInstalledStickerSets
-</span><a href="#local-6989586621679428799"><span class="hs-identifier hs-var">parseReorderInstalledStickerSets</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679428804"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-30"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ReorderInstalledStickerSets
+</span><a href="#local-6989586621679458380"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-29"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;reorderInstalledStickerSets&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ReorderInstalledStickerSets
+</span><a href="#local-6989586621679458378"><span class="hs-identifier hs-var">parseReorderInstalledStickerSets</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679458383"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-30"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ReorderInstalledStickerSets
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-31"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-32"></span><span>   </span><span class="annot"><a href="#local-6989586621679428799"><span class="hs-identifier hs-type">parseReorderInstalledStickerSets</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ReorderInstalledStickerSets.html#ReorderInstalledStickerSets"><span class="hs-identifier hs-type">ReorderInstalledStickerSets</span></a></span><span>
-</span><span id="line-33"></span><span>   </span><span id="local-6989586621679428799"><span class="annot"><span class="annottext">parseReorderInstalledStickerSets :: Value -&gt; Parser ReorderInstalledStickerSets
-</span><a href="#local-6989586621679428799"><span class="hs-identifier hs-var hs-var">parseReorderInstalledStickerSets</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-32"></span><span>   </span><span class="annot"><a href="#local-6989586621679458378"><span class="hs-identifier hs-type">parseReorderInstalledStickerSets</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ReorderInstalledStickerSets.html#ReorderInstalledStickerSets"><span class="hs-identifier hs-type">ReorderInstalledStickerSets</span></a></span><span>
+</span><span id="line-33"></span><span>   </span><span id="local-6989586621679458378"><span class="annot"><span class="annottext">parseReorderInstalledStickerSets :: Value -&gt; Parser ReorderInstalledStickerSets
+</span><a href="#local-6989586621679458378"><span class="hs-identifier hs-var hs-var">parseReorderInstalledStickerSets</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ReorderInstalledStickerSets)
 -&gt; Value
 -&gt; Parser ReorderInstalledStickerSets
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;ReorderInstalledStickerSets&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser ReorderInstalledStickerSets)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;ReorderInstalledStickerSets&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser ReorderInstalledStickerSets)
  -&gt; Value -&gt; Parser ReorderInstalledStickerSets)
 -&gt; (Object -&gt; Parser ReorderInstalledStickerSets)
 -&gt; Value
 -&gt; Parser ReorderInstalledStickerSets
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679428797"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679428797"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-34"></span><span>    </span><span id="local-6989586621679428796"><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679428796"><span class="hs-identifier hs-var">sticker_set_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679428797"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Int])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679458376"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679458376"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-34"></span><span>    </span><span id="local-6989586621679458375"><span class="annot"><span class="annottext">Maybe [Int]
+</span><a href="#local-6989586621679458375"><span class="hs-identifier hs-var">sticker_set_ids</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679458376"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [Int])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;sticker_set_ids&quot;</span></span><span>
-</span><span id="line-35"></span><span>    </span><span id="local-6989586621679428794"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679428794"><span class="hs-identifier hs-var">is_masks</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679428797"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;sticker_set_ids&quot;</span></span><span>
+</span><span id="line-35"></span><span>    </span><span id="local-6989586621679458373"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679458373"><span class="hs-identifier hs-var">is_masks</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679458376"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;is_masks&quot;</span></span><span>
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;is_masks&quot;</span></span><span>
 </span><span id="line-36"></span><span>    </span><span class="annot"><span class="annottext">ReorderInstalledStickerSets -&gt; Parser ReorderInstalledStickerSets
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ReorderInstalledStickerSets -&gt; Parser ReorderInstalledStickerSets)
@@ -116,8 +126,13 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 -&gt; Parser ReorderInstalledStickerSets
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ReorderInstalledStickerSets :: Maybe [Int] -&gt; Maybe Bool -&gt; ReorderInstalledStickerSets
-</span><a href="API.Functions.ReorderInstalledStickerSets.html#ReorderInstalledStickerSets"><span class="hs-identifier hs-type hs-type">ReorderInstalledStickerSets</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sticker_set_ids :: Maybe [Int]
+</span><a href="API.Functions.ReorderInstalledStickerSets.html#ReorderInstalledStickerSets"><span class="hs-identifier hs-type">ReorderInstalledStickerSets</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sticker_set_ids :: Maybe [Int]
 </span><a href="API.Functions.ReorderInstalledStickerSets.html#sticker_set_ids"><span class="hs-identifier hs-var">sticker_set_ids</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [Int]
-</span><a href="#local-6989586621679428796"><span class="hs-identifier hs-var">sticker_set_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_masks :: Maybe Bool
+</span><a href="#local-6989586621679458375"><span class="hs-identifier hs-var">sticker_set_ids</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">is_masks :: Maybe Bool
 </span><a href="API.Functions.ReorderInstalledStickerSets.html#is_masks"><span class="hs-identifier hs-var">is_masks</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679428794"><span class="hs-identifier hs-var">is_masks</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679458373"><span class="hs-identifier hs-var">is_masks</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-37"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser ReorderInstalledStickerSets
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-38"></span></pre></body></html>

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -46,34 +47,71 @@ data CallProblem =
  -- |
  -- 
  -- The video was pixelated
- CallProblemPixelatedVideo deriving (Show, Eq)
+ CallProblemPixelatedVideo deriving (Eq)
+
+instance Show CallProblem where
+ show CallProblemEcho {  } =
+  "CallProblemEcho" ++ cc [ ]
+
+ show CallProblemNoise {  } =
+  "CallProblemNoise" ++ cc [ ]
+
+ show CallProblemInterruptions {  } =
+  "CallProblemInterruptions" ++ cc [ ]
+
+ show CallProblemDistortedSpeech {  } =
+  "CallProblemDistortedSpeech" ++ cc [ ]
+
+ show CallProblemSilentLocal {  } =
+  "CallProblemSilentLocal" ++ cc [ ]
+
+ show CallProblemSilentRemote {  } =
+  "CallProblemSilentRemote" ++ cc [ ]
+
+ show CallProblemDropped {  } =
+  "CallProblemDropped" ++ cc [ ]
+
+ show CallProblemDistortedVideo {  } =
+  "CallProblemDistortedVideo" ++ cc [ ]
+
+ show CallProblemPixelatedVideo {  } =
+  "CallProblemPixelatedVideo" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON CallProblem where
- toJSON (CallProblemEcho {  }) =
+ toJSON CallProblemEcho {  } =
   A.object [ "@type" A..= T.String "callProblemEcho" ]
 
- toJSON (CallProblemNoise {  }) =
+ toJSON CallProblemNoise {  } =
   A.object [ "@type" A..= T.String "callProblemNoise" ]
 
- toJSON (CallProblemInterruptions {  }) =
+ toJSON CallProblemInterruptions {  } =
   A.object [ "@type" A..= T.String "callProblemInterruptions" ]
 
- toJSON (CallProblemDistortedSpeech {  }) =
+ toJSON CallProblemDistortedSpeech {  } =
   A.object [ "@type" A..= T.String "callProblemDistortedSpeech" ]
 
- toJSON (CallProblemSilentLocal {  }) =
+ toJSON CallProblemSilentLocal {  } =
   A.object [ "@type" A..= T.String "callProblemSilentLocal" ]
 
- toJSON (CallProblemSilentRemote {  }) =
+ toJSON CallProblemSilentRemote {  } =
   A.object [ "@type" A..= T.String "callProblemSilentRemote" ]
 
- toJSON (CallProblemDropped {  }) =
+ toJSON CallProblemDropped {  } =
   A.object [ "@type" A..= T.String "callProblemDropped" ]
 
- toJSON (CallProblemDistortedVideo {  }) =
+ toJSON CallProblemDistortedVideo {  } =
   A.object [ "@type" A..= T.String "callProblemDistortedVideo" ]
 
- toJSON (CallProblemPixelatedVideo {  }) =
+ toJSON CallProblemPixelatedVideo {  } =
   A.object [ "@type" A..= T.String "callProblemPixelatedVideo" ]
 
 instance T.FromJSON CallProblem where
@@ -126,3 +164,4 @@ instance T.FromJSON CallProblem where
    parseCallProblemPixelatedVideo :: A.Value -> T.Parser CallProblem
    parseCallProblemPixelatedVideo = A.withObject "CallProblemPixelatedVideo" $ \o -> do
     return $ CallProblemPixelatedVideo {  }
+ parseJSON _ = mempty

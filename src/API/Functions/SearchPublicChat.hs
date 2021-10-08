@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __username__ Username to be resolved
 data SearchPublicChat = 
 
- SearchPublicChat { username :: Maybe String }  deriving (Show, Eq)
+ SearchPublicChat { username :: Maybe String }  deriving (Eq)
+
+instance Show SearchPublicChat where
+ show SearchPublicChat { username=username } =
+  "SearchPublicChat" ++ cc [p "username" username ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SearchPublicChat where
- toJSON (SearchPublicChat { username = username }) =
+ toJSON SearchPublicChat { username = username } =
   A.object [ "@type" A..= T.String "searchPublicChat", "username" A..= username ]
 
 instance T.FromJSON SearchPublicChat where
@@ -31,3 +45,4 @@ instance T.FromJSON SearchPublicChat where
    parseSearchPublicChat = A.withObject "SearchPublicChat" $ \o -> do
     username <- o A..:? "username"
     return $ SearchPublicChat { username = username }
+ parseJSON _ = mempty

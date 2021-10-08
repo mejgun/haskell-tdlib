@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __seconds__ Number of seconds
 data Seconds = 
 
- Seconds { seconds :: Maybe Float }  deriving (Show, Eq)
+ Seconds { seconds :: Maybe Float }  deriving (Eq)
+
+instance Show Seconds where
+ show Seconds { seconds=seconds } =
+  "Seconds" ++ cc [p "seconds" seconds ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Seconds where
- toJSON (Seconds { seconds = seconds }) =
+ toJSON Seconds { seconds = seconds } =
   A.object [ "@type" A..= T.String "seconds", "seconds" A..= seconds ]
 
 instance T.FromJSON Seconds where
@@ -31,3 +45,4 @@ instance T.FromJSON Seconds where
    parseSeconds = A.withObject "Seconds" $ \o -> do
     seconds <- o A..:? "seconds"
     return $ Seconds { seconds = seconds }
+ parseJSON _ = mempty

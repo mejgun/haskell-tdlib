@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -30,13 +31,29 @@ data LoginUrlInfo =
  -- __bot_user_id__ User identifier of a bot linked with the website
  -- 
  -- __request_write_access__ True, if the user needs to be requested to give the permission to the bot to send them messages
- LoginUrlInfoRequestConfirmation { request_write_access :: Maybe Bool, bot_user_id :: Maybe Int, domain :: Maybe String, url :: Maybe String }  deriving (Show, Eq)
+ LoginUrlInfoRequestConfirmation { request_write_access :: Maybe Bool, bot_user_id :: Maybe Int, domain :: Maybe String, url :: Maybe String }  deriving (Eq)
+
+instance Show LoginUrlInfo where
+ show LoginUrlInfoOpen { skip_confirm=skip_confirm, url=url } =
+  "LoginUrlInfoOpen" ++ cc [p "skip_confirm" skip_confirm, p "url" url ]
+
+ show LoginUrlInfoRequestConfirmation { request_write_access=request_write_access, bot_user_id=bot_user_id, domain=domain, url=url } =
+  "LoginUrlInfoRequestConfirmation" ++ cc [p "request_write_access" request_write_access, p "bot_user_id" bot_user_id, p "domain" domain, p "url" url ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON LoginUrlInfo where
- toJSON (LoginUrlInfoOpen { skip_confirm = skip_confirm, url = url }) =
+ toJSON LoginUrlInfoOpen { skip_confirm = skip_confirm, url = url } =
   A.object [ "@type" A..= T.String "loginUrlInfoOpen", "skip_confirm" A..= skip_confirm, "url" A..= url ]
 
- toJSON (LoginUrlInfoRequestConfirmation { request_write_access = request_write_access, bot_user_id = bot_user_id, domain = domain, url = url }) =
+ toJSON LoginUrlInfoRequestConfirmation { request_write_access = request_write_access, bot_user_id = bot_user_id, domain = domain, url = url } =
   A.object [ "@type" A..= T.String "loginUrlInfoRequestConfirmation", "request_write_access" A..= request_write_access, "bot_user_id" A..= bot_user_id, "domain" A..= domain, "url" A..= url ]
 
 instance T.FromJSON LoginUrlInfo where
@@ -60,3 +77,4 @@ instance T.FromJSON LoginUrlInfo where
     domain <- o A..:? "domain"
     url <- o A..:? "url"
     return $ LoginUrlInfoRequestConfirmation { request_write_access = request_write_access, bot_user_id = bot_user_id, domain = domain, url = url }
+ parseJSON _ = mempty

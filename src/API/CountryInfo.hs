@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -17,15 +18,28 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __english_name__ English name of the country
 -- 
--- __is_hidden__ True, if the country should be hidden from the list of all countries
+-- __is_hidden__ True, if the country must be hidden from the list of all countries
 -- 
 -- __calling_codes__ List of country calling codes
 data CountryInfo = 
 
- CountryInfo { calling_codes :: Maybe [String], is_hidden :: Maybe Bool, english_name :: Maybe String, name :: Maybe String, country_code :: Maybe String }  deriving (Show, Eq)
+ CountryInfo { calling_codes :: Maybe [String], is_hidden :: Maybe Bool, english_name :: Maybe String, name :: Maybe String, country_code :: Maybe String }  deriving (Eq)
+
+instance Show CountryInfo where
+ show CountryInfo { calling_codes=calling_codes, is_hidden=is_hidden, english_name=english_name, name=name, country_code=country_code } =
+  "CountryInfo" ++ cc [p "calling_codes" calling_codes, p "is_hidden" is_hidden, p "english_name" english_name, p "name" name, p "country_code" country_code ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON CountryInfo where
- toJSON (CountryInfo { calling_codes = calling_codes, is_hidden = is_hidden, english_name = english_name, name = name, country_code = country_code }) =
+ toJSON CountryInfo { calling_codes = calling_codes, is_hidden = is_hidden, english_name = english_name, name = name, country_code = country_code } =
   A.object [ "@type" A..= T.String "countryInfo", "calling_codes" A..= calling_codes, "is_hidden" A..= is_hidden, "english_name" A..= english_name, "name" A..= name, "country_code" A..= country_code ]
 
 instance T.FromJSON CountryInfo where
@@ -43,3 +57,4 @@ instance T.FromJSON CountryInfo where
     name <- o A..:? "name"
     country_code <- o A..:? "country_code"
     return $ CountryInfo { calling_codes = calling_codes, is_hidden = is_hidden, english_name = english_name, name = name, country_code = country_code }
+ parseJSON _ = mempty

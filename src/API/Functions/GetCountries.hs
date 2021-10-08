@@ -6,16 +6,30 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
 -- Returns information about existing countries. Can be called before authorization
 data GetCountries = 
 
- GetCountries deriving (Show, Eq)
+ GetCountries deriving (Eq)
+
+instance Show GetCountries where
+ show GetCountries {  } =
+  "GetCountries" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetCountries where
- toJSON (GetCountries {  }) =
+ toJSON GetCountries {  } =
   A.object [ "@type" A..= T.String "getCountries" ]
 
 instance T.FromJSON GetCountries where
@@ -28,3 +42,4 @@ instance T.FromJSON GetCountries where
    parseGetCountries :: A.Value -> T.Parser GetCountries
    parseGetCountries = A.withObject "GetCountries" $ \o -> do
     return $ GetCountries {  }
+ parseJSON _ = mempty

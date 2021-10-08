@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -22,16 +23,35 @@ data CheckStickerSetNameResult =
  -- |
  -- 
  -- The name is occupied
- CheckStickerSetNameResultNameOccupied deriving (Show, Eq)
+ CheckStickerSetNameResultNameOccupied deriving (Eq)
+
+instance Show CheckStickerSetNameResult where
+ show CheckStickerSetNameResultOk {  } =
+  "CheckStickerSetNameResultOk" ++ cc [ ]
+
+ show CheckStickerSetNameResultNameInvalid {  } =
+  "CheckStickerSetNameResultNameInvalid" ++ cc [ ]
+
+ show CheckStickerSetNameResultNameOccupied {  } =
+  "CheckStickerSetNameResultNameOccupied" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON CheckStickerSetNameResult where
- toJSON (CheckStickerSetNameResultOk {  }) =
+ toJSON CheckStickerSetNameResultOk {  } =
   A.object [ "@type" A..= T.String "checkStickerSetNameResultOk" ]
 
- toJSON (CheckStickerSetNameResultNameInvalid {  }) =
+ toJSON CheckStickerSetNameResultNameInvalid {  } =
   A.object [ "@type" A..= T.String "checkStickerSetNameResultNameInvalid" ]
 
- toJSON (CheckStickerSetNameResultNameOccupied {  }) =
+ toJSON CheckStickerSetNameResultNameOccupied {  } =
   A.object [ "@type" A..= T.String "checkStickerSetNameResultNameOccupied" ]
 
 instance T.FromJSON CheckStickerSetNameResult where
@@ -54,3 +74,4 @@ instance T.FromJSON CheckStickerSetNameResult where
    parseCheckStickerSetNameResultNameOccupied :: A.Value -> T.Parser CheckStickerSetNameResult
    parseCheckStickerSetNameResultNameOccupied = A.withObject "CheckStickerSetNameResultNameOccupied" $ \o -> do
     return $ CheckStickerSetNameResultNameOccupied {  }
+ parseJSON _ = mempty

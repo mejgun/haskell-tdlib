@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __secret_chat_id__ Secret chat identifier
 data GetSecretChat = 
 
- GetSecretChat { secret_chat_id :: Maybe Int }  deriving (Show, Eq)
+ GetSecretChat { secret_chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show GetSecretChat where
+ show GetSecretChat { secret_chat_id=secret_chat_id } =
+  "GetSecretChat" ++ cc [p "secret_chat_id" secret_chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetSecretChat where
- toJSON (GetSecretChat { secret_chat_id = secret_chat_id }) =
+ toJSON GetSecretChat { secret_chat_id = secret_chat_id } =
   A.object [ "@type" A..= T.String "getSecretChat", "secret_chat_id" A..= secret_chat_id ]
 
 instance T.FromJSON GetSecretChat where
@@ -31,3 +45,4 @@ instance T.FromJSON GetSecretChat where
    parseGetSecretChat = A.withObject "GetSecretChat" $ \o -> do
     secret_chat_id <- mconcat [ o A..:? "secret_chat_id", readMaybe <$> (o A..: "secret_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetSecretChat { secret_chat_id = secret_chat_id }
+ parseJSON _ = mempty

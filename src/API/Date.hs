@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -18,10 +19,23 @@ import qualified Data.Aeson.Types as T
 -- __year__ Year; 1-9999
 data Date = 
 
- Date { year :: Maybe Int, month :: Maybe Int, day :: Maybe Int }  deriving (Show, Eq)
+ Date { year :: Maybe Int, month :: Maybe Int, day :: Maybe Int }  deriving (Eq)
+
+instance Show Date where
+ show Date { year=year, month=month, day=day } =
+  "Date" ++ cc [p "year" year, p "month" month, p "day" day ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Date where
- toJSON (Date { year = year, month = month, day = day }) =
+ toJSON Date { year = year, month = month, day = day } =
   A.object [ "@type" A..= T.String "date", "year" A..= year, "month" A..= month, "day" A..= day ]
 
 instance T.FromJSON Date where
@@ -37,3 +51,4 @@ instance T.FromJSON Date where
     month <- mconcat [ o A..:? "month", readMaybe <$> (o A..: "month" :: T.Parser String)] :: T.Parser (Maybe Int)
     day <- mconcat [ o A..:? "day", readMaybe <$> (o A..: "day" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Date { year = year, month = month, day = day }
+ parseJSON _ = mempty

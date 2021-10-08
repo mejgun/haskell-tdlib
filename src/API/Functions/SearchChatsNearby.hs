@@ -6,19 +6,33 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Location as Location
 
 -- |
 -- 
--- Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby. The request should be sent again every 25 seconds with adjusted location to not miss new chats 
+-- Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby. The request must be sent again every 25 seconds with adjusted location to not miss new chats 
 -- 
 -- __location__ Current user location
 data SearchChatsNearby = 
 
- SearchChatsNearby { location :: Maybe Location.Location }  deriving (Show, Eq)
+ SearchChatsNearby { location :: Maybe Location.Location }  deriving (Eq)
+
+instance Show SearchChatsNearby where
+ show SearchChatsNearby { location=location } =
+  "SearchChatsNearby" ++ cc [p "location" location ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SearchChatsNearby where
- toJSON (SearchChatsNearby { location = location }) =
+ toJSON SearchChatsNearby { location = location } =
   A.object [ "@type" A..= T.String "searchChatsNearby", "location" A..= location ]
 
 instance T.FromJSON SearchChatsNearby where
@@ -32,3 +46,4 @@ instance T.FromJSON SearchChatsNearby where
    parseSearchChatsNearby = A.withObject "SearchChatsNearby" $ \o -> do
     location <- o A..:? "location"
     return $ SearchChatsNearby { location = location }
+ parseJSON _ = mempty

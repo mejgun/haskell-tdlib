@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.BotCommand as BotCommand
 import {-# SOURCE #-} qualified API.ChatPhoto as ChatPhoto
 
@@ -36,10 +37,23 @@ import {-# SOURCE #-} qualified API.ChatPhoto as ChatPhoto
 -- __commands__ For bots, list of the bot commands
 data UserFullInfo = 
 
- UserFullInfo { commands :: Maybe [BotCommand.BotCommand], group_in_common_count :: Maybe Int, description :: Maybe String, share_text :: Maybe String, bio :: Maybe String, need_phone_number_privacy_exception :: Maybe Bool, has_private_calls :: Maybe Bool, supports_video_calls :: Maybe Bool, can_be_called :: Maybe Bool, is_blocked :: Maybe Bool, photo :: Maybe ChatPhoto.ChatPhoto }  deriving (Show, Eq)
+ UserFullInfo { commands :: Maybe [BotCommand.BotCommand], group_in_common_count :: Maybe Int, description :: Maybe String, share_text :: Maybe String, bio :: Maybe String, need_phone_number_privacy_exception :: Maybe Bool, has_private_calls :: Maybe Bool, supports_video_calls :: Maybe Bool, can_be_called :: Maybe Bool, is_blocked :: Maybe Bool, photo :: Maybe ChatPhoto.ChatPhoto }  deriving (Eq)
+
+instance Show UserFullInfo where
+ show UserFullInfo { commands=commands, group_in_common_count=group_in_common_count, description=description, share_text=share_text, bio=bio, need_phone_number_privacy_exception=need_phone_number_privacy_exception, has_private_calls=has_private_calls, supports_video_calls=supports_video_calls, can_be_called=can_be_called, is_blocked=is_blocked, photo=photo } =
+  "UserFullInfo" ++ cc [p "commands" commands, p "group_in_common_count" group_in_common_count, p "description" description, p "share_text" share_text, p "bio" bio, p "need_phone_number_privacy_exception" need_phone_number_privacy_exception, p "has_private_calls" has_private_calls, p "supports_video_calls" supports_video_calls, p "can_be_called" can_be_called, p "is_blocked" is_blocked, p "photo" photo ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON UserFullInfo where
- toJSON (UserFullInfo { commands = commands, group_in_common_count = group_in_common_count, description = description, share_text = share_text, bio = bio, need_phone_number_privacy_exception = need_phone_number_privacy_exception, has_private_calls = has_private_calls, supports_video_calls = supports_video_calls, can_be_called = can_be_called, is_blocked = is_blocked, photo = photo }) =
+ toJSON UserFullInfo { commands = commands, group_in_common_count = group_in_common_count, description = description, share_text = share_text, bio = bio, need_phone_number_privacy_exception = need_phone_number_privacy_exception, has_private_calls = has_private_calls, supports_video_calls = supports_video_calls, can_be_called = can_be_called, is_blocked = is_blocked, photo = photo } =
   A.object [ "@type" A..= T.String "userFullInfo", "commands" A..= commands, "group_in_common_count" A..= group_in_common_count, "description" A..= description, "share_text" A..= share_text, "bio" A..= bio, "need_phone_number_privacy_exception" A..= need_phone_number_privacy_exception, "has_private_calls" A..= has_private_calls, "supports_video_calls" A..= supports_video_calls, "can_be_called" A..= can_be_called, "is_blocked" A..= is_blocked, "photo" A..= photo ]
 
 instance T.FromJSON UserFullInfo where
@@ -63,3 +77,4 @@ instance T.FromJSON UserFullInfo where
     is_blocked <- o A..:? "is_blocked"
     photo <- o A..:? "photo"
     return $ UserFullInfo { commands = commands, group_in_common_count = group_in_common_count, description = description, share_text = share_text, bio = bio, need_phone_number_privacy_exception = need_phone_number_privacy_exception, has_private_calls = has_private_calls, supports_video_calls = supports_video_calls, can_be_called = can_be_called, is_blocked = is_blocked, photo = photo }
+ parseJSON _ = mempty

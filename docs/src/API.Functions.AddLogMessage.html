@@ -9,16 +9,16 @@
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
 </span><span id="line-11"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- Adds a message to TDLib internal log. This is an offline method. Can be called before authorization. Can be called synchronously</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- Adds a message to TDLib internal log. Can be called synchronously</span><span>
 </span><span id="line-13"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-14"></span><span class="hs-comment">-- __verbosity_level__ The minimum verbosity level needed for the message to be logged, 0-1023</span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- __verbosity_level__ The minimum verbosity level needed for the message to be logged; 0-1023</span><span>
 </span><span id="line-15"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-16"></span><span class="hs-comment">-- __text__ Text of a message to log</span><span>
 </span><span id="line-17"></span><span class="hs-keyword">data</span><span> </span><span id="AddLogMessage"><span class="annot"><a href="API.Functions.AddLogMessage.html#AddLogMessage"><span class="hs-identifier hs-var">AddLogMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-18"></span><span>
 </span><span id="line-19"></span><span> </span><span id="AddLogMessage"><span class="annot"><a href="API.Functions.AddLogMessage.html#AddLogMessage"><span class="hs-identifier hs-var">AddLogMessage</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="text"><span class="annot"><span class="annottext">AddLogMessage -&gt; Maybe String
 </span><a href="API.Functions.AddLogMessage.html#text"><span class="hs-identifier hs-var hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="verbosity_level"><span class="annot"><span class="annottext">AddLogMessage -&gt; Maybe Int
-</span><a href="API.Functions.AddLogMessage.html#verbosity_level"><span class="hs-identifier hs-var hs-var">verbosity_level</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679414399"><span id="local-6989586621679414401"><span id="local-6989586621679414403"><span class="annot"><span class="annottext">Int -&gt; AddLogMessage -&gt; ShowS
+</span><a href="API.Functions.AddLogMessage.html#verbosity_level"><span class="hs-identifier hs-var hs-var">verbosity_level</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679440264"><span id="local-6989586621679440266"><span id="local-6989586621679440268"><span class="annot"><span class="annottext">Int -&gt; AddLogMessage -&gt; ShowS
 [AddLogMessage] -&gt; ShowS
 AddLogMessage -&gt; String
 (Int -&gt; AddLogMessage -&gt; ShowS)
@@ -33,7 +33,7 @@ show :: AddLogMessage -&gt; String
 $cshow :: AddLogMessage -&gt; String
 showsPrec :: Int -&gt; AddLogMessage -&gt; ShowS
 $cshowsPrec :: Int -&gt; AddLogMessage -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679414394"><span id="local-6989586621679414396"><span class="annot"><span class="annottext">AddLogMessage -&gt; AddLogMessage -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679440259"><span id="local-6989586621679440261"><span class="annot"><span class="annottext">AddLogMessage -&gt; AddLogMessage -&gt; Bool
 (AddLogMessage -&gt; AddLogMessage -&gt; Bool)
 -&gt; (AddLogMessage -&gt; AddLogMessage -&gt; Bool) -&gt; Eq AddLogMessage
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -43,85 +43,101 @@ $c/= :: AddLogMessage -&gt; AddLogMessage -&gt; Bool
 $c== :: AddLogMessage -&gt; AddLogMessage -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414386"><span id="local-6989586621679414388"><span id="local-6989586621679414390"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AddLogMessage.html#AddLogMessage"><span class="hs-identifier hs-type">AddLogMessage</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span> </span><span id="local-6989586621679414384"><span class="annot"><span class="annottext">toJSON :: AddLogMessage -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.AddLogMessage.html#AddLogMessage"><span class="hs-identifier hs-type">AddLogMessage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">text :: AddLogMessage -&gt; Maybe String
-</span><a href="API.Functions.AddLogMessage.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414382"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414382"><span class="hs-identifier hs-var">text</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">verbosity_level :: AddLogMessage -&gt; Maybe Int
-</span><a href="API.Functions.AddLogMessage.html#verbosity_level"><span class="hs-identifier hs-var">verbosity_level</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679414381"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679414381"><span class="hs-identifier hs-var">verbosity_level</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679440251"><span id="local-6989586621679440253"><span id="local-6989586621679440255"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AddLogMessage.html#AddLogMessage"><span class="hs-identifier hs-type">AddLogMessage</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span> </span><span id="local-6989586621679440249"><span class="annot"><span class="annottext">toJSON :: AddLogMessage -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.AddLogMessage.html#AddLogMessage"><span class="hs-identifier hs-type">AddLogMessage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">text :: AddLogMessage -&gt; Maybe String
+</span><a href="API.Functions.AddLogMessage.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679440247"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679440247"><span class="hs-identifier hs-var">text</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">verbosity_level :: AddLogMessage -&gt; Maybe Int
+</span><a href="API.Functions.AddLogMessage.html#verbosity_level"><span class="hs-identifier hs-var">verbosity_level</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679440246"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679440246"><span class="hs-identifier hs-var">verbosity_level</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-23"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;addLogMessage&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;addLogMessage&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414382"><span class="hs-identifier hs-var">text</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;verbosity_level&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+</span><a href="#local-6989586621679440247"><span class="hs-identifier hs-var">text</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;verbosity_level&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679414381"><span class="hs-identifier hs-var">verbosity_level</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679440246"><span class="hs-identifier hs-var">verbosity_level</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679414375"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AddLogMessage.html#AddLogMessage"><span class="hs-identifier hs-type">AddLogMessage</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-26"></span><span> </span><span id="local-6989586621679414373"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AddLogMessage
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679414371"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679414371"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679414369"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679414369"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-27"></span><span>  </span><span id="local-6989586621679414368"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679414368"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679414369"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679440240"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AddLogMessage.html#AddLogMessage"><span class="hs-identifier hs-type">AddLogMessage</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span> </span><span id="local-6989586621679440238"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AddLogMessage
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679440236"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679440236"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679440234"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679440234"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-27"></span><span>  </span><span id="local-6989586621679440233"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679440233"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679440234"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-28"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679414368"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-29"></span><span>   </span><span class="hs-string">&quot;addLogMessage&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AddLogMessage
-</span><a href="#local-6989586621679414366"><span class="hs-identifier hs-var">parseAddLogMessage</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679414371"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-30"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser AddLogMessage
+</span><a href="#local-6989586621679440233"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-29"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;addLogMessage&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AddLogMessage
+</span><a href="#local-6989586621679440231"><span class="hs-identifier hs-var">parseAddLogMessage</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679440236"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-30"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser AddLogMessage
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-31"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-32"></span><span>   </span><span class="annot"><a href="#local-6989586621679414366"><span class="hs-identifier hs-type">parseAddLogMessage</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.AddLogMessage.html#AddLogMessage"><span class="hs-identifier hs-type">AddLogMessage</span></a></span><span>
-</span><span id="line-33"></span><span>   </span><span id="local-6989586621679414366"><span class="annot"><span class="annottext">parseAddLogMessage :: Value -&gt; Parser AddLogMessage
-</span><a href="#local-6989586621679414366"><span class="hs-identifier hs-var hs-var">parseAddLogMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-32"></span><span>   </span><span class="annot"><a href="#local-6989586621679440231"><span class="hs-identifier hs-type">parseAddLogMessage</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.AddLogMessage.html#AddLogMessage"><span class="hs-identifier hs-type">AddLogMessage</span></a></span><span>
+</span><span id="line-33"></span><span>   </span><span id="local-6989586621679440231"><span class="annot"><span class="annottext">parseAddLogMessage :: Value -&gt; Parser AddLogMessage
+</span><a href="#local-6989586621679440231"><span class="hs-identifier hs-var hs-var">parseAddLogMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AddLogMessage)
 -&gt; Value
 -&gt; Parser AddLogMessage
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;AddLogMessage&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser AddLogMessage) -&gt; Value -&gt; Parser AddLogMessage)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;AddLogMessage&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser AddLogMessage) -&gt; Value -&gt; Parser AddLogMessage)
 -&gt; (Object -&gt; Parser AddLogMessage)
 -&gt; Value
 -&gt; Parser AddLogMessage
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679414364"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679414364"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-34"></span><span>    </span><span id="local-6989586621679414363"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414363"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679414364"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679440229"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679440229"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-34"></span><span>    </span><span id="local-6989586621679440228"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679440228"><span class="hs-identifier hs-var">text</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679440229"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;text&quot;</span></span><span>
-</span><span id="line-35"></span><span>    </span><span id="local-6989586621679414361"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679414361"><span class="hs-identifier hs-var">verbosity_level</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;text&quot;</span></span><span>
+</span><span id="line-35"></span><span>    </span><span id="local-6989586621679440226"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679440226"><span class="hs-identifier hs-var">verbosity_level</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679414364"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679440229"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;verbosity_level&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;verbosity_level&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
 forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679414364"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679440229"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;verbosity_level&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;verbosity_level&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
 </span><span id="line-36"></span><span>    </span><span class="annot"><span class="annottext">AddLogMessage -&gt; Parser AddLogMessage
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(AddLogMessage -&gt; Parser AddLogMessage)
 -&gt; AddLogMessage -&gt; Parser AddLogMessage
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AddLogMessage :: Maybe String -&gt; Maybe Int -&gt; AddLogMessage
-</span><a href="API.Functions.AddLogMessage.html#AddLogMessage"><span class="hs-identifier hs-type hs-type">AddLogMessage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">text :: Maybe String
+</span><a href="API.Functions.AddLogMessage.html#AddLogMessage"><span class="hs-identifier hs-type">AddLogMessage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">text :: Maybe String
 </span><a href="API.Functions.AddLogMessage.html#text"><span class="hs-identifier hs-var">text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679414363"><span class="hs-identifier hs-var">text</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">verbosity_level :: Maybe Int
+</span><a href="#local-6989586621679440228"><span class="hs-identifier hs-var">text</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">verbosity_level :: Maybe Int
 </span><a href="API.Functions.AddLogMessage.html#verbosity_level"><span class="hs-identifier hs-var">verbosity_level</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679414361"><span class="hs-identifier hs-var">verbosity_level</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679440226"><span class="hs-identifier hs-var">verbosity_level</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-37"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser AddLogMessage
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-38"></span></pre></body></html>

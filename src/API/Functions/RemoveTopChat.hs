@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.TopChatCategory as TopChatCategory
 
 -- |
@@ -17,10 +18,23 @@ import {-# SOURCE #-} qualified API.TopChatCategory as TopChatCategory
 -- __chat_id__ Chat identifier
 data RemoveTopChat = 
 
- RemoveTopChat { chat_id :: Maybe Int, category :: Maybe TopChatCategory.TopChatCategory }  deriving (Show, Eq)
+ RemoveTopChat { chat_id :: Maybe Int, category :: Maybe TopChatCategory.TopChatCategory }  deriving (Eq)
+
+instance Show RemoveTopChat where
+ show RemoveTopChat { chat_id=chat_id, category=category } =
+  "RemoveTopChat" ++ cc [p "chat_id" chat_id, p "category" category ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON RemoveTopChat where
- toJSON (RemoveTopChat { chat_id = chat_id, category = category }) =
+ toJSON RemoveTopChat { chat_id = chat_id, category = category } =
   A.object [ "@type" A..= T.String "removeTopChat", "chat_id" A..= chat_id, "category" A..= category ]
 
 instance T.FromJSON RemoveTopChat where
@@ -35,3 +49,4 @@ instance T.FromJSON RemoveTopChat where
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     category <- o A..:? "category"
     return $ RemoveTopChat { chat_id = chat_id, category = category }
+ parseJSON _ = mempty

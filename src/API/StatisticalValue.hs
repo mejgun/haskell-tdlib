@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -18,10 +19,23 @@ import qualified Data.Aeson.Types as T
 -- __growth_rate_percentage__ The growth rate of the value, as a percentage
 data StatisticalValue = 
 
- StatisticalValue { growth_rate_percentage :: Maybe Float, previous_value :: Maybe Float, value :: Maybe Float }  deriving (Show, Eq)
+ StatisticalValue { growth_rate_percentage :: Maybe Float, previous_value :: Maybe Float, value :: Maybe Float }  deriving (Eq)
+
+instance Show StatisticalValue where
+ show StatisticalValue { growth_rate_percentage=growth_rate_percentage, previous_value=previous_value, value=value } =
+  "StatisticalValue" ++ cc [p "growth_rate_percentage" growth_rate_percentage, p "previous_value" previous_value, p "value" value ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON StatisticalValue where
- toJSON (StatisticalValue { growth_rate_percentage = growth_rate_percentage, previous_value = previous_value, value = value }) =
+ toJSON StatisticalValue { growth_rate_percentage = growth_rate_percentage, previous_value = previous_value, value = value } =
   A.object [ "@type" A..= T.String "statisticalValue", "growth_rate_percentage" A..= growth_rate_percentage, "previous_value" A..= previous_value, "value" A..= value ]
 
 instance T.FromJSON StatisticalValue where
@@ -37,3 +51,4 @@ instance T.FromJSON StatisticalValue where
     previous_value <- o A..:? "previous_value"
     value <- o A..:? "value"
     return $ StatisticalValue { growth_rate_percentage = growth_rate_percentage, previous_value = previous_value, value = value }
+ parseJSON _ = mempty

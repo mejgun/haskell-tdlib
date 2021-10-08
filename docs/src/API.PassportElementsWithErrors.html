@@ -20,7 +20,7 @@
 </span><span id="line-20"></span><span>
 </span><span id="line-21"></span><span> </span><span id="PassportElementsWithErrors"><span class="annot"><a href="API.PassportElementsWithErrors.html#PassportElementsWithErrors"><span class="hs-identifier hs-var">PassportElementsWithErrors</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="errors"><span class="annot"><span class="annottext">PassportElementsWithErrors -&gt; Maybe [PassportElementError]
 </span><a href="API.PassportElementsWithErrors.html#errors"><span class="hs-identifier hs-var hs-var">errors</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.PassportElementError.html#PassportElementError"><span class="hs-identifier hs-type">PassportElementError.PassportElementError</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="elements"><span class="annot"><span class="annottext">PassportElementsWithErrors -&gt; Maybe [PassportElement]
-</span><a href="API.PassportElementsWithErrors.html#elements"><span class="hs-identifier hs-var hs-var">elements</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.PassportElement.html#PassportElement"><span class="hs-identifier hs-type">PassportElement.PassportElement</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679445539"><span id="local-6989586621679445541"><span id="local-6989586621679445543"><span class="annot"><span class="annottext">Int -&gt; PassportElementsWithErrors -&gt; ShowS
+</span><a href="API.PassportElementsWithErrors.html#elements"><span class="hs-identifier hs-var hs-var">elements</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.PassportElement.html#PassportElement"><span class="hs-identifier hs-type">PassportElement.PassportElement</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679479193"><span id="local-6989586621679479195"><span id="local-6989586621679479197"><span class="annot"><span class="annottext">Int -&gt; PassportElementsWithErrors -&gt; ShowS
 [PassportElementsWithErrors] -&gt; ShowS
 PassportElementsWithErrors -&gt; String
 (Int -&gt; PassportElementsWithErrors -&gt; ShowS)
@@ -35,7 +35,7 @@ show :: PassportElementsWithErrors -&gt; String
 $cshow :: PassportElementsWithErrors -&gt; String
 showsPrec :: Int -&gt; PassportElementsWithErrors -&gt; ShowS
 $cshowsPrec :: Int -&gt; PassportElementsWithErrors -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679445534"><span id="local-6989586621679445536"><span class="annot"><span class="annottext">PassportElementsWithErrors -&gt; PassportElementsWithErrors -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679479188"><span id="local-6989586621679479190"><span class="annot"><span class="annottext">PassportElementsWithErrors -&gt; PassportElementsWithErrors -&gt; Bool
 (PassportElementsWithErrors -&gt; PassportElementsWithErrors -&gt; Bool)
 -&gt; (PassportElementsWithErrors
     -&gt; PassportElementsWithErrors -&gt; Bool)
@@ -47,69 +47,79 @@ $c/= :: PassportElementsWithErrors -&gt; PassportElementsWithErrors -&gt; Bool
 $c== :: PassportElementsWithErrors -&gt; PassportElementsWithErrors -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679445526"><span id="local-6989586621679445528"><span id="local-6989586621679445530"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.PassportElementsWithErrors.html#PassportElementsWithErrors"><span class="hs-identifier hs-type">PassportElementsWithErrors</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span> </span><span id="local-6989586621679445524"><span class="annot"><span class="annottext">toJSON :: PassportElementsWithErrors -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.PassportElementsWithErrors.html#PassportElementsWithErrors"><span class="hs-identifier hs-type">PassportElementsWithErrors</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">errors :: PassportElementsWithErrors -&gt; Maybe [PassportElementError]
-</span><a href="API.PassportElementsWithErrors.html#errors"><span class="hs-identifier hs-var">errors</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679445522"><span class="annot"><span class="annottext">Maybe [PassportElementError]
-</span><a href="#local-6989586621679445522"><span class="hs-identifier hs-var">errors</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">elements :: PassportElementsWithErrors -&gt; Maybe [PassportElement]
-</span><a href="API.PassportElementsWithErrors.html#elements"><span class="hs-identifier hs-var">elements</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679445521"><span class="annot"><span class="annottext">Maybe [PassportElement]
-</span><a href="#local-6989586621679445521"><span class="hs-identifier hs-var">elements</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679479180"><span id="local-6989586621679479182"><span id="local-6989586621679479184"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.PassportElementsWithErrors.html#PassportElementsWithErrors"><span class="hs-identifier hs-type">PassportElementsWithErrors</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-24"></span><span> </span><span id="local-6989586621679479178"><span class="annot"><span class="annottext">toJSON :: PassportElementsWithErrors -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.PassportElementsWithErrors.html#PassportElementsWithErrors"><span class="hs-identifier hs-type">PassportElementsWithErrors</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">errors :: PassportElementsWithErrors -&gt; Maybe [PassportElementError]
+</span><a href="API.PassportElementsWithErrors.html#errors"><span class="hs-identifier hs-var">errors</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479176"><span class="annot"><span class="annottext">Maybe [PassportElementError]
+</span><a href="#local-6989586621679479176"><span class="hs-identifier hs-var">errors</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">elements :: PassportElementsWithErrors -&gt; Maybe [PassportElement]
+</span><a href="API.PassportElementsWithErrors.html#elements"><span class="hs-identifier hs-var">elements</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679479175"><span class="annot"><span class="annottext">Maybe [PassportElement]
+</span><a href="#local-6989586621679479175"><span class="hs-identifier hs-var">elements</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-25"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;passportElementsWithErrors&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;errors&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [PassportElementError] -&gt; Pair
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;passportElementsWithErrors&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;errors&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [PassportElementError] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [PassportElementError]
-</span><a href="#local-6989586621679445522"><span class="hs-identifier hs-var">errors</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;elements&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [PassportElement] -&gt; Pair
+</span><a href="#local-6989586621679479176"><span class="hs-identifier hs-var">errors</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;elements&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [PassportElement] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [PassportElement]
-</span><a href="#local-6989586621679445521"><span class="hs-identifier hs-var">elements</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679479175"><span class="hs-identifier hs-var">elements</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-26"></span><span>
-</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679445515"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.PassportElementsWithErrors.html#PassportElementsWithErrors"><span class="hs-identifier hs-type">PassportElementsWithErrors</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-28"></span><span> </span><span id="local-6989586621679445513"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PassportElementsWithErrors
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679445511"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679445511"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679445509"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679445509"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-29"></span><span>  </span><span id="local-6989586621679445508"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679445508"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679445509"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679479169"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.PassportElementsWithErrors.html#PassportElementsWithErrors"><span class="hs-identifier hs-type">PassportElementsWithErrors</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-28"></span><span> </span><span id="local-6989586621679479167"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PassportElementsWithErrors
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679479165"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679479165"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679479163"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679479163"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-29"></span><span>  </span><span id="local-6989586621679479162"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679479162"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679479163"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-30"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679445508"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-31"></span><span>   </span><span class="hs-string">&quot;passportElementsWithErrors&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PassportElementsWithErrors
-</span><a href="#local-6989586621679445506"><span class="hs-identifier hs-var">parsePassportElementsWithErrors</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679445511"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-32"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PassportElementsWithErrors
+</span><a href="#local-6989586621679479162"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-31"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;passportElementsWithErrors&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PassportElementsWithErrors
+</span><a href="#local-6989586621679479160"><span class="hs-identifier hs-var">parsePassportElementsWithErrors</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679479165"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-32"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PassportElementsWithErrors
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-33"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-34"></span><span>   </span><span class="annot"><a href="#local-6989586621679445506"><span class="hs-identifier hs-type">parsePassportElementsWithErrors</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PassportElementsWithErrors.html#PassportElementsWithErrors"><span class="hs-identifier hs-type">PassportElementsWithErrors</span></a></span><span>
-</span><span id="line-35"></span><span>   </span><span id="local-6989586621679445506"><span class="annot"><span class="annottext">parsePassportElementsWithErrors :: Value -&gt; Parser PassportElementsWithErrors
-</span><a href="#local-6989586621679445506"><span class="hs-identifier hs-var hs-var">parsePassportElementsWithErrors</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-34"></span><span>   </span><span class="annot"><a href="#local-6989586621679479160"><span class="hs-identifier hs-type">parsePassportElementsWithErrors</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PassportElementsWithErrors.html#PassportElementsWithErrors"><span class="hs-identifier hs-type">PassportElementsWithErrors</span></a></span><span>
+</span><span id="line-35"></span><span>   </span><span id="local-6989586621679479160"><span class="annot"><span class="annottext">parsePassportElementsWithErrors :: Value -&gt; Parser PassportElementsWithErrors
+</span><a href="#local-6989586621679479160"><span class="hs-identifier hs-var hs-var">parsePassportElementsWithErrors</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser PassportElementsWithErrors)
 -&gt; Value
 -&gt; Parser PassportElementsWithErrors
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;PassportElementsWithErrors&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser PassportElementsWithErrors)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;PassportElementsWithErrors&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser PassportElementsWithErrors)
  -&gt; Value -&gt; Parser PassportElementsWithErrors)
 -&gt; (Object -&gt; Parser PassportElementsWithErrors)
 -&gt; Value
 -&gt; Parser PassportElementsWithErrors
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679445504"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679445504"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-36"></span><span>    </span><span id="local-6989586621679445503"><span class="annot"><span class="annottext">Maybe [PassportElementError]
-</span><a href="#local-6989586621679445503"><span class="hs-identifier hs-var">errors</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679445504"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PassportElementError])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679479158"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679479158"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-36"></span><span>    </span><span id="local-6989586621679479157"><span class="annot"><span class="annottext">Maybe [PassportElementError]
+</span><a href="#local-6989586621679479157"><span class="hs-identifier hs-var">errors</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679479158"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PassportElementError])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;errors&quot;</span></span><span>
-</span><span id="line-37"></span><span>    </span><span id="local-6989586621679445501"><span class="annot"><span class="annottext">Maybe [PassportElement]
-</span><a href="#local-6989586621679445501"><span class="hs-identifier hs-var">elements</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679445504"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PassportElement])
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;errors&quot;</span></span><span>
+</span><span id="line-37"></span><span>    </span><span id="local-6989586621679479155"><span class="annot"><span class="annottext">Maybe [PassportElement]
+</span><a href="#local-6989586621679479155"><span class="hs-identifier hs-var">elements</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679479158"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [PassportElement])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;elements&quot;</span></span><span>
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;elements&quot;</span></span><span>
 </span><span id="line-38"></span><span>    </span><span class="annot"><span class="annottext">PassportElementsWithErrors -&gt; Parser PassportElementsWithErrors
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(PassportElementsWithErrors -&gt; Parser PassportElementsWithErrors)
@@ -117,8 +127,13 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">PassportElementsWithErrors :: Maybe [PassportElementError]
 -&gt; Maybe [PassportElement] -&gt; PassportElementsWithErrors
-</span><a href="API.PassportElementsWithErrors.html#PassportElementsWithErrors"><span class="hs-identifier hs-type hs-type">PassportElementsWithErrors</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">errors :: Maybe [PassportElementError]
+</span><a href="API.PassportElementsWithErrors.html#PassportElementsWithErrors"><span class="hs-identifier hs-type">PassportElementsWithErrors</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">errors :: Maybe [PassportElementError]
 </span><a href="API.PassportElementsWithErrors.html#errors"><span class="hs-identifier hs-var">errors</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [PassportElementError]
-</span><a href="#local-6989586621679445503"><span class="hs-identifier hs-var">errors</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">elements :: Maybe [PassportElement]
+</span><a href="#local-6989586621679479157"><span class="hs-identifier hs-var">errors</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">elements :: Maybe [PassportElement]
 </span><a href="API.PassportElementsWithErrors.html#elements"><span class="hs-identifier hs-var">elements</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [PassportElement]
-</span><a href="#local-6989586621679445501"><span class="hs-identifier hs-var">elements</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679479155"><span class="hs-identifier hs-var">elements</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-39"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser PassportElementsWithErrors
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-40"></span></pre></body></html>

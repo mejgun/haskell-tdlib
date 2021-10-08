@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.StorageStatisticsByChat as StorageStatisticsByChat
 
 -- |
@@ -19,10 +20,23 @@ import {-# SOURCE #-} qualified API.StorageStatisticsByChat as StorageStatistics
 -- __by_chat__ Statistics split by chats
 data StorageStatistics = 
 
- StorageStatistics { by_chat :: Maybe [StorageStatisticsByChat.StorageStatisticsByChat], count :: Maybe Int, size :: Maybe Int }  deriving (Show, Eq)
+ StorageStatistics { by_chat :: Maybe [StorageStatisticsByChat.StorageStatisticsByChat], count :: Maybe Int, size :: Maybe Int }  deriving (Eq)
+
+instance Show StorageStatistics where
+ show StorageStatistics { by_chat=by_chat, count=count, size=size } =
+  "StorageStatistics" ++ cc [p "by_chat" by_chat, p "count" count, p "size" size ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON StorageStatistics where
- toJSON (StorageStatistics { by_chat = by_chat, count = count, size = size }) =
+ toJSON StorageStatistics { by_chat = by_chat, count = count, size = size } =
   A.object [ "@type" A..= T.String "storageStatistics", "by_chat" A..= by_chat, "count" A..= count, "size" A..= size ]
 
 instance T.FromJSON StorageStatistics where
@@ -38,3 +52,4 @@ instance T.FromJSON StorageStatistics where
     count <- mconcat [ o A..:? "count", readMaybe <$> (o A..: "count" :: T.Parser String)] :: T.Parser (Maybe Int)
     size <- mconcat [ o A..:? "size", readMaybe <$> (o A..: "size" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ StorageStatistics { by_chat = by_chat, count = count, size = size }
+ parseJSON _ = mempty

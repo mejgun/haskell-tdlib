@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.ChatAction as ChatAction
 
 -- |
@@ -16,13 +17,26 @@ import {-# SOURCE #-} qualified API.ChatAction as ChatAction
 -- 
 -- __message_thread_id__ If not 0, a message thread identifier in which the action was performed
 -- 
--- __action__ The action description
+-- __action__ The action description; pass null to cancel the currently active action
 data SendChatAction = 
 
- SendChatAction { action :: Maybe ChatAction.ChatAction, message_thread_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
+ SendChatAction { action :: Maybe ChatAction.ChatAction, message_thread_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show SendChatAction where
+ show SendChatAction { action=action, message_thread_id=message_thread_id, chat_id=chat_id } =
+  "SendChatAction" ++ cc [p "action" action, p "message_thread_id" message_thread_id, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SendChatAction where
- toJSON (SendChatAction { action = action, message_thread_id = message_thread_id, chat_id = chat_id }) =
+ toJSON SendChatAction { action = action, message_thread_id = message_thread_id, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "sendChatAction", "action" A..= action, "message_thread_id" A..= message_thread_id, "chat_id" A..= chat_id ]
 
 instance T.FromJSON SendChatAction where
@@ -38,3 +52,4 @@ instance T.FromJSON SendChatAction where
     message_thread_id <- mconcat [ o A..:? "message_thread_id", readMaybe <$> (o A..: "message_thread_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SendChatAction { action = action, message_thread_id = message_thread_id, chat_id = chat_id }
+ parseJSON _ = mempty

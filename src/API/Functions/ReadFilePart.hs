@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -18,10 +19,23 @@ import qualified Data.Aeson.Types as T
 -- __count__ Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position
 data ReadFilePart = 
 
- ReadFilePart { count :: Maybe Int, offset :: Maybe Int, file_id :: Maybe Int }  deriving (Show, Eq)
+ ReadFilePart { count :: Maybe Int, offset :: Maybe Int, file_id :: Maybe Int }  deriving (Eq)
+
+instance Show ReadFilePart where
+ show ReadFilePart { count=count, offset=offset, file_id=file_id } =
+  "ReadFilePart" ++ cc [p "count" count, p "offset" offset, p "file_id" file_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ReadFilePart where
- toJSON (ReadFilePart { count = count, offset = offset, file_id = file_id }) =
+ toJSON ReadFilePart { count = count, offset = offset, file_id = file_id } =
   A.object [ "@type" A..= T.String "readFilePart", "count" A..= count, "offset" A..= offset, "file_id" A..= file_id ]
 
 instance T.FromJSON ReadFilePart where
@@ -37,3 +51,4 @@ instance T.FromJSON ReadFilePart where
     offset <- mconcat [ o A..:? "offset", readMaybe <$> (o A..: "offset" :: T.Parser String)] :: T.Parser (Maybe Int)
     file_id <- mconcat [ o A..:? "file_id", readMaybe <$> (o A..: "file_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ReadFilePart { count = count, offset = offset, file_id = file_id }
+ parseJSON _ = mempty

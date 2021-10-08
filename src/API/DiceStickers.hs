@@ -6,11 +6,12 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Sticker as Sticker
 
 -- |
 -- 
--- Contains animated stickers which should be used for dice animation rendering
+-- Contains animated stickers which must be used for dice animation rendering
 data DiceStickers = 
  -- |
  -- 
@@ -31,13 +32,29 @@ data DiceStickers =
  -- __center_reel__ The animated sticker with the center reel
  -- 
  -- __right_reel__ The animated sticker with the right reel
- DiceStickersSlotMachine { right_reel :: Maybe Sticker.Sticker, center_reel :: Maybe Sticker.Sticker, left_reel :: Maybe Sticker.Sticker, lever :: Maybe Sticker.Sticker, background :: Maybe Sticker.Sticker }  deriving (Show, Eq)
+ DiceStickersSlotMachine { right_reel :: Maybe Sticker.Sticker, center_reel :: Maybe Sticker.Sticker, left_reel :: Maybe Sticker.Sticker, lever :: Maybe Sticker.Sticker, background :: Maybe Sticker.Sticker }  deriving (Eq)
+
+instance Show DiceStickers where
+ show DiceStickersRegular { sticker=sticker } =
+  "DiceStickersRegular" ++ cc [p "sticker" sticker ]
+
+ show DiceStickersSlotMachine { right_reel=right_reel, center_reel=center_reel, left_reel=left_reel, lever=lever, background=background } =
+  "DiceStickersSlotMachine" ++ cc [p "right_reel" right_reel, p "center_reel" center_reel, p "left_reel" left_reel, p "lever" lever, p "background" background ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON DiceStickers where
- toJSON (DiceStickersRegular { sticker = sticker }) =
+ toJSON DiceStickersRegular { sticker = sticker } =
   A.object [ "@type" A..= T.String "diceStickersRegular", "sticker" A..= sticker ]
 
- toJSON (DiceStickersSlotMachine { right_reel = right_reel, center_reel = center_reel, left_reel = left_reel, lever = lever, background = background }) =
+ toJSON DiceStickersSlotMachine { right_reel = right_reel, center_reel = center_reel, left_reel = left_reel, lever = lever, background = background } =
   A.object [ "@type" A..= T.String "diceStickersSlotMachine", "right_reel" A..= right_reel, "center_reel" A..= center_reel, "left_reel" A..= left_reel, "lever" A..= lever, "background" A..= background ]
 
 instance T.FromJSON DiceStickers where
@@ -61,3 +78,4 @@ instance T.FromJSON DiceStickers where
     lever <- o A..:? "lever"
     background <- o A..:? "background"
     return $ DiceStickersSlotMachine { right_reel = right_reel, center_reel = center_reel, left_reel = left_reel, lever = lever, background = background }
+ parseJSON _ = mempty

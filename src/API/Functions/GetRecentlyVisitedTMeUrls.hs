@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __referrer__ Google Play referrer to identify the user
 data GetRecentlyVisitedTMeUrls = 
 
- GetRecentlyVisitedTMeUrls { referrer :: Maybe String }  deriving (Show, Eq)
+ GetRecentlyVisitedTMeUrls { referrer :: Maybe String }  deriving (Eq)
+
+instance Show GetRecentlyVisitedTMeUrls where
+ show GetRecentlyVisitedTMeUrls { referrer=referrer } =
+  "GetRecentlyVisitedTMeUrls" ++ cc [p "referrer" referrer ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetRecentlyVisitedTMeUrls where
- toJSON (GetRecentlyVisitedTMeUrls { referrer = referrer }) =
+ toJSON GetRecentlyVisitedTMeUrls { referrer = referrer } =
   A.object [ "@type" A..= T.String "getRecentlyVisitedTMeUrls", "referrer" A..= referrer ]
 
 instance T.FromJSON GetRecentlyVisitedTMeUrls where
@@ -31,3 +45,4 @@ instance T.FromJSON GetRecentlyVisitedTMeUrls where
    parseGetRecentlyVisitedTMeUrls = A.withObject "GetRecentlyVisitedTMeUrls" $ \o -> do
     referrer <- o A..:? "referrer"
     return $ GetRecentlyVisitedTMeUrls { referrer = referrer }
+ parseJSON _ = mempty

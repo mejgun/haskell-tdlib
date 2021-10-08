@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.DraftMessage as DraftMessage
 import {-# SOURCE #-} qualified API.VoiceChat as VoiceChat
 import {-# SOURCE #-} qualified API.ChatActionBar as ChatActionBar
@@ -62,7 +63,7 @@ import {-# SOURCE #-} qualified API.ChatType as ChatType
 -- 
 -- __theme_name__ If non-empty, name of a theme, set for the chat
 -- 
--- __action_bar__ Describes actions which should be possible to do through a chat action bar; may be null
+-- __action_bar__ Describes actions which must be possible to do through a chat action bar; may be null
 -- 
 -- __voice_chat__ Contains information about voice chat of the chat
 -- 
@@ -73,10 +74,23 @@ import {-# SOURCE #-} qualified API.ChatType as ChatType
 -- __client_data__ Contains application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used
 data Chat = 
 
- Chat { client_data :: Maybe String, draft_message :: Maybe DraftMessage.DraftMessage, reply_markup_message_id :: Maybe Int, voice_chat :: Maybe VoiceChat.VoiceChat, action_bar :: Maybe ChatActionBar.ChatActionBar, theme_name :: Maybe String, message_ttl_setting :: Maybe Int, notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings, unread_mention_count :: Maybe Int, last_read_outbox_message_id :: Maybe Int, last_read_inbox_message_id :: Maybe Int, unread_count :: Maybe Int, default_disable_notification :: Maybe Bool, can_be_reported :: Maybe Bool, can_be_deleted_for_all_users :: Maybe Bool, can_be_deleted_only_for_self :: Maybe Bool, has_scheduled_messages :: Maybe Bool, is_blocked :: Maybe Bool, is_marked_as_unread :: Maybe Bool, positions :: Maybe [ChatPosition.ChatPosition], last_message :: Maybe Message.Message, permissions :: Maybe ChatPermissions.ChatPermissions, photo :: Maybe ChatPhotoInfo.ChatPhotoInfo, title :: Maybe String, _type :: Maybe ChatType.ChatType, _id :: Maybe Int }  deriving (Show, Eq)
+ Chat { client_data :: Maybe String, draft_message :: Maybe DraftMessage.DraftMessage, reply_markup_message_id :: Maybe Int, voice_chat :: Maybe VoiceChat.VoiceChat, action_bar :: Maybe ChatActionBar.ChatActionBar, theme_name :: Maybe String, message_ttl_setting :: Maybe Int, notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings, unread_mention_count :: Maybe Int, last_read_outbox_message_id :: Maybe Int, last_read_inbox_message_id :: Maybe Int, unread_count :: Maybe Int, default_disable_notification :: Maybe Bool, can_be_reported :: Maybe Bool, can_be_deleted_for_all_users :: Maybe Bool, can_be_deleted_only_for_self :: Maybe Bool, has_scheduled_messages :: Maybe Bool, is_blocked :: Maybe Bool, is_marked_as_unread :: Maybe Bool, positions :: Maybe [ChatPosition.ChatPosition], last_message :: Maybe Message.Message, permissions :: Maybe ChatPermissions.ChatPermissions, photo :: Maybe ChatPhotoInfo.ChatPhotoInfo, title :: Maybe String, _type :: Maybe ChatType.ChatType, _id :: Maybe Int }  deriving (Eq)
+
+instance Show Chat where
+ show Chat { client_data=client_data, draft_message=draft_message, reply_markup_message_id=reply_markup_message_id, voice_chat=voice_chat, action_bar=action_bar, theme_name=theme_name, message_ttl_setting=message_ttl_setting, notification_settings=notification_settings, unread_mention_count=unread_mention_count, last_read_outbox_message_id=last_read_outbox_message_id, last_read_inbox_message_id=last_read_inbox_message_id, unread_count=unread_count, default_disable_notification=default_disable_notification, can_be_reported=can_be_reported, can_be_deleted_for_all_users=can_be_deleted_for_all_users, can_be_deleted_only_for_self=can_be_deleted_only_for_self, has_scheduled_messages=has_scheduled_messages, is_blocked=is_blocked, is_marked_as_unread=is_marked_as_unread, positions=positions, last_message=last_message, permissions=permissions, photo=photo, title=title, _type=_type, _id=_id } =
+  "Chat" ++ cc [p "client_data" client_data, p "draft_message" draft_message, p "reply_markup_message_id" reply_markup_message_id, p "voice_chat" voice_chat, p "action_bar" action_bar, p "theme_name" theme_name, p "message_ttl_setting" message_ttl_setting, p "notification_settings" notification_settings, p "unread_mention_count" unread_mention_count, p "last_read_outbox_message_id" last_read_outbox_message_id, p "last_read_inbox_message_id" last_read_inbox_message_id, p "unread_count" unread_count, p "default_disable_notification" default_disable_notification, p "can_be_reported" can_be_reported, p "can_be_deleted_for_all_users" can_be_deleted_for_all_users, p "can_be_deleted_only_for_self" can_be_deleted_only_for_self, p "has_scheduled_messages" has_scheduled_messages, p "is_blocked" is_blocked, p "is_marked_as_unread" is_marked_as_unread, p "positions" positions, p "last_message" last_message, p "permissions" permissions, p "photo" photo, p "title" title, p "_type" _type, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Chat where
- toJSON (Chat { client_data = client_data, draft_message = draft_message, reply_markup_message_id = reply_markup_message_id, voice_chat = voice_chat, action_bar = action_bar, theme_name = theme_name, message_ttl_setting = message_ttl_setting, notification_settings = notification_settings, unread_mention_count = unread_mention_count, last_read_outbox_message_id = last_read_outbox_message_id, last_read_inbox_message_id = last_read_inbox_message_id, unread_count = unread_count, default_disable_notification = default_disable_notification, can_be_reported = can_be_reported, can_be_deleted_for_all_users = can_be_deleted_for_all_users, can_be_deleted_only_for_self = can_be_deleted_only_for_self, has_scheduled_messages = has_scheduled_messages, is_blocked = is_blocked, is_marked_as_unread = is_marked_as_unread, positions = positions, last_message = last_message, permissions = permissions, photo = photo, title = title, _type = _type, _id = _id }) =
+ toJSON Chat { client_data = client_data, draft_message = draft_message, reply_markup_message_id = reply_markup_message_id, voice_chat = voice_chat, action_bar = action_bar, theme_name = theme_name, message_ttl_setting = message_ttl_setting, notification_settings = notification_settings, unread_mention_count = unread_mention_count, last_read_outbox_message_id = last_read_outbox_message_id, last_read_inbox_message_id = last_read_inbox_message_id, unread_count = unread_count, default_disable_notification = default_disable_notification, can_be_reported = can_be_reported, can_be_deleted_for_all_users = can_be_deleted_for_all_users, can_be_deleted_only_for_self = can_be_deleted_only_for_self, has_scheduled_messages = has_scheduled_messages, is_blocked = is_blocked, is_marked_as_unread = is_marked_as_unread, positions = positions, last_message = last_message, permissions = permissions, photo = photo, title = title, _type = _type, _id = _id } =
   A.object [ "@type" A..= T.String "chat", "client_data" A..= client_data, "draft_message" A..= draft_message, "reply_markup_message_id" A..= reply_markup_message_id, "voice_chat" A..= voice_chat, "action_bar" A..= action_bar, "theme_name" A..= theme_name, "message_ttl_setting" A..= message_ttl_setting, "notification_settings" A..= notification_settings, "unread_mention_count" A..= unread_mention_count, "last_read_outbox_message_id" A..= last_read_outbox_message_id, "last_read_inbox_message_id" A..= last_read_inbox_message_id, "unread_count" A..= unread_count, "default_disable_notification" A..= default_disable_notification, "can_be_reported" A..= can_be_reported, "can_be_deleted_for_all_users" A..= can_be_deleted_for_all_users, "can_be_deleted_only_for_self" A..= can_be_deleted_only_for_self, "has_scheduled_messages" A..= has_scheduled_messages, "is_blocked" A..= is_blocked, "is_marked_as_unread" A..= is_marked_as_unread, "positions" A..= positions, "last_message" A..= last_message, "permissions" A..= permissions, "photo" A..= photo, "title" A..= title, "type" A..= _type, "id" A..= _id ]
 
 instance T.FromJSON Chat where
@@ -115,3 +129,4 @@ instance T.FromJSON Chat where
     _type <- o A..:? "type"
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Chat { client_data = client_data, draft_message = draft_message, reply_markup_message_id = reply_markup_message_id, voice_chat = voice_chat, action_bar = action_bar, theme_name = theme_name, message_ttl_setting = message_ttl_setting, notification_settings = notification_settings, unread_mention_count = unread_mention_count, last_read_outbox_message_id = last_read_outbox_message_id, last_read_inbox_message_id = last_read_inbox_message_id, unread_count = unread_count, default_disable_notification = default_disable_notification, can_be_reported = can_be_reported, can_be_deleted_for_all_users = can_be_deleted_for_all_users, can_be_deleted_only_for_self = can_be_deleted_only_for_self, has_scheduled_messages = has_scheduled_messages, is_blocked = is_blocked, is_marked_as_unread = is_marked_as_unread, positions = positions, last_message = last_message, permissions = permissions, photo = photo, title = title, _type = _type, _id = _id }
+ parseJSON _ = mempty

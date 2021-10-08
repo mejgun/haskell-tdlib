@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.RemoteFile as RemoteFile
 import {-# SOURCE #-} qualified API.LocalFile as LocalFile
 
@@ -24,10 +25,23 @@ import {-# SOURCE #-} qualified API.LocalFile as LocalFile
 -- __remote__ Information about the remote copy of the file
 data File = 
 
- File { remote :: Maybe RemoteFile.RemoteFile, local :: Maybe LocalFile.LocalFile, expected_size :: Maybe Int, size :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
+ File { remote :: Maybe RemoteFile.RemoteFile, local :: Maybe LocalFile.LocalFile, expected_size :: Maybe Int, size :: Maybe Int, _id :: Maybe Int }  deriving (Eq)
+
+instance Show File where
+ show File { remote=remote, local=local, expected_size=expected_size, size=size, _id=_id } =
+  "File" ++ cc [p "remote" remote, p "local" local, p "expected_size" expected_size, p "size" size, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON File where
- toJSON (File { remote = remote, local = local, expected_size = expected_size, size = size, _id = _id }) =
+ toJSON File { remote = remote, local = local, expected_size = expected_size, size = size, _id = _id } =
   A.object [ "@type" A..= T.String "file", "remote" A..= remote, "local" A..= local, "expected_size" A..= expected_size, "size" A..= size, "id" A..= _id ]
 
 instance T.FromJSON File where
@@ -45,3 +59,4 @@ instance T.FromJSON File where
     size <- mconcat [ o A..:? "size", readMaybe <$> (o A..: "size" :: T.Parser String)] :: T.Parser (Maybe Int)
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ File { remote = remote, local = local, expected_size = expected_size, size = size, _id = _id }
+ parseJSON _ = mempty

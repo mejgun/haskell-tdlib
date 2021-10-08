@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.ProxyType as ProxyType
 
 -- |
@@ -25,10 +26,23 @@ import {-# SOURCE #-} qualified API.ProxyType as ProxyType
 -- __type__ Type of the proxy
 data Proxy = 
 
- Proxy { _type :: Maybe ProxyType.ProxyType, is_enabled :: Maybe Bool, last_used_date :: Maybe Int, port :: Maybe Int, server :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
+ Proxy { _type :: Maybe ProxyType.ProxyType, is_enabled :: Maybe Bool, last_used_date :: Maybe Int, port :: Maybe Int, server :: Maybe String, _id :: Maybe Int }  deriving (Eq)
+
+instance Show Proxy where
+ show Proxy { _type=_type, is_enabled=is_enabled, last_used_date=last_used_date, port=port, server=server, _id=_id } =
+  "Proxy" ++ cc [p "_type" _type, p "is_enabled" is_enabled, p "last_used_date" last_used_date, p "port" port, p "server" server, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Proxy where
- toJSON (Proxy { _type = _type, is_enabled = is_enabled, last_used_date = last_used_date, port = port, server = server, _id = _id }) =
+ toJSON Proxy { _type = _type, is_enabled = is_enabled, last_used_date = last_used_date, port = port, server = server, _id = _id } =
   A.object [ "@type" A..= T.String "proxy", "type" A..= _type, "is_enabled" A..= is_enabled, "last_used_date" A..= last_used_date, "port" A..= port, "server" A..= server, "id" A..= _id ]
 
 instance T.FromJSON Proxy where
@@ -47,3 +61,4 @@ instance T.FromJSON Proxy where
     server <- o A..:? "server"
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Proxy { _type = _type, is_enabled = is_enabled, last_used_date = last_used_date, port = port, server = server, _id = _id }
+ parseJSON _ = mempty

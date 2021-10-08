@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.BotCommands as BotCommands
 import {-# SOURCE #-} qualified API.ChatInviteLink as ChatInviteLink
 import {-# SOURCE #-} qualified API.ChatMember as ChatMember
@@ -28,10 +29,23 @@ import {-# SOURCE #-} qualified API.ChatPhoto as ChatPhoto
 -- __bot_commands__ List of commands of bots in the group
 data BasicGroupFullInfo = 
 
- BasicGroupFullInfo { bot_commands :: Maybe [BotCommands.BotCommands], invite_link :: Maybe ChatInviteLink.ChatInviteLink, members :: Maybe [ChatMember.ChatMember], creator_user_id :: Maybe Int, description :: Maybe String, photo :: Maybe ChatPhoto.ChatPhoto }  deriving (Show, Eq)
+ BasicGroupFullInfo { bot_commands :: Maybe [BotCommands.BotCommands], invite_link :: Maybe ChatInviteLink.ChatInviteLink, members :: Maybe [ChatMember.ChatMember], creator_user_id :: Maybe Int, description :: Maybe String, photo :: Maybe ChatPhoto.ChatPhoto }  deriving (Eq)
+
+instance Show BasicGroupFullInfo where
+ show BasicGroupFullInfo { bot_commands=bot_commands, invite_link=invite_link, members=members, creator_user_id=creator_user_id, description=description, photo=photo } =
+  "BasicGroupFullInfo" ++ cc [p "bot_commands" bot_commands, p "invite_link" invite_link, p "members" members, p "creator_user_id" creator_user_id, p "description" description, p "photo" photo ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON BasicGroupFullInfo where
- toJSON (BasicGroupFullInfo { bot_commands = bot_commands, invite_link = invite_link, members = members, creator_user_id = creator_user_id, description = description, photo = photo }) =
+ toJSON BasicGroupFullInfo { bot_commands = bot_commands, invite_link = invite_link, members = members, creator_user_id = creator_user_id, description = description, photo = photo } =
   A.object [ "@type" A..= T.String "basicGroupFullInfo", "bot_commands" A..= bot_commands, "invite_link" A..= invite_link, "members" A..= members, "creator_user_id" A..= creator_user_id, "description" A..= description, "photo" A..= photo ]
 
 instance T.FromJSON BasicGroupFullInfo where
@@ -50,3 +64,4 @@ instance T.FromJSON BasicGroupFullInfo where
     description <- o A..:? "description"
     photo <- o A..:? "photo"
     return $ BasicGroupFullInfo { bot_commands = bot_commands, invite_link = invite_link, members = members, creator_user_id = creator_user_id, description = description, photo = photo }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __is_dark__ Pass true if a dark theme is used by the application
 data GetChatStatistics = 
 
- GetChatStatistics { is_dark :: Maybe Bool, chat_id :: Maybe Int }  deriving (Show, Eq)
+ GetChatStatistics { is_dark :: Maybe Bool, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show GetChatStatistics where
+ show GetChatStatistics { is_dark=is_dark, chat_id=chat_id } =
+  "GetChatStatistics" ++ cc [p "is_dark" is_dark, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetChatStatistics where
- toJSON (GetChatStatistics { is_dark = is_dark, chat_id = chat_id }) =
+ toJSON GetChatStatistics { is_dark = is_dark, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "getChatStatistics", "is_dark" A..= is_dark, "chat_id" A..= chat_id ]
 
 instance T.FromJSON GetChatStatistics where
@@ -34,3 +48,4 @@ instance T.FromJSON GetChatStatistics where
     is_dark <- o A..:? "is_dark"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetChatStatistics { is_dark = is_dark, chat_id = chat_id }
+ parseJSON _ = mempty

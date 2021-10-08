@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Document as Document
 
 -- |
@@ -98,9 +99,9 @@ data RichText =
  -- 
  -- __document__ The image represented as a document. The image can be in GIF, JPEG or PNG format
  -- 
- -- __width__ Width of a bounding box in which the image should be shown; 0 if unknown
+ -- __width__ Width of a bounding box in which the image must be shown; 0 if unknown
  -- 
- -- __height__ Height of a bounding box in which the image should be shown; 0 if unknown
+ -- __height__ Height of a bounding box in which the image must be shown; 0 if unknown
  RichTextIcon { height :: Maybe Int, width :: Maybe Int, document :: Maybe Document.Document }  |
  -- |
  -- 
@@ -124,7 +125,7 @@ data RichText =
  -- 
  -- __text__ The link text
  -- 
- -- __anchor_name__ The anchor name. If the name is empty, the link should bring back to top
+ -- __anchor_name__ The anchor name. If the name is empty, the link must bring back to top
  -- 
  -- __url__ An HTTP URL, opening the anchor
  RichTextAnchorLink { url :: Maybe String, anchor_name :: Maybe String, text :: Maybe RichText }  |
@@ -133,58 +134,119 @@ data RichText =
  -- A concatenation of rich texts 
  -- 
  -- __texts__ Texts
- RichTexts { texts :: Maybe [RichText] }  deriving (Show, Eq)
+ RichTexts { texts :: Maybe [RichText] }  deriving (Eq)
+
+instance Show RichText where
+ show RichTextPlain { _text=_text } =
+  "RichTextPlain" ++ cc [p "_text" _text ]
+
+ show RichTextBold { text=text } =
+  "RichTextBold" ++ cc [p "text" text ]
+
+ show RichTextItalic { text=text } =
+  "RichTextItalic" ++ cc [p "text" text ]
+
+ show RichTextUnderline { text=text } =
+  "RichTextUnderline" ++ cc [p "text" text ]
+
+ show RichTextStrikethrough { text=text } =
+  "RichTextStrikethrough" ++ cc [p "text" text ]
+
+ show RichTextFixed { text=text } =
+  "RichTextFixed" ++ cc [p "text" text ]
+
+ show RichTextUrl { is_cached=is_cached, url=url, text=text } =
+  "RichTextUrl" ++ cc [p "is_cached" is_cached, p "url" url, p "text" text ]
+
+ show RichTextEmailAddress { email_address=email_address, text=text } =
+  "RichTextEmailAddress" ++ cc [p "email_address" email_address, p "text" text ]
+
+ show RichTextSubscript { text=text } =
+  "RichTextSubscript" ++ cc [p "text" text ]
+
+ show RichTextSuperscript { text=text } =
+  "RichTextSuperscript" ++ cc [p "text" text ]
+
+ show RichTextMarked { text=text } =
+  "RichTextMarked" ++ cc [p "text" text ]
+
+ show RichTextPhoneNumber { phone_number=phone_number, text=text } =
+  "RichTextPhoneNumber" ++ cc [p "phone_number" phone_number, p "text" text ]
+
+ show RichTextIcon { height=height, width=width, document=document } =
+  "RichTextIcon" ++ cc [p "height" height, p "width" width, p "document" document ]
+
+ show RichTextReference { url=url, anchor_name=anchor_name, text=text } =
+  "RichTextReference" ++ cc [p "url" url, p "anchor_name" anchor_name, p "text" text ]
+
+ show RichTextAnchor { name=name } =
+  "RichTextAnchor" ++ cc [p "name" name ]
+
+ show RichTextAnchorLink { url=url, anchor_name=anchor_name, text=text } =
+  "RichTextAnchorLink" ++ cc [p "url" url, p "anchor_name" anchor_name, p "text" text ]
+
+ show RichTexts { texts=texts } =
+  "RichTexts" ++ cc [p "texts" texts ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON RichText where
- toJSON (RichTextPlain { _text = _text }) =
+ toJSON RichTextPlain { _text = _text } =
   A.object [ "@type" A..= T.String "richTextPlain", "text" A..= _text ]
 
- toJSON (RichTextBold { text = text }) =
+ toJSON RichTextBold { text = text } =
   A.object [ "@type" A..= T.String "richTextBold", "text" A..= text ]
 
- toJSON (RichTextItalic { text = text }) =
+ toJSON RichTextItalic { text = text } =
   A.object [ "@type" A..= T.String "richTextItalic", "text" A..= text ]
 
- toJSON (RichTextUnderline { text = text }) =
+ toJSON RichTextUnderline { text = text } =
   A.object [ "@type" A..= T.String "richTextUnderline", "text" A..= text ]
 
- toJSON (RichTextStrikethrough { text = text }) =
+ toJSON RichTextStrikethrough { text = text } =
   A.object [ "@type" A..= T.String "richTextStrikethrough", "text" A..= text ]
 
- toJSON (RichTextFixed { text = text }) =
+ toJSON RichTextFixed { text = text } =
   A.object [ "@type" A..= T.String "richTextFixed", "text" A..= text ]
 
- toJSON (RichTextUrl { is_cached = is_cached, url = url, text = text }) =
+ toJSON RichTextUrl { is_cached = is_cached, url = url, text = text } =
   A.object [ "@type" A..= T.String "richTextUrl", "is_cached" A..= is_cached, "url" A..= url, "text" A..= text ]
 
- toJSON (RichTextEmailAddress { email_address = email_address, text = text }) =
+ toJSON RichTextEmailAddress { email_address = email_address, text = text } =
   A.object [ "@type" A..= T.String "richTextEmailAddress", "email_address" A..= email_address, "text" A..= text ]
 
- toJSON (RichTextSubscript { text = text }) =
+ toJSON RichTextSubscript { text = text } =
   A.object [ "@type" A..= T.String "richTextSubscript", "text" A..= text ]
 
- toJSON (RichTextSuperscript { text = text }) =
+ toJSON RichTextSuperscript { text = text } =
   A.object [ "@type" A..= T.String "richTextSuperscript", "text" A..= text ]
 
- toJSON (RichTextMarked { text = text }) =
+ toJSON RichTextMarked { text = text } =
   A.object [ "@type" A..= T.String "richTextMarked", "text" A..= text ]
 
- toJSON (RichTextPhoneNumber { phone_number = phone_number, text = text }) =
+ toJSON RichTextPhoneNumber { phone_number = phone_number, text = text } =
   A.object [ "@type" A..= T.String "richTextPhoneNumber", "phone_number" A..= phone_number, "text" A..= text ]
 
- toJSON (RichTextIcon { height = height, width = width, document = document }) =
+ toJSON RichTextIcon { height = height, width = width, document = document } =
   A.object [ "@type" A..= T.String "richTextIcon", "height" A..= height, "width" A..= width, "document" A..= document ]
 
- toJSON (RichTextReference { url = url, anchor_name = anchor_name, text = text }) =
+ toJSON RichTextReference { url = url, anchor_name = anchor_name, text = text } =
   A.object [ "@type" A..= T.String "richTextReference", "url" A..= url, "anchor_name" A..= anchor_name, "text" A..= text ]
 
- toJSON (RichTextAnchor { name = name }) =
+ toJSON RichTextAnchor { name = name } =
   A.object [ "@type" A..= T.String "richTextAnchor", "name" A..= name ]
 
- toJSON (RichTextAnchorLink { url = url, anchor_name = anchor_name, text = text }) =
+ toJSON RichTextAnchorLink { url = url, anchor_name = anchor_name, text = text } =
   A.object [ "@type" A..= T.String "richTextAnchorLink", "url" A..= url, "anchor_name" A..= anchor_name, "text" A..= text ]
 
- toJSON (RichTexts { texts = texts }) =
+ toJSON RichTexts { texts = texts } =
   A.object [ "@type" A..= T.String "richTexts", "texts" A..= texts ]
 
 instance T.FromJSON RichText where
@@ -304,3 +366,4 @@ instance T.FromJSON RichText where
    parseRichTexts = A.withObject "RichTexts" $ \o -> do
     texts <- o A..:? "texts"
     return $ RichTexts { texts = texts }
+ parseJSON _ = mempty

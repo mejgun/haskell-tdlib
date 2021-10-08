@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __bank_card_number__ The bank card number
 data GetBankCardInfo = 
 
- GetBankCardInfo { bank_card_number :: Maybe String }  deriving (Show, Eq)
+ GetBankCardInfo { bank_card_number :: Maybe String }  deriving (Eq)
+
+instance Show GetBankCardInfo where
+ show GetBankCardInfo { bank_card_number=bank_card_number } =
+  "GetBankCardInfo" ++ cc [p "bank_card_number" bank_card_number ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetBankCardInfo where
- toJSON (GetBankCardInfo { bank_card_number = bank_card_number }) =
+ toJSON GetBankCardInfo { bank_card_number = bank_card_number } =
   A.object [ "@type" A..= T.String "getBankCardInfo", "bank_card_number" A..= bank_card_number ]
 
 instance T.FromJSON GetBankCardInfo where
@@ -31,3 +45,4 @@ instance T.FromJSON GetBankCardInfo where
    parseGetBankCardInfo = A.withObject "GetBankCardInfo" $ \o -> do
     bank_card_number <- o A..:? "bank_card_number"
     return $ GetBankCardInfo { bank_card_number = bank_card_number }
+ parseJSON _ = mempty

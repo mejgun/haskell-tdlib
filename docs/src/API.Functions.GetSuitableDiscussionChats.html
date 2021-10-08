@@ -9,10 +9,10 @@
 </span><span id="line-9"></span><span>
 </span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
 </span><span id="line-11"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Basic group chats need to be first upgraded to supergroups before they can be set as a discussion group</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group. To set a returned supergroup as a discussion group, access to its old messages must be enabled using toggleSupergroupIsAllHistoryAvailable first</span><span>
 </span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="GetSuitableDiscussionChats"><span class="annot"><a href="API.Functions.GetSuitableDiscussionChats.html#GetSuitableDiscussionChats"><span class="hs-identifier hs-var">GetSuitableDiscussionChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span> </span><span id="GetSuitableDiscussionChats"><span class="annot"><a href="API.Functions.GetSuitableDiscussionChats.html#GetSuitableDiscussionChats"><span class="hs-identifier hs-var">GetSuitableDiscussionChats</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679425900"><span id="local-6989586621679425902"><span id="local-6989586621679425904"><span class="annot"><span class="annottext">Int -&gt; GetSuitableDiscussionChats -&gt; ShowS
+</span><span id="line-15"></span><span> </span><span id="GetSuitableDiscussionChats"><span class="annot"><a href="API.Functions.GetSuitableDiscussionChats.html#GetSuitableDiscussionChats"><span class="hs-identifier hs-var">GetSuitableDiscussionChats</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679455035"><span id="local-6989586621679455037"><span id="local-6989586621679455039"><span class="annot"><span class="annottext">Int -&gt; GetSuitableDiscussionChats -&gt; ShowS
 [GetSuitableDiscussionChats] -&gt; ShowS
 GetSuitableDiscussionChats -&gt; String
 (Int -&gt; GetSuitableDiscussionChats -&gt; ShowS)
@@ -27,7 +27,7 @@ show :: GetSuitableDiscussionChats -&gt; String
 $cshow :: GetSuitableDiscussionChats -&gt; String
 showsPrec :: Int -&gt; GetSuitableDiscussionChats -&gt; ShowS
 $cshowsPrec :: Int -&gt; GetSuitableDiscussionChats -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679425895"><span id="local-6989586621679425897"><span class="annot"><span class="annottext">GetSuitableDiscussionChats -&gt; GetSuitableDiscussionChats -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679455030"><span id="local-6989586621679455032"><span class="annot"><span class="annottext">GetSuitableDiscussionChats -&gt; GetSuitableDiscussionChats -&gt; Bool
 (GetSuitableDiscussionChats -&gt; GetSuitableDiscussionChats -&gt; Bool)
 -&gt; (GetSuitableDiscussionChats
     -&gt; GetSuitableDiscussionChats -&gt; Bool)
@@ -39,53 +39,64 @@ $c/= :: GetSuitableDiscussionChats -&gt; GetSuitableDiscussionChats -&gt; Bool
 $c== :: GetSuitableDiscussionChats -&gt; GetSuitableDiscussionChats -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679425887"><span id="local-6989586621679425889"><span id="local-6989586621679425891"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetSuitableDiscussionChats.html#GetSuitableDiscussionChats"><span class="hs-identifier hs-type">GetSuitableDiscussionChats</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679425885"><span class="annot"><span class="annottext">toJSON :: GetSuitableDiscussionChats -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.GetSuitableDiscussionChats.html#GetSuitableDiscussionChats"><span class="hs-identifier hs-type">GetSuitableDiscussionChats</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679455022"><span id="local-6989586621679455024"><span id="local-6989586621679455026"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetSuitableDiscussionChats.html#GetSuitableDiscussionChats"><span class="hs-identifier hs-type">GetSuitableDiscussionChats</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679455020"><span class="annot"><span class="annottext">toJSON :: GetSuitableDiscussionChats -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.GetSuitableDiscussionChats.html#GetSuitableDiscussionChats"><span class="hs-identifier hs-type">GetSuitableDiscussionChats</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-19"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;getSuitableDiscussionChats&quot;</span></span><span> </span><span class="hs-special">]</span><span>
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;getSuitableDiscussionChats&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679425878"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetSuitableDiscussionChats.html#GetSuitableDiscussionChats"><span class="hs-identifier hs-type">GetSuitableDiscussionChats</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span> </span><span id="local-6989586621679425876"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetSuitableDiscussionChats
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679425874"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679425874"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679425872"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679425872"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-23"></span><span>  </span><span id="local-6989586621679425871"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679425871"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679425872"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679455013"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetSuitableDiscussionChats.html#GetSuitableDiscussionChats"><span class="hs-identifier hs-type">GetSuitableDiscussionChats</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span> </span><span id="local-6989586621679455011"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetSuitableDiscussionChats
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679455009"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679455009"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679455007"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679455007"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-23"></span><span>  </span><span id="local-6989586621679455006"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679455006"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679455007"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-24"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679425871"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-25"></span><span>   </span><span class="hs-string">&quot;getSuitableDiscussionChats&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetSuitableDiscussionChats
-</span><a href="#local-6989586621679425869"><span class="hs-identifier hs-var">parseGetSuitableDiscussionChats</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679425874"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-26"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetSuitableDiscussionChats
+</span><a href="#local-6989586621679455006"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-25"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;getSuitableDiscussionChats&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetSuitableDiscussionChats
+</span><a href="#local-6989586621679455004"><span class="hs-identifier hs-var">parseGetSuitableDiscussionChats</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679455009"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-26"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetSuitableDiscussionChats
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-27"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-28"></span><span>   </span><span class="annot"><a href="#local-6989586621679425869"><span class="hs-identifier hs-type">parseGetSuitableDiscussionChats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetSuitableDiscussionChats.html#GetSuitableDiscussionChats"><span class="hs-identifier hs-type">GetSuitableDiscussionChats</span></a></span><span>
-</span><span id="line-29"></span><span>   </span><span id="local-6989586621679425869"><span class="annot"><span class="annottext">parseGetSuitableDiscussionChats :: Value -&gt; Parser GetSuitableDiscussionChats
-</span><a href="#local-6989586621679425869"><span class="hs-identifier hs-var hs-var">parseGetSuitableDiscussionChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-28"></span><span>   </span><span class="annot"><a href="#local-6989586621679455004"><span class="hs-identifier hs-type">parseGetSuitableDiscussionChats</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetSuitableDiscussionChats.html#GetSuitableDiscussionChats"><span class="hs-identifier hs-type">GetSuitableDiscussionChats</span></a></span><span>
+</span><span id="line-29"></span><span>   </span><span id="local-6989586621679455004"><span class="annot"><span class="annottext">parseGetSuitableDiscussionChats :: Value -&gt; Parser GetSuitableDiscussionChats
+</span><a href="#local-6989586621679455004"><span class="hs-identifier hs-var hs-var">parseGetSuitableDiscussionChats</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GetSuitableDiscussionChats)
 -&gt; Value
 -&gt; Parser GetSuitableDiscussionChats
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;GetSuitableDiscussionChats&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser GetSuitableDiscussionChats)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;GetSuitableDiscussionChats&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser GetSuitableDiscussionChats)
  -&gt; Value -&gt; Parser GetSuitableDiscussionChats)
 -&gt; (Object -&gt; Parser GetSuitableDiscussionChats)
 -&gt; Value
 -&gt; Parser GetSuitableDiscussionChats
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679425867"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679425867"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679455002"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679455002"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-30"></span><span>    </span><span class="annot"><span class="annottext">GetSuitableDiscussionChats -&gt; Parser GetSuitableDiscussionChats
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(GetSuitableDiscussionChats -&gt; Parser GetSuitableDiscussionChats)
 -&gt; GetSuitableDiscussionChats -&gt; Parser GetSuitableDiscussionChats
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">GetSuitableDiscussionChats :: GetSuitableDiscussionChats
-</span><a href="API.Functions.GetSuitableDiscussionChats.html#GetSuitableDiscussionChats"><span class="hs-identifier hs-type hs-type">GetSuitableDiscussionChats</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="API.Functions.GetSuitableDiscussionChats.html#GetSuitableDiscussionChats"><span class="hs-identifier hs-type">GetSuitableDiscussionChats</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-31"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser GetSuitableDiscussionChats
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-32"></span></pre></body></html>

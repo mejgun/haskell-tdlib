@@ -22,7 +22,7 @@
 </span><span id="line-22"></span><span> </span><span id="SetAuthenticationPhoneNumber"><span class="annot"><a href="API.Functions.SetAuthenticationPhoneNumber.html#SetAuthenticationPhoneNumber"><span class="hs-identifier hs-var">SetAuthenticationPhoneNumber</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="settings"><span class="annot"><span class="annottext">SetAuthenticationPhoneNumber
 -&gt; Maybe PhoneNumberAuthenticationSettings
 </span><a href="API.Functions.SetAuthenticationPhoneNumber.html#settings"><span class="hs-identifier hs-var hs-var">settings</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.PhoneNumberAuthenticationSettings.html#PhoneNumberAuthenticationSettings"><span class="hs-identifier hs-type">PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings</span></a></span><span class="hs-special">,</span><span> </span><span id="phone_number"><span class="annot"><span class="annottext">SetAuthenticationPhoneNumber -&gt; Maybe String
-</span><a href="API.Functions.SetAuthenticationPhoneNumber.html#phone_number"><span class="hs-identifier hs-var hs-var">phone_number</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679446603"><span id="local-6989586621679446605"><span id="local-6989586621679446607"><span class="annot"><span class="annottext">Int -&gt; SetAuthenticationPhoneNumber -&gt; ShowS
+</span><a href="API.Functions.SetAuthenticationPhoneNumber.html#phone_number"><span class="hs-identifier hs-var hs-var">phone_number</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679480406"><span id="local-6989586621679480408"><span id="local-6989586621679480410"><span class="annot"><span class="annottext">Int -&gt; SetAuthenticationPhoneNumber -&gt; ShowS
 [SetAuthenticationPhoneNumber] -&gt; ShowS
 SetAuthenticationPhoneNumber -&gt; String
 (Int -&gt; SetAuthenticationPhoneNumber -&gt; ShowS)
@@ -37,7 +37,7 @@ show :: SetAuthenticationPhoneNumber -&gt; String
 $cshow :: SetAuthenticationPhoneNumber -&gt; String
 showsPrec :: Int -&gt; SetAuthenticationPhoneNumber -&gt; ShowS
 $cshowsPrec :: Int -&gt; SetAuthenticationPhoneNumber -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679446598"><span id="local-6989586621679446600"><span class="annot"><span class="annottext">SetAuthenticationPhoneNumber
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679480401"><span id="local-6989586621679480403"><span class="annot"><span class="annottext">SetAuthenticationPhoneNumber
 -&gt; SetAuthenticationPhoneNumber -&gt; Bool
 (SetAuthenticationPhoneNumber
  -&gt; SetAuthenticationPhoneNumber -&gt; Bool)
@@ -55,70 +55,80 @@ $c== :: SetAuthenticationPhoneNumber
 -&gt; SetAuthenticationPhoneNumber -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446590"><span id="local-6989586621679446592"><span id="local-6989586621679446594"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetAuthenticationPhoneNumber.html#SetAuthenticationPhoneNumber"><span class="hs-identifier hs-type">SetAuthenticationPhoneNumber</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span> </span><span id="local-6989586621679446588"><span class="annot"><span class="annottext">toJSON :: SetAuthenticationPhoneNumber -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.SetAuthenticationPhoneNumber.html#SetAuthenticationPhoneNumber"><span class="hs-identifier hs-type">SetAuthenticationPhoneNumber</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">settings :: SetAuthenticationPhoneNumber
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679480393"><span id="local-6989586621679480395"><span id="local-6989586621679480397"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetAuthenticationPhoneNumber.html#SetAuthenticationPhoneNumber"><span class="hs-identifier hs-type">SetAuthenticationPhoneNumber</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span> </span><span id="local-6989586621679480391"><span class="annot"><span class="annottext">toJSON :: SetAuthenticationPhoneNumber -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.SetAuthenticationPhoneNumber.html#SetAuthenticationPhoneNumber"><span class="hs-identifier hs-type">SetAuthenticationPhoneNumber</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">settings :: SetAuthenticationPhoneNumber
 -&gt; Maybe PhoneNumberAuthenticationSettings
-</span><a href="API.Functions.SetAuthenticationPhoneNumber.html#settings"><span class="hs-identifier hs-var">settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446586"><span class="annot"><span class="annottext">Maybe PhoneNumberAuthenticationSettings
-</span><a href="#local-6989586621679446586"><span class="hs-identifier hs-var">settings</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">phone_number :: SetAuthenticationPhoneNumber -&gt; Maybe String
-</span><a href="API.Functions.SetAuthenticationPhoneNumber.html#phone_number"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679446585"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679446585"><span class="hs-identifier hs-var">phone_number</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.SetAuthenticationPhoneNumber.html#settings"><span class="hs-identifier hs-var">settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480389"><span class="annot"><span class="annottext">Maybe PhoneNumberAuthenticationSettings
+</span><a href="#local-6989586621679480389"><span class="hs-identifier hs-var">settings</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">phone_number :: SetAuthenticationPhoneNumber -&gt; Maybe String
+</span><a href="API.Functions.SetAuthenticationPhoneNumber.html#phone_number"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679480388"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679480388"><span class="hs-identifier hs-var">phone_number</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;setAuthenticationPhoneNumber&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;settings&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe PhoneNumberAuthenticationSettings -&gt; Pair
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;setAuthenticationPhoneNumber&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;settings&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe PhoneNumberAuthenticationSettings -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe PhoneNumberAuthenticationSettings
-</span><a href="#local-6989586621679446586"><span class="hs-identifier hs-var">settings</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;phone_number&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
+</span><a href="#local-6989586621679480389"><span class="hs-identifier hs-var">settings</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;phone_number&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679446585"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679480388"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679446579"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetAuthenticationPhoneNumber.html#SetAuthenticationPhoneNumber"><span class="hs-identifier hs-type">SetAuthenticationPhoneNumber</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span> </span><span id="local-6989586621679446577"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetAuthenticationPhoneNumber
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679446575"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679446575"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679446573"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679446573"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-30"></span><span>  </span><span id="local-6989586621679446572"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679446572"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679446573"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679480382"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetAuthenticationPhoneNumber.html#SetAuthenticationPhoneNumber"><span class="hs-identifier hs-type">SetAuthenticationPhoneNumber</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span> </span><span id="local-6989586621679480380"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetAuthenticationPhoneNumber
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679480378"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679480378"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679480376"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480376"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-30"></span><span>  </span><span id="local-6989586621679480375"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679480375"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480376"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-31"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679446572"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-32"></span><span>   </span><span class="hs-string">&quot;setAuthenticationPhoneNumber&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SetAuthenticationPhoneNumber
-</span><a href="#local-6989586621679446570"><span class="hs-identifier hs-var">parseSetAuthenticationPhoneNumber</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679446575"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-33"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SetAuthenticationPhoneNumber
+</span><a href="#local-6989586621679480375"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-32"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;setAuthenticationPhoneNumber&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SetAuthenticationPhoneNumber
+</span><a href="#local-6989586621679480373"><span class="hs-identifier hs-var">parseSetAuthenticationPhoneNumber</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679480378"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-33"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SetAuthenticationPhoneNumber
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-34"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-35"></span><span>   </span><span class="annot"><a href="#local-6989586621679446570"><span class="hs-identifier hs-type">parseSetAuthenticationPhoneNumber</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetAuthenticationPhoneNumber.html#SetAuthenticationPhoneNumber"><span class="hs-identifier hs-type">SetAuthenticationPhoneNumber</span></a></span><span>
-</span><span id="line-36"></span><span>   </span><span id="local-6989586621679446570"><span class="annot"><span class="annottext">parseSetAuthenticationPhoneNumber :: Value -&gt; Parser SetAuthenticationPhoneNumber
-</span><a href="#local-6989586621679446570"><span class="hs-identifier hs-var hs-var">parseSetAuthenticationPhoneNumber</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-35"></span><span>   </span><span class="annot"><a href="#local-6989586621679480373"><span class="hs-identifier hs-type">parseSetAuthenticationPhoneNumber</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetAuthenticationPhoneNumber.html#SetAuthenticationPhoneNumber"><span class="hs-identifier hs-type">SetAuthenticationPhoneNumber</span></a></span><span>
+</span><span id="line-36"></span><span>   </span><span id="local-6989586621679480373"><span class="annot"><span class="annottext">parseSetAuthenticationPhoneNumber :: Value -&gt; Parser SetAuthenticationPhoneNumber
+</span><a href="#local-6989586621679480373"><span class="hs-identifier hs-var hs-var">parseSetAuthenticationPhoneNumber</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SetAuthenticationPhoneNumber)
 -&gt; Value
 -&gt; Parser SetAuthenticationPhoneNumber
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;SetAuthenticationPhoneNumber&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser SetAuthenticationPhoneNumber)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SetAuthenticationPhoneNumber&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser SetAuthenticationPhoneNumber)
  -&gt; Value -&gt; Parser SetAuthenticationPhoneNumber)
 -&gt; (Object -&gt; Parser SetAuthenticationPhoneNumber)
 -&gt; Value
 -&gt; Parser SetAuthenticationPhoneNumber
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679446568"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679446568"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-37"></span><span>    </span><span id="local-6989586621679446567"><span class="annot"><span class="annottext">Maybe PhoneNumberAuthenticationSettings
-</span><a href="#local-6989586621679446567"><span class="hs-identifier hs-var">settings</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679446568"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe PhoneNumberAuthenticationSettings)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679480371"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480371"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-37"></span><span>    </span><span id="local-6989586621679480370"><span class="annot"><span class="annottext">Maybe PhoneNumberAuthenticationSettings
+</span><a href="#local-6989586621679480370"><span class="hs-identifier hs-var">settings</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480371"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe PhoneNumberAuthenticationSettings)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;settings&quot;</span></span><span>
-</span><span id="line-38"></span><span>    </span><span id="local-6989586621679446565"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679446565"><span class="hs-identifier hs-var">phone_number</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679446568"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;settings&quot;</span></span><span>
+</span><span id="line-38"></span><span>    </span><span id="local-6989586621679480368"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679480368"><span class="hs-identifier hs-var">phone_number</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679480371"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;phone_number&quot;</span></span><span>
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;phone_number&quot;</span></span><span>
 </span><span id="line-39"></span><span>    </span><span class="annot"><span class="annottext">SetAuthenticationPhoneNumber -&gt; Parser SetAuthenticationPhoneNumber
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SetAuthenticationPhoneNumber
@@ -128,8 +138,13 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SetAuthenticationPhoneNumber :: Maybe PhoneNumberAuthenticationSettings
 -&gt; Maybe String -&gt; SetAuthenticationPhoneNumber
-</span><a href="API.Functions.SetAuthenticationPhoneNumber.html#SetAuthenticationPhoneNumber"><span class="hs-identifier hs-type hs-type">SetAuthenticationPhoneNumber</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">settings :: Maybe PhoneNumberAuthenticationSettings
+</span><a href="API.Functions.SetAuthenticationPhoneNumber.html#SetAuthenticationPhoneNumber"><span class="hs-identifier hs-type">SetAuthenticationPhoneNumber</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">settings :: Maybe PhoneNumberAuthenticationSettings
 </span><a href="API.Functions.SetAuthenticationPhoneNumber.html#settings"><span class="hs-identifier hs-var">settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe PhoneNumberAuthenticationSettings
-</span><a href="#local-6989586621679446567"><span class="hs-identifier hs-var">settings</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">phone_number :: Maybe String
+</span><a href="#local-6989586621679480370"><span class="hs-identifier hs-var">settings</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">phone_number :: Maybe String
 </span><a href="API.Functions.SetAuthenticationPhoneNumber.html#phone_number"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679446565"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679480368"><span class="hs-identifier hs-var">phone_number</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-40"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser SetAuthenticationPhoneNumber
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-41"></span></pre></body></html>

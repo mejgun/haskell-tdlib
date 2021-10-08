@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.PassportRequiredElement as PassportRequiredElement
 
 -- |
@@ -19,10 +20,23 @@ import {-# SOURCE #-} qualified API.PassportRequiredElement as PassportRequiredE
 -- __privacy_policy_url__ URL for the privacy policy of the service; may be empty
 data PassportAuthorizationForm = 
 
- PassportAuthorizationForm { privacy_policy_url :: Maybe String, required_elements :: Maybe [PassportRequiredElement.PassportRequiredElement], _id :: Maybe Int }  deriving (Show, Eq)
+ PassportAuthorizationForm { privacy_policy_url :: Maybe String, required_elements :: Maybe [PassportRequiredElement.PassportRequiredElement], _id :: Maybe Int }  deriving (Eq)
+
+instance Show PassportAuthorizationForm where
+ show PassportAuthorizationForm { privacy_policy_url=privacy_policy_url, required_elements=required_elements, _id=_id } =
+  "PassportAuthorizationForm" ++ cc [p "privacy_policy_url" privacy_policy_url, p "required_elements" required_elements, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON PassportAuthorizationForm where
- toJSON (PassportAuthorizationForm { privacy_policy_url = privacy_policy_url, required_elements = required_elements, _id = _id }) =
+ toJSON PassportAuthorizationForm { privacy_policy_url = privacy_policy_url, required_elements = required_elements, _id = _id } =
   A.object [ "@type" A..= T.String "passportAuthorizationForm", "privacy_policy_url" A..= privacy_policy_url, "required_elements" A..= required_elements, "id" A..= _id ]
 
 instance T.FromJSON PassportAuthorizationForm where
@@ -38,3 +52,4 @@ instance T.FromJSON PassportAuthorizationForm where
     required_elements <- o A..:? "required_elements"
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ PassportAuthorizationForm { privacy_policy_url = privacy_policy_url, required_elements = required_elements, _id = _id }
+ parseJSON _ = mempty

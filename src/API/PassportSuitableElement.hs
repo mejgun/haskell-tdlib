@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 
 -- |
@@ -21,10 +22,23 @@ import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 -- __is_native_name_required__ True, if personal details must include the user's name in the language of their country of residence
 data PassportSuitableElement = 
 
- PassportSuitableElement { is_native_name_required :: Maybe Bool, is_translation_required :: Maybe Bool, is_selfie_required :: Maybe Bool, _type :: Maybe PassportElementType.PassportElementType }  deriving (Show, Eq)
+ PassportSuitableElement { is_native_name_required :: Maybe Bool, is_translation_required :: Maybe Bool, is_selfie_required :: Maybe Bool, _type :: Maybe PassportElementType.PassportElementType }  deriving (Eq)
+
+instance Show PassportSuitableElement where
+ show PassportSuitableElement { is_native_name_required=is_native_name_required, is_translation_required=is_translation_required, is_selfie_required=is_selfie_required, _type=_type } =
+  "PassportSuitableElement" ++ cc [p "is_native_name_required" is_native_name_required, p "is_translation_required" is_translation_required, p "is_selfie_required" is_selfie_required, p "_type" _type ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON PassportSuitableElement where
- toJSON (PassportSuitableElement { is_native_name_required = is_native_name_required, is_translation_required = is_translation_required, is_selfie_required = is_selfie_required, _type = _type }) =
+ toJSON PassportSuitableElement { is_native_name_required = is_native_name_required, is_translation_required = is_translation_required, is_selfie_required = is_selfie_required, _type = _type } =
   A.object [ "@type" A..= T.String "passportSuitableElement", "is_native_name_required" A..= is_native_name_required, "is_translation_required" A..= is_translation_required, "is_selfie_required" A..= is_selfie_required, "type" A..= _type ]
 
 instance T.FromJSON PassportSuitableElement where
@@ -41,3 +55,4 @@ instance T.FromJSON PassportSuitableElement where
     is_selfie_required <- o A..:? "is_selfie_required"
     _type <- o A..:? "type"
     return $ PassportSuitableElement { is_native_name_required = is_native_name_required, is_translation_required = is_translation_required, is_selfie_required = is_selfie_required, _type = _type }
+ parseJSON _ = mempty

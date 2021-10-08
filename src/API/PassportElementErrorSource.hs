@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -52,34 +53,71 @@ data PassportElementErrorSource =
  -- |
  -- 
  -- The list of attached files contains an error. The error will be considered resolved when the list of files changes
- PassportElementErrorSourceFiles deriving (Show, Eq)
+ PassportElementErrorSourceFiles deriving (Eq)
+
+instance Show PassportElementErrorSource where
+ show PassportElementErrorSourceUnspecified {  } =
+  "PassportElementErrorSourceUnspecified" ++ cc [ ]
+
+ show PassportElementErrorSourceDataField { field_name=field_name } =
+  "PassportElementErrorSourceDataField" ++ cc [p "field_name" field_name ]
+
+ show PassportElementErrorSourceFrontSide {  } =
+  "PassportElementErrorSourceFrontSide" ++ cc [ ]
+
+ show PassportElementErrorSourceReverseSide {  } =
+  "PassportElementErrorSourceReverseSide" ++ cc [ ]
+
+ show PassportElementErrorSourceSelfie {  } =
+  "PassportElementErrorSourceSelfie" ++ cc [ ]
+
+ show PassportElementErrorSourceTranslationFile { file_index=file_index } =
+  "PassportElementErrorSourceTranslationFile" ++ cc [p "file_index" file_index ]
+
+ show PassportElementErrorSourceTranslationFiles {  } =
+  "PassportElementErrorSourceTranslationFiles" ++ cc [ ]
+
+ show PassportElementErrorSourceFile { file_index=file_index } =
+  "PassportElementErrorSourceFile" ++ cc [p "file_index" file_index ]
+
+ show PassportElementErrorSourceFiles {  } =
+  "PassportElementErrorSourceFiles" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON PassportElementErrorSource where
- toJSON (PassportElementErrorSourceUnspecified {  }) =
+ toJSON PassportElementErrorSourceUnspecified {  } =
   A.object [ "@type" A..= T.String "passportElementErrorSourceUnspecified" ]
 
- toJSON (PassportElementErrorSourceDataField { field_name = field_name }) =
+ toJSON PassportElementErrorSourceDataField { field_name = field_name } =
   A.object [ "@type" A..= T.String "passportElementErrorSourceDataField", "field_name" A..= field_name ]
 
- toJSON (PassportElementErrorSourceFrontSide {  }) =
+ toJSON PassportElementErrorSourceFrontSide {  } =
   A.object [ "@type" A..= T.String "passportElementErrorSourceFrontSide" ]
 
- toJSON (PassportElementErrorSourceReverseSide {  }) =
+ toJSON PassportElementErrorSourceReverseSide {  } =
   A.object [ "@type" A..= T.String "passportElementErrorSourceReverseSide" ]
 
- toJSON (PassportElementErrorSourceSelfie {  }) =
+ toJSON PassportElementErrorSourceSelfie {  } =
   A.object [ "@type" A..= T.String "passportElementErrorSourceSelfie" ]
 
- toJSON (PassportElementErrorSourceTranslationFile { file_index = file_index }) =
+ toJSON PassportElementErrorSourceTranslationFile { file_index = file_index } =
   A.object [ "@type" A..= T.String "passportElementErrorSourceTranslationFile", "file_index" A..= file_index ]
 
- toJSON (PassportElementErrorSourceTranslationFiles {  }) =
+ toJSON PassportElementErrorSourceTranslationFiles {  } =
   A.object [ "@type" A..= T.String "passportElementErrorSourceTranslationFiles" ]
 
- toJSON (PassportElementErrorSourceFile { file_index = file_index }) =
+ toJSON PassportElementErrorSourceFile { file_index = file_index } =
   A.object [ "@type" A..= T.String "passportElementErrorSourceFile", "file_index" A..= file_index ]
 
- toJSON (PassportElementErrorSourceFiles {  }) =
+ toJSON PassportElementErrorSourceFiles {  } =
   A.object [ "@type" A..= T.String "passportElementErrorSourceFiles" ]
 
 instance T.FromJSON PassportElementErrorSource where
@@ -135,3 +173,4 @@ instance T.FromJSON PassportElementErrorSource where
    parsePassportElementErrorSourceFiles :: A.Value -> T.Parser PassportElementErrorSource
    parsePassportElementErrorSourceFiles = A.withObject "PassportElementErrorSourceFiles" $ \o -> do
     return $ PassportElementErrorSourceFiles {  }
+ parseJSON _ = mempty

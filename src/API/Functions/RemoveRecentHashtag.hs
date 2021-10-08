@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __hashtag__ Hashtag to delete
 data RemoveRecentHashtag = 
 
- RemoveRecentHashtag { hashtag :: Maybe String }  deriving (Show, Eq)
+ RemoveRecentHashtag { hashtag :: Maybe String }  deriving (Eq)
+
+instance Show RemoveRecentHashtag where
+ show RemoveRecentHashtag { hashtag=hashtag } =
+  "RemoveRecentHashtag" ++ cc [p "hashtag" hashtag ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON RemoveRecentHashtag where
- toJSON (RemoveRecentHashtag { hashtag = hashtag }) =
+ toJSON RemoveRecentHashtag { hashtag = hashtag } =
   A.object [ "@type" A..= T.String "removeRecentHashtag", "hashtag" A..= hashtag ]
 
 instance T.FromJSON RemoveRecentHashtag where
@@ -31,3 +45,4 @@ instance T.FromJSON RemoveRecentHashtag where
    parseRemoveRecentHashtag = A.withObject "RemoveRecentHashtag" $ \o -> do
     hashtag <- o A..:? "hashtag"
     return $ RemoveRecentHashtag { hashtag = hashtag }
+ parseJSON _ = mempty

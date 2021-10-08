@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.AnimatedChatPhoto as AnimatedChatPhoto
 import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
@@ -25,10 +26,23 @@ import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 -- __animation__ Animated variant of the photo in MPEG4 format; may be null
 data ChatPhoto = 
 
- ChatPhoto { animation :: Maybe AnimatedChatPhoto.AnimatedChatPhoto, sizes :: Maybe [PhotoSize.PhotoSize], minithumbnail :: Maybe Minithumbnail.Minithumbnail, added_date :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
+ ChatPhoto { animation :: Maybe AnimatedChatPhoto.AnimatedChatPhoto, sizes :: Maybe [PhotoSize.PhotoSize], minithumbnail :: Maybe Minithumbnail.Minithumbnail, added_date :: Maybe Int, _id :: Maybe Int }  deriving (Eq)
+
+instance Show ChatPhoto where
+ show ChatPhoto { animation=animation, sizes=sizes, minithumbnail=minithumbnail, added_date=added_date, _id=_id } =
+  "ChatPhoto" ++ cc [p "animation" animation, p "sizes" sizes, p "minithumbnail" minithumbnail, p "added_date" added_date, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatPhoto where
- toJSON (ChatPhoto { animation = animation, sizes = sizes, minithumbnail = minithumbnail, added_date = added_date, _id = _id }) =
+ toJSON ChatPhoto { animation = animation, sizes = sizes, minithumbnail = minithumbnail, added_date = added_date, _id = _id } =
   A.object [ "@type" A..= T.String "chatPhoto", "animation" A..= animation, "sizes" A..= sizes, "minithumbnail" A..= minithumbnail, "added_date" A..= added_date, "id" A..= _id ]
 
 instance T.FromJSON ChatPhoto where
@@ -46,3 +60,4 @@ instance T.FromJSON ChatPhoto where
     added_date <- mconcat [ o A..:? "added_date", readMaybe <$> (o A..: "added_date" :: T.Parser String)] :: T.Parser (Maybe Int)
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatPhoto { animation = animation, sizes = sizes, minithumbnail = minithumbnail, added_date = added_date, _id = _id }
+ parseJSON _ = mempty

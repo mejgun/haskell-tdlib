@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __importer_count__ The number of users that imported the corresponding contact; 0 for already registered users or if unavailable
 data ImportedContacts = 
 
- ImportedContacts { importer_count :: Maybe [Int], user_ids :: Maybe [Int] }  deriving (Show, Eq)
+ ImportedContacts { importer_count :: Maybe [Int], user_ids :: Maybe [Int] }  deriving (Eq)
+
+instance Show ImportedContacts where
+ show ImportedContacts { importer_count=importer_count, user_ids=user_ids } =
+  "ImportedContacts" ++ cc [p "importer_count" importer_count, p "user_ids" user_ids ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ImportedContacts where
- toJSON (ImportedContacts { importer_count = importer_count, user_ids = user_ids }) =
+ toJSON ImportedContacts { importer_count = importer_count, user_ids = user_ids } =
   A.object [ "@type" A..= T.String "importedContacts", "importer_count" A..= importer_count, "user_ids" A..= user_ids ]
 
 instance T.FromJSON ImportedContacts where
@@ -34,3 +48,4 @@ instance T.FromJSON ImportedContacts where
     importer_count <- o A..:? "importer_count"
     user_ids <- o A..:? "user_ids"
     return $ ImportedContacts { importer_count = importer_count, user_ids = user_ids }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -31,24 +32,46 @@ data UserType =
  -- 
  -- __inline_query_placeholder__ Placeholder for inline queries (displayed on the application input field)
  -- 
- -- __need_location__ True, if the location of the user should be sent with every inline query to this bot
+ -- __need_location__ True, if the location of the user is expected to be sent with every inline query to this bot
  UserTypeBot { need_location :: Maybe Bool, inline_query_placeholder :: Maybe String, is_inline :: Maybe Bool, can_read_all_group_messages :: Maybe Bool, can_join_groups :: Maybe Bool }  |
  -- |
  -- 
  -- No information on the user besides the user identifier is available, yet this user has not been deleted. This object is extremely rare and must be handled like a deleted user. It is not possible to perform any actions on users of this type
- UserTypeUnknown deriving (Show, Eq)
+ UserTypeUnknown deriving (Eq)
+
+instance Show UserType where
+ show UserTypeRegular {  } =
+  "UserTypeRegular" ++ cc [ ]
+
+ show UserTypeDeleted {  } =
+  "UserTypeDeleted" ++ cc [ ]
+
+ show UserTypeBot { need_location=need_location, inline_query_placeholder=inline_query_placeholder, is_inline=is_inline, can_read_all_group_messages=can_read_all_group_messages, can_join_groups=can_join_groups } =
+  "UserTypeBot" ++ cc [p "need_location" need_location, p "inline_query_placeholder" inline_query_placeholder, p "is_inline" is_inline, p "can_read_all_group_messages" can_read_all_group_messages, p "can_join_groups" can_join_groups ]
+
+ show UserTypeUnknown {  } =
+  "UserTypeUnknown" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON UserType where
- toJSON (UserTypeRegular {  }) =
+ toJSON UserTypeRegular {  } =
   A.object [ "@type" A..= T.String "userTypeRegular" ]
 
- toJSON (UserTypeDeleted {  }) =
+ toJSON UserTypeDeleted {  } =
   A.object [ "@type" A..= T.String "userTypeDeleted" ]
 
- toJSON (UserTypeBot { need_location = need_location, inline_query_placeholder = inline_query_placeholder, is_inline = is_inline, can_read_all_group_messages = can_read_all_group_messages, can_join_groups = can_join_groups }) =
+ toJSON UserTypeBot { need_location = need_location, inline_query_placeholder = inline_query_placeholder, is_inline = is_inline, can_read_all_group_messages = can_read_all_group_messages, can_join_groups = can_join_groups } =
   A.object [ "@type" A..= T.String "userTypeBot", "need_location" A..= need_location, "inline_query_placeholder" A..= inline_query_placeholder, "is_inline" A..= is_inline, "can_read_all_group_messages" A..= can_read_all_group_messages, "can_join_groups" A..= can_join_groups ]
 
- toJSON (UserTypeUnknown {  }) =
+ toJSON UserTypeUnknown {  } =
   A.object [ "@type" A..= T.String "userTypeUnknown" ]
 
 instance T.FromJSON UserType where
@@ -81,3 +104,4 @@ instance T.FromJSON UserType where
    parseUserTypeUnknown :: A.Value -> T.Parser UserType
    parseUserTypeUnknown = A.withObject "UserTypeUnknown" $ \o -> do
     return $ UserTypeUnknown {  }
+ parseJSON _ = mempty

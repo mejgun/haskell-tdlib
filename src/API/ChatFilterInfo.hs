@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -18,10 +19,23 @@ import qualified Data.Aeson.Types as T
 -- __icon_name__ The icon name for short filter representation. One of "All", "Unread", "Unmuted", "Bots", "Channels", "Groups", "Private", "Custom", "Setup", "Cat", "Crown", "Favorite", "Flower", "Game", "Home", "Love", "Mask", "Party", "Sport", "Study", "Trade", "Travel", "Work"
 data ChatFilterInfo = 
 
- ChatFilterInfo { icon_name :: Maybe String, title :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
+ ChatFilterInfo { icon_name :: Maybe String, title :: Maybe String, _id :: Maybe Int }  deriving (Eq)
+
+instance Show ChatFilterInfo where
+ show ChatFilterInfo { icon_name=icon_name, title=title, _id=_id } =
+  "ChatFilterInfo" ++ cc [p "icon_name" icon_name, p "title" title, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatFilterInfo where
- toJSON (ChatFilterInfo { icon_name = icon_name, title = title, _id = _id }) =
+ toJSON ChatFilterInfo { icon_name = icon_name, title = title, _id = _id } =
   A.object [ "@type" A..= T.String "chatFilterInfo", "icon_name" A..= icon_name, "title" A..= title, "id" A..= _id ]
 
 instance T.FromJSON ChatFilterInfo where
@@ -37,3 +51,4 @@ instance T.FromJSON ChatFilterInfo where
     title <- o A..:? "title"
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatFilterInfo { icon_name = icon_name, title = title, _id = _id }
+ parseJSON _ = mempty

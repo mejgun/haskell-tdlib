@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -18,13 +19,29 @@ data PublicChatType =
  -- |
  -- 
  -- The chat is public, because it is a location-based supergroup
- PublicChatTypeIsLocationBased deriving (Show, Eq)
+ PublicChatTypeIsLocationBased deriving (Eq)
+
+instance Show PublicChatType where
+ show PublicChatTypeHasUsername {  } =
+  "PublicChatTypeHasUsername" ++ cc [ ]
+
+ show PublicChatTypeIsLocationBased {  } =
+  "PublicChatTypeIsLocationBased" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON PublicChatType where
- toJSON (PublicChatTypeHasUsername {  }) =
+ toJSON PublicChatTypeHasUsername {  } =
   A.object [ "@type" A..= T.String "publicChatTypeHasUsername" ]
 
- toJSON (PublicChatTypeIsLocationBased {  }) =
+ toJSON PublicChatTypeIsLocationBased {  } =
   A.object [ "@type" A..= T.String "publicChatTypeIsLocationBased" ]
 
 instance T.FromJSON PublicChatType where
@@ -42,3 +59,4 @@ instance T.FromJSON PublicChatType where
    parsePublicChatTypeIsLocationBased :: A.Value -> T.Parser PublicChatType
    parsePublicChatTypeIsLocationBased = A.withObject "PublicChatTypeIsLocationBased" $ \o -> do
     return $ PublicChatTypeIsLocationBased {  }
+ parseJSON _ = mempty

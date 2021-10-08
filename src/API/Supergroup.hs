@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.ChatMemberStatus as ChatMemberStatus
 
 -- |
@@ -26,7 +27,7 @@ import {-# SOURCE #-} qualified API.ChatMemberStatus as ChatMemberStatus
 -- 
 -- __has_location__ True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup
 -- 
--- __sign_messages__ True, if messages sent to the channel should contain information about the sender. This field is only applicable to channels
+-- __sign_messages__ True, if messages sent to the channel need to contain information about the sender. This field is only applicable to channels
 -- 
 -- __is_slow_mode_enabled__ True, if the slow mode is enabled in the supergroup
 -- 
@@ -43,10 +44,23 @@ import {-# SOURCE #-} qualified API.ChatMemberStatus as ChatMemberStatus
 -- __is_fake__ True, if many users reported this supergroup or channel as a fake account
 data Supergroup = 
 
- Supergroup { is_fake :: Maybe Bool, is_scam :: Maybe Bool, restriction_reason :: Maybe String, is_verified :: Maybe Bool, is_broadcast_group :: Maybe Bool, is_channel :: Maybe Bool, is_slow_mode_enabled :: Maybe Bool, sign_messages :: Maybe Bool, has_location :: Maybe Bool, has_linked_chat :: Maybe Bool, member_count :: Maybe Int, status :: Maybe ChatMemberStatus.ChatMemberStatus, date :: Maybe Int, username :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
+ Supergroup { is_fake :: Maybe Bool, is_scam :: Maybe Bool, restriction_reason :: Maybe String, is_verified :: Maybe Bool, is_broadcast_group :: Maybe Bool, is_channel :: Maybe Bool, is_slow_mode_enabled :: Maybe Bool, sign_messages :: Maybe Bool, has_location :: Maybe Bool, has_linked_chat :: Maybe Bool, member_count :: Maybe Int, status :: Maybe ChatMemberStatus.ChatMemberStatus, date :: Maybe Int, username :: Maybe String, _id :: Maybe Int }  deriving (Eq)
+
+instance Show Supergroup where
+ show Supergroup { is_fake=is_fake, is_scam=is_scam, restriction_reason=restriction_reason, is_verified=is_verified, is_broadcast_group=is_broadcast_group, is_channel=is_channel, is_slow_mode_enabled=is_slow_mode_enabled, sign_messages=sign_messages, has_location=has_location, has_linked_chat=has_linked_chat, member_count=member_count, status=status, date=date, username=username, _id=_id } =
+  "Supergroup" ++ cc [p "is_fake" is_fake, p "is_scam" is_scam, p "restriction_reason" restriction_reason, p "is_verified" is_verified, p "is_broadcast_group" is_broadcast_group, p "is_channel" is_channel, p "is_slow_mode_enabled" is_slow_mode_enabled, p "sign_messages" sign_messages, p "has_location" has_location, p "has_linked_chat" has_linked_chat, p "member_count" member_count, p "status" status, p "date" date, p "username" username, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Supergroup where
- toJSON (Supergroup { is_fake = is_fake, is_scam = is_scam, restriction_reason = restriction_reason, is_verified = is_verified, is_broadcast_group = is_broadcast_group, is_channel = is_channel, is_slow_mode_enabled = is_slow_mode_enabled, sign_messages = sign_messages, has_location = has_location, has_linked_chat = has_linked_chat, member_count = member_count, status = status, date = date, username = username, _id = _id }) =
+ toJSON Supergroup { is_fake = is_fake, is_scam = is_scam, restriction_reason = restriction_reason, is_verified = is_verified, is_broadcast_group = is_broadcast_group, is_channel = is_channel, is_slow_mode_enabled = is_slow_mode_enabled, sign_messages = sign_messages, has_location = has_location, has_linked_chat = has_linked_chat, member_count = member_count, status = status, date = date, username = username, _id = _id } =
   A.object [ "@type" A..= T.String "supergroup", "is_fake" A..= is_fake, "is_scam" A..= is_scam, "restriction_reason" A..= restriction_reason, "is_verified" A..= is_verified, "is_broadcast_group" A..= is_broadcast_group, "is_channel" A..= is_channel, "is_slow_mode_enabled" A..= is_slow_mode_enabled, "sign_messages" A..= sign_messages, "has_location" A..= has_location, "has_linked_chat" A..= has_linked_chat, "member_count" A..= member_count, "status" A..= status, "date" A..= date, "username" A..= username, "id" A..= _id ]
 
 instance T.FromJSON Supergroup where
@@ -74,3 +88,4 @@ instance T.FromJSON Supergroup where
     username <- o A..:? "username"
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Supergroup { is_fake = is_fake, is_scam = is_scam, restriction_reason = restriction_reason, is_verified = is_verified, is_broadcast_group = is_broadcast_group, is_channel = is_channel, is_slow_mode_enabled = is_slow_mode_enabled, sign_messages = sign_messages, has_location = has_location, has_linked_chat = has_linked_chat, member_count = member_count, status = status, date = date, username = username, _id = _id }
+ parseJSON _ = mempty

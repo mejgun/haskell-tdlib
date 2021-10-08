@@ -16,7 +16,7 @@
 </span><span id="line-16"></span><span class="hs-keyword">data</span><span> </span><span id="AddNetworkStatistics"><span class="annot"><a href="API.Functions.AddNetworkStatistics.html#AddNetworkStatistics"><span class="hs-identifier hs-var">AddNetworkStatistics</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-17"></span><span>
 </span><span id="line-18"></span><span> </span><span id="AddNetworkStatistics"><span class="annot"><a href="API.Functions.AddNetworkStatistics.html#AddNetworkStatistics"><span class="hs-identifier hs-var">AddNetworkStatistics</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="entry"><span class="annot"><span class="annottext">AddNetworkStatistics -&gt; Maybe NetworkStatisticsEntry
-</span><a href="API.Functions.AddNetworkStatistics.html#entry"><span class="hs-identifier hs-var hs-var">entry</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.NetworkStatisticsEntry.html#NetworkStatisticsEntry"><span class="hs-identifier hs-type">NetworkStatisticsEntry.NetworkStatisticsEntry</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679443197"><span id="local-6989586621679443199"><span id="local-6989586621679443201"><span class="annot"><span class="annottext">Int -&gt; AddNetworkStatistics -&gt; ShowS
+</span><a href="API.Functions.AddNetworkStatistics.html#entry"><span class="hs-identifier hs-var hs-var">entry</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.NetworkStatisticsEntry.html#NetworkStatisticsEntry"><span class="hs-identifier hs-type">NetworkStatisticsEntry.NetworkStatisticsEntry</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679476916"><span id="local-6989586621679476918"><span id="local-6989586621679476920"><span class="annot"><span class="annottext">Int -&gt; AddNetworkStatistics -&gt; ShowS
 [AddNetworkStatistics] -&gt; ShowS
 AddNetworkStatistics -&gt; String
 (Int -&gt; AddNetworkStatistics -&gt; ShowS)
@@ -31,7 +31,7 @@ show :: AddNetworkStatistics -&gt; String
 $cshow :: AddNetworkStatistics -&gt; String
 showsPrec :: Int -&gt; AddNetworkStatistics -&gt; ShowS
 $cshowsPrec :: Int -&gt; AddNetworkStatistics -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679443192"><span id="local-6989586621679443194"><span class="annot"><span class="annottext">AddNetworkStatistics -&gt; AddNetworkStatistics -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679476911"><span id="local-6989586621679476913"><span class="annot"><span class="annottext">AddNetworkStatistics -&gt; AddNetworkStatistics -&gt; Bool
 (AddNetworkStatistics -&gt; AddNetworkStatistics -&gt; Bool)
 -&gt; (AddNetworkStatistics -&gt; AddNetworkStatistics -&gt; Bool)
 -&gt; Eq AddNetworkStatistics
@@ -42,65 +42,78 @@ $c/= :: AddNetworkStatistics -&gt; AddNetworkStatistics -&gt; Bool
 $c== :: AddNetworkStatistics -&gt; AddNetworkStatistics -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-19"></span><span>
-</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679443184"><span id="local-6989586621679443186"><span id="local-6989586621679443188"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AddNetworkStatistics.html#AddNetworkStatistics"><span class="hs-identifier hs-type">AddNetworkStatistics</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-21"></span><span> </span><span id="local-6989586621679443182"><span class="annot"><span class="annottext">toJSON :: AddNetworkStatistics -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.AddNetworkStatistics.html#AddNetworkStatistics"><span class="hs-identifier hs-type">AddNetworkStatistics</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">entry :: AddNetworkStatistics -&gt; Maybe NetworkStatisticsEntry
-</span><a href="API.Functions.AddNetworkStatistics.html#entry"><span class="hs-identifier hs-var">entry</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443180"><span class="annot"><span class="annottext">Maybe NetworkStatisticsEntry
-</span><a href="#local-6989586621679443180"><span class="hs-identifier hs-var">entry</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679476903"><span id="local-6989586621679476905"><span id="local-6989586621679476907"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AddNetworkStatistics.html#AddNetworkStatistics"><span class="hs-identifier hs-type">AddNetworkStatistics</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span> </span><span id="local-6989586621679476901"><span class="annot"><span class="annottext">toJSON :: AddNetworkStatistics -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.AddNetworkStatistics.html#AddNetworkStatistics"><span class="hs-identifier hs-type">AddNetworkStatistics</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">entry :: AddNetworkStatistics -&gt; Maybe NetworkStatisticsEntry
+</span><a href="API.Functions.AddNetworkStatistics.html#entry"><span class="hs-identifier hs-var">entry</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679476899"><span class="annot"><span class="annottext">Maybe NetworkStatisticsEntry
+</span><a href="#local-6989586621679476899"><span class="hs-identifier hs-var">entry</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-22"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;addNetworkStatistics&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;entry&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe NetworkStatisticsEntry -&gt; Pair
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;addNetworkStatistics&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;entry&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe NetworkStatisticsEntry -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe NetworkStatisticsEntry
-</span><a href="#local-6989586621679443180"><span class="hs-identifier hs-var">entry</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679476899"><span class="hs-identifier hs-var">entry</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679443174"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AddNetworkStatistics.html#AddNetworkStatistics"><span class="hs-identifier hs-type">AddNetworkStatistics</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span> </span><span id="local-6989586621679443172"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AddNetworkStatistics
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679443170"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679443170"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679443168"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679443168"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-26"></span><span>  </span><span id="local-6989586621679443167"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679443167"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443168"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679476893"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.AddNetworkStatistics.html#AddNetworkStatistics"><span class="hs-identifier hs-type">AddNetworkStatistics</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span> </span><span id="local-6989586621679476891"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser AddNetworkStatistics
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679476889"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679476889"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679476887"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679476887"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-26"></span><span>  </span><span id="local-6989586621679476886"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679476886"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679476887"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-27"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679443167"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-28"></span><span>   </span><span class="hs-string">&quot;addNetworkStatistics&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AddNetworkStatistics
-</span><a href="#local-6989586621679443165"><span class="hs-identifier hs-var">parseAddNetworkStatistics</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679443170"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-29"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser AddNetworkStatistics
+</span><a href="#local-6989586621679476886"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-28"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;addNetworkStatistics&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser AddNetworkStatistics
+</span><a href="#local-6989586621679476884"><span class="hs-identifier hs-var">parseAddNetworkStatistics</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679476889"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-29"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser AddNetworkStatistics
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-30"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-31"></span><span>   </span><span class="annot"><a href="#local-6989586621679443165"><span class="hs-identifier hs-type">parseAddNetworkStatistics</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.AddNetworkStatistics.html#AddNetworkStatistics"><span class="hs-identifier hs-type">AddNetworkStatistics</span></a></span><span>
-</span><span id="line-32"></span><span>   </span><span id="local-6989586621679443165"><span class="annot"><span class="annottext">parseAddNetworkStatistics :: Value -&gt; Parser AddNetworkStatistics
-</span><a href="#local-6989586621679443165"><span class="hs-identifier hs-var hs-var">parseAddNetworkStatistics</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-31"></span><span>   </span><span class="annot"><a href="#local-6989586621679476884"><span class="hs-identifier hs-type">parseAddNetworkStatistics</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.AddNetworkStatistics.html#AddNetworkStatistics"><span class="hs-identifier hs-type">AddNetworkStatistics</span></a></span><span>
+</span><span id="line-32"></span><span>   </span><span id="local-6989586621679476884"><span class="annot"><span class="annottext">parseAddNetworkStatistics :: Value -&gt; Parser AddNetworkStatistics
+</span><a href="#local-6989586621679476884"><span class="hs-identifier hs-var hs-var">parseAddNetworkStatistics</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser AddNetworkStatistics)
 -&gt; Value
 -&gt; Parser AddNetworkStatistics
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;AddNetworkStatistics&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser AddNetworkStatistics)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;AddNetworkStatistics&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser AddNetworkStatistics)
  -&gt; Value -&gt; Parser AddNetworkStatistics)
 -&gt; (Object -&gt; Parser AddNetworkStatistics)
 -&gt; Value
 -&gt; Parser AddNetworkStatistics
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679443163"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679443163"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-33"></span><span>    </span><span id="local-6989586621679443162"><span class="annot"><span class="annottext">Maybe NetworkStatisticsEntry
-</span><a href="#local-6989586621679443162"><span class="hs-identifier hs-var">entry</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443163"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe NetworkStatisticsEntry)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679476882"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679476882"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-33"></span><span>    </span><span id="local-6989586621679476881"><span class="annot"><span class="annottext">Maybe NetworkStatisticsEntry
+</span><a href="#local-6989586621679476881"><span class="hs-identifier hs-var">entry</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679476882"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe NetworkStatisticsEntry)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;entry&quot;</span></span><span>
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;entry&quot;</span></span><span>
 </span><span id="line-34"></span><span>    </span><span class="annot"><span class="annottext">AddNetworkStatistics -&gt; Parser AddNetworkStatistics
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(AddNetworkStatistics -&gt; Parser AddNetworkStatistics)
 -&gt; AddNetworkStatistics -&gt; Parser AddNetworkStatistics
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">AddNetworkStatistics :: Maybe NetworkStatisticsEntry -&gt; AddNetworkStatistics
-</span><a href="API.Functions.AddNetworkStatistics.html#AddNetworkStatistics"><span class="hs-identifier hs-type hs-type">AddNetworkStatistics</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">entry :: Maybe NetworkStatisticsEntry
+</span><a href="API.Functions.AddNetworkStatistics.html#AddNetworkStatistics"><span class="hs-identifier hs-type">AddNetworkStatistics</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">entry :: Maybe NetworkStatisticsEntry
 </span><a href="API.Functions.AddNetworkStatistics.html#entry"><span class="hs-identifier hs-var">entry</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe NetworkStatisticsEntry
-</span><a href="#local-6989586621679443162"><span class="hs-identifier hs-var">entry</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679476881"><span class="hs-identifier hs-var">entry</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-35"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser AddNetworkStatistics
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-36"></span></pre></body></html>

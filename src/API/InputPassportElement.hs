@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.PersonalDetails as PersonalDetails
 import {-# SOURCE #-} qualified API.InputIdentityDocument as InputIdentityDocument
 import {-# SOURCE #-} qualified API.Address as Address
@@ -92,46 +93,95 @@ data InputPassportElement =
  -- A Telegram Passport element to be saved containing the user's email address 
  -- 
  -- __email_address__ The email address to be saved
- InputPassportElementEmailAddress { email_address :: Maybe String }  deriving (Show, Eq)
+ InputPassportElementEmailAddress { email_address :: Maybe String }  deriving (Eq)
+
+instance Show InputPassportElement where
+ show InputPassportElementPersonalDetails { personal_details=personal_details } =
+  "InputPassportElementPersonalDetails" ++ cc [p "personal_details" personal_details ]
+
+ show InputPassportElementPassport { passport=passport } =
+  "InputPassportElementPassport" ++ cc [p "passport" passport ]
+
+ show InputPassportElementDriverLicense { driver_license=driver_license } =
+  "InputPassportElementDriverLicense" ++ cc [p "driver_license" driver_license ]
+
+ show InputPassportElementIdentityCard { identity_card=identity_card } =
+  "InputPassportElementIdentityCard" ++ cc [p "identity_card" identity_card ]
+
+ show InputPassportElementInternalPassport { internal_passport=internal_passport } =
+  "InputPassportElementInternalPassport" ++ cc [p "internal_passport" internal_passport ]
+
+ show InputPassportElementAddress { address=address } =
+  "InputPassportElementAddress" ++ cc [p "address" address ]
+
+ show InputPassportElementUtilityBill { utility_bill=utility_bill } =
+  "InputPassportElementUtilityBill" ++ cc [p "utility_bill" utility_bill ]
+
+ show InputPassportElementBankStatement { bank_statement=bank_statement } =
+  "InputPassportElementBankStatement" ++ cc [p "bank_statement" bank_statement ]
+
+ show InputPassportElementRentalAgreement { rental_agreement=rental_agreement } =
+  "InputPassportElementRentalAgreement" ++ cc [p "rental_agreement" rental_agreement ]
+
+ show InputPassportElementPassportRegistration { passport_registration=passport_registration } =
+  "InputPassportElementPassportRegistration" ++ cc [p "passport_registration" passport_registration ]
+
+ show InputPassportElementTemporaryRegistration { temporary_registration=temporary_registration } =
+  "InputPassportElementTemporaryRegistration" ++ cc [p "temporary_registration" temporary_registration ]
+
+ show InputPassportElementPhoneNumber { phone_number=phone_number } =
+  "InputPassportElementPhoneNumber" ++ cc [p "phone_number" phone_number ]
+
+ show InputPassportElementEmailAddress { email_address=email_address } =
+  "InputPassportElementEmailAddress" ++ cc [p "email_address" email_address ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON InputPassportElement where
- toJSON (InputPassportElementPersonalDetails { personal_details = personal_details }) =
+ toJSON InputPassportElementPersonalDetails { personal_details = personal_details } =
   A.object [ "@type" A..= T.String "inputPassportElementPersonalDetails", "personal_details" A..= personal_details ]
 
- toJSON (InputPassportElementPassport { passport = passport }) =
+ toJSON InputPassportElementPassport { passport = passport } =
   A.object [ "@type" A..= T.String "inputPassportElementPassport", "passport" A..= passport ]
 
- toJSON (InputPassportElementDriverLicense { driver_license = driver_license }) =
+ toJSON InputPassportElementDriverLicense { driver_license = driver_license } =
   A.object [ "@type" A..= T.String "inputPassportElementDriverLicense", "driver_license" A..= driver_license ]
 
- toJSON (InputPassportElementIdentityCard { identity_card = identity_card }) =
+ toJSON InputPassportElementIdentityCard { identity_card = identity_card } =
   A.object [ "@type" A..= T.String "inputPassportElementIdentityCard", "identity_card" A..= identity_card ]
 
- toJSON (InputPassportElementInternalPassport { internal_passport = internal_passport }) =
+ toJSON InputPassportElementInternalPassport { internal_passport = internal_passport } =
   A.object [ "@type" A..= T.String "inputPassportElementInternalPassport", "internal_passport" A..= internal_passport ]
 
- toJSON (InputPassportElementAddress { address = address }) =
+ toJSON InputPassportElementAddress { address = address } =
   A.object [ "@type" A..= T.String "inputPassportElementAddress", "address" A..= address ]
 
- toJSON (InputPassportElementUtilityBill { utility_bill = utility_bill }) =
+ toJSON InputPassportElementUtilityBill { utility_bill = utility_bill } =
   A.object [ "@type" A..= T.String "inputPassportElementUtilityBill", "utility_bill" A..= utility_bill ]
 
- toJSON (InputPassportElementBankStatement { bank_statement = bank_statement }) =
+ toJSON InputPassportElementBankStatement { bank_statement = bank_statement } =
   A.object [ "@type" A..= T.String "inputPassportElementBankStatement", "bank_statement" A..= bank_statement ]
 
- toJSON (InputPassportElementRentalAgreement { rental_agreement = rental_agreement }) =
+ toJSON InputPassportElementRentalAgreement { rental_agreement = rental_agreement } =
   A.object [ "@type" A..= T.String "inputPassportElementRentalAgreement", "rental_agreement" A..= rental_agreement ]
 
- toJSON (InputPassportElementPassportRegistration { passport_registration = passport_registration }) =
+ toJSON InputPassportElementPassportRegistration { passport_registration = passport_registration } =
   A.object [ "@type" A..= T.String "inputPassportElementPassportRegistration", "passport_registration" A..= passport_registration ]
 
- toJSON (InputPassportElementTemporaryRegistration { temporary_registration = temporary_registration }) =
+ toJSON InputPassportElementTemporaryRegistration { temporary_registration = temporary_registration } =
   A.object [ "@type" A..= T.String "inputPassportElementTemporaryRegistration", "temporary_registration" A..= temporary_registration ]
 
- toJSON (InputPassportElementPhoneNumber { phone_number = phone_number }) =
+ toJSON InputPassportElementPhoneNumber { phone_number = phone_number } =
   A.object [ "@type" A..= T.String "inputPassportElementPhoneNumber", "phone_number" A..= phone_number ]
 
- toJSON (InputPassportElementEmailAddress { email_address = email_address }) =
+ toJSON InputPassportElementEmailAddress { email_address = email_address } =
   A.object [ "@type" A..= T.String "inputPassportElementEmailAddress", "email_address" A..= email_address ]
 
 instance T.FromJSON InputPassportElement where
@@ -217,3 +267,4 @@ instance T.FromJSON InputPassportElement where
    parseInputPassportElementEmailAddress = A.withObject "InputPassportElementEmailAddress" $ \o -> do
     email_address <- o A..:? "email_address"
     return $ InputPassportElementEmailAddress { email_address = email_address }
+ parseJSON _ = mempty

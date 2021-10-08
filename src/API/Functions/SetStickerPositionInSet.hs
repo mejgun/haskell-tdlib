@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 -- |
@@ -17,10 +18,23 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- __position__ New position of the sticker in the set, zero-based
 data SetStickerPositionInSet = 
 
- SetStickerPositionInSet { position :: Maybe Int, sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
+ SetStickerPositionInSet { position :: Maybe Int, sticker :: Maybe InputFile.InputFile }  deriving (Eq)
+
+instance Show SetStickerPositionInSet where
+ show SetStickerPositionInSet { position=position, sticker=sticker } =
+  "SetStickerPositionInSet" ++ cc [p "position" position, p "sticker" sticker ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SetStickerPositionInSet where
- toJSON (SetStickerPositionInSet { position = position, sticker = sticker }) =
+ toJSON SetStickerPositionInSet { position = position, sticker = sticker } =
   A.object [ "@type" A..= T.String "setStickerPositionInSet", "position" A..= position, "sticker" A..= sticker ]
 
 instance T.FromJSON SetStickerPositionInSet where
@@ -35,3 +49,4 @@ instance T.FromJSON SetStickerPositionInSet where
     position <- mconcat [ o A..:? "position", readMaybe <$> (o A..: "position" :: T.Parser String)] :: T.Parser (Maybe Int)
     sticker <- o A..:? "sticker"
     return $ SetStickerPositionInSet { position = position, sticker = sticker }
+ parseJSON _ = mempty

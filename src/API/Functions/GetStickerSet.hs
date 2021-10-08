@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __set_id__ Identifier of the sticker set
 data GetStickerSet = 
 
- GetStickerSet { set_id :: Maybe Int }  deriving (Show, Eq)
+ GetStickerSet { set_id :: Maybe Int }  deriving (Eq)
+
+instance Show GetStickerSet where
+ show GetStickerSet { set_id=set_id } =
+  "GetStickerSet" ++ cc [p "set_id" set_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetStickerSet where
- toJSON (GetStickerSet { set_id = set_id }) =
+ toJSON GetStickerSet { set_id = set_id } =
   A.object [ "@type" A..= T.String "getStickerSet", "set_id" A..= set_id ]
 
 instance T.FromJSON GetStickerSet where
@@ -31,3 +45,4 @@ instance T.FromJSON GetStickerSet where
    parseGetStickerSet = A.withObject "GetStickerSet" $ \o -> do
     set_id <- mconcat [ o A..:? "set_id", readMaybe <$> (o A..: "set_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetStickerSet { set_id = set_id }
+ parseJSON _ = mempty

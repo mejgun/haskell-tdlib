@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.PassportSuitableElement as PassportSuitableElement
 
 -- |
@@ -15,10 +16,23 @@ import {-# SOURCE #-} qualified API.PassportSuitableElement as PassportSuitableE
 -- __suitable_elements__ List of Telegram Passport elements any of which is enough to provide
 data PassportRequiredElement = 
 
- PassportRequiredElement { suitable_elements :: Maybe [PassportSuitableElement.PassportSuitableElement] }  deriving (Show, Eq)
+ PassportRequiredElement { suitable_elements :: Maybe [PassportSuitableElement.PassportSuitableElement] }  deriving (Eq)
+
+instance Show PassportRequiredElement where
+ show PassportRequiredElement { suitable_elements=suitable_elements } =
+  "PassportRequiredElement" ++ cc [p "suitable_elements" suitable_elements ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON PassportRequiredElement where
- toJSON (PassportRequiredElement { suitable_elements = suitable_elements }) =
+ toJSON PassportRequiredElement { suitable_elements = suitable_elements } =
   A.object [ "@type" A..= T.String "passportRequiredElement", "suitable_elements" A..= suitable_elements ]
 
 instance T.FromJSON PassportRequiredElement where
@@ -32,3 +46,4 @@ instance T.FromJSON PassportRequiredElement where
    parsePassportRequiredElement = A.withObject "PassportRequiredElement" $ \o -> do
     suitable_elements <- o A..:? "suitable_elements"
     return $ PassportRequiredElement { suitable_elements = suitable_elements }
+ parseJSON _ = mempty

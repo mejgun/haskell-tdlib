@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __query__ Query to search for
 data SearchStickerSets = 
 
- SearchStickerSets { query :: Maybe String }  deriving (Show, Eq)
+ SearchStickerSets { query :: Maybe String }  deriving (Eq)
+
+instance Show SearchStickerSets where
+ show SearchStickerSets { query=query } =
+  "SearchStickerSets" ++ cc [p "query" query ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SearchStickerSets where
- toJSON (SearchStickerSets { query = query }) =
+ toJSON SearchStickerSets { query = query } =
   A.object [ "@type" A..= T.String "searchStickerSets", "query" A..= query ]
 
 instance T.FromJSON SearchStickerSets where
@@ -31,3 +45,4 @@ instance T.FromJSON SearchStickerSets where
    parseSearchStickerSets = A.withObject "SearchStickerSets" $ \o -> do
     query <- o A..:? "query"
     return $ SearchStickerSets { query = query }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __limit__ The maximum number of chats to be returned
 data SearchChats = 
 
- SearchChats { limit :: Maybe Int, query :: Maybe String }  deriving (Show, Eq)
+ SearchChats { limit :: Maybe Int, query :: Maybe String }  deriving (Eq)
+
+instance Show SearchChats where
+ show SearchChats { limit=limit, query=query } =
+  "SearchChats" ++ cc [p "limit" limit, p "query" query ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SearchChats where
- toJSON (SearchChats { limit = limit, query = query }) =
+ toJSON SearchChats { limit = limit, query = query } =
   A.object [ "@type" A..= T.String "searchChats", "limit" A..= limit, "query" A..= query ]
 
 instance T.FromJSON SearchChats where
@@ -34,3 +48,4 @@ instance T.FromJSON SearchChats where
     limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
     query <- o A..:? "query"
     return $ SearchChats { limit = limit, query = query }
+ parseJSON _ = mempty

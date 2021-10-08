@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -18,10 +19,23 @@ import qualified Data.Aeson.Types as T
 -- __parameter__ A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)
 data SendBotStartMessage = 
 
- SendBotStartMessage { parameter :: Maybe String, chat_id :: Maybe Int, bot_user_id :: Maybe Int }  deriving (Show, Eq)
+ SendBotStartMessage { parameter :: Maybe String, chat_id :: Maybe Int, bot_user_id :: Maybe Int }  deriving (Eq)
+
+instance Show SendBotStartMessage where
+ show SendBotStartMessage { parameter=parameter, chat_id=chat_id, bot_user_id=bot_user_id } =
+  "SendBotStartMessage" ++ cc [p "parameter" parameter, p "chat_id" chat_id, p "bot_user_id" bot_user_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SendBotStartMessage where
- toJSON (SendBotStartMessage { parameter = parameter, chat_id = chat_id, bot_user_id = bot_user_id }) =
+ toJSON SendBotStartMessage { parameter = parameter, chat_id = chat_id, bot_user_id = bot_user_id } =
   A.object [ "@type" A..= T.String "sendBotStartMessage", "parameter" A..= parameter, "chat_id" A..= chat_id, "bot_user_id" A..= bot_user_id ]
 
 instance T.FromJSON SendBotStartMessage where
@@ -37,3 +51,4 @@ instance T.FromJSON SendBotStartMessage where
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     bot_user_id <- mconcat [ o A..:? "bot_user_id", readMaybe <$> (o A..: "bot_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SendBotStartMessage { parameter = parameter, chat_id = chat_id, bot_user_id = bot_user_id }
+ parseJSON _ = mempty

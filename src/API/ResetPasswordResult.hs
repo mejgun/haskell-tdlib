@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -26,16 +27,35 @@ data ResetPasswordResult =
  -- The password reset request was declined 
  -- 
  -- __retry_date__ Point in time (Unix timestamp) when the password reset can be retried
- ResetPasswordResultDeclined { retry_date :: Maybe Int }  deriving (Show, Eq)
+ ResetPasswordResultDeclined { retry_date :: Maybe Int }  deriving (Eq)
+
+instance Show ResetPasswordResult where
+ show ResetPasswordResultOk {  } =
+  "ResetPasswordResultOk" ++ cc [ ]
+
+ show ResetPasswordResultPending { pending_reset_date=pending_reset_date } =
+  "ResetPasswordResultPending" ++ cc [p "pending_reset_date" pending_reset_date ]
+
+ show ResetPasswordResultDeclined { retry_date=retry_date } =
+  "ResetPasswordResultDeclined" ++ cc [p "retry_date" retry_date ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ResetPasswordResult where
- toJSON (ResetPasswordResultOk {  }) =
+ toJSON ResetPasswordResultOk {  } =
   A.object [ "@type" A..= T.String "resetPasswordResultOk" ]
 
- toJSON (ResetPasswordResultPending { pending_reset_date = pending_reset_date }) =
+ toJSON ResetPasswordResultPending { pending_reset_date = pending_reset_date } =
   A.object [ "@type" A..= T.String "resetPasswordResultPending", "pending_reset_date" A..= pending_reset_date ]
 
- toJSON (ResetPasswordResultDeclined { retry_date = retry_date }) =
+ toJSON ResetPasswordResultDeclined { retry_date = retry_date } =
   A.object [ "@type" A..= T.String "resetPasswordResultDeclined", "retry_date" A..= retry_date ]
 
 instance T.FromJSON ResetPasswordResult where
@@ -60,3 +80,4 @@ instance T.FromJSON ResetPasswordResult where
    parseResetPasswordResultDeclined = A.withObject "ResetPasswordResultDeclined" $ \o -> do
     retry_date <- mconcat [ o A..:? "retry_date", readMaybe <$> (o A..: "retry_date" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ResetPasswordResultDeclined { retry_date = retry_date }
+ parseJSON _ = mempty

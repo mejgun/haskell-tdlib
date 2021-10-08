@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -37,22 +38,44 @@ data InputFile =
  -- 
  -- __original_path__ Local path to a file from which the file is generated; may be empty if there is no such file
  -- 
- -- __conversion__ String specifying the conversion applied to the original file; should be persistent across application restarts. Conversions beginning with '#' are reserved for internal TDLib usage
+ -- __conversion__ String specifying the conversion applied to the original file; must be persistent across application restarts. Conversions beginning with '#' are reserved for internal TDLib usage
  -- 
  -- __expected_size__ Expected size of the generated file, in bytes; 0 if unknown
- InputFileGenerated { expected_size :: Maybe Int, conversion :: Maybe String, original_path :: Maybe String }  deriving (Show, Eq)
+ InputFileGenerated { expected_size :: Maybe Int, conversion :: Maybe String, original_path :: Maybe String }  deriving (Eq)
+
+instance Show InputFile where
+ show InputFileId { __id=__id } =
+  "InputFileId" ++ cc [p "__id" __id ]
+
+ show InputFileRemote { _id=_id } =
+  "InputFileRemote" ++ cc [p "_id" _id ]
+
+ show InputFileLocal { path=path } =
+  "InputFileLocal" ++ cc [p "path" path ]
+
+ show InputFileGenerated { expected_size=expected_size, conversion=conversion, original_path=original_path } =
+  "InputFileGenerated" ++ cc [p "expected_size" expected_size, p "conversion" conversion, p "original_path" original_path ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON InputFile where
- toJSON (InputFileId { __id = __id }) =
+ toJSON InputFileId { __id = __id } =
   A.object [ "@type" A..= T.String "inputFileId", "id" A..= __id ]
 
- toJSON (InputFileRemote { _id = _id }) =
+ toJSON InputFileRemote { _id = _id } =
   A.object [ "@type" A..= T.String "inputFileRemote", "id" A..= _id ]
 
- toJSON (InputFileLocal { path = path }) =
+ toJSON InputFileLocal { path = path } =
   A.object [ "@type" A..= T.String "inputFileLocal", "path" A..= path ]
 
- toJSON (InputFileGenerated { expected_size = expected_size, conversion = conversion, original_path = original_path }) =
+ toJSON InputFileGenerated { expected_size = expected_size, conversion = conversion, original_path = original_path } =
   A.object [ "@type" A..= T.String "inputFileGenerated", "expected_size" A..= expected_size, "conversion" A..= conversion, "original_path" A..= original_path ]
 
 instance T.FromJSON InputFile where
@@ -86,3 +109,4 @@ instance T.FromJSON InputFile where
     conversion <- o A..:? "conversion"
     original_path <- o A..:? "original_path"
     return $ InputFileGenerated { expected_size = expected_size, conversion = conversion, original_path = original_path }
+ parseJSON _ = mempty

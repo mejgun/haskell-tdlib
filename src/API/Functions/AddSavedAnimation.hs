@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 -- |
@@ -15,10 +16,23 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- __animation__ The animation file to be added. Only animations known to the server (i.e., successfully sent via a message) can be added to the list
 data AddSavedAnimation = 
 
- AddSavedAnimation { animation :: Maybe InputFile.InputFile }  deriving (Show, Eq)
+ AddSavedAnimation { animation :: Maybe InputFile.InputFile }  deriving (Eq)
+
+instance Show AddSavedAnimation where
+ show AddSavedAnimation { animation=animation } =
+  "AddSavedAnimation" ++ cc [p "animation" animation ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON AddSavedAnimation where
- toJSON (AddSavedAnimation { animation = animation }) =
+ toJSON AddSavedAnimation { animation = animation } =
   A.object [ "@type" A..= T.String "addSavedAnimation", "animation" A..= animation ]
 
 instance T.FromJSON AddSavedAnimation where
@@ -32,3 +46,4 @@ instance T.FromJSON AddSavedAnimation where
    parseAddSavedAnimation = A.withObject "AddSavedAnimation" $ \o -> do
     animation <- o A..:? "animation"
     return $ AddSavedAnimation { animation = animation }
+ parseJSON _ = mempty

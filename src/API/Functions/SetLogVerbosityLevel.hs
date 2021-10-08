@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __new_verbosity_level__ New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings, value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1023 can be used to enable even more logging
 data SetLogVerbosityLevel = 
 
- SetLogVerbosityLevel { new_verbosity_level :: Maybe Int }  deriving (Show, Eq)
+ SetLogVerbosityLevel { new_verbosity_level :: Maybe Int }  deriving (Eq)
+
+instance Show SetLogVerbosityLevel where
+ show SetLogVerbosityLevel { new_verbosity_level=new_verbosity_level } =
+  "SetLogVerbosityLevel" ++ cc [p "new_verbosity_level" new_verbosity_level ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SetLogVerbosityLevel where
- toJSON (SetLogVerbosityLevel { new_verbosity_level = new_verbosity_level }) =
+ toJSON SetLogVerbosityLevel { new_verbosity_level = new_verbosity_level } =
   A.object [ "@type" A..= T.String "setLogVerbosityLevel", "new_verbosity_level" A..= new_verbosity_level ]
 
 instance T.FromJSON SetLogVerbosityLevel where
@@ -31,3 +45,4 @@ instance T.FromJSON SetLogVerbosityLevel where
    parseSetLogVerbosityLevel = A.withObject "SetLogVerbosityLevel" $ \o -> do
     new_verbosity_level <- mconcat [ o A..:? "new_verbosity_level", readMaybe <$> (o A..: "new_verbosity_level" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SetLogVerbosityLevel { new_verbosity_level = new_verbosity_level }
+ parseJSON _ = mempty

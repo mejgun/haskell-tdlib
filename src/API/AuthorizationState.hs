@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.AuthenticationCodeInfo as AuthenticationCodeInfo
 import {-# SOURCE #-} qualified API.TermsOfService as TermsOfService
 
@@ -71,41 +72,84 @@ data AuthorizationState =
  -- 
  -- TDLib client is in its final state. All databases are closed and all resources are released. No other updates will be received after this. All queries will be responded to
  -- 
- -- -with error code 500. To continue working, one should create a new instance of the TDLib client
- AuthorizationStateClosed deriving (Show, Eq)
+ -- -with error code 500. To continue working, one must create a new instance of the TDLib client
+ AuthorizationStateClosed deriving (Eq)
+
+instance Show AuthorizationState where
+ show AuthorizationStateWaitTdlibParameters {  } =
+  "AuthorizationStateWaitTdlibParameters" ++ cc [ ]
+
+ show AuthorizationStateWaitEncryptionKey { is_encrypted=is_encrypted } =
+  "AuthorizationStateWaitEncryptionKey" ++ cc [p "is_encrypted" is_encrypted ]
+
+ show AuthorizationStateWaitPhoneNumber {  } =
+  "AuthorizationStateWaitPhoneNumber" ++ cc [ ]
+
+ show AuthorizationStateWaitCode { code_info=code_info } =
+  "AuthorizationStateWaitCode" ++ cc [p "code_info" code_info ]
+
+ show AuthorizationStateWaitOtherDeviceConfirmation { link=link } =
+  "AuthorizationStateWaitOtherDeviceConfirmation" ++ cc [p "link" link ]
+
+ show AuthorizationStateWaitRegistration { terms_of_service=terms_of_service } =
+  "AuthorizationStateWaitRegistration" ++ cc [p "terms_of_service" terms_of_service ]
+
+ show AuthorizationStateWaitPassword { recovery_email_address_pattern=recovery_email_address_pattern, has_recovery_email_address=has_recovery_email_address, password_hint=password_hint } =
+  "AuthorizationStateWaitPassword" ++ cc [p "recovery_email_address_pattern" recovery_email_address_pattern, p "has_recovery_email_address" has_recovery_email_address, p "password_hint" password_hint ]
+
+ show AuthorizationStateReady {  } =
+  "AuthorizationStateReady" ++ cc [ ]
+
+ show AuthorizationStateLoggingOut {  } =
+  "AuthorizationStateLoggingOut" ++ cc [ ]
+
+ show AuthorizationStateClosing {  } =
+  "AuthorizationStateClosing" ++ cc [ ]
+
+ show AuthorizationStateClosed {  } =
+  "AuthorizationStateClosed" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON AuthorizationState where
- toJSON (AuthorizationStateWaitTdlibParameters {  }) =
+ toJSON AuthorizationStateWaitTdlibParameters {  } =
   A.object [ "@type" A..= T.String "authorizationStateWaitTdlibParameters" ]
 
- toJSON (AuthorizationStateWaitEncryptionKey { is_encrypted = is_encrypted }) =
+ toJSON AuthorizationStateWaitEncryptionKey { is_encrypted = is_encrypted } =
   A.object [ "@type" A..= T.String "authorizationStateWaitEncryptionKey", "is_encrypted" A..= is_encrypted ]
 
- toJSON (AuthorizationStateWaitPhoneNumber {  }) =
+ toJSON AuthorizationStateWaitPhoneNumber {  } =
   A.object [ "@type" A..= T.String "authorizationStateWaitPhoneNumber" ]
 
- toJSON (AuthorizationStateWaitCode { code_info = code_info }) =
+ toJSON AuthorizationStateWaitCode { code_info = code_info } =
   A.object [ "@type" A..= T.String "authorizationStateWaitCode", "code_info" A..= code_info ]
 
- toJSON (AuthorizationStateWaitOtherDeviceConfirmation { link = link }) =
+ toJSON AuthorizationStateWaitOtherDeviceConfirmation { link = link } =
   A.object [ "@type" A..= T.String "authorizationStateWaitOtherDeviceConfirmation", "link" A..= link ]
 
- toJSON (AuthorizationStateWaitRegistration { terms_of_service = terms_of_service }) =
+ toJSON AuthorizationStateWaitRegistration { terms_of_service = terms_of_service } =
   A.object [ "@type" A..= T.String "authorizationStateWaitRegistration", "terms_of_service" A..= terms_of_service ]
 
- toJSON (AuthorizationStateWaitPassword { recovery_email_address_pattern = recovery_email_address_pattern, has_recovery_email_address = has_recovery_email_address, password_hint = password_hint }) =
+ toJSON AuthorizationStateWaitPassword { recovery_email_address_pattern = recovery_email_address_pattern, has_recovery_email_address = has_recovery_email_address, password_hint = password_hint } =
   A.object [ "@type" A..= T.String "authorizationStateWaitPassword", "recovery_email_address_pattern" A..= recovery_email_address_pattern, "has_recovery_email_address" A..= has_recovery_email_address, "password_hint" A..= password_hint ]
 
- toJSON (AuthorizationStateReady {  }) =
+ toJSON AuthorizationStateReady {  } =
   A.object [ "@type" A..= T.String "authorizationStateReady" ]
 
- toJSON (AuthorizationStateLoggingOut {  }) =
+ toJSON AuthorizationStateLoggingOut {  } =
   A.object [ "@type" A..= T.String "authorizationStateLoggingOut" ]
 
- toJSON (AuthorizationStateClosing {  }) =
+ toJSON AuthorizationStateClosing {  } =
   A.object [ "@type" A..= T.String "authorizationStateClosing" ]
 
- toJSON (AuthorizationStateClosed {  }) =
+ toJSON AuthorizationStateClosed {  } =
   A.object [ "@type" A..= T.String "authorizationStateClosed" ]
 
 instance T.FromJSON AuthorizationState where
@@ -175,3 +219,4 @@ instance T.FromJSON AuthorizationState where
    parseAuthorizationStateClosed :: A.Value -> T.Parser AuthorizationState
    parseAuthorizationStateClosed = A.withObject "AuthorizationStateClosed" $ \o -> do
     return $ AuthorizationStateClosed {  }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -13,7 +14,7 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __id__ Unique language pack identifier
 -- 
--- __base_language_pack_id__ Identifier of a base language pack; may be empty. If a string is missed in the language pack, then it should be fetched from base language pack. Unsupported in custom language packs
+-- __base_language_pack_id__ Identifier of a base language pack; may be empty. If a string is missed in the language pack, then it must be fetched from base language pack. Unsupported in custom language packs
 -- 
 -- __name__ Language name
 -- 
@@ -38,10 +39,23 @@ import qualified Data.Aeson.Types as T
 -- __translation_url__ Link to language translation interface; empty for custom local language packs
 data LanguagePackInfo = 
 
- LanguagePackInfo { translation_url :: Maybe String, local_string_count :: Maybe Int, translated_string_count :: Maybe Int, total_string_count :: Maybe Int, is_installed :: Maybe Bool, is_beta :: Maybe Bool, is_rtl :: Maybe Bool, is_official :: Maybe Bool, plural_code :: Maybe String, native_name :: Maybe String, name :: Maybe String, base_language_pack_id :: Maybe String, _id :: Maybe String }  deriving (Show, Eq)
+ LanguagePackInfo { translation_url :: Maybe String, local_string_count :: Maybe Int, translated_string_count :: Maybe Int, total_string_count :: Maybe Int, is_installed :: Maybe Bool, is_beta :: Maybe Bool, is_rtl :: Maybe Bool, is_official :: Maybe Bool, plural_code :: Maybe String, native_name :: Maybe String, name :: Maybe String, base_language_pack_id :: Maybe String, _id :: Maybe String }  deriving (Eq)
+
+instance Show LanguagePackInfo where
+ show LanguagePackInfo { translation_url=translation_url, local_string_count=local_string_count, translated_string_count=translated_string_count, total_string_count=total_string_count, is_installed=is_installed, is_beta=is_beta, is_rtl=is_rtl, is_official=is_official, plural_code=plural_code, native_name=native_name, name=name, base_language_pack_id=base_language_pack_id, _id=_id } =
+  "LanguagePackInfo" ++ cc [p "translation_url" translation_url, p "local_string_count" local_string_count, p "translated_string_count" translated_string_count, p "total_string_count" total_string_count, p "is_installed" is_installed, p "is_beta" is_beta, p "is_rtl" is_rtl, p "is_official" is_official, p "plural_code" plural_code, p "native_name" native_name, p "name" name, p "base_language_pack_id" base_language_pack_id, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON LanguagePackInfo where
- toJSON (LanguagePackInfo { translation_url = translation_url, local_string_count = local_string_count, translated_string_count = translated_string_count, total_string_count = total_string_count, is_installed = is_installed, is_beta = is_beta, is_rtl = is_rtl, is_official = is_official, plural_code = plural_code, native_name = native_name, name = name, base_language_pack_id = base_language_pack_id, _id = _id }) =
+ toJSON LanguagePackInfo { translation_url = translation_url, local_string_count = local_string_count, translated_string_count = translated_string_count, total_string_count = total_string_count, is_installed = is_installed, is_beta = is_beta, is_rtl = is_rtl, is_official = is_official, plural_code = plural_code, native_name = native_name, name = name, base_language_pack_id = base_language_pack_id, _id = _id } =
   A.object [ "@type" A..= T.String "languagePackInfo", "translation_url" A..= translation_url, "local_string_count" A..= local_string_count, "translated_string_count" A..= translated_string_count, "total_string_count" A..= total_string_count, "is_installed" A..= is_installed, "is_beta" A..= is_beta, "is_rtl" A..= is_rtl, "is_official" A..= is_official, "plural_code" A..= plural_code, "native_name" A..= native_name, "name" A..= name, "base_language_pack_id" A..= base_language_pack_id, "id" A..= _id ]
 
 instance T.FromJSON LanguagePackInfo where
@@ -67,3 +81,4 @@ instance T.FromJSON LanguagePackInfo where
     base_language_pack_id <- o A..:? "base_language_pack_id"
     _id <- o A..:? "id"
     return $ LanguagePackInfo { translation_url = translation_url, local_string_count = local_string_count, translated_string_count = translated_string_count, total_string_count = total_string_count, is_installed = is_installed, is_beta = is_beta, is_rtl = is_rtl, is_official = is_official, plural_code = plural_code, native_name = native_name, name = name, base_language_pack_id = base_language_pack_id, _id = _id }
+ parseJSON _ = mempty

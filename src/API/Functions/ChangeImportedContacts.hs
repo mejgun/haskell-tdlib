@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Contact as Contact
 
 -- |
@@ -17,10 +18,23 @@ import {-# SOURCE #-} qualified API.Contact as Contact
 -- __contacts__ The new list of contacts, contact's vCard are ignored and are not imported
 data ChangeImportedContacts = 
 
- ChangeImportedContacts { contacts :: Maybe [Contact.Contact] }  deriving (Show, Eq)
+ ChangeImportedContacts { contacts :: Maybe [Contact.Contact] }  deriving (Eq)
+
+instance Show ChangeImportedContacts where
+ show ChangeImportedContacts { contacts=contacts } =
+  "ChangeImportedContacts" ++ cc [p "contacts" contacts ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChangeImportedContacts where
- toJSON (ChangeImportedContacts { contacts = contacts }) =
+ toJSON ChangeImportedContacts { contacts = contacts } =
   A.object [ "@type" A..= T.String "changeImportedContacts", "contacts" A..= contacts ]
 
 instance T.FromJSON ChangeImportedContacts where
@@ -34,3 +48,4 @@ instance T.FromJSON ChangeImportedContacts where
    parseChangeImportedContacts = A.withObject "ChangeImportedContacts" $ \o -> do
     contacts <- o A..:? "contacts"
     return $ ChangeImportedContacts { contacts = contacts }
+ parseJSON _ = mempty

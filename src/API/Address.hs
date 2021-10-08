@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -24,10 +25,23 @@ import qualified Data.Aeson.Types as T
 -- __postal_code__ Address postal code
 data Address = 
 
- Address { postal_code :: Maybe String, street_line2 :: Maybe String, street_line1 :: Maybe String, city :: Maybe String, state :: Maybe String, country_code :: Maybe String }  deriving (Show, Eq)
+ Address { postal_code :: Maybe String, street_line2 :: Maybe String, street_line1 :: Maybe String, city :: Maybe String, state :: Maybe String, country_code :: Maybe String }  deriving (Eq)
+
+instance Show Address where
+ show Address { postal_code=postal_code, street_line2=street_line2, street_line1=street_line1, city=city, state=state, country_code=country_code } =
+  "Address" ++ cc [p "postal_code" postal_code, p "street_line2" street_line2, p "street_line1" street_line1, p "city" city, p "state" state, p "country_code" country_code ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Address where
- toJSON (Address { postal_code = postal_code, street_line2 = street_line2, street_line1 = street_line1, city = city, state = state, country_code = country_code }) =
+ toJSON Address { postal_code = postal_code, street_line2 = street_line2, street_line1 = street_line1, city = city, state = state, country_code = country_code } =
   A.object [ "@type" A..= T.String "address", "postal_code" A..= postal_code, "street_line2" A..= street_line2, "street_line1" A..= street_line1, "city" A..= city, "state" A..= state, "country_code" A..= country_code ]
 
 instance T.FromJSON Address where
@@ -46,3 +60,4 @@ instance T.FromJSON Address where
     state <- o A..:? "state"
     country_code <- o A..:? "country_code"
     return $ Address { postal_code = postal_code, street_line2 = street_line2, street_line1 = street_line1, city = city, state = state, country_code = country_code }
+ parseJSON _ = mempty

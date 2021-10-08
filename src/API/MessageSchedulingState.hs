@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -20,13 +21,29 @@ data MessageSchedulingState =
  -- |
  -- 
  -- The message will be sent when the peer will be online. Applicable to private chats only and when the exact online status of the peer is known
- MessageSchedulingStateSendWhenOnline deriving (Show, Eq)
+ MessageSchedulingStateSendWhenOnline deriving (Eq)
+
+instance Show MessageSchedulingState where
+ show MessageSchedulingStateSendAtDate { send_date=send_date } =
+  "MessageSchedulingStateSendAtDate" ++ cc [p "send_date" send_date ]
+
+ show MessageSchedulingStateSendWhenOnline {  } =
+  "MessageSchedulingStateSendWhenOnline" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON MessageSchedulingState where
- toJSON (MessageSchedulingStateSendAtDate { send_date = send_date }) =
+ toJSON MessageSchedulingStateSendAtDate { send_date = send_date } =
   A.object [ "@type" A..= T.String "messageSchedulingStateSendAtDate", "send_date" A..= send_date ]
 
- toJSON (MessageSchedulingStateSendWhenOnline {  }) =
+ toJSON MessageSchedulingStateSendWhenOnline {  } =
   A.object [ "@type" A..= T.String "messageSchedulingStateSendWhenOnline" ]
 
 instance T.FromJSON MessageSchedulingState where
@@ -45,3 +62,4 @@ instance T.FromJSON MessageSchedulingState where
    parseMessageSchedulingStateSendWhenOnline :: A.Value -> T.Parser MessageSchedulingState
    parseMessageSchedulingStateSendWhenOnline = A.withObject "MessageSchedulingStateSendWhenOnline" $ \o -> do
     return $ MessageSchedulingStateSendWhenOnline {  }
+ parseJSON _ = mempty

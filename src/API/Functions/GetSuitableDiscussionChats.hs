@@ -6,16 +6,30 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
 -- Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group. To set a returned supergroup as a discussion group, access to its old messages must be enabled using toggleSupergroupIsAllHistoryAvailable first
 data GetSuitableDiscussionChats = 
 
- GetSuitableDiscussionChats deriving (Show, Eq)
+ GetSuitableDiscussionChats deriving (Eq)
+
+instance Show GetSuitableDiscussionChats where
+ show GetSuitableDiscussionChats {  } =
+  "GetSuitableDiscussionChats" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetSuitableDiscussionChats where
- toJSON (GetSuitableDiscussionChats {  }) =
+ toJSON GetSuitableDiscussionChats {  } =
   A.object [ "@type" A..= T.String "getSuitableDiscussionChats" ]
 
 instance T.FromJSON GetSuitableDiscussionChats where
@@ -28,3 +42,4 @@ instance T.FromJSON GetSuitableDiscussionChats where
    parseGetSuitableDiscussionChats :: A.Value -> T.Parser GetSuitableDiscussionChats
    parseGetSuitableDiscussionChats = A.withObject "GetSuitableDiscussionChats" $ \o -> do
     return $ GetSuitableDiscussionChats {  }
+ parseJSON _ = mempty

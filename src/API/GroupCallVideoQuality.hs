@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -22,16 +23,35 @@ data GroupCallVideoQuality =
  -- |
  -- 
  -- The best available video quality
- GroupCallVideoQualityFull deriving (Show, Eq)
+ GroupCallVideoQualityFull deriving (Eq)
+
+instance Show GroupCallVideoQuality where
+ show GroupCallVideoQualityThumbnail {  } =
+  "GroupCallVideoQualityThumbnail" ++ cc [ ]
+
+ show GroupCallVideoQualityMedium {  } =
+  "GroupCallVideoQualityMedium" ++ cc [ ]
+
+ show GroupCallVideoQualityFull {  } =
+  "GroupCallVideoQualityFull" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GroupCallVideoQuality where
- toJSON (GroupCallVideoQualityThumbnail {  }) =
+ toJSON GroupCallVideoQualityThumbnail {  } =
   A.object [ "@type" A..= T.String "groupCallVideoQualityThumbnail" ]
 
- toJSON (GroupCallVideoQualityMedium {  }) =
+ toJSON GroupCallVideoQualityMedium {  } =
   A.object [ "@type" A..= T.String "groupCallVideoQualityMedium" ]
 
- toJSON (GroupCallVideoQualityFull {  }) =
+ toJSON GroupCallVideoQualityFull {  } =
   A.object [ "@type" A..= T.String "groupCallVideoQualityFull" ]
 
 instance T.FromJSON GroupCallVideoQuality where
@@ -54,3 +74,4 @@ instance T.FromJSON GroupCallVideoQuality where
    parseGroupCallVideoQualityFull :: A.Value -> T.Parser GroupCallVideoQuality
    parseGroupCallVideoQualityFull = A.withObject "GroupCallVideoQualityFull" $ \o -> do
     return $ GroupCallVideoQualityFull {  }
+ parseJSON _ = mempty

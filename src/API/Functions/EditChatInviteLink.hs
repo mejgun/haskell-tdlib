@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -20,10 +21,23 @@ import qualified Data.Aeson.Types as T
 -- __member_limit__ The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
 data EditChatInviteLink = 
 
- EditChatInviteLink { member_limit :: Maybe Int, expire_date :: Maybe Int, invite_link :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
+ EditChatInviteLink { member_limit :: Maybe Int, expire_date :: Maybe Int, invite_link :: Maybe String, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show EditChatInviteLink where
+ show EditChatInviteLink { member_limit=member_limit, expire_date=expire_date, invite_link=invite_link, chat_id=chat_id } =
+  "EditChatInviteLink" ++ cc [p "member_limit" member_limit, p "expire_date" expire_date, p "invite_link" invite_link, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON EditChatInviteLink where
- toJSON (EditChatInviteLink { member_limit = member_limit, expire_date = expire_date, invite_link = invite_link, chat_id = chat_id }) =
+ toJSON EditChatInviteLink { member_limit = member_limit, expire_date = expire_date, invite_link = invite_link, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "editChatInviteLink", "member_limit" A..= member_limit, "expire_date" A..= expire_date, "invite_link" A..= invite_link, "chat_id" A..= chat_id ]
 
 instance T.FromJSON EditChatInviteLink where
@@ -40,3 +54,4 @@ instance T.FromJSON EditChatInviteLink where
     invite_link <- o A..:? "invite_link"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ EditChatInviteLink { member_limit = member_limit, expire_date = expire_date, invite_link = invite_link, chat_id = chat_id }
+ parseJSON _ = mempty

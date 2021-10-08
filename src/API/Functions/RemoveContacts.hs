@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __user_ids__ Identifiers of users to be deleted
 data RemoveContacts = 
 
- RemoveContacts { user_ids :: Maybe [Int] }  deriving (Show, Eq)
+ RemoveContacts { user_ids :: Maybe [Int] }  deriving (Eq)
+
+instance Show RemoveContacts where
+ show RemoveContacts { user_ids=user_ids } =
+  "RemoveContacts" ++ cc [p "user_ids" user_ids ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON RemoveContacts where
- toJSON (RemoveContacts { user_ids = user_ids }) =
+ toJSON RemoveContacts { user_ids = user_ids } =
   A.object [ "@type" A..= T.String "removeContacts", "user_ids" A..= user_ids ]
 
 instance T.FromJSON RemoveContacts where
@@ -31,3 +45,4 @@ instance T.FromJSON RemoveContacts where
    parseRemoveContacts = A.withObject "RemoveContacts" $ \o -> do
     user_ids <- o A..:? "user_ids"
     return $ RemoveContacts { user_ids = user_ids }
+ parseJSON _ = mempty

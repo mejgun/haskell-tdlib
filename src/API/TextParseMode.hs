@@ -6,10 +6,11 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
--- Describes the way the text should be parsed for TextEntities
+-- Describes the way the text needs to be parsed for TextEntities
 data TextParseMode = 
  -- |
  -- 
@@ -20,13 +21,29 @@ data TextParseMode =
  -- |
  -- 
  -- The text uses HTML-style formatting. The same as Telegram Bot API "HTML" parse mode
- TextParseModeHTML deriving (Show, Eq)
+ TextParseModeHTML deriving (Eq)
+
+instance Show TextParseMode where
+ show TextParseModeMarkdown { version=version } =
+  "TextParseModeMarkdown" ++ cc [p "version" version ]
+
+ show TextParseModeHTML {  } =
+  "TextParseModeHTML" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON TextParseMode where
- toJSON (TextParseModeMarkdown { version = version }) =
+ toJSON TextParseModeMarkdown { version = version } =
   A.object [ "@type" A..= T.String "textParseModeMarkdown", "version" A..= version ]
 
- toJSON (TextParseModeHTML {  }) =
+ toJSON TextParseModeHTML {  } =
   A.object [ "@type" A..= T.String "textParseModeHTML" ]
 
 instance T.FromJSON TextParseMode where
@@ -45,3 +62,4 @@ instance T.FromJSON TextParseMode where
    parseTextParseModeHTML :: A.Value -> T.Parser TextParseMode
    parseTextParseModeHTML = A.withObject "TextParseModeHTML" $ \o -> do
     return $ TextParseModeHTML {  }
+ parseJSON _ = mempty

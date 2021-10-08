@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -54,31 +55,65 @@ data SupergroupMembersFilter =
  -- |
  -- 
  -- Returns bot members of the supergroup or channel
- SupergroupMembersFilterBots deriving (Show, Eq)
+ SupergroupMembersFilterBots deriving (Eq)
+
+instance Show SupergroupMembersFilter where
+ show SupergroupMembersFilterRecent {  } =
+  "SupergroupMembersFilterRecent" ++ cc [ ]
+
+ show SupergroupMembersFilterContacts { query=query } =
+  "SupergroupMembersFilterContacts" ++ cc [p "query" query ]
+
+ show SupergroupMembersFilterAdministrators {  } =
+  "SupergroupMembersFilterAdministrators" ++ cc [ ]
+
+ show SupergroupMembersFilterSearch { query=query } =
+  "SupergroupMembersFilterSearch" ++ cc [p "query" query ]
+
+ show SupergroupMembersFilterRestricted { query=query } =
+  "SupergroupMembersFilterRestricted" ++ cc [p "query" query ]
+
+ show SupergroupMembersFilterBanned { query=query } =
+  "SupergroupMembersFilterBanned" ++ cc [p "query" query ]
+
+ show SupergroupMembersFilterMention { message_thread_id=message_thread_id, query=query } =
+  "SupergroupMembersFilterMention" ++ cc [p "message_thread_id" message_thread_id, p "query" query ]
+
+ show SupergroupMembersFilterBots {  } =
+  "SupergroupMembersFilterBots" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SupergroupMembersFilter where
- toJSON (SupergroupMembersFilterRecent {  }) =
+ toJSON SupergroupMembersFilterRecent {  } =
   A.object [ "@type" A..= T.String "supergroupMembersFilterRecent" ]
 
- toJSON (SupergroupMembersFilterContacts { query = query }) =
+ toJSON SupergroupMembersFilterContacts { query = query } =
   A.object [ "@type" A..= T.String "supergroupMembersFilterContacts", "query" A..= query ]
 
- toJSON (SupergroupMembersFilterAdministrators {  }) =
+ toJSON SupergroupMembersFilterAdministrators {  } =
   A.object [ "@type" A..= T.String "supergroupMembersFilterAdministrators" ]
 
- toJSON (SupergroupMembersFilterSearch { query = query }) =
+ toJSON SupergroupMembersFilterSearch { query = query } =
   A.object [ "@type" A..= T.String "supergroupMembersFilterSearch", "query" A..= query ]
 
- toJSON (SupergroupMembersFilterRestricted { query = query }) =
+ toJSON SupergroupMembersFilterRestricted { query = query } =
   A.object [ "@type" A..= T.String "supergroupMembersFilterRestricted", "query" A..= query ]
 
- toJSON (SupergroupMembersFilterBanned { query = query }) =
+ toJSON SupergroupMembersFilterBanned { query = query } =
   A.object [ "@type" A..= T.String "supergroupMembersFilterBanned", "query" A..= query ]
 
- toJSON (SupergroupMembersFilterMention { message_thread_id = message_thread_id, query = query }) =
+ toJSON SupergroupMembersFilterMention { message_thread_id = message_thread_id, query = query } =
   A.object [ "@type" A..= T.String "supergroupMembersFilterMention", "message_thread_id" A..= message_thread_id, "query" A..= query ]
 
- toJSON (SupergroupMembersFilterBots {  }) =
+ toJSON SupergroupMembersFilterBots {  } =
   A.object [ "@type" A..= T.String "supergroupMembersFilterBots" ]
 
 instance T.FromJSON SupergroupMembersFilter where
@@ -132,3 +167,4 @@ instance T.FromJSON SupergroupMembersFilter where
    parseSupergroupMembersFilterBots :: A.Value -> T.Parser SupergroupMembersFilter
    parseSupergroupMembersFilterBots = A.withObject "SupergroupMembersFilterBots" $ \o -> do
     return $ SupergroupMembersFilterBots {  }
+ parseJSON _ = mempty

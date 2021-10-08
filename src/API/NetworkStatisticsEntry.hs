@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.FileType as FileType
 import {-# SOURCE #-} qualified API.NetworkType as NetworkType
 
@@ -15,9 +16,9 @@ import {-# SOURCE #-} qualified API.NetworkType as NetworkType
 data NetworkStatisticsEntry = 
  -- |
  -- 
- -- Contains information about the total amount of data that was used to send and receive files 
+ -- Contains information about the total amount of data that was used to send and receive files
  -- 
- -- __file_type__ Type of the file the data is part of
+ -- __file_type__ Type of the file the data is part of; pass null if the data isn't related to files
  -- 
  -- __network_type__ Type of the network the data was sent through. Call setNetworkType to maintain the actual network type
  -- 
@@ -27,7 +28,7 @@ data NetworkStatisticsEntry =
  NetworkStatisticsEntryFile { received_bytes :: Maybe Int, sent_bytes :: Maybe Int, network_type :: Maybe NetworkType.NetworkType, file_type :: Maybe FileType.FileType }  |
  -- |
  -- 
- -- Contains information about the total amount of data that was used for calls 
+ -- Contains information about the total amount of data that was used for calls
  -- 
  -- __network_type__ Type of the network the data was sent through. Call setNetworkType to maintain the actual network type
  -- 
@@ -36,13 +37,29 @@ data NetworkStatisticsEntry =
  -- __received_bytes__ Total number of bytes received
  -- 
  -- __duration__ Total call duration, in seconds
- NetworkStatisticsEntryCall { duration :: Maybe Float, received_bytes :: Maybe Int, sent_bytes :: Maybe Int, network_type :: Maybe NetworkType.NetworkType }  deriving (Show, Eq)
+ NetworkStatisticsEntryCall { duration :: Maybe Float, received_bytes :: Maybe Int, sent_bytes :: Maybe Int, network_type :: Maybe NetworkType.NetworkType }  deriving (Eq)
+
+instance Show NetworkStatisticsEntry where
+ show NetworkStatisticsEntryFile { received_bytes=received_bytes, sent_bytes=sent_bytes, network_type=network_type, file_type=file_type } =
+  "NetworkStatisticsEntryFile" ++ cc [p "received_bytes" received_bytes, p "sent_bytes" sent_bytes, p "network_type" network_type, p "file_type" file_type ]
+
+ show NetworkStatisticsEntryCall { duration=duration, received_bytes=received_bytes, sent_bytes=sent_bytes, network_type=network_type } =
+  "NetworkStatisticsEntryCall" ++ cc [p "duration" duration, p "received_bytes" received_bytes, p "sent_bytes" sent_bytes, p "network_type" network_type ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON NetworkStatisticsEntry where
- toJSON (NetworkStatisticsEntryFile { received_bytes = received_bytes, sent_bytes = sent_bytes, network_type = network_type, file_type = file_type }) =
+ toJSON NetworkStatisticsEntryFile { received_bytes = received_bytes, sent_bytes = sent_bytes, network_type = network_type, file_type = file_type } =
   A.object [ "@type" A..= T.String "networkStatisticsEntryFile", "received_bytes" A..= received_bytes, "sent_bytes" A..= sent_bytes, "network_type" A..= network_type, "file_type" A..= file_type ]
 
- toJSON (NetworkStatisticsEntryCall { duration = duration, received_bytes = received_bytes, sent_bytes = sent_bytes, network_type = network_type }) =
+ toJSON NetworkStatisticsEntryCall { duration = duration, received_bytes = received_bytes, sent_bytes = sent_bytes, network_type = network_type } =
   A.object [ "@type" A..= T.String "networkStatisticsEntryCall", "duration" A..= duration, "received_bytes" A..= received_bytes, "sent_bytes" A..= sent_bytes, "network_type" A..= network_type ]
 
 instance T.FromJSON NetworkStatisticsEntry where
@@ -68,3 +85,4 @@ instance T.FromJSON NetworkStatisticsEntry where
     sent_bytes <- mconcat [ o A..:? "sent_bytes", readMaybe <$> (o A..: "sent_bytes" :: T.Parser String)] :: T.Parser (Maybe Int)
     network_type <- o A..:? "network_type"
     return $ NetworkStatisticsEntryCall { duration = duration, received_bytes = received_bytes, sent_bytes = sent_bytes, network_type = network_type }
+ parseJSON _ = mempty

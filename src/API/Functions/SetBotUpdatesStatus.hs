@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __error_message__ The last error message
 data SetBotUpdatesStatus = 
 
- SetBotUpdatesStatus { error_message :: Maybe String, pending_update_count :: Maybe Int }  deriving (Show, Eq)
+ SetBotUpdatesStatus { error_message :: Maybe String, pending_update_count :: Maybe Int }  deriving (Eq)
+
+instance Show SetBotUpdatesStatus where
+ show SetBotUpdatesStatus { error_message=error_message, pending_update_count=pending_update_count } =
+  "SetBotUpdatesStatus" ++ cc [p "error_message" error_message, p "pending_update_count" pending_update_count ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SetBotUpdatesStatus where
- toJSON (SetBotUpdatesStatus { error_message = error_message, pending_update_count = pending_update_count }) =
+ toJSON SetBotUpdatesStatus { error_message = error_message, pending_update_count = pending_update_count } =
   A.object [ "@type" A..= T.String "setBotUpdatesStatus", "error_message" A..= error_message, "pending_update_count" A..= pending_update_count ]
 
 instance T.FromJSON SetBotUpdatesStatus where
@@ -34,3 +48,4 @@ instance T.FromJSON SetBotUpdatesStatus where
     error_message <- o A..:? "error_message"
     pending_update_count <- mconcat [ o A..:? "pending_update_count", readMaybe <$> (o A..: "pending_update_count" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SetBotUpdatesStatus { error_message = error_message, pending_update_count = pending_update_count }
+ parseJSON _ = mempty

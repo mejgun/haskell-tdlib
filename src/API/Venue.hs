@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Location as Location
 
 -- |
@@ -25,10 +26,23 @@ import {-# SOURCE #-} qualified API.Location as Location
 -- __type__ Type of the venue in the provider database; as defined by the sender
 data Venue = 
 
- Venue { _type :: Maybe String, _id :: Maybe String, provider :: Maybe String, address :: Maybe String, title :: Maybe String, location :: Maybe Location.Location }  deriving (Show, Eq)
+ Venue { _type :: Maybe String, _id :: Maybe String, provider :: Maybe String, address :: Maybe String, title :: Maybe String, location :: Maybe Location.Location }  deriving (Eq)
+
+instance Show Venue where
+ show Venue { _type=_type, _id=_id, provider=provider, address=address, title=title, location=location } =
+  "Venue" ++ cc [p "_type" _type, p "_id" _id, p "provider" provider, p "address" address, p "title" title, p "location" location ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Venue where
- toJSON (Venue { _type = _type, _id = _id, provider = provider, address = address, title = title, location = location }) =
+ toJSON Venue { _type = _type, _id = _id, provider = provider, address = address, title = title, location = location } =
   A.object [ "@type" A..= T.String "venue", "type" A..= _type, "id" A..= _id, "provider" A..= provider, "address" A..= address, "title" A..= title, "location" A..= location ]
 
 instance T.FromJSON Venue where
@@ -47,3 +61,4 @@ instance T.FromJSON Venue where
     title <- o A..:? "title"
     location <- o A..:? "location"
     return $ Venue { _type = _type, _id = _id, provider = provider, address = address, title = title, location = location }
+ parseJSON _ = mempty

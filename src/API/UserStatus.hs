@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -38,25 +39,53 @@ data UserStatus =
  -- |
  -- 
  -- The user is offline, but was online last month
- UserStatusLastMonth deriving (Show, Eq)
+ UserStatusLastMonth deriving (Eq)
+
+instance Show UserStatus where
+ show UserStatusEmpty {  } =
+  "UserStatusEmpty" ++ cc [ ]
+
+ show UserStatusOnline { expires=expires } =
+  "UserStatusOnline" ++ cc [p "expires" expires ]
+
+ show UserStatusOffline { was_online=was_online } =
+  "UserStatusOffline" ++ cc [p "was_online" was_online ]
+
+ show UserStatusRecently {  } =
+  "UserStatusRecently" ++ cc [ ]
+
+ show UserStatusLastWeek {  } =
+  "UserStatusLastWeek" ++ cc [ ]
+
+ show UserStatusLastMonth {  } =
+  "UserStatusLastMonth" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON UserStatus where
- toJSON (UserStatusEmpty {  }) =
+ toJSON UserStatusEmpty {  } =
   A.object [ "@type" A..= T.String "userStatusEmpty" ]
 
- toJSON (UserStatusOnline { expires = expires }) =
+ toJSON UserStatusOnline { expires = expires } =
   A.object [ "@type" A..= T.String "userStatusOnline", "expires" A..= expires ]
 
- toJSON (UserStatusOffline { was_online = was_online }) =
+ toJSON UserStatusOffline { was_online = was_online } =
   A.object [ "@type" A..= T.String "userStatusOffline", "was_online" A..= was_online ]
 
- toJSON (UserStatusRecently {  }) =
+ toJSON UserStatusRecently {  } =
   A.object [ "@type" A..= T.String "userStatusRecently" ]
 
- toJSON (UserStatusLastWeek {  }) =
+ toJSON UserStatusLastWeek {  } =
   A.object [ "@type" A..= T.String "userStatusLastWeek" ]
 
- toJSON (UserStatusLastMonth {  }) =
+ toJSON UserStatusLastMonth {  } =
   A.object [ "@type" A..= T.String "userStatusLastMonth" ]
 
 instance T.FromJSON UserStatus where
@@ -96,3 +125,4 @@ instance T.FromJSON UserStatus where
    parseUserStatusLastMonth :: A.Value -> T.Parser UserStatus
    parseUserStatusLastMonth = A.withObject "UserStatusLastMonth" $ \o -> do
     return $ UserStatusLastMonth {  }
+ parseJSON _ = mempty

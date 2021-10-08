@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Error as Error
 
 -- |
@@ -14,13 +15,26 @@ import {-# SOURCE #-} qualified API.Error as Error
 -- 
 -- __generation_id__ The identifier of the generation process
 -- 
--- __error__ If set, means that file generation has failed and should be terminated
+-- __error__ If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded
 data FinishFileGeneration = 
 
- FinishFileGeneration { _error :: Maybe Error.Error, generation_id :: Maybe Int }  deriving (Show, Eq)
+ FinishFileGeneration { _error :: Maybe Error.Error, generation_id :: Maybe Int }  deriving (Eq)
+
+instance Show FinishFileGeneration where
+ show FinishFileGeneration { _error=_error, generation_id=generation_id } =
+  "FinishFileGeneration" ++ cc [p "_error" _error, p "generation_id" generation_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON FinishFileGeneration where
- toJSON (FinishFileGeneration { _error = _error, generation_id = generation_id }) =
+ toJSON FinishFileGeneration { _error = _error, generation_id = generation_id } =
   A.object [ "@type" A..= T.String "finishFileGeneration", "error" A..= _error, "generation_id" A..= generation_id ]
 
 instance T.FromJSON FinishFileGeneration where
@@ -35,3 +49,4 @@ instance T.FromJSON FinishFileGeneration where
     _error <- o A..:? "error"
     generation_id <- mconcat [ o A..:? "generation_id", readMaybe <$> (o A..: "generation_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ FinishFileGeneration { _error = _error, generation_id = generation_id }
+ parseJSON _ = mempty

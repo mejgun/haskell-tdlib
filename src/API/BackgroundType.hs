@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.BackgroundFill as BackgroundFill
 
 -- |
@@ -37,16 +38,35 @@ data BackgroundType =
  -- A filled background 
  -- 
  -- __fill__ Description of the background fill
- BackgroundTypeFill { fill :: Maybe BackgroundFill.BackgroundFill }  deriving (Show, Eq)
+ BackgroundTypeFill { fill :: Maybe BackgroundFill.BackgroundFill }  deriving (Eq)
+
+instance Show BackgroundType where
+ show BackgroundTypeWallpaper { is_moving=is_moving, is_blurred=is_blurred } =
+  "BackgroundTypeWallpaper" ++ cc [p "is_moving" is_moving, p "is_blurred" is_blurred ]
+
+ show BackgroundTypePattern { is_moving=is_moving, is_inverted=is_inverted, intensity=intensity, fill=fill } =
+  "BackgroundTypePattern" ++ cc [p "is_moving" is_moving, p "is_inverted" is_inverted, p "intensity" intensity, p "fill" fill ]
+
+ show BackgroundTypeFill { fill=fill } =
+  "BackgroundTypeFill" ++ cc [p "fill" fill ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON BackgroundType where
- toJSON (BackgroundTypeWallpaper { is_moving = is_moving, is_blurred = is_blurred }) =
+ toJSON BackgroundTypeWallpaper { is_moving = is_moving, is_blurred = is_blurred } =
   A.object [ "@type" A..= T.String "backgroundTypeWallpaper", "is_moving" A..= is_moving, "is_blurred" A..= is_blurred ]
 
- toJSON (BackgroundTypePattern { is_moving = is_moving, is_inverted = is_inverted, intensity = intensity, fill = fill }) =
+ toJSON BackgroundTypePattern { is_moving = is_moving, is_inverted = is_inverted, intensity = intensity, fill = fill } =
   A.object [ "@type" A..= T.String "backgroundTypePattern", "is_moving" A..= is_moving, "is_inverted" A..= is_inverted, "intensity" A..= intensity, "fill" A..= fill ]
 
- toJSON (BackgroundTypeFill { fill = fill }) =
+ toJSON BackgroundTypeFill { fill = fill } =
   A.object [ "@type" A..= T.String "backgroundTypeFill", "fill" A..= fill ]
 
 instance T.FromJSON BackgroundType where
@@ -76,3 +96,4 @@ instance T.FromJSON BackgroundType where
    parseBackgroundTypeFill = A.withObject "BackgroundTypeFill" $ \o -> do
     fill <- o A..:? "fill"
     return $ BackgroundTypeFill { fill = fill }
+ parseJSON _ = mempty

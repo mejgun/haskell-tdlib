@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __bio__ The new value of the user bio; 0-70 characters without line feeds
 data SetBio = 
 
- SetBio { bio :: Maybe String }  deriving (Show, Eq)
+ SetBio { bio :: Maybe String }  deriving (Eq)
+
+instance Show SetBio where
+ show SetBio { bio=bio } =
+  "SetBio" ++ cc [p "bio" bio ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SetBio where
- toJSON (SetBio { bio = bio }) =
+ toJSON SetBio { bio = bio } =
   A.object [ "@type" A..= T.String "setBio", "bio" A..= bio ]
 
 instance T.FromJSON SetBio where
@@ -31,3 +45,4 @@ instance T.FromJSON SetBio where
    parseSetBio = A.withObject "SetBio" $ \o -> do
     bio <- o A..:? "bio"
     return $ SetBio { bio = bio }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __limit__ The maximum number of chats to be returned
 data GetRecentlyOpenedChats = 
 
- GetRecentlyOpenedChats { limit :: Maybe Int }  deriving (Show, Eq)
+ GetRecentlyOpenedChats { limit :: Maybe Int }  deriving (Eq)
+
+instance Show GetRecentlyOpenedChats where
+ show GetRecentlyOpenedChats { limit=limit } =
+  "GetRecentlyOpenedChats" ++ cc [p "limit" limit ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetRecentlyOpenedChats where
- toJSON (GetRecentlyOpenedChats { limit = limit }) =
+ toJSON GetRecentlyOpenedChats { limit = limit } =
   A.object [ "@type" A..= T.String "getRecentlyOpenedChats", "limit" A..= limit ]
 
 instance T.FromJSON GetRecentlyOpenedChats where
@@ -31,3 +45,4 @@ instance T.FromJSON GetRecentlyOpenedChats where
    parseGetRecentlyOpenedChats = A.withObject "GetRecentlyOpenedChats" $ \o -> do
     limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetRecentlyOpenedChats { limit = limit }
+ parseJSON _ = mempty

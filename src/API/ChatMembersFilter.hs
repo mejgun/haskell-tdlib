@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -40,28 +41,59 @@ data ChatMembersFilter =
  -- |
  -- 
  -- Returns bot members of the chat
- ChatMembersFilterBots deriving (Show, Eq)
+ ChatMembersFilterBots deriving (Eq)
+
+instance Show ChatMembersFilter where
+ show ChatMembersFilterContacts {  } =
+  "ChatMembersFilterContacts" ++ cc [ ]
+
+ show ChatMembersFilterAdministrators {  } =
+  "ChatMembersFilterAdministrators" ++ cc [ ]
+
+ show ChatMembersFilterMembers {  } =
+  "ChatMembersFilterMembers" ++ cc [ ]
+
+ show ChatMembersFilterMention { message_thread_id=message_thread_id } =
+  "ChatMembersFilterMention" ++ cc [p "message_thread_id" message_thread_id ]
+
+ show ChatMembersFilterRestricted {  } =
+  "ChatMembersFilterRestricted" ++ cc [ ]
+
+ show ChatMembersFilterBanned {  } =
+  "ChatMembersFilterBanned" ++ cc [ ]
+
+ show ChatMembersFilterBots {  } =
+  "ChatMembersFilterBots" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatMembersFilter where
- toJSON (ChatMembersFilterContacts {  }) =
+ toJSON ChatMembersFilterContacts {  } =
   A.object [ "@type" A..= T.String "chatMembersFilterContacts" ]
 
- toJSON (ChatMembersFilterAdministrators {  }) =
+ toJSON ChatMembersFilterAdministrators {  } =
   A.object [ "@type" A..= T.String "chatMembersFilterAdministrators" ]
 
- toJSON (ChatMembersFilterMembers {  }) =
+ toJSON ChatMembersFilterMembers {  } =
   A.object [ "@type" A..= T.String "chatMembersFilterMembers" ]
 
- toJSON (ChatMembersFilterMention { message_thread_id = message_thread_id }) =
+ toJSON ChatMembersFilterMention { message_thread_id = message_thread_id } =
   A.object [ "@type" A..= T.String "chatMembersFilterMention", "message_thread_id" A..= message_thread_id ]
 
- toJSON (ChatMembersFilterRestricted {  }) =
+ toJSON ChatMembersFilterRestricted {  } =
   A.object [ "@type" A..= T.String "chatMembersFilterRestricted" ]
 
- toJSON (ChatMembersFilterBanned {  }) =
+ toJSON ChatMembersFilterBanned {  } =
   A.object [ "@type" A..= T.String "chatMembersFilterBanned" ]
 
- toJSON (ChatMembersFilterBots {  }) =
+ toJSON ChatMembersFilterBots {  } =
   A.object [ "@type" A..= T.String "chatMembersFilterBots" ]
 
 instance T.FromJSON ChatMembersFilter where
@@ -105,3 +137,4 @@ instance T.FromJSON ChatMembersFilter where
    parseChatMembersFilterBots :: A.Value -> T.Parser ChatMembersFilter
    parseChatMembersFilterBots = A.withObject "ChatMembersFilterBots" $ \o -> do
     return $ ChatMembersFilterBots {  }
+ parseJSON _ = mempty

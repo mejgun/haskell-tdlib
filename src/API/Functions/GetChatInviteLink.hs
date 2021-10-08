@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __invite_link__ Invite link to get
 data GetChatInviteLink = 
 
- GetChatInviteLink { invite_link :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
+ GetChatInviteLink { invite_link :: Maybe String, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show GetChatInviteLink where
+ show GetChatInviteLink { invite_link=invite_link, chat_id=chat_id } =
+  "GetChatInviteLink" ++ cc [p "invite_link" invite_link, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetChatInviteLink where
- toJSON (GetChatInviteLink { invite_link = invite_link, chat_id = chat_id }) =
+ toJSON GetChatInviteLink { invite_link = invite_link, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "getChatInviteLink", "invite_link" A..= invite_link, "chat_id" A..= chat_id ]
 
 instance T.FromJSON GetChatInviteLink where
@@ -34,3 +48,4 @@ instance T.FromJSON GetChatInviteLink where
     invite_link <- o A..:? "invite_link"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetChatInviteLink { invite_link = invite_link, chat_id = chat_id }
+ parseJSON _ = mempty

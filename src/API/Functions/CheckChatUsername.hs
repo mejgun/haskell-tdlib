@@ -6,20 +6,34 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
 -- Checks whether a username can be set for a chat 
 -- 
--- __chat_id__ Chat identifier; should be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
+-- __chat_id__ Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
 -- 
 -- __username__ Username to be checked
 data CheckChatUsername = 
 
- CheckChatUsername { username :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
+ CheckChatUsername { username :: Maybe String, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show CheckChatUsername where
+ show CheckChatUsername { username=username, chat_id=chat_id } =
+  "CheckChatUsername" ++ cc [p "username" username, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON CheckChatUsername where
- toJSON (CheckChatUsername { username = username, chat_id = chat_id }) =
+ toJSON CheckChatUsername { username = username, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "checkChatUsername", "username" A..= username, "chat_id" A..= chat_id ]
 
 instance T.FromJSON CheckChatUsername where
@@ -34,3 +48,4 @@ instance T.FromJSON CheckChatUsername where
     username <- o A..:? "username"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ CheckChatUsername { username = username, chat_id = chat_id }
+ parseJSON _ = mempty

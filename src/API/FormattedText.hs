@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.TextEntity as TextEntity
 
 -- |
@@ -19,10 +20,23 @@ import {-# SOURCE #-} qualified API.TextEntity as TextEntity
 -- -Pre, Code and PreCode entities can't contain other entities. Bold, Italic, Underline and Strikethrough entities can contain and to be contained in all other entities. All other entities can't contain each other
 data FormattedText = 
 
- FormattedText { entities :: Maybe [TextEntity.TextEntity], text :: Maybe String }  deriving (Show, Eq)
+ FormattedText { entities :: Maybe [TextEntity.TextEntity], text :: Maybe String }  deriving (Eq)
+
+instance Show FormattedText where
+ show FormattedText { entities=entities, text=text } =
+  "FormattedText" ++ cc [p "entities" entities, p "text" text ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON FormattedText where
- toJSON (FormattedText { entities = entities, text = text }) =
+ toJSON FormattedText { entities = entities, text = text } =
   A.object [ "@type" A..= T.String "formattedText", "entities" A..= entities, "text" A..= text ]
 
 instance T.FromJSON FormattedText where
@@ -37,3 +51,4 @@ instance T.FromJSON FormattedText where
     entities <- o A..:? "entities"
     text <- o A..:? "text"
     return $ FormattedText { entities = entities, text = text }
+ parseJSON _ = mempty

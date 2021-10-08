@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __phone_number_prefix__ The phone number prefix
 data GetPhoneNumberInfo = 
 
- GetPhoneNumberInfo { phone_number_prefix :: Maybe String }  deriving (Show, Eq)
+ GetPhoneNumberInfo { phone_number_prefix :: Maybe String }  deriving (Eq)
+
+instance Show GetPhoneNumberInfo where
+ show GetPhoneNumberInfo { phone_number_prefix=phone_number_prefix } =
+  "GetPhoneNumberInfo" ++ cc [p "phone_number_prefix" phone_number_prefix ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetPhoneNumberInfo where
- toJSON (GetPhoneNumberInfo { phone_number_prefix = phone_number_prefix }) =
+ toJSON GetPhoneNumberInfo { phone_number_prefix = phone_number_prefix } =
   A.object [ "@type" A..= T.String "getPhoneNumberInfo", "phone_number_prefix" A..= phone_number_prefix ]
 
 instance T.FromJSON GetPhoneNumberInfo where
@@ -31,3 +45,4 @@ instance T.FromJSON GetPhoneNumberInfo where
    parseGetPhoneNumberInfo = A.withObject "GetPhoneNumberInfo" $ \o -> do
     phone_number_prefix <- o A..:? "phone_number_prefix"
     return $ GetPhoneNumberInfo { phone_number_prefix = phone_number_prefix }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 -- |
@@ -17,10 +18,23 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- __translation__ List of files containing a certified English translation of the document
 data InputPersonalDocument = 
 
- InputPersonalDocument { translation :: Maybe [InputFile.InputFile], files :: Maybe [InputFile.InputFile] }  deriving (Show, Eq)
+ InputPersonalDocument { translation :: Maybe [InputFile.InputFile], files :: Maybe [InputFile.InputFile] }  deriving (Eq)
+
+instance Show InputPersonalDocument where
+ show InputPersonalDocument { translation=translation, files=files } =
+  "InputPersonalDocument" ++ cc [p "translation" translation, p "files" files ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON InputPersonalDocument where
- toJSON (InputPersonalDocument { translation = translation, files = files }) =
+ toJSON InputPersonalDocument { translation = translation, files = files } =
   A.object [ "@type" A..= T.String "inputPersonalDocument", "translation" A..= translation, "files" A..= files ]
 
 instance T.FromJSON InputPersonalDocument where
@@ -35,3 +49,4 @@ instance T.FromJSON InputPersonalDocument where
     translation <- o A..:? "translation"
     files <- o A..:? "files"
     return $ InputPersonalDocument { translation = translation, files = files }
+ parseJSON _ = mempty

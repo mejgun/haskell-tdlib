@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -30,10 +31,23 @@ import qualified Data.Aeson.Types as T
 -- __is_revoked__ True, if the link was revoked
 data ChatInviteLink = 
 
- ChatInviteLink { is_revoked :: Maybe Bool, is_primary :: Maybe Bool, member_count :: Maybe Int, member_limit :: Maybe Int, expire_date :: Maybe Int, edit_date :: Maybe Int, date :: Maybe Int, creator_user_id :: Maybe Int, invite_link :: Maybe String }  deriving (Show, Eq)
+ ChatInviteLink { is_revoked :: Maybe Bool, is_primary :: Maybe Bool, member_count :: Maybe Int, member_limit :: Maybe Int, expire_date :: Maybe Int, edit_date :: Maybe Int, date :: Maybe Int, creator_user_id :: Maybe Int, invite_link :: Maybe String }  deriving (Eq)
+
+instance Show ChatInviteLink where
+ show ChatInviteLink { is_revoked=is_revoked, is_primary=is_primary, member_count=member_count, member_limit=member_limit, expire_date=expire_date, edit_date=edit_date, date=date, creator_user_id=creator_user_id, invite_link=invite_link } =
+  "ChatInviteLink" ++ cc [p "is_revoked" is_revoked, p "is_primary" is_primary, p "member_count" member_count, p "member_limit" member_limit, p "expire_date" expire_date, p "edit_date" edit_date, p "date" date, p "creator_user_id" creator_user_id, p "invite_link" invite_link ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatInviteLink where
- toJSON (ChatInviteLink { is_revoked = is_revoked, is_primary = is_primary, member_count = member_count, member_limit = member_limit, expire_date = expire_date, edit_date = edit_date, date = date, creator_user_id = creator_user_id, invite_link = invite_link }) =
+ toJSON ChatInviteLink { is_revoked = is_revoked, is_primary = is_primary, member_count = member_count, member_limit = member_limit, expire_date = expire_date, edit_date = edit_date, date = date, creator_user_id = creator_user_id, invite_link = invite_link } =
   A.object [ "@type" A..= T.String "chatInviteLink", "is_revoked" A..= is_revoked, "is_primary" A..= is_primary, "member_count" A..= member_count, "member_limit" A..= member_limit, "expire_date" A..= expire_date, "edit_date" A..= edit_date, "date" A..= date, "creator_user_id" A..= creator_user_id, "invite_link" A..= invite_link ]
 
 instance T.FromJSON ChatInviteLink where
@@ -55,3 +69,4 @@ instance T.FromJSON ChatInviteLink where
     creator_user_id <- mconcat [ o A..:? "creator_user_id", readMaybe <$> (o A..: "creator_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     invite_link <- o A..:? "invite_link"
     return $ ChatInviteLink { is_revoked = is_revoked, is_primary = is_primary, member_count = member_count, member_limit = member_limit, expire_date = expire_date, edit_date = edit_date, date = date, creator_user_id = creator_user_id, invite_link = invite_link }
+ parseJSON _ = mempty

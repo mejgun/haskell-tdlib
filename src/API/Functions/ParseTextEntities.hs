@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.TextParseMode as TextParseMode
 
 -- |
@@ -17,10 +18,23 @@ import {-# SOURCE #-} qualified API.TextParseMode as TextParseMode
 -- __parse_mode__ Text parse mode
 data ParseTextEntities = 
 
- ParseTextEntities { parse_mode :: Maybe TextParseMode.TextParseMode, text :: Maybe String }  deriving (Show, Eq)
+ ParseTextEntities { parse_mode :: Maybe TextParseMode.TextParseMode, text :: Maybe String }  deriving (Eq)
+
+instance Show ParseTextEntities where
+ show ParseTextEntities { parse_mode=parse_mode, text=text } =
+  "ParseTextEntities" ++ cc [p "parse_mode" parse_mode, p "text" text ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ParseTextEntities where
- toJSON (ParseTextEntities { parse_mode = parse_mode, text = text }) =
+ toJSON ParseTextEntities { parse_mode = parse_mode, text = text } =
   A.object [ "@type" A..= T.String "parseTextEntities", "parse_mode" A..= parse_mode, "text" A..= text ]
 
 instance T.FromJSON ParseTextEntities where
@@ -35,3 +49,4 @@ instance T.FromJSON ParseTextEntities where
     parse_mode <- o A..:? "parse_mode"
     text <- o A..:? "text"
     return $ ParseTextEntities { parse_mode = parse_mode, text = text }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Location as Location
 
 -- |
@@ -15,10 +16,23 @@ import {-# SOURCE #-} qualified API.Location as Location
 -- __location__ The new location of the user
 data SetLocation = 
 
- SetLocation { location :: Maybe Location.Location }  deriving (Show, Eq)
+ SetLocation { location :: Maybe Location.Location }  deriving (Eq)
+
+instance Show SetLocation where
+ show SetLocation { location=location } =
+  "SetLocation" ++ cc [p "location" location ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SetLocation where
- toJSON (SetLocation { location = location }) =
+ toJSON SetLocation { location = location } =
   A.object [ "@type" A..= T.String "setLocation", "location" A..= location ]
 
 instance T.FromJSON SetLocation where
@@ -32,3 +46,4 @@ instance T.FromJSON SetLocation where
    parseSetLocation = A.withObject "SetLocation" $ \o -> do
     location <- o A..:? "location"
     return $ SetLocation { location = location }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Message as Message
 
 -- |
@@ -19,10 +20,23 @@ import {-# SOURCE #-} qualified API.Message as Message
 -- __next_offset__ The offset for the next request. If empty, there are no more results
 data FoundMessages = 
 
- FoundMessages { next_offset :: Maybe String, messages :: Maybe [Message.Message], total_count :: Maybe Int }  deriving (Show, Eq)
+ FoundMessages { next_offset :: Maybe String, messages :: Maybe [Message.Message], total_count :: Maybe Int }  deriving (Eq)
+
+instance Show FoundMessages where
+ show FoundMessages { next_offset=next_offset, messages=messages, total_count=total_count } =
+  "FoundMessages" ++ cc [p "next_offset" next_offset, p "messages" messages, p "total_count" total_count ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON FoundMessages where
- toJSON (FoundMessages { next_offset = next_offset, messages = messages, total_count = total_count }) =
+ toJSON FoundMessages { next_offset = next_offset, messages = messages, total_count = total_count } =
   A.object [ "@type" A..= T.String "foundMessages", "next_offset" A..= next_offset, "messages" A..= messages, "total_count" A..= total_count ]
 
 instance T.FromJSON FoundMessages where
@@ -38,3 +52,4 @@ instance T.FromJSON FoundMessages where
     messages <- o A..:? "messages"
     total_count <- mconcat [ o A..:? "total_count", readMaybe <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ FoundMessages { next_offset = next_offset, messages = messages, total_count = total_count }
+ parseJSON _ = mempty

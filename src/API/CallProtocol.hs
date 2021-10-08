@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -22,10 +23,23 @@ import qualified Data.Aeson.Types as T
 -- __library_versions__ List of supported tgcalls versions
 data CallProtocol = 
 
- CallProtocol { library_versions :: Maybe [String], max_layer :: Maybe Int, min_layer :: Maybe Int, udp_reflector :: Maybe Bool, udp_p2p :: Maybe Bool }  deriving (Show, Eq)
+ CallProtocol { library_versions :: Maybe [String], max_layer :: Maybe Int, min_layer :: Maybe Int, udp_reflector :: Maybe Bool, udp_p2p :: Maybe Bool }  deriving (Eq)
+
+instance Show CallProtocol where
+ show CallProtocol { library_versions=library_versions, max_layer=max_layer, min_layer=min_layer, udp_reflector=udp_reflector, udp_p2p=udp_p2p } =
+  "CallProtocol" ++ cc [p "library_versions" library_versions, p "max_layer" max_layer, p "min_layer" min_layer, p "udp_reflector" udp_reflector, p "udp_p2p" udp_p2p ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON CallProtocol where
- toJSON (CallProtocol { library_versions = library_versions, max_layer = max_layer, min_layer = min_layer, udp_reflector = udp_reflector, udp_p2p = udp_p2p }) =
+ toJSON CallProtocol { library_versions = library_versions, max_layer = max_layer, min_layer = min_layer, udp_reflector = udp_reflector, udp_p2p = udp_p2p } =
   A.object [ "@type" A..= T.String "callProtocol", "library_versions" A..= library_versions, "max_layer" A..= max_layer, "min_layer" A..= min_layer, "udp_reflector" A..= udp_reflector, "udp_p2p" A..= udp_p2p ]
 
 instance T.FromJSON CallProtocol where
@@ -43,3 +57,4 @@ instance T.FromJSON CallProtocol where
     udp_reflector <- o A..:? "udp_reflector"
     udp_p2p <- o A..:? "udp_p2p"
     return $ CallProtocol { library_versions = library_versions, max_layer = max_layer, min_layer = min_layer, udp_reflector = udp_reflector, udp_p2p = udp_p2p }
+ parseJSON _ = mempty

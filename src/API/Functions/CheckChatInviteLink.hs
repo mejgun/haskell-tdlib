@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __invite_link__ Invite link to be checked
 data CheckChatInviteLink = 
 
- CheckChatInviteLink { invite_link :: Maybe String }  deriving (Show, Eq)
+ CheckChatInviteLink { invite_link :: Maybe String }  deriving (Eq)
+
+instance Show CheckChatInviteLink where
+ show CheckChatInviteLink { invite_link=invite_link } =
+  "CheckChatInviteLink" ++ cc [p "invite_link" invite_link ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON CheckChatInviteLink where
- toJSON (CheckChatInviteLink { invite_link = invite_link }) =
+ toJSON CheckChatInviteLink { invite_link = invite_link } =
   A.object [ "@type" A..= T.String "checkChatInviteLink", "invite_link" A..= invite_link ]
 
 instance T.FromJSON CheckChatInviteLink where
@@ -31,3 +45,4 @@ instance T.FromJSON CheckChatInviteLink where
    parseCheckChatInviteLink = A.withObject "CheckChatInviteLink" $ \o -> do
     invite_link <- o A..:? "invite_link"
     return $ CheckChatInviteLink { invite_link = invite_link }
+ parseJSON _ = mempty

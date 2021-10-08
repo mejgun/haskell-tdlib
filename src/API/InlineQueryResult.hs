@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Contact as Contact
 import {-# SOURCE #-} qualified API.Location as Location
 import {-# SOURCE #-} qualified API.Thumbnail as Thumbnail
@@ -150,43 +151,89 @@ data InlineQueryResult =
  -- __voice_note__ Voice note
  -- 
  -- __title__ Title of the voice note
- InlineQueryResultVoiceNote { title :: Maybe String, voice_note :: Maybe VoiceNote.VoiceNote, _id :: Maybe String }  deriving (Show, Eq)
+ InlineQueryResultVoiceNote { title :: Maybe String, voice_note :: Maybe VoiceNote.VoiceNote, _id :: Maybe String }  deriving (Eq)
+
+instance Show InlineQueryResult where
+ show InlineQueryResultArticle { thumbnail=thumbnail, description=description, title=title, hide_url=hide_url, url=url, _id=_id } =
+  "InlineQueryResultArticle" ++ cc [p "thumbnail" thumbnail, p "description" description, p "title" title, p "hide_url" hide_url, p "url" url, p "_id" _id ]
+
+ show InlineQueryResultContact { thumbnail=thumbnail, contact=contact, _id=_id } =
+  "InlineQueryResultContact" ++ cc [p "thumbnail" thumbnail, p "contact" contact, p "_id" _id ]
+
+ show InlineQueryResultLocation { thumbnail=thumbnail, title=title, location=location, _id=_id } =
+  "InlineQueryResultLocation" ++ cc [p "thumbnail" thumbnail, p "title" title, p "location" location, p "_id" _id ]
+
+ show InlineQueryResultVenue { thumbnail=thumbnail, venue=venue, _id=_id } =
+  "InlineQueryResultVenue" ++ cc [p "thumbnail" thumbnail, p "venue" venue, p "_id" _id ]
+
+ show InlineQueryResultGame { game=game, _id=_id } =
+  "InlineQueryResultGame" ++ cc [p "game" game, p "_id" _id ]
+
+ show InlineQueryResultAnimation { title=title, animation=animation, _id=_id } =
+  "InlineQueryResultAnimation" ++ cc [p "title" title, p "animation" animation, p "_id" _id ]
+
+ show InlineQueryResultAudio { audio=audio, _id=_id } =
+  "InlineQueryResultAudio" ++ cc [p "audio" audio, p "_id" _id ]
+
+ show InlineQueryResultDocument { description=description, title=title, document=document, _id=_id } =
+  "InlineQueryResultDocument" ++ cc [p "description" description, p "title" title, p "document" document, p "_id" _id ]
+
+ show InlineQueryResultPhoto { description=description, title=title, photo=photo, _id=_id } =
+  "InlineQueryResultPhoto" ++ cc [p "description" description, p "title" title, p "photo" photo, p "_id" _id ]
+
+ show InlineQueryResultSticker { sticker=sticker, _id=_id } =
+  "InlineQueryResultSticker" ++ cc [p "sticker" sticker, p "_id" _id ]
+
+ show InlineQueryResultVideo { description=description, title=title, video=video, _id=_id } =
+  "InlineQueryResultVideo" ++ cc [p "description" description, p "title" title, p "video" video, p "_id" _id ]
+
+ show InlineQueryResultVoiceNote { title=title, voice_note=voice_note, _id=_id } =
+  "InlineQueryResultVoiceNote" ++ cc [p "title" title, p "voice_note" voice_note, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON InlineQueryResult where
- toJSON (InlineQueryResultArticle { thumbnail = thumbnail, description = description, title = title, hide_url = hide_url, url = url, _id = _id }) =
+ toJSON InlineQueryResultArticle { thumbnail = thumbnail, description = description, title = title, hide_url = hide_url, url = url, _id = _id } =
   A.object [ "@type" A..= T.String "inlineQueryResultArticle", "thumbnail" A..= thumbnail, "description" A..= description, "title" A..= title, "hide_url" A..= hide_url, "url" A..= url, "id" A..= _id ]
 
- toJSON (InlineQueryResultContact { thumbnail = thumbnail, contact = contact, _id = _id }) =
+ toJSON InlineQueryResultContact { thumbnail = thumbnail, contact = contact, _id = _id } =
   A.object [ "@type" A..= T.String "inlineQueryResultContact", "thumbnail" A..= thumbnail, "contact" A..= contact, "id" A..= _id ]
 
- toJSON (InlineQueryResultLocation { thumbnail = thumbnail, title = title, location = location, _id = _id }) =
+ toJSON InlineQueryResultLocation { thumbnail = thumbnail, title = title, location = location, _id = _id } =
   A.object [ "@type" A..= T.String "inlineQueryResultLocation", "thumbnail" A..= thumbnail, "title" A..= title, "location" A..= location, "id" A..= _id ]
 
- toJSON (InlineQueryResultVenue { thumbnail = thumbnail, venue = venue, _id = _id }) =
+ toJSON InlineQueryResultVenue { thumbnail = thumbnail, venue = venue, _id = _id } =
   A.object [ "@type" A..= T.String "inlineQueryResultVenue", "thumbnail" A..= thumbnail, "venue" A..= venue, "id" A..= _id ]
 
- toJSON (InlineQueryResultGame { game = game, _id = _id }) =
+ toJSON InlineQueryResultGame { game = game, _id = _id } =
   A.object [ "@type" A..= T.String "inlineQueryResultGame", "game" A..= game, "id" A..= _id ]
 
- toJSON (InlineQueryResultAnimation { title = title, animation = animation, _id = _id }) =
+ toJSON InlineQueryResultAnimation { title = title, animation = animation, _id = _id } =
   A.object [ "@type" A..= T.String "inlineQueryResultAnimation", "title" A..= title, "animation" A..= animation, "id" A..= _id ]
 
- toJSON (InlineQueryResultAudio { audio = audio, _id = _id }) =
+ toJSON InlineQueryResultAudio { audio = audio, _id = _id } =
   A.object [ "@type" A..= T.String "inlineQueryResultAudio", "audio" A..= audio, "id" A..= _id ]
 
- toJSON (InlineQueryResultDocument { description = description, title = title, document = document, _id = _id }) =
+ toJSON InlineQueryResultDocument { description = description, title = title, document = document, _id = _id } =
   A.object [ "@type" A..= T.String "inlineQueryResultDocument", "description" A..= description, "title" A..= title, "document" A..= document, "id" A..= _id ]
 
- toJSON (InlineQueryResultPhoto { description = description, title = title, photo = photo, _id = _id }) =
+ toJSON InlineQueryResultPhoto { description = description, title = title, photo = photo, _id = _id } =
   A.object [ "@type" A..= T.String "inlineQueryResultPhoto", "description" A..= description, "title" A..= title, "photo" A..= photo, "id" A..= _id ]
 
- toJSON (InlineQueryResultSticker { sticker = sticker, _id = _id }) =
+ toJSON InlineQueryResultSticker { sticker = sticker, _id = _id } =
   A.object [ "@type" A..= T.String "inlineQueryResultSticker", "sticker" A..= sticker, "id" A..= _id ]
 
- toJSON (InlineQueryResultVideo { description = description, title = title, video = video, _id = _id }) =
+ toJSON InlineQueryResultVideo { description = description, title = title, video = video, _id = _id } =
   A.object [ "@type" A..= T.String "inlineQueryResultVideo", "description" A..= description, "title" A..= title, "video" A..= video, "id" A..= _id ]
 
- toJSON (InlineQueryResultVoiceNote { title = title, voice_note = voice_note, _id = _id }) =
+ toJSON InlineQueryResultVoiceNote { title = title, voice_note = voice_note, _id = _id } =
   A.object [ "@type" A..= T.String "inlineQueryResultVoiceNote", "title" A..= title, "voice_note" A..= voice_note, "id" A..= _id ]
 
 instance T.FromJSON InlineQueryResult where
@@ -294,3 +341,4 @@ instance T.FromJSON InlineQueryResult where
     voice_note <- o A..:? "voice_note"
     _id <- o A..:? "id"
     return $ InlineQueryResultVoiceNote { title = title, voice_note = voice_note, _id = _id }
+ parseJSON _ = mempty

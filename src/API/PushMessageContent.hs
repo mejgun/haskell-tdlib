@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Animation as Animation
 import {-# SOURCE #-} qualified API.Audio as Audio
 import {-# SOURCE #-} qualified API.Document as Document
@@ -198,7 +199,7 @@ data PushMessageContent =
  -- A chat theme was edited 
  -- 
  -- __theme_name__ If non-empty, name of a new theme, set for the chat. Otherwise chat theme was reset to the default one
- PushMessageContentChatChangeTheme { theme_name :: Maybe String }  |
+ PushMessageContentChatSetTheme { theme_name :: Maybe String }  |
  -- |
  -- 
  -- A chat member was deleted 
@@ -232,88 +233,179 @@ data PushMessageContent =
  -- __has_audios__ True, if the album has at least one audio file
  -- 
  -- __has_documents__ True, if the album has at least one document
- PushMessageContentMediaAlbum { has_documents :: Maybe Bool, has_audios :: Maybe Bool, has_videos :: Maybe Bool, has_photos :: Maybe Bool, total_count :: Maybe Int }  deriving (Show, Eq)
+ PushMessageContentMediaAlbum { has_documents :: Maybe Bool, has_audios :: Maybe Bool, has_videos :: Maybe Bool, has_photos :: Maybe Bool, total_count :: Maybe Int }  deriving (Eq)
+
+instance Show PushMessageContent where
+ show PushMessageContentHidden { is_pinned=is_pinned } =
+  "PushMessageContentHidden" ++ cc [p "is_pinned" is_pinned ]
+
+ show PushMessageContentAnimation { is_pinned=is_pinned, caption=caption, animation=animation } =
+  "PushMessageContentAnimation" ++ cc [p "is_pinned" is_pinned, p "caption" caption, p "animation" animation ]
+
+ show PushMessageContentAudio { is_pinned=is_pinned, audio=audio } =
+  "PushMessageContentAudio" ++ cc [p "is_pinned" is_pinned, p "audio" audio ]
+
+ show PushMessageContentContact { is_pinned=is_pinned, name=name } =
+  "PushMessageContentContact" ++ cc [p "is_pinned" is_pinned, p "name" name ]
+
+ show PushMessageContentContactRegistered {  } =
+  "PushMessageContentContactRegistered" ++ cc [ ]
+
+ show PushMessageContentDocument { is_pinned=is_pinned, document=document } =
+  "PushMessageContentDocument" ++ cc [p "is_pinned" is_pinned, p "document" document ]
+
+ show PushMessageContentGame { is_pinned=is_pinned, title=title } =
+  "PushMessageContentGame" ++ cc [p "is_pinned" is_pinned, p "title" title ]
+
+ show PushMessageContentGameScore { is_pinned=is_pinned, score=score, title=title } =
+  "PushMessageContentGameScore" ++ cc [p "is_pinned" is_pinned, p "score" score, p "title" title ]
+
+ show PushMessageContentInvoice { is_pinned=is_pinned, price=price } =
+  "PushMessageContentInvoice" ++ cc [p "is_pinned" is_pinned, p "price" price ]
+
+ show PushMessageContentLocation { is_pinned=is_pinned, is_live=is_live } =
+  "PushMessageContentLocation" ++ cc [p "is_pinned" is_pinned, p "is_live" is_live ]
+
+ show PushMessageContentPhoto { is_pinned=is_pinned, is_secret=is_secret, caption=caption, photo=photo } =
+  "PushMessageContentPhoto" ++ cc [p "is_pinned" is_pinned, p "is_secret" is_secret, p "caption" caption, p "photo" photo ]
+
+ show PushMessageContentPoll { is_pinned=is_pinned, is_regular=is_regular, question=question } =
+  "PushMessageContentPoll" ++ cc [p "is_pinned" is_pinned, p "is_regular" is_regular, p "question" question ]
+
+ show PushMessageContentScreenshotTaken {  } =
+  "PushMessageContentScreenshotTaken" ++ cc [ ]
+
+ show PushMessageContentSticker { is_pinned=is_pinned, emoji=emoji, sticker=sticker } =
+  "PushMessageContentSticker" ++ cc [p "is_pinned" is_pinned, p "emoji" emoji, p "sticker" sticker ]
+
+ show PushMessageContentText { is_pinned=is_pinned, text=text } =
+  "PushMessageContentText" ++ cc [p "is_pinned" is_pinned, p "text" text ]
+
+ show PushMessageContentVideo { is_pinned=is_pinned, is_secret=is_secret, caption=caption, video=video } =
+  "PushMessageContentVideo" ++ cc [p "is_pinned" is_pinned, p "is_secret" is_secret, p "caption" caption, p "video" video ]
+
+ show PushMessageContentVideoNote { is_pinned=is_pinned, video_note=video_note } =
+  "PushMessageContentVideoNote" ++ cc [p "is_pinned" is_pinned, p "video_note" video_note ]
+
+ show PushMessageContentVoiceNote { is_pinned=is_pinned, voice_note=voice_note } =
+  "PushMessageContentVoiceNote" ++ cc [p "is_pinned" is_pinned, p "voice_note" voice_note ]
+
+ show PushMessageContentBasicGroupChatCreate {  } =
+  "PushMessageContentBasicGroupChatCreate" ++ cc [ ]
+
+ show PushMessageContentChatAddMembers { is_returned=is_returned, is_current_user=is_current_user, member_name=member_name } =
+  "PushMessageContentChatAddMembers" ++ cc [p "is_returned" is_returned, p "is_current_user" is_current_user, p "member_name" member_name ]
+
+ show PushMessageContentChatChangePhoto {  } =
+  "PushMessageContentChatChangePhoto" ++ cc [ ]
+
+ show PushMessageContentChatChangeTitle { title=title } =
+  "PushMessageContentChatChangeTitle" ++ cc [p "title" title ]
+
+ show PushMessageContentChatSetTheme { theme_name=theme_name } =
+  "PushMessageContentChatSetTheme" ++ cc [p "theme_name" theme_name ]
+
+ show PushMessageContentChatDeleteMember { is_left=is_left, is_current_user=is_current_user, member_name=member_name } =
+  "PushMessageContentChatDeleteMember" ++ cc [p "is_left" is_left, p "is_current_user" is_current_user, p "member_name" member_name ]
+
+ show PushMessageContentChatJoinByLink {  } =
+  "PushMessageContentChatJoinByLink" ++ cc [ ]
+
+ show PushMessageContentMessageForwards { total_count=total_count } =
+  "PushMessageContentMessageForwards" ++ cc [p "total_count" total_count ]
+
+ show PushMessageContentMediaAlbum { has_documents=has_documents, has_audios=has_audios, has_videos=has_videos, has_photos=has_photos, total_count=total_count } =
+  "PushMessageContentMediaAlbum" ++ cc [p "has_documents" has_documents, p "has_audios" has_audios, p "has_videos" has_videos, p "has_photos" has_photos, p "total_count" total_count ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON PushMessageContent where
- toJSON (PushMessageContentHidden { is_pinned = is_pinned }) =
+ toJSON PushMessageContentHidden { is_pinned = is_pinned } =
   A.object [ "@type" A..= T.String "pushMessageContentHidden", "is_pinned" A..= is_pinned ]
 
- toJSON (PushMessageContentAnimation { is_pinned = is_pinned, caption = caption, animation = animation }) =
+ toJSON PushMessageContentAnimation { is_pinned = is_pinned, caption = caption, animation = animation } =
   A.object [ "@type" A..= T.String "pushMessageContentAnimation", "is_pinned" A..= is_pinned, "caption" A..= caption, "animation" A..= animation ]
 
- toJSON (PushMessageContentAudio { is_pinned = is_pinned, audio = audio }) =
+ toJSON PushMessageContentAudio { is_pinned = is_pinned, audio = audio } =
   A.object [ "@type" A..= T.String "pushMessageContentAudio", "is_pinned" A..= is_pinned, "audio" A..= audio ]
 
- toJSON (PushMessageContentContact { is_pinned = is_pinned, name = name }) =
+ toJSON PushMessageContentContact { is_pinned = is_pinned, name = name } =
   A.object [ "@type" A..= T.String "pushMessageContentContact", "is_pinned" A..= is_pinned, "name" A..= name ]
 
- toJSON (PushMessageContentContactRegistered {  }) =
+ toJSON PushMessageContentContactRegistered {  } =
   A.object [ "@type" A..= T.String "pushMessageContentContactRegistered" ]
 
- toJSON (PushMessageContentDocument { is_pinned = is_pinned, document = document }) =
+ toJSON PushMessageContentDocument { is_pinned = is_pinned, document = document } =
   A.object [ "@type" A..= T.String "pushMessageContentDocument", "is_pinned" A..= is_pinned, "document" A..= document ]
 
- toJSON (PushMessageContentGame { is_pinned = is_pinned, title = title }) =
+ toJSON PushMessageContentGame { is_pinned = is_pinned, title = title } =
   A.object [ "@type" A..= T.String "pushMessageContentGame", "is_pinned" A..= is_pinned, "title" A..= title ]
 
- toJSON (PushMessageContentGameScore { is_pinned = is_pinned, score = score, title = title }) =
+ toJSON PushMessageContentGameScore { is_pinned = is_pinned, score = score, title = title } =
   A.object [ "@type" A..= T.String "pushMessageContentGameScore", "is_pinned" A..= is_pinned, "score" A..= score, "title" A..= title ]
 
- toJSON (PushMessageContentInvoice { is_pinned = is_pinned, price = price }) =
+ toJSON PushMessageContentInvoice { is_pinned = is_pinned, price = price } =
   A.object [ "@type" A..= T.String "pushMessageContentInvoice", "is_pinned" A..= is_pinned, "price" A..= price ]
 
- toJSON (PushMessageContentLocation { is_pinned = is_pinned, is_live = is_live }) =
+ toJSON PushMessageContentLocation { is_pinned = is_pinned, is_live = is_live } =
   A.object [ "@type" A..= T.String "pushMessageContentLocation", "is_pinned" A..= is_pinned, "is_live" A..= is_live ]
 
- toJSON (PushMessageContentPhoto { is_pinned = is_pinned, is_secret = is_secret, caption = caption, photo = photo }) =
+ toJSON PushMessageContentPhoto { is_pinned = is_pinned, is_secret = is_secret, caption = caption, photo = photo } =
   A.object [ "@type" A..= T.String "pushMessageContentPhoto", "is_pinned" A..= is_pinned, "is_secret" A..= is_secret, "caption" A..= caption, "photo" A..= photo ]
 
- toJSON (PushMessageContentPoll { is_pinned = is_pinned, is_regular = is_regular, question = question }) =
+ toJSON PushMessageContentPoll { is_pinned = is_pinned, is_regular = is_regular, question = question } =
   A.object [ "@type" A..= T.String "pushMessageContentPoll", "is_pinned" A..= is_pinned, "is_regular" A..= is_regular, "question" A..= question ]
 
- toJSON (PushMessageContentScreenshotTaken {  }) =
+ toJSON PushMessageContentScreenshotTaken {  } =
   A.object [ "@type" A..= T.String "pushMessageContentScreenshotTaken" ]
 
- toJSON (PushMessageContentSticker { is_pinned = is_pinned, emoji = emoji, sticker = sticker }) =
+ toJSON PushMessageContentSticker { is_pinned = is_pinned, emoji = emoji, sticker = sticker } =
   A.object [ "@type" A..= T.String "pushMessageContentSticker", "is_pinned" A..= is_pinned, "emoji" A..= emoji, "sticker" A..= sticker ]
 
- toJSON (PushMessageContentText { is_pinned = is_pinned, text = text }) =
+ toJSON PushMessageContentText { is_pinned = is_pinned, text = text } =
   A.object [ "@type" A..= T.String "pushMessageContentText", "is_pinned" A..= is_pinned, "text" A..= text ]
 
- toJSON (PushMessageContentVideo { is_pinned = is_pinned, is_secret = is_secret, caption = caption, video = video }) =
+ toJSON PushMessageContentVideo { is_pinned = is_pinned, is_secret = is_secret, caption = caption, video = video } =
   A.object [ "@type" A..= T.String "pushMessageContentVideo", "is_pinned" A..= is_pinned, "is_secret" A..= is_secret, "caption" A..= caption, "video" A..= video ]
 
- toJSON (PushMessageContentVideoNote { is_pinned = is_pinned, video_note = video_note }) =
+ toJSON PushMessageContentVideoNote { is_pinned = is_pinned, video_note = video_note } =
   A.object [ "@type" A..= T.String "pushMessageContentVideoNote", "is_pinned" A..= is_pinned, "video_note" A..= video_note ]
 
- toJSON (PushMessageContentVoiceNote { is_pinned = is_pinned, voice_note = voice_note }) =
+ toJSON PushMessageContentVoiceNote { is_pinned = is_pinned, voice_note = voice_note } =
   A.object [ "@type" A..= T.String "pushMessageContentVoiceNote", "is_pinned" A..= is_pinned, "voice_note" A..= voice_note ]
 
- toJSON (PushMessageContentBasicGroupChatCreate {  }) =
+ toJSON PushMessageContentBasicGroupChatCreate {  } =
   A.object [ "@type" A..= T.String "pushMessageContentBasicGroupChatCreate" ]
 
- toJSON (PushMessageContentChatAddMembers { is_returned = is_returned, is_current_user = is_current_user, member_name = member_name }) =
+ toJSON PushMessageContentChatAddMembers { is_returned = is_returned, is_current_user = is_current_user, member_name = member_name } =
   A.object [ "@type" A..= T.String "pushMessageContentChatAddMembers", "is_returned" A..= is_returned, "is_current_user" A..= is_current_user, "member_name" A..= member_name ]
 
- toJSON (PushMessageContentChatChangePhoto {  }) =
+ toJSON PushMessageContentChatChangePhoto {  } =
   A.object [ "@type" A..= T.String "pushMessageContentChatChangePhoto" ]
 
- toJSON (PushMessageContentChatChangeTitle { title = title }) =
+ toJSON PushMessageContentChatChangeTitle { title = title } =
   A.object [ "@type" A..= T.String "pushMessageContentChatChangeTitle", "title" A..= title ]
 
- toJSON (PushMessageContentChatChangeTheme { theme_name = theme_name }) =
-  A.object [ "@type" A..= T.String "pushMessageContentChatChangeTheme", "theme_name" A..= theme_name ]
+ toJSON PushMessageContentChatSetTheme { theme_name = theme_name } =
+  A.object [ "@type" A..= T.String "pushMessageContentChatSetTheme", "theme_name" A..= theme_name ]
 
- toJSON (PushMessageContentChatDeleteMember { is_left = is_left, is_current_user = is_current_user, member_name = member_name }) =
+ toJSON PushMessageContentChatDeleteMember { is_left = is_left, is_current_user = is_current_user, member_name = member_name } =
   A.object [ "@type" A..= T.String "pushMessageContentChatDeleteMember", "is_left" A..= is_left, "is_current_user" A..= is_current_user, "member_name" A..= member_name ]
 
- toJSON (PushMessageContentChatJoinByLink {  }) =
+ toJSON PushMessageContentChatJoinByLink {  } =
   A.object [ "@type" A..= T.String "pushMessageContentChatJoinByLink" ]
 
- toJSON (PushMessageContentMessageForwards { total_count = total_count }) =
+ toJSON PushMessageContentMessageForwards { total_count = total_count } =
   A.object [ "@type" A..= T.String "pushMessageContentMessageForwards", "total_count" A..= total_count ]
 
- toJSON (PushMessageContentMediaAlbum { has_documents = has_documents, has_audios = has_audios, has_videos = has_videos, has_photos = has_photos, total_count = total_count }) =
+ toJSON PushMessageContentMediaAlbum { has_documents = has_documents, has_audios = has_audios, has_videos = has_videos, has_photos = has_photos, total_count = total_count } =
   A.object [ "@type" A..= T.String "pushMessageContentMediaAlbum", "has_documents" A..= has_documents, "has_audios" A..= has_audios, "has_videos" A..= has_videos, "has_photos" A..= has_photos, "total_count" A..= total_count ]
 
 instance T.FromJSON PushMessageContent where
@@ -342,7 +434,7 @@ instance T.FromJSON PushMessageContent where
    "pushMessageContentChatAddMembers" -> parsePushMessageContentChatAddMembers v
    "pushMessageContentChatChangePhoto" -> parsePushMessageContentChatChangePhoto v
    "pushMessageContentChatChangeTitle" -> parsePushMessageContentChatChangeTitle v
-   "pushMessageContentChatChangeTheme" -> parsePushMessageContentChatChangeTheme v
+   "pushMessageContentChatSetTheme" -> parsePushMessageContentChatSetTheme v
    "pushMessageContentChatDeleteMember" -> parsePushMessageContentChatDeleteMember v
    "pushMessageContentChatJoinByLink" -> parsePushMessageContentChatJoinByLink v
    "pushMessageContentMessageForwards" -> parsePushMessageContentMessageForwards v
@@ -480,10 +572,10 @@ instance T.FromJSON PushMessageContent where
     title <- o A..:? "title"
     return $ PushMessageContentChatChangeTitle { title = title }
 
-   parsePushMessageContentChatChangeTheme :: A.Value -> T.Parser PushMessageContent
-   parsePushMessageContentChatChangeTheme = A.withObject "PushMessageContentChatChangeTheme" $ \o -> do
+   parsePushMessageContentChatSetTheme :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentChatSetTheme = A.withObject "PushMessageContentChatSetTheme" $ \o -> do
     theme_name <- o A..:? "theme_name"
-    return $ PushMessageContentChatChangeTheme { theme_name = theme_name }
+    return $ PushMessageContentChatSetTheme { theme_name = theme_name }
 
    parsePushMessageContentChatDeleteMember :: A.Value -> T.Parser PushMessageContent
    parsePushMessageContentChatDeleteMember = A.withObject "PushMessageContentChatDeleteMember" $ \o -> do
@@ -509,3 +601,4 @@ instance T.FromJSON PushMessageContent where
     has_photos <- o A..:? "has_photos"
     total_count <- mconcat [ o A..:? "total_count", readMaybe <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ PushMessageContentMediaAlbum { has_documents = has_documents, has_audios = has_audios, has_videos = has_videos, has_photos = has_photos, total_count = total_count }
+ parseJSON _ = mempty

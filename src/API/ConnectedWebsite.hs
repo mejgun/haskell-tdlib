@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -30,10 +31,23 @@ import qualified Data.Aeson.Types as T
 -- __location__ Human-readable description of a country and a region, from which the user was logged in, based on the IP address
 data ConnectedWebsite = 
 
- ConnectedWebsite { location :: Maybe String, ip :: Maybe String, last_active_date :: Maybe Int, log_in_date :: Maybe Int, platform :: Maybe String, browser :: Maybe String, bot_user_id :: Maybe Int, domain_name :: Maybe String, _id :: Maybe Int }  deriving (Show, Eq)
+ ConnectedWebsite { location :: Maybe String, ip :: Maybe String, last_active_date :: Maybe Int, log_in_date :: Maybe Int, platform :: Maybe String, browser :: Maybe String, bot_user_id :: Maybe Int, domain_name :: Maybe String, _id :: Maybe Int }  deriving (Eq)
+
+instance Show ConnectedWebsite where
+ show ConnectedWebsite { location=location, ip=ip, last_active_date=last_active_date, log_in_date=log_in_date, platform=platform, browser=browser, bot_user_id=bot_user_id, domain_name=domain_name, _id=_id } =
+  "ConnectedWebsite" ++ cc [p "location" location, p "ip" ip, p "last_active_date" last_active_date, p "log_in_date" log_in_date, p "platform" platform, p "browser" browser, p "bot_user_id" bot_user_id, p "domain_name" domain_name, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ConnectedWebsite where
- toJSON (ConnectedWebsite { location = location, ip = ip, last_active_date = last_active_date, log_in_date = log_in_date, platform = platform, browser = browser, bot_user_id = bot_user_id, domain_name = domain_name, _id = _id }) =
+ toJSON ConnectedWebsite { location = location, ip = ip, last_active_date = last_active_date, log_in_date = log_in_date, platform = platform, browser = browser, bot_user_id = bot_user_id, domain_name = domain_name, _id = _id } =
   A.object [ "@type" A..= T.String "connectedWebsite", "location" A..= location, "ip" A..= ip, "last_active_date" A..= last_active_date, "log_in_date" A..= log_in_date, "platform" A..= platform, "browser" A..= browser, "bot_user_id" A..= bot_user_id, "domain_name" A..= domain_name, "id" A..= _id ]
 
 instance T.FromJSON ConnectedWebsite where
@@ -55,3 +69,4 @@ instance T.FromJSON ConnectedWebsite where
     domain_name <- o A..:? "domain_name"
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ConnectedWebsite { location = location, ip = ip, last_active_date = last_active_date, log_in_date = log_in_date, platform = platform, browser = browser, bot_user_id = bot_user_id, domain_name = domain_name, _id = _id }
+ parseJSON _ = mempty

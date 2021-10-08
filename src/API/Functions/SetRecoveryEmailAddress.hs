@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -18,10 +19,23 @@ import qualified Data.Aeson.Types as T
 -- __new_recovery_email_address__ New recovery email address
 data SetRecoveryEmailAddress = 
 
- SetRecoveryEmailAddress { new_recovery_email_address :: Maybe String, password :: Maybe String }  deriving (Show, Eq)
+ SetRecoveryEmailAddress { new_recovery_email_address :: Maybe String, password :: Maybe String }  deriving (Eq)
+
+instance Show SetRecoveryEmailAddress where
+ show SetRecoveryEmailAddress { new_recovery_email_address=new_recovery_email_address, password=password } =
+  "SetRecoveryEmailAddress" ++ cc [p "new_recovery_email_address" new_recovery_email_address, p "password" password ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SetRecoveryEmailAddress where
- toJSON (SetRecoveryEmailAddress { new_recovery_email_address = new_recovery_email_address, password = password }) =
+ toJSON SetRecoveryEmailAddress { new_recovery_email_address = new_recovery_email_address, password = password } =
   A.object [ "@type" A..= T.String "setRecoveryEmailAddress", "new_recovery_email_address" A..= new_recovery_email_address, "password" A..= password ]
 
 instance T.FromJSON SetRecoveryEmailAddress where
@@ -36,3 +50,4 @@ instance T.FromJSON SetRecoveryEmailAddress where
     new_recovery_email_address <- o A..:? "new_recovery_email_address"
     password <- o A..:? "password"
     return $ SetRecoveryEmailAddress { new_recovery_email_address = new_recovery_email_address, password = password }
+ parseJSON _ = mempty

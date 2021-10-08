@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __token__ The bot token
 data CheckAuthenticationBotToken = 
 
- CheckAuthenticationBotToken { token :: Maybe String }  deriving (Show, Eq)
+ CheckAuthenticationBotToken { token :: Maybe String }  deriving (Eq)
+
+instance Show CheckAuthenticationBotToken where
+ show CheckAuthenticationBotToken { token=token } =
+  "CheckAuthenticationBotToken" ++ cc [p "token" token ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON CheckAuthenticationBotToken where
- toJSON (CheckAuthenticationBotToken { token = token }) =
+ toJSON CheckAuthenticationBotToken { token = token } =
   A.object [ "@type" A..= T.String "checkAuthenticationBotToken", "token" A..= token ]
 
 instance T.FromJSON CheckAuthenticationBotToken where
@@ -31,3 +45,4 @@ instance T.FromJSON CheckAuthenticationBotToken where
    parseCheckAuthenticationBotToken = A.withObject "CheckAuthenticationBotToken" $ \o -> do
     token <- o A..:? "token"
     return $ CheckAuthenticationBotToken { token = token }
+ parseJSON _ = mempty

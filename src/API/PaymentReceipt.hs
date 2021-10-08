@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.ShippingOption as ShippingOption
 import {-# SOURCE #-} qualified API.OrderInfo as OrderInfo
 import {-# SOURCE #-} qualified API.Invoice as Invoice
@@ -38,10 +39,23 @@ import {-# SOURCE #-} qualified API.Photo as Photo
 -- __tip_amount__ The amount of tip chosen by the buyer in the smallest units of the currency
 data PaymentReceipt = 
 
- PaymentReceipt { tip_amount :: Maybe Int, credentials_title :: Maybe String, shipping_option :: Maybe ShippingOption.ShippingOption, order_info :: Maybe OrderInfo.OrderInfo, invoice :: Maybe Invoice.Invoice, payments_provider_user_id :: Maybe Int, seller_bot_user_id :: Maybe Int, date :: Maybe Int, photo :: Maybe Photo.Photo, description :: Maybe String, title :: Maybe String }  deriving (Show, Eq)
+ PaymentReceipt { tip_amount :: Maybe Int, credentials_title :: Maybe String, shipping_option :: Maybe ShippingOption.ShippingOption, order_info :: Maybe OrderInfo.OrderInfo, invoice :: Maybe Invoice.Invoice, payments_provider_user_id :: Maybe Int, seller_bot_user_id :: Maybe Int, date :: Maybe Int, photo :: Maybe Photo.Photo, description :: Maybe String, title :: Maybe String }  deriving (Eq)
+
+instance Show PaymentReceipt where
+ show PaymentReceipt { tip_amount=tip_amount, credentials_title=credentials_title, shipping_option=shipping_option, order_info=order_info, invoice=invoice, payments_provider_user_id=payments_provider_user_id, seller_bot_user_id=seller_bot_user_id, date=date, photo=photo, description=description, title=title } =
+  "PaymentReceipt" ++ cc [p "tip_amount" tip_amount, p "credentials_title" credentials_title, p "shipping_option" shipping_option, p "order_info" order_info, p "invoice" invoice, p "payments_provider_user_id" payments_provider_user_id, p "seller_bot_user_id" seller_bot_user_id, p "date" date, p "photo" photo, p "description" description, p "title" title ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON PaymentReceipt where
- toJSON (PaymentReceipt { tip_amount = tip_amount, credentials_title = credentials_title, shipping_option = shipping_option, order_info = order_info, invoice = invoice, payments_provider_user_id = payments_provider_user_id, seller_bot_user_id = seller_bot_user_id, date = date, photo = photo, description = description, title = title }) =
+ toJSON PaymentReceipt { tip_amount = tip_amount, credentials_title = credentials_title, shipping_option = shipping_option, order_info = order_info, invoice = invoice, payments_provider_user_id = payments_provider_user_id, seller_bot_user_id = seller_bot_user_id, date = date, photo = photo, description = description, title = title } =
   A.object [ "@type" A..= T.String "paymentReceipt", "tip_amount" A..= tip_amount, "credentials_title" A..= credentials_title, "shipping_option" A..= shipping_option, "order_info" A..= order_info, "invoice" A..= invoice, "payments_provider_user_id" A..= payments_provider_user_id, "seller_bot_user_id" A..= seller_bot_user_id, "date" A..= date, "photo" A..= photo, "description" A..= description, "title" A..= title ]
 
 instance T.FromJSON PaymentReceipt where
@@ -65,3 +79,4 @@ instance T.FromJSON PaymentReceipt where
     description <- o A..:? "description"
     title <- o A..:? "title"
     return $ PaymentReceipt { tip_amount = tip_amount, credentials_title = credentials_title, shipping_option = shipping_option, order_info = order_info, invoice = invoice, payments_provider_user_id = payments_provider_user_id, seller_bot_user_id = seller_bot_user_id, date = date, photo = photo, description = description, title = title }
+ parseJSON _ = mempty

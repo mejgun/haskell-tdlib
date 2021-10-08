@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __phone_number_prefix__ The phone number prefix
 data GetPhoneNumberInfoSync = 
 
- GetPhoneNumberInfoSync { phone_number_prefix :: Maybe String, language_code :: Maybe String }  deriving (Show, Eq)
+ GetPhoneNumberInfoSync { phone_number_prefix :: Maybe String, language_code :: Maybe String }  deriving (Eq)
+
+instance Show GetPhoneNumberInfoSync where
+ show GetPhoneNumberInfoSync { phone_number_prefix=phone_number_prefix, language_code=language_code } =
+  "GetPhoneNumberInfoSync" ++ cc [p "phone_number_prefix" phone_number_prefix, p "language_code" language_code ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetPhoneNumberInfoSync where
- toJSON (GetPhoneNumberInfoSync { phone_number_prefix = phone_number_prefix, language_code = language_code }) =
+ toJSON GetPhoneNumberInfoSync { phone_number_prefix = phone_number_prefix, language_code = language_code } =
   A.object [ "@type" A..= T.String "getPhoneNumberInfoSync", "phone_number_prefix" A..= phone_number_prefix, "language_code" A..= language_code ]
 
 instance T.FromJSON GetPhoneNumberInfoSync where
@@ -34,3 +48,4 @@ instance T.FromJSON GetPhoneNumberInfoSync where
     phone_number_prefix <- o A..:? "phone_number_prefix"
     language_code <- o A..:? "language_code"
     return $ GetPhoneNumberInfoSync { phone_number_prefix = phone_number_prefix, language_code = language_code }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __user_id__ Identifier of the user with whom to share the phone number. The user must be a mutual contact
 data SharePhoneNumber = 
 
- SharePhoneNumber { user_id :: Maybe Int }  deriving (Show, Eq)
+ SharePhoneNumber { user_id :: Maybe Int }  deriving (Eq)
+
+instance Show SharePhoneNumber where
+ show SharePhoneNumber { user_id=user_id } =
+  "SharePhoneNumber" ++ cc [p "user_id" user_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SharePhoneNumber where
- toJSON (SharePhoneNumber { user_id = user_id }) =
+ toJSON SharePhoneNumber { user_id = user_id } =
   A.object [ "@type" A..= T.String "sharePhoneNumber", "user_id" A..= user_id ]
 
 instance T.FromJSON SharePhoneNumber where
@@ -31,3 +45,4 @@ instance T.FromJSON SharePhoneNumber where
    parseSharePhoneNumber = A.withObject "SharePhoneNumber" $ \o -> do
     user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SharePhoneNumber { user_id = user_id }
+ parseJSON _ = mempty

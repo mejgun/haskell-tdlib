@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -22,10 +23,23 @@ import qualified Data.Aeson.Types as T
 -- __log_size__ Size of the TDLib internal log
 data StorageStatisticsFast = 
 
- StorageStatisticsFast { log_size :: Maybe Int, language_pack_database_size :: Maybe Int, database_size :: Maybe Int, file_count :: Maybe Int, files_size :: Maybe Int }  deriving (Show, Eq)
+ StorageStatisticsFast { log_size :: Maybe Int, language_pack_database_size :: Maybe Int, database_size :: Maybe Int, file_count :: Maybe Int, files_size :: Maybe Int }  deriving (Eq)
+
+instance Show StorageStatisticsFast where
+ show StorageStatisticsFast { log_size=log_size, language_pack_database_size=language_pack_database_size, database_size=database_size, file_count=file_count, files_size=files_size } =
+  "StorageStatisticsFast" ++ cc [p "log_size" log_size, p "language_pack_database_size" language_pack_database_size, p "database_size" database_size, p "file_count" file_count, p "files_size" files_size ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON StorageStatisticsFast where
- toJSON (StorageStatisticsFast { log_size = log_size, language_pack_database_size = language_pack_database_size, database_size = database_size, file_count = file_count, files_size = files_size }) =
+ toJSON StorageStatisticsFast { log_size = log_size, language_pack_database_size = language_pack_database_size, database_size = database_size, file_count = file_count, files_size = files_size } =
   A.object [ "@type" A..= T.String "storageStatisticsFast", "log_size" A..= log_size, "language_pack_database_size" A..= language_pack_database_size, "database_size" A..= database_size, "file_count" A..= file_count, "files_size" A..= files_size ]
 
 instance T.FromJSON StorageStatisticsFast where
@@ -43,3 +57,4 @@ instance T.FromJSON StorageStatisticsFast where
     file_count <- mconcat [ o A..:? "file_count", readMaybe <$> (o A..: "file_count" :: T.Parser String)] :: T.Parser (Maybe Int)
     files_size <- mconcat [ o A..:? "files_size", readMaybe <$> (o A..: "files_size" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ StorageStatisticsFast { log_size = log_size, language_pack_database_size = language_pack_database_size, database_size = database_size, file_count = file_count, files_size = files_size }
+ parseJSON _ = mempty

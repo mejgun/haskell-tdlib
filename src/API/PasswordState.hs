@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.EmailAddressAuthenticationCodeInfo as EmailAddressAuthenticationCodeInfo
 
 -- |
@@ -25,10 +26,23 @@ import {-# SOURCE #-} qualified API.EmailAddressAuthenticationCodeInfo as EmailA
 -- __pending_reset_date__ If not 0, point in time (Unix timestamp) after which the password can be reset immediately using resetPassword
 data PasswordState = 
 
- PasswordState { pending_reset_date :: Maybe Int, recovery_email_address_code_info :: Maybe EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo, has_passport_data :: Maybe Bool, has_recovery_email_address :: Maybe Bool, password_hint :: Maybe String, has_password :: Maybe Bool }  deriving (Show, Eq)
+ PasswordState { pending_reset_date :: Maybe Int, recovery_email_address_code_info :: Maybe EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo, has_passport_data :: Maybe Bool, has_recovery_email_address :: Maybe Bool, password_hint :: Maybe String, has_password :: Maybe Bool }  deriving (Eq)
+
+instance Show PasswordState where
+ show PasswordState { pending_reset_date=pending_reset_date, recovery_email_address_code_info=recovery_email_address_code_info, has_passport_data=has_passport_data, has_recovery_email_address=has_recovery_email_address, password_hint=password_hint, has_password=has_password } =
+  "PasswordState" ++ cc [p "pending_reset_date" pending_reset_date, p "recovery_email_address_code_info" recovery_email_address_code_info, p "has_passport_data" has_passport_data, p "has_recovery_email_address" has_recovery_email_address, p "password_hint" password_hint, p "has_password" has_password ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON PasswordState where
- toJSON (PasswordState { pending_reset_date = pending_reset_date, recovery_email_address_code_info = recovery_email_address_code_info, has_passport_data = has_passport_data, has_recovery_email_address = has_recovery_email_address, password_hint = password_hint, has_password = has_password }) =
+ toJSON PasswordState { pending_reset_date = pending_reset_date, recovery_email_address_code_info = recovery_email_address_code_info, has_passport_data = has_passport_data, has_recovery_email_address = has_recovery_email_address, password_hint = password_hint, has_password = has_password } =
   A.object [ "@type" A..= T.String "passwordState", "pending_reset_date" A..= pending_reset_date, "recovery_email_address_code_info" A..= recovery_email_address_code_info, "has_passport_data" A..= has_passport_data, "has_recovery_email_address" A..= has_recovery_email_address, "password_hint" A..= password_hint, "has_password" A..= has_password ]
 
 instance T.FromJSON PasswordState where
@@ -47,3 +61,4 @@ instance T.FromJSON PasswordState where
     password_hint <- o A..:? "password_hint"
     has_password <- o A..:? "has_password"
     return $ PasswordState { pending_reset_date = pending_reset_date, recovery_email_address_code_info = recovery_email_address_code_info, has_passport_data = has_passport_data, has_recovery_email_address = has_recovery_email_address, password_hint = password_hint, has_password = has_password }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -22,10 +23,23 @@ import qualified Data.Aeson.Types as T
 -- __user_id__ Identifier of the user, if known; otherwise 0
 data Contact = 
 
- Contact { user_id :: Maybe Int, vcard :: Maybe String, last_name :: Maybe String, first_name :: Maybe String, phone_number :: Maybe String }  deriving (Show, Eq)
+ Contact { user_id :: Maybe Int, vcard :: Maybe String, last_name :: Maybe String, first_name :: Maybe String, phone_number :: Maybe String }  deriving (Eq)
+
+instance Show Contact where
+ show Contact { user_id=user_id, vcard=vcard, last_name=last_name, first_name=first_name, phone_number=phone_number } =
+  "Contact" ++ cc [p "user_id" user_id, p "vcard" vcard, p "last_name" last_name, p "first_name" first_name, p "phone_number" phone_number ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Contact where
- toJSON (Contact { user_id = user_id, vcard = vcard, last_name = last_name, first_name = first_name, phone_number = phone_number }) =
+ toJSON Contact { user_id = user_id, vcard = vcard, last_name = last_name, first_name = first_name, phone_number = phone_number } =
   A.object [ "@type" A..= T.String "contact", "user_id" A..= user_id, "vcard" A..= vcard, "last_name" A..= last_name, "first_name" A..= first_name, "phone_number" A..= phone_number ]
 
 instance T.FromJSON Contact where
@@ -43,3 +57,4 @@ instance T.FromJSON Contact where
     first_name <- o A..:? "first_name"
     phone_number <- o A..:? "phone_number"
     return $ Contact { user_id = user_id, vcard = vcard, last_name = last_name, first_name = first_name, phone_number = phone_number }
+ parseJSON _ = mempty

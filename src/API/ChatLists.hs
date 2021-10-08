@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.ChatList as ChatList
 
 -- |
@@ -15,10 +16,23 @@ import {-# SOURCE #-} qualified API.ChatList as ChatList
 -- __chat_lists__ List of chat lists
 data ChatLists = 
 
- ChatLists { chat_lists :: Maybe [ChatList.ChatList] }  deriving (Show, Eq)
+ ChatLists { chat_lists :: Maybe [ChatList.ChatList] }  deriving (Eq)
+
+instance Show ChatLists where
+ show ChatLists { chat_lists=chat_lists } =
+  "ChatLists" ++ cc [p "chat_lists" chat_lists ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatLists where
- toJSON (ChatLists { chat_lists = chat_lists }) =
+ toJSON ChatLists { chat_lists = chat_lists } =
   A.object [ "@type" A..= T.String "chatLists", "chat_lists" A..= chat_lists ]
 
 instance T.FromJSON ChatLists where
@@ -32,3 +46,4 @@ instance T.FromJSON ChatLists where
    parseChatLists = A.withObject "ChatLists" $ \o -> do
     chat_lists <- o A..:? "chat_lists"
     return $ ChatLists { chat_lists = chat_lists }
+ parseJSON _ = mempty

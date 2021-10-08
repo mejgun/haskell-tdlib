@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.DatedFile as DatedFile
 import {-# SOURCE #-} qualified API.Date as Date
 
@@ -26,10 +27,23 @@ import {-# SOURCE #-} qualified API.Date as Date
 -- __translation__ List of files containing a certified English translation of the document
 data IdentityDocument = 
 
- IdentityDocument { translation :: Maybe [DatedFile.DatedFile], selfie :: Maybe DatedFile.DatedFile, reverse_side :: Maybe DatedFile.DatedFile, front_side :: Maybe DatedFile.DatedFile, expiry_date :: Maybe Date.Date, number :: Maybe String }  deriving (Show, Eq)
+ IdentityDocument { translation :: Maybe [DatedFile.DatedFile], selfie :: Maybe DatedFile.DatedFile, reverse_side :: Maybe DatedFile.DatedFile, front_side :: Maybe DatedFile.DatedFile, expiry_date :: Maybe Date.Date, number :: Maybe String }  deriving (Eq)
+
+instance Show IdentityDocument where
+ show IdentityDocument { translation=translation, selfie=selfie, reverse_side=reverse_side, front_side=front_side, expiry_date=expiry_date, number=number } =
+  "IdentityDocument" ++ cc [p "translation" translation, p "selfie" selfie, p "reverse_side" reverse_side, p "front_side" front_side, p "expiry_date" expiry_date, p "number" number ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON IdentityDocument where
- toJSON (IdentityDocument { translation = translation, selfie = selfie, reverse_side = reverse_side, front_side = front_side, expiry_date = expiry_date, number = number }) =
+ toJSON IdentityDocument { translation = translation, selfie = selfie, reverse_side = reverse_side, front_side = front_side, expiry_date = expiry_date, number = number } =
   A.object [ "@type" A..= T.String "identityDocument", "translation" A..= translation, "selfie" A..= selfie, "reverse_side" A..= reverse_side, "front_side" A..= front_side, "expiry_date" A..= expiry_date, "number" A..= number ]
 
 instance T.FromJSON IdentityDocument where
@@ -48,3 +62,4 @@ instance T.FromJSON IdentityDocument where
     expiry_date <- o A..:? "expiry_date"
     number <- o A..:? "number"
     return $ IdentityDocument { translation = translation, selfie = selfie, reverse_side = reverse_side, front_side = front_side, expiry_date = expiry_date, number = number }
+ parseJSON _ = mempty

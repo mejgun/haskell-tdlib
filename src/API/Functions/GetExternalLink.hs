@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __allow_write_access__ True, if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
 data GetExternalLink = 
 
- GetExternalLink { allow_write_access :: Maybe Bool, link :: Maybe String }  deriving (Show, Eq)
+ GetExternalLink { allow_write_access :: Maybe Bool, link :: Maybe String }  deriving (Eq)
+
+instance Show GetExternalLink where
+ show GetExternalLink { allow_write_access=allow_write_access, link=link } =
+  "GetExternalLink" ++ cc [p "allow_write_access" allow_write_access, p "link" link ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetExternalLink where
- toJSON (GetExternalLink { allow_write_access = allow_write_access, link = link }) =
+ toJSON GetExternalLink { allow_write_access = allow_write_access, link = link } =
   A.object [ "@type" A..= T.String "getExternalLink", "allow_write_access" A..= allow_write_access, "link" A..= link ]
 
 instance T.FromJSON GetExternalLink where
@@ -34,3 +48,4 @@ instance T.FromJSON GetExternalLink where
     allow_write_access <- o A..:? "allow_write_access"
     link <- o A..:? "link"
     return $ GetExternalLink { allow_write_access = allow_write_access, link = link }
+ parseJSON _ = mempty

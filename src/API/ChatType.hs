@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -38,19 +39,41 @@ data ChatType =
  -- __secret_chat_id__ Secret chat identifier
  -- 
  -- __user_id__ User identifier of the secret chat peer
- ChatTypeSecret { user_id :: Maybe Int, secret_chat_id :: Maybe Int }  deriving (Show, Eq)
+ ChatTypeSecret { user_id :: Maybe Int, secret_chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show ChatType where
+ show ChatTypePrivate { user_id=user_id } =
+  "ChatTypePrivate" ++ cc [p "user_id" user_id ]
+
+ show ChatTypeBasicGroup { basic_group_id=basic_group_id } =
+  "ChatTypeBasicGroup" ++ cc [p "basic_group_id" basic_group_id ]
+
+ show ChatTypeSupergroup { is_channel=is_channel, supergroup_id=supergroup_id } =
+  "ChatTypeSupergroup" ++ cc [p "is_channel" is_channel, p "supergroup_id" supergroup_id ]
+
+ show ChatTypeSecret { user_id=user_id, secret_chat_id=secret_chat_id } =
+  "ChatTypeSecret" ++ cc [p "user_id" user_id, p "secret_chat_id" secret_chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatType where
- toJSON (ChatTypePrivate { user_id = user_id }) =
+ toJSON ChatTypePrivate { user_id = user_id } =
   A.object [ "@type" A..= T.String "chatTypePrivate", "user_id" A..= user_id ]
 
- toJSON (ChatTypeBasicGroup { basic_group_id = basic_group_id }) =
+ toJSON ChatTypeBasicGroup { basic_group_id = basic_group_id } =
   A.object [ "@type" A..= T.String "chatTypeBasicGroup", "basic_group_id" A..= basic_group_id ]
 
- toJSON (ChatTypeSupergroup { is_channel = is_channel, supergroup_id = supergroup_id }) =
+ toJSON ChatTypeSupergroup { is_channel = is_channel, supergroup_id = supergroup_id } =
   A.object [ "@type" A..= T.String "chatTypeSupergroup", "is_channel" A..= is_channel, "supergroup_id" A..= supergroup_id ]
 
- toJSON (ChatTypeSecret { user_id = user_id, secret_chat_id = secret_chat_id }) =
+ toJSON ChatTypeSecret { user_id = user_id, secret_chat_id = secret_chat_id } =
   A.object [ "@type" A..= T.String "chatTypeSecret", "user_id" A..= user_id, "secret_chat_id" A..= secret_chat_id ]
 
 instance T.FromJSON ChatType where
@@ -84,3 +107,4 @@ instance T.FromJSON ChatType where
     user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     secret_chat_id <- mconcat [ o A..:? "secret_chat_id", readMaybe <$> (o A..: "secret_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatTypeSecret { user_id = user_id, secret_chat_id = secret_chat_id }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -32,22 +33,47 @@ data SuggestedAction =
  -- Suggests the user to convert specified supergroup to a broadcast group 
  -- 
  -- __supergroup_id__ Supergroup identifier
- SuggestedActionConvertToBroadcastGroup { supergroup_id :: Maybe Int }  deriving (Show, Eq)
+ SuggestedActionConvertToBroadcastGroup { supergroup_id :: Maybe Int }  deriving (Eq)
+
+instance Show SuggestedAction where
+ show SuggestedActionEnableArchiveAndMuteNewChats {  } =
+  "SuggestedActionEnableArchiveAndMuteNewChats" ++ cc [ ]
+
+ show SuggestedActionCheckPassword {  } =
+  "SuggestedActionCheckPassword" ++ cc [ ]
+
+ show SuggestedActionCheckPhoneNumber {  } =
+  "SuggestedActionCheckPhoneNumber" ++ cc [ ]
+
+ show SuggestedActionSeeTicksHint {  } =
+  "SuggestedActionSeeTicksHint" ++ cc [ ]
+
+ show SuggestedActionConvertToBroadcastGroup { supergroup_id=supergroup_id } =
+  "SuggestedActionConvertToBroadcastGroup" ++ cc [p "supergroup_id" supergroup_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SuggestedAction where
- toJSON (SuggestedActionEnableArchiveAndMuteNewChats {  }) =
+ toJSON SuggestedActionEnableArchiveAndMuteNewChats {  } =
   A.object [ "@type" A..= T.String "suggestedActionEnableArchiveAndMuteNewChats" ]
 
- toJSON (SuggestedActionCheckPassword {  }) =
+ toJSON SuggestedActionCheckPassword {  } =
   A.object [ "@type" A..= T.String "suggestedActionCheckPassword" ]
 
- toJSON (SuggestedActionCheckPhoneNumber {  }) =
+ toJSON SuggestedActionCheckPhoneNumber {  } =
   A.object [ "@type" A..= T.String "suggestedActionCheckPhoneNumber" ]
 
- toJSON (SuggestedActionSeeTicksHint {  }) =
+ toJSON SuggestedActionSeeTicksHint {  } =
   A.object [ "@type" A..= T.String "suggestedActionSeeTicksHint" ]
 
- toJSON (SuggestedActionConvertToBroadcastGroup { supergroup_id = supergroup_id }) =
+ toJSON SuggestedActionConvertToBroadcastGroup { supergroup_id = supergroup_id } =
   A.object [ "@type" A..= T.String "suggestedActionConvertToBroadcastGroup", "supergroup_id" A..= supergroup_id ]
 
 instance T.FromJSON SuggestedAction where
@@ -81,3 +107,4 @@ instance T.FromJSON SuggestedAction where
    parseSuggestedActionConvertToBroadcastGroup = A.withObject "SuggestedActionConvertToBroadcastGroup" $ \o -> do
     supergroup_id <- mconcat [ o A..:? "supergroup_id", readMaybe <$> (o A..: "supergroup_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SuggestedActionConvertToBroadcastGroup { supergroup_id = supergroup_id }
+ parseJSON _ = mempty

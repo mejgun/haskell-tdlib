@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.InlineKeyboardButtonType as InlineKeyboardButtonType
 
 -- |
@@ -17,10 +18,23 @@ import {-# SOURCE #-} qualified API.InlineKeyboardButtonType as InlineKeyboardBu
 -- __type__ Type of the button
 data InlineKeyboardButton = 
 
- InlineKeyboardButton { _type :: Maybe InlineKeyboardButtonType.InlineKeyboardButtonType, text :: Maybe String }  deriving (Show, Eq)
+ InlineKeyboardButton { _type :: Maybe InlineKeyboardButtonType.InlineKeyboardButtonType, text :: Maybe String }  deriving (Eq)
+
+instance Show InlineKeyboardButton where
+ show InlineKeyboardButton { _type=_type, text=text } =
+  "InlineKeyboardButton" ++ cc [p "_type" _type, p "text" text ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON InlineKeyboardButton where
- toJSON (InlineKeyboardButton { _type = _type, text = text }) =
+ toJSON InlineKeyboardButton { _type = _type, text = text } =
   A.object [ "@type" A..= T.String "inlineKeyboardButton", "type" A..= _type, "text" A..= text ]
 
 instance T.FromJSON InlineKeyboardButton where
@@ -35,3 +49,4 @@ instance T.FromJSON InlineKeyboardButton where
     _type <- o A..:? "type"
     text <- o A..:? "text"
     return $ InlineKeyboardButton { _type = _type, text = text }
+ parseJSON _ = mempty

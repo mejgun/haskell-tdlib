@@ -12,7 +12,7 @@
 </span><span id="line-12"></span><span class="hs-comment">-- Resets all notification settings to their default values. By default, all chats are unmuted, the sound is set to &quot;default&quot; and message previews are shown</span><span>
 </span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="ResetAllNotificationSettings"><span class="annot"><a href="API.Functions.ResetAllNotificationSettings.html#ResetAllNotificationSettings"><span class="hs-identifier hs-var">ResetAllNotificationSettings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span> </span><span id="ResetAllNotificationSettings"><span class="annot"><a href="API.Functions.ResetAllNotificationSettings.html#ResetAllNotificationSettings"><span class="hs-identifier hs-var">ResetAllNotificationSettings</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679429770"><span id="local-6989586621679429772"><span id="local-6989586621679429774"><span class="annot"><span class="annottext">Int -&gt; ResetAllNotificationSettings -&gt; ShowS
+</span><span id="line-15"></span><span> </span><span id="ResetAllNotificationSettings"><span class="annot"><a href="API.Functions.ResetAllNotificationSettings.html#ResetAllNotificationSettings"><span class="hs-identifier hs-var">ResetAllNotificationSettings</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679459503"><span id="local-6989586621679459505"><span id="local-6989586621679459507"><span class="annot"><span class="annottext">Int -&gt; ResetAllNotificationSettings -&gt; ShowS
 [ResetAllNotificationSettings] -&gt; ShowS
 ResetAllNotificationSettings -&gt; String
 (Int -&gt; ResetAllNotificationSettings -&gt; ShowS)
@@ -27,7 +27,7 @@ show :: ResetAllNotificationSettings -&gt; String
 $cshow :: ResetAllNotificationSettings -&gt; String
 showsPrec :: Int -&gt; ResetAllNotificationSettings -&gt; ShowS
 $cshowsPrec :: Int -&gt; ResetAllNotificationSettings -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679429765"><span id="local-6989586621679429767"><span class="annot"><span class="annottext">ResetAllNotificationSettings
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679459498"><span id="local-6989586621679459500"><span class="annot"><span class="annottext">ResetAllNotificationSettings
 -&gt; ResetAllNotificationSettings -&gt; Bool
 (ResetAllNotificationSettings
  -&gt; ResetAllNotificationSettings -&gt; Bool)
@@ -45,49 +45,55 @@ $c== :: ResetAllNotificationSettings
 -&gt; ResetAllNotificationSettings -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679429757"><span id="local-6989586621679429759"><span id="local-6989586621679429761"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ResetAllNotificationSettings.html#ResetAllNotificationSettings"><span class="hs-identifier hs-type">ResetAllNotificationSettings</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679429755"><span class="annot"><span class="annottext">toJSON :: ResetAllNotificationSettings -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.ResetAllNotificationSettings.html#ResetAllNotificationSettings"><span class="hs-identifier hs-type">ResetAllNotificationSettings</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679459490"><span id="local-6989586621679459492"><span id="local-6989586621679459494"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ResetAllNotificationSettings.html#ResetAllNotificationSettings"><span class="hs-identifier hs-type">ResetAllNotificationSettings</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679459488"><span class="annot"><span class="annottext">toJSON :: ResetAllNotificationSettings -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.ResetAllNotificationSettings.html#ResetAllNotificationSettings"><span class="hs-identifier hs-type">ResetAllNotificationSettings</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-19"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;resetAllNotificationSettings&quot;</span></span><span> </span><span class="hs-special">]</span><span>
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;resetAllNotificationSettings&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679429748"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ResetAllNotificationSettings.html#ResetAllNotificationSettings"><span class="hs-identifier hs-type">ResetAllNotificationSettings</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span> </span><span id="local-6989586621679429746"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ResetAllNotificationSettings
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679429744"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679429744"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679429742"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679429742"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-23"></span><span>  </span><span id="local-6989586621679429741"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679429741"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679429742"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679459481"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ResetAllNotificationSettings.html#ResetAllNotificationSettings"><span class="hs-identifier hs-type">ResetAllNotificationSettings</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span> </span><span id="local-6989586621679459479"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ResetAllNotificationSettings
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679459477"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679459477"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679459475"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679459475"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-23"></span><span>  </span><span id="local-6989586621679459474"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679459474"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679459475"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-24"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679429741"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-25"></span><span>   </span><span class="hs-string">&quot;resetAllNotificationSettings&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ResetAllNotificationSettings
-</span><a href="#local-6989586621679429739"><span class="hs-identifier hs-var">parseResetAllNotificationSettings</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679429744"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-26"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ResetAllNotificationSettings
+</span><a href="#local-6989586621679459474"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-25"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;resetAllNotificationSettings&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ResetAllNotificationSettings
+</span><a href="#local-6989586621679459472"><span class="hs-identifier hs-var">parseResetAllNotificationSettings</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679459477"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-26"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ResetAllNotificationSettings
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-27"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-28"></span><span>   </span><span class="annot"><a href="#local-6989586621679429739"><span class="hs-identifier hs-type">parseResetAllNotificationSettings</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ResetAllNotificationSettings.html#ResetAllNotificationSettings"><span class="hs-identifier hs-type">ResetAllNotificationSettings</span></a></span><span>
-</span><span id="line-29"></span><span>   </span><span id="local-6989586621679429739"><span class="annot"><span class="annottext">parseResetAllNotificationSettings :: Value -&gt; Parser ResetAllNotificationSettings
-</span><a href="#local-6989586621679429739"><span class="hs-identifier hs-var hs-var">parseResetAllNotificationSettings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-28"></span><span>   </span><span class="annot"><a href="#local-6989586621679459472"><span class="hs-identifier hs-type">parseResetAllNotificationSettings</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ResetAllNotificationSettings.html#ResetAllNotificationSettings"><span class="hs-identifier hs-type">ResetAllNotificationSettings</span></a></span><span>
+</span><span id="line-29"></span><span>   </span><span id="local-6989586621679459472"><span class="annot"><span class="annottext">parseResetAllNotificationSettings :: Value -&gt; Parser ResetAllNotificationSettings
+</span><a href="#local-6989586621679459472"><span class="hs-identifier hs-var hs-var">parseResetAllNotificationSettings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ResetAllNotificationSettings)
 -&gt; Value
 -&gt; Parser ResetAllNotificationSettings
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;ResetAllNotificationSettings&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser ResetAllNotificationSettings)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;ResetAllNotificationSettings&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser ResetAllNotificationSettings)
  -&gt; Value -&gt; Parser ResetAllNotificationSettings)
 -&gt; (Object -&gt; Parser ResetAllNotificationSettings)
 -&gt; Value
 -&gt; Parser ResetAllNotificationSettings
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679429737"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679429737"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679459470"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679459470"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-30"></span><span>    </span><span class="annot"><span class="annottext">ResetAllNotificationSettings -&gt; Parser ResetAllNotificationSettings
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ResetAllNotificationSettings
@@ -96,4 +102,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 -&gt; Parser ResetAllNotificationSettings
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ResetAllNotificationSettings :: ResetAllNotificationSettings
-</span><a href="API.Functions.ResetAllNotificationSettings.html#ResetAllNotificationSettings"><span class="hs-identifier hs-type hs-type">ResetAllNotificationSettings</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="API.Functions.ResetAllNotificationSettings.html#ResetAllNotificationSettings"><span class="hs-identifier hs-type">ResetAllNotificationSettings</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-31"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser ResetAllNotificationSettings
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-32"></span></pre></body></html>

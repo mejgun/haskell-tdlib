@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -25,27 +26,52 @@ data CheckChatUsernameResult =
  CheckChatUsernameResultUsernameOccupied |
  -- |
  -- 
- -- The user has too much chats with username, one of them should be made private first
+ -- The user has too much chats with username, one of them must be made private first
  CheckChatUsernameResultPublicChatsTooMuch |
  -- |
  -- 
  -- The user can't be a member of a public supergroup
- CheckChatUsernameResultPublicGroupsUnavailable deriving (Show, Eq)
+ CheckChatUsernameResultPublicGroupsUnavailable deriving (Eq)
+
+instance Show CheckChatUsernameResult where
+ show CheckChatUsernameResultOk {  } =
+  "CheckChatUsernameResultOk" ++ cc [ ]
+
+ show CheckChatUsernameResultUsernameInvalid {  } =
+  "CheckChatUsernameResultUsernameInvalid" ++ cc [ ]
+
+ show CheckChatUsernameResultUsernameOccupied {  } =
+  "CheckChatUsernameResultUsernameOccupied" ++ cc [ ]
+
+ show CheckChatUsernameResultPublicChatsTooMuch {  } =
+  "CheckChatUsernameResultPublicChatsTooMuch" ++ cc [ ]
+
+ show CheckChatUsernameResultPublicGroupsUnavailable {  } =
+  "CheckChatUsernameResultPublicGroupsUnavailable" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON CheckChatUsernameResult where
- toJSON (CheckChatUsernameResultOk {  }) =
+ toJSON CheckChatUsernameResultOk {  } =
   A.object [ "@type" A..= T.String "checkChatUsernameResultOk" ]
 
- toJSON (CheckChatUsernameResultUsernameInvalid {  }) =
+ toJSON CheckChatUsernameResultUsernameInvalid {  } =
   A.object [ "@type" A..= T.String "checkChatUsernameResultUsernameInvalid" ]
 
- toJSON (CheckChatUsernameResultUsernameOccupied {  }) =
+ toJSON CheckChatUsernameResultUsernameOccupied {  } =
   A.object [ "@type" A..= T.String "checkChatUsernameResultUsernameOccupied" ]
 
- toJSON (CheckChatUsernameResultPublicChatsTooMuch {  }) =
+ toJSON CheckChatUsernameResultPublicChatsTooMuch {  } =
   A.object [ "@type" A..= T.String "checkChatUsernameResultPublicChatsTooMuch" ]
 
- toJSON (CheckChatUsernameResultPublicGroupsUnavailable {  }) =
+ toJSON CheckChatUsernameResultPublicGroupsUnavailable {  } =
   A.object [ "@type" A..= T.String "checkChatUsernameResultPublicGroupsUnavailable" ]
 
 instance T.FromJSON CheckChatUsernameResult where
@@ -78,3 +104,4 @@ instance T.FromJSON CheckChatUsernameResult where
    parseCheckChatUsernameResultPublicGroupsUnavailable :: A.Value -> T.Parser CheckChatUsernameResult
    parseCheckChatUsernameResultPublicGroupsUnavailable = A.withObject "CheckChatUsernameResultPublicGroupsUnavailable" $ \o -> do
     return $ CheckChatUsernameResultPublicGroupsUnavailable {  }
+ parseJSON _ = mempty

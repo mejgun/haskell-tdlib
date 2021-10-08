@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -18,10 +19,23 @@ import qualified Data.Aeson.Types as T
 -- __data__ The data to write
 data WriteGeneratedFilePart = 
 
- WriteGeneratedFilePart { _data :: Maybe String, offset :: Maybe Int, generation_id :: Maybe Int }  deriving (Show, Eq)
+ WriteGeneratedFilePart { _data :: Maybe String, offset :: Maybe Int, generation_id :: Maybe Int }  deriving (Eq)
+
+instance Show WriteGeneratedFilePart where
+ show WriteGeneratedFilePart { _data=_data, offset=offset, generation_id=generation_id } =
+  "WriteGeneratedFilePart" ++ cc [p "_data" _data, p "offset" offset, p "generation_id" generation_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON WriteGeneratedFilePart where
- toJSON (WriteGeneratedFilePart { _data = _data, offset = offset, generation_id = generation_id }) =
+ toJSON WriteGeneratedFilePart { _data = _data, offset = offset, generation_id = generation_id } =
   A.object [ "@type" A..= T.String "writeGeneratedFilePart", "data" A..= _data, "offset" A..= offset, "generation_id" A..= generation_id ]
 
 instance T.FromJSON WriteGeneratedFilePart where
@@ -37,3 +51,4 @@ instance T.FromJSON WriteGeneratedFilePart where
     offset <- mconcat [ o A..:? "offset", readMaybe <$> (o A..: "offset" :: T.Parser String)] :: T.Parser (Maybe Int)
     generation_id <- mconcat [ o A..:? "generation_id", readMaybe <$> (o A..: "generation_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ WriteGeneratedFilePart { _data = _data, offset = offset, generation_id = generation_id }
+ parseJSON _ = mempty

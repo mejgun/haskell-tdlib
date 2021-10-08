@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __group_call_id__ Group call identifier
 data StartScheduledGroupCall = 
 
- StartScheduledGroupCall { group_call_id :: Maybe Int }  deriving (Show, Eq)
+ StartScheduledGroupCall { group_call_id :: Maybe Int }  deriving (Eq)
+
+instance Show StartScheduledGroupCall where
+ show StartScheduledGroupCall { group_call_id=group_call_id } =
+  "StartScheduledGroupCall" ++ cc [p "group_call_id" group_call_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON StartScheduledGroupCall where
- toJSON (StartScheduledGroupCall { group_call_id = group_call_id }) =
+ toJSON StartScheduledGroupCall { group_call_id = group_call_id } =
   A.object [ "@type" A..= T.String "startScheduledGroupCall", "group_call_id" A..= group_call_id ]
 
 instance T.FromJSON StartScheduledGroupCall where
@@ -31,3 +45,4 @@ instance T.FromJSON StartScheduledGroupCall where
    parseStartScheduledGroupCall = A.withObject "StartScheduledGroupCall" $ \o -> do
     group_call_id <- mconcat [ o A..:? "group_call_id", readMaybe <$> (o A..: "group_call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ StartScheduledGroupCall { group_call_id = group_call_id }
+ parseJSON _ = mempty

@@ -12,7 +12,7 @@
 </span><span id="line-12"></span><span class="hs-comment">-- Does nothing and ensures that the Update object is used; for testing only. This is an offline method. Can be called before authorization</span><span>
 </span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="TestUseUpdate"><span class="annot"><a href="API.Functions.TestUseUpdate.html#TestUseUpdate"><span class="hs-identifier hs-var">TestUseUpdate</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
 </span><span id="line-14"></span><span>
-</span><span id="line-15"></span><span> </span><span id="TestUseUpdate"><span class="annot"><a href="API.Functions.TestUseUpdate.html#TestUseUpdate"><span class="hs-identifier hs-var">TestUseUpdate</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679435249"><span id="local-6989586621679435251"><span id="local-6989586621679435253"><span class="annot"><span class="annottext">Int -&gt; TestUseUpdate -&gt; ShowS
+</span><span id="line-15"></span><span> </span><span id="TestUseUpdate"><span class="annot"><a href="API.Functions.TestUseUpdate.html#TestUseUpdate"><span class="hs-identifier hs-var">TestUseUpdate</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679465460"><span id="local-6989586621679465462"><span id="local-6989586621679465464"><span class="annot"><span class="annottext">Int -&gt; TestUseUpdate -&gt; ShowS
 [TestUseUpdate] -&gt; ShowS
 TestUseUpdate -&gt; String
 (Int -&gt; TestUseUpdate -&gt; ShowS)
@@ -27,7 +27,7 @@ show :: TestUseUpdate -&gt; String
 $cshow :: TestUseUpdate -&gt; String
 showsPrec :: Int -&gt; TestUseUpdate -&gt; ShowS
 $cshowsPrec :: Int -&gt; TestUseUpdate -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679435244"><span id="local-6989586621679435246"><span class="annot"><span class="annottext">TestUseUpdate -&gt; TestUseUpdate -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679465455"><span id="local-6989586621679465457"><span class="annot"><span class="annottext">TestUseUpdate -&gt; TestUseUpdate -&gt; Bool
 (TestUseUpdate -&gt; TestUseUpdate -&gt; Bool)
 -&gt; (TestUseUpdate -&gt; TestUseUpdate -&gt; Bool) -&gt; Eq TestUseUpdate
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -37,52 +37,63 @@ $c/= :: TestUseUpdate -&gt; TestUseUpdate -&gt; Bool
 $c== :: TestUseUpdate -&gt; TestUseUpdate -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679435236"><span id="local-6989586621679435238"><span id="local-6989586621679435240"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestUseUpdate.html#TestUseUpdate"><span class="hs-identifier hs-type">TestUseUpdate</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-18"></span><span> </span><span id="local-6989586621679435234"><span class="annot"><span class="annottext">toJSON :: TestUseUpdate -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.TestUseUpdate.html#TestUseUpdate"><span class="hs-identifier hs-type">TestUseUpdate</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-17"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679465447"><span id="local-6989586621679465449"><span id="local-6989586621679465451"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestUseUpdate.html#TestUseUpdate"><span class="hs-identifier hs-type">TestUseUpdate</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-18"></span><span> </span><span id="local-6989586621679465445"><span class="annot"><span class="annottext">toJSON :: TestUseUpdate -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.TestUseUpdate.html#TestUseUpdate"><span class="hs-identifier hs-type">TestUseUpdate</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-19"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;testUseUpdate&quot;</span></span><span> </span><span class="hs-special">]</span><span>
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;testUseUpdate&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679435227"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestUseUpdate.html#TestUseUpdate"><span class="hs-identifier hs-type">TestUseUpdate</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span> </span><span id="local-6989586621679435225"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TestUseUpdate
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679435223"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679435223"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679435221"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679435221"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-23"></span><span>  </span><span id="local-6989586621679435220"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679435220"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679435221"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679465438"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.TestUseUpdate.html#TestUseUpdate"><span class="hs-identifier hs-type">TestUseUpdate</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-22"></span><span> </span><span id="local-6989586621679465436"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser TestUseUpdate
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679465434"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679465434"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679465432"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679465432"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-23"></span><span>  </span><span id="local-6989586621679465431"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679465431"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679465432"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-24"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679435220"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-25"></span><span>   </span><span class="hs-string">&quot;testUseUpdate&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TestUseUpdate
-</span><a href="#local-6989586621679435218"><span class="hs-identifier hs-var">parseTestUseUpdate</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679435223"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-26"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TestUseUpdate
+</span><a href="#local-6989586621679465431"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-25"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;testUseUpdate&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser TestUseUpdate
+</span><a href="#local-6989586621679465429"><span class="hs-identifier hs-var">parseTestUseUpdate</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679465434"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-26"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser TestUseUpdate
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-27"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-28"></span><span>   </span><span class="annot"><a href="#local-6989586621679435218"><span class="hs-identifier hs-type">parseTestUseUpdate</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.TestUseUpdate.html#TestUseUpdate"><span class="hs-identifier hs-type">TestUseUpdate</span></a></span><span>
-</span><span id="line-29"></span><span>   </span><span id="local-6989586621679435218"><span class="annot"><span class="annottext">parseTestUseUpdate :: Value -&gt; Parser TestUseUpdate
-</span><a href="#local-6989586621679435218"><span class="hs-identifier hs-var hs-var">parseTestUseUpdate</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-28"></span><span>   </span><span class="annot"><a href="#local-6989586621679465429"><span class="hs-identifier hs-type">parseTestUseUpdate</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.TestUseUpdate.html#TestUseUpdate"><span class="hs-identifier hs-type">TestUseUpdate</span></a></span><span>
+</span><span id="line-29"></span><span>   </span><span id="local-6989586621679465429"><span class="annot"><span class="annottext">parseTestUseUpdate :: Value -&gt; Parser TestUseUpdate
+</span><a href="#local-6989586621679465429"><span class="hs-identifier hs-var hs-var">parseTestUseUpdate</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser TestUseUpdate)
 -&gt; Value
 -&gt; Parser TestUseUpdate
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;TestUseUpdate&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser TestUseUpdate) -&gt; Value -&gt; Parser TestUseUpdate)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;TestUseUpdate&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser TestUseUpdate) -&gt; Value -&gt; Parser TestUseUpdate)
 -&gt; (Object -&gt; Parser TestUseUpdate)
 -&gt; Value
 -&gt; Parser TestUseUpdate
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679435216"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679435216"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679465427"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679465427"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-30"></span><span>    </span><span class="annot"><span class="annottext">TestUseUpdate -&gt; Parser TestUseUpdate
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(TestUseUpdate -&gt; Parser TestUseUpdate)
 -&gt; TestUseUpdate -&gt; Parser TestUseUpdate
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TestUseUpdate :: TestUseUpdate
-</span><a href="API.Functions.TestUseUpdate.html#TestUseUpdate"><span class="hs-identifier hs-type hs-type">TestUseUpdate</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="API.Functions.TestUseUpdate.html#TestUseUpdate"><span class="hs-identifier hs-type">TestUseUpdate</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-31"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser TestUseUpdate
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-32"></span></pre></body></html>

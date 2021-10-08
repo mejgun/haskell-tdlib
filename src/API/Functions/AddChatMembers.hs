@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __user_ids__ Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels
 data AddChatMembers = 
 
- AddChatMembers { user_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Show, Eq)
+ AddChatMembers { user_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show AddChatMembers where
+ show AddChatMembers { user_ids=user_ids, chat_id=chat_id } =
+  "AddChatMembers" ++ cc [p "user_ids" user_ids, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON AddChatMembers where
- toJSON (AddChatMembers { user_ids = user_ids, chat_id = chat_id }) =
+ toJSON AddChatMembers { user_ids = user_ids, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "addChatMembers", "user_ids" A..= user_ids, "chat_id" A..= chat_id ]
 
 instance T.FromJSON AddChatMembers where
@@ -34,3 +48,4 @@ instance T.FromJSON AddChatMembers where
     user_ids <- o A..:? "user_ids"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ AddChatMembers { user_ids = user_ids, chat_id = chat_id }
+ parseJSON _ = mempty

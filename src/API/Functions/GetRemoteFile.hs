@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.FileType as FileType
 
 -- |
@@ -16,13 +17,26 @@ import {-# SOURCE #-} qualified API.FileType as FileType
 -- 
 -- __remote_file_id__ Remote identifier of the file to get
 -- 
--- __file_type__ File type, if known
+-- __file_type__ File type; pass null if unknown
 data GetRemoteFile = 
 
- GetRemoteFile { file_type :: Maybe FileType.FileType, remote_file_id :: Maybe String }  deriving (Show, Eq)
+ GetRemoteFile { file_type :: Maybe FileType.FileType, remote_file_id :: Maybe String }  deriving (Eq)
+
+instance Show GetRemoteFile where
+ show GetRemoteFile { file_type=file_type, remote_file_id=remote_file_id } =
+  "GetRemoteFile" ++ cc [p "file_type" file_type, p "remote_file_id" remote_file_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetRemoteFile where
- toJSON (GetRemoteFile { file_type = file_type, remote_file_id = remote_file_id }) =
+ toJSON GetRemoteFile { file_type = file_type, remote_file_id = remote_file_id } =
   A.object [ "@type" A..= T.String "getRemoteFile", "file_type" A..= file_type, "remote_file_id" A..= remote_file_id ]
 
 instance T.FromJSON GetRemoteFile where
@@ -37,3 +51,4 @@ instance T.FromJSON GetRemoteFile where
     file_type <- o A..:? "file_type"
     remote_file_id <- o A..:? "remote_file_id"
     return $ GetRemoteFile { file_type = file_type, remote_file_id = remote_file_id }
+ parseJSON _ = mempty

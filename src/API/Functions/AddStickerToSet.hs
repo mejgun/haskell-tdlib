@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.InputSticker as InputSticker
 
 -- |
@@ -19,10 +20,23 @@ import {-# SOURCE #-} qualified API.InputSticker as InputSticker
 -- __sticker__ Sticker to add to the set
 data AddStickerToSet = 
 
- AddStickerToSet { sticker :: Maybe InputSticker.InputSticker, name :: Maybe String, user_id :: Maybe Int }  deriving (Show, Eq)
+ AddStickerToSet { sticker :: Maybe InputSticker.InputSticker, name :: Maybe String, user_id :: Maybe Int }  deriving (Eq)
+
+instance Show AddStickerToSet where
+ show AddStickerToSet { sticker=sticker, name=name, user_id=user_id } =
+  "AddStickerToSet" ++ cc [p "sticker" sticker, p "name" name, p "user_id" user_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON AddStickerToSet where
- toJSON (AddStickerToSet { sticker = sticker, name = name, user_id = user_id }) =
+ toJSON AddStickerToSet { sticker = sticker, name = name, user_id = user_id } =
   A.object [ "@type" A..= T.String "addStickerToSet", "sticker" A..= sticker, "name" A..= name, "user_id" A..= user_id ]
 
 instance T.FromJSON AddStickerToSet where
@@ -38,3 +52,4 @@ instance T.FromJSON AddStickerToSet where
     name <- o A..:? "name"
     user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ AddStickerToSet { sticker = sticker, name = name, user_id = user_id }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.InputChatPhoto as InputChatPhoto
 
 -- |
@@ -15,10 +16,23 @@ import {-# SOURCE #-} qualified API.InputChatPhoto as InputChatPhoto
 -- __photo__ Profile photo to set
 data SetProfilePhoto = 
 
- SetProfilePhoto { photo :: Maybe InputChatPhoto.InputChatPhoto }  deriving (Show, Eq)
+ SetProfilePhoto { photo :: Maybe InputChatPhoto.InputChatPhoto }  deriving (Eq)
+
+instance Show SetProfilePhoto where
+ show SetProfilePhoto { photo=photo } =
+  "SetProfilePhoto" ++ cc [p "photo" photo ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SetProfilePhoto where
- toJSON (SetProfilePhoto { photo = photo }) =
+ toJSON SetProfilePhoto { photo = photo } =
   A.object [ "@type" A..= T.String "setProfilePhoto", "photo" A..= photo ]
 
 instance T.FromJSON SetProfilePhoto where
@@ -32,3 +46,4 @@ instance T.FromJSON SetProfilePhoto where
    parseSetProfilePhoto = A.withObject "SetProfilePhoto" $ \o -> do
     photo <- o A..:? "photo"
     return $ SetProfilePhoto { photo = photo }
+ parseJSON _ = mempty

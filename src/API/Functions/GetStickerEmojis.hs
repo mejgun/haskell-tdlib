@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 -- |
@@ -15,10 +16,23 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- __sticker__ Sticker file identifier
 data GetStickerEmojis = 
 
- GetStickerEmojis { sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
+ GetStickerEmojis { sticker :: Maybe InputFile.InputFile }  deriving (Eq)
+
+instance Show GetStickerEmojis where
+ show GetStickerEmojis { sticker=sticker } =
+  "GetStickerEmojis" ++ cc [p "sticker" sticker ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetStickerEmojis where
- toJSON (GetStickerEmojis { sticker = sticker }) =
+ toJSON GetStickerEmojis { sticker = sticker } =
   A.object [ "@type" A..= T.String "getStickerEmojis", "sticker" A..= sticker ]
 
 instance T.FromJSON GetStickerEmojis where
@@ -32,3 +46,4 @@ instance T.FromJSON GetStickerEmojis where
    parseGetStickerEmojis = A.withObject "GetStickerEmojis" $ \o -> do
     sticker <- o A..:? "sticker"
     return $ GetStickerEmojis { sticker = sticker }
+ parseJSON _ = mempty

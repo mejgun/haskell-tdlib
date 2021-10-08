@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __username__ The new value of the username. Use an empty string to remove the username
 data SetUsername = 
 
- SetUsername { username :: Maybe String }  deriving (Show, Eq)
+ SetUsername { username :: Maybe String }  deriving (Eq)
+
+instance Show SetUsername where
+ show SetUsername { username=username } =
+  "SetUsername" ++ cc [p "username" username ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SetUsername where
- toJSON (SetUsername { username = username }) =
+ toJSON SetUsername { username = username } =
   A.object [ "@type" A..= T.String "setUsername", "username" A..= username ]
 
 instance T.FromJSON SetUsername where
@@ -31,3 +45,4 @@ instance T.FromJSON SetUsername where
    parseSetUsername = A.withObject "SetUsername" $ \o -> do
     username <- o A..:? "username"
     return $ SetUsername { username = username }
+ parseJSON _ = mempty

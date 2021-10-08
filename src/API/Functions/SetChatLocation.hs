@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.ChatLocation as ChatLocation
 
 -- |
@@ -17,10 +18,23 @@ import {-# SOURCE #-} qualified API.ChatLocation as ChatLocation
 -- __location__ New location for the chat; must be valid and not null
 data SetChatLocation = 
 
- SetChatLocation { location :: Maybe ChatLocation.ChatLocation, chat_id :: Maybe Int }  deriving (Show, Eq)
+ SetChatLocation { location :: Maybe ChatLocation.ChatLocation, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show SetChatLocation where
+ show SetChatLocation { location=location, chat_id=chat_id } =
+  "SetChatLocation" ++ cc [p "location" location, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SetChatLocation where
- toJSON (SetChatLocation { location = location, chat_id = chat_id }) =
+ toJSON SetChatLocation { location = location, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "setChatLocation", "location" A..= location, "chat_id" A..= chat_id ]
 
 instance T.FromJSON SetChatLocation where
@@ -35,3 +49,4 @@ instance T.FromJSON SetChatLocation where
     location <- o A..:? "location"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SetChatLocation { location = location, chat_id = chat_id }
+ parseJSON _ = mempty

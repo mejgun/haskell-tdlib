@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -13,25 +14,44 @@ import qualified Data.Aeson.Types as T
 data PageBlockHorizontalAlignment = 
  -- |
  -- 
- -- The content should be left-aligned
+ -- The content must be left-aligned
  PageBlockHorizontalAlignmentLeft |
  -- |
  -- 
- -- The content should be center-aligned
+ -- The content must be center-aligned
  PageBlockHorizontalAlignmentCenter |
  -- |
  -- 
- -- The content should be right-aligned
- PageBlockHorizontalAlignmentRight deriving (Show, Eq)
+ -- The content must be right-aligned
+ PageBlockHorizontalAlignmentRight deriving (Eq)
+
+instance Show PageBlockHorizontalAlignment where
+ show PageBlockHorizontalAlignmentLeft {  } =
+  "PageBlockHorizontalAlignmentLeft" ++ cc [ ]
+
+ show PageBlockHorizontalAlignmentCenter {  } =
+  "PageBlockHorizontalAlignmentCenter" ++ cc [ ]
+
+ show PageBlockHorizontalAlignmentRight {  } =
+  "PageBlockHorizontalAlignmentRight" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON PageBlockHorizontalAlignment where
- toJSON (PageBlockHorizontalAlignmentLeft {  }) =
+ toJSON PageBlockHorizontalAlignmentLeft {  } =
   A.object [ "@type" A..= T.String "pageBlockHorizontalAlignmentLeft" ]
 
- toJSON (PageBlockHorizontalAlignmentCenter {  }) =
+ toJSON PageBlockHorizontalAlignmentCenter {  } =
   A.object [ "@type" A..= T.String "pageBlockHorizontalAlignmentCenter" ]
 
- toJSON (PageBlockHorizontalAlignmentRight {  }) =
+ toJSON PageBlockHorizontalAlignmentRight {  } =
   A.object [ "@type" A..= T.String "pageBlockHorizontalAlignmentRight" ]
 
 instance T.FromJSON PageBlockHorizontalAlignment where
@@ -54,3 +74,4 @@ instance T.FromJSON PageBlockHorizontalAlignment where
    parsePageBlockHorizontalAlignmentRight :: A.Value -> T.Parser PageBlockHorizontalAlignment
    parsePageBlockHorizontalAlignmentRight = A.withObject "PageBlockHorizontalAlignmentRight" $ \o -> do
     return $ PageBlockHorizontalAlignmentRight {  }
+ parseJSON _ = mempty

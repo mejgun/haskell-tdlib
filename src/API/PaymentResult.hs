@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __verification_url__ URL for additional payment credentials verification
 data PaymentResult = 
 
- PaymentResult { verification_url :: Maybe String, success :: Maybe Bool }  deriving (Show, Eq)
+ PaymentResult { verification_url :: Maybe String, success :: Maybe Bool }  deriving (Eq)
+
+instance Show PaymentResult where
+ show PaymentResult { verification_url=verification_url, success=success } =
+  "PaymentResult" ++ cc [p "verification_url" verification_url, p "success" success ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON PaymentResult where
- toJSON (PaymentResult { verification_url = verification_url, success = success }) =
+ toJSON PaymentResult { verification_url = verification_url, success = success } =
   A.object [ "@type" A..= T.String "paymentResult", "verification_url" A..= verification_url, "success" A..= success ]
 
 instance T.FromJSON PaymentResult where
@@ -34,3 +48,4 @@ instance T.FromJSON PaymentResult where
     verification_url <- o A..:? "verification_url"
     success <- o A..:? "success"
     return $ PaymentResult { verification_url = verification_url, success = success }
+ parseJSON _ = mempty

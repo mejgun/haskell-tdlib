@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Location as Location
 
 -- |
@@ -25,10 +26,23 @@ import {-# SOURCE #-} qualified API.Location as Location
 -- __chat_id__ Identifier of a chat, in which the thumbnail will be shown. Use 0 if unknown
 data GetMapThumbnailFile = 
 
- GetMapThumbnailFile { chat_id :: Maybe Int, scale :: Maybe Int, height :: Maybe Int, width :: Maybe Int, zoom :: Maybe Int, location :: Maybe Location.Location }  deriving (Show, Eq)
+ GetMapThumbnailFile { chat_id :: Maybe Int, scale :: Maybe Int, height :: Maybe Int, width :: Maybe Int, zoom :: Maybe Int, location :: Maybe Location.Location }  deriving (Eq)
+
+instance Show GetMapThumbnailFile where
+ show GetMapThumbnailFile { chat_id=chat_id, scale=scale, height=height, width=width, zoom=zoom, location=location } =
+  "GetMapThumbnailFile" ++ cc [p "chat_id" chat_id, p "scale" scale, p "height" height, p "width" width, p "zoom" zoom, p "location" location ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetMapThumbnailFile where
- toJSON (GetMapThumbnailFile { chat_id = chat_id, scale = scale, height = height, width = width, zoom = zoom, location = location }) =
+ toJSON GetMapThumbnailFile { chat_id = chat_id, scale = scale, height = height, width = width, zoom = zoom, location = location } =
   A.object [ "@type" A..= T.String "getMapThumbnailFile", "chat_id" A..= chat_id, "scale" A..= scale, "height" A..= height, "width" A..= width, "zoom" A..= zoom, "location" A..= location ]
 
 instance T.FromJSON GetMapThumbnailFile where
@@ -47,3 +61,4 @@ instance T.FromJSON GetMapThumbnailFile where
     zoom <- mconcat [ o A..:? "zoom", readMaybe <$> (o A..: "zoom" :: T.Parser String)] :: T.Parser (Maybe Int)
     location <- o A..:? "location"
     return $ GetMapThumbnailFile { chat_id = chat_id, scale = scale, height = height, width = width, zoom = zoom, location = location }
+ parseJSON _ = mempty

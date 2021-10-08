@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.StorageStatisticsByFileType as StorageStatisticsByFileType
 
 -- |
@@ -21,10 +22,23 @@ import {-# SOURCE #-} qualified API.StorageStatisticsByFileType as StorageStatis
 -- __by_file_type__ Statistics split by file types
 data StorageStatisticsByChat = 
 
- StorageStatisticsByChat { by_file_type :: Maybe [StorageStatisticsByFileType.StorageStatisticsByFileType], count :: Maybe Int, size :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
+ StorageStatisticsByChat { by_file_type :: Maybe [StorageStatisticsByFileType.StorageStatisticsByFileType], count :: Maybe Int, size :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show StorageStatisticsByChat where
+ show StorageStatisticsByChat { by_file_type=by_file_type, count=count, size=size, chat_id=chat_id } =
+  "StorageStatisticsByChat" ++ cc [p "by_file_type" by_file_type, p "count" count, p "size" size, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON StorageStatisticsByChat where
- toJSON (StorageStatisticsByChat { by_file_type = by_file_type, count = count, size = size, chat_id = chat_id }) =
+ toJSON StorageStatisticsByChat { by_file_type = by_file_type, count = count, size = size, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "storageStatisticsByChat", "by_file_type" A..= by_file_type, "count" A..= count, "size" A..= size, "chat_id" A..= chat_id ]
 
 instance T.FromJSON StorageStatisticsByChat where
@@ -41,3 +55,4 @@ instance T.FromJSON StorageStatisticsByChat where
     size <- mconcat [ o A..:? "size", readMaybe <$> (o A..: "size" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ StorageStatisticsByChat { by_file_type = by_file_type, count = count, size = size, chat_id = chat_id }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __param_description__ Description of the bot command
 data BotCommand = 
 
- BotCommand { description :: Maybe String, command :: Maybe String }  deriving (Show, Eq)
+ BotCommand { description :: Maybe String, command :: Maybe String }  deriving (Eq)
+
+instance Show BotCommand where
+ show BotCommand { description=description, command=command } =
+  "BotCommand" ++ cc [p "description" description, p "command" command ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON BotCommand where
- toJSON (BotCommand { description = description, command = command }) =
+ toJSON BotCommand { description = description, command = command } =
   A.object [ "@type" A..= T.String "botCommand", "description" A..= description, "command" A..= command ]
 
 instance T.FromJSON BotCommand where
@@ -34,3 +48,4 @@ instance T.FromJSON BotCommand where
     description <- o A..:? "description"
     command <- o A..:? "command"
     return $ BotCommand { description = description, command = command }
+ parseJSON _ = mempty

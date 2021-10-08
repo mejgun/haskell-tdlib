@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.TMeUrl as TMeUrl
 
 -- |
@@ -15,10 +16,23 @@ import {-# SOURCE #-} qualified API.TMeUrl as TMeUrl
 -- __urls__ List of URLs
 data TMeUrls = 
 
- TMeUrls { urls :: Maybe [TMeUrl.TMeUrl] }  deriving (Show, Eq)
+ TMeUrls { urls :: Maybe [TMeUrl.TMeUrl] }  deriving (Eq)
+
+instance Show TMeUrls where
+ show TMeUrls { urls=urls } =
+  "TMeUrls" ++ cc [p "urls" urls ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON TMeUrls where
- toJSON (TMeUrls { urls = urls }) =
+ toJSON TMeUrls { urls = urls } =
   A.object [ "@type" A..= T.String "tMeUrls", "urls" A..= urls ]
 
 instance T.FromJSON TMeUrls where
@@ -32,3 +46,4 @@ instance T.FromJSON TMeUrls where
    parseTMeUrls = A.withObject "TMeUrls" $ \o -> do
     urls <- o A..:? "urls"
     return $ TMeUrls { urls = urls }
+ parseJSON _ = mempty

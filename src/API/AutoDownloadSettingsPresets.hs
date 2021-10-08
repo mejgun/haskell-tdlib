@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.AutoDownloadSettings as AutoDownloadSettings
 
 -- |
@@ -19,10 +20,23 @@ import {-# SOURCE #-} qualified API.AutoDownloadSettings as AutoDownloadSettings
 -- __high__ Preset with highest settings; supposed to be used by default when connected on Wi-Fi
 data AutoDownloadSettingsPresets = 
 
- AutoDownloadSettingsPresets { high :: Maybe AutoDownloadSettings.AutoDownloadSettings, medium :: Maybe AutoDownloadSettings.AutoDownloadSettings, low :: Maybe AutoDownloadSettings.AutoDownloadSettings }  deriving (Show, Eq)
+ AutoDownloadSettingsPresets { high :: Maybe AutoDownloadSettings.AutoDownloadSettings, medium :: Maybe AutoDownloadSettings.AutoDownloadSettings, low :: Maybe AutoDownloadSettings.AutoDownloadSettings }  deriving (Eq)
+
+instance Show AutoDownloadSettingsPresets where
+ show AutoDownloadSettingsPresets { high=high, medium=medium, low=low } =
+  "AutoDownloadSettingsPresets" ++ cc [p "high" high, p "medium" medium, p "low" low ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON AutoDownloadSettingsPresets where
- toJSON (AutoDownloadSettingsPresets { high = high, medium = medium, low = low }) =
+ toJSON AutoDownloadSettingsPresets { high = high, medium = medium, low = low } =
   A.object [ "@type" A..= T.String "autoDownloadSettingsPresets", "high" A..= high, "medium" A..= medium, "low" A..= low ]
 
 instance T.FromJSON AutoDownloadSettingsPresets where
@@ -38,3 +52,4 @@ instance T.FromJSON AutoDownloadSettingsPresets where
     medium <- o A..:? "medium"
     low <- o A..:? "low"
     return $ AutoDownloadSettingsPresets { high = high, medium = medium, low = low }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.ChatPermissions as ChatPermissions
 
 -- |
@@ -75,25 +76,53 @@ data ChatMemberStatus =
  -- The user or the chat was banned (and hence is not a member of the chat). Implies the user can't return to the chat, view messages, or be used as a participant identifier to join a voice chat of the chat
  -- 
  -- __banned_until_date__ Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Always 0 in basic groups
- ChatMemberStatusBanned { banned_until_date :: Maybe Int }  deriving (Show, Eq)
+ ChatMemberStatusBanned { banned_until_date :: Maybe Int }  deriving (Eq)
+
+instance Show ChatMemberStatus where
+ show ChatMemberStatusCreator { is_member=is_member, is_anonymous=is_anonymous, custom_title=custom_title } =
+  "ChatMemberStatusCreator" ++ cc [p "is_member" is_member, p "is_anonymous" is_anonymous, p "custom_title" custom_title ]
+
+ show ChatMemberStatusAdministrator { is_anonymous=is_anonymous, can_manage_voice_chats=can_manage_voice_chats, can_promote_members=can_promote_members, can_pin_messages=can_pin_messages, can_restrict_members=can_restrict_members, can_invite_users=can_invite_users, can_delete_messages=can_delete_messages, can_edit_messages=can_edit_messages, can_post_messages=can_post_messages, can_change_info=can_change_info, can_manage_chat=can_manage_chat, can_be_edited=can_be_edited, custom_title=custom_title } =
+  "ChatMemberStatusAdministrator" ++ cc [p "is_anonymous" is_anonymous, p "can_manage_voice_chats" can_manage_voice_chats, p "can_promote_members" can_promote_members, p "can_pin_messages" can_pin_messages, p "can_restrict_members" can_restrict_members, p "can_invite_users" can_invite_users, p "can_delete_messages" can_delete_messages, p "can_edit_messages" can_edit_messages, p "can_post_messages" can_post_messages, p "can_change_info" can_change_info, p "can_manage_chat" can_manage_chat, p "can_be_edited" can_be_edited, p "custom_title" custom_title ]
+
+ show ChatMemberStatusMember {  } =
+  "ChatMemberStatusMember" ++ cc [ ]
+
+ show ChatMemberStatusRestricted { permissions=permissions, restricted_until_date=restricted_until_date, is_member=is_member } =
+  "ChatMemberStatusRestricted" ++ cc [p "permissions" permissions, p "restricted_until_date" restricted_until_date, p "is_member" is_member ]
+
+ show ChatMemberStatusLeft {  } =
+  "ChatMemberStatusLeft" ++ cc [ ]
+
+ show ChatMemberStatusBanned { banned_until_date=banned_until_date } =
+  "ChatMemberStatusBanned" ++ cc [p "banned_until_date" banned_until_date ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatMemberStatus where
- toJSON (ChatMemberStatusCreator { is_member = is_member, is_anonymous = is_anonymous, custom_title = custom_title }) =
+ toJSON ChatMemberStatusCreator { is_member = is_member, is_anonymous = is_anonymous, custom_title = custom_title } =
   A.object [ "@type" A..= T.String "chatMemberStatusCreator", "is_member" A..= is_member, "is_anonymous" A..= is_anonymous, "custom_title" A..= custom_title ]
 
- toJSON (ChatMemberStatusAdministrator { is_anonymous = is_anonymous, can_manage_voice_chats = can_manage_voice_chats, can_promote_members = can_promote_members, can_pin_messages = can_pin_messages, can_restrict_members = can_restrict_members, can_invite_users = can_invite_users, can_delete_messages = can_delete_messages, can_edit_messages = can_edit_messages, can_post_messages = can_post_messages, can_change_info = can_change_info, can_manage_chat = can_manage_chat, can_be_edited = can_be_edited, custom_title = custom_title }) =
+ toJSON ChatMemberStatusAdministrator { is_anonymous = is_anonymous, can_manage_voice_chats = can_manage_voice_chats, can_promote_members = can_promote_members, can_pin_messages = can_pin_messages, can_restrict_members = can_restrict_members, can_invite_users = can_invite_users, can_delete_messages = can_delete_messages, can_edit_messages = can_edit_messages, can_post_messages = can_post_messages, can_change_info = can_change_info, can_manage_chat = can_manage_chat, can_be_edited = can_be_edited, custom_title = custom_title } =
   A.object [ "@type" A..= T.String "chatMemberStatusAdministrator", "is_anonymous" A..= is_anonymous, "can_manage_voice_chats" A..= can_manage_voice_chats, "can_promote_members" A..= can_promote_members, "can_pin_messages" A..= can_pin_messages, "can_restrict_members" A..= can_restrict_members, "can_invite_users" A..= can_invite_users, "can_delete_messages" A..= can_delete_messages, "can_edit_messages" A..= can_edit_messages, "can_post_messages" A..= can_post_messages, "can_change_info" A..= can_change_info, "can_manage_chat" A..= can_manage_chat, "can_be_edited" A..= can_be_edited, "custom_title" A..= custom_title ]
 
- toJSON (ChatMemberStatusMember {  }) =
+ toJSON ChatMemberStatusMember {  } =
   A.object [ "@type" A..= T.String "chatMemberStatusMember" ]
 
- toJSON (ChatMemberStatusRestricted { permissions = permissions, restricted_until_date = restricted_until_date, is_member = is_member }) =
+ toJSON ChatMemberStatusRestricted { permissions = permissions, restricted_until_date = restricted_until_date, is_member = is_member } =
   A.object [ "@type" A..= T.String "chatMemberStatusRestricted", "permissions" A..= permissions, "restricted_until_date" A..= restricted_until_date, "is_member" A..= is_member ]
 
- toJSON (ChatMemberStatusLeft {  }) =
+ toJSON ChatMemberStatusLeft {  } =
   A.object [ "@type" A..= T.String "chatMemberStatusLeft" ]
 
- toJSON (ChatMemberStatusBanned { banned_until_date = banned_until_date }) =
+ toJSON ChatMemberStatusBanned { banned_until_date = banned_until_date } =
   A.object [ "@type" A..= T.String "chatMemberStatusBanned", "banned_until_date" A..= banned_until_date ]
 
 instance T.FromJSON ChatMemberStatus where
@@ -151,3 +180,4 @@ instance T.FromJSON ChatMemberStatus where
    parseChatMemberStatusBanned = A.withObject "ChatMemberStatusBanned" $ \o -> do
     banned_until_date <- mconcat [ o A..:? "banned_until_date", readMaybe <$> (o A..: "banned_until_date" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatMemberStatusBanned { banned_until_date = banned_until_date }
+ parseJSON _ = mempty

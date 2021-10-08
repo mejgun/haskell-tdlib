@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.ChatSource as ChatSource
 import {-# SOURCE #-} qualified API.ChatList as ChatList
 
@@ -22,10 +23,23 @@ import {-# SOURCE #-} qualified API.ChatList as ChatList
 -- __source__ Source of the chat in the chat list; may be null
 data ChatPosition = 
 
- ChatPosition { source :: Maybe ChatSource.ChatSource, is_pinned :: Maybe Bool, order :: Maybe Int, list :: Maybe ChatList.ChatList }  deriving (Show, Eq)
+ ChatPosition { source :: Maybe ChatSource.ChatSource, is_pinned :: Maybe Bool, order :: Maybe Int, list :: Maybe ChatList.ChatList }  deriving (Eq)
+
+instance Show ChatPosition where
+ show ChatPosition { source=source, is_pinned=is_pinned, order=order, list=list } =
+  "ChatPosition" ++ cc [p "source" source, p "is_pinned" is_pinned, p "order" order, p "list" list ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatPosition where
- toJSON (ChatPosition { source = source, is_pinned = is_pinned, order = order, list = list }) =
+ toJSON ChatPosition { source = source, is_pinned = is_pinned, order = order, list = list } =
   A.object [ "@type" A..= T.String "chatPosition", "source" A..= source, "is_pinned" A..= is_pinned, "order" A..= order, "list" A..= list ]
 
 instance T.FromJSON ChatPosition where
@@ -42,3 +56,4 @@ instance T.FromJSON ChatPosition where
     order <- mconcat [ o A..:? "order", readMaybe <$> (o A..: "order" :: T.Parser String)] :: T.Parser (Maybe Int)
     list <- o A..:? "list"
     return $ ChatPosition { source = source, is_pinned = is_pinned, order = order, list = list }
+ parseJSON _ = mempty

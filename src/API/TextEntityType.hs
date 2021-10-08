@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -21,7 +22,7 @@ data TextEntityType =
  TextEntityTypeHashtag |
  -- |
  -- 
- -- A cashtag text, beginning with "$" and consisting of capital english letters (e.g., "$USD")
+ -- A cashtag text, beginning with "$" and consisting of capital English letters (e.g., "$USD")
  TextEntityTypeCashtag |
  -- |
  -- 
@@ -89,62 +90,126 @@ data TextEntityType =
  -- 
  -- A media timestamp 
  -- 
- -- __media_timestamp__ Timestamp from which a video/audio/video note/voice note playing should start, in seconds. The media can be in the content or the web page preview of the current message, or in the same places in the replied message
- TextEntityTypeMediaTimestamp { media_timestamp :: Maybe Int }  deriving (Show, Eq)
+ -- __media_timestamp__ Timestamp from which a video/audio/video note/voice note playing must start, in seconds. The media can be in the content or the web page preview of the current message, or in the same places in the replied message
+ TextEntityTypeMediaTimestamp { media_timestamp :: Maybe Int }  deriving (Eq)
+
+instance Show TextEntityType where
+ show TextEntityTypeMention {  } =
+  "TextEntityTypeMention" ++ cc [ ]
+
+ show TextEntityTypeHashtag {  } =
+  "TextEntityTypeHashtag" ++ cc [ ]
+
+ show TextEntityTypeCashtag {  } =
+  "TextEntityTypeCashtag" ++ cc [ ]
+
+ show TextEntityTypeBotCommand {  } =
+  "TextEntityTypeBotCommand" ++ cc [ ]
+
+ show TextEntityTypeUrl {  } =
+  "TextEntityTypeUrl" ++ cc [ ]
+
+ show TextEntityTypeEmailAddress {  } =
+  "TextEntityTypeEmailAddress" ++ cc [ ]
+
+ show TextEntityTypePhoneNumber {  } =
+  "TextEntityTypePhoneNumber" ++ cc [ ]
+
+ show TextEntityTypeBankCardNumber {  } =
+  "TextEntityTypeBankCardNumber" ++ cc [ ]
+
+ show TextEntityTypeBold {  } =
+  "TextEntityTypeBold" ++ cc [ ]
+
+ show TextEntityTypeItalic {  } =
+  "TextEntityTypeItalic" ++ cc [ ]
+
+ show TextEntityTypeUnderline {  } =
+  "TextEntityTypeUnderline" ++ cc [ ]
+
+ show TextEntityTypeStrikethrough {  } =
+  "TextEntityTypeStrikethrough" ++ cc [ ]
+
+ show TextEntityTypeCode {  } =
+  "TextEntityTypeCode" ++ cc [ ]
+
+ show TextEntityTypePre {  } =
+  "TextEntityTypePre" ++ cc [ ]
+
+ show TextEntityTypePreCode { language=language } =
+  "TextEntityTypePreCode" ++ cc [p "language" language ]
+
+ show TextEntityTypeTextUrl { url=url } =
+  "TextEntityTypeTextUrl" ++ cc [p "url" url ]
+
+ show TextEntityTypeMentionName { user_id=user_id } =
+  "TextEntityTypeMentionName" ++ cc [p "user_id" user_id ]
+
+ show TextEntityTypeMediaTimestamp { media_timestamp=media_timestamp } =
+  "TextEntityTypeMediaTimestamp" ++ cc [p "media_timestamp" media_timestamp ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON TextEntityType where
- toJSON (TextEntityTypeMention {  }) =
+ toJSON TextEntityTypeMention {  } =
   A.object [ "@type" A..= T.String "textEntityTypeMention" ]
 
- toJSON (TextEntityTypeHashtag {  }) =
+ toJSON TextEntityTypeHashtag {  } =
   A.object [ "@type" A..= T.String "textEntityTypeHashtag" ]
 
- toJSON (TextEntityTypeCashtag {  }) =
+ toJSON TextEntityTypeCashtag {  } =
   A.object [ "@type" A..= T.String "textEntityTypeCashtag" ]
 
- toJSON (TextEntityTypeBotCommand {  }) =
+ toJSON TextEntityTypeBotCommand {  } =
   A.object [ "@type" A..= T.String "textEntityTypeBotCommand" ]
 
- toJSON (TextEntityTypeUrl {  }) =
+ toJSON TextEntityTypeUrl {  } =
   A.object [ "@type" A..= T.String "textEntityTypeUrl" ]
 
- toJSON (TextEntityTypeEmailAddress {  }) =
+ toJSON TextEntityTypeEmailAddress {  } =
   A.object [ "@type" A..= T.String "textEntityTypeEmailAddress" ]
 
- toJSON (TextEntityTypePhoneNumber {  }) =
+ toJSON TextEntityTypePhoneNumber {  } =
   A.object [ "@type" A..= T.String "textEntityTypePhoneNumber" ]
 
- toJSON (TextEntityTypeBankCardNumber {  }) =
+ toJSON TextEntityTypeBankCardNumber {  } =
   A.object [ "@type" A..= T.String "textEntityTypeBankCardNumber" ]
 
- toJSON (TextEntityTypeBold {  }) =
+ toJSON TextEntityTypeBold {  } =
   A.object [ "@type" A..= T.String "textEntityTypeBold" ]
 
- toJSON (TextEntityTypeItalic {  }) =
+ toJSON TextEntityTypeItalic {  } =
   A.object [ "@type" A..= T.String "textEntityTypeItalic" ]
 
- toJSON (TextEntityTypeUnderline {  }) =
+ toJSON TextEntityTypeUnderline {  } =
   A.object [ "@type" A..= T.String "textEntityTypeUnderline" ]
 
- toJSON (TextEntityTypeStrikethrough {  }) =
+ toJSON TextEntityTypeStrikethrough {  } =
   A.object [ "@type" A..= T.String "textEntityTypeStrikethrough" ]
 
- toJSON (TextEntityTypeCode {  }) =
+ toJSON TextEntityTypeCode {  } =
   A.object [ "@type" A..= T.String "textEntityTypeCode" ]
 
- toJSON (TextEntityTypePre {  }) =
+ toJSON TextEntityTypePre {  } =
   A.object [ "@type" A..= T.String "textEntityTypePre" ]
 
- toJSON (TextEntityTypePreCode { language = language }) =
+ toJSON TextEntityTypePreCode { language = language } =
   A.object [ "@type" A..= T.String "textEntityTypePreCode", "language" A..= language ]
 
- toJSON (TextEntityTypeTextUrl { url = url }) =
+ toJSON TextEntityTypeTextUrl { url = url } =
   A.object [ "@type" A..= T.String "textEntityTypeTextUrl", "url" A..= url ]
 
- toJSON (TextEntityTypeMentionName { user_id = user_id }) =
+ toJSON TextEntityTypeMentionName { user_id = user_id } =
   A.object [ "@type" A..= T.String "textEntityTypeMentionName", "user_id" A..= user_id ]
 
- toJSON (TextEntityTypeMediaTimestamp { media_timestamp = media_timestamp }) =
+ toJSON TextEntityTypeMediaTimestamp { media_timestamp = media_timestamp } =
   A.object [ "@type" A..= T.String "textEntityTypeMediaTimestamp", "media_timestamp" A..= media_timestamp ]
 
 instance T.FromJSON TextEntityType where
@@ -246,3 +311,4 @@ instance T.FromJSON TextEntityType where
    parseTextEntityTypeMediaTimestamp = A.withObject "TextEntityTypeMediaTimestamp" $ \o -> do
     media_timestamp <- mconcat [ o A..:? "media_timestamp", readMaybe <$> (o A..: "media_timestamp" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ TextEntityTypeMediaTimestamp { media_timestamp = media_timestamp }
+ parseJSON _ = mempty

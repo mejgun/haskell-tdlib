@@ -6,39 +6,62 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
--- Part of the face, relative to which a mask should be placed
+-- Part of the face, relative to which a mask is placed
 data MaskPoint = 
  -- |
  -- 
- -- A mask should be placed relatively to the forehead
+ -- The mask is placed relatively to the forehead
  MaskPointForehead |
  -- |
  -- 
- -- A mask should be placed relatively to the eyes
+ -- The mask is placed relatively to the eyes
  MaskPointEyes |
  -- |
  -- 
- -- A mask should be placed relatively to the mouth
+ -- The mask is placed relatively to the mouth
  MaskPointMouth |
  -- |
  -- 
- -- A mask should be placed relatively to the chin
- MaskPointChin deriving (Show, Eq)
+ -- The mask is placed relatively to the chin
+ MaskPointChin deriving (Eq)
+
+instance Show MaskPoint where
+ show MaskPointForehead {  } =
+  "MaskPointForehead" ++ cc [ ]
+
+ show MaskPointEyes {  } =
+  "MaskPointEyes" ++ cc [ ]
+
+ show MaskPointMouth {  } =
+  "MaskPointMouth" ++ cc [ ]
+
+ show MaskPointChin {  } =
+  "MaskPointChin" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON MaskPoint where
- toJSON (MaskPointForehead {  }) =
+ toJSON MaskPointForehead {  } =
   A.object [ "@type" A..= T.String "maskPointForehead" ]
 
- toJSON (MaskPointEyes {  }) =
+ toJSON MaskPointEyes {  } =
   A.object [ "@type" A..= T.String "maskPointEyes" ]
 
- toJSON (MaskPointMouth {  }) =
+ toJSON MaskPointMouth {  } =
   A.object [ "@type" A..= T.String "maskPointMouth" ]
 
- toJSON (MaskPointChin {  }) =
+ toJSON MaskPointChin {  } =
   A.object [ "@type" A..= T.String "maskPointChin" ]
 
 instance T.FromJSON MaskPoint where
@@ -66,3 +89,4 @@ instance T.FromJSON MaskPoint where
    parseMaskPointChin :: A.Value -> T.Parser MaskPoint
    parseMaskPointChin = A.withObject "MaskPointChin" $ \o -> do
     return $ MaskPointChin {  }
+ parseJSON _ = mempty

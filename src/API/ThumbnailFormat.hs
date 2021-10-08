@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -34,25 +35,53 @@ data ThumbnailFormat =
  -- |
  -- 
  -- The thumbnail is in MPEG4 format. It will be used only for some animations and videos
- ThumbnailFormatMpeg4 deriving (Show, Eq)
+ ThumbnailFormatMpeg4 deriving (Eq)
+
+instance Show ThumbnailFormat where
+ show ThumbnailFormatJpeg {  } =
+  "ThumbnailFormatJpeg" ++ cc [ ]
+
+ show ThumbnailFormatPng {  } =
+  "ThumbnailFormatPng" ++ cc [ ]
+
+ show ThumbnailFormatWebp {  } =
+  "ThumbnailFormatWebp" ++ cc [ ]
+
+ show ThumbnailFormatGif {  } =
+  "ThumbnailFormatGif" ++ cc [ ]
+
+ show ThumbnailFormatTgs {  } =
+  "ThumbnailFormatTgs" ++ cc [ ]
+
+ show ThumbnailFormatMpeg4 {  } =
+  "ThumbnailFormatMpeg4" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ThumbnailFormat where
- toJSON (ThumbnailFormatJpeg {  }) =
+ toJSON ThumbnailFormatJpeg {  } =
   A.object [ "@type" A..= T.String "thumbnailFormatJpeg" ]
 
- toJSON (ThumbnailFormatPng {  }) =
+ toJSON ThumbnailFormatPng {  } =
   A.object [ "@type" A..= T.String "thumbnailFormatPng" ]
 
- toJSON (ThumbnailFormatWebp {  }) =
+ toJSON ThumbnailFormatWebp {  } =
   A.object [ "@type" A..= T.String "thumbnailFormatWebp" ]
 
- toJSON (ThumbnailFormatGif {  }) =
+ toJSON ThumbnailFormatGif {  } =
   A.object [ "@type" A..= T.String "thumbnailFormatGif" ]
 
- toJSON (ThumbnailFormatTgs {  }) =
+ toJSON ThumbnailFormatTgs {  } =
   A.object [ "@type" A..= T.String "thumbnailFormatTgs" ]
 
- toJSON (ThumbnailFormatMpeg4 {  }) =
+ toJSON ThumbnailFormatMpeg4 {  } =
   A.object [ "@type" A..= T.String "thumbnailFormatMpeg4" ]
 
 instance T.FromJSON ThumbnailFormat where
@@ -90,3 +119,4 @@ instance T.FromJSON ThumbnailFormat where
    parseThumbnailFormatMpeg4 :: A.Value -> T.Parser ThumbnailFormat
    parseThumbnailFormatMpeg4 = A.withObject "ThumbnailFormatMpeg4" $ \o -> do
     return $ ThumbnailFormatMpeg4 {  }
+ parseJSON _ = mempty

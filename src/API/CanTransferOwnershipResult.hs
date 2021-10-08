@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -30,19 +31,41 @@ data CanTransferOwnershipResult =
  -- The session was created recently, user needs to wait 
  -- 
  -- __retry_after__ Time left before the session can be used to transfer ownership of a chat, in seconds
- CanTransferOwnershipResultSessionTooFresh { retry_after :: Maybe Int }  deriving (Show, Eq)
+ CanTransferOwnershipResultSessionTooFresh { retry_after :: Maybe Int }  deriving (Eq)
+
+instance Show CanTransferOwnershipResult where
+ show CanTransferOwnershipResultOk {  } =
+  "CanTransferOwnershipResultOk" ++ cc [ ]
+
+ show CanTransferOwnershipResultPasswordNeeded {  } =
+  "CanTransferOwnershipResultPasswordNeeded" ++ cc [ ]
+
+ show CanTransferOwnershipResultPasswordTooFresh { retry_after=retry_after } =
+  "CanTransferOwnershipResultPasswordTooFresh" ++ cc [p "retry_after" retry_after ]
+
+ show CanTransferOwnershipResultSessionTooFresh { retry_after=retry_after } =
+  "CanTransferOwnershipResultSessionTooFresh" ++ cc [p "retry_after" retry_after ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON CanTransferOwnershipResult where
- toJSON (CanTransferOwnershipResultOk {  }) =
+ toJSON CanTransferOwnershipResultOk {  } =
   A.object [ "@type" A..= T.String "canTransferOwnershipResultOk" ]
 
- toJSON (CanTransferOwnershipResultPasswordNeeded {  }) =
+ toJSON CanTransferOwnershipResultPasswordNeeded {  } =
   A.object [ "@type" A..= T.String "canTransferOwnershipResultPasswordNeeded" ]
 
- toJSON (CanTransferOwnershipResultPasswordTooFresh { retry_after = retry_after }) =
+ toJSON CanTransferOwnershipResultPasswordTooFresh { retry_after = retry_after } =
   A.object [ "@type" A..= T.String "canTransferOwnershipResultPasswordTooFresh", "retry_after" A..= retry_after ]
 
- toJSON (CanTransferOwnershipResultSessionTooFresh { retry_after = retry_after }) =
+ toJSON CanTransferOwnershipResultSessionTooFresh { retry_after = retry_after } =
   A.object [ "@type" A..= T.String "canTransferOwnershipResultSessionTooFresh", "retry_after" A..= retry_after ]
 
 instance T.FromJSON CanTransferOwnershipResult where
@@ -72,3 +95,4 @@ instance T.FromJSON CanTransferOwnershipResult where
    parseCanTransferOwnershipResultSessionTooFresh = A.withObject "CanTransferOwnershipResultSessionTooFresh" $ \o -> do
     retry_after <- mconcat [ o A..:? "retry_after", readMaybe <$> (o A..: "retry_after" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ CanTransferOwnershipResultSessionTooFresh { retry_after = retry_after }
+ parseJSON _ = mempty

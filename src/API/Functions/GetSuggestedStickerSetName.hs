@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __title__ Sticker set title; 1-64 characters
 data GetSuggestedStickerSetName = 
 
- GetSuggestedStickerSetName { title :: Maybe String }  deriving (Show, Eq)
+ GetSuggestedStickerSetName { title :: Maybe String }  deriving (Eq)
+
+instance Show GetSuggestedStickerSetName where
+ show GetSuggestedStickerSetName { title=title } =
+  "GetSuggestedStickerSetName" ++ cc [p "title" title ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetSuggestedStickerSetName where
- toJSON (GetSuggestedStickerSetName { title = title }) =
+ toJSON GetSuggestedStickerSetName { title = title } =
   A.object [ "@type" A..= T.String "getSuggestedStickerSetName", "title" A..= title ]
 
 instance T.FromJSON GetSuggestedStickerSetName where
@@ -31,3 +45,4 @@ instance T.FromJSON GetSuggestedStickerSetName where
    parseGetSuggestedStickerSetName = A.withObject "GetSuggestedStickerSetName" $ \o -> do
     title <- o A..:? "title"
     return $ GetSuggestedStickerSetName { title = title }
+ parseJSON _ = mempty

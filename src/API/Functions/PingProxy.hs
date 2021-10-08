@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __proxy_id__ Proxy identifier. Use 0 to ping a Telegram server without a proxy
 data PingProxy = 
 
- PingProxy { proxy_id :: Maybe Int }  deriving (Show, Eq)
+ PingProxy { proxy_id :: Maybe Int }  deriving (Eq)
+
+instance Show PingProxy where
+ show PingProxy { proxy_id=proxy_id } =
+  "PingProxy" ++ cc [p "proxy_id" proxy_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON PingProxy where
- toJSON (PingProxy { proxy_id = proxy_id }) =
+ toJSON PingProxy { proxy_id = proxy_id } =
   A.object [ "@type" A..= T.String "pingProxy", "proxy_id" A..= proxy_id ]
 
 instance T.FromJSON PingProxy where
@@ -31,3 +45,4 @@ instance T.FromJSON PingProxy where
    parsePingProxy = A.withObject "PingProxy" $ \o -> do
     proxy_id <- mconcat [ o A..:? "proxy_id", readMaybe <$> (o A..: "proxy_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ PingProxy { proxy_id = proxy_id }
+ parseJSON _ = mempty

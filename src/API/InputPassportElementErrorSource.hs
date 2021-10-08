@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -66,34 +67,71 @@ data InputPassportElementErrorSource =
  -- The list of attached files contains an error. The error is considered resolved when the file list changes 
  -- 
  -- __file_hashes__ Current hashes of all attached files
- InputPassportElementErrorSourceFiles { file_hashes :: Maybe [String] }  deriving (Show, Eq)
+ InputPassportElementErrorSourceFiles { file_hashes :: Maybe [String] }  deriving (Eq)
+
+instance Show InputPassportElementErrorSource where
+ show InputPassportElementErrorSourceUnspecified { element_hash=element_hash } =
+  "InputPassportElementErrorSourceUnspecified" ++ cc [p "element_hash" element_hash ]
+
+ show InputPassportElementErrorSourceDataField { data_hash=data_hash, field_name=field_name } =
+  "InputPassportElementErrorSourceDataField" ++ cc [p "data_hash" data_hash, p "field_name" field_name ]
+
+ show InputPassportElementErrorSourceFrontSide { file_hash=file_hash } =
+  "InputPassportElementErrorSourceFrontSide" ++ cc [p "file_hash" file_hash ]
+
+ show InputPassportElementErrorSourceReverseSide { file_hash=file_hash } =
+  "InputPassportElementErrorSourceReverseSide" ++ cc [p "file_hash" file_hash ]
+
+ show InputPassportElementErrorSourceSelfie { file_hash=file_hash } =
+  "InputPassportElementErrorSourceSelfie" ++ cc [p "file_hash" file_hash ]
+
+ show InputPassportElementErrorSourceTranslationFile { file_hash=file_hash } =
+  "InputPassportElementErrorSourceTranslationFile" ++ cc [p "file_hash" file_hash ]
+
+ show InputPassportElementErrorSourceTranslationFiles { file_hashes=file_hashes } =
+  "InputPassportElementErrorSourceTranslationFiles" ++ cc [p "file_hashes" file_hashes ]
+
+ show InputPassportElementErrorSourceFile { file_hash=file_hash } =
+  "InputPassportElementErrorSourceFile" ++ cc [p "file_hash" file_hash ]
+
+ show InputPassportElementErrorSourceFiles { file_hashes=file_hashes } =
+  "InputPassportElementErrorSourceFiles" ++ cc [p "file_hashes" file_hashes ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON InputPassportElementErrorSource where
- toJSON (InputPassportElementErrorSourceUnspecified { element_hash = element_hash }) =
+ toJSON InputPassportElementErrorSourceUnspecified { element_hash = element_hash } =
   A.object [ "@type" A..= T.String "inputPassportElementErrorSourceUnspecified", "element_hash" A..= element_hash ]
 
- toJSON (InputPassportElementErrorSourceDataField { data_hash = data_hash, field_name = field_name }) =
+ toJSON InputPassportElementErrorSourceDataField { data_hash = data_hash, field_name = field_name } =
   A.object [ "@type" A..= T.String "inputPassportElementErrorSourceDataField", "data_hash" A..= data_hash, "field_name" A..= field_name ]
 
- toJSON (InputPassportElementErrorSourceFrontSide { file_hash = file_hash }) =
+ toJSON InputPassportElementErrorSourceFrontSide { file_hash = file_hash } =
   A.object [ "@type" A..= T.String "inputPassportElementErrorSourceFrontSide", "file_hash" A..= file_hash ]
 
- toJSON (InputPassportElementErrorSourceReverseSide { file_hash = file_hash }) =
+ toJSON InputPassportElementErrorSourceReverseSide { file_hash = file_hash } =
   A.object [ "@type" A..= T.String "inputPassportElementErrorSourceReverseSide", "file_hash" A..= file_hash ]
 
- toJSON (InputPassportElementErrorSourceSelfie { file_hash = file_hash }) =
+ toJSON InputPassportElementErrorSourceSelfie { file_hash = file_hash } =
   A.object [ "@type" A..= T.String "inputPassportElementErrorSourceSelfie", "file_hash" A..= file_hash ]
 
- toJSON (InputPassportElementErrorSourceTranslationFile { file_hash = file_hash }) =
+ toJSON InputPassportElementErrorSourceTranslationFile { file_hash = file_hash } =
   A.object [ "@type" A..= T.String "inputPassportElementErrorSourceTranslationFile", "file_hash" A..= file_hash ]
 
- toJSON (InputPassportElementErrorSourceTranslationFiles { file_hashes = file_hashes }) =
+ toJSON InputPassportElementErrorSourceTranslationFiles { file_hashes = file_hashes } =
   A.object [ "@type" A..= T.String "inputPassportElementErrorSourceTranslationFiles", "file_hashes" A..= file_hashes ]
 
- toJSON (InputPassportElementErrorSourceFile { file_hash = file_hash }) =
+ toJSON InputPassportElementErrorSourceFile { file_hash = file_hash } =
   A.object [ "@type" A..= T.String "inputPassportElementErrorSourceFile", "file_hash" A..= file_hash ]
 
- toJSON (InputPassportElementErrorSourceFiles { file_hashes = file_hashes }) =
+ toJSON InputPassportElementErrorSourceFiles { file_hashes = file_hashes } =
   A.object [ "@type" A..= T.String "inputPassportElementErrorSourceFiles", "file_hashes" A..= file_hashes ]
 
 instance T.FromJSON InputPassportElementErrorSource where
@@ -156,3 +194,4 @@ instance T.FromJSON InputPassportElementErrorSource where
    parseInputPassportElementErrorSourceFiles = A.withObject "InputPassportElementErrorSourceFiles" $ \o -> do
     file_hashes <- o A..:? "file_hashes"
     return $ InputPassportElementErrorSourceFiles { file_hashes = file_hashes }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __language_pack_id__ Identifier of the language pack to delete
 data DeleteLanguagePack = 
 
- DeleteLanguagePack { language_pack_id :: Maybe String }  deriving (Show, Eq)
+ DeleteLanguagePack { language_pack_id :: Maybe String }  deriving (Eq)
+
+instance Show DeleteLanguagePack where
+ show DeleteLanguagePack { language_pack_id=language_pack_id } =
+  "DeleteLanguagePack" ++ cc [p "language_pack_id" language_pack_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON DeleteLanguagePack where
- toJSON (DeleteLanguagePack { language_pack_id = language_pack_id }) =
+ toJSON DeleteLanguagePack { language_pack_id = language_pack_id } =
   A.object [ "@type" A..= T.String "deleteLanguagePack", "language_pack_id" A..= language_pack_id ]
 
 instance T.FromJSON DeleteLanguagePack where
@@ -31,3 +45,4 @@ instance T.FromJSON DeleteLanguagePack where
    parseDeleteLanguagePack = A.withObject "DeleteLanguagePack" $ \o -> do
     language_pack_id <- o A..:? "language_pack_id"
     return $ DeleteLanguagePack { language_pack_id = language_pack_id }
+ parseJSON _ = mempty

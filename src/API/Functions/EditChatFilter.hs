@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.ChatFilter as ChatFilter
 
 -- |
@@ -17,10 +18,23 @@ import {-# SOURCE #-} qualified API.ChatFilter as ChatFilter
 -- __filter__ The edited chat filter
 data EditChatFilter = 
 
- EditChatFilter { _filter :: Maybe ChatFilter.ChatFilter, chat_filter_id :: Maybe Int }  deriving (Show, Eq)
+ EditChatFilter { _filter :: Maybe ChatFilter.ChatFilter, chat_filter_id :: Maybe Int }  deriving (Eq)
+
+instance Show EditChatFilter where
+ show EditChatFilter { _filter=_filter, chat_filter_id=chat_filter_id } =
+  "EditChatFilter" ++ cc [p "_filter" _filter, p "chat_filter_id" chat_filter_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON EditChatFilter where
- toJSON (EditChatFilter { _filter = _filter, chat_filter_id = chat_filter_id }) =
+ toJSON EditChatFilter { _filter = _filter, chat_filter_id = chat_filter_id } =
   A.object [ "@type" A..= T.String "editChatFilter", "filter" A..= _filter, "chat_filter_id" A..= chat_filter_id ]
 
 instance T.FromJSON EditChatFilter where
@@ -35,3 +49,4 @@ instance T.FromJSON EditChatFilter where
     _filter <- o A..:? "filter"
     chat_filter_id <- mconcat [ o A..:? "chat_filter_id", readMaybe <$> (o A..: "chat_filter_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ EditChatFilter { _filter = _filter, chat_filter_id = chat_filter_id }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -34,19 +35,41 @@ data AuthenticationCodeType =
  -- An authentication code is delivered by an immediately canceled call to the specified phone number. The number from which the call was made is the code 
  -- 
  -- __pattern__ Pattern of the phone number from which the call will be made
- AuthenticationCodeTypeFlashCall { pattern :: Maybe String }  deriving (Show, Eq)
+ AuthenticationCodeTypeFlashCall { pattern :: Maybe String }  deriving (Eq)
+
+instance Show AuthenticationCodeType where
+ show AuthenticationCodeTypeTelegramMessage { _length=_length } =
+  "AuthenticationCodeTypeTelegramMessage" ++ cc [p "_length" _length ]
+
+ show AuthenticationCodeTypeSms { _length=_length } =
+  "AuthenticationCodeTypeSms" ++ cc [p "_length" _length ]
+
+ show AuthenticationCodeTypeCall { _length=_length } =
+  "AuthenticationCodeTypeCall" ++ cc [p "_length" _length ]
+
+ show AuthenticationCodeTypeFlashCall { pattern=pattern } =
+  "AuthenticationCodeTypeFlashCall" ++ cc [p "pattern" pattern ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON AuthenticationCodeType where
- toJSON (AuthenticationCodeTypeTelegramMessage { _length = _length }) =
+ toJSON AuthenticationCodeTypeTelegramMessage { _length = _length } =
   A.object [ "@type" A..= T.String "authenticationCodeTypeTelegramMessage", "length" A..= _length ]
 
- toJSON (AuthenticationCodeTypeSms { _length = _length }) =
+ toJSON AuthenticationCodeTypeSms { _length = _length } =
   A.object [ "@type" A..= T.String "authenticationCodeTypeSms", "length" A..= _length ]
 
- toJSON (AuthenticationCodeTypeCall { _length = _length }) =
+ toJSON AuthenticationCodeTypeCall { _length = _length } =
   A.object [ "@type" A..= T.String "authenticationCodeTypeCall", "length" A..= _length ]
 
- toJSON (AuthenticationCodeTypeFlashCall { pattern = pattern }) =
+ toJSON AuthenticationCodeTypeFlashCall { pattern = pattern } =
   A.object [ "@type" A..= T.String "authenticationCodeTypeFlashCall", "pattern" A..= pattern ]
 
 instance T.FromJSON AuthenticationCodeType where
@@ -78,3 +101,4 @@ instance T.FromJSON AuthenticationCodeType where
    parseAuthenticationCodeTypeFlashCall = A.withObject "AuthenticationCodeTypeFlashCall" $ \o -> do
     pattern <- o A..:? "pattern"
     return $ AuthenticationCodeTypeFlashCall { pattern = pattern }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -82,61 +83,125 @@ data SearchMessagesFilter =
  -- |
  -- 
  -- Returns only pinned messages
- SearchMessagesFilterPinned deriving (Show, Eq)
+ SearchMessagesFilterPinned deriving (Eq)
+
+instance Show SearchMessagesFilter where
+ show SearchMessagesFilterEmpty {  } =
+  "SearchMessagesFilterEmpty" ++ cc [ ]
+
+ show SearchMessagesFilterAnimation {  } =
+  "SearchMessagesFilterAnimation" ++ cc [ ]
+
+ show SearchMessagesFilterAudio {  } =
+  "SearchMessagesFilterAudio" ++ cc [ ]
+
+ show SearchMessagesFilterDocument {  } =
+  "SearchMessagesFilterDocument" ++ cc [ ]
+
+ show SearchMessagesFilterPhoto {  } =
+  "SearchMessagesFilterPhoto" ++ cc [ ]
+
+ show SearchMessagesFilterVideo {  } =
+  "SearchMessagesFilterVideo" ++ cc [ ]
+
+ show SearchMessagesFilterVoiceNote {  } =
+  "SearchMessagesFilterVoiceNote" ++ cc [ ]
+
+ show SearchMessagesFilterPhotoAndVideo {  } =
+  "SearchMessagesFilterPhotoAndVideo" ++ cc [ ]
+
+ show SearchMessagesFilterUrl {  } =
+  "SearchMessagesFilterUrl" ++ cc [ ]
+
+ show SearchMessagesFilterChatPhoto {  } =
+  "SearchMessagesFilterChatPhoto" ++ cc [ ]
+
+ show SearchMessagesFilterCall {  } =
+  "SearchMessagesFilterCall" ++ cc [ ]
+
+ show SearchMessagesFilterMissedCall {  } =
+  "SearchMessagesFilterMissedCall" ++ cc [ ]
+
+ show SearchMessagesFilterVideoNote {  } =
+  "SearchMessagesFilterVideoNote" ++ cc [ ]
+
+ show SearchMessagesFilterVoiceAndVideoNote {  } =
+  "SearchMessagesFilterVoiceAndVideoNote" ++ cc [ ]
+
+ show SearchMessagesFilterMention {  } =
+  "SearchMessagesFilterMention" ++ cc [ ]
+
+ show SearchMessagesFilterUnreadMention {  } =
+  "SearchMessagesFilterUnreadMention" ++ cc [ ]
+
+ show SearchMessagesFilterFailedToSend {  } =
+  "SearchMessagesFilterFailedToSend" ++ cc [ ]
+
+ show SearchMessagesFilterPinned {  } =
+  "SearchMessagesFilterPinned" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SearchMessagesFilter where
- toJSON (SearchMessagesFilterEmpty {  }) =
+ toJSON SearchMessagesFilterEmpty {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterEmpty" ]
 
- toJSON (SearchMessagesFilterAnimation {  }) =
+ toJSON SearchMessagesFilterAnimation {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterAnimation" ]
 
- toJSON (SearchMessagesFilterAudio {  }) =
+ toJSON SearchMessagesFilterAudio {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterAudio" ]
 
- toJSON (SearchMessagesFilterDocument {  }) =
+ toJSON SearchMessagesFilterDocument {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterDocument" ]
 
- toJSON (SearchMessagesFilterPhoto {  }) =
+ toJSON SearchMessagesFilterPhoto {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterPhoto" ]
 
- toJSON (SearchMessagesFilterVideo {  }) =
+ toJSON SearchMessagesFilterVideo {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterVideo" ]
 
- toJSON (SearchMessagesFilterVoiceNote {  }) =
+ toJSON SearchMessagesFilterVoiceNote {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterVoiceNote" ]
 
- toJSON (SearchMessagesFilterPhotoAndVideo {  }) =
+ toJSON SearchMessagesFilterPhotoAndVideo {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterPhotoAndVideo" ]
 
- toJSON (SearchMessagesFilterUrl {  }) =
+ toJSON SearchMessagesFilterUrl {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterUrl" ]
 
- toJSON (SearchMessagesFilterChatPhoto {  }) =
+ toJSON SearchMessagesFilterChatPhoto {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterChatPhoto" ]
 
- toJSON (SearchMessagesFilterCall {  }) =
+ toJSON SearchMessagesFilterCall {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterCall" ]
 
- toJSON (SearchMessagesFilterMissedCall {  }) =
+ toJSON SearchMessagesFilterMissedCall {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterMissedCall" ]
 
- toJSON (SearchMessagesFilterVideoNote {  }) =
+ toJSON SearchMessagesFilterVideoNote {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterVideoNote" ]
 
- toJSON (SearchMessagesFilterVoiceAndVideoNote {  }) =
+ toJSON SearchMessagesFilterVoiceAndVideoNote {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterVoiceAndVideoNote" ]
 
- toJSON (SearchMessagesFilterMention {  }) =
+ toJSON SearchMessagesFilterMention {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterMention" ]
 
- toJSON (SearchMessagesFilterUnreadMention {  }) =
+ toJSON SearchMessagesFilterUnreadMention {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterUnreadMention" ]
 
- toJSON (SearchMessagesFilterFailedToSend {  }) =
+ toJSON SearchMessagesFilterFailedToSend {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterFailedToSend" ]
 
- toJSON (SearchMessagesFilterPinned {  }) =
+ toJSON SearchMessagesFilterPinned {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterPinned" ]
 
 instance T.FromJSON SearchMessagesFilter where
@@ -234,3 +299,4 @@ instance T.FromJSON SearchMessagesFilter where
    parseSearchMessagesFilterPinned :: A.Value -> T.Parser SearchMessagesFilter
    parseSearchMessagesFilterPinned = A.withObject "SearchMessagesFilterPinned" $ \o -> do
     return $ SearchMessagesFilterPinned {  }
+ parseJSON _ = mempty

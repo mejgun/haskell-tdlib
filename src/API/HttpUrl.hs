@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __url__ The URL
 data HttpUrl = 
 
- HttpUrl { url :: Maybe String }  deriving (Show, Eq)
+ HttpUrl { url :: Maybe String }  deriving (Eq)
+
+instance Show HttpUrl where
+ show HttpUrl { url=url } =
+  "HttpUrl" ++ cc [p "url" url ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON HttpUrl where
- toJSON (HttpUrl { url = url }) =
+ toJSON HttpUrl { url = url } =
   A.object [ "@type" A..= T.String "httpUrl", "url" A..= url ]
 
 instance T.FromJSON HttpUrl where
@@ -31,3 +45,4 @@ instance T.FromJSON HttpUrl where
    parseHttpUrl = A.withObject "HttpUrl" $ \o -> do
     url <- o A..:? "url"
     return $ HttpUrl { url = url }
+ parseJSON _ = mempty

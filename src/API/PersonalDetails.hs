@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Date as Date
 
 -- |
@@ -33,10 +34,23 @@ import {-# SOURCE #-} qualified API.Date as Date
 -- __residence_country_code__ A two-letter ISO 3166-1 alpha-2 country code of the user's residence country
 data PersonalDetails = 
 
- PersonalDetails { residence_country_code :: Maybe String, country_code :: Maybe String, gender :: Maybe String, birthdate :: Maybe Date.Date, native_last_name :: Maybe String, native_middle_name :: Maybe String, native_first_name :: Maybe String, last_name :: Maybe String, middle_name :: Maybe String, first_name :: Maybe String }  deriving (Show, Eq)
+ PersonalDetails { residence_country_code :: Maybe String, country_code :: Maybe String, gender :: Maybe String, birthdate :: Maybe Date.Date, native_last_name :: Maybe String, native_middle_name :: Maybe String, native_first_name :: Maybe String, last_name :: Maybe String, middle_name :: Maybe String, first_name :: Maybe String }  deriving (Eq)
+
+instance Show PersonalDetails where
+ show PersonalDetails { residence_country_code=residence_country_code, country_code=country_code, gender=gender, birthdate=birthdate, native_last_name=native_last_name, native_middle_name=native_middle_name, native_first_name=native_first_name, last_name=last_name, middle_name=middle_name, first_name=first_name } =
+  "PersonalDetails" ++ cc [p "residence_country_code" residence_country_code, p "country_code" country_code, p "gender" gender, p "birthdate" birthdate, p "native_last_name" native_last_name, p "native_middle_name" native_middle_name, p "native_first_name" native_first_name, p "last_name" last_name, p "middle_name" middle_name, p "first_name" first_name ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON PersonalDetails where
- toJSON (PersonalDetails { residence_country_code = residence_country_code, country_code = country_code, gender = gender, birthdate = birthdate, native_last_name = native_last_name, native_middle_name = native_middle_name, native_first_name = native_first_name, last_name = last_name, middle_name = middle_name, first_name = first_name }) =
+ toJSON PersonalDetails { residence_country_code = residence_country_code, country_code = country_code, gender = gender, birthdate = birthdate, native_last_name = native_last_name, native_middle_name = native_middle_name, native_first_name = native_first_name, last_name = last_name, middle_name = middle_name, first_name = first_name } =
   A.object [ "@type" A..= T.String "personalDetails", "residence_country_code" A..= residence_country_code, "country_code" A..= country_code, "gender" A..= gender, "birthdate" A..= birthdate, "native_last_name" A..= native_last_name, "native_middle_name" A..= native_middle_name, "native_first_name" A..= native_first_name, "last_name" A..= last_name, "middle_name" A..= middle_name, "first_name" A..= first_name ]
 
 instance T.FromJSON PersonalDetails where
@@ -59,3 +73,4 @@ instance T.FromJSON PersonalDetails where
     middle_name <- o A..:? "middle_name"
     first_name <- o A..:? "first_name"
     return $ PersonalDetails { residence_country_code = residence_country_code, country_code = country_code, gender = gender, birthdate = birthdate, native_last_name = native_last_name, native_middle_name = native_middle_name, native_first_name = native_first_name, last_name = last_name, middle_name = middle_name, first_name = first_name }
+ parseJSON _ = mempty

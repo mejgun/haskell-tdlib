@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __force__ If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
 data CreatePrivateChat = 
 
- CreatePrivateChat { force :: Maybe Bool, user_id :: Maybe Int }  deriving (Show, Eq)
+ CreatePrivateChat { force :: Maybe Bool, user_id :: Maybe Int }  deriving (Eq)
+
+instance Show CreatePrivateChat where
+ show CreatePrivateChat { force=force, user_id=user_id } =
+  "CreatePrivateChat" ++ cc [p "force" force, p "user_id" user_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON CreatePrivateChat where
- toJSON (CreatePrivateChat { force = force, user_id = user_id }) =
+ toJSON CreatePrivateChat { force = force, user_id = user_id } =
   A.object [ "@type" A..= T.String "createPrivateChat", "force" A..= force, "user_id" A..= user_id ]
 
 instance T.FromJSON CreatePrivateChat where
@@ -34,3 +48,4 @@ instance T.FromJSON CreatePrivateChat where
     force <- o A..:? "force"
     user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ CreatePrivateChat { force = force, user_id = user_id }
+ parseJSON _ = mempty

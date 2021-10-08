@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.InputPassportElement as InputPassportElement
 
 -- |
@@ -17,10 +18,23 @@ import {-# SOURCE #-} qualified API.InputPassportElement as InputPassportElement
 -- __password__ Password of the current user
 data SetPassportElement = 
 
- SetPassportElement { password :: Maybe String, element :: Maybe InputPassportElement.InputPassportElement }  deriving (Show, Eq)
+ SetPassportElement { password :: Maybe String, element :: Maybe InputPassportElement.InputPassportElement }  deriving (Eq)
+
+instance Show SetPassportElement where
+ show SetPassportElement { password=password, element=element } =
+  "SetPassportElement" ++ cc [p "password" password, p "element" element ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SetPassportElement where
- toJSON (SetPassportElement { password = password, element = element }) =
+ toJSON SetPassportElement { password = password, element = element } =
   A.object [ "@type" A..= T.String "setPassportElement", "password" A..= password, "element" A..= element ]
 
 instance T.FromJSON SetPassportElement where
@@ -35,3 +49,4 @@ instance T.FromJSON SetPassportElement where
     password <- o A..:? "password"
     element <- o A..:? "element"
     return $ SetPassportElement { password = password, element = element }
+ parseJSON _ = mempty

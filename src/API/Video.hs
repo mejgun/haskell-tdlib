@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.File as File
 import {-# SOURCE #-} qualified API.Thumbnail as Thumbnail
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
@@ -26,7 +27,7 @@ import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 -- 
 -- __has_stickers__ True, if stickers were added to the video. The list of corresponding sticker sets can be received using getAttachedStickerSets
 -- 
--- __supports_streaming__ True, if the video should be tried to be streamed
+-- __supports_streaming__ True, if the video is supposed to be streamed
 -- 
 -- __minithumbnail__ Video minithumbnail; may be null
 -- 
@@ -35,10 +36,23 @@ import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 -- __video__ File containing the video
 data Video = 
 
- Video { video :: Maybe File.File, thumbnail :: Maybe Thumbnail.Thumbnail, minithumbnail :: Maybe Minithumbnail.Minithumbnail, supports_streaming :: Maybe Bool, has_stickers :: Maybe Bool, mime_type :: Maybe String, file_name :: Maybe String, height :: Maybe Int, width :: Maybe Int, duration :: Maybe Int }  deriving (Show, Eq)
+ Video { video :: Maybe File.File, thumbnail :: Maybe Thumbnail.Thumbnail, minithumbnail :: Maybe Minithumbnail.Minithumbnail, supports_streaming :: Maybe Bool, has_stickers :: Maybe Bool, mime_type :: Maybe String, file_name :: Maybe String, height :: Maybe Int, width :: Maybe Int, duration :: Maybe Int }  deriving (Eq)
+
+instance Show Video where
+ show Video { video=video, thumbnail=thumbnail, minithumbnail=minithumbnail, supports_streaming=supports_streaming, has_stickers=has_stickers, mime_type=mime_type, file_name=file_name, height=height, width=width, duration=duration } =
+  "Video" ++ cc [p "video" video, p "thumbnail" thumbnail, p "minithumbnail" minithumbnail, p "supports_streaming" supports_streaming, p "has_stickers" has_stickers, p "mime_type" mime_type, p "file_name" file_name, p "height" height, p "width" width, p "duration" duration ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Video where
- toJSON (Video { video = video, thumbnail = thumbnail, minithumbnail = minithumbnail, supports_streaming = supports_streaming, has_stickers = has_stickers, mime_type = mime_type, file_name = file_name, height = height, width = width, duration = duration }) =
+ toJSON Video { video = video, thumbnail = thumbnail, minithumbnail = minithumbnail, supports_streaming = supports_streaming, has_stickers = has_stickers, mime_type = mime_type, file_name = file_name, height = height, width = width, duration = duration } =
   A.object [ "@type" A..= T.String "video", "video" A..= video, "thumbnail" A..= thumbnail, "minithumbnail" A..= minithumbnail, "supports_streaming" A..= supports_streaming, "has_stickers" A..= has_stickers, "mime_type" A..= mime_type, "file_name" A..= file_name, "height" A..= height, "width" A..= width, "duration" A..= duration ]
 
 instance T.FromJSON Video where
@@ -61,3 +75,4 @@ instance T.FromJSON Video where
     width <- mconcat [ o A..:? "width", readMaybe <$> (o A..: "width" :: T.Parser String)] :: T.Parser (Maybe Int)
     duration <- mconcat [ o A..:? "duration", readMaybe <$> (o A..: "duration" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ Video { video = video, thumbnail = thumbnail, minithumbnail = minithumbnail, supports_streaming = supports_streaming, has_stickers = has_stickers, mime_type = mime_type, file_name = file_name, height = height, width = width, duration = duration }
+ parseJSON _ = mempty

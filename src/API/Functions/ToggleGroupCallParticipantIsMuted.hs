@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
 -- |
@@ -19,10 +20,23 @@ import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 -- __is_muted__ Pass true if the user must be muted and false otherwise
 data ToggleGroupCallParticipantIsMuted = 
 
- ToggleGroupCallParticipantIsMuted { is_muted :: Maybe Bool, participant_id :: Maybe MessageSender.MessageSender, group_call_id :: Maybe Int }  deriving (Show, Eq)
+ ToggleGroupCallParticipantIsMuted { is_muted :: Maybe Bool, participant_id :: Maybe MessageSender.MessageSender, group_call_id :: Maybe Int }  deriving (Eq)
+
+instance Show ToggleGroupCallParticipantIsMuted where
+ show ToggleGroupCallParticipantIsMuted { is_muted=is_muted, participant_id=participant_id, group_call_id=group_call_id } =
+  "ToggleGroupCallParticipantIsMuted" ++ cc [p "is_muted" is_muted, p "participant_id" participant_id, p "group_call_id" group_call_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ToggleGroupCallParticipantIsMuted where
- toJSON (ToggleGroupCallParticipantIsMuted { is_muted = is_muted, participant_id = participant_id, group_call_id = group_call_id }) =
+ toJSON ToggleGroupCallParticipantIsMuted { is_muted = is_muted, participant_id = participant_id, group_call_id = group_call_id } =
   A.object [ "@type" A..= T.String "toggleGroupCallParticipantIsMuted", "is_muted" A..= is_muted, "participant_id" A..= participant_id, "group_call_id" A..= group_call_id ]
 
 instance T.FromJSON ToggleGroupCallParticipantIsMuted where
@@ -38,3 +52,4 @@ instance T.FromJSON ToggleGroupCallParticipantIsMuted where
     participant_id <- o A..:? "participant_id"
     group_call_id <- mconcat [ o A..:? "group_call_id", readMaybe <$> (o A..: "group_call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ToggleGroupCallParticipantIsMuted { is_muted = is_muted, participant_id = participant_id, group_call_id = group_call_id }
+ parseJSON _ = mempty

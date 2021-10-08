@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -18,10 +19,23 @@ import qualified Data.Aeson.Types as T
 -- __limit__ The maximum number of sticker sets to return
 data GetArchivedStickerSets = 
 
- GetArchivedStickerSets { limit :: Maybe Int, offset_sticker_set_id :: Maybe Int, is_masks :: Maybe Bool }  deriving (Show, Eq)
+ GetArchivedStickerSets { limit :: Maybe Int, offset_sticker_set_id :: Maybe Int, is_masks :: Maybe Bool }  deriving (Eq)
+
+instance Show GetArchivedStickerSets where
+ show GetArchivedStickerSets { limit=limit, offset_sticker_set_id=offset_sticker_set_id, is_masks=is_masks } =
+  "GetArchivedStickerSets" ++ cc [p "limit" limit, p "offset_sticker_set_id" offset_sticker_set_id, p "is_masks" is_masks ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetArchivedStickerSets where
- toJSON (GetArchivedStickerSets { limit = limit, offset_sticker_set_id = offset_sticker_set_id, is_masks = is_masks }) =
+ toJSON GetArchivedStickerSets { limit = limit, offset_sticker_set_id = offset_sticker_set_id, is_masks = is_masks } =
   A.object [ "@type" A..= T.String "getArchivedStickerSets", "limit" A..= limit, "offset_sticker_set_id" A..= offset_sticker_set_id, "is_masks" A..= is_masks ]
 
 instance T.FromJSON GetArchivedStickerSets where
@@ -37,3 +51,4 @@ instance T.FromJSON GetArchivedStickerSets where
     offset_sticker_set_id <- mconcat [ o A..:? "offset_sticker_set_id", readMaybe <$> (o A..: "offset_sticker_set_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     is_masks <- o A..:? "is_masks"
     return $ GetArchivedStickerSets { limit = limit, offset_sticker_set_id = offset_sticker_set_id, is_masks = is_masks }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -46,28 +47,59 @@ data BotCommandScope =
  -- __chat_id__ Chat identifier
  -- 
  -- __user_id__ User identifier
- BotCommandScopeChatMember { user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
+ BotCommandScopeChatMember { user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show BotCommandScope where
+ show BotCommandScopeDefault {  } =
+  "BotCommandScopeDefault" ++ cc [ ]
+
+ show BotCommandScopeAllPrivateChats {  } =
+  "BotCommandScopeAllPrivateChats" ++ cc [ ]
+
+ show BotCommandScopeAllGroupChats {  } =
+  "BotCommandScopeAllGroupChats" ++ cc [ ]
+
+ show BotCommandScopeAllChatAdministrators {  } =
+  "BotCommandScopeAllChatAdministrators" ++ cc [ ]
+
+ show BotCommandScopeChat { chat_id=chat_id } =
+  "BotCommandScopeChat" ++ cc [p "chat_id" chat_id ]
+
+ show BotCommandScopeChatAdministrators { chat_id=chat_id } =
+  "BotCommandScopeChatAdministrators" ++ cc [p "chat_id" chat_id ]
+
+ show BotCommandScopeChatMember { user_id=user_id, chat_id=chat_id } =
+  "BotCommandScopeChatMember" ++ cc [p "user_id" user_id, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON BotCommandScope where
- toJSON (BotCommandScopeDefault {  }) =
+ toJSON BotCommandScopeDefault {  } =
   A.object [ "@type" A..= T.String "botCommandScopeDefault" ]
 
- toJSON (BotCommandScopeAllPrivateChats {  }) =
+ toJSON BotCommandScopeAllPrivateChats {  } =
   A.object [ "@type" A..= T.String "botCommandScopeAllPrivateChats" ]
 
- toJSON (BotCommandScopeAllGroupChats {  }) =
+ toJSON BotCommandScopeAllGroupChats {  } =
   A.object [ "@type" A..= T.String "botCommandScopeAllGroupChats" ]
 
- toJSON (BotCommandScopeAllChatAdministrators {  }) =
+ toJSON BotCommandScopeAllChatAdministrators {  } =
   A.object [ "@type" A..= T.String "botCommandScopeAllChatAdministrators" ]
 
- toJSON (BotCommandScopeChat { chat_id = chat_id }) =
+ toJSON BotCommandScopeChat { chat_id = chat_id } =
   A.object [ "@type" A..= T.String "botCommandScopeChat", "chat_id" A..= chat_id ]
 
- toJSON (BotCommandScopeChatAdministrators { chat_id = chat_id }) =
+ toJSON BotCommandScopeChatAdministrators { chat_id = chat_id } =
   A.object [ "@type" A..= T.String "botCommandScopeChatAdministrators", "chat_id" A..= chat_id ]
 
- toJSON (BotCommandScopeChatMember { user_id = user_id, chat_id = chat_id }) =
+ toJSON BotCommandScopeChatMember { user_id = user_id, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "botCommandScopeChatMember", "user_id" A..= user_id, "chat_id" A..= chat_id ]
 
 instance T.FromJSON BotCommandScope where
@@ -114,3 +146,4 @@ instance T.FromJSON BotCommandScope where
     user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ BotCommandScopeChatMember { user_id = user_id, chat_id = chat_id }
+ parseJSON _ = mempty

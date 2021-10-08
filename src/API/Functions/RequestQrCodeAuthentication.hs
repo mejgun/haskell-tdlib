@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __other_user_ids__ List of user identifiers of other users currently using the application
 data RequestQrCodeAuthentication = 
 
- RequestQrCodeAuthentication { other_user_ids :: Maybe [Int] }  deriving (Show, Eq)
+ RequestQrCodeAuthentication { other_user_ids :: Maybe [Int] }  deriving (Eq)
+
+instance Show RequestQrCodeAuthentication where
+ show RequestQrCodeAuthentication { other_user_ids=other_user_ids } =
+  "RequestQrCodeAuthentication" ++ cc [p "other_user_ids" other_user_ids ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON RequestQrCodeAuthentication where
- toJSON (RequestQrCodeAuthentication { other_user_ids = other_user_ids }) =
+ toJSON RequestQrCodeAuthentication { other_user_ids = other_user_ids } =
   A.object [ "@type" A..= T.String "requestQrCodeAuthentication", "other_user_ids" A..= other_user_ids ]
 
 instance T.FromJSON RequestQrCodeAuthentication where
@@ -33,3 +47,4 @@ instance T.FromJSON RequestQrCodeAuthentication where
    parseRequestQrCodeAuthentication = A.withObject "RequestQrCodeAuthentication" $ \o -> do
     other_user_ids <- o A..:? "other_user_ids"
     return $ RequestQrCodeAuthentication { other_user_ids = other_user_ids }
+ parseJSON _ = mempty

@@ -22,7 +22,7 @@
 </span><span id="line-22"></span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-23"></span><span> </span><span class="hs-comment">-- </span><span>
 </span><span id="line-24"></span><span> </span><span class="hs-comment">-- The content should be right-aligned</span><span>
-</span><span id="line-25"></span><span> </span><span id="PageBlockHorizontalAlignmentRight"><span class="annot"><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignmentRight"><span class="hs-identifier hs-var">PageBlockHorizontalAlignmentRight</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679444511"><span id="local-6989586621679444513"><span id="local-6989586621679444515"><span class="annot"><span class="annottext">Int -&gt; PageBlockHorizontalAlignment -&gt; ShowS
+</span><span id="line-25"></span><span> </span><span id="PageBlockHorizontalAlignmentRight"><span class="annot"><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignmentRight"><span class="hs-identifier hs-var">PageBlockHorizontalAlignmentRight</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679478199"><span id="local-6989586621679478201"><span id="local-6989586621679478203"><span class="annot"><span class="annottext">Int -&gt; PageBlockHorizontalAlignment -&gt; ShowS
 [PageBlockHorizontalAlignment] -&gt; ShowS
 PageBlockHorizontalAlignment -&gt; String
 (Int -&gt; PageBlockHorizontalAlignment -&gt; ShowS)
@@ -37,7 +37,7 @@ show :: PageBlockHorizontalAlignment -&gt; String
 $cshow :: PageBlockHorizontalAlignment -&gt; String
 showsPrec :: Int -&gt; PageBlockHorizontalAlignment -&gt; ShowS
 $cshowsPrec :: Int -&gt; PageBlockHorizontalAlignment -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679444506"><span id="local-6989586621679444508"><span class="annot"><span class="annottext">PageBlockHorizontalAlignment
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679478194"><span id="local-6989586621679478196"><span class="annot"><span class="annottext">PageBlockHorizontalAlignment
 -&gt; PageBlockHorizontalAlignment -&gt; Bool
 (PageBlockHorizontalAlignment
  -&gt; PageBlockHorizontalAlignment -&gt; Bool)
@@ -55,69 +55,81 @@ $c== :: PageBlockHorizontalAlignment
 -&gt; PageBlockHorizontalAlignment -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-26"></span><span>
-</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679444498"><span id="local-6989586621679444500"><span id="local-6989586621679444502"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignment"><span class="hs-identifier hs-type">PageBlockHorizontalAlignment</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-28"></span><span> </span><span id="local-6989586621679444496"><span class="annot"><span class="annottext">toJSON :: PageBlockHorizontalAlignment -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignmentLeft"><span class="hs-identifier hs-type">PageBlockHorizontalAlignmentLeft</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679478186"><span id="local-6989586621679478188"><span id="local-6989586621679478190"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignment"><span class="hs-identifier hs-type">PageBlockHorizontalAlignment</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-28"></span><span> </span><span id="local-6989586621679478184"><span class="annot"><span class="annottext">toJSON :: PageBlockHorizontalAlignment -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignmentLeft"><span class="hs-identifier hs-type">PageBlockHorizontalAlignmentLeft</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-29"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;pageBlockHorizontalAlignmentLeft&quot;</span></span><span> </span><span class="hs-special">]</span><span>
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;pageBlockHorizontalAlignmentLeft&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-30"></span><span>
-</span><span id="line-31"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignmentCenter"><span class="hs-identifier hs-type">PageBlockHorizontalAlignmentCenter</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-31"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignmentCenter"><span class="hs-identifier hs-type">PageBlockHorizontalAlignmentCenter</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-32"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;pageBlockHorizontalAlignmentCenter&quot;</span></span><span> </span><span class="hs-special">]</span><span>
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;pageBlockHorizontalAlignmentCenter&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-33"></span><span>
-</span><span id="line-34"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignmentRight"><span class="hs-identifier hs-type">PageBlockHorizontalAlignmentRight</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-34"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignmentRight"><span class="hs-identifier hs-type">PageBlockHorizontalAlignmentRight</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-35"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;pageBlockHorizontalAlignmentRight&quot;</span></span><span> </span><span class="hs-special">]</span><span>
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;pageBlockHorizontalAlignmentRight&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-36"></span><span>
-</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679444489"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignment"><span class="hs-identifier hs-type">PageBlockHorizontalAlignment</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-38"></span><span> </span><span id="local-6989586621679444487"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PageBlockHorizontalAlignment
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679444485"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679444485"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679444483"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679444483"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-39"></span><span>  </span><span id="local-6989586621679444482"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679444482"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679444483"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679478177"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignment"><span class="hs-identifier hs-type">PageBlockHorizontalAlignment</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-38"></span><span> </span><span id="local-6989586621679478175"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PageBlockHorizontalAlignment
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679478173"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679478173"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679478171"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679478171"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-39"></span><span>  </span><span id="local-6989586621679478170"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679478170"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679478171"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-40"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679444482"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-41"></span><span>   </span><span class="hs-string">&quot;pageBlockHorizontalAlignmentLeft&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PageBlockHorizontalAlignment
-</span><a href="#local-6989586621679444480"><span class="hs-identifier hs-var">parsePageBlockHorizontalAlignmentLeft</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679444485"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-42"></span><span>   </span><span class="hs-string">&quot;pageBlockHorizontalAlignmentCenter&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PageBlockHorizontalAlignment
-</span><a href="#local-6989586621679444479"><span class="hs-identifier hs-var">parsePageBlockHorizontalAlignmentCenter</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679444485"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-43"></span><span>   </span><span class="hs-string">&quot;pageBlockHorizontalAlignmentRight&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PageBlockHorizontalAlignment
-</span><a href="#local-6989586621679444478"><span class="hs-identifier hs-var">parsePageBlockHorizontalAlignmentRight</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679444485"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-44"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PageBlockHorizontalAlignment
+</span><a href="#local-6989586621679478170"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-41"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;pageBlockHorizontalAlignmentLeft&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PageBlockHorizontalAlignment
+</span><a href="#local-6989586621679478168"><span class="hs-identifier hs-var">parsePageBlockHorizontalAlignmentLeft</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679478173"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-42"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;pageBlockHorizontalAlignmentCenter&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PageBlockHorizontalAlignment
+</span><a href="#local-6989586621679478167"><span class="hs-identifier hs-var">parsePageBlockHorizontalAlignmentCenter</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679478173"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-43"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;pageBlockHorizontalAlignmentRight&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PageBlockHorizontalAlignment
+</span><a href="#local-6989586621679478166"><span class="hs-identifier hs-var">parsePageBlockHorizontalAlignmentRight</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679478173"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-44"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PageBlockHorizontalAlignment
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-45"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-46"></span><span>   </span><span class="annot"><a href="#local-6989586621679444480"><span class="hs-identifier hs-type">parsePageBlockHorizontalAlignmentLeft</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignment"><span class="hs-identifier hs-type">PageBlockHorizontalAlignment</span></a></span><span>
-</span><span id="line-47"></span><span>   </span><span id="local-6989586621679444480"><span class="annot"><span class="annottext">parsePageBlockHorizontalAlignmentLeft :: Value -&gt; Parser PageBlockHorizontalAlignment
-</span><a href="#local-6989586621679444480"><span class="hs-identifier hs-var hs-var">parsePageBlockHorizontalAlignmentLeft</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-46"></span><span>   </span><span class="annot"><a href="#local-6989586621679478168"><span class="hs-identifier hs-type">parsePageBlockHorizontalAlignmentLeft</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignment"><span class="hs-identifier hs-type">PageBlockHorizontalAlignment</span></a></span><span>
+</span><span id="line-47"></span><span>   </span><span id="local-6989586621679478168"><span class="annot"><span class="annottext">parsePageBlockHorizontalAlignmentLeft :: Value -&gt; Parser PageBlockHorizontalAlignment
+</span><a href="#local-6989586621679478168"><span class="hs-identifier hs-var hs-var">parsePageBlockHorizontalAlignmentLeft</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser PageBlockHorizontalAlignment)
 -&gt; Value
 -&gt; Parser PageBlockHorizontalAlignment
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;PageBlockHorizontalAlignmentLeft&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser PageBlockHorizontalAlignment)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;PageBlockHorizontalAlignmentLeft&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser PageBlockHorizontalAlignment)
  -&gt; Value -&gt; Parser PageBlockHorizontalAlignment)
 -&gt; (Object -&gt; Parser PageBlockHorizontalAlignment)
 -&gt; Value
 -&gt; Parser PageBlockHorizontalAlignment
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679444476"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679444476"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679478164"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679478164"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-48"></span><span>    </span><span class="annot"><span class="annottext">PageBlockHorizontalAlignment -&gt; Parser PageBlockHorizontalAlignment
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(PageBlockHorizontalAlignment
@@ -126,23 +138,24 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 -&gt; Parser PageBlockHorizontalAlignment
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">PageBlockHorizontalAlignmentLeft :: PageBlockHorizontalAlignment
-</span><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignmentLeft"><span class="hs-identifier hs-type hs-type">PageBlockHorizontalAlignmentLeft</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
+</span><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignmentLeft"><span class="hs-identifier hs-type">PageBlockHorizontalAlignmentLeft</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-49"></span><span>
-</span><span id="line-50"></span><span>   </span><span class="annot"><a href="#local-6989586621679444479"><span class="hs-identifier hs-type">parsePageBlockHorizontalAlignmentCenter</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignment"><span class="hs-identifier hs-type">PageBlockHorizontalAlignment</span></a></span><span>
-</span><span id="line-51"></span><span>   </span><span id="local-6989586621679444479"><span class="annot"><span class="annottext">parsePageBlockHorizontalAlignmentCenter :: Value -&gt; Parser PageBlockHorizontalAlignment
-</span><a href="#local-6989586621679444479"><span class="hs-identifier hs-var hs-var">parsePageBlockHorizontalAlignmentCenter</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-50"></span><span>   </span><span class="annot"><a href="#local-6989586621679478167"><span class="hs-identifier hs-type">parsePageBlockHorizontalAlignmentCenter</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignment"><span class="hs-identifier hs-type">PageBlockHorizontalAlignment</span></a></span><span>
+</span><span id="line-51"></span><span>   </span><span id="local-6989586621679478167"><span class="annot"><span class="annottext">parsePageBlockHorizontalAlignmentCenter :: Value -&gt; Parser PageBlockHorizontalAlignment
+</span><a href="#local-6989586621679478167"><span class="hs-identifier hs-var hs-var">parsePageBlockHorizontalAlignmentCenter</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser PageBlockHorizontalAlignment)
 -&gt; Value
 -&gt; Parser PageBlockHorizontalAlignment
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;PageBlockHorizontalAlignmentCenter&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser PageBlockHorizontalAlignment)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;PageBlockHorizontalAlignmentCenter&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser PageBlockHorizontalAlignment)
  -&gt; Value -&gt; Parser PageBlockHorizontalAlignment)
 -&gt; (Object -&gt; Parser PageBlockHorizontalAlignment)
 -&gt; Value
 -&gt; Parser PageBlockHorizontalAlignment
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679444474"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679444474"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679478163"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679478163"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-52"></span><span>    </span><span class="annot"><span class="annottext">PageBlockHorizontalAlignment -&gt; Parser PageBlockHorizontalAlignment
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(PageBlockHorizontalAlignment
@@ -151,23 +164,24 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 -&gt; Parser PageBlockHorizontalAlignment
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">PageBlockHorizontalAlignmentCenter :: PageBlockHorizontalAlignment
-</span><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignmentCenter"><span class="hs-identifier hs-type hs-type">PageBlockHorizontalAlignmentCenter</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
+</span><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignmentCenter"><span class="hs-identifier hs-type">PageBlockHorizontalAlignmentCenter</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-53"></span><span>
-</span><span id="line-54"></span><span>   </span><span class="annot"><a href="#local-6989586621679444478"><span class="hs-identifier hs-type">parsePageBlockHorizontalAlignmentRight</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignment"><span class="hs-identifier hs-type">PageBlockHorizontalAlignment</span></a></span><span>
-</span><span id="line-55"></span><span>   </span><span id="local-6989586621679444478"><span class="annot"><span class="annottext">parsePageBlockHorizontalAlignmentRight :: Value -&gt; Parser PageBlockHorizontalAlignment
-</span><a href="#local-6989586621679444478"><span class="hs-identifier hs-var hs-var">parsePageBlockHorizontalAlignmentRight</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-54"></span><span>   </span><span class="annot"><a href="#local-6989586621679478166"><span class="hs-identifier hs-type">parsePageBlockHorizontalAlignmentRight</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignment"><span class="hs-identifier hs-type">PageBlockHorizontalAlignment</span></a></span><span>
+</span><span id="line-55"></span><span>   </span><span id="local-6989586621679478166"><span class="annot"><span class="annottext">parsePageBlockHorizontalAlignmentRight :: Value -&gt; Parser PageBlockHorizontalAlignment
+</span><a href="#local-6989586621679478166"><span class="hs-identifier hs-var hs-var">parsePageBlockHorizontalAlignmentRight</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser PageBlockHorizontalAlignment)
 -&gt; Value
 -&gt; Parser PageBlockHorizontalAlignment
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;PageBlockHorizontalAlignmentRight&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser PageBlockHorizontalAlignment)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;PageBlockHorizontalAlignmentRight&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser PageBlockHorizontalAlignment)
  -&gt; Value -&gt; Parser PageBlockHorizontalAlignment)
 -&gt; (Object -&gt; Parser PageBlockHorizontalAlignment)
 -&gt; Value
 -&gt; Parser PageBlockHorizontalAlignment
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679444472"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679444472"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679478162"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679478162"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-56"></span><span>    </span><span class="annot"><span class="annottext">PageBlockHorizontalAlignment -&gt; Parser PageBlockHorizontalAlignment
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(PageBlockHorizontalAlignment
@@ -176,4 +190,9 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 -&gt; Parser PageBlockHorizontalAlignment
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">PageBlockHorizontalAlignmentRight :: PageBlockHorizontalAlignment
-</span><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignmentRight"><span class="hs-identifier hs-type hs-type">PageBlockHorizontalAlignmentRight</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="API.PageBlockHorizontalAlignment.html#PageBlockHorizontalAlignmentRight"><span class="hs-identifier hs-type">PageBlockHorizontalAlignmentRight</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
+</span><span id="line-57"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser PageBlockHorizontalAlignment
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-58"></span></pre></body></html>

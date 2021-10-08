@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.WebPage as WebPage
 import {-# SOURCE #-} qualified API.Animation as Animation
 import {-# SOURCE #-} qualified API.Audio as Audio
@@ -192,7 +193,7 @@ data MessageContent =
  -- 
  -- __is_test__ True, if the invoice is a test invoice
  -- 
- -- __need_shipping_address__ True, if the shipping address should be specified
+ -- __need_shipping_address__ True, if the shipping address must be specified
  -- 
  -- __receipt_message_id__ The identifier of the message with the receipt, after the product has been purchased
  MessageInvoice { receipt_message_id :: Maybe Int, need_shipping_address :: Maybe Bool, is_test :: Maybe Bool, start_parameter :: Maybe String, total_amount :: Maybe Int, currency :: Maybe String, _photo :: Maybe Photo.Photo, description :: Maybe String, title :: Maybe String }  |
@@ -399,148 +400,299 @@ data MessageContent =
  -- |
  -- 
  -- Message content that is not supported in the current TDLib version
- MessageUnsupported deriving (Show, Eq)
+ MessageUnsupported deriving (Eq)
+
+instance Show MessageContent where
+ show MessageText { web_page=web_page, _text=_text } =
+  "MessageText" ++ cc [p "web_page" web_page, p "_text" _text ]
+
+ show MessageAnimation { is_secret=is_secret, caption=caption, animation=animation } =
+  "MessageAnimation" ++ cc [p "is_secret" is_secret, p "caption" caption, p "animation" animation ]
+
+ show MessageAudio { caption=caption, audio=audio } =
+  "MessageAudio" ++ cc [p "caption" caption, p "audio" audio ]
+
+ show MessageDocument { caption=caption, document=document } =
+  "MessageDocument" ++ cc [p "caption" caption, p "document" document ]
+
+ show MessagePhoto { is_secret=is_secret, caption=caption, _photo=_photo } =
+  "MessagePhoto" ++ cc [p "is_secret" is_secret, p "caption" caption, p "_photo" _photo ]
+
+ show MessageExpiredPhoto {  } =
+  "MessageExpiredPhoto" ++ cc [ ]
+
+ show MessageSticker { sticker=sticker } =
+  "MessageSticker" ++ cc [p "sticker" sticker ]
+
+ show MessageVideo { is_secret=is_secret, caption=caption, video=video } =
+  "MessageVideo" ++ cc [p "is_secret" is_secret, p "caption" caption, p "video" video ]
+
+ show MessageExpiredVideo {  } =
+  "MessageExpiredVideo" ++ cc [ ]
+
+ show MessageVideoNote { is_secret=is_secret, is_viewed=is_viewed, video_note=video_note } =
+  "MessageVideoNote" ++ cc [p "is_secret" is_secret, p "is_viewed" is_viewed, p "video_note" video_note ]
+
+ show MessageVoiceNote { is_listened=is_listened, caption=caption, voice_note=voice_note } =
+  "MessageVoiceNote" ++ cc [p "is_listened" is_listened, p "caption" caption, p "voice_note" voice_note ]
+
+ show MessageLocation { proximity_alert_radius=proximity_alert_radius, heading=heading, expires_in=expires_in, live_period=live_period, location=location } =
+  "MessageLocation" ++ cc [p "proximity_alert_radius" proximity_alert_radius, p "heading" heading, p "expires_in" expires_in, p "live_period" live_period, p "location" location ]
+
+ show MessageVenue { venue=venue } =
+  "MessageVenue" ++ cc [p "venue" venue ]
+
+ show MessageContact { contact=contact } =
+  "MessageContact" ++ cc [p "contact" contact ]
+
+ show MessageDice { success_animation_frame_number=success_animation_frame_number, value=value, emoji=emoji, final_state=final_state, initial_state=initial_state } =
+  "MessageDice" ++ cc [p "success_animation_frame_number" success_animation_frame_number, p "value" value, p "emoji" emoji, p "final_state" final_state, p "initial_state" initial_state ]
+
+ show MessageGame { game=game } =
+  "MessageGame" ++ cc [p "game" game ]
+
+ show MessagePoll { poll=poll } =
+  "MessagePoll" ++ cc [p "poll" poll ]
+
+ show MessageInvoice { receipt_message_id=receipt_message_id, need_shipping_address=need_shipping_address, is_test=is_test, start_parameter=start_parameter, total_amount=total_amount, currency=currency, _photo=_photo, description=description, title=title } =
+  "MessageInvoice" ++ cc [p "receipt_message_id" receipt_message_id, p "need_shipping_address" need_shipping_address, p "is_test" is_test, p "start_parameter" start_parameter, p "total_amount" total_amount, p "currency" currency, p "_photo" _photo, p "description" description, p "title" title ]
+
+ show MessageCall { duration=duration, discard_reason=discard_reason, is_video=is_video } =
+  "MessageCall" ++ cc [p "duration" duration, p "discard_reason" discard_reason, p "is_video" is_video ]
+
+ show MessageVoiceChatScheduled { start_date=start_date, group_call_id=group_call_id } =
+  "MessageVoiceChatScheduled" ++ cc [p "start_date" start_date, p "group_call_id" group_call_id ]
+
+ show MessageVoiceChatStarted { group_call_id=group_call_id } =
+  "MessageVoiceChatStarted" ++ cc [p "group_call_id" group_call_id ]
+
+ show MessageVoiceChatEnded { duration=duration } =
+  "MessageVoiceChatEnded" ++ cc [p "duration" duration ]
+
+ show MessageInviteVoiceChatParticipants { user_ids=user_ids, group_call_id=group_call_id } =
+  "MessageInviteVoiceChatParticipants" ++ cc [p "user_ids" user_ids, p "group_call_id" group_call_id ]
+
+ show MessageBasicGroupChatCreate { member_user_ids=member_user_ids, title=title } =
+  "MessageBasicGroupChatCreate" ++ cc [p "member_user_ids" member_user_ids, p "title" title ]
+
+ show MessageSupergroupChatCreate { title=title } =
+  "MessageSupergroupChatCreate" ++ cc [p "title" title ]
+
+ show MessageChatChangeTitle { title=title } =
+  "MessageChatChangeTitle" ++ cc [p "title" title ]
+
+ show MessageChatChangePhoto { photo=photo } =
+  "MessageChatChangePhoto" ++ cc [p "photo" photo ]
+
+ show MessageChatDeletePhoto {  } =
+  "MessageChatDeletePhoto" ++ cc [ ]
+
+ show MessageChatAddMembers { member_user_ids=member_user_ids } =
+  "MessageChatAddMembers" ++ cc [p "member_user_ids" member_user_ids ]
+
+ show MessageChatJoinByLink {  } =
+  "MessageChatJoinByLink" ++ cc [ ]
+
+ show MessageChatDeleteMember { user_id=user_id } =
+  "MessageChatDeleteMember" ++ cc [p "user_id" user_id ]
+
+ show MessageChatUpgradeTo { supergroup_id=supergroup_id } =
+  "MessageChatUpgradeTo" ++ cc [p "supergroup_id" supergroup_id ]
+
+ show MessageChatUpgradeFrom { basic_group_id=basic_group_id, title=title } =
+  "MessageChatUpgradeFrom" ++ cc [p "basic_group_id" basic_group_id, p "title" title ]
+
+ show MessagePinMessage { message_id=message_id } =
+  "MessagePinMessage" ++ cc [p "message_id" message_id ]
+
+ show MessageScreenshotTaken {  } =
+  "MessageScreenshotTaken" ++ cc [ ]
+
+ show MessageChatSetTheme { theme_name=theme_name } =
+  "MessageChatSetTheme" ++ cc [p "theme_name" theme_name ]
+
+ show MessageChatSetTtl { ttl=ttl } =
+  "MessageChatSetTtl" ++ cc [p "ttl" ttl ]
+
+ show MessageCustomServiceAction { text=text } =
+  "MessageCustomServiceAction" ++ cc [p "text" text ]
+
+ show MessageGameScore { score=score, game_id=game_id, game_message_id=game_message_id } =
+  "MessageGameScore" ++ cc [p "score" score, p "game_id" game_id, p "game_message_id" game_message_id ]
+
+ show MessagePaymentSuccessful { total_amount=total_amount, currency=currency, invoice_message_id=invoice_message_id, invoice_chat_id=invoice_chat_id } =
+  "MessagePaymentSuccessful" ++ cc [p "total_amount" total_amount, p "currency" currency, p "invoice_message_id" invoice_message_id, p "invoice_chat_id" invoice_chat_id ]
+
+ show MessagePaymentSuccessfulBot { provider_payment_charge_id=provider_payment_charge_id, telegram_payment_charge_id=telegram_payment_charge_id, order_info=order_info, shipping_option_id=shipping_option_id, invoice_payload=invoice_payload, total_amount=total_amount, currency=currency } =
+  "MessagePaymentSuccessfulBot" ++ cc [p "provider_payment_charge_id" provider_payment_charge_id, p "telegram_payment_charge_id" telegram_payment_charge_id, p "order_info" order_info, p "shipping_option_id" shipping_option_id, p "invoice_payload" invoice_payload, p "total_amount" total_amount, p "currency" currency ]
+
+ show MessageContactRegistered {  } =
+  "MessageContactRegistered" ++ cc [ ]
+
+ show MessageWebsiteConnected { domain_name=domain_name } =
+  "MessageWebsiteConnected" ++ cc [p "domain_name" domain_name ]
+
+ show MessagePassportDataSent { types=types } =
+  "MessagePassportDataSent" ++ cc [p "types" types ]
+
+ show MessagePassportDataReceived { credentials=credentials, elements=elements } =
+  "MessagePassportDataReceived" ++ cc [p "credentials" credentials, p "elements" elements ]
+
+ show MessageProximityAlertTriggered { distance=distance, watcher=watcher, traveler=traveler } =
+  "MessageProximityAlertTriggered" ++ cc [p "distance" distance, p "watcher" watcher, p "traveler" traveler ]
+
+ show MessageUnsupported {  } =
+  "MessageUnsupported" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON MessageContent where
- toJSON (MessageText { web_page = web_page, _text = _text }) =
+ toJSON MessageText { web_page = web_page, _text = _text } =
   A.object [ "@type" A..= T.String "messageText", "web_page" A..= web_page, "text" A..= _text ]
 
- toJSON (MessageAnimation { is_secret = is_secret, caption = caption, animation = animation }) =
+ toJSON MessageAnimation { is_secret = is_secret, caption = caption, animation = animation } =
   A.object [ "@type" A..= T.String "messageAnimation", "is_secret" A..= is_secret, "caption" A..= caption, "animation" A..= animation ]
 
- toJSON (MessageAudio { caption = caption, audio = audio }) =
+ toJSON MessageAudio { caption = caption, audio = audio } =
   A.object [ "@type" A..= T.String "messageAudio", "caption" A..= caption, "audio" A..= audio ]
 
- toJSON (MessageDocument { caption = caption, document = document }) =
+ toJSON MessageDocument { caption = caption, document = document } =
   A.object [ "@type" A..= T.String "messageDocument", "caption" A..= caption, "document" A..= document ]
 
- toJSON (MessagePhoto { is_secret = is_secret, caption = caption, _photo = _photo }) =
+ toJSON MessagePhoto { is_secret = is_secret, caption = caption, _photo = _photo } =
   A.object [ "@type" A..= T.String "messagePhoto", "is_secret" A..= is_secret, "caption" A..= caption, "photo" A..= _photo ]
 
- toJSON (MessageExpiredPhoto {  }) =
+ toJSON MessageExpiredPhoto {  } =
   A.object [ "@type" A..= T.String "messageExpiredPhoto" ]
 
- toJSON (MessageSticker { sticker = sticker }) =
+ toJSON MessageSticker { sticker = sticker } =
   A.object [ "@type" A..= T.String "messageSticker", "sticker" A..= sticker ]
 
- toJSON (MessageVideo { is_secret = is_secret, caption = caption, video = video }) =
+ toJSON MessageVideo { is_secret = is_secret, caption = caption, video = video } =
   A.object [ "@type" A..= T.String "messageVideo", "is_secret" A..= is_secret, "caption" A..= caption, "video" A..= video ]
 
- toJSON (MessageExpiredVideo {  }) =
+ toJSON MessageExpiredVideo {  } =
   A.object [ "@type" A..= T.String "messageExpiredVideo" ]
 
- toJSON (MessageVideoNote { is_secret = is_secret, is_viewed = is_viewed, video_note = video_note }) =
+ toJSON MessageVideoNote { is_secret = is_secret, is_viewed = is_viewed, video_note = video_note } =
   A.object [ "@type" A..= T.String "messageVideoNote", "is_secret" A..= is_secret, "is_viewed" A..= is_viewed, "video_note" A..= video_note ]
 
- toJSON (MessageVoiceNote { is_listened = is_listened, caption = caption, voice_note = voice_note }) =
+ toJSON MessageVoiceNote { is_listened = is_listened, caption = caption, voice_note = voice_note } =
   A.object [ "@type" A..= T.String "messageVoiceNote", "is_listened" A..= is_listened, "caption" A..= caption, "voice_note" A..= voice_note ]
 
- toJSON (MessageLocation { proximity_alert_radius = proximity_alert_radius, heading = heading, expires_in = expires_in, live_period = live_period, location = location }) =
+ toJSON MessageLocation { proximity_alert_radius = proximity_alert_radius, heading = heading, expires_in = expires_in, live_period = live_period, location = location } =
   A.object [ "@type" A..= T.String "messageLocation", "proximity_alert_radius" A..= proximity_alert_radius, "heading" A..= heading, "expires_in" A..= expires_in, "live_period" A..= live_period, "location" A..= location ]
 
- toJSON (MessageVenue { venue = venue }) =
+ toJSON MessageVenue { venue = venue } =
   A.object [ "@type" A..= T.String "messageVenue", "venue" A..= venue ]
 
- toJSON (MessageContact { contact = contact }) =
+ toJSON MessageContact { contact = contact } =
   A.object [ "@type" A..= T.String "messageContact", "contact" A..= contact ]
 
- toJSON (MessageDice { success_animation_frame_number = success_animation_frame_number, value = value, emoji = emoji, final_state = final_state, initial_state = initial_state }) =
+ toJSON MessageDice { success_animation_frame_number = success_animation_frame_number, value = value, emoji = emoji, final_state = final_state, initial_state = initial_state } =
   A.object [ "@type" A..= T.String "messageDice", "success_animation_frame_number" A..= success_animation_frame_number, "value" A..= value, "emoji" A..= emoji, "final_state" A..= final_state, "initial_state" A..= initial_state ]
 
- toJSON (MessageGame { game = game }) =
+ toJSON MessageGame { game = game } =
   A.object [ "@type" A..= T.String "messageGame", "game" A..= game ]
 
- toJSON (MessagePoll { poll = poll }) =
+ toJSON MessagePoll { poll = poll } =
   A.object [ "@type" A..= T.String "messagePoll", "poll" A..= poll ]
 
- toJSON (MessageInvoice { receipt_message_id = receipt_message_id, need_shipping_address = need_shipping_address, is_test = is_test, start_parameter = start_parameter, total_amount = total_amount, currency = currency, _photo = _photo, description = description, title = title }) =
+ toJSON MessageInvoice { receipt_message_id = receipt_message_id, need_shipping_address = need_shipping_address, is_test = is_test, start_parameter = start_parameter, total_amount = total_amount, currency = currency, _photo = _photo, description = description, title = title } =
   A.object [ "@type" A..= T.String "messageInvoice", "receipt_message_id" A..= receipt_message_id, "need_shipping_address" A..= need_shipping_address, "is_test" A..= is_test, "start_parameter" A..= start_parameter, "total_amount" A..= total_amount, "currency" A..= currency, "photo" A..= _photo, "description" A..= description, "title" A..= title ]
 
- toJSON (MessageCall { duration = duration, discard_reason = discard_reason, is_video = is_video }) =
+ toJSON MessageCall { duration = duration, discard_reason = discard_reason, is_video = is_video } =
   A.object [ "@type" A..= T.String "messageCall", "duration" A..= duration, "discard_reason" A..= discard_reason, "is_video" A..= is_video ]
 
- toJSON (MessageVoiceChatScheduled { start_date = start_date, group_call_id = group_call_id }) =
+ toJSON MessageVoiceChatScheduled { start_date = start_date, group_call_id = group_call_id } =
   A.object [ "@type" A..= T.String "messageVoiceChatScheduled", "start_date" A..= start_date, "group_call_id" A..= group_call_id ]
 
- toJSON (MessageVoiceChatStarted { group_call_id = group_call_id }) =
+ toJSON MessageVoiceChatStarted { group_call_id = group_call_id } =
   A.object [ "@type" A..= T.String "messageVoiceChatStarted", "group_call_id" A..= group_call_id ]
 
- toJSON (MessageVoiceChatEnded { duration = duration }) =
+ toJSON MessageVoiceChatEnded { duration = duration } =
   A.object [ "@type" A..= T.String "messageVoiceChatEnded", "duration" A..= duration ]
 
- toJSON (MessageInviteVoiceChatParticipants { user_ids = user_ids, group_call_id = group_call_id }) =
+ toJSON MessageInviteVoiceChatParticipants { user_ids = user_ids, group_call_id = group_call_id } =
   A.object [ "@type" A..= T.String "messageInviteVoiceChatParticipants", "user_ids" A..= user_ids, "group_call_id" A..= group_call_id ]
 
- toJSON (MessageBasicGroupChatCreate { member_user_ids = member_user_ids, title = title }) =
+ toJSON MessageBasicGroupChatCreate { member_user_ids = member_user_ids, title = title } =
   A.object [ "@type" A..= T.String "messageBasicGroupChatCreate", "member_user_ids" A..= member_user_ids, "title" A..= title ]
 
- toJSON (MessageSupergroupChatCreate { title = title }) =
+ toJSON MessageSupergroupChatCreate { title = title } =
   A.object [ "@type" A..= T.String "messageSupergroupChatCreate", "title" A..= title ]
 
- toJSON (MessageChatChangeTitle { title = title }) =
+ toJSON MessageChatChangeTitle { title = title } =
   A.object [ "@type" A..= T.String "messageChatChangeTitle", "title" A..= title ]
 
- toJSON (MessageChatChangePhoto { photo = photo }) =
+ toJSON MessageChatChangePhoto { photo = photo } =
   A.object [ "@type" A..= T.String "messageChatChangePhoto", "photo" A..= photo ]
 
- toJSON (MessageChatDeletePhoto {  }) =
+ toJSON MessageChatDeletePhoto {  } =
   A.object [ "@type" A..= T.String "messageChatDeletePhoto" ]
 
- toJSON (MessageChatAddMembers { member_user_ids = member_user_ids }) =
+ toJSON MessageChatAddMembers { member_user_ids = member_user_ids } =
   A.object [ "@type" A..= T.String "messageChatAddMembers", "member_user_ids" A..= member_user_ids ]
 
- toJSON (MessageChatJoinByLink {  }) =
+ toJSON MessageChatJoinByLink {  } =
   A.object [ "@type" A..= T.String "messageChatJoinByLink" ]
 
- toJSON (MessageChatDeleteMember { user_id = user_id }) =
+ toJSON MessageChatDeleteMember { user_id = user_id } =
   A.object [ "@type" A..= T.String "messageChatDeleteMember", "user_id" A..= user_id ]
 
- toJSON (MessageChatUpgradeTo { supergroup_id = supergroup_id }) =
+ toJSON MessageChatUpgradeTo { supergroup_id = supergroup_id } =
   A.object [ "@type" A..= T.String "messageChatUpgradeTo", "supergroup_id" A..= supergroup_id ]
 
- toJSON (MessageChatUpgradeFrom { basic_group_id = basic_group_id, title = title }) =
+ toJSON MessageChatUpgradeFrom { basic_group_id = basic_group_id, title = title } =
   A.object [ "@type" A..= T.String "messageChatUpgradeFrom", "basic_group_id" A..= basic_group_id, "title" A..= title ]
 
- toJSON (MessagePinMessage { message_id = message_id }) =
+ toJSON MessagePinMessage { message_id = message_id } =
   A.object [ "@type" A..= T.String "messagePinMessage", "message_id" A..= message_id ]
 
- toJSON (MessageScreenshotTaken {  }) =
+ toJSON MessageScreenshotTaken {  } =
   A.object [ "@type" A..= T.String "messageScreenshotTaken" ]
 
- toJSON (MessageChatSetTheme { theme_name = theme_name }) =
+ toJSON MessageChatSetTheme { theme_name = theme_name } =
   A.object [ "@type" A..= T.String "messageChatSetTheme", "theme_name" A..= theme_name ]
 
- toJSON (MessageChatSetTtl { ttl = ttl }) =
+ toJSON MessageChatSetTtl { ttl = ttl } =
   A.object [ "@type" A..= T.String "messageChatSetTtl", "ttl" A..= ttl ]
 
- toJSON (MessageCustomServiceAction { text = text }) =
+ toJSON MessageCustomServiceAction { text = text } =
   A.object [ "@type" A..= T.String "messageCustomServiceAction", "text" A..= text ]
 
- toJSON (MessageGameScore { score = score, game_id = game_id, game_message_id = game_message_id }) =
+ toJSON MessageGameScore { score = score, game_id = game_id, game_message_id = game_message_id } =
   A.object [ "@type" A..= T.String "messageGameScore", "score" A..= score, "game_id" A..= game_id, "game_message_id" A..= game_message_id ]
 
- toJSON (MessagePaymentSuccessful { total_amount = total_amount, currency = currency, invoice_message_id = invoice_message_id, invoice_chat_id = invoice_chat_id }) =
+ toJSON MessagePaymentSuccessful { total_amount = total_amount, currency = currency, invoice_message_id = invoice_message_id, invoice_chat_id = invoice_chat_id } =
   A.object [ "@type" A..= T.String "messagePaymentSuccessful", "total_amount" A..= total_amount, "currency" A..= currency, "invoice_message_id" A..= invoice_message_id, "invoice_chat_id" A..= invoice_chat_id ]
 
- toJSON (MessagePaymentSuccessfulBot { provider_payment_charge_id = provider_payment_charge_id, telegram_payment_charge_id = telegram_payment_charge_id, order_info = order_info, shipping_option_id = shipping_option_id, invoice_payload = invoice_payload, total_amount = total_amount, currency = currency }) =
+ toJSON MessagePaymentSuccessfulBot { provider_payment_charge_id = provider_payment_charge_id, telegram_payment_charge_id = telegram_payment_charge_id, order_info = order_info, shipping_option_id = shipping_option_id, invoice_payload = invoice_payload, total_amount = total_amount, currency = currency } =
   A.object [ "@type" A..= T.String "messagePaymentSuccessfulBot", "provider_payment_charge_id" A..= provider_payment_charge_id, "telegram_payment_charge_id" A..= telegram_payment_charge_id, "order_info" A..= order_info, "shipping_option_id" A..= shipping_option_id, "invoice_payload" A..= invoice_payload, "total_amount" A..= total_amount, "currency" A..= currency ]
 
- toJSON (MessageContactRegistered {  }) =
+ toJSON MessageContactRegistered {  } =
   A.object [ "@type" A..= T.String "messageContactRegistered" ]
 
- toJSON (MessageWebsiteConnected { domain_name = domain_name }) =
+ toJSON MessageWebsiteConnected { domain_name = domain_name } =
   A.object [ "@type" A..= T.String "messageWebsiteConnected", "domain_name" A..= domain_name ]
 
- toJSON (MessagePassportDataSent { types = types }) =
+ toJSON MessagePassportDataSent { types = types } =
   A.object [ "@type" A..= T.String "messagePassportDataSent", "types" A..= types ]
 
- toJSON (MessagePassportDataReceived { credentials = credentials, elements = elements }) =
+ toJSON MessagePassportDataReceived { credentials = credentials, elements = elements } =
   A.object [ "@type" A..= T.String "messagePassportDataReceived", "credentials" A..= credentials, "elements" A..= elements ]
 
- toJSON (MessageProximityAlertTriggered { distance = distance, watcher = watcher, traveler = traveler }) =
+ toJSON MessageProximityAlertTriggered { distance = distance, watcher = watcher, traveler = traveler } =
   A.object [ "@type" A..= T.String "messageProximityAlertTriggered", "distance" A..= distance, "watcher" A..= watcher, "traveler" A..= traveler ]
 
- toJSON (MessageUnsupported {  }) =
+ toJSON MessageUnsupported {  } =
   A.object [ "@type" A..= T.String "messageUnsupported" ]
 
 instance T.FromJSON MessageContent where
@@ -872,3 +1024,4 @@ instance T.FromJSON MessageContent where
    parseMessageUnsupported :: A.Value -> T.Parser MessageContent
    parseMessageUnsupported = A.withObject "MessageUnsupported" $ \o -> do
     return $ MessageUnsupported {  }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -26,16 +27,35 @@ data MessageFileType =
  -- |
  -- 
  -- The messages was exported from a chat of unknown type
- MessageFileTypeUnknown deriving (Show, Eq)
+ MessageFileTypeUnknown deriving (Eq)
+
+instance Show MessageFileType where
+ show MessageFileTypePrivate { name=name } =
+  "MessageFileTypePrivate" ++ cc [p "name" name ]
+
+ show MessageFileTypeGroup { title=title } =
+  "MessageFileTypeGroup" ++ cc [p "title" title ]
+
+ show MessageFileTypeUnknown {  } =
+  "MessageFileTypeUnknown" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON MessageFileType where
- toJSON (MessageFileTypePrivate { name = name }) =
+ toJSON MessageFileTypePrivate { name = name } =
   A.object [ "@type" A..= T.String "messageFileTypePrivate", "name" A..= name ]
 
- toJSON (MessageFileTypeGroup { title = title }) =
+ toJSON MessageFileTypeGroup { title = title } =
   A.object [ "@type" A..= T.String "messageFileTypeGroup", "title" A..= title ]
 
- toJSON (MessageFileTypeUnknown {  }) =
+ toJSON MessageFileTypeUnknown {  } =
   A.object [ "@type" A..= T.String "messageFileTypeUnknown" ]
 
 instance T.FromJSON MessageFileType where
@@ -60,3 +80,4 @@ instance T.FromJSON MessageFileType where
    parseMessageFileTypeUnknown :: A.Value -> T.Parser MessageFileType
    parseMessageFileTypeUnknown = A.withObject "MessageFileTypeUnknown" $ \o -> do
     return $ MessageFileTypeUnknown {  }
+ parseJSON _ = mempty

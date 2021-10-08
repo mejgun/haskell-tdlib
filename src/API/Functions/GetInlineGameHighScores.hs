@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __user_id__ User identifier
 data GetInlineGameHighScores = 
 
- GetInlineGameHighScores { user_id :: Maybe Int, inline_message_id :: Maybe String }  deriving (Show, Eq)
+ GetInlineGameHighScores { user_id :: Maybe Int, inline_message_id :: Maybe String }  deriving (Eq)
+
+instance Show GetInlineGameHighScores where
+ show GetInlineGameHighScores { user_id=user_id, inline_message_id=inline_message_id } =
+  "GetInlineGameHighScores" ++ cc [p "user_id" user_id, p "inline_message_id" inline_message_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetInlineGameHighScores where
- toJSON (GetInlineGameHighScores { user_id = user_id, inline_message_id = inline_message_id }) =
+ toJSON GetInlineGameHighScores { user_id = user_id, inline_message_id = inline_message_id } =
   A.object [ "@type" A..= T.String "getInlineGameHighScores", "user_id" A..= user_id, "inline_message_id" A..= inline_message_id ]
 
 instance T.FromJSON GetInlineGameHighScores where
@@ -34,3 +48,4 @@ instance T.FromJSON GetInlineGameHighScores where
     user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     inline_message_id <- o A..:? "inline_message_id"
     return $ GetInlineGameHighScores { user_id = user_id, inline_message_id = inline_message_id }
+ parseJSON _ = mempty

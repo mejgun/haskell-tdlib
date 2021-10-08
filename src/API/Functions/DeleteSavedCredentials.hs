@@ -6,16 +6,30 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
 -- Deletes saved credentials for all payment provider bots
 data DeleteSavedCredentials = 
 
- DeleteSavedCredentials deriving (Show, Eq)
+ DeleteSavedCredentials deriving (Eq)
+
+instance Show DeleteSavedCredentials where
+ show DeleteSavedCredentials {  } =
+  "DeleteSavedCredentials" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON DeleteSavedCredentials where
- toJSON (DeleteSavedCredentials {  }) =
+ toJSON DeleteSavedCredentials {  } =
   A.object [ "@type" A..= T.String "deleteSavedCredentials" ]
 
 instance T.FromJSON DeleteSavedCredentials where
@@ -28,3 +42,4 @@ instance T.FromJSON DeleteSavedCredentials where
    parseDeleteSavedCredentials :: A.Value -> T.Parser DeleteSavedCredentials
    parseDeleteSavedCredentials = A.withObject "DeleteSavedCredentials" $ \o -> do
     return $ DeleteSavedCredentials {  }
+ parseJSON _ = mempty

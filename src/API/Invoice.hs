@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.LabeledPricePart as LabeledPricePart
 
 -- |
@@ -37,10 +38,23 @@ import {-# SOURCE #-} qualified API.LabeledPricePart as LabeledPricePart
 -- __is_flexible__ True, if the total price depends on the shipping method
 data Invoice = 
 
- Invoice { is_flexible :: Maybe Bool, send_email_address_to_provider :: Maybe Bool, send_phone_number_to_provider :: Maybe Bool, need_shipping_address :: Maybe Bool, need_email_address :: Maybe Bool, need_phone_number :: Maybe Bool, need_name :: Maybe Bool, is_test :: Maybe Bool, suggested_tip_amounts :: Maybe [Int], max_tip_amount :: Maybe Int, price_parts :: Maybe [LabeledPricePart.LabeledPricePart], currency :: Maybe String }  deriving (Show, Eq)
+ Invoice { is_flexible :: Maybe Bool, send_email_address_to_provider :: Maybe Bool, send_phone_number_to_provider :: Maybe Bool, need_shipping_address :: Maybe Bool, need_email_address :: Maybe Bool, need_phone_number :: Maybe Bool, need_name :: Maybe Bool, is_test :: Maybe Bool, suggested_tip_amounts :: Maybe [Int], max_tip_amount :: Maybe Int, price_parts :: Maybe [LabeledPricePart.LabeledPricePart], currency :: Maybe String }  deriving (Eq)
+
+instance Show Invoice where
+ show Invoice { is_flexible=is_flexible, send_email_address_to_provider=send_email_address_to_provider, send_phone_number_to_provider=send_phone_number_to_provider, need_shipping_address=need_shipping_address, need_email_address=need_email_address, need_phone_number=need_phone_number, need_name=need_name, is_test=is_test, suggested_tip_amounts=suggested_tip_amounts, max_tip_amount=max_tip_amount, price_parts=price_parts, currency=currency } =
+  "Invoice" ++ cc [p "is_flexible" is_flexible, p "send_email_address_to_provider" send_email_address_to_provider, p "send_phone_number_to_provider" send_phone_number_to_provider, p "need_shipping_address" need_shipping_address, p "need_email_address" need_email_address, p "need_phone_number" need_phone_number, p "need_name" need_name, p "is_test" is_test, p "suggested_tip_amounts" suggested_tip_amounts, p "max_tip_amount" max_tip_amount, p "price_parts" price_parts, p "currency" currency ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Invoice where
- toJSON (Invoice { is_flexible = is_flexible, send_email_address_to_provider = send_email_address_to_provider, send_phone_number_to_provider = send_phone_number_to_provider, need_shipping_address = need_shipping_address, need_email_address = need_email_address, need_phone_number = need_phone_number, need_name = need_name, is_test = is_test, suggested_tip_amounts = suggested_tip_amounts, max_tip_amount = max_tip_amount, price_parts = price_parts, currency = currency }) =
+ toJSON Invoice { is_flexible = is_flexible, send_email_address_to_provider = send_email_address_to_provider, send_phone_number_to_provider = send_phone_number_to_provider, need_shipping_address = need_shipping_address, need_email_address = need_email_address, need_phone_number = need_phone_number, need_name = need_name, is_test = is_test, suggested_tip_amounts = suggested_tip_amounts, max_tip_amount = max_tip_amount, price_parts = price_parts, currency = currency } =
   A.object [ "@type" A..= T.String "invoice", "is_flexible" A..= is_flexible, "send_email_address_to_provider" A..= send_email_address_to_provider, "send_phone_number_to_provider" A..= send_phone_number_to_provider, "need_shipping_address" A..= need_shipping_address, "need_email_address" A..= need_email_address, "need_phone_number" A..= need_phone_number, "need_name" A..= need_name, "is_test" A..= is_test, "suggested_tip_amounts" A..= suggested_tip_amounts, "max_tip_amount" A..= max_tip_amount, "price_parts" A..= price_parts, "currency" A..= currency ]
 
 instance T.FromJSON Invoice where
@@ -65,3 +79,4 @@ instance T.FromJSON Invoice where
     price_parts <- o A..:? "price_parts"
     currency <- o A..:? "currency"
     return $ Invoice { is_flexible = is_flexible, send_email_address_to_provider = send_email_address_to_provider, send_phone_number_to_provider = send_phone_number_to_provider, need_shipping_address = need_shipping_address, need_email_address = need_email_address, need_phone_number = need_phone_number, need_name = need_name, is_test = is_test, suggested_tip_amounts = suggested_tip_amounts, max_tip_amount = max_tip_amount, price_parts = price_parts, currency = currency }
+ parseJSON _ = mempty

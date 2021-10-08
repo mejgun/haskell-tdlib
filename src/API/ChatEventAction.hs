@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Message as Message
 import {-# SOURCE #-} qualified API.ChatMemberStatus as ChatMemberStatus
 import {-# SOURCE #-} qualified API.ChatPermissions as ChatPermissions
@@ -243,103 +244,209 @@ data ChatEventAction =
  -- The mute_new_participants setting of a voice chat was toggled 
  -- 
  -- __mute_new_participants__ New value of the mute_new_participants setting
- ChatEventVoiceChatMuteNewParticipantsToggled { mute_new_participants :: Maybe Bool }  deriving (Show, Eq)
+ ChatEventVoiceChatMuteNewParticipantsToggled { mute_new_participants :: Maybe Bool }  deriving (Eq)
+
+instance Show ChatEventAction where
+ show ChatEventMessageEdited { new_message=new_message, old_message=old_message } =
+  "ChatEventMessageEdited" ++ cc [p "new_message" new_message, p "old_message" old_message ]
+
+ show ChatEventMessageDeleted { message=message } =
+  "ChatEventMessageDeleted" ++ cc [p "message" message ]
+
+ show ChatEventPollStopped { message=message } =
+  "ChatEventPollStopped" ++ cc [p "message" message ]
+
+ show ChatEventMessagePinned { message=message } =
+  "ChatEventMessagePinned" ++ cc [p "message" message ]
+
+ show ChatEventMessageUnpinned { message=message } =
+  "ChatEventMessageUnpinned" ++ cc [p "message" message ]
+
+ show ChatEventMemberJoined {  } =
+  "ChatEventMemberJoined" ++ cc [ ]
+
+ show ChatEventMemberJoinedByInviteLink { invite_link=invite_link } =
+  "ChatEventMemberJoinedByInviteLink" ++ cc [p "invite_link" invite_link ]
+
+ show ChatEventMemberLeft {  } =
+  "ChatEventMemberLeft" ++ cc [ ]
+
+ show ChatEventMemberInvited { status=status, user_id=user_id } =
+  "ChatEventMemberInvited" ++ cc [p "status" status, p "user_id" user_id ]
+
+ show ChatEventMemberPromoted { new_status=new_status, old_status=old_status, user_id=user_id } =
+  "ChatEventMemberPromoted" ++ cc [p "new_status" new_status, p "old_status" old_status, p "user_id" user_id ]
+
+ show ChatEventMemberRestricted { new_status=new_status, old_status=old_status, member_id=member_id } =
+  "ChatEventMemberRestricted" ++ cc [p "new_status" new_status, p "old_status" old_status, p "member_id" member_id ]
+
+ show ChatEventTitleChanged { new_title=new_title, old_title=old_title } =
+  "ChatEventTitleChanged" ++ cc [p "new_title" new_title, p "old_title" old_title ]
+
+ show ChatEventPermissionsChanged { new_permissions=new_permissions, old_permissions=old_permissions } =
+  "ChatEventPermissionsChanged" ++ cc [p "new_permissions" new_permissions, p "old_permissions" old_permissions ]
+
+ show ChatEventDescriptionChanged { new_description=new_description, old_description=old_description } =
+  "ChatEventDescriptionChanged" ++ cc [p "new_description" new_description, p "old_description" old_description ]
+
+ show ChatEventUsernameChanged { new_username=new_username, old_username=old_username } =
+  "ChatEventUsernameChanged" ++ cc [p "new_username" new_username, p "old_username" old_username ]
+
+ show ChatEventPhotoChanged { new_photo=new_photo, old_photo=old_photo } =
+  "ChatEventPhotoChanged" ++ cc [p "new_photo" new_photo, p "old_photo" old_photo ]
+
+ show ChatEventInvitesToggled { can_invite_users=can_invite_users } =
+  "ChatEventInvitesToggled" ++ cc [p "can_invite_users" can_invite_users ]
+
+ show ChatEventLinkedChatChanged { new_linked_chat_id=new_linked_chat_id, old_linked_chat_id=old_linked_chat_id } =
+  "ChatEventLinkedChatChanged" ++ cc [p "new_linked_chat_id" new_linked_chat_id, p "old_linked_chat_id" old_linked_chat_id ]
+
+ show ChatEventSlowModeDelayChanged { new_slow_mode_delay=new_slow_mode_delay, old_slow_mode_delay=old_slow_mode_delay } =
+  "ChatEventSlowModeDelayChanged" ++ cc [p "new_slow_mode_delay" new_slow_mode_delay, p "old_slow_mode_delay" old_slow_mode_delay ]
+
+ show ChatEventMessageTtlSettingChanged { new_message_ttl_setting=new_message_ttl_setting, old_message_ttl_setting=old_message_ttl_setting } =
+  "ChatEventMessageTtlSettingChanged" ++ cc [p "new_message_ttl_setting" new_message_ttl_setting, p "old_message_ttl_setting" old_message_ttl_setting ]
+
+ show ChatEventSignMessagesToggled { sign_messages=sign_messages } =
+  "ChatEventSignMessagesToggled" ++ cc [p "sign_messages" sign_messages ]
+
+ show ChatEventStickerSetChanged { new_sticker_set_id=new_sticker_set_id, old_sticker_set_id=old_sticker_set_id } =
+  "ChatEventStickerSetChanged" ++ cc [p "new_sticker_set_id" new_sticker_set_id, p "old_sticker_set_id" old_sticker_set_id ]
+
+ show ChatEventLocationChanged { new_location=new_location, old_location=old_location } =
+  "ChatEventLocationChanged" ++ cc [p "new_location" new_location, p "old_location" old_location ]
+
+ show ChatEventIsAllHistoryAvailableToggled { is_all_history_available=is_all_history_available } =
+  "ChatEventIsAllHistoryAvailableToggled" ++ cc [p "is_all_history_available" is_all_history_available ]
+
+ show ChatEventInviteLinkEdited { new_invite_link=new_invite_link, old_invite_link=old_invite_link } =
+  "ChatEventInviteLinkEdited" ++ cc [p "new_invite_link" new_invite_link, p "old_invite_link" old_invite_link ]
+
+ show ChatEventInviteLinkRevoked { invite_link=invite_link } =
+  "ChatEventInviteLinkRevoked" ++ cc [p "invite_link" invite_link ]
+
+ show ChatEventInviteLinkDeleted { invite_link=invite_link } =
+  "ChatEventInviteLinkDeleted" ++ cc [p "invite_link" invite_link ]
+
+ show ChatEventVoiceChatCreated { group_call_id=group_call_id } =
+  "ChatEventVoiceChatCreated" ++ cc [p "group_call_id" group_call_id ]
+
+ show ChatEventVoiceChatDiscarded { group_call_id=group_call_id } =
+  "ChatEventVoiceChatDiscarded" ++ cc [p "group_call_id" group_call_id ]
+
+ show ChatEventVoiceChatParticipantIsMutedToggled { is_muted=is_muted, participant_id=participant_id } =
+  "ChatEventVoiceChatParticipantIsMutedToggled" ++ cc [p "is_muted" is_muted, p "participant_id" participant_id ]
+
+ show ChatEventVoiceChatParticipantVolumeLevelChanged { volume_level=volume_level, participant_id=participant_id } =
+  "ChatEventVoiceChatParticipantVolumeLevelChanged" ++ cc [p "volume_level" volume_level, p "participant_id" participant_id ]
+
+ show ChatEventVoiceChatMuteNewParticipantsToggled { mute_new_participants=mute_new_participants } =
+  "ChatEventVoiceChatMuteNewParticipantsToggled" ++ cc [p "mute_new_participants" mute_new_participants ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatEventAction where
- toJSON (ChatEventMessageEdited { new_message = new_message, old_message = old_message }) =
+ toJSON ChatEventMessageEdited { new_message = new_message, old_message = old_message } =
   A.object [ "@type" A..= T.String "chatEventMessageEdited", "new_message" A..= new_message, "old_message" A..= old_message ]
 
- toJSON (ChatEventMessageDeleted { message = message }) =
+ toJSON ChatEventMessageDeleted { message = message } =
   A.object [ "@type" A..= T.String "chatEventMessageDeleted", "message" A..= message ]
 
- toJSON (ChatEventPollStopped { message = message }) =
+ toJSON ChatEventPollStopped { message = message } =
   A.object [ "@type" A..= T.String "chatEventPollStopped", "message" A..= message ]
 
- toJSON (ChatEventMessagePinned { message = message }) =
+ toJSON ChatEventMessagePinned { message = message } =
   A.object [ "@type" A..= T.String "chatEventMessagePinned", "message" A..= message ]
 
- toJSON (ChatEventMessageUnpinned { message = message }) =
+ toJSON ChatEventMessageUnpinned { message = message } =
   A.object [ "@type" A..= T.String "chatEventMessageUnpinned", "message" A..= message ]
 
- toJSON (ChatEventMemberJoined {  }) =
+ toJSON ChatEventMemberJoined {  } =
   A.object [ "@type" A..= T.String "chatEventMemberJoined" ]
 
- toJSON (ChatEventMemberJoinedByInviteLink { invite_link = invite_link }) =
+ toJSON ChatEventMemberJoinedByInviteLink { invite_link = invite_link } =
   A.object [ "@type" A..= T.String "chatEventMemberJoinedByInviteLink", "invite_link" A..= invite_link ]
 
- toJSON (ChatEventMemberLeft {  }) =
+ toJSON ChatEventMemberLeft {  } =
   A.object [ "@type" A..= T.String "chatEventMemberLeft" ]
 
- toJSON (ChatEventMemberInvited { status = status, user_id = user_id }) =
+ toJSON ChatEventMemberInvited { status = status, user_id = user_id } =
   A.object [ "@type" A..= T.String "chatEventMemberInvited", "status" A..= status, "user_id" A..= user_id ]
 
- toJSON (ChatEventMemberPromoted { new_status = new_status, old_status = old_status, user_id = user_id }) =
+ toJSON ChatEventMemberPromoted { new_status = new_status, old_status = old_status, user_id = user_id } =
   A.object [ "@type" A..= T.String "chatEventMemberPromoted", "new_status" A..= new_status, "old_status" A..= old_status, "user_id" A..= user_id ]
 
- toJSON (ChatEventMemberRestricted { new_status = new_status, old_status = old_status, member_id = member_id }) =
+ toJSON ChatEventMemberRestricted { new_status = new_status, old_status = old_status, member_id = member_id } =
   A.object [ "@type" A..= T.String "chatEventMemberRestricted", "new_status" A..= new_status, "old_status" A..= old_status, "member_id" A..= member_id ]
 
- toJSON (ChatEventTitleChanged { new_title = new_title, old_title = old_title }) =
+ toJSON ChatEventTitleChanged { new_title = new_title, old_title = old_title } =
   A.object [ "@type" A..= T.String "chatEventTitleChanged", "new_title" A..= new_title, "old_title" A..= old_title ]
 
- toJSON (ChatEventPermissionsChanged { new_permissions = new_permissions, old_permissions = old_permissions }) =
+ toJSON ChatEventPermissionsChanged { new_permissions = new_permissions, old_permissions = old_permissions } =
   A.object [ "@type" A..= T.String "chatEventPermissionsChanged", "new_permissions" A..= new_permissions, "old_permissions" A..= old_permissions ]
 
- toJSON (ChatEventDescriptionChanged { new_description = new_description, old_description = old_description }) =
+ toJSON ChatEventDescriptionChanged { new_description = new_description, old_description = old_description } =
   A.object [ "@type" A..= T.String "chatEventDescriptionChanged", "new_description" A..= new_description, "old_description" A..= old_description ]
 
- toJSON (ChatEventUsernameChanged { new_username = new_username, old_username = old_username }) =
+ toJSON ChatEventUsernameChanged { new_username = new_username, old_username = old_username } =
   A.object [ "@type" A..= T.String "chatEventUsernameChanged", "new_username" A..= new_username, "old_username" A..= old_username ]
 
- toJSON (ChatEventPhotoChanged { new_photo = new_photo, old_photo = old_photo }) =
+ toJSON ChatEventPhotoChanged { new_photo = new_photo, old_photo = old_photo } =
   A.object [ "@type" A..= T.String "chatEventPhotoChanged", "new_photo" A..= new_photo, "old_photo" A..= old_photo ]
 
- toJSON (ChatEventInvitesToggled { can_invite_users = can_invite_users }) =
+ toJSON ChatEventInvitesToggled { can_invite_users = can_invite_users } =
   A.object [ "@type" A..= T.String "chatEventInvitesToggled", "can_invite_users" A..= can_invite_users ]
 
- toJSON (ChatEventLinkedChatChanged { new_linked_chat_id = new_linked_chat_id, old_linked_chat_id = old_linked_chat_id }) =
+ toJSON ChatEventLinkedChatChanged { new_linked_chat_id = new_linked_chat_id, old_linked_chat_id = old_linked_chat_id } =
   A.object [ "@type" A..= T.String "chatEventLinkedChatChanged", "new_linked_chat_id" A..= new_linked_chat_id, "old_linked_chat_id" A..= old_linked_chat_id ]
 
- toJSON (ChatEventSlowModeDelayChanged { new_slow_mode_delay = new_slow_mode_delay, old_slow_mode_delay = old_slow_mode_delay }) =
+ toJSON ChatEventSlowModeDelayChanged { new_slow_mode_delay = new_slow_mode_delay, old_slow_mode_delay = old_slow_mode_delay } =
   A.object [ "@type" A..= T.String "chatEventSlowModeDelayChanged", "new_slow_mode_delay" A..= new_slow_mode_delay, "old_slow_mode_delay" A..= old_slow_mode_delay ]
 
- toJSON (ChatEventMessageTtlSettingChanged { new_message_ttl_setting = new_message_ttl_setting, old_message_ttl_setting = old_message_ttl_setting }) =
+ toJSON ChatEventMessageTtlSettingChanged { new_message_ttl_setting = new_message_ttl_setting, old_message_ttl_setting = old_message_ttl_setting } =
   A.object [ "@type" A..= T.String "chatEventMessageTtlSettingChanged", "new_message_ttl_setting" A..= new_message_ttl_setting, "old_message_ttl_setting" A..= old_message_ttl_setting ]
 
- toJSON (ChatEventSignMessagesToggled { sign_messages = sign_messages }) =
+ toJSON ChatEventSignMessagesToggled { sign_messages = sign_messages } =
   A.object [ "@type" A..= T.String "chatEventSignMessagesToggled", "sign_messages" A..= sign_messages ]
 
- toJSON (ChatEventStickerSetChanged { new_sticker_set_id = new_sticker_set_id, old_sticker_set_id = old_sticker_set_id }) =
+ toJSON ChatEventStickerSetChanged { new_sticker_set_id = new_sticker_set_id, old_sticker_set_id = old_sticker_set_id } =
   A.object [ "@type" A..= T.String "chatEventStickerSetChanged", "new_sticker_set_id" A..= new_sticker_set_id, "old_sticker_set_id" A..= old_sticker_set_id ]
 
- toJSON (ChatEventLocationChanged { new_location = new_location, old_location = old_location }) =
+ toJSON ChatEventLocationChanged { new_location = new_location, old_location = old_location } =
   A.object [ "@type" A..= T.String "chatEventLocationChanged", "new_location" A..= new_location, "old_location" A..= old_location ]
 
- toJSON (ChatEventIsAllHistoryAvailableToggled { is_all_history_available = is_all_history_available }) =
+ toJSON ChatEventIsAllHistoryAvailableToggled { is_all_history_available = is_all_history_available } =
   A.object [ "@type" A..= T.String "chatEventIsAllHistoryAvailableToggled", "is_all_history_available" A..= is_all_history_available ]
 
- toJSON (ChatEventInviteLinkEdited { new_invite_link = new_invite_link, old_invite_link = old_invite_link }) =
+ toJSON ChatEventInviteLinkEdited { new_invite_link = new_invite_link, old_invite_link = old_invite_link } =
   A.object [ "@type" A..= T.String "chatEventInviteLinkEdited", "new_invite_link" A..= new_invite_link, "old_invite_link" A..= old_invite_link ]
 
- toJSON (ChatEventInviteLinkRevoked { invite_link = invite_link }) =
+ toJSON ChatEventInviteLinkRevoked { invite_link = invite_link } =
   A.object [ "@type" A..= T.String "chatEventInviteLinkRevoked", "invite_link" A..= invite_link ]
 
- toJSON (ChatEventInviteLinkDeleted { invite_link = invite_link }) =
+ toJSON ChatEventInviteLinkDeleted { invite_link = invite_link } =
   A.object [ "@type" A..= T.String "chatEventInviteLinkDeleted", "invite_link" A..= invite_link ]
 
- toJSON (ChatEventVoiceChatCreated { group_call_id = group_call_id }) =
+ toJSON ChatEventVoiceChatCreated { group_call_id = group_call_id } =
   A.object [ "@type" A..= T.String "chatEventVoiceChatCreated", "group_call_id" A..= group_call_id ]
 
- toJSON (ChatEventVoiceChatDiscarded { group_call_id = group_call_id }) =
+ toJSON ChatEventVoiceChatDiscarded { group_call_id = group_call_id } =
   A.object [ "@type" A..= T.String "chatEventVoiceChatDiscarded", "group_call_id" A..= group_call_id ]
 
- toJSON (ChatEventVoiceChatParticipantIsMutedToggled { is_muted = is_muted, participant_id = participant_id }) =
+ toJSON ChatEventVoiceChatParticipantIsMutedToggled { is_muted = is_muted, participant_id = participant_id } =
   A.object [ "@type" A..= T.String "chatEventVoiceChatParticipantIsMutedToggled", "is_muted" A..= is_muted, "participant_id" A..= participant_id ]
 
- toJSON (ChatEventVoiceChatParticipantVolumeLevelChanged { volume_level = volume_level, participant_id = participant_id }) =
+ toJSON ChatEventVoiceChatParticipantVolumeLevelChanged { volume_level = volume_level, participant_id = participant_id } =
   A.object [ "@type" A..= T.String "chatEventVoiceChatParticipantVolumeLevelChanged", "volume_level" A..= volume_level, "participant_id" A..= participant_id ]
 
- toJSON (ChatEventVoiceChatMuteNewParticipantsToggled { mute_new_participants = mute_new_participants }) =
+ toJSON ChatEventVoiceChatMuteNewParticipantsToggled { mute_new_participants = mute_new_participants } =
   A.object [ "@type" A..= T.String "chatEventVoiceChatMuteNewParticipantsToggled", "mute_new_participants" A..= mute_new_participants ]
 
 instance T.FromJSON ChatEventAction where
@@ -556,3 +663,4 @@ instance T.FromJSON ChatEventAction where
    parseChatEventVoiceChatMuteNewParticipantsToggled = A.withObject "ChatEventVoiceChatMuteNewParticipantsToggled" $ \o -> do
     mute_new_participants <- o A..:? "mute_new_participants"
     return $ ChatEventVoiceChatMuteNewParticipantsToggled { mute_new_participants = mute_new_participants }
+ parseJSON _ = mempty

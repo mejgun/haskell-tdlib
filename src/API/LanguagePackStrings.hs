@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.LanguagePackString as LanguagePackString
 
 -- |
@@ -15,10 +16,23 @@ import {-# SOURCE #-} qualified API.LanguagePackString as LanguagePackString
 -- __strings__ A list of language pack strings
 data LanguagePackStrings = 
 
- LanguagePackStrings { strings :: Maybe [LanguagePackString.LanguagePackString] }  deriving (Show, Eq)
+ LanguagePackStrings { strings :: Maybe [LanguagePackString.LanguagePackString] }  deriving (Eq)
+
+instance Show LanguagePackStrings where
+ show LanguagePackStrings { strings=strings } =
+  "LanguagePackStrings" ++ cc [p "strings" strings ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON LanguagePackStrings where
- toJSON (LanguagePackStrings { strings = strings }) =
+ toJSON LanguagePackStrings { strings = strings } =
   A.object [ "@type" A..= T.String "languagePackStrings", "strings" A..= strings ]
 
 instance T.FromJSON LanguagePackStrings where
@@ -32,3 +46,4 @@ instance T.FromJSON LanguagePackStrings where
    parseLanguagePackStrings = A.withObject "LanguagePackStrings" $ \o -> do
     strings <- o A..:? "strings"
     return $ LanguagePackStrings { strings = strings }
+ parseJSON _ = mempty

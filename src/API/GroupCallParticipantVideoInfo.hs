@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.GroupCallVideoSourceGroup as GroupCallVideoSourceGroup
 
 -- |
@@ -19,10 +20,23 @@ import {-# SOURCE #-} qualified API.GroupCallVideoSourceGroup as GroupCallVideoS
 -- __is_paused__ True if the video is paused. This flag needs to be ignored, if new video frames are received
 data GroupCallParticipantVideoInfo = 
 
- GroupCallParticipantVideoInfo { is_paused :: Maybe Bool, endpoint_id :: Maybe String, source_groups :: Maybe [GroupCallVideoSourceGroup.GroupCallVideoSourceGroup] }  deriving (Show, Eq)
+ GroupCallParticipantVideoInfo { is_paused :: Maybe Bool, endpoint_id :: Maybe String, source_groups :: Maybe [GroupCallVideoSourceGroup.GroupCallVideoSourceGroup] }  deriving (Eq)
+
+instance Show GroupCallParticipantVideoInfo where
+ show GroupCallParticipantVideoInfo { is_paused=is_paused, endpoint_id=endpoint_id, source_groups=source_groups } =
+  "GroupCallParticipantVideoInfo" ++ cc [p "is_paused" is_paused, p "endpoint_id" endpoint_id, p "source_groups" source_groups ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GroupCallParticipantVideoInfo where
- toJSON (GroupCallParticipantVideoInfo { is_paused = is_paused, endpoint_id = endpoint_id, source_groups = source_groups }) =
+ toJSON GroupCallParticipantVideoInfo { is_paused = is_paused, endpoint_id = endpoint_id, source_groups = source_groups } =
   A.object [ "@type" A..= T.String "groupCallParticipantVideoInfo", "is_paused" A..= is_paused, "endpoint_id" A..= endpoint_id, "source_groups" A..= source_groups ]
 
 instance T.FromJSON GroupCallParticipantVideoInfo where
@@ -38,3 +52,4 @@ instance T.FromJSON GroupCallParticipantVideoInfo where
     endpoint_id <- o A..:? "endpoint_id"
     source_groups <- o A..:? "source_groups"
     return $ GroupCallParticipantVideoInfo { is_paused = is_paused, endpoint_id = endpoint_id, source_groups = source_groups }
+ parseJSON _ = mempty

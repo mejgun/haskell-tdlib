@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -82,52 +83,107 @@ data ChatAction =
  -- |
  -- 
  -- The user has canceled the previous action
- ChatActionCancel deriving (Show, Eq)
+ ChatActionCancel deriving (Eq)
+
+instance Show ChatAction where
+ show ChatActionTyping {  } =
+  "ChatActionTyping" ++ cc [ ]
+
+ show ChatActionRecordingVideo {  } =
+  "ChatActionRecordingVideo" ++ cc [ ]
+
+ show ChatActionUploadingVideo { progress=progress } =
+  "ChatActionUploadingVideo" ++ cc [p "progress" progress ]
+
+ show ChatActionRecordingVoiceNote {  } =
+  "ChatActionRecordingVoiceNote" ++ cc [ ]
+
+ show ChatActionUploadingVoiceNote { progress=progress } =
+  "ChatActionUploadingVoiceNote" ++ cc [p "progress" progress ]
+
+ show ChatActionUploadingPhoto { progress=progress } =
+  "ChatActionUploadingPhoto" ++ cc [p "progress" progress ]
+
+ show ChatActionUploadingDocument { progress=progress } =
+  "ChatActionUploadingDocument" ++ cc [p "progress" progress ]
+
+ show ChatActionChoosingSticker {  } =
+  "ChatActionChoosingSticker" ++ cc [ ]
+
+ show ChatActionChoosingLocation {  } =
+  "ChatActionChoosingLocation" ++ cc [ ]
+
+ show ChatActionChoosingContact {  } =
+  "ChatActionChoosingContact" ++ cc [ ]
+
+ show ChatActionStartPlayingGame {  } =
+  "ChatActionStartPlayingGame" ++ cc [ ]
+
+ show ChatActionRecordingVideoNote {  } =
+  "ChatActionRecordingVideoNote" ++ cc [ ]
+
+ show ChatActionUploadingVideoNote { progress=progress } =
+  "ChatActionUploadingVideoNote" ++ cc [p "progress" progress ]
+
+ show ChatActionWatchingAnimations { emoji=emoji } =
+  "ChatActionWatchingAnimations" ++ cc [p "emoji" emoji ]
+
+ show ChatActionCancel {  } =
+  "ChatActionCancel" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatAction where
- toJSON (ChatActionTyping {  }) =
+ toJSON ChatActionTyping {  } =
   A.object [ "@type" A..= T.String "chatActionTyping" ]
 
- toJSON (ChatActionRecordingVideo {  }) =
+ toJSON ChatActionRecordingVideo {  } =
   A.object [ "@type" A..= T.String "chatActionRecordingVideo" ]
 
- toJSON (ChatActionUploadingVideo { progress = progress }) =
+ toJSON ChatActionUploadingVideo { progress = progress } =
   A.object [ "@type" A..= T.String "chatActionUploadingVideo", "progress" A..= progress ]
 
- toJSON (ChatActionRecordingVoiceNote {  }) =
+ toJSON ChatActionRecordingVoiceNote {  } =
   A.object [ "@type" A..= T.String "chatActionRecordingVoiceNote" ]
 
- toJSON (ChatActionUploadingVoiceNote { progress = progress }) =
+ toJSON ChatActionUploadingVoiceNote { progress = progress } =
   A.object [ "@type" A..= T.String "chatActionUploadingVoiceNote", "progress" A..= progress ]
 
- toJSON (ChatActionUploadingPhoto { progress = progress }) =
+ toJSON ChatActionUploadingPhoto { progress = progress } =
   A.object [ "@type" A..= T.String "chatActionUploadingPhoto", "progress" A..= progress ]
 
- toJSON (ChatActionUploadingDocument { progress = progress }) =
+ toJSON ChatActionUploadingDocument { progress = progress } =
   A.object [ "@type" A..= T.String "chatActionUploadingDocument", "progress" A..= progress ]
 
- toJSON (ChatActionChoosingSticker {  }) =
+ toJSON ChatActionChoosingSticker {  } =
   A.object [ "@type" A..= T.String "chatActionChoosingSticker" ]
 
- toJSON (ChatActionChoosingLocation {  }) =
+ toJSON ChatActionChoosingLocation {  } =
   A.object [ "@type" A..= T.String "chatActionChoosingLocation" ]
 
- toJSON (ChatActionChoosingContact {  }) =
+ toJSON ChatActionChoosingContact {  } =
   A.object [ "@type" A..= T.String "chatActionChoosingContact" ]
 
- toJSON (ChatActionStartPlayingGame {  }) =
+ toJSON ChatActionStartPlayingGame {  } =
   A.object [ "@type" A..= T.String "chatActionStartPlayingGame" ]
 
- toJSON (ChatActionRecordingVideoNote {  }) =
+ toJSON ChatActionRecordingVideoNote {  } =
   A.object [ "@type" A..= T.String "chatActionRecordingVideoNote" ]
 
- toJSON (ChatActionUploadingVideoNote { progress = progress }) =
+ toJSON ChatActionUploadingVideoNote { progress = progress } =
   A.object [ "@type" A..= T.String "chatActionUploadingVideoNote", "progress" A..= progress ]
 
- toJSON (ChatActionWatchingAnimations { emoji = emoji }) =
+ toJSON ChatActionWatchingAnimations { emoji = emoji } =
   A.object [ "@type" A..= T.String "chatActionWatchingAnimations", "emoji" A..= emoji ]
 
- toJSON (ChatActionCancel {  }) =
+ toJSON ChatActionCancel {  } =
   A.object [ "@type" A..= T.String "chatActionCancel" ]
 
 instance T.FromJSON ChatAction where
@@ -216,3 +272,4 @@ instance T.FromJSON ChatAction where
    parseChatActionCancel :: A.Value -> T.Parser ChatAction
    parseChatActionCancel = A.withObject "ChatActionCancel" $ \o -> do
     return $ ChatActionCancel {  }
+ parseJSON _ = mempty

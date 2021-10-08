@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
 
 -- |
@@ -16,13 +17,26 @@ import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
 -- 
 -- __date__ Point in time (Unix timestamp) when the draft was created
 -- 
--- __input_message_text__ Content of the message draft; this should always be of type inputMessageText
+-- __input_message_text__ Content of the message draft; must be of the type inputMessageText
 data DraftMessage = 
 
- DraftMessage { input_message_text :: Maybe InputMessageContent.InputMessageContent, date :: Maybe Int, reply_to_message_id :: Maybe Int }  deriving (Show, Eq)
+ DraftMessage { input_message_text :: Maybe InputMessageContent.InputMessageContent, date :: Maybe Int, reply_to_message_id :: Maybe Int }  deriving (Eq)
+
+instance Show DraftMessage where
+ show DraftMessage { input_message_text=input_message_text, date=date, reply_to_message_id=reply_to_message_id } =
+  "DraftMessage" ++ cc [p "input_message_text" input_message_text, p "date" date, p "reply_to_message_id" reply_to_message_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON DraftMessage where
- toJSON (DraftMessage { input_message_text = input_message_text, date = date, reply_to_message_id = reply_to_message_id }) =
+ toJSON DraftMessage { input_message_text = input_message_text, date = date, reply_to_message_id = reply_to_message_id } =
   A.object [ "@type" A..= T.String "draftMessage", "input_message_text" A..= input_message_text, "date" A..= date, "reply_to_message_id" A..= reply_to_message_id ]
 
 instance T.FromJSON DraftMessage where
@@ -38,3 +52,4 @@ instance T.FromJSON DraftMessage where
     date <- mconcat [ o A..:? "date", readMaybe <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
     reply_to_message_id <- mconcat [ o A..:? "reply_to_message_id", readMaybe <$> (o A..: "reply_to_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ DraftMessage { input_message_text = input_message_text, date = date, reply_to_message_id = reply_to_message_id }
+ parseJSON _ = mempty

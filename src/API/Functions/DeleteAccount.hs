@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __reason__ The reason why the account was deleted; optional
 data DeleteAccount = 
 
- DeleteAccount { reason :: Maybe String }  deriving (Show, Eq)
+ DeleteAccount { reason :: Maybe String }  deriving (Eq)
+
+instance Show DeleteAccount where
+ show DeleteAccount { reason=reason } =
+  "DeleteAccount" ++ cc [p "reason" reason ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON DeleteAccount where
- toJSON (DeleteAccount { reason = reason }) =
+ toJSON DeleteAccount { reason = reason } =
   A.object [ "@type" A..= T.String "deleteAccount", "reason" A..= reason ]
 
 instance T.FromJSON DeleteAccount where
@@ -31,3 +45,4 @@ instance T.FromJSON DeleteAccount where
    parseDeleteAccount = A.withObject "DeleteAccount" $ \o -> do
     reason <- o A..:? "reason"
     return $ DeleteAccount { reason = reason }
+ parseJSON _ = mempty

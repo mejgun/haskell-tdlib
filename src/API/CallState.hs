@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.CallServer as CallServer
 import {-# SOURCE #-} qualified API.CallProtocol as CallProtocol
 import {-# SOURCE #-} qualified API.CallDiscardReason as CallDiscardReason
@@ -53,34 +54,62 @@ data CallState =
  -- 
  -- __reason__ The reason, why the call has ended
  -- 
- -- __need_rating__ True, if the call rating should be sent to the server
+ -- __need_rating__ True, if the call rating must be sent to the server
  -- 
- -- __need_debug_information__ True, if the call debug information should be sent to the server
+ -- __need_debug_information__ True, if the call debug information must be sent to the server
  CallStateDiscarded { need_debug_information :: Maybe Bool, need_rating :: Maybe Bool, reason :: Maybe CallDiscardReason.CallDiscardReason }  |
  -- |
  -- 
  -- The call has ended with an error 
  -- 
  -- __error__ Error. An error with the code 4005000 will be returned if an outgoing call is missed because of an expired timeout
- CallStateError { _error :: Maybe Error.Error }  deriving (Show, Eq)
+ CallStateError { _error :: Maybe Error.Error }  deriving (Eq)
+
+instance Show CallState where
+ show CallStatePending { is_received=is_received, is_created=is_created } =
+  "CallStatePending" ++ cc [p "is_received" is_received, p "is_created" is_created ]
+
+ show CallStateExchangingKeys {  } =
+  "CallStateExchangingKeys" ++ cc [ ]
+
+ show CallStateReady { allow_p2p=allow_p2p, emojis=emojis, encryption_key=encryption_key, config=config, servers=servers, protocol=protocol } =
+  "CallStateReady" ++ cc [p "allow_p2p" allow_p2p, p "emojis" emojis, p "encryption_key" encryption_key, p "config" config, p "servers" servers, p "protocol" protocol ]
+
+ show CallStateHangingUp {  } =
+  "CallStateHangingUp" ++ cc [ ]
+
+ show CallStateDiscarded { need_debug_information=need_debug_information, need_rating=need_rating, reason=reason } =
+  "CallStateDiscarded" ++ cc [p "need_debug_information" need_debug_information, p "need_rating" need_rating, p "reason" reason ]
+
+ show CallStateError { _error=_error } =
+  "CallStateError" ++ cc [p "_error" _error ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON CallState where
- toJSON (CallStatePending { is_received = is_received, is_created = is_created }) =
+ toJSON CallStatePending { is_received = is_received, is_created = is_created } =
   A.object [ "@type" A..= T.String "callStatePending", "is_received" A..= is_received, "is_created" A..= is_created ]
 
- toJSON (CallStateExchangingKeys {  }) =
+ toJSON CallStateExchangingKeys {  } =
   A.object [ "@type" A..= T.String "callStateExchangingKeys" ]
 
- toJSON (CallStateReady { allow_p2p = allow_p2p, emojis = emojis, encryption_key = encryption_key, config = config, servers = servers, protocol = protocol }) =
+ toJSON CallStateReady { allow_p2p = allow_p2p, emojis = emojis, encryption_key = encryption_key, config = config, servers = servers, protocol = protocol } =
   A.object [ "@type" A..= T.String "callStateReady", "allow_p2p" A..= allow_p2p, "emojis" A..= emojis, "encryption_key" A..= encryption_key, "config" A..= config, "servers" A..= servers, "protocol" A..= protocol ]
 
- toJSON (CallStateHangingUp {  }) =
+ toJSON CallStateHangingUp {  } =
   A.object [ "@type" A..= T.String "callStateHangingUp" ]
 
- toJSON (CallStateDiscarded { need_debug_information = need_debug_information, need_rating = need_rating, reason = reason }) =
+ toJSON CallStateDiscarded { need_debug_information = need_debug_information, need_rating = need_rating, reason = reason } =
   A.object [ "@type" A..= T.String "callStateDiscarded", "need_debug_information" A..= need_debug_information, "need_rating" A..= need_rating, "reason" A..= reason ]
 
- toJSON (CallStateError { _error = _error }) =
+ toJSON CallStateError { _error = _error } =
   A.object [ "@type" A..= T.String "callStateError", "error" A..= _error ]
 
 instance T.FromJSON CallState where
@@ -130,3 +159,4 @@ instance T.FromJSON CallState where
    parseCallStateError = A.withObject "CallStateError" $ \o -> do
     _error <- o A..:? "error"
     return $ CallStateError { _error = _error }
+ parseJSON _ = mempty

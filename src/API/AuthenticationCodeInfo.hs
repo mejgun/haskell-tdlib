@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.AuthenticationCodeType as AuthenticationCodeType
 
 -- |
@@ -21,10 +22,23 @@ import {-# SOURCE #-} qualified API.AuthenticationCodeType as AuthenticationCode
 -- __timeout__ Timeout before the code can be re-sent, in seconds
 data AuthenticationCodeInfo = 
 
- AuthenticationCodeInfo { timeout :: Maybe Int, next_type :: Maybe AuthenticationCodeType.AuthenticationCodeType, _type :: Maybe AuthenticationCodeType.AuthenticationCodeType, phone_number :: Maybe String }  deriving (Show, Eq)
+ AuthenticationCodeInfo { timeout :: Maybe Int, next_type :: Maybe AuthenticationCodeType.AuthenticationCodeType, _type :: Maybe AuthenticationCodeType.AuthenticationCodeType, phone_number :: Maybe String }  deriving (Eq)
+
+instance Show AuthenticationCodeInfo where
+ show AuthenticationCodeInfo { timeout=timeout, next_type=next_type, _type=_type, phone_number=phone_number } =
+  "AuthenticationCodeInfo" ++ cc [p "timeout" timeout, p "next_type" next_type, p "_type" _type, p "phone_number" phone_number ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON AuthenticationCodeInfo where
- toJSON (AuthenticationCodeInfo { timeout = timeout, next_type = next_type, _type = _type, phone_number = phone_number }) =
+ toJSON AuthenticationCodeInfo { timeout = timeout, next_type = next_type, _type = _type, phone_number = phone_number } =
   A.object [ "@type" A..= T.String "authenticationCodeInfo", "timeout" A..= timeout, "next_type" A..= next_type, "type" A..= _type, "phone_number" A..= phone_number ]
 
 instance T.FromJSON AuthenticationCodeInfo where
@@ -41,3 +55,4 @@ instance T.FromJSON AuthenticationCodeInfo where
     _type <- o A..:? "type"
     phone_number <- o A..:? "phone_number"
     return $ AuthenticationCodeInfo { timeout = timeout, next_type = next_type, _type = _type, phone_number = phone_number }
+ parseJSON _ = mempty

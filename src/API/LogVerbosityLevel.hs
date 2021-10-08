@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __verbosity_level__ Log verbosity level
 data LogVerbosityLevel = 
 
- LogVerbosityLevel { verbosity_level :: Maybe Int }  deriving (Show, Eq)
+ LogVerbosityLevel { verbosity_level :: Maybe Int }  deriving (Eq)
+
+instance Show LogVerbosityLevel where
+ show LogVerbosityLevel { verbosity_level=verbosity_level } =
+  "LogVerbosityLevel" ++ cc [p "verbosity_level" verbosity_level ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON LogVerbosityLevel where
- toJSON (LogVerbosityLevel { verbosity_level = verbosity_level }) =
+ toJSON LogVerbosityLevel { verbosity_level = verbosity_level } =
   A.object [ "@type" A..= T.String "logVerbosityLevel", "verbosity_level" A..= verbosity_level ]
 
 instance T.FromJSON LogVerbosityLevel where
@@ -31,3 +45,4 @@ instance T.FromJSON LogVerbosityLevel where
    parseLogVerbosityLevel = A.withObject "LogVerbosityLevel" $ \o -> do
     verbosity_level <- mconcat [ o A..:? "verbosity_level", readMaybe <$> (o A..: "verbosity_level" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ LogVerbosityLevel { verbosity_level = verbosity_level }
+ parseJSON _ = mempty

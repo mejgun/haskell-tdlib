@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -49,33 +50,64 @@ data InlineKeyboardButtonType =
  -- 
  -- __query__ Inline query to be sent to the bot
  -- 
- -- __in_current_chat__ True, if the inline query should be sent from the current chat
+ -- __in_current_chat__ True, if the inline query must be sent from the current chat
  InlineKeyboardButtonTypeSwitchInline { in_current_chat :: Maybe Bool, query :: Maybe String }  |
  -- |
  -- 
  -- A button to buy something. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type messageInvoice
- InlineKeyboardButtonTypeBuy deriving (Show, Eq)
+ InlineKeyboardButtonTypeBuy deriving (Eq)
+
+instance Show InlineKeyboardButtonType where
+ show InlineKeyboardButtonTypeUrl { url=url } =
+  "InlineKeyboardButtonTypeUrl" ++ cc [p "url" url ]
+
+ show InlineKeyboardButtonTypeLoginUrl { forward_text=forward_text, _id=_id, url=url } =
+  "InlineKeyboardButtonTypeLoginUrl" ++ cc [p "forward_text" forward_text, p "_id" _id, p "url" url ]
+
+ show InlineKeyboardButtonTypeCallback { _data=_data } =
+  "InlineKeyboardButtonTypeCallback" ++ cc [p "_data" _data ]
+
+ show InlineKeyboardButtonTypeCallbackWithPassword { _data=_data } =
+  "InlineKeyboardButtonTypeCallbackWithPassword" ++ cc [p "_data" _data ]
+
+ show InlineKeyboardButtonTypeCallbackGame {  } =
+  "InlineKeyboardButtonTypeCallbackGame" ++ cc [ ]
+
+ show InlineKeyboardButtonTypeSwitchInline { in_current_chat=in_current_chat, query=query } =
+  "InlineKeyboardButtonTypeSwitchInline" ++ cc [p "in_current_chat" in_current_chat, p "query" query ]
+
+ show InlineKeyboardButtonTypeBuy {  } =
+  "InlineKeyboardButtonTypeBuy" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON InlineKeyboardButtonType where
- toJSON (InlineKeyboardButtonTypeUrl { url = url }) =
+ toJSON InlineKeyboardButtonTypeUrl { url = url } =
   A.object [ "@type" A..= T.String "inlineKeyboardButtonTypeUrl", "url" A..= url ]
 
- toJSON (InlineKeyboardButtonTypeLoginUrl { forward_text = forward_text, _id = _id, url = url }) =
+ toJSON InlineKeyboardButtonTypeLoginUrl { forward_text = forward_text, _id = _id, url = url } =
   A.object [ "@type" A..= T.String "inlineKeyboardButtonTypeLoginUrl", "forward_text" A..= forward_text, "id" A..= _id, "url" A..= url ]
 
- toJSON (InlineKeyboardButtonTypeCallback { _data = _data }) =
+ toJSON InlineKeyboardButtonTypeCallback { _data = _data } =
   A.object [ "@type" A..= T.String "inlineKeyboardButtonTypeCallback", "data" A..= _data ]
 
- toJSON (InlineKeyboardButtonTypeCallbackWithPassword { _data = _data }) =
+ toJSON InlineKeyboardButtonTypeCallbackWithPassword { _data = _data } =
   A.object [ "@type" A..= T.String "inlineKeyboardButtonTypeCallbackWithPassword", "data" A..= _data ]
 
- toJSON (InlineKeyboardButtonTypeCallbackGame {  }) =
+ toJSON InlineKeyboardButtonTypeCallbackGame {  } =
   A.object [ "@type" A..= T.String "inlineKeyboardButtonTypeCallbackGame" ]
 
- toJSON (InlineKeyboardButtonTypeSwitchInline { in_current_chat = in_current_chat, query = query }) =
+ toJSON InlineKeyboardButtonTypeSwitchInline { in_current_chat = in_current_chat, query = query } =
   A.object [ "@type" A..= T.String "inlineKeyboardButtonTypeSwitchInline", "in_current_chat" A..= in_current_chat, "query" A..= query ]
 
- toJSON (InlineKeyboardButtonTypeBuy {  }) =
+ toJSON InlineKeyboardButtonTypeBuy {  } =
   A.object [ "@type" A..= T.String "inlineKeyboardButtonTypeBuy" ]
 
 instance T.FromJSON InlineKeyboardButtonType where
@@ -126,3 +158,4 @@ instance T.FromJSON InlineKeyboardButtonType where
    parseInlineKeyboardButtonTypeBuy :: A.Value -> T.Parser InlineKeyboardButtonType
    parseInlineKeyboardButtonTypeBuy = A.withObject "InlineKeyboardButtonTypeBuy" $ \o -> do
     return $ InlineKeyboardButtonTypeBuy {  }
+ parseJSON _ = mempty

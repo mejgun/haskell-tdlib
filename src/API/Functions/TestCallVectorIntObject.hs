@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.TestInt as TestInt
 
 -- |
@@ -15,10 +16,23 @@ import {-# SOURCE #-} qualified API.TestInt as TestInt
 -- __x__ Vector of objects to return
 data TestCallVectorIntObject = 
 
- TestCallVectorIntObject { x :: Maybe [TestInt.TestInt] }  deriving (Show, Eq)
+ TestCallVectorIntObject { x :: Maybe [TestInt.TestInt] }  deriving (Eq)
+
+instance Show TestCallVectorIntObject where
+ show TestCallVectorIntObject { x=x } =
+  "TestCallVectorIntObject" ++ cc [p "x" x ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON TestCallVectorIntObject where
- toJSON (TestCallVectorIntObject { x = x }) =
+ toJSON TestCallVectorIntObject { x = x } =
   A.object [ "@type" A..= T.String "testCallVectorIntObject", "x" A..= x ]
 
 instance T.FromJSON TestCallVectorIntObject where
@@ -32,3 +46,4 @@ instance T.FromJSON TestCallVectorIntObject where
    parseTestCallVectorIntObject = A.withObject "TestCallVectorIntObject" $ \o -> do
     x <- o A..:? "x"
     return $ TestCallVectorIntObject { x = x }
+ parseJSON _ = mempty

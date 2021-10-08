@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __force_full__ If true, the full instant view for the web page will be returned
 data GetWebPageInstantView = 
 
- GetWebPageInstantView { force_full :: Maybe Bool, url :: Maybe String }  deriving (Show, Eq)
+ GetWebPageInstantView { force_full :: Maybe Bool, url :: Maybe String }  deriving (Eq)
+
+instance Show GetWebPageInstantView where
+ show GetWebPageInstantView { force_full=force_full, url=url } =
+  "GetWebPageInstantView" ++ cc [p "force_full" force_full, p "url" url ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetWebPageInstantView where
- toJSON (GetWebPageInstantView { force_full = force_full, url = url }) =
+ toJSON GetWebPageInstantView { force_full = force_full, url = url } =
   A.object [ "@type" A..= T.String "getWebPageInstantView", "force_full" A..= force_full, "url" A..= url ]
 
 instance T.FromJSON GetWebPageInstantView where
@@ -34,3 +48,4 @@ instance T.FromJSON GetWebPageInstantView where
     force_full <- o A..:? "force_full"
     url <- o A..:? "url"
     return $ GetWebPageInstantView { force_full = force_full, url = url }
+ parseJSON _ = mempty

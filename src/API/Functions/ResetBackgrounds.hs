@@ -6,16 +6,30 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
 -- Resets list of installed backgrounds to its default value
 data ResetBackgrounds = 
 
- ResetBackgrounds deriving (Show, Eq)
+ ResetBackgrounds deriving (Eq)
+
+instance Show ResetBackgrounds where
+ show ResetBackgrounds {  } =
+  "ResetBackgrounds" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ResetBackgrounds where
- toJSON (ResetBackgrounds {  }) =
+ toJSON ResetBackgrounds {  } =
   A.object [ "@type" A..= T.String "resetBackgrounds" ]
 
 instance T.FromJSON ResetBackgrounds where
@@ -28,3 +42,4 @@ instance T.FromJSON ResetBackgrounds where
    parseResetBackgrounds :: A.Value -> T.Parser ResetBackgrounds
    parseResetBackgrounds = A.withObject "ResetBackgrounds" $ \o -> do
     return $ ResetBackgrounds {  }
+ parseJSON _ = mempty

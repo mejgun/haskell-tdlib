@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __link__ A link from a QR code. The link must be scanned by the in-app camera
 data ConfirmQrCodeAuthentication = 
 
- ConfirmQrCodeAuthentication { link :: Maybe String }  deriving (Show, Eq)
+ ConfirmQrCodeAuthentication { link :: Maybe String }  deriving (Eq)
+
+instance Show ConfirmQrCodeAuthentication where
+ show ConfirmQrCodeAuthentication { link=link } =
+  "ConfirmQrCodeAuthentication" ++ cc [p "link" link ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ConfirmQrCodeAuthentication where
- toJSON (ConfirmQrCodeAuthentication { link = link }) =
+ toJSON ConfirmQrCodeAuthentication { link = link } =
   A.object [ "@type" A..= T.String "confirmQrCodeAuthentication", "link" A..= link ]
 
 instance T.FromJSON ConfirmQrCodeAuthentication where
@@ -31,3 +45,4 @@ instance T.FromJSON ConfirmQrCodeAuthentication where
    parseConfirmQrCodeAuthentication = A.withObject "ConfirmQrCodeAuthentication" $ \o -> do
     link <- o A..:? "link"
     return $ ConfirmQrCodeAuthentication { link = link }
+ parseJSON _ = mempty

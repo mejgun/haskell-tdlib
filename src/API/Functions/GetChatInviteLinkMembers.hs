@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.ChatInviteLinkMember as ChatInviteLinkMember
 
 -- |
@@ -16,15 +17,28 @@ import {-# SOURCE #-} qualified API.ChatInviteLinkMember as ChatInviteLinkMember
 -- 
 -- __invite_link__ Invite link for which to return chat members
 -- 
--- __offset_member__ A chat member from which to return next chat members; use null to get results from the beginning
+-- __offset_member__ A chat member from which to return next chat members; pass null to get results from the beginning
 -- 
 -- __limit__ The maximum number of chat members to return
 data GetChatInviteLinkMembers = 
 
- GetChatInviteLinkMembers { limit :: Maybe Int, offset_member :: Maybe ChatInviteLinkMember.ChatInviteLinkMember, invite_link :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
+ GetChatInviteLinkMembers { limit :: Maybe Int, offset_member :: Maybe ChatInviteLinkMember.ChatInviteLinkMember, invite_link :: Maybe String, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show GetChatInviteLinkMembers where
+ show GetChatInviteLinkMembers { limit=limit, offset_member=offset_member, invite_link=invite_link, chat_id=chat_id } =
+  "GetChatInviteLinkMembers" ++ cc [p "limit" limit, p "offset_member" offset_member, p "invite_link" invite_link, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetChatInviteLinkMembers where
- toJSON (GetChatInviteLinkMembers { limit = limit, offset_member = offset_member, invite_link = invite_link, chat_id = chat_id }) =
+ toJSON GetChatInviteLinkMembers { limit = limit, offset_member = offset_member, invite_link = invite_link, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "getChatInviteLinkMembers", "limit" A..= limit, "offset_member" A..= offset_member, "invite_link" A..= invite_link, "chat_id" A..= chat_id ]
 
 instance T.FromJSON GetChatInviteLinkMembers where
@@ -41,3 +55,4 @@ instance T.FromJSON GetChatInviteLinkMembers where
     invite_link <- o A..:? "invite_link"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetChatInviteLinkMembers { limit = limit, offset_member = offset_member, invite_link = invite_link, chat_id = chat_id }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -22,13 +23,29 @@ data ChatSource =
  -- __type__ The type of the announcement
  -- 
  -- __text__ The text of the announcement
- ChatSourcePublicServiceAnnouncement { text :: Maybe String, _type :: Maybe String }  deriving (Show, Eq)
+ ChatSourcePublicServiceAnnouncement { text :: Maybe String, _type :: Maybe String }  deriving (Eq)
+
+instance Show ChatSource where
+ show ChatSourceMtprotoProxy {  } =
+  "ChatSourceMtprotoProxy" ++ cc [ ]
+
+ show ChatSourcePublicServiceAnnouncement { text=text, _type=_type } =
+  "ChatSourcePublicServiceAnnouncement" ++ cc [p "text" text, p "_type" _type ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatSource where
- toJSON (ChatSourceMtprotoProxy {  }) =
+ toJSON ChatSourceMtprotoProxy {  } =
   A.object [ "@type" A..= T.String "chatSourceMtprotoProxy" ]
 
- toJSON (ChatSourcePublicServiceAnnouncement { text = text, _type = _type }) =
+ toJSON ChatSourcePublicServiceAnnouncement { text = text, _type = _type } =
   A.object [ "@type" A..= T.String "chatSourcePublicServiceAnnouncement", "text" A..= text, "type" A..= _type ]
 
 instance T.FromJSON ChatSource where
@@ -48,3 +65,4 @@ instance T.FromJSON ChatSource where
     text <- o A..:? "text"
     _type <- o A..:? "type"
     return $ ChatSourcePublicServiceAnnouncement { text = text, _type = _type }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Notification as Notification
 import {-# SOURCE #-} qualified API.NotificationGroupType as NotificationGroupType
 
@@ -24,10 +25,23 @@ import {-# SOURCE #-} qualified API.NotificationGroupType as NotificationGroupTy
 -- __notifications__ The list of active notifications
 data NotificationGroup = 
 
- NotificationGroup { notifications :: Maybe [Notification.Notification], total_count :: Maybe Int, chat_id :: Maybe Int, _type :: Maybe NotificationGroupType.NotificationGroupType, _id :: Maybe Int }  deriving (Show, Eq)
+ NotificationGroup { notifications :: Maybe [Notification.Notification], total_count :: Maybe Int, chat_id :: Maybe Int, _type :: Maybe NotificationGroupType.NotificationGroupType, _id :: Maybe Int }  deriving (Eq)
+
+instance Show NotificationGroup where
+ show NotificationGroup { notifications=notifications, total_count=total_count, chat_id=chat_id, _type=_type, _id=_id } =
+  "NotificationGroup" ++ cc [p "notifications" notifications, p "total_count" total_count, p "chat_id" chat_id, p "_type" _type, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON NotificationGroup where
- toJSON (NotificationGroup { notifications = notifications, total_count = total_count, chat_id = chat_id, _type = _type, _id = _id }) =
+ toJSON NotificationGroup { notifications = notifications, total_count = total_count, chat_id = chat_id, _type = _type, _id = _id } =
   A.object [ "@type" A..= T.String "notificationGroup", "notifications" A..= notifications, "total_count" A..= total_count, "chat_id" A..= chat_id, "type" A..= _type, "id" A..= _id ]
 
 instance T.FromJSON NotificationGroup where
@@ -45,3 +59,4 @@ instance T.FromJSON NotificationGroup where
     _type <- o A..:? "type"
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ NotificationGroup { notifications = notifications, total_count = total_count, chat_id = chat_id, _type = _type, _id = _id }
+ parseJSON _ = mempty

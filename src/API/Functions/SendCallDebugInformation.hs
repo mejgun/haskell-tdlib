@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __debug_information__ Debug information in application-specific format
 data SendCallDebugInformation = 
 
- SendCallDebugInformation { debug_information :: Maybe String, call_id :: Maybe Int }  deriving (Show, Eq)
+ SendCallDebugInformation { debug_information :: Maybe String, call_id :: Maybe Int }  deriving (Eq)
+
+instance Show SendCallDebugInformation where
+ show SendCallDebugInformation { debug_information=debug_information, call_id=call_id } =
+  "SendCallDebugInformation" ++ cc [p "debug_information" debug_information, p "call_id" call_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SendCallDebugInformation where
- toJSON (SendCallDebugInformation { debug_information = debug_information, call_id = call_id }) =
+ toJSON SendCallDebugInformation { debug_information = debug_information, call_id = call_id } =
   A.object [ "@type" A..= T.String "sendCallDebugInformation", "debug_information" A..= debug_information, "call_id" A..= call_id ]
 
 instance T.FromJSON SendCallDebugInformation where
@@ -34,3 +48,4 @@ instance T.FromJSON SendCallDebugInformation where
     debug_information <- o A..:? "debug_information"
     call_id <- mconcat [ o A..:? "call_id", readMaybe <$> (o A..: "call_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SendCallDebugInformation { debug_information = debug_information, call_id = call_id }
+ parseJSON _ = mempty

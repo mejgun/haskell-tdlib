@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Address as Address
 
 -- |
@@ -21,10 +22,23 @@ import {-# SOURCE #-} qualified API.Address as Address
 -- __shipping_address__ Shipping address for this order; may be null
 data OrderInfo = 
 
- OrderInfo { shipping_address :: Maybe Address.Address, email_address :: Maybe String, phone_number :: Maybe String, name :: Maybe String }  deriving (Show, Eq)
+ OrderInfo { shipping_address :: Maybe Address.Address, email_address :: Maybe String, phone_number :: Maybe String, name :: Maybe String }  deriving (Eq)
+
+instance Show OrderInfo where
+ show OrderInfo { shipping_address=shipping_address, email_address=email_address, phone_number=phone_number, name=name } =
+  "OrderInfo" ++ cc [p "shipping_address" shipping_address, p "email_address" email_address, p "phone_number" phone_number, p "name" name ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON OrderInfo where
- toJSON (OrderInfo { shipping_address = shipping_address, email_address = email_address, phone_number = phone_number, name = name }) =
+ toJSON OrderInfo { shipping_address = shipping_address, email_address = email_address, phone_number = phone_number, name = name } =
   A.object [ "@type" A..= T.String "orderInfo", "shipping_address" A..= shipping_address, "email_address" A..= email_address, "phone_number" A..= phone_number, "name" A..= name ]
 
 instance T.FromJSON OrderInfo where
@@ -41,3 +55,4 @@ instance T.FromJSON OrderInfo where
     phone_number <- o A..:? "phone_number"
     name <- o A..:? "name"
     return $ OrderInfo { shipping_address = shipping_address, email_address = email_address, phone_number = phone_number, name = name }
+ parseJSON _ = mempty

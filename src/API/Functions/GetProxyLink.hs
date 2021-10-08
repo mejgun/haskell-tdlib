@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __proxy_id__ Proxy identifier
 data GetProxyLink = 
 
- GetProxyLink { proxy_id :: Maybe Int }  deriving (Show, Eq)
+ GetProxyLink { proxy_id :: Maybe Int }  deriving (Eq)
+
+instance Show GetProxyLink where
+ show GetProxyLink { proxy_id=proxy_id } =
+  "GetProxyLink" ++ cc [p "proxy_id" proxy_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetProxyLink where
- toJSON (GetProxyLink { proxy_id = proxy_id }) =
+ toJSON GetProxyLink { proxy_id = proxy_id } =
   A.object [ "@type" A..= T.String "getProxyLink", "proxy_id" A..= proxy_id ]
 
 instance T.FromJSON GetProxyLink where
@@ -31,3 +45,4 @@ instance T.FromJSON GetProxyLink where
    parseGetProxyLink = A.withObject "GetProxyLink" $ \o -> do
     proxy_id <- mconcat [ o A..:? "proxy_id", readMaybe <$> (o A..: "proxy_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetProxyLink { proxy_id = proxy_id }
+ parseJSON _ = mempty

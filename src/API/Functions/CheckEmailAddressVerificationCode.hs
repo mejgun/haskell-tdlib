@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __code__ Verification code
 data CheckEmailAddressVerificationCode = 
 
- CheckEmailAddressVerificationCode { code :: Maybe String }  deriving (Show, Eq)
+ CheckEmailAddressVerificationCode { code :: Maybe String }  deriving (Eq)
+
+instance Show CheckEmailAddressVerificationCode where
+ show CheckEmailAddressVerificationCode { code=code } =
+  "CheckEmailAddressVerificationCode" ++ cc [p "code" code ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON CheckEmailAddressVerificationCode where
- toJSON (CheckEmailAddressVerificationCode { code = code }) =
+ toJSON CheckEmailAddressVerificationCode { code = code } =
   A.object [ "@type" A..= T.String "checkEmailAddressVerificationCode", "code" A..= code ]
 
 instance T.FromJSON CheckEmailAddressVerificationCode where
@@ -31,3 +45,4 @@ instance T.FromJSON CheckEmailAddressVerificationCode where
    parseCheckEmailAddressVerificationCode = A.withObject "CheckEmailAddressVerificationCode" $ \o -> do
     code <- o A..:? "code"
     return $ CheckEmailAddressVerificationCode { code = code }
+ parseJSON _ = mempty

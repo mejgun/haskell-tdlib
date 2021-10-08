@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -22,16 +23,35 @@ data NotificationSettingsScope =
  -- |
  -- 
  -- Notification settings applied to all channels when the corresponding chat setting has a default value
- NotificationSettingsScopeChannelChats deriving (Show, Eq)
+ NotificationSettingsScopeChannelChats deriving (Eq)
+
+instance Show NotificationSettingsScope where
+ show NotificationSettingsScopePrivateChats {  } =
+  "NotificationSettingsScopePrivateChats" ++ cc [ ]
+
+ show NotificationSettingsScopeGroupChats {  } =
+  "NotificationSettingsScopeGroupChats" ++ cc [ ]
+
+ show NotificationSettingsScopeChannelChats {  } =
+  "NotificationSettingsScopeChannelChats" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON NotificationSettingsScope where
- toJSON (NotificationSettingsScopePrivateChats {  }) =
+ toJSON NotificationSettingsScopePrivateChats {  } =
   A.object [ "@type" A..= T.String "notificationSettingsScopePrivateChats" ]
 
- toJSON (NotificationSettingsScopeGroupChats {  }) =
+ toJSON NotificationSettingsScopeGroupChats {  } =
   A.object [ "@type" A..= T.String "notificationSettingsScopeGroupChats" ]
 
- toJSON (NotificationSettingsScopeChannelChats {  }) =
+ toJSON NotificationSettingsScopeChannelChats {  } =
   A.object [ "@type" A..= T.String "notificationSettingsScopeChannelChats" ]
 
 instance T.FromJSON NotificationSettingsScope where
@@ -54,3 +74,4 @@ instance T.FromJSON NotificationSettingsScope where
    parseNotificationSettingsScopeChannelChats :: A.Value -> T.Parser NotificationSettingsScope
    parseNotificationSettingsScopeChannelChats = A.withObject "NotificationSettingsScopeChannelChats" $ \o -> do
     return $ NotificationSettingsScopeChannelChats {  }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -42,31 +43,65 @@ data UserPrivacySetting =
  -- |
  -- 
  -- A privacy setting for managing whether the user can be found by their phone number. Checked only if the phone number is not known to the other user. Can be set only to "Allow contacts" or "Allow all"
- UserPrivacySettingAllowFindingByPhoneNumber deriving (Show, Eq)
+ UserPrivacySettingAllowFindingByPhoneNumber deriving (Eq)
+
+instance Show UserPrivacySetting where
+ show UserPrivacySettingShowStatus {  } =
+  "UserPrivacySettingShowStatus" ++ cc [ ]
+
+ show UserPrivacySettingShowProfilePhoto {  } =
+  "UserPrivacySettingShowProfilePhoto" ++ cc [ ]
+
+ show UserPrivacySettingShowLinkInForwardedMessages {  } =
+  "UserPrivacySettingShowLinkInForwardedMessages" ++ cc [ ]
+
+ show UserPrivacySettingShowPhoneNumber {  } =
+  "UserPrivacySettingShowPhoneNumber" ++ cc [ ]
+
+ show UserPrivacySettingAllowChatInvites {  } =
+  "UserPrivacySettingAllowChatInvites" ++ cc [ ]
+
+ show UserPrivacySettingAllowCalls {  } =
+  "UserPrivacySettingAllowCalls" ++ cc [ ]
+
+ show UserPrivacySettingAllowPeerToPeerCalls {  } =
+  "UserPrivacySettingAllowPeerToPeerCalls" ++ cc [ ]
+
+ show UserPrivacySettingAllowFindingByPhoneNumber {  } =
+  "UserPrivacySettingAllowFindingByPhoneNumber" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON UserPrivacySetting where
- toJSON (UserPrivacySettingShowStatus {  }) =
+ toJSON UserPrivacySettingShowStatus {  } =
   A.object [ "@type" A..= T.String "userPrivacySettingShowStatus" ]
 
- toJSON (UserPrivacySettingShowProfilePhoto {  }) =
+ toJSON UserPrivacySettingShowProfilePhoto {  } =
   A.object [ "@type" A..= T.String "userPrivacySettingShowProfilePhoto" ]
 
- toJSON (UserPrivacySettingShowLinkInForwardedMessages {  }) =
+ toJSON UserPrivacySettingShowLinkInForwardedMessages {  } =
   A.object [ "@type" A..= T.String "userPrivacySettingShowLinkInForwardedMessages" ]
 
- toJSON (UserPrivacySettingShowPhoneNumber {  }) =
+ toJSON UserPrivacySettingShowPhoneNumber {  } =
   A.object [ "@type" A..= T.String "userPrivacySettingShowPhoneNumber" ]
 
- toJSON (UserPrivacySettingAllowChatInvites {  }) =
+ toJSON UserPrivacySettingAllowChatInvites {  } =
   A.object [ "@type" A..= T.String "userPrivacySettingAllowChatInvites" ]
 
- toJSON (UserPrivacySettingAllowCalls {  }) =
+ toJSON UserPrivacySettingAllowCalls {  } =
   A.object [ "@type" A..= T.String "userPrivacySettingAllowCalls" ]
 
- toJSON (UserPrivacySettingAllowPeerToPeerCalls {  }) =
+ toJSON UserPrivacySettingAllowPeerToPeerCalls {  } =
   A.object [ "@type" A..= T.String "userPrivacySettingAllowPeerToPeerCalls" ]
 
- toJSON (UserPrivacySettingAllowFindingByPhoneNumber {  }) =
+ toJSON UserPrivacySettingAllowFindingByPhoneNumber {  } =
   A.object [ "@type" A..= T.String "userPrivacySettingAllowFindingByPhoneNumber" ]
 
 instance T.FromJSON UserPrivacySetting where
@@ -114,3 +149,4 @@ instance T.FromJSON UserPrivacySetting where
    parseUserPrivacySettingAllowFindingByPhoneNumber :: A.Value -> T.Parser UserPrivacySetting
    parseUserPrivacySettingAllowFindingByPhoneNumber = A.withObject "UserPrivacySettingAllowFindingByPhoneNumber" $ \o -> do
     return $ UserPrivacySettingAllowFindingByPhoneNumber {  }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -30,22 +31,47 @@ data CallDiscardReason =
  -- |
  -- 
  -- The call was ended because one of the parties hung up
- CallDiscardReasonHungUp deriving (Show, Eq)
+ CallDiscardReasonHungUp deriving (Eq)
+
+instance Show CallDiscardReason where
+ show CallDiscardReasonEmpty {  } =
+  "CallDiscardReasonEmpty" ++ cc [ ]
+
+ show CallDiscardReasonMissed {  } =
+  "CallDiscardReasonMissed" ++ cc [ ]
+
+ show CallDiscardReasonDeclined {  } =
+  "CallDiscardReasonDeclined" ++ cc [ ]
+
+ show CallDiscardReasonDisconnected {  } =
+  "CallDiscardReasonDisconnected" ++ cc [ ]
+
+ show CallDiscardReasonHungUp {  } =
+  "CallDiscardReasonHungUp" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON CallDiscardReason where
- toJSON (CallDiscardReasonEmpty {  }) =
+ toJSON CallDiscardReasonEmpty {  } =
   A.object [ "@type" A..= T.String "callDiscardReasonEmpty" ]
 
- toJSON (CallDiscardReasonMissed {  }) =
+ toJSON CallDiscardReasonMissed {  } =
   A.object [ "@type" A..= T.String "callDiscardReasonMissed" ]
 
- toJSON (CallDiscardReasonDeclined {  }) =
+ toJSON CallDiscardReasonDeclined {  } =
   A.object [ "@type" A..= T.String "callDiscardReasonDeclined" ]
 
- toJSON (CallDiscardReasonDisconnected {  }) =
+ toJSON CallDiscardReasonDisconnected {  } =
   A.object [ "@type" A..= T.String "callDiscardReasonDisconnected" ]
 
- toJSON (CallDiscardReasonHungUp {  }) =
+ toJSON CallDiscardReasonHungUp {  } =
   A.object [ "@type" A..= T.String "callDiscardReasonHungUp" ]
 
 instance T.FromJSON CallDiscardReason where
@@ -78,3 +104,4 @@ instance T.FromJSON CallDiscardReason where
    parseCallDiscardReasonHungUp :: A.Value -> T.Parser CallDiscardReason
    parseCallDiscardReasonHungUp = A.withObject "CallDiscardReasonHungUp" $ \o -> do
     return $ CallDiscardReasonHungUp {  }
+ parseJSON _ = mempty

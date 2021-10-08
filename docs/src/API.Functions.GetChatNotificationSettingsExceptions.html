@@ -20,7 +20,7 @@
 </span><span id="line-20"></span><span> </span><span id="GetChatNotificationSettingsExceptions"><span class="annot"><a href="API.Functions.GetChatNotificationSettingsExceptions.html#GetChatNotificationSettingsExceptions"><span class="hs-identifier hs-var">GetChatNotificationSettingsExceptions</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="compare_sound"><span class="annot"><span class="annottext">GetChatNotificationSettingsExceptions -&gt; Maybe Bool
 </span><a href="API.Functions.GetChatNotificationSettingsExceptions.html#compare_sound"><span class="hs-identifier hs-var hs-var">compare_sound</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="scope"><span class="annot"><span class="annottext">GetChatNotificationSettingsExceptions
 -&gt; Maybe NotificationSettingsScope
-</span><a href="API.Functions.GetChatNotificationSettingsExceptions.html#scope"><span class="hs-identifier hs-var hs-var">scope</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.NotificationSettingsScope.html#NotificationSettingsScope"><span class="hs-identifier hs-type">NotificationSettingsScope.NotificationSettingsScope</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679443857"><span id="local-6989586621679443859"><span id="local-6989586621679443861"><span class="annot"><span class="annottext">Int -&gt; GetChatNotificationSettingsExceptions -&gt; ShowS
+</span><a href="API.Functions.GetChatNotificationSettingsExceptions.html#scope"><span class="hs-identifier hs-var hs-var">scope</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.NotificationSettingsScope.html#NotificationSettingsScope"><span class="hs-identifier hs-type">NotificationSettingsScope.NotificationSettingsScope</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679477560"><span id="local-6989586621679477562"><span id="local-6989586621679477564"><span class="annot"><span class="annottext">Int -&gt; GetChatNotificationSettingsExceptions -&gt; ShowS
 [GetChatNotificationSettingsExceptions] -&gt; ShowS
 GetChatNotificationSettingsExceptions -&gt; String
 (Int -&gt; GetChatNotificationSettingsExceptions -&gt; ShowS)
@@ -35,7 +35,7 @@ show :: GetChatNotificationSettingsExceptions -&gt; String
 $cshow :: GetChatNotificationSettingsExceptions -&gt; String
 showsPrec :: Int -&gt; GetChatNotificationSettingsExceptions -&gt; ShowS
 $cshowsPrec :: Int -&gt; GetChatNotificationSettingsExceptions -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679443852"><span id="local-6989586621679443854"><span class="annot"><span class="annottext">GetChatNotificationSettingsExceptions
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679477555"><span id="local-6989586621679477557"><span class="annot"><span class="annottext">GetChatNotificationSettingsExceptions
 -&gt; GetChatNotificationSettingsExceptions -&gt; Bool
 (GetChatNotificationSettingsExceptions
  -&gt; GetChatNotificationSettingsExceptions -&gt; Bool)
@@ -53,70 +53,80 @@ $c== :: GetChatNotificationSettingsExceptions
 -&gt; GetChatNotificationSettingsExceptions -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679443844"><span id="local-6989586621679443846"><span id="local-6989586621679443848"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetChatNotificationSettingsExceptions.html#GetChatNotificationSettingsExceptions"><span class="hs-identifier hs-type">GetChatNotificationSettingsExceptions</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-23"></span><span> </span><span id="local-6989586621679443842"><span class="annot"><span class="annottext">toJSON :: GetChatNotificationSettingsExceptions -&gt; Value
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="API.Functions.GetChatNotificationSettingsExceptions.html#GetChatNotificationSettingsExceptions"><span class="hs-identifier hs-type">GetChatNotificationSettingsExceptions</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">compare_sound :: GetChatNotificationSettingsExceptions -&gt; Maybe Bool
-</span><a href="API.Functions.GetChatNotificationSettingsExceptions.html#compare_sound"><span class="hs-identifier hs-var">compare_sound</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443840"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679443840"><span class="hs-identifier hs-var">compare_sound</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">scope :: GetChatNotificationSettingsExceptions
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679477547"><span id="local-6989586621679477549"><span id="local-6989586621679477551"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetChatNotificationSettingsExceptions.html#GetChatNotificationSettingsExceptions"><span class="hs-identifier hs-type">GetChatNotificationSettingsExceptions</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span> </span><span id="local-6989586621679477545"><span class="annot"><span class="annottext">toJSON :: GetChatNotificationSettingsExceptions -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.GetChatNotificationSettingsExceptions.html#GetChatNotificationSettingsExceptions"><span class="hs-identifier hs-type">GetChatNotificationSettingsExceptions</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">compare_sound :: GetChatNotificationSettingsExceptions -&gt; Maybe Bool
+</span><a href="API.Functions.GetChatNotificationSettingsExceptions.html#compare_sound"><span class="hs-identifier hs-var">compare_sound</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679477543"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679477543"><span class="hs-identifier hs-var">compare_sound</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">scope :: GetChatNotificationSettingsExceptions
 -&gt; Maybe NotificationSettingsScope
-</span><a href="API.Functions.GetChatNotificationSettingsExceptions.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679443839"><span class="annot"><span class="annottext">Maybe NotificationSettingsScope
-</span><a href="#local-6989586621679443839"><span class="hs-identifier hs-var">scope</span></a></span></span><span> </span><span class="hs-special">}</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.GetChatNotificationSettingsExceptions.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679477542"><span class="annot"><span class="annottext">Maybe NotificationSettingsScope
+</span><a href="#local-6989586621679477542"><span class="hs-identifier hs-var">scope</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-24"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
-</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
-</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="hs-string">&quot;getChatNotificationSettingsExceptions&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;compare_sound&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;getChatNotificationSettingsExceptions&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;compare_sound&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679443840"><span class="hs-identifier hs-var">compare_sound</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-string">&quot;scope&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe NotificationSettingsScope -&gt; Pair
+</span><a href="#local-6989586621679477543"><span class="hs-identifier hs-var">compare_sound</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;scope&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe NotificationSettingsScope -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe NotificationSettingsScope
-</span><a href="#local-6989586621679443839"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679477542"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-25"></span><span>
-</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679443833"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetChatNotificationSettingsExceptions.html#GetChatNotificationSettingsExceptions"><span class="hs-identifier hs-type">GetChatNotificationSettingsExceptions</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-27"></span><span> </span><span id="local-6989586621679443831"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetChatNotificationSettingsExceptions
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679443829"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679443829"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679443827"><span class="annot"><span class="annottext">obj :: Object
-</span><a href="#local-6989586621679443827"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-28"></span><span>  </span><span id="local-6989586621679443826"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679443826"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443827"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679477536"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetChatNotificationSettingsExceptions.html#GetChatNotificationSettingsExceptions"><span class="hs-identifier hs-type">GetChatNotificationSettingsExceptions</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-27"></span><span> </span><span id="local-6989586621679477534"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetChatNotificationSettingsExceptions
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679477532"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679477532"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679477530"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679477530"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-28"></span><span>  </span><span id="local-6989586621679477529"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679477529"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679477530"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
-</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-29"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679443826"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-30"></span><span>   </span><span class="hs-string">&quot;getChatNotificationSettingsExceptions&quot;</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetChatNotificationSettingsExceptions
-</span><a href="#local-6989586621679443824"><span class="hs-identifier hs-var">parseGetChatNotificationSettingsExceptions</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679443829"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-31"></span><span>   </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetChatNotificationSettingsExceptions
+</span><a href="#local-6989586621679477529"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-30"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;getChatNotificationSettingsExceptions&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetChatNotificationSettingsExceptions
+</span><a href="#local-6989586621679477527"><span class="hs-identifier hs-var">parseGetChatNotificationSettingsExceptions</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679477532"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-31"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetChatNotificationSettingsExceptions
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-32"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-33"></span><span>   </span><span class="annot"><a href="#local-6989586621679443824"><span class="hs-identifier hs-type">parseGetChatNotificationSettingsExceptions</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetChatNotificationSettingsExceptions.html#GetChatNotificationSettingsExceptions"><span class="hs-identifier hs-type">GetChatNotificationSettingsExceptions</span></a></span><span>
-</span><span id="line-34"></span><span>   </span><span id="local-6989586621679443824"><span class="annot"><span class="annottext">parseGetChatNotificationSettingsExceptions :: Value -&gt; Parser GetChatNotificationSettingsExceptions
-</span><a href="#local-6989586621679443824"><span class="hs-identifier hs-var hs-var">parseGetChatNotificationSettingsExceptions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-33"></span><span>   </span><span class="annot"><a href="#local-6989586621679477527"><span class="hs-identifier hs-type">parseGetChatNotificationSettingsExceptions</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetChatNotificationSettingsExceptions.html#GetChatNotificationSettingsExceptions"><span class="hs-identifier hs-type">GetChatNotificationSettingsExceptions</span></a></span><span>
+</span><span id="line-34"></span><span>   </span><span id="local-6989586621679477527"><span class="annot"><span class="annottext">parseGetChatNotificationSettingsExceptions :: Value -&gt; Parser GetChatNotificationSettingsExceptions
+</span><a href="#local-6989586621679477527"><span class="hs-identifier hs-var hs-var">parseGetChatNotificationSettingsExceptions</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GetChatNotificationSettingsExceptions)
 -&gt; Value
 -&gt; Parser GetChatNotificationSettingsExceptions
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
-</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="hs-string">&quot;GetChatNotificationSettingsExceptions&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser GetChatNotificationSettingsExceptions)
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;GetChatNotificationSettingsExceptions&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser GetChatNotificationSettingsExceptions)
  -&gt; Value -&gt; Parser GetChatNotificationSettingsExceptions)
 -&gt; (Object -&gt; Parser GetChatNotificationSettingsExceptions)
 -&gt; Value
 -&gt; Parser GetChatNotificationSettingsExceptions
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679443822"><span class="annot"><span class="annottext">o :: Object
-</span><a href="#local-6989586621679443822"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-35"></span><span>    </span><span id="local-6989586621679443821"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679443821"><span class="hs-identifier hs-var">compare_sound</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443822"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679477525"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679477525"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-35"></span><span>    </span><span id="local-6989586621679477524"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679477524"><span class="hs-identifier hs-var">compare_sound</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679477525"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;compare_sound&quot;</span></span><span>
-</span><span id="line-36"></span><span>    </span><span id="local-6989586621679443819"><span class="annot"><span class="annottext">Maybe NotificationSettingsScope
-</span><a href="#local-6989586621679443819"><span class="hs-identifier hs-var">scope</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679443822"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe NotificationSettingsScope)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;compare_sound&quot;</span></span><span>
+</span><span id="line-36"></span><span>    </span><span id="local-6989586621679477522"><span class="annot"><span class="annottext">Maybe NotificationSettingsScope
+</span><a href="#local-6989586621679477522"><span class="hs-identifier hs-var">scope</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679477525"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe NotificationSettingsScope)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
-</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="hs-string">&quot;scope&quot;</span></span><span>
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;scope&quot;</span></span><span>
 </span><span id="line-37"></span><span>    </span><span class="annot"><span class="annottext">GetChatNotificationSettingsExceptions
 -&gt; Parser GetChatNotificationSettingsExceptions
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
@@ -128,8 +138,13 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">GetChatNotificationSettingsExceptions :: Maybe Bool
 -&gt; Maybe NotificationSettingsScope
 -&gt; GetChatNotificationSettingsExceptions
-</span><a href="API.Functions.GetChatNotificationSettingsExceptions.html#GetChatNotificationSettingsExceptions"><span class="hs-identifier hs-type hs-type">GetChatNotificationSettingsExceptions</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">compare_sound :: Maybe Bool
+</span><a href="API.Functions.GetChatNotificationSettingsExceptions.html#GetChatNotificationSettingsExceptions"><span class="hs-identifier hs-type">GetChatNotificationSettingsExceptions</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">compare_sound :: Maybe Bool
 </span><a href="API.Functions.GetChatNotificationSettingsExceptions.html#compare_sound"><span class="hs-identifier hs-var">compare_sound</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679443821"><span class="hs-identifier hs-var">compare_sound</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">scope :: Maybe NotificationSettingsScope
+</span><a href="#local-6989586621679477524"><span class="hs-identifier hs-var">compare_sound</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">scope :: Maybe NotificationSettingsScope
 </span><a href="API.Functions.GetChatNotificationSettingsExceptions.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe NotificationSettingsScope
-</span><a href="#local-6989586621679443819"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-special">}</span></pre></body></html>
+</span><a href="#local-6989586621679477522"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-38"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser GetChatNotificationSettingsExceptions
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-39"></span></pre></body></html>

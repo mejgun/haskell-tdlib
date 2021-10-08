@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.MessageContent as MessageContent
 
 -- |
@@ -21,10 +22,23 @@ import {-# SOURCE #-} qualified API.MessageContent as MessageContent
 -- __content__ Content of the message
 data SponsoredMessage = 
 
- SponsoredMessage { content :: Maybe MessageContent.MessageContent, start_parameter :: Maybe String, sponsor_chat_id :: Maybe Int, _id :: Maybe Int }  deriving (Show, Eq)
+ SponsoredMessage { content :: Maybe MessageContent.MessageContent, start_parameter :: Maybe String, sponsor_chat_id :: Maybe Int, _id :: Maybe Int }  deriving (Eq)
+
+instance Show SponsoredMessage where
+ show SponsoredMessage { content=content, start_parameter=start_parameter, sponsor_chat_id=sponsor_chat_id, _id=_id } =
+  "SponsoredMessage" ++ cc [p "content" content, p "start_parameter" start_parameter, p "sponsor_chat_id" sponsor_chat_id, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SponsoredMessage where
- toJSON (SponsoredMessage { content = content, start_parameter = start_parameter, sponsor_chat_id = sponsor_chat_id, _id = _id }) =
+ toJSON SponsoredMessage { content = content, start_parameter = start_parameter, sponsor_chat_id = sponsor_chat_id, _id = _id } =
   A.object [ "@type" A..= T.String "sponsoredMessage", "content" A..= content, "start_parameter" A..= start_parameter, "sponsor_chat_id" A..= sponsor_chat_id, "id" A..= _id ]
 
 instance T.FromJSON SponsoredMessage where
@@ -41,3 +55,4 @@ instance T.FromJSON SponsoredMessage where
     sponsor_chat_id <- mconcat [ o A..:? "sponsor_chat_id", readMaybe <$> (o A..: "sponsor_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SponsoredMessage { content = content, start_parameter = start_parameter, sponsor_chat_id = sponsor_chat_id, _id = _id }
+ parseJSON _ = mempty

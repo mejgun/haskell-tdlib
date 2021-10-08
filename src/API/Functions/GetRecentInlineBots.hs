@@ -6,16 +6,30 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
 -- Returns up to 20 recently used inline bots in the order of their last usage
 data GetRecentInlineBots = 
 
- GetRecentInlineBots deriving (Show, Eq)
+ GetRecentInlineBots deriving (Eq)
+
+instance Show GetRecentInlineBots where
+ show GetRecentInlineBots {  } =
+  "GetRecentInlineBots" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetRecentInlineBots where
- toJSON (GetRecentInlineBots {  }) =
+ toJSON GetRecentInlineBots {  } =
   A.object [ "@type" A..= T.String "getRecentInlineBots" ]
 
 instance T.FromJSON GetRecentInlineBots where
@@ -28,3 +42,4 @@ instance T.FromJSON GetRecentInlineBots where
    parseGetRecentInlineBots :: A.Value -> T.Parser GetRecentInlineBots
    parseGetRecentInlineBots = A.withObject "GetRecentInlineBots" $ \o -> do
     return $ GetRecentInlineBots {  }
+ parseJSON _ = mempty

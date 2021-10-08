@@ -6,16 +6,30 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
 -- Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed. After the destruction completes updateAuthorizationState with authorizationStateClosed will be sent. Can be called before authorization
 data Destroy = 
 
- Destroy deriving (Show, Eq)
+ Destroy deriving (Eq)
+
+instance Show Destroy where
+ show Destroy {  } =
+  "Destroy" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Destroy where
- toJSON (Destroy {  }) =
+ toJSON Destroy {  } =
   A.object [ "@type" A..= T.String "destroy" ]
 
 instance T.FromJSON Destroy where
@@ -28,3 +42,4 @@ instance T.FromJSON Destroy where
    parseDestroy :: A.Value -> T.Parser Destroy
    parseDestroy = A.withObject "Destroy" $ \o -> do
     return $ Destroy {  }
+ parseJSON _ = mempty

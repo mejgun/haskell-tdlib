@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -50,31 +51,65 @@ data UserPrivacySettingRule =
  -- A rule to restrict all members of specified basic groups and supergroups from doing something 
  -- 
  -- __chat_ids__ The chat identifiers, total number of chats in all rules must not exceed 20
- UserPrivacySettingRuleRestrictChatMembers { chat_ids :: Maybe [Int] }  deriving (Show, Eq)
+ UserPrivacySettingRuleRestrictChatMembers { chat_ids :: Maybe [Int] }  deriving (Eq)
+
+instance Show UserPrivacySettingRule where
+ show UserPrivacySettingRuleAllowAll {  } =
+  "UserPrivacySettingRuleAllowAll" ++ cc [ ]
+
+ show UserPrivacySettingRuleAllowContacts {  } =
+  "UserPrivacySettingRuleAllowContacts" ++ cc [ ]
+
+ show UserPrivacySettingRuleAllowUsers { user_ids=user_ids } =
+  "UserPrivacySettingRuleAllowUsers" ++ cc [p "user_ids" user_ids ]
+
+ show UserPrivacySettingRuleAllowChatMembers { chat_ids=chat_ids } =
+  "UserPrivacySettingRuleAllowChatMembers" ++ cc [p "chat_ids" chat_ids ]
+
+ show UserPrivacySettingRuleRestrictAll {  } =
+  "UserPrivacySettingRuleRestrictAll" ++ cc [ ]
+
+ show UserPrivacySettingRuleRestrictContacts {  } =
+  "UserPrivacySettingRuleRestrictContacts" ++ cc [ ]
+
+ show UserPrivacySettingRuleRestrictUsers { user_ids=user_ids } =
+  "UserPrivacySettingRuleRestrictUsers" ++ cc [p "user_ids" user_ids ]
+
+ show UserPrivacySettingRuleRestrictChatMembers { chat_ids=chat_ids } =
+  "UserPrivacySettingRuleRestrictChatMembers" ++ cc [p "chat_ids" chat_ids ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON UserPrivacySettingRule where
- toJSON (UserPrivacySettingRuleAllowAll {  }) =
+ toJSON UserPrivacySettingRuleAllowAll {  } =
   A.object [ "@type" A..= T.String "userPrivacySettingRuleAllowAll" ]
 
- toJSON (UserPrivacySettingRuleAllowContacts {  }) =
+ toJSON UserPrivacySettingRuleAllowContacts {  } =
   A.object [ "@type" A..= T.String "userPrivacySettingRuleAllowContacts" ]
 
- toJSON (UserPrivacySettingRuleAllowUsers { user_ids = user_ids }) =
+ toJSON UserPrivacySettingRuleAllowUsers { user_ids = user_ids } =
   A.object [ "@type" A..= T.String "userPrivacySettingRuleAllowUsers", "user_ids" A..= user_ids ]
 
- toJSON (UserPrivacySettingRuleAllowChatMembers { chat_ids = chat_ids }) =
+ toJSON UserPrivacySettingRuleAllowChatMembers { chat_ids = chat_ids } =
   A.object [ "@type" A..= T.String "userPrivacySettingRuleAllowChatMembers", "chat_ids" A..= chat_ids ]
 
- toJSON (UserPrivacySettingRuleRestrictAll {  }) =
+ toJSON UserPrivacySettingRuleRestrictAll {  } =
   A.object [ "@type" A..= T.String "userPrivacySettingRuleRestrictAll" ]
 
- toJSON (UserPrivacySettingRuleRestrictContacts {  }) =
+ toJSON UserPrivacySettingRuleRestrictContacts {  } =
   A.object [ "@type" A..= T.String "userPrivacySettingRuleRestrictContacts" ]
 
- toJSON (UserPrivacySettingRuleRestrictUsers { user_ids = user_ids }) =
+ toJSON UserPrivacySettingRuleRestrictUsers { user_ids = user_ids } =
   A.object [ "@type" A..= T.String "userPrivacySettingRuleRestrictUsers", "user_ids" A..= user_ids ]
 
- toJSON (UserPrivacySettingRuleRestrictChatMembers { chat_ids = chat_ids }) =
+ toJSON UserPrivacySettingRuleRestrictChatMembers { chat_ids = chat_ids } =
   A.object [ "@type" A..= T.String "userPrivacySettingRuleRestrictChatMembers", "chat_ids" A..= chat_ids ]
 
 instance T.FromJSON UserPrivacySettingRule where
@@ -126,3 +161,4 @@ instance T.FromJSON UserPrivacySettingRule where
    parseUserPrivacySettingRuleRestrictChatMembers = A.withObject "UserPrivacySettingRuleRestrictChatMembers" $ \o -> do
     chat_ids <- o A..:? "chat_ids"
     return $ UserPrivacySettingRuleRestrictChatMembers { chat_ids = chat_ids }
+ parseJSON _ = mempty

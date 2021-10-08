@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __seconds__ Number of seconds before the function returns
 data SetAlarm = 
 
- SetAlarm { seconds :: Maybe Float }  deriving (Show, Eq)
+ SetAlarm { seconds :: Maybe Float }  deriving (Eq)
+
+instance Show SetAlarm where
+ show SetAlarm { seconds=seconds } =
+  "SetAlarm" ++ cc [p "seconds" seconds ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SetAlarm where
- toJSON (SetAlarm { seconds = seconds }) =
+ toJSON SetAlarm { seconds = seconds } =
   A.object [ "@type" A..= T.String "setAlarm", "seconds" A..= seconds ]
 
 instance T.FromJSON SetAlarm where
@@ -31,3 +45,4 @@ instance T.FromJSON SetAlarm where
    parseSetAlarm = A.withObject "SetAlarm" $ \o -> do
     seconds <- o A..:? "seconds"
     return $ SetAlarm { seconds = seconds }
+ parseJSON _ = mempty

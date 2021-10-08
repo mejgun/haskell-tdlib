@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -74,55 +75,113 @@ data FileType =
  -- |
  -- 
  -- The file is a wallpaper or a background pattern
- FileTypeWallpaper deriving (Show, Eq)
+ FileTypeWallpaper deriving (Eq)
+
+instance Show FileType where
+ show FileTypeNone {  } =
+  "FileTypeNone" ++ cc [ ]
+
+ show FileTypeAnimation {  } =
+  "FileTypeAnimation" ++ cc [ ]
+
+ show FileTypeAudio {  } =
+  "FileTypeAudio" ++ cc [ ]
+
+ show FileTypeDocument {  } =
+  "FileTypeDocument" ++ cc [ ]
+
+ show FileTypePhoto {  } =
+  "FileTypePhoto" ++ cc [ ]
+
+ show FileTypeProfilePhoto {  } =
+  "FileTypeProfilePhoto" ++ cc [ ]
+
+ show FileTypeSecret {  } =
+  "FileTypeSecret" ++ cc [ ]
+
+ show FileTypeSecretThumbnail {  } =
+  "FileTypeSecretThumbnail" ++ cc [ ]
+
+ show FileTypeSecure {  } =
+  "FileTypeSecure" ++ cc [ ]
+
+ show FileTypeSticker {  } =
+  "FileTypeSticker" ++ cc [ ]
+
+ show FileTypeThumbnail {  } =
+  "FileTypeThumbnail" ++ cc [ ]
+
+ show FileTypeUnknown {  } =
+  "FileTypeUnknown" ++ cc [ ]
+
+ show FileTypeVideo {  } =
+  "FileTypeVideo" ++ cc [ ]
+
+ show FileTypeVideoNote {  } =
+  "FileTypeVideoNote" ++ cc [ ]
+
+ show FileTypeVoiceNote {  } =
+  "FileTypeVoiceNote" ++ cc [ ]
+
+ show FileTypeWallpaper {  } =
+  "FileTypeWallpaper" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON FileType where
- toJSON (FileTypeNone {  }) =
+ toJSON FileTypeNone {  } =
   A.object [ "@type" A..= T.String "fileTypeNone" ]
 
- toJSON (FileTypeAnimation {  }) =
+ toJSON FileTypeAnimation {  } =
   A.object [ "@type" A..= T.String "fileTypeAnimation" ]
 
- toJSON (FileTypeAudio {  }) =
+ toJSON FileTypeAudio {  } =
   A.object [ "@type" A..= T.String "fileTypeAudio" ]
 
- toJSON (FileTypeDocument {  }) =
+ toJSON FileTypeDocument {  } =
   A.object [ "@type" A..= T.String "fileTypeDocument" ]
 
- toJSON (FileTypePhoto {  }) =
+ toJSON FileTypePhoto {  } =
   A.object [ "@type" A..= T.String "fileTypePhoto" ]
 
- toJSON (FileTypeProfilePhoto {  }) =
+ toJSON FileTypeProfilePhoto {  } =
   A.object [ "@type" A..= T.String "fileTypeProfilePhoto" ]
 
- toJSON (FileTypeSecret {  }) =
+ toJSON FileTypeSecret {  } =
   A.object [ "@type" A..= T.String "fileTypeSecret" ]
 
- toJSON (FileTypeSecretThumbnail {  }) =
+ toJSON FileTypeSecretThumbnail {  } =
   A.object [ "@type" A..= T.String "fileTypeSecretThumbnail" ]
 
- toJSON (FileTypeSecure {  }) =
+ toJSON FileTypeSecure {  } =
   A.object [ "@type" A..= T.String "fileTypeSecure" ]
 
- toJSON (FileTypeSticker {  }) =
+ toJSON FileTypeSticker {  } =
   A.object [ "@type" A..= T.String "fileTypeSticker" ]
 
- toJSON (FileTypeThumbnail {  }) =
+ toJSON FileTypeThumbnail {  } =
   A.object [ "@type" A..= T.String "fileTypeThumbnail" ]
 
- toJSON (FileTypeUnknown {  }) =
+ toJSON FileTypeUnknown {  } =
   A.object [ "@type" A..= T.String "fileTypeUnknown" ]
 
- toJSON (FileTypeVideo {  }) =
+ toJSON FileTypeVideo {  } =
   A.object [ "@type" A..= T.String "fileTypeVideo" ]
 
- toJSON (FileTypeVideoNote {  }) =
+ toJSON FileTypeVideoNote {  } =
   A.object [ "@type" A..= T.String "fileTypeVideoNote" ]
 
- toJSON (FileTypeVoiceNote {  }) =
+ toJSON FileTypeVoiceNote {  } =
   A.object [ "@type" A..= T.String "fileTypeVoiceNote" ]
 
- toJSON (FileTypeWallpaper {  }) =
+ toJSON FileTypeWallpaper {  } =
   A.object [ "@type" A..= T.String "fileTypeWallpaper" ]
 
 instance T.FromJSON FileType where
@@ -210,3 +269,4 @@ instance T.FromJSON FileType where
    parseFileTypeWallpaper :: A.Value -> T.Parser FileType
    parseFileTypeWallpaper = A.withObject "FileTypeWallpaper" $ \o -> do
     return $ FileTypeWallpaper {  }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.ThemeSettings as ThemeSettings
 
 -- |
@@ -19,10 +20,23 @@ import {-# SOURCE #-} qualified API.ThemeSettings as ThemeSettings
 -- __dark_settings__ Theme settings for a dark chat theme
 data ChatTheme = 
 
- ChatTheme { dark_settings :: Maybe ThemeSettings.ThemeSettings, light_settings :: Maybe ThemeSettings.ThemeSettings, name :: Maybe String }  deriving (Show, Eq)
+ ChatTheme { dark_settings :: Maybe ThemeSettings.ThemeSettings, light_settings :: Maybe ThemeSettings.ThemeSettings, name :: Maybe String }  deriving (Eq)
+
+instance Show ChatTheme where
+ show ChatTheme { dark_settings=dark_settings, light_settings=light_settings, name=name } =
+  "ChatTheme" ++ cc [p "dark_settings" dark_settings, p "light_settings" light_settings, p "name" name ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatTheme where
- toJSON (ChatTheme { dark_settings = dark_settings, light_settings = light_settings, name = name }) =
+ toJSON ChatTheme { dark_settings = dark_settings, light_settings = light_settings, name = name } =
   A.object [ "@type" A..= T.String "chatTheme", "dark_settings" A..= dark_settings, "light_settings" A..= light_settings, "name" A..= name ]
 
 instance T.FromJSON ChatTheme where
@@ -38,3 +52,4 @@ instance T.FromJSON ChatTheme where
     light_settings <- o A..:? "light_settings"
     name <- o A..:? "name"
     return $ ChatTheme { dark_settings = dark_settings, light_settings = light_settings, name = name }
+ parseJSON _ = mempty

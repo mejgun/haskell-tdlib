@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
 -- |
@@ -25,13 +26,29 @@ data PollType =
  -- __correct_option_id__ 0-based identifier of the correct answer option; -1 for a yet unanswered poll
  -- 
  -- __explanation__ Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; 0-200 characters with at most 2 line feeds; empty for a yet unanswered poll
- PollTypeQuiz { explanation :: Maybe FormattedText.FormattedText, correct_option_id :: Maybe Int }  deriving (Show, Eq)
+ PollTypeQuiz { explanation :: Maybe FormattedText.FormattedText, correct_option_id :: Maybe Int }  deriving (Eq)
+
+instance Show PollType where
+ show PollTypeRegular { allow_multiple_answers=allow_multiple_answers } =
+  "PollTypeRegular" ++ cc [p "allow_multiple_answers" allow_multiple_answers ]
+
+ show PollTypeQuiz { explanation=explanation, correct_option_id=correct_option_id } =
+  "PollTypeQuiz" ++ cc [p "explanation" explanation, p "correct_option_id" correct_option_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON PollType where
- toJSON (PollTypeRegular { allow_multiple_answers = allow_multiple_answers }) =
+ toJSON PollTypeRegular { allow_multiple_answers = allow_multiple_answers } =
   A.object [ "@type" A..= T.String "pollTypeRegular", "allow_multiple_answers" A..= allow_multiple_answers ]
 
- toJSON (PollTypeQuiz { explanation = explanation, correct_option_id = correct_option_id }) =
+ toJSON PollTypeQuiz { explanation = explanation, correct_option_id = correct_option_id } =
   A.object [ "@type" A..= T.String "pollTypeQuiz", "explanation" A..= explanation, "correct_option_id" A..= correct_option_id ]
 
 instance T.FromJSON PollType where
@@ -52,3 +69,4 @@ instance T.FromJSON PollType where
     explanation <- o A..:? "explanation"
     correct_option_id <- mconcat [ o A..:? "correct_option_id", readMaybe <$> (o A..: "correct_option_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ PollTypeQuiz { explanation = explanation, correct_option_id = correct_option_id }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -38,28 +39,59 @@ data TopChatCategory =
  -- |
  -- 
  -- A category containing frequently used chats used to forward messages
- TopChatCategoryForwardChats deriving (Show, Eq)
+ TopChatCategoryForwardChats deriving (Eq)
+
+instance Show TopChatCategory where
+ show TopChatCategoryUsers {  } =
+  "TopChatCategoryUsers" ++ cc [ ]
+
+ show TopChatCategoryBots {  } =
+  "TopChatCategoryBots" ++ cc [ ]
+
+ show TopChatCategoryGroups {  } =
+  "TopChatCategoryGroups" ++ cc [ ]
+
+ show TopChatCategoryChannels {  } =
+  "TopChatCategoryChannels" ++ cc [ ]
+
+ show TopChatCategoryInlineBots {  } =
+  "TopChatCategoryInlineBots" ++ cc [ ]
+
+ show TopChatCategoryCalls {  } =
+  "TopChatCategoryCalls" ++ cc [ ]
+
+ show TopChatCategoryForwardChats {  } =
+  "TopChatCategoryForwardChats" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON TopChatCategory where
- toJSON (TopChatCategoryUsers {  }) =
+ toJSON TopChatCategoryUsers {  } =
   A.object [ "@type" A..= T.String "topChatCategoryUsers" ]
 
- toJSON (TopChatCategoryBots {  }) =
+ toJSON TopChatCategoryBots {  } =
   A.object [ "@type" A..= T.String "topChatCategoryBots" ]
 
- toJSON (TopChatCategoryGroups {  }) =
+ toJSON TopChatCategoryGroups {  } =
   A.object [ "@type" A..= T.String "topChatCategoryGroups" ]
 
- toJSON (TopChatCategoryChannels {  }) =
+ toJSON TopChatCategoryChannels {  } =
   A.object [ "@type" A..= T.String "topChatCategoryChannels" ]
 
- toJSON (TopChatCategoryInlineBots {  }) =
+ toJSON TopChatCategoryInlineBots {  } =
   A.object [ "@type" A..= T.String "topChatCategoryInlineBots" ]
 
- toJSON (TopChatCategoryCalls {  }) =
+ toJSON TopChatCategoryCalls {  } =
   A.object [ "@type" A..= T.String "topChatCategoryCalls" ]
 
- toJSON (TopChatCategoryForwardChats {  }) =
+ toJSON TopChatCategoryForwardChats {  } =
   A.object [ "@type" A..= T.String "topChatCategoryForwardChats" ]
 
 instance T.FromJSON TopChatCategory where
@@ -102,3 +134,4 @@ instance T.FromJSON TopChatCategory where
    parseTopChatCategoryForwardChats :: A.Value -> T.Parser TopChatCategory
    parseTopChatCategoryForwardChats = A.withObject "TopChatCategoryForwardChats" $ \o -> do
     return $ TopChatCategoryForwardChats {  }
+ parseJSON _ = mempty

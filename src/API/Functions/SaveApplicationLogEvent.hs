@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.JsonValue as JsonValue
 
 -- |
@@ -19,10 +20,23 @@ import {-# SOURCE #-} qualified API.JsonValue as JsonValue
 -- __data__ The log event data
 data SaveApplicationLogEvent = 
 
- SaveApplicationLogEvent { _data :: Maybe JsonValue.JsonValue, chat_id :: Maybe Int, _type :: Maybe String }  deriving (Show, Eq)
+ SaveApplicationLogEvent { _data :: Maybe JsonValue.JsonValue, chat_id :: Maybe Int, _type :: Maybe String }  deriving (Eq)
+
+instance Show SaveApplicationLogEvent where
+ show SaveApplicationLogEvent { _data=_data, chat_id=chat_id, _type=_type } =
+  "SaveApplicationLogEvent" ++ cc [p "_data" _data, p "chat_id" chat_id, p "_type" _type ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SaveApplicationLogEvent where
- toJSON (SaveApplicationLogEvent { _data = _data, chat_id = chat_id, _type = _type }) =
+ toJSON SaveApplicationLogEvent { _data = _data, chat_id = chat_id, _type = _type } =
   A.object [ "@type" A..= T.String "saveApplicationLogEvent", "data" A..= _data, "chat_id" A..= chat_id, "type" A..= _type ]
 
 instance T.FromJSON SaveApplicationLogEvent where
@@ -38,3 +52,4 @@ instance T.FromJSON SaveApplicationLogEvent where
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     _type <- o A..:? "type"
     return $ SaveApplicationLogEvent { _data = _data, chat_id = chat_id, _type = _type }
+ parseJSON _ = mempty

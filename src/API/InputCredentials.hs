@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -36,19 +37,41 @@ data InputCredentials =
  -- Applies if a user enters new credentials using Google Pay 
  -- 
  -- __data__ JSON-encoded data with the credential identifier
- InputCredentialsGooglePay { _data :: Maybe String }  deriving (Show, Eq)
+ InputCredentialsGooglePay { _data :: Maybe String }  deriving (Eq)
+
+instance Show InputCredentials where
+ show InputCredentialsSaved { saved_credentials_id=saved_credentials_id } =
+  "InputCredentialsSaved" ++ cc [p "saved_credentials_id" saved_credentials_id ]
+
+ show InputCredentialsNew { allow_save=allow_save, _data=_data } =
+  "InputCredentialsNew" ++ cc [p "allow_save" allow_save, p "_data" _data ]
+
+ show InputCredentialsApplePay { _data=_data } =
+  "InputCredentialsApplePay" ++ cc [p "_data" _data ]
+
+ show InputCredentialsGooglePay { _data=_data } =
+  "InputCredentialsGooglePay" ++ cc [p "_data" _data ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON InputCredentials where
- toJSON (InputCredentialsSaved { saved_credentials_id = saved_credentials_id }) =
+ toJSON InputCredentialsSaved { saved_credentials_id = saved_credentials_id } =
   A.object [ "@type" A..= T.String "inputCredentialsSaved", "saved_credentials_id" A..= saved_credentials_id ]
 
- toJSON (InputCredentialsNew { allow_save = allow_save, _data = _data }) =
+ toJSON InputCredentialsNew { allow_save = allow_save, _data = _data } =
   A.object [ "@type" A..= T.String "inputCredentialsNew", "allow_save" A..= allow_save, "data" A..= _data ]
 
- toJSON (InputCredentialsApplePay { _data = _data }) =
+ toJSON InputCredentialsApplePay { _data = _data } =
   A.object [ "@type" A..= T.String "inputCredentialsApplePay", "data" A..= _data ]
 
- toJSON (InputCredentialsGooglePay { _data = _data }) =
+ toJSON InputCredentialsGooglePay { _data = _data } =
   A.object [ "@type" A..= T.String "inputCredentialsGooglePay", "data" A..= _data ]
 
 instance T.FromJSON InputCredentials where
@@ -81,3 +104,4 @@ instance T.FromJSON InputCredentials where
    parseInputCredentialsGooglePay = A.withObject "InputCredentialsGooglePay" $ \o -> do
     _data <- o A..:? "data"
     return $ InputCredentialsGooglePay { _data = _data }
+ parseJSON _ = mempty

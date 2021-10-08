@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __data__ JSON-serialized answer to the query
 data AnswerCustomQuery = 
 
- AnswerCustomQuery { _data :: Maybe String, custom_query_id :: Maybe Int }  deriving (Show, Eq)
+ AnswerCustomQuery { _data :: Maybe String, custom_query_id :: Maybe Int }  deriving (Eq)
+
+instance Show AnswerCustomQuery where
+ show AnswerCustomQuery { _data=_data, custom_query_id=custom_query_id } =
+  "AnswerCustomQuery" ++ cc [p "_data" _data, p "custom_query_id" custom_query_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON AnswerCustomQuery where
- toJSON (AnswerCustomQuery { _data = _data, custom_query_id = custom_query_id }) =
+ toJSON AnswerCustomQuery { _data = _data, custom_query_id = custom_query_id } =
   A.object [ "@type" A..= T.String "answerCustomQuery", "data" A..= _data, "custom_query_id" A..= custom_query_id ]
 
 instance T.FromJSON AnswerCustomQuery where
@@ -34,3 +48,4 @@ instance T.FromJSON AnswerCustomQuery where
     _data <- o A..:? "data"
     custom_query_id <- mconcat [ o A..:? "custom_query_id", readMaybe <$> (o A..: "custom_query_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ AnswerCustomQuery { _data = _data, custom_query_id = custom_query_id }
+ parseJSON _ = mempty

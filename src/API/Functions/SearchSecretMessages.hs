@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.SearchMessagesFilter as SearchMessagesFilter
 
 -- |
@@ -14,19 +15,32 @@ import {-# SOURCE #-} qualified API.SearchMessagesFilter as SearchMessagesFilter
 -- 
 -- __chat_id__ Identifier of the chat in which to search. Specify 0 to search in all secret chats
 -- 
--- __query__ Query to search for. If empty, searchChatMessages should be used instead
+-- __query__ Query to search for. If empty, searchChatMessages must be used instead
 -- 
 -- __offset__ Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
 -- 
 -- __limit__ The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 -- 
--- __filter__ A filter for message content in the search results
+-- __filter__ Additional filter for messages to search; pass null to search for all messages
 data SearchSecretMessages = 
 
- SearchSecretMessages { _filter :: Maybe SearchMessagesFilter.SearchMessagesFilter, limit :: Maybe Int, offset :: Maybe String, query :: Maybe String, chat_id :: Maybe Int }  deriving (Show, Eq)
+ SearchSecretMessages { _filter :: Maybe SearchMessagesFilter.SearchMessagesFilter, limit :: Maybe Int, offset :: Maybe String, query :: Maybe String, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show SearchSecretMessages where
+ show SearchSecretMessages { _filter=_filter, limit=limit, offset=offset, query=query, chat_id=chat_id } =
+  "SearchSecretMessages" ++ cc [p "_filter" _filter, p "limit" limit, p "offset" offset, p "query" query, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SearchSecretMessages where
- toJSON (SearchSecretMessages { _filter = _filter, limit = limit, offset = offset, query = query, chat_id = chat_id }) =
+ toJSON SearchSecretMessages { _filter = _filter, limit = limit, offset = offset, query = query, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "searchSecretMessages", "filter" A..= _filter, "limit" A..= limit, "offset" A..= offset, "query" A..= query, "chat_id" A..= chat_id ]
 
 instance T.FromJSON SearchSecretMessages where
@@ -44,3 +58,4 @@ instance T.FromJSON SearchSecretMessages where
     query <- o A..:? "query"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SearchSecretMessages { _filter = _filter, limit = limit, offset = offset, query = query, chat_id = chat_id }
+ parseJSON _ = mempty

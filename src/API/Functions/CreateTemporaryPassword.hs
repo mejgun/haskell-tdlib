@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -13,13 +14,26 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __password__ Persistent user password
 -- 
--- __valid_for__ Time during which the temporary password will be valid, in seconds; should be between 60 and 86400
+-- __valid_for__ Time during which the temporary password will be valid, in seconds; must be between 60 and 86400
 data CreateTemporaryPassword = 
 
- CreateTemporaryPassword { valid_for :: Maybe Int, password :: Maybe String }  deriving (Show, Eq)
+ CreateTemporaryPassword { valid_for :: Maybe Int, password :: Maybe String }  deriving (Eq)
+
+instance Show CreateTemporaryPassword where
+ show CreateTemporaryPassword { valid_for=valid_for, password=password } =
+  "CreateTemporaryPassword" ++ cc [p "valid_for" valid_for, p "password" password ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON CreateTemporaryPassword where
- toJSON (CreateTemporaryPassword { valid_for = valid_for, password = password }) =
+ toJSON CreateTemporaryPassword { valid_for = valid_for, password = password } =
   A.object [ "@type" A..= T.String "createTemporaryPassword", "valid_for" A..= valid_for, "password" A..= password ]
 
 instance T.FromJSON CreateTemporaryPassword where
@@ -34,3 +48,4 @@ instance T.FromJSON CreateTemporaryPassword where
     valid_for <- mconcat [ o A..:? "valid_for", readMaybe <$> (o A..: "valid_for" :: T.Parser String)] :: T.Parser (Maybe Int)
     password <- o A..:? "password"
     return $ CreateTemporaryPassword { valid_for = valid_for, password = password }
+ parseJSON _ = mempty

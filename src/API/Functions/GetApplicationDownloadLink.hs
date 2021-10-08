@@ -6,16 +6,30 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
 -- Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
 data GetApplicationDownloadLink = 
 
- GetApplicationDownloadLink deriving (Show, Eq)
+ GetApplicationDownloadLink deriving (Eq)
+
+instance Show GetApplicationDownloadLink where
+ show GetApplicationDownloadLink {  } =
+  "GetApplicationDownloadLink" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetApplicationDownloadLink where
- toJSON (GetApplicationDownloadLink {  }) =
+ toJSON GetApplicationDownloadLink {  } =
   A.object [ "@type" A..= T.String "getApplicationDownloadLink" ]
 
 instance T.FromJSON GetApplicationDownloadLink where
@@ -28,3 +42,4 @@ instance T.FromJSON GetApplicationDownloadLink where
    parseGetApplicationDownloadLink :: A.Value -> T.Parser GetApplicationDownloadLink
    parseGetApplicationDownloadLink = A.withObject "GetApplicationDownloadLink" $ \o -> do
     return $ GetApplicationDownloadLink {  }
+ parseJSON _ = mempty

@@ -6,13 +6,14 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.MaskPoint as MaskPoint
 
 -- |
 -- 
--- Position on a photo where a mask should be placed 
+-- Position on a photo where a mask is placed 
 -- 
--- __point__ Part of the face, relative to which the mask should be placed
+-- __point__ Part of the face, relative to which the mask is placed
 -- 
 -- __x_shift__ Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. (For example, -1.0 will place the mask just to the left of the default mask position)
 -- 
@@ -21,10 +22,23 @@ import {-# SOURCE #-} qualified API.MaskPoint as MaskPoint
 -- __scale__ Mask scaling coefficient. (For example, 2.0 means a doubled size)
 data MaskPosition = 
 
- MaskPosition { scale :: Maybe Float, y_shift :: Maybe Float, x_shift :: Maybe Float, point :: Maybe MaskPoint.MaskPoint }  deriving (Show, Eq)
+ MaskPosition { scale :: Maybe Float, y_shift :: Maybe Float, x_shift :: Maybe Float, point :: Maybe MaskPoint.MaskPoint }  deriving (Eq)
+
+instance Show MaskPosition where
+ show MaskPosition { scale=scale, y_shift=y_shift, x_shift=x_shift, point=point } =
+  "MaskPosition" ++ cc [p "scale" scale, p "y_shift" y_shift, p "x_shift" x_shift, p "point" point ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON MaskPosition where
- toJSON (MaskPosition { scale = scale, y_shift = y_shift, x_shift = x_shift, point = point }) =
+ toJSON MaskPosition { scale = scale, y_shift = y_shift, x_shift = x_shift, point = point } =
   A.object [ "@type" A..= T.String "maskPosition", "scale" A..= scale, "y_shift" A..= y_shift, "x_shift" A..= x_shift, "point" A..= point ]
 
 instance T.FromJSON MaskPosition where
@@ -41,3 +55,4 @@ instance T.FromJSON MaskPosition where
     x_shift <- o A..:? "x_shift"
     point <- o A..:? "point"
     return $ MaskPosition { scale = scale, y_shift = y_shift, x_shift = x_shift, point = point }
+ parseJSON _ = mempty

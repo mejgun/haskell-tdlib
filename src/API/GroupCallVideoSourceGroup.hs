@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __source_ids__ The list of synchronization source identifiers
 data GroupCallVideoSourceGroup = 
 
- GroupCallVideoSourceGroup { source_ids :: Maybe [Int], semantics :: Maybe String }  deriving (Show, Eq)
+ GroupCallVideoSourceGroup { source_ids :: Maybe [Int], semantics :: Maybe String }  deriving (Eq)
+
+instance Show GroupCallVideoSourceGroup where
+ show GroupCallVideoSourceGroup { source_ids=source_ids, semantics=semantics } =
+  "GroupCallVideoSourceGroup" ++ cc [p "source_ids" source_ids, p "semantics" semantics ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GroupCallVideoSourceGroup where
- toJSON (GroupCallVideoSourceGroup { source_ids = source_ids, semantics = semantics }) =
+ toJSON GroupCallVideoSourceGroup { source_ids = source_ids, semantics = semantics } =
   A.object [ "@type" A..= T.String "groupCallVideoSourceGroup", "source_ids" A..= source_ids, "semantics" A..= semantics ]
 
 instance T.FromJSON GroupCallVideoSourceGroup where
@@ -34,3 +48,4 @@ instance T.FromJSON GroupCallVideoSourceGroup where
     source_ids <- o A..:? "source_ids"
     semantics <- o A..:? "semantics"
     return $ GroupCallVideoSourceGroup { source_ids = source_ids, semantics = semantics }
+ parseJSON _ = mempty

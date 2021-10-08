@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.PhotoSize as PhotoSize
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 
@@ -20,10 +21,23 @@ import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 -- __sizes__ Available variants of the photo, in different sizes
 data Photo = 
 
- Photo { sizes :: Maybe [PhotoSize.PhotoSize], minithumbnail :: Maybe Minithumbnail.Minithumbnail, has_stickers :: Maybe Bool }  deriving (Show, Eq)
+ Photo { sizes :: Maybe [PhotoSize.PhotoSize], minithumbnail :: Maybe Minithumbnail.Minithumbnail, has_stickers :: Maybe Bool }  deriving (Eq)
+
+instance Show Photo where
+ show Photo { sizes=sizes, minithumbnail=minithumbnail, has_stickers=has_stickers } =
+  "Photo" ++ cc [p "sizes" sizes, p "minithumbnail" minithumbnail, p "has_stickers" has_stickers ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Photo where
- toJSON (Photo { sizes = sizes, minithumbnail = minithumbnail, has_stickers = has_stickers }) =
+ toJSON Photo { sizes = sizes, minithumbnail = minithumbnail, has_stickers = has_stickers } =
   A.object [ "@type" A..= T.String "photo", "sizes" A..= sizes, "minithumbnail" A..= minithumbnail, "has_stickers" A..= has_stickers ]
 
 instance T.FromJSON Photo where
@@ -39,3 +53,4 @@ instance T.FromJSON Photo where
     minithumbnail <- o A..:? "minithumbnail"
     has_stickers <- o A..:? "has_stickers"
     return $ Photo { sizes = sizes, minithumbnail = minithumbnail, has_stickers = has_stickers }
+ parseJSON _ = mempty

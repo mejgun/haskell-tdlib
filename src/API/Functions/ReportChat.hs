@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.ChatReportReason as ChatReportReason
 
 -- |
@@ -21,10 +22,23 @@ import {-# SOURCE #-} qualified API.ChatReportReason as ChatReportReason
 -- __text__ Additional report details; 0-1024 characters
 data ReportChat = 
 
- ReportChat { text :: Maybe String, reason :: Maybe ChatReportReason.ChatReportReason, message_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Show, Eq)
+ ReportChat { text :: Maybe String, reason :: Maybe ChatReportReason.ChatReportReason, message_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show ReportChat where
+ show ReportChat { text=text, reason=reason, message_ids=message_ids, chat_id=chat_id } =
+  "ReportChat" ++ cc [p "text" text, p "reason" reason, p "message_ids" message_ids, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ReportChat where
- toJSON (ReportChat { text = text, reason = reason, message_ids = message_ids, chat_id = chat_id }) =
+ toJSON ReportChat { text = text, reason = reason, message_ids = message_ids, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "reportChat", "text" A..= text, "reason" A..= reason, "message_ids" A..= message_ids, "chat_id" A..= chat_id ]
 
 instance T.FromJSON ReportChat where
@@ -41,3 +55,4 @@ instance T.FromJSON ReportChat where
     message_ids <- o A..:? "message_ids"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ReportChat { text = text, reason = reason, message_ids = message_ids, chat_id = chat_id }
+ parseJSON _ = mempty

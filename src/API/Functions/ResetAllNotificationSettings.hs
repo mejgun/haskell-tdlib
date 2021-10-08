@@ -6,16 +6,30 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
 -- Resets all notification settings to their default values. By default, all chats are unmuted, the sound is set to "default" and message previews are shown
 data ResetAllNotificationSettings = 
 
- ResetAllNotificationSettings deriving (Show, Eq)
+ ResetAllNotificationSettings deriving (Eq)
+
+instance Show ResetAllNotificationSettings where
+ show ResetAllNotificationSettings {  } =
+  "ResetAllNotificationSettings" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ResetAllNotificationSettings where
- toJSON (ResetAllNotificationSettings {  }) =
+ toJSON ResetAllNotificationSettings {  } =
   A.object [ "@type" A..= T.String "resetAllNotificationSettings" ]
 
 instance T.FromJSON ResetAllNotificationSettings where
@@ -28,3 +42,4 @@ instance T.FromJSON ResetAllNotificationSettings where
    parseResetAllNotificationSettings :: A.Value -> T.Parser ResetAllNotificationSettings
    parseResetAllNotificationSettings = A.withObject "ResetAllNotificationSettings" $ \o -> do
     return $ ResetAllNotificationSettings {  }
+ parseJSON _ = mempty

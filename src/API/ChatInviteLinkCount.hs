@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -18,10 +19,23 @@ import qualified Data.Aeson.Types as T
 -- __revoked_invite_link_count__ Number of revoked invite links
 data ChatInviteLinkCount = 
 
- ChatInviteLinkCount { revoked_invite_link_count :: Maybe Int, invite_link_count :: Maybe Int, user_id :: Maybe Int }  deriving (Show, Eq)
+ ChatInviteLinkCount { revoked_invite_link_count :: Maybe Int, invite_link_count :: Maybe Int, user_id :: Maybe Int }  deriving (Eq)
+
+instance Show ChatInviteLinkCount where
+ show ChatInviteLinkCount { revoked_invite_link_count=revoked_invite_link_count, invite_link_count=invite_link_count, user_id=user_id } =
+  "ChatInviteLinkCount" ++ cc [p "revoked_invite_link_count" revoked_invite_link_count, p "invite_link_count" invite_link_count, p "user_id" user_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatInviteLinkCount where
- toJSON (ChatInviteLinkCount { revoked_invite_link_count = revoked_invite_link_count, invite_link_count = invite_link_count, user_id = user_id }) =
+ toJSON ChatInviteLinkCount { revoked_invite_link_count = revoked_invite_link_count, invite_link_count = invite_link_count, user_id = user_id } =
   A.object [ "@type" A..= T.String "chatInviteLinkCount", "revoked_invite_link_count" A..= revoked_invite_link_count, "invite_link_count" A..= invite_link_count, "user_id" A..= user_id ]
 
 instance T.FromJSON ChatInviteLinkCount where
@@ -37,3 +51,4 @@ instance T.FromJSON ChatInviteLinkCount where
     invite_link_count <- mconcat [ o A..:? "invite_link_count", readMaybe <$> (o A..: "invite_link_count" :: T.Parser String)] :: T.Parser (Maybe Int)
     user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatInviteLinkCount { revoked_invite_link_count = revoked_invite_link_count, invite_link_count = invite_link_count, user_id = user_id }
+ parseJSON _ = mempty

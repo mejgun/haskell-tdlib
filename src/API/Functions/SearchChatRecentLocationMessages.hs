@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __limit__ The maximum number of messages to be returned
 data SearchChatRecentLocationMessages = 
 
- SearchChatRecentLocationMessages { limit :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
+ SearchChatRecentLocationMessages { limit :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show SearchChatRecentLocationMessages where
+ show SearchChatRecentLocationMessages { limit=limit, chat_id=chat_id } =
+  "SearchChatRecentLocationMessages" ++ cc [p "limit" limit, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SearchChatRecentLocationMessages where
- toJSON (SearchChatRecentLocationMessages { limit = limit, chat_id = chat_id }) =
+ toJSON SearchChatRecentLocationMessages { limit = limit, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "searchChatRecentLocationMessages", "limit" A..= limit, "chat_id" A..= chat_id ]
 
 instance T.FromJSON SearchChatRecentLocationMessages where
@@ -34,3 +48,4 @@ instance T.FromJSON SearchChatRecentLocationMessages where
     limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ SearchChatRecentLocationMessages { limit = limit, chat_id = chat_id }
+ parseJSON _ = mempty

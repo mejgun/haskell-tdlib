@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -18,10 +19,23 @@ import qualified Data.Aeson.Types as T
 -- __password__ The password of the current user
 data TransferChatOwnership = 
 
- TransferChatOwnership { password :: Maybe String, user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
+ TransferChatOwnership { password :: Maybe String, user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show TransferChatOwnership where
+ show TransferChatOwnership { password=password, user_id=user_id, chat_id=chat_id } =
+  "TransferChatOwnership" ++ cc [p "password" password, p "user_id" user_id, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON TransferChatOwnership where
- toJSON (TransferChatOwnership { password = password, user_id = user_id, chat_id = chat_id }) =
+ toJSON TransferChatOwnership { password = password, user_id = user_id, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "transferChatOwnership", "password" A..= password, "user_id" A..= user_id, "chat_id" A..= chat_id ]
 
 instance T.FromJSON TransferChatOwnership where
@@ -37,3 +51,4 @@ instance T.FromJSON TransferChatOwnership where
     user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ TransferChatOwnership { password = password, user_id = user_id, chat_id = chat_id }
+ parseJSON _ = mempty

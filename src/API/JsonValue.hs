@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.JsonObjectMember as JsonObjectMember
 
 -- |
@@ -45,25 +46,53 @@ data JsonValue =
  -- Represents a JSON object 
  -- 
  -- __members__ The list of object members
- JsonValueObject { members :: Maybe [JsonObjectMember.JsonObjectMember] }  deriving (Show, Eq)
+ JsonValueObject { members :: Maybe [JsonObjectMember.JsonObjectMember] }  deriving (Eq)
+
+instance Show JsonValue where
+ show JsonValueNull {  } =
+  "JsonValueNull" ++ cc [ ]
+
+ show JsonValueBoolean { __value=__value } =
+  "JsonValueBoolean" ++ cc [p "__value" __value ]
+
+ show JsonValueNumber { _value=_value } =
+  "JsonValueNumber" ++ cc [p "_value" _value ]
+
+ show JsonValueString { value=value } =
+  "JsonValueString" ++ cc [p "value" value ]
+
+ show JsonValueArray { values=values } =
+  "JsonValueArray" ++ cc [p "values" values ]
+
+ show JsonValueObject { members=members } =
+  "JsonValueObject" ++ cc [p "members" members ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON JsonValue where
- toJSON (JsonValueNull {  }) =
+ toJSON JsonValueNull {  } =
   A.object [ "@type" A..= T.String "jsonValueNull" ]
 
- toJSON (JsonValueBoolean { __value = __value }) =
+ toJSON JsonValueBoolean { __value = __value } =
   A.object [ "@type" A..= T.String "jsonValueBoolean", "value" A..= __value ]
 
- toJSON (JsonValueNumber { _value = _value }) =
+ toJSON JsonValueNumber { _value = _value } =
   A.object [ "@type" A..= T.String "jsonValueNumber", "value" A..= _value ]
 
- toJSON (JsonValueString { value = value }) =
+ toJSON JsonValueString { value = value } =
   A.object [ "@type" A..= T.String "jsonValueString", "value" A..= value ]
 
- toJSON (JsonValueArray { values = values }) =
+ toJSON JsonValueArray { values = values } =
   A.object [ "@type" A..= T.String "jsonValueArray", "values" A..= values ]
 
- toJSON (JsonValueObject { members = members }) =
+ toJSON JsonValueObject { members = members } =
   A.object [ "@type" A..= T.String "jsonValueObject", "members" A..= members ]
 
 instance T.FromJSON JsonValue where
@@ -106,3 +135,4 @@ instance T.FromJSON JsonValue where
    parseJsonValueObject = A.withObject "JsonValueObject" $ \o -> do
     members <- o A..:? "members"
     return $ JsonValueObject { members = members }
+ parseJSON _ = mempty

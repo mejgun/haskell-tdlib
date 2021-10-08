@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 -- |
@@ -19,10 +20,23 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- __attached_files__ Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded
 data ImportMessages = 
 
- ImportMessages { attached_files :: Maybe [InputFile.InputFile], message_file :: Maybe InputFile.InputFile, chat_id :: Maybe Int }  deriving (Show, Eq)
+ ImportMessages { attached_files :: Maybe [InputFile.InputFile], message_file :: Maybe InputFile.InputFile, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show ImportMessages where
+ show ImportMessages { attached_files=attached_files, message_file=message_file, chat_id=chat_id } =
+  "ImportMessages" ++ cc [p "attached_files" attached_files, p "message_file" message_file, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ImportMessages where
- toJSON (ImportMessages { attached_files = attached_files, message_file = message_file, chat_id = chat_id }) =
+ toJSON ImportMessages { attached_files = attached_files, message_file = message_file, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "importMessages", "attached_files" A..= attached_files, "message_file" A..= message_file, "chat_id" A..= chat_id ]
 
 instance T.FromJSON ImportMessages where
@@ -38,3 +52,4 @@ instance T.FromJSON ImportMessages where
     message_file <- o A..:? "message_file"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ImportMessages { attached_files = attached_files, message_file = message_file, chat_id = chat_id }
+ parseJSON _ = mempty

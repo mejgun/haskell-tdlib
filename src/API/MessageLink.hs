@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __is_public__ True, if the link will work for non-members of the chat
 data MessageLink = 
 
- MessageLink { is_public :: Maybe Bool, link :: Maybe String }  deriving (Show, Eq)
+ MessageLink { is_public :: Maybe Bool, link :: Maybe String }  deriving (Eq)
+
+instance Show MessageLink where
+ show MessageLink { is_public=is_public, link=link } =
+  "MessageLink" ++ cc [p "is_public" is_public, p "link" link ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON MessageLink where
- toJSON (MessageLink { is_public = is_public, link = link }) =
+ toJSON MessageLink { is_public = is_public, link = link } =
   A.object [ "@type" A..= T.String "messageLink", "is_public" A..= is_public, "link" A..= link ]
 
 instance T.FromJSON MessageLink where
@@ -34,3 +48,4 @@ instance T.FromJSON MessageLink where
     is_public <- o A..:? "is_public"
     link <- o A..:? "link"
     return $ MessageLink { is_public = is_public, link = link }
+ parseJSON _ = mempty

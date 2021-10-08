@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 
 -- |
@@ -15,10 +16,23 @@ import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 -- __text__ The text
 data GetMarkdownText = 
 
- GetMarkdownText { text :: Maybe FormattedText.FormattedText }  deriving (Show, Eq)
+ GetMarkdownText { text :: Maybe FormattedText.FormattedText }  deriving (Eq)
+
+instance Show GetMarkdownText where
+ show GetMarkdownText { text=text } =
+  "GetMarkdownText" ++ cc [p "text" text ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetMarkdownText where
- toJSON (GetMarkdownText { text = text }) =
+ toJSON GetMarkdownText { text = text } =
   A.object [ "@type" A..= T.String "getMarkdownText", "text" A..= text ]
 
 instance T.FromJSON GetMarkdownText where
@@ -32,3 +46,4 @@ instance T.FromJSON GetMarkdownText where
    parseGetMarkdownText = A.withObject "GetMarkdownText" $ \o -> do
     text <- o A..:? "text"
     return $ GetMarkdownText { text = text }
+ parseJSON _ = mempty

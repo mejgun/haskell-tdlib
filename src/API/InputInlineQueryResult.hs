@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Contact as Contact
 import {-# SOURCE #-} qualified API.Location as Location
 import {-# SOURCE #-} qualified API.Venue as Venue
@@ -38,7 +39,7 @@ data InputInlineQueryResult =
  -- 
  -- __video_height__ Height of the video
  -- 
- -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- __reply_markup__ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
  -- 
  -- __input_message_content__ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
  InputInlineQueryResultAnimation { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, video_height :: Maybe Int, video_width :: Maybe Int, video_duration :: Maybe Int, video_mime_type :: Maybe String, video_url :: Maybe String, thumbnail_mime_type :: Maybe String, thumbnail_url :: Maybe String, title :: Maybe String, _id :: Maybe String }  |
@@ -62,7 +63,7 @@ data InputInlineQueryResult =
  -- 
  -- __thumbnail_height__ Thumbnail height, if known
  -- 
- -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- __reply_markup__ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
  -- 
  -- __input_message_content__ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
  InputInlineQueryResultArticle { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, thumbnail_height :: Maybe Int, thumbnail_width :: Maybe Int, thumbnail_url :: Maybe String, description :: Maybe String, title :: Maybe String, hide_url :: Maybe Bool, url :: Maybe String, _id :: Maybe String }  |
@@ -80,7 +81,7 @@ data InputInlineQueryResult =
  -- 
  -- __audio_duration__ Audio file duration, in seconds
  -- 
- -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- __reply_markup__ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
  -- 
  -- __input_message_content__ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAudio, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
  InputInlineQueryResultAudio { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, audio_duration :: Maybe Int, audio_url :: Maybe String, performer :: Maybe String, title :: Maybe String, _id :: Maybe String }  |
@@ -98,7 +99,7 @@ data InputInlineQueryResult =
  -- 
  -- __thumbnail_height__ Thumbnail height, if known
  -- 
- -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- __reply_markup__ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
  -- 
  -- __input_message_content__ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
  InputInlineQueryResultContact { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, thumbnail_height :: Maybe Int, thumbnail_width :: Maybe Int, thumbnail_url :: Maybe String, contact :: Maybe Contact.Contact, _id :: Maybe String }  |
@@ -122,7 +123,7 @@ data InputInlineQueryResult =
  -- 
  -- __thumbnail_height__ Height of the thumbnail
  -- 
- -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- __reply_markup__ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
  -- 
  -- __input_message_content__ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageDocument, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
  InputInlineQueryResultDocument { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, thumbnail_height :: Maybe Int, thumbnail_width :: Maybe Int, thumbnail_url :: Maybe String, mime_type :: Maybe String, document_url :: Maybe String, description :: Maybe String, title :: Maybe String, _id :: Maybe String }  |
@@ -134,7 +135,7 @@ data InputInlineQueryResult =
  -- 
  -- __game_short_name__ Short name of the game
  -- 
- -- __reply_markup__ Message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- __reply_markup__ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
  InputInlineQueryResultGame { reply_markup :: Maybe ReplyMarkup.ReplyMarkup, game_short_name :: Maybe String, _id :: Maybe String }  |
  -- |
  -- 
@@ -154,7 +155,7 @@ data InputInlineQueryResult =
  -- 
  -- __thumbnail_height__ Thumbnail height, if known
  -- 
- -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- __reply_markup__ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
  -- 
  -- __input_message_content__ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
  InputInlineQueryResultLocation { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, thumbnail_height :: Maybe Int, thumbnail_width :: Maybe Int, thumbnail_url :: Maybe String, title :: Maybe String, live_period :: Maybe Int, location :: Maybe Location.Location, _id :: Maybe String }  |
@@ -176,7 +177,7 @@ data InputInlineQueryResult =
  -- 
  -- __photo_height__ Height of the photo
  -- 
- -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- __reply_markup__ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
  -- 
  -- __input_message_content__ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessagePhoto, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
  InputInlineQueryResultPhoto { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, photo_height :: Maybe Int, photo_width :: Maybe Int, photo_url :: Maybe String, thumbnail_url :: Maybe String, description :: Maybe String, title :: Maybe String, _id :: Maybe String }  |
@@ -194,7 +195,7 @@ data InputInlineQueryResult =
  -- 
  -- __sticker_height__ Height of the sticker
  -- 
- -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- __reply_markup__ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
  -- 
  -- __input_message_content__ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageSticker, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
  InputInlineQueryResultSticker { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, sticker_height :: Maybe Int, sticker_width :: Maybe Int, sticker_url :: Maybe String, thumbnail_url :: Maybe String, _id :: Maybe String }  |
@@ -212,7 +213,7 @@ data InputInlineQueryResult =
  -- 
  -- __thumbnail_height__ Thumbnail height, if known
  -- 
- -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- __reply_markup__ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
  -- 
  -- __input_message_content__ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
  InputInlineQueryResultVenue { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, thumbnail_height :: Maybe Int, thumbnail_width :: Maybe Int, thumbnail_url :: Maybe String, venue :: Maybe Venue.Venue, _id :: Maybe String }  |
@@ -238,7 +239,7 @@ data InputInlineQueryResult =
  -- 
  -- __video_duration__ Video duration, in seconds
  -- 
- -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- __reply_markup__ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
  -- 
  -- __input_message_content__ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageVideo, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
  InputInlineQueryResultVideo { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, video_duration :: Maybe Int, video_height :: Maybe Int, video_width :: Maybe Int, mime_type :: Maybe String, video_url :: Maybe String, thumbnail_url :: Maybe String, description :: Maybe String, title :: Maybe String, _id :: Maybe String }  |
@@ -254,46 +255,92 @@ data InputInlineQueryResult =
  -- 
  -- __voice_note_duration__ Duration of the voice note, in seconds
  -- 
- -- __reply_markup__ The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+ -- __reply_markup__ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
  -- 
  -- __input_message_content__ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageVoiceNote, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
- InputInlineQueryResultVoiceNote { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, voice_note_duration :: Maybe Int, voice_note_url :: Maybe String, title :: Maybe String, _id :: Maybe String }  deriving (Show, Eq)
+ InputInlineQueryResultVoiceNote { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, voice_note_duration :: Maybe Int, voice_note_url :: Maybe String, title :: Maybe String, _id :: Maybe String }  deriving (Eq)
+
+instance Show InputInlineQueryResult where
+ show InputInlineQueryResultAnimation { input_message_content=input_message_content, reply_markup=reply_markup, video_height=video_height, video_width=video_width, video_duration=video_duration, video_mime_type=video_mime_type, video_url=video_url, thumbnail_mime_type=thumbnail_mime_type, thumbnail_url=thumbnail_url, title=title, _id=_id } =
+  "InputInlineQueryResultAnimation" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "video_height" video_height, p "video_width" video_width, p "video_duration" video_duration, p "video_mime_type" video_mime_type, p "video_url" video_url, p "thumbnail_mime_type" thumbnail_mime_type, p "thumbnail_url" thumbnail_url, p "title" title, p "_id" _id ]
+
+ show InputInlineQueryResultArticle { input_message_content=input_message_content, reply_markup=reply_markup, thumbnail_height=thumbnail_height, thumbnail_width=thumbnail_width, thumbnail_url=thumbnail_url, description=description, title=title, hide_url=hide_url, url=url, _id=_id } =
+  "InputInlineQueryResultArticle" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "thumbnail_height" thumbnail_height, p "thumbnail_width" thumbnail_width, p "thumbnail_url" thumbnail_url, p "description" description, p "title" title, p "hide_url" hide_url, p "url" url, p "_id" _id ]
+
+ show InputInlineQueryResultAudio { input_message_content=input_message_content, reply_markup=reply_markup, audio_duration=audio_duration, audio_url=audio_url, performer=performer, title=title, _id=_id } =
+  "InputInlineQueryResultAudio" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "audio_duration" audio_duration, p "audio_url" audio_url, p "performer" performer, p "title" title, p "_id" _id ]
+
+ show InputInlineQueryResultContact { input_message_content=input_message_content, reply_markup=reply_markup, thumbnail_height=thumbnail_height, thumbnail_width=thumbnail_width, thumbnail_url=thumbnail_url, contact=contact, _id=_id } =
+  "InputInlineQueryResultContact" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "thumbnail_height" thumbnail_height, p "thumbnail_width" thumbnail_width, p "thumbnail_url" thumbnail_url, p "contact" contact, p "_id" _id ]
+
+ show InputInlineQueryResultDocument { input_message_content=input_message_content, reply_markup=reply_markup, thumbnail_height=thumbnail_height, thumbnail_width=thumbnail_width, thumbnail_url=thumbnail_url, mime_type=mime_type, document_url=document_url, description=description, title=title, _id=_id } =
+  "InputInlineQueryResultDocument" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "thumbnail_height" thumbnail_height, p "thumbnail_width" thumbnail_width, p "thumbnail_url" thumbnail_url, p "mime_type" mime_type, p "document_url" document_url, p "description" description, p "title" title, p "_id" _id ]
+
+ show InputInlineQueryResultGame { reply_markup=reply_markup, game_short_name=game_short_name, _id=_id } =
+  "InputInlineQueryResultGame" ++ cc [p "reply_markup" reply_markup, p "game_short_name" game_short_name, p "_id" _id ]
+
+ show InputInlineQueryResultLocation { input_message_content=input_message_content, reply_markup=reply_markup, thumbnail_height=thumbnail_height, thumbnail_width=thumbnail_width, thumbnail_url=thumbnail_url, title=title, live_period=live_period, location=location, _id=_id } =
+  "InputInlineQueryResultLocation" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "thumbnail_height" thumbnail_height, p "thumbnail_width" thumbnail_width, p "thumbnail_url" thumbnail_url, p "title" title, p "live_period" live_period, p "location" location, p "_id" _id ]
+
+ show InputInlineQueryResultPhoto { input_message_content=input_message_content, reply_markup=reply_markup, photo_height=photo_height, photo_width=photo_width, photo_url=photo_url, thumbnail_url=thumbnail_url, description=description, title=title, _id=_id } =
+  "InputInlineQueryResultPhoto" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "photo_height" photo_height, p "photo_width" photo_width, p "photo_url" photo_url, p "thumbnail_url" thumbnail_url, p "description" description, p "title" title, p "_id" _id ]
+
+ show InputInlineQueryResultSticker { input_message_content=input_message_content, reply_markup=reply_markup, sticker_height=sticker_height, sticker_width=sticker_width, sticker_url=sticker_url, thumbnail_url=thumbnail_url, _id=_id } =
+  "InputInlineQueryResultSticker" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "sticker_height" sticker_height, p "sticker_width" sticker_width, p "sticker_url" sticker_url, p "thumbnail_url" thumbnail_url, p "_id" _id ]
+
+ show InputInlineQueryResultVenue { input_message_content=input_message_content, reply_markup=reply_markup, thumbnail_height=thumbnail_height, thumbnail_width=thumbnail_width, thumbnail_url=thumbnail_url, venue=venue, _id=_id } =
+  "InputInlineQueryResultVenue" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "thumbnail_height" thumbnail_height, p "thumbnail_width" thumbnail_width, p "thumbnail_url" thumbnail_url, p "venue" venue, p "_id" _id ]
+
+ show InputInlineQueryResultVideo { input_message_content=input_message_content, reply_markup=reply_markup, video_duration=video_duration, video_height=video_height, video_width=video_width, mime_type=mime_type, video_url=video_url, thumbnail_url=thumbnail_url, description=description, title=title, _id=_id } =
+  "InputInlineQueryResultVideo" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "video_duration" video_duration, p "video_height" video_height, p "video_width" video_width, p "mime_type" mime_type, p "video_url" video_url, p "thumbnail_url" thumbnail_url, p "description" description, p "title" title, p "_id" _id ]
+
+ show InputInlineQueryResultVoiceNote { input_message_content=input_message_content, reply_markup=reply_markup, voice_note_duration=voice_note_duration, voice_note_url=voice_note_url, title=title, _id=_id } =
+  "InputInlineQueryResultVoiceNote" ++ cc [p "input_message_content" input_message_content, p "reply_markup" reply_markup, p "voice_note_duration" voice_note_duration, p "voice_note_url" voice_note_url, p "title" title, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON InputInlineQueryResult where
- toJSON (InputInlineQueryResultAnimation { input_message_content = input_message_content, reply_markup = reply_markup, video_height = video_height, video_width = video_width, video_duration = video_duration, video_mime_type = video_mime_type, video_url = video_url, thumbnail_mime_type = thumbnail_mime_type, thumbnail_url = thumbnail_url, title = title, _id = _id }) =
+ toJSON InputInlineQueryResultAnimation { input_message_content = input_message_content, reply_markup = reply_markup, video_height = video_height, video_width = video_width, video_duration = video_duration, video_mime_type = video_mime_type, video_url = video_url, thumbnail_mime_type = thumbnail_mime_type, thumbnail_url = thumbnail_url, title = title, _id = _id } =
   A.object [ "@type" A..= T.String "inputInlineQueryResultAnimation", "input_message_content" A..= input_message_content, "reply_markup" A..= reply_markup, "video_height" A..= video_height, "video_width" A..= video_width, "video_duration" A..= video_duration, "video_mime_type" A..= video_mime_type, "video_url" A..= video_url, "thumbnail_mime_type" A..= thumbnail_mime_type, "thumbnail_url" A..= thumbnail_url, "title" A..= title, "id" A..= _id ]
 
- toJSON (InputInlineQueryResultArticle { input_message_content = input_message_content, reply_markup = reply_markup, thumbnail_height = thumbnail_height, thumbnail_width = thumbnail_width, thumbnail_url = thumbnail_url, description = description, title = title, hide_url = hide_url, url = url, _id = _id }) =
+ toJSON InputInlineQueryResultArticle { input_message_content = input_message_content, reply_markup = reply_markup, thumbnail_height = thumbnail_height, thumbnail_width = thumbnail_width, thumbnail_url = thumbnail_url, description = description, title = title, hide_url = hide_url, url = url, _id = _id } =
   A.object [ "@type" A..= T.String "inputInlineQueryResultArticle", "input_message_content" A..= input_message_content, "reply_markup" A..= reply_markup, "thumbnail_height" A..= thumbnail_height, "thumbnail_width" A..= thumbnail_width, "thumbnail_url" A..= thumbnail_url, "description" A..= description, "title" A..= title, "hide_url" A..= hide_url, "url" A..= url, "id" A..= _id ]
 
- toJSON (InputInlineQueryResultAudio { input_message_content = input_message_content, reply_markup = reply_markup, audio_duration = audio_duration, audio_url = audio_url, performer = performer, title = title, _id = _id }) =
+ toJSON InputInlineQueryResultAudio { input_message_content = input_message_content, reply_markup = reply_markup, audio_duration = audio_duration, audio_url = audio_url, performer = performer, title = title, _id = _id } =
   A.object [ "@type" A..= T.String "inputInlineQueryResultAudio", "input_message_content" A..= input_message_content, "reply_markup" A..= reply_markup, "audio_duration" A..= audio_duration, "audio_url" A..= audio_url, "performer" A..= performer, "title" A..= title, "id" A..= _id ]
 
- toJSON (InputInlineQueryResultContact { input_message_content = input_message_content, reply_markup = reply_markup, thumbnail_height = thumbnail_height, thumbnail_width = thumbnail_width, thumbnail_url = thumbnail_url, contact = contact, _id = _id }) =
+ toJSON InputInlineQueryResultContact { input_message_content = input_message_content, reply_markup = reply_markup, thumbnail_height = thumbnail_height, thumbnail_width = thumbnail_width, thumbnail_url = thumbnail_url, contact = contact, _id = _id } =
   A.object [ "@type" A..= T.String "inputInlineQueryResultContact", "input_message_content" A..= input_message_content, "reply_markup" A..= reply_markup, "thumbnail_height" A..= thumbnail_height, "thumbnail_width" A..= thumbnail_width, "thumbnail_url" A..= thumbnail_url, "contact" A..= contact, "id" A..= _id ]
 
- toJSON (InputInlineQueryResultDocument { input_message_content = input_message_content, reply_markup = reply_markup, thumbnail_height = thumbnail_height, thumbnail_width = thumbnail_width, thumbnail_url = thumbnail_url, mime_type = mime_type, document_url = document_url, description = description, title = title, _id = _id }) =
+ toJSON InputInlineQueryResultDocument { input_message_content = input_message_content, reply_markup = reply_markup, thumbnail_height = thumbnail_height, thumbnail_width = thumbnail_width, thumbnail_url = thumbnail_url, mime_type = mime_type, document_url = document_url, description = description, title = title, _id = _id } =
   A.object [ "@type" A..= T.String "inputInlineQueryResultDocument", "input_message_content" A..= input_message_content, "reply_markup" A..= reply_markup, "thumbnail_height" A..= thumbnail_height, "thumbnail_width" A..= thumbnail_width, "thumbnail_url" A..= thumbnail_url, "mime_type" A..= mime_type, "document_url" A..= document_url, "description" A..= description, "title" A..= title, "id" A..= _id ]
 
- toJSON (InputInlineQueryResultGame { reply_markup = reply_markup, game_short_name = game_short_name, _id = _id }) =
+ toJSON InputInlineQueryResultGame { reply_markup = reply_markup, game_short_name = game_short_name, _id = _id } =
   A.object [ "@type" A..= T.String "inputInlineQueryResultGame", "reply_markup" A..= reply_markup, "game_short_name" A..= game_short_name, "id" A..= _id ]
 
- toJSON (InputInlineQueryResultLocation { input_message_content = input_message_content, reply_markup = reply_markup, thumbnail_height = thumbnail_height, thumbnail_width = thumbnail_width, thumbnail_url = thumbnail_url, title = title, live_period = live_period, location = location, _id = _id }) =
+ toJSON InputInlineQueryResultLocation { input_message_content = input_message_content, reply_markup = reply_markup, thumbnail_height = thumbnail_height, thumbnail_width = thumbnail_width, thumbnail_url = thumbnail_url, title = title, live_period = live_period, location = location, _id = _id } =
   A.object [ "@type" A..= T.String "inputInlineQueryResultLocation", "input_message_content" A..= input_message_content, "reply_markup" A..= reply_markup, "thumbnail_height" A..= thumbnail_height, "thumbnail_width" A..= thumbnail_width, "thumbnail_url" A..= thumbnail_url, "title" A..= title, "live_period" A..= live_period, "location" A..= location, "id" A..= _id ]
 
- toJSON (InputInlineQueryResultPhoto { input_message_content = input_message_content, reply_markup = reply_markup, photo_height = photo_height, photo_width = photo_width, photo_url = photo_url, thumbnail_url = thumbnail_url, description = description, title = title, _id = _id }) =
+ toJSON InputInlineQueryResultPhoto { input_message_content = input_message_content, reply_markup = reply_markup, photo_height = photo_height, photo_width = photo_width, photo_url = photo_url, thumbnail_url = thumbnail_url, description = description, title = title, _id = _id } =
   A.object [ "@type" A..= T.String "inputInlineQueryResultPhoto", "input_message_content" A..= input_message_content, "reply_markup" A..= reply_markup, "photo_height" A..= photo_height, "photo_width" A..= photo_width, "photo_url" A..= photo_url, "thumbnail_url" A..= thumbnail_url, "description" A..= description, "title" A..= title, "id" A..= _id ]
 
- toJSON (InputInlineQueryResultSticker { input_message_content = input_message_content, reply_markup = reply_markup, sticker_height = sticker_height, sticker_width = sticker_width, sticker_url = sticker_url, thumbnail_url = thumbnail_url, _id = _id }) =
+ toJSON InputInlineQueryResultSticker { input_message_content = input_message_content, reply_markup = reply_markup, sticker_height = sticker_height, sticker_width = sticker_width, sticker_url = sticker_url, thumbnail_url = thumbnail_url, _id = _id } =
   A.object [ "@type" A..= T.String "inputInlineQueryResultSticker", "input_message_content" A..= input_message_content, "reply_markup" A..= reply_markup, "sticker_height" A..= sticker_height, "sticker_width" A..= sticker_width, "sticker_url" A..= sticker_url, "thumbnail_url" A..= thumbnail_url, "id" A..= _id ]
 
- toJSON (InputInlineQueryResultVenue { input_message_content = input_message_content, reply_markup = reply_markup, thumbnail_height = thumbnail_height, thumbnail_width = thumbnail_width, thumbnail_url = thumbnail_url, venue = venue, _id = _id }) =
+ toJSON InputInlineQueryResultVenue { input_message_content = input_message_content, reply_markup = reply_markup, thumbnail_height = thumbnail_height, thumbnail_width = thumbnail_width, thumbnail_url = thumbnail_url, venue = venue, _id = _id } =
   A.object [ "@type" A..= T.String "inputInlineQueryResultVenue", "input_message_content" A..= input_message_content, "reply_markup" A..= reply_markup, "thumbnail_height" A..= thumbnail_height, "thumbnail_width" A..= thumbnail_width, "thumbnail_url" A..= thumbnail_url, "venue" A..= venue, "id" A..= _id ]
 
- toJSON (InputInlineQueryResultVideo { input_message_content = input_message_content, reply_markup = reply_markup, video_duration = video_duration, video_height = video_height, video_width = video_width, mime_type = mime_type, video_url = video_url, thumbnail_url = thumbnail_url, description = description, title = title, _id = _id }) =
+ toJSON InputInlineQueryResultVideo { input_message_content = input_message_content, reply_markup = reply_markup, video_duration = video_duration, video_height = video_height, video_width = video_width, mime_type = mime_type, video_url = video_url, thumbnail_url = thumbnail_url, description = description, title = title, _id = _id } =
   A.object [ "@type" A..= T.String "inputInlineQueryResultVideo", "input_message_content" A..= input_message_content, "reply_markup" A..= reply_markup, "video_duration" A..= video_duration, "video_height" A..= video_height, "video_width" A..= video_width, "mime_type" A..= mime_type, "video_url" A..= video_url, "thumbnail_url" A..= thumbnail_url, "description" A..= description, "title" A..= title, "id" A..= _id ]
 
- toJSON (InputInlineQueryResultVoiceNote { input_message_content = input_message_content, reply_markup = reply_markup, voice_note_duration = voice_note_duration, voice_note_url = voice_note_url, title = title, _id = _id }) =
+ toJSON InputInlineQueryResultVoiceNote { input_message_content = input_message_content, reply_markup = reply_markup, voice_note_duration = voice_note_duration, voice_note_url = voice_note_url, title = title, _id = _id } =
   A.object [ "@type" A..= T.String "inputInlineQueryResultVoiceNote", "input_message_content" A..= input_message_content, "reply_markup" A..= reply_markup, "voice_note_duration" A..= voice_note_duration, "voice_note_url" A..= voice_note_url, "title" A..= title, "id" A..= _id ]
 
 instance T.FromJSON InputInlineQueryResult where
@@ -458,3 +505,4 @@ instance T.FromJSON InputInlineQueryResult where
     title <- o A..:? "title"
     _id <- o A..:? "id"
     return $ InputInlineQueryResultVoiceNote { input_message_content = input_message_content, reply_markup = reply_markup, voice_note_duration = voice_note_duration, voice_note_url = voice_note_url, title = title, _id = _id }
+ parseJSON _ = mempty

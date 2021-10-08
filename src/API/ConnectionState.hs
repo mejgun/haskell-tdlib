@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -30,22 +31,47 @@ data ConnectionState =
  -- |
  -- 
  -- There is a working connection to the Telegram servers
- ConnectionStateReady deriving (Show, Eq)
+ ConnectionStateReady deriving (Eq)
+
+instance Show ConnectionState where
+ show ConnectionStateWaitingForNetwork {  } =
+  "ConnectionStateWaitingForNetwork" ++ cc [ ]
+
+ show ConnectionStateConnectingToProxy {  } =
+  "ConnectionStateConnectingToProxy" ++ cc [ ]
+
+ show ConnectionStateConnecting {  } =
+  "ConnectionStateConnecting" ++ cc [ ]
+
+ show ConnectionStateUpdating {  } =
+  "ConnectionStateUpdating" ++ cc [ ]
+
+ show ConnectionStateReady {  } =
+  "ConnectionStateReady" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ConnectionState where
- toJSON (ConnectionStateWaitingForNetwork {  }) =
+ toJSON ConnectionStateWaitingForNetwork {  } =
   A.object [ "@type" A..= T.String "connectionStateWaitingForNetwork" ]
 
- toJSON (ConnectionStateConnectingToProxy {  }) =
+ toJSON ConnectionStateConnectingToProxy {  } =
   A.object [ "@type" A..= T.String "connectionStateConnectingToProxy" ]
 
- toJSON (ConnectionStateConnecting {  }) =
+ toJSON ConnectionStateConnecting {  } =
   A.object [ "@type" A..= T.String "connectionStateConnecting" ]
 
- toJSON (ConnectionStateUpdating {  }) =
+ toJSON ConnectionStateUpdating {  } =
   A.object [ "@type" A..= T.String "connectionStateUpdating" ]
 
- toJSON (ConnectionStateReady {  }) =
+ toJSON ConnectionStateReady {  } =
   A.object [ "@type" A..= T.String "connectionStateReady" ]
 
 instance T.FromJSON ConnectionState where
@@ -78,3 +104,4 @@ instance T.FromJSON ConnectionState where
    parseConnectionStateReady :: A.Value -> T.Parser ConnectionState
    parseConnectionStateReady = A.withObject "ConnectionStateReady" $ \o -> do
     return $ ConnectionStateReady {  }
+ parseJSON _ = mempty

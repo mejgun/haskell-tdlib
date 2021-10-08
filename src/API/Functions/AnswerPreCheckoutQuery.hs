@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __error_message__ An error message, empty on success
 data AnswerPreCheckoutQuery = 
 
- AnswerPreCheckoutQuery { error_message :: Maybe String, pre_checkout_query_id :: Maybe Int }  deriving (Show, Eq)
+ AnswerPreCheckoutQuery { error_message :: Maybe String, pre_checkout_query_id :: Maybe Int }  deriving (Eq)
+
+instance Show AnswerPreCheckoutQuery where
+ show AnswerPreCheckoutQuery { error_message=error_message, pre_checkout_query_id=pre_checkout_query_id } =
+  "AnswerPreCheckoutQuery" ++ cc [p "error_message" error_message, p "pre_checkout_query_id" pre_checkout_query_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON AnswerPreCheckoutQuery where
- toJSON (AnswerPreCheckoutQuery { error_message = error_message, pre_checkout_query_id = pre_checkout_query_id }) =
+ toJSON AnswerPreCheckoutQuery { error_message = error_message, pre_checkout_query_id = pre_checkout_query_id } =
   A.object [ "@type" A..= T.String "answerPreCheckoutQuery", "error_message" A..= error_message, "pre_checkout_query_id" A..= pre_checkout_query_id ]
 
 instance T.FromJSON AnswerPreCheckoutQuery where
@@ -34,3 +48,4 @@ instance T.FromJSON AnswerPreCheckoutQuery where
     error_message <- o A..:? "error_message"
     pre_checkout_query_id <- mconcat [ o A..:? "pre_checkout_query_id", readMaybe <$> (o A..: "pre_checkout_query_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ AnswerPreCheckoutQuery { error_message = error_message, pre_checkout_query_id = pre_checkout_query_id }
+ parseJSON _ = mempty

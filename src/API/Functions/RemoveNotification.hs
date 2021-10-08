@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __notification_id__ Identifier of removed notification
 data RemoveNotification = 
 
- RemoveNotification { notification_id :: Maybe Int, notification_group_id :: Maybe Int }  deriving (Show, Eq)
+ RemoveNotification { notification_id :: Maybe Int, notification_group_id :: Maybe Int }  deriving (Eq)
+
+instance Show RemoveNotification where
+ show RemoveNotification { notification_id=notification_id, notification_group_id=notification_group_id } =
+  "RemoveNotification" ++ cc [p "notification_id" notification_id, p "notification_group_id" notification_group_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON RemoveNotification where
- toJSON (RemoveNotification { notification_id = notification_id, notification_group_id = notification_group_id }) =
+ toJSON RemoveNotification { notification_id = notification_id, notification_group_id = notification_group_id } =
   A.object [ "@type" A..= T.String "removeNotification", "notification_id" A..= notification_id, "notification_group_id" A..= notification_group_id ]
 
 instance T.FromJSON RemoveNotification where
@@ -34,3 +48,4 @@ instance T.FromJSON RemoveNotification where
     notification_id <- mconcat [ o A..:? "notification_id", readMaybe <$> (o A..: "notification_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     notification_group_id <- mconcat [ o A..:? "notification_group_id", readMaybe <$> (o A..: "notification_group_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ RemoveNotification { notification_id = notification_id, notification_group_id = notification_group_id }
+ parseJSON _ = mempty

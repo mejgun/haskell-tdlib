@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -24,10 +25,23 @@ import qualified Data.Aeson.Types as T
 -- __limit__ The maximum number of invite links to return
 data GetChatInviteLinks = 
 
- GetChatInviteLinks { limit :: Maybe Int, offset_invite_link :: Maybe String, offset_date :: Maybe Int, is_revoked :: Maybe Bool, creator_user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
+ GetChatInviteLinks { limit :: Maybe Int, offset_invite_link :: Maybe String, offset_date :: Maybe Int, is_revoked :: Maybe Bool, creator_user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show GetChatInviteLinks where
+ show GetChatInviteLinks { limit=limit, offset_invite_link=offset_invite_link, offset_date=offset_date, is_revoked=is_revoked, creator_user_id=creator_user_id, chat_id=chat_id } =
+  "GetChatInviteLinks" ++ cc [p "limit" limit, p "offset_invite_link" offset_invite_link, p "offset_date" offset_date, p "is_revoked" is_revoked, p "creator_user_id" creator_user_id, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetChatInviteLinks where
- toJSON (GetChatInviteLinks { limit = limit, offset_invite_link = offset_invite_link, offset_date = offset_date, is_revoked = is_revoked, creator_user_id = creator_user_id, chat_id = chat_id }) =
+ toJSON GetChatInviteLinks { limit = limit, offset_invite_link = offset_invite_link, offset_date = offset_date, is_revoked = is_revoked, creator_user_id = creator_user_id, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "getChatInviteLinks", "limit" A..= limit, "offset_invite_link" A..= offset_invite_link, "offset_date" A..= offset_date, "is_revoked" A..= is_revoked, "creator_user_id" A..= creator_user_id, "chat_id" A..= chat_id ]
 
 instance T.FromJSON GetChatInviteLinks where
@@ -46,3 +60,4 @@ instance T.FromJSON GetChatInviteLinks where
     creator_user_id <- mconcat [ o A..:? "creator_user_id", readMaybe <$> (o A..: "creator_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetChatInviteLinks { limit = limit, offset_invite_link = offset_invite_link, offset_date = offset_date, is_revoked = is_revoked, creator_user_id = creator_user_id, chat_id = chat_id }
+ parseJSON _ = mempty

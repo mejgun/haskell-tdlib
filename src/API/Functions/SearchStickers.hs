@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -16,10 +17,23 @@ import qualified Data.Aeson.Types as T
 -- __limit__ The maximum number of stickers to be returned
 data SearchStickers = 
 
- SearchStickers { limit :: Maybe Int, emoji :: Maybe String }  deriving (Show, Eq)
+ SearchStickers { limit :: Maybe Int, emoji :: Maybe String }  deriving (Eq)
+
+instance Show SearchStickers where
+ show SearchStickers { limit=limit, emoji=emoji } =
+  "SearchStickers" ++ cc [p "limit" limit, p "emoji" emoji ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON SearchStickers where
- toJSON (SearchStickers { limit = limit, emoji = emoji }) =
+ toJSON SearchStickers { limit = limit, emoji = emoji } =
   A.object [ "@type" A..= T.String "searchStickers", "limit" A..= limit, "emoji" A..= emoji ]
 
 instance T.FromJSON SearchStickers where
@@ -34,3 +48,4 @@ instance T.FromJSON SearchStickers where
     limit <- mconcat [ o A..:? "limit", readMaybe <$> (o A..: "limit" :: T.Parser String)] :: T.Parser (Maybe Int)
     emoji <- o A..:? "emoji"
     return $ SearchStickers { limit = limit, emoji = emoji }
+ parseJSON _ = mempty

@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -24,16 +25,35 @@ data ChatList =
  -- A list of chats belonging to a chat filter 
  -- 
  -- __chat_filter_id__ Chat filter identifier
- ChatListFilter { chat_filter_id :: Maybe Int }  deriving (Show, Eq)
+ ChatListFilter { chat_filter_id :: Maybe Int }  deriving (Eq)
+
+instance Show ChatList where
+ show ChatListMain {  } =
+  "ChatListMain" ++ cc [ ]
+
+ show ChatListArchive {  } =
+  "ChatListArchive" ++ cc [ ]
+
+ show ChatListFilter { chat_filter_id=chat_filter_id } =
+  "ChatListFilter" ++ cc [p "chat_filter_id" chat_filter_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatList where
- toJSON (ChatListMain {  }) =
+ toJSON ChatListMain {  } =
   A.object [ "@type" A..= T.String "chatListMain" ]
 
- toJSON (ChatListArchive {  }) =
+ toJSON ChatListArchive {  } =
   A.object [ "@type" A..= T.String "chatListArchive" ]
 
- toJSON (ChatListFilter { chat_filter_id = chat_filter_id }) =
+ toJSON ChatListFilter { chat_filter_id = chat_filter_id } =
   A.object [ "@type" A..= T.String "chatListFilter", "chat_filter_id" A..= chat_filter_id ]
 
 instance T.FromJSON ChatList where
@@ -57,3 +77,4 @@ instance T.FromJSON ChatList where
    parseChatListFilter = A.withObject "ChatListFilter" $ \o -> do
     chat_filter_id <- mconcat [ o A..:? "chat_filter_id", readMaybe <$> (o A..: "chat_filter_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ChatListFilter { chat_filter_id = chat_filter_id }
+ parseJSON _ = mempty

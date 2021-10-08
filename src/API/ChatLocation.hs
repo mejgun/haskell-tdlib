@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Location as Location
 
 -- |
@@ -17,10 +18,23 @@ import {-# SOURCE #-} qualified API.Location as Location
 -- __address__ Location address; 1-64 characters, as defined by the chat owner
 data ChatLocation = 
 
- ChatLocation { address :: Maybe String, location :: Maybe Location.Location }  deriving (Show, Eq)
+ ChatLocation { address :: Maybe String, location :: Maybe Location.Location }  deriving (Eq)
+
+instance Show ChatLocation where
+ show ChatLocation { address=address, location=location } =
+  "ChatLocation" ++ cc [p "address" address, p "location" location ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ChatLocation where
- toJSON (ChatLocation { address = address, location = location }) =
+ toJSON ChatLocation { address = address, location = location } =
   A.object [ "@type" A..= T.String "chatLocation", "address" A..= address, "location" A..= location ]
 
 instance T.FromJSON ChatLocation where
@@ -35,3 +49,4 @@ instance T.FromJSON ChatLocation where
     address <- o A..:? "address"
     location <- o A..:? "location"
     return $ ChatLocation { address = address, location = location }
+ parseJSON _ = mempty

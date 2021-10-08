@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.DatedFile as DatedFile
 import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 
@@ -32,10 +33,23 @@ import {-# SOURCE #-} qualified API.PassportElementType as PassportElementType
 -- __hash__ Hash of the entire element
 data EncryptedPassportElement = 
 
- EncryptedPassportElement { hash :: Maybe String, value :: Maybe String, files :: Maybe [DatedFile.DatedFile], translation :: Maybe [DatedFile.DatedFile], selfie :: Maybe DatedFile.DatedFile, reverse_side :: Maybe DatedFile.DatedFile, front_side :: Maybe DatedFile.DatedFile, _data :: Maybe String, _type :: Maybe PassportElementType.PassportElementType }  deriving (Show, Eq)
+ EncryptedPassportElement { hash :: Maybe String, value :: Maybe String, files :: Maybe [DatedFile.DatedFile], translation :: Maybe [DatedFile.DatedFile], selfie :: Maybe DatedFile.DatedFile, reverse_side :: Maybe DatedFile.DatedFile, front_side :: Maybe DatedFile.DatedFile, _data :: Maybe String, _type :: Maybe PassportElementType.PassportElementType }  deriving (Eq)
+
+instance Show EncryptedPassportElement where
+ show EncryptedPassportElement { hash=hash, value=value, files=files, translation=translation, selfie=selfie, reverse_side=reverse_side, front_side=front_side, _data=_data, _type=_type } =
+  "EncryptedPassportElement" ++ cc [p "hash" hash, p "value" value, p "files" files, p "translation" translation, p "selfie" selfie, p "reverse_side" reverse_side, p "front_side" front_side, p "_data" _data, p "_type" _type ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON EncryptedPassportElement where
- toJSON (EncryptedPassportElement { hash = hash, value = value, files = files, translation = translation, selfie = selfie, reverse_side = reverse_side, front_side = front_side, _data = _data, _type = _type }) =
+ toJSON EncryptedPassportElement { hash = hash, value = value, files = files, translation = translation, selfie = selfie, reverse_side = reverse_side, front_side = front_side, _data = _data, _type = _type } =
   A.object [ "@type" A..= T.String "encryptedPassportElement", "hash" A..= hash, "value" A..= value, "files" A..= files, "translation" A..= translation, "selfie" A..= selfie, "reverse_side" A..= reverse_side, "front_side" A..= front_side, "data" A..= _data, "type" A..= _type ]
 
 instance T.FromJSON EncryptedPassportElement where
@@ -57,3 +71,4 @@ instance T.FromJSON EncryptedPassportElement where
     _data <- o A..:? "data"
     _type <- o A..:? "type"
     return $ EncryptedPassportElement { hash = hash, value = value, files = files, translation = translation, selfie = selfie, reverse_side = reverse_side, front_side = front_side, _data = _data, _type = _type }
+ parseJSON _ = mempty

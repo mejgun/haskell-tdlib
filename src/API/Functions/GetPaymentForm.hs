@@ -6,23 +6,37 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.PaymentFormTheme as PaymentFormTheme
 
 -- |
 -- 
--- Returns an invoice payment form. This method should be called when the user presses inlineKeyboardButtonBuy 
+-- Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
 -- 
 -- __chat_id__ Chat identifier of the Invoice message
 -- 
 -- __message_id__ Message identifier
 -- 
--- __theme__ Preferred payment form theme
+-- __theme__ Preferred payment form theme; pass null to use the default theme
 data GetPaymentForm = 
 
- GetPaymentForm { theme :: Maybe PaymentFormTheme.PaymentFormTheme, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
+ GetPaymentForm { theme :: Maybe PaymentFormTheme.PaymentFormTheme, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show GetPaymentForm where
+ show GetPaymentForm { theme=theme, message_id=message_id, chat_id=chat_id } =
+  "GetPaymentForm" ++ cc [p "theme" theme, p "message_id" message_id, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetPaymentForm where
- toJSON (GetPaymentForm { theme = theme, message_id = message_id, chat_id = chat_id }) =
+ toJSON GetPaymentForm { theme = theme, message_id = message_id, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "getPaymentForm", "theme" A..= theme, "message_id" A..= message_id, "chat_id" A..= chat_id ]
 
 instance T.FromJSON GetPaymentForm where
@@ -38,3 +52,4 @@ instance T.FromJSON GetPaymentForm where
     message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ GetPaymentForm { theme = theme, message_id = message_id, chat_id = chat_id }
+ parseJSON _ = mempty

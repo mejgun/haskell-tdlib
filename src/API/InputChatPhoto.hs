@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 -- |
@@ -31,16 +32,35 @@ data InputChatPhoto =
  -- __animation__ Animation to be set as profile photo. Only inputFileLocal and inputFileGenerated are allowed
  -- 
  -- __main_frame_timestamp__ Timestamp of the frame, which will be used as static chat photo
- InputChatPhotoAnimation { main_frame_timestamp :: Maybe Float, animation :: Maybe InputFile.InputFile }  deriving (Show, Eq)
+ InputChatPhotoAnimation { main_frame_timestamp :: Maybe Float, animation :: Maybe InputFile.InputFile }  deriving (Eq)
+
+instance Show InputChatPhoto where
+ show InputChatPhotoPrevious { chat_photo_id=chat_photo_id } =
+  "InputChatPhotoPrevious" ++ cc [p "chat_photo_id" chat_photo_id ]
+
+ show InputChatPhotoStatic { photo=photo } =
+  "InputChatPhotoStatic" ++ cc [p "photo" photo ]
+
+ show InputChatPhotoAnimation { main_frame_timestamp=main_frame_timestamp, animation=animation } =
+  "InputChatPhotoAnimation" ++ cc [p "main_frame_timestamp" main_frame_timestamp, p "animation" animation ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON InputChatPhoto where
- toJSON (InputChatPhotoPrevious { chat_photo_id = chat_photo_id }) =
+ toJSON InputChatPhotoPrevious { chat_photo_id = chat_photo_id } =
   A.object [ "@type" A..= T.String "inputChatPhotoPrevious", "chat_photo_id" A..= chat_photo_id ]
 
- toJSON (InputChatPhotoStatic { photo = photo }) =
+ toJSON InputChatPhotoStatic { photo = photo } =
   A.object [ "@type" A..= T.String "inputChatPhotoStatic", "photo" A..= photo ]
 
- toJSON (InputChatPhotoAnimation { main_frame_timestamp = main_frame_timestamp, animation = animation }) =
+ toJSON InputChatPhotoAnimation { main_frame_timestamp = main_frame_timestamp, animation = animation } =
   A.object [ "@type" A..= T.String "inputChatPhotoAnimation", "main_frame_timestamp" A..= main_frame_timestamp, "animation" A..= animation ]
 
 instance T.FromJSON InputChatPhoto where
@@ -67,3 +87,4 @@ instance T.FromJSON InputChatPhoto where
     main_frame_timestamp <- o A..:? "main_frame_timestamp"
     animation <- o A..:? "animation"
     return $ InputChatPhotoAnimation { main_frame_timestamp = main_frame_timestamp, animation = animation }
+ parseJSON _ = mempty

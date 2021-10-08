@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.File as File
 
 -- |
@@ -23,10 +24,23 @@ import {-# SOURCE #-} qualified API.File as File
 -- __progressive_sizes__ Sizes of progressive JPEG file prefixes, which can be used to preliminarily show the image; in bytes
 data PhotoSize = 
 
- PhotoSize { progressive_sizes :: Maybe [Int], height :: Maybe Int, width :: Maybe Int, photo :: Maybe File.File, _type :: Maybe String }  deriving (Show, Eq)
+ PhotoSize { progressive_sizes :: Maybe [Int], height :: Maybe Int, width :: Maybe Int, photo :: Maybe File.File, _type :: Maybe String }  deriving (Eq)
+
+instance Show PhotoSize where
+ show PhotoSize { progressive_sizes=progressive_sizes, height=height, width=width, photo=photo, _type=_type } =
+  "PhotoSize" ++ cc [p "progressive_sizes" progressive_sizes, p "height" height, p "width" width, p "photo" photo, p "_type" _type ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON PhotoSize where
- toJSON (PhotoSize { progressive_sizes = progressive_sizes, height = height, width = width, photo = photo, _type = _type }) =
+ toJSON PhotoSize { progressive_sizes = progressive_sizes, height = height, width = width, photo = photo, _type = _type } =
   A.object [ "@type" A..= T.String "photoSize", "progressive_sizes" A..= progressive_sizes, "height" A..= height, "width" A..= width, "photo" A..= photo, "type" A..= _type ]
 
 instance T.FromJSON PhotoSize where
@@ -44,3 +58,4 @@ instance T.FromJSON PhotoSize where
     photo <- o A..:? "photo"
     _type <- o A..:? "type"
     return $ PhotoSize { progressive_sizes = progressive_sizes, height = height, width = width, photo = photo, _type = _type }
+ parseJSON _ = mempty

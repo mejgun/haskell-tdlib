@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- GENERATED</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# LANGUAGE OverloadedStrings #-}</span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">API.Functions.ToggleGroupCallParticipantIsHandRaised</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Text.Read</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">readMaybe</span></span><span class="hs-special">)</span><span>
+</span><span id="line-6"></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.MessageSender.html"><span class="hs-identifier">API.MessageSender</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">MessageSender</span></span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- Toggles whether a group call participant hand is rased</span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-15"></span><span class="hs-comment">-- __group_call_id__ Group call identifier</span><span>
+</span><span id="line-16"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-17"></span><span class="hs-comment">-- __participant_id__ Participant identifier</span><span>
+</span><span id="line-18"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-19"></span><span class="hs-comment">-- __is_hand_raised__ Pass true if the user's hand should be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand</span><span>
+</span><span id="line-20"></span><span class="hs-keyword">data</span><span> </span><span id="ToggleGroupCallParticipantIsHandRaised"><span class="annot"><a href="API.Functions.ToggleGroupCallParticipantIsHandRaised.html#ToggleGroupCallParticipantIsHandRaised"><span class="hs-identifier hs-var">ToggleGroupCallParticipantIsHandRaised</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-21"></span><span>
+</span><span id="line-22"></span><span> </span><span id="ToggleGroupCallParticipantIsHandRaised"><span class="annot"><a href="API.Functions.ToggleGroupCallParticipantIsHandRaised.html#ToggleGroupCallParticipantIsHandRaised"><span class="hs-identifier hs-var">ToggleGroupCallParticipantIsHandRaised</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="is_hand_raised"><span class="annot"><span class="annottext">ToggleGroupCallParticipantIsHandRaised -&gt; Maybe Bool
+</span><a href="API.Functions.ToggleGroupCallParticipantIsHandRaised.html#is_hand_raised"><span class="hs-identifier hs-var hs-var">is_hand_raised</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="participant_id"><span class="annot"><span class="annottext">ToggleGroupCallParticipantIsHandRaised -&gt; Maybe MessageSender
+</span><a href="API.Functions.ToggleGroupCallParticipantIsHandRaised.html#participant_id"><span class="hs-identifier hs-var hs-var">participant_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.MessageSender.html#MessageSender"><span class="hs-identifier hs-type">MessageSender.MessageSender</span></a></span><span class="hs-special">,</span><span> </span><span id="group_call_id"><span class="annot"><span class="annottext">ToggleGroupCallParticipantIsHandRaised -&gt; Maybe Int
+</span><a href="API.Functions.ToggleGroupCallParticipantIsHandRaised.html#group_call_id"><span class="hs-identifier hs-var hs-var">group_call_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679475157"><span id="local-6989586621679475159"><span id="local-6989586621679475161"><span class="annot"><span class="annottext">Int -&gt; ToggleGroupCallParticipantIsHandRaised -&gt; ShowS
+[ToggleGroupCallParticipantIsHandRaised] -&gt; ShowS
+ToggleGroupCallParticipantIsHandRaised -&gt; String
+(Int -&gt; ToggleGroupCallParticipantIsHandRaised -&gt; ShowS)
+-&gt; (ToggleGroupCallParticipantIsHandRaised -&gt; String)
+-&gt; ([ToggleGroupCallParticipantIsHandRaised] -&gt; ShowS)
+-&gt; Show ToggleGroupCallParticipantIsHandRaised
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [ToggleGroupCallParticipantIsHandRaised] -&gt; ShowS
+$cshowList :: [ToggleGroupCallParticipantIsHandRaised] -&gt; ShowS
+show :: ToggleGroupCallParticipantIsHandRaised -&gt; String
+$cshow :: ToggleGroupCallParticipantIsHandRaised -&gt; String
+showsPrec :: Int -&gt; ToggleGroupCallParticipantIsHandRaised -&gt; ShowS
+$cshowsPrec :: Int -&gt; ToggleGroupCallParticipantIsHandRaised -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679475152"><span id="local-6989586621679475154"><span class="annot"><span class="annottext">ToggleGroupCallParticipantIsHandRaised
+-&gt; ToggleGroupCallParticipantIsHandRaised -&gt; Bool
+(ToggleGroupCallParticipantIsHandRaised
+ -&gt; ToggleGroupCallParticipantIsHandRaised -&gt; Bool)
+-&gt; (ToggleGroupCallParticipantIsHandRaised
+    -&gt; ToggleGroupCallParticipantIsHandRaised -&gt; Bool)
+-&gt; Eq ToggleGroupCallParticipantIsHandRaised
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: ToggleGroupCallParticipantIsHandRaised
+-&gt; ToggleGroupCallParticipantIsHandRaised -&gt; Bool
+$c/= :: ToggleGroupCallParticipantIsHandRaised
+-&gt; ToggleGroupCallParticipantIsHandRaised -&gt; Bool
+== :: ToggleGroupCallParticipantIsHandRaised
+-&gt; ToggleGroupCallParticipantIsHandRaised -&gt; Bool
+$c== :: ToggleGroupCallParticipantIsHandRaised
+-&gt; ToggleGroupCallParticipantIsHandRaised -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-23"></span><span>
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679475144"><span id="local-6989586621679475146"><span id="local-6989586621679475148"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ToggleGroupCallParticipantIsHandRaised.html#ToggleGroupCallParticipantIsHandRaised"><span class="hs-identifier hs-type">ToggleGroupCallParticipantIsHandRaised</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span> </span><span id="local-6989586621679475142"><span class="annot"><span class="annottext">toJSON :: ToggleGroupCallParticipantIsHandRaised -&gt; Value
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.ToggleGroupCallParticipantIsHandRaised.html#ToggleGroupCallParticipantIsHandRaised"><span class="hs-identifier hs-type">ToggleGroupCallParticipantIsHandRaised</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_hand_raised :: ToggleGroupCallParticipantIsHandRaised -&gt; Maybe Bool
+</span><a href="API.Functions.ToggleGroupCallParticipantIsHandRaised.html#is_hand_raised"><span class="hs-identifier hs-var">is_hand_raised</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679475140"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679475140"><span class="hs-identifier hs-var">is_hand_raised</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">participant_id :: ToggleGroupCallParticipantIsHandRaised -&gt; Maybe MessageSender
+</span><a href="API.Functions.ToggleGroupCallParticipantIsHandRaised.html#participant_id"><span class="hs-identifier hs-var">participant_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679475139"><span class="annot"><span class="annottext">Maybe MessageSender
+</span><a href="#local-6989586621679475139"><span class="hs-identifier hs-var">participant_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">group_call_id :: ToggleGroupCallParticipantIsHandRaised -&gt; Maybe Int
+</span><a href="API.Functions.ToggleGroupCallParticipantIsHandRaised.html#group_call_id"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679475138"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679475138"><span class="hs-identifier hs-var">group_call_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-26"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
+</span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;toggleGroupCallParticipantIsHandRaised&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;is_hand_raised&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679475140"><span class="hs-identifier hs-var">is_hand_raised</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;participant_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe MessageSender -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageSender
+</span><a href="#local-6989586621679475139"><span class="hs-identifier hs-var">participant_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;group_call_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
+forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
+</span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679475138"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-27"></span><span>
+</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679475132"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ToggleGroupCallParticipantIsHandRaised.html#ToggleGroupCallParticipantIsHandRaised"><span class="hs-identifier hs-type">ToggleGroupCallParticipantIsHandRaised</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-29"></span><span> </span><span id="local-6989586621679475130"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ToggleGroupCallParticipantIsHandRaised
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679475128"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679475128"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679475126"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679475126"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-30"></span><span>  </span><span id="local-6989586621679475125"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679475125"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679475126"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-31"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679475125"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-32"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;toggleGroupCallParticipantIsHandRaised&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ToggleGroupCallParticipantIsHandRaised
+</span><a href="#local-6989586621679475123"><span class="hs-identifier hs-var">parseToggleGroupCallParticipantIsHandRaised</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679475128"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-33"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ToggleGroupCallParticipantIsHandRaised
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-34"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-35"></span><span>   </span><span class="annot"><a href="#local-6989586621679475123"><span class="hs-identifier hs-type">parseToggleGroupCallParticipantIsHandRaised</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ToggleGroupCallParticipantIsHandRaised.html#ToggleGroupCallParticipantIsHandRaised"><span class="hs-identifier hs-type">ToggleGroupCallParticipantIsHandRaised</span></a></span><span>
+</span><span id="line-36"></span><span>   </span><span id="local-6989586621679475123"><span class="annot"><span class="annottext">parseToggleGroupCallParticipantIsHandRaised :: Value -&gt; Parser ToggleGroupCallParticipantIsHandRaised
+</span><a href="#local-6989586621679475123"><span class="hs-identifier hs-var hs-var">parseToggleGroupCallParticipantIsHandRaised</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+-&gt; (Object -&gt; Parser ToggleGroupCallParticipantIsHandRaised)
+-&gt; Value
+-&gt; Parser ToggleGroupCallParticipantIsHandRaised
+forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
+</span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;ToggleGroupCallParticipantIsHandRaised&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser ToggleGroupCallParticipantIsHandRaised)
+ -&gt; Value -&gt; Parser ToggleGroupCallParticipantIsHandRaised)
+-&gt; (Object -&gt; Parser ToggleGroupCallParticipantIsHandRaised)
+-&gt; Value
+-&gt; Parser ToggleGroupCallParticipantIsHandRaised
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679475121"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679475121"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-37"></span><span>    </span><span id="local-6989586621679475120"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679475120"><span class="hs-identifier hs-var">is_hand_raised</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679475121"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;is_hand_raised&quot;</span></span><span>
+</span><span id="line-38"></span><span>    </span><span id="local-6989586621679475118"><span class="annot"><span class="annottext">Maybe MessageSender
+</span><a href="#local-6989586621679475118"><span class="hs-identifier hs-var">participant_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679475121"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe MessageSender)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;participant_id&quot;</span></span><span>
+</span><span id="line-39"></span><span>    </span><span id="local-6989586621679475117"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679475117"><span class="hs-identifier hs-var">group_call_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+forall a. Monoid a =&gt; [a] -&gt; a
+</span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679475121"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
+</span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;group_call_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
+forall a. Read a =&gt; String -&gt; Maybe a
+</span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679475121"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
+</span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
+</span><span class="hs-string">&quot;group_call_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
+</span><span id="line-40"></span><span>    </span><span class="annot"><span class="annottext">ToggleGroupCallParticipantIsHandRaised
+-&gt; Parser ToggleGroupCallParticipantIsHandRaised
+forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
+</span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ToggleGroupCallParticipantIsHandRaised
+ -&gt; Parser ToggleGroupCallParticipantIsHandRaised)
+-&gt; ToggleGroupCallParticipantIsHandRaised
+-&gt; Parser ToggleGroupCallParticipantIsHandRaised
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ToggleGroupCallParticipantIsHandRaised :: Maybe Bool
+-&gt; Maybe MessageSender
+-&gt; Maybe Int
+-&gt; ToggleGroupCallParticipantIsHandRaised
+</span><a href="API.Functions.ToggleGroupCallParticipantIsHandRaised.html#ToggleGroupCallParticipantIsHandRaised"><span class="hs-identifier hs-type">ToggleGroupCallParticipantIsHandRaised</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_hand_raised :: Maybe Bool
+</span><a href="API.Functions.ToggleGroupCallParticipantIsHandRaised.html#is_hand_raised"><span class="hs-identifier hs-var">is_hand_raised</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679475120"><span class="hs-identifier hs-var">is_hand_raised</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">participant_id :: Maybe MessageSender
+</span><a href="API.Functions.ToggleGroupCallParticipantIsHandRaised.html#participant_id"><span class="hs-identifier hs-var">participant_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe MessageSender
+</span><a href="#local-6989586621679475118"><span class="hs-identifier hs-var">participant_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">group_call_id :: Maybe Int
+</span><a href="API.Functions.ToggleGroupCallParticipantIsHandRaised.html#group_call_id"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679475117"><span class="hs-identifier hs-var">group_call_id</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-41"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser ToggleGroupCallParticipantIsHandRaised
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-42"></span></pre></body></html>

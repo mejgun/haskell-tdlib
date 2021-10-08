@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -35,17 +36,36 @@ data LanguagePackStringValue =
  LanguagePackStringValuePluralized { other_value :: Maybe String, many_value :: Maybe String, few_value :: Maybe String, two_value :: Maybe String, one_value :: Maybe String, zero_value :: Maybe String }  |
  -- |
  -- 
- -- A deleted language pack string, the value should be taken from the built-in english language pack
- LanguagePackStringValueDeleted deriving (Show, Eq)
+ -- A deleted language pack string, the value must be taken from the built-in English language pack
+ LanguagePackStringValueDeleted deriving (Eq)
+
+instance Show LanguagePackStringValue where
+ show LanguagePackStringValueOrdinary { value=value } =
+  "LanguagePackStringValueOrdinary" ++ cc [p "value" value ]
+
+ show LanguagePackStringValuePluralized { other_value=other_value, many_value=many_value, few_value=few_value, two_value=two_value, one_value=one_value, zero_value=zero_value } =
+  "LanguagePackStringValuePluralized" ++ cc [p "other_value" other_value, p "many_value" many_value, p "few_value" few_value, p "two_value" two_value, p "one_value" one_value, p "zero_value" zero_value ]
+
+ show LanguagePackStringValueDeleted {  } =
+  "LanguagePackStringValueDeleted" ++ cc [ ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON LanguagePackStringValue where
- toJSON (LanguagePackStringValueOrdinary { value = value }) =
+ toJSON LanguagePackStringValueOrdinary { value = value } =
   A.object [ "@type" A..= T.String "languagePackStringValueOrdinary", "value" A..= value ]
 
- toJSON (LanguagePackStringValuePluralized { other_value = other_value, many_value = many_value, few_value = few_value, two_value = two_value, one_value = one_value, zero_value = zero_value }) =
+ toJSON LanguagePackStringValuePluralized { other_value = other_value, many_value = many_value, few_value = few_value, two_value = two_value, one_value = one_value, zero_value = zero_value } =
   A.object [ "@type" A..= T.String "languagePackStringValuePluralized", "other_value" A..= other_value, "many_value" A..= many_value, "few_value" A..= few_value, "two_value" A..= two_value, "one_value" A..= one_value, "zero_value" A..= zero_value ]
 
- toJSON (LanguagePackStringValueDeleted {  }) =
+ toJSON LanguagePackStringValueDeleted {  } =
   A.object [ "@type" A..= T.String "languagePackStringValueDeleted" ]
 
 instance T.FromJSON LanguagePackStringValue where
@@ -75,3 +95,4 @@ instance T.FromJSON LanguagePackStringValue where
    parseLanguagePackStringValueDeleted :: A.Value -> T.Parser LanguagePackStringValue
    parseLanguagePackStringValueDeleted = A.withObject "LanguagePackStringValueDeleted" $ \o -> do
     return $ LanguagePackStringValueDeleted {  }
+ parseJSON _ = mempty

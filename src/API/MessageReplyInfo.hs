@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
 -- |
@@ -23,10 +24,23 @@ import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 -- __last_message_id__ Identifier of the last reply to the message
 data MessageReplyInfo = 
 
- MessageReplyInfo { last_message_id :: Maybe Int, last_read_outbox_message_id :: Maybe Int, last_read_inbox_message_id :: Maybe Int, recent_repliers :: Maybe [MessageSender.MessageSender], reply_count :: Maybe Int }  deriving (Show, Eq)
+ MessageReplyInfo { last_message_id :: Maybe Int, last_read_outbox_message_id :: Maybe Int, last_read_inbox_message_id :: Maybe Int, recent_repliers :: Maybe [MessageSender.MessageSender], reply_count :: Maybe Int }  deriving (Eq)
+
+instance Show MessageReplyInfo where
+ show MessageReplyInfo { last_message_id=last_message_id, last_read_outbox_message_id=last_read_outbox_message_id, last_read_inbox_message_id=last_read_inbox_message_id, recent_repliers=recent_repliers, reply_count=reply_count } =
+  "MessageReplyInfo" ++ cc [p "last_message_id" last_message_id, p "last_read_outbox_message_id" last_read_outbox_message_id, p "last_read_inbox_message_id" last_read_inbox_message_id, p "recent_repliers" recent_repliers, p "reply_count" reply_count ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON MessageReplyInfo where
- toJSON (MessageReplyInfo { last_message_id = last_message_id, last_read_outbox_message_id = last_read_outbox_message_id, last_read_inbox_message_id = last_read_inbox_message_id, recent_repliers = recent_repliers, reply_count = reply_count }) =
+ toJSON MessageReplyInfo { last_message_id = last_message_id, last_read_outbox_message_id = last_read_outbox_message_id, last_read_inbox_message_id = last_read_inbox_message_id, recent_repliers = recent_repliers, reply_count = reply_count } =
   A.object [ "@type" A..= T.String "messageReplyInfo", "last_message_id" A..= last_message_id, "last_read_outbox_message_id" A..= last_read_outbox_message_id, "last_read_inbox_message_id" A..= last_read_inbox_message_id, "recent_repliers" A..= recent_repliers, "reply_count" A..= reply_count ]
 
 instance T.FromJSON MessageReplyInfo where
@@ -44,3 +58,4 @@ instance T.FromJSON MessageReplyInfo where
     recent_repliers <- o A..:? "recent_repliers"
     reply_count <- mconcat [ o A..:? "reply_count", readMaybe <$> (o A..: "reply_count" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ MessageReplyInfo { last_message_id = last_message_id, last_read_outbox_message_id = last_read_outbox_message_id, last_read_inbox_message_id = last_read_inbox_message_id, recent_repliers = recent_repliers, reply_count = reply_count }
+ parseJSON _ = mempty

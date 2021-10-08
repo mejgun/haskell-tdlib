@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 -- |
@@ -15,10 +16,23 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- __sticker__ Sticker file to delete from the list
 data RemoveFavoriteSticker = 
 
- RemoveFavoriteSticker { sticker :: Maybe InputFile.InputFile }  deriving (Show, Eq)
+ RemoveFavoriteSticker { sticker :: Maybe InputFile.InputFile }  deriving (Eq)
+
+instance Show RemoveFavoriteSticker where
+ show RemoveFavoriteSticker { sticker=sticker } =
+  "RemoveFavoriteSticker" ++ cc [p "sticker" sticker ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON RemoveFavoriteSticker where
- toJSON (RemoveFavoriteSticker { sticker = sticker }) =
+ toJSON RemoveFavoriteSticker { sticker = sticker } =
   A.object [ "@type" A..= T.String "removeFavoriteSticker", "sticker" A..= sticker ]
 
 instance T.FromJSON RemoveFavoriteSticker where
@@ -32,3 +46,4 @@ instance T.FromJSON RemoveFavoriteSticker where
    parseRemoveFavoriteSticker = A.withObject "RemoveFavoriteSticker" $ \o -> do
     sticker <- o A..:? "sticker"
     return $ RemoveFavoriteSticker { sticker = sticker }
+ parseJSON _ = mempty

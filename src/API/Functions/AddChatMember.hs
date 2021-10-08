@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -15,13 +16,26 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __user_id__ Identifier of the user
 -- 
--- __forward_limit__ The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels
+-- __forward_limit__ The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
 data AddChatMember = 
 
- AddChatMember { forward_limit :: Maybe Int, user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Show, Eq)
+ AddChatMember { forward_limit :: Maybe Int, user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)
+
+instance Show AddChatMember where
+ show AddChatMember { forward_limit=forward_limit, user_id=user_id, chat_id=chat_id } =
+  "AddChatMember" ++ cc [p "forward_limit" forward_limit, p "user_id" user_id, p "chat_id" chat_id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON AddChatMember where
- toJSON (AddChatMember { forward_limit = forward_limit, user_id = user_id, chat_id = chat_id }) =
+ toJSON AddChatMember { forward_limit = forward_limit, user_id = user_id, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "addChatMember", "forward_limit" A..= forward_limit, "user_id" A..= user_id, "chat_id" A..= chat_id ]
 
 instance T.FromJSON AddChatMember where
@@ -37,3 +51,4 @@ instance T.FromJSON AddChatMember where
     user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ AddChatMember { forward_limit = forward_limit, user_id = user_id, chat_id = chat_id }
+ parseJSON _ = mempty

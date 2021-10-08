@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.InputFile as InputFile
 
 -- |
@@ -17,10 +18,23 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- __sticker__ Sticker file to add
 data AddRecentSticker = 
 
- AddRecentSticker { sticker :: Maybe InputFile.InputFile, is_attached :: Maybe Bool }  deriving (Show, Eq)
+ AddRecentSticker { sticker :: Maybe InputFile.InputFile, is_attached :: Maybe Bool }  deriving (Eq)
+
+instance Show AddRecentSticker where
+ show AddRecentSticker { sticker=sticker, is_attached=is_attached } =
+  "AddRecentSticker" ++ cc [p "sticker" sticker, p "is_attached" is_attached ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON AddRecentSticker where
- toJSON (AddRecentSticker { sticker = sticker, is_attached = is_attached }) =
+ toJSON AddRecentSticker { sticker = sticker, is_attached = is_attached } =
   A.object [ "@type" A..= T.String "addRecentSticker", "sticker" A..= sticker, "is_attached" A..= is_attached ]
 
 instance T.FromJSON AddRecentSticker where
@@ -35,3 +49,4 @@ instance T.FromJSON AddRecentSticker where
     sticker <- o A..:? "sticker"
     is_attached <- o A..:? "is_attached"
     return $ AddRecentSticker { sticker = sticker, is_attached = is_attached }
+ parseJSON _ = mempty

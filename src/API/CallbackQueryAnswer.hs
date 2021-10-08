@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -13,15 +14,28 @@ import qualified Data.Aeson.Types as T
 -- 
 -- __text__ Text of the answer
 -- 
--- __show_alert__ True, if an alert should be shown to the user instead of a toast notification
+-- __show_alert__ True, if an alert must be shown to the user instead of a toast notification
 -- 
 -- __url__ URL to be opened
 data CallbackQueryAnswer = 
 
- CallbackQueryAnswer { url :: Maybe String, show_alert :: Maybe Bool, text :: Maybe String }  deriving (Show, Eq)
+ CallbackQueryAnswer { url :: Maybe String, show_alert :: Maybe Bool, text :: Maybe String }  deriving (Eq)
+
+instance Show CallbackQueryAnswer where
+ show CallbackQueryAnswer { url=url, show_alert=show_alert, text=text } =
+  "CallbackQueryAnswer" ++ cc [p "url" url, p "show_alert" show_alert, p "text" text ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON CallbackQueryAnswer where
- toJSON (CallbackQueryAnswer { url = url, show_alert = show_alert, text = text }) =
+ toJSON CallbackQueryAnswer { url = url, show_alert = show_alert, text = text } =
   A.object [ "@type" A..= T.String "callbackQueryAnswer", "url" A..= url, "show_alert" A..= show_alert, "text" A..= text ]
 
 instance T.FromJSON CallbackQueryAnswer where
@@ -37,3 +51,4 @@ instance T.FromJSON CallbackQueryAnswer where
     show_alert <- o A..:? "show_alert"
     text <- o A..:? "text"
     return $ CallbackQueryAnswer { url = url, show_alert = show_alert, text = text }
+ parseJSON _ = mempty

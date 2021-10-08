@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -32,19 +33,41 @@ data OptionValue =
  -- Represents a string option 
  -- 
  -- __value__ The value of the option
- OptionValueString { value :: Maybe String }  deriving (Show, Eq)
+ OptionValueString { value :: Maybe String }  deriving (Eq)
+
+instance Show OptionValue where
+ show OptionValueBoolean { __value=__value } =
+  "OptionValueBoolean" ++ cc [p "__value" __value ]
+
+ show OptionValueEmpty {  } =
+  "OptionValueEmpty" ++ cc [ ]
+
+ show OptionValueInteger { _value=_value } =
+  "OptionValueInteger" ++ cc [p "_value" _value ]
+
+ show OptionValueString { value=value } =
+  "OptionValueString" ++ cc [p "value" value ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON OptionValue where
- toJSON (OptionValueBoolean { __value = __value }) =
+ toJSON OptionValueBoolean { __value = __value } =
   A.object [ "@type" A..= T.String "optionValueBoolean", "value" A..= __value ]
 
- toJSON (OptionValueEmpty {  }) =
+ toJSON OptionValueEmpty {  } =
   A.object [ "@type" A..= T.String "optionValueEmpty" ]
 
- toJSON (OptionValueInteger { _value = _value }) =
+ toJSON OptionValueInteger { _value = _value } =
   A.object [ "@type" A..= T.String "optionValueInteger", "value" A..= _value ]
 
- toJSON (OptionValueString { value = value }) =
+ toJSON OptionValueString { value = value } =
   A.object [ "@type" A..= T.String "optionValueString", "value" A..= value ]
 
 instance T.FromJSON OptionValue where
@@ -75,3 +98,4 @@ instance T.FromJSON OptionValue where
    parseOptionValueString = A.withObject "OptionValueString" $ \o -> do
     value <- o A..:? "value"
     return $ OptionValueString { value = value }
+ parseJSON _ = mempty

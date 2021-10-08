@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __x__ Vector of strings to return
 data TestCallVectorString = 
 
- TestCallVectorString { x :: Maybe [String] }  deriving (Show, Eq)
+ TestCallVectorString { x :: Maybe [String] }  deriving (Eq)
+
+instance Show TestCallVectorString where
+ show TestCallVectorString { x=x } =
+  "TestCallVectorString" ++ cc [p "x" x ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON TestCallVectorString where
- toJSON (TestCallVectorString { x = x }) =
+ toJSON TestCallVectorString { x = x } =
   A.object [ "@type" A..= T.String "testCallVectorString", "x" A..= x ]
 
 instance T.FromJSON TestCallVectorString where
@@ -31,3 +45,4 @@ instance T.FromJSON TestCallVectorString where
    parseTestCallVectorString = A.withObject "TestCallVectorString" $ \o -> do
     x <- o A..:? "x"
     return $ TestCallVectorString { x = x }
+ parseJSON _ = mempty

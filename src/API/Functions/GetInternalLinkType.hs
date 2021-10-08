@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __link__ The link
 data GetInternalLinkType = 
 
- GetInternalLinkType { link :: Maybe String }  deriving (Show, Eq)
+ GetInternalLinkType { link :: Maybe String }  deriving (Eq)
+
+instance Show GetInternalLinkType where
+ show GetInternalLinkType { link=link } =
+  "GetInternalLinkType" ++ cc [p "link" link ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON GetInternalLinkType where
- toJSON (GetInternalLinkType { link = link }) =
+ toJSON GetInternalLinkType { link = link } =
   A.object [ "@type" A..= T.String "getInternalLinkType", "link" A..= link ]
 
 instance T.FromJSON GetInternalLinkType where
@@ -31,3 +45,4 @@ instance T.FromJSON GetInternalLinkType where
    parseGetInternalLinkType = A.withObject "GetInternalLinkType" $ \o -> do
     link <- o A..:? "link"
     return $ GetInternalLinkType { link = link }
+ parseJSON _ = mempty

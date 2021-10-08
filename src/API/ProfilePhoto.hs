@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.Minithumbnail as Minithumbnail
 import {-# SOURCE #-} qualified API.File as File
 
@@ -24,10 +25,23 @@ import {-# SOURCE #-} qualified API.File as File
 -- __has_animation__ True, if the photo has animated variant
 data ProfilePhoto = 
 
- ProfilePhoto { has_animation :: Maybe Bool, minithumbnail :: Maybe Minithumbnail.Minithumbnail, big :: Maybe File.File, small :: Maybe File.File, _id :: Maybe Int }  deriving (Show, Eq)
+ ProfilePhoto { has_animation :: Maybe Bool, minithumbnail :: Maybe Minithumbnail.Minithumbnail, big :: Maybe File.File, small :: Maybe File.File, _id :: Maybe Int }  deriving (Eq)
+
+instance Show ProfilePhoto where
+ show ProfilePhoto { has_animation=has_animation, minithumbnail=minithumbnail, big=big, small=small, _id=_id } =
+  "ProfilePhoto" ++ cc [p "has_animation" has_animation, p "minithumbnail" minithumbnail, p "big" big, p "small" small, p "_id" _id ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON ProfilePhoto where
- toJSON (ProfilePhoto { has_animation = has_animation, minithumbnail = minithumbnail, big = big, small = small, _id = _id }) =
+ toJSON ProfilePhoto { has_animation = has_animation, minithumbnail = minithumbnail, big = big, small = small, _id = _id } =
   A.object [ "@type" A..= T.String "profilePhoto", "has_animation" A..= has_animation, "minithumbnail" A..= minithumbnail, "big" A..= big, "small" A..= small, "id" A..= _id ]
 
 instance T.FromJSON ProfilePhoto where
@@ -45,3 +59,4 @@ instance T.FromJSON ProfilePhoto where
     small <- o A..:? "small"
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ ProfilePhoto { has_animation = has_animation, minithumbnail = minithumbnail, big = big, small = small, _id = _id }
+ parseJSON _ = mempty

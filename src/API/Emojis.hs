@@ -6,6 +6,7 @@ import Text.Read (readMaybe)
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
+import Data.List (intercalate)
 
 -- |
 -- 
@@ -14,10 +15,23 @@ import qualified Data.Aeson.Types as T
 -- __emojis__ List of emojis
 data Emojis = 
 
- Emojis { emojis :: Maybe [String] }  deriving (Show, Eq)
+ Emojis { emojis :: Maybe [String] }  deriving (Eq)
+
+instance Show Emojis where
+ show Emojis { emojis=emojis } =
+  "Emojis" ++ cc [p "emojis" emojis ]
+
+p :: Show a => String -> Maybe a -> String
+p b (Just a) = b ++ " = " ++ show a
+p _ Nothing = ""
+
+cc :: [String] -> String
+cc [] = mempty
+cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
+
 
 instance T.ToJSON Emojis where
- toJSON (Emojis { emojis = emojis }) =
+ toJSON Emojis { emojis = emojis } =
   A.object [ "@type" A..= T.String "emojis", "emojis" A..= emojis ]
 
 instance T.FromJSON Emojis where
@@ -31,3 +45,4 @@ instance T.FromJSON Emojis where
    parseEmojis = A.withObject "Emojis" $ \o -> do
     emojis <- o A..:? "emojis"
     return $ Emojis { emojis = emojis }
+ parseJSON _ = mempty
