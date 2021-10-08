@@ -6,40 +6,26 @@
 </span><span id="line-6"></span><span>
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-9"></span><span>
-</span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- Contains statistics about administrator actions done by a user</span><span>
-</span><span id="line-13"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-14"></span><span class="hs-comment">-- __user_id__ Administrator user identifier</span><span>
-</span><span id="line-15"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-16"></span><span class="hs-comment">-- __deleted_message_count__ Number of messages deleted by the administrator</span><span>
-</span><span id="line-17"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-18"></span><span class="hs-comment">-- __banned_user_count__ Number of users banned by the administrator</span><span>
-</span><span id="line-19"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-20"></span><span class="hs-comment">-- __restricted_user_count__ Number of users restricted by the administrator</span><span>
-</span><span id="line-21"></span><span class="hs-keyword">data</span><span> </span><span id="ChatStatisticsAdministratorActionsInfo"><span class="annot"><a href="API.ChatStatisticsAdministratorActionsInfo.html#ChatStatisticsAdministratorActionsInfo"><span class="hs-identifier hs-var">ChatStatisticsAdministratorActionsInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span> </span><span id="ChatStatisticsAdministratorActionsInfo"><span class="annot"><a href="API.ChatStatisticsAdministratorActionsInfo.html#ChatStatisticsAdministratorActionsInfo"><span class="hs-identifier hs-var">ChatStatisticsAdministratorActionsInfo</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="restricted_user_count"><span class="annot"><span class="annottext">ChatStatisticsAdministratorActionsInfo -&gt; Maybe Int
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">intercalate</span></span><span class="hs-special">)</span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- Contains statistics about administrator actions done by a user</span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-15"></span><span class="hs-comment">-- __user_id__ Administrator user identifier</span><span>
+</span><span id="line-16"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-17"></span><span class="hs-comment">-- __deleted_message_count__ Number of messages deleted by the administrator</span><span>
+</span><span id="line-18"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-19"></span><span class="hs-comment">-- __banned_user_count__ Number of users banned by the administrator</span><span>
+</span><span id="line-20"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-21"></span><span class="hs-comment">-- __restricted_user_count__ Number of users restricted by the administrator</span><span>
+</span><span id="line-22"></span><span class="hs-keyword">data</span><span> </span><span id="ChatStatisticsAdministratorActionsInfo"><span class="annot"><a href="API.ChatStatisticsAdministratorActionsInfo.html#ChatStatisticsAdministratorActionsInfo"><span class="hs-identifier hs-var">ChatStatisticsAdministratorActionsInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-23"></span><span>
+</span><span id="line-24"></span><span> </span><span id="ChatStatisticsAdministratorActionsInfo"><span class="annot"><a href="API.ChatStatisticsAdministratorActionsInfo.html#ChatStatisticsAdministratorActionsInfo"><span class="hs-identifier hs-var">ChatStatisticsAdministratorActionsInfo</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="restricted_user_count"><span class="annot"><span class="annottext">ChatStatisticsAdministratorActionsInfo -&gt; Maybe Int
 </span><a href="API.ChatStatisticsAdministratorActionsInfo.html#restricted_user_count"><span class="hs-identifier hs-var hs-var">restricted_user_count</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="banned_user_count"><span class="annot"><span class="annottext">ChatStatisticsAdministratorActionsInfo -&gt; Maybe Int
 </span><a href="API.ChatStatisticsAdministratorActionsInfo.html#banned_user_count"><span class="hs-identifier hs-var hs-var">banned_user_count</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="deleted_message_count"><span class="annot"><span class="annottext">ChatStatisticsAdministratorActionsInfo -&gt; Maybe Int
 </span><a href="API.ChatStatisticsAdministratorActionsInfo.html#deleted_message_count"><span class="hs-identifier hs-var hs-var">deleted_message_count</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="user_id"><span class="annot"><span class="annottext">ChatStatisticsAdministratorActionsInfo -&gt; Maybe Int
-</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#user_id"><span class="hs-identifier hs-var hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679436903"><span id="local-6989586621679436905"><span id="local-6989586621679436907"><span class="annot"><span class="annottext">Int -&gt; ChatStatisticsAdministratorActionsInfo -&gt; ShowS
-[ChatStatisticsAdministratorActionsInfo] -&gt; ShowS
-ChatStatisticsAdministratorActionsInfo -&gt; String
-(Int -&gt; ChatStatisticsAdministratorActionsInfo -&gt; ShowS)
--&gt; (ChatStatisticsAdministratorActionsInfo -&gt; String)
--&gt; ([ChatStatisticsAdministratorActionsInfo] -&gt; ShowS)
--&gt; Show ChatStatisticsAdministratorActionsInfo
-forall a.
-(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
-showList :: [ChatStatisticsAdministratorActionsInfo] -&gt; ShowS
-$cshowList :: [ChatStatisticsAdministratorActionsInfo] -&gt; ShowS
-show :: ChatStatisticsAdministratorActionsInfo -&gt; String
-$cshow :: ChatStatisticsAdministratorActionsInfo -&gt; String
-showsPrec :: Int -&gt; ChatStatisticsAdministratorActionsInfo -&gt; ShowS
-$cshowsPrec :: Int -&gt; ChatStatisticsAdministratorActionsInfo -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679436898"><span id="local-6989586621679436900"><span class="annot"><span class="annottext">ChatStatisticsAdministratorActionsInfo
+</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#user_id"><span class="hs-identifier hs-var hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679461030"><span id="local-6989586621679461032"><span class="annot"><span class="annottext">ChatStatisticsAdministratorActionsInfo
 -&gt; ChatStatisticsAdministratorActionsInfo -&gt; Bool
 (ChatStatisticsAdministratorActionsInfo
  -&gt; ChatStatisticsAdministratorActionsInfo -&gt; Bool)
@@ -56,19 +42,97 @@ $c/= :: ChatStatisticsAdministratorActionsInfo
 $c== :: ChatStatisticsAdministratorActionsInfo
 -&gt; ChatStatisticsAdministratorActionsInfo -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679436890"><span id="local-6989586621679436892"><span id="local-6989586621679436894"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ChatStatisticsAdministratorActionsInfo.html#ChatStatisticsAdministratorActionsInfo"><span class="hs-identifier hs-type">ChatStatisticsAdministratorActionsInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-26"></span><span> </span><span id="local-6989586621679436888"><span class="annot"><span class="annottext">toJSON :: ChatStatisticsAdministratorActionsInfo -&gt; Value
+</span><span id="line-25"></span><span>
+</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679461024"><span id="local-6989586621679461027"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.ChatStatisticsAdministratorActionsInfo.html#ChatStatisticsAdministratorActionsInfo"><span class="hs-identifier hs-type">ChatStatisticsAdministratorActionsInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-27"></span><span> </span><span id="local-6989586621679461022"><span class="annot"><span class="annottext">show :: ChatStatisticsAdministratorActionsInfo -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.ChatStatisticsAdministratorActionsInfo.html#ChatStatisticsAdministratorActionsInfo"><span class="hs-identifier hs-type">ChatStatisticsAdministratorActionsInfo</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">restricted_user_count :: ChatStatisticsAdministratorActionsInfo -&gt; Maybe Int
+</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#restricted_user_count"><span class="hs-identifier hs-var">restricted_user_count</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679461020"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679461020"><span class="hs-identifier hs-var">restricted_user_count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">banned_user_count :: ChatStatisticsAdministratorActionsInfo -&gt; Maybe Int
+</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#banned_user_count"><span class="hs-identifier hs-var">banned_user_count</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679461019"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679461019"><span class="hs-identifier hs-var">banned_user_count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">deleted_message_count :: ChatStatisticsAdministratorActionsInfo -&gt; Maybe Int
+</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#deleted_message_count"><span class="hs-identifier hs-var">deleted_message_count</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679461018"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679461018"><span class="hs-identifier hs-var">deleted_message_count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">user_id :: ChatStatisticsAdministratorActionsInfo -&gt; Maybe Int
+</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679461017"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679461017"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-28"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;ChatStatisticsAdministratorActionsInfo&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;restricted_user_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679461020"><span class="hs-identifier hs-var">restricted_user_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;banned_user_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679461019"><span class="hs-identifier hs-var">banned_user_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;deleted_message_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679461018"><span class="hs-identifier hs-var">deleted_message_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679461017"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-29"></span><span>
+</span><span id="line-30"></span><span id="local-6989586621679461075"><span class="annot"><a href="API.ChatStatisticsAdministratorActionsInfo.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679461075"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679461075"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-31"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
+</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679461014"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679461014"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679461013"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679461013"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679461014"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679461013"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><span id="line-32"></span><span class="annot"><a href="API.ChatStatisticsAdministratorActionsInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
+</span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span>
+</span><span id="line-33"></span><span>
+</span><span id="line-34"></span><span class="annot"><a href="API.ChatStatisticsAdministratorActionsInfo.html#cc"><span class="hs-identifier hs-type">cc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-35"></span><span id="cc"><span class="annot"><span class="annottext">cc :: [String] -&gt; String
+</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-36"></span><span class="annot"><a href="API.ChatStatisticsAdministratorActionsInfo.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679461012"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679461012"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
+forall a. [a] -&gt; [[a]] -&gt; [a]
+</span><span class="hs-identifier hs-var">intercalate</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;, &quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(String -&gt; Bool) -&gt; [String] -&gt; [String]
+forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">filter</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool -&gt; Bool
+</span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; Bool) -&gt; (String -&gt; Bool) -&gt; String -&gt; Bool
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
+</span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679461012"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;}&quot;</span></span><span>
+</span><span id="line-37"></span><span>
+</span><span id="line-38"></span><span>
+</span><span id="line-39"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679461002"><span id="local-6989586621679461004"><span id="local-6989586621679461006"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.ChatStatisticsAdministratorActionsInfo.html#ChatStatisticsAdministratorActionsInfo"><span class="hs-identifier hs-type">ChatStatisticsAdministratorActionsInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-40"></span><span> </span><span id="local-6989586621679461000"><span class="annot"><span class="annottext">toJSON :: ChatStatisticsAdministratorActionsInfo -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.ChatStatisticsAdministratorActionsInfo.html#ChatStatisticsAdministratorActionsInfo"><span class="hs-identifier hs-type">ChatStatisticsAdministratorActionsInfo</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">restricted_user_count :: ChatStatisticsAdministratorActionsInfo -&gt; Maybe Int
-</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#restricted_user_count"><span class="hs-identifier hs-var">restricted_user_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679436886"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679436886"><span class="hs-identifier hs-var">restricted_user_count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">banned_user_count :: ChatStatisticsAdministratorActionsInfo -&gt; Maybe Int
-</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#banned_user_count"><span class="hs-identifier hs-var">banned_user_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679436885"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679436885"><span class="hs-identifier hs-var">banned_user_count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">deleted_message_count :: ChatStatisticsAdministratorActionsInfo -&gt; Maybe Int
-</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#deleted_message_count"><span class="hs-identifier hs-var">deleted_message_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679436884"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679436884"><span class="hs-identifier hs-var">deleted_message_count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">user_id :: ChatStatisticsAdministratorActionsInfo -&gt; Maybe Int
-</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679436883"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679436883"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-27"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#restricted_user_count"><span class="hs-identifier hs-var">restricted_user_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679460998"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679460998"><span class="hs-identifier hs-var">restricted_user_count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">banned_user_count :: ChatStatisticsAdministratorActionsInfo -&gt; Maybe Int
+</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#banned_user_count"><span class="hs-identifier hs-var">banned_user_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679460997"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679460997"><span class="hs-identifier hs-var">banned_user_count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">deleted_message_count :: ChatStatisticsAdministratorActionsInfo -&gt; Maybe Int
+</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#deleted_message_count"><span class="hs-identifier hs-var">deleted_message_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679460996"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679460996"><span class="hs-identifier hs-var">deleted_message_count</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">user_id :: ChatStatisticsAdministratorActionsInfo -&gt; Maybe Int
+</span><a href="API.ChatStatisticsAdministratorActionsInfo.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679460995"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679460995"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-41"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -78,45 +142,45 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;restricted_user_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679436886"><span class="hs-identifier hs-var">restricted_user_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679460998"><span class="hs-identifier hs-var">restricted_user_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;banned_user_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679436885"><span class="hs-identifier hs-var">banned_user_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679460997"><span class="hs-identifier hs-var">banned_user_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;deleted_message_count&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679436884"><span class="hs-identifier hs-var">deleted_message_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679460996"><span class="hs-identifier hs-var">deleted_message_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679436883"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-28"></span><span>
-</span><span id="line-29"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679436877"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ChatStatisticsAdministratorActionsInfo.html#ChatStatisticsAdministratorActionsInfo"><span class="hs-identifier hs-type">ChatStatisticsAdministratorActionsInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-30"></span><span> </span><span id="local-6989586621679436875"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatStatisticsAdministratorActionsInfo
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679436873"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679436873"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679436871"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679436871"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-31"></span><span>  </span><span id="local-6989586621679436870"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679436870"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679436871"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679460995"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-42"></span><span>
+</span><span id="line-43"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679460989"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.ChatStatisticsAdministratorActionsInfo.html#ChatStatisticsAdministratorActionsInfo"><span class="hs-identifier hs-type">ChatStatisticsAdministratorActionsInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-44"></span><span> </span><span id="local-6989586621679460987"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ChatStatisticsAdministratorActionsInfo
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679460985"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679460985"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679460983"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679460983"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-45"></span><span>  </span><span id="local-6989586621679460982"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679460982"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679460983"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-32"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679436870"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-33"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span id="line-46"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679460982"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-47"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;chatStatisticsAdministratorActionsInfo&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ChatStatisticsAdministratorActionsInfo
-</span><a href="#local-6989586621679436868"><span class="hs-identifier hs-var">parseChatStatisticsAdministratorActionsInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679436873"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-34"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679460980"><span class="hs-identifier hs-var">parseChatStatisticsAdministratorActionsInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679460985"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-48"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ChatStatisticsAdministratorActionsInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-35"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-36"></span><span>   </span><span class="annot"><a href="#local-6989586621679436868"><span class="hs-identifier hs-type">parseChatStatisticsAdministratorActionsInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatStatisticsAdministratorActionsInfo.html#ChatStatisticsAdministratorActionsInfo"><span class="hs-identifier hs-type">ChatStatisticsAdministratorActionsInfo</span></a></span><span>
-</span><span id="line-37"></span><span>   </span><span id="local-6989586621679436868"><span class="annot"><span class="annottext">parseChatStatisticsAdministratorActionsInfo :: Value -&gt; Parser ChatStatisticsAdministratorActionsInfo
-</span><a href="#local-6989586621679436868"><span class="hs-identifier hs-var hs-var">parseChatStatisticsAdministratorActionsInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-49"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-50"></span><span>   </span><span class="annot"><a href="#local-6989586621679460980"><span class="hs-identifier hs-type">parseChatStatisticsAdministratorActionsInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.ChatStatisticsAdministratorActionsInfo.html#ChatStatisticsAdministratorActionsInfo"><span class="hs-identifier hs-type">ChatStatisticsAdministratorActionsInfo</span></a></span><span>
+</span><span id="line-51"></span><span>   </span><span id="local-6989586621679460980"><span class="annot"><span class="annottext">parseChatStatisticsAdministratorActionsInfo :: Value -&gt; Parser ChatStatisticsAdministratorActionsInfo
+</span><a href="#local-6989586621679460980"><span class="hs-identifier hs-var hs-var">parseChatStatisticsAdministratorActionsInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ChatStatisticsAdministratorActionsInfo)
 -&gt; Value
 -&gt; Parser ChatStatisticsAdministratorActionsInfo
@@ -128,13 +192,13 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ChatStatisticsAdministratorActionsInfo
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679436866"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679436866"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-38"></span><span>    </span><span id="local-6989586621679436865"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679436865"><span class="hs-identifier hs-var">restricted_user_count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679460978"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679460978"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-52"></span><span>    </span><span id="local-6989586621679460977"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679460977"><span class="hs-identifier hs-var">restricted_user_count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679436866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679460978"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;restricted_user_count&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -142,15 +206,15 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679436866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679460978"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;restricted_user_count&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-39"></span><span>    </span><span id="local-6989586621679436862"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679436862"><span class="hs-identifier hs-var">banned_user_count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-53"></span><span>    </span><span id="local-6989586621679460974"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679460974"><span class="hs-identifier hs-var">banned_user_count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679436866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679460978"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;banned_user_count&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -158,15 +222,15 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679436866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679460978"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;banned_user_count&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-40"></span><span>    </span><span id="local-6989586621679436861"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679436861"><span class="hs-identifier hs-var">deleted_message_count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-54"></span><span>    </span><span id="local-6989586621679460973"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679460973"><span class="hs-identifier hs-var">deleted_message_count</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679436866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679460978"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;deleted_message_count&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -174,15 +238,15 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679436866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679460978"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;deleted_message_count&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-41"></span><span>    </span><span id="local-6989586621679436860"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679436860"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-55"></span><span>    </span><span id="local-6989586621679460972"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679460972"><span class="hs-identifier hs-var">user_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679436866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679460978"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;user_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -190,11 +254,11 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679436866"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679460978"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;user_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-42"></span><span>    </span><span class="annot"><span class="annottext">ChatStatisticsAdministratorActionsInfo
+</span><span id="line-56"></span><span>    </span><span class="annot"><span class="annottext">ChatStatisticsAdministratorActionsInfo
 -&gt; Parser ChatStatisticsAdministratorActionsInfo
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ChatStatisticsAdministratorActionsInfo
@@ -209,15 +273,15 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; ChatStatisticsAdministratorActionsInfo
 </span><a href="API.ChatStatisticsAdministratorActionsInfo.html#ChatStatisticsAdministratorActionsInfo"><span class="hs-identifier hs-type">ChatStatisticsAdministratorActionsInfo</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">restricted_user_count :: Maybe Int
 </span><a href="API.ChatStatisticsAdministratorActionsInfo.html#restricted_user_count"><span class="hs-identifier hs-var">restricted_user_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679436865"><span class="hs-identifier hs-var">restricted_user_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">banned_user_count :: Maybe Int
+</span><a href="#local-6989586621679460977"><span class="hs-identifier hs-var">restricted_user_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">banned_user_count :: Maybe Int
 </span><a href="API.ChatStatisticsAdministratorActionsInfo.html#banned_user_count"><span class="hs-identifier hs-var">banned_user_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679436862"><span class="hs-identifier hs-var">banned_user_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">deleted_message_count :: Maybe Int
+</span><a href="#local-6989586621679460974"><span class="hs-identifier hs-var">banned_user_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">deleted_message_count :: Maybe Int
 </span><a href="API.ChatStatisticsAdministratorActionsInfo.html#deleted_message_count"><span class="hs-identifier hs-var">deleted_message_count</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679436861"><span class="hs-identifier hs-var">deleted_message_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">user_id :: Maybe Int
+</span><a href="#local-6989586621679460973"><span class="hs-identifier hs-var">deleted_message_count</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">user_id :: Maybe Int
 </span><a href="API.ChatStatisticsAdministratorActionsInfo.html#user_id"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679436860"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-43"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679460972"><span class="hs-identifier hs-var">user_id</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-57"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser ChatStatisticsAdministratorActionsInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-44"></span></pre></body></html>
+</span><span id="line-58"></span></pre></body></html>

@@ -6,41 +6,27 @@
 </span><span id="line-6"></span><span>
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.MessageContent.html"><span class="hs-identifier">API.MessageContent</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">MessageContent</span></span><span>
-</span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-13"></span><span class="hs-comment">-- Describes a sponsored message </span><span>
-</span><span id="line-14"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-15"></span><span class="hs-comment">-- __id__ Unique sponsored message identifier</span><span>
-</span><span id="line-16"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-17"></span><span class="hs-comment">-- __sponsor_chat_id__ Chat identifier</span><span>
-</span><span id="line-18"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-19"></span><span class="hs-comment">-- __start_parameter__ Parameter for the bot start message if the sponsored chat is a chat with a bot</span><span>
-</span><span id="line-20"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-21"></span><span class="hs-comment">-- __content__ Content of the message</span><span>
-</span><span id="line-22"></span><span class="hs-keyword">data</span><span> </span><span id="SponsoredMessage"><span class="annot"><a href="API.SponsoredMessage.html#SponsoredMessage"><span class="hs-identifier hs-var">SponsoredMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span> </span><span id="SponsoredMessage"><span class="annot"><a href="API.SponsoredMessage.html#SponsoredMessage"><span class="hs-identifier hs-var">SponsoredMessage</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="content"><span class="annot"><span class="annottext">SponsoredMessage -&gt; Maybe MessageContent
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">intercalate</span></span><span class="hs-special">)</span><span>
+</span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.MessageContent.html"><span class="hs-identifier">API.MessageContent</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">MessageContent</span></span><span>
+</span><span id="line-11"></span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- Describes a sponsored message </span><span>
+</span><span id="line-15"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-16"></span><span class="hs-comment">-- __id__ Unique sponsored message identifier</span><span>
+</span><span id="line-17"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-18"></span><span class="hs-comment">-- __sponsor_chat_id__ Chat identifier</span><span>
+</span><span id="line-19"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-20"></span><span class="hs-comment">-- __start_parameter__ Parameter for the bot start message if the sponsored chat is a chat with a bot</span><span>
+</span><span id="line-21"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-22"></span><span class="hs-comment">-- __content__ Content of the message</span><span>
+</span><span id="line-23"></span><span class="hs-keyword">data</span><span> </span><span id="SponsoredMessage"><span class="annot"><a href="API.SponsoredMessage.html#SponsoredMessage"><span class="hs-identifier hs-var">SponsoredMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-24"></span><span>
+</span><span id="line-25"></span><span> </span><span id="SponsoredMessage"><span class="annot"><a href="API.SponsoredMessage.html#SponsoredMessage"><span class="hs-identifier hs-var">SponsoredMessage</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="content"><span class="annot"><span class="annottext">SponsoredMessage -&gt; Maybe MessageContent
 </span><a href="API.SponsoredMessage.html#content"><span class="hs-identifier hs-var hs-var">content</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.MessageContent.html#MessageContent"><span class="hs-identifier hs-type">MessageContent.MessageContent</span></a></span><span class="hs-special">,</span><span> </span><span id="start_parameter"><span class="annot"><span class="annottext">SponsoredMessage -&gt; Maybe String
 </span><a href="API.SponsoredMessage.html#start_parameter"><span class="hs-identifier hs-var hs-var">start_parameter</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="sponsor_chat_id"><span class="annot"><span class="annottext">SponsoredMessage -&gt; Maybe Int
 </span><a href="API.SponsoredMessage.html#sponsor_chat_id"><span class="hs-identifier hs-var hs-var">sponsor_chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="_id"><span class="annot"><span class="annottext">SponsoredMessage -&gt; Maybe Int
-</span><a href="API.SponsoredMessage.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679486636"><span id="local-6989586621679486638"><span id="local-6989586621679486640"><span class="annot"><span class="annottext">Int -&gt; SponsoredMessage -&gt; ShowS
-[SponsoredMessage] -&gt; ShowS
-SponsoredMessage -&gt; String
-(Int -&gt; SponsoredMessage -&gt; ShowS)
--&gt; (SponsoredMessage -&gt; String)
--&gt; ([SponsoredMessage] -&gt; ShowS)
--&gt; Show SponsoredMessage
-forall a.
-(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
-showList :: [SponsoredMessage] -&gt; ShowS
-$cshowList :: [SponsoredMessage] -&gt; ShowS
-show :: SponsoredMessage -&gt; String
-$cshow :: SponsoredMessage -&gt; String
-showsPrec :: Int -&gt; SponsoredMessage -&gt; ShowS
-$cshowsPrec :: Int -&gt; SponsoredMessage -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679486631"><span id="local-6989586621679486633"><span class="annot"><span class="annottext">SponsoredMessage -&gt; SponsoredMessage -&gt; Bool
+</span><a href="API.SponsoredMessage.html#_id"><span class="hs-identifier hs-var hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679524654"><span id="local-6989586621679524656"><span class="annot"><span class="annottext">SponsoredMessage -&gt; SponsoredMessage -&gt; Bool
 (SponsoredMessage -&gt; SponsoredMessage -&gt; Bool)
 -&gt; (SponsoredMessage -&gt; SponsoredMessage -&gt; Bool)
 -&gt; Eq SponsoredMessage
@@ -50,19 +36,97 @@ $c/= :: SponsoredMessage -&gt; SponsoredMessage -&gt; Bool
 == :: SponsoredMessage -&gt; SponsoredMessage -&gt; Bool
 $c== :: SponsoredMessage -&gt; SponsoredMessage -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-25"></span><span>
-</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679486623"><span id="local-6989586621679486625"><span id="local-6989586621679486627"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.SponsoredMessage.html#SponsoredMessage"><span class="hs-identifier hs-type">SponsoredMessage</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-27"></span><span> </span><span id="local-6989586621679486621"><span class="annot"><span class="annottext">toJSON :: SponsoredMessage -&gt; Value
+</span><span id="line-26"></span><span>
+</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679524648"><span id="local-6989586621679524651"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.SponsoredMessage.html#SponsoredMessage"><span class="hs-identifier hs-type">SponsoredMessage</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-28"></span><span> </span><span id="local-6989586621679524646"><span class="annot"><span class="annottext">show :: SponsoredMessage -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.SponsoredMessage.html#SponsoredMessage"><span class="hs-identifier hs-type">SponsoredMessage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">content :: SponsoredMessage -&gt; Maybe MessageContent
+</span><a href="API.SponsoredMessage.html#content"><span class="hs-identifier hs-var">content</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679524644"><span class="annot"><span class="annottext">Maybe MessageContent
+</span><a href="#local-6989586621679524644"><span class="hs-identifier hs-var">content</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">start_parameter :: SponsoredMessage -&gt; Maybe String
+</span><a href="API.SponsoredMessage.html#start_parameter"><span class="hs-identifier hs-var">start_parameter</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679524643"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679524643"><span class="hs-identifier hs-var">start_parameter</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sponsor_chat_id :: SponsoredMessage -&gt; Maybe Int
+</span><a href="API.SponsoredMessage.html#sponsor_chat_id"><span class="hs-identifier hs-var">sponsor_chat_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679524642"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679524642"><span class="hs-identifier hs-var">sponsor_chat_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: SponsoredMessage -&gt; Maybe Int
+</span><a href="API.SponsoredMessage.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679524641"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679524641"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-29"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SponsoredMessage&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SponsoredMessage.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe MessageContent -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.SponsoredMessage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;content&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageContent
+</span><a href="#local-6989586621679524644"><span class="hs-identifier hs-var">content</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.SponsoredMessage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;start_parameter&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679524643"><span class="hs-identifier hs-var">start_parameter</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.SponsoredMessage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;sponsor_chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679524642"><span class="hs-identifier hs-var">sponsor_chat_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.SponsoredMessage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679524641"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-30"></span><span>
+</span><span id="line-31"></span><span id="local-6989586621679524699"><span class="annot"><a href="API.SponsoredMessage.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679524699"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679524699"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-32"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
+</span><a href="API.SponsoredMessage.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679524638"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679524638"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679524637"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679524637"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679524638"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679524637"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><span id="line-33"></span><span class="annot"><a href="API.SponsoredMessage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
+</span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span>
+</span><span id="line-34"></span><span>
+</span><span id="line-35"></span><span class="annot"><a href="API.SponsoredMessage.html#cc"><span class="hs-identifier hs-type">cc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-36"></span><span id="cc"><span class="annot"><span class="annottext">cc :: [String] -&gt; String
+</span><a href="API.SponsoredMessage.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-37"></span><span class="annot"><a href="API.SponsoredMessage.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679524636"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679524636"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
+forall a. [a] -&gt; [[a]] -&gt; [a]
+</span><span class="hs-identifier hs-var">intercalate</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;, &quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(String -&gt; Bool) -&gt; [String] -&gt; [String]
+forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">filter</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool -&gt; Bool
+</span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; Bool) -&gt; (String -&gt; Bool) -&gt; String -&gt; Bool
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
+</span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679524636"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;}&quot;</span></span><span>
+</span><span id="line-38"></span><span>
+</span><span id="line-39"></span><span>
+</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679524626"><span id="local-6989586621679524628"><span id="local-6989586621679524630"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.SponsoredMessage.html#SponsoredMessage"><span class="hs-identifier hs-type">SponsoredMessage</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-41"></span><span> </span><span id="local-6989586621679524624"><span class="annot"><span class="annottext">toJSON :: SponsoredMessage -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.SponsoredMessage.html#SponsoredMessage"><span class="hs-identifier hs-type">SponsoredMessage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">content :: SponsoredMessage -&gt; Maybe MessageContent
-</span><a href="API.SponsoredMessage.html#content"><span class="hs-identifier hs-var">content</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679486619"><span class="annot"><span class="annottext">Maybe MessageContent
-</span><a href="#local-6989586621679486619"><span class="hs-identifier hs-var">content</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">start_parameter :: SponsoredMessage -&gt; Maybe String
-</span><a href="API.SponsoredMessage.html#start_parameter"><span class="hs-identifier hs-var">start_parameter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679486618"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679486618"><span class="hs-identifier hs-var">start_parameter</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sponsor_chat_id :: SponsoredMessage -&gt; Maybe Int
-</span><a href="API.SponsoredMessage.html#sponsor_chat_id"><span class="hs-identifier hs-var">sponsor_chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679486617"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679486617"><span class="hs-identifier hs-var">sponsor_chat_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: SponsoredMessage -&gt; Maybe Int
-</span><a href="API.SponsoredMessage.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679486616"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679486616"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-28"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.SponsoredMessage.html#content"><span class="hs-identifier hs-var">content</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679524622"><span class="annot"><span class="annottext">Maybe MessageContent
+</span><a href="#local-6989586621679524622"><span class="hs-identifier hs-var">content</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">start_parameter :: SponsoredMessage -&gt; Maybe String
+</span><a href="API.SponsoredMessage.html#start_parameter"><span class="hs-identifier hs-var">start_parameter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679524621"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679524621"><span class="hs-identifier hs-var">start_parameter</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sponsor_chat_id :: SponsoredMessage -&gt; Maybe Int
+</span><a href="API.SponsoredMessage.html#sponsor_chat_id"><span class="hs-identifier hs-var">sponsor_chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679524620"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679524620"><span class="hs-identifier hs-var">sponsor_chat_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: SponsoredMessage -&gt; Maybe Int
+</span><a href="API.SponsoredMessage.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679524619"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679524619"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-42"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -72,45 +136,45 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;content&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe MessageContent -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe MessageContent
-</span><a href="#local-6989586621679486619"><span class="hs-identifier hs-var">content</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679524622"><span class="hs-identifier hs-var">content</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;start_parameter&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679486618"><span class="hs-identifier hs-var">start_parameter</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679524621"><span class="hs-identifier hs-var">start_parameter</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;sponsor_chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679486617"><span class="hs-identifier hs-var">sponsor_chat_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679524620"><span class="hs-identifier hs-var">sponsor_chat_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679486616"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-29"></span><span>
-</span><span id="line-30"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679486610"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.SponsoredMessage.html#SponsoredMessage"><span class="hs-identifier hs-type">SponsoredMessage</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-31"></span><span> </span><span id="local-6989586621679486608"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SponsoredMessage
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679486606"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679486606"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679486604"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679486604"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-32"></span><span>  </span><span id="local-6989586621679486603"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679486603"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679486604"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679524619"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-43"></span><span>
+</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679524613"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.SponsoredMessage.html#SponsoredMessage"><span class="hs-identifier hs-type">SponsoredMessage</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-45"></span><span> </span><span id="local-6989586621679524611"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SponsoredMessage
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679524609"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679524609"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679524607"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679524607"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-46"></span><span>  </span><span id="local-6989586621679524606"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679524606"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679524607"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-33"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679486603"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-34"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span id="line-47"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679524606"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-48"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;sponsoredMessage&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SponsoredMessage
-</span><a href="#local-6989586621679486601"><span class="hs-identifier hs-var">parseSponsoredMessage</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679486606"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-35"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679524604"><span class="hs-identifier hs-var">parseSponsoredMessage</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679524609"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-49"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SponsoredMessage
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-36"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-37"></span><span>   </span><span class="annot"><a href="#local-6989586621679486601"><span class="hs-identifier hs-type">parseSponsoredMessage</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SponsoredMessage.html#SponsoredMessage"><span class="hs-identifier hs-type">SponsoredMessage</span></a></span><span>
-</span><span id="line-38"></span><span>   </span><span id="local-6989586621679486601"><span class="annot"><span class="annottext">parseSponsoredMessage :: Value -&gt; Parser SponsoredMessage
-</span><a href="#local-6989586621679486601"><span class="hs-identifier hs-var hs-var">parseSponsoredMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-50"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-51"></span><span>   </span><span class="annot"><a href="#local-6989586621679524604"><span class="hs-identifier hs-type">parseSponsoredMessage</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SponsoredMessage.html#SponsoredMessage"><span class="hs-identifier hs-type">SponsoredMessage</span></a></span><span>
+</span><span id="line-52"></span><span>   </span><span id="local-6989586621679524604"><span class="annot"><span class="annottext">parseSponsoredMessage :: Value -&gt; Parser SponsoredMessage
+</span><a href="#local-6989586621679524604"><span class="hs-identifier hs-var hs-var">parseSponsoredMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SponsoredMessage)
 -&gt; Value
 -&gt; Parser SponsoredMessage
@@ -122,25 +186,25 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SponsoredMessage
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679486599"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679486599"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-39"></span><span>    </span><span id="local-6989586621679486598"><span class="annot"><span class="annottext">Maybe MessageContent
-</span><a href="#local-6989586621679486598"><span class="hs-identifier hs-var">content</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679486599"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe MessageContent)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679524602"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679524602"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-53"></span><span>    </span><span id="local-6989586621679524601"><span class="annot"><span class="annottext">Maybe MessageContent
+</span><a href="#local-6989586621679524601"><span class="hs-identifier hs-var">content</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679524602"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe MessageContent)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;content&quot;</span></span><span>
-</span><span id="line-40"></span><span>    </span><span id="local-6989586621679486596"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679486596"><span class="hs-identifier hs-var">start_parameter</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679486599"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-54"></span><span>    </span><span id="local-6989586621679524599"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679524599"><span class="hs-identifier hs-var">start_parameter</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679524602"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;start_parameter&quot;</span></span><span>
-</span><span id="line-41"></span><span>    </span><span id="local-6989586621679486595"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679486595"><span class="hs-identifier hs-var">sponsor_chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-55"></span><span>    </span><span id="local-6989586621679524598"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679524598"><span class="hs-identifier hs-var">sponsor_chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679486599"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679524602"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;sponsor_chat_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -148,15 +212,15 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679486599"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679524602"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;sponsor_chat_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-42"></span><span>    </span><span id="local-6989586621679486593"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679486593"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-56"></span><span>    </span><span id="local-6989586621679524596"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679524596"><span class="hs-identifier hs-var">_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679486599"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679524602"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -164,11 +228,11 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679486599"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679524602"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-43"></span><span>    </span><span class="annot"><span class="annottext">SponsoredMessage -&gt; Parser SponsoredMessage
+</span><span id="line-57"></span><span>    </span><span class="annot"><span class="annottext">SponsoredMessage -&gt; Parser SponsoredMessage
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SponsoredMessage -&gt; Parser SponsoredMessage)
 -&gt; SponsoredMessage -&gt; Parser SponsoredMessage
@@ -177,15 +241,15 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; Maybe String -&gt; Maybe Int -&gt; Maybe Int -&gt; SponsoredMessage
 </span><a href="API.SponsoredMessage.html#SponsoredMessage"><span class="hs-identifier hs-type">SponsoredMessage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">content :: Maybe MessageContent
 </span><a href="API.SponsoredMessage.html#content"><span class="hs-identifier hs-var">content</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe MessageContent
-</span><a href="#local-6989586621679486598"><span class="hs-identifier hs-var">content</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">start_parameter :: Maybe String
+</span><a href="#local-6989586621679524601"><span class="hs-identifier hs-var">content</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">start_parameter :: Maybe String
 </span><a href="API.SponsoredMessage.html#start_parameter"><span class="hs-identifier hs-var">start_parameter</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679486596"><span class="hs-identifier hs-var">start_parameter</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sponsor_chat_id :: Maybe Int
+</span><a href="#local-6989586621679524599"><span class="hs-identifier hs-var">start_parameter</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">sponsor_chat_id :: Maybe Int
 </span><a href="API.SponsoredMessage.html#sponsor_chat_id"><span class="hs-identifier hs-var">sponsor_chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679486595"><span class="hs-identifier hs-var">sponsor_chat_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Maybe Int
+</span><a href="#local-6989586621679524598"><span class="hs-identifier hs-var">sponsor_chat_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">_id :: Maybe Int
 </span><a href="API.SponsoredMessage.html#_id"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679486593"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-44"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679524596"><span class="hs-identifier hs-var">_id</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-58"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser SponsoredMessage
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-45"></span></pre></body></html>
+</span><span id="line-59"></span></pre></body></html>

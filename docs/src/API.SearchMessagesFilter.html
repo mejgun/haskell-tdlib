@@ -6,98 +6,84 @@
 </span><span id="line-6"></span><span>
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-9"></span><span>
-</span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- Represents a filter for message search results</span><span>
-</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="SearchMessagesFilter"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-var">SearchMessagesFilter</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-14"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-15"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-16"></span><span> </span><span class="hs-comment">-- Returns all found messages, no filter is applied</span><span>
-</span><span id="line-17"></span><span> </span><span id="SearchMessagesFilterEmpty"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterEmpty"><span class="hs-identifier hs-var">SearchMessagesFilterEmpty</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-18"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-19"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-20"></span><span> </span><span class="hs-comment">-- Returns only animation messages</span><span>
-</span><span id="line-21"></span><span> </span><span id="SearchMessagesFilterAnimation"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterAnimation"><span class="hs-identifier hs-var">SearchMessagesFilterAnimation</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-22"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-23"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-24"></span><span> </span><span class="hs-comment">-- Returns only audio messages</span><span>
-</span><span id="line-25"></span><span> </span><span id="SearchMessagesFilterAudio"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterAudio"><span class="hs-identifier hs-var">SearchMessagesFilterAudio</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-26"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-27"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-28"></span><span> </span><span class="hs-comment">-- Returns only document messages</span><span>
-</span><span id="line-29"></span><span> </span><span id="SearchMessagesFilterDocument"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterDocument"><span class="hs-identifier hs-var">SearchMessagesFilterDocument</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-30"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-31"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-32"></span><span> </span><span class="hs-comment">-- Returns only photo messages</span><span>
-</span><span id="line-33"></span><span> </span><span id="SearchMessagesFilterPhoto"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterPhoto"><span class="hs-identifier hs-var">SearchMessagesFilterPhoto</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-34"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-35"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-36"></span><span> </span><span class="hs-comment">-- Returns only video messages</span><span>
-</span><span id="line-37"></span><span> </span><span id="SearchMessagesFilterVideo"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVideo"><span class="hs-identifier hs-var">SearchMessagesFilterVideo</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-38"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-39"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-40"></span><span> </span><span class="hs-comment">-- Returns only voice note messages</span><span>
-</span><span id="line-41"></span><span> </span><span id="SearchMessagesFilterVoiceNote"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVoiceNote"><span class="hs-identifier hs-var">SearchMessagesFilterVoiceNote</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-42"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-43"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-44"></span><span> </span><span class="hs-comment">-- Returns only photo and video messages</span><span>
-</span><span id="line-45"></span><span> </span><span id="SearchMessagesFilterPhotoAndVideo"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterPhotoAndVideo"><span class="hs-identifier hs-var">SearchMessagesFilterPhotoAndVideo</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-46"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-47"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-48"></span><span> </span><span class="hs-comment">-- Returns only messages containing URLs</span><span>
-</span><span id="line-49"></span><span> </span><span id="SearchMessagesFilterUrl"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterUrl"><span class="hs-identifier hs-var">SearchMessagesFilterUrl</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-50"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-51"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-52"></span><span> </span><span class="hs-comment">-- Returns only messages containing chat photos</span><span>
-</span><span id="line-53"></span><span> </span><span id="SearchMessagesFilterChatPhoto"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterChatPhoto"><span class="hs-identifier hs-var">SearchMessagesFilterChatPhoto</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-54"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-55"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-56"></span><span> </span><span class="hs-comment">-- Returns only call messages</span><span>
-</span><span id="line-57"></span><span> </span><span id="SearchMessagesFilterCall"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterCall"><span class="hs-identifier hs-var">SearchMessagesFilterCall</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-58"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-59"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-60"></span><span> </span><span class="hs-comment">-- Returns only incoming call messages with missed/declined discard reasons</span><span>
-</span><span id="line-61"></span><span> </span><span id="SearchMessagesFilterMissedCall"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterMissedCall"><span class="hs-identifier hs-var">SearchMessagesFilterMissedCall</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-62"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-63"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-64"></span><span> </span><span class="hs-comment">-- Returns only video note messages</span><span>
-</span><span id="line-65"></span><span> </span><span id="SearchMessagesFilterVideoNote"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVideoNote"><span class="hs-identifier hs-var">SearchMessagesFilterVideoNote</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-66"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-67"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-68"></span><span> </span><span class="hs-comment">-- Returns only voice and video note messages</span><span>
-</span><span id="line-69"></span><span> </span><span id="SearchMessagesFilterVoiceAndVideoNote"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVoiceAndVideoNote"><span class="hs-identifier hs-var">SearchMessagesFilterVoiceAndVideoNote</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-70"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-71"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-72"></span><span> </span><span class="hs-comment">-- Returns only messages with mentions of the current user, or messages that are replies to their messages</span><span>
-</span><span id="line-73"></span><span> </span><span id="SearchMessagesFilterMention"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterMention"><span class="hs-identifier hs-var">SearchMessagesFilterMention</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-74"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-75"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-76"></span><span> </span><span class="hs-comment">-- Returns only messages with unread mentions of the current user, or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query, a message thread or by the sending user</span><span>
-</span><span id="line-77"></span><span> </span><span id="SearchMessagesFilterUnreadMention"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterUnreadMention"><span class="hs-identifier hs-var">SearchMessagesFilterUnreadMention</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-78"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-79"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-80"></span><span> </span><span class="hs-comment">-- Returns only failed to send messages. This filter can be used only if the message database is used</span><span>
-</span><span id="line-81"></span><span> </span><span id="SearchMessagesFilterFailedToSend"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterFailedToSend"><span class="hs-identifier hs-var">SearchMessagesFilterFailedToSend</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-82"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-83"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-84"></span><span> </span><span class="hs-comment">-- Returns only pinned messages</span><span>
-</span><span id="line-85"></span><span> </span><span id="SearchMessagesFilterPinned"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterPinned"><span class="hs-identifier hs-var">SearchMessagesFilterPinned</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679485837"><span id="local-6989586621679485839"><span id="local-6989586621679485841"><span class="annot"><span class="annottext">Int -&gt; SearchMessagesFilter -&gt; ShowS
-[SearchMessagesFilter] -&gt; ShowS
-SearchMessagesFilter -&gt; String
-(Int -&gt; SearchMessagesFilter -&gt; ShowS)
--&gt; (SearchMessagesFilter -&gt; String)
--&gt; ([SearchMessagesFilter] -&gt; ShowS)
--&gt; Show SearchMessagesFilter
-forall a.
-(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
-showList :: [SearchMessagesFilter] -&gt; ShowS
-$cshowList :: [SearchMessagesFilter] -&gt; ShowS
-show :: SearchMessagesFilter -&gt; String
-$cshow :: SearchMessagesFilter -&gt; String
-showsPrec :: Int -&gt; SearchMessagesFilter -&gt; ShowS
-$cshowsPrec :: Int -&gt; SearchMessagesFilter -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679485832"><span id="local-6989586621679485834"><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; SearchMessagesFilter -&gt; Bool
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">intercalate</span></span><span class="hs-special">)</span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- Represents a filter for message search results</span><span>
+</span><span id="line-14"></span><span class="hs-keyword">data</span><span> </span><span id="SearchMessagesFilter"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-var">SearchMessagesFilter</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-15"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-16"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-17"></span><span> </span><span class="hs-comment">-- Returns all found messages, no filter is applied</span><span>
+</span><span id="line-18"></span><span> </span><span id="SearchMessagesFilterEmpty"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterEmpty"><span class="hs-identifier hs-var">SearchMessagesFilterEmpty</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-19"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-20"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-21"></span><span> </span><span class="hs-comment">-- Returns only animation messages</span><span>
+</span><span id="line-22"></span><span> </span><span id="SearchMessagesFilterAnimation"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterAnimation"><span class="hs-identifier hs-var">SearchMessagesFilterAnimation</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-23"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-24"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-25"></span><span> </span><span class="hs-comment">-- Returns only audio messages</span><span>
+</span><span id="line-26"></span><span> </span><span id="SearchMessagesFilterAudio"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterAudio"><span class="hs-identifier hs-var">SearchMessagesFilterAudio</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-27"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-28"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-29"></span><span> </span><span class="hs-comment">-- Returns only document messages</span><span>
+</span><span id="line-30"></span><span> </span><span id="SearchMessagesFilterDocument"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterDocument"><span class="hs-identifier hs-var">SearchMessagesFilterDocument</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-31"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-32"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-33"></span><span> </span><span class="hs-comment">-- Returns only photo messages</span><span>
+</span><span id="line-34"></span><span> </span><span id="SearchMessagesFilterPhoto"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterPhoto"><span class="hs-identifier hs-var">SearchMessagesFilterPhoto</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-35"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-36"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-37"></span><span> </span><span class="hs-comment">-- Returns only video messages</span><span>
+</span><span id="line-38"></span><span> </span><span id="SearchMessagesFilterVideo"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVideo"><span class="hs-identifier hs-var">SearchMessagesFilterVideo</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-39"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-40"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-41"></span><span> </span><span class="hs-comment">-- Returns only voice note messages</span><span>
+</span><span id="line-42"></span><span> </span><span id="SearchMessagesFilterVoiceNote"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVoiceNote"><span class="hs-identifier hs-var">SearchMessagesFilterVoiceNote</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-43"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-44"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-45"></span><span> </span><span class="hs-comment">-- Returns only photo and video messages</span><span>
+</span><span id="line-46"></span><span> </span><span id="SearchMessagesFilterPhotoAndVideo"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterPhotoAndVideo"><span class="hs-identifier hs-var">SearchMessagesFilterPhotoAndVideo</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-47"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-48"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-49"></span><span> </span><span class="hs-comment">-- Returns only messages containing URLs</span><span>
+</span><span id="line-50"></span><span> </span><span id="SearchMessagesFilterUrl"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterUrl"><span class="hs-identifier hs-var">SearchMessagesFilterUrl</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-51"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-52"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-53"></span><span> </span><span class="hs-comment">-- Returns only messages containing chat photos</span><span>
+</span><span id="line-54"></span><span> </span><span id="SearchMessagesFilterChatPhoto"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterChatPhoto"><span class="hs-identifier hs-var">SearchMessagesFilterChatPhoto</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-55"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-56"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-57"></span><span> </span><span class="hs-comment">-- Returns only call messages</span><span>
+</span><span id="line-58"></span><span> </span><span id="SearchMessagesFilterCall"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterCall"><span class="hs-identifier hs-var">SearchMessagesFilterCall</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-59"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-60"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-61"></span><span> </span><span class="hs-comment">-- Returns only incoming call messages with missed/declined discard reasons</span><span>
+</span><span id="line-62"></span><span> </span><span id="SearchMessagesFilterMissedCall"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterMissedCall"><span class="hs-identifier hs-var">SearchMessagesFilterMissedCall</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-63"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-64"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-65"></span><span> </span><span class="hs-comment">-- Returns only video note messages</span><span>
+</span><span id="line-66"></span><span> </span><span id="SearchMessagesFilterVideoNote"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVideoNote"><span class="hs-identifier hs-var">SearchMessagesFilterVideoNote</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-67"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-68"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-69"></span><span> </span><span class="hs-comment">-- Returns only voice and video note messages</span><span>
+</span><span id="line-70"></span><span> </span><span id="SearchMessagesFilterVoiceAndVideoNote"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVoiceAndVideoNote"><span class="hs-identifier hs-var">SearchMessagesFilterVoiceAndVideoNote</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-71"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-72"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-73"></span><span> </span><span class="hs-comment">-- Returns only messages with mentions of the current user, or messages that are replies to their messages</span><span>
+</span><span id="line-74"></span><span> </span><span id="SearchMessagesFilterMention"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterMention"><span class="hs-identifier hs-var">SearchMessagesFilterMention</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-75"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-76"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-77"></span><span> </span><span class="hs-comment">-- Returns only messages with unread mentions of the current user, or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query, a message thread or by the sending user</span><span>
+</span><span id="line-78"></span><span> </span><span id="SearchMessagesFilterUnreadMention"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterUnreadMention"><span class="hs-identifier hs-var">SearchMessagesFilterUnreadMention</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-79"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-80"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-81"></span><span> </span><span class="hs-comment">-- Returns only failed to send messages. This filter can be used only if the message database is used</span><span>
+</span><span id="line-82"></span><span> </span><span id="SearchMessagesFilterFailedToSend"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterFailedToSend"><span class="hs-identifier hs-var">SearchMessagesFilterFailedToSend</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-83"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-84"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-85"></span><span> </span><span class="hs-comment">-- Returns only pinned messages</span><span>
+</span><span id="line-86"></span><span> </span><span id="SearchMessagesFilterPinned"><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterPinned"><span class="hs-identifier hs-var">SearchMessagesFilterPinned</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679523630"><span id="local-6989586621679523632"><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; SearchMessagesFilter -&gt; Bool
 (SearchMessagesFilter -&gt; SearchMessagesFilter -&gt; Bool)
 -&gt; (SearchMessagesFilter -&gt; SearchMessagesFilter -&gt; Bool)
 -&gt; Eq SearchMessagesFilter
@@ -107,264 +93,437 @@ $c/= :: SearchMessagesFilter -&gt; SearchMessagesFilter -&gt; Bool
 == :: SearchMessagesFilter -&gt; SearchMessagesFilter -&gt; Bool
 $c== :: SearchMessagesFilter -&gt; SearchMessagesFilter -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-86"></span><span>
-</span><span id="line-87"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679485824"><span id="local-6989586621679485826"><span id="local-6989586621679485828"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-88"></span><span> </span><span id="local-6989586621679485822"><span class="annot"><span class="annottext">toJSON :: SearchMessagesFilter -&gt; Value
+</span><span id="line-87"></span><span>
+</span><span id="line-88"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679523624"><span id="local-6989586621679523627"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-89"></span><span> </span><span id="local-6989586621679523622"><span class="annot"><span class="annottext">show :: SearchMessagesFilter -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterEmpty"><span class="hs-identifier hs-type">SearchMessagesFilterEmpty</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-90"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchMessagesFilterEmpty&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-91"></span><span>
+</span><span id="line-92"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterAnimation"><span class="hs-identifier hs-type">SearchMessagesFilterAnimation</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-93"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchMessagesFilterAnimation&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-94"></span><span>
+</span><span id="line-95"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterAudio"><span class="hs-identifier hs-type">SearchMessagesFilterAudio</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-96"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchMessagesFilterAudio&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-97"></span><span>
+</span><span id="line-98"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterDocument"><span class="hs-identifier hs-type">SearchMessagesFilterDocument</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-99"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchMessagesFilterDocument&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-100"></span><span>
+</span><span id="line-101"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterPhoto"><span class="hs-identifier hs-type">SearchMessagesFilterPhoto</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-102"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchMessagesFilterPhoto&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-103"></span><span>
+</span><span id="line-104"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVideo"><span class="hs-identifier hs-type">SearchMessagesFilterVideo</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-105"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchMessagesFilterVideo&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-106"></span><span>
+</span><span id="line-107"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVoiceNote"><span class="hs-identifier hs-type">SearchMessagesFilterVoiceNote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-108"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchMessagesFilterVoiceNote&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-109"></span><span>
+</span><span id="line-110"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterPhotoAndVideo"><span class="hs-identifier hs-type">SearchMessagesFilterPhotoAndVideo</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-111"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchMessagesFilterPhotoAndVideo&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-112"></span><span>
+</span><span id="line-113"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterUrl"><span class="hs-identifier hs-type">SearchMessagesFilterUrl</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-114"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchMessagesFilterUrl&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-115"></span><span>
+</span><span id="line-116"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterChatPhoto"><span class="hs-identifier hs-type">SearchMessagesFilterChatPhoto</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-117"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchMessagesFilterChatPhoto&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-118"></span><span>
+</span><span id="line-119"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterCall"><span class="hs-identifier hs-type">SearchMessagesFilterCall</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-120"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchMessagesFilterCall&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-121"></span><span>
+</span><span id="line-122"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterMissedCall"><span class="hs-identifier hs-type">SearchMessagesFilterMissedCall</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-123"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchMessagesFilterMissedCall&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-124"></span><span>
+</span><span id="line-125"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVideoNote"><span class="hs-identifier hs-type">SearchMessagesFilterVideoNote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-126"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchMessagesFilterVideoNote&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-127"></span><span>
+</span><span id="line-128"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVoiceAndVideoNote"><span class="hs-identifier hs-type">SearchMessagesFilterVoiceAndVideoNote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-129"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchMessagesFilterVoiceAndVideoNote&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-130"></span><span>
+</span><span id="line-131"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterMention"><span class="hs-identifier hs-type">SearchMessagesFilterMention</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-132"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchMessagesFilterMention&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-133"></span><span>
+</span><span id="line-134"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterUnreadMention"><span class="hs-identifier hs-type">SearchMessagesFilterUnreadMention</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-135"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchMessagesFilterUnreadMention&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-136"></span><span>
+</span><span id="line-137"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterFailedToSend"><span class="hs-identifier hs-type">SearchMessagesFilterFailedToSend</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-138"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchMessagesFilterFailedToSend&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-139"></span><span>
+</span><span id="line-140"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterPinned"><span class="hs-identifier hs-type">SearchMessagesFilterPinned</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-141"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SearchMessagesFilterPinned&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-142"></span><span>
+</span><span id="line-143"></span><span id="local-6989586621679523619"><span class="annot"><a href="API.SearchMessagesFilter.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679523619"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679523619"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-144"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
+</span><a href="API.SearchMessagesFilter.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679523617"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523617"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679523616"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679523616"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523617"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679523616"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><span id="line-145"></span><span class="annot"><a href="API.SearchMessagesFilter.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
+</span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span>
+</span><span id="line-146"></span><span>
+</span><span id="line-147"></span><span class="annot"><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-type">cc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-148"></span><span id="cc"><span class="annot"><span class="annottext">cc :: [String] -&gt; String
+</span><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-149"></span><span class="annot"><a href="API.SearchMessagesFilter.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679523615"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679523615"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
+forall a. [a] -&gt; [[a]] -&gt; [a]
+</span><span class="hs-identifier hs-var">intercalate</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;, &quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(String -&gt; Bool) -&gt; [String] -&gt; [String]
+forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">filter</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool -&gt; Bool
+</span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; Bool) -&gt; (String -&gt; Bool) -&gt; String -&gt; Bool
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
+</span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679523615"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;}&quot;</span></span><span>
+</span><span id="line-150"></span><span>
+</span><span id="line-151"></span><span>
+</span><span id="line-152"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679523605"><span id="local-6989586621679523607"><span id="local-6989586621679523609"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-153"></span><span> </span><span id="local-6989586621679523603"><span class="annot"><span class="annottext">toJSON :: SearchMessagesFilter -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterEmpty"><span class="hs-identifier hs-type">SearchMessagesFilterEmpty</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-89"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-154"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;searchMessagesFilterEmpty&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-90"></span><span>
-</span><span id="line-91"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterAnimation"><span class="hs-identifier hs-type">SearchMessagesFilterAnimation</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-92"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-155"></span><span>
+</span><span id="line-156"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterAnimation"><span class="hs-identifier hs-type">SearchMessagesFilterAnimation</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-157"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;searchMessagesFilterAnimation&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-93"></span><span>
-</span><span id="line-94"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterAudio"><span class="hs-identifier hs-type">SearchMessagesFilterAudio</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-95"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-158"></span><span>
+</span><span id="line-159"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterAudio"><span class="hs-identifier hs-type">SearchMessagesFilterAudio</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-160"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;searchMessagesFilterAudio&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-96"></span><span>
-</span><span id="line-97"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterDocument"><span class="hs-identifier hs-type">SearchMessagesFilterDocument</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-98"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-161"></span><span>
+</span><span id="line-162"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterDocument"><span class="hs-identifier hs-type">SearchMessagesFilterDocument</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-163"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;searchMessagesFilterDocument&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-99"></span><span>
-</span><span id="line-100"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterPhoto"><span class="hs-identifier hs-type">SearchMessagesFilterPhoto</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-101"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-164"></span><span>
+</span><span id="line-165"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterPhoto"><span class="hs-identifier hs-type">SearchMessagesFilterPhoto</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-166"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;searchMessagesFilterPhoto&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-102"></span><span>
-</span><span id="line-103"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVideo"><span class="hs-identifier hs-type">SearchMessagesFilterVideo</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-104"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-167"></span><span>
+</span><span id="line-168"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVideo"><span class="hs-identifier hs-type">SearchMessagesFilterVideo</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-169"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;searchMessagesFilterVideo&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-105"></span><span>
-</span><span id="line-106"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVoiceNote"><span class="hs-identifier hs-type">SearchMessagesFilterVoiceNote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-107"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-170"></span><span>
+</span><span id="line-171"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVoiceNote"><span class="hs-identifier hs-type">SearchMessagesFilterVoiceNote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-172"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;searchMessagesFilterVoiceNote&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-108"></span><span>
-</span><span id="line-109"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterPhotoAndVideo"><span class="hs-identifier hs-type">SearchMessagesFilterPhotoAndVideo</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-110"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-173"></span><span>
+</span><span id="line-174"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterPhotoAndVideo"><span class="hs-identifier hs-type">SearchMessagesFilterPhotoAndVideo</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-175"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;searchMessagesFilterPhotoAndVideo&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-111"></span><span>
-</span><span id="line-112"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterUrl"><span class="hs-identifier hs-type">SearchMessagesFilterUrl</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-113"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-176"></span><span>
+</span><span id="line-177"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterUrl"><span class="hs-identifier hs-type">SearchMessagesFilterUrl</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-178"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;searchMessagesFilterUrl&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-114"></span><span>
-</span><span id="line-115"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterChatPhoto"><span class="hs-identifier hs-type">SearchMessagesFilterChatPhoto</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-116"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-179"></span><span>
+</span><span id="line-180"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterChatPhoto"><span class="hs-identifier hs-type">SearchMessagesFilterChatPhoto</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-181"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;searchMessagesFilterChatPhoto&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-117"></span><span>
-</span><span id="line-118"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterCall"><span class="hs-identifier hs-type">SearchMessagesFilterCall</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-119"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-182"></span><span>
+</span><span id="line-183"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterCall"><span class="hs-identifier hs-type">SearchMessagesFilterCall</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-184"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;searchMessagesFilterCall&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-120"></span><span>
-</span><span id="line-121"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterMissedCall"><span class="hs-identifier hs-type">SearchMessagesFilterMissedCall</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-122"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-185"></span><span>
+</span><span id="line-186"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterMissedCall"><span class="hs-identifier hs-type">SearchMessagesFilterMissedCall</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-187"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;searchMessagesFilterMissedCall&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-123"></span><span>
-</span><span id="line-124"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVideoNote"><span class="hs-identifier hs-type">SearchMessagesFilterVideoNote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-125"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-188"></span><span>
+</span><span id="line-189"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVideoNote"><span class="hs-identifier hs-type">SearchMessagesFilterVideoNote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-190"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;searchMessagesFilterVideoNote&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-126"></span><span>
-</span><span id="line-127"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVoiceAndVideoNote"><span class="hs-identifier hs-type">SearchMessagesFilterVoiceAndVideoNote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-128"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-191"></span><span>
+</span><span id="line-192"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVoiceAndVideoNote"><span class="hs-identifier hs-type">SearchMessagesFilterVoiceAndVideoNote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-193"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;searchMessagesFilterVoiceAndVideoNote&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-129"></span><span>
-</span><span id="line-130"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterMention"><span class="hs-identifier hs-type">SearchMessagesFilterMention</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-131"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-194"></span><span>
+</span><span id="line-195"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterMention"><span class="hs-identifier hs-type">SearchMessagesFilterMention</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-196"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;searchMessagesFilterMention&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-132"></span><span>
-</span><span id="line-133"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterUnreadMention"><span class="hs-identifier hs-type">SearchMessagesFilterUnreadMention</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-134"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-197"></span><span>
+</span><span id="line-198"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterUnreadMention"><span class="hs-identifier hs-type">SearchMessagesFilterUnreadMention</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-199"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;searchMessagesFilterUnreadMention&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-135"></span><span>
-</span><span id="line-136"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterFailedToSend"><span class="hs-identifier hs-type">SearchMessagesFilterFailedToSend</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-137"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-200"></span><span>
+</span><span id="line-201"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterFailedToSend"><span class="hs-identifier hs-type">SearchMessagesFilterFailedToSend</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-202"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;searchMessagesFilterFailedToSend&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-138"></span><span>
-</span><span id="line-139"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterPinned"><span class="hs-identifier hs-type">SearchMessagesFilterPinned</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-140"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-203"></span><span>
+</span><span id="line-204"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilterPinned"><span class="hs-identifier hs-type">SearchMessagesFilterPinned</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-205"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;searchMessagesFilterPinned&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-141"></span><span>
-</span><span id="line-142"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679485815"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-143"></span><span> </span><span id="local-6989586621679485813"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SearchMessagesFilter
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679485811"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679485809"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485809"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-144"></span><span>  </span><span id="local-6989586621679485808"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679485808"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485809"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-206"></span><span>
+</span><span id="line-207"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679523596"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-208"></span><span> </span><span id="local-6989586621679523594"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SearchMessagesFilter
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679523592"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679523590"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523590"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-209"></span><span>  </span><span id="local-6989586621679523589"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523589"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523590"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-145"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679485808"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-146"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span id="line-210"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523589"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-211"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterEmpty&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485806"><span class="hs-identifier hs-var">parseSearchMessagesFilterEmpty</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-147"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523587"><span class="hs-identifier hs-var">parseSearchMessagesFilterEmpty</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-212"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterAnimation&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485805"><span class="hs-identifier hs-var">parseSearchMessagesFilterAnimation</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-148"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523586"><span class="hs-identifier hs-var">parseSearchMessagesFilterAnimation</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-213"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterAudio&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485804"><span class="hs-identifier hs-var">parseSearchMessagesFilterAudio</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-149"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523585"><span class="hs-identifier hs-var">parseSearchMessagesFilterAudio</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-214"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterDocument&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485803"><span class="hs-identifier hs-var">parseSearchMessagesFilterDocument</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-150"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523584"><span class="hs-identifier hs-var">parseSearchMessagesFilterDocument</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-215"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterPhoto&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485802"><span class="hs-identifier hs-var">parseSearchMessagesFilterPhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-151"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523583"><span class="hs-identifier hs-var">parseSearchMessagesFilterPhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-216"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterVideo&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485801"><span class="hs-identifier hs-var">parseSearchMessagesFilterVideo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-152"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523582"><span class="hs-identifier hs-var">parseSearchMessagesFilterVideo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-217"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterVoiceNote&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485800"><span class="hs-identifier hs-var">parseSearchMessagesFilterVoiceNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-153"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523581"><span class="hs-identifier hs-var">parseSearchMessagesFilterVoiceNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-218"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterPhotoAndVideo&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485799"><span class="hs-identifier hs-var">parseSearchMessagesFilterPhotoAndVideo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-154"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523580"><span class="hs-identifier hs-var">parseSearchMessagesFilterPhotoAndVideo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-219"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterUrl&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485798"><span class="hs-identifier hs-var">parseSearchMessagesFilterUrl</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-155"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523579"><span class="hs-identifier hs-var">parseSearchMessagesFilterUrl</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-220"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterChatPhoto&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485797"><span class="hs-identifier hs-var">parseSearchMessagesFilterChatPhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-156"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523578"><span class="hs-identifier hs-var">parseSearchMessagesFilterChatPhoto</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-221"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterCall&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485796"><span class="hs-identifier hs-var">parseSearchMessagesFilterCall</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-157"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523577"><span class="hs-identifier hs-var">parseSearchMessagesFilterCall</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-222"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterMissedCall&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485795"><span class="hs-identifier hs-var">parseSearchMessagesFilterMissedCall</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-158"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523576"><span class="hs-identifier hs-var">parseSearchMessagesFilterMissedCall</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-223"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterVideoNote&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485794"><span class="hs-identifier hs-var">parseSearchMessagesFilterVideoNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-159"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523575"><span class="hs-identifier hs-var">parseSearchMessagesFilterVideoNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-224"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterVoiceAndVideoNote&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485793"><span class="hs-identifier hs-var">parseSearchMessagesFilterVoiceAndVideoNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-160"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523574"><span class="hs-identifier hs-var">parseSearchMessagesFilterVoiceAndVideoNote</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-225"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterMention&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485792"><span class="hs-identifier hs-var">parseSearchMessagesFilterMention</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-161"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523573"><span class="hs-identifier hs-var">parseSearchMessagesFilterMention</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-226"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterUnreadMention&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485791"><span class="hs-identifier hs-var">parseSearchMessagesFilterUnreadMention</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-162"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523572"><span class="hs-identifier hs-var">parseSearchMessagesFilterUnreadMention</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-227"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterFailedToSend&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485790"><span class="hs-identifier hs-var">parseSearchMessagesFilterFailedToSend</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-163"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523571"><span class="hs-identifier hs-var">parseSearchMessagesFilterFailedToSend</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-228"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;searchMessagesFilterPinned&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485789"><span class="hs-identifier hs-var">parseSearchMessagesFilterPinned</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679485811"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-164"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679523570"><span class="hs-identifier hs-var">parseSearchMessagesFilterPinned</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679523592"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-229"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SearchMessagesFilter
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-165"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-166"></span><span>   </span><span class="annot"><a href="#local-6989586621679485806"><span class="hs-identifier hs-type">parseSearchMessagesFilterEmpty</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-167"></span><span>   </span><span id="local-6989586621679485806"><span class="annot"><span class="annottext">parseSearchMessagesFilterEmpty :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485806"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterEmpty</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-230"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-231"></span><span>   </span><span class="annot"><a href="#local-6989586621679523587"><span class="hs-identifier hs-type">parseSearchMessagesFilterEmpty</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-232"></span><span>   </span><span id="local-6989586621679523587"><span class="annot"><span class="annottext">parseSearchMessagesFilterEmpty :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679523587"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterEmpty</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -376,19 +535,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485787"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485787"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-168"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679523568"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523568"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-233"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchMessagesFilter -&gt; Parser SearchMessagesFilter)
 -&gt; SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilterEmpty :: SearchMessagesFilter
 </span><a href="API.SearchMessagesFilter.html#SearchMessagesFilterEmpty"><span class="hs-identifier hs-type">SearchMessagesFilterEmpty</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-169"></span><span>
-</span><span id="line-170"></span><span>   </span><span class="annot"><a href="#local-6989586621679485805"><span class="hs-identifier hs-type">parseSearchMessagesFilterAnimation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-171"></span><span>   </span><span id="local-6989586621679485805"><span class="annot"><span class="annottext">parseSearchMessagesFilterAnimation :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485805"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterAnimation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-234"></span><span>
+</span><span id="line-235"></span><span>   </span><span class="annot"><a href="#local-6989586621679523586"><span class="hs-identifier hs-type">parseSearchMessagesFilterAnimation</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-236"></span><span>   </span><span id="local-6989586621679523586"><span class="annot"><span class="annottext">parseSearchMessagesFilterAnimation :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679523586"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterAnimation</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -400,19 +559,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485786"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485786"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-172"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679523567"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523567"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-237"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchMessagesFilter -&gt; Parser SearchMessagesFilter)
 -&gt; SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilterAnimation :: SearchMessagesFilter
 </span><a href="API.SearchMessagesFilter.html#SearchMessagesFilterAnimation"><span class="hs-identifier hs-type">SearchMessagesFilterAnimation</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-173"></span><span>
-</span><span id="line-174"></span><span>   </span><span class="annot"><a href="#local-6989586621679485804"><span class="hs-identifier hs-type">parseSearchMessagesFilterAudio</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-175"></span><span>   </span><span id="local-6989586621679485804"><span class="annot"><span class="annottext">parseSearchMessagesFilterAudio :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485804"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterAudio</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-238"></span><span>
+</span><span id="line-239"></span><span>   </span><span class="annot"><a href="#local-6989586621679523585"><span class="hs-identifier hs-type">parseSearchMessagesFilterAudio</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-240"></span><span>   </span><span id="local-6989586621679523585"><span class="annot"><span class="annottext">parseSearchMessagesFilterAudio :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679523585"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterAudio</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -424,19 +583,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485785"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485785"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-176"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679523566"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523566"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-241"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchMessagesFilter -&gt; Parser SearchMessagesFilter)
 -&gt; SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilterAudio :: SearchMessagesFilter
 </span><a href="API.SearchMessagesFilter.html#SearchMessagesFilterAudio"><span class="hs-identifier hs-type">SearchMessagesFilterAudio</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-177"></span><span>
-</span><span id="line-178"></span><span>   </span><span class="annot"><a href="#local-6989586621679485803"><span class="hs-identifier hs-type">parseSearchMessagesFilterDocument</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-179"></span><span>   </span><span id="local-6989586621679485803"><span class="annot"><span class="annottext">parseSearchMessagesFilterDocument :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485803"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterDocument</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-242"></span><span>
+</span><span id="line-243"></span><span>   </span><span class="annot"><a href="#local-6989586621679523584"><span class="hs-identifier hs-type">parseSearchMessagesFilterDocument</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-244"></span><span>   </span><span id="local-6989586621679523584"><span class="annot"><span class="annottext">parseSearchMessagesFilterDocument :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679523584"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterDocument</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -448,19 +607,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485784"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485784"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-180"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679523565"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523565"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-245"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchMessagesFilter -&gt; Parser SearchMessagesFilter)
 -&gt; SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilterDocument :: SearchMessagesFilter
 </span><a href="API.SearchMessagesFilter.html#SearchMessagesFilterDocument"><span class="hs-identifier hs-type">SearchMessagesFilterDocument</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-181"></span><span>
-</span><span id="line-182"></span><span>   </span><span class="annot"><a href="#local-6989586621679485802"><span class="hs-identifier hs-type">parseSearchMessagesFilterPhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-183"></span><span>   </span><span id="local-6989586621679485802"><span class="annot"><span class="annottext">parseSearchMessagesFilterPhoto :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485802"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterPhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-246"></span><span>
+</span><span id="line-247"></span><span>   </span><span class="annot"><a href="#local-6989586621679523583"><span class="hs-identifier hs-type">parseSearchMessagesFilterPhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-248"></span><span>   </span><span id="local-6989586621679523583"><span class="annot"><span class="annottext">parseSearchMessagesFilterPhoto :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679523583"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterPhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -472,19 +631,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485783"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485783"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-184"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679523564"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523564"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-249"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchMessagesFilter -&gt; Parser SearchMessagesFilter)
 -&gt; SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilterPhoto :: SearchMessagesFilter
 </span><a href="API.SearchMessagesFilter.html#SearchMessagesFilterPhoto"><span class="hs-identifier hs-type">SearchMessagesFilterPhoto</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-185"></span><span>
-</span><span id="line-186"></span><span>   </span><span class="annot"><a href="#local-6989586621679485801"><span class="hs-identifier hs-type">parseSearchMessagesFilterVideo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-187"></span><span>   </span><span id="local-6989586621679485801"><span class="annot"><span class="annottext">parseSearchMessagesFilterVideo :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485801"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterVideo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-250"></span><span>
+</span><span id="line-251"></span><span>   </span><span class="annot"><a href="#local-6989586621679523582"><span class="hs-identifier hs-type">parseSearchMessagesFilterVideo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-252"></span><span>   </span><span id="local-6989586621679523582"><span class="annot"><span class="annottext">parseSearchMessagesFilterVideo :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679523582"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterVideo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -496,19 +655,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485782"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485782"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-188"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679523563"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523563"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-253"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchMessagesFilter -&gt; Parser SearchMessagesFilter)
 -&gt; SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilterVideo :: SearchMessagesFilter
 </span><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVideo"><span class="hs-identifier hs-type">SearchMessagesFilterVideo</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-189"></span><span>
-</span><span id="line-190"></span><span>   </span><span class="annot"><a href="#local-6989586621679485800"><span class="hs-identifier hs-type">parseSearchMessagesFilterVoiceNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-191"></span><span>   </span><span id="local-6989586621679485800"><span class="annot"><span class="annottext">parseSearchMessagesFilterVoiceNote :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485800"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterVoiceNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-254"></span><span>
+</span><span id="line-255"></span><span>   </span><span class="annot"><a href="#local-6989586621679523581"><span class="hs-identifier hs-type">parseSearchMessagesFilterVoiceNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-256"></span><span>   </span><span id="local-6989586621679523581"><span class="annot"><span class="annottext">parseSearchMessagesFilterVoiceNote :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679523581"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterVoiceNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -520,19 +679,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485781"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485781"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-192"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679523562"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523562"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-257"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchMessagesFilter -&gt; Parser SearchMessagesFilter)
 -&gt; SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilterVoiceNote :: SearchMessagesFilter
 </span><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVoiceNote"><span class="hs-identifier hs-type">SearchMessagesFilterVoiceNote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-193"></span><span>
-</span><span id="line-194"></span><span>   </span><span class="annot"><a href="#local-6989586621679485799"><span class="hs-identifier hs-type">parseSearchMessagesFilterPhotoAndVideo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-195"></span><span>   </span><span id="local-6989586621679485799"><span class="annot"><span class="annottext">parseSearchMessagesFilterPhotoAndVideo :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485799"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterPhotoAndVideo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-258"></span><span>
+</span><span id="line-259"></span><span>   </span><span class="annot"><a href="#local-6989586621679523580"><span class="hs-identifier hs-type">parseSearchMessagesFilterPhotoAndVideo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-260"></span><span>   </span><span id="local-6989586621679523580"><span class="annot"><span class="annottext">parseSearchMessagesFilterPhotoAndVideo :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679523580"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterPhotoAndVideo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -544,19 +703,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485780"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485780"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-196"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679523561"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523561"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-261"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchMessagesFilter -&gt; Parser SearchMessagesFilter)
 -&gt; SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilterPhotoAndVideo :: SearchMessagesFilter
 </span><a href="API.SearchMessagesFilter.html#SearchMessagesFilterPhotoAndVideo"><span class="hs-identifier hs-type">SearchMessagesFilterPhotoAndVideo</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-197"></span><span>
-</span><span id="line-198"></span><span>   </span><span class="annot"><a href="#local-6989586621679485798"><span class="hs-identifier hs-type">parseSearchMessagesFilterUrl</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-199"></span><span>   </span><span id="local-6989586621679485798"><span class="annot"><span class="annottext">parseSearchMessagesFilterUrl :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485798"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterUrl</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-262"></span><span>
+</span><span id="line-263"></span><span>   </span><span class="annot"><a href="#local-6989586621679523579"><span class="hs-identifier hs-type">parseSearchMessagesFilterUrl</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-264"></span><span>   </span><span id="local-6989586621679523579"><span class="annot"><span class="annottext">parseSearchMessagesFilterUrl :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679523579"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterUrl</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -568,19 +727,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485779"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485779"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-200"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679523560"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523560"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-265"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchMessagesFilter -&gt; Parser SearchMessagesFilter)
 -&gt; SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilterUrl :: SearchMessagesFilter
 </span><a href="API.SearchMessagesFilter.html#SearchMessagesFilterUrl"><span class="hs-identifier hs-type">SearchMessagesFilterUrl</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-201"></span><span>
-</span><span id="line-202"></span><span>   </span><span class="annot"><a href="#local-6989586621679485797"><span class="hs-identifier hs-type">parseSearchMessagesFilterChatPhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-203"></span><span>   </span><span id="local-6989586621679485797"><span class="annot"><span class="annottext">parseSearchMessagesFilterChatPhoto :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485797"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterChatPhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-266"></span><span>
+</span><span id="line-267"></span><span>   </span><span class="annot"><a href="#local-6989586621679523578"><span class="hs-identifier hs-type">parseSearchMessagesFilterChatPhoto</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-268"></span><span>   </span><span id="local-6989586621679523578"><span class="annot"><span class="annottext">parseSearchMessagesFilterChatPhoto :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679523578"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterChatPhoto</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -592,19 +751,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485778"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485778"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-204"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679523559"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523559"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-269"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchMessagesFilter -&gt; Parser SearchMessagesFilter)
 -&gt; SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilterChatPhoto :: SearchMessagesFilter
 </span><a href="API.SearchMessagesFilter.html#SearchMessagesFilterChatPhoto"><span class="hs-identifier hs-type">SearchMessagesFilterChatPhoto</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-205"></span><span>
-</span><span id="line-206"></span><span>   </span><span class="annot"><a href="#local-6989586621679485796"><span class="hs-identifier hs-type">parseSearchMessagesFilterCall</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-207"></span><span>   </span><span id="local-6989586621679485796"><span class="annot"><span class="annottext">parseSearchMessagesFilterCall :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485796"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterCall</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-270"></span><span>
+</span><span id="line-271"></span><span>   </span><span class="annot"><a href="#local-6989586621679523577"><span class="hs-identifier hs-type">parseSearchMessagesFilterCall</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-272"></span><span>   </span><span id="local-6989586621679523577"><span class="annot"><span class="annottext">parseSearchMessagesFilterCall :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679523577"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterCall</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -616,19 +775,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485777"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485777"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-208"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679523558"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523558"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-273"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchMessagesFilter -&gt; Parser SearchMessagesFilter)
 -&gt; SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilterCall :: SearchMessagesFilter
 </span><a href="API.SearchMessagesFilter.html#SearchMessagesFilterCall"><span class="hs-identifier hs-type">SearchMessagesFilterCall</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-209"></span><span>
-</span><span id="line-210"></span><span>   </span><span class="annot"><a href="#local-6989586621679485795"><span class="hs-identifier hs-type">parseSearchMessagesFilterMissedCall</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-211"></span><span>   </span><span id="local-6989586621679485795"><span class="annot"><span class="annottext">parseSearchMessagesFilterMissedCall :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485795"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterMissedCall</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-274"></span><span>
+</span><span id="line-275"></span><span>   </span><span class="annot"><a href="#local-6989586621679523576"><span class="hs-identifier hs-type">parseSearchMessagesFilterMissedCall</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-276"></span><span>   </span><span id="local-6989586621679523576"><span class="annot"><span class="annottext">parseSearchMessagesFilterMissedCall :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679523576"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterMissedCall</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -640,19 +799,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485776"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485776"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-212"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679523557"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523557"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-277"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchMessagesFilter -&gt; Parser SearchMessagesFilter)
 -&gt; SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilterMissedCall :: SearchMessagesFilter
 </span><a href="API.SearchMessagesFilter.html#SearchMessagesFilterMissedCall"><span class="hs-identifier hs-type">SearchMessagesFilterMissedCall</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-213"></span><span>
-</span><span id="line-214"></span><span>   </span><span class="annot"><a href="#local-6989586621679485794"><span class="hs-identifier hs-type">parseSearchMessagesFilterVideoNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-215"></span><span>   </span><span id="local-6989586621679485794"><span class="annot"><span class="annottext">parseSearchMessagesFilterVideoNote :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485794"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterVideoNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-278"></span><span>
+</span><span id="line-279"></span><span>   </span><span class="annot"><a href="#local-6989586621679523575"><span class="hs-identifier hs-type">parseSearchMessagesFilterVideoNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-280"></span><span>   </span><span id="local-6989586621679523575"><span class="annot"><span class="annottext">parseSearchMessagesFilterVideoNote :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679523575"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterVideoNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -664,19 +823,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485775"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485775"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-216"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679523556"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523556"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-281"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchMessagesFilter -&gt; Parser SearchMessagesFilter)
 -&gt; SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilterVideoNote :: SearchMessagesFilter
 </span><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVideoNote"><span class="hs-identifier hs-type">SearchMessagesFilterVideoNote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-217"></span><span>
-</span><span id="line-218"></span><span>   </span><span class="annot"><a href="#local-6989586621679485793"><span class="hs-identifier hs-type">parseSearchMessagesFilterVoiceAndVideoNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-219"></span><span>   </span><span id="local-6989586621679485793"><span class="annot"><span class="annottext">parseSearchMessagesFilterVoiceAndVideoNote :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485793"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterVoiceAndVideoNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-282"></span><span>
+</span><span id="line-283"></span><span>   </span><span class="annot"><a href="#local-6989586621679523574"><span class="hs-identifier hs-type">parseSearchMessagesFilterVoiceAndVideoNote</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-284"></span><span>   </span><span id="local-6989586621679523574"><span class="annot"><span class="annottext">parseSearchMessagesFilterVoiceAndVideoNote :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679523574"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterVoiceAndVideoNote</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -688,19 +847,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485774"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485774"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-220"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679523555"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523555"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-285"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchMessagesFilter -&gt; Parser SearchMessagesFilter)
 -&gt; SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilterVoiceAndVideoNote :: SearchMessagesFilter
 </span><a href="API.SearchMessagesFilter.html#SearchMessagesFilterVoiceAndVideoNote"><span class="hs-identifier hs-type">SearchMessagesFilterVoiceAndVideoNote</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-221"></span><span>
-</span><span id="line-222"></span><span>   </span><span class="annot"><a href="#local-6989586621679485792"><span class="hs-identifier hs-type">parseSearchMessagesFilterMention</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-223"></span><span>   </span><span id="local-6989586621679485792"><span class="annot"><span class="annottext">parseSearchMessagesFilterMention :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485792"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterMention</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-286"></span><span>
+</span><span id="line-287"></span><span>   </span><span class="annot"><a href="#local-6989586621679523573"><span class="hs-identifier hs-type">parseSearchMessagesFilterMention</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-288"></span><span>   </span><span id="local-6989586621679523573"><span class="annot"><span class="annottext">parseSearchMessagesFilterMention :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679523573"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterMention</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -712,19 +871,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485773"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485773"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-224"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679523554"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523554"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-289"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchMessagesFilter -&gt; Parser SearchMessagesFilter)
 -&gt; SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilterMention :: SearchMessagesFilter
 </span><a href="API.SearchMessagesFilter.html#SearchMessagesFilterMention"><span class="hs-identifier hs-type">SearchMessagesFilterMention</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-225"></span><span>
-</span><span id="line-226"></span><span>   </span><span class="annot"><a href="#local-6989586621679485791"><span class="hs-identifier hs-type">parseSearchMessagesFilterUnreadMention</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-227"></span><span>   </span><span id="local-6989586621679485791"><span class="annot"><span class="annottext">parseSearchMessagesFilterUnreadMention :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485791"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterUnreadMention</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-290"></span><span>
+</span><span id="line-291"></span><span>   </span><span class="annot"><a href="#local-6989586621679523572"><span class="hs-identifier hs-type">parseSearchMessagesFilterUnreadMention</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-292"></span><span>   </span><span id="local-6989586621679523572"><span class="annot"><span class="annottext">parseSearchMessagesFilterUnreadMention :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679523572"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterUnreadMention</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -736,19 +895,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485772"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485772"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-228"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679523553"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523553"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-293"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchMessagesFilter -&gt; Parser SearchMessagesFilter)
 -&gt; SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilterUnreadMention :: SearchMessagesFilter
 </span><a href="API.SearchMessagesFilter.html#SearchMessagesFilterUnreadMention"><span class="hs-identifier hs-type">SearchMessagesFilterUnreadMention</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-229"></span><span>
-</span><span id="line-230"></span><span>   </span><span class="annot"><a href="#local-6989586621679485790"><span class="hs-identifier hs-type">parseSearchMessagesFilterFailedToSend</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-231"></span><span>   </span><span id="local-6989586621679485790"><span class="annot"><span class="annottext">parseSearchMessagesFilterFailedToSend :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485790"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterFailedToSend</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-294"></span><span>
+</span><span id="line-295"></span><span>   </span><span class="annot"><a href="#local-6989586621679523571"><span class="hs-identifier hs-type">parseSearchMessagesFilterFailedToSend</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-296"></span><span>   </span><span id="local-6989586621679523571"><span class="annot"><span class="annottext">parseSearchMessagesFilterFailedToSend :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679523571"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterFailedToSend</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -760,19 +919,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485771"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485771"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-232"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679523552"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523552"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-297"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchMessagesFilter -&gt; Parser SearchMessagesFilter)
 -&gt; SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilterFailedToSend :: SearchMessagesFilter
 </span><a href="API.SearchMessagesFilter.html#SearchMessagesFilterFailedToSend"><span class="hs-identifier hs-type">SearchMessagesFilterFailedToSend</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-233"></span><span>
-</span><span id="line-234"></span><span>   </span><span class="annot"><a href="#local-6989586621679485789"><span class="hs-identifier hs-type">parseSearchMessagesFilterPinned</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
-</span><span id="line-235"></span><span>   </span><span id="local-6989586621679485789"><span class="annot"><span class="annottext">parseSearchMessagesFilterPinned :: Value -&gt; Parser SearchMessagesFilter
-</span><a href="#local-6989586621679485789"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterPinned</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-298"></span><span>
+</span><span id="line-299"></span><span>   </span><span class="annot"><a href="#local-6989586621679523570"><span class="hs-identifier hs-type">parseSearchMessagesFilterPinned</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.SearchMessagesFilter.html#SearchMessagesFilter"><span class="hs-identifier hs-type">SearchMessagesFilter</span></a></span><span>
+</span><span id="line-300"></span><span>   </span><span id="local-6989586621679523570"><span class="annot"><span class="annottext">parseSearchMessagesFilterPinned :: Value -&gt; Parser SearchMessagesFilter
+</span><a href="#local-6989586621679523570"><span class="hs-identifier hs-var hs-var">parseSearchMessagesFilterPinned</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SearchMessagesFilter)
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
@@ -784,17 +943,17 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679485770"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679485770"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-236"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679523551"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679523551"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-301"></span><span>    </span><span class="annot"><span class="annottext">SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SearchMessagesFilter -&gt; Parser SearchMessagesFilter)
 -&gt; SearchMessagesFilter -&gt; Parser SearchMessagesFilter
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SearchMessagesFilterPinned :: SearchMessagesFilter
 </span><a href="API.SearchMessagesFilter.html#SearchMessagesFilterPinned"><span class="hs-identifier hs-type">SearchMessagesFilterPinned</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-237"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span id="line-302"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser SearchMessagesFilter
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-238"></span></pre></body></html>
+</span><span id="line-303"></span></pre></body></html>

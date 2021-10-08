@@ -6,36 +6,22 @@
 </span><span id="line-6"></span><span>
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.NetworkType.html"><span class="hs-identifier">API.NetworkType</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">NetworkType</span></span><span>
-</span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.AutoDownloadSettings.html"><span class="hs-identifier">API.AutoDownloadSettings</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">AutoDownloadSettings</span></span><span>
-</span><span id="line-11"></span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-13"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-14"></span><span class="hs-comment">-- Sets auto-download settings </span><span>
-</span><span id="line-15"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-16"></span><span class="hs-comment">-- __settings__ New user auto-download settings</span><span>
-</span><span id="line-17"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-18"></span><span class="hs-comment">-- __type__ Type of the network for which the new settings are relevant</span><span>
-</span><span id="line-19"></span><span class="hs-keyword">data</span><span> </span><span id="SetAutoDownloadSettings"><span class="annot"><a href="API.Functions.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-var">SetAutoDownloadSettings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span> </span><span id="SetAutoDownloadSettings"><span class="annot"><a href="API.Functions.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-var">SetAutoDownloadSettings</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="_type"><span class="annot"><span class="annottext">SetAutoDownloadSettings -&gt; Maybe NetworkType
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">intercalate</span></span><span class="hs-special">)</span><span>
+</span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.NetworkType.html"><span class="hs-identifier">API.NetworkType</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">NetworkType</span></span><span>
+</span><span id="line-11"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.AutoDownloadSettings.html"><span class="hs-identifier">API.AutoDownloadSettings</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">AutoDownloadSettings</span></span><span>
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-15"></span><span class="hs-comment">-- Sets auto-download settings </span><span>
+</span><span id="line-16"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-17"></span><span class="hs-comment">-- __settings__ New user auto-download settings</span><span>
+</span><span id="line-18"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-19"></span><span class="hs-comment">-- __type__ Type of the network for which the new settings are relevant</span><span>
+</span><span id="line-20"></span><span class="hs-keyword">data</span><span> </span><span id="SetAutoDownloadSettings"><span class="annot"><a href="API.Functions.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-var">SetAutoDownloadSettings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-21"></span><span>
+</span><span id="line-22"></span><span> </span><span id="SetAutoDownloadSettings"><span class="annot"><a href="API.Functions.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-var">SetAutoDownloadSettings</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="_type"><span class="annot"><span class="annottext">SetAutoDownloadSettings -&gt; Maybe NetworkType
 </span><a href="API.Functions.SetAutoDownloadSettings.html#_type"><span class="hs-identifier hs-var hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.NetworkType.html#NetworkType"><span class="hs-identifier hs-type">NetworkType.NetworkType</span></a></span><span class="hs-special">,</span><span> </span><span id="settings"><span class="annot"><span class="annottext">SetAutoDownloadSettings -&gt; Maybe AutoDownloadSettings
-</span><a href="API.Functions.SetAutoDownloadSettings.html#settings"><span class="hs-identifier hs-var hs-var">settings</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.AutoDownloadSettings.html#AutoDownloadSettings"><span class="hs-identifier hs-type">AutoDownloadSettings.AutoDownloadSettings</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679477164"><span id="local-6989586621679477166"><span id="local-6989586621679477168"><span class="annot"><span class="annottext">Int -&gt; SetAutoDownloadSettings -&gt; ShowS
-[SetAutoDownloadSettings] -&gt; ShowS
-SetAutoDownloadSettings -&gt; String
-(Int -&gt; SetAutoDownloadSettings -&gt; ShowS)
--&gt; (SetAutoDownloadSettings -&gt; String)
--&gt; ([SetAutoDownloadSettings] -&gt; ShowS)
--&gt; Show SetAutoDownloadSettings
-forall a.
-(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
-showList :: [SetAutoDownloadSettings] -&gt; ShowS
-$cshowList :: [SetAutoDownloadSettings] -&gt; ShowS
-show :: SetAutoDownloadSettings -&gt; String
-$cshow :: SetAutoDownloadSettings -&gt; String
-showsPrec :: Int -&gt; SetAutoDownloadSettings -&gt; ShowS
-$cshowsPrec :: Int -&gt; SetAutoDownloadSettings -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679477159"><span id="local-6989586621679477161"><span class="annot"><span class="annottext">SetAutoDownloadSettings -&gt; SetAutoDownloadSettings -&gt; Bool
+</span><a href="API.Functions.SetAutoDownloadSettings.html#settings"><span class="hs-identifier hs-var hs-var">settings</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.AutoDownloadSettings.html#AutoDownloadSettings"><span class="hs-identifier hs-type">AutoDownloadSettings.AutoDownloadSettings</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679512567"><span id="local-6989586621679512569"><span class="annot"><span class="annottext">SetAutoDownloadSettings -&gt; SetAutoDownloadSettings -&gt; Bool
 (SetAutoDownloadSettings -&gt; SetAutoDownloadSettings -&gt; Bool)
 -&gt; (SetAutoDownloadSettings -&gt; SetAutoDownloadSettings -&gt; Bool)
 -&gt; Eq SetAutoDownloadSettings
@@ -45,15 +31,81 @@ $c/= :: SetAutoDownloadSettings -&gt; SetAutoDownloadSettings -&gt; Bool
 == :: SetAutoDownloadSettings -&gt; SetAutoDownloadSettings -&gt; Bool
 $c== :: SetAutoDownloadSettings -&gt; SetAutoDownloadSettings -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679477151"><span id="local-6989586621679477153"><span id="local-6989586621679477155"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-type">SetAutoDownloadSettings</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span> </span><span id="local-6989586621679477149"><span class="annot"><span class="annottext">toJSON :: SetAutoDownloadSettings -&gt; Value
+</span><span id="line-23"></span><span>
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679512561"><span id="local-6989586621679512564"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-type">SetAutoDownloadSettings</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span> </span><span id="local-6989586621679512559"><span class="annot"><span class="annottext">show :: SetAutoDownloadSettings -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.Functions.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-type">SetAutoDownloadSettings</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_type :: SetAutoDownloadSettings -&gt; Maybe NetworkType
+</span><a href="API.Functions.SetAutoDownloadSettings.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679512557"><span class="annot"><span class="annottext">Maybe NetworkType
+</span><a href="#local-6989586621679512557"><span class="hs-identifier hs-var">_type</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">settings :: SetAutoDownloadSettings -&gt; Maybe AutoDownloadSettings
+</span><a href="API.Functions.SetAutoDownloadSettings.html#settings"><span class="hs-identifier hs-var">settings</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679512556"><span class="annot"><span class="annottext">Maybe AutoDownloadSettings
+</span><a href="#local-6989586621679512556"><span class="hs-identifier hs-var">settings</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-26"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SetAutoDownloadSettings&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.Functions.SetAutoDownloadSettings.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe NetworkType -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.Functions.SetAutoDownloadSettings.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;_type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe NetworkType
+</span><a href="#local-6989586621679512557"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe AutoDownloadSettings -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.Functions.SetAutoDownloadSettings.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;settings&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe AutoDownloadSettings
+</span><a href="#local-6989586621679512556"><span class="hs-identifier hs-var">settings</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-27"></span><span>
+</span><span id="line-28"></span><span id="local-6989586621679512606"><span class="annot"><a href="API.Functions.SetAutoDownloadSettings.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679512606"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679512606"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-29"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
+</span><a href="API.Functions.SetAutoDownloadSettings.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679512553"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679512553"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679512552"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679512552"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679512553"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679512552"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><span id="line-30"></span><span class="annot"><a href="API.Functions.SetAutoDownloadSettings.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
+</span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span>
+</span><span id="line-31"></span><span>
+</span><span id="line-32"></span><span class="annot"><a href="API.Functions.SetAutoDownloadSettings.html#cc"><span class="hs-identifier hs-type">cc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-33"></span><span id="cc"><span class="annot"><span class="annottext">cc :: [String] -&gt; String
+</span><a href="API.Functions.SetAutoDownloadSettings.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-34"></span><span class="annot"><a href="API.Functions.SetAutoDownloadSettings.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679512551"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679512551"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
+forall a. [a] -&gt; [[a]] -&gt; [a]
+</span><span class="hs-identifier hs-var">intercalate</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;, &quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(String -&gt; Bool) -&gt; [String] -&gt; [String]
+forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">filter</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool -&gt; Bool
+</span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; Bool) -&gt; (String -&gt; Bool) -&gt; String -&gt; Bool
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
+</span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679512551"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;}&quot;</span></span><span>
+</span><span id="line-35"></span><span>
+</span><span id="line-36"></span><span>
+</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679512541"><span id="local-6989586621679512543"><span id="local-6989586621679512545"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-type">SetAutoDownloadSettings</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-38"></span><span> </span><span id="local-6989586621679512539"><span class="annot"><span class="annottext">toJSON :: SetAutoDownloadSettings -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-type">SetAutoDownloadSettings</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_type :: SetAutoDownloadSettings -&gt; Maybe NetworkType
-</span><a href="API.Functions.SetAutoDownloadSettings.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679477147"><span class="annot"><span class="annottext">Maybe NetworkType
-</span><a href="#local-6989586621679477147"><span class="hs-identifier hs-var">_type</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">settings :: SetAutoDownloadSettings -&gt; Maybe AutoDownloadSettings
-</span><a href="API.Functions.SetAutoDownloadSettings.html#settings"><span class="hs-identifier hs-var">settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679477146"><span class="annot"><span class="annottext">Maybe AutoDownloadSettings
-</span><a href="#local-6989586621679477146"><span class="hs-identifier hs-var">settings</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-25"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.Functions.SetAutoDownloadSettings.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679512537"><span class="annot"><span class="annottext">Maybe NetworkType
+</span><a href="#local-6989586621679512537"><span class="hs-identifier hs-var">_type</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">settings :: SetAutoDownloadSettings -&gt; Maybe AutoDownloadSettings
+</span><a href="API.Functions.SetAutoDownloadSettings.html#settings"><span class="hs-identifier hs-var">settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679512536"><span class="annot"><span class="annottext">Maybe AutoDownloadSettings
+</span><a href="#local-6989586621679512536"><span class="hs-identifier hs-var">settings</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-39"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -63,37 +115,37 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe NetworkType -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe NetworkType
-</span><a href="#local-6989586621679477147"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679512537"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;settings&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe AutoDownloadSettings -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe AutoDownloadSettings
-</span><a href="#local-6989586621679477146"><span class="hs-identifier hs-var">settings</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-26"></span><span>
-</span><span id="line-27"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679477140"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-type">SetAutoDownloadSettings</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-28"></span><span> </span><span id="local-6989586621679477138"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetAutoDownloadSettings
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679477136"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679477136"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679477134"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679477134"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-29"></span><span>  </span><span id="local-6989586621679477133"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679477133"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679477134"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679512536"><span class="hs-identifier hs-var">settings</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-40"></span><span>
+</span><span id="line-41"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679512530"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-type">SetAutoDownloadSettings</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-42"></span><span> </span><span id="local-6989586621679512528"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetAutoDownloadSettings
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679512526"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679512526"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679512524"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679512524"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-43"></span><span>  </span><span id="local-6989586621679512523"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679512523"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679512524"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-30"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679477133"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-31"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span id="line-44"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679512523"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-45"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;setAutoDownloadSettings&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SetAutoDownloadSettings
-</span><a href="#local-6989586621679477131"><span class="hs-identifier hs-var">parseSetAutoDownloadSettings</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679477136"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-32"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679512521"><span class="hs-identifier hs-var">parseSetAutoDownloadSettings</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679512526"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-46"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SetAutoDownloadSettings
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-33"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-34"></span><span>   </span><span class="annot"><a href="#local-6989586621679477131"><span class="hs-identifier hs-type">parseSetAutoDownloadSettings</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-type">SetAutoDownloadSettings</span></a></span><span>
-</span><span id="line-35"></span><span>   </span><span id="local-6989586621679477131"><span class="annot"><span class="annottext">parseSetAutoDownloadSettings :: Value -&gt; Parser SetAutoDownloadSettings
-</span><a href="#local-6989586621679477131"><span class="hs-identifier hs-var hs-var">parseSetAutoDownloadSettings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-47"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-48"></span><span>   </span><span class="annot"><a href="#local-6989586621679512521"><span class="hs-identifier hs-type">parseSetAutoDownloadSettings</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-type">SetAutoDownloadSettings</span></a></span><span>
+</span><span id="line-49"></span><span>   </span><span id="local-6989586621679512521"><span class="annot"><span class="annottext">parseSetAutoDownloadSettings :: Value -&gt; Parser SetAutoDownloadSettings
+</span><a href="#local-6989586621679512521"><span class="hs-identifier hs-var hs-var">parseSetAutoDownloadSettings</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SetAutoDownloadSettings)
 -&gt; Value
 -&gt; Parser SetAutoDownloadSettings
@@ -105,21 +157,21 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SetAutoDownloadSettings
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679477129"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679477129"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-36"></span><span>    </span><span id="local-6989586621679477128"><span class="annot"><span class="annottext">Maybe NetworkType
-</span><a href="#local-6989586621679477128"><span class="hs-identifier hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679477129"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe NetworkType)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679512519"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679512519"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-50"></span><span>    </span><span id="local-6989586621679512518"><span class="annot"><span class="annottext">Maybe NetworkType
+</span><a href="#local-6989586621679512518"><span class="hs-identifier hs-var">_type</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679512519"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe NetworkType)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;type&quot;</span></span><span>
-</span><span id="line-37"></span><span>    </span><span id="local-6989586621679477126"><span class="annot"><span class="annottext">Maybe AutoDownloadSettings
-</span><a href="#local-6989586621679477126"><span class="hs-identifier hs-var">settings</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679477129"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe AutoDownloadSettings)
+</span><span id="line-51"></span><span>    </span><span id="local-6989586621679512516"><span class="annot"><span class="annottext">Maybe AutoDownloadSettings
+</span><a href="#local-6989586621679512516"><span class="hs-identifier hs-var">settings</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679512519"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe AutoDownloadSettings)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;settings&quot;</span></span><span>
-</span><span id="line-38"></span><span>    </span><span class="annot"><span class="annottext">SetAutoDownloadSettings -&gt; Parser SetAutoDownloadSettings
+</span><span id="line-52"></span><span>    </span><span class="annot"><span class="annottext">SetAutoDownloadSettings -&gt; Parser SetAutoDownloadSettings
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SetAutoDownloadSettings -&gt; Parser SetAutoDownloadSettings)
 -&gt; SetAutoDownloadSettings -&gt; Parser SetAutoDownloadSettings
@@ -128,11 +180,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; Maybe AutoDownloadSettings -&gt; SetAutoDownloadSettings
 </span><a href="API.Functions.SetAutoDownloadSettings.html#SetAutoDownloadSettings"><span class="hs-identifier hs-type">SetAutoDownloadSettings</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">_type :: Maybe NetworkType
 </span><a href="API.Functions.SetAutoDownloadSettings.html#_type"><span class="hs-identifier hs-var">_type</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe NetworkType
-</span><a href="#local-6989586621679477128"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">settings :: Maybe AutoDownloadSettings
+</span><a href="#local-6989586621679512518"><span class="hs-identifier hs-var">_type</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">settings :: Maybe AutoDownloadSettings
 </span><a href="API.Functions.SetAutoDownloadSettings.html#settings"><span class="hs-identifier hs-var">settings</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe AutoDownloadSettings
-</span><a href="#local-6989586621679477126"><span class="hs-identifier hs-var">settings</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-39"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679512516"><span class="hs-identifier hs-var">settings</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-53"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser SetAutoDownloadSettings
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-40"></span></pre></body></html>
+</span><span id="line-54"></span></pre></body></html>

@@ -6,46 +6,32 @@
 </span><span id="line-6"></span><span>
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-9"></span><span>
-</span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- Describes the reason why a call was discarded</span><span>
-</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="CallDiscardReason"><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReason"><span class="hs-identifier hs-var">CallDiscardReason</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-14"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-15"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-16"></span><span> </span><span class="hs-comment">-- The call wasn't discarded, or the reason is unknown</span><span>
-</span><span id="line-17"></span><span> </span><span id="CallDiscardReasonEmpty"><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonEmpty"><span class="hs-identifier hs-var">CallDiscardReasonEmpty</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-18"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-19"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-20"></span><span> </span><span class="hs-comment">-- The call was ended before the conversation started. It was canceled by the caller or missed by the other party</span><span>
-</span><span id="line-21"></span><span> </span><span id="CallDiscardReasonMissed"><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonMissed"><span class="hs-identifier hs-var">CallDiscardReasonMissed</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-22"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-23"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-24"></span><span> </span><span class="hs-comment">-- The call was ended before the conversation started. It was declined by the other party</span><span>
-</span><span id="line-25"></span><span> </span><span id="CallDiscardReasonDeclined"><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonDeclined"><span class="hs-identifier hs-var">CallDiscardReasonDeclined</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-26"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-27"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-28"></span><span> </span><span class="hs-comment">-- The call was ended during the conversation because the users were disconnected</span><span>
-</span><span id="line-29"></span><span> </span><span id="CallDiscardReasonDisconnected"><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonDisconnected"><span class="hs-identifier hs-var">CallDiscardReasonDisconnected</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
-</span><span id="line-30"></span><span> </span><span class="hs-comment">-- |</span><span>
-</span><span id="line-31"></span><span> </span><span class="hs-comment">-- </span><span>
-</span><span id="line-32"></span><span> </span><span class="hs-comment">-- The call was ended because one of the parties hung up</span><span>
-</span><span id="line-33"></span><span> </span><span id="CallDiscardReasonHungUp"><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonHungUp"><span class="hs-identifier hs-var">CallDiscardReasonHungUp</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679433431"><span id="local-6989586621679433433"><span id="local-6989586621679433435"><span class="annot"><span class="annottext">Int -&gt; CallDiscardReason -&gt; ShowS
-[CallDiscardReason] -&gt; ShowS
-CallDiscardReason -&gt; String
-(Int -&gt; CallDiscardReason -&gt; ShowS)
--&gt; (CallDiscardReason -&gt; String)
--&gt; ([CallDiscardReason] -&gt; ShowS)
--&gt; Show CallDiscardReason
-forall a.
-(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
-showList :: [CallDiscardReason] -&gt; ShowS
-$cshowList :: [CallDiscardReason] -&gt; ShowS
-show :: CallDiscardReason -&gt; String
-$cshow :: CallDiscardReason -&gt; String
-showsPrec :: Int -&gt; CallDiscardReason -&gt; ShowS
-$cshowsPrec :: Int -&gt; CallDiscardReason -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679433426"><span id="local-6989586621679433428"><span class="annot"><span class="annottext">CallDiscardReason -&gt; CallDiscardReason -&gt; Bool
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">intercalate</span></span><span class="hs-special">)</span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- Describes the reason why a call was discarded</span><span>
+</span><span id="line-14"></span><span class="hs-keyword">data</span><span> </span><span id="CallDiscardReason"><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReason"><span class="hs-identifier hs-var">CallDiscardReason</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-15"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-16"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-17"></span><span> </span><span class="hs-comment">-- The call wasn't discarded, or the reason is unknown</span><span>
+</span><span id="line-18"></span><span> </span><span id="CallDiscardReasonEmpty"><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonEmpty"><span class="hs-identifier hs-var">CallDiscardReasonEmpty</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-19"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-20"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-21"></span><span> </span><span class="hs-comment">-- The call was ended before the conversation started. It was canceled by the caller or missed by the other party</span><span>
+</span><span id="line-22"></span><span> </span><span id="CallDiscardReasonMissed"><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonMissed"><span class="hs-identifier hs-var">CallDiscardReasonMissed</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-23"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-24"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-25"></span><span> </span><span class="hs-comment">-- The call was ended before the conversation started. It was declined by the other party</span><span>
+</span><span id="line-26"></span><span> </span><span id="CallDiscardReasonDeclined"><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonDeclined"><span class="hs-identifier hs-var">CallDiscardReasonDeclined</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-27"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-28"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-29"></span><span> </span><span class="hs-comment">-- The call was ended during the conversation because the users were disconnected</span><span>
+</span><span id="line-30"></span><span> </span><span id="CallDiscardReasonDisconnected"><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonDisconnected"><span class="hs-identifier hs-var">CallDiscardReasonDisconnected</span></a></span></span><span> </span><span class="hs-glyph">|</span><span>
+</span><span id="line-31"></span><span> </span><span class="hs-comment">-- |</span><span>
+</span><span id="line-32"></span><span> </span><span class="hs-comment">-- </span><span>
+</span><span id="line-33"></span><span> </span><span class="hs-comment">-- The call was ended because one of the parties hung up</span><span>
+</span><span id="line-34"></span><span> </span><span id="CallDiscardReasonHungUp"><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonHungUp"><span class="hs-identifier hs-var">CallDiscardReasonHungUp</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679456606"><span id="local-6989586621679456608"><span class="annot"><span class="annottext">CallDiscardReason -&gt; CallDiscardReason -&gt; Bool
 (CallDiscardReason -&gt; CallDiscardReason -&gt; Bool)
 -&gt; (CallDiscardReason -&gt; CallDiscardReason -&gt; Bool)
 -&gt; Eq CallDiscardReason
@@ -55,95 +41,177 @@ $c/= :: CallDiscardReason -&gt; CallDiscardReason -&gt; Bool
 == :: CallDiscardReason -&gt; CallDiscardReason -&gt; Bool
 $c== :: CallDiscardReason -&gt; CallDiscardReason -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-34"></span><span>
-</span><span id="line-35"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679433418"><span id="local-6989586621679433420"><span id="local-6989586621679433422"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReason"><span class="hs-identifier hs-type">CallDiscardReason</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-36"></span><span> </span><span id="local-6989586621679433416"><span class="annot"><span class="annottext">toJSON :: CallDiscardReason -&gt; Value
+</span><span id="line-35"></span><span>
+</span><span id="line-36"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679456600"><span id="local-6989586621679456603"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReason"><span class="hs-identifier hs-type">CallDiscardReason</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-37"></span><span> </span><span id="local-6989586621679456598"><span class="annot"><span class="annottext">show :: CallDiscardReason -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonEmpty"><span class="hs-identifier hs-type">CallDiscardReasonEmpty</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-38"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;CallDiscardReasonEmpty&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.CallDiscardReason.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-39"></span><span>
+</span><span id="line-40"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonMissed"><span class="hs-identifier hs-type">CallDiscardReasonMissed</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-41"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;CallDiscardReasonMissed&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.CallDiscardReason.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-42"></span><span>
+</span><span id="line-43"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonDeclined"><span class="hs-identifier hs-type">CallDiscardReasonDeclined</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-44"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;CallDiscardReasonDeclined&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.CallDiscardReason.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-45"></span><span>
+</span><span id="line-46"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonDisconnected"><span class="hs-identifier hs-type">CallDiscardReasonDisconnected</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-47"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;CallDiscardReasonDisconnected&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.CallDiscardReason.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-48"></span><span>
+</span><span id="line-49"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonHungUp"><span class="hs-identifier hs-type">CallDiscardReasonHungUp</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-50"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;CallDiscardReasonHungUp&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.CallDiscardReason.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-51"></span><span>
+</span><span id="line-52"></span><span id="local-6989586621679456595"><span class="annot"><a href="API.CallDiscardReason.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679456595"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679456595"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-53"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
+</span><a href="API.CallDiscardReason.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679456593"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679456593"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679456592"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679456592"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679456593"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679456592"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><span id="line-54"></span><span class="annot"><a href="API.CallDiscardReason.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
+</span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span>
+</span><span id="line-55"></span><span>
+</span><span id="line-56"></span><span class="annot"><a href="API.CallDiscardReason.html#cc"><span class="hs-identifier hs-type">cc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-57"></span><span id="cc"><span class="annot"><span class="annottext">cc :: [String] -&gt; String
+</span><a href="API.CallDiscardReason.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-58"></span><span class="annot"><a href="API.CallDiscardReason.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679456591"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679456591"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
+forall a. [a] -&gt; [[a]] -&gt; [a]
+</span><span class="hs-identifier hs-var">intercalate</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;, &quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(String -&gt; Bool) -&gt; [String] -&gt; [String]
+forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">filter</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool -&gt; Bool
+</span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; Bool) -&gt; (String -&gt; Bool) -&gt; String -&gt; Bool
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
+</span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679456591"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;}&quot;</span></span><span>
+</span><span id="line-59"></span><span>
+</span><span id="line-60"></span><span>
+</span><span id="line-61"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679456581"><span id="local-6989586621679456583"><span id="local-6989586621679456585"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReason"><span class="hs-identifier hs-type">CallDiscardReason</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-62"></span><span> </span><span id="local-6989586621679456579"><span class="annot"><span class="annottext">toJSON :: CallDiscardReason -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonEmpty"><span class="hs-identifier hs-type">CallDiscardReasonEmpty</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-37"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-63"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;callDiscardReasonEmpty&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-38"></span><span>
-</span><span id="line-39"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonMissed"><span class="hs-identifier hs-type">CallDiscardReasonMissed</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-40"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-64"></span><span>
+</span><span id="line-65"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonMissed"><span class="hs-identifier hs-type">CallDiscardReasonMissed</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-66"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;callDiscardReasonMissed&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-41"></span><span>
-</span><span id="line-42"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonDeclined"><span class="hs-identifier hs-type">CallDiscardReasonDeclined</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-43"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-67"></span><span>
+</span><span id="line-68"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonDeclined"><span class="hs-identifier hs-type">CallDiscardReasonDeclined</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-69"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;callDiscardReasonDeclined&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-44"></span><span>
-</span><span id="line-45"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonDisconnected"><span class="hs-identifier hs-type">CallDiscardReasonDisconnected</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-46"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-70"></span><span>
+</span><span id="line-71"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonDisconnected"><span class="hs-identifier hs-type">CallDiscardReasonDisconnected</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-72"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;callDiscardReasonDisconnected&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-47"></span><span>
-</span><span id="line-48"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonHungUp"><span class="hs-identifier hs-type">CallDiscardReasonHungUp</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-49"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><span id="line-73"></span><span>
+</span><span id="line-74"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReasonHungUp"><span class="hs-identifier hs-type">CallDiscardReasonHungUp</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-75"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;callDiscardReasonHungUp&quot;</span></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-50"></span><span>
-</span><span id="line-51"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679433409"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReason"><span class="hs-identifier hs-type">CallDiscardReason</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-52"></span><span> </span><span id="local-6989586621679433407"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CallDiscardReason
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679433405"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679433405"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679433403"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679433403"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-53"></span><span>  </span><span id="local-6989586621679433402"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679433402"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679433403"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-76"></span><span>
+</span><span id="line-77"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679456572"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReason"><span class="hs-identifier hs-type">CallDiscardReason</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-78"></span><span> </span><span id="local-6989586621679456570"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser CallDiscardReason
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679456568"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679456568"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679456566"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679456566"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-79"></span><span>  </span><span id="local-6989586621679456565"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679456565"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679456566"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-54"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679433402"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-55"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span id="line-80"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679456565"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-81"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;callDiscardReasonEmpty&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallDiscardReason
-</span><a href="#local-6989586621679433400"><span class="hs-identifier hs-var">parseCallDiscardReasonEmpty</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679433405"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-56"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679456563"><span class="hs-identifier hs-var">parseCallDiscardReasonEmpty</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679456568"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-82"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;callDiscardReasonMissed&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallDiscardReason
-</span><a href="#local-6989586621679433399"><span class="hs-identifier hs-var">parseCallDiscardReasonMissed</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679433405"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-57"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679456562"><span class="hs-identifier hs-var">parseCallDiscardReasonMissed</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679456568"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-83"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;callDiscardReasonDeclined&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallDiscardReason
-</span><a href="#local-6989586621679433398"><span class="hs-identifier hs-var">parseCallDiscardReasonDeclined</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679433405"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-58"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679456561"><span class="hs-identifier hs-var">parseCallDiscardReasonDeclined</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679456568"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-84"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;callDiscardReasonDisconnected&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallDiscardReason
-</span><a href="#local-6989586621679433397"><span class="hs-identifier hs-var">parseCallDiscardReasonDisconnected</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679433405"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-59"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679456560"><span class="hs-identifier hs-var">parseCallDiscardReasonDisconnected</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679456568"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-85"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;callDiscardReasonHungUp&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser CallDiscardReason
-</span><a href="#local-6989586621679433396"><span class="hs-identifier hs-var">parseCallDiscardReasonHungUp</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679433405"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-60"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679456559"><span class="hs-identifier hs-var">parseCallDiscardReasonHungUp</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679456568"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-86"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser CallDiscardReason
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-61"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-62"></span><span>   </span><span class="annot"><a href="#local-6989586621679433400"><span class="hs-identifier hs-type">parseCallDiscardReasonEmpty</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReason"><span class="hs-identifier hs-type">CallDiscardReason</span></a></span><span>
-</span><span id="line-63"></span><span>   </span><span id="local-6989586621679433400"><span class="annot"><span class="annottext">parseCallDiscardReasonEmpty :: Value -&gt; Parser CallDiscardReason
-</span><a href="#local-6989586621679433400"><span class="hs-identifier hs-var hs-var">parseCallDiscardReasonEmpty</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-87"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-88"></span><span>   </span><span class="annot"><a href="#local-6989586621679456563"><span class="hs-identifier hs-type">parseCallDiscardReasonEmpty</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReason"><span class="hs-identifier hs-type">CallDiscardReason</span></a></span><span>
+</span><span id="line-89"></span><span>   </span><span id="local-6989586621679456563"><span class="annot"><span class="annottext">parseCallDiscardReasonEmpty :: Value -&gt; Parser CallDiscardReason
+</span><a href="#local-6989586621679456563"><span class="hs-identifier hs-var hs-var">parseCallDiscardReasonEmpty</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CallDiscardReason)
 -&gt; Value
 -&gt; Parser CallDiscardReason
@@ -155,19 +223,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CallDiscardReason
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679433394"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679433394"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-64"></span><span>    </span><span class="annot"><span class="annottext">CallDiscardReason -&gt; Parser CallDiscardReason
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679456557"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679456557"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-90"></span><span>    </span><span class="annot"><span class="annottext">CallDiscardReason -&gt; Parser CallDiscardReason
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CallDiscardReason -&gt; Parser CallDiscardReason)
 -&gt; CallDiscardReason -&gt; Parser CallDiscardReason
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallDiscardReasonEmpty :: CallDiscardReason
 </span><a href="API.CallDiscardReason.html#CallDiscardReasonEmpty"><span class="hs-identifier hs-type">CallDiscardReasonEmpty</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-65"></span><span>
-</span><span id="line-66"></span><span>   </span><span class="annot"><a href="#local-6989586621679433399"><span class="hs-identifier hs-type">parseCallDiscardReasonMissed</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReason"><span class="hs-identifier hs-type">CallDiscardReason</span></a></span><span>
-</span><span id="line-67"></span><span>   </span><span id="local-6989586621679433399"><span class="annot"><span class="annottext">parseCallDiscardReasonMissed :: Value -&gt; Parser CallDiscardReason
-</span><a href="#local-6989586621679433399"><span class="hs-identifier hs-var hs-var">parseCallDiscardReasonMissed</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-91"></span><span>
+</span><span id="line-92"></span><span>   </span><span class="annot"><a href="#local-6989586621679456562"><span class="hs-identifier hs-type">parseCallDiscardReasonMissed</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReason"><span class="hs-identifier hs-type">CallDiscardReason</span></a></span><span>
+</span><span id="line-93"></span><span>   </span><span id="local-6989586621679456562"><span class="annot"><span class="annottext">parseCallDiscardReasonMissed :: Value -&gt; Parser CallDiscardReason
+</span><a href="#local-6989586621679456562"><span class="hs-identifier hs-var hs-var">parseCallDiscardReasonMissed</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CallDiscardReason)
 -&gt; Value
 -&gt; Parser CallDiscardReason
@@ -179,19 +247,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CallDiscardReason
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679433393"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679433393"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-68"></span><span>    </span><span class="annot"><span class="annottext">CallDiscardReason -&gt; Parser CallDiscardReason
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679456556"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679456556"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-94"></span><span>    </span><span class="annot"><span class="annottext">CallDiscardReason -&gt; Parser CallDiscardReason
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CallDiscardReason -&gt; Parser CallDiscardReason)
 -&gt; CallDiscardReason -&gt; Parser CallDiscardReason
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallDiscardReasonMissed :: CallDiscardReason
 </span><a href="API.CallDiscardReason.html#CallDiscardReasonMissed"><span class="hs-identifier hs-type">CallDiscardReasonMissed</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-69"></span><span>
-</span><span id="line-70"></span><span>   </span><span class="annot"><a href="#local-6989586621679433398"><span class="hs-identifier hs-type">parseCallDiscardReasonDeclined</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReason"><span class="hs-identifier hs-type">CallDiscardReason</span></a></span><span>
-</span><span id="line-71"></span><span>   </span><span id="local-6989586621679433398"><span class="annot"><span class="annottext">parseCallDiscardReasonDeclined :: Value -&gt; Parser CallDiscardReason
-</span><a href="#local-6989586621679433398"><span class="hs-identifier hs-var hs-var">parseCallDiscardReasonDeclined</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-95"></span><span>
+</span><span id="line-96"></span><span>   </span><span class="annot"><a href="#local-6989586621679456561"><span class="hs-identifier hs-type">parseCallDiscardReasonDeclined</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReason"><span class="hs-identifier hs-type">CallDiscardReason</span></a></span><span>
+</span><span id="line-97"></span><span>   </span><span id="local-6989586621679456561"><span class="annot"><span class="annottext">parseCallDiscardReasonDeclined :: Value -&gt; Parser CallDiscardReason
+</span><a href="#local-6989586621679456561"><span class="hs-identifier hs-var hs-var">parseCallDiscardReasonDeclined</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CallDiscardReason)
 -&gt; Value
 -&gt; Parser CallDiscardReason
@@ -203,19 +271,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CallDiscardReason
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679433392"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679433392"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-72"></span><span>    </span><span class="annot"><span class="annottext">CallDiscardReason -&gt; Parser CallDiscardReason
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679456555"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679456555"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-98"></span><span>    </span><span class="annot"><span class="annottext">CallDiscardReason -&gt; Parser CallDiscardReason
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CallDiscardReason -&gt; Parser CallDiscardReason)
 -&gt; CallDiscardReason -&gt; Parser CallDiscardReason
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallDiscardReasonDeclined :: CallDiscardReason
 </span><a href="API.CallDiscardReason.html#CallDiscardReasonDeclined"><span class="hs-identifier hs-type">CallDiscardReasonDeclined</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-73"></span><span>
-</span><span id="line-74"></span><span>   </span><span class="annot"><a href="#local-6989586621679433397"><span class="hs-identifier hs-type">parseCallDiscardReasonDisconnected</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReason"><span class="hs-identifier hs-type">CallDiscardReason</span></a></span><span>
-</span><span id="line-75"></span><span>   </span><span id="local-6989586621679433397"><span class="annot"><span class="annottext">parseCallDiscardReasonDisconnected :: Value -&gt; Parser CallDiscardReason
-</span><a href="#local-6989586621679433397"><span class="hs-identifier hs-var hs-var">parseCallDiscardReasonDisconnected</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-99"></span><span>
+</span><span id="line-100"></span><span>   </span><span class="annot"><a href="#local-6989586621679456560"><span class="hs-identifier hs-type">parseCallDiscardReasonDisconnected</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReason"><span class="hs-identifier hs-type">CallDiscardReason</span></a></span><span>
+</span><span id="line-101"></span><span>   </span><span id="local-6989586621679456560"><span class="annot"><span class="annottext">parseCallDiscardReasonDisconnected :: Value -&gt; Parser CallDiscardReason
+</span><a href="#local-6989586621679456560"><span class="hs-identifier hs-var hs-var">parseCallDiscardReasonDisconnected</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CallDiscardReason)
 -&gt; Value
 -&gt; Parser CallDiscardReason
@@ -227,19 +295,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CallDiscardReason
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679433391"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679433391"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-76"></span><span>    </span><span class="annot"><span class="annottext">CallDiscardReason -&gt; Parser CallDiscardReason
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679456554"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679456554"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-102"></span><span>    </span><span class="annot"><span class="annottext">CallDiscardReason -&gt; Parser CallDiscardReason
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CallDiscardReason -&gt; Parser CallDiscardReason)
 -&gt; CallDiscardReason -&gt; Parser CallDiscardReason
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallDiscardReasonDisconnected :: CallDiscardReason
 </span><a href="API.CallDiscardReason.html#CallDiscardReasonDisconnected"><span class="hs-identifier hs-type">CallDiscardReasonDisconnected</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-77"></span><span>
-</span><span id="line-78"></span><span>   </span><span class="annot"><a href="#local-6989586621679433396"><span class="hs-identifier hs-type">parseCallDiscardReasonHungUp</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReason"><span class="hs-identifier hs-type">CallDiscardReason</span></a></span><span>
-</span><span id="line-79"></span><span>   </span><span id="local-6989586621679433396"><span class="annot"><span class="annottext">parseCallDiscardReasonHungUp :: Value -&gt; Parser CallDiscardReason
-</span><a href="#local-6989586621679433396"><span class="hs-identifier hs-var hs-var">parseCallDiscardReasonHungUp</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-103"></span><span>
+</span><span id="line-104"></span><span>   </span><span class="annot"><a href="#local-6989586621679456559"><span class="hs-identifier hs-type">parseCallDiscardReasonHungUp</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.CallDiscardReason.html#CallDiscardReason"><span class="hs-identifier hs-type">CallDiscardReason</span></a></span><span>
+</span><span id="line-105"></span><span>   </span><span id="local-6989586621679456559"><span class="annot"><span class="annottext">parseCallDiscardReasonHungUp :: Value -&gt; Parser CallDiscardReason
+</span><a href="#local-6989586621679456559"><span class="hs-identifier hs-var hs-var">parseCallDiscardReasonHungUp</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser CallDiscardReason)
 -&gt; Value
 -&gt; Parser CallDiscardReason
@@ -251,17 +319,17 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser CallDiscardReason
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679433390"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679433390"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-80"></span><span>    </span><span class="annot"><span class="annottext">CallDiscardReason -&gt; Parser CallDiscardReason
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679456553"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679456553"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-106"></span><span>    </span><span class="annot"><span class="annottext">CallDiscardReason -&gt; Parser CallDiscardReason
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(CallDiscardReason -&gt; Parser CallDiscardReason)
 -&gt; CallDiscardReason -&gt; Parser CallDiscardReason
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">CallDiscardReasonHungUp :: CallDiscardReason
 </span><a href="API.CallDiscardReason.html#CallDiscardReasonHungUp"><span class="hs-identifier hs-type">CallDiscardReasonHungUp</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
-</span><span id="line-81"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><span id="line-107"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser CallDiscardReason
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-82"></span></pre></body></html>
+</span><span id="line-108"></span></pre></body></html>

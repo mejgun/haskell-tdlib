@@ -6,31 +6,17 @@
 </span><span id="line-6"></span><span>
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-9"></span><span>
-</span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- Returns information about a tg:// deep link. Use &quot;tg://need_update_for_some_feature&quot; or &quot;tg:some_unsupported_feature&quot; for testing. Returns a 404 error for unknown links. Can be called before authorization </span><span>
-</span><span id="line-13"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-14"></span><span class="hs-comment">-- __link__ The link</span><span>
-</span><span id="line-15"></span><span class="hs-keyword">data</span><span> </span><span id="GetDeepLinkInfo"><span class="annot"><a href="API.Functions.GetDeepLinkInfo.html#GetDeepLinkInfo"><span class="hs-identifier hs-var">GetDeepLinkInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span> </span><span id="GetDeepLinkInfo"><span class="annot"><a href="API.Functions.GetDeepLinkInfo.html#GetDeepLinkInfo"><span class="hs-identifier hs-var">GetDeepLinkInfo</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="link"><span class="annot"><span class="annottext">GetDeepLinkInfo -&gt; Maybe String
-</span><a href="API.Functions.GetDeepLinkInfo.html#link"><span class="hs-identifier hs-var hs-var">link</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679449382"><span id="local-6989586621679449384"><span id="local-6989586621679449386"><span class="annot"><span class="annottext">Int -&gt; GetDeepLinkInfo -&gt; ShowS
-[GetDeepLinkInfo] -&gt; ShowS
-GetDeepLinkInfo -&gt; String
-(Int -&gt; GetDeepLinkInfo -&gt; ShowS)
--&gt; (GetDeepLinkInfo -&gt; String)
--&gt; ([GetDeepLinkInfo] -&gt; ShowS)
--&gt; Show GetDeepLinkInfo
-forall a.
-(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
-showList :: [GetDeepLinkInfo] -&gt; ShowS
-$cshowList :: [GetDeepLinkInfo] -&gt; ShowS
-show :: GetDeepLinkInfo -&gt; String
-$cshow :: GetDeepLinkInfo -&gt; String
-showsPrec :: Int -&gt; GetDeepLinkInfo -&gt; ShowS
-$cshowsPrec :: Int -&gt; GetDeepLinkInfo -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679449377"><span id="local-6989586621679449379"><span class="annot"><span class="annottext">GetDeepLinkInfo -&gt; GetDeepLinkInfo -&gt; Bool
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">intercalate</span></span><span class="hs-special">)</span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- Returns information about a tg:// deep link. Use &quot;tg://need_update_for_some_feature&quot; or &quot;tg:some_unsupported_feature&quot; for testing. Returns a 404 error for unknown links. Can be called before authorization </span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-15"></span><span class="hs-comment">-- __link__ The link</span><span>
+</span><span id="line-16"></span><span class="hs-keyword">data</span><span> </span><span id="GetDeepLinkInfo"><span class="annot"><a href="API.Functions.GetDeepLinkInfo.html#GetDeepLinkInfo"><span class="hs-identifier hs-var">GetDeepLinkInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-17"></span><span>
+</span><span id="line-18"></span><span> </span><span id="GetDeepLinkInfo"><span class="annot"><a href="API.Functions.GetDeepLinkInfo.html#GetDeepLinkInfo"><span class="hs-identifier hs-var">GetDeepLinkInfo</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="link"><span class="annot"><span class="annottext">GetDeepLinkInfo -&gt; Maybe String
+</span><a href="API.Functions.GetDeepLinkInfo.html#link"><span class="hs-identifier hs-var hs-var">link</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679476932"><span id="local-6989586621679476934"><span class="annot"><span class="annottext">GetDeepLinkInfo -&gt; GetDeepLinkInfo -&gt; Bool
 (GetDeepLinkInfo -&gt; GetDeepLinkInfo -&gt; Bool)
 -&gt; (GetDeepLinkInfo -&gt; GetDeepLinkInfo -&gt; Bool)
 -&gt; Eq GetDeepLinkInfo
@@ -40,13 +26,73 @@ $c/= :: GetDeepLinkInfo -&gt; GetDeepLinkInfo -&gt; Bool
 == :: GetDeepLinkInfo -&gt; GetDeepLinkInfo -&gt; Bool
 $c== :: GetDeepLinkInfo -&gt; GetDeepLinkInfo -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-18"></span><span>
-</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679449369"><span id="local-6989586621679449371"><span id="local-6989586621679449373"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetDeepLinkInfo.html#GetDeepLinkInfo"><span class="hs-identifier hs-type">GetDeepLinkInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-20"></span><span> </span><span id="local-6989586621679449367"><span class="annot"><span class="annottext">toJSON :: GetDeepLinkInfo -&gt; Value
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679476926"><span id="local-6989586621679476929"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.GetDeepLinkInfo.html#GetDeepLinkInfo"><span class="hs-identifier hs-type">GetDeepLinkInfo</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span> </span><span id="local-6989586621679476924"><span class="annot"><span class="annottext">show :: GetDeepLinkInfo -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.Functions.GetDeepLinkInfo.html#GetDeepLinkInfo"><span class="hs-identifier hs-type">GetDeepLinkInfo</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">link :: GetDeepLinkInfo -&gt; Maybe String
+</span><a href="API.Functions.GetDeepLinkInfo.html#link"><span class="hs-identifier hs-var">link</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679476922"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679476922"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-22"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;GetDeepLinkInfo&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.Functions.GetDeepLinkInfo.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.Functions.GetDeepLinkInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;link&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679476922"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-23"></span><span>
+</span><span id="line-24"></span><span id="local-6989586621679476970"><span class="annot"><a href="API.Functions.GetDeepLinkInfo.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679476970"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679476970"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-25"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
+</span><a href="API.Functions.GetDeepLinkInfo.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679476919"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679476919"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679476918"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679476918"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679476919"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679476918"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><span id="line-26"></span><span class="annot"><a href="API.Functions.GetDeepLinkInfo.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
+</span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span>
+</span><span id="line-27"></span><span>
+</span><span id="line-28"></span><span class="annot"><a href="API.Functions.GetDeepLinkInfo.html#cc"><span class="hs-identifier hs-type">cc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-29"></span><span id="cc"><span class="annot"><span class="annottext">cc :: [String] -&gt; String
+</span><a href="API.Functions.GetDeepLinkInfo.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-30"></span><span class="annot"><a href="API.Functions.GetDeepLinkInfo.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679476917"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679476917"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
+forall a. [a] -&gt; [[a]] -&gt; [a]
+</span><span class="hs-identifier hs-var">intercalate</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;, &quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(String -&gt; Bool) -&gt; [String] -&gt; [String]
+forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">filter</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool -&gt; Bool
+</span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; Bool) -&gt; (String -&gt; Bool) -&gt; String -&gt; Bool
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
+</span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679476917"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;}&quot;</span></span><span>
+</span><span id="line-31"></span><span>
+</span><span id="line-32"></span><span>
+</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679476907"><span id="local-6989586621679476909"><span id="local-6989586621679476911"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetDeepLinkInfo.html#GetDeepLinkInfo"><span class="hs-identifier hs-type">GetDeepLinkInfo</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span> </span><span id="local-6989586621679476905"><span class="annot"><span class="annottext">toJSON :: GetDeepLinkInfo -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.GetDeepLinkInfo.html#GetDeepLinkInfo"><span class="hs-identifier hs-type">GetDeepLinkInfo</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">link :: GetDeepLinkInfo -&gt; Maybe String
-</span><a href="API.Functions.GetDeepLinkInfo.html#link"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679449365"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679449365"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-21"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.Functions.GetDeepLinkInfo.html#link"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679476903"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679476903"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-35"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -56,33 +102,33 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;link&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679449365"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679449359"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetDeepLinkInfo.html#GetDeepLinkInfo"><span class="hs-identifier hs-type">GetDeepLinkInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span> </span><span id="local-6989586621679449357"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetDeepLinkInfo
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679449355"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679449355"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679449353"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679449353"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>  </span><span id="local-6989586621679449352"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679449352"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679449353"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679476903"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-36"></span><span>
+</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679476897"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.GetDeepLinkInfo.html#GetDeepLinkInfo"><span class="hs-identifier hs-type">GetDeepLinkInfo</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-38"></span><span> </span><span id="local-6989586621679476895"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser GetDeepLinkInfo
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679476893"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679476893"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679476891"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679476891"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-39"></span><span>  </span><span id="local-6989586621679476890"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679476890"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679476891"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-26"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679449352"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-27"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span id="line-40"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679476890"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-41"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;getDeepLinkInfo&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser GetDeepLinkInfo
-</span><a href="#local-6989586621679449350"><span class="hs-identifier hs-var">parseGetDeepLinkInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679449355"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-28"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679476888"><span class="hs-identifier hs-var">parseGetDeepLinkInfo</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679476893"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-42"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser GetDeepLinkInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-29"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-30"></span><span>   </span><span class="annot"><a href="#local-6989586621679449350"><span class="hs-identifier hs-type">parseGetDeepLinkInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetDeepLinkInfo.html#GetDeepLinkInfo"><span class="hs-identifier hs-type">GetDeepLinkInfo</span></a></span><span>
-</span><span id="line-31"></span><span>   </span><span id="local-6989586621679449350"><span class="annot"><span class="annottext">parseGetDeepLinkInfo :: Value -&gt; Parser GetDeepLinkInfo
-</span><a href="#local-6989586621679449350"><span class="hs-identifier hs-var hs-var">parseGetDeepLinkInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-43"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-44"></span><span>   </span><span class="annot"><a href="#local-6989586621679476888"><span class="hs-identifier hs-type">parseGetDeepLinkInfo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.GetDeepLinkInfo.html#GetDeepLinkInfo"><span class="hs-identifier hs-type">GetDeepLinkInfo</span></a></span><span>
+</span><span id="line-45"></span><span>   </span><span id="local-6989586621679476888"><span class="annot"><span class="annottext">parseGetDeepLinkInfo :: Value -&gt; Parser GetDeepLinkInfo
+</span><a href="#local-6989586621679476888"><span class="hs-identifier hs-var hs-var">parseGetDeepLinkInfo</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser GetDeepLinkInfo)
 -&gt; Value
 -&gt; Parser GetDeepLinkInfo
@@ -94,15 +140,15 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser GetDeepLinkInfo
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679449348"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679449348"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-32"></span><span>    </span><span id="local-6989586621679449347"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679449347"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679449348"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679476886"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679476886"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-46"></span><span>    </span><span id="local-6989586621679476885"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679476885"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679476886"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;link&quot;</span></span><span>
-</span><span id="line-33"></span><span>    </span><span class="annot"><span class="annottext">GetDeepLinkInfo -&gt; Parser GetDeepLinkInfo
+</span><span id="line-47"></span><span>    </span><span class="annot"><span class="annottext">GetDeepLinkInfo -&gt; Parser GetDeepLinkInfo
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(GetDeepLinkInfo -&gt; Parser GetDeepLinkInfo)
 -&gt; GetDeepLinkInfo -&gt; Parser GetDeepLinkInfo
@@ -110,9 +156,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">GetDeepLinkInfo :: Maybe String -&gt; GetDeepLinkInfo
 </span><a href="API.Functions.GetDeepLinkInfo.html#GetDeepLinkInfo"><span class="hs-identifier hs-type">GetDeepLinkInfo</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">link :: Maybe String
 </span><a href="API.Functions.GetDeepLinkInfo.html#link"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679449347"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-34"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679476885"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-48"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser GetDeepLinkInfo
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-35"></span></pre></body></html>
+</span><span id="line-49"></span></pre></body></html>

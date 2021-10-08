@@ -6,34 +6,20 @@
 </span><span id="line-6"></span><span>
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-9"></span><span>
-</span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- Changes the marked as unread state of a chat </span><span>
-</span><span id="line-13"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-14"></span><span class="hs-comment">-- __chat_id__ Chat identifier</span><span>
-</span><span id="line-15"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-16"></span><span class="hs-comment">-- __is_marked_as_unread__ New value of is_marked_as_unread</span><span>
-</span><span id="line-17"></span><span class="hs-keyword">data</span><span> </span><span id="ToggleChatIsMarkedAsUnread"><span class="annot"><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#ToggleChatIsMarkedAsUnread"><span class="hs-identifier hs-var">ToggleChatIsMarkedAsUnread</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-18"></span><span>
-</span><span id="line-19"></span><span> </span><span id="ToggleChatIsMarkedAsUnread"><span class="annot"><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#ToggleChatIsMarkedAsUnread"><span class="hs-identifier hs-var">ToggleChatIsMarkedAsUnread</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="is_marked_as_unread"><span class="annot"><span class="annottext">ToggleChatIsMarkedAsUnread -&gt; Maybe Bool
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">intercalate</span></span><span class="hs-special">)</span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- Changes the marked as unread state of a chat </span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-15"></span><span class="hs-comment">-- __chat_id__ Chat identifier</span><span>
+</span><span id="line-16"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-17"></span><span class="hs-comment">-- __is_marked_as_unread__ New value of is_marked_as_unread</span><span>
+</span><span id="line-18"></span><span class="hs-keyword">data</span><span> </span><span id="ToggleChatIsMarkedAsUnread"><span class="annot"><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#ToggleChatIsMarkedAsUnread"><span class="hs-identifier hs-var">ToggleChatIsMarkedAsUnread</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span> </span><span id="ToggleChatIsMarkedAsUnread"><span class="annot"><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#ToggleChatIsMarkedAsUnread"><span class="hs-identifier hs-var">ToggleChatIsMarkedAsUnread</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="is_marked_as_unread"><span class="annot"><span class="annottext">ToggleChatIsMarkedAsUnread -&gt; Maybe Bool
 </span><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#is_marked_as_unread"><span class="hs-identifier hs-var hs-var">is_marked_as_unread</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">,</span><span> </span><span id="chat_id"><span class="annot"><span class="annottext">ToggleChatIsMarkedAsUnread -&gt; Maybe Int
-</span><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679465613"><span id="local-6989586621679465615"><span id="local-6989586621679465617"><span class="annot"><span class="annottext">Int -&gt; ToggleChatIsMarkedAsUnread -&gt; ShowS
-[ToggleChatIsMarkedAsUnread] -&gt; ShowS
-ToggleChatIsMarkedAsUnread -&gt; String
-(Int -&gt; ToggleChatIsMarkedAsUnread -&gt; ShowS)
--&gt; (ToggleChatIsMarkedAsUnread -&gt; String)
--&gt; ([ToggleChatIsMarkedAsUnread] -&gt; ShowS)
--&gt; Show ToggleChatIsMarkedAsUnread
-forall a.
-(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
-showList :: [ToggleChatIsMarkedAsUnread] -&gt; ShowS
-$cshowList :: [ToggleChatIsMarkedAsUnread] -&gt; ShowS
-show :: ToggleChatIsMarkedAsUnread -&gt; String
-$cshow :: ToggleChatIsMarkedAsUnread -&gt; String
-showsPrec :: Int -&gt; ToggleChatIsMarkedAsUnread -&gt; ShowS
-$cshowsPrec :: Int -&gt; ToggleChatIsMarkedAsUnread -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679465608"><span id="local-6989586621679465610"><span class="annot"><span class="annottext">ToggleChatIsMarkedAsUnread -&gt; ToggleChatIsMarkedAsUnread -&gt; Bool
+</span><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#chat_id"><span class="hs-identifier hs-var hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679497802"><span id="local-6989586621679497804"><span class="annot"><span class="annottext">ToggleChatIsMarkedAsUnread -&gt; ToggleChatIsMarkedAsUnread -&gt; Bool
 (ToggleChatIsMarkedAsUnread -&gt; ToggleChatIsMarkedAsUnread -&gt; Bool)
 -&gt; (ToggleChatIsMarkedAsUnread
     -&gt; ToggleChatIsMarkedAsUnread -&gt; Bool)
@@ -44,15 +30,81 @@ $c/= :: ToggleChatIsMarkedAsUnread -&gt; ToggleChatIsMarkedAsUnread -&gt; Bool
 == :: ToggleChatIsMarkedAsUnread -&gt; ToggleChatIsMarkedAsUnread -&gt; Bool
 $c== :: ToggleChatIsMarkedAsUnread -&gt; ToggleChatIsMarkedAsUnread -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679465600"><span id="local-6989586621679465602"><span id="local-6989586621679465604"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#ToggleChatIsMarkedAsUnread"><span class="hs-identifier hs-type">ToggleChatIsMarkedAsUnread</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span> </span><span id="local-6989586621679465598"><span class="annot"><span class="annottext">toJSON :: ToggleChatIsMarkedAsUnread -&gt; Value
+</span><span id="line-21"></span><span>
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679497796"><span id="local-6989586621679497799"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#ToggleChatIsMarkedAsUnread"><span class="hs-identifier hs-type">ToggleChatIsMarkedAsUnread</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span> </span><span id="local-6989586621679497794"><span class="annot"><span class="annottext">show :: ToggleChatIsMarkedAsUnread -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#ToggleChatIsMarkedAsUnread"><span class="hs-identifier hs-type">ToggleChatIsMarkedAsUnread</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_marked_as_unread :: ToggleChatIsMarkedAsUnread -&gt; Maybe Bool
+</span><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#is_marked_as_unread"><span class="hs-identifier hs-var">is_marked_as_unread</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679497792"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679497792"><span class="hs-identifier hs-var">is_marked_as_unread</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: ToggleChatIsMarkedAsUnread -&gt; Maybe Int
+</span><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679497791"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679497791"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-24"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;ToggleChatIsMarkedAsUnread&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe Bool -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;is_marked_as_unread&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679497792"><span class="hs-identifier hs-var">is_marked_as_unread</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679497791"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-25"></span><span>
+</span><span id="line-26"></span><span id="local-6989586621679497845"><span class="annot"><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679497845"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679497845"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-27"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
+</span><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679497788"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679497788"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679497787"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679497787"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679497788"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679497787"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><span id="line-28"></span><span class="annot"><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
+</span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span>
+</span><span id="line-29"></span><span>
+</span><span id="line-30"></span><span class="annot"><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#cc"><span class="hs-identifier hs-type">cc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-31"></span><span id="cc"><span class="annot"><span class="annottext">cc :: [String] -&gt; String
+</span><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-32"></span><span class="annot"><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679497786"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679497786"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
+forall a. [a] -&gt; [[a]] -&gt; [a]
+</span><span class="hs-identifier hs-var">intercalate</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;, &quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(String -&gt; Bool) -&gt; [String] -&gt; [String]
+forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">filter</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool -&gt; Bool
+</span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; Bool) -&gt; (String -&gt; Bool) -&gt; String -&gt; Bool
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
+</span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679497786"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;}&quot;</span></span><span>
+</span><span id="line-33"></span><span>
+</span><span id="line-34"></span><span>
+</span><span id="line-35"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679497776"><span id="local-6989586621679497778"><span id="local-6989586621679497780"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#ToggleChatIsMarkedAsUnread"><span class="hs-identifier hs-type">ToggleChatIsMarkedAsUnread</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-36"></span><span> </span><span id="local-6989586621679497774"><span class="annot"><span class="annottext">toJSON :: ToggleChatIsMarkedAsUnread -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#ToggleChatIsMarkedAsUnread"><span class="hs-identifier hs-type">ToggleChatIsMarkedAsUnread</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_marked_as_unread :: ToggleChatIsMarkedAsUnread -&gt; Maybe Bool
-</span><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#is_marked_as_unread"><span class="hs-identifier hs-var">is_marked_as_unread</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679465596"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679465596"><span class="hs-identifier hs-var">is_marked_as_unread</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: ToggleChatIsMarkedAsUnread -&gt; Maybe Int
-</span><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679465595"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679465595"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-23"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#is_marked_as_unread"><span class="hs-identifier hs-var">is_marked_as_unread</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679497772"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679497772"><span class="hs-identifier hs-var">is_marked_as_unread</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: ToggleChatIsMarkedAsUnread -&gt; Maybe Int
+</span><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679497771"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679497771"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-37"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -62,37 +114,37 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;is_marked_as_unread&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Bool -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679465596"><span class="hs-identifier hs-var">is_marked_as_unread</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679497772"><span class="hs-identifier hs-var">is_marked_as_unread</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679465595"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679465589"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#ToggleChatIsMarkedAsUnread"><span class="hs-identifier hs-type">ToggleChatIsMarkedAsUnread</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-26"></span><span> </span><span id="local-6989586621679465587"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ToggleChatIsMarkedAsUnread
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679465585"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679465585"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679465583"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679465583"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-27"></span><span>  </span><span id="local-6989586621679465582"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679465582"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679465583"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679497771"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-38"></span><span>
+</span><span id="line-39"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679497765"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#ToggleChatIsMarkedAsUnread"><span class="hs-identifier hs-type">ToggleChatIsMarkedAsUnread</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-40"></span><span> </span><span id="local-6989586621679497763"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ToggleChatIsMarkedAsUnread
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679497761"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679497761"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679497759"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679497759"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-41"></span><span>  </span><span id="local-6989586621679497758"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679497758"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679497759"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-28"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679465582"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-29"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span id="line-42"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679497758"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-43"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;toggleChatIsMarkedAsUnread&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ToggleChatIsMarkedAsUnread
-</span><a href="#local-6989586621679465580"><span class="hs-identifier hs-var">parseToggleChatIsMarkedAsUnread</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679465585"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-30"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679497756"><span class="hs-identifier hs-var">parseToggleChatIsMarkedAsUnread</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679497761"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-44"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ToggleChatIsMarkedAsUnread
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-31"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-32"></span><span>   </span><span class="annot"><a href="#local-6989586621679465580"><span class="hs-identifier hs-type">parseToggleChatIsMarkedAsUnread</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#ToggleChatIsMarkedAsUnread"><span class="hs-identifier hs-type">ToggleChatIsMarkedAsUnread</span></a></span><span>
-</span><span id="line-33"></span><span>   </span><span id="local-6989586621679465580"><span class="annot"><span class="annottext">parseToggleChatIsMarkedAsUnread :: Value -&gt; Parser ToggleChatIsMarkedAsUnread
-</span><a href="#local-6989586621679465580"><span class="hs-identifier hs-var hs-var">parseToggleChatIsMarkedAsUnread</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-45"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-46"></span><span>   </span><span class="annot"><a href="#local-6989586621679497756"><span class="hs-identifier hs-type">parseToggleChatIsMarkedAsUnread</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#ToggleChatIsMarkedAsUnread"><span class="hs-identifier hs-type">ToggleChatIsMarkedAsUnread</span></a></span><span>
+</span><span id="line-47"></span><span>   </span><span id="local-6989586621679497756"><span class="annot"><span class="annottext">parseToggleChatIsMarkedAsUnread :: Value -&gt; Parser ToggleChatIsMarkedAsUnread
+</span><a href="#local-6989586621679497756"><span class="hs-identifier hs-var hs-var">parseToggleChatIsMarkedAsUnread</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ToggleChatIsMarkedAsUnread)
 -&gt; Value
 -&gt; Parser ToggleChatIsMarkedAsUnread
@@ -104,19 +156,19 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ToggleChatIsMarkedAsUnread
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679465578"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679465578"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-34"></span><span>    </span><span id="local-6989586621679465577"><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679465577"><span class="hs-identifier hs-var">is_marked_as_unread</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679465578"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679497754"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679497754"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-48"></span><span>    </span><span id="local-6989586621679497753"><span class="annot"><span class="annottext">Maybe Bool
+</span><a href="#local-6989586621679497753"><span class="hs-identifier hs-var">is_marked_as_unread</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679497754"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Bool)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;is_marked_as_unread&quot;</span></span><span>
-</span><span id="line-35"></span><span>    </span><span id="local-6989586621679465575"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679465575"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-49"></span><span>    </span><span id="local-6989586621679497751"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679497751"><span class="hs-identifier hs-var">chat_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679465578"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679497754"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -124,11 +176,11 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679465578"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679497754"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;chat_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-36"></span><span>    </span><span class="annot"><span class="annottext">ToggleChatIsMarkedAsUnread -&gt; Parser ToggleChatIsMarkedAsUnread
+</span><span id="line-50"></span><span>    </span><span class="annot"><span class="annottext">ToggleChatIsMarkedAsUnread -&gt; Parser ToggleChatIsMarkedAsUnread
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ToggleChatIsMarkedAsUnread -&gt; Parser ToggleChatIsMarkedAsUnread)
 -&gt; ToggleChatIsMarkedAsUnread -&gt; Parser ToggleChatIsMarkedAsUnread
@@ -136,11 +188,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ToggleChatIsMarkedAsUnread :: Maybe Bool -&gt; Maybe Int -&gt; ToggleChatIsMarkedAsUnread
 </span><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#ToggleChatIsMarkedAsUnread"><span class="hs-identifier hs-type">ToggleChatIsMarkedAsUnread</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">is_marked_as_unread :: Maybe Bool
 </span><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#is_marked_as_unread"><span class="hs-identifier hs-var">is_marked_as_unread</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Bool
-</span><a href="#local-6989586621679465577"><span class="hs-identifier hs-var">is_marked_as_unread</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
+</span><a href="#local-6989586621679497753"><span class="hs-identifier hs-var">is_marked_as_unread</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">chat_id :: Maybe Int
 </span><a href="API.Functions.ToggleChatIsMarkedAsUnread.html#chat_id"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679465575"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-37"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679497751"><span class="hs-identifier hs-var">chat_id</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-51"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser ToggleChatIsMarkedAsUnread
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-38"></span></pre></body></html>
+</span><span id="line-52"></span></pre></body></html>

@@ -6,38 +6,24 @@
 </span><span id="line-6"></span><span>
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.InputMessageContent.html"><span class="hs-identifier">API.InputMessageContent</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputMessageContent</span></span><span>
-</span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-13"></span><span class="hs-comment">-- Contains information about a message draft</span><span>
-</span><span id="line-14"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-15"></span><span class="hs-comment">-- __reply_to_message_id__ Identifier of the message to reply to; 0 if none</span><span>
-</span><span id="line-16"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-17"></span><span class="hs-comment">-- __date__ Point in time (Unix timestamp) when the draft was created</span><span>
-</span><span id="line-18"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-19"></span><span class="hs-comment">-- __input_message_text__ Content of the message draft; this should always be of type inputMessageText</span><span>
-</span><span id="line-20"></span><span class="hs-keyword">data</span><span> </span><span id="DraftMessage"><span class="annot"><a href="API.DraftMessage.html#DraftMessage"><span class="hs-identifier hs-var">DraftMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-21"></span><span>
-</span><span id="line-22"></span><span> </span><span id="DraftMessage"><span class="annot"><a href="API.DraftMessage.html#DraftMessage"><span class="hs-identifier hs-var">DraftMessage</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="input_message_text"><span class="annot"><span class="annottext">DraftMessage -&gt; Maybe InputMessageContent
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">intercalate</span></span><span class="hs-special">)</span><span>
+</span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="hs-pragma">{-# SOURCE</span><span> </span><span class="hs-pragma">#-}</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="API.InputMessageContent.html"><span class="hs-identifier">API.InputMessageContent</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">InputMessageContent</span></span><span>
+</span><span id="line-11"></span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- Contains information about a message draft</span><span>
+</span><span id="line-15"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-16"></span><span class="hs-comment">-- __reply_to_message_id__ Identifier of the message to reply to; 0 if none</span><span>
+</span><span id="line-17"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-18"></span><span class="hs-comment">-- __date__ Point in time (Unix timestamp) when the draft was created</span><span>
+</span><span id="line-19"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-20"></span><span class="hs-comment">-- __input_message_text__ Content of the message draft; must be of the type inputMessageText</span><span>
+</span><span id="line-21"></span><span class="hs-keyword">data</span><span> </span><span id="DraftMessage"><span class="annot"><a href="API.DraftMessage.html#DraftMessage"><span class="hs-identifier hs-var">DraftMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-22"></span><span>
+</span><span id="line-23"></span><span> </span><span id="DraftMessage"><span class="annot"><a href="API.DraftMessage.html#DraftMessage"><span class="hs-identifier hs-var">DraftMessage</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="input_message_text"><span class="annot"><span class="annottext">DraftMessage -&gt; Maybe InputMessageContent
 </span><a href="API.DraftMessage.html#input_message_text"><span class="hs-identifier hs-var hs-var">input_message_text</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.InputMessageContent.html#InputMessageContent"><span class="hs-identifier hs-type">InputMessageContent.InputMessageContent</span></a></span><span class="hs-special">,</span><span> </span><span id="date"><span class="annot"><span class="annottext">DraftMessage -&gt; Maybe Int
 </span><a href="API.DraftMessage.html#date"><span class="hs-identifier hs-var hs-var">date</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="reply_to_message_id"><span class="annot"><span class="annottext">DraftMessage -&gt; Maybe Int
-</span><a href="API.DraftMessage.html#reply_to_message_id"><span class="hs-identifier hs-var hs-var">reply_to_message_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679470132"><span id="local-6989586621679470134"><span id="local-6989586621679470136"><span class="annot"><span class="annottext">Int -&gt; DraftMessage -&gt; ShowS
-[DraftMessage] -&gt; ShowS
-DraftMessage -&gt; String
-(Int -&gt; DraftMessage -&gt; ShowS)
--&gt; (DraftMessage -&gt; String)
--&gt; ([DraftMessage] -&gt; ShowS)
--&gt; Show DraftMessage
-forall a.
-(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
-showList :: [DraftMessage] -&gt; ShowS
-$cshowList :: [DraftMessage] -&gt; ShowS
-show :: DraftMessage -&gt; String
-$cshow :: DraftMessage -&gt; String
-showsPrec :: Int -&gt; DraftMessage -&gt; ShowS
-$cshowsPrec :: Int -&gt; DraftMessage -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679470127"><span id="local-6989586621679470129"><span class="annot"><span class="annottext">DraftMessage -&gt; DraftMessage -&gt; Bool
+</span><a href="API.DraftMessage.html#reply_to_message_id"><span class="hs-identifier hs-var hs-var">reply_to_message_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679503584"><span id="local-6989586621679503586"><span class="annot"><span class="annottext">DraftMessage -&gt; DraftMessage -&gt; Bool
 (DraftMessage -&gt; DraftMessage -&gt; Bool)
 -&gt; (DraftMessage -&gt; DraftMessage -&gt; Bool) -&gt; Eq DraftMessage
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -46,17 +32,89 @@ $c/= :: DraftMessage -&gt; DraftMessage -&gt; Bool
 == :: DraftMessage -&gt; DraftMessage -&gt; Bool
 $c== :: DraftMessage -&gt; DraftMessage -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679470119"><span id="local-6989586621679470121"><span id="local-6989586621679470123"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.DraftMessage.html#DraftMessage"><span class="hs-identifier hs-type">DraftMessage</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span> </span><span id="local-6989586621679470117"><span class="annot"><span class="annottext">toJSON :: DraftMessage -&gt; Value
+</span><span id="line-24"></span><span>
+</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679503578"><span id="local-6989586621679503581"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.DraftMessage.html#DraftMessage"><span class="hs-identifier hs-type">DraftMessage</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-26"></span><span> </span><span id="local-6989586621679503576"><span class="annot"><span class="annottext">show :: DraftMessage -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.DraftMessage.html#DraftMessage"><span class="hs-identifier hs-type">DraftMessage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">input_message_text :: DraftMessage -&gt; Maybe InputMessageContent
+</span><a href="API.DraftMessage.html#input_message_text"><span class="hs-identifier hs-var">input_message_text</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679503574"><span class="annot"><span class="annottext">Maybe InputMessageContent
+</span><a href="#local-6989586621679503574"><span class="hs-identifier hs-var">input_message_text</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">date :: DraftMessage -&gt; Maybe Int
+</span><a href="API.DraftMessage.html#date"><span class="hs-identifier hs-var">date</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679503573"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679503573"><span class="hs-identifier hs-var">date</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reply_to_message_id :: DraftMessage -&gt; Maybe Int
+</span><a href="API.DraftMessage.html#reply_to_message_id"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679503572"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679503572"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-27"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;DraftMessage&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.DraftMessage.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe InputMessageContent -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.DraftMessage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;input_message_text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputMessageContent
+</span><a href="#local-6989586621679503574"><span class="hs-identifier hs-var">input_message_text</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.DraftMessage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679503573"><span class="hs-identifier hs-var">date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.DraftMessage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;reply_to_message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679503572"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-28"></span><span>
+</span><span id="line-29"></span><span id="local-6989586621679503628"><span class="annot"><a href="API.DraftMessage.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679503628"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679503628"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-30"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
+</span><a href="API.DraftMessage.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679503569"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679503569"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679503568"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679503568"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679503569"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679503568"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><span id="line-31"></span><span class="annot"><a href="API.DraftMessage.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
+</span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span>
+</span><span id="line-32"></span><span>
+</span><span id="line-33"></span><span class="annot"><a href="API.DraftMessage.html#cc"><span class="hs-identifier hs-type">cc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-34"></span><span id="cc"><span class="annot"><span class="annottext">cc :: [String] -&gt; String
+</span><a href="API.DraftMessage.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-35"></span><span class="annot"><a href="API.DraftMessage.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679503567"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679503567"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
+forall a. [a] -&gt; [[a]] -&gt; [a]
+</span><span class="hs-identifier hs-var">intercalate</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;, &quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(String -&gt; Bool) -&gt; [String] -&gt; [String]
+forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">filter</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool -&gt; Bool
+</span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; Bool) -&gt; (String -&gt; Bool) -&gt; String -&gt; Bool
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
+</span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679503567"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;}&quot;</span></span><span>
+</span><span id="line-36"></span><span>
+</span><span id="line-37"></span><span>
+</span><span id="line-38"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679503557"><span id="local-6989586621679503559"><span id="local-6989586621679503561"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.DraftMessage.html#DraftMessage"><span class="hs-identifier hs-type">DraftMessage</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-39"></span><span> </span><span id="local-6989586621679503555"><span class="annot"><span class="annottext">toJSON :: DraftMessage -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.DraftMessage.html#DraftMessage"><span class="hs-identifier hs-type">DraftMessage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">input_message_text :: DraftMessage -&gt; Maybe InputMessageContent
-</span><a href="API.DraftMessage.html#input_message_text"><span class="hs-identifier hs-var">input_message_text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679470115"><span class="annot"><span class="annottext">Maybe InputMessageContent
-</span><a href="#local-6989586621679470115"><span class="hs-identifier hs-var">input_message_text</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">date :: DraftMessage -&gt; Maybe Int
-</span><a href="API.DraftMessage.html#date"><span class="hs-identifier hs-var">date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679470114"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679470114"><span class="hs-identifier hs-var">date</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reply_to_message_id :: DraftMessage -&gt; Maybe Int
-</span><a href="API.DraftMessage.html#reply_to_message_id"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679470113"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679470113"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-26"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.DraftMessage.html#input_message_text"><span class="hs-identifier hs-var">input_message_text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679503553"><span class="annot"><span class="annottext">Maybe InputMessageContent
+</span><a href="#local-6989586621679503553"><span class="hs-identifier hs-var">input_message_text</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">date :: DraftMessage -&gt; Maybe Int
+</span><a href="API.DraftMessage.html#date"><span class="hs-identifier hs-var">date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679503552"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679503552"><span class="hs-identifier hs-var">date</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reply_to_message_id :: DraftMessage -&gt; Maybe Int
+</span><a href="API.DraftMessage.html#reply_to_message_id"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679503551"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679503551"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-40"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -66,60 +124,60 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;input_message_text&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe InputMessageContent -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe InputMessageContent
-</span><a href="#local-6989586621679470115"><span class="hs-identifier hs-var">input_message_text</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679503553"><span class="hs-identifier hs-var">input_message_text</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;date&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679470114"><span class="hs-identifier hs-var">date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679503552"><span class="hs-identifier hs-var">date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;reply_to_message_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679470113"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-27"></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679470107"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.DraftMessage.html#DraftMessage"><span class="hs-identifier hs-type">DraftMessage</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-29"></span><span> </span><span id="local-6989586621679470105"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser DraftMessage
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679470103"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679470103"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679470101"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679470101"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-30"></span><span>  </span><span id="local-6989586621679470100"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679470100"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679470101"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679503551"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-41"></span><span>
+</span><span id="line-42"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679503545"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.DraftMessage.html#DraftMessage"><span class="hs-identifier hs-type">DraftMessage</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-43"></span><span> </span><span id="local-6989586621679503543"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser DraftMessage
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679503541"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679503541"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679503539"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679503539"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-44"></span><span>  </span><span id="local-6989586621679503538"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679503538"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679503539"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-31"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679470100"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-32"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span id="line-45"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679503538"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-46"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;draftMessage&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser DraftMessage
-</span><a href="#local-6989586621679470098"><span class="hs-identifier hs-var">parseDraftMessage</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679470103"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-33"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679503536"><span class="hs-identifier hs-var">parseDraftMessage</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679503541"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-47"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser DraftMessage
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-34"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-35"></span><span>   </span><span class="annot"><a href="#local-6989586621679470098"><span class="hs-identifier hs-type">parseDraftMessage</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DraftMessage.html#DraftMessage"><span class="hs-identifier hs-type">DraftMessage</span></a></span><span>
-</span><span id="line-36"></span><span>   </span><span id="local-6989586621679470098"><span class="annot"><span class="annottext">parseDraftMessage :: Value -&gt; Parser DraftMessage
-</span><a href="#local-6989586621679470098"><span class="hs-identifier hs-var hs-var">parseDraftMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-48"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-49"></span><span>   </span><span class="annot"><a href="#local-6989586621679503536"><span class="hs-identifier hs-type">parseDraftMessage</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.DraftMessage.html#DraftMessage"><span class="hs-identifier hs-type">DraftMessage</span></a></span><span>
+</span><span id="line-50"></span><span>   </span><span id="local-6989586621679503536"><span class="annot"><span class="annottext">parseDraftMessage :: Value -&gt; Parser DraftMessage
+</span><a href="#local-6989586621679503536"><span class="hs-identifier hs-var hs-var">parseDraftMessage</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser DraftMessage) -&gt; Value -&gt; Parser DraftMessage
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;DraftMessage&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser DraftMessage) -&gt; Value -&gt; Parser DraftMessage)
 -&gt; (Object -&gt; Parser DraftMessage) -&gt; Value -&gt; Parser DraftMessage
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679470096"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679470096"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-37"></span><span>    </span><span id="local-6989586621679470095"><span class="annot"><span class="annottext">Maybe InputMessageContent
-</span><a href="#local-6989586621679470095"><span class="hs-identifier hs-var">input_message_text</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679470096"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe InputMessageContent)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679503534"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679503534"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-51"></span><span>    </span><span id="local-6989586621679503533"><span class="annot"><span class="annottext">Maybe InputMessageContent
+</span><a href="#local-6989586621679503533"><span class="hs-identifier hs-var">input_message_text</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679503534"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe InputMessageContent)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;input_message_text&quot;</span></span><span>
-</span><span id="line-38"></span><span>    </span><span id="local-6989586621679470093"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679470093"><span class="hs-identifier hs-var">date</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-52"></span><span>    </span><span id="local-6989586621679503531"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679503531"><span class="hs-identifier hs-var">date</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679470096"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679503534"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;date&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -127,15 +185,15 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679470096"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679503534"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;date&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-39"></span><span>    </span><span id="local-6989586621679470091"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679470091"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-53"></span><span>    </span><span id="local-6989586621679503529"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679503529"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679470096"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679503534"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;reply_to_message_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -143,11 +201,11 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679470096"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679503534"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;reply_to_message_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-40"></span><span>    </span><span class="annot"><span class="annottext">DraftMessage -&gt; Parser DraftMessage
+</span><span id="line-54"></span><span>    </span><span class="annot"><span class="annottext">DraftMessage -&gt; Parser DraftMessage
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(DraftMessage -&gt; Parser DraftMessage)
 -&gt; DraftMessage -&gt; Parser DraftMessage
@@ -155,13 +213,13 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">DraftMessage :: Maybe InputMessageContent -&gt; Maybe Int -&gt; Maybe Int -&gt; DraftMessage
 </span><a href="API.DraftMessage.html#DraftMessage"><span class="hs-identifier hs-type">DraftMessage</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">input_message_text :: Maybe InputMessageContent
 </span><a href="API.DraftMessage.html#input_message_text"><span class="hs-identifier hs-var">input_message_text</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe InputMessageContent
-</span><a href="#local-6989586621679470095"><span class="hs-identifier hs-var">input_message_text</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">date :: Maybe Int
+</span><a href="#local-6989586621679503533"><span class="hs-identifier hs-var">input_message_text</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">date :: Maybe Int
 </span><a href="API.DraftMessage.html#date"><span class="hs-identifier hs-var">date</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679470093"><span class="hs-identifier hs-var">date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reply_to_message_id :: Maybe Int
+</span><a href="#local-6989586621679503531"><span class="hs-identifier hs-var">date</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">reply_to_message_id :: Maybe Int
 </span><a href="API.DraftMessage.html#reply_to_message_id"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679470091"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-41"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679503529"><span class="hs-identifier hs-var">reply_to_message_id</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-55"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser DraftMessage
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-42"></span></pre></body></html>
+</span><span id="line-56"></span></pre></body></html>

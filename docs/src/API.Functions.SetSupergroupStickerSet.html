@@ -6,34 +6,20 @@
 </span><span id="line-6"></span><span>
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-9"></span><span>
-</span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- Changes the sticker set of a supergroup; requires can_change_info administrator right </span><span>
-</span><span id="line-13"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-14"></span><span class="hs-comment">-- __supergroup_id__ Identifier of the supergroup</span><span>
-</span><span id="line-15"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-16"></span><span class="hs-comment">-- __sticker_set_id__ New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set</span><span>
-</span><span id="line-17"></span><span class="hs-keyword">data</span><span> </span><span id="SetSupergroupStickerSet"><span class="annot"><a href="API.Functions.SetSupergroupStickerSet.html#SetSupergroupStickerSet"><span class="hs-identifier hs-var">SetSupergroupStickerSet</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-18"></span><span>
-</span><span id="line-19"></span><span> </span><span id="SetSupergroupStickerSet"><span class="annot"><a href="API.Functions.SetSupergroupStickerSet.html#SetSupergroupStickerSet"><span class="hs-identifier hs-var">SetSupergroupStickerSet</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="sticker_set_id"><span class="annot"><span class="annottext">SetSupergroupStickerSet -&gt; Maybe Int
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">intercalate</span></span><span class="hs-special">)</span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- Changes the sticker set of a supergroup; requires can_change_info administrator right </span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-15"></span><span class="hs-comment">-- __supergroup_id__ Identifier of the supergroup</span><span>
+</span><span id="line-16"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-17"></span><span class="hs-comment">-- __sticker_set_id__ New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set</span><span>
+</span><span id="line-18"></span><span class="hs-keyword">data</span><span> </span><span id="SetSupergroupStickerSet"><span class="annot"><a href="API.Functions.SetSupergroupStickerSet.html#SetSupergroupStickerSet"><span class="hs-identifier hs-var">SetSupergroupStickerSet</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span> </span><span id="SetSupergroupStickerSet"><span class="annot"><a href="API.Functions.SetSupergroupStickerSet.html#SetSupergroupStickerSet"><span class="hs-identifier hs-var">SetSupergroupStickerSet</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="sticker_set_id"><span class="annot"><span class="annottext">SetSupergroupStickerSet -&gt; Maybe Int
 </span><a href="API.Functions.SetSupergroupStickerSet.html#sticker_set_id"><span class="hs-identifier hs-var hs-var">sticker_set_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span id="supergroup_id"><span class="annot"><span class="annottext">SetSupergroupStickerSet -&gt; Maybe Int
-</span><a href="API.Functions.SetSupergroupStickerSet.html#supergroup_id"><span class="hs-identifier hs-var hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679464056"><span id="local-6989586621679464058"><span id="local-6989586621679464060"><span class="annot"><span class="annottext">Int -&gt; SetSupergroupStickerSet -&gt; ShowS
-[SetSupergroupStickerSet] -&gt; ShowS
-SetSupergroupStickerSet -&gt; String
-(Int -&gt; SetSupergroupStickerSet -&gt; ShowS)
--&gt; (SetSupergroupStickerSet -&gt; String)
--&gt; ([SetSupergroupStickerSet] -&gt; ShowS)
--&gt; Show SetSupergroupStickerSet
-forall a.
-(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
-showList :: [SetSupergroupStickerSet] -&gt; ShowS
-$cshowList :: [SetSupergroupStickerSet] -&gt; ShowS
-show :: SetSupergroupStickerSet -&gt; String
-$cshow :: SetSupergroupStickerSet -&gt; String
-showsPrec :: Int -&gt; SetSupergroupStickerSet -&gt; ShowS
-$cshowsPrec :: Int -&gt; SetSupergroupStickerSet -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679464051"><span id="local-6989586621679464053"><span class="annot"><span class="annottext">SetSupergroupStickerSet -&gt; SetSupergroupStickerSet -&gt; Bool
+</span><a href="API.Functions.SetSupergroupStickerSet.html#supergroup_id"><span class="hs-identifier hs-var hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679495796"><span id="local-6989586621679495798"><span class="annot"><span class="annottext">SetSupergroupStickerSet -&gt; SetSupergroupStickerSet -&gt; Bool
 (SetSupergroupStickerSet -&gt; SetSupergroupStickerSet -&gt; Bool)
 -&gt; (SetSupergroupStickerSet -&gt; SetSupergroupStickerSet -&gt; Bool)
 -&gt; Eq SetSupergroupStickerSet
@@ -43,15 +29,81 @@ $c/= :: SetSupergroupStickerSet -&gt; SetSupergroupStickerSet -&gt; Bool
 == :: SetSupergroupStickerSet -&gt; SetSupergroupStickerSet -&gt; Bool
 $c== :: SetSupergroupStickerSet -&gt; SetSupergroupStickerSet -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679464043"><span id="local-6989586621679464045"><span id="local-6989586621679464047"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetSupergroupStickerSet.html#SetSupergroupStickerSet"><span class="hs-identifier hs-type">SetSupergroupStickerSet</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-22"></span><span> </span><span id="local-6989586621679464041"><span class="annot"><span class="annottext">toJSON :: SetSupergroupStickerSet -&gt; Value
+</span><span id="line-21"></span><span>
+</span><span id="line-22"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679495790"><span id="local-6989586621679495793"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.SetSupergroupStickerSet.html#SetSupergroupStickerSet"><span class="hs-identifier hs-type">SetSupergroupStickerSet</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-23"></span><span> </span><span id="local-6989586621679495788"><span class="annot"><span class="annottext">show :: SetSupergroupStickerSet -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.Functions.SetSupergroupStickerSet.html#SetSupergroupStickerSet"><span class="hs-identifier hs-type">SetSupergroupStickerSet</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sticker_set_id :: SetSupergroupStickerSet -&gt; Maybe Int
+</span><a href="API.Functions.SetSupergroupStickerSet.html#sticker_set_id"><span class="hs-identifier hs-var">sticker_set_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679495786"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679495786"><span class="hs-identifier hs-var">sticker_set_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supergroup_id :: SetSupergroupStickerSet -&gt; Maybe Int
+</span><a href="API.Functions.SetSupergroupStickerSet.html#supergroup_id"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679495785"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679495785"><span class="hs-identifier hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-24"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;SetSupergroupStickerSet&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.Functions.SetSupergroupStickerSet.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.Functions.SetSupergroupStickerSet.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;sticker_set_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679495786"><span class="hs-identifier hs-var">sticker_set_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.Functions.SetSupergroupStickerSet.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;supergroup_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679495785"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-25"></span><span>
+</span><span id="line-26"></span><span id="local-6989586621679495839"><span class="annot"><a href="API.Functions.SetSupergroupStickerSet.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679495839"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679495839"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-27"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
+</span><a href="API.Functions.SetSupergroupStickerSet.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679495782"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679495782"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679495781"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679495781"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679495782"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679495781"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><span id="line-28"></span><span class="annot"><a href="API.Functions.SetSupergroupStickerSet.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
+</span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span>
+</span><span id="line-29"></span><span>
+</span><span id="line-30"></span><span class="annot"><a href="API.Functions.SetSupergroupStickerSet.html#cc"><span class="hs-identifier hs-type">cc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-31"></span><span id="cc"><span class="annot"><span class="annottext">cc :: [String] -&gt; String
+</span><a href="API.Functions.SetSupergroupStickerSet.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-32"></span><span class="annot"><a href="API.Functions.SetSupergroupStickerSet.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679495780"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679495780"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
+forall a. [a] -&gt; [[a]] -&gt; [a]
+</span><span class="hs-identifier hs-var">intercalate</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;, &quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(String -&gt; Bool) -&gt; [String] -&gt; [String]
+forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">filter</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool -&gt; Bool
+</span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; Bool) -&gt; (String -&gt; Bool) -&gt; String -&gt; Bool
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
+</span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679495780"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;}&quot;</span></span><span>
+</span><span id="line-33"></span><span>
+</span><span id="line-34"></span><span>
+</span><span id="line-35"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679495770"><span id="local-6989586621679495772"><span id="local-6989586621679495774"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetSupergroupStickerSet.html#SetSupergroupStickerSet"><span class="hs-identifier hs-type">SetSupergroupStickerSet</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-36"></span><span> </span><span id="local-6989586621679495768"><span class="annot"><span class="annottext">toJSON :: SetSupergroupStickerSet -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.SetSupergroupStickerSet.html#SetSupergroupStickerSet"><span class="hs-identifier hs-type">SetSupergroupStickerSet</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sticker_set_id :: SetSupergroupStickerSet -&gt; Maybe Int
-</span><a href="API.Functions.SetSupergroupStickerSet.html#sticker_set_id"><span class="hs-identifier hs-var">sticker_set_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679464039"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464039"><span class="hs-identifier hs-var">sticker_set_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supergroup_id :: SetSupergroupStickerSet -&gt; Maybe Int
-</span><a href="API.Functions.SetSupergroupStickerSet.html#supergroup_id"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679464038"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464038"><span class="hs-identifier hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-23"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.Functions.SetSupergroupStickerSet.html#sticker_set_id"><span class="hs-identifier hs-var">sticker_set_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679495766"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679495766"><span class="hs-identifier hs-var">sticker_set_id</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supergroup_id :: SetSupergroupStickerSet -&gt; Maybe Int
+</span><a href="API.Functions.SetSupergroupStickerSet.html#supergroup_id"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679495765"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679495765"><span class="hs-identifier hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-37"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -61,37 +113,37 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;sticker_set_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464039"><span class="hs-identifier hs-var">sticker_set_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679495766"><span class="hs-identifier hs-var">sticker_set_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supergroup_id&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464038"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-24"></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679464032"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetSupergroupStickerSet.html#SetSupergroupStickerSet"><span class="hs-identifier hs-type">SetSupergroupStickerSet</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-26"></span><span> </span><span id="local-6989586621679464030"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetSupergroupStickerSet
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679464028"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679464028"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679464026"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679464026"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-27"></span><span>  </span><span id="local-6989586621679464025"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679464025"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679464026"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679495765"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-38"></span><span>
+</span><span id="line-39"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679495759"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetSupergroupStickerSet.html#SetSupergroupStickerSet"><span class="hs-identifier hs-type">SetSupergroupStickerSet</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-40"></span><span> </span><span id="local-6989586621679495757"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetSupergroupStickerSet
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679495755"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679495755"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679495753"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679495753"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-41"></span><span>  </span><span id="local-6989586621679495752"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679495752"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679495753"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-28"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679464025"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-29"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span id="line-42"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679495752"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-43"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;setSupergroupStickerSet&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SetSupergroupStickerSet
-</span><a href="#local-6989586621679464023"><span class="hs-identifier hs-var">parseSetSupergroupStickerSet</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679464028"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-30"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679495750"><span class="hs-identifier hs-var">parseSetSupergroupStickerSet</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679495755"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-44"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SetSupergroupStickerSet
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-31"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-32"></span><span>   </span><span class="annot"><a href="#local-6989586621679464023"><span class="hs-identifier hs-type">parseSetSupergroupStickerSet</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetSupergroupStickerSet.html#SetSupergroupStickerSet"><span class="hs-identifier hs-type">SetSupergroupStickerSet</span></a></span><span>
-</span><span id="line-33"></span><span>   </span><span id="local-6989586621679464023"><span class="annot"><span class="annottext">parseSetSupergroupStickerSet :: Value -&gt; Parser SetSupergroupStickerSet
-</span><a href="#local-6989586621679464023"><span class="hs-identifier hs-var hs-var">parseSetSupergroupStickerSet</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-45"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-46"></span><span>   </span><span class="annot"><a href="#local-6989586621679495750"><span class="hs-identifier hs-type">parseSetSupergroupStickerSet</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetSupergroupStickerSet.html#SetSupergroupStickerSet"><span class="hs-identifier hs-type">SetSupergroupStickerSet</span></a></span><span>
+</span><span id="line-47"></span><span>   </span><span id="local-6989586621679495750"><span class="annot"><span class="annottext">parseSetSupergroupStickerSet :: Value -&gt; Parser SetSupergroupStickerSet
+</span><a href="#local-6989586621679495750"><span class="hs-identifier hs-var hs-var">parseSetSupergroupStickerSet</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SetSupergroupStickerSet)
 -&gt; Value
 -&gt; Parser SetSupergroupStickerSet
@@ -103,13 +155,13 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser SetSupergroupStickerSet
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679464021"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679464021"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-34"></span><span>    </span><span id="local-6989586621679464020"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464020"><span class="hs-identifier hs-var">sticker_set_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679495748"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679495748"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-48"></span><span>    </span><span id="local-6989586621679495747"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679495747"><span class="hs-identifier hs-var">sticker_set_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679464021"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679495748"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;sticker_set_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -117,15 +169,15 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679464021"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679495748"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;sticker_set_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-35"></span><span>    </span><span id="local-6989586621679464017"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464017"><span class="hs-identifier hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span id="line-49"></span><span>    </span><span id="local-6989586621679495744"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679495744"><span class="hs-identifier hs-var">supergroup_id</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679464021"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679495748"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supergroup_id&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -133,11 +185,11 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679464021"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679495748"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;supergroup_id&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
-</span><span id="line-36"></span><span>    </span><span class="annot"><span class="annottext">SetSupergroupStickerSet -&gt; Parser SetSupergroupStickerSet
+</span><span id="line-50"></span><span>    </span><span class="annot"><span class="annottext">SetSupergroupStickerSet -&gt; Parser SetSupergroupStickerSet
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(SetSupergroupStickerSet -&gt; Parser SetSupergroupStickerSet)
 -&gt; SetSupergroupStickerSet -&gt; Parser SetSupergroupStickerSet
@@ -145,11 +197,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">SetSupergroupStickerSet :: Maybe Int -&gt; Maybe Int -&gt; SetSupergroupStickerSet
 </span><a href="API.Functions.SetSupergroupStickerSet.html#SetSupergroupStickerSet"><span class="hs-identifier hs-type">SetSupergroupStickerSet</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">sticker_set_id :: Maybe Int
 </span><a href="API.Functions.SetSupergroupStickerSet.html#sticker_set_id"><span class="hs-identifier hs-var">sticker_set_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464020"><span class="hs-identifier hs-var">sticker_set_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supergroup_id :: Maybe Int
+</span><a href="#local-6989586621679495747"><span class="hs-identifier hs-var">sticker_set_id</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">supergroup_id :: Maybe Int
 </span><a href="API.Functions.SetSupergroupStickerSet.html#supergroup_id"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679464017"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-37"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679495744"><span class="hs-identifier hs-var">supergroup_id</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-51"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser SetSupergroupStickerSet
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-38"></span></pre></body></html>
+</span><span id="line-52"></span></pre></body></html>

@@ -6,31 +6,17 @@
 </span><span id="line-6"></span><span>
 </span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">A</span></span><span>
 </span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Aeson.Types</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">T</span></span><span>
-</span><span id="line-9"></span><span>
-</span><span id="line-10"></span><span class="hs-comment">-- |</span><span>
-</span><span id="line-11"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-12"></span><span class="hs-comment">-- Confirms QR code authentication on another device. Returns created session on success </span><span>
-</span><span id="line-13"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-14"></span><span class="hs-comment">-- __link__ A link from a QR code. The link must be scanned by the in-app camera</span><span>
-</span><span id="line-15"></span><span class="hs-keyword">data</span><span> </span><span id="ConfirmQrCodeAuthentication"><span class="annot"><a href="API.Functions.ConfirmQrCodeAuthentication.html#ConfirmQrCodeAuthentication"><span class="hs-identifier hs-var">ConfirmQrCodeAuthentication</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
-</span><span id="line-16"></span><span>
-</span><span id="line-17"></span><span> </span><span id="ConfirmQrCodeAuthentication"><span class="annot"><a href="API.Functions.ConfirmQrCodeAuthentication.html#ConfirmQrCodeAuthentication"><span class="hs-identifier hs-var">ConfirmQrCodeAuthentication</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="link"><span class="annot"><span class="annottext">ConfirmQrCodeAuthentication -&gt; Maybe String
-</span><a href="API.Functions.ConfirmQrCodeAuthentication.html#link"><span class="hs-identifier hs-var hs-var">link</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679442867"><span id="local-6989586621679442869"><span id="local-6989586621679442871"><span class="annot"><span class="annottext">Int -&gt; ConfirmQrCodeAuthentication -&gt; ShowS
-[ConfirmQrCodeAuthentication] -&gt; ShowS
-ConfirmQrCodeAuthentication -&gt; String
-(Int -&gt; ConfirmQrCodeAuthentication -&gt; ShowS)
--&gt; (ConfirmQrCodeAuthentication -&gt; String)
--&gt; ([ConfirmQrCodeAuthentication] -&gt; ShowS)
--&gt; Show ConfirmQrCodeAuthentication
-forall a.
-(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
-showList :: [ConfirmQrCodeAuthentication] -&gt; ShowS
-$cshowList :: [ConfirmQrCodeAuthentication] -&gt; ShowS
-show :: ConfirmQrCodeAuthentication -&gt; String
-$cshow :: ConfirmQrCodeAuthentication -&gt; String
-showsPrec :: Int -&gt; ConfirmQrCodeAuthentication -&gt; ShowS
-$cshowsPrec :: Int -&gt; ConfirmQrCodeAuthentication -&gt; ShowS
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679442862"><span id="local-6989586621679442864"><span class="annot"><span class="annottext">ConfirmQrCodeAuthentication -&gt; ConfirmQrCodeAuthentication -&gt; Bool
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">intercalate</span></span><span class="hs-special">)</span><span>
+</span><span id="line-10"></span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-12"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-13"></span><span class="hs-comment">-- Confirms QR code authentication on another device. Returns created session on success </span><span>
+</span><span id="line-14"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-15"></span><span class="hs-comment">-- __link__ A link from a QR code. The link must be scanned by the in-app camera</span><span>
+</span><span id="line-16"></span><span class="hs-keyword">data</span><span> </span><span id="ConfirmQrCodeAuthentication"><span class="annot"><a href="API.Functions.ConfirmQrCodeAuthentication.html#ConfirmQrCodeAuthentication"><span class="hs-identifier hs-var">ConfirmQrCodeAuthentication</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
+</span><span id="line-17"></span><span>
+</span><span id="line-18"></span><span> </span><span id="ConfirmQrCodeAuthentication"><span class="annot"><a href="API.Functions.ConfirmQrCodeAuthentication.html#ConfirmQrCodeAuthentication"><span class="hs-identifier hs-var">ConfirmQrCodeAuthentication</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="link"><span class="annot"><span class="annottext">ConfirmQrCodeAuthentication -&gt; Maybe String
+</span><a href="API.Functions.ConfirmQrCodeAuthentication.html#link"><span class="hs-identifier hs-var hs-var">link</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679468669"><span id="local-6989586621679468671"><span class="annot"><span class="annottext">ConfirmQrCodeAuthentication -&gt; ConfirmQrCodeAuthentication -&gt; Bool
 (ConfirmQrCodeAuthentication
  -&gt; ConfirmQrCodeAuthentication -&gt; Bool)
 -&gt; (ConfirmQrCodeAuthentication
@@ -42,13 +28,73 @@ $c/= :: ConfirmQrCodeAuthentication -&gt; ConfirmQrCodeAuthentication -&gt; Bool
 == :: ConfirmQrCodeAuthentication -&gt; ConfirmQrCodeAuthentication -&gt; Bool
 $c== :: ConfirmQrCodeAuthentication -&gt; ConfirmQrCodeAuthentication -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-18"></span><span>
-</span><span id="line-19"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679442854"><span id="local-6989586621679442856"><span id="local-6989586621679442858"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ConfirmQrCodeAuthentication.html#ConfirmQrCodeAuthentication"><span class="hs-identifier hs-type">ConfirmQrCodeAuthentication</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-20"></span><span> </span><span id="local-6989586621679442852"><span class="annot"><span class="annottext">toJSON :: ConfirmQrCodeAuthentication -&gt; Value
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679468663"><span id="local-6989586621679468666"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.ConfirmQrCodeAuthentication.html#ConfirmQrCodeAuthentication"><span class="hs-identifier hs-type">ConfirmQrCodeAuthentication</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-21"></span><span> </span><span id="local-6989586621679468661"><span class="annot"><span class="annottext">show :: ConfirmQrCodeAuthentication -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.Functions.ConfirmQrCodeAuthentication.html#ConfirmQrCodeAuthentication"><span class="hs-identifier hs-type">ConfirmQrCodeAuthentication</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">link :: ConfirmQrCodeAuthentication -&gt; Maybe String
+</span><a href="API.Functions.ConfirmQrCodeAuthentication.html#link"><span class="hs-identifier hs-var">link</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679468659"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679468659"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-22"></span><span>  </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;ConfirmQrCodeAuthentication&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
+</span><a href="API.Functions.ConfirmQrCodeAuthentication.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
+</span><a href="API.Functions.ConfirmQrCodeAuthentication.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;link&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679468659"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-23"></span><span>
+</span><span id="line-24"></span><span id="local-6989586621679468707"><span class="annot"><a href="API.Functions.ConfirmQrCodeAuthentication.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679468707"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679468707"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-25"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
+</span><a href="API.Functions.ConfirmQrCodeAuthentication.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679468656"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679468656"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679468655"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679468655"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679468656"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679468655"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><span id="line-26"></span><span class="annot"><a href="API.Functions.ConfirmQrCodeAuthentication.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
+</span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&quot;</span></span><span>
+</span><span id="line-27"></span><span>
+</span><span id="line-28"></span><span class="annot"><a href="API.Functions.ConfirmQrCodeAuthentication.html#cc"><span class="hs-identifier hs-type">cc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-29"></span><span id="cc"><span class="annot"><span class="annottext">cc :: [String] -&gt; String
+</span><a href="API.Functions.ConfirmQrCodeAuthentication.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+forall a. Monoid a =&gt; a
+</span><span class="hs-identifier hs-var">mempty</span></span><span>
+</span><span id="line-30"></span><span class="annot"><a href="API.Functions.ConfirmQrCodeAuthentication.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679468654"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679468654"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
+forall a. [a] -&gt; [[a]] -&gt; [a]
+</span><span class="hs-identifier hs-var">intercalate</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;, &quot;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(String -&gt; Bool) -&gt; [String] -&gt; [String]
+forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">filter</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool -&gt; Bool
+</span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; Bool) -&gt; (String -&gt; Bool) -&gt; String -&gt; Bool
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
+</span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679468654"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;}&quot;</span></span><span>
+</span><span id="line-31"></span><span>
+</span><span id="line-32"></span><span>
+</span><span id="line-33"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679468644"><span id="local-6989586621679468646"><span id="local-6989586621679468648"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ConfirmQrCodeAuthentication.html#ConfirmQrCodeAuthentication"><span class="hs-identifier hs-type">ConfirmQrCodeAuthentication</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-34"></span><span> </span><span id="local-6989586621679468642"><span class="annot"><span class="annottext">toJSON :: ConfirmQrCodeAuthentication -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.ConfirmQrCodeAuthentication.html#ConfirmQrCodeAuthentication"><span class="hs-identifier hs-type">ConfirmQrCodeAuthentication</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">link :: ConfirmQrCodeAuthentication -&gt; Maybe String
-</span><a href="API.Functions.ConfirmQrCodeAuthentication.html#link"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679442850"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679442850"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
-</span><span id="line-21"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
+</span><a href="API.Functions.ConfirmQrCodeAuthentication.html#link"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679468640"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679468640"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><span id="line-35"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
@@ -58,33 +104,33 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;link&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679442850"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">]</span><span>
-</span><span id="line-22"></span><span>
-</span><span id="line-23"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679442844"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ConfirmQrCodeAuthentication.html#ConfirmQrCodeAuthentication"><span class="hs-identifier hs-type">ConfirmQrCodeAuthentication</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-24"></span><span> </span><span id="local-6989586621679442842"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ConfirmQrCodeAuthentication
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679442840"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679442840"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679442838"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679442838"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-25"></span><span>  </span><span id="local-6989586621679442837"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679442837"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679442838"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679468640"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-36"></span><span>
+</span><span id="line-37"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679468634"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.ConfirmQrCodeAuthentication.html#ConfirmQrCodeAuthentication"><span class="hs-identifier hs-type">ConfirmQrCodeAuthentication</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-38"></span><span> </span><span id="local-6989586621679468632"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser ConfirmQrCodeAuthentication
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679468630"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679468630"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679468628"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679468628"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-39"></span><span>  </span><span id="local-6989586621679468627"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679468627"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679468628"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
-</span><span id="line-26"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679442837"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-27"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><span id="line-40"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679468627"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-41"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;confirmQrCodeAuthentication&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser ConfirmQrCodeAuthentication
-</span><a href="#local-6989586621679442835"><span class="hs-identifier hs-var">parseConfirmQrCodeAuthentication</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679442840"><span class="hs-identifier hs-var">v</span></a></span><span>
-</span><span id="line-28"></span><span>   </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679468625"><span class="hs-identifier hs-var">parseConfirmQrCodeAuthentication</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679468630"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><span id="line-42"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser ConfirmQrCodeAuthentication
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-29"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-30"></span><span>   </span><span class="annot"><a href="#local-6989586621679442835"><span class="hs-identifier hs-type">parseConfirmQrCodeAuthentication</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ConfirmQrCodeAuthentication.html#ConfirmQrCodeAuthentication"><span class="hs-identifier hs-type">ConfirmQrCodeAuthentication</span></a></span><span>
-</span><span id="line-31"></span><span>   </span><span id="local-6989586621679442835"><span class="annot"><span class="annottext">parseConfirmQrCodeAuthentication :: Value -&gt; Parser ConfirmQrCodeAuthentication
-</span><a href="#local-6989586621679442835"><span class="hs-identifier hs-var hs-var">parseConfirmQrCodeAuthentication</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-43"></span><span>  </span><span class="hs-keyword">where</span><span>
+</span><span id="line-44"></span><span>   </span><span class="annot"><a href="#local-6989586621679468625"><span class="hs-identifier hs-type">parseConfirmQrCodeAuthentication</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.ConfirmQrCodeAuthentication.html#ConfirmQrCodeAuthentication"><span class="hs-identifier hs-type">ConfirmQrCodeAuthentication</span></a></span><span>
+</span><span id="line-45"></span><span>   </span><span id="local-6989586621679468625"><span class="annot"><span class="annottext">parseConfirmQrCodeAuthentication :: Value -&gt; Parser ConfirmQrCodeAuthentication
+</span><a href="#local-6989586621679468625"><span class="hs-identifier hs-var hs-var">parseConfirmQrCodeAuthentication</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser ConfirmQrCodeAuthentication)
 -&gt; Value
 -&gt; Parser ConfirmQrCodeAuthentication
@@ -96,15 +142,15 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser ConfirmQrCodeAuthentication
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679442833"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679442833"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-32"></span><span>    </span><span id="local-6989586621679442832"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679442832"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679442833"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679468623"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679468623"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-46"></span><span>    </span><span id="local-6989586621679468622"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679468622"><span class="hs-identifier hs-var">link</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679468623"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;link&quot;</span></span><span>
-</span><span id="line-33"></span><span>    </span><span class="annot"><span class="annottext">ConfirmQrCodeAuthentication -&gt; Parser ConfirmQrCodeAuthentication
+</span><span id="line-47"></span><span>    </span><span class="annot"><span class="annottext">ConfirmQrCodeAuthentication -&gt; Parser ConfirmQrCodeAuthentication
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(ConfirmQrCodeAuthentication -&gt; Parser ConfirmQrCodeAuthentication)
 -&gt; ConfirmQrCodeAuthentication
@@ -113,9 +159,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">ConfirmQrCodeAuthentication :: Maybe String -&gt; ConfirmQrCodeAuthentication
 </span><a href="API.Functions.ConfirmQrCodeAuthentication.html#ConfirmQrCodeAuthentication"><span class="hs-identifier hs-type">ConfirmQrCodeAuthentication</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">link :: Maybe String
 </span><a href="API.Functions.ConfirmQrCodeAuthentication.html#link"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679442832"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">}</span><span>
-</span><span id="line-34"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679468622"><span class="hs-identifier hs-var">link</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><span id="line-48"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser ConfirmQrCodeAuthentication
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-35"></span></pre></body></html>
+</span><span id="line-49"></span></pre></body></html>
