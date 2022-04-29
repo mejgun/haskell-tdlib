@@ -11,13 +11,13 @@ import {-# SOURCE #-} qualified API.ChatList as ChatList
 
 -- |
 -- 
--- Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/arhive chat list
+-- Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list
 -- 
 -- __chat_list__ Chat list in which to change the pinned state of the chat
 -- 
 -- __chat_id__ Chat identifier
 -- 
--- __is_pinned__ True, if the chat is pinned
+-- __is_pinned__ Pass true to pin the chat; pass false to unpin it
 data ToggleChatIsPinned = 
 
  ToggleChatIsPinned { is_pinned :: Maybe Bool, chat_id :: Maybe Int, chat_list :: Maybe ChatList.ChatList }  deriving (Eq)

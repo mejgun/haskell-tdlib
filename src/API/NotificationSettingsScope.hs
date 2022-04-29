@@ -18,11 +18,11 @@ data NotificationSettingsScope =
  NotificationSettingsScopePrivateChats |
  -- |
  -- 
- -- Notification settings applied to all basic groups and supergroups when the corresponding chat setting has a default value
+ -- Notification settings applied to all basic group and supergroup chats when the corresponding chat setting has a default value
  NotificationSettingsScopeGroupChats |
  -- |
  -- 
- -- Notification settings applied to all channels when the corresponding chat setting has a default value
+ -- Notification settings applied to all channel chats when the corresponding chat setting has a default value
  NotificationSettingsScopeChannelChats deriving (Eq)
 
 instance Show NotificationSettingsScope where

@@ -41,7 +41,7 @@
 </span><span id="line-39"></span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-40"></span><span> </span><span class="hs-comment">-- </span><span>
 </span><span id="line-41"></span><span> </span><span class="hs-comment">-- The user is offline, but was online last month</span><span>
-</span><span id="line-42"></span><span> </span><span id="UserStatusLastMonth"><span class="annot"><a href="API.UserStatus.html#UserStatusLastMonth"><span class="hs-identifier hs-var">UserStatusLastMonth</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679531759"><span id="local-6989586621679531761"><span class="annot"><span class="annottext">UserStatus -&gt; UserStatus -&gt; Bool
+</span><span id="line-42"></span><span> </span><span id="UserStatusLastMonth"><span class="annot"><a href="API.UserStatus.html#UserStatusLastMonth"><span class="hs-identifier hs-var">UserStatusLastMonth</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679581935"><span id="local-6989586621679581937"><span class="annot"><span class="annottext">UserStatus -&gt; UserStatus -&gt; Bool
 (UserStatus -&gt; UserStatus -&gt; Bool)
 -&gt; (UserStatus -&gt; UserStatus -&gt; Bool) -&gt; Eq UserStatus
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -51,8 +51,8 @@ $c/= :: UserStatus -&gt; UserStatus -&gt; Bool
 $c== :: UserStatus -&gt; UserStatus -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-43"></span><span>
-</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679531753"><span id="local-6989586621679531756"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatus"><span class="hs-identifier hs-type">UserStatus</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-45"></span><span> </span><span id="local-6989586621679531751"><span class="annot"><span class="annottext">show :: UserStatus -&gt; String
+</span><span id="line-44"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679581929"><span id="local-6989586621679581932"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatus"><span class="hs-identifier hs-type">UserStatus</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-45"></span><span> </span><span id="local-6989586621679581927"><span class="annot"><span class="annottext">show :: UserStatus -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatusEmpty"><span class="hs-identifier hs-type">UserStatusEmpty</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-46"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;UserStatusEmpty&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -61,8 +61,8 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><a href="API.UserStatus.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-47"></span><span>
 </span><span id="line-48"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatusOnline"><span class="hs-identifier hs-type">UserStatusOnline</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">expires :: UserStatus -&gt; Maybe Int
-</span><a href="API.UserStatus.html#expires"><span class="hs-identifier hs-var">expires</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679531748"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679531748"><span class="hs-identifier hs-var">expires</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.UserStatus.html#expires"><span class="hs-identifier hs-var">expires</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581924"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679581924"><span class="hs-identifier hs-var">expires</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-49"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;UserStatusOnline&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -71,11 +71,11 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.UserStatus.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;expires&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679531748"><span class="hs-identifier hs-var">expires</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679581924"><span class="hs-identifier hs-var">expires</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-50"></span><span>
 </span><span id="line-51"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatusOffline"><span class="hs-identifier hs-type">UserStatusOffline</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">was_online :: UserStatus -&gt; Maybe Int
-</span><a href="API.UserStatus.html#was_online"><span class="hs-identifier hs-var">was_online</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679531746"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679531746"><span class="hs-identifier hs-var">was_online</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.UserStatus.html#was_online"><span class="hs-identifier hs-var">was_online</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679581922"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679581922"><span class="hs-identifier hs-var">was_online</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-52"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;UserStatusOffline&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -84,7 +84,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.UserStatus.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;was_online&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679531746"><span class="hs-identifier hs-var">was_online</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679581922"><span class="hs-identifier hs-var">was_online</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-53"></span><span>
 </span><span id="line-54"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatusRecently"><span class="hs-identifier hs-type">UserStatusRecently</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-55"></span><span>  </span><span class="annot"><span class="annottext">String
@@ -107,12 +107,12 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
 </span><a href="API.UserStatus.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-62"></span><span>
-</span><span id="line-63"></span><span id="local-6989586621679531807"><span class="annot"><a href="API.UserStatus.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679531807"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679531807"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-63"></span><span id="local-6989586621679581983"><span class="annot"><a href="API.UserStatus.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679581983"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679581983"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-64"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.UserStatus.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679531745"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679531745"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679531744"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679531744"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679531745"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="API.UserStatus.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679581921"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679581921"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679581920"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679581920"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679581921"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -120,7 +120,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679531744"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679581920"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-65"></span><span class="annot"><a href="API.UserStatus.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -131,8 +131,8 @@ forall a. Show a =&gt; a -&gt; String
 </span><a href="API.UserStatus.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-69"></span><span class="annot"><a href="API.UserStatus.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679531743"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679531743"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-69"></span><span class="annot"><a href="API.UserStatus.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679581919"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679581919"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
@@ -146,14 +146,14 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679531743"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="#local-6989586621679581919"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;}&quot;</span></span><span>
 </span><span id="line-70"></span><span>
 </span><span id="line-71"></span><span>
-</span><span id="line-72"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679531733"><span id="local-6989586621679531735"><span id="local-6989586621679531737"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatus"><span class="hs-identifier hs-type">UserStatus</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-73"></span><span> </span><span id="local-6989586621679531731"><span class="annot"><span class="annottext">toJSON :: UserStatus -&gt; Value
+</span><span id="line-72"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679581909"><span id="local-6989586621679581911"><span id="local-6989586621679581913"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatus"><span class="hs-identifier hs-type">UserStatus</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-73"></span><span> </span><span id="local-6989586621679581907"><span class="annot"><span class="annottext">toJSON :: UserStatus -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatusEmpty"><span class="hs-identifier hs-type">UserStatusEmpty</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-74"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
@@ -164,8 +164,8 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;userStatusEmpty&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-75"></span><span>
 </span><span id="line-76"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatusOnline"><span class="hs-identifier hs-type">UserStatusOnline</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">expires :: UserStatus -&gt; Maybe Int
-</span><a href="API.UserStatus.html#expires"><span class="hs-identifier hs-var">expires</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679531726"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679531726"><span class="hs-identifier hs-var">expires</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.UserStatus.html#expires"><span class="hs-identifier hs-var">expires</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581902"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679581902"><span class="hs-identifier hs-var">expires</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-77"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -176,11 +176,11 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;expires&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679531726"><span class="hs-identifier hs-var">expires</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679581902"><span class="hs-identifier hs-var">expires</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-78"></span><span>
 </span><span id="line-79"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatusOffline"><span class="hs-identifier hs-type">UserStatusOffline</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">was_online :: UserStatus -&gt; Maybe Int
-</span><a href="API.UserStatus.html#was_online"><span class="hs-identifier hs-var">was_online</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679531725"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679531725"><span class="hs-identifier hs-var">was_online</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.UserStatus.html#was_online"><span class="hs-identifier hs-var">was_online</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679581901"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679581901"><span class="hs-identifier hs-var">was_online</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-80"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -191,7 +191,7 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;was_online&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe Int -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679531725"><span class="hs-identifier hs-var">was_online</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679581901"><span class="hs-identifier hs-var">was_online</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-81"></span><span>
 </span><span id="line-82"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">toJSON</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatusRecently"><span class="hs-identifier hs-type">UserStatusRecently</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-83"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
@@ -220,59 +220,59 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;userStatusLastMonth&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-90"></span><span>
-</span><span id="line-91"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679531722"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatus"><span class="hs-identifier hs-type">UserStatus</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-92"></span><span> </span><span id="local-6989586621679531720"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser UserStatus
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679531718"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679531718"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679531716"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679531716"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-93"></span><span>  </span><span id="local-6989586621679531715"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679531715"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679531716"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-91"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679581898"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatus"><span class="hs-identifier hs-type">UserStatus</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-92"></span><span> </span><span id="local-6989586621679581896"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser UserStatus
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679581894"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679581894"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679581892"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581892"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-93"></span><span>  </span><span id="local-6989586621679581891"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679581891"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581892"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-94"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679531715"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679581891"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-95"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;userStatusEmpty&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UserStatus
-</span><a href="#local-6989586621679531713"><span class="hs-identifier hs-var">parseUserStatusEmpty</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679531718"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679581889"><span class="hs-identifier hs-var">parseUserStatusEmpty</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679581894"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-96"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;userStatusOnline&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UserStatus
-</span><a href="#local-6989586621679531712"><span class="hs-identifier hs-var">parseUserStatusOnline</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679531718"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679581888"><span class="hs-identifier hs-var">parseUserStatusOnline</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679581894"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-97"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;userStatusOffline&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UserStatus
-</span><a href="#local-6989586621679531711"><span class="hs-identifier hs-var">parseUserStatusOffline</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679531718"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679581887"><span class="hs-identifier hs-var">parseUserStatusOffline</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679581894"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-98"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;userStatusRecently&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UserStatus
-</span><a href="#local-6989586621679531710"><span class="hs-identifier hs-var">parseUserStatusRecently</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679531718"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679581886"><span class="hs-identifier hs-var">parseUserStatusRecently</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679581894"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-99"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;userStatusLastWeek&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UserStatus
-</span><a href="#local-6989586621679531709"><span class="hs-identifier hs-var">parseUserStatusLastWeek</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679531718"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679581885"><span class="hs-identifier hs-var">parseUserStatusLastWeek</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679581894"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-100"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;userStatusLastMonth&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser UserStatus
-</span><a href="#local-6989586621679531708"><span class="hs-identifier hs-var">parseUserStatusLastMonth</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679531718"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679581884"><span class="hs-identifier hs-var">parseUserStatusLastMonth</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679581894"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-101"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser UserStatus
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-102"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-103"></span><span>   </span><span class="annot"><a href="#local-6989586621679531713"><span class="hs-identifier hs-type">parseUserStatusEmpty</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatus"><span class="hs-identifier hs-type">UserStatus</span></a></span><span>
-</span><span id="line-104"></span><span>   </span><span id="local-6989586621679531713"><span class="annot"><span class="annottext">parseUserStatusEmpty :: Value -&gt; Parser UserStatus
-</span><a href="#local-6989586621679531713"><span class="hs-identifier hs-var hs-var">parseUserStatusEmpty</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-103"></span><span>   </span><span class="annot"><a href="#local-6989586621679581889"><span class="hs-identifier hs-type">parseUserStatusEmpty</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatus"><span class="hs-identifier hs-type">UserStatus</span></a></span><span>
+</span><span id="line-104"></span><span>   </span><span id="local-6989586621679581889"><span class="annot"><span class="annottext">parseUserStatusEmpty :: Value -&gt; Parser UserStatus
+</span><a href="#local-6989586621679581889"><span class="hs-identifier hs-var hs-var">parseUserStatusEmpty</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser UserStatus) -&gt; Value -&gt; Parser UserStatus
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;UserStatusEmpty&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser UserStatus) -&gt; Value -&gt; Parser UserStatus)
 -&gt; (Object -&gt; Parser UserStatus) -&gt; Value -&gt; Parser UserStatus
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679531706"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679531706"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679581882"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581882"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-105"></span><span>    </span><span class="annot"><span class="annottext">UserStatus -&gt; Parser UserStatus
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(UserStatus -&gt; Parser UserStatus)
@@ -281,22 +281,22 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">UserStatusEmpty :: UserStatus
 </span><a href="API.UserStatus.html#UserStatusEmpty"><span class="hs-identifier hs-type">UserStatusEmpty</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-106"></span><span>
-</span><span id="line-107"></span><span>   </span><span class="annot"><a href="#local-6989586621679531712"><span class="hs-identifier hs-type">parseUserStatusOnline</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatus"><span class="hs-identifier hs-type">UserStatus</span></a></span><span>
-</span><span id="line-108"></span><span>   </span><span id="local-6989586621679531712"><span class="annot"><span class="annottext">parseUserStatusOnline :: Value -&gt; Parser UserStatus
-</span><a href="#local-6989586621679531712"><span class="hs-identifier hs-var hs-var">parseUserStatusOnline</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-107"></span><span>   </span><span class="annot"><a href="#local-6989586621679581888"><span class="hs-identifier hs-type">parseUserStatusOnline</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatus"><span class="hs-identifier hs-type">UserStatus</span></a></span><span>
+</span><span id="line-108"></span><span>   </span><span id="local-6989586621679581888"><span class="annot"><span class="annottext">parseUserStatusOnline :: Value -&gt; Parser UserStatus
+</span><a href="#local-6989586621679581888"><span class="hs-identifier hs-var hs-var">parseUserStatusOnline</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser UserStatus) -&gt; Value -&gt; Parser UserStatus
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;UserStatusOnline&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser UserStatus) -&gt; Value -&gt; Parser UserStatus)
 -&gt; (Object -&gt; Parser UserStatus) -&gt; Value -&gt; Parser UserStatus
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679531705"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679531705"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-109"></span><span>    </span><span id="local-6989586621679531704"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679531704"><span class="hs-identifier hs-var">expires</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679581881"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581881"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-109"></span><span>    </span><span id="local-6989586621679581880"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679581880"><span class="hs-identifier hs-var">expires</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679531705"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679581881"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;expires&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -304,7 +304,7 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679531705"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679581881"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;expires&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
@@ -316,24 +316,24 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">UserStatusOnline :: Maybe Int -&gt; UserStatus
 </span><a href="API.UserStatus.html#UserStatusOnline"><span class="hs-identifier hs-type">UserStatusOnline</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">expires :: Maybe Int
 </span><a href="API.UserStatus.html#expires"><span class="hs-identifier hs-var">expires</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679531704"><span class="hs-identifier hs-var">expires</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679581880"><span class="hs-identifier hs-var">expires</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-111"></span><span>
-</span><span id="line-112"></span><span>   </span><span class="annot"><a href="#local-6989586621679531711"><span class="hs-identifier hs-type">parseUserStatusOffline</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatus"><span class="hs-identifier hs-type">UserStatus</span></a></span><span>
-</span><span id="line-113"></span><span>   </span><span id="local-6989586621679531711"><span class="annot"><span class="annottext">parseUserStatusOffline :: Value -&gt; Parser UserStatus
-</span><a href="#local-6989586621679531711"><span class="hs-identifier hs-var hs-var">parseUserStatusOffline</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-112"></span><span>   </span><span class="annot"><a href="#local-6989586621679581887"><span class="hs-identifier hs-type">parseUserStatusOffline</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatus"><span class="hs-identifier hs-type">UserStatus</span></a></span><span>
+</span><span id="line-113"></span><span>   </span><span id="local-6989586621679581887"><span class="annot"><span class="annottext">parseUserStatusOffline :: Value -&gt; Parser UserStatus
+</span><a href="#local-6989586621679581887"><span class="hs-identifier hs-var hs-var">parseUserStatusOffline</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser UserStatus) -&gt; Value -&gt; Parser UserStatus
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;UserStatusOffline&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser UserStatus) -&gt; Value -&gt; Parser UserStatus)
 -&gt; (Object -&gt; Parser UserStatus) -&gt; Value -&gt; Parser UserStatus
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679531701"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679531701"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-114"></span><span>    </span><span id="local-6989586621679531700"><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679531700"><span class="hs-identifier hs-var">was_online</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679581877"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581877"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-114"></span><span>    </span><span id="local-6989586621679581876"><span class="annot"><span class="annottext">Maybe Int
+</span><a href="#local-6989586621679581876"><span class="hs-identifier hs-var">was_online</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Parser (Maybe Int)] -&gt; Parser (Maybe Int)
 forall a. Monoid a =&gt; [a] -&gt; a
 </span><span class="hs-identifier hs-var">mconcat</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679531701"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
+</span><a href="#local-6989586621679581877"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe Int)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;was_online&quot;</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe Int
@@ -341,7 +341,7 @@ forall a. Read a =&gt; String -&gt; Maybe a
 </span><span class="hs-identifier hs-var">readMaybe</span></span><span> </span><span class="annot"><span class="annottext">(String -&gt; Maybe Int) -&gt; Parser String -&gt; Parser (Maybe Int)
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679531701"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><a href="#local-6989586621679581877"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;was_online&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">)</span><span>
@@ -353,19 +353,19 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">UserStatusOffline :: Maybe Int -&gt; UserStatus
 </span><a href="API.UserStatus.html#UserStatusOffline"><span class="hs-identifier hs-type">UserStatusOffline</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">was_online :: Maybe Int
 </span><a href="API.UserStatus.html#was_online"><span class="hs-identifier hs-var">was_online</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe Int
-</span><a href="#local-6989586621679531700"><span class="hs-identifier hs-var">was_online</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679581876"><span class="hs-identifier hs-var">was_online</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-116"></span><span>
-</span><span id="line-117"></span><span>   </span><span class="annot"><a href="#local-6989586621679531710"><span class="hs-identifier hs-type">parseUserStatusRecently</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatus"><span class="hs-identifier hs-type">UserStatus</span></a></span><span>
-</span><span id="line-118"></span><span>   </span><span id="local-6989586621679531710"><span class="annot"><span class="annottext">parseUserStatusRecently :: Value -&gt; Parser UserStatus
-</span><a href="#local-6989586621679531710"><span class="hs-identifier hs-var hs-var">parseUserStatusRecently</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-117"></span><span>   </span><span class="annot"><a href="#local-6989586621679581886"><span class="hs-identifier hs-type">parseUserStatusRecently</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatus"><span class="hs-identifier hs-type">UserStatus</span></a></span><span>
+</span><span id="line-118"></span><span>   </span><span id="local-6989586621679581886"><span class="annot"><span class="annottext">parseUserStatusRecently :: Value -&gt; Parser UserStatus
+</span><a href="#local-6989586621679581886"><span class="hs-identifier hs-var hs-var">parseUserStatusRecently</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser UserStatus) -&gt; Value -&gt; Parser UserStatus
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;UserStatusRecently&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser UserStatus) -&gt; Value -&gt; Parser UserStatus)
 -&gt; (Object -&gt; Parser UserStatus) -&gt; Value -&gt; Parser UserStatus
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679531699"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679531699"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679581875"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581875"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-119"></span><span>    </span><span class="annot"><span class="annottext">UserStatus -&gt; Parser UserStatus
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(UserStatus -&gt; Parser UserStatus)
@@ -374,17 +374,17 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">UserStatusRecently :: UserStatus
 </span><a href="API.UserStatus.html#UserStatusRecently"><span class="hs-identifier hs-type">UserStatusRecently</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-120"></span><span>
-</span><span id="line-121"></span><span>   </span><span class="annot"><a href="#local-6989586621679531709"><span class="hs-identifier hs-type">parseUserStatusLastWeek</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatus"><span class="hs-identifier hs-type">UserStatus</span></a></span><span>
-</span><span id="line-122"></span><span>   </span><span id="local-6989586621679531709"><span class="annot"><span class="annottext">parseUserStatusLastWeek :: Value -&gt; Parser UserStatus
-</span><a href="#local-6989586621679531709"><span class="hs-identifier hs-var hs-var">parseUserStatusLastWeek</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-121"></span><span>   </span><span class="annot"><a href="#local-6989586621679581885"><span class="hs-identifier hs-type">parseUserStatusLastWeek</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatus"><span class="hs-identifier hs-type">UserStatus</span></a></span><span>
+</span><span id="line-122"></span><span>   </span><span id="local-6989586621679581885"><span class="annot"><span class="annottext">parseUserStatusLastWeek :: Value -&gt; Parser UserStatus
+</span><a href="#local-6989586621679581885"><span class="hs-identifier hs-var hs-var">parseUserStatusLastWeek</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser UserStatus) -&gt; Value -&gt; Parser UserStatus
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;UserStatusLastWeek&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser UserStatus) -&gt; Value -&gt; Parser UserStatus)
 -&gt; (Object -&gt; Parser UserStatus) -&gt; Value -&gt; Parser UserStatus
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679531698"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679531698"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679581874"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581874"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-123"></span><span>    </span><span class="annot"><span class="annottext">UserStatus -&gt; Parser UserStatus
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(UserStatus -&gt; Parser UserStatus)
@@ -393,17 +393,17 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">UserStatusLastWeek :: UserStatus
 </span><a href="API.UserStatus.html#UserStatusLastWeek"><span class="hs-identifier hs-type">UserStatusLastWeek</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-124"></span><span>
-</span><span id="line-125"></span><span>   </span><span class="annot"><a href="#local-6989586621679531708"><span class="hs-identifier hs-type">parseUserStatusLastMonth</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatus"><span class="hs-identifier hs-type">UserStatus</span></a></span><span>
-</span><span id="line-126"></span><span>   </span><span id="local-6989586621679531708"><span class="annot"><span class="annottext">parseUserStatusLastMonth :: Value -&gt; Parser UserStatus
-</span><a href="#local-6989586621679531708"><span class="hs-identifier hs-var hs-var">parseUserStatusLastMonth</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-125"></span><span>   </span><span class="annot"><a href="#local-6989586621679581884"><span class="hs-identifier hs-type">parseUserStatusLastMonth</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.UserStatus.html#UserStatus"><span class="hs-identifier hs-type">UserStatus</span></a></span><span>
+</span><span id="line-126"></span><span>   </span><span id="local-6989586621679581884"><span class="annot"><span class="annottext">parseUserStatusLastMonth :: Value -&gt; Parser UserStatus
+</span><a href="#local-6989586621679581884"><span class="hs-identifier hs-var hs-var">parseUserStatusLastMonth</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser UserStatus) -&gt; Value -&gt; Parser UserStatus
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;UserStatusLastMonth&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser UserStatus) -&gt; Value -&gt; Parser UserStatus)
 -&gt; (Object -&gt; Parser UserStatus) -&gt; Value -&gt; Parser UserStatus
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679531697"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679531697"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679581873"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679581873"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-127"></span><span>    </span><span class="annot"><span class="annottext">UserStatus -&gt; Parser UserStatus
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(UserStatus -&gt; Parser UserStatus)

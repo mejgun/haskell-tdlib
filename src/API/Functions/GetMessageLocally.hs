@@ -10,7 +10,7 @@ import Data.List (intercalate)
 
 -- |
 -- 
--- Returns information about a message, if it is available locally without sending network request. This is an offline request 
+-- Returns information about a message, if it is available without sending network request. This is an offline request 
 -- 
 -- __chat_id__ Identifier of the chat the message belongs to
 -- 

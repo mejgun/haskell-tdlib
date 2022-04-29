@@ -19,7 +19,7 @@
 </span><span id="line-19"></span><span> </span><span class="hs-comment">-- |</span><span>
 </span><span id="line-20"></span><span> </span><span class="hs-comment">-- </span><span>
 </span><span id="line-21"></span><span> </span><span class="hs-comment">-- The chat is public, because it is a location-based supergroup</span><span>
-</span><span id="line-22"></span><span> </span><span id="PublicChatTypeIsLocationBased"><span class="annot"><a href="API.PublicChatType.html#PublicChatTypeIsLocationBased"><span class="hs-identifier hs-var">PublicChatTypeIsLocationBased</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679519585"><span id="local-6989586621679519587"><span class="annot"><span class="annottext">PublicChatType -&gt; PublicChatType -&gt; Bool
+</span><span id="line-22"></span><span> </span><span id="PublicChatTypeIsLocationBased"><span class="annot"><a href="API.PublicChatType.html#PublicChatTypeIsLocationBased"><span class="hs-identifier hs-var">PublicChatTypeIsLocationBased</span></a></span></span><span> </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679568237"><span id="local-6989586621679568239"><span class="annot"><span class="annottext">PublicChatType -&gt; PublicChatType -&gt; Bool
 (PublicChatType -&gt; PublicChatType -&gt; Bool)
 -&gt; (PublicChatType -&gt; PublicChatType -&gt; Bool) -&gt; Eq PublicChatType
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -29,8 +29,8 @@ $c/= :: PublicChatType -&gt; PublicChatType -&gt; Bool
 $c== :: PublicChatType -&gt; PublicChatType -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679519579"><span id="local-6989586621679519582"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-25"></span><span> </span><span id="local-6989586621679519577"><span class="annot"><span class="annottext">show :: PublicChatType -&gt; String
+</span><span id="line-24"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679568231"><span id="local-6989586621679568234"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-25"></span><span> </span><span id="local-6989586621679568229"><span class="annot"><span class="annottext">show :: PublicChatType -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.PublicChatType.html#PublicChatTypeHasUsername"><span class="hs-identifier hs-type">PublicChatTypeHasUsername</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-26"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;PublicChatTypeHasUsername&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -45,12 +45,12 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[String] -&gt; String
 </span><a href="API.PublicChatType.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-30"></span><span>
-</span><span id="line-31"></span><span id="local-6989586621679519574"><span class="annot"><a href="API.PublicChatType.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679519574"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679519574"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-31"></span><span id="local-6989586621679568226"><span class="annot"><a href="API.PublicChatType.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679568226"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679568226"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-32"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.PublicChatType.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679519572"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679519572"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679519571"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679519571"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679519572"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="API.PublicChatType.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679568224"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679568224"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679568223"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679568223"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679568224"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -58,7 +58,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679519571"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679568223"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-33"></span><span class="annot"><a href="API.PublicChatType.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -69,8 +69,8 @@ forall a. Show a =&gt; a -&gt; String
 </span><a href="API.PublicChatType.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-37"></span><span class="annot"><a href="API.PublicChatType.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679519570"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679519570"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-37"></span><span class="annot"><a href="API.PublicChatType.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679568222"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679568222"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
@@ -84,14 +84,14 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679519570"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="#local-6989586621679568222"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;}&quot;</span></span><span>
 </span><span id="line-38"></span><span>
 </span><span id="line-39"></span><span>
-</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679519560"><span id="local-6989586621679519562"><span id="local-6989586621679519564"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-41"></span><span> </span><span id="local-6989586621679519558"><span class="annot"><span class="annottext">toJSON :: PublicChatType -&gt; Value
+</span><span id="line-40"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679568212"><span id="local-6989586621679568214"><span id="local-6989586621679568216"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-41"></span><span> </span><span id="local-6989586621679568210"><span class="annot"><span class="annottext">toJSON :: PublicChatType -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.PublicChatType.html#PublicChatTypeHasUsername"><span class="hs-identifier hs-type">PublicChatTypeHasUsername</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-42"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
@@ -110,35 +110,35 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-identifier hs-var">T.String</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;publicChatTypeIsLocationBased&quot;</span></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-46"></span><span>
-</span><span id="line-47"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679519551"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-48"></span><span> </span><span id="local-6989586621679519549"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PublicChatType
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679519547"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679519547"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679519545"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679519545"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-49"></span><span>  </span><span id="local-6989586621679519544"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679519544"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679519545"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-47"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679568203"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-48"></span><span> </span><span id="local-6989586621679568201"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser PublicChatType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679568199"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679568199"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679568197"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679568197"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-49"></span><span>  </span><span id="local-6989586621679568196"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679568196"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679568197"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-50"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679519544"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679568196"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-51"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;publicChatTypeHasUsername&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PublicChatType
-</span><a href="#local-6989586621679519542"><span class="hs-identifier hs-var">parsePublicChatTypeHasUsername</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679519547"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679568194"><span class="hs-identifier hs-var">parsePublicChatTypeHasUsername</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679568199"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-52"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;publicChatTypeIsLocationBased&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser PublicChatType
-</span><a href="#local-6989586621679519541"><span class="hs-identifier hs-var">parsePublicChatTypeIsLocationBased</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679519547"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679568193"><span class="hs-identifier hs-var">parsePublicChatTypeIsLocationBased</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679568199"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-53"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser PublicChatType
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-54"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-55"></span><span>   </span><span class="annot"><a href="#local-6989586621679519542"><span class="hs-identifier hs-type">parsePublicChatTypeHasUsername</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span><span>
-</span><span id="line-56"></span><span>   </span><span id="local-6989586621679519542"><span class="annot"><span class="annottext">parsePublicChatTypeHasUsername :: Value -&gt; Parser PublicChatType
-</span><a href="#local-6989586621679519542"><span class="hs-identifier hs-var hs-var">parsePublicChatTypeHasUsername</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-55"></span><span>   </span><span class="annot"><a href="#local-6989586621679568194"><span class="hs-identifier hs-type">parsePublicChatTypeHasUsername</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span><span>
+</span><span id="line-56"></span><span>   </span><span id="local-6989586621679568194"><span class="annot"><span class="annottext">parsePublicChatTypeHasUsername :: Value -&gt; Parser PublicChatType
+</span><a href="#local-6989586621679568194"><span class="hs-identifier hs-var hs-var">parsePublicChatTypeHasUsername</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser PublicChatType)
 -&gt; Value
 -&gt; Parser PublicChatType
@@ -150,8 +150,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser PublicChatType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679519539"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679519539"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679568191"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679568191"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-57"></span><span>    </span><span class="annot"><span class="annottext">PublicChatType -&gt; Parser PublicChatType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(PublicChatType -&gt; Parser PublicChatType)
@@ -160,9 +160,9 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">PublicChatTypeHasUsername :: PublicChatType
 </span><a href="API.PublicChatType.html#PublicChatTypeHasUsername"><span class="hs-identifier hs-type">PublicChatTypeHasUsername</span></a></span><span> </span><span class="hs-special">{</span><span>  </span><span class="hs-special">}</span><span>
 </span><span id="line-58"></span><span>
-</span><span id="line-59"></span><span>   </span><span class="annot"><a href="#local-6989586621679519541"><span class="hs-identifier hs-type">parsePublicChatTypeIsLocationBased</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span><span>
-</span><span id="line-60"></span><span>   </span><span id="local-6989586621679519541"><span class="annot"><span class="annottext">parsePublicChatTypeIsLocationBased :: Value -&gt; Parser PublicChatType
-</span><a href="#local-6989586621679519541"><span class="hs-identifier hs-var hs-var">parsePublicChatTypeIsLocationBased</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-59"></span><span>   </span><span class="annot"><a href="#local-6989586621679568193"><span class="hs-identifier hs-type">parsePublicChatTypeIsLocationBased</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.PublicChatType.html#PublicChatType"><span class="hs-identifier hs-type">PublicChatType</span></a></span><span>
+</span><span id="line-60"></span><span>   </span><span id="local-6989586621679568193"><span class="annot"><span class="annottext">parsePublicChatTypeIsLocationBased :: Value -&gt; Parser PublicChatType
+</span><a href="#local-6989586621679568193"><span class="hs-identifier hs-var hs-var">parsePublicChatTypeIsLocationBased</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser PublicChatType)
 -&gt; Value
 -&gt; Parser PublicChatType
@@ -174,8 +174,8 @@ forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 -&gt; Value
 -&gt; Parser PublicChatType
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679519538"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679519538"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679568190"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679568190"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-61"></span><span>    </span><span class="annot"><span class="annottext">PublicChatType -&gt; Parser PublicChatType
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(PublicChatType -&gt; Parser PublicChatType)

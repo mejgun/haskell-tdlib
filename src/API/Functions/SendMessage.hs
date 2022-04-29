@@ -19,7 +19,7 @@ import {-# SOURCE #-} qualified API.MessageSendOptions as MessageSendOptions
 -- 
 -- __message_thread_id__ If not 0, a message thread identifier in which the message will be sent
 -- 
--- __reply_to_message_id__ Identifier of the message to reply to or 0
+-- __reply_to_message_id__ Identifier of the replied message; 0 if none
 -- 
 -- __options__ Options to be used to send the message; pass null to use default options
 -- 

@@ -11,7 +11,7 @@ import {-# SOURCE #-} qualified API.InputSticker as InputSticker
 
 -- |
 -- 
--- Uploads a PNG image with a sticker; returns the uploaded file 
+-- Uploads a file with a sticker; returns the uploaded file 
 -- 
 -- __user_id__ Sticker file owner; ignored for regular users
 -- 

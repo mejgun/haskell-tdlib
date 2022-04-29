@@ -31,7 +31,13 @@ data KeyboardButtonType =
  -- __force_regular__ If true, only regular polls must be allowed to create
  -- 
  -- __force_quiz__ If true, only polls in quiz mode must be allowed to create
- KeyboardButtonTypeRequestPoll { force_quiz :: Maybe Bool, force_regular :: Maybe Bool }  deriving (Eq)
+ KeyboardButtonTypeRequestPoll { force_quiz :: Maybe Bool, force_regular :: Maybe Bool }  |
+ -- |
+ -- 
+ -- A button that opens a web app by calling getWebAppUrl 
+ -- 
+ -- __url__ An HTTP URL to pass to getWebAppUrl
+ KeyboardButtonTypeWebApp { url :: Maybe String }  deriving (Eq)
 
 instance Show KeyboardButtonType where
  show KeyboardButtonTypeText {  } =
@@ -45,6 +51,9 @@ instance Show KeyboardButtonType where
 
  show KeyboardButtonTypeRequestPoll { force_quiz=force_quiz, force_regular=force_regular } =
   "KeyboardButtonTypeRequestPoll" ++ cc [p "force_quiz" force_quiz, p "force_regular" force_regular ]
+
+ show KeyboardButtonTypeWebApp { url=url } =
+  "KeyboardButtonTypeWebApp" ++ cc [p "url" url ]
 
 p :: Show a => String -> Maybe a -> String
 p b (Just a) = b ++ " = " ++ show a
@@ -68,6 +77,9 @@ instance T.ToJSON KeyboardButtonType where
  toJSON KeyboardButtonTypeRequestPoll { force_quiz = force_quiz, force_regular = force_regular } =
   A.object [ "@type" A..= T.String "keyboardButtonTypeRequestPoll", "force_quiz" A..= force_quiz, "force_regular" A..= force_regular ]
 
+ toJSON KeyboardButtonTypeWebApp { url = url } =
+  A.object [ "@type" A..= T.String "keyboardButtonTypeWebApp", "url" A..= url ]
+
 instance T.FromJSON KeyboardButtonType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -76,6 +88,7 @@ instance T.FromJSON KeyboardButtonType where
    "keyboardButtonTypeRequestPhoneNumber" -> parseKeyboardButtonTypeRequestPhoneNumber v
    "keyboardButtonTypeRequestLocation" -> parseKeyboardButtonTypeRequestLocation v
    "keyboardButtonTypeRequestPoll" -> parseKeyboardButtonTypeRequestPoll v
+   "keyboardButtonTypeWebApp" -> parseKeyboardButtonTypeWebApp v
    _ -> mempty
   where
    parseKeyboardButtonTypeText :: A.Value -> T.Parser KeyboardButtonType
@@ -95,4 +108,9 @@ instance T.FromJSON KeyboardButtonType where
     force_quiz <- o A..:? "force_quiz"
     force_regular <- o A..:? "force_regular"
     return $ KeyboardButtonTypeRequestPoll { force_quiz = force_quiz, force_regular = force_regular }
+
+   parseKeyboardButtonTypeWebApp :: A.Value -> T.Parser KeyboardButtonType
+   parseKeyboardButtonTypeWebApp = A.withObject "KeyboardButtonTypeWebApp" $ \o -> do
+    url <- o A..:? "url"
+    return $ KeyboardButtonTypeWebApp { url = url }
  parseJSON _ = mempty

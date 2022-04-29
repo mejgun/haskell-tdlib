@@ -28,7 +28,7 @@ import Data.List (intercalate)
 -- 
 -- __ip__ IP address from which the user was logged in, in human-readable format
 -- 
--- __location__ Human-readable description of a country and a region, from which the user was logged in, based on the IP address
+-- __location__ Human-readable description of a country and a region from which the user was logged in, based on the IP address
 data ConnectedWebsite = 
 
  ConnectedWebsite { location :: Maybe String, ip :: Maybe String, last_active_date :: Maybe Int, log_in_date :: Maybe Int, platform :: Maybe String, browser :: Maybe String, bot_user_id :: Maybe Int, domain_name :: Maybe String, _id :: Maybe Int }  deriving (Eq)

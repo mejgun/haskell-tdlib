@@ -11,7 +11,7 @@ import {-# SOURCE #-} qualified API.ChatInviteLinkMember as ChatInviteLinkMember
 
 -- |
 -- 
--- Returns chat members joined a chat by an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links 
+-- Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links 
 -- 
 -- __chat_id__ Chat identifier
 -- 
@@ -19,7 +19,7 @@ import {-# SOURCE #-} qualified API.ChatInviteLinkMember as ChatInviteLinkMember
 -- 
 -- __offset_member__ A chat member from which to return next chat members; pass null to get results from the beginning
 -- 
--- __limit__ The maximum number of chat members to return
+-- __limit__ The maximum number of chat members to return; up to 100
 data GetChatInviteLinkMembers = 
 
  GetChatInviteLinkMembers { limit :: Maybe Int, offset_member :: Maybe ChatInviteLinkMember.ChatInviteLinkMember, invite_link :: Maybe String, chat_id :: Maybe Int }  deriving (Eq)

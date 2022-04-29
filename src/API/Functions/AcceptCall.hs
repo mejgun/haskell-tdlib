@@ -15,7 +15,7 @@ import {-# SOURCE #-} qualified API.CallProtocol as CallProtocol
 -- 
 -- __call_id__ Call identifier
 -- 
--- __protocol__ Description of the call protocols supported by the application
+-- __protocol__ The call protocols supported by the application
 data AcceptCall = 
 
  AcceptCall { protocol :: Maybe CallProtocol.CallProtocol, call_id :: Maybe Int }  deriving (Eq)

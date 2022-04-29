@@ -30,7 +30,7 @@ import {-# SOURCE #-} qualified API.PollOption as PollOption
 -- 
 -- __open_period__ Amount of time the poll will be active after creation, in seconds
 -- 
--- __close_date__ Point in time (Unix timestamp) when the poll will be automatically closed
+-- __close_date__ Point in time (Unix timestamp) when the poll will automatically be closed
 -- 
 -- __is_closed__ True, if the poll is closed
 data Poll = 

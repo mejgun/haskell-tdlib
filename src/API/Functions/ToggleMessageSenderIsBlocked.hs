@@ -13,16 +13,16 @@ import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 -- 
 -- Changes the block state of a message sender. Currently, only users and supergroup chats can be blocked 
 -- 
--- __sender__ Message Sender
+-- __sender_id__ Identifier of a message sender to block/unblock
 -- 
 -- __is_blocked__ New value of is_blocked
 data ToggleMessageSenderIsBlocked = 
 
- ToggleMessageSenderIsBlocked { is_blocked :: Maybe Bool, sender :: Maybe MessageSender.MessageSender }  deriving (Eq)
+ ToggleMessageSenderIsBlocked { is_blocked :: Maybe Bool, sender_id :: Maybe MessageSender.MessageSender }  deriving (Eq)
 
 instance Show ToggleMessageSenderIsBlocked where
- show ToggleMessageSenderIsBlocked { is_blocked=is_blocked, sender=sender } =
-  "ToggleMessageSenderIsBlocked" ++ cc [p "is_blocked" is_blocked, p "sender" sender ]
+ show ToggleMessageSenderIsBlocked { is_blocked=is_blocked, sender_id=sender_id } =
+  "ToggleMessageSenderIsBlocked" ++ cc [p "is_blocked" is_blocked, p "sender_id" sender_id ]
 
 p :: Show a => String -> Maybe a -> String
 p b (Just a) = b ++ " = " ++ show a
@@ -34,8 +34,8 @@ cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
 
 
 instance T.ToJSON ToggleMessageSenderIsBlocked where
- toJSON ToggleMessageSenderIsBlocked { is_blocked = is_blocked, sender = sender } =
-  A.object [ "@type" A..= T.String "toggleMessageSenderIsBlocked", "is_blocked" A..= is_blocked, "sender" A..= sender ]
+ toJSON ToggleMessageSenderIsBlocked { is_blocked = is_blocked, sender_id = sender_id } =
+  A.object [ "@type" A..= T.String "toggleMessageSenderIsBlocked", "is_blocked" A..= is_blocked, "sender_id" A..= sender_id ]
 
 instance T.FromJSON ToggleMessageSenderIsBlocked where
  parseJSON v@(T.Object obj) = do
@@ -47,6 +47,6 @@ instance T.FromJSON ToggleMessageSenderIsBlocked where
    parseToggleMessageSenderIsBlocked :: A.Value -> T.Parser ToggleMessageSenderIsBlocked
    parseToggleMessageSenderIsBlocked = A.withObject "ToggleMessageSenderIsBlocked" $ \o -> do
     is_blocked <- o A..:? "is_blocked"
-    sender <- o A..:? "sender"
-    return $ ToggleMessageSenderIsBlocked { is_blocked = is_blocked, sender = sender }
+    sender_id <- o A..:? "sender_id"
+    return $ ToggleMessageSenderIsBlocked { is_blocked = is_blocked, sender_id = sender_id }
  parseJSON _ = mempty

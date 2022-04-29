@@ -11,11 +11,11 @@ import {-# SOURCE #-} qualified API.ChatInviteLinkMember as ChatInviteLinkMember
 
 -- |
 -- 
--- Contains a list of chat members joined a chat by an invite link 
+-- Contains a list of chat members joined a chat via an invite link 
 -- 
--- __total_count__ Approximate total count of chat members found
+-- __total_count__ Approximate total number of chat members found
 -- 
--- __members__ List of chat members, joined a chat by an invite link
+-- __members__ List of chat members, joined a chat via an invite link
 data ChatInviteLinkMembers = 
 
  ChatInviteLinkMembers { members :: Maybe [ChatInviteLinkMember.ChatInviteLinkMember], total_count :: Maybe Int }  deriving (Eq)

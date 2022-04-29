@@ -18,7 +18,7 @@ import {-# SOURCE #-} qualified API.InputBackground as InputBackground
 -- 
 -- __type__ Background type; pass null to use the default type of the remote background or to remove the current background
 -- 
--- __for_dark_theme__ True, if the background is chosen for dark theme
+-- __for_dark_theme__ Pass true if the background is changed for a dark theme
 data SetBackground = 
 
  SetBackground { for_dark_theme :: Maybe Bool, _type :: Maybe BackgroundType.BackgroundType, background :: Maybe InputBackground.InputBackground }  deriving (Eq)

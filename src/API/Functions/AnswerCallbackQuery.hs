@@ -16,7 +16,7 @@ import Data.List (intercalate)
 -- 
 -- __text__ Text of the answer
 -- 
--- __show_alert__ If true, an alert must be shown to the user instead of a toast notification
+-- __show_alert__ Pass true to show an alert to the user instead of a toast notification
 -- 
 -- __url__ URL to be opened
 -- 

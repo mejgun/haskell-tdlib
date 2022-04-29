@@ -19,7 +19,7 @@ import {-# SOURCE #-} qualified API.ProxyType as ProxyType
 -- 
 -- __type__ Proxy type
 -- 
--- __dc_id__ Identifier of a datacenter, with which to test connection
+-- __dc_id__ Identifier of a datacenter with which to test connection
 -- 
 -- __timeout__ The maximum overall timeout for the request
 data TestProxy = 

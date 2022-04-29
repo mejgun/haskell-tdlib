@@ -12,7 +12,7 @@ import Data.List (intercalate)
 -- 
 -- Checks phone number confirmation code 
 -- 
--- __code__ The phone number confirmation code
+-- __code__ Confirmation code to check
 data CheckPhoneNumberConfirmationCode = 
 
  CheckPhoneNumberConfirmationCode { code :: Maybe String }  deriving (Eq)

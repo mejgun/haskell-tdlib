@@ -17,7 +17,7 @@ import {-# SOURCE #-} qualified API.InputFile as InputFile
 -- 
 -- __name__ Sticker set name
 -- 
--- __thumbnail__ Thumbnail to set in PNG or TGS format; pass null to remove the sticker set thumbnail. Animated thumbnail must be set for animated sticker sets and only for them
+-- __thumbnail__ Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set
 data SetStickerSetThumbnail = 
 
  SetStickerSetThumbnail { thumbnail :: Maybe InputFile.InputFile, name :: Maybe String, user_id :: Maybe Int }  deriving (Eq)

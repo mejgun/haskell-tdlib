@@ -14,11 +14,11 @@ import Data.List (intercalate)
 -- 
 -- __message_id__ The identifier of an incoming message in the Replies chat
 -- 
--- __delete_message__ Pass true if the message must be deleted
+-- __delete_message__ Pass true to delete the message
 -- 
--- __delete_all_messages__ Pass true if all messages from the same sender must be deleted
+-- __delete_all_messages__ Pass true to delete all messages from the same sender
 -- 
--- __report_spam__ Pass true if the sender must be reported to the Telegram moderators
+-- __report_spam__ Pass true to report the sender to the Telegram moderators
 data BlockMessageSenderFromReplies = 
 
  BlockMessageSenderFromReplies { report_spam :: Maybe Bool, delete_all_messages :: Maybe Bool, delete_message :: Maybe Bool, message_id :: Maybe Int }  deriving (Eq)

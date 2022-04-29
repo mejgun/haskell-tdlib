@@ -54,14 +54,6 @@ data SearchMessagesFilter =
  SearchMessagesFilterChatPhoto |
  -- |
  -- 
- -- Returns only call messages
- SearchMessagesFilterCall |
- -- |
- -- 
- -- Returns only incoming call messages with missed/declined discard reasons
- SearchMessagesFilterMissedCall |
- -- |
- -- 
  -- Returns only video note messages
  SearchMessagesFilterVideoNote |
  -- |
@@ -76,6 +68,10 @@ data SearchMessagesFilter =
  -- 
  -- Returns only messages with unread mentions of the current user, or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query, a message thread or by the sending user
  SearchMessagesFilterUnreadMention |
+ -- |
+ -- 
+ -- Returns only messages with unread reactions for the current user. When using this filter the results can't be additionally filtered by a query, a message thread or by the sending user
+ SearchMessagesFilterUnreadReaction |
  -- |
  -- 
  -- Returns only failed to send messages. This filter can be used only if the message database is used
@@ -116,12 +112,6 @@ instance Show SearchMessagesFilter where
  show SearchMessagesFilterChatPhoto {  } =
   "SearchMessagesFilterChatPhoto" ++ cc [ ]
 
- show SearchMessagesFilterCall {  } =
-  "SearchMessagesFilterCall" ++ cc [ ]
-
- show SearchMessagesFilterMissedCall {  } =
-  "SearchMessagesFilterMissedCall" ++ cc [ ]
-
  show SearchMessagesFilterVideoNote {  } =
   "SearchMessagesFilterVideoNote" ++ cc [ ]
 
@@ -133,6 +123,9 @@ instance Show SearchMessagesFilter where
 
  show SearchMessagesFilterUnreadMention {  } =
   "SearchMessagesFilterUnreadMention" ++ cc [ ]
+
+ show SearchMessagesFilterUnreadReaction {  } =
+  "SearchMessagesFilterUnreadReaction" ++ cc [ ]
 
  show SearchMessagesFilterFailedToSend {  } =
   "SearchMessagesFilterFailedToSend" ++ cc [ ]
@@ -180,12 +173,6 @@ instance T.ToJSON SearchMessagesFilter where
  toJSON SearchMessagesFilterChatPhoto {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterChatPhoto" ]
 
- toJSON SearchMessagesFilterCall {  } =
-  A.object [ "@type" A..= T.String "searchMessagesFilterCall" ]
-
- toJSON SearchMessagesFilterMissedCall {  } =
-  A.object [ "@type" A..= T.String "searchMessagesFilterMissedCall" ]
-
  toJSON SearchMessagesFilterVideoNote {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterVideoNote" ]
 
@@ -197,6 +184,9 @@ instance T.ToJSON SearchMessagesFilter where
 
  toJSON SearchMessagesFilterUnreadMention {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterUnreadMention" ]
+
+ toJSON SearchMessagesFilterUnreadReaction {  } =
+  A.object [ "@type" A..= T.String "searchMessagesFilterUnreadReaction" ]
 
  toJSON SearchMessagesFilterFailedToSend {  } =
   A.object [ "@type" A..= T.String "searchMessagesFilterFailedToSend" ]
@@ -218,12 +208,11 @@ instance T.FromJSON SearchMessagesFilter where
    "searchMessagesFilterPhotoAndVideo" -> parseSearchMessagesFilterPhotoAndVideo v
    "searchMessagesFilterUrl" -> parseSearchMessagesFilterUrl v
    "searchMessagesFilterChatPhoto" -> parseSearchMessagesFilterChatPhoto v
-   "searchMessagesFilterCall" -> parseSearchMessagesFilterCall v
-   "searchMessagesFilterMissedCall" -> parseSearchMessagesFilterMissedCall v
    "searchMessagesFilterVideoNote" -> parseSearchMessagesFilterVideoNote v
    "searchMessagesFilterVoiceAndVideoNote" -> parseSearchMessagesFilterVoiceAndVideoNote v
    "searchMessagesFilterMention" -> parseSearchMessagesFilterMention v
    "searchMessagesFilterUnreadMention" -> parseSearchMessagesFilterUnreadMention v
+   "searchMessagesFilterUnreadReaction" -> parseSearchMessagesFilterUnreadReaction v
    "searchMessagesFilterFailedToSend" -> parseSearchMessagesFilterFailedToSend v
    "searchMessagesFilterPinned" -> parseSearchMessagesFilterPinned v
    _ -> mempty
@@ -268,14 +257,6 @@ instance T.FromJSON SearchMessagesFilter where
    parseSearchMessagesFilterChatPhoto = A.withObject "SearchMessagesFilterChatPhoto" $ \o -> do
     return $ SearchMessagesFilterChatPhoto {  }
 
-   parseSearchMessagesFilterCall :: A.Value -> T.Parser SearchMessagesFilter
-   parseSearchMessagesFilterCall = A.withObject "SearchMessagesFilterCall" $ \o -> do
-    return $ SearchMessagesFilterCall {  }
-
-   parseSearchMessagesFilterMissedCall :: A.Value -> T.Parser SearchMessagesFilter
-   parseSearchMessagesFilterMissedCall = A.withObject "SearchMessagesFilterMissedCall" $ \o -> do
-    return $ SearchMessagesFilterMissedCall {  }
-
    parseSearchMessagesFilterVideoNote :: A.Value -> T.Parser SearchMessagesFilter
    parseSearchMessagesFilterVideoNote = A.withObject "SearchMessagesFilterVideoNote" $ \o -> do
     return $ SearchMessagesFilterVideoNote {  }
@@ -291,6 +272,10 @@ instance T.FromJSON SearchMessagesFilter where
    parseSearchMessagesFilterUnreadMention :: A.Value -> T.Parser SearchMessagesFilter
    parseSearchMessagesFilterUnreadMention = A.withObject "SearchMessagesFilterUnreadMention" $ \o -> do
     return $ SearchMessagesFilterUnreadMention {  }
+
+   parseSearchMessagesFilterUnreadReaction :: A.Value -> T.Parser SearchMessagesFilter
+   parseSearchMessagesFilterUnreadReaction = A.withObject "SearchMessagesFilterUnreadReaction" $ \o -> do
+    return $ SearchMessagesFilterUnreadReaction {  }
 
    parseSearchMessagesFilterFailedToSend :: A.Value -> T.Parser SearchMessagesFilter
    parseSearchMessagesFilterFailedToSend = A.withObject "SearchMessagesFilterFailedToSend" $ \o -> do

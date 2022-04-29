@@ -57,7 +57,9 @@ data CallState =
  -- __need_rating__ True, if the call rating must be sent to the server
  -- 
  -- __need_debug_information__ True, if the call debug information must be sent to the server
- CallStateDiscarded { need_debug_information :: Maybe Bool, need_rating :: Maybe Bool, reason :: Maybe CallDiscardReason.CallDiscardReason }  |
+ -- 
+ -- __need_log__ True, if the call log must be sent to the server
+ CallStateDiscarded { need_log :: Maybe Bool, need_debug_information :: Maybe Bool, need_rating :: Maybe Bool, reason :: Maybe CallDiscardReason.CallDiscardReason }  |
  -- |
  -- 
  -- The call has ended with an error 
@@ -78,8 +80,8 @@ instance Show CallState where
  show CallStateHangingUp {  } =
   "CallStateHangingUp" ++ cc [ ]
 
- show CallStateDiscarded { need_debug_information=need_debug_information, need_rating=need_rating, reason=reason } =
-  "CallStateDiscarded" ++ cc [p "need_debug_information" need_debug_information, p "need_rating" need_rating, p "reason" reason ]
+ show CallStateDiscarded { need_log=need_log, need_debug_information=need_debug_information, need_rating=need_rating, reason=reason } =
+  "CallStateDiscarded" ++ cc [p "need_log" need_log, p "need_debug_information" need_debug_information, p "need_rating" need_rating, p "reason" reason ]
 
  show CallStateError { _error=_error } =
   "CallStateError" ++ cc [p "_error" _error ]
@@ -106,8 +108,8 @@ instance T.ToJSON CallState where
  toJSON CallStateHangingUp {  } =
   A.object [ "@type" A..= T.String "callStateHangingUp" ]
 
- toJSON CallStateDiscarded { need_debug_information = need_debug_information, need_rating = need_rating, reason = reason } =
-  A.object [ "@type" A..= T.String "callStateDiscarded", "need_debug_information" A..= need_debug_information, "need_rating" A..= need_rating, "reason" A..= reason ]
+ toJSON CallStateDiscarded { need_log = need_log, need_debug_information = need_debug_information, need_rating = need_rating, reason = reason } =
+  A.object [ "@type" A..= T.String "callStateDiscarded", "need_log" A..= need_log, "need_debug_information" A..= need_debug_information, "need_rating" A..= need_rating, "reason" A..= reason ]
 
  toJSON CallStateError { _error = _error } =
   A.object [ "@type" A..= T.String "callStateError", "error" A..= _error ]
@@ -150,10 +152,11 @@ instance T.FromJSON CallState where
 
    parseCallStateDiscarded :: A.Value -> T.Parser CallState
    parseCallStateDiscarded = A.withObject "CallStateDiscarded" $ \o -> do
+    need_log <- o A..:? "need_log"
     need_debug_information <- o A..:? "need_debug_information"
     need_rating <- o A..:? "need_rating"
     reason <- o A..:? "reason"
-    return $ CallStateDiscarded { need_debug_information = need_debug_information, need_rating = need_rating, reason = reason }
+    return $ CallStateDiscarded { need_log = need_log, need_debug_information = need_debug_information, need_rating = need_rating, reason = reason }
 
    parseCallStateError :: A.Value -> T.Parser CallState
    parseCallStateError = A.withObject "CallStateError" $ \o -> do

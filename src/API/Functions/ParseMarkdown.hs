@@ -13,7 +13,7 @@ import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 -- 
 -- Parses Markdown entities in a human-friendly format, ignoring markup errors. Can be called synchronously
 -- 
--- __text__ The text to parse. For example, "__italic__ ~~strikethrough~~ **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold italic__bold**"
+-- __text__ The text to parse. For example, "__italic__ ~~strikethrough~~ ||spoiler|| **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold italic__bold**"
 data ParseMarkdown = 
 
  ParseMarkdown { text :: Maybe FormattedText.FormattedText }  deriving (Eq)

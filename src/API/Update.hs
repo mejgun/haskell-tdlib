@@ -10,22 +10,25 @@ import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.AuthorizationState as AuthorizationState
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 import {-# SOURCE #-} qualified API.MessageInteractionInfo as MessageInteractionInfo
+import {-# SOURCE #-} qualified API.UnreadReaction as UnreadReaction
 import {-# SOURCE #-} qualified API.Chat as Chat
 import {-# SOURCE #-} qualified API.ChatPhotoInfo as ChatPhotoInfo
 import {-# SOURCE #-} qualified API.ChatPermissions as ChatPermissions
 import {-# SOURCE #-} qualified API.Message as Message
-import {-# SOURCE #-} qualified API.VoiceChat as VoiceChat
-import {-# SOURCE #-} qualified API.ChatNotificationSettings as ChatNotificationSettings
-import {-# SOURCE #-} qualified API.ScopeNotificationSettings as ScopeNotificationSettings
-import {-# SOURCE #-} qualified API.NotificationSettingsScope as NotificationSettingsScope
 import {-# SOURCE #-} qualified API.ChatActionBar as ChatActionBar
 import {-# SOURCE #-} qualified API.ChatPosition as ChatPosition
 import {-# SOURCE #-} qualified API.DraftMessage as DraftMessage
+import {-# SOURCE #-} qualified API.ChatNotificationSettings as ChatNotificationSettings
+import {-# SOURCE #-} qualified API.ChatJoinRequestsInfo as ChatJoinRequestsInfo
+import {-# SOURCE #-} qualified API.VideoChat as VideoChat
 import {-# SOURCE #-} qualified API.ChatFilterInfo as ChatFilterInfo
+import {-# SOURCE #-} qualified API.ScopeNotificationSettings as ScopeNotificationSettings
+import {-# SOURCE #-} qualified API.NotificationSettingsScope as NotificationSettingsScope
 import {-# SOURCE #-} qualified API.Notification as Notification
 import {-# SOURCE #-} qualified API.NotificationGroupType as NotificationGroupType
 import {-# SOURCE #-} qualified API.NotificationGroup as NotificationGroup
 import {-# SOURCE #-} qualified API.ChatAction as ChatAction
+import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 import {-# SOURCE #-} qualified API.UserStatus as UserStatus
 import {-# SOURCE #-} qualified API.User as User
 import {-# SOURCE #-} qualified API.BasicGroup as BasicGroup
@@ -36,6 +39,8 @@ import {-# SOURCE #-} qualified API.BasicGroupFullInfo as BasicGroupFullInfo
 import {-# SOURCE #-} qualified API.SupergroupFullInfo as SupergroupFullInfo
 import {-# SOURCE #-} qualified API.MessageContent as MessageContent
 import {-# SOURCE #-} qualified API.File as File
+import {-# SOURCE #-} qualified API.FileDownload as FileDownload
+import {-# SOURCE #-} qualified API.DownloadedFileCounts as DownloadedFileCounts
 import {-# SOURCE #-} qualified API.Call as Call
 import {-# SOURCE #-} qualified API.GroupCall as GroupCall
 import {-# SOURCE #-} qualified API.GroupCallParticipant as GroupCallParticipant
@@ -51,6 +56,8 @@ import {-# SOURCE #-} qualified API.LanguagePackString as LanguagePackString
 import {-# SOURCE #-} qualified API.ConnectionState as ConnectionState
 import {-# SOURCE #-} qualified API.TermsOfService as TermsOfService
 import {-# SOURCE #-} qualified API.ChatNearby as ChatNearby
+import {-# SOURCE #-} qualified API.AttachmentMenuBot as AttachmentMenuBot
+import {-# SOURCE #-} qualified API.Reaction as Reaction
 import {-# SOURCE #-} qualified API.Sticker as Sticker
 import {-# SOURCE #-} qualified API.SuggestedAction as SuggestedAction
 import {-# SOURCE #-} qualified API.ChatType as ChatType
@@ -61,6 +68,7 @@ import {-# SOURCE #-} qualified API.OrderInfo as OrderInfo
 import {-# SOURCE #-} qualified API.Poll as Poll
 import {-# SOURCE #-} qualified API.ChatMember as ChatMember
 import {-# SOURCE #-} qualified API.ChatInviteLink as ChatInviteLink
+import {-# SOURCE #-} qualified API.ChatJoinRequest as ChatJoinRequest
 
 -- |
 -- 
@@ -90,7 +98,7 @@ data Update =
  -- 
  -- A message has been successfully sent 
  -- 
- -- __message__ Information about the sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change
+ -- __message__ The sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change
  -- 
  -- __old_message_id__ The previous temporary message identifier
  UpdateMessageSendSucceeded { old_message_id :: Maybe Int, message :: Maybe Message.Message }  |
@@ -98,7 +106,7 @@ data Update =
  -- 
  -- A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead of this update
  -- 
- -- __message__ Contains information about the message which failed to send
+ -- __message__ The failed to send message
  -- 
  -- __old_message_id__ The previous temporary message identifier
  -- 
@@ -168,6 +176,18 @@ data Update =
  UpdateMessageMentionRead { unread_mention_count :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int }  |
  -- |
  -- 
+ -- The list of unread reactions added to a message was changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __message_id__ Message identifier
+ -- 
+ -- __unread_reactions__ The new list of unread reactions
+ -- 
+ -- __unread_reaction_count__ The new number of messages with unread reactions left in the chat
+ UpdateMessageUnreadReactions { unread_reaction_count :: Maybe Int, unread_reactions :: Maybe [UnreadReaction.UnreadReaction], message_id :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
  -- A message with a live location was viewed. When the update is received, the application is supposed to update the live location
  -- 
  -- __chat_id__ Identifier of the chat with the live location message
@@ -224,47 +244,7 @@ data Update =
  UpdateChatPosition { position :: Maybe ChatPosition.ChatPosition, chat_id :: Maybe Int }  |
  -- |
  -- 
- -- A chat was marked as unread or was read 
- -- 
- -- __chat_id__ Chat identifier
- -- 
- -- __is_marked_as_unread__ New value of is_marked_as_unread
- UpdateChatIsMarkedAsUnread { is_marked_as_unread :: Maybe Bool, chat_id :: Maybe Int }  |
- -- |
- -- 
- -- A chat was blocked or unblocked 
- -- 
- -- __chat_id__ Chat identifier
- -- 
- -- __is_blocked__ New value of is_blocked
- UpdateChatIsBlocked { is_blocked :: Maybe Bool, chat_id :: Maybe Int }  |
- -- |
- -- 
- -- A chat's has_scheduled_messages field has changed 
- -- 
- -- __chat_id__ Chat identifier
- -- 
- -- __has_scheduled_messages__ New value of has_scheduled_messages
- UpdateChatHasScheduledMessages { has_scheduled_messages :: Maybe Bool, chat_id :: Maybe Int }  |
- -- |
- -- 
- -- A chat voice chat state has changed 
- -- 
- -- __chat_id__ Chat identifier
- -- 
- -- __voice_chat__ New value of voice_chat
- UpdateChatVoiceChat { voice_chat :: Maybe VoiceChat.VoiceChat, chat_id :: Maybe Int }  |
- -- |
- -- 
- -- The value of the default disable_notification parameter, used when a message is sent to the chat, was changed 
- -- 
- -- __chat_id__ Chat identifier
- -- 
- -- __default_disable_notification__ The new default_disable_notification value
- UpdateChatDefaultDisableNotification { default_disable_notification :: Maybe Bool, chat_id :: Maybe Int }  |
- -- |
- -- 
- -- Incoming messages were read or number of unread messages has been changed 
+ -- Incoming messages were read or the number of unread messages has been changed 
  -- 
  -- __chat_id__ Chat identifier
  -- 
@@ -282,38 +262,6 @@ data Update =
  UpdateChatReadOutbox { last_read_outbox_message_id :: Maybe Int, chat_id :: Maybe Int }  |
  -- |
  -- 
- -- The chat unread_mention_count has changed 
- -- 
- -- __chat_id__ Chat identifier
- -- 
- -- __unread_mention_count__ The number of unread mention messages left in the chat
- UpdateChatUnreadMentionCount { unread_mention_count :: Maybe Int, chat_id :: Maybe Int }  |
- -- |
- -- 
- -- Notification settings for a chat were changed 
- -- 
- -- __chat_id__ Chat identifier
- -- 
- -- __notification_settings__ The new notification settings
- UpdateChatNotificationSettings { _notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings, chat_id :: Maybe Int }  |
- -- |
- -- 
- -- Notification settings for some type of chats were updated 
- -- 
- -- __scope__ Types of chats for which notification settings were updated
- -- 
- -- __notification_settings__ The new notification settings
- UpdateScopeNotificationSettings { notification_settings :: Maybe ScopeNotificationSettings.ScopeNotificationSettings, scope :: Maybe NotificationSettingsScope.NotificationSettingsScope }  |
- -- |
- -- 
- -- The message Time To Live setting for a chat was changed 
- -- 
- -- __chat_id__ Chat identifier
- -- 
- -- __message_ttl_setting__ New value of message_ttl_setting
- UpdateChatMessageTtlSetting { message_ttl_setting :: Maybe Int, chat_id :: Maybe Int }  |
- -- |
- -- 
  -- The chat action bar was changed 
  -- 
  -- __chat_id__ Chat identifier
@@ -322,20 +270,12 @@ data Update =
  UpdateChatActionBar { action_bar :: Maybe ChatActionBar.ChatActionBar, chat_id :: Maybe Int }  |
  -- |
  -- 
- -- The chat theme was changed 
+ -- The chat available reactions were changed 
  -- 
  -- __chat_id__ Chat identifier
  -- 
- -- __theme_name__ The new name of the chat theme; may be empty if theme was reset to default
- UpdateChatTheme { theme_name :: Maybe String, chat_id :: Maybe Int }  |
- -- |
- -- 
- -- The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user
- -- 
- -- __chat_id__ Chat identifier
- -- 
- -- __reply_markup_message_id__ Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
- UpdateChatReplyMarkup { reply_markup_message_id :: Maybe Int, chat_id :: Maybe Int }  |
+ -- __available_reactions__ The new list of reactions, available in the chat
+ UpdateChatAvailableReactions { available_reactions :: Maybe [String], chat_id :: Maybe Int }  |
  -- |
  -- 
  -- A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied 
@@ -348,18 +288,138 @@ data Update =
  UpdateChatDraftMessage { positions :: Maybe [ChatPosition.ChatPosition], draft_message :: Maybe DraftMessage.DraftMessage, chat_id :: Maybe Int }  |
  -- |
  -- 
+ -- The message sender that is selected to send messages in a chat has changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __message_sender_id__ New value of message_sender_id; may be null if the user can't change message sender
+ UpdateChatMessageSender { message_sender_id :: Maybe MessageSender.MessageSender, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The message Time To Live setting for a chat was changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __message_ttl__ New value of message_ttl
+ UpdateChatMessageTtl { message_ttl :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- Notification settings for a chat were changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __notification_settings__ The new notification settings
+ UpdateChatNotificationSettings { _notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The chat pending join requests were changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __pending_join_requests__ The new data about pending join requests; may be null
+ UpdateChatPendingJoinRequests { pending_join_requests :: Maybe ChatJoinRequestsInfo.ChatJoinRequestsInfo, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __reply_markup_message_id__ Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
+ UpdateChatReplyMarkup { reply_markup_message_id :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The chat theme was changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __theme_name__ The new name of the chat theme; may be empty if theme was reset to default
+ UpdateChatTheme { theme_name :: Maybe String, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The chat unread_mention_count has changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __unread_mention_count__ The number of unread mention messages left in the chat
+ UpdateChatUnreadMentionCount { unread_mention_count :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The chat unread_reaction_count has changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __unread_reaction_count__ The number of messages with unread reactions left in the chat
+ UpdateChatUnreadReactionCount { unread_reaction_count :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A chat video chat state has changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __video_chat__ New value of video_chat
+ UpdateChatVideoChat { video_chat :: Maybe VideoChat.VideoChat, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The value of the default disable_notification parameter, used when a message is sent to the chat, was changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __default_disable_notification__ The new default_disable_notification value
+ UpdateChatDefaultDisableNotification { default_disable_notification :: Maybe Bool, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A chat content was allowed or restricted for saving 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __has_protected_content__ New value of has_protected_content
+ UpdateChatHasProtectedContent { has_protected_content :: Maybe Bool, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A chat's has_scheduled_messages field has changed 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __has_scheduled_messages__ New value of has_scheduled_messages
+ UpdateChatHasScheduledMessages { has_scheduled_messages :: Maybe Bool, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A chat was blocked or unblocked 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __is_blocked__ New value of is_blocked
+ UpdateChatIsBlocked { is_blocked :: Maybe Bool, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A chat was marked as unread or was read 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __is_marked_as_unread__ New value of is_marked_as_unread
+ UpdateChatIsMarkedAsUnread { is_marked_as_unread :: Maybe Bool, chat_id :: Maybe Int }  |
+ -- |
+ -- 
  -- The list of chat filters or a chat filter has changed 
  -- 
  -- __chat_filters__ The new list of chat filters
  UpdateChatFilters { chat_filters :: Maybe [ChatFilterInfo.ChatFilterInfo] }  |
  -- |
  -- 
- -- The number of online group members has changed. This update with non-zero count is sent only for currently opened chats. There is no guarantee that it will be sent just after the count has changed 
+ -- The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it will be sent just after the number of online users has changed 
  -- 
  -- __chat_id__ Identifier of the chat
  -- 
  -- __online_member_count__ New number of online members in the chat, or 0 if unknown
  UpdateChatOnlineMemberCount { online_member_count :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- Notification settings for some type of chats were updated 
+ -- 
+ -- __scope__ Types of chats for which notification settings were updated
+ -- 
+ -- __notification_settings__ The new notification settings
+ UpdateScopeNotificationSettings { notification_settings :: Maybe ScopeNotificationSettings.ScopeNotificationSettings, scope :: Maybe NotificationSettingsScope.NotificationSettingsScope }  |
  -- |
  -- 
  -- A notification was changed 
@@ -380,14 +440,14 @@ data Update =
  -- 
  -- __notification_settings_chat_id__ Chat identifier, which notification settings must be applied to the added notifications
  -- 
- -- __is_silent__ True, if the notifications must be shown without sound
+ -- __notification_sound_id__ Identifier of the notification sound to be played; 0 if sound is disabled
  -- 
  -- __total_count__ Total number of unread notifications in the group, can be bigger than number of active notifications
  -- 
  -- __added_notifications__ List of added group notifications, sorted by notification ID
  -- 
  -- __removed_notification_ids__ Identifiers of removed group notifications, sorted by notification ID
- UpdateNotificationGroup { removed_notification_ids :: Maybe [Int], added_notifications :: Maybe [Notification.Notification], total_count :: Maybe Int, is_silent :: Maybe Bool, notification_settings_chat_id :: Maybe Int, chat_id :: Maybe Int, __type :: Maybe NotificationGroupType.NotificationGroupType, notification_group_id :: Maybe Int }  |
+ UpdateNotificationGroup { removed_notification_ids :: Maybe [Int], added_notifications :: Maybe [Notification.Notification], total_count :: Maybe Int, notification_sound_id :: Maybe Int, notification_settings_chat_id :: Maybe Int, chat_id :: Maybe Int, __type :: Maybe NotificationGroupType.NotificationGroupType, notification_group_id :: Maybe Int }  |
  -- |
  -- 
  -- Contains active notifications that was shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update 
@@ -416,16 +476,16 @@ data Update =
  UpdateDeleteMessages { from_cache :: Maybe Bool, is_permanent :: Maybe Bool, message_ids :: Maybe [Int], chat_id :: Maybe Int }  |
  -- |
  -- 
- -- User activity in the chat has changed 
+ -- A message sender activity in the chat has changed 
  -- 
  -- __chat_id__ Chat identifier
  -- 
  -- __message_thread_id__ If not 0, a message thread identifier in which the action was performed
  -- 
- -- __user_id__ Identifier of a user performing an action
+ -- __sender_id__ Identifier of a message sender performing the action
  -- 
- -- __action__ The action description
- UpdateUserChatAction { action :: Maybe ChatAction.ChatAction, user_id :: Maybe Int, message_thread_id :: Maybe Int, chat_id :: Maybe Int }  |
+ -- __action__ The action
+ UpdateChatAction { action :: Maybe ChatAction.ChatAction, sender_id :: Maybe MessageSender.MessageSender, message_thread_id :: Maybe Int, chat_id :: Maybe Int }  |
  -- |
  -- 
  -- The user went online or offline 
@@ -460,7 +520,7 @@ data Update =
  UpdateSecretChat { secret_chat :: Maybe SecretChat.SecretChat }  |
  -- |
  -- 
- -- Some data from userFullInfo has been changed 
+ -- Some data in userFullInfo has been changed 
  -- 
  -- __user_id__ User identifier
  -- 
@@ -468,7 +528,7 @@ data Update =
  UpdateUserFullInfo { user_full_info :: Maybe UserFullInfo.UserFullInfo, user_id :: Maybe Int }  |
  -- |
  -- 
- -- Some data from basicGroupFullInfo has been changed 
+ -- Some data in basicGroupFullInfo has been changed 
  -- 
  -- __basic_group_id__ Identifier of a basic group
  -- 
@@ -476,7 +536,7 @@ data Update =
  UpdateBasicGroupFullInfo { basic_group_full_info :: Maybe BasicGroupFullInfo.BasicGroupFullInfo, basic_group_id :: Maybe Int }  |
  -- |
  -- 
- -- Some data from supergroupFullInfo has been changed 
+ -- Some data in supergroupFullInfo has been changed 
  -- 
  -- __supergroup_id__ Identifier of the supergroup or channel
  -- 
@@ -484,7 +544,7 @@ data Update =
  UpdateSupergroupFullInfo { supergroup_full_info :: Maybe SupergroupFullInfo.SupergroupFullInfo, supergroup_id :: Maybe Int }  |
  -- |
  -- 
- -- Service notification from the server. Upon receiving this the application must show a popup with the content of the notification
+ -- A service notification from the server was received. Upon receiving this the application must show a popup with the content of the notification
  -- 
  -- __type__ Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" must be shown under notification; if user presses the second, all local data must be destroyed using Destroy method
  -- 
@@ -514,6 +574,44 @@ data Update =
  -- 
  -- __generation_id__ Unique identifier for the generation process
  UpdateFileGenerationStop { generation_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The state of the file download list has changed
+ -- 
+ -- __total_size__ Total size of files in the file download list, in bytes
+ -- 
+ -- __total_count__ Total number of files in the file download list
+ -- 
+ -- __downloaded_size__ Total downloaded size of files in the file download list, in bytes
+ UpdateFileDownloads { downloaded_size :: Maybe Int, total_count :: Maybe Int, total_size :: Maybe Int }  |
+ -- |
+ -- 
+ -- A file was added to the file download list. This update is sent only after file download list is loaded for the first time 
+ -- 
+ -- __file_download__ The added file download
+ -- 
+ -- __counts__ New number of being downloaded and recently downloaded files found
+ UpdateFileAddedToDownloads { counts :: Maybe DownloadedFileCounts.DownloadedFileCounts, file_download :: Maybe FileDownload.FileDownload }  |
+ -- |
+ -- 
+ -- A file download was changed. This update is sent only after file download list is loaded for the first time 
+ -- 
+ -- __file_id__ File identifier
+ -- 
+ -- __complete_date__ Point in time (Unix timestamp) when the file downloading was completed; 0 if the file downloading isn't completed
+ -- 
+ -- __is_paused__ True, if downloading of the file is paused
+ -- 
+ -- __counts__ New number of being downloaded and recently downloaded files found
+ UpdateFileDownload { counts :: Maybe DownloadedFileCounts.DownloadedFileCounts, is_paused :: Maybe Bool, complete_date :: Maybe Int, file_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A file was removed from the file download list. This update is sent only after file download list is loaded for the first time 
+ -- 
+ -- __file_id__ File identifier
+ -- 
+ -- __counts__ New number of being downloaded and recently downloaded files found
+ UpdateFileRemovedFromDownloads { counts :: Maybe DownloadedFileCounts.DownloadedFileCounts, file_id :: Maybe Int }  |
  -- |
  -- 
  -- New call was created or information about a call was updated 
@@ -626,6 +724,12 @@ data Update =
  UpdateSavedAnimations { animation_ids :: Maybe [Int] }  |
  -- |
  -- 
+ -- The list of saved notifications sounds was updated. This update may not be sent until information about a notification sound was requested for the first time 
+ -- 
+ -- __notification_sound_ids__ The new list of identifiers of saved notification sounds
+ UpdateSavedNotificationSounds { notification_sound_ids :: Maybe [Int] }  |
+ -- |
+ -- 
  -- The selected background has changed 
  -- 
  -- __for_dark_theme__ True, if background for dark theme has changed
@@ -670,6 +774,24 @@ data Update =
  UpdateUsersNearby { users_nearby :: Maybe [ChatNearby.ChatNearby] }  |
  -- |
  -- 
+ -- The list of bots added to attachment menu has changed 
+ -- 
+ -- __bots__ The new list of bots added to attachment menu. The bots must be shown in attachment menu only in private chats. The bots must not be shown on scheduled messages screen
+ UpdateAttachmentMenuBots { bots :: Maybe [AttachmentMenuBot.AttachmentMenuBot] }  |
+ -- |
+ -- 
+ -- A message was sent by an opened web app, so the web app needs to be closed 
+ -- 
+ -- __web_app_launch_id__ Identifier of web app launch
+ UpdateWebAppMessageSent { web_app_launch_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- The list of supported reactions has changed 
+ -- 
+ -- __reactions__ The new list of supported reactions
+ UpdateReactions { reactions :: Maybe [Reaction.Reaction] }  |
+ -- |
+ -- 
  -- The list of supported dice emojis has changed 
  -- 
  -- __emojis__ The new list of supported dice emojis
@@ -710,7 +832,7 @@ data Update =
  -- 
  -- __user_location__ User location; may be null
  -- 
- -- __chat_type__ Contains information about the type of the chat, from which the query originated; may be null if unknown
+ -- __chat_type__ The type of the chat from which the query originated; may be null if unknown
  -- 
  -- __query__ Text of the query
  -- 
@@ -740,7 +862,7 @@ data Update =
  -- 
  -- __chat_id__ Identifier of the chat where the query was sent
  -- 
- -- __message_id__ Identifier of the message, from which the query originated
+ -- __message_id__ Identifier of the message from which the query originated
  -- 
  -- __chat_instance__ Identifier that uniquely corresponds to the chat to which the message was sent
  -- 
@@ -754,7 +876,7 @@ data Update =
  -- 
  -- __sender_user_id__ Identifier of the user who sent the query
  -- 
- -- __inline_message_id__ Identifier of the inline message, from which the query originated
+ -- __inline_message_id__ Identifier of the inline message from which the query originated
  -- 
  -- __chat_instance__ An identifier uniquely corresponding to the chat a message was sent to
  -- 
@@ -837,7 +959,17 @@ data Update =
  -- __old_chat_member__ Previous chat member
  -- 
  -- __new_chat_member__ New chat member
- UpdateChatMember { new_chat_member :: Maybe ChatMember.ChatMember, old_chat_member :: Maybe ChatMember.ChatMember, invite_link :: Maybe ChatInviteLink.ChatInviteLink, date :: Maybe Int, actor_user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)
+ UpdateChatMember { new_chat_member :: Maybe ChatMember.ChatMember, old_chat_member :: Maybe ChatMember.ChatMember, invite_link :: Maybe ChatInviteLink.ChatInviteLink, date :: Maybe Int, actor_user_id :: Maybe Int, chat_id :: Maybe Int }  |
+ -- |
+ -- 
+ -- A user sent a join request to a chat; for bots only 
+ -- 
+ -- __chat_id__ Chat identifier
+ -- 
+ -- __request__ Join request
+ -- 
+ -- __invite_link__ The invite link, which was used to send join request; may be null
+ UpdateNewChatJoinRequest { invite_link :: Maybe ChatInviteLink.ChatInviteLink, request :: Maybe ChatJoinRequest.ChatJoinRequest, chat_id :: Maybe Int }  deriving (Eq)
 
 instance Show Update where
  show UpdateAuthorizationState { authorization_state=authorization_state } =
@@ -873,6 +1005,9 @@ instance Show Update where
  show UpdateMessageMentionRead { unread_mention_count=unread_mention_count, message_id=message_id, chat_id=chat_id } =
   "UpdateMessageMentionRead" ++ cc [p "unread_mention_count" unread_mention_count, p "message_id" message_id, p "chat_id" chat_id ]
 
+ show UpdateMessageUnreadReactions { unread_reaction_count=unread_reaction_count, unread_reactions=unread_reactions, message_id=message_id, chat_id=chat_id } =
+  "UpdateMessageUnreadReactions" ++ cc [p "unread_reaction_count" unread_reaction_count, p "unread_reactions" unread_reactions, p "message_id" message_id, p "chat_id" chat_id ]
+
  show UpdateMessageLiveLocationViewed { message_id=message_id, chat_id=chat_id } =
   "UpdateMessageLiveLocationViewed" ++ cc [p "message_id" message_id, p "chat_id" chat_id ]
 
@@ -894,50 +1029,62 @@ instance Show Update where
  show UpdateChatPosition { position=position, chat_id=chat_id } =
   "UpdateChatPosition" ++ cc [p "position" position, p "chat_id" chat_id ]
 
- show UpdateChatIsMarkedAsUnread { is_marked_as_unread=is_marked_as_unread, chat_id=chat_id } =
-  "UpdateChatIsMarkedAsUnread" ++ cc [p "is_marked_as_unread" is_marked_as_unread, p "chat_id" chat_id ]
-
- show UpdateChatIsBlocked { is_blocked=is_blocked, chat_id=chat_id } =
-  "UpdateChatIsBlocked" ++ cc [p "is_blocked" is_blocked, p "chat_id" chat_id ]
-
- show UpdateChatHasScheduledMessages { has_scheduled_messages=has_scheduled_messages, chat_id=chat_id } =
-  "UpdateChatHasScheduledMessages" ++ cc [p "has_scheduled_messages" has_scheduled_messages, p "chat_id" chat_id ]
-
- show UpdateChatVoiceChat { voice_chat=voice_chat, chat_id=chat_id } =
-  "UpdateChatVoiceChat" ++ cc [p "voice_chat" voice_chat, p "chat_id" chat_id ]
-
- show UpdateChatDefaultDisableNotification { default_disable_notification=default_disable_notification, chat_id=chat_id } =
-  "UpdateChatDefaultDisableNotification" ++ cc [p "default_disable_notification" default_disable_notification, p "chat_id" chat_id ]
-
  show UpdateChatReadInbox { unread_count=unread_count, last_read_inbox_message_id=last_read_inbox_message_id, chat_id=chat_id } =
   "UpdateChatReadInbox" ++ cc [p "unread_count" unread_count, p "last_read_inbox_message_id" last_read_inbox_message_id, p "chat_id" chat_id ]
 
  show UpdateChatReadOutbox { last_read_outbox_message_id=last_read_outbox_message_id, chat_id=chat_id } =
   "UpdateChatReadOutbox" ++ cc [p "last_read_outbox_message_id" last_read_outbox_message_id, p "chat_id" chat_id ]
 
- show UpdateChatUnreadMentionCount { unread_mention_count=unread_mention_count, chat_id=chat_id } =
-  "UpdateChatUnreadMentionCount" ++ cc [p "unread_mention_count" unread_mention_count, p "chat_id" chat_id ]
+ show UpdateChatActionBar { action_bar=action_bar, chat_id=chat_id } =
+  "UpdateChatActionBar" ++ cc [p "action_bar" action_bar, p "chat_id" chat_id ]
+
+ show UpdateChatAvailableReactions { available_reactions=available_reactions, chat_id=chat_id } =
+  "UpdateChatAvailableReactions" ++ cc [p "available_reactions" available_reactions, p "chat_id" chat_id ]
+
+ show UpdateChatDraftMessage { positions=positions, draft_message=draft_message, chat_id=chat_id } =
+  "UpdateChatDraftMessage" ++ cc [p "positions" positions, p "draft_message" draft_message, p "chat_id" chat_id ]
+
+ show UpdateChatMessageSender { message_sender_id=message_sender_id, chat_id=chat_id } =
+  "UpdateChatMessageSender" ++ cc [p "message_sender_id" message_sender_id, p "chat_id" chat_id ]
+
+ show UpdateChatMessageTtl { message_ttl=message_ttl, chat_id=chat_id } =
+  "UpdateChatMessageTtl" ++ cc [p "message_ttl" message_ttl, p "chat_id" chat_id ]
 
  show UpdateChatNotificationSettings { _notification_settings=_notification_settings, chat_id=chat_id } =
   "UpdateChatNotificationSettings" ++ cc [p "_notification_settings" _notification_settings, p "chat_id" chat_id ]
 
- show UpdateScopeNotificationSettings { notification_settings=notification_settings, scope=scope } =
-  "UpdateScopeNotificationSettings" ++ cc [p "notification_settings" notification_settings, p "scope" scope ]
-
- show UpdateChatMessageTtlSetting { message_ttl_setting=message_ttl_setting, chat_id=chat_id } =
-  "UpdateChatMessageTtlSetting" ++ cc [p "message_ttl_setting" message_ttl_setting, p "chat_id" chat_id ]
-
- show UpdateChatActionBar { action_bar=action_bar, chat_id=chat_id } =
-  "UpdateChatActionBar" ++ cc [p "action_bar" action_bar, p "chat_id" chat_id ]
-
- show UpdateChatTheme { theme_name=theme_name, chat_id=chat_id } =
-  "UpdateChatTheme" ++ cc [p "theme_name" theme_name, p "chat_id" chat_id ]
+ show UpdateChatPendingJoinRequests { pending_join_requests=pending_join_requests, chat_id=chat_id } =
+  "UpdateChatPendingJoinRequests" ++ cc [p "pending_join_requests" pending_join_requests, p "chat_id" chat_id ]
 
  show UpdateChatReplyMarkup { reply_markup_message_id=reply_markup_message_id, chat_id=chat_id } =
   "UpdateChatReplyMarkup" ++ cc [p "reply_markup_message_id" reply_markup_message_id, p "chat_id" chat_id ]
 
- show UpdateChatDraftMessage { positions=positions, draft_message=draft_message, chat_id=chat_id } =
-  "UpdateChatDraftMessage" ++ cc [p "positions" positions, p "draft_message" draft_message, p "chat_id" chat_id ]
+ show UpdateChatTheme { theme_name=theme_name, chat_id=chat_id } =
+  "UpdateChatTheme" ++ cc [p "theme_name" theme_name, p "chat_id" chat_id ]
+
+ show UpdateChatUnreadMentionCount { unread_mention_count=unread_mention_count, chat_id=chat_id } =
+  "UpdateChatUnreadMentionCount" ++ cc [p "unread_mention_count" unread_mention_count, p "chat_id" chat_id ]
+
+ show UpdateChatUnreadReactionCount { unread_reaction_count=unread_reaction_count, chat_id=chat_id } =
+  "UpdateChatUnreadReactionCount" ++ cc [p "unread_reaction_count" unread_reaction_count, p "chat_id" chat_id ]
+
+ show UpdateChatVideoChat { video_chat=video_chat, chat_id=chat_id } =
+  "UpdateChatVideoChat" ++ cc [p "video_chat" video_chat, p "chat_id" chat_id ]
+
+ show UpdateChatDefaultDisableNotification { default_disable_notification=default_disable_notification, chat_id=chat_id } =
+  "UpdateChatDefaultDisableNotification" ++ cc [p "default_disable_notification" default_disable_notification, p "chat_id" chat_id ]
+
+ show UpdateChatHasProtectedContent { has_protected_content=has_protected_content, chat_id=chat_id } =
+  "UpdateChatHasProtectedContent" ++ cc [p "has_protected_content" has_protected_content, p "chat_id" chat_id ]
+
+ show UpdateChatHasScheduledMessages { has_scheduled_messages=has_scheduled_messages, chat_id=chat_id } =
+  "UpdateChatHasScheduledMessages" ++ cc [p "has_scheduled_messages" has_scheduled_messages, p "chat_id" chat_id ]
+
+ show UpdateChatIsBlocked { is_blocked=is_blocked, chat_id=chat_id } =
+  "UpdateChatIsBlocked" ++ cc [p "is_blocked" is_blocked, p "chat_id" chat_id ]
+
+ show UpdateChatIsMarkedAsUnread { is_marked_as_unread=is_marked_as_unread, chat_id=chat_id } =
+  "UpdateChatIsMarkedAsUnread" ++ cc [p "is_marked_as_unread" is_marked_as_unread, p "chat_id" chat_id ]
 
  show UpdateChatFilters { chat_filters=chat_filters } =
   "UpdateChatFilters" ++ cc [p "chat_filters" chat_filters ]
@@ -945,11 +1092,14 @@ instance Show Update where
  show UpdateChatOnlineMemberCount { online_member_count=online_member_count, chat_id=chat_id } =
   "UpdateChatOnlineMemberCount" ++ cc [p "online_member_count" online_member_count, p "chat_id" chat_id ]
 
+ show UpdateScopeNotificationSettings { notification_settings=notification_settings, scope=scope } =
+  "UpdateScopeNotificationSettings" ++ cc [p "notification_settings" notification_settings, p "scope" scope ]
+
  show UpdateNotification { notification=notification, notification_group_id=notification_group_id } =
   "UpdateNotification" ++ cc [p "notification" notification, p "notification_group_id" notification_group_id ]
 
- show UpdateNotificationGroup { removed_notification_ids=removed_notification_ids, added_notifications=added_notifications, total_count=total_count, is_silent=is_silent, notification_settings_chat_id=notification_settings_chat_id, chat_id=chat_id, __type=__type, notification_group_id=notification_group_id } =
-  "UpdateNotificationGroup" ++ cc [p "removed_notification_ids" removed_notification_ids, p "added_notifications" added_notifications, p "total_count" total_count, p "is_silent" is_silent, p "notification_settings_chat_id" notification_settings_chat_id, p "chat_id" chat_id, p "__type" __type, p "notification_group_id" notification_group_id ]
+ show UpdateNotificationGroup { removed_notification_ids=removed_notification_ids, added_notifications=added_notifications, total_count=total_count, notification_sound_id=notification_sound_id, notification_settings_chat_id=notification_settings_chat_id, chat_id=chat_id, __type=__type, notification_group_id=notification_group_id } =
+  "UpdateNotificationGroup" ++ cc [p "removed_notification_ids" removed_notification_ids, p "added_notifications" added_notifications, p "total_count" total_count, p "notification_sound_id" notification_sound_id, p "notification_settings_chat_id" notification_settings_chat_id, p "chat_id" chat_id, p "__type" __type, p "notification_group_id" notification_group_id ]
 
  show UpdateActiveNotifications { groups=groups } =
   "UpdateActiveNotifications" ++ cc [p "groups" groups ]
@@ -960,8 +1110,8 @@ instance Show Update where
  show UpdateDeleteMessages { from_cache=from_cache, is_permanent=is_permanent, message_ids=message_ids, chat_id=chat_id } =
   "UpdateDeleteMessages" ++ cc [p "from_cache" from_cache, p "is_permanent" is_permanent, p "message_ids" message_ids, p "chat_id" chat_id ]
 
- show UpdateUserChatAction { action=action, user_id=user_id, message_thread_id=message_thread_id, chat_id=chat_id } =
-  "UpdateUserChatAction" ++ cc [p "action" action, p "user_id" user_id, p "message_thread_id" message_thread_id, p "chat_id" chat_id ]
+ show UpdateChatAction { action=action, sender_id=sender_id, message_thread_id=message_thread_id, chat_id=chat_id } =
+  "UpdateChatAction" ++ cc [p "action" action, p "sender_id" sender_id, p "message_thread_id" message_thread_id, p "chat_id" chat_id ]
 
  show UpdateUserStatus { status=status, user_id=user_id } =
   "UpdateUserStatus" ++ cc [p "status" status, p "user_id" user_id ]
@@ -998,6 +1148,18 @@ instance Show Update where
 
  show UpdateFileGenerationStop { generation_id=generation_id } =
   "UpdateFileGenerationStop" ++ cc [p "generation_id" generation_id ]
+
+ show UpdateFileDownloads { downloaded_size=downloaded_size, total_count=total_count, total_size=total_size } =
+  "UpdateFileDownloads" ++ cc [p "downloaded_size" downloaded_size, p "total_count" total_count, p "total_size" total_size ]
+
+ show UpdateFileAddedToDownloads { counts=counts, file_download=file_download } =
+  "UpdateFileAddedToDownloads" ++ cc [p "counts" counts, p "file_download" file_download ]
+
+ show UpdateFileDownload { counts=counts, is_paused=is_paused, complete_date=complete_date, file_id=file_id } =
+  "UpdateFileDownload" ++ cc [p "counts" counts, p "is_paused" is_paused, p "complete_date" complete_date, p "file_id" file_id ]
+
+ show UpdateFileRemovedFromDownloads { counts=counts, file_id=file_id } =
+  "UpdateFileRemovedFromDownloads" ++ cc [p "counts" counts, p "file_id" file_id ]
 
  show UpdateCall { call=call } =
   "UpdateCall" ++ cc [p "call" call ]
@@ -1041,6 +1203,9 @@ instance Show Update where
  show UpdateSavedAnimations { animation_ids=animation_ids } =
   "UpdateSavedAnimations" ++ cc [p "animation_ids" animation_ids ]
 
+ show UpdateSavedNotificationSounds { notification_sound_ids=notification_sound_ids } =
+  "UpdateSavedNotificationSounds" ++ cc [p "notification_sound_ids" notification_sound_ids ]
+
  show UpdateSelectedBackground { background=background, for_dark_theme=for_dark_theme } =
   "UpdateSelectedBackground" ++ cc [p "background" background, p "for_dark_theme" for_dark_theme ]
 
@@ -1058,6 +1223,15 @@ instance Show Update where
 
  show UpdateUsersNearby { users_nearby=users_nearby } =
   "UpdateUsersNearby" ++ cc [p "users_nearby" users_nearby ]
+
+ show UpdateAttachmentMenuBots { bots=bots } =
+  "UpdateAttachmentMenuBots" ++ cc [p "bots" bots ]
+
+ show UpdateWebAppMessageSent { web_app_launch_id=web_app_launch_id } =
+  "UpdateWebAppMessageSent" ++ cc [p "web_app_launch_id" web_app_launch_id ]
+
+ show UpdateReactions { reactions=reactions } =
+  "UpdateReactions" ++ cc [p "reactions" reactions ]
 
  show UpdateDiceEmojis { emojis=emojis } =
   "UpdateDiceEmojis" ++ cc [p "emojis" emojis ]
@@ -1104,6 +1278,9 @@ instance Show Update where
  show UpdateChatMember { new_chat_member=new_chat_member, old_chat_member=old_chat_member, invite_link=invite_link, date=date, actor_user_id=actor_user_id, chat_id=chat_id } =
   "UpdateChatMember" ++ cc [p "new_chat_member" new_chat_member, p "old_chat_member" old_chat_member, p "invite_link" invite_link, p "date" date, p "actor_user_id" actor_user_id, p "chat_id" chat_id ]
 
+ show UpdateNewChatJoinRequest { invite_link=invite_link, request=request, chat_id=chat_id } =
+  "UpdateNewChatJoinRequest" ++ cc [p "invite_link" invite_link, p "request" request, p "chat_id" chat_id ]
+
 p :: Show a => String -> Maybe a -> String
 p b (Just a) = b ++ " = " ++ show a
 p _ Nothing = ""
@@ -1147,6 +1324,9 @@ instance T.ToJSON Update where
  toJSON UpdateMessageMentionRead { unread_mention_count = unread_mention_count, message_id = message_id, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "updateMessageMentionRead", "unread_mention_count" A..= unread_mention_count, "message_id" A..= message_id, "chat_id" A..= chat_id ]
 
+ toJSON UpdateMessageUnreadReactions { unread_reaction_count = unread_reaction_count, unread_reactions = unread_reactions, message_id = message_id, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "updateMessageUnreadReactions", "unread_reaction_count" A..= unread_reaction_count, "unread_reactions" A..= unread_reactions, "message_id" A..= message_id, "chat_id" A..= chat_id ]
+
  toJSON UpdateMessageLiveLocationViewed { message_id = message_id, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "updateMessageLiveLocationViewed", "message_id" A..= message_id, "chat_id" A..= chat_id ]
 
@@ -1168,50 +1348,62 @@ instance T.ToJSON Update where
  toJSON UpdateChatPosition { position = position, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "updateChatPosition", "position" A..= position, "chat_id" A..= chat_id ]
 
- toJSON UpdateChatIsMarkedAsUnread { is_marked_as_unread = is_marked_as_unread, chat_id = chat_id } =
-  A.object [ "@type" A..= T.String "updateChatIsMarkedAsUnread", "is_marked_as_unread" A..= is_marked_as_unread, "chat_id" A..= chat_id ]
-
- toJSON UpdateChatIsBlocked { is_blocked = is_blocked, chat_id = chat_id } =
-  A.object [ "@type" A..= T.String "updateChatIsBlocked", "is_blocked" A..= is_blocked, "chat_id" A..= chat_id ]
-
- toJSON UpdateChatHasScheduledMessages { has_scheduled_messages = has_scheduled_messages, chat_id = chat_id } =
-  A.object [ "@type" A..= T.String "updateChatHasScheduledMessages", "has_scheduled_messages" A..= has_scheduled_messages, "chat_id" A..= chat_id ]
-
- toJSON UpdateChatVoiceChat { voice_chat = voice_chat, chat_id = chat_id } =
-  A.object [ "@type" A..= T.String "updateChatVoiceChat", "voice_chat" A..= voice_chat, "chat_id" A..= chat_id ]
-
- toJSON UpdateChatDefaultDisableNotification { default_disable_notification = default_disable_notification, chat_id = chat_id } =
-  A.object [ "@type" A..= T.String "updateChatDefaultDisableNotification", "default_disable_notification" A..= default_disable_notification, "chat_id" A..= chat_id ]
-
  toJSON UpdateChatReadInbox { unread_count = unread_count, last_read_inbox_message_id = last_read_inbox_message_id, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "updateChatReadInbox", "unread_count" A..= unread_count, "last_read_inbox_message_id" A..= last_read_inbox_message_id, "chat_id" A..= chat_id ]
 
  toJSON UpdateChatReadOutbox { last_read_outbox_message_id = last_read_outbox_message_id, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "updateChatReadOutbox", "last_read_outbox_message_id" A..= last_read_outbox_message_id, "chat_id" A..= chat_id ]
 
- toJSON UpdateChatUnreadMentionCount { unread_mention_count = unread_mention_count, chat_id = chat_id } =
-  A.object [ "@type" A..= T.String "updateChatUnreadMentionCount", "unread_mention_count" A..= unread_mention_count, "chat_id" A..= chat_id ]
+ toJSON UpdateChatActionBar { action_bar = action_bar, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "updateChatActionBar", "action_bar" A..= action_bar, "chat_id" A..= chat_id ]
+
+ toJSON UpdateChatAvailableReactions { available_reactions = available_reactions, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "updateChatAvailableReactions", "available_reactions" A..= available_reactions, "chat_id" A..= chat_id ]
+
+ toJSON UpdateChatDraftMessage { positions = positions, draft_message = draft_message, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "updateChatDraftMessage", "positions" A..= positions, "draft_message" A..= draft_message, "chat_id" A..= chat_id ]
+
+ toJSON UpdateChatMessageSender { message_sender_id = message_sender_id, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "updateChatMessageSender", "message_sender_id" A..= message_sender_id, "chat_id" A..= chat_id ]
+
+ toJSON UpdateChatMessageTtl { message_ttl = message_ttl, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "updateChatMessageTtl", "message_ttl" A..= message_ttl, "chat_id" A..= chat_id ]
 
  toJSON UpdateChatNotificationSettings { _notification_settings = _notification_settings, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "updateChatNotificationSettings", "notification_settings" A..= _notification_settings, "chat_id" A..= chat_id ]
 
- toJSON UpdateScopeNotificationSettings { notification_settings = notification_settings, scope = scope } =
-  A.object [ "@type" A..= T.String "updateScopeNotificationSettings", "notification_settings" A..= notification_settings, "scope" A..= scope ]
-
- toJSON UpdateChatMessageTtlSetting { message_ttl_setting = message_ttl_setting, chat_id = chat_id } =
-  A.object [ "@type" A..= T.String "updateChatMessageTtlSetting", "message_ttl_setting" A..= message_ttl_setting, "chat_id" A..= chat_id ]
-
- toJSON UpdateChatActionBar { action_bar = action_bar, chat_id = chat_id } =
-  A.object [ "@type" A..= T.String "updateChatActionBar", "action_bar" A..= action_bar, "chat_id" A..= chat_id ]
-
- toJSON UpdateChatTheme { theme_name = theme_name, chat_id = chat_id } =
-  A.object [ "@type" A..= T.String "updateChatTheme", "theme_name" A..= theme_name, "chat_id" A..= chat_id ]
+ toJSON UpdateChatPendingJoinRequests { pending_join_requests = pending_join_requests, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "updateChatPendingJoinRequests", "pending_join_requests" A..= pending_join_requests, "chat_id" A..= chat_id ]
 
  toJSON UpdateChatReplyMarkup { reply_markup_message_id = reply_markup_message_id, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "updateChatReplyMarkup", "reply_markup_message_id" A..= reply_markup_message_id, "chat_id" A..= chat_id ]
 
- toJSON UpdateChatDraftMessage { positions = positions, draft_message = draft_message, chat_id = chat_id } =
-  A.object [ "@type" A..= T.String "updateChatDraftMessage", "positions" A..= positions, "draft_message" A..= draft_message, "chat_id" A..= chat_id ]
+ toJSON UpdateChatTheme { theme_name = theme_name, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "updateChatTheme", "theme_name" A..= theme_name, "chat_id" A..= chat_id ]
+
+ toJSON UpdateChatUnreadMentionCount { unread_mention_count = unread_mention_count, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "updateChatUnreadMentionCount", "unread_mention_count" A..= unread_mention_count, "chat_id" A..= chat_id ]
+
+ toJSON UpdateChatUnreadReactionCount { unread_reaction_count = unread_reaction_count, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "updateChatUnreadReactionCount", "unread_reaction_count" A..= unread_reaction_count, "chat_id" A..= chat_id ]
+
+ toJSON UpdateChatVideoChat { video_chat = video_chat, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "updateChatVideoChat", "video_chat" A..= video_chat, "chat_id" A..= chat_id ]
+
+ toJSON UpdateChatDefaultDisableNotification { default_disable_notification = default_disable_notification, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "updateChatDefaultDisableNotification", "default_disable_notification" A..= default_disable_notification, "chat_id" A..= chat_id ]
+
+ toJSON UpdateChatHasProtectedContent { has_protected_content = has_protected_content, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "updateChatHasProtectedContent", "has_protected_content" A..= has_protected_content, "chat_id" A..= chat_id ]
+
+ toJSON UpdateChatHasScheduledMessages { has_scheduled_messages = has_scheduled_messages, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "updateChatHasScheduledMessages", "has_scheduled_messages" A..= has_scheduled_messages, "chat_id" A..= chat_id ]
+
+ toJSON UpdateChatIsBlocked { is_blocked = is_blocked, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "updateChatIsBlocked", "is_blocked" A..= is_blocked, "chat_id" A..= chat_id ]
+
+ toJSON UpdateChatIsMarkedAsUnread { is_marked_as_unread = is_marked_as_unread, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "updateChatIsMarkedAsUnread", "is_marked_as_unread" A..= is_marked_as_unread, "chat_id" A..= chat_id ]
 
  toJSON UpdateChatFilters { chat_filters = chat_filters } =
   A.object [ "@type" A..= T.String "updateChatFilters", "chat_filters" A..= chat_filters ]
@@ -1219,11 +1411,14 @@ instance T.ToJSON Update where
  toJSON UpdateChatOnlineMemberCount { online_member_count = online_member_count, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "updateChatOnlineMemberCount", "online_member_count" A..= online_member_count, "chat_id" A..= chat_id ]
 
+ toJSON UpdateScopeNotificationSettings { notification_settings = notification_settings, scope = scope } =
+  A.object [ "@type" A..= T.String "updateScopeNotificationSettings", "notification_settings" A..= notification_settings, "scope" A..= scope ]
+
  toJSON UpdateNotification { notification = notification, notification_group_id = notification_group_id } =
   A.object [ "@type" A..= T.String "updateNotification", "notification" A..= notification, "notification_group_id" A..= notification_group_id ]
 
- toJSON UpdateNotificationGroup { removed_notification_ids = removed_notification_ids, added_notifications = added_notifications, total_count = total_count, is_silent = is_silent, notification_settings_chat_id = notification_settings_chat_id, chat_id = chat_id, __type = __type, notification_group_id = notification_group_id } =
-  A.object [ "@type" A..= T.String "updateNotificationGroup", "removed_notification_ids" A..= removed_notification_ids, "added_notifications" A..= added_notifications, "total_count" A..= total_count, "is_silent" A..= is_silent, "notification_settings_chat_id" A..= notification_settings_chat_id, "chat_id" A..= chat_id, "type" A..= __type, "notification_group_id" A..= notification_group_id ]
+ toJSON UpdateNotificationGroup { removed_notification_ids = removed_notification_ids, added_notifications = added_notifications, total_count = total_count, notification_sound_id = notification_sound_id, notification_settings_chat_id = notification_settings_chat_id, chat_id = chat_id, __type = __type, notification_group_id = notification_group_id } =
+  A.object [ "@type" A..= T.String "updateNotificationGroup", "removed_notification_ids" A..= removed_notification_ids, "added_notifications" A..= added_notifications, "total_count" A..= total_count, "notification_sound_id" A..= notification_sound_id, "notification_settings_chat_id" A..= notification_settings_chat_id, "chat_id" A..= chat_id, "type" A..= __type, "notification_group_id" A..= notification_group_id ]
 
  toJSON UpdateActiveNotifications { groups = groups } =
   A.object [ "@type" A..= T.String "updateActiveNotifications", "groups" A..= groups ]
@@ -1234,8 +1429,8 @@ instance T.ToJSON Update where
  toJSON UpdateDeleteMessages { from_cache = from_cache, is_permanent = is_permanent, message_ids = message_ids, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "updateDeleteMessages", "from_cache" A..= from_cache, "is_permanent" A..= is_permanent, "message_ids" A..= message_ids, "chat_id" A..= chat_id ]
 
- toJSON UpdateUserChatAction { action = action, user_id = user_id, message_thread_id = message_thread_id, chat_id = chat_id } =
-  A.object [ "@type" A..= T.String "updateUserChatAction", "action" A..= action, "user_id" A..= user_id, "message_thread_id" A..= message_thread_id, "chat_id" A..= chat_id ]
+ toJSON UpdateChatAction { action = action, sender_id = sender_id, message_thread_id = message_thread_id, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "updateChatAction", "action" A..= action, "sender_id" A..= sender_id, "message_thread_id" A..= message_thread_id, "chat_id" A..= chat_id ]
 
  toJSON UpdateUserStatus { status = status, user_id = user_id } =
   A.object [ "@type" A..= T.String "updateUserStatus", "status" A..= status, "user_id" A..= user_id ]
@@ -1272,6 +1467,18 @@ instance T.ToJSON Update where
 
  toJSON UpdateFileGenerationStop { generation_id = generation_id } =
   A.object [ "@type" A..= T.String "updateFileGenerationStop", "generation_id" A..= generation_id ]
+
+ toJSON UpdateFileDownloads { downloaded_size = downloaded_size, total_count = total_count, total_size = total_size } =
+  A.object [ "@type" A..= T.String "updateFileDownloads", "downloaded_size" A..= downloaded_size, "total_count" A..= total_count, "total_size" A..= total_size ]
+
+ toJSON UpdateFileAddedToDownloads { counts = counts, file_download = file_download } =
+  A.object [ "@type" A..= T.String "updateFileAddedToDownloads", "counts" A..= counts, "file_download" A..= file_download ]
+
+ toJSON UpdateFileDownload { counts = counts, is_paused = is_paused, complete_date = complete_date, file_id = file_id } =
+  A.object [ "@type" A..= T.String "updateFileDownload", "counts" A..= counts, "is_paused" A..= is_paused, "complete_date" A..= complete_date, "file_id" A..= file_id ]
+
+ toJSON UpdateFileRemovedFromDownloads { counts = counts, file_id = file_id } =
+  A.object [ "@type" A..= T.String "updateFileRemovedFromDownloads", "counts" A..= counts, "file_id" A..= file_id ]
 
  toJSON UpdateCall { call = call } =
   A.object [ "@type" A..= T.String "updateCall", "call" A..= call ]
@@ -1315,6 +1522,9 @@ instance T.ToJSON Update where
  toJSON UpdateSavedAnimations { animation_ids = animation_ids } =
   A.object [ "@type" A..= T.String "updateSavedAnimations", "animation_ids" A..= animation_ids ]
 
+ toJSON UpdateSavedNotificationSounds { notification_sound_ids = notification_sound_ids } =
+  A.object [ "@type" A..= T.String "updateSavedNotificationSounds", "notification_sound_ids" A..= notification_sound_ids ]
+
  toJSON UpdateSelectedBackground { background = background, for_dark_theme = for_dark_theme } =
   A.object [ "@type" A..= T.String "updateSelectedBackground", "background" A..= background, "for_dark_theme" A..= for_dark_theme ]
 
@@ -1332,6 +1542,15 @@ instance T.ToJSON Update where
 
  toJSON UpdateUsersNearby { users_nearby = users_nearby } =
   A.object [ "@type" A..= T.String "updateUsersNearby", "users_nearby" A..= users_nearby ]
+
+ toJSON UpdateAttachmentMenuBots { bots = bots } =
+  A.object [ "@type" A..= T.String "updateAttachmentMenuBots", "bots" A..= bots ]
+
+ toJSON UpdateWebAppMessageSent { web_app_launch_id = web_app_launch_id } =
+  A.object [ "@type" A..= T.String "updateWebAppMessageSent", "web_app_launch_id" A..= web_app_launch_id ]
+
+ toJSON UpdateReactions { reactions = reactions } =
+  A.object [ "@type" A..= T.String "updateReactions", "reactions" A..= reactions ]
 
  toJSON UpdateDiceEmojis { emojis = emojis } =
   A.object [ "@type" A..= T.String "updateDiceEmojis", "emojis" A..= emojis ]
@@ -1378,6 +1597,9 @@ instance T.ToJSON Update where
  toJSON UpdateChatMember { new_chat_member = new_chat_member, old_chat_member = old_chat_member, invite_link = invite_link, date = date, actor_user_id = actor_user_id, chat_id = chat_id } =
   A.object [ "@type" A..= T.String "updateChatMember", "new_chat_member" A..= new_chat_member, "old_chat_member" A..= old_chat_member, "invite_link" A..= invite_link, "date" A..= date, "actor_user_id" A..= actor_user_id, "chat_id" A..= chat_id ]
 
+ toJSON UpdateNewChatJoinRequest { invite_link = invite_link, request = request, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "updateNewChatJoinRequest", "invite_link" A..= invite_link, "request" A..= request, "chat_id" A..= chat_id ]
+
 instance T.FromJSON Update where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -1393,6 +1615,7 @@ instance T.FromJSON Update where
    "updateMessageInteractionInfo" -> parseUpdateMessageInteractionInfo v
    "updateMessageContentOpened" -> parseUpdateMessageContentOpened v
    "updateMessageMentionRead" -> parseUpdateMessageMentionRead v
+   "updateMessageUnreadReactions" -> parseUpdateMessageUnreadReactions v
    "updateMessageLiveLocationViewed" -> parseUpdateMessageLiveLocationViewed v
    "updateNewChat" -> parseUpdateNewChat v
    "updateChatTitle" -> parseUpdateChatTitle v
@@ -1400,29 +1623,34 @@ instance T.FromJSON Update where
    "updateChatPermissions" -> parseUpdateChatPermissions v
    "updateChatLastMessage" -> parseUpdateChatLastMessage v
    "updateChatPosition" -> parseUpdateChatPosition v
-   "updateChatIsMarkedAsUnread" -> parseUpdateChatIsMarkedAsUnread v
-   "updateChatIsBlocked" -> parseUpdateChatIsBlocked v
-   "updateChatHasScheduledMessages" -> parseUpdateChatHasScheduledMessages v
-   "updateChatVoiceChat" -> parseUpdateChatVoiceChat v
-   "updateChatDefaultDisableNotification" -> parseUpdateChatDefaultDisableNotification v
    "updateChatReadInbox" -> parseUpdateChatReadInbox v
    "updateChatReadOutbox" -> parseUpdateChatReadOutbox v
-   "updateChatUnreadMentionCount" -> parseUpdateChatUnreadMentionCount v
-   "updateChatNotificationSettings" -> parseUpdateChatNotificationSettings v
-   "updateScopeNotificationSettings" -> parseUpdateScopeNotificationSettings v
-   "updateChatMessageTtlSetting" -> parseUpdateChatMessageTtlSetting v
    "updateChatActionBar" -> parseUpdateChatActionBar v
-   "updateChatTheme" -> parseUpdateChatTheme v
-   "updateChatReplyMarkup" -> parseUpdateChatReplyMarkup v
+   "updateChatAvailableReactions" -> parseUpdateChatAvailableReactions v
    "updateChatDraftMessage" -> parseUpdateChatDraftMessage v
+   "updateChatMessageSender" -> parseUpdateChatMessageSender v
+   "updateChatMessageTtl" -> parseUpdateChatMessageTtl v
+   "updateChatNotificationSettings" -> parseUpdateChatNotificationSettings v
+   "updateChatPendingJoinRequests" -> parseUpdateChatPendingJoinRequests v
+   "updateChatReplyMarkup" -> parseUpdateChatReplyMarkup v
+   "updateChatTheme" -> parseUpdateChatTheme v
+   "updateChatUnreadMentionCount" -> parseUpdateChatUnreadMentionCount v
+   "updateChatUnreadReactionCount" -> parseUpdateChatUnreadReactionCount v
+   "updateChatVideoChat" -> parseUpdateChatVideoChat v
+   "updateChatDefaultDisableNotification" -> parseUpdateChatDefaultDisableNotification v
+   "updateChatHasProtectedContent" -> parseUpdateChatHasProtectedContent v
+   "updateChatHasScheduledMessages" -> parseUpdateChatHasScheduledMessages v
+   "updateChatIsBlocked" -> parseUpdateChatIsBlocked v
+   "updateChatIsMarkedAsUnread" -> parseUpdateChatIsMarkedAsUnread v
    "updateChatFilters" -> parseUpdateChatFilters v
    "updateChatOnlineMemberCount" -> parseUpdateChatOnlineMemberCount v
+   "updateScopeNotificationSettings" -> parseUpdateScopeNotificationSettings v
    "updateNotification" -> parseUpdateNotification v
    "updateNotificationGroup" -> parseUpdateNotificationGroup v
    "updateActiveNotifications" -> parseUpdateActiveNotifications v
    "updateHavePendingNotifications" -> parseUpdateHavePendingNotifications v
    "updateDeleteMessages" -> parseUpdateDeleteMessages v
-   "updateUserChatAction" -> parseUpdateUserChatAction v
+   "updateChatAction" -> parseUpdateChatAction v
    "updateUserStatus" -> parseUpdateUserStatus v
    "updateUser" -> parseUpdateUser v
    "updateBasicGroup" -> parseUpdateBasicGroup v
@@ -1435,6 +1663,10 @@ instance T.FromJSON Update where
    "updateFile" -> parseUpdateFile v
    "updateFileGenerationStart" -> parseUpdateFileGenerationStart v
    "updateFileGenerationStop" -> parseUpdateFileGenerationStop v
+   "updateFileDownloads" -> parseUpdateFileDownloads v
+   "updateFileAddedToDownloads" -> parseUpdateFileAddedToDownloads v
+   "updateFileDownload" -> parseUpdateFileDownload v
+   "updateFileRemovedFromDownloads" -> parseUpdateFileRemovedFromDownloads v
    "updateCall" -> parseUpdateCall v
    "updateGroupCall" -> parseUpdateGroupCall v
    "updateGroupCallParticipant" -> parseUpdateGroupCallParticipant v
@@ -1449,12 +1681,16 @@ instance T.FromJSON Update where
    "updateRecentStickers" -> parseUpdateRecentStickers v
    "updateFavoriteStickers" -> parseUpdateFavoriteStickers v
    "updateSavedAnimations" -> parseUpdateSavedAnimations v
+   "updateSavedNotificationSounds" -> parseUpdateSavedNotificationSounds v
    "updateSelectedBackground" -> parseUpdateSelectedBackground v
    "updateChatThemes" -> parseUpdateChatThemes v
    "updateLanguagePackStrings" -> parseUpdateLanguagePackStrings v
    "updateConnectionState" -> parseUpdateConnectionState v
    "updateTermsOfService" -> parseUpdateTermsOfService v
    "updateUsersNearby" -> parseUpdateUsersNearby v
+   "updateAttachmentMenuBots" -> parseUpdateAttachmentMenuBots v
+   "updateWebAppMessageSent" -> parseUpdateWebAppMessageSent v
+   "updateReactions" -> parseUpdateReactions v
    "updateDiceEmojis" -> parseUpdateDiceEmojis v
    "updateAnimatedEmojiMessageClicked" -> parseUpdateAnimatedEmojiMessageClicked v
    "updateAnimationSearchParameters" -> parseUpdateAnimationSearchParameters v
@@ -1470,6 +1706,7 @@ instance T.FromJSON Update where
    "updatePoll" -> parseUpdatePoll v
    "updatePollAnswer" -> parseUpdatePollAnswer v
    "updateChatMember" -> parseUpdateChatMember v
+   "updateNewChatJoinRequest" -> parseUpdateNewChatJoinRequest v
    _ -> mempty
   where
    parseUpdateAuthorizationState :: A.Value -> T.Parser Update
@@ -1544,6 +1781,14 @@ instance T.FromJSON Update where
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateMessageMentionRead { unread_mention_count = unread_mention_count, message_id = message_id, chat_id = chat_id }
 
+   parseUpdateMessageUnreadReactions :: A.Value -> T.Parser Update
+   parseUpdateMessageUnreadReactions = A.withObject "UpdateMessageUnreadReactions" $ \o -> do
+    unread_reaction_count <- mconcat [ o A..:? "unread_reaction_count", readMaybe <$> (o A..: "unread_reaction_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    unread_reactions <- o A..:? "unread_reactions"
+    message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateMessageUnreadReactions { unread_reaction_count = unread_reaction_count, unread_reactions = unread_reactions, message_id = message_id, chat_id = chat_id }
+
    parseUpdateMessageLiveLocationViewed :: A.Value -> T.Parser Update
    parseUpdateMessageLiveLocationViewed = A.withObject "UpdateMessageLiveLocationViewed" $ \o -> do
     message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
@@ -1586,36 +1831,6 @@ instance T.FromJSON Update where
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatPosition { position = position, chat_id = chat_id }
 
-   parseUpdateChatIsMarkedAsUnread :: A.Value -> T.Parser Update
-   parseUpdateChatIsMarkedAsUnread = A.withObject "UpdateChatIsMarkedAsUnread" $ \o -> do
-    is_marked_as_unread <- o A..:? "is_marked_as_unread"
-    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ UpdateChatIsMarkedAsUnread { is_marked_as_unread = is_marked_as_unread, chat_id = chat_id }
-
-   parseUpdateChatIsBlocked :: A.Value -> T.Parser Update
-   parseUpdateChatIsBlocked = A.withObject "UpdateChatIsBlocked" $ \o -> do
-    is_blocked <- o A..:? "is_blocked"
-    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ UpdateChatIsBlocked { is_blocked = is_blocked, chat_id = chat_id }
-
-   parseUpdateChatHasScheduledMessages :: A.Value -> T.Parser Update
-   parseUpdateChatHasScheduledMessages = A.withObject "UpdateChatHasScheduledMessages" $ \o -> do
-    has_scheduled_messages <- o A..:? "has_scheduled_messages"
-    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ UpdateChatHasScheduledMessages { has_scheduled_messages = has_scheduled_messages, chat_id = chat_id }
-
-   parseUpdateChatVoiceChat :: A.Value -> T.Parser Update
-   parseUpdateChatVoiceChat = A.withObject "UpdateChatVoiceChat" $ \o -> do
-    voice_chat <- o A..:? "voice_chat"
-    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ UpdateChatVoiceChat { voice_chat = voice_chat, chat_id = chat_id }
-
-   parseUpdateChatDefaultDisableNotification :: A.Value -> T.Parser Update
-   parseUpdateChatDefaultDisableNotification = A.withObject "UpdateChatDefaultDisableNotification" $ \o -> do
-    default_disable_notification <- o A..:? "default_disable_notification"
-    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ UpdateChatDefaultDisableNotification { default_disable_notification = default_disable_notification, chat_id = chat_id }
-
    parseUpdateChatReadInbox :: A.Value -> T.Parser Update
    parseUpdateChatReadInbox = A.withObject "UpdateChatReadInbox" $ \o -> do
     unread_count <- mconcat [ o A..:? "unread_count", readMaybe <$> (o A..: "unread_count" :: T.Parser String)] :: T.Parser (Maybe Int)
@@ -1629,47 +1844,17 @@ instance T.FromJSON Update where
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatReadOutbox { last_read_outbox_message_id = last_read_outbox_message_id, chat_id = chat_id }
 
-   parseUpdateChatUnreadMentionCount :: A.Value -> T.Parser Update
-   parseUpdateChatUnreadMentionCount = A.withObject "UpdateChatUnreadMentionCount" $ \o -> do
-    unread_mention_count <- mconcat [ o A..:? "unread_mention_count", readMaybe <$> (o A..: "unread_mention_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ UpdateChatUnreadMentionCount { unread_mention_count = unread_mention_count, chat_id = chat_id }
-
-   parseUpdateChatNotificationSettings :: A.Value -> T.Parser Update
-   parseUpdateChatNotificationSettings = A.withObject "UpdateChatNotificationSettings" $ \o -> do
-    _notification_settings <- o A..:? "notification_settings"
-    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ UpdateChatNotificationSettings { _notification_settings = _notification_settings, chat_id = chat_id }
-
-   parseUpdateScopeNotificationSettings :: A.Value -> T.Parser Update
-   parseUpdateScopeNotificationSettings = A.withObject "UpdateScopeNotificationSettings" $ \o -> do
-    notification_settings <- o A..:? "notification_settings"
-    scope <- o A..:? "scope"
-    return $ UpdateScopeNotificationSettings { notification_settings = notification_settings, scope = scope }
-
-   parseUpdateChatMessageTtlSetting :: A.Value -> T.Parser Update
-   parseUpdateChatMessageTtlSetting = A.withObject "UpdateChatMessageTtlSetting" $ \o -> do
-    message_ttl_setting <- mconcat [ o A..:? "message_ttl_setting", readMaybe <$> (o A..: "message_ttl_setting" :: T.Parser String)] :: T.Parser (Maybe Int)
-    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ UpdateChatMessageTtlSetting { message_ttl_setting = message_ttl_setting, chat_id = chat_id }
-
    parseUpdateChatActionBar :: A.Value -> T.Parser Update
    parseUpdateChatActionBar = A.withObject "UpdateChatActionBar" $ \o -> do
     action_bar <- o A..:? "action_bar"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatActionBar { action_bar = action_bar, chat_id = chat_id }
 
-   parseUpdateChatTheme :: A.Value -> T.Parser Update
-   parseUpdateChatTheme = A.withObject "UpdateChatTheme" $ \o -> do
-    theme_name <- o A..:? "theme_name"
+   parseUpdateChatAvailableReactions :: A.Value -> T.Parser Update
+   parseUpdateChatAvailableReactions = A.withObject "UpdateChatAvailableReactions" $ \o -> do
+    available_reactions <- o A..:? "available_reactions"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ UpdateChatTheme { theme_name = theme_name, chat_id = chat_id }
-
-   parseUpdateChatReplyMarkup :: A.Value -> T.Parser Update
-   parseUpdateChatReplyMarkup = A.withObject "UpdateChatReplyMarkup" $ \o -> do
-    reply_markup_message_id <- mconcat [ o A..:? "reply_markup_message_id", readMaybe <$> (o A..: "reply_markup_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ UpdateChatReplyMarkup { reply_markup_message_id = reply_markup_message_id, chat_id = chat_id }
+    return $ UpdateChatAvailableReactions { available_reactions = available_reactions, chat_id = chat_id }
 
    parseUpdateChatDraftMessage :: A.Value -> T.Parser Update
    parseUpdateChatDraftMessage = A.withObject "UpdateChatDraftMessage" $ \o -> do
@@ -1677,6 +1862,90 @@ instance T.FromJSON Update where
     draft_message <- o A..:? "draft_message"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatDraftMessage { positions = positions, draft_message = draft_message, chat_id = chat_id }
+
+   parseUpdateChatMessageSender :: A.Value -> T.Parser Update
+   parseUpdateChatMessageSender = A.withObject "UpdateChatMessageSender" $ \o -> do
+    message_sender_id <- o A..:? "message_sender_id"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateChatMessageSender { message_sender_id = message_sender_id, chat_id = chat_id }
+
+   parseUpdateChatMessageTtl :: A.Value -> T.Parser Update
+   parseUpdateChatMessageTtl = A.withObject "UpdateChatMessageTtl" $ \o -> do
+    message_ttl <- mconcat [ o A..:? "message_ttl", readMaybe <$> (o A..: "message_ttl" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateChatMessageTtl { message_ttl = message_ttl, chat_id = chat_id }
+
+   parseUpdateChatNotificationSettings :: A.Value -> T.Parser Update
+   parseUpdateChatNotificationSettings = A.withObject "UpdateChatNotificationSettings" $ \o -> do
+    _notification_settings <- o A..:? "notification_settings"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateChatNotificationSettings { _notification_settings = _notification_settings, chat_id = chat_id }
+
+   parseUpdateChatPendingJoinRequests :: A.Value -> T.Parser Update
+   parseUpdateChatPendingJoinRequests = A.withObject "UpdateChatPendingJoinRequests" $ \o -> do
+    pending_join_requests <- o A..:? "pending_join_requests"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateChatPendingJoinRequests { pending_join_requests = pending_join_requests, chat_id = chat_id }
+
+   parseUpdateChatReplyMarkup :: A.Value -> T.Parser Update
+   parseUpdateChatReplyMarkup = A.withObject "UpdateChatReplyMarkup" $ \o -> do
+    reply_markup_message_id <- mconcat [ o A..:? "reply_markup_message_id", readMaybe <$> (o A..: "reply_markup_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateChatReplyMarkup { reply_markup_message_id = reply_markup_message_id, chat_id = chat_id }
+
+   parseUpdateChatTheme :: A.Value -> T.Parser Update
+   parseUpdateChatTheme = A.withObject "UpdateChatTheme" $ \o -> do
+    theme_name <- o A..:? "theme_name"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateChatTheme { theme_name = theme_name, chat_id = chat_id }
+
+   parseUpdateChatUnreadMentionCount :: A.Value -> T.Parser Update
+   parseUpdateChatUnreadMentionCount = A.withObject "UpdateChatUnreadMentionCount" $ \o -> do
+    unread_mention_count <- mconcat [ o A..:? "unread_mention_count", readMaybe <$> (o A..: "unread_mention_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateChatUnreadMentionCount { unread_mention_count = unread_mention_count, chat_id = chat_id }
+
+   parseUpdateChatUnreadReactionCount :: A.Value -> T.Parser Update
+   parseUpdateChatUnreadReactionCount = A.withObject "UpdateChatUnreadReactionCount" $ \o -> do
+    unread_reaction_count <- mconcat [ o A..:? "unread_reaction_count", readMaybe <$> (o A..: "unread_reaction_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateChatUnreadReactionCount { unread_reaction_count = unread_reaction_count, chat_id = chat_id }
+
+   parseUpdateChatVideoChat :: A.Value -> T.Parser Update
+   parseUpdateChatVideoChat = A.withObject "UpdateChatVideoChat" $ \o -> do
+    video_chat <- o A..:? "video_chat"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateChatVideoChat { video_chat = video_chat, chat_id = chat_id }
+
+   parseUpdateChatDefaultDisableNotification :: A.Value -> T.Parser Update
+   parseUpdateChatDefaultDisableNotification = A.withObject "UpdateChatDefaultDisableNotification" $ \o -> do
+    default_disable_notification <- o A..:? "default_disable_notification"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateChatDefaultDisableNotification { default_disable_notification = default_disable_notification, chat_id = chat_id }
+
+   parseUpdateChatHasProtectedContent :: A.Value -> T.Parser Update
+   parseUpdateChatHasProtectedContent = A.withObject "UpdateChatHasProtectedContent" $ \o -> do
+    has_protected_content <- o A..:? "has_protected_content"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateChatHasProtectedContent { has_protected_content = has_protected_content, chat_id = chat_id }
+
+   parseUpdateChatHasScheduledMessages :: A.Value -> T.Parser Update
+   parseUpdateChatHasScheduledMessages = A.withObject "UpdateChatHasScheduledMessages" $ \o -> do
+    has_scheduled_messages <- o A..:? "has_scheduled_messages"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateChatHasScheduledMessages { has_scheduled_messages = has_scheduled_messages, chat_id = chat_id }
+
+   parseUpdateChatIsBlocked :: A.Value -> T.Parser Update
+   parseUpdateChatIsBlocked = A.withObject "UpdateChatIsBlocked" $ \o -> do
+    is_blocked <- o A..:? "is_blocked"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateChatIsBlocked { is_blocked = is_blocked, chat_id = chat_id }
+
+   parseUpdateChatIsMarkedAsUnread :: A.Value -> T.Parser Update
+   parseUpdateChatIsMarkedAsUnread = A.withObject "UpdateChatIsMarkedAsUnread" $ \o -> do
+    is_marked_as_unread <- o A..:? "is_marked_as_unread"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateChatIsMarkedAsUnread { is_marked_as_unread = is_marked_as_unread, chat_id = chat_id }
 
    parseUpdateChatFilters :: A.Value -> T.Parser Update
    parseUpdateChatFilters = A.withObject "UpdateChatFilters" $ \o -> do
@@ -1689,6 +1958,12 @@ instance T.FromJSON Update where
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatOnlineMemberCount { online_member_count = online_member_count, chat_id = chat_id }
 
+   parseUpdateScopeNotificationSettings :: A.Value -> T.Parser Update
+   parseUpdateScopeNotificationSettings = A.withObject "UpdateScopeNotificationSettings" $ \o -> do
+    notification_settings <- o A..:? "notification_settings"
+    scope <- o A..:? "scope"
+    return $ UpdateScopeNotificationSettings { notification_settings = notification_settings, scope = scope }
+
    parseUpdateNotification :: A.Value -> T.Parser Update
    parseUpdateNotification = A.withObject "UpdateNotification" $ \o -> do
     notification <- o A..:? "notification"
@@ -1700,12 +1975,12 @@ instance T.FromJSON Update where
     removed_notification_ids <- o A..:? "removed_notification_ids"
     added_notifications <- o A..:? "added_notifications"
     total_count <- mconcat [ o A..:? "total_count", readMaybe <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
-    is_silent <- o A..:? "is_silent"
+    notification_sound_id <- mconcat [ o A..:? "notification_sound_id", readMaybe <$> (o A..: "notification_sound_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     notification_settings_chat_id <- mconcat [ o A..:? "notification_settings_chat_id", readMaybe <$> (o A..: "notification_settings_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     __type <- o A..:? "type"
     notification_group_id <- mconcat [ o A..:? "notification_group_id", readMaybe <$> (o A..: "notification_group_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ UpdateNotificationGroup { removed_notification_ids = removed_notification_ids, added_notifications = added_notifications, total_count = total_count, is_silent = is_silent, notification_settings_chat_id = notification_settings_chat_id, chat_id = chat_id, __type = __type, notification_group_id = notification_group_id }
+    return $ UpdateNotificationGroup { removed_notification_ids = removed_notification_ids, added_notifications = added_notifications, total_count = total_count, notification_sound_id = notification_sound_id, notification_settings_chat_id = notification_settings_chat_id, chat_id = chat_id, __type = __type, notification_group_id = notification_group_id }
 
    parseUpdateActiveNotifications :: A.Value -> T.Parser Update
    parseUpdateActiveNotifications = A.withObject "UpdateActiveNotifications" $ \o -> do
@@ -1726,13 +2001,13 @@ instance T.FromJSON Update where
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateDeleteMessages { from_cache = from_cache, is_permanent = is_permanent, message_ids = message_ids, chat_id = chat_id }
 
-   parseUpdateUserChatAction :: A.Value -> T.Parser Update
-   parseUpdateUserChatAction = A.withObject "UpdateUserChatAction" $ \o -> do
+   parseUpdateChatAction :: A.Value -> T.Parser Update
+   parseUpdateChatAction = A.withObject "UpdateChatAction" $ \o -> do
     action <- o A..:? "action"
-    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    sender_id <- o A..:? "sender_id"
     message_thread_id <- mconcat [ o A..:? "message_thread_id", readMaybe <$> (o A..: "message_thread_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ UpdateUserChatAction { action = action, user_id = user_id, message_thread_id = message_thread_id, chat_id = chat_id }
+    return $ UpdateChatAction { action = action, sender_id = sender_id, message_thread_id = message_thread_id, chat_id = chat_id }
 
    parseUpdateUserStatus :: A.Value -> T.Parser Update
    parseUpdateUserStatus = A.withObject "UpdateUserStatus" $ \o -> do
@@ -1801,6 +2076,33 @@ instance T.FromJSON Update where
    parseUpdateFileGenerationStop = A.withObject "UpdateFileGenerationStop" $ \o -> do
     generation_id <- mconcat [ o A..:? "generation_id", readMaybe <$> (o A..: "generation_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateFileGenerationStop { generation_id = generation_id }
+
+   parseUpdateFileDownloads :: A.Value -> T.Parser Update
+   parseUpdateFileDownloads = A.withObject "UpdateFileDownloads" $ \o -> do
+    downloaded_size <- mconcat [ o A..:? "downloaded_size", readMaybe <$> (o A..: "downloaded_size" :: T.Parser String)] :: T.Parser (Maybe Int)
+    total_count <- mconcat [ o A..:? "total_count", readMaybe <$> (o A..: "total_count" :: T.Parser String)] :: T.Parser (Maybe Int)
+    total_size <- mconcat [ o A..:? "total_size", readMaybe <$> (o A..: "total_size" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateFileDownloads { downloaded_size = downloaded_size, total_count = total_count, total_size = total_size }
+
+   parseUpdateFileAddedToDownloads :: A.Value -> T.Parser Update
+   parseUpdateFileAddedToDownloads = A.withObject "UpdateFileAddedToDownloads" $ \o -> do
+    counts <- o A..:? "counts"
+    file_download <- o A..:? "file_download"
+    return $ UpdateFileAddedToDownloads { counts = counts, file_download = file_download }
+
+   parseUpdateFileDownload :: A.Value -> T.Parser Update
+   parseUpdateFileDownload = A.withObject "UpdateFileDownload" $ \o -> do
+    counts <- o A..:? "counts"
+    is_paused <- o A..:? "is_paused"
+    complete_date <- mconcat [ o A..:? "complete_date", readMaybe <$> (o A..: "complete_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    file_id <- mconcat [ o A..:? "file_id", readMaybe <$> (o A..: "file_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateFileDownload { counts = counts, is_paused = is_paused, complete_date = complete_date, file_id = file_id }
+
+   parseUpdateFileRemovedFromDownloads :: A.Value -> T.Parser Update
+   parseUpdateFileRemovedFromDownloads = A.withObject "UpdateFileRemovedFromDownloads" $ \o -> do
+    counts <- o A..:? "counts"
+    file_id <- mconcat [ o A..:? "file_id", readMaybe <$> (o A..: "file_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateFileRemovedFromDownloads { counts = counts, file_id = file_id }
 
    parseUpdateCall :: A.Value -> T.Parser Update
    parseUpdateCall = A.withObject "UpdateCall" $ \o -> do
@@ -1885,6 +2187,11 @@ instance T.FromJSON Update where
     animation_ids <- o A..:? "animation_ids"
     return $ UpdateSavedAnimations { animation_ids = animation_ids }
 
+   parseUpdateSavedNotificationSounds :: A.Value -> T.Parser Update
+   parseUpdateSavedNotificationSounds = A.withObject "UpdateSavedNotificationSounds" $ \o -> do
+    notification_sound_ids <- o A..:? "notification_sound_ids"
+    return $ UpdateSavedNotificationSounds { notification_sound_ids = notification_sound_ids }
+
    parseUpdateSelectedBackground :: A.Value -> T.Parser Update
    parseUpdateSelectedBackground = A.withObject "UpdateSelectedBackground" $ \o -> do
     background <- o A..:? "background"
@@ -1918,6 +2225,21 @@ instance T.FromJSON Update where
    parseUpdateUsersNearby = A.withObject "UpdateUsersNearby" $ \o -> do
     users_nearby <- o A..:? "users_nearby"
     return $ UpdateUsersNearby { users_nearby = users_nearby }
+
+   parseUpdateAttachmentMenuBots :: A.Value -> T.Parser Update
+   parseUpdateAttachmentMenuBots = A.withObject "UpdateAttachmentMenuBots" $ \o -> do
+    bots <- o A..:? "bots"
+    return $ UpdateAttachmentMenuBots { bots = bots }
+
+   parseUpdateWebAppMessageSent :: A.Value -> T.Parser Update
+   parseUpdateWebAppMessageSent = A.withObject "UpdateWebAppMessageSent" $ \o -> do
+    web_app_launch_id <- mconcat [ o A..:? "web_app_launch_id", readMaybe <$> (o A..: "web_app_launch_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateWebAppMessageSent { web_app_launch_id = web_app_launch_id }
+
+   parseUpdateReactions :: A.Value -> T.Parser Update
+   parseUpdateReactions = A.withObject "UpdateReactions" $ \o -> do
+    reactions <- o A..:? "reactions"
+    return $ UpdateReactions { reactions = reactions }
 
    parseUpdateDiceEmojis :: A.Value -> T.Parser Update
    parseUpdateDiceEmojis = A.withObject "UpdateDiceEmojis" $ \o -> do
@@ -2033,4 +2355,11 @@ instance T.FromJSON Update where
     actor_user_id <- mconcat [ o A..:? "actor_user_id", readMaybe <$> (o A..: "actor_user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     return $ UpdateChatMember { new_chat_member = new_chat_member, old_chat_member = old_chat_member, invite_link = invite_link, date = date, actor_user_id = actor_user_id, chat_id = chat_id }
+
+   parseUpdateNewChatJoinRequest :: A.Value -> T.Parser Update
+   parseUpdateNewChatJoinRequest = A.withObject "UpdateNewChatJoinRequest" $ \o -> do
+    invite_link <- o A..:? "invite_link"
+    request <- o A..:? "request"
+    chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ UpdateNewChatJoinRequest { invite_link = invite_link, request = request, chat_id = chat_id }
  parseJSON _ = mempty

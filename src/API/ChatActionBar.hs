@@ -24,7 +24,7 @@ data ChatActionBar =
  ChatActionBarReportUnrelatedLocation |
  -- |
  -- 
- -- The chat is a recently created group chat, to which new members can be invited
+ -- The chat is a recently created group chat to which new members can be invited
  ChatActionBarInviteMembers |
  -- |
  -- 
@@ -41,7 +41,17 @@ data ChatActionBar =
  -- |
  -- 
  -- The chat is a private or secret chat with a mutual contact and the user's phone number can be shared with the other user using the method sharePhoneNumber
- ChatActionBarSharePhoneNumber deriving (Eq)
+ ChatActionBarSharePhoneNumber |
+ -- |
+ -- 
+ -- The chat is a private chat with an administrator of a chat to which the user sent join request
+ -- 
+ -- __title__ Title of the chat to which the join request was sent
+ -- 
+ -- __is_channel__ True, if the join request was sent to a channel chat
+ -- 
+ -- __request_date__ Point in time (Unix timestamp) when the join request was sent
+ ChatActionBarJoinRequest { request_date :: Maybe Int, is_channel :: Maybe Bool, title :: Maybe String }  deriving (Eq)
 
 instance Show ChatActionBar where
  show ChatActionBarReportSpam { can_unarchive=can_unarchive } =
@@ -61,6 +71,9 @@ instance Show ChatActionBar where
 
  show ChatActionBarSharePhoneNumber {  } =
   "ChatActionBarSharePhoneNumber" ++ cc [ ]
+
+ show ChatActionBarJoinRequest { request_date=request_date, is_channel=is_channel, title=title } =
+  "ChatActionBarJoinRequest" ++ cc [p "request_date" request_date, p "is_channel" is_channel, p "title" title ]
 
 p :: Show a => String -> Maybe a -> String
 p b (Just a) = b ++ " = " ++ show a
@@ -90,6 +103,9 @@ instance T.ToJSON ChatActionBar where
  toJSON ChatActionBarSharePhoneNumber {  } =
   A.object [ "@type" A..= T.String "chatActionBarSharePhoneNumber" ]
 
+ toJSON ChatActionBarJoinRequest { request_date = request_date, is_channel = is_channel, title = title } =
+  A.object [ "@type" A..= T.String "chatActionBarJoinRequest", "request_date" A..= request_date, "is_channel" A..= is_channel, "title" A..= title ]
+
 instance T.FromJSON ChatActionBar where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -100,6 +116,7 @@ instance T.FromJSON ChatActionBar where
    "chatActionBarReportAddBlock" -> parseChatActionBarReportAddBlock v
    "chatActionBarAddContact" -> parseChatActionBarAddContact v
    "chatActionBarSharePhoneNumber" -> parseChatActionBarSharePhoneNumber v
+   "chatActionBarJoinRequest" -> parseChatActionBarJoinRequest v
    _ -> mempty
   where
    parseChatActionBarReportSpam :: A.Value -> T.Parser ChatActionBar
@@ -128,4 +145,11 @@ instance T.FromJSON ChatActionBar where
    parseChatActionBarSharePhoneNumber :: A.Value -> T.Parser ChatActionBar
    parseChatActionBarSharePhoneNumber = A.withObject "ChatActionBarSharePhoneNumber" $ \o -> do
     return $ ChatActionBarSharePhoneNumber {  }
+
+   parseChatActionBarJoinRequest :: A.Value -> T.Parser ChatActionBar
+   parseChatActionBarJoinRequest = A.withObject "ChatActionBarJoinRequest" $ \o -> do
+    request_date <- mconcat [ o A..:? "request_date", readMaybe <$> (o A..: "request_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    is_channel <- o A..:? "is_channel"
+    title <- o A..:? "title"
+    return $ ChatActionBarJoinRequest { request_date = request_date, is_channel = is_channel, title = title }
  parseJSON _ = mempty

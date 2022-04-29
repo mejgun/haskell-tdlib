@@ -10,7 +10,7 @@ import Data.List (intercalate)
 
 -- |
 -- 
--- Returns saved order info, if any
+-- Returns saved order information. Returns a 404 error if there is no saved order information
 data GetSavedOrderInfo = 
 
  GetSavedOrderInfo deriving (Eq)

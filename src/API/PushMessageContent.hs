@@ -212,8 +212,12 @@ data PushMessageContent =
  PushMessageContentChatDeleteMember { is_left :: Maybe Bool, is_current_user :: Maybe Bool, member_name :: Maybe String }  |
  -- |
  -- 
- -- A new member joined the chat by invite link
+ -- A new member joined the chat via an invite link
  PushMessageContentChatJoinByLink |
+ -- |
+ -- 
+ -- A new member was accepted to the chat by an administrator
+ PushMessageContentChatJoinByRequest |
  -- |
  -- 
  -- A forwarded messages 
@@ -311,6 +315,9 @@ instance Show PushMessageContent where
  show PushMessageContentChatJoinByLink {  } =
   "PushMessageContentChatJoinByLink" ++ cc [ ]
 
+ show PushMessageContentChatJoinByRequest {  } =
+  "PushMessageContentChatJoinByRequest" ++ cc [ ]
+
  show PushMessageContentMessageForwards { total_count=total_count } =
   "PushMessageContentMessageForwards" ++ cc [p "total_count" total_count ]
 
@@ -402,6 +409,9 @@ instance T.ToJSON PushMessageContent where
  toJSON PushMessageContentChatJoinByLink {  } =
   A.object [ "@type" A..= T.String "pushMessageContentChatJoinByLink" ]
 
+ toJSON PushMessageContentChatJoinByRequest {  } =
+  A.object [ "@type" A..= T.String "pushMessageContentChatJoinByRequest" ]
+
  toJSON PushMessageContentMessageForwards { total_count = total_count } =
   A.object [ "@type" A..= T.String "pushMessageContentMessageForwards", "total_count" A..= total_count ]
 
@@ -437,6 +447,7 @@ instance T.FromJSON PushMessageContent where
    "pushMessageContentChatSetTheme" -> parsePushMessageContentChatSetTheme v
    "pushMessageContentChatDeleteMember" -> parsePushMessageContentChatDeleteMember v
    "pushMessageContentChatJoinByLink" -> parsePushMessageContentChatJoinByLink v
+   "pushMessageContentChatJoinByRequest" -> parsePushMessageContentChatJoinByRequest v
    "pushMessageContentMessageForwards" -> parsePushMessageContentMessageForwards v
    "pushMessageContentMediaAlbum" -> parsePushMessageContentMediaAlbum v
    _ -> mempty
@@ -587,6 +598,10 @@ instance T.FromJSON PushMessageContent where
    parsePushMessageContentChatJoinByLink :: A.Value -> T.Parser PushMessageContent
    parsePushMessageContentChatJoinByLink = A.withObject "PushMessageContentChatJoinByLink" $ \o -> do
     return $ PushMessageContentChatJoinByLink {  }
+
+   parsePushMessageContentChatJoinByRequest :: A.Value -> T.Parser PushMessageContent
+   parsePushMessageContentChatJoinByRequest = A.withObject "PushMessageContentChatJoinByRequest" $ \o -> do
+    return $ PushMessageContentChatJoinByRequest {  }
 
    parsePushMessageContentMessageForwards :: A.Value -> T.Parser PushMessageContent
    parsePushMessageContentMessageForwards = A.withObject "PushMessageContentMessageForwards" $ \o -> do

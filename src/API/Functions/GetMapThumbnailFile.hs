@@ -23,7 +23,7 @@ import {-# SOURCE #-} qualified API.Location as Location
 -- 
 -- __scale__ Map scale; 1-3
 -- 
--- __chat_id__ Identifier of a chat, in which the thumbnail will be shown. Use 0 if unknown
+-- __chat_id__ Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown
 data GetMapThumbnailFile = 
 
  GetMapThumbnailFile { chat_id :: Maybe Int, scale :: Maybe Int, height :: Maybe Int, width :: Maybe Int, zoom :: Maybe Int, location :: Maybe Location.Location }  deriving (Eq)

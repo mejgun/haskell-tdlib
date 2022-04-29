@@ -10,7 +10,7 @@ import Data.List (intercalate)
 
 -- |
 -- 
--- Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for voice chats
+-- Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats
 -- 
 -- __group_call_id__ Group call identifier
 -- 

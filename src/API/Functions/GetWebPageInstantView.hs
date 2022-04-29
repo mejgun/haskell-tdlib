@@ -14,7 +14,7 @@ import Data.List (intercalate)
 -- 
 -- __url__ The web page URL
 -- 
--- __force_full__ If true, the full instant view for the web page will be returned
+-- __force_full__ Pass true to get full instant view for the web page
 data GetWebPageInstantView = 
 
  GetWebPageInstantView { force_full :: Maybe Bool, url :: Maybe String }  deriving (Eq)

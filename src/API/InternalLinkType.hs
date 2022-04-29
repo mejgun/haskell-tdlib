@@ -7,6 +7,7 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import Data.List (intercalate)
+import {-# SOURCE #-} qualified API.ChatAdministratorRights as ChatAdministratorRights
 import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 import {-# SOURCE #-} qualified API.ProxyType as ProxyType
 
@@ -18,6 +19,22 @@ data InternalLinkType =
  -- 
  -- The link is a link to the active sessions section of the app. Use getActiveSessions to handle the link
  InternalLinkTypeActiveSessions |
+ -- |
+ -- 
+ -- The link is a link to an attachment menu bot to be opened in the specified chat. Process given chat_link to open corresponding chat.
+ -- 
+ -- -Then call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then use getAttachmentMenuBot to receive information about the bot.
+ -- 
+ -- -If the bot isn't added to attachment menu, then user needs to confirm adding the bot to attachment menu. If user confirms adding, then use toggleBotIsAddedToAttachmentMenu to add it.
+ -- 
+ -- -If attachment menu bots can't be used in the current chat, show an error to the user. If the bot is added to attachment menu, then use openWebApp with the given URL
+ -- 
+ -- __chat_link__ An internal link pointing to a chat; may be null if the current chat needs to be kept
+ -- 
+ -- __bot_username__ Username of the bot
+ -- 
+ -- __url__ URL to be passed to openWebApp
+ InternalLinkTypeAttachmentMenuBot { url :: Maybe String, bot_username :: Maybe String, chat_link :: Maybe InternalLinkType }  |
  -- |
  -- 
  -- The link contains an authentication code. Call checkAuthenticationCode with the code if the current authorization state is authorizationStateWaitCode 
@@ -44,12 +61,34 @@ data InternalLinkType =
  -- 
  -- The link is a link to a Telegram bot, which is supposed to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups,
  -- 
- -- -ask the current user to select a group to add the bot to, and then call sendBotStartMessage with the given start parameter and the chosen group chat. Bots can be added to a public group only by administrators of the group
+ -- -ask the current user to select a basic group or a supergroup chat to add the bot to, taking into account that bots can be added to a public supergroup only by administrators of the supergroup.
+ -- 
+ -- -If administrator rights are provided by the link, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator,
+ -- 
+ -- -check that the current user can edit its administrator rights, combine received rights with the requested administrator rights, show confirmation box to the user,
+ -- 
+ -- -and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before call to setChatMemberStatus it may be required to upgrade the chosen basic group chat to a supergroup chat.
+ -- 
+ -- -Then if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat, otherwise just send /start message with bot's username added to the chat.
  -- 
  -- __bot_username__ Username of the bot
  -- 
  -- __start_parameter__ The parameter to be passed to sendBotStartMessage
- InternalLinkTypeBotStartInGroup { start_parameter :: Maybe String, bot_username :: Maybe String }  |
+ -- 
+ -- __administrator_rights__ Expected administrator rights for the bot; may be null
+ InternalLinkTypeBotStartInGroup { administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights, start_parameter :: Maybe String, bot_username :: Maybe String }  |
+ -- |
+ -- 
+ -- The link is a link to a Telegram bot, which is supposed to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot,
+ -- 
+ -- -ask the current user to select a channel chat to add the bot to as an administrator. Then call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator,
+ -- 
+ -- -check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
+ -- 
+ -- __bot_username__ Username of the bot
+ -- 
+ -- __administrator_rights__ Expected administrator rights for the bot
+ InternalLinkTypeBotAddToChannel { administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights, bot_username :: Maybe String }  |
  -- |
  -- 
  -- The link is a link to the change phone number section of the app
@@ -78,6 +117,10 @@ data InternalLinkType =
  -- 
  -- __language_pack_id__ Language pack identifier
  InternalLinkTypeLanguagePack { language_pack_id :: Maybe String }  |
+ -- |
+ -- 
+ -- The link is a link to the language settings section of the app
+ InternalLinkTypeLanguageSettings |
  -- |
  -- 
  -- The link is a link to a Telegram message. Call getMessageLinkInfo with the given URL to process the link 
@@ -114,6 +157,10 @@ data InternalLinkType =
  -- 
  -- __phone_number__ Phone number value from the link
  InternalLinkTypePhoneNumberConfirmation { phone_number :: Maybe String, hash :: Maybe String }  |
+ -- |
+ -- 
+ -- The link is a link to the privacy and security settings section of the app
+ InternalLinkTypePrivacyAndSecuritySettings |
  -- |
  -- 
  -- The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
@@ -164,18 +211,31 @@ data InternalLinkType =
  InternalLinkTypeUnknownDeepLink { link :: Maybe String }  |
  -- |
  -- 
- -- The link is a link to a voice chat. Call searchPublicChat with the given chat username, and then joinGoupCall with the given invite hash to process the link
+ -- The link is a link to an unsupported proxy. An alert can be shown to the user
+ InternalLinkTypeUnsupportedProxy |
+ -- |
  -- 
- -- __chat_username__ Username of the chat with the voice chat
+ -- The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link 
  -- 
- -- __invite_hash__ If non-empty, invite hash to be used to join the voice chat without being muted by administrators
+ -- __phone_number__ Phone number of the user
+ InternalLinkTypeUserPhoneNumber { phone_number :: Maybe String }  |
+ -- |
  -- 
- -- __is_live_stream__ True, if the voice chat is expected to be a live stream in a channel or a broadcast group
- InternalLinkTypeVoiceChat { is_live_stream :: Maybe Bool, invite_hash :: Maybe String, chat_username :: Maybe String }  deriving (Eq)
+ -- The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the link
+ -- 
+ -- __chat_username__ Username of the chat with the video chat
+ -- 
+ -- __invite_hash__ If non-empty, invite hash to be used to join the video chat without being muted by administrators
+ -- 
+ -- __is_live_stream__ True, if the video chat is expected to be a live stream in a channel or a broadcast group
+ InternalLinkTypeVideoChat { is_live_stream :: Maybe Bool, invite_hash :: Maybe String, chat_username :: Maybe String }  deriving (Eq)
 
 instance Show InternalLinkType where
  show InternalLinkTypeActiveSessions {  } =
   "InternalLinkTypeActiveSessions" ++ cc [ ]
+
+ show InternalLinkTypeAttachmentMenuBot { url=url, bot_username=bot_username, chat_link=chat_link } =
+  "InternalLinkTypeAttachmentMenuBot" ++ cc [p "url" url, p "bot_username" bot_username, p "chat_link" chat_link ]
 
  show InternalLinkTypeAuthenticationCode { code=code } =
   "InternalLinkTypeAuthenticationCode" ++ cc [p "code" code ]
@@ -186,8 +246,11 @@ instance Show InternalLinkType where
  show InternalLinkTypeBotStart { start_parameter=start_parameter, bot_username=bot_username } =
   "InternalLinkTypeBotStart" ++ cc [p "start_parameter" start_parameter, p "bot_username" bot_username ]
 
- show InternalLinkTypeBotStartInGroup { start_parameter=start_parameter, bot_username=bot_username } =
-  "InternalLinkTypeBotStartInGroup" ++ cc [p "start_parameter" start_parameter, p "bot_username" bot_username ]
+ show InternalLinkTypeBotStartInGroup { administrator_rights=administrator_rights, start_parameter=start_parameter, bot_username=bot_username } =
+  "InternalLinkTypeBotStartInGroup" ++ cc [p "administrator_rights" administrator_rights, p "start_parameter" start_parameter, p "bot_username" bot_username ]
+
+ show InternalLinkTypeBotAddToChannel { administrator_rights=administrator_rights, bot_username=bot_username } =
+  "InternalLinkTypeBotAddToChannel" ++ cc [p "administrator_rights" administrator_rights, p "bot_username" bot_username ]
 
  show InternalLinkTypeChangePhoneNumber {  } =
   "InternalLinkTypeChangePhoneNumber" ++ cc [ ]
@@ -204,6 +267,9 @@ instance Show InternalLinkType where
  show InternalLinkTypeLanguagePack { language_pack_id=language_pack_id } =
   "InternalLinkTypeLanguagePack" ++ cc [p "language_pack_id" language_pack_id ]
 
+ show InternalLinkTypeLanguageSettings {  } =
+  "InternalLinkTypeLanguageSettings" ++ cc [ ]
+
  show InternalLinkTypeMessage { url=url } =
   "InternalLinkTypeMessage" ++ cc [p "url" url ]
 
@@ -215,6 +281,9 @@ instance Show InternalLinkType where
 
  show InternalLinkTypePhoneNumberConfirmation { phone_number=phone_number, hash=hash } =
   "InternalLinkTypePhoneNumberConfirmation" ++ cc [p "phone_number" phone_number, p "hash" hash ]
+
+ show InternalLinkTypePrivacyAndSecuritySettings {  } =
+  "InternalLinkTypePrivacyAndSecuritySettings" ++ cc [ ]
 
  show InternalLinkTypeProxy { _type=_type, port=port, server=server } =
   "InternalLinkTypeProxy" ++ cc [p "_type" _type, p "port" port, p "server" server ]
@@ -240,8 +309,14 @@ instance Show InternalLinkType where
  show InternalLinkTypeUnknownDeepLink { link=link } =
   "InternalLinkTypeUnknownDeepLink" ++ cc [p "link" link ]
 
- show InternalLinkTypeVoiceChat { is_live_stream=is_live_stream, invite_hash=invite_hash, chat_username=chat_username } =
-  "InternalLinkTypeVoiceChat" ++ cc [p "is_live_stream" is_live_stream, p "invite_hash" invite_hash, p "chat_username" chat_username ]
+ show InternalLinkTypeUnsupportedProxy {  } =
+  "InternalLinkTypeUnsupportedProxy" ++ cc [ ]
+
+ show InternalLinkTypeUserPhoneNumber { phone_number=phone_number } =
+  "InternalLinkTypeUserPhoneNumber" ++ cc [p "phone_number" phone_number ]
+
+ show InternalLinkTypeVideoChat { is_live_stream=is_live_stream, invite_hash=invite_hash, chat_username=chat_username } =
+  "InternalLinkTypeVideoChat" ++ cc [p "is_live_stream" is_live_stream, p "invite_hash" invite_hash, p "chat_username" chat_username ]
 
 p :: Show a => String -> Maybe a -> String
 p b (Just a) = b ++ " = " ++ show a
@@ -256,6 +331,9 @@ instance T.ToJSON InternalLinkType where
  toJSON InternalLinkTypeActiveSessions {  } =
   A.object [ "@type" A..= T.String "internalLinkTypeActiveSessions" ]
 
+ toJSON InternalLinkTypeAttachmentMenuBot { url = url, bot_username = bot_username, chat_link = chat_link } =
+  A.object [ "@type" A..= T.String "internalLinkTypeAttachmentMenuBot", "url" A..= url, "bot_username" A..= bot_username, "chat_link" A..= chat_link ]
+
  toJSON InternalLinkTypeAuthenticationCode { code = code } =
   A.object [ "@type" A..= T.String "internalLinkTypeAuthenticationCode", "code" A..= code ]
 
@@ -265,8 +343,11 @@ instance T.ToJSON InternalLinkType where
  toJSON InternalLinkTypeBotStart { start_parameter = start_parameter, bot_username = bot_username } =
   A.object [ "@type" A..= T.String "internalLinkTypeBotStart", "start_parameter" A..= start_parameter, "bot_username" A..= bot_username ]
 
- toJSON InternalLinkTypeBotStartInGroup { start_parameter = start_parameter, bot_username = bot_username } =
-  A.object [ "@type" A..= T.String "internalLinkTypeBotStartInGroup", "start_parameter" A..= start_parameter, "bot_username" A..= bot_username ]
+ toJSON InternalLinkTypeBotStartInGroup { administrator_rights = administrator_rights, start_parameter = start_parameter, bot_username = bot_username } =
+  A.object [ "@type" A..= T.String "internalLinkTypeBotStartInGroup", "administrator_rights" A..= administrator_rights, "start_parameter" A..= start_parameter, "bot_username" A..= bot_username ]
+
+ toJSON InternalLinkTypeBotAddToChannel { administrator_rights = administrator_rights, bot_username = bot_username } =
+  A.object [ "@type" A..= T.String "internalLinkTypeBotAddToChannel", "administrator_rights" A..= administrator_rights, "bot_username" A..= bot_username ]
 
  toJSON InternalLinkTypeChangePhoneNumber {  } =
   A.object [ "@type" A..= T.String "internalLinkTypeChangePhoneNumber" ]
@@ -283,6 +364,9 @@ instance T.ToJSON InternalLinkType where
  toJSON InternalLinkTypeLanguagePack { language_pack_id = language_pack_id } =
   A.object [ "@type" A..= T.String "internalLinkTypeLanguagePack", "language_pack_id" A..= language_pack_id ]
 
+ toJSON InternalLinkTypeLanguageSettings {  } =
+  A.object [ "@type" A..= T.String "internalLinkTypeLanguageSettings" ]
+
  toJSON InternalLinkTypeMessage { url = url } =
   A.object [ "@type" A..= T.String "internalLinkTypeMessage", "url" A..= url ]
 
@@ -294,6 +378,9 @@ instance T.ToJSON InternalLinkType where
 
  toJSON InternalLinkTypePhoneNumberConfirmation { phone_number = phone_number, hash = hash } =
   A.object [ "@type" A..= T.String "internalLinkTypePhoneNumberConfirmation", "phone_number" A..= phone_number, "hash" A..= hash ]
+
+ toJSON InternalLinkTypePrivacyAndSecuritySettings {  } =
+  A.object [ "@type" A..= T.String "internalLinkTypePrivacyAndSecuritySettings" ]
 
  toJSON InternalLinkTypeProxy { _type = _type, port = port, server = server } =
   A.object [ "@type" A..= T.String "internalLinkTypeProxy", "type" A..= _type, "port" A..= port, "server" A..= server ]
@@ -319,27 +406,37 @@ instance T.ToJSON InternalLinkType where
  toJSON InternalLinkTypeUnknownDeepLink { link = link } =
   A.object [ "@type" A..= T.String "internalLinkTypeUnknownDeepLink", "link" A..= link ]
 
- toJSON InternalLinkTypeVoiceChat { is_live_stream = is_live_stream, invite_hash = invite_hash, chat_username = chat_username } =
-  A.object [ "@type" A..= T.String "internalLinkTypeVoiceChat", "is_live_stream" A..= is_live_stream, "invite_hash" A..= invite_hash, "chat_username" A..= chat_username ]
+ toJSON InternalLinkTypeUnsupportedProxy {  } =
+  A.object [ "@type" A..= T.String "internalLinkTypeUnsupportedProxy" ]
+
+ toJSON InternalLinkTypeUserPhoneNumber { phone_number = phone_number } =
+  A.object [ "@type" A..= T.String "internalLinkTypeUserPhoneNumber", "phone_number" A..= phone_number ]
+
+ toJSON InternalLinkTypeVideoChat { is_live_stream = is_live_stream, invite_hash = invite_hash, chat_username = chat_username } =
+  A.object [ "@type" A..= T.String "internalLinkTypeVideoChat", "is_live_stream" A..= is_live_stream, "invite_hash" A..= invite_hash, "chat_username" A..= chat_username ]
 
 instance T.FromJSON InternalLinkType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "internalLinkTypeActiveSessions" -> parseInternalLinkTypeActiveSessions v
+   "internalLinkTypeAttachmentMenuBot" -> parseInternalLinkTypeAttachmentMenuBot v
    "internalLinkTypeAuthenticationCode" -> parseInternalLinkTypeAuthenticationCode v
    "internalLinkTypeBackground" -> parseInternalLinkTypeBackground v
    "internalLinkTypeBotStart" -> parseInternalLinkTypeBotStart v
    "internalLinkTypeBotStartInGroup" -> parseInternalLinkTypeBotStartInGroup v
+   "internalLinkTypeBotAddToChannel" -> parseInternalLinkTypeBotAddToChannel v
    "internalLinkTypeChangePhoneNumber" -> parseInternalLinkTypeChangePhoneNumber v
    "internalLinkTypeChatInvite" -> parseInternalLinkTypeChatInvite v
    "internalLinkTypeFilterSettings" -> parseInternalLinkTypeFilterSettings v
    "internalLinkTypeGame" -> parseInternalLinkTypeGame v
    "internalLinkTypeLanguagePack" -> parseInternalLinkTypeLanguagePack v
+   "internalLinkTypeLanguageSettings" -> parseInternalLinkTypeLanguageSettings v
    "internalLinkTypeMessage" -> parseInternalLinkTypeMessage v
    "internalLinkTypeMessageDraft" -> parseInternalLinkTypeMessageDraft v
    "internalLinkTypePassportDataRequest" -> parseInternalLinkTypePassportDataRequest v
    "internalLinkTypePhoneNumberConfirmation" -> parseInternalLinkTypePhoneNumberConfirmation v
+   "internalLinkTypePrivacyAndSecuritySettings" -> parseInternalLinkTypePrivacyAndSecuritySettings v
    "internalLinkTypeProxy" -> parseInternalLinkTypeProxy v
    "internalLinkTypePublicChat" -> parseInternalLinkTypePublicChat v
    "internalLinkTypeQrCodeAuthentication" -> parseInternalLinkTypeQrCodeAuthentication v
@@ -348,12 +445,21 @@ instance T.FromJSON InternalLinkType where
    "internalLinkTypeTheme" -> parseInternalLinkTypeTheme v
    "internalLinkTypeThemeSettings" -> parseInternalLinkTypeThemeSettings v
    "internalLinkTypeUnknownDeepLink" -> parseInternalLinkTypeUnknownDeepLink v
-   "internalLinkTypeVoiceChat" -> parseInternalLinkTypeVoiceChat v
+   "internalLinkTypeUnsupportedProxy" -> parseInternalLinkTypeUnsupportedProxy v
+   "internalLinkTypeUserPhoneNumber" -> parseInternalLinkTypeUserPhoneNumber v
+   "internalLinkTypeVideoChat" -> parseInternalLinkTypeVideoChat v
    _ -> mempty
   where
    parseInternalLinkTypeActiveSessions :: A.Value -> T.Parser InternalLinkType
    parseInternalLinkTypeActiveSessions = A.withObject "InternalLinkTypeActiveSessions" $ \o -> do
     return $ InternalLinkTypeActiveSessions {  }
+
+   parseInternalLinkTypeAttachmentMenuBot :: A.Value -> T.Parser InternalLinkType
+   parseInternalLinkTypeAttachmentMenuBot = A.withObject "InternalLinkTypeAttachmentMenuBot" $ \o -> do
+    url <- o A..:? "url"
+    bot_username <- o A..:? "bot_username"
+    chat_link <- o A..:? "chat_link"
+    return $ InternalLinkTypeAttachmentMenuBot { url = url, bot_username = bot_username, chat_link = chat_link }
 
    parseInternalLinkTypeAuthenticationCode :: A.Value -> T.Parser InternalLinkType
    parseInternalLinkTypeAuthenticationCode = A.withObject "InternalLinkTypeAuthenticationCode" $ \o -> do
@@ -373,9 +479,16 @@ instance T.FromJSON InternalLinkType where
 
    parseInternalLinkTypeBotStartInGroup :: A.Value -> T.Parser InternalLinkType
    parseInternalLinkTypeBotStartInGroup = A.withObject "InternalLinkTypeBotStartInGroup" $ \o -> do
+    administrator_rights <- o A..:? "administrator_rights"
     start_parameter <- o A..:? "start_parameter"
     bot_username <- o A..:? "bot_username"
-    return $ InternalLinkTypeBotStartInGroup { start_parameter = start_parameter, bot_username = bot_username }
+    return $ InternalLinkTypeBotStartInGroup { administrator_rights = administrator_rights, start_parameter = start_parameter, bot_username = bot_username }
+
+   parseInternalLinkTypeBotAddToChannel :: A.Value -> T.Parser InternalLinkType
+   parseInternalLinkTypeBotAddToChannel = A.withObject "InternalLinkTypeBotAddToChannel" $ \o -> do
+    administrator_rights <- o A..:? "administrator_rights"
+    bot_username <- o A..:? "bot_username"
+    return $ InternalLinkTypeBotAddToChannel { administrator_rights = administrator_rights, bot_username = bot_username }
 
    parseInternalLinkTypeChangePhoneNumber :: A.Value -> T.Parser InternalLinkType
    parseInternalLinkTypeChangePhoneNumber = A.withObject "InternalLinkTypeChangePhoneNumber" $ \o -> do
@@ -400,6 +513,10 @@ instance T.FromJSON InternalLinkType where
    parseInternalLinkTypeLanguagePack = A.withObject "InternalLinkTypeLanguagePack" $ \o -> do
     language_pack_id <- o A..:? "language_pack_id"
     return $ InternalLinkTypeLanguagePack { language_pack_id = language_pack_id }
+
+   parseInternalLinkTypeLanguageSettings :: A.Value -> T.Parser InternalLinkType
+   parseInternalLinkTypeLanguageSettings = A.withObject "InternalLinkTypeLanguageSettings" $ \o -> do
+    return $ InternalLinkTypeLanguageSettings {  }
 
    parseInternalLinkTypeMessage :: A.Value -> T.Parser InternalLinkType
    parseInternalLinkTypeMessage = A.withObject "InternalLinkTypeMessage" $ \o -> do
@@ -426,6 +543,10 @@ instance T.FromJSON InternalLinkType where
     phone_number <- o A..:? "phone_number"
     hash <- o A..:? "hash"
     return $ InternalLinkTypePhoneNumberConfirmation { phone_number = phone_number, hash = hash }
+
+   parseInternalLinkTypePrivacyAndSecuritySettings :: A.Value -> T.Parser InternalLinkType
+   parseInternalLinkTypePrivacyAndSecuritySettings = A.withObject "InternalLinkTypePrivacyAndSecuritySettings" $ \o -> do
+    return $ InternalLinkTypePrivacyAndSecuritySettings {  }
 
    parseInternalLinkTypeProxy :: A.Value -> T.Parser InternalLinkType
    parseInternalLinkTypeProxy = A.withObject "InternalLinkTypeProxy" $ \o -> do
@@ -466,10 +587,19 @@ instance T.FromJSON InternalLinkType where
     link <- o A..:? "link"
     return $ InternalLinkTypeUnknownDeepLink { link = link }
 
-   parseInternalLinkTypeVoiceChat :: A.Value -> T.Parser InternalLinkType
-   parseInternalLinkTypeVoiceChat = A.withObject "InternalLinkTypeVoiceChat" $ \o -> do
+   parseInternalLinkTypeUnsupportedProxy :: A.Value -> T.Parser InternalLinkType
+   parseInternalLinkTypeUnsupportedProxy = A.withObject "InternalLinkTypeUnsupportedProxy" $ \o -> do
+    return $ InternalLinkTypeUnsupportedProxy {  }
+
+   parseInternalLinkTypeUserPhoneNumber :: A.Value -> T.Parser InternalLinkType
+   parseInternalLinkTypeUserPhoneNumber = A.withObject "InternalLinkTypeUserPhoneNumber" $ \o -> do
+    phone_number <- o A..:? "phone_number"
+    return $ InternalLinkTypeUserPhoneNumber { phone_number = phone_number }
+
+   parseInternalLinkTypeVideoChat :: A.Value -> T.Parser InternalLinkType
+   parseInternalLinkTypeVideoChat = A.withObject "InternalLinkTypeVideoChat" $ \o -> do
     is_live_stream <- o A..:? "is_live_stream"
     invite_hash <- o A..:? "invite_hash"
     chat_username <- o A..:? "chat_username"
-    return $ InternalLinkTypeVoiceChat { is_live_stream = is_live_stream, invite_hash = invite_hash, chat_username = chat_username }
+    return $ InternalLinkTypeVideoChat { is_live_stream = is_live_stream, invite_hash = invite_hash, chat_username = chat_username }
  parseJSON _ = mempty

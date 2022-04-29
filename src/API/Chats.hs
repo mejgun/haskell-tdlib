@@ -12,7 +12,7 @@ import Data.List (intercalate)
 -- 
 -- Represents a list of chats 
 -- 
--- __total_count__ Approximate total count of chats found
+-- __total_count__ Approximate total number of chats found
 -- 
 -- __chat_ids__ List of chat identifiers
 data Chats = 

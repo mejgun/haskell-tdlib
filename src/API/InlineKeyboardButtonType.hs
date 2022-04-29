@@ -20,14 +20,20 @@ data InlineKeyboardButtonType =
  InlineKeyboardButtonTypeUrl { url :: Maybe String }  |
  -- |
  -- 
- -- A button that opens a specified URL and automatically authorize the current user if allowed to do so 
+ -- A button that opens a specified URL and automatically authorize the current user by calling getLoginUrlInfo 
  -- 
- -- __url__ An HTTP URL to open
+ -- __url__ An HTTP URL to pass to getLoginUrlInfo
  -- 
  -- __id__ Unique button identifier
  -- 
  -- __forward_text__ If non-empty, new text of the button in forwarded messages
  InlineKeyboardButtonTypeLoginUrl { forward_text :: Maybe String, _id :: Maybe Int, url :: Maybe String }  |
+ -- |
+ -- 
+ -- A button that opens a web app by calling openWebApp 
+ -- 
+ -- __url__ An HTTP URL to pass to openWebApp
+ InlineKeyboardButtonTypeWebApp { url :: Maybe String }  |
  -- |
  -- 
  -- A button that sends a callback query to a bot 
@@ -55,7 +61,13 @@ data InlineKeyboardButtonType =
  -- |
  -- 
  -- A button to buy something. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type messageInvoice
- InlineKeyboardButtonTypeBuy deriving (Eq)
+ InlineKeyboardButtonTypeBuy |
+ -- |
+ -- 
+ -- A button with a user reference to be handled in the same way as textEntityTypeMentionName entities 
+ -- 
+ -- __user_id__ User identifier
+ InlineKeyboardButtonTypeUser { user_id :: Maybe Int }  deriving (Eq)
 
 instance Show InlineKeyboardButtonType where
  show InlineKeyboardButtonTypeUrl { url=url } =
@@ -63,6 +75,9 @@ instance Show InlineKeyboardButtonType where
 
  show InlineKeyboardButtonTypeLoginUrl { forward_text=forward_text, _id=_id, url=url } =
   "InlineKeyboardButtonTypeLoginUrl" ++ cc [p "forward_text" forward_text, p "_id" _id, p "url" url ]
+
+ show InlineKeyboardButtonTypeWebApp { url=url } =
+  "InlineKeyboardButtonTypeWebApp" ++ cc [p "url" url ]
 
  show InlineKeyboardButtonTypeCallback { _data=_data } =
   "InlineKeyboardButtonTypeCallback" ++ cc [p "_data" _data ]
@@ -78,6 +93,9 @@ instance Show InlineKeyboardButtonType where
 
  show InlineKeyboardButtonTypeBuy {  } =
   "InlineKeyboardButtonTypeBuy" ++ cc [ ]
+
+ show InlineKeyboardButtonTypeUser { user_id=user_id } =
+  "InlineKeyboardButtonTypeUser" ++ cc [p "user_id" user_id ]
 
 p :: Show a => String -> Maybe a -> String
 p b (Just a) = b ++ " = " ++ show a
@@ -95,6 +113,9 @@ instance T.ToJSON InlineKeyboardButtonType where
  toJSON InlineKeyboardButtonTypeLoginUrl { forward_text = forward_text, _id = _id, url = url } =
   A.object [ "@type" A..= T.String "inlineKeyboardButtonTypeLoginUrl", "forward_text" A..= forward_text, "id" A..= _id, "url" A..= url ]
 
+ toJSON InlineKeyboardButtonTypeWebApp { url = url } =
+  A.object [ "@type" A..= T.String "inlineKeyboardButtonTypeWebApp", "url" A..= url ]
+
  toJSON InlineKeyboardButtonTypeCallback { _data = _data } =
   A.object [ "@type" A..= T.String "inlineKeyboardButtonTypeCallback", "data" A..= _data ]
 
@@ -110,17 +131,22 @@ instance T.ToJSON InlineKeyboardButtonType where
  toJSON InlineKeyboardButtonTypeBuy {  } =
   A.object [ "@type" A..= T.String "inlineKeyboardButtonTypeBuy" ]
 
+ toJSON InlineKeyboardButtonTypeUser { user_id = user_id } =
+  A.object [ "@type" A..= T.String "inlineKeyboardButtonTypeUser", "user_id" A..= user_id ]
+
 instance T.FromJSON InlineKeyboardButtonType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
   case t of
    "inlineKeyboardButtonTypeUrl" -> parseInlineKeyboardButtonTypeUrl v
    "inlineKeyboardButtonTypeLoginUrl" -> parseInlineKeyboardButtonTypeLoginUrl v
+   "inlineKeyboardButtonTypeWebApp" -> parseInlineKeyboardButtonTypeWebApp v
    "inlineKeyboardButtonTypeCallback" -> parseInlineKeyboardButtonTypeCallback v
    "inlineKeyboardButtonTypeCallbackWithPassword" -> parseInlineKeyboardButtonTypeCallbackWithPassword v
    "inlineKeyboardButtonTypeCallbackGame" -> parseInlineKeyboardButtonTypeCallbackGame v
    "inlineKeyboardButtonTypeSwitchInline" -> parseInlineKeyboardButtonTypeSwitchInline v
    "inlineKeyboardButtonTypeBuy" -> parseInlineKeyboardButtonTypeBuy v
+   "inlineKeyboardButtonTypeUser" -> parseInlineKeyboardButtonTypeUser v
    _ -> mempty
   where
    parseInlineKeyboardButtonTypeUrl :: A.Value -> T.Parser InlineKeyboardButtonType
@@ -134,6 +160,11 @@ instance T.FromJSON InlineKeyboardButtonType where
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
     url <- o A..:? "url"
     return $ InlineKeyboardButtonTypeLoginUrl { forward_text = forward_text, _id = _id, url = url }
+
+   parseInlineKeyboardButtonTypeWebApp :: A.Value -> T.Parser InlineKeyboardButtonType
+   parseInlineKeyboardButtonTypeWebApp = A.withObject "InlineKeyboardButtonTypeWebApp" $ \o -> do
+    url <- o A..:? "url"
+    return $ InlineKeyboardButtonTypeWebApp { url = url }
 
    parseInlineKeyboardButtonTypeCallback :: A.Value -> T.Parser InlineKeyboardButtonType
    parseInlineKeyboardButtonTypeCallback = A.withObject "InlineKeyboardButtonTypeCallback" $ \o -> do
@@ -158,4 +189,9 @@ instance T.FromJSON InlineKeyboardButtonType where
    parseInlineKeyboardButtonTypeBuy :: A.Value -> T.Parser InlineKeyboardButtonType
    parseInlineKeyboardButtonTypeBuy = A.withObject "InlineKeyboardButtonTypeBuy" $ \o -> do
     return $ InlineKeyboardButtonTypeBuy {  }
+
+   parseInlineKeyboardButtonTypeUser :: A.Value -> T.Parser InlineKeyboardButtonType
+   parseInlineKeyboardButtonTypeUser = A.withObject "InlineKeyboardButtonTypeUser" $ \o -> do
+    user_id <- mconcat [ o A..:? "user_id", readMaybe <$> (o A..: "user_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    return $ InlineKeyboardButtonTypeUser { user_id = user_id }
  parseJSON _ = mempty

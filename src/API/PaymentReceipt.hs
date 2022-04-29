@@ -28,7 +28,7 @@ import {-# SOURCE #-} qualified API.Photo as Photo
 -- 
 -- __payments_provider_user_id__ User identifier of the payment provider bot
 -- 
--- __invoice__ Contains information about the invoice
+-- __invoice__ Information about the invoice
 -- 
 -- __order_info__ Order information; may be null
 -- 

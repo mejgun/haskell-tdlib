@@ -12,7 +12,7 @@ import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 
 -- |
 -- 
--- Information about a user or a chat as a member of another chat
+-- Describes a user or a chat as a member of another chat
 -- 
 -- __member_id__ Identifier of the chat member. Currently, other chats can be only Left or Banned. Only supergroups and channels can have other chats as Left or Banned members and these chats must be supergroups or channels
 -- 

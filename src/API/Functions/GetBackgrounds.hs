@@ -12,7 +12,7 @@ import Data.List (intercalate)
 -- 
 -- Returns backgrounds installed by the user 
 -- 
--- __for_dark_theme__ True, if the backgrounds must be ordered for dark theme
+-- __for_dark_theme__ Pass true to order returned backgrounds for a dark theme
 data GetBackgrounds = 
 
  GetBackgrounds { for_dark_theme :: Maybe Bool }  deriving (Eq)

@@ -16,16 +16,20 @@ import Data.List (intercalate)
 -- 
 -- __invite_link__ Invite link to be edited
 -- 
--- __expire_date__ Point in time (Unix timestamp) when the link will expire; pass 0 if never
+-- __name__ Invite link name; 0-32 characters
 -- 
--- __member_limit__ The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
+-- __expiration_date__ Point in time (Unix timestamp) when the link will expire; pass 0 if never
+-- 
+-- __member_limit__ The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
+-- 
+-- __creates_join_request__ Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
 data EditChatInviteLink = 
 
- EditChatInviteLink { member_limit :: Maybe Int, expire_date :: Maybe Int, invite_link :: Maybe String, chat_id :: Maybe Int }  deriving (Eq)
+ EditChatInviteLink { creates_join_request :: Maybe Bool, member_limit :: Maybe Int, expiration_date :: Maybe Int, name :: Maybe String, invite_link :: Maybe String, chat_id :: Maybe Int }  deriving (Eq)
 
 instance Show EditChatInviteLink where
- show EditChatInviteLink { member_limit=member_limit, expire_date=expire_date, invite_link=invite_link, chat_id=chat_id } =
-  "EditChatInviteLink" ++ cc [p "member_limit" member_limit, p "expire_date" expire_date, p "invite_link" invite_link, p "chat_id" chat_id ]
+ show EditChatInviteLink { creates_join_request=creates_join_request, member_limit=member_limit, expiration_date=expiration_date, name=name, invite_link=invite_link, chat_id=chat_id } =
+  "EditChatInviteLink" ++ cc [p "creates_join_request" creates_join_request, p "member_limit" member_limit, p "expiration_date" expiration_date, p "name" name, p "invite_link" invite_link, p "chat_id" chat_id ]
 
 p :: Show a => String -> Maybe a -> String
 p b (Just a) = b ++ " = " ++ show a
@@ -37,8 +41,8 @@ cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
 
 
 instance T.ToJSON EditChatInviteLink where
- toJSON EditChatInviteLink { member_limit = member_limit, expire_date = expire_date, invite_link = invite_link, chat_id = chat_id } =
-  A.object [ "@type" A..= T.String "editChatInviteLink", "member_limit" A..= member_limit, "expire_date" A..= expire_date, "invite_link" A..= invite_link, "chat_id" A..= chat_id ]
+ toJSON EditChatInviteLink { creates_join_request = creates_join_request, member_limit = member_limit, expiration_date = expiration_date, name = name, invite_link = invite_link, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "editChatInviteLink", "creates_join_request" A..= creates_join_request, "member_limit" A..= member_limit, "expiration_date" A..= expiration_date, "name" A..= name, "invite_link" A..= invite_link, "chat_id" A..= chat_id ]
 
 instance T.FromJSON EditChatInviteLink where
  parseJSON v@(T.Object obj) = do
@@ -49,9 +53,11 @@ instance T.FromJSON EditChatInviteLink where
   where
    parseEditChatInviteLink :: A.Value -> T.Parser EditChatInviteLink
    parseEditChatInviteLink = A.withObject "EditChatInviteLink" $ \o -> do
+    creates_join_request <- o A..:? "creates_join_request"
     member_limit <- mconcat [ o A..:? "member_limit", readMaybe <$> (o A..: "member_limit" :: T.Parser String)] :: T.Parser (Maybe Int)
-    expire_date <- mconcat [ o A..:? "expire_date", readMaybe <$> (o A..: "expire_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    expiration_date <- mconcat [ o A..:? "expiration_date", readMaybe <$> (o A..: "expiration_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    name <- o A..:? "name"
     invite_link <- o A..:? "invite_link"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ EditChatInviteLink { member_limit = member_limit, expire_date = expire_date, invite_link = invite_link, chat_id = chat_id }
+    return $ EditChatInviteLink { creates_join_request = creates_join_request, member_limit = member_limit, expiration_date = expiration_date, name = name, invite_link = invite_link, chat_id = chat_id }
  parseJSON _ = mempty

@@ -1,0 +1,15 @@
+-- GENERATED
+module API.Functions.ToggleSessionCanAcceptSecretChats where
+
+import Data.Aeson.Types
+
+data ToggleSessionCanAcceptSecretChats
+
+instance Eq ToggleSessionCanAcceptSecretChats
+
+instance ToJSON ToggleSessionCanAcceptSecretChats
+
+instance FromJSON ToggleSessionCanAcceptSecretChats
+
+instance Show ToggleSessionCanAcceptSecretChats
+

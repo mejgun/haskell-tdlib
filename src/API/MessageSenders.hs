@@ -13,7 +13,7 @@ import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 -- 
 -- Represents a list of message senders 
 -- 
--- __total_count__ Approximate total count of messages senders found
+-- __total_count__ Approximate total number of messages senders found
 -- 
 -- __senders__ List of message senders
 data MessageSenders = 

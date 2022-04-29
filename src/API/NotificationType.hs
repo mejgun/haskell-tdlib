@@ -37,14 +37,14 @@ data NotificationType =
  -- 
  -- __message_id__ The message identifier. The message will not be available in the chat history, but the ID can be used in viewMessages, or as reply_to_message_id
  -- 
- -- __sender__ The sender of the message. Corresponding user or chat may be inaccessible
+ -- __sender_id__ Identifier of the sender of the message. Corresponding user or chat may be inaccessible
  -- 
  -- __sender_name__ Name of the sender
  -- 
  -- __is_outgoing__ True, if the message is outgoing
  -- 
  -- __content__ Push message content
- NotificationTypeNewPushMessage { content :: Maybe PushMessageContent.PushMessageContent, is_outgoing :: Maybe Bool, sender_name :: Maybe String, sender :: Maybe MessageSender.MessageSender, message_id :: Maybe Int }  deriving (Eq)
+ NotificationTypeNewPushMessage { content :: Maybe PushMessageContent.PushMessageContent, is_outgoing :: Maybe Bool, sender_name :: Maybe String, sender_id :: Maybe MessageSender.MessageSender, message_id :: Maybe Int }  deriving (Eq)
 
 instance Show NotificationType where
  show NotificationTypeNewMessage { message=message } =
@@ -56,8 +56,8 @@ instance Show NotificationType where
  show NotificationTypeNewCall { call_id=call_id } =
   "NotificationTypeNewCall" ++ cc [p "call_id" call_id ]
 
- show NotificationTypeNewPushMessage { content=content, is_outgoing=is_outgoing, sender_name=sender_name, sender=sender, message_id=message_id } =
-  "NotificationTypeNewPushMessage" ++ cc [p "content" content, p "is_outgoing" is_outgoing, p "sender_name" sender_name, p "sender" sender, p "message_id" message_id ]
+ show NotificationTypeNewPushMessage { content=content, is_outgoing=is_outgoing, sender_name=sender_name, sender_id=sender_id, message_id=message_id } =
+  "NotificationTypeNewPushMessage" ++ cc [p "content" content, p "is_outgoing" is_outgoing, p "sender_name" sender_name, p "sender_id" sender_id, p "message_id" message_id ]
 
 p :: Show a => String -> Maybe a -> String
 p b (Just a) = b ++ " = " ++ show a
@@ -78,8 +78,8 @@ instance T.ToJSON NotificationType where
  toJSON NotificationTypeNewCall { call_id = call_id } =
   A.object [ "@type" A..= T.String "notificationTypeNewCall", "call_id" A..= call_id ]
 
- toJSON NotificationTypeNewPushMessage { content = content, is_outgoing = is_outgoing, sender_name = sender_name, sender = sender, message_id = message_id } =
-  A.object [ "@type" A..= T.String "notificationTypeNewPushMessage", "content" A..= content, "is_outgoing" A..= is_outgoing, "sender_name" A..= sender_name, "sender" A..= sender, "message_id" A..= message_id ]
+ toJSON NotificationTypeNewPushMessage { content = content, is_outgoing = is_outgoing, sender_name = sender_name, sender_id = sender_id, message_id = message_id } =
+  A.object [ "@type" A..= T.String "notificationTypeNewPushMessage", "content" A..= content, "is_outgoing" A..= is_outgoing, "sender_name" A..= sender_name, "sender_id" A..= sender_id, "message_id" A..= message_id ]
 
 instance T.FromJSON NotificationType where
  parseJSON v@(T.Object obj) = do
@@ -110,7 +110,7 @@ instance T.FromJSON NotificationType where
     content <- o A..:? "content"
     is_outgoing <- o A..:? "is_outgoing"
     sender_name <- o A..:? "sender_name"
-    sender <- o A..:? "sender"
+    sender_id <- o A..:? "sender_id"
     message_id <- mconcat [ o A..:? "message_id", readMaybe <$> (o A..: "message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ NotificationTypeNewPushMessage { content = content, is_outgoing = is_outgoing, sender_name = sender_name, sender = sender, message_id = message_id }
+    return $ NotificationTypeNewPushMessage { content = content, is_outgoing = is_outgoing, sender_name = sender_name, sender_id = sender_id, message_id = message_id }
  parseJSON _ = mempty

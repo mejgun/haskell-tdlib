@@ -19,7 +19,7 @@ import {-# SOURCE #-} qualified API.OrderInfo as OrderInfo
 -- 
 -- __order_info__ The order information, provided by the user; pass null if empty
 -- 
--- __allow_save__ True, if the order information can be saved
+-- __allow_save__ Pass true to save the order information
 data ValidateOrderInfo = 
 
  ValidateOrderInfo { allow_save :: Maybe Bool, order_info :: Maybe OrderInfo.OrderInfo, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)

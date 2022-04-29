@@ -16,7 +16,7 @@ import Data.List (intercalate)
 -- 
 -- __offset_sticker_set_id__ Identifier of the sticker set from which to return the result
 -- 
--- __limit__ The maximum number of sticker sets to return
+-- __limit__ The maximum number of sticker sets to return; up to 100
 data GetArchivedStickerSets = 
 
  GetArchivedStickerSets { limit :: Maybe Int, offset_sticker_set_id :: Maybe Int, is_masks :: Maybe Bool }  deriving (Eq)

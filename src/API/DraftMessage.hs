@@ -13,7 +13,7 @@ import {-# SOURCE #-} qualified API.InputMessageContent as InputMessageContent
 -- 
 -- Contains information about a message draft
 -- 
--- __reply_to_message_id__ Identifier of the message to reply to; 0 if none
+-- __reply_to_message_id__ Identifier of the replied message; 0 if none
 -- 
 -- __date__ Point in time (Unix timestamp) when the draft was created
 -- 

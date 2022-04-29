@@ -16,7 +16,7 @@
 </span><span id="line-16"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-17"></span><span class="hs-comment">-- __scope__ The scope to which the commands are relevant; pass null to change commands in the default bot command scope</span><span>
 </span><span id="line-18"></span><span class="hs-comment">-- </span><span>
-</span><span id="line-19"></span><span class="hs-comment">-- __language_code__ A two-letter ISO 639-1 country code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands</span><span>
+</span><span id="line-19"></span><span class="hs-comment">-- __language_code__ A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands</span><span>
 </span><span id="line-20"></span><span class="hs-comment">-- </span><span>
 </span><span id="line-21"></span><span class="hs-comment">-- __commands__ List of the bot's commands</span><span>
 </span><span id="line-22"></span><span class="hs-keyword">data</span><span> </span><span id="SetCommands"><span class="annot"><a href="API.Functions.SetCommands.html#SetCommands"><span class="hs-identifier hs-var">SetCommands</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span>
@@ -24,7 +24,7 @@
 </span><span id="line-24"></span><span> </span><span id="SetCommands"><span class="annot"><a href="API.Functions.SetCommands.html#SetCommands"><span class="hs-identifier hs-var">SetCommands</span></a></span></span><span> </span><span class="hs-special">{</span><span> </span><span id="commands"><span class="annot"><span class="annottext">SetCommands -&gt; Maybe [BotCommand]
 </span><a href="API.Functions.SetCommands.html#commands"><span class="hs-identifier hs-var hs-var">commands</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="API.BotCommand.html#BotCommand"><span class="hs-identifier hs-type">BotCommand.BotCommand</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span> </span><span id="language_code"><span class="annot"><span class="annottext">SetCommands -&gt; Maybe String
 </span><a href="API.Functions.SetCommands.html#language_code"><span class="hs-identifier hs-var hs-var">language_code</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span class="hs-special">,</span><span> </span><span id="scope"><span class="annot"><span class="annottext">SetCommands -&gt; Maybe BotCommandScope
-</span><a href="API.Functions.SetCommands.html#scope"><span class="hs-identifier hs-var hs-var">scope</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope.BotCommandScope</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679494349"><span id="local-6989586621679494351"><span class="annot"><span class="annottext">SetCommands -&gt; SetCommands -&gt; Bool
+</span><a href="API.Functions.SetCommands.html#scope"><span class="hs-identifier hs-var hs-var">scope</span></a></span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="API.BotCommandScope.html#BotCommandScope"><span class="hs-identifier hs-type">BotCommandScope.BotCommandScope</span></a></span><span> </span><span class="hs-special">}</span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679540030"><span id="local-6989586621679540032"><span class="annot"><span class="annottext">SetCommands -&gt; SetCommands -&gt; Bool
 (SetCommands -&gt; SetCommands -&gt; Bool)
 -&gt; (SetCommands -&gt; SetCommands -&gt; Bool) -&gt; Eq SetCommands
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -34,15 +34,15 @@ $c/= :: SetCommands -&gt; SetCommands -&gt; Bool
 $c== :: SetCommands -&gt; SetCommands -&gt; Bool
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">)</span><span>
 </span><span id="line-25"></span><span>
-</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679494343"><span id="local-6989586621679494346"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.SetCommands.html#SetCommands"><span class="hs-identifier hs-type">SetCommands</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-27"></span><span> </span><span id="local-6989586621679494341"><span class="annot"><span class="annottext">show :: SetCommands -&gt; String
+</span><span id="line-26"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679540024"><span id="local-6989586621679540027"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="API.Functions.SetCommands.html#SetCommands"><span class="hs-identifier hs-type">SetCommands</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-27"></span><span> </span><span id="local-6989586621679540022"><span class="annot"><span class="annottext">show :: SetCommands -&gt; String
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><a href="API.Functions.SetCommands.html#SetCommands"><span class="hs-identifier hs-type">SetCommands</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">commands :: SetCommands -&gt; Maybe [BotCommand]
-</span><a href="API.Functions.SetCommands.html#commands"><span class="hs-identifier hs-var">commands</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679494339"><span class="annot"><span class="annottext">Maybe [BotCommand]
-</span><a href="#local-6989586621679494339"><span class="hs-identifier hs-var">commands</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">language_code :: SetCommands -&gt; Maybe String
-</span><a href="API.Functions.SetCommands.html#language_code"><span class="hs-identifier hs-var">language_code</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679494338"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679494338"><span class="hs-identifier hs-var">language_code</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">scope :: SetCommands -&gt; Maybe BotCommandScope
-</span><a href="API.Functions.SetCommands.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679494337"><span class="annot"><span class="annottext">Maybe BotCommandScope
-</span><a href="#local-6989586621679494337"><span class="hs-identifier hs-var">scope</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.SetCommands.html#commands"><span class="hs-identifier hs-var">commands</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679540020"><span class="annot"><span class="annottext">Maybe [BotCommand]
+</span><a href="#local-6989586621679540020"><span class="hs-identifier hs-var">commands</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">language_code :: SetCommands -&gt; Maybe String
+</span><a href="API.Functions.SetCommands.html#language_code"><span class="hs-identifier hs-var">language_code</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679540019"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679540019"><span class="hs-identifier hs-var">language_code</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">scope :: SetCommands -&gt; Maybe BotCommandScope
+</span><a href="API.Functions.SetCommands.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span class="hs-glyph">=</span><span id="local-6989586621679540018"><span class="annot"><span class="annottext">Maybe BotCommandScope
+</span><a href="#local-6989586621679540018"><span class="hs-identifier hs-var">scope</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-28"></span><span>  </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SetCommands&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
@@ -51,22 +51,22 @@ forall a. [a] -&gt; [a] -&gt; [a]
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.SetCommands.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;commands&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe [BotCommand]
-</span><a href="#local-6989586621679494339"><span class="hs-identifier hs-var">commands</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
+</span><a href="#local-6989586621679540020"><span class="hs-identifier hs-var">commands</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe String -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.SetCommands.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;language_code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679494338"><span class="hs-identifier hs-var">language_code</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe BotCommandScope -&gt; String
+</span><a href="#local-6989586621679540019"><span class="hs-identifier hs-var">language_code</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">String -&gt; Maybe BotCommandScope -&gt; String
 forall a. Show a =&gt; String -&gt; Maybe a -&gt; String
 </span><a href="API.Functions.SetCommands.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;scope&quot;</span></span><span> </span><span class="annot"><span class="annottext">Maybe BotCommandScope
-</span><a href="#local-6989586621679494337"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679540018"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-29"></span><span>
-</span><span id="line-30"></span><span id="local-6989586621679494389"><span class="annot"><a href="API.Functions.SetCommands.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679494389"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679494389"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
+</span><span id="line-30"></span><span id="local-6989586621679540070"><span class="annot"><a href="API.Functions.SetCommands.html#p"><span class="hs-identifier hs-type">p</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="#local-6989586621679540070"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679540070"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span></span><span>
 </span><span id="line-31"></span><span id="p"><span class="annot"><span class="annottext">p :: String -&gt; Maybe a -&gt; String
-</span><a href="API.Functions.SetCommands.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679494334"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679494334"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679494333"><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679494333"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679494334"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="API.Functions.SetCommands.html#p"><span class="hs-identifier hs-var hs-var">p</span></a></span></span><span> </span><span id="local-6989586621679540015"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679540015"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">Just</span></span><span> </span><span id="local-6989586621679540014"><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679540014"><span class="hs-identifier hs-var">a</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679540015"><span class="hs-identifier hs-var">b</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; = &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
@@ -74,7 +74,7 @@ forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; String
 forall a. Show a =&gt; a -&gt; String
 </span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">a
-</span><a href="#local-6989586621679494333"><span class="hs-identifier hs-var">a</span></a></span><span>
+</span><a href="#local-6989586621679540014"><span class="hs-identifier hs-var">a</span></a></span><span>
 </span><span id="line-32"></span><span class="annot"><a href="API.Functions.SetCommands.html#p"><span class="hs-identifier hs-var">p</span></a></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">Maybe a
 </span><span class="hs-identifier hs-var">Nothing</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
@@ -85,8 +85,8 @@ forall a. Show a =&gt; a -&gt; String
 </span><a href="API.Functions.SetCommands.html#cc"><span class="hs-identifier hs-var hs-var">cc</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-36"></span><span class="annot"><a href="API.Functions.SetCommands.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679494332"><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679494332"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-36"></span><span class="annot"><a href="API.Functions.SetCommands.html#cc"><span class="hs-identifier hs-var">cc</span></a></span><span> </span><span id="local-6989586621679540013"><span class="annot"><span class="annottext">[String]
+</span><a href="#local-6989586621679540013"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot; {&quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; [String] -&gt; String
@@ -100,21 +100,21 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; Bool
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
 </span><span class="hs-identifier hs-var">null</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[String]
-</span><a href="#local-6989586621679494332"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+</span><a href="#local-6989586621679540013"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
 forall a. [a] -&gt; [a] -&gt; [a]
 </span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;}&quot;</span></span><span>
 </span><span id="line-37"></span><span>
 </span><span id="line-38"></span><span>
-</span><span id="line-39"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679494322"><span id="local-6989586621679494324"><span id="local-6989586621679494326"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetCommands.html#SetCommands"><span class="hs-identifier hs-type">SetCommands</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-40"></span><span> </span><span id="local-6989586621679494320"><span class="annot"><span class="annottext">toJSON :: SetCommands -&gt; Value
+</span><span id="line-39"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679540003"><span id="local-6989586621679540005"><span id="local-6989586621679540007"><span class="annot"><span class="hs-identifier hs-type">T.ToJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetCommands.html#SetCommands"><span class="hs-identifier hs-type">SetCommands</span></a></span></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-40"></span><span> </span><span id="local-6989586621679540001"><span class="annot"><span class="annottext">toJSON :: SetCommands -&gt; Value
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var">toJSON</span></span></span><span> </span><span class="annot"><a href="API.Functions.SetCommands.html#SetCommands"><span class="hs-identifier hs-type">SetCommands</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">commands :: SetCommands -&gt; Maybe [BotCommand]
-</span><a href="API.Functions.SetCommands.html#commands"><span class="hs-identifier hs-var">commands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494318"><span class="annot"><span class="annottext">Maybe [BotCommand]
-</span><a href="#local-6989586621679494318"><span class="hs-identifier hs-var">commands</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">language_code :: SetCommands -&gt; Maybe String
-</span><a href="API.Functions.SetCommands.html#language_code"><span class="hs-identifier hs-var">language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494317"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679494317"><span class="hs-identifier hs-var">language_code</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">scope :: SetCommands -&gt; Maybe BotCommandScope
-</span><a href="API.Functions.SetCommands.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679494316"><span class="annot"><span class="annottext">Maybe BotCommandScope
-</span><a href="#local-6989586621679494316"><span class="hs-identifier hs-var">scope</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
+</span><a href="API.Functions.SetCommands.html#commands"><span class="hs-identifier hs-var">commands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679539999"><span class="annot"><span class="annottext">Maybe [BotCommand]
+</span><a href="#local-6989586621679539999"><span class="hs-identifier hs-var">commands</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">language_code :: SetCommands -&gt; Maybe String
+</span><a href="API.Functions.SetCommands.html#language_code"><span class="hs-identifier hs-var">language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679539998"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679539998"><span class="hs-identifier hs-var">language_code</span></a></span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">scope :: SetCommands -&gt; Maybe BotCommandScope
+</span><a href="API.Functions.SetCommands.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679539997"><span class="annot"><span class="annottext">Maybe BotCommandScope
+</span><a href="#local-6989586621679539997"><span class="hs-identifier hs-var">scope</span></a></span></span><span> </span><span class="hs-special">}</span><span> </span><span class="hs-glyph">=</span><span>
 </span><span id="line-41"></span><span>  </span><span class="annot"><span class="annottext">[Pair] -&gt; Value
 </span><span class="hs-identifier hs-var">A.object</span></span><span> </span><span class="hs-special">[</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Value -&gt; Pair
@@ -125,64 +125,64 @@ forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-string">&quot;commands&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe [BotCommand] -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe [BotCommand]
-</span><a href="#local-6989586621679494318"><span class="hs-identifier hs-var">commands</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679539999"><span class="hs-identifier hs-var">commands</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;language_code&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe String -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679494317"><span class="hs-identifier hs-var">language_code</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679539998"><span class="hs-identifier hs-var">language_code</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;scope&quot;</span></span><span> </span><span class="annot"><span class="annottext">Text -&gt; Maybe BotCommandScope -&gt; Pair
 forall kv v. (KeyValue kv, ToJSON v) =&gt; Text -&gt; v -&gt; kv
 </span><span class="hs-operator hs-var">A..=</span></span><span> </span><span class="annot"><span class="annottext">Maybe BotCommandScope
-</span><a href="#local-6989586621679494316"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679539997"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-special">]</span><span>
 </span><span id="line-42"></span><span>
-</span><span id="line-43"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679494310"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetCommands.html#SetCommands"><span class="hs-identifier hs-type">SetCommands</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
-</span><span id="line-44"></span><span> </span><span id="local-6989586621679494308"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetCommands
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679494306"><span class="annot"><span class="annottext">v :: Value
-</span><a href="#local-6989586621679494306"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679494304"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679494304"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-45"></span><span>  </span><span id="local-6989586621679494303"><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679494303"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679494304"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
+</span><span id="line-43"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679539991"><span class="annot"><span class="hs-identifier hs-type">T.FromJSON</span></span><span> </span><span class="annot"><a href="API.Functions.SetCommands.html#SetCommands"><span class="hs-identifier hs-type">SetCommands</span></a></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-44"></span><span> </span><span id="local-6989586621679539989"><span class="annot"><span class="annottext">parseJSON :: Value -&gt; Parser SetCommands
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">parseJSON</span></span></span><span> </span><span id="local-6989586621679539987"><span class="annot"><span class="annottext">v :: Value
+</span><a href="#local-6989586621679539987"><span class="hs-identifier hs-var">v</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">T.Object</span></span><span> </span><span id="local-6989586621679539985"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679539985"><span class="hs-identifier hs-var">obj</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-45"></span><span>  </span><span id="local-6989586621679539984"><span class="annot"><span class="annottext">String
+</span><a href="#local-6989586621679539984"><span class="hs-identifier hs-var">t</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679539985"><span class="hs-identifier hs-var">obj</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser String
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser a
 </span><span class="hs-operator hs-var">A..:</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;@type&quot;</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
 </span><span id="line-46"></span><span>  </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">String
-</span><a href="#local-6989586621679494303"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679539984"><span class="hs-identifier hs-var">t</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-47"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;setCommands&quot;</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Value -&gt; Parser SetCommands
-</span><a href="#local-6989586621679494301"><span class="hs-identifier hs-var">parseSetCommands</span></a></span><span> </span><span class="annot"><span class="annottext">Value
-</span><a href="#local-6989586621679494306"><span class="hs-identifier hs-var">v</span></a></span><span>
+</span><a href="#local-6989586621679539982"><span class="hs-identifier hs-var">parseSetCommands</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679539987"><span class="hs-identifier hs-var">v</span></a></span><span>
 </span><span id="line-48"></span><span>   </span><span class="annot"><span class="annottext">String
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Parser SetCommands
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
 </span><span id="line-49"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-50"></span><span>   </span><span class="annot"><a href="#local-6989586621679494301"><span class="hs-identifier hs-type">parseSetCommands</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetCommands.html#SetCommands"><span class="hs-identifier hs-type">SetCommands</span></a></span><span>
-</span><span id="line-51"></span><span>   </span><span id="local-6989586621679494301"><span class="annot"><span class="annottext">parseSetCommands :: Value -&gt; Parser SetCommands
-</span><a href="#local-6989586621679494301"><span class="hs-identifier hs-var hs-var">parseSetCommands</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span id="line-50"></span><span>   </span><span class="annot"><a href="#local-6989586621679539982"><span class="hs-identifier hs-type">parseSetCommands</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">A.Value</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">T.Parser</span></span><span> </span><span class="annot"><a href="API.Functions.SetCommands.html#SetCommands"><span class="hs-identifier hs-type">SetCommands</span></a></span><span>
+</span><span id="line-51"></span><span>   </span><span id="local-6989586621679539982"><span class="annot"><span class="annottext">parseSetCommands :: Value -&gt; Parser SetCommands
+</span><a href="#local-6989586621679539982"><span class="hs-identifier hs-var hs-var">parseSetCommands</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
 -&gt; (Object -&gt; Parser SetCommands) -&gt; Value -&gt; Parser SetCommands
 forall a. String -&gt; (Object -&gt; Parser a) -&gt; Value -&gt; Parser a
 </span><span class="hs-identifier hs-var">A.withObject</span></span><span> </span><span class="annot"><span class="annottext">String
 </span><span class="hs-string">&quot;SetCommands&quot;</span></span><span> </span><span class="annot"><span class="annottext">((Object -&gt; Parser SetCommands) -&gt; Value -&gt; Parser SetCommands)
 -&gt; (Object -&gt; Parser SetCommands) -&gt; Value -&gt; Parser SetCommands
 forall a b. (a -&gt; b) -&gt; a -&gt; b
-</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679494299"><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679494299"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-52"></span><span>    </span><span id="local-6989586621679494298"><span class="annot"><span class="annottext">Maybe [BotCommand]
-</span><a href="#local-6989586621679494298"><span class="hs-identifier hs-var">commands</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679494299"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [BotCommand])
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679539980"><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679539980"><span class="hs-identifier hs-var">o</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-52"></span><span>    </span><span id="local-6989586621679539979"><span class="annot"><span class="annottext">Maybe [BotCommand]
+</span><a href="#local-6989586621679539979"><span class="hs-identifier hs-var">commands</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679539980"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe [BotCommand])
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;commands&quot;</span></span><span>
-</span><span id="line-53"></span><span>    </span><span id="local-6989586621679494296"><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679494296"><span class="hs-identifier hs-var">language_code</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679494299"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
+</span><span id="line-53"></span><span>    </span><span id="local-6989586621679539977"><span class="annot"><span class="annottext">Maybe String
+</span><a href="#local-6989586621679539977"><span class="hs-identifier hs-var">language_code</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679539980"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe String)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;language_code&quot;</span></span><span>
-</span><span id="line-54"></span><span>    </span><span id="local-6989586621679494295"><span class="annot"><span class="annottext">Maybe BotCommandScope
-</span><a href="#local-6989586621679494295"><span class="hs-identifier hs-var">scope</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
-</span><a href="#local-6989586621679494299"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe BotCommandScope)
+</span><span id="line-54"></span><span>    </span><span id="local-6989586621679539976"><span class="annot"><span class="annottext">Maybe BotCommandScope
+</span><a href="#local-6989586621679539976"><span class="hs-identifier hs-var">scope</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Object
+</span><a href="#local-6989586621679539980"><span class="hs-identifier hs-var">o</span></a></span><span> </span><span class="annot"><span class="annottext">Object -&gt; Text -&gt; Parser (Maybe BotCommandScope)
 forall a. FromJSON a =&gt; Object -&gt; Text -&gt; Parser (Maybe a)
 </span><span class="hs-operator hs-var">A..:?</span></span><span> </span><span class="annot"><span class="annottext">Text
 </span><span class="hs-string">&quot;scope&quot;</span></span><span>
@@ -195,11 +195,11 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 -&gt; Maybe String -&gt; Maybe BotCommandScope -&gt; SetCommands
 </span><a href="API.Functions.SetCommands.html#SetCommands"><span class="hs-identifier hs-type">SetCommands</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">commands :: Maybe [BotCommand]
 </span><a href="API.Functions.SetCommands.html#commands"><span class="hs-identifier hs-var">commands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe [BotCommand]
-</span><a href="#local-6989586621679494298"><span class="hs-identifier hs-var">commands</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">language_code :: Maybe String
+</span><a href="#local-6989586621679539979"><span class="hs-identifier hs-var">commands</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">language_code :: Maybe String
 </span><a href="API.Functions.SetCommands.html#language_code"><span class="hs-identifier hs-var">language_code</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe String
-</span><a href="#local-6989586621679494296"><span class="hs-identifier hs-var">language_code</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">scope :: Maybe BotCommandScope
+</span><a href="#local-6989586621679539977"><span class="hs-identifier hs-var">language_code</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">scope :: Maybe BotCommandScope
 </span><a href="API.Functions.SetCommands.html#scope"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Maybe BotCommandScope
-</span><a href="#local-6989586621679494295"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679539976"><span class="hs-identifier hs-var">scope</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-56"></span><span> </span><span class="annot"><span class="hs-identifier hs-var">parseJSON</span></span><span> </span><span class="annot"><span class="annottext">Value
 </span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Parser SetCommands
 forall a. Monoid a =&gt; a

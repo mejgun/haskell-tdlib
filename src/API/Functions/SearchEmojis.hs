@@ -14,7 +14,7 @@ import Data.List (intercalate)
 -- 
 -- __text__ Text to search for
 -- 
--- __exact_match__ True, if only emojis, which exactly match text needs to be returned
+-- __exact_match__ Pass true if only emojis, which exactly match the text, needs to be returned
 -- 
 -- __input_language_codes__ List of possible IETF language tags of the user's input language; may be empty if unknown
 data SearchEmojis = 

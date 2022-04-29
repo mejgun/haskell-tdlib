@@ -14,7 +14,7 @@ import Data.List (intercalate)
 -- 
 -- __mute_for__ Time left before notifications will be unmuted, in seconds
 -- 
--- __sound__ The name of an audio file to be used for notification sounds; only applies to iOS applications
+-- __sound_id__ Identifier of the notification sound to be played; 0 if sound is disabled
 -- 
 -- __show_preview__ True, if message content must be displayed in notifications
 -- 
@@ -23,11 +23,11 @@ import Data.List (intercalate)
 -- __disable_mention_notifications__ True, if notifications for messages with mentions will be created as for an ordinary unread message
 data ScopeNotificationSettings = 
 
- ScopeNotificationSettings { disable_mention_notifications :: Maybe Bool, disable_pinned_message_notifications :: Maybe Bool, show_preview :: Maybe Bool, sound :: Maybe String, mute_for :: Maybe Int }  deriving (Eq)
+ ScopeNotificationSettings { disable_mention_notifications :: Maybe Bool, disable_pinned_message_notifications :: Maybe Bool, show_preview :: Maybe Bool, sound_id :: Maybe Int, mute_for :: Maybe Int }  deriving (Eq)
 
 instance Show ScopeNotificationSettings where
- show ScopeNotificationSettings { disable_mention_notifications=disable_mention_notifications, disable_pinned_message_notifications=disable_pinned_message_notifications, show_preview=show_preview, sound=sound, mute_for=mute_for } =
-  "ScopeNotificationSettings" ++ cc [p "disable_mention_notifications" disable_mention_notifications, p "disable_pinned_message_notifications" disable_pinned_message_notifications, p "show_preview" show_preview, p "sound" sound, p "mute_for" mute_for ]
+ show ScopeNotificationSettings { disable_mention_notifications=disable_mention_notifications, disable_pinned_message_notifications=disable_pinned_message_notifications, show_preview=show_preview, sound_id=sound_id, mute_for=mute_for } =
+  "ScopeNotificationSettings" ++ cc [p "disable_mention_notifications" disable_mention_notifications, p "disable_pinned_message_notifications" disable_pinned_message_notifications, p "show_preview" show_preview, p "sound_id" sound_id, p "mute_for" mute_for ]
 
 p :: Show a => String -> Maybe a -> String
 p b (Just a) = b ++ " = " ++ show a
@@ -39,8 +39,8 @@ cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
 
 
 instance T.ToJSON ScopeNotificationSettings where
- toJSON ScopeNotificationSettings { disable_mention_notifications = disable_mention_notifications, disable_pinned_message_notifications = disable_pinned_message_notifications, show_preview = show_preview, sound = sound, mute_for = mute_for } =
-  A.object [ "@type" A..= T.String "scopeNotificationSettings", "disable_mention_notifications" A..= disable_mention_notifications, "disable_pinned_message_notifications" A..= disable_pinned_message_notifications, "show_preview" A..= show_preview, "sound" A..= sound, "mute_for" A..= mute_for ]
+ toJSON ScopeNotificationSettings { disable_mention_notifications = disable_mention_notifications, disable_pinned_message_notifications = disable_pinned_message_notifications, show_preview = show_preview, sound_id = sound_id, mute_for = mute_for } =
+  A.object [ "@type" A..= T.String "scopeNotificationSettings", "disable_mention_notifications" A..= disable_mention_notifications, "disable_pinned_message_notifications" A..= disable_pinned_message_notifications, "show_preview" A..= show_preview, "sound_id" A..= sound_id, "mute_for" A..= mute_for ]
 
 instance T.FromJSON ScopeNotificationSettings where
  parseJSON v@(T.Object obj) = do
@@ -54,7 +54,7 @@ instance T.FromJSON ScopeNotificationSettings where
     disable_mention_notifications <- o A..:? "disable_mention_notifications"
     disable_pinned_message_notifications <- o A..:? "disable_pinned_message_notifications"
     show_preview <- o A..:? "show_preview"
-    sound <- o A..:? "sound"
+    sound_id <- mconcat [ o A..:? "sound_id", readMaybe <$> (o A..: "sound_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     mute_for <- mconcat [ o A..:? "mute_for", readMaybe <$> (o A..: "mute_for" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ ScopeNotificationSettings { disable_mention_notifications = disable_mention_notifications, disable_pinned_message_notifications = disable_pinned_message_notifications, show_preview = show_preview, sound = sound, mute_for = mute_for }
+    return $ ScopeNotificationSettings { disable_mention_notifications = disable_mention_notifications, disable_pinned_message_notifications = disable_pinned_message_notifications, show_preview = show_preview, sound_id = sound_id, mute_for = mute_for }
  parseJSON _ = mempty

@@ -13,7 +13,7 @@ import {-# SOURCE #-} qualified API.Message as Message
 -- 
 -- Contains a list of messages found by a search 
 -- 
--- __total_count__ Approximate total count of messages found; -1 if unknown
+-- __total_count__ Approximate total number of messages found; -1 if unknown
 -- 
 -- __messages__ List of messages
 -- 

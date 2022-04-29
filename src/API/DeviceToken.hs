@@ -16,7 +16,7 @@ data DeviceToken =
  -- 
  -- A token for Firebase Cloud Messaging 
  -- 
- -- __token__ Device registration token; may be empty to de-register a device
+ -- __token__ Device registration token; may be empty to deregister a device
  -- 
  -- __encrypt__ True, if push notifications must be additionally encrypted
  DeviceTokenFirebaseCloudMessaging { encrypt :: Maybe Bool, token :: Maybe String }  |
@@ -24,7 +24,7 @@ data DeviceToken =
  -- 
  -- A token for Apple Push Notification service 
  -- 
- -- __device_token__ Device token; may be empty to de-register a device
+ -- __device_token__ Device token; may be empty to deregister a device
  -- 
  -- __is_app_sandbox__ True, if App Sandbox is enabled
  DeviceTokenApplePush { is_app_sandbox :: Maybe Bool, device_token :: Maybe String }  |
@@ -32,7 +32,7 @@ data DeviceToken =
  -- 
  -- A token for Apple Push Notification service VoIP notifications 
  -- 
- -- __device_token__ Device token; may be empty to de-register a device
+ -- __device_token__ Device token; may be empty to deregister a device
  -- 
  -- __is_app_sandbox__ True, if App Sandbox is enabled
  -- 
@@ -42,25 +42,25 @@ data DeviceToken =
  -- 
  -- A token for Windows Push Notification Services 
  -- 
- -- __access_token__ The access token that will be used to send notifications; may be empty to de-register a device
+ -- __access_token__ The access token that will be used to send notifications; may be empty to deregister a device
  DeviceTokenWindowsPush { access_token :: Maybe String }  |
  -- |
  -- 
  -- A token for Microsoft Push Notification Service 
  -- 
- -- __channel_uri__ Push notification channel URI; may be empty to de-register a device
+ -- __channel_uri__ Push notification channel URI; may be empty to deregister a device
  DeviceTokenMicrosoftPush { channel_uri :: Maybe String }  |
  -- |
  -- 
  -- A token for Microsoft Push Notification Service VoIP channel 
  -- 
- -- __channel_uri__ Push notification channel URI; may be empty to de-register a device
+ -- __channel_uri__ Push notification channel URI; may be empty to deregister a device
  DeviceTokenMicrosoftPushVoIP { channel_uri :: Maybe String }  |
  -- |
  -- 
  -- A token for web Push API 
  -- 
- -- __endpoint__ Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device
+ -- __endpoint__ Absolute URL exposed by the push service where the application server can send push messages; may be empty to deregister a device
  -- 
  -- __p256dh_base64url__ Base64url-encoded P-256 elliptic curve Diffie-Hellman public key
  -- 
@@ -70,25 +70,25 @@ data DeviceToken =
  -- 
  -- A token for Simple Push API for Firefox OS 
  -- 
- -- __endpoint__ Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device
+ -- __endpoint__ Absolute URL exposed by the push service where the application server can send push messages; may be empty to deregister a device
  DeviceTokenSimplePush { endpoint :: Maybe String }  |
  -- |
  -- 
  -- A token for Ubuntu Push Client service 
  -- 
- -- __token__ Token; may be empty to de-register a device
+ -- __token__ Token; may be empty to deregister a device
  DeviceTokenUbuntuPush { token :: Maybe String }  |
  -- |
  -- 
  -- A token for BlackBerry Push Service 
  -- 
- -- __token__ Token; may be empty to de-register a device
+ -- __token__ Token; may be empty to deregister a device
  DeviceTokenBlackBerryPush { token :: Maybe String }  |
  -- |
  -- 
  -- A token for Tizen Push Service 
  -- 
- -- __reg_id__ Push service registration identifier; may be empty to de-register a device
+ -- __reg_id__ Push service registration identifier; may be empty to deregister a device
  DeviceTokenTizenPush { reg_id :: Maybe String }  deriving (Eq)
 
 instance Show DeviceToken where

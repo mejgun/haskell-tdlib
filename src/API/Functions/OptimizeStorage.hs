@@ -17,7 +17,7 @@ import {-# SOURCE #-} qualified API.FileType as FileType
 -- 
 -- __ttl__ Limit on the time that has passed since the last time a file was accessed (or creation time for some filesystems). Pass -1 to use the default limit
 -- 
--- __count__ Limit on the total count of files after deletion. Pass -1 to use the default limit
+-- __count__ Limit on the total number of files after deletion. Pass -1 to use the default limit
 -- 
 -- __immunity_delay__ The amount of time after the creation of a file during which it can't be deleted, in seconds. Pass -1 to use the default value
 -- 

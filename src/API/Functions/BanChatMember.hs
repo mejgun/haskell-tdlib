@@ -17,7 +17,7 @@ import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 -- 
 -- __member_id__ Member identifier
 -- 
--- __banned_until_date__ Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups
+-- __banned_until_date__ Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned
 -- 
 -- __revoke_messages__ Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
 data BanChatMember = 

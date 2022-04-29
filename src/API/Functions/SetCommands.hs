@@ -16,7 +16,7 @@ import {-# SOURCE #-} qualified API.BotCommandScope as BotCommandScope
 -- 
 -- __scope__ The scope to which the commands are relevant; pass null to change commands in the default bot command scope
 -- 
--- __language_code__ A two-letter ISO 639-1 country code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
+-- __language_code__ A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
 -- 
 -- __commands__ List of the bot's commands
 data SetCommands = 

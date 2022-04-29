@@ -26,11 +26,11 @@ import {-# SOURCE #-} qualified API.Invoice as Invoice
 -- 
 -- __payments_provider_user_id__ User identifier of the payment provider bot
 -- 
--- __payments_provider__ Contains information about the payment provider, if available, to support it natively without the need for opening the URL; may be null
+-- __payments_provider__ Information about the payment provider, if available, to support it natively without the need for opening the URL; may be null
 -- 
 -- __saved_order_info__ Saved server-side order information; may be null
 -- 
--- __saved_credentials__ Contains information about saved card credentials; may be null
+-- __saved_credentials__ Information about saved card credentials; may be null
 -- 
 -- __can_save_credentials__ True, if the user can choose to save credentials
 -- 

@@ -15,7 +15,7 @@ import {-# SOURCE #-} qualified API.BotCommandScope as BotCommandScope
 -- 
 -- __scope__ The scope to which the commands are relevant; pass null to delete commands in the default bot command scope
 -- 
--- __language_code__ A two-letter ISO 639-1 country code or an empty string
+-- __language_code__ A two-letter ISO 639-1 language code or an empty string
 data DeleteCommands = 
 
  DeleteCommands { language_code :: Maybe String, scope :: Maybe BotCommandScope.BotCommandScope }  deriving (Eq)

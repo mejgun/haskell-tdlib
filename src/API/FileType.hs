@@ -30,6 +30,10 @@ data FileType =
  FileTypeDocument |
  -- |
  -- 
+ -- The file is a notification sound
+ FileTypeNotificationSound |
+ -- |
+ -- 
  -- The file is a photo
  FileTypePhoto |
  -- |
@@ -90,6 +94,9 @@ instance Show FileType where
  show FileTypeDocument {  } =
   "FileTypeDocument" ++ cc [ ]
 
+ show FileTypeNotificationSound {  } =
+  "FileTypeNotificationSound" ++ cc [ ]
+
  show FileTypePhoto {  } =
   "FileTypePhoto" ++ cc [ ]
 
@@ -148,6 +155,9 @@ instance T.ToJSON FileType where
  toJSON FileTypeDocument {  } =
   A.object [ "@type" A..= T.String "fileTypeDocument" ]
 
+ toJSON FileTypeNotificationSound {  } =
+  A.object [ "@type" A..= T.String "fileTypeNotificationSound" ]
+
  toJSON FileTypePhoto {  } =
   A.object [ "@type" A..= T.String "fileTypePhoto" ]
 
@@ -192,6 +202,7 @@ instance T.FromJSON FileType where
    "fileTypeAnimation" -> parseFileTypeAnimation v
    "fileTypeAudio" -> parseFileTypeAudio v
    "fileTypeDocument" -> parseFileTypeDocument v
+   "fileTypeNotificationSound" -> parseFileTypeNotificationSound v
    "fileTypePhoto" -> parseFileTypePhoto v
    "fileTypeProfilePhoto" -> parseFileTypeProfilePhoto v
    "fileTypeSecret" -> parseFileTypeSecret v
@@ -221,6 +232,10 @@ instance T.FromJSON FileType where
    parseFileTypeDocument :: A.Value -> T.Parser FileType
    parseFileTypeDocument = A.withObject "FileTypeDocument" $ \o -> do
     return $ FileTypeDocument {  }
+
+   parseFileTypeNotificationSound :: A.Value -> T.Parser FileType
+   parseFileTypeNotificationSound = A.withObject "FileTypeNotificationSound" $ \o -> do
+    return $ FileTypeNotificationSound {  }
 
    parseFileTypePhoto :: A.Value -> T.Parser FileType
    parseFileTypePhoto = A.withObject "FileTypePhoto" $ \o -> do

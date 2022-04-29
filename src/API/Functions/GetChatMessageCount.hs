@@ -17,7 +17,7 @@ import {-# SOURCE #-} qualified API.SearchMessagesFilter as SearchMessagesFilter
 -- 
 -- __filter__ Filter for message content; searchMessagesFilterEmpty is unsupported in this function
 -- 
--- __return_local__ If true, returns count that is available locally without sending network requests, returning -1 if the number of messages is unknown
+-- __return_local__ Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
 data GetChatMessageCount = 
 
  GetChatMessageCount { return_local :: Maybe Bool, _filter :: Maybe SearchMessagesFilter.SearchMessagesFilter, chat_id :: Maybe Int }  deriving (Eq)

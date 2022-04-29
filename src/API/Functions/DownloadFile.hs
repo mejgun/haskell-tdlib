@@ -14,15 +14,13 @@ import Data.List (intercalate)
 -- 
 -- __file_id__ Identifier of the file to download
 -- 
--- __priority__ Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile was called will be downloaded first
+-- __priority__ Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first
 -- 
 -- __offset__ The starting position from which the file needs to be downloaded
 -- 
--- __limit__ Number of bytes which need to be downloaded starting from the "offset" position before the download will be automatically canceled; use 0 to download without a limit
+-- __limit__ Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download without a limit
 -- 
--- __synchronous__ If false, this request returns file state just after the download has been started. If true, this request returns file state only after
--- 
--- -the download has succeeded, has failed, has been canceled or a new downloadFile request with different offset/limit parameters was sent
+-- __synchronous__ Pass true to return response only after the file download has succeeded, has failed, has been canceled, or a new downloadFile request with different offset/limit parameters was sent; pass false to return file state immediately, just after the download has been started
 data DownloadFile = 
 
  DownloadFile { synchronous :: Maybe Bool, limit :: Maybe Int, offset :: Maybe Int, priority :: Maybe Int, file_id :: Maybe Int }  deriving (Eq)

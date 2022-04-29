@@ -15,7 +15,7 @@ import {-# SOURCE #-} qualified API.FormattedText as FormattedText
 -- 
 -- __text__ Text of the terms of service
 -- 
--- __min_user_age__ The minimum age of a user to be able to accept the terms; 0 if any
+-- __min_user_age__ The minimum age of a user to be able to accept the terms; 0 if age isn't restricted
 -- 
 -- __show_popup__ True, if a blocking popup with terms of service must be shown to the user
 data TermsOfService = 

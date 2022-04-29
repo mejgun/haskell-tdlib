@@ -16,7 +16,7 @@ import Data.List (intercalate)
 -- 
 -- __audio_source__ Group call participant's synchronization audio source identifier, or 0 for the current user
 -- 
--- __is_speaking__ True, if the user is speaking
+-- __is_speaking__ Pass true if the user is speaking
 data SetGroupCallParticipantIsSpeaking = 
 
  SetGroupCallParticipantIsSpeaking { is_speaking :: Maybe Bool, audio_source :: Maybe Int, group_call_id :: Maybe Int }  deriving (Eq)

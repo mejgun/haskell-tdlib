@@ -19,7 +19,7 @@ import {-# SOURCE #-} qualified API.MessageReplyInfo as MessageReplyInfo
 -- 
 -- __message_thread_id__ Message thread identifier, unique within the chat
 -- 
--- __reply_info__ Contains information about the message thread
+-- __reply_info__ Information about the message thread
 -- 
 -- __unread_message_count__ Approximate number of unread messages in the message thread
 -- 

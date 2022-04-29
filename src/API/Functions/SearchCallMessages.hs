@@ -16,7 +16,7 @@ import Data.List (intercalate)
 -- 
 -- __limit__ The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 -- 
--- __only_missed__ If true, returns only messages with missed calls
+-- __only_missed__ Pass true to search only for messages with missed/declined calls
 data SearchCallMessages = 
 
  SearchCallMessages { only_missed :: Maybe Bool, limit :: Maybe Int, from_message_id :: Maybe Int }  deriving (Eq)

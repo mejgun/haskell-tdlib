@@ -15,9 +15,9 @@ import {-# SOURCE #-} qualified API.AuthenticationCodeType as AuthenticationCode
 -- 
 -- __phone_number__ A phone number that is being authenticated
 -- 
--- __type__ Describes the way the code was sent to the user
+-- __type__ The way the code was sent to the user
 -- 
--- __next_type__ Describes the way the next code will be sent to the user; may be null
+-- __next_type__ The way the next code will be sent to the user; may be null
 -- 
 -- __timeout__ Timeout before the code can be re-sent, in seconds
 data AuthenticationCodeInfo = 

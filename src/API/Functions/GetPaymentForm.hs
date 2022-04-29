@@ -7,7 +7,7 @@ import Text.Read (readMaybe)
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as T
 import Data.List (intercalate)
-import {-# SOURCE #-} qualified API.PaymentFormTheme as PaymentFormTheme
+import {-# SOURCE #-} qualified API.ThemeParameters as ThemeParameters
 
 -- |
 -- 
@@ -20,7 +20,7 @@ import {-# SOURCE #-} qualified API.PaymentFormTheme as PaymentFormTheme
 -- __theme__ Preferred payment form theme; pass null to use the default theme
 data GetPaymentForm = 
 
- GetPaymentForm { theme :: Maybe PaymentFormTheme.PaymentFormTheme, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)
+ GetPaymentForm { theme :: Maybe ThemeParameters.ThemeParameters, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)
 
 instance Show GetPaymentForm where
  show GetPaymentForm { theme=theme, message_id=message_id, chat_id=chat_id } =

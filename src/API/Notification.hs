@@ -17,16 +17,16 @@ import {-# SOURCE #-} qualified API.NotificationType as NotificationType
 -- 
 -- __date__ Notification date
 -- 
--- __is_silent__ True, if the notification was initially silent
+-- __sound_id__ Identifier of the notification sound to be played; 0 if sound is disabled
 -- 
 -- __type__ Notification type
 data Notification = 
 
- Notification { _type :: Maybe NotificationType.NotificationType, is_silent :: Maybe Bool, date :: Maybe Int, _id :: Maybe Int }  deriving (Eq)
+ Notification { _type :: Maybe NotificationType.NotificationType, sound_id :: Maybe Int, date :: Maybe Int, _id :: Maybe Int }  deriving (Eq)
 
 instance Show Notification where
- show Notification { _type=_type, is_silent=is_silent, date=date, _id=_id } =
-  "Notification" ++ cc [p "_type" _type, p "is_silent" is_silent, p "date" date, p "_id" _id ]
+ show Notification { _type=_type, sound_id=sound_id, date=date, _id=_id } =
+  "Notification" ++ cc [p "_type" _type, p "sound_id" sound_id, p "date" date, p "_id" _id ]
 
 p :: Show a => String -> Maybe a -> String
 p b (Just a) = b ++ " = " ++ show a
@@ -38,8 +38,8 @@ cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
 
 
 instance T.ToJSON Notification where
- toJSON Notification { _type = _type, is_silent = is_silent, date = date, _id = _id } =
-  A.object [ "@type" A..= T.String "notification", "type" A..= _type, "is_silent" A..= is_silent, "date" A..= date, "id" A..= _id ]
+ toJSON Notification { _type = _type, sound_id = sound_id, date = date, _id = _id } =
+  A.object [ "@type" A..= T.String "notification", "type" A..= _type, "sound_id" A..= sound_id, "date" A..= date, "id" A..= _id ]
 
 instance T.FromJSON Notification where
  parseJSON v@(T.Object obj) = do
@@ -51,8 +51,8 @@ instance T.FromJSON Notification where
    parseNotification :: A.Value -> T.Parser Notification
    parseNotification = A.withObject "Notification" $ \o -> do
     _type <- o A..:? "type"
-    is_silent <- o A..:? "is_silent"
+    sound_id <- mconcat [ o A..:? "sound_id", readMaybe <$> (o A..: "sound_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     date <- mconcat [ o A..:? "date", readMaybe <$> (o A..: "date" :: T.Parser String)] :: T.Parser (Maybe Int)
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ Notification { _type = _type, is_silent = is_silent, date = date, _id = _id }
+    return $ Notification { _type = _type, sound_id = sound_id, date = date, _id = _id }
  parseJSON _ = mempty

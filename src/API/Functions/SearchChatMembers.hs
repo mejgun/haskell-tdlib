@@ -17,7 +17,7 @@ import {-# SOURCE #-} qualified API.ChatMembersFilter as ChatMembersFilter
 -- 
 -- __query__ Query to search for
 -- 
--- __limit__ The maximum number of users to be returned
+-- __limit__ The maximum number of users to be returned; up to 200
 -- 
 -- __filter__ The type of users to search for; pass null to search among all chat members
 data SearchChatMembers = 

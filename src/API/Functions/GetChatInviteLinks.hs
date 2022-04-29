@@ -22,7 +22,7 @@ import Data.List (intercalate)
 -- 
 -- __offset_invite_link__ Invite link starting after which to return invite links; use empty string to get results from the beginning
 -- 
--- __limit__ The maximum number of invite links to return
+-- __limit__ The maximum number of invite links to return; up to 100
 data GetChatInviteLinks = 
 
  GetChatInviteLinks { limit :: Maybe Int, offset_invite_link :: Maybe String, offset_date :: Maybe Int, is_revoked :: Maybe Bool, creator_user_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)

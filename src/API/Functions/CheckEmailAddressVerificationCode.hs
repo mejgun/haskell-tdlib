@@ -12,7 +12,7 @@ import Data.List (intercalate)
 -- 
 -- Checks the email address verification code for Telegram Passport 
 -- 
--- __code__ Verification code
+-- __code__ Verification code to check
 data CheckEmailAddressVerificationCode = 
 
  CheckEmailAddressVerificationCode { code :: Maybe String }  deriving (Eq)

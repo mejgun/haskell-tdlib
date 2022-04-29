@@ -12,7 +12,7 @@ import Data.List (intercalate)
 -- 
 -- Returns network data usage statistics. Can be called before authorization 
 -- 
--- __only_current__ If true, returns only data for the current library launch
+-- __only_current__ Pass true to get statistics only for the current library launch
 data GetNetworkStatistics = 
 
  GetNetworkStatistics { only_current :: Maybe Bool }  deriving (Eq)

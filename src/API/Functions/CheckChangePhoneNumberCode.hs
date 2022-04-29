@@ -12,7 +12,7 @@ import Data.List (intercalate)
 -- 
 -- Checks the authentication code sent to confirm a new phone number of the user 
 -- 
--- __code__ Verification code received by SMS, phone call or flash call
+-- __code__ Authentication code to check
 data CheckChangePhoneNumberCode = 
 
  CheckChangePhoneNumberCode { code :: Maybe String }  deriving (Eq)

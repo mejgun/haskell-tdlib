@@ -14,7 +14,7 @@ import Data.List (intercalate)
 -- 
 -- __link__ The HTTP link
 -- 
--- __allow_write_access__ True, if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
+-- __allow_write_access__ Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
 data GetExternalLink = 
 
  GetExternalLink { allow_write_access :: Maybe Bool, link :: Maybe String }  deriving (Eq)

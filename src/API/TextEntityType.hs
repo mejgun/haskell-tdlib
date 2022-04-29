@@ -62,6 +62,10 @@ data TextEntityType =
  TextEntityTypeStrikethrough |
  -- |
  -- 
+ -- A spoiler text. Not supported in secret chats
+ TextEntityTypeSpoiler |
+ -- |
+ -- 
  -- Text that must be formatted as if inside a code HTML tag
  TextEntityTypeCode |
  -- |
@@ -130,6 +134,9 @@ instance Show TextEntityType where
  show TextEntityTypeStrikethrough {  } =
   "TextEntityTypeStrikethrough" ++ cc [ ]
 
+ show TextEntityTypeSpoiler {  } =
+  "TextEntityTypeSpoiler" ++ cc [ ]
+
  show TextEntityTypeCode {  } =
   "TextEntityTypeCode" ++ cc [ ]
 
@@ -194,6 +201,9 @@ instance T.ToJSON TextEntityType where
  toJSON TextEntityTypeStrikethrough {  } =
   A.object [ "@type" A..= T.String "textEntityTypeStrikethrough" ]
 
+ toJSON TextEntityTypeSpoiler {  } =
+  A.object [ "@type" A..= T.String "textEntityTypeSpoiler" ]
+
  toJSON TextEntityTypeCode {  } =
   A.object [ "@type" A..= T.String "textEntityTypeCode" ]
 
@@ -228,6 +238,7 @@ instance T.FromJSON TextEntityType where
    "textEntityTypeItalic" -> parseTextEntityTypeItalic v
    "textEntityTypeUnderline" -> parseTextEntityTypeUnderline v
    "textEntityTypeStrikethrough" -> parseTextEntityTypeStrikethrough v
+   "textEntityTypeSpoiler" -> parseTextEntityTypeSpoiler v
    "textEntityTypeCode" -> parseTextEntityTypeCode v
    "textEntityTypePre" -> parseTextEntityTypePre v
    "textEntityTypePreCode" -> parseTextEntityTypePreCode v
@@ -283,6 +294,10 @@ instance T.FromJSON TextEntityType where
    parseTextEntityTypeStrikethrough :: A.Value -> T.Parser TextEntityType
    parseTextEntityTypeStrikethrough = A.withObject "TextEntityTypeStrikethrough" $ \o -> do
     return $ TextEntityTypeStrikethrough {  }
+
+   parseTextEntityTypeSpoiler :: A.Value -> T.Parser TextEntityType
+   parseTextEntityTypeSpoiler = A.withObject "TextEntityTypeSpoiler" $ \o -> do
+    return $ TextEntityTypeSpoiler {  }
 
    parseTextEntityTypeCode :: A.Value -> T.Parser TextEntityType
    parseTextEntityTypeCode = A.withObject "TextEntityTypeCode" $ \o -> do

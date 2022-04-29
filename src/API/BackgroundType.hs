@@ -25,7 +25,7 @@ data BackgroundType =
  -- 
  -- A PNG or TGV (gzipped subset of SVG with MIME type "application/x-tgwallpattern") pattern to be combined with the background fill chosen by the user
  -- 
- -- __fill__ Description of the background fill
+ -- __fill__ Fill of the background
  -- 
  -- __intensity__ Intensity of the pattern when it is shown above the filled background; 0-100.
  -- 
@@ -37,7 +37,7 @@ data BackgroundType =
  -- 
  -- A filled background 
  -- 
- -- __fill__ Description of the background fill
+ -- __fill__ The background fill
  BackgroundTypeFill { fill :: Maybe BackgroundFill.BackgroundFill }  deriving (Eq)
 
 instance Show BackgroundType where

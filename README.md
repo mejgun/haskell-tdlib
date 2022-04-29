@@ -18,7 +18,7 @@ You may need to specify lib path before execution
 
 ## Docs
 
-Clone the repo and open `docs/index.html`
+[Online](https://haskell-tdlib.netlify.app). Offline - `docs/index.html`
 
 ## FAQ
 

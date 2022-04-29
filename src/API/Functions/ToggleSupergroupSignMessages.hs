@@ -10,7 +10,7 @@ import Data.List (intercalate)
 
 -- |
 -- 
--- Toggles sender signatures messages sent in a channel; requires can_change_info administrator right 
+-- Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right 
 -- 
 -- __supergroup_id__ Identifier of the channel
 -- 

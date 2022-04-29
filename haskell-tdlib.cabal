@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: eb85e90b9f0568da99b959ca19b01e235a490c7f8f59a4139dbda9d89d5a3ce9
+-- hash: 00caf9b3f7ddc060df6c379c50a5034b30e4ca02c583d953a9340e28dda825d1
 
 name:           haskell-tdlib
 version:        0.1.1.0
@@ -28,16 +28,22 @@ source-repository head
 library
   exposed-modules:
       API.AccountTtl
+      API.AddedReaction
+      API.AddedReactions
       API.Address
       API.AnimatedChatPhoto
+      API.AnimatedEmoji
       API.Animation
       API.Animations
+      API.AttachmentMenuBot
+      API.AttachmentMenuBotColor
       API.Audio
       API.AuthenticationCodeInfo
       API.AuthenticationCodeType
       API.AuthorizationState
       API.AutoDownloadSettings
       API.AutoDownloadSettingsPresets
+      API.AvailableReactions
       API.Background
       API.BackgroundFill
       API.Backgrounds
@@ -49,6 +55,8 @@ library
       API.BotCommand
       API.BotCommands
       API.BotCommandScope
+      API.BotInfo
+      API.BotMenuButton
       API.Call
       API.CallbackQueryAnswer
       API.CallbackQueryPayload
@@ -64,6 +72,7 @@ library
       API.ChatAction
       API.ChatActionBar
       API.ChatAdministrator
+      API.ChatAdministratorRights
       API.ChatAdministrators
       API.ChatEvent
       API.ChatEventAction
@@ -78,6 +87,9 @@ library
       API.ChatInviteLinkMember
       API.ChatInviteLinkMembers
       API.ChatInviteLinks
+      API.ChatJoinRequest
+      API.ChatJoinRequests
+      API.ChatJoinRequestsInfo
       API.ChatList
       API.ChatLists
       API.ChatLocation
@@ -122,6 +134,7 @@ library
       API.DeviceToken
       API.DiceStickers
       API.Document
+      API.DownloadedFileCounts
       API.DraftMessage
       API.EmailAddressAuthenticationCodeInfo
       API.Emojis
@@ -129,9 +142,11 @@ library
       API.EncryptedPassportElement
       API.Error
       API.File
+      API.FileDownload
       API.FilePart
       API.FileType
       API.FormattedText
+      API.FoundFileDownloads
       API.FoundMessages
       API.Functions.AcceptCall
       API.Functions.AcceptTermsOfService
@@ -141,6 +156,7 @@ library
       API.Functions.AddContact
       API.Functions.AddCustomServerLanguagePack
       API.Functions.AddFavoriteSticker
+      API.Functions.AddFileToDownloads
       API.Functions.AddLocalMessage
       API.Functions.AddLogMessage
       API.Functions.AddNetworkStatistics
@@ -148,12 +164,14 @@ library
       API.Functions.AddRecentlyFoundChat
       API.Functions.AddRecentSticker
       API.Functions.AddSavedAnimation
+      API.Functions.AddSavedNotificationSound
       API.Functions.AddStickerToSet
       API.Functions.AnswerCallbackQuery
       API.Functions.AnswerCustomQuery
       API.Functions.AnswerInlineQuery
       API.Functions.AnswerPreCheckoutQuery
       API.Functions.AnswerShippingQuery
+      API.Functions.AnswerWebAppQuery
       API.Functions.BanChatMember
       API.Functions.BlockMessageSenderFromReplies
       API.Functions.CancelDownloadFile
@@ -187,6 +205,7 @@ library
       API.Functions.Close
       API.Functions.CloseChat
       API.Functions.CloseSecretChat
+      API.Functions.CloseWebApp
       API.Functions.ConfirmQrCodeAuthentication
       API.Functions.CreateBasicGroupChat
       API.Functions.CreateCall
@@ -200,6 +219,7 @@ library
       API.Functions.CreateSecretChat
       API.Functions.CreateSupergroupChat
       API.Functions.CreateTemporaryPassword
+      API.Functions.CreateVideoChat
       API.Functions.CreateVoiceChat
       API.Functions.DeleteAccount
       API.Functions.DeleteAllCallMessages
@@ -207,6 +227,8 @@ library
       API.Functions.DeleteChat
       API.Functions.DeleteChatFilter
       API.Functions.DeleteChatHistory
+      API.Functions.DeleteChatMessagesByDate
+      API.Functions.DeleteChatMessagesBySender
       API.Functions.DeleteChatMessagesFromUser
       API.Functions.DeleteChatReplyMarkup
       API.Functions.DeleteCommands
@@ -241,6 +263,7 @@ library
       API.Functions.EditMessageText
       API.Functions.EditProxy
       API.Functions.EnableProxy
+      API.Functions.EndGroupCall
       API.Functions.EndGroupCallRecording
       API.Functions.EndGroupCallScreenSharing
       API.Functions.FinishFileGeneration
@@ -249,10 +272,12 @@ library
       API.Functions.GetActiveLiveLocationMessages
       API.Functions.GetActiveSessions
       API.Functions.GetAllPassportElements
+      API.Functions.GetAnimatedEmoji
       API.Functions.GetApplicationConfig
       API.Functions.GetApplicationDownloadLink
       API.Functions.GetArchivedStickerSets
       API.Functions.GetAttachedStickerSets
+      API.Functions.GetAttachmentMenuBot
       API.Functions.GetAuthorizationState
       API.Functions.GetAutoDownloadSettingsPresets
       API.Functions.GetBackgrounds
@@ -265,6 +290,7 @@ library
       API.Functions.GetCallbackQueryMessage
       API.Functions.GetChat
       API.Functions.GetChatAdministrators
+      API.Functions.GetChatAvailableMessageSenders
       API.Functions.GetChatEventLog
       API.Functions.GetChatFilter
       API.Functions.GetChatFilterDefaultIconName
@@ -273,14 +299,18 @@ library
       API.Functions.GetChatInviteLinkCounts
       API.Functions.GetChatInviteLinkMembers
       API.Functions.GetChatInviteLinks
+      API.Functions.GetChatJoinRequests
       API.Functions.GetChatListsToAddChat
       API.Functions.GetChatMember
       API.Functions.GetChatMessageByDate
+      API.Functions.GetChatMessageCalendar
       API.Functions.GetChatMessageCount
       API.Functions.GetChatNotificationSettingsExceptions
       API.Functions.GetChatPinnedMessage
       API.Functions.GetChats
       API.Functions.GetChatScheduledMessages
+      API.Functions.GetChatSparseMessagePositions
+      API.Functions.GetChatSponsoredMessage
       API.Functions.GetChatSponsoredMessages
       API.Functions.GetChatStatistics
       API.Functions.GetCommands
@@ -303,6 +333,7 @@ library
       API.Functions.GetGameHighScores
       API.Functions.GetGroupCall
       API.Functions.GetGroupCallInviteLink
+      API.Functions.GetGroupCallStreams
       API.Functions.GetGroupCallStreamSegment
       API.Functions.GetGroupsInCommon
       API.Functions.GetImportedContactCount
@@ -326,7 +357,10 @@ library
       API.Functions.GetMapThumbnailFile
       API.Functions.GetMarkdownText
       API.Functions.GetMe
+      API.Functions.GetMenuButton
       API.Functions.GetMessage
+      API.Functions.GetMessageAddedReactions
+      API.Functions.GetMessageAvailableReactions
       API.Functions.GetMessageEmbeddingCode
       API.Functions.GetMessageFileType
       API.Functions.GetMessageImportConfirmationText
@@ -363,6 +397,8 @@ library
       API.Functions.GetRemoteFile
       API.Functions.GetRepliedMessage
       API.Functions.GetSavedAnimations
+      API.Functions.GetSavedNotificationSound
+      API.Functions.GetSavedNotificationSounds
       API.Functions.GetSavedOrderInfo
       API.Functions.GetScopeNotificationSettings
       API.Functions.GetSecretChat
@@ -381,13 +417,17 @@ library
       API.Functions.GetSupportUser
       API.Functions.GetTemporaryPasswordState
       API.Functions.GetTextEntities
+      API.Functions.GetThemeParametersJsonString
       API.Functions.GetTopChats
       API.Functions.GetTrendingStickerSets
       API.Functions.GetUser
       API.Functions.GetUserFullInfo
       API.Functions.GetUserPrivacySettingRules
       API.Functions.GetUserProfilePhotos
+      API.Functions.GetVideoChatAvailableParticipants
+      API.Functions.GetVideoChatRtmpUrl
       API.Functions.GetVoiceChatAvailableParticipants
+      API.Functions.GetWebAppUrl
       API.Functions.GetWebPageInstantView
       API.Functions.GetWebPagePreview
       API.Functions.HideSuggestedAction
@@ -404,22 +444,28 @@ library
       API.Functions.LogOut
       API.Functions.OpenChat
       API.Functions.OpenMessageContent
+      API.Functions.OpenWebApp
       API.Functions.OptimizeStorage
       API.Functions.ParseMarkdown
       API.Functions.ParseTextEntities
       API.Functions.PinChatMessage
       API.Functions.PingProxy
+      API.Functions.ProcessChatJoinRequest
+      API.Functions.ProcessChatJoinRequests
       API.Functions.ProcessPushNotification
       API.Functions.ReadAllChatMentions
+      API.Functions.ReadAllChatReactions
       API.Functions.ReadFilePart
       API.Functions.RecoverAuthenticationPassword
       API.Functions.RecoverPassword
       API.Functions.RegisterDevice
       API.Functions.RegisterUser
+      API.Functions.RemoveAllFilesFromDownloads
       API.Functions.RemoveBackground
       API.Functions.RemoveChatActionBar
       API.Functions.RemoveContacts
       API.Functions.RemoveFavoriteSticker
+      API.Functions.RemoveFileFromDownloads
       API.Functions.RemoveNotification
       API.Functions.RemoveNotificationGroup
       API.Functions.RemoveProxy
@@ -427,11 +473,13 @@ library
       API.Functions.RemoveRecentlyFoundChat
       API.Functions.RemoveRecentSticker
       API.Functions.RemoveSavedAnimation
+      API.Functions.RemoveSavedNotificationSound
       API.Functions.RemoveStickerFromSet
       API.Functions.RemoveTopChat
       API.Functions.ReorderChatFilters
       API.Functions.ReorderInstalledStickerSets
       API.Functions.ReplacePrimaryChatInviteLink
+      API.Functions.ReplaceVideoChatRtmpUrl
       API.Functions.ReportChat
       API.Functions.ReportChatPhoto
       API.Functions.ReportSupergroupSpam
@@ -462,17 +510,21 @@ library
       API.Functions.SearchChatsOnServer
       API.Functions.SearchContacts
       API.Functions.SearchEmojis
+      API.Functions.SearchFileDownloads
       API.Functions.SearchHashtags
       API.Functions.SearchInstalledStickerSets
       API.Functions.SearchMessages
+      API.Functions.SearchOutgoingDocumentMessages
       API.Functions.SearchPublicChat
       API.Functions.SearchPublicChats
       API.Functions.SearchSecretMessages
       API.Functions.SearchStickers
       API.Functions.SearchStickerSet
       API.Functions.SearchStickerSets
+      API.Functions.SearchUserByPhoneNumber
       API.Functions.SendBotStartMessage
       API.Functions.SendCallDebugInformation
+      API.Functions.SendCallLog
       API.Functions.SendCallRating
       API.Functions.SendCallSignalingData
       API.Functions.SendChatAction
@@ -486,6 +538,7 @@ library
       API.Functions.SendPaymentForm
       API.Functions.SendPhoneNumberConfirmationCode
       API.Functions.SendPhoneNumberVerificationCode
+      API.Functions.SendWebAppData
       API.Functions.SetAccountTtl
       API.Functions.SetAlarm
       API.Functions.SetAuthenticationPhoneNumber
@@ -493,12 +546,15 @@ library
       API.Functions.SetBackground
       API.Functions.SetBio
       API.Functions.SetBotUpdatesStatus
+      API.Functions.SetChatAvailableReactions
       API.Functions.SetChatClientData
       API.Functions.SetChatDescription
       API.Functions.SetChatDiscussionGroup
       API.Functions.SetChatDraftMessage
       API.Functions.SetChatLocation
       API.Functions.SetChatMemberStatus
+      API.Functions.SetChatMessageSender
+      API.Functions.SetChatMessageTtl
       API.Functions.SetChatMessageTtlSetting
       API.Functions.SetChatNotificationSettings
       API.Functions.SetChatPermissions
@@ -510,16 +566,21 @@ library
       API.Functions.SetCustomLanguagePack
       API.Functions.SetCustomLanguagePackString
       API.Functions.SetDatabaseEncryptionKey
+      API.Functions.SetDefaultChannelAdministratorRights
+      API.Functions.SetDefaultGroupAdministratorRights
       API.Functions.SetFileGenerationProgress
       API.Functions.SetGameScore
       API.Functions.SetGroupCallParticipantIsSpeaking
       API.Functions.SetGroupCallParticipantVolumeLevel
       API.Functions.SetGroupCallTitle
+      API.Functions.SetInactiveSessionTtl
       API.Functions.SetInlineGameScore
       API.Functions.SetLocation
       API.Functions.SetLogStream
       API.Functions.SetLogTagVerbosityLevel
       API.Functions.SetLogVerbosityLevel
+      API.Functions.SetMenuButton
+      API.Functions.SetMessageReaction
       API.Functions.SetName
       API.Functions.SetNetworkType
       API.Functions.SetOption
@@ -538,6 +599,7 @@ library
       API.Functions.SetTdlibParameters
       API.Functions.SetUsername
       API.Functions.SetUserPrivacySettingRules
+      API.Functions.SetVideoChatDefaultParticipant
       API.Functions.SetVoiceChatDefaultParticipant
       API.Functions.SharePhoneNumber
       API.Functions.StartGroupCallRecording
@@ -560,9 +622,13 @@ library
       API.Functions.TestReturnError
       API.Functions.TestSquareInt
       API.Functions.TestUseUpdate
+      API.Functions.ToggleAllDownloadsArePaused
+      API.Functions.ToggleBotIsAddedToAttachmentMenu
       API.Functions.ToggleChatDefaultDisableNotification
+      API.Functions.ToggleChatHasProtectedContent
       API.Functions.ToggleChatIsMarkedAsUnread
       API.Functions.ToggleChatIsPinned
+      API.Functions.ToggleDownloadIsPaused
       API.Functions.ToggleGroupCallEnabledStartNotification
       API.Functions.ToggleGroupCallIsMyVideoEnabled
       API.Functions.ToggleGroupCallIsMyVideoPaused
@@ -571,10 +637,13 @@ library
       API.Functions.ToggleGroupCallParticipantIsMuted
       API.Functions.ToggleGroupCallScreenSharingIsPaused
       API.Functions.ToggleMessageSenderIsBlocked
+      API.Functions.ToggleSessionCanAcceptCalls
+      API.Functions.ToggleSessionCanAcceptSecretChats
       API.Functions.ToggleSupergroupIsAllHistoryAvailable
       API.Functions.ToggleSupergroupIsBroadcastGroup
       API.Functions.ToggleSupergroupSignMessages
       API.Functions.TransferChatOwnership
+      API.Functions.TranslateText
       API.Functions.UnpinAllChatMessages
       API.Functions.UnpinChatMessage
       API.Functions.UpgradeBasicGroupChatToSupergroupChat
@@ -594,6 +663,8 @@ library
       API.GroupCallParticipant
       API.GroupCallParticipantVideoInfo
       API.GroupCallRecentSpeaker
+      API.GroupCallStream
+      API.GroupCallStreams
       API.GroupCallVideoQuality
       API.GroupCallVideoSourceGroup
       API.Hashtags
@@ -638,6 +709,8 @@ library
       API.MaskPoint
       API.MaskPosition
       API.Message
+      API.MessageCalendar
+      API.MessageCalendarDay
       API.MessageContent
       API.MessageCopyOptions
       API.MessageFileType
@@ -646,6 +719,9 @@ library
       API.MessageInteractionInfo
       API.MessageLink
       API.MessageLinkInfo
+      API.MessagePosition
+      API.MessagePositions
+      API.MessageReaction
       API.MessageReplyInfo
       API.Messages
       API.MessageSchedulingState
@@ -663,6 +739,8 @@ library
       API.NotificationGroup
       API.NotificationGroupType
       API.NotificationSettingsScope
+      API.NotificationSound
+      API.NotificationSounds
       API.NotificationType
       API.Ok
       API.OptionValue
@@ -706,6 +784,7 @@ library
       API.PublicChatType
       API.PushMessageContent
       API.PushReceiverId
+      API.Reaction
       API.RecommendedChatFilter
       API.RecommendedChatFilters
       API.RecoveryEmailAddress
@@ -713,12 +792,14 @@ library
       API.ReplyMarkup
       API.ResetPasswordResult
       API.RichText
+      API.RtmpUrl
       API.SavedCredentials
       API.ScopeNotificationSettings
       API.SearchMessagesFilter
       API.Seconds
       API.SecretChat
       API.SecretChatState
+      API.SentWebAppMessage
       API.Session
       API.Sessions
       API.ShippingOption
@@ -731,6 +812,7 @@ library
       API.StickerSet
       API.StickerSetInfo
       API.StickerSets
+      API.StickerType
       API.StorageStatistics
       API.StorageStatisticsByChat
       API.StorageStatisticsByFileType
@@ -754,6 +836,7 @@ library
       API.TextEntity
       API.TextEntityType
       API.TextParseMode
+      API.ThemeParameters
       API.ThemeSettings
       API.Thumbnail
       API.ThumbnailFormat
@@ -761,6 +844,7 @@ library
       API.TMeUrls
       API.TMeUrlType
       API.TopChatCategory
+      API.UnreadReaction
       API.Update
       API.Updates
       API.User
@@ -775,9 +859,11 @@ library
       API.VectorPathCommand
       API.Venue
       API.Video
+      API.VideoChat
       API.VideoNote
       API.VoiceChat
       API.VoiceNote
+      API.WebAppInfo
       API.WebPage
       API.WebPageInstantView
       Defaults

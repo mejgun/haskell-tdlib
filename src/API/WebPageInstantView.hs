@@ -18,7 +18,7 @@ import {-# SOURCE #-} qualified API.PageBlock as PageBlock
 -- 
 -- __view_count__ Number of the instant view views; 0 if unknown
 -- 
--- __version__ Version of the instant view, currently can be 1 or 2
+-- __version__ Version of the instant view; currently, can be 1 or 2
 -- 
 -- __is_rtl__ True, if the instant view must be shown from right to left
 -- 

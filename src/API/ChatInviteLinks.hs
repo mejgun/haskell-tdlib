@@ -13,7 +13,7 @@ import {-# SOURCE #-} qualified API.ChatInviteLink as ChatInviteLink
 -- 
 -- Contains a list of chat invite links 
 -- 
--- __total_count__ Approximate total count of chat invite links found
+-- __total_count__ Approximate total number of chat invite links found
 -- 
 -- __invite_links__ List of invite links
 data ChatInviteLinks = 

@@ -14,7 +14,7 @@ import Data.List (intercalate)
 -- 
 -- __supergroup_id__ Supergroup or channel identifier
 -- 
--- __force__ If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
+-- __force__ Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
 data CreateSupergroupChat = 
 
  CreateSupergroupChat { force :: Maybe Bool, supergroup_id :: Maybe Int }  deriving (Eq)

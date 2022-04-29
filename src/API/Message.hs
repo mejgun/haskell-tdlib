@@ -9,6 +9,7 @@ import qualified Data.Aeson.Types as T
 import Data.List (intercalate)
 import {-# SOURCE #-} qualified API.ReplyMarkup as ReplyMarkup
 import {-# SOURCE #-} qualified API.MessageContent as MessageContent
+import {-# SOURCE #-} qualified API.UnreadReaction as UnreadReaction
 import {-# SOURCE #-} qualified API.MessageInteractionInfo as MessageInteractionInfo
 import {-# SOURCE #-} qualified API.MessageForwardInfo as MessageForwardInfo
 import {-# SOURCE #-} qualified API.MessageSchedulingState as MessageSchedulingState
@@ -21,13 +22,13 @@ import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 -- 
 -- __id__ Message identifier; unique for the chat to which the message belongs
 -- 
--- __sender__ The sender of the message
+-- __sender_id__ Identifier of the sender of the message
 -- 
 -- __chat_id__ Chat identifier
 -- 
--- __sending_state__ Information about the sending state of the message; may be null
+-- __sending_state__ The sending state of the message; may be null
 -- 
--- __scheduling_state__ Information about the scheduling state of the message; may be null
+-- __scheduling_state__ The scheduling state of the message; may be null
 -- 
 -- __is_outgoing__ True, if the message is outgoing
 -- 
@@ -37,17 +38,21 @@ import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 -- 
 -- __can_be_forwarded__ True, if the message can be forwarded
 -- 
+-- __can_be_saved__ True, if content of the message can be saved locally or copied
+-- 
 -- __can_be_deleted_only_for_self__ True, if the message can be deleted only for the current user while other users will continue to see it
 -- 
 -- __can_be_deleted_for_all_users__ True, if the message can be deleted for all users
 -- 
--- __can_get_statistics__ True, if the message statistics are available
+-- __can_get_added_reactions__ True, if the list of added reactions is available through getMessageAddedReactions
 -- 
--- __can_get_message_thread__ True, if the message thread info is available
+-- __can_get_statistics__ True, if the message statistics are available through getMessageStatistics
+-- 
+-- __can_get_message_thread__ True, if information about the message thread is available through getMessageThread
 -- 
 -- __can_get_viewers__ True, if chat members already viewed the message can be received through getMessageViewers
 -- 
--- __can_get_media_timestamp_links__ True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description
+-- __can_get_media_timestamp_links__ True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description through getMessageLink
 -- 
 -- __has_timestamped_media__ True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
 -- 
@@ -62,6 +67,8 @@ import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 -- __forward_info__ Information about the initial message sender; may be null
 -- 
 -- __interaction_info__ Information about interactions with the message; may be null
+-- 
+-- __unread_reactions__ Information about unread reactions added to the message
 -- 
 -- __reply_in_chat_id__ If non-zero, the identifier of the chat to which the replied message belongs; Currently, only messages in the Replies chat can have different reply_in_chat_id and chat_id
 -- 
@@ -86,11 +93,11 @@ import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 -- __reply_markup__ Reply markup for the message; may be null
 data Message = 
 
- Message { reply_markup :: Maybe ReplyMarkup.ReplyMarkup, content :: Maybe MessageContent.MessageContent, restriction_reason :: Maybe String, media_album_id :: Maybe Int, author_signature :: Maybe String, via_bot_user_id :: Maybe Int, ttl_expires_in :: Maybe Float, ttl :: Maybe Int, message_thread_id :: Maybe Int, reply_to_message_id :: Maybe Int, reply_in_chat_id :: Maybe Int, interaction_info :: Maybe MessageInteractionInfo.MessageInteractionInfo, forward_info :: Maybe MessageForwardInfo.MessageForwardInfo, edit_date :: Maybe Int, date :: Maybe Int, contains_unread_mention :: Maybe Bool, is_channel_post :: Maybe Bool, has_timestamped_media :: Maybe Bool, can_get_media_timestamp_links :: Maybe Bool, can_get_viewers :: Maybe Bool, can_get_message_thread :: Maybe Bool, can_get_statistics :: Maybe Bool, can_be_deleted_for_all_users :: Maybe Bool, can_be_deleted_only_for_self :: Maybe Bool, can_be_forwarded :: Maybe Bool, can_be_edited :: Maybe Bool, is_pinned :: Maybe Bool, is_outgoing :: Maybe Bool, scheduling_state :: Maybe MessageSchedulingState.MessageSchedulingState, sending_state :: Maybe MessageSendingState.MessageSendingState, chat_id :: Maybe Int, sender :: Maybe MessageSender.MessageSender, _id :: Maybe Int }  deriving (Eq)
+ Message { reply_markup :: Maybe ReplyMarkup.ReplyMarkup, content :: Maybe MessageContent.MessageContent, restriction_reason :: Maybe String, media_album_id :: Maybe Int, author_signature :: Maybe String, via_bot_user_id :: Maybe Int, ttl_expires_in :: Maybe Float, ttl :: Maybe Int, message_thread_id :: Maybe Int, reply_to_message_id :: Maybe Int, reply_in_chat_id :: Maybe Int, unread_reactions :: Maybe [UnreadReaction.UnreadReaction], interaction_info :: Maybe MessageInteractionInfo.MessageInteractionInfo, forward_info :: Maybe MessageForwardInfo.MessageForwardInfo, edit_date :: Maybe Int, date :: Maybe Int, contains_unread_mention :: Maybe Bool, is_channel_post :: Maybe Bool, has_timestamped_media :: Maybe Bool, can_get_media_timestamp_links :: Maybe Bool, can_get_viewers :: Maybe Bool, can_get_message_thread :: Maybe Bool, can_get_statistics :: Maybe Bool, can_get_added_reactions :: Maybe Bool, can_be_deleted_for_all_users :: Maybe Bool, can_be_deleted_only_for_self :: Maybe Bool, can_be_saved :: Maybe Bool, can_be_forwarded :: Maybe Bool, can_be_edited :: Maybe Bool, is_pinned :: Maybe Bool, is_outgoing :: Maybe Bool, scheduling_state :: Maybe MessageSchedulingState.MessageSchedulingState, sending_state :: Maybe MessageSendingState.MessageSendingState, chat_id :: Maybe Int, sender_id :: Maybe MessageSender.MessageSender, _id :: Maybe Int }  deriving (Eq)
 
 instance Show Message where
- show Message { reply_markup=reply_markup, content=content, restriction_reason=restriction_reason, media_album_id=media_album_id, author_signature=author_signature, via_bot_user_id=via_bot_user_id, ttl_expires_in=ttl_expires_in, ttl=ttl, message_thread_id=message_thread_id, reply_to_message_id=reply_to_message_id, reply_in_chat_id=reply_in_chat_id, interaction_info=interaction_info, forward_info=forward_info, edit_date=edit_date, date=date, contains_unread_mention=contains_unread_mention, is_channel_post=is_channel_post, has_timestamped_media=has_timestamped_media, can_get_media_timestamp_links=can_get_media_timestamp_links, can_get_viewers=can_get_viewers, can_get_message_thread=can_get_message_thread, can_get_statistics=can_get_statistics, can_be_deleted_for_all_users=can_be_deleted_for_all_users, can_be_deleted_only_for_self=can_be_deleted_only_for_self, can_be_forwarded=can_be_forwarded, can_be_edited=can_be_edited, is_pinned=is_pinned, is_outgoing=is_outgoing, scheduling_state=scheduling_state, sending_state=sending_state, chat_id=chat_id, sender=sender, _id=_id } =
-  "Message" ++ cc [p "reply_markup" reply_markup, p "content" content, p "restriction_reason" restriction_reason, p "media_album_id" media_album_id, p "author_signature" author_signature, p "via_bot_user_id" via_bot_user_id, p "ttl_expires_in" ttl_expires_in, p "ttl" ttl, p "message_thread_id" message_thread_id, p "reply_to_message_id" reply_to_message_id, p "reply_in_chat_id" reply_in_chat_id, p "interaction_info" interaction_info, p "forward_info" forward_info, p "edit_date" edit_date, p "date" date, p "contains_unread_mention" contains_unread_mention, p "is_channel_post" is_channel_post, p "has_timestamped_media" has_timestamped_media, p "can_get_media_timestamp_links" can_get_media_timestamp_links, p "can_get_viewers" can_get_viewers, p "can_get_message_thread" can_get_message_thread, p "can_get_statistics" can_get_statistics, p "can_be_deleted_for_all_users" can_be_deleted_for_all_users, p "can_be_deleted_only_for_self" can_be_deleted_only_for_self, p "can_be_forwarded" can_be_forwarded, p "can_be_edited" can_be_edited, p "is_pinned" is_pinned, p "is_outgoing" is_outgoing, p "scheduling_state" scheduling_state, p "sending_state" sending_state, p "chat_id" chat_id, p "sender" sender, p "_id" _id ]
+ show Message { reply_markup=reply_markup, content=content, restriction_reason=restriction_reason, media_album_id=media_album_id, author_signature=author_signature, via_bot_user_id=via_bot_user_id, ttl_expires_in=ttl_expires_in, ttl=ttl, message_thread_id=message_thread_id, reply_to_message_id=reply_to_message_id, reply_in_chat_id=reply_in_chat_id, unread_reactions=unread_reactions, interaction_info=interaction_info, forward_info=forward_info, edit_date=edit_date, date=date, contains_unread_mention=contains_unread_mention, is_channel_post=is_channel_post, has_timestamped_media=has_timestamped_media, can_get_media_timestamp_links=can_get_media_timestamp_links, can_get_viewers=can_get_viewers, can_get_message_thread=can_get_message_thread, can_get_statistics=can_get_statistics, can_get_added_reactions=can_get_added_reactions, can_be_deleted_for_all_users=can_be_deleted_for_all_users, can_be_deleted_only_for_self=can_be_deleted_only_for_self, can_be_saved=can_be_saved, can_be_forwarded=can_be_forwarded, can_be_edited=can_be_edited, is_pinned=is_pinned, is_outgoing=is_outgoing, scheduling_state=scheduling_state, sending_state=sending_state, chat_id=chat_id, sender_id=sender_id, _id=_id } =
+  "Message" ++ cc [p "reply_markup" reply_markup, p "content" content, p "restriction_reason" restriction_reason, p "media_album_id" media_album_id, p "author_signature" author_signature, p "via_bot_user_id" via_bot_user_id, p "ttl_expires_in" ttl_expires_in, p "ttl" ttl, p "message_thread_id" message_thread_id, p "reply_to_message_id" reply_to_message_id, p "reply_in_chat_id" reply_in_chat_id, p "unread_reactions" unread_reactions, p "interaction_info" interaction_info, p "forward_info" forward_info, p "edit_date" edit_date, p "date" date, p "contains_unread_mention" contains_unread_mention, p "is_channel_post" is_channel_post, p "has_timestamped_media" has_timestamped_media, p "can_get_media_timestamp_links" can_get_media_timestamp_links, p "can_get_viewers" can_get_viewers, p "can_get_message_thread" can_get_message_thread, p "can_get_statistics" can_get_statistics, p "can_get_added_reactions" can_get_added_reactions, p "can_be_deleted_for_all_users" can_be_deleted_for_all_users, p "can_be_deleted_only_for_self" can_be_deleted_only_for_self, p "can_be_saved" can_be_saved, p "can_be_forwarded" can_be_forwarded, p "can_be_edited" can_be_edited, p "is_pinned" is_pinned, p "is_outgoing" is_outgoing, p "scheduling_state" scheduling_state, p "sending_state" sending_state, p "chat_id" chat_id, p "sender_id" sender_id, p "_id" _id ]
 
 p :: Show a => String -> Maybe a -> String
 p b (Just a) = b ++ " = " ++ show a
@@ -102,8 +109,8 @@ cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
 
 
 instance T.ToJSON Message where
- toJSON Message { reply_markup = reply_markup, content = content, restriction_reason = restriction_reason, media_album_id = media_album_id, author_signature = author_signature, via_bot_user_id = via_bot_user_id, ttl_expires_in = ttl_expires_in, ttl = ttl, message_thread_id = message_thread_id, reply_to_message_id = reply_to_message_id, reply_in_chat_id = reply_in_chat_id, interaction_info = interaction_info, forward_info = forward_info, edit_date = edit_date, date = date, contains_unread_mention = contains_unread_mention, is_channel_post = is_channel_post, has_timestamped_media = has_timestamped_media, can_get_media_timestamp_links = can_get_media_timestamp_links, can_get_viewers = can_get_viewers, can_get_message_thread = can_get_message_thread, can_get_statistics = can_get_statistics, can_be_deleted_for_all_users = can_be_deleted_for_all_users, can_be_deleted_only_for_self = can_be_deleted_only_for_self, can_be_forwarded = can_be_forwarded, can_be_edited = can_be_edited, is_pinned = is_pinned, is_outgoing = is_outgoing, scheduling_state = scheduling_state, sending_state = sending_state, chat_id = chat_id, sender = sender, _id = _id } =
-  A.object [ "@type" A..= T.String "message", "reply_markup" A..= reply_markup, "content" A..= content, "restriction_reason" A..= restriction_reason, "media_album_id" A..= media_album_id, "author_signature" A..= author_signature, "via_bot_user_id" A..= via_bot_user_id, "ttl_expires_in" A..= ttl_expires_in, "ttl" A..= ttl, "message_thread_id" A..= message_thread_id, "reply_to_message_id" A..= reply_to_message_id, "reply_in_chat_id" A..= reply_in_chat_id, "interaction_info" A..= interaction_info, "forward_info" A..= forward_info, "edit_date" A..= edit_date, "date" A..= date, "contains_unread_mention" A..= contains_unread_mention, "is_channel_post" A..= is_channel_post, "has_timestamped_media" A..= has_timestamped_media, "can_get_media_timestamp_links" A..= can_get_media_timestamp_links, "can_get_viewers" A..= can_get_viewers, "can_get_message_thread" A..= can_get_message_thread, "can_get_statistics" A..= can_get_statistics, "can_be_deleted_for_all_users" A..= can_be_deleted_for_all_users, "can_be_deleted_only_for_self" A..= can_be_deleted_only_for_self, "can_be_forwarded" A..= can_be_forwarded, "can_be_edited" A..= can_be_edited, "is_pinned" A..= is_pinned, "is_outgoing" A..= is_outgoing, "scheduling_state" A..= scheduling_state, "sending_state" A..= sending_state, "chat_id" A..= chat_id, "sender" A..= sender, "id" A..= _id ]
+ toJSON Message { reply_markup = reply_markup, content = content, restriction_reason = restriction_reason, media_album_id = media_album_id, author_signature = author_signature, via_bot_user_id = via_bot_user_id, ttl_expires_in = ttl_expires_in, ttl = ttl, message_thread_id = message_thread_id, reply_to_message_id = reply_to_message_id, reply_in_chat_id = reply_in_chat_id, unread_reactions = unread_reactions, interaction_info = interaction_info, forward_info = forward_info, edit_date = edit_date, date = date, contains_unread_mention = contains_unread_mention, is_channel_post = is_channel_post, has_timestamped_media = has_timestamped_media, can_get_media_timestamp_links = can_get_media_timestamp_links, can_get_viewers = can_get_viewers, can_get_message_thread = can_get_message_thread, can_get_statistics = can_get_statistics, can_get_added_reactions = can_get_added_reactions, can_be_deleted_for_all_users = can_be_deleted_for_all_users, can_be_deleted_only_for_self = can_be_deleted_only_for_self, can_be_saved = can_be_saved, can_be_forwarded = can_be_forwarded, can_be_edited = can_be_edited, is_pinned = is_pinned, is_outgoing = is_outgoing, scheduling_state = scheduling_state, sending_state = sending_state, chat_id = chat_id, sender_id = sender_id, _id = _id } =
+  A.object [ "@type" A..= T.String "message", "reply_markup" A..= reply_markup, "content" A..= content, "restriction_reason" A..= restriction_reason, "media_album_id" A..= media_album_id, "author_signature" A..= author_signature, "via_bot_user_id" A..= via_bot_user_id, "ttl_expires_in" A..= ttl_expires_in, "ttl" A..= ttl, "message_thread_id" A..= message_thread_id, "reply_to_message_id" A..= reply_to_message_id, "reply_in_chat_id" A..= reply_in_chat_id, "unread_reactions" A..= unread_reactions, "interaction_info" A..= interaction_info, "forward_info" A..= forward_info, "edit_date" A..= edit_date, "date" A..= date, "contains_unread_mention" A..= contains_unread_mention, "is_channel_post" A..= is_channel_post, "has_timestamped_media" A..= has_timestamped_media, "can_get_media_timestamp_links" A..= can_get_media_timestamp_links, "can_get_viewers" A..= can_get_viewers, "can_get_message_thread" A..= can_get_message_thread, "can_get_statistics" A..= can_get_statistics, "can_get_added_reactions" A..= can_get_added_reactions, "can_be_deleted_for_all_users" A..= can_be_deleted_for_all_users, "can_be_deleted_only_for_self" A..= can_be_deleted_only_for_self, "can_be_saved" A..= can_be_saved, "can_be_forwarded" A..= can_be_forwarded, "can_be_edited" A..= can_be_edited, "is_pinned" A..= is_pinned, "is_outgoing" A..= is_outgoing, "scheduling_state" A..= scheduling_state, "sending_state" A..= sending_state, "chat_id" A..= chat_id, "sender_id" A..= sender_id, "id" A..= _id ]
 
 instance T.FromJSON Message where
  parseJSON v@(T.Object obj) = do
@@ -125,6 +132,7 @@ instance T.FromJSON Message where
     message_thread_id <- mconcat [ o A..:? "message_thread_id", readMaybe <$> (o A..: "message_thread_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     reply_to_message_id <- mconcat [ o A..:? "reply_to_message_id", readMaybe <$> (o A..: "reply_to_message_id" :: T.Parser String)] :: T.Parser (Maybe Int)
     reply_in_chat_id <- mconcat [ o A..:? "reply_in_chat_id", readMaybe <$> (o A..: "reply_in_chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
+    unread_reactions <- o A..:? "unread_reactions"
     interaction_info <- o A..:? "interaction_info"
     forward_info <- o A..:? "forward_info"
     edit_date <- mconcat [ o A..:? "edit_date", readMaybe <$> (o A..: "edit_date" :: T.Parser String)] :: T.Parser (Maybe Int)
@@ -136,8 +144,10 @@ instance T.FromJSON Message where
     can_get_viewers <- o A..:? "can_get_viewers"
     can_get_message_thread <- o A..:? "can_get_message_thread"
     can_get_statistics <- o A..:? "can_get_statistics"
+    can_get_added_reactions <- o A..:? "can_get_added_reactions"
     can_be_deleted_for_all_users <- o A..:? "can_be_deleted_for_all_users"
     can_be_deleted_only_for_self <- o A..:? "can_be_deleted_only_for_self"
+    can_be_saved <- o A..:? "can_be_saved"
     can_be_forwarded <- o A..:? "can_be_forwarded"
     can_be_edited <- o A..:? "can_be_edited"
     is_pinned <- o A..:? "is_pinned"
@@ -145,7 +155,7 @@ instance T.FromJSON Message where
     scheduling_state <- o A..:? "scheduling_state"
     sending_state <- o A..:? "sending_state"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    sender <- o A..:? "sender"
+    sender_id <- o A..:? "sender_id"
     _id <- mconcat [ o A..:? "id", readMaybe <$> (o A..: "id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ Message { reply_markup = reply_markup, content = content, restriction_reason = restriction_reason, media_album_id = media_album_id, author_signature = author_signature, via_bot_user_id = via_bot_user_id, ttl_expires_in = ttl_expires_in, ttl = ttl, message_thread_id = message_thread_id, reply_to_message_id = reply_to_message_id, reply_in_chat_id = reply_in_chat_id, interaction_info = interaction_info, forward_info = forward_info, edit_date = edit_date, date = date, contains_unread_mention = contains_unread_mention, is_channel_post = is_channel_post, has_timestamped_media = has_timestamped_media, can_get_media_timestamp_links = can_get_media_timestamp_links, can_get_viewers = can_get_viewers, can_get_message_thread = can_get_message_thread, can_get_statistics = can_get_statistics, can_be_deleted_for_all_users = can_be_deleted_for_all_users, can_be_deleted_only_for_self = can_be_deleted_only_for_self, can_be_forwarded = can_be_forwarded, can_be_edited = can_be_edited, is_pinned = is_pinned, is_outgoing = is_outgoing, scheduling_state = scheduling_state, sending_state = sending_state, chat_id = chat_id, sender = sender, _id = _id }
+    return $ Message { reply_markup = reply_markup, content = content, restriction_reason = restriction_reason, media_album_id = media_album_id, author_signature = author_signature, via_bot_user_id = via_bot_user_id, ttl_expires_in = ttl_expires_in, ttl = ttl, message_thread_id = message_thread_id, reply_to_message_id = reply_to_message_id, reply_in_chat_id = reply_in_chat_id, unread_reactions = unread_reactions, interaction_info = interaction_info, forward_info = forward_info, edit_date = edit_date, date = date, contains_unread_mention = contains_unread_mention, is_channel_post = is_channel_post, has_timestamped_media = has_timestamped_media, can_get_media_timestamp_links = can_get_media_timestamp_links, can_get_viewers = can_get_viewers, can_get_message_thread = can_get_message_thread, can_get_statistics = can_get_statistics, can_get_added_reactions = can_get_added_reactions, can_be_deleted_for_all_users = can_be_deleted_for_all_users, can_be_deleted_only_for_self = can_be_deleted_only_for_self, can_be_saved = can_be_saved, can_be_forwarded = can_be_forwarded, can_be_edited = can_be_edited, is_pinned = is_pinned, is_outgoing = is_outgoing, scheduling_state = scheduling_state, sending_state = sending_state, chat_id = chat_id, sender_id = sender_id, _id = _id }
  parseJSON _ = mempty

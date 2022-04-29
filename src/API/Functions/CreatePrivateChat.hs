@@ -14,7 +14,7 @@ import Data.List (intercalate)
 -- 
 -- __user_id__ User identifier
 -- 
--- __force__ If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
+-- __force__ Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
 data CreatePrivateChat = 
 
  CreatePrivateChat { force :: Maybe Bool, user_id :: Maybe Int }  deriving (Eq)

@@ -1,0 +1,15 @@
+-- GENERATED
+module API.Functions.SetDefaultChannelAdministratorRights where
+
+import Data.Aeson.Types
+
+data SetDefaultChannelAdministratorRights
+
+instance Eq SetDefaultChannelAdministratorRights
+
+instance ToJSON SetDefaultChannelAdministratorRights
+
+instance FromJSON SetDefaultChannelAdministratorRights
+
+instance Show SetDefaultChannelAdministratorRights
+

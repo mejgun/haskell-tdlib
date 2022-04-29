@@ -19,7 +19,7 @@ import {-# SOURCE #-} qualified API.ProxyType as ProxyType
 -- 
 -- __port__ Proxy server port
 -- 
--- __enable__ True, if the proxy needs to be enabled
+-- __enable__ Pass true to immediately enable the proxy
 -- 
 -- __type__ Proxy type
 data EditProxy = 

@@ -10,7 +10,7 @@ import Data.List (intercalate)
 
 -- |
 -- 
--- Returns invite link to a voice chat in a public chat
+-- Returns invite link to a video chat in a public chat
 -- 
 -- __group_call_id__ Group call identifier
 -- 

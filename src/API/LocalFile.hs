@@ -14,7 +14,7 @@ import Data.List (intercalate)
 -- 
 -- __path__ Local path to the locally available file part; may be empty
 -- 
--- __can_be_downloaded__ True, if it is possible to try to download or generate the file
+-- __can_be_downloaded__ True, if it is possible to download or generate the file
 -- 
 -- __can_be_deleted__ True, if the file can be deleted
 -- 

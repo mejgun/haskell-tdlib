@@ -16,7 +16,7 @@ import Data.List (intercalate)
 -- 
 -- __message_id__ Identifier of the message
 -- 
--- __edit_message__ True, if the message needs to be edited
+-- __edit_message__ Pass true to edit the game message to include the current scoreboard
 -- 
 -- __user_id__ User identifier
 -- 

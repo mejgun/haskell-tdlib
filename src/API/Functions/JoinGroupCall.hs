@@ -15,15 +15,15 @@ import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 -- 
 -- __group_call_id__ Group call identifier
 -- 
--- __participant_id__ Identifier of a group call participant, which will be used to join the call; pass null to join as self; voice chats only
+-- __participant_id__ Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only
 -- 
 -- __audio_source_id__ Caller audio channel synchronization source identifier; received from tgcalls
 -- 
 -- __payload__ Group call join payload; received from tgcalls
 -- 
--- __is_muted__ True, if the user's microphone is muted
+-- __is_muted__ Pass true to join the call with muted microphone
 -- 
--- __is_my_video_enabled__ True, if the user's video is enabled
+-- __is_my_video_enabled__ Pass true if the user's video is enabled
 -- 
 -- __invite_hash__ If non-empty, invite hash to be used to join the group call without being muted by administrators
 data JoinGroupCall = 

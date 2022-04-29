@@ -10,7 +10,7 @@ import Data.List (intercalate)
 
 -- |
 -- 
--- Returns detailed statistics about a chat. Currently this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true 
+-- Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true 
 -- 
 -- __chat_id__ Chat identifier
 -- 

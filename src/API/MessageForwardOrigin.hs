@@ -20,11 +20,11 @@ data MessageForwardOrigin =
  MessageForwardOriginUser { sender_user_id :: Maybe Int }  |
  -- |
  -- 
- -- The message was originally sent by an anonymous chat administrator on behalf of the chat
+ -- The message was originally sent on behalf of a chat
  -- 
  -- __sender_chat_id__ Identifier of the chat that originally sent the message
  -- 
- -- __author_signature__ Original message author signature
+ -- __author_signature__ For messages originally sent by an anonymous chat administrator, original message author signature
  MessageForwardOriginChat { author_signature :: Maybe String, sender_chat_id :: Maybe Int }  |
  -- |
  -- 

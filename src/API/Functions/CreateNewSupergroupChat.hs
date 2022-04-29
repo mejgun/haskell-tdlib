@@ -15,13 +15,13 @@ import {-# SOURCE #-} qualified API.ChatLocation as ChatLocation
 -- 
 -- __title__ Title of the new chat; 1-128 characters
 -- 
--- __is_channel__ True, if a channel chat needs to be created
+-- __is_channel__ Pass true to create a channel chat
 -- 
 -- __param_description__ Chat description; 0-255 characters
 -- 
 -- __location__ Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
 -- 
--- __for_import__ True, if the supergroup is created for importing messages using importMessage
+-- __for_import__ Pass true to create a supergroup for importing messages using importMessage
 data CreateNewSupergroupChat = 
 
  CreateNewSupergroupChat { for_import :: Maybe Bool, location :: Maybe ChatLocation.ChatLocation, description :: Maybe String, is_channel :: Maybe Bool, title :: Maybe String }  deriving (Eq)

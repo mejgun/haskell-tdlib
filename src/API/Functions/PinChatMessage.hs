@@ -16,9 +16,9 @@ import Data.List (intercalate)
 -- 
 -- __message_id__ Identifier of the new pinned message
 -- 
--- __disable_notification__ True, if there must be no notification about the pinned message. Notifications are always disabled in channels and private chats
+-- __disable_notification__ Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats
 -- 
--- __only_for_self__ True, if the message needs to be pinned for one side only; private chats only
+-- __only_for_self__ Pass true to pin the message only for self; private chats only
 data PinChatMessage = 
 
  PinChatMessage { only_for_self :: Maybe Bool, disable_notification :: Maybe Bool, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)

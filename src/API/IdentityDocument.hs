@@ -16,7 +16,7 @@ import {-# SOURCE #-} qualified API.Date as Date
 -- 
 -- __number__ Document number; 1-24 characters
 -- 
--- __expiry_date__ Document expiry date; may be null
+-- __expiry_date__ Document expiry date; may be null if not applicable
 -- 
 -- __front_side__ Front side of the document
 -- 

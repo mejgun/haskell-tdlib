@@ -29,7 +29,7 @@ data TMeUrlType =
  -- 
  -- A chat invite link 
  -- 
- -- __info__ Chat invite link info
+ -- __info__ Information about the chat invite link
  TMeUrlTypeChatInvite { info :: Maybe ChatInviteLinkInfo.ChatInviteLinkInfo }  |
  -- |
  -- 

@@ -16,7 +16,7 @@ import Data.List (intercalate)
 -- 
 -- __message_ids__ Identifiers of the messages to be deleted
 -- 
--- __revoke__ Pass true to try to delete messages for all chat members. Always true for supergroups, channels and secret chats
+-- __revoke__ Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats
 data DeleteMessages = 
 
  DeleteMessages { revoke :: Maybe Bool, message_ids :: Maybe [Int], chat_id :: Maybe Int }  deriving (Eq)

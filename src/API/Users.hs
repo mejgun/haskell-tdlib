@@ -12,7 +12,7 @@ import Data.List (intercalate)
 -- 
 -- Represents a list of users 
 -- 
--- __total_count__ Approximate total count of users found
+-- __total_count__ Approximate total number of users found
 -- 
 -- __user_ids__ A list of user identifiers
 data Users = 

@@ -32,10 +32,18 @@ data AuthenticationCodeType =
  AuthenticationCodeTypeCall { _length :: Maybe Int }  |
  -- |
  -- 
- -- An authentication code is delivered by an immediately canceled call to the specified phone number. The number from which the call was made is the code 
+ -- An authentication code is delivered by an immediately canceled call to the specified phone number. The phone number that calls is the code that must be entered automatically 
  -- 
  -- __pattern__ Pattern of the phone number from which the call will be made
- AuthenticationCodeTypeFlashCall { pattern :: Maybe String }  deriving (Eq)
+ AuthenticationCodeTypeFlashCall { pattern :: Maybe String }  |
+ -- |
+ -- 
+ -- An authentication code is delivered by an immediately canceled call to the specified phone number. The last digits of the phone number that calls are the code that must be entered manually by the user 
+ -- 
+ -- __phone_number_prefix__ Prefix of the phone number from which the call will be made
+ -- 
+ -- __length__ Number of digits in the code, excluding the prefix
+ AuthenticationCodeTypeMissedCall { _length :: Maybe Int, phone_number_prefix :: Maybe String }  deriving (Eq)
 
 instance Show AuthenticationCodeType where
  show AuthenticationCodeTypeTelegramMessage { _length=_length } =
@@ -49,6 +57,9 @@ instance Show AuthenticationCodeType where
 
  show AuthenticationCodeTypeFlashCall { pattern=pattern } =
   "AuthenticationCodeTypeFlashCall" ++ cc [p "pattern" pattern ]
+
+ show AuthenticationCodeTypeMissedCall { _length=_length, phone_number_prefix=phone_number_prefix } =
+  "AuthenticationCodeTypeMissedCall" ++ cc [p "_length" _length, p "phone_number_prefix" phone_number_prefix ]
 
 p :: Show a => String -> Maybe a -> String
 p b (Just a) = b ++ " = " ++ show a
@@ -72,6 +83,9 @@ instance T.ToJSON AuthenticationCodeType where
  toJSON AuthenticationCodeTypeFlashCall { pattern = pattern } =
   A.object [ "@type" A..= T.String "authenticationCodeTypeFlashCall", "pattern" A..= pattern ]
 
+ toJSON AuthenticationCodeTypeMissedCall { _length = _length, phone_number_prefix = phone_number_prefix } =
+  A.object [ "@type" A..= T.String "authenticationCodeTypeMissedCall", "length" A..= _length, "phone_number_prefix" A..= phone_number_prefix ]
+
 instance T.FromJSON AuthenticationCodeType where
  parseJSON v@(T.Object obj) = do
   t <- obj A..: "@type" :: T.Parser String
@@ -80,6 +94,7 @@ instance T.FromJSON AuthenticationCodeType where
    "authenticationCodeTypeSms" -> parseAuthenticationCodeTypeSms v
    "authenticationCodeTypeCall" -> parseAuthenticationCodeTypeCall v
    "authenticationCodeTypeFlashCall" -> parseAuthenticationCodeTypeFlashCall v
+   "authenticationCodeTypeMissedCall" -> parseAuthenticationCodeTypeMissedCall v
    _ -> mempty
   where
    parseAuthenticationCodeTypeTelegramMessage :: A.Value -> T.Parser AuthenticationCodeType
@@ -101,4 +116,10 @@ instance T.FromJSON AuthenticationCodeType where
    parseAuthenticationCodeTypeFlashCall = A.withObject "AuthenticationCodeTypeFlashCall" $ \o -> do
     pattern <- o A..:? "pattern"
     return $ AuthenticationCodeTypeFlashCall { pattern = pattern }
+
+   parseAuthenticationCodeTypeMissedCall :: A.Value -> T.Parser AuthenticationCodeType
+   parseAuthenticationCodeTypeMissedCall = A.withObject "AuthenticationCodeTypeMissedCall" $ \o -> do
+    _length <- mconcat [ o A..:? "length", readMaybe <$> (o A..: "length" :: T.Parser String)] :: T.Parser (Maybe Int)
+    phone_number_prefix <- o A..:? "phone_number_prefix"
+    return $ AuthenticationCodeTypeMissedCall { _length = _length, phone_number_prefix = phone_number_prefix }
  parseJSON _ = mempty

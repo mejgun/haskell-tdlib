@@ -43,7 +43,7 @@ import {-# SOURCE #-} qualified API.UserStatus as UserStatus
 -- 
 -- __is_fake__ True, if many users reported this user as a fake account
 -- 
--- __have_access__ If false, the user is inaccessible, and the only information known about the user is inside this class. It can't be passed to any method except GetUser
+-- __have_access__ If false, the user is inaccessible, and the only information known about the user is inside this class. Identifier of the user can't be passed to any method except GetUser
 -- 
 -- __type__ Type of the user
 -- 

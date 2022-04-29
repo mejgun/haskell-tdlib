@@ -18,7 +18,7 @@ import Data.List (intercalate)
 -- 
 -- __new_hint__ New password hint; may be empty
 -- 
--- __set_recovery_email_address__ Pass true if the recovery email address must be changed
+-- __set_recovery_email_address__ Pass true to change also the recovery email address
 -- 
 -- __new_recovery_email_address__ New recovery email address; may be empty
 data SetPassword = 

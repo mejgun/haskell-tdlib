@@ -20,7 +20,7 @@ import Data.List (intercalate)
 -- 
 -- __button_id__ Button identifier
 -- 
--- __allow_write_access__ True, if the user allowed the bot to send them messages
+-- __allow_write_access__ Pass true to allow the bot to send messages to the current user
 data GetLoginUrl = 
 
  GetLoginUrl { allow_write_access :: Maybe Bool, button_id :: Maybe Int, message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)

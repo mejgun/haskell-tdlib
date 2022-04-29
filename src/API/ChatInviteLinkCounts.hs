@@ -13,7 +13,7 @@ import {-# SOURCE #-} qualified API.ChatInviteLinkCount as ChatInviteLinkCount
 -- 
 -- Contains a list of chat invite link counts 
 -- 
--- __invite_link_counts__ List of invite linkcounts
+-- __invite_link_counts__ List of invite link counts
 data ChatInviteLinkCounts = 
 
  ChatInviteLinkCounts { invite_link_counts :: Maybe [ChatInviteLinkCount.ChatInviteLinkCount] }  deriving (Eq)

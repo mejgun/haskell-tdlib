@@ -17,7 +17,7 @@ import {-# SOURCE #-} qualified API.MessageSender as MessageSender
 -- 
 -- __participant_id__ Participant identifier
 -- 
--- __is_muted__ Pass true if the user must be muted and false otherwise
+-- __is_muted__ Pass true to mute the user; pass false to unmute the them
 data ToggleGroupCallParticipantIsMuted = 
 
  ToggleGroupCallParticipantIsMuted { is_muted :: Maybe Bool, participant_id :: Maybe MessageSender.MessageSender, group_call_id :: Maybe Int }  deriving (Eq)

@@ -10,9 +10,9 @@ import Data.List (intercalate)
 
 -- |
 -- 
--- Clears draft messages in all chats 
+-- Clears message drafts in all chats 
 -- 
--- __exclude_secret_chats__ If true, local draft messages in secret chats will not be cleared
+-- __exclude_secret_chats__ Pass true to keep local message drafts in secret chats
 data ClearAllDraftMessages = 
 
  ClearAllDraftMessages { exclude_secret_chats :: Maybe Bool }  deriving (Eq)

@@ -20,7 +20,7 @@ import Data.List (intercalate)
 -- 
 -- __native_name__ Name of the language in that language
 -- 
--- __plural_code__ A language code to be used to apply plural forms. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info
+-- __plural_code__ A language code to be used to apply plural forms. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more information
 -- 
 -- __is_official__ True, if the language pack is official
 -- 

@@ -12,7 +12,7 @@ import Data.List (intercalate)
 -- 
 -- Checks the phone number verification code for Telegram Passport 
 -- 
--- __code__ Verification code
+-- __code__ Verification code to check
 data CheckPhoneNumberVerificationCode = 
 
  CheckPhoneNumberVerificationCode { code :: Maybe String }  deriving (Eq)

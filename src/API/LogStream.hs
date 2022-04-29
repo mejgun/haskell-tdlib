@@ -22,7 +22,7 @@ data LogStream =
  -- 
  -- __path__ Path to the file to where the internal TDLib log will be written
  -- 
- -- __max_file_size__ The maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated, in bytes
+ -- __max_file_size__ The maximum size of the file to where the internal TDLib log is written before the file will automatically be rotated, in bytes
  -- 
  -- __redirect_stderr__ Pass true to additionally redirect stderr to the log file. Ignored on Windows
  LogStreamFile { redirect_stderr :: Maybe Bool, max_file_size :: Maybe Int, path :: Maybe String }  |

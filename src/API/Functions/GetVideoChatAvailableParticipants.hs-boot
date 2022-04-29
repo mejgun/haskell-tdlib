@@ -1,0 +1,15 @@
+-- GENERATED
+module API.Functions.GetVideoChatAvailableParticipants where
+
+import Data.Aeson.Types
+
+data GetVideoChatAvailableParticipants
+
+instance Eq GetVideoChatAvailableParticipants
+
+instance ToJSON GetVideoChatAvailableParticipants
+
+instance FromJSON GetVideoChatAvailableParticipants
+
+instance Show GetVideoChatAvailableParticipants
+

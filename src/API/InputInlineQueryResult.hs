@@ -183,13 +183,13 @@ data InputInlineQueryResult =
  InputInlineQueryResultPhoto { input_message_content :: Maybe InputMessageContent.InputMessageContent, reply_markup :: Maybe ReplyMarkup.ReplyMarkup, photo_height :: Maybe Int, photo_width :: Maybe Int, photo_url :: Maybe String, thumbnail_url :: Maybe String, description :: Maybe String, title :: Maybe String, _id :: Maybe String }  |
  -- |
  -- 
- -- Represents a link to a WEBP or TGS sticker 
+ -- Represents a link to a WEBP, TGS, or WEBM sticker 
  -- 
  -- __id__ Unique identifier of the query result
  -- 
  -- __thumbnail_url__ URL of the sticker thumbnail, if it exists
  -- 
- -- __sticker_url__ The URL of the WEBP or TGS sticker (sticker file size must not exceed 5MB)
+ -- __sticker_url__ The URL of the WEBP, TGS, or WEBM sticker (sticker file size must not exceed 5MB)
  -- 
  -- __sticker_width__ Width of the sticker
  -- 

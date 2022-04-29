@@ -14,11 +14,11 @@ import Data.List (intercalate)
 -- 
 -- __call_id__ Call identifier
 -- 
--- __is_disconnected__ True, if the user was disconnected
+-- __is_disconnected__ Pass true if the user was disconnected
 -- 
 -- __duration__ The call duration, in seconds
 -- 
--- __is_video__ True, if the call was a video call
+-- __is_video__ Pass true if the call was a video call
 -- 
 -- __connection_id__ Identifier of the connection used during the call
 data DiscardCall = 

@@ -228,7 +228,7 @@ data PageBlock =
  -- 
  -- __photo__ Chat photo; may be null
  -- 
- -- __username__ Chat username, by which all other information about the chat can be resolved
+ -- __username__ Chat username by which all other information about the chat can be resolved
  PageBlockChatLink { username :: Maybe String, photo :: Maybe ChatPhotoInfo.ChatPhotoInfo, title :: Maybe String }  |
  -- |
  -- 

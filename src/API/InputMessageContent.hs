@@ -25,7 +25,7 @@ data InputMessageContent =
  -- 
  -- A text message 
  -- 
- -- __text__ Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
+ -- __text__ Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
  -- 
  -- __disable_web_page_preview__ True, if rich web page previews for URLs in the message text must be disabled
  -- 
@@ -235,7 +235,7 @@ data InputMessageContent =
  -- 
  -- __open_period__ Amount of time the poll will be active after creation, in seconds; for bots only
  -- 
- -- __close_date__ Point in time (Unix timestamp) when the poll will be automatically closed; for bots only
+ -- __close_date__ Point in time (Unix timestamp) when the poll will automatically be closed; for bots only
  -- 
  -- __is_closed__ True, if the poll needs to be sent already closed; for bots only
  InputMessagePoll { is_closed :: Maybe Bool, close_date :: Maybe Int, open_period :: Maybe Int, _type :: Maybe PollType.PollType, is_anonymous :: Maybe Bool, options :: Maybe [String], question :: Maybe String }  |
@@ -249,7 +249,7 @@ data InputMessageContent =
  -- 
  -- __in_game_share__ True, if a game message is being shared from a launched game; applies only to game messages
  -- 
- -- __copy_options__ Options to be used to copy content of the message without reference to the original sender; pass null to try to forward the message as usual
+ -- __copy_options__ Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual
  InputMessageForwarded { copy_options :: Maybe MessageCopyOptions.MessageCopyOptions, in_game_share :: Maybe Bool, message_id :: Maybe Int, from_chat_id :: Maybe Int }  deriving (Eq)
 
 instance Show InputMessageContent where

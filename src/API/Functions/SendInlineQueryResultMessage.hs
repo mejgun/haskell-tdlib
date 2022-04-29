@@ -17,7 +17,7 @@ import {-# SOURCE #-} qualified API.MessageSendOptions as MessageSendOptions
 -- 
 -- __message_thread_id__ If not 0, a message thread identifier in which the message will be sent
 -- 
--- __reply_to_message_id__ Identifier of a message to reply to or 0
+-- __reply_to_message_id__ Identifier of a replied message; 0 if none
 -- 
 -- __options__ Options to be used to send the message; pass null to use default options
 -- 
@@ -25,7 +25,7 @@ import {-# SOURCE #-} qualified API.MessageSendOptions as MessageSendOptions
 -- 
 -- __result_id__ Identifier of the inline result
 -- 
--- __hide_via_bot__ If true, there will be no mention of a bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username") and GetOption("venue_search_bot_username")
+-- __hide_via_bot__ Pass true to hide the bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username"), and GetOption("venue_search_bot_username")
 data SendInlineQueryResultMessage = 
 
  SendInlineQueryResultMessage { hide_via_bot :: Maybe Bool, result_id :: Maybe String, query_id :: Maybe Int, options :: Maybe MessageSendOptions.MessageSendOptions, reply_to_message_id :: Maybe Int, message_thread_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)

@@ -14,16 +14,20 @@ import Data.List (intercalate)
 -- 
 -- __chat_id__ Chat identifier
 -- 
--- __expire_date__ Point in time (Unix timestamp) when the link will expire; pass 0 if never
+-- __name__ Invite link name; 0-32 characters
 -- 
--- __member_limit__ The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
+-- __expiration_date__ Point in time (Unix timestamp) when the link will expire; pass 0 if never
+-- 
+-- __member_limit__ The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
+-- 
+-- __creates_join_request__ Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
 data CreateChatInviteLink = 
 
- CreateChatInviteLink { member_limit :: Maybe Int, expire_date :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)
+ CreateChatInviteLink { creates_join_request :: Maybe Bool, member_limit :: Maybe Int, expiration_date :: Maybe Int, name :: Maybe String, chat_id :: Maybe Int }  deriving (Eq)
 
 instance Show CreateChatInviteLink where
- show CreateChatInviteLink { member_limit=member_limit, expire_date=expire_date, chat_id=chat_id } =
-  "CreateChatInviteLink" ++ cc [p "member_limit" member_limit, p "expire_date" expire_date, p "chat_id" chat_id ]
+ show CreateChatInviteLink { creates_join_request=creates_join_request, member_limit=member_limit, expiration_date=expiration_date, name=name, chat_id=chat_id } =
+  "CreateChatInviteLink" ++ cc [p "creates_join_request" creates_join_request, p "member_limit" member_limit, p "expiration_date" expiration_date, p "name" name, p "chat_id" chat_id ]
 
 p :: Show a => String -> Maybe a -> String
 p b (Just a) = b ++ " = " ++ show a
@@ -35,8 +39,8 @@ cc a = " {" ++ intercalate ", " (filter (not . null) a) ++ "}"
 
 
 instance T.ToJSON CreateChatInviteLink where
- toJSON CreateChatInviteLink { member_limit = member_limit, expire_date = expire_date, chat_id = chat_id } =
-  A.object [ "@type" A..= T.String "createChatInviteLink", "member_limit" A..= member_limit, "expire_date" A..= expire_date, "chat_id" A..= chat_id ]
+ toJSON CreateChatInviteLink { creates_join_request = creates_join_request, member_limit = member_limit, expiration_date = expiration_date, name = name, chat_id = chat_id } =
+  A.object [ "@type" A..= T.String "createChatInviteLink", "creates_join_request" A..= creates_join_request, "member_limit" A..= member_limit, "expiration_date" A..= expiration_date, "name" A..= name, "chat_id" A..= chat_id ]
 
 instance T.FromJSON CreateChatInviteLink where
  parseJSON v@(T.Object obj) = do
@@ -47,8 +51,10 @@ instance T.FromJSON CreateChatInviteLink where
   where
    parseCreateChatInviteLink :: A.Value -> T.Parser CreateChatInviteLink
    parseCreateChatInviteLink = A.withObject "CreateChatInviteLink" $ \o -> do
+    creates_join_request <- o A..:? "creates_join_request"
     member_limit <- mconcat [ o A..:? "member_limit", readMaybe <$> (o A..: "member_limit" :: T.Parser String)] :: T.Parser (Maybe Int)
-    expire_date <- mconcat [ o A..:? "expire_date", readMaybe <$> (o A..: "expire_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    expiration_date <- mconcat [ o A..:? "expiration_date", readMaybe <$> (o A..: "expiration_date" :: T.Parser String)] :: T.Parser (Maybe Int)
+    name <- o A..:? "name"
     chat_id <- mconcat [ o A..:? "chat_id", readMaybe <$> (o A..: "chat_id" :: T.Parser String)] :: T.Parser (Maybe Int)
-    return $ CreateChatInviteLink { member_limit = member_limit, expire_date = expire_date, chat_id = chat_id }
+    return $ CreateChatInviteLink { creates_join_request = creates_join_request, member_limit = member_limit, expiration_date = expiration_date, name = name, chat_id = chat_id }
  parseJSON _ = mempty

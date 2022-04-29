@@ -21,11 +21,11 @@ import {-# SOURCE #-} qualified API.MessageSendOptions as MessageSendOptions
 -- 
 -- __options__ Options to be used to send the messages; pass null to use default options
 -- 
--- __send_copy__ If true, content of the messages will be copied without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
+-- __send_copy__ Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
 -- 
--- __remove_caption__ If true, media caption of message copies will be removed. Ignored if send_copy is false
+-- __remove_caption__ Pass true to remove media captions of message copies. Ignored if send_copy is false
 -- 
--- __only_preview__ If true, messages will not be forwarded and instead fake messages will be returned
+-- __only_preview__ Pass true to get fake messages instead of actually forwarding them
 data ForwardMessages = 
 
  ForwardMessages { only_preview :: Maybe Bool, remove_caption :: Maybe Bool, send_copy :: Maybe Bool, options :: Maybe MessageSendOptions.MessageSendOptions, message_ids :: Maybe [Int], from_chat_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)

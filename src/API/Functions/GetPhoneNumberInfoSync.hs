@@ -12,7 +12,7 @@ import Data.List (intercalate)
 -- 
 -- Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
 -- 
--- __language_code__ A two-letter ISO 639-1 country code for country information localization
+-- __language_code__ A two-letter ISO 639-1 language code for country information localization
 -- 
 -- __phone_number_prefix__ The phone number prefix
 data GetPhoneNumberInfoSync = 

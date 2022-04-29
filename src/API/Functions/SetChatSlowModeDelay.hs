@@ -14,7 +14,7 @@ import Data.List (intercalate)
 -- 
 -- __chat_id__ Chat identifier
 -- 
--- __slow_mode_delay__ New slow mode delay for the chat; must be one of 0, 10, 30, 60, 300, 900, 3600
+-- __slow_mode_delay__ New slow mode delay for the chat, in seconds; must be one of 0, 10, 30, 60, 300, 900, 3600
 data SetChatSlowModeDelay = 
 
  SetChatSlowModeDelay { slow_mode_delay :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)

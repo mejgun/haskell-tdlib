@@ -10,7 +10,7 @@ import Data.List (intercalate)
 
 -- |
 -- 
--- Informs TDLib that messages are being viewed by the user. Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
+-- Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button). Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
 -- 
 -- __chat_id__ Chat identifier
 -- 
@@ -18,7 +18,7 @@ import Data.List (intercalate)
 -- 
 -- __message_ids__ The identifiers of the messages being viewed
 -- 
--- __force_read__ True, if messages in closed chats must be marked as read by the request
+-- __force_read__ Pass true to mark as read the specified messages even the chat is closed
 data ViewMessages = 
 
  ViewMessages { force_read :: Maybe Bool, message_ids :: Maybe [Int], message_thread_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)

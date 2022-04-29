@@ -13,7 +13,7 @@ import {-# SOURCE #-} qualified API.ChatMember as ChatMember
 -- 
 -- Contains a list of chat members 
 -- 
--- __total_count__ Approximate total count of chat members found
+-- __total_count__ Approximate total number of chat members found
 -- 
 -- __members__ A list of chat members
 data ChatMembers = 

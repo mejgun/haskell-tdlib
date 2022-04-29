@@ -10,7 +10,7 @@ import Data.List (intercalate)
 
 -- |
 -- 
--- Deletes saved order info
+-- Deletes saved order information
 data DeleteSavedOrderInfo = 
 
  DeleteSavedOrderInfo deriving (Eq)

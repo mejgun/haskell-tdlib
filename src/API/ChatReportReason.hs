@@ -42,6 +42,14 @@ data ChatReportReason =
  ChatReportReasonFake |
  -- |
  -- 
+ -- The chat has illegal drugs related content
+ ChatReportReasonIllegalDrugs |
+ -- |
+ -- 
+ -- The chat contains messages with personal details
+ ChatReportReasonPersonalDetails |
+ -- |
+ -- 
  -- A custom reason provided by the user
  ChatReportReasonCustom deriving (Eq)
 
@@ -66,6 +74,12 @@ instance Show ChatReportReason where
 
  show ChatReportReasonFake {  } =
   "ChatReportReasonFake" ++ cc [ ]
+
+ show ChatReportReasonIllegalDrugs {  } =
+  "ChatReportReasonIllegalDrugs" ++ cc [ ]
+
+ show ChatReportReasonPersonalDetails {  } =
+  "ChatReportReasonPersonalDetails" ++ cc [ ]
 
  show ChatReportReasonCustom {  } =
   "ChatReportReasonCustom" ++ cc [ ]
@@ -101,6 +115,12 @@ instance T.ToJSON ChatReportReason where
  toJSON ChatReportReasonFake {  } =
   A.object [ "@type" A..= T.String "chatReportReasonFake" ]
 
+ toJSON ChatReportReasonIllegalDrugs {  } =
+  A.object [ "@type" A..= T.String "chatReportReasonIllegalDrugs" ]
+
+ toJSON ChatReportReasonPersonalDetails {  } =
+  A.object [ "@type" A..= T.String "chatReportReasonPersonalDetails" ]
+
  toJSON ChatReportReasonCustom {  } =
   A.object [ "@type" A..= T.String "chatReportReasonCustom" ]
 
@@ -115,6 +135,8 @@ instance T.FromJSON ChatReportReason where
    "chatReportReasonCopyright" -> parseChatReportReasonCopyright v
    "chatReportReasonUnrelatedLocation" -> parseChatReportReasonUnrelatedLocation v
    "chatReportReasonFake" -> parseChatReportReasonFake v
+   "chatReportReasonIllegalDrugs" -> parseChatReportReasonIllegalDrugs v
+   "chatReportReasonPersonalDetails" -> parseChatReportReasonPersonalDetails v
    "chatReportReasonCustom" -> parseChatReportReasonCustom v
    _ -> mempty
   where
@@ -145,6 +167,14 @@ instance T.FromJSON ChatReportReason where
    parseChatReportReasonFake :: A.Value -> T.Parser ChatReportReason
    parseChatReportReasonFake = A.withObject "ChatReportReasonFake" $ \o -> do
     return $ ChatReportReasonFake {  }
+
+   parseChatReportReasonIllegalDrugs :: A.Value -> T.Parser ChatReportReason
+   parseChatReportReasonIllegalDrugs = A.withObject "ChatReportReasonIllegalDrugs" $ \o -> do
+    return $ ChatReportReasonIllegalDrugs {  }
+
+   parseChatReportReasonPersonalDetails :: A.Value -> T.Parser ChatReportReason
+   parseChatReportReasonPersonalDetails = A.withObject "ChatReportReasonPersonalDetails" $ \o -> do
+    return $ ChatReportReasonPersonalDetails {  }
 
    parseChatReportReasonCustom :: A.Value -> T.Parser ChatReportReason
    parseChatReportReasonCustom = A.withObject "ChatReportReasonCustom" $ \o -> do

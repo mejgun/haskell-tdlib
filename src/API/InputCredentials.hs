@@ -22,7 +22,7 @@ data InputCredentials =
  -- 
  -- Applies if a user enters new credentials on a payment provider website 
  -- 
- -- __data__ Contains JSON-encoded data with a credential identifier from the payment provider
+ -- __data__ JSON-encoded data with the credential identifier from the payment provider
  -- 
  -- __allow_save__ True, if the credential identifier can be saved on the server side
  InputCredentialsNew { allow_save :: Maybe Bool, _data :: Maybe String }  |

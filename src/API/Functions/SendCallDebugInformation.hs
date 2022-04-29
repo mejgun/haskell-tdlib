@@ -10,7 +10,7 @@ import Data.List (intercalate)
 
 -- |
 -- 
--- Sends debug information for a call 
+-- Sends debug information for a call to Telegram servers 
 -- 
 -- __call_id__ Call identifier
 -- 

@@ -10,11 +10,11 @@ import Data.List (intercalate)
 
 -- |
 -- 
--- Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants has already been loaded
+-- Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants have already been loaded
 -- 
 -- __group_call_id__ Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
 -- 
--- __limit__ The maximum number of participants to load
+-- __limit__ The maximum number of participants to load; up to 100
 data LoadGroupCallParticipants = 
 
  LoadGroupCallParticipants { limit :: Maybe Int, group_call_id :: Maybe Int }  deriving (Eq)

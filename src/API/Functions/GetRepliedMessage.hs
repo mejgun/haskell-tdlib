@@ -14,7 +14,7 @@ import Data.List (intercalate)
 -- 
 -- __chat_id__ Identifier of the chat the message belongs to
 -- 
--- __message_id__ Identifier of the message reply to which to get
+-- __message_id__ Identifier of the reply message
 data GetRepliedMessage = 
 
  GetRepliedMessage { message_id :: Maybe Int, chat_id :: Maybe Int }  deriving (Eq)

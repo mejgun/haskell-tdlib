@@ -15,9 +15,9 @@ import {-# SOURCE #-} qualified API.CallProtocol as CallProtocol
 -- 
 -- __user_id__ Identifier of the user to be called
 -- 
--- __protocol__ Description of the call protocols supported by the application
+-- __protocol__ The call protocols supported by the application
 -- 
--- __is_video__ True, if a video call needs to be created
+-- __is_video__ Pass true to create a video call
 data CreateCall = 
 
  CreateCall { is_video :: Maybe Bool, protocol :: Maybe CallProtocol.CallProtocol, user_id :: Maybe Int }  deriving (Eq)

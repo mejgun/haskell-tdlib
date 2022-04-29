@@ -12,7 +12,7 @@ import Data.List (intercalate)
 -- 
 -- Checks the 2-step verification recovery email address verification code 
 -- 
--- __code__ Verification code
+-- __code__ Verification code to check
 data CheckRecoveryEmailAddressCode = 
 
  CheckRecoveryEmailAddressCode { code :: Maybe String }  deriving (Eq)

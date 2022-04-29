@@ -21,7 +21,7 @@ import {-# SOURCE #-} qualified API.ChatMemberStatus as ChatMemberStatus
 -- 
 -- __status__ Status of the current user in the supergroup or channel; custom title will be always empty
 -- 
--- __member_count__ Number of members in the supergroup or channel; 0 if unknown. Currently it is guaranteed to be known only if the supergroup or channel was received through searchPublicChats, searchChatsNearby, getInactiveSupergroupChats, getSuitableDiscussionChats, getGroupsInCommon, or getUserPrivacySettingRules
+-- __member_count__ Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through searchPublicChats, searchChatsNearby, getInactiveSupergroupChats, getSuitableDiscussionChats, getGroupsInCommon, or getUserPrivacySettingRules
 -- 
 -- __has_linked_chat__ True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel
 -- 
@@ -33,7 +33,7 @@ import {-# SOURCE #-} qualified API.ChatMemberStatus as ChatMemberStatus
 -- 
 -- __is_channel__ True, if the supergroup is a channel
 -- 
--- __is_broadcast_group__ True, if the supergroup is a broadcast group, i.e. only administrators can send messages and there is no limit on number of members
+-- __is_broadcast_group__ True, if the supergroup is a broadcast group, i.e. only administrators can send messages and there is no limit on the number of members
 -- 
 -- __is_verified__ True, if the supergroup or channel is verified
 -- 
